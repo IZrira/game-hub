@@ -30,7 +30,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
   }, [name]);
 
   const handleError = () => {
-    setImgSrc("https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/신용%20포인트.webp");
+    setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/신용 포인트.webp");
   };
 
   const truncateMiddle = (text: string, maxLength: number) => {

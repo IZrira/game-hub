@@ -397,7 +397,7 @@ export const ITEM_META: Record<string, ItemDetail> = {
  * 아이템 이름을 기반으로 깃허브 CDN 이미지 URL을 반환합니다.
  */
 export const getItemUrl = (itemName: string): string => {
-  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
   
   // 1. 아이템 데이터에서 fileName이 명시되어 있는지 확인
   const itemDetail = ITEM_META[itemName];

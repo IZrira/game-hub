@@ -16,7 +16,7 @@ const RelicDetail: React.FC = () => {
     );
   }
 
-  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
   
   const getMainImageUrl = (item: any) => {
     const safeType = item.type.normalize('NFC');
@@ -86,7 +86,7 @@ const RelicDetail: React.FC = () => {
                           src={getPieceImageUrl(relic, idx)}
                           alt={piece}
                           className="w-full h-full object-contain"
-                          onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp'; }}
+                          onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                         />
                       </div>
                       <span className="text-[11px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{piece}</span>

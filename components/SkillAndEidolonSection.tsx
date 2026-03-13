@@ -41,8 +41,8 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
   });
   const categories = SKILL_CATEGORIES_HSR;
 
-  const CDN_BASE = `https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/skills/${encodeURIComponent(char.folderName)}/`;
-  const STAT_ICON_BASE = "https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/stats/";
+  const CDN_BASE = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/skills/${encodeURIComponent(char.folderName)}/`;
+  const STAT_ICON_BASE = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/stats/";
 
   const groupedSkills = useMemo(() => {
     const groups: Record<string, { skill: SkillDetail, filename: string }[]> = {

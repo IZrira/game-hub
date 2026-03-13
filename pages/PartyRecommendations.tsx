@@ -25,7 +25,7 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
 };
 
 const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined }> = ({ party, gameId }) => {
-  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
   const [hoveredMemberIdx, setHoveredMemberIdx] = useState<number | null>(null);
 
   const getIconUrl = (member: { folderName: string; isTrailblazer?: boolean }) => {
@@ -72,7 +72,7 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
                   alt={member.name}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/member:scale-110"
                   onError={(e) => {
-                    (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/unknown.webp';
+                    (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp';
                   }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-60" />

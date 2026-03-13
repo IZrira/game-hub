@@ -399,7 +399,7 @@ const Gallery: React.FC = () => {
 
 /* --- 에러 #31 방어용 서브 컴포넌트 --- */
 // 🚨 수정 1: %20을 지우고 그냥 띄어쓰기('hsr images')로 바꿉니다. (encodeURI가 알아서 해줍니다)
-const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
 // 🚨 수정 2: 유물 폴더 안에 바로 '유물명.webp'를 부르도록 복구 + 맥(Mac) 한글 깨짐 방지 추가
 const getMainImageUrl = (item: any) => {
@@ -512,7 +512,7 @@ const RelicPremiumCard: React.FC<{ relic: any; onClick: () => void }> = ({ relic
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp';
+              (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp';
             }}
           />
         </div>
@@ -544,7 +544,7 @@ const OrnamentPremiumCard: React.FC<{ ornament: any; onClick: () => void }> = ({
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp';
+              (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp';
             }}
           />
         </div>
@@ -605,7 +605,7 @@ const RelicDetailModal = ({ relic, onClose }: any) => {
                         src={getPieceImageUrl(relic, idx)}
                         alt={piece}
                         className="w-full h-full object-contain"
-                        onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp'; }}
+                        onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                       />
                     </div>
                     <span className="text-[9px] md:text-[10px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors truncate w-full px-1">{piece}</span>
@@ -680,7 +680,7 @@ const OrnamentDetailModal = ({ ornament, onClose }: any) => {
                         src={getPieceImageUrl(ornament, idx)}
                         alt={piece}
                         className="w-full h-full object-contain"
-                        onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp'; }}
+                        onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                       />
                     </div>
                     <span className="text-[11px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{piece}</span>

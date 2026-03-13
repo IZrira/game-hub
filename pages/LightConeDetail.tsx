@@ -14,7 +14,7 @@ const LightConeDetail: React.FC = () => {
   if (!lc) return <div className="p-20 text-center text-white font-black uppercase italic">Light Cone Registry Not Found</div>;
 
   const getIllustrationUrl = () => {
-    const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+    const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
     const targetName = lc.fileName || lc.folderName || lc.name;
     const url = `${BASE_IMAGE_URL}/광추/${lc.path.normalize('NFC')}/${targetName.normalize('NFC')}.webp`;
     return encodeURI(url);

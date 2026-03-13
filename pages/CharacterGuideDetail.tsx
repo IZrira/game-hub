@@ -21,7 +21,7 @@ import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games
 import { HSR_PARTIES } from '../data/parties';
 import SEO from '../components/SEO';
 
-const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
 const getMainImageUrl = (item: any) => {
   if (!item) return null;
@@ -248,7 +248,7 @@ const CharacterGuideDetail: React.FC = () => {
                   }
                   alt={charName}
                   className="w-full h-full object-cover"
-                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/items/unknown.webp'; }}
+                  onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp'; }}
                 />
               ) : (
                 <div className="w-full h-full bg-white/5" />
@@ -326,7 +326,7 @@ const CharacterGuideDetail: React.FC = () => {
                                 src={getMainImageUrl(relic)} 
                                 alt={relicName} 
                                 className="w-full h-full object-contain"
-                                onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp'; }}
+                                onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                               />
                             ) : (
                               <div className="w-full h-full bg-white/5 rounded" />
@@ -376,7 +376,7 @@ const CharacterGuideDetail: React.FC = () => {
                                 src={getMainImageUrl(ornament)} 
                                 alt={ornamentName} 
                                 className="w-full h-full object-contain"
-                                onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/relic_placeholder.webp'; }}
+                                onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                               />
                             ) : (
                               <div className="w-full h-full bg-white/5 rounded" />
@@ -590,7 +590,7 @@ const CharacterGuideDetail: React.FC = () => {
                               src={lcUrl} 
                               alt={lcName} 
                               className="w-full h-full object-contain"
-                              onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/items/unknown.webp'; }}
+                              onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp'; }}
                             />
                           ) : (
                             <div className="w-full h-full bg-white/5 rounded" />

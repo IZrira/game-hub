@@ -191,7 +191,7 @@ const CharacterDetail: React.FC = () => {
   };
 
   const getIllustrationUrl = () => {
-    const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+    const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
     const base = char.gameId === 'hsr' 
       ? `${BASE_IMAGE_URL}/캐릭터/${char.folderName.normalize('NFC')}/`
       : `${BASE_IMAGE_URL}/ww/characters/${char.folderName.normalize('NFC')}/`;

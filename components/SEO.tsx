@@ -12,7 +12,7 @@ interface SEOProps {
 export default function SEO({ 
   title, 
   description = "완벽한 플레이를 위한 데이터의 정점. 리라 아카이브에서 최신 메타와 공략을 확인하세요.", 
-  image = "https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp",
+  image = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp",
   url = "https://rira-archive.com",
   keywords = "리라 아카이브, 붕괴 스타레일, 명조, 게임 공략, 티어표, 위키" 
 }: SEOProps) {

@@ -95,7 +95,7 @@ const TierList: React.FC = () => {
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
+  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
   const filteredTierList = useMemo(() => {
     const data = HSR_TIER_DATA[activeCategory] || [];
