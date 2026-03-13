@@ -14,6 +14,7 @@ import { Category, Character, Post, LightCone } from '../types';
 import InventoryGallery from '../components/InventoryGallery';
 import GameDashboard from '../components/GameDashboard';
 import GallerySidebar from '../components/GallerySidebar';
+import SEO from '../components/SEO';
 
 type SidebarMenu = string;
 
@@ -132,6 +133,10 @@ const Gallery: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex flex-col font-sans">
+      <SEO 
+        title={`${game.title} 갤러리`} 
+        description={`${game.title}의 캐릭터, 광추, 유물 및 장신구 도감을 확인하세요. 최신 업데이트 정보를 제공합니다.`}
+      />
       {/* 상단바 */}
       <div className="bg-[#121212] border-b border-white/5 sticky top-0 z-[100] h-12 flex items-center px-8 shadow-2xl">
         <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">

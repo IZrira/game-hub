@@ -19,6 +19,7 @@ import {
 import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
 import { HSR_PARTIES } from '../data/parties';
+import SEO from '../components/SEO';
 
 const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
 
@@ -114,7 +115,7 @@ const CharacterGuideDetail: React.FC = () => {
   );
 
   const handleMouseEnter = (e: React.MouseEvent, name: string, type: 'relic' | 'ornament' | 'lightcone', note?: string) => {
-    if (!note || note.includes('순위') || note.includes('세트')) return;
+    if (!note || note.includes('순위')) return;
 
     let itemType = '';
     if (type === 'relic') itemType = '유물';
@@ -168,8 +169,19 @@ const CharacterGuideDetail: React.FC = () => {
 
   const isHunt = character?.path === '수렵';
 
+  const seoImageUrl = character 
+    ? (character.gameId === 'hsr' 
+        ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(character.folderName.normalize('NFC'))}/${character.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
+        : `${BASE_IMAGE_URL}/ww/characters/${encodeURIComponent(character.folderName.normalize('NFC'))}/art01.webp`)
+    : undefined;
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
+      <SEO 
+        title={`${charName} 세팅 가이드`} 
+        description={`${charName}의 추천 광추, 유물, 파티 조합 등 종결 세팅 가이드를 확인하세요.`}
+        image={seoImageUrl}
+      />
       {/* Tooltip */}
       <AnimatePresence>
         {hoveredItem && (

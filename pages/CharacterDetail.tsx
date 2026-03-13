@@ -24,6 +24,7 @@ import { ITEM_META, getItemUrl, getAutoRarity } from '../data/items';
 import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import ItemIcon from '../components/ItemIcon';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
+import SEO from '../components/SEO';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -206,6 +207,11 @@ const CharacterDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible">
+      <SEO 
+        title={`${char.name} 캐릭터 정보`} 
+        description={`${char.name}의 상세 정보, 스탯, 스킬, 성흔 및 육성 재료를 확인하세요.`}
+        image={getIllustrationUrl()}
+      />
       {/* Item Modal */}
       {selectedItem && itemData && (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">

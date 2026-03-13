@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, HSR_TIER_CHANGE_LOG } from '../data/tiers';
 import GallerySidebar from '../components/GallerySidebar';
+import SEO from '../components/SEO';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -120,6 +121,10 @@ const TierList: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24">
+      <SEO 
+        title="붕괴: 스타레일 티어표" 
+        description="최신 메타 분석을 통한 붕괴: 스타레일 캐릭터 티어표입니다. 혼돈의 기억, 허구 이야기, 종말의 환영 등 콘텐츠별 추천 캐릭터를 확인하세요."
+      />
       {/* Breadcrumbs */}
       <div className="bg-[#121212] border-b border-white/5 h-12 flex items-center px-8 sticky top-0 z-[100]">
         <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
