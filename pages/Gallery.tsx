@@ -37,26 +37,41 @@ const Gallery: React.FC = () => {
     return searchParams.get('menu') || '홈';
   });
 
-  // Sync activeMenu with searchParams
-  useEffect(() => {
-    const menuParam = searchParams.get('menu');
-    if (menuParam && menuParam !== activeMenu) {
-      setActiveMenu(menuParam);
-    }
-  }, [searchParams]);
-
-  const handleSetActiveMenu = (menu: string) => {
-    setActiveMenu(menu);
-    setSearchParams({ menu });
-  };
-
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState(() => {
+    return searchParams.get('search') || '';
+  });
   const [attrFilter, setAttrFilter] = useState('전체');
   const [secondFilter, setSecondFilter] = useState('전체');
   const [rarityFilter, setRarityFilter] = useState('전체');
   const [relicSubTab, setRelicSubTab] = useState<'유물' | '차원 장신구'>('유물');
   const [selectedRelic, setSelectedRelic] = useState<any>(null);
   const [selectedOrnament, setSelectedOrnament] = useState<any>(null);
+
+  // Sync activeMenu and searchQuery with searchParams
+  useEffect(() => {
+    const menuParam = searchParams.get('menu');
+    if (menuParam && menuParam !== activeMenu) {
+      setActiveMenu(menuParam);
+    }
+    const searchParam = searchParams.get('search');
+    if (searchParam !== null && searchParam !== searchQuery) {
+      setSearchQuery(searchParam);
+    }
+  }, [searchParams]);
+
+  const handleSetActiveMenu = (menu: string) => {
+    setActiveMenu(menu);
+    const newParams: any = { menu };
+    if (searchQuery) newParams.search = searchQuery;
+    setSearchParams(newParams);
+  };
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+    const newParams: any = { menu: activeMenu };
+    if (query) newParams.search = query;
+    setSearchParams(newParams);
+  };
 
   useEffect(() => {
     setAttrFilter('전체');
@@ -173,7 +188,7 @@ const Gallery: React.FC = () => {
                       placeholder="유닛 검색..." 
                       className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => handleSearchChange(e.target.value)}
                     />
                   </div>
                 </div>
@@ -223,7 +238,7 @@ const Gallery: React.FC = () => {
                       placeholder="이름 검색..." 
                       className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => handleSearchChange(e.target.value)}
                     />
                   </div>
                 </div>
@@ -267,7 +282,7 @@ const Gallery: React.FC = () => {
                       placeholder="이름 검색..." 
                       className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold"
                       value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
+                      onChange={(e) => handleSearchChange(e.target.value)}
                     />
                   </div>
                 </div>

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Library, Github, Search } from 'lucide-react';
+import GlobalSearch from './GlobalSearch';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
@@ -25,7 +26,10 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>
               Hub
             </Link>
-            <a href="#" className="text-sm font-medium text-gray-400 hover:text-white transition-colors">About</a>
+            <a href="#" className="text-sm font-medium text-gray-400 hover:text-white transition-colors mr-2">About</a>
+            
+            <GlobalSearch />
+
             <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/10">
                <button className="text-gray-400 hover:text-white transition-colors"><Github size={20}/></button>
             </div>

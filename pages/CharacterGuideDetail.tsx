@@ -20,6 +20,7 @@ import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
 import { HSR_PARTIES } from '../data/parties';
 import SEO from '../components/SEO';
+import TableOfContents from '../components/TableOfContents';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
@@ -220,9 +221,10 @@ const CharacterGuideDetail: React.FC = () => {
         </nav>
       </div>
 
-      <div className="max-w-[1200px] mx-auto px-8 pt-12 space-y-12">
-        {/* Hero Section */}
-        <div className="relative p-12 rounded-[48px] bg-[#121212] border border-white/5 overflow-hidden shadow-2xl">
+      <div className="max-w-[1400px] mx-auto px-8 pt-12 flex flex-col xl:flex-row gap-12">
+        <div className="flex-1 space-y-12 content-area">
+          {/* Hero Section */}
+          <div className="relative p-12 rounded-[48px] bg-[#121212] border border-white/5 overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-4 p-8 flex flex-col items-end gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-gray-600">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
@@ -703,7 +705,9 @@ const CharacterGuideDetail: React.FC = () => {
           </div>
         </div>
       </div>
+      <TableOfContents selector=".content-area" />
     </div>
+  </div>
   );
 };
 
