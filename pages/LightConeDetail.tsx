@@ -1,10 +1,12 @@
 import React, { useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ChevronRight, Star, ShieldCheck, Info } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ChevronRight, Star, ShieldCheck, Info, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA, LIGHTCONE_DB } from '../data/games';
+import PageHeader from '../components/PageHeader';
 
 const LightConeDetail: React.FC = () => {
   const { gameId, lcName } = useParams<{ gameId: string; lcName: string }>();
+  const navigate = useNavigate();
 
   const game = useMemo(() => ARCHIVE_DATA.games.find(g => g.id === gameId), [gameId]);
   const lc = useMemo(() => LIGHTCONE_DB.find(l => l.name === lcName), [lcName]);
@@ -47,16 +49,8 @@ const LightConeDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible">
-      {/* Breadcrumbs */}
-      <div className="bg-[#121212] border-b border-white/[0.05] sticky top-16 z-[45] h-10 flex items-center px-6">
-        <nav className="flex items-center gap-2 text-[10px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="hover:text-brand-accent transition-colors">HUB</Link>
-          <ChevronRight size={10} />
-          <Link to={`/gallery/${gameId}`} className="hover:text-white transition-colors">{game?.title || 'Honkai: Star Rail'}</Link>
-          <ChevronRight size={10} />
-          <span style={{ color: theme.primary }}>{lc.name}</span>
-        </nav>
-      </div>
+      {/* Page Header */}
+      <PageHeader gameId={gameId} category="광추" title={lc.name} />
 
       <div className="max-w-[1200px] mx-auto px-6 pt-10 space-y-20">
         {/* Profile Header */}

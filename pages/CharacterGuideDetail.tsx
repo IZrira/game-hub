@@ -1,6 +1,6 @@
 
 import React, { useMemo, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   ChevronLeft, 
@@ -14,13 +14,16 @@ import {
   Layers,
   Box,
   TrendingUp,
-  Users
+  Users,
+  ArrowLeft,
+  ChevronRight
 } from 'lucide-react';
 import { HSR_CHARACTER_GUIDES } from '../data/guides';
-import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
+import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, ARCHIVE_DATA } from '../data/games';
 import { HSR_PARTIES } from '../data/parties';
 import SEO from '../components/SEO';
 import TableOfContents from '../components/TableOfContents';
+import PageHeader from '../components/PageHeader';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
@@ -34,7 +37,11 @@ const getMainImageUrl = (item: any) => {
 
 const CharacterGuideDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
+  const navigate = useNavigate();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [eidolonTargetType, setEidolonTargetType] = useState<'1' | '3'>('1');
+
+  const game = useMemo(() => ARCHIVE_DATA.games.find(g => g.id === gameId), [gameId]);
   const [selectedEidolonVariantIndex, setSelectedEidolonVariantIndex] = useState(0);
   const [hoveredItem, setHoveredItem] = useState<{
     name: string;
@@ -45,7 +52,7 @@ const CharacterGuideDetail: React.FC = () => {
   } | null>(null);
   
   const guide = useMemo(() => 
-    HSR_CHARACTER_GUIDES.find(g => g.characterName === charName), 
+    HSR_CHARACTER_GUIDES.find(g => g.characterName.normalize('NFC') === charName?.normalize('NFC')), 
     [charName]
   );
 
@@ -105,13 +112,33 @@ const CharacterGuideDetail: React.FC = () => {
     return { primary, alternatives };
   }, [currentVariant]);
 
+  const relicGroups = useMemo(() => {
+    if (!currentVariant?.bestRelics) return { full: [], twoPiece: [] };
+    
+    const full: any[] = [];
+    const twoPiece: any[] = [];
+    
+    currentVariant.bestRelics.forEach(item => {
+      const name = typeof item === 'string' ? item : item.name;
+      const note = typeof item === 'string' ? '' : (item.note || '');
+      
+      if (note.includes('2세트') || name.includes('2세트') || name.includes('2+2')) {
+        twoPiece.push(item);
+      } else {
+        full.push(item);
+      }
+    });
+    
+    return { full, twoPiece };
+  }, [currentVariant]);
+
   const character = useMemo(() => 
-    CHARACTER_DB.find(c => c.name === charName), 
+    CHARACTER_DB.find(c => c.name.normalize('NFC') === charName?.normalize('NFC')), 
     [charName]
   );
 
   const recommendedParties = useMemo(() => 
-    HSR_PARTIES.filter(p => p.members.some(m => m.name === charName)),
+    HSR_PARTIES.filter(p => p.members.some(m => m.name.normalize('NFC') === charName?.normalize('NFC'))),
     [charName]
   );
 
@@ -208,18 +235,12 @@ const CharacterGuideDetail: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Header */}
-      <div className="bg-[#121212] border-b border-white/5 sticky top-16 z-[45] h-12 flex items-center px-8">
-        <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="hover:text-brand-accent transition-colors">메인</Link>
-          <ChevronLeft size={10} className="rotate-180" />
-          <Link to={`/gallery/${gameId}`} className="hover:text-brand-accent transition-colors">도감</Link>
-          <ChevronLeft size={10} className="rotate-180" />
-          <Link to={`/gallery/${gameId}/character/${charName}`} className="hover:text-brand-accent transition-colors">{charName}</Link>
-          <ChevronLeft size={10} className="rotate-180" />
-          <span className="text-brand-accent">세팅 공략</span>
-        </nav>
-      </div>
+      {/* Page Header */}
+      <PageHeader 
+        gameId={gameId} 
+        category="공략" 
+        title={`${charName} 가이드`} 
+      />
 
       <div className="max-w-[1400px] mx-auto px-8 pt-12 flex flex-col xl:flex-row gap-12">
         <div className="flex-1 space-y-12 content-area">
@@ -308,7 +329,7 @@ const CharacterGuideDetail: React.FC = () => {
                 <div className="space-y-4">
                   <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">추천 유물 세트</div>
                   <div className="flex flex-wrap gap-3">
-                    {currentVariant?.bestRelics.map((relicItem, i) => {
+                    {relicGroups.full.map((relicItem, i) => {
                       const relicName = typeof relicItem === 'string' ? relicItem : relicItem.name;
                       const relicNote = typeof relicItem === 'string' ? undefined : relicItem.note;
                       const relic = RELIC_DB.find(r => r.name === relicName);
@@ -353,6 +374,66 @@ const CharacterGuideDetail: React.FC = () => {
                       );
                     })}
                   </div>
+
+                  {relicGroups.twoPiece.length > 0 && (
+                    <div className="mt-4 p-4 bg-white/[0.02] rounded-2xl border border-dashed border-white/10 space-y-4">
+                      <div className="flex items-center gap-2">
+                        <Layers size={14} className="text-brand-accent" />
+                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">2세트 조합 추천 (2+2)</span>
+                      </div>
+                      <div className="flex flex-wrap gap-3">
+                        {relicGroups.twoPiece.map((relicItem, i) => {
+                          const relicName = typeof relicItem === 'string' ? relicItem : relicItem.name;
+                          const relicNote = typeof relicItem === 'string' ? undefined : relicItem.note;
+                          
+                          // Handle special strings like "속도 2세트 2개"
+                          if (typeof relicItem === 'string' && (relicName.includes('2세트') && (relicName.includes('2개') || relicName.includes('+')))) {
+                            return (
+                              <div key={i} className="flex items-center gap-3 p-3 bg-brand-primary/5 rounded-xl border border-brand-primary/20 min-w-[200px]">
+                                <div className="w-10 h-10 rounded-lg bg-black/40 flex items-center justify-center shrink-0">
+                                  <Zap size={20} className="text-brand-accent" />
+                                </div>
+                                <div className="flex flex-col">
+                                  <span className="text-sm font-bold text-gray-200">{relicName}</span>
+                                  <span className="text-[8px] font-black text-brand-accent uppercase tracking-widest">자유로운 2+2 조합</span>
+                                </div>
+                              </div>
+                            );
+                          }
+
+                          const relic = RELIC_DB.find(r => r.name === relicName);
+                          
+                          return (
+                            <Link 
+                              key={i} 
+                              to={`/gallery/${gameId}/relic/${encodeURIComponent(relicName)}`}
+                              onMouseEnter={(e) => handleMouseEnter(e, relicName, 'relic', relicNote)}
+                              onMouseMove={handleMouseMove}
+                              onMouseLeave={handleMouseLeave}
+                              className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5 group hover:border-brand-primary/30 transition-all min-w-[200px]"
+                            >
+                              <div className="w-10 h-10 rounded-lg bg-black/40 p-1 flex items-center justify-center shrink-0">
+                                {relic ? (
+                                  <img 
+                                    src={getMainImageUrl(relic)} 
+                                    alt={relicName} 
+                                    className="w-full h-full object-contain"
+                                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
+                                  />
+                                ) : (
+                                  <div className="w-full h-full bg-white/5 rounded" />
+                                )}
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-sm font-bold text-gray-200 group-hover:text-brand-accent transition-colors whitespace-pre-wrap">{relicName}</span>
+                                <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">{relicNote || "2세트"}</span>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="space-y-4">
@@ -488,7 +569,7 @@ const CharacterGuideDetail: React.FC = () => {
               <div className="p-6 rounded-3xl bg-[#121212] border border-white/5 space-y-4">
                 <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">추천 목표 스탯</div>
                 <div className="flex flex-wrap gap-4">
-                  {currentVariant?.targetStats.map((stat, i) => (
+                  {currentVariant?.targetStats.filter(s => s.label !== "참고").map((stat, i) => (
                     <div key={i} className="flex-1 min-w-[240px] p-4 bg-white/5 rounded-2xl border border-white/5 flex items-center justify-between gap-4">
                       <div className="flex flex-col gap-0.5">
                         <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{stat.label}</span>
@@ -500,32 +581,80 @@ const CharacterGuideDetail: React.FC = () => {
                     </div>
                   ))}
                 </div>
+
+                {/* 참고 사항 (Notes) 강조 표시 */}
+                {currentVariant?.targetStats.filter(s => s.label === "참고").map((stat, idx) => (
+                  <div key={idx} className="mt-4 p-5 rounded-3xl bg-brand-primary/5 border border-brand-primary/20 relative overflow-hidden group">
+                    <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary" />
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0">
+                        <Info size={20} className="text-brand-accent" />
+                      </div>
+                      <div className="flex flex-col gap-1">
+                        <span className="text-[10px] font-black text-brand-accent uppercase tracking-[0.2em]">참고 사항</span>
+                        <p className={`font-bold text-gray-300 leading-relaxed ${stat.value.length > 30 ? 'text-xs' : 'text-sm'}`}>
+                          {stat.value}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               <div className="p-6 rounded-3xl bg-[#121212] border border-white/5 space-y-4">
-                <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">성흔 돌파 효율</div>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">성흔 돌파 효율</div>
+                    {(!currentEidolonVariant?.labels || currentEidolonVariant.labels.length === 0) && (
+                      <div className="flex bg-white/5 p-0.5 rounded-lg border border-white/10">
+                        <button
+                          onClick={() => setEidolonTargetType('1')}
+                          className={`px-3 py-1 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${
+                            eidolonTargetType === '1' 
+                              ? 'bg-brand-primary text-white shadow-lg' 
+                              : 'text-gray-500 hover:text-gray-300'
+                          }`}
+                        >
+                          {isHunt ? "효율" : "1인 개체"}
+                        </button>
+                        {!isHunt && (
+                          <button
+                            onClick={() => setEidolonTargetType('3')}
+                            className={`px-3 py-1 rounded-md text-[9px] font-black uppercase tracking-widest transition-all ${
+                              eidolonTargetType === '3' 
+                                ? 'bg-brand-primary text-white shadow-lg' 
+                                : 'text-gray-500 hover:text-gray-300'
+                            }`}
+                          >
+                            3인 개체
+                          </button>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  {guide.recommendedEidolon && (
+                    <div className="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 rounded-full border border-brand-primary/20">
+                      <Star size={12} className="text-brand-accent" />
+                      <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest">추천 돌파:</span>
+                      <span className="text-[11px] font-black text-brand-accent italic">{guide.recommendedEidolon}</span>
+                    </div>
+                  )}
+                </div>
                 <div className="overflow-x-auto rounded-2xl border border-white/5">
                   <table className="w-full text-left text-sm min-w-[800px]">
                     <thead className="bg-white/5 text-[10px] font-black text-gray-500 uppercase tracking-widest">
                       <tr>
                         <th className="px-4 py-3">성흔</th>
                         <th className="px-4 py-3">영향력</th>
-                        <th className="px-4 py-3">
-                          {currentEidolonVariant?.labels?.[0] ? (
-                            <div className="flex flex-col">
-                              <span className="text-brand-accent mb-1">{currentEidolonVariant.labels[0]}</span>
-                              <span>효율 1</span>
-                            </div>
-                          ) : (isHunt ? "효율" : "1인 개체")}
-                        </th>
-                        {(!isHunt || (currentEidolonVariant?.labels && currentEidolonVariant.labels.length > 1)) && (
+                        {currentEidolonVariant?.labels && currentEidolonVariant.labels.length > 0 ? (
+                          <>
+                            {currentEidolonVariant.labels.map((label, idx) => (
+                              <th key={idx} className="px-4 py-3 text-brand-accent">{label}</th>
+                            ))}
+                          </>
+                        ) : (
                           <th className="px-4 py-3">
-                            {currentEidolonVariant?.labels?.[1] ? (
-                              <div className="flex flex-col">
-                                <span className="text-brand-accent mb-1">{currentEidolonVariant.labels[1]}</span>
-                                <span>효율 2</span>
-                              </div>
-                            ) : "3인 개체"}
+                            {eidolonTargetType === '1' ? (isHunt ? "효율" : "1인 개체") : "3인 개체"}
                           </th>
                         )}
                         <th className="px-4 py-3">상세 설명</th>
@@ -544,9 +673,17 @@ const CharacterGuideDetail: React.FC = () => {
                               {e.impact === 'High' ? '높음' : e.impact === 'Medium' ? '보통' : '낮음'}
                             </span>
                           </td>
-                          <td className="px-4 py-4 font-bold text-gray-200">{e.efficiency1}</td>
-                          {(!isHunt || (currentEidolonVariant?.labels && currentEidolonVariant.labels.length > 1)) && (
-                            <td className="px-4 py-4 font-bold text-gray-200">{e.efficiency3}</td>
+                          {currentEidolonVariant?.labels && currentEidolonVariant.labels.length > 0 ? (
+                            <>
+                              <td className="px-4 py-4 font-bold text-gray-200">{e.efficiency1}</td>
+                              {currentEidolonVariant.labels.length > 1 && (
+                                <td className="px-4 py-4 font-bold text-gray-200">{e.efficiency3}</td>
+                              )}
+                            </>
+                          ) : (
+                            <td className="px-4 py-4 font-bold text-gray-200">
+                              {eidolonTargetType === '1' ? e.efficiency1 : e.efficiency3}
+                            </td>
                           )}
                           <td className="px-4 py-4 text-xs text-gray-400 leading-relaxed whitespace-pre-wrap">{e.description}</td>
                         </tr>

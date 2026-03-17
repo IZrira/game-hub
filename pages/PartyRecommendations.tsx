@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   Users, 
   Search, 
@@ -12,10 +12,12 @@ import {
   Info,
   ArrowRight,
   LayoutGrid,
-  Filter
+  Filter,
+  ArrowLeft
 } from 'lucide-react';
 import { HSR_PARTIES, PartyCombination, PartyMember } from '../data/parties';
 import GallerySidebar from '../components/GallerySidebar';
+import PageHeader from '../components/PageHeader';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} className="text-rose-500" />,
@@ -156,6 +158,7 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
 
 const PartyRecommendations: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('전체');
 
@@ -178,16 +181,8 @@ const PartyRecommendations: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-24">
-      {/* Breadcrumbs */}
-      <div className="bg-[#121212] border-b border-white/5 h-12 flex items-center px-8 sticky top-0 z-[100]">
-        <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="hover:text-brand-accent transition-colors">메인</Link>
-          <ChevronRight size={10} />
-          <Link to={`/gallery/${gameId}`} className="hover:text-brand-accent transition-colors">갤러리</Link>
-          <ChevronRight size={10} />
-          <span className="text-brand-accent">추천 파티 조합</span>
-        </nav>
-      </div>
+      {/* Page Header */}
+      <PageHeader gameId={gameId} category="파티" title="추천 파티 조합" />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         {/* 사이드바 */}

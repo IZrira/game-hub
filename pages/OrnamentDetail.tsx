@@ -1,10 +1,12 @@
 import React from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ChevronRight, X, Shield, Star } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ChevronRight, X, Shield, Star, ArrowLeft } from 'lucide-react';
 import { ORNAMENT_DB } from '../data/games';
+import PageHeader from '../components/PageHeader';
 
 const OrnamentDetail: React.FC = () => {
   const { gameId, ornamentName } = useParams<{ gameId: string; ornamentName: string }>();
+  const navigate = useNavigate();
   const ornament = ORNAMENT_DB.find(o => o.name === ornamentName);
 
   if (!ornament) {
@@ -34,16 +36,8 @@ const OrnamentDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20">
-      {/* Breadcrumbs */}
-      <div className="bg-[#121212] border-b border-white/5 h-12 flex items-center px-8 sticky top-0 z-[100]">
-        <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="hover:text-brand-accent transition-colors">메인</Link>
-          <ChevronRight size={10} />
-          <Link to={`/gallery/${gameId}`} className="hover:text-brand-accent transition-colors">갤러리</Link>
-          <ChevronRight size={10} />
-          <span className="text-brand-accent">{ornament.name}</span>
-        </nav>
-      </div>
+      {/* Page Header */}
+      <PageHeader gameId={gameId} category="장신구" title={ornament.name} />
 
       <div className="max-w-4xl mx-auto px-8 pt-16">
         <div className="bg-[#121212] rounded-[48px] border border-white/10 overflow-hidden shadow-2xl">

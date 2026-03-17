@@ -1,13 +1,14 @@
 import React, { useState, useMemo, memo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ChevronRight, Filter, Star, Trophy, Search, Users, Shield, Zap, Sword,
   ArrowUp, ArrowDown, Sparkles, LayoutGrid, Compass, Swords, Skull, Box,
-  Loader2
+  Loader2, ArrowLeft
 } from 'lucide-react';
 import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, HSR_TIER_CHANGE_LOG } from '../data/tiers';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
+import PageHeader from '../components/PageHeader';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -91,6 +92,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
 
 const TierList: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('chaos');
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState('');
@@ -125,16 +127,8 @@ const TierList: React.FC = () => {
         title="붕괴: 스타레일 티어표" 
         description="최신 메타 분석을 통한 붕괴: 스타레일 캐릭터 티어표입니다. 혼돈의 기억, 허구 이야기, 종말의 환영 등 콘텐츠별 추천 캐릭터를 확인하세요."
       />
-      {/* Breadcrumbs */}
-      <div className="bg-[#121212] border-b border-white/5 h-12 flex items-center px-8 sticky top-0 z-[100]">
-        <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="hover:text-brand-accent transition-colors">메인</Link>
-          <ChevronRight size={10} />
-          <Link to={`/gallery/${gameId}`} className="hover:text-brand-accent transition-colors">갤러리</Link>
-          <ChevronRight size={10} />
-          <span className="text-brand-accent">티어표</span>
-        </nav>
-      </div>
+      {/* Page Header */}
+      <PageHeader gameId={gameId} category="티어표" title="종합 메타 랭킹" />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         {/* 사이드바 */}

@@ -1,6 +1,6 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ChevronRight, 
   Star, 
@@ -17,7 +17,8 @@ import {
   Info,
   RefreshCw,
   History,
-  BookOpen
+  BookOpen,
+  ArrowLeft
 } from 'lucide-react';
 import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META, getItemUrl, getAutoRarity } from '../data/items';
@@ -25,6 +26,7 @@ import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import ItemIcon from '../components/ItemIcon';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO from '../components/SEO';
+import PageHeader from '../components/PageHeader';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -44,6 +46,7 @@ const Flag: React.FC<{ code: string }> = ({ code }) => (
 
 const CharacterDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
+  const navigate = useNavigate();
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(true);
   const [levelIdx, setLevelIdx] = useState(7);
   
@@ -263,16 +266,8 @@ const CharacterDetail: React.FC = () => {
         </div>
       )}
 
-      {/* Breadcrumbs */}
-      <div className="bg-[#121212] border-b border-white/[0.05] sticky top-16 z-[45] h-10 flex items-center px-6">
-        <nav className="flex items-center gap-2 text-[10px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="hover:text-brand-accent transition-colors">HUB</Link>
-          <ChevronRight size={10} />
-          <Link to={`/gallery/${gameId}`} className="hover:text-white transition-colors">{game?.title}</Link>
-          <ChevronRight size={10} />
-          <span style={{ color: theme.primary }}>{char.name}</span>
-        </nav>
-      </div>
+      {/* Page Header */}
+      <PageHeader gameId={gameId} category="캐릭터" title={char.name} />
 
       <div className="max-w-[1200px] mx-auto px-6 pt-10 space-y-20">
         {/* Profile Header */}

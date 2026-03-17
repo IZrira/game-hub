@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META } from '../data/items';
 import SEO from '../components/SEO';
+import LazyImage from '../components/LazyImage';
 import { 
   ChevronRight, 
   Zap, 
@@ -103,10 +104,11 @@ const Home: React.FC = () => {
               to={`/gallery/${game.id}`}
               className="group relative h-[480px] rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
             >
-              <img 
+              <LazyImage 
                 src={game.bannerImage} 
                 alt={game.title}
-                className="absolute inset-0 w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                containerClassName="absolute inset-0 w-full h-full"
+                className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-transparent" />

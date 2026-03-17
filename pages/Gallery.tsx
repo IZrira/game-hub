@@ -4,7 +4,7 @@ import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { 
   Box, Users, Zap, Shield, Backpack, ChevronRight, Sparkles, 
   Search, Star, Home as HomeIcon, X, Activity, ArrowUpRight, 
-  TrendingUp, Filter, Layers, Sword, Book, Hash 
+  TrendingUp, Filter, Layers, Sword, Book, Hash, ArrowLeft 
 } from 'lucide-react';
 
 import { ARCHIVE_DATA, CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
@@ -153,20 +153,30 @@ const Gallery: React.FC = () => {
         description={`${game.title}의 캐릭터, 광추, 유물 및 장신구 도감을 확인하세요. 최신 업데이트 정보를 제공합니다.`}
       />
       {/* 상단바 */}
-      <div className="bg-[#121212] border-b border-white/5 sticky top-0 z-[100] h-12 flex items-center px-8 shadow-2xl">
-        <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-          <Link to="/" className="flex items-center gap-2 hover:text-brand-accent transition-colors">
-            <HomeIcon size={12} /> 메인
-          </Link>
-          <ChevronRight size={10} />
-          <span className="text-brand-light/70">{game.title}</span>
-          {activeMenu !== '홈' && (
-            <>
-              <ChevronRight size={10} />
-              <span className="text-brand-accent">{activeMenu}</span>
-            </>
-          )}
-        </nav>
+      <div className="bg-[#121212] border-b border-white/5 sticky top-16 z-[100] h-12 flex items-center px-8 shadow-2xl justify-between">
+        <div className="flex items-center gap-6">
+          <button 
+            onClick={() => window.history.back()}
+            className="flex items-center gap-2 text-[11px] font-black text-gray-500 hover:text-white transition-colors group"
+          >
+            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
+            <span>이전으로</span>
+          </button>
+          <div className="h-3 w-px bg-white/10" />
+          <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
+            <Link to="/" className="flex items-center gap-2 hover:text-brand-accent transition-colors">
+              <HomeIcon size={12} /> 메인
+            </Link>
+            <ChevronRight size={10} />
+            <span className="text-brand-light/70">{game.title}</span>
+            {activeMenu !== '홈' && (
+              <>
+                <ChevronRight size={10} />
+                <span className="text-brand-accent">{activeMenu}</span>
+              </>
+            )}
+          </nav>
+        </div>
       </div>
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
@@ -375,7 +385,7 @@ const Gallery: React.FC = () => {
                 {filteredCharacters.map(char => (
                   <Link 
                     key={char.id} 
-                    to={`/gallery/${gameId}/guide/${char.name}`} // 🚨 클릭 시 개별 공략 페이지로 이동!
+                    to={`/gallery/${gameId}/guide/${encodeURIComponent(char.name)}`} // 🚨 클릭 시 개별 공략 페이지로 이동!
                     className="group flex flex-col items-center gap-3 bg-[#121212] border border-white/5 p-4 rounded-3xl hover:border-brand-primary/50 transition-all"
                   >
                     <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-brand-primary transition-all">
@@ -457,7 +467,7 @@ const CharacterPremiumCard: React.FC<{ char: Character }> = ({ char }) => {
     : `${BASE_IMAGE_URL}/ww/characters/${char.folderName.normalize('NFC')}/art01.webp`;
 
   return (
-    <Link to={`/gallery/${char.gameId}/character/${char.name}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] rounded-[24px] transition-all duration-500 hover:-translate-y-2">
+    <Link to={`/gallery/${char.gameId}/character/${encodeURIComponent(char.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] rounded-[24px] transition-all duration-500 hover:-translate-y-2">
       <div className="absolute inset-0 rounded-[24px] transition-all opacity-0 group-hover:opacity-30 blur-xl -z-10" style={{ backgroundColor: theme.color }} />
       <div className="relative w-full h-full rounded-[22px] border border-white/5 overflow-hidden bg-[#121212] group-hover:border-brand-primary/50 transition-all shadow-xl">
         <img 
@@ -486,7 +496,7 @@ const LightConePremiumCard: React.FC<{ lc: LightCone }> = ({ lc }) => {
   const lcImageUrl = `${BASE_IMAGE_URL}/광추/${lc.path.normalize('NFC')}/${targetName.normalize('NFC')}.webp`;
 
   return (
-    <Link to={`/gallery/hsr/lightcone/${lc.name}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] rounded-[24px] transition-all duration-500 hover:-translate-y-2">
+    <Link to={`/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] rounded-[24px] transition-all duration-500 hover:-translate-y-2">
       <div className="relative w-full h-full rounded-[22px] border border-white/5 overflow-hidden bg-[#121212] group-hover:border-brand-primary/50 transition-all shadow-xl">
         <img 
           src={encodeURI(lcImageUrl)}

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Game } from '../types';
+import LazyImage from './LazyImage';
 
 interface GameCardProps {
   game: Game;
@@ -15,9 +16,10 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
       className="group relative overflow-hidden rounded-2xl glass-card transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-brand-primary/10"
     >
       <div className="aspect-[16/9] overflow-hidden">
-        <img 
+        <LazyImage 
           src={game.bannerImage} 
           alt={game.title}
+          containerClassName="w-full h-full"
           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/20 to-transparent" />

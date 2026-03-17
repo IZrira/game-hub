@@ -1,8 +1,9 @@
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { ChevronLeft, Copy, Check, Share2, Bookmark, ChevronRight } from 'lucide-react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { ChevronLeft, Copy, Check, Share2, Bookmark, ChevronRight, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA } from '../data/games';
+import PageHeader from '../components/PageHeader';
 
 interface TOCItem {
   id: string;
@@ -12,6 +13,7 @@ interface TOCItem {
 
 const Detail: React.FC = () => {
   const { gameId, postId } = useParams<{ gameId: string; postId: string }>();
+  const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
   const [toc, setToc] = useState<TOCItem[]>([]);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -46,31 +48,12 @@ const Detail: React.FC = () => {
 
   return (
     <div className="min-h-screen pb-20 bg-[#0a0a0a] overflow-visible">
-      {/* 브레드크럼 상단 밀착 고정 (Sticky Unified Bar) */}
-      <div className="bg-[#121212] border-b border-white/[0.05] sticky top-16 z-[45] shadow-xl shadow-black/60 m-0 p-0">
-        <div className="max-w-4xl mx-auto px-4 h-10 flex items-center overflow-x-auto whitespace-nowrap scrollbar-hide">
-          <nav className="flex items-center gap-2 text-[10px] font-black text-gray-500 uppercase tracking-[0.15em]">
-            <Link to="/" className="hover:text-brand-accent transition-colors">HUB</Link>
-            <ChevronRight size={10} className="text-gray-800 shrink-0" />
-            <Link to={`/gallery/${gameId}`} className="hover:text-brand-accent transition-colors">
-              {game?.title}
-            </Link>
-            <ChevronRight size={10} className="text-gray-800 shrink-0" />
-            <span className="hover:text-brand-accent transition-colors cursor-default">
-              {post.category}
-            </span>
-            <ChevronRight size={10} className="text-gray-800 shrink-0" />
-            <span className="text-brand-accent truncate max-w-[200px]">{post.title}</span>
-          </nav>
-        </div>
-      </div>
+      {/* Page Header */}
+      <PageHeader gameId={gameId} category={post.category} title={post.title} />
 
       {/* Header Section */}
       <div className="bg-brand-dark/30 py-10 m-0">
         <div className="max-w-4xl mx-auto px-4">
-          <Link to={`/gallery/${gameId}`} className="inline-flex items-center gap-1 text-brand-accent hover:text-brand-accent/80 mb-8 font-medium transition-transform hover:-translate-x-1 text-sm">
-            <ChevronLeft size={16} /> 목록으로 돌아가기
-          </Link>
           <div className="flex gap-2 mb-6">
              <span className="bg-brand-primary/20 text-brand-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
                {post.category}
