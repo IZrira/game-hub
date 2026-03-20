@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { createHashRouter, Outlet, ScrollRestoration } from 'react-router-dom';
+import { createBrowserRouter, Outlet, ScrollRestoration } from 'react-router-dom';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';
@@ -41,7 +41,7 @@ const RootLayout = () => {
 };
 
 // 3. 객체 배열 형태의 라우트 매핑 (Config-based)
-export const router = createHashRouter([
+export const router = createBrowserRouter([
   {
     path: "/",
     element: <RootLayout />,
