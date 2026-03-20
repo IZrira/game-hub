@@ -16,7 +16,9 @@ import {
   TrendingUp,
   Users,
   ArrowLeft,
-  ChevronRight
+  ChevronRight,
+  ChevronUp,
+  ChevronDown
 } from 'lucide-react';
 import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, ARCHIVE_DATA } from '../data/games';
@@ -40,6 +42,7 @@ const CharacterGuideDetail: React.FC = () => {
   const navigate = useNavigate();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [eidolonTargetType, setEidolonTargetType] = useState<'1' | '3'>('1');
+  const [isTwoPieceExpanded, setIsTwoPieceExpanded] = useState(false);
 
   const game = useMemo(() => ARCHIVE_DATA.games.find(g => g.id === gameId), [gameId]);
   const [selectedEidolonVariantIndex, setSelectedEidolonVariantIndex] = useState(0);
@@ -84,7 +87,7 @@ const CharacterGuideDetail: React.FC = () => {
 
   const parsedStats = useMemo(() => {
     const stats = currentVariant?.mainStats;
-    if (!stats) return { primary: { body: "", boots: "", sphere: "", rope: "" }, alternatives: [] };
+    if (!stats) return { primary: { body: { name: "" }, boots: { name: "" }, sphere: { name: "" }, rope: { name: "" } }, alternatives: [] };
     
     const parts: ('body' | 'boots' | 'sphere' | 'rope')[] = ['body', 'boots', 'sphere', 'rope'];
     const labels: Record<string, string> = {
@@ -95,12 +98,19 @@ const CharacterGuideDetail: React.FC = () => {
     };
     
     const primary: any = {};
-    const alternatives: { piece: string; options: string[] }[] = [];
+    const alternatives: { piece: string; options: { name: string; note?: string }[] }[] = [];
     
     parts.forEach(part => {
       const value = stats[part] || "";
-      const options = value.split(/\s+or\s+/i);
-      primary[part] = options[0];
+      const options = value.split(/\s+or\s+/i).map(opt => {
+        const match = opt.match(/(.*?)\s*\((.*?)\)/);
+        if (match) {
+          return { name: match[1].trim(), note: match[2].trim() };
+        }
+        return { name: opt.trim() };
+      });
+      
+      primary[part] = options[0] || { name: "" };
       if (options.length > 1) {
         alternatives.push({
           piece: labels[part],
@@ -377,61 +387,89 @@ const CharacterGuideDetail: React.FC = () => {
 
                   {relicGroups.twoPiece.length > 0 && (
                     <div className="mt-4 p-4 bg-white/[0.02] rounded-2xl border border-dashed border-white/10 space-y-4">
-                      <div className="flex items-center gap-2">
-                        <Layers size={14} className="text-brand-accent" />
-                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">2세트 조합 추천 (2+2)</span>
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Layers size={14} className="text-brand-accent" />
+                          <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">2세트 조합 추천 (2+2)</span>
+                        </div>
+                        <button 
+                          onClick={() => setIsTwoPieceExpanded(!isTwoPieceExpanded)}
+                          className="p-1.5 hover:bg-white/5 rounded-lg transition-colors flex items-center gap-2 group"
+                        >
+                          <span className="text-[9px] font-black text-gray-500 group-hover:text-gray-300 uppercase tracking-widest">
+                            {isTwoPieceExpanded ? '접기' : '펼치기'}
+                          </span>
+                          {isTwoPieceExpanded ? (
+                            <ChevronUp size={14} className="text-gray-500 group-hover:text-gray-300" />
+                          ) : (
+                            <ChevronDown size={14} className="text-gray-500 group-hover:text-gray-300" />
+                          )}
+                        </button>
                       </div>
-                      <div className="flex flex-wrap gap-3">
-                        {relicGroups.twoPiece.map((relicItem, i) => {
-                          const relicName = typeof relicItem === 'string' ? relicItem : relicItem.name;
-                          const relicNote = typeof relicItem === 'string' ? undefined : relicItem.note;
-                          
-                          // Handle special strings like "속도 2세트 2개"
-                          if (typeof relicItem === 'string' && (relicName.includes('2세트') && (relicName.includes('2개') || relicName.includes('+')))) {
-                            return (
-                              <div key={i} className="flex items-center gap-3 p-3 bg-brand-primary/5 rounded-xl border border-brand-primary/20 min-w-[200px]">
-                                <div className="w-10 h-10 rounded-lg bg-black/40 flex items-center justify-center shrink-0">
-                                  <Zap size={20} className="text-brand-accent" />
-                                </div>
-                                <div className="flex flex-col">
-                                  <span className="text-sm font-bold text-gray-200">{relicName}</span>
-                                  <span className="text-[8px] font-black text-brand-accent uppercase tracking-widest">자유로운 2+2 조합</span>
-                                </div>
-                              </div>
-                            );
-                          }
+                      
+                      <AnimatePresence>
+                        {isTwoPieceExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: 'auto', opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            className="overflow-hidden"
+                          >
+                            <div className="flex flex-wrap gap-3 pt-2">
+                              {relicGroups.twoPiece.map((relicItem, i) => {
+                                const relicName = typeof relicItem === 'string' ? relicItem : relicItem.name;
+                                const relicNote = typeof relicItem === 'string' ? undefined : relicItem.note;
+                                
+                                // Handle special strings like "속도 2세트 2개"
+                                if (typeof relicItem === 'string' && (relicName.includes('2세트') && (relicName.includes('2개') || relicName.includes('+')))) {
+                                  return (
+                                    <div key={i} className="flex items-center gap-3 p-3 bg-brand-primary/5 rounded-xl border border-brand-primary/20 min-w-[200px]">
+                                      <div className="w-10 h-10 rounded-lg bg-black/40 flex items-center justify-center shrink-0">
+                                        <Zap size={20} className="text-brand-accent" />
+                                      </div>
+                                      <div className="flex flex-col">
+                                        <span className="text-sm font-bold text-gray-200">{relicName}</span>
+                                        <span className="text-[8px] font-black text-brand-accent uppercase tracking-widest">자유로운 2+2 조합</span>
+                                      </div>
+                                    </div>
+                                  );
+                                }
 
-                          const relic = RELIC_DB.find(r => r.name === relicName);
-                          
-                          return (
-                            <Link 
-                              key={i} 
-                              to={`/gallery/${gameId}/relic/${encodeURIComponent(relicName)}`}
-                              onMouseEnter={(e) => handleMouseEnter(e, relicName, 'relic', relicNote)}
-                              onMouseMove={handleMouseMove}
-                              onMouseLeave={handleMouseLeave}
-                              className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5 group hover:border-brand-primary/30 transition-all min-w-[200px]"
-                            >
-                              <div className="w-10 h-10 rounded-lg bg-black/40 p-1 flex items-center justify-center shrink-0">
-                                {relic ? (
-                                  <img 
-                                    src={getMainImageUrl(relic)} 
-                                    alt={relicName} 
-                                    className="w-full h-full object-contain"
-                                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
-                                  />
-                                ) : (
-                                  <div className="w-full h-full bg-white/5 rounded" />
-                                )}
-                              </div>
-                              <div className="flex flex-col">
-                                <span className="text-sm font-bold text-gray-200 group-hover:text-brand-accent transition-colors whitespace-pre-wrap">{relicName}</span>
-                                <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">{relicNote || "2세트"}</span>
-                              </div>
-                            </Link>
-                          );
-                        })}
-                      </div>
+                                const relic = RELIC_DB.find(r => r.name === relicName);
+                                
+                                return (
+                                  <Link 
+                                    key={i} 
+                                    to={`/gallery/${gameId}/relic/${encodeURIComponent(relicName)}`}
+                                    onMouseEnter={(e) => handleMouseEnter(e, relicName, 'relic', relicNote)}
+                                    onMouseMove={handleMouseMove}
+                                    onMouseLeave={handleMouseLeave}
+                                    className="flex items-center gap-3 p-3 bg-white/5 rounded-xl border border-white/5 group hover:border-brand-primary/30 transition-all min-w-[200px]"
+                                  >
+                                    <div className="w-10 h-10 rounded-lg bg-black/40 p-1 flex items-center justify-center shrink-0">
+                                      {relic ? (
+                                        <img 
+                                          src={getMainImageUrl(relic)} 
+                                          alt={relicName} 
+                                          className="w-full h-full object-contain"
+                                          onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
+                                        />
+                                      ) : (
+                                        <div className="w-full h-full bg-white/5 rounded" />
+                                      )}
+                                    </div>
+                                    <div className="flex flex-col">
+                                      <span className="text-sm font-bold text-gray-200 group-hover:text-brand-accent transition-colors whitespace-pre-wrap">{relicName}</span>
+                                      <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">{relicNote || "2세트"}</span>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   )}
                 </div>
@@ -509,9 +547,17 @@ const CharacterGuideDetail: React.FC = () => {
                             <span className="text-gray-500 font-black shrink-0 mt-0.5">{alt.piece}</span>
                             <div className="flex flex-wrap gap-1.5">
                               {alt.options.map((opt, i) => (
-                                <span key={i} className="px-2 py-0.5 bg-white/5 rounded-lg text-gray-300 font-bold border border-white/5">
-                                  {opt}
-                                </span>
+                                <div key={i} className="flex flex-col gap-1">
+                                  <span className="px-2 py-0.5 bg-white/5 rounded-lg text-gray-300 font-bold border border-white/5">
+                                    {opt.name}
+                                  </span>
+                                  {opt.note && (
+                                    <div className="flex items-center gap-1 px-1">
+                                      <Info size={8} className="text-brand-accent" />
+                                      <span className="text-[8px] font-black text-gray-500 uppercase tracking-widest">{opt.note}</span>
+                                    </div>
+                                  )}
+                                </div>
                               ))}
                             </div>
                           </div>
@@ -848,10 +894,18 @@ const CharacterGuideDetail: React.FC = () => {
   );
 };
 
-const StatBox: React.FC<{ label: string; value: string }> = ({ label, value }) => (
-  <div className="p-3 bg-white/5 rounded-xl border border-white/5 flex items-center justify-between gap-4">
-    <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest shrink-0">{label}</div>
-    <div className="text-xs font-bold text-white text-right whitespace-pre-wrap">{value}</div>
+const StatBox: React.FC<{ label: string; value: { name: string; note?: string } }> = ({ label, value }) => (
+  <div className="p-3 bg-white/5 rounded-xl border border-white/5 flex flex-col gap-1">
+    <div className="flex items-center justify-between gap-4">
+      <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest shrink-0">{label}</div>
+      <div className="text-xs font-bold text-white text-right whitespace-pre-wrap">{value.name}</div>
+    </div>
+    {value.note && (
+      <div className="flex items-center gap-1 mt-0.5 justify-end">
+        <Info size={8} className="text-brand-accent" />
+        <span className="text-[8px] font-black text-gray-500 uppercase tracking-widest">{value.note}</span>
+      </div>
+    )}
   </div>
 );
 

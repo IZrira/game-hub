@@ -6,6 +6,7 @@ import {
   Loader2, ArrowLeft
 } from 'lucide-react';
 import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, HSR_TIER_CHANGE_LOG } from '../data/tiers';
+import ALL_CHARACTERS from '../data/characters.json';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
@@ -14,7 +15,7 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
   '서브 딜러': <Zap size={14} />,
   '서포터': <Users size={14} />,
-  '탱커/힐러': <Shield size={14} />,
+  '유지력': <Shield size={14} />,
 };
 
 const CHANGE_BADGES: Record<string, React.ReactNode> = {
@@ -40,7 +41,6 @@ const CHANGE_BADGES: Record<string, React.ReactNode> = {
 
 const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   'chaos': <Swords size={16} />,
-  'simulation': <Compass size={16} />,
   'fiction': <LayoutGrid size={16} />,
   'shadow': <Skull size={16} />,
   'divergent': <Box size={16} />,
@@ -90,6 +90,13 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
   );
 });
 
+const ROLE_PRIORITY: Record<string, number> = {
+  '메인 딜러': 1,
+  '서브 딜러': 2,
+  '서포터': 3,
+  '유지력': 4,
+};
+
 const TierList: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
   const navigate = useNavigate();
@@ -103,14 +110,90 @@ const TierList: React.FC = () => {
     const data = HSR_TIER_DATA[activeCategory] || [];
     const query = searchQuery.toLowerCase().trim();
     
-    return data.map(group => ({
+    // Helper to normalize names for reliable matching (handles dots, bullets, and spaces)
+    const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·]/g, '·').replace(/\s+/g, '').trim();
+
+    // Create a map for quick character lookup with normalized keys
+    const charMap = new Map((ALL_CHARACTERS as any[]).map(c => [normalizeName(c.name), c]));
+
+    // Get all character names already in the tier list for this category
+    const ratedNames = new Set(data.flatMap(group => group.characters.map(char => normalizeName(char.name))));
+
+    // Find characters in ALL_CHARACTERS that are not in ratedNames
+    const EXCLUDED_UNRATED = new Set([
+      '단항•음월', '단항·음월',
+      '토파즈&복순이', '토파즈 & 복순이',
+      'Dr. 레이시오', 'Dr.레이시오',
+      '개척자 (파멸)', '개척자 (보존)', '개척자 (화합)', '개척자 (기억)',
+      'Mar. 7th', 'Mar. 7th (수렵)', 'Mar.7th (수렵)',
+      '완•매', '완·매', '완매'
+    ].map(n => normalizeName(n)));
+
+    const unratedCharacters: TierCharacter[] = (ALL_CHARACTERS as any[])
+      .filter(char => !ratedNames.has(normalizeName(char.name)) && !EXCLUDED_UNRATED.has(normalizeName(char.name)))
+      .map(char => {
+        // Map path to role
+        let role: '메인 딜러' | '서브 딜러' | '서포터' | '유지력' = '메인 딜러';
+        if (['보존', '풍요'].includes(char.path)) role = '유지력';
+        else if (['화합', '공허', '환락'].includes(char.path)) role = '서포터';
+        else if (['기억'].includes(char.path)) role = '서브 딜러';
+
+        return {
+          id: `char_${char.id}`,
+          name: char.name,
+          folderName: char.folderName,
+          isTrailblazer: char.id.startsWith('trailblazer'),
+          role: role,
+          change: 'stay'
+        };
+      });
+
+    const allGroups = [...data];
+    if (unratedCharacters.length > 0) {
+      allGroups.push({
+        tier: '?',
+        label: '미편성',
+        color: '#444444',
+        characters: unratedCharacters
+      });
+    }
+
+    const parseVersion = (v: string | undefined) => {
+      if (!v || v === '데이터 소실') return [0, 0]; // Default to oldest if truly missing
+      return v.split('.').map(Number);
+    };
+
+    return allGroups.map(group => ({
       ...group,
-      characters: group.characters.filter(char => {
-        const matchesRole = roleFilter === '전체' || char.role === roleFilter;
-        const matchesSearch = query === '' || char.name.toLowerCase().includes(query);
-        return matchesRole && matchesSearch;
-      })
-    }));
+      characters: group.characters
+        .filter(char => {
+          const matchesRole = roleFilter === '전체' || char.role === roleFilter;
+          const matchesSearch = query === '' || char.name.toLowerCase().includes(query);
+          return matchesRole && matchesSearch;
+        })
+        .sort((a, b) => {
+          const charA = charMap.get(normalizeName(a.name));
+          const charB = charMap.get(normalizeName(b.name));
+          
+          const vA = parseVersion(charA?.version);
+          const vB = parseVersion(charB?.version);
+
+          // 1. Version Sort (Descending - Newest first)
+          for (let i = 0; i < Math.max(vA.length, vB.length); i++) {
+            const p1 = vA[i] || 0;
+            const p2 = vB[i] || 0;
+            if (p1 !== p2) return p2 - p1;
+          }
+
+          // 2. Role Sort (Priority: Main > Sub > Support > Sustain)
+          const roleA = ROLE_PRIORITY[a.role] || 99;
+          const roleB = ROLE_PRIORITY[b.role] || 99;
+          if (roleA !== roleB) return roleA - roleB;
+
+          // 3. Alphabetical Fallback
+          return a.name.localeCompare(b.name);
+        })
+    })).filter(group => group.tier !== '?' || group.characters.length > 0);
   }, [activeCategory, roleFilter, searchQuery]);
 
   const getIconUrl = (char: TierCharacter) => {
@@ -205,7 +288,7 @@ const TierList: React.FC = () => {
               <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-4">
                 <Filter size={12} /> ROLE FILTER
               </div>
-              {['전체', '메인 딜러', '서브 딜러', '서포터', '탱커/힐러'].map(role => (
+              {['전체', '메인 딜러', '서브 딜러', '서포터', '유지력'].map(role => (
                 <button
                   key={role}
                   onClick={() => setRoleFilter(role)}
@@ -233,10 +316,10 @@ const TierList: React.FC = () => {
                   style={{ backgroundColor: `${group.color}10` }}
                 >
                   <div 
-                    className="text-4xl font-black italic tracking-tighter"
+                    className={`${group.tier === '?' ? 'text-xl' : 'text-4xl'} font-black italic tracking-tighter text-center`}
                     style={{ color: group.color }}
                   >
-                    {group.tier}
+                    {group.tier === '?' ? group.label : group.tier}
                   </div>
                 </div>
 

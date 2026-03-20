@@ -2941,9 +2941,9 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   },
   {
     characterName: "연경",
-    lastUpdated: "2026-03-16",
+    lastUpdated: "2026-03-17",
     patchVersion: "3.4",
-    bestRelics: ["사수에 잠수한 선구자", "사냥꾼 2세트 + 죄수 2세트"],
+    bestRelics: ["사수에 잠수한 선구자"],
     bestOrnaments: ["회전을 멈춘 살소토", "창공 전선 그라모스"],
     mainStats: {
       body: "치명타 피해",
@@ -3705,23 +3705,29 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   },
   {
     characterName: "웰트",
-    lastUpdated: "2026-03-16",
-    patchVersion: "1.0",
-    bestRelics: ["황토와 죽음의 거룻배", "사수에 잠수한 선구자"],
-    bestOrnaments: ["범은하 상사", "회전을 멈춘 살소토"],
+    lastUpdated: "2026-03-17",
+    patchVersion: "4.0",
+    bestRelics: [{ name: "사수에 잠수한 선구자", note: "1순위" }, { name: "황무지의 도적, 황야인", note: "2순위" }],
+    bestOrnaments: [{ name: "이즈모 현세와 타카마 신국", note: "1순위" }, "창공 전선 그라모스", "뭇별 경기장"],
     mainStats: {
-      body: "치명타 확률 or 효과 명중",
+      body: "치명타 확률 or 치명타 피해",
       boots: "속도",
       sphere: "허수 피해",
       rope: "공격력 or 에너지 충전 효율"
     },
-    subStats: ["치명타 확률", "치명타 피해", "효과 명중", "속도"],
+    subStats: ["치명타 확률", "치명타 피해", "속도", "공격력"],
     targetStats: [
-      { label: "효과 명중", value: "67%" },
-      { label: "치명타 확률", value: "60%" }
+      { label: "공격력", value: "2500 이상" },
+      { label: "효과 명중", value: "40% 이상" }
     ],
-    bestLightCones: ["세계의 이름으로", "밤의 인사와 잠든 얼굴", "땀방울처럼 빛나는 결심"],
-    skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
+    bestLightCones: [
+      { name: "바람에 흩날리는 거짓말", note: "1순위" },
+      { name: "흘러가는 강가를 따라", note: "2순위" },
+      "계속 내리는 비",
+      "밤 인사와 잠든 얼굴",
+      "땀방울처럼 빛나는 결심"
+    ],
+    skillPriority: ["전투 스킬", "특성", "필살기", "일반 공격"],
     recommendedEidolon: "E2",
     eidolonEfficiency: []
   },
@@ -3902,23 +3908,62 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   },
   {
     characterName: "정운",
-    lastUpdated: "2026-03-16",
-    patchVersion: "1.0",
-    bestRelics: ["가상공간을 누비는 메신저", "거너 4세트"],
-    bestOrnaments: ["불로인의 선주", "부러진 용골", "바다에 잠긴 루샤카"],
+    lastUpdated: "2026-03-17",
+    patchVersion: "3.4",
+    variants: [
+      {
+        name: "기본 세팅",
+        bestRelics: ["고행의 길에 다시 오른 사제", "가상공간을 누비는 메신저"],
+        bestOrnaments: ["생명의 바커 공", "바다에 잠긴 루샤카"],
+        mainStats: {
+          body: "공격력",
+          boots: "속도",
+          sphere: "공격력",
+          rope: "에너지 충전 효율"
+        },
+        subStats: ["공격력", "속도", "방어력", "HP"],
+        targetStats: [
+          { label: "공격력", value: "2000" },
+          { label: "속도", value: "167 이상" }
+        ]
+      },
+      {
+        name: "고속 세팅",
+        bestRelics: ["밤낮의 경계를 나는 매", "고행의 길에 다시 오른 사제"],
+        bestOrnaments: ["생명의 바커 공", "바다에 잠긴 루샤카"],
+        mainStats: {
+          body: "공격력",
+          boots: "속도",
+          sphere: "공격력",
+          rope: "에너지 충전 효율"
+        },
+        subStats: ["속도", "공격력", "방어력", "HP"],
+        targetStats: [
+          { label: "공격력", value: "2600" },
+          { label: "속도", value: "134 이상" }
+        ]
+      }
+    ],
+    bestRelics: ["고행의 길에 다시 오른 사제", "가상공간을 누비는 메신저", { name: "밤낮의 경계를 나는 매", note: "고속 세팅 시 1순위" }],
+    bestOrnaments: [{ name: "생명의 바커 공", note: "1순위" }, "바다에 잠긴 루샤카"],
     mainStats: {
       body: "공격력",
       boots: "속도",
       sphere: "공격력",
       rope: "에너지 충전 효율"
     },
-    subStats: ["공격력", "속도", "효과 저항"],
+    subStats: ["공격력", "속도", "방어력", "HP"],
     targetStats: [
-      { label: "공격력", value: "2500 이상" },
-      { label: "속도", value: "150 이상" }
+      { label: "공격력", value: "2000" },
+      { label: "속도", value: "167 이상" }
     ],
-    bestLightCones: ["아직 전투는 끝나지 않았어", "행성과의 만남", "댄스! 댄스! 댄스!", "누구의 소리인가?", "달 조각과 구름의 기원"],
-    skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
+    bestLightCones: [
+      { name: "대지로 돌아온 비행", note: "1순위" },
+      { name: "댄스! 댄스! 댄스!", note: "2순위 (고속 세팅 시 1순위)" },
+      "맞물린 톱니",
+      "아직 전투는 끝나지 않았다"
+    ],
+    skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E6",
     eidolonEfficiency: []
   },
@@ -4231,46 +4276,80 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   },
   {
     characterName: "개척자 (보존)",
-    lastUpdated: "2026-03-16",
-    patchVersion: "1.0",
-    bestRelics: ["정토 교황의 팔각 모자"],
-    bestOrnaments: ["벨로보그의 건설 공정"],
+    lastUpdated: "2026-03-17",
+    patchVersion: "4.0",
+    bestRelics: [{ name: "정토 교황의 팔라딘", note: "1순위" }],
+    bestOrnaments: [{ name: "부러진 용골", note: "1순위" }, "불로인의 선주", "바다에 잠긴 루샤카"],
     mainStats: {
-      body: "방어력",
-      boots: "속도 or 방어력",
+      body: "방어력 or 효과 명중",
+      boots: "속도",
       sphere: "방어력",
-      rope: "방어력 or 에너지 충전 효율"
+      rope: "방어력"
     },
-    subStats: ["방어력", "속도", "효과 명중"],
+    subStats: ["방어력", "효과 명중", "속도", "HP"],
     targetStats: [
-      { label: "방어력", value: "3000 이상" }
+      { label: "방어력", value: "2500 이상" },
+      { label: "효과 저항", value: "70%" },
+      { label: "속도", value: "135 이상" }
     ],
-    bestLightCones: ["승리의 순간", { name: "랜도의 선택", note: "어그로 필요 시" }, "엠버"],
-    skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
+    bestLightCones: [
+      { name: "승리의 순간", note: "1순위" },
+      { name: "랜도의 선택", note: "2순위" },
+      { name: "기억의 소재", note: "3순위" },
+      "여생의 첫날"
+    ],
+    skillPriority: ["필살기", "특성", "일반 공격", "전투 스킬"],
     recommendedEidolon: "E6",
     eidolonEfficiency: []
   },
   {
     characterName: "개척자 (파멸)",
-    lastUpdated: "2026-03-16",
-    patchVersion: "1.0",
-    bestRelics: ["폐허에서 피어난 거너"],
-    bestOrnaments: ["우주 봉인 정거장"],
+    lastUpdated: "2026-03-17",
+    patchVersion: "4.0",
+    bestRelics: [{ name: "지식의 바다에 빠진 학자", note: "1순위" }, "스트리트 격투왕", "사수에 잠수한 선구자"],
+    bestOrnaments: [{ name: "뭇별 경기장", note: "1순위" }, "창공 전선 그라모스", "회전을 멈춘 살소토", "우주 봉인 정거장"],
     mainStats: {
-      body: "치명타 확률",
-      boots: "속도 or 공격력",
+      body: "치명타 확률 or 치명타 피해",
+      boots: "공격력 or 속도",
       sphere: "물리 피해",
       rope: "공격력"
     },
     subStats: ["치명타 확률", "치명타 피해", "공격력", "속도"],
     targetStats: [
-      { label: "치명타 확률", value: "60%" },
+      { label: "치명타 확률", value: "80%" },
+      { label: "치명타 피해", value: "120%" },
       { label: "공격력", value: "2500" }
     ],
-    bestLightCones: ["어떤 에이언즈의 몰락", "멍하니 서 있는 곳"],
-    skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
+    bestLightCones: [{ name: "어떤 에이언즈의 몰락", note: "1순위" }],
+    skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E6",
-    eidolonEfficiency: []
+    eidolonEfficiency: [],
+    eidolonVariants: [
+      {
+        name: "1개체",
+        efficiency: [
+          { level: 0, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "기본 성능" },
+          { level: 1, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "성흔 효과" },
+          { level: 2, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "성흔 효과" },
+          { level: 3, impact: "Low", efficiency1: "107.53%", efficiency3: "-", description: "스킬 레벨 상승" },
+          { level: 4, impact: "Low", efficiency1: "109.58%", efficiency3: "-", description: "성흔 효과" },
+          { level: 5, impact: "Low", efficiency1: "112.34%", efficiency3: "-", description: "스킬 레벨 상승" },
+          { level: 6, impact: "Low", efficiency1: "112.34%", efficiency3: "-", description: "성흔 효과" }
+        ]
+      },
+      {
+        name: "3개체",
+        efficiency: [
+          { level: 0, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "기본 성능" },
+          { level: 1, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "성흔 효과" },
+          { level: 2, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "성흔 효과" },
+          { level: 3, impact: "Low", efficiency1: "109.38%", efficiency3: "-", description: "스킬 레벨 상승" },
+          { level: 4, impact: "Low", efficiency1: "112.04%", efficiency3: "-", description: "성흔 효과" },
+          { level: 5, impact: "Low", efficiency1: "113.63%", efficiency3: "-", description: "스킬 레벨 상승" },
+          { level: 6, impact: "Low", efficiency1: "113.63%", efficiency3: "-", description: "성흔 효과" }
+        ]
+      }
+    ]
   },
   {
     characterName: "완·매",
