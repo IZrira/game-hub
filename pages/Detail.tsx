@@ -4,6 +4,8 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronLeft, Copy, Check, Share2, Bookmark, ChevronRight, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA } from '../data/games';
 import PageHeader from '../components/PageHeader';
+import AdPlaceholder from '../components/AdPlaceholder';
+import TableOfContents from '../components/TableOfContents';
 
 interface TOCItem {
   id: string;
@@ -54,6 +56,7 @@ const Detail: React.FC = () => {
       {/* Header Section */}
       <div className="bg-brand-dark/30 py-10 m-0">
         <div className="max-w-4xl mx-auto px-4">
+          <AdPlaceholder type="leaderboard" className="mb-8" />
           <div className="flex gap-2 mb-6">
              <span className="bg-brand-primary/20 text-brand-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
                {post.category}
@@ -120,6 +123,17 @@ const Detail: React.FC = () => {
             </button>
           </div>
         </article>
+
+        {/* Sidebar */}
+        <aside className="hidden lg:flex flex-col gap-8 sticky top-24 h-fit">
+          <TableOfContents selector=".prose" />
+          <AdPlaceholder type="skyscraper" />
+        </aside>
+      </div>
+      
+      <div className="max-w-4xl mx-auto px-4 mt-12">
+        <AdPlaceholder type="leaderboard" className="mb-4" />
+        <AdPlaceholder type="leaderboard" className="mb-8" />
       </div>
     </div>
   );

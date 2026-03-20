@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, X, Shield, Star, ArrowLeft } from 'lucide-react';
 import { RELIC_DB } from '../data/games';
 import PageHeader from '../components/PageHeader';
+import AdPlaceholder from '../components/AdPlaceholder';
 
 const RelicDetail: React.FC = () => {
   const { gameId, relicName } = useParams<{ gameId: string; relicName: string }>();
@@ -39,7 +40,11 @@ const RelicDetail: React.FC = () => {
       {/* Page Header */}
       <PageHeader gameId={gameId} category="유물" title={relic.name} />
 
-      <div className="max-w-4xl mx-auto px-8 pt-16">
+      <div className="max-w-4xl mx-auto px-8 pt-8">
+        <AdPlaceholder type="leaderboard" className="mb-8" />
+      </div>
+
+      <div className="max-w-4xl mx-auto px-8 pt-8">
         <div className="bg-[#121212] rounded-[48px] border border-white/10 overflow-hidden shadow-2xl">
           <div className="p-12 space-y-12">
             <div className="flex flex-col md:flex-row items-center gap-12">
@@ -108,6 +113,9 @@ const RelicDetail: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <AdPlaceholder type="leaderboard" className="my-12" />
+        <AdPlaceholder type="leaderboard" className="my-12" />
       </div>
     </div>
   );

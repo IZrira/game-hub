@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, Star, ShieldCheck, Info, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA, LIGHTCONE_DB } from '../data/games';
 import PageHeader from '../components/PageHeader';
+import AdPlaceholder from '../components/AdPlaceholder';
 
 const LightConeDetail: React.FC = () => {
   const { gameId, lcName } = useParams<{ gameId: string; lcName: string }>();
@@ -96,6 +97,9 @@ const LightConeDetail: React.FC = () => {
           </div>
         </div>
 
+        <AdPlaceholder type="leaderboard" className="my-12" />
+        <AdPlaceholder type="leaderboard" className="my-12" />
+
         {/* 01 Basic Stats */}
         <section className="space-y-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
@@ -119,6 +123,8 @@ const LightConeDetail: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <AdPlaceholder type="leaderboard" className="my-12" />
 
         {/* 02 Light Cone Skill */}
         <section className="space-y-10">
@@ -154,6 +160,8 @@ const LightConeDetail: React.FC = () => {
             <p className="text-gray-500 italic">스킬 정보가 없습니다.</p>
           )}
         </section>
+
+        <AdPlaceholder type="leaderboard" className="my-12" />
 
         {/* 03 Source */}
         {lc.source && (

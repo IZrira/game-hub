@@ -27,6 +27,7 @@ import ItemIcon from '../components/ItemIcon';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
+import AdPlaceholder from '../components/AdPlaceholder';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -335,6 +336,9 @@ const CharacterDetail: React.FC = () => {
           </div>
         </div>
 
+        <AdPlaceholder type="leaderboard" className="my-12" />
+        <AdPlaceholder type="leaderboard" className="my-12" />
+
         {/* 01 Metadata */}
         <section className="space-y-8">
           <SectionHeader num="01" title="캐릭터 메타데이터 & 기본 정보" theme={theme} expanded={isMetadataExpanded} onToggle={() => setIsMetadataExpanded(!isMetadataExpanded)} />
@@ -356,6 +360,8 @@ const CharacterDetail: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <AdPlaceholder type="leaderboard" className="my-12" />
 
         {/* 02 Basic Stats */}
         <section className="space-y-10">
@@ -389,6 +395,8 @@ const CharacterDetail: React.FC = () => {
           </div>
         </section>
 
+        <AdPlaceholder type="leaderboard" className="my-12" />
+
         {/* 03 Materials */}
         <section className="space-y-8">
           <SectionHeader num="03" title="육성 재료" theme={theme} />
@@ -412,6 +420,8 @@ const CharacterDetail: React.FC = () => {
             </div>
           </div>
         </section>
+        
+        <AdPlaceholder type="leaderboard" className="my-12" />
         
         <SkillAndEidolonSection char={char} gender={gender} setGender={setGender} theme={theme} renderContent={renderTextWithHighlights} setTooltip={setTooltip} />
       </div>

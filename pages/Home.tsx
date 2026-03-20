@@ -5,6 +5,7 @@ import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META } from '../data/items';
 import SEO from '../components/SEO';
 import LazyImage from '../components/LazyImage';
+import AdPlaceholder from '../components/AdPlaceholder';
 import { 
   ChevronRight, 
   Zap, 
@@ -73,6 +74,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      <AdPlaceholder type="leaderboard" className="relative z-30 -mt-8 mb-16" />
+
       {/* 글로벌 통계 메트릭 */}
       <section className="relative z-20 max-w-6xl mx-auto -mt-12 px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 bg-[#121212]/90 backdrop-blur-2xl border border-white/10 rounded-[32px] p-8 shadow-[0_32px_64px_rgba(0,0,0,0.6)] divide-x divide-white/5">
@@ -82,6 +85,9 @@ const Home: React.FC = () => {
           <StatMetric label="활성 아카이브" value={globalStats.games} icon={<ShieldCheck size={16}/>} color="text-green-500" />
         </div>
       </section>
+
+      <AdPlaceholder type="leaderboard" className="my-16" />
+      <AdPlaceholder type="leaderboard" className="my-16" />
 
       {/* 게임 라이브러리 센터 */}
       <section className="max-w-[1600px] mx-auto px-10 py-32 space-y-16">
@@ -164,6 +170,10 @@ const Home: React.FC = () => {
           </div>
         </div>
       </section>
+
+      <div className="max-w-[1600px] mx-auto px-10 pb-24">
+        <AdPlaceholder type="leaderboard" />
+      </div>
     </div>
   );
 };

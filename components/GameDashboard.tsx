@@ -119,7 +119,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             <div className="flex items-center gap-3">
               <h1 className="text-4xl font-black text-white italic tracking-tighter">{game.title}</h1>
               <span className="px-2 py-1 rounded bg-white/10 text-[10px] font-bold text-brand-accent uppercase border border-white/5">
-                v2.3 Updated
+                v4.0 Updated
               </span>
             </div>
             <p className="text-gray-400 font-medium text-sm">{game.subTitle}</p>
@@ -260,13 +260,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
               <h2 className="text-sm font-black text-brand-accent uppercase tracking-widest mb-3">Notice</h2>
               <ul className="space-y-3">
                 <li className="text-xs text-gray-300 leading-relaxed">
-                  <span className="font-bold text-white block mb-1">v2.3 데이터 업데이트</span>
-                  신규 캐릭터 '반디', '제이드' 데이터가 추가되었습니다.
-                </li>
-                <li className="h-px bg-brand-primary/20" />
-                <li className="text-xs text-gray-300 leading-relaxed">
-                  <span className="font-bold text-white block mb-1">서버 점검 안내</span>
-                  6월 19일 06:00 ~ 11:00 정기 점검이 예정되어 있습니다.
+                  <span className="font-bold text-white block mb-1">v4.0 데이터 업데이트</span>
+                  신규 캐릭터 '효광' 등 4.0 버전 데이터가 추가되었습니다.
                 </li>
               </ul>
             </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Library, Github, Search } from 'lucide-react';
 import GlobalSearch from './GlobalSearch';
+import AdPlaceholder from './AdPlaceholder';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
@@ -41,12 +42,23 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         </div>
       </header>
 
+      <div className="max-w-[1600px] mx-auto w-full px-6 pt-4">
+        <AdPlaceholder type="leaderboard" />
+      </div>
+
       <main className="flex-grow">
         {children}
       </main>
 
+      <div className="max-w-[1600px] mx-auto w-full px-6 pb-8">
+        <AdPlaceholder type="leaderboard" />
+      </div>
+
       <footer className="bg-[#0d0d0d] border-t border-white/5 pt-24 pb-32 px-8 overflow-hidden">
         <div className="max-w-[1600px] mx-auto">
+          <div className="mb-16">
+            <AdPlaceholder type="leaderboard" />
+          </div>
           <div className="max-w-4xl space-y-16">
             <div className="space-y-6">
               <div className="flex items-center gap-5">

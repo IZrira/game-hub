@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import AdPlaceholder from './AdPlaceholder';
 import { 
   Home as HomeIcon, 
   Users, 
@@ -88,6 +89,10 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
             </button>
           );
         })}
+        
+        <div className="pt-8">
+          <AdPlaceholder type="skyscraper" />
+        </div>
       </div>
     </aside>
   );

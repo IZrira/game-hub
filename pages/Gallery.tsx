@@ -15,6 +15,7 @@ import InventoryGallery from '../components/InventoryGallery';
 import GameDashboard from '../components/GameDashboard';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
+import AdPlaceholder from '../components/AdPlaceholder';
 
 type SidebarMenu = string;
 
@@ -185,6 +186,7 @@ const Gallery: React.FC = () => {
 
         {/* 메인 섹션 */}
         <main className="min-h-[800px] space-y-16">
+          <AdPlaceholder type="leaderboard" className="mb-8" />
           {activeMenu === '캐릭터' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
               <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl">
@@ -228,6 +230,9 @@ const Gallery: React.FC = () => {
                   />
                 </div>
               </div>
+
+              <AdPlaceholder type="leaderboard" className="my-8" />
+              <AdPlaceholder type="leaderboard" className="my-8" />
 
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
                 {filteredCharacters.map(char => (
@@ -273,6 +278,9 @@ const Gallery: React.FC = () => {
                 </div>
               </div>
 
+              <AdPlaceholder type="leaderboard" className="my-8" />
+              <AdPlaceholder type="leaderboard" className="my-8" />
+
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
                 {filteredLightCones.map(lc => (
                   <LightConePremiumCard key={lc.id} lc={lc} />
@@ -314,6 +322,8 @@ const Gallery: React.FC = () => {
                   </div>
                 )}
               </div>
+
+              <AdPlaceholder type="leaderboard" className="my-8" />
 
               {gameId === 'hsr' && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -360,6 +370,8 @@ const Gallery: React.FC = () => {
               {selectedOrnament && (
                 <OrnamentDetailModal ornament={selectedOrnament} onClose={() => setSelectedOrnament(null)} />
               )}
+              
+              <AdPlaceholder type="leaderboard" className="mt-16" />
             </div>
           ) : activeMenu === '공략' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
@@ -379,6 +391,8 @@ const Gallery: React.FC = () => {
                   </div>
                 </div>
               </div>
+              
+              <AdPlaceholder type="leaderboard" className="my-8" />
               
               {/* 캐릭터 공략 리스트 (도감처럼 캐릭터 얼굴과 이름 출력) */}
               <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4">

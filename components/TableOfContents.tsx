@@ -58,7 +58,7 @@ export default function TableOfContents({ selector = '.prose' }: { selector?: st
   if (headings.length === 0) return null;
 
   return (
-    <div className="sticky top-24 w-64 hidden xl:block shrink-0">
+    <div className="sticky top-24 w-64 hidden lg:block shrink-0">
       <div className="p-6 bg-[#121212] border border-white/5 rounded-3xl shadow-xl">
         <div className="flex items-center gap-2 mb-6 text-brand-primary">
           <List size={18} />

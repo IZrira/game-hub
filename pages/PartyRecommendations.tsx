@@ -18,6 +18,7 @@ import {
 import { HSR_PARTIES, PartyCombination, PartyMember } from '../data/parties';
 import GallerySidebar from '../components/GallerySidebar';
 import PageHeader from '../components/PageHeader';
+import AdPlaceholder from '../components/AdPlaceholder';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} className="text-rose-500" />,
@@ -208,6 +209,9 @@ const PartyRecommendations: React.FC = () => {
                 메인 딜러의 성능을 극대화하는 최적의 파티 조합 가이드입니다. <br className="hidden md:block" />
                 단일, 범위, 추공, 지속피해 등 파티 성격별 최적의 구성을 확인하세요.
               </p>
+              <div className="pt-4">
+                <AdPlaceholder type="leaderboard" />
+              </div>
             </div>
           </div>
 
@@ -270,6 +274,8 @@ const PartyRecommendations: React.FC = () => {
 
           {/* Content Grid */}
           <div className="py-12">
+            <AdPlaceholder type="leaderboard" className="mb-12" />
+            <AdPlaceholder type="leaderboard" className="mb-12" />
             {filteredParties.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {filteredParties.map(party => (
@@ -293,6 +299,8 @@ const PartyRecommendations: React.FC = () => {
                 </button>
               </div>
             )}
+            <AdPlaceholder type="leaderboard" className="mt-12" />
+            <AdPlaceholder type="leaderboard" className="mt-12" />
           </div>
         </div>
       </div>

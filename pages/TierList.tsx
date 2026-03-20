@@ -10,6 +10,7 @@ import ALL_CHARACTERS from '../data/characters.json';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
+import AdPlaceholder from '../components/AdPlaceholder';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -306,6 +307,9 @@ const TierList: React.FC = () => {
           </div>
         </div>
 
+        <AdPlaceholder type="leaderboard" className="my-12" />
+        <AdPlaceholder type="leaderboard" className="my-12" />
+
         {/* Tier List Content */}
         <div className="space-y-8">
             {filteredTierList.map((group) => (
@@ -352,6 +356,9 @@ const TierList: React.FC = () => {
               </div>
             )}
           </div>
+
+          <AdPlaceholder type="leaderboard" className="my-12" />
+          <AdPlaceholder type="leaderboard" className="my-12" />
         </div>
       </div>
     </div>
