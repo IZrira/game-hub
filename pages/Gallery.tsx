@@ -186,7 +186,6 @@ const Gallery: React.FC = () => {
 
         {/* 메인 섹션 */}
         <main className="min-h-[800px] space-y-16">
-          <AdPlaceholder type="leaderboard" className="mb-8" />
           {activeMenu === '캐릭터' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
               <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl">
@@ -230,9 +229,6 @@ const Gallery: React.FC = () => {
                   />
                 </div>
               </div>
-
-              <AdPlaceholder type="leaderboard" className="my-8" />
-              <AdPlaceholder type="leaderboard" className="my-8" />
 
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
                 {filteredCharacters.map(char => (
@@ -323,8 +319,6 @@ const Gallery: React.FC = () => {
                 )}
               </div>
 
-              <AdPlaceholder type="leaderboard" className="my-8" />
-
               {gameId === 'hsr' && (
                 <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                   {relicSubTab === '유물' ? (
@@ -370,8 +364,6 @@ const Gallery: React.FC = () => {
               {selectedOrnament && (
                 <OrnamentDetailModal ornament={selectedOrnament} onClose={() => setSelectedOrnament(null)} />
               )}
-              
-              <AdPlaceholder type="leaderboard" className="mt-16" />
             </div>
           ) : activeMenu === '공략' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
@@ -392,30 +384,40 @@ const Gallery: React.FC = () => {
                 </div>
               </div>
               
-              <AdPlaceholder type="leaderboard" className="my-8" />
-              
-              {/* 캐릭터 공략 리스트 (도감처럼 캐릭터 얼굴과 이름 출력) */}
-              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4">
+              {/* 캐릭터 공략 리스트 (프리미엄 배너 카드 스타일) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredCharacters.map(char => (
                   <Link 
                     key={char.id} 
                     to={`/gallery/${gameId}/guide/${encodeURIComponent(char.name)}`} // 🚨 클릭 시 개별 공략 페이지로 이동!
-                    className="group flex flex-col items-center gap-3 bg-[#121212] border border-white/5 p-4 rounded-3xl hover:border-brand-primary/50 transition-all"
+                    className="group relative bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden hover:border-brand-primary/50 transition-all duration-500 shadow-lg flex items-center h-[140px]"
                   >
-                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-brand-primary transition-all">
+                    <div className="absolute right-0 top-0 bottom-0 w-2/3" style={{ maskImage: 'linear-gradient(to right, transparent, black 40%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 40%)' }}>
                       <img 
                         src={char.gameId === 'hsr' 
                           ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(char.folderName.normalize('NFC'))}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
                           : `${BASE_IMAGE_URL}/ww/characters/${encodeURIComponent(char.folderName.normalize('NFC'))}/art01.webp`
                         }
                         alt={char.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform"
+                        className="w-full h-full object-cover object-top opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
                         onError={(e) => { (e.target as HTMLImageElement).src = `${BASE_IMAGE_URL}/items/unknown.webp`; }}
                       />
                     </div>
-                    <span className="text-[11px] font-bold text-gray-400 group-hover:text-white text-center w-full truncate">
-                      {char.name}
-                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/80 to-transparent" />
+                    
+                    <div className="relative z-10 p-6 flex flex-col justify-center h-full w-full">
+                      <div className="flex items-center gap-1.5 mb-3">
+                        <span className="flex items-center gap-1 px-2.5 py-1 bg-brand-primary/20 text-brand-accent text-[9px] font-black rounded-lg uppercase tracking-widest border border-brand-primary/30">
+                          <Book size={10} /> 세팅 공략
+                        </span>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-black text-white italic tracking-tight group-hover:text-brand-accent transition-colors truncate">
+                        {char.name}
+                      </h3>
+                      <p className="text-[10px] text-gray-500 font-bold mt-1 uppercase tracking-widest">
+                        {char.attribute} · {char.gameId === 'hsr' ? char.path : char.weaponType}
+                      </p>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -429,6 +431,11 @@ const Gallery: React.FC = () => {
                <Layers size={48} className="mb-4 opacity-20" />
                <p className="font-black uppercase tracking-widest text-sm">준비 중인 섹션입니다</p>
             </div>
+          )}
+
+          {/* 모든 메뉴 공통 최하단 광고 배너 1개 */}
+          {activeMenu !== '홈' && activeMenu !== '인벤토리' && (
+            <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
           )}
         </main>
       </div>

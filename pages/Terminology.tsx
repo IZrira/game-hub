@@ -64,9 +64,6 @@ const Terminology: React.FC = () => {
           </div>
         </div>
 
-        <AdPlaceholder type="leaderboard" className="my-12" />
-        <AdPlaceholder type="leaderboard" className="my-12" />
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTerms.map((item, idx) => (
             <div key={idx} className="group flex flex-col p-8 rounded-[32px] bg-[#121212] border border-white/5 hover:border-brand-primary/30 hover:bg-white/[0.02] transition-all duration-300 relative overflow-hidden">
@@ -92,8 +89,7 @@ const Terminology: React.FC = () => {
           )}
         </div>
 
-        <AdPlaceholder type="leaderboard" className="my-12" />
-        <AdPlaceholder type="leaderboard" className="my-12" />
+        <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
       </main>
 
       <footer className="py-20 text-center border-t border-white/5">

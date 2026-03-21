@@ -255,7 +255,6 @@ const CharacterGuideDetail: React.FC = () => {
 
       <div className="max-w-[1400px] mx-auto px-8 pt-12 flex flex-col lg:flex-row gap-12">
         <div className="flex-1 space-y-12 content-area">
-          <AdPlaceholder type="leaderboard" className="mb-8" />
           {/* Hero Section */}
           <div className="relative p-12 rounded-[48px] bg-[#121212] border border-white/5 overflow-hidden shadow-2xl">
           <div className="absolute top-0 right-4 p-8 flex flex-col items-end gap-1 text-[10px] font-black uppercase tracking-[0.2em] text-gray-600">
@@ -305,9 +304,6 @@ const CharacterGuideDetail: React.FC = () => {
             </div>
           </div>
         </div>
-
-        <AdPlaceholder type="leaderboard" className="mb-4" />
-        <AdPlaceholder type="leaderboard" className="mb-8" />
 
         <div className="grid grid-cols-1 gap-8">
           {/* 1. 장비 및 스탯 세팅 */}
@@ -587,10 +583,6 @@ const CharacterGuideDetail: React.FC = () => {
             </div>
           </div>
           
-          <AdPlaceholder type="leaderboard" className="my-12" />
-
-          <AdPlaceholder type="leaderboard" className="my-12" />
-
           {/* 2. 목표 스탯 & 성흔 효율 */}
           <div className="space-y-6">
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -655,8 +647,6 @@ const CharacterGuideDetail: React.FC = () => {
                   </div>
                 ))}
               </div>
-
-              <AdPlaceholder type="rectangle" className="my-4" />
 
               <div className="p-6 rounded-3xl bg-[#121212] border border-white/5 space-y-4">
                 <div className="flex items-center justify-between">
@@ -849,8 +839,6 @@ const CharacterGuideDetail: React.FC = () => {
           </div>
         </div>
 
-        <AdPlaceholder type="leaderboard" className="my-12" />
-
         {/* 5. 추천 조합 */}
         <div className="space-y-6">
           <div className="flex items-center gap-3">
@@ -901,8 +889,7 @@ const CharacterGuideDetail: React.FC = () => {
             )}
           </div>
           
-          <AdPlaceholder type="leaderboard" className="mb-4" />
-          <AdPlaceholder type="leaderboard" className="mt-16" />
+          <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
         </div>
       </div>
         <div className="hidden lg:flex flex-col gap-8 sticky top-24 h-fit">

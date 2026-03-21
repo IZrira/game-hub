@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META } from '../data/items';
+import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import SEO from '../components/SEO';
 import LazyImage from '../components/LazyImage';
 import AdPlaceholder from '../components/AdPlaceholder';
@@ -17,15 +18,17 @@ import {
   Cpu,
   Globe,
   Terminal,
-  Server
+  Server,
+  TerminalSquare
 } from 'lucide-react';
 
 const Home: React.FC = () => {
   const globalStats = useMemo(() => {
+    const guideCount = HSR_CHARACTER_GUIDES ? HSR_CHARACTER_GUIDES.length : 0;
     return {
       games: ARCHIVE_DATA.games.length,
       characters: CHARACTER_DB.length,
-      guides: ARCHIVE_DATA.games.reduce((acc, game) => acc + game.posts.length, 0),
+      guides: ARCHIVE_DATA.games.reduce((acc, game) => acc + game.posts.length, 0) + guideCount,
       items: Object.keys(ITEM_META).length
     };
   }, []);
@@ -74,8 +77,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <AdPlaceholder type="leaderboard" className="relative z-30 -mt-8 mb-16" />
-
       {/* 글로벌 통계 메트릭 */}
       <section className="relative z-20 max-w-6xl mx-auto -mt-12 px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 bg-[#121212]/90 backdrop-blur-2xl border border-white/10 rounded-[32px] p-8 shadow-[0_32px_64px_rgba(0,0,0,0.6)] divide-x divide-white/5">
@@ -86,8 +87,35 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      <AdPlaceholder type="leaderboard" className="my-16" />
-      <AdPlaceholder type="leaderboard" className="my-16" />
+      {/* 터미널 업데이트 로그 섹션 */}
+      <section className="max-w-6xl mx-auto px-6 mt-16 mb-16">
+        <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-6 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">
+          <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary/50 group-hover:bg-brand-primary transition-colors" />
+          <div className="flex items-center gap-3 mb-4">
+            <TerminalSquare size={18} className="text-brand-accent" />
+            <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">System.Changelog</h2>
+            <div className="flex-1 h-px bg-white/5 ml-4" />
+          </div>
+          
+          <div className="space-y-3 font-mono text-[11px] sm:text-xs text-gray-400">
+            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
+              <span className="text-brand-primary font-bold">[UPDATE]</span>
+              <span className="text-gray-600 w-24 shrink-0">2026-03-21</span>
+              <span className="truncate">HSR 아카이브 '스파키', '효광' 4.0 캐릭터 데이터 동기화 완료</span>
+            </div>
+            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
+              <span className="text-brand-accent font-bold">[SYSTEM]</span>
+              <span className="text-gray-600 w-24 shrink-0">2026-03-18</span>
+              <span className="truncate">광고 최적화 및 UI/UX 디자인 개선 (목차 높이 제한 적용)</span>
+            </div>
+            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
+              <span className="text-blue-400 font-bold">[NOTICE]</span>
+              <span className="text-gray-600 w-24 shrink-0">2026-03-15</span>
+              <span className="truncate">초기화 코어 인텔리전스 터미널 가동 준비 완료</span>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* 게임 라이브러리 센터 */}
       <section className="max-w-[1600px] mx-auto px-10 py-32 space-y-16">

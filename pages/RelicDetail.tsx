@@ -41,10 +41,6 @@ const RelicDetail: React.FC = () => {
       <PageHeader gameId={gameId} category="유물" title={relic.name} />
 
       <div className="max-w-4xl mx-auto px-8 pt-8">
-        <AdPlaceholder type="leaderboard" className="mb-8" />
-      </div>
-
-      <div className="max-w-4xl mx-auto px-8 pt-8">
         <div className="bg-[#121212] rounded-[48px] border border-white/10 overflow-hidden shadow-2xl">
           <div className="p-12 space-y-12">
             <div className="flex flex-col md:flex-row items-center gap-12">
@@ -114,8 +110,7 @@ const RelicDetail: React.FC = () => {
           </div>
         </div>
 
-        <AdPlaceholder type="leaderboard" className="my-12" />
-        <AdPlaceholder type="leaderboard" className="my-12" />
+        <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
       </div>
     </div>
   );

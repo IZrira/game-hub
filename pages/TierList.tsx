@@ -307,9 +307,6 @@ const TierList: React.FC = () => {
           </div>
         </div>
 
-        <AdPlaceholder type="leaderboard" className="my-12" />
-        <AdPlaceholder type="leaderboard" className="my-12" />
-
         {/* Tier List Content */}
         <div className="space-y-8">
             {filteredTierList.map((group) => (
@@ -357,8 +354,7 @@ const TierList: React.FC = () => {
             )}
           </div>
 
-          <AdPlaceholder type="leaderboard" className="my-12" />
-          <AdPlaceholder type="leaderboard" className="my-12" />
+          <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
         </div>
       </div>
     </div>
@@ -366,4 +362,3 @@ const TierList: React.FC = () => {
 };
 
 export default TierList;
-
