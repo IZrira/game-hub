@@ -78,13 +78,13 @@ import danHengPermansorTerrae from './characters/hsr/dan_heng_permansor_terrae';
 import cyrene from './characters/hsr/cyrene';
 import cypher from './characters/hsr/cypher';
 import yaoguang from './characters/hsr/yaoguang';
-import sparkie from './characters/hsr/sparkie';
+import sparxie from './characters/hsr/sparxie';
 import trailblazerHarmony from './characters/hsr/trailblazer_harmony';
 import trailblazerRemembrance from './characters/hsr/trailblazer_remembrance';
 
 export const CHARACTER_DATA: Character[] = [
   // 4.0
-  sparkie,
+  sparxie,
   yaoguang,
   // 3.8
   dahlia,
