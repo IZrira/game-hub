@@ -101,6 +101,11 @@ const Home: React.FC = () => {
             <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
               <span className="text-brand-primary font-bold">[UPDATE]</span>
               <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
+              <span className="truncate">개발 환경 최적화: .vscode/settings.json 추가 및 CSS 유효성 검사 설정 완료</span>
+            </div>
+            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
+              <span className="text-brand-primary font-bold">[UPDATE]</span>
+              <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
               <span className="truncate">빌드 시스템 복구: Cloudflare Pages 빌드 오류 해결 및 package-lock.json 동기화 완료</span>
             </div>
             <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
