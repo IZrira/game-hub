@@ -12,6 +12,7 @@ import { ITEM_META } from '../data/items';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import { Category, Character, Post, LightCone } from '../types';
 import InventoryGallery from '../components/InventoryGallery';
+import WuwaInventory from '../../ww-hub/pages/WuwaInventory';
 import GameDashboard from '../components/GameDashboard';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
@@ -428,7 +429,7 @@ const Gallery: React.FC = () => {
               </div>
             </div>
           ) : activeMenu === '인벤토리' ? (
-            <InventoryGallery gameId={gameId} />
+            gameId === 'ww' ? <WuwaInventory /> : <InventoryGallery gameId={gameId} />
           ) : activeMenu === '홈' ? (
             <GameDashboard game={game} setActiveMenu={handleSetActiveMenu} />
           ) : (

@@ -22,6 +22,17 @@ import {
   TerminalSquare
 } from 'lucide-react';
 
+const CHANGELOG_DATA = [
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "명조(WW) 인벤토리 시스템 구축 및 아이템 필터링 카테고리 추가" },
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "개발 환경 최적화: .vscode/settings.json 추가 및 CSS 유효성 검사 설정 완료" },
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "빌드 시스템 복구: Cloudflare Pages 빌드 오류 해결 및 package-lock.json 동기화 완료" },
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "대시보드 최적화: Official Links 제거 및 최신 업데이트 버전 자동 동기화 적용" },
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "공지사항 시스템 통합: 각 게임 대시보드 내 실시간 NOTICE 섹션 구축 완료" },
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "HSR/WW 데이터 허브 완전 분리 및 게임별 전용 티어표 시스템 구축" },
+  { type: "SYSTEM", color: "text-brand-accent", date: "2026-03-24", desc: "수석 개발자 시스템 가동 및 데이터 정밀 검수 프로세스 활성화" },
+  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-21", desc: "HSR 아카이브 '스파키', '효광' 4.0 캐릭터 데이터 동기화 완료" }
+];
+
 const Home: React.FC = () => {
   const globalStats = useMemo(() => {
     const guideCount = HSR_CHARACTER_GUIDES ? HSR_CHARACTER_GUIDES.length : 0;
@@ -31,6 +42,12 @@ const Home: React.FC = () => {
       guides: ARCHIVE_DATA.games.reduce((acc, game) => acc + game.posts.length, 0) + guideCount,
       items: Object.keys(ITEM_META).length
     };
+  }, []);
+
+  const latestLogs = useMemo(() => {
+    return [...CHANGELOG_DATA]
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+      .slice(0, 5);
   }, []);
 
   return (
@@ -98,41 +115,13 @@ const Home: React.FC = () => {
           </div>
           
           <div className="space-y-3 font-mono text-[11px] sm:text-xs text-gray-400">
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-primary font-bold">[UPDATE]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
-              <span className="truncate">개발 환경 최적화: .vscode/settings.json 추가 및 CSS 유효성 검사 설정 완료</span>
-            </div>
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-primary font-bold">[UPDATE]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
-              <span className="truncate">빌드 시스템 복구: Cloudflare Pages 빌드 오류 해결 및 package-lock.json 동기화 완료</span>
-            </div>
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-primary font-bold">[UPDATE]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
-              <span className="truncate">대시보드 최적화: Official Links 제거 및 최신 업데이트 버전 자동 동기화 적용</span>
-            </div>
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-primary font-bold">[UPDATE]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
-              <span className="truncate">공지사항 시스템 통합: 각 게임 대시보드 내 실시간 NOTICE 섹션 구축 완료</span>
-            </div>
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-primary font-bold">[UPDATE]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-25</span>
-              <span className="truncate">HSR/WW 데이터 허브 완전 분리 및 게임별 전용 티어표 시스템 구축</span>
-            </div>
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-accent font-bold">[SYSTEM]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-24</span>
-              <span className="truncate">수석 개발자 시스템 가동 및 데이터 정밀 검수 프로세스 활성화</span>
-            </div>
-            <div className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-              <span className="text-brand-primary font-bold">[UPDATE]</span>
-              <span className="text-gray-600 w-24 shrink-0">2026-03-21</span>
-              <span className="truncate">HSR 아카이브 '스파키', '효광' 4.0 캐릭터 데이터 동기화 완료</span>
-            </div>
+            {latestLogs.map((log, index) => (
+              <div key={index} className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
+                <span className={`${log.color} font-bold`}>[{log.type}]</span>
+                <span className="text-gray-600 w-24 shrink-0">{log.date}</span>
+                <span className="truncate">{log.desc}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
