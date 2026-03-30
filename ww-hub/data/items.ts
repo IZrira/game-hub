@@ -2826,8 +2826,8 @@ export const wuwaItemsSet3: WuwaItem[] = [
   },
   {
     id: "dragon_scale_crystal",
-    name: "용비늘정석",
-    folderName: "용비늘정석",
+    name: "용비늘 정석",
+    folderName: "용비늘 정석",
     rarity: 1,
     category: "무기 제작 재료",
     description: "무기 제작에 사용되는 재료",
@@ -3027,8 +3027,8 @@ export const wuwaItemsSet4: WuwaItem[] = [
   },
   {
     id: "ghost_orchid",
-    name: "유령 난초",
-    folderName: "유령 난초",
+    name: "유령난초",
+    folderName: "유령난초",
     rarity: 1,
     category: "재료",
     description: "합성에 사용되는 재료",
