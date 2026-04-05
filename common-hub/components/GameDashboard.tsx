@@ -23,6 +23,7 @@ import { Character, Game } from '../types';
 import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
 import { HSR_NOTICES } from '../../hsr-hub/data/notices';
 import { WW_NOTICES } from '../../ww-hub/data/notices';
+import { WEAPON_DATA } from '../../ww-hub/data/weapons';
 import { Bell } from 'lucide-react';
 
 interface GameDashboardProps {
@@ -38,8 +39,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
     setIsLoaded(true);
   }, []);
 
-  // 🚨 기준 URL 설정 (이중 인코딩 방지를 위해 띄어쓰기 그대로 사용)
-  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+  // CDN URL
+  const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
   // Get latest characters
   const latestCharacters = CHARACTER_DB
@@ -55,29 +56,37 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
       type: '캐릭터',
       rarity: c.rarity,
       image: game.id === 'hsr' 
-        ? encodeURI(`${BASE_IMAGE_URL}/캐릭터/${c.folderName.normalize('NFC')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
-        : encodeURI(`${BASE_IMAGE_URL}/ww/characters/${c.folderName.normalize('NFC')}/art01.webp`),
+        ? encodeURI(`${CDN_URL}/hsr images/캐릭터/${(c.folderName || c.name).normalize('NFC')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
+        : encodeURI(`${CDN_URL}/ww images/characters/${(c.folderName || c.name).normalize('NFC')}/art01.webp`),
       link: `/gallery/${game.id}/character/${c.name}`
     })),
     
-    // 2. 광추 매핑 수정 (운명의 길 폴더 경로 추가)
-    ...LIGHTCONE_DB.filter(lc => lc.gameId === game.id).slice(0, 3).map(lc => {
-      const targetName = lc.fileName || lc.folderName || lc.name;
-      const isWW = game.id === 'ww';
-      return {
-        id: lc.id,
-        name: lc.name,
-        type: isWW ? '무기' : '광추',
-        rarity: lc.rarity,
-        image: isWW 
-          ? encodeURI(`${BASE_IMAGE_URL}/ww/weapons/${targetName.normalize('NFC')}.webp`)
-          : encodeURI(`${BASE_IMAGE_URL}/광추/${lc.path.normalize('NFC')}/${targetName.normalize('NFC')}.webp`),
-        link: `/gallery/${game.id}/lightcone/${lc.name}`
-      };
-    }),
+    // 2. 광추 / 무기 매핑 수정 (운명의 길 폴더 경로 추가 및 WW 데이터 분리)
+    ...(game.id === 'ww' 
+      ? [...WEAPON_DATA].reverse().slice(0, 3).map(w => ({
+          id: w.id,
+          name: w.name,
+          type: '무기',
+          rarity: w.rarity,
+          image: encodeURI(`${CDN_URL}/ww images/Weapons/${w.name.normalize('NFC')}.webp`),
+          link: `/gallery/ww/weapon/${encodeURIComponent(w.name)}`
+        }))
+      : LIGHTCONE_DB.filter(lc => lc.gameId === game.id).slice(0, 3).map(lc => {
+          const targetName = lc.fileName || lc.folderName || lc.name;
+          return {
+            id: lc.id,
+            name: lc.name,
+            type: '광추',
+            rarity: lc.rarity,
+            image: encodeURI(`${CDN_URL}/hsr images/광추/${(lc.path || '').normalize('NFC')}/${targetName.normalize('NFC')}.webp`),
+            link: `/gallery/${game.id}/lightcone/${lc.name}`
+          };
+        })
+    ),
     
-    // 3. 유물 매핑 수정 (폴더 없이 바로 유물명.webp)
-    ...[...RELIC_DB].filter(r => r.gameId === game.id).reverse().slice(0, 1).map(r => {
+    // 3. 유물 매핑 수정 
+    // (🚨 4.1 버전 기준 HSR은 신규 유물이 없으므로 0개, WW는 에코 2개 노출로 변경)
+    ...[...RELIC_DB].filter(r => r.gameId === game.id).reverse().slice(0, game.id === 'ww' ? 2 : 0).map(r => {
       const isWW = game.id === 'ww';
       return {
         id: r.id,
@@ -85,19 +94,20 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
         type: isWW ? '에코' : '유물',
         rarity: 5,
         image: isWW
-          ? encodeURI(`${BASE_IMAGE_URL}/ww/echoes/${r.name.normalize('NFC')}.webp`)
-          : encodeURI(`${BASE_IMAGE_URL}/유물/${r.name.normalize('NFC')}.webp`),
+          ? encodeURI(`${CDN_URL}/ww images/echoes/${r.name.normalize('NFC')}.webp`)
+          : encodeURI(`${CDN_URL}/hsr images/유물/${r.name.normalize('NFC')}.webp`),
         link: `/gallery/${game.id}/relic/${r.name}`
       };
     }),
     
-    // 4. 차원 장신구 매핑 수정 (폴더명 '차원 장신구' 반영)
-    ...[...ORNAMENT_DB].filter(o => o.gameId === game.id).reverse().slice(0, 1).map(o => ({
+    // 4. 차원 장신구 매핑 수정 
+    // (🚨 HSR 4.1 신규 장신구가 2개이므로 2개 노출로 변경)
+    ...[...ORNAMENT_DB].filter(o => o.gameId === game.id).reverse().slice(0, game.id === 'hsr' ? 2 : 0).map(o => ({
       id: o.id,
       name: o.name,
       type: '장신구',
       rarity: 5,
-      image: encodeURI(`${BASE_IMAGE_URL}/차원 장신구/${o.name.normalize('NFC')}.webp`),
+      image: encodeURI(`${CDN_URL}/hsr images/차원 장신구/${o.name.normalize('NFC')}.webp`),
       link: `/gallery/${game.id}/ornament/${o.name}`
     }))
   ];
@@ -198,8 +208,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                   >
                     <img 
                       src={game.id === 'hsr' 
-                        ? encodeURI(`${BASE_IMAGE_URL}/캐릭터/${char.folderName.normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
-                        : encodeURI(`${BASE_IMAGE_URL}/ww/characters/${char.folderName.normalize('NFC')}/art01.webp`)
+                        ? encodeURI(`${CDN_URL}/hsr images/캐릭터/${(char.folderName || char.name).normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
+                        : encodeURI(`${CDN_URL}/ww images/characters/${(char.folderName || char.name).normalize('NFC')}/art01.webp`)
                       }
                       alt={char.name}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

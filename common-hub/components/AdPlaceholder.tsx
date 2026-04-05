@@ -57,6 +57,13 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
       // Ensure the element is visible and has width to avoid "availableWidth=0" error
       if (adRef.current.offsetWidth > 0) {
         try {
+          const clientId = adRef.current.getAttribute('data-ad-client');
+          // 클라이언트 ID가 아직 임시 값인 경우, 구글 서버 400 에러를 방지하기 위해 요청을 중단합니다.
+          if (clientId === 'ca-pub-YOUR_CLIENT_ID') {
+            pushedRef.current = true;
+            return;
+          }
+
           // @ts-ignore
           (window.adsbygoogle = window.adsbygoogle || []).push({});
           pushedRef.current = true;

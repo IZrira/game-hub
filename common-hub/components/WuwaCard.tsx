@@ -1,94 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { WuwaEcho } from '../types';
 import { WuwaItem } from './ww';
 
 interface Props {
-  item: WuwaItem;
-  count?: string;
-  onClick?: () => void;
-  size?: 'sm' | 'md';
+  item: WuwaEcho | WuwaItem;
+  onClick: () => void;
 }
 
-const RARITY_THEMES: Record<number, string> = {
-  1: 'from-[#4d4d4d] to-[#333333] border-gray-400/20',
-  2: 'from-[#3b5a41] to-[#25392a] border-green-500/30',
-  3: 'from-[#3b608a] to-[#1e3045] border-blue-500/30',
-  4: 'from-[#634e9e] to-[#3d2f63] border-purple-500/30',
-  5: 'from-[#9c7b3c] to-[#5e4a24] border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]',
-};
-
-const WuwaCard: React.FC<Props> = ({ item, count, onClick, size = 'md' }) => {
-  // ✅ 요청하신 규칙: 앞부분은 동일하고 hsr images -> ww images/items 로 변경
-  // jsDelivr CDN을 사용하며, 띄어쓰기는 %20으로 처리합니다.
-  const BASE_URL = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/";
-
-  // ✅ 한글 자소 분리 방지 (NFC) 및 파일명 인코딩
-  const targetName = item.folderName || item.name;
-  const encodedFileName = encodeURIComponent(targetName.normalize('NFC'));
+const WuwaCard: React.FC<Props> = ({ item, onClick }) => {
+  const isEcho = 'cost' in item;
   
-  // 최종 완성된 이미지 주소 (.webp 확정)
-  const imageSrc = `${BASE_URL}${encodedFileName}.webp`;
+  let imageSrc = '';
+  if (isEcho) {
+    const ECHO_IMAGE_BASE = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Echo/';
+    imageSrc = `${ECHO_IMAGE_BASE}${encodeURIComponent(item.name.normalize('NFC'))}.webp`;
+  } else {
+    imageSrc = (item as any).img || `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/${encodeURIComponent(((item as WuwaItem).folderName || item.name).normalize('NFC'))}.webp`;
+  }
 
-  const [currentImageSrc, setCurrentImageSrc] = useState(imageSrc);
-
-  useEffect(() => {
-    const newSrc = `${BASE_URL}${encodeURIComponent((item.folderName || item.name).normalize('NFC'))}.webp`;
-    setCurrentImageSrc(newSrc);
-  }, [item.name, item.folderName]);
-
-  const handleError = () => {
-    // 로드 실패 시 콘솔에 404 주소 출력 (디버깅용)
-    console.error(`[명조 이미지 404] 경로 확인: ${currentImageSrc}`);
-    // 실패 시 스타레일의 unknown 이미지로 대체 (기존 코드 유지)
-    setCurrentImageSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/unknown.webp");
+  // 코스트별/등급별 뱃지 색상
+  const COST_BADGE_COLORS: Record<number, string> = {
+    5: 'bg-yellow-500',
+    4: 'bg-yellow-500',
+    3: 'bg-purple-500',
+    2: 'bg-green-500',
+    1: 'bg-blue-500',
   };
 
-  const truncateMiddle = (text: string, maxLength: number) => {
-    if (text.length <= maxLength) return text;
-    const startLength = Math.ceil((maxLength - 1) / 2);
-    const endLength = Math.floor((maxLength - 1) / 2);
-    return text.slice(0, startLength) + '...' + text.slice(text.length - endLength);
+  // 아이템 등급별 배경
+  const ITEM_BG_COLORS: Record<number, string> = {
+    5: 'bg-gradient-to-b from-[#9c7b3c] to-[#5e4a24] border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]',
+    4: 'bg-gradient-to-b from-[#634e9e] to-[#3d2f63] border-purple-500/30',
+    3: 'bg-gradient-to-b from-[#3b608a] to-[#1e3045] border-blue-500/30',
+    2: 'bg-gradient-to-b from-[#3b5a41] to-[#25392a] border-green-500/30',
+    1: 'bg-gradient-to-b from-[#4d4d4d] to-[#333333] border-gray-400/20',
   };
 
-  const sizeClasses = {
-    sm: { container: 'w-[70px] md:w-[80px]', box: 'w-14 h-14 md:w-16 md:h-16', text: 'text-[9px] md:text-[10px]', limit: 8 },
-    md: { container: 'w-[80px] md:w-[100px]', box: 'w-16 h-16 md:w-20 md:h-20', text: 'text-[9px] md:text-[11px]', limit: 10 }
-  };
-
-  const currentSize = sizeClasses[size];
-  const displayName = truncateMiddle(item.name, currentSize.limit);
+  const badgeValue = isEcho ? (item as WuwaEcho).cost : (item as WuwaItem).rarity;
+  const badgeColor = COST_BADGE_COLORS[badgeValue] || 'bg-gray-500';
+  const bgStyle = isEcho ? '' : ITEM_BG_COLORS[(item as WuwaItem).rarity];
 
   return (
-    <div 
-      className={`flex flex-col items-center gap-2 group cursor-pointer transition-all duration-300 hover:scale-105 ${currentSize.container}`}
-      onClick={onClick}
-      title={item.name}
-    >
-      <div className={`
-        relative ${currentSize.box} rounded-xl overflow-hidden border-2 
-        bg-gradient-to-b transition-all duration-500
-        group-hover:brightness-110 shadow-lg flex items-center justify-center
-        ${RARITY_THEMES[item.rarity] || RARITY_THEMES[1]}
-      `}>
+    <div className="flex flex-col items-center gap-3 group cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95" onClick={onClick}>
+      {/* 카드 본체 */}
+      <div 
+        className={`relative w-16 h-16 md:w-20 md:h-20 border-2 rounded-[22px] overflow-hidden flex items-center justify-center transition-all duration-500 shadow-lg group-hover:brightness-110 ${bgStyle || 'bg-[#1a1a1a] border-white/10'}`}
+      >
         <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity bg-white pointer-events-none z-20" />
-        
+        {/* 에코 이미지 (가득 채우기) */}
         <img 
-          src={currentImageSrc} 
+          src={imageSrc} 
           alt={item.name}
-          className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
-          onError={handleError}
+          width="200"
+          height="200"
+          style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
+          className="w-full h-full object-contain p-2 relative z-10 filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)] transform transition-transform duration-500 group-hover:scale-110"
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/unknown.webp';
+          }}
         />
 
-        {count && (
-          <div className="absolute bottom-0 right-0 left-0 bg-black/80 backdrop-blur-sm px-1.5 py-0.5 text-[9px] md:text-[10px] font-black text-white text-right z-30 border-t border-white/10 font-mono tracking-tighter">
-            {count}
-          </div>
-        )}
+        {/* 우측 상단 코스트/등급 뱃지 */}
+        <div className={`absolute top-1 right-1 w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center text-[8px] md:text-[9px] font-black text-white shadow-md z-30 ${badgeColor}`}>
+          {badgeValue}
+        </div>
       </div>
-      
+
+      {/* 카드 외부 이름 */}
       <div className="w-full px-1 text-center">
-        <span className={`${currentSize.text} text-gray-500 font-bold leading-none whitespace-nowrap group-hover:text-brand-accent transition-colors uppercase tracking-tight block`}>
-          {displayName}
+        <span className="text-[10px] md:text-[11px] text-gray-500 font-bold leading-tight group-hover:text-white transition-colors uppercase tracking-tight block overflow-hidden text-ellipsis line-clamp-2 min-h-[2.5em]">
+          {item.name}
         </span>
       </div>
     </div>

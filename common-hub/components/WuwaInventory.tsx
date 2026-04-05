@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import { wuwaItems } from '../../ww-hub/data/items'; // 명조 아이템 데이터 가져오기
+import { ECHO_DATA } from '../../ww-hub/data/echoes'; // 명조 에코 데이터 가져오기
 import { WuwaItem } from './ww'; // WuwaItem 타입 가져오기
 import WuwaCard from './WuwaCard'; // WuwaCard 컴포넌트 가져오기
 import WuwaItemModal from './WuwaItemModal'; // WuwaItemModal 컴포넌트 가져오기
@@ -13,7 +14,7 @@ const WUWA_FILTER_CATEGORIES = [
   "특수 화폐",
   "소모품",
   "재료",
-  "무기 및 스킬 재료",
+  "무기 및 스킬 재료"
 ];
 
 const WuwaInventory: React.FC = () => {
@@ -32,11 +33,18 @@ const WuwaInventory: React.FC = () => {
   useEffect(() => {
     const loadItems = () => {
       try {
-        // wuwaItems 데이터를 직접 사용
-        const processed = [...wuwaItems];
-        // 희귀도 내림차순, 이름 오름차순으로 정렬
-        processed.sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name));
-        setItems(processed);
+        // wuwaItems 데이터만 사용 (에코 제외)
+        const processedItems = wuwaItems.map(item => ({ 
+          ...item,
+          img: `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/${encodeURIComponent((item.folderName || item.name).normalize('NFC'))}.webp`
+        } as WuwaItem));
+        
+        // 정렬: rarity(내림차순)
+        processedItems.sort((a, b) => {
+          return b.rarity - a.rarity || a.name.localeCompare(b.name);
+        });
+        
+        setItems(processedItems);
       } catch (error) {
         console.error("명조 아이템 목록을 불러오는 중 오류 발생:", error);
       } finally {
@@ -44,7 +52,7 @@ const WuwaInventory: React.FC = () => {
       }
     };
     
-    // 로딩 UI를 보여주기 위한 약간의 지연 (선택 사항)
+    // 로딩 UI를 보여주기 위한 약간의 지연
     const timer = setTimeout(() => {
       loadItems();
     }, 500);
@@ -54,9 +62,12 @@ const WuwaInventory: React.FC = () => {
 
   const filteredItems = useMemo(() => {
     return items.filter(item => {
-      const matchTab = activeTab === "전체" || item.category === activeTab;
       const matchSearch = item.name.toLowerCase().includes(search.toLowerCase());
-      return matchTab && matchSearch;
+      if (!matchSearch) return false;
+
+      if (activeTab === "전체") return true;
+      
+      return item.category === activeTab;
     });
   }, [items, activeTab, search]);
 
@@ -111,7 +122,6 @@ const WuwaInventory: React.FC = () => {
       {filteredItems.length > 0 ? (
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-x-5 gap-y-10 bg-white/[0.01] p-10 rounded-[50px] border border-white/5 shadow-2xl min-h-[400px]">
           {filteredItems.map((item) => (
-            // WuwaCard 컴포넌트를 사용하여 아이템 렌더링
             <WuwaCard key={item.id} item={item} onClick={() => setSelectedItem(item)} />
           ))}
         </div>
@@ -121,7 +131,6 @@ const WuwaInventory: React.FC = () => {
         </div>
       )}
 
-      {/* ✅ 모달 컴포넌트 추가 */}
       <WuwaItemModal 
         item={selectedItem} 
         isOpen={!!selectedItem} 

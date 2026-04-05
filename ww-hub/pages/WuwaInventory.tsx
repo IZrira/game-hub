@@ -17,7 +17,10 @@ const WuwaInventory: React.FC = () => {
       const matchCategory = category === '전체' || item.category === category;
       const matchSearch = item.name.toLowerCase().includes(search.toLowerCase());
       return matchCategory && matchSearch;
-    });
+    }).map(item => ({
+      ...item,
+      img: `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/${encodeURIComponent((item.folderName || item.name).normalize('NFC'))}.webp`
+    } as WuwaItem));
   }, [category, search]);
 
   return (
@@ -47,7 +50,7 @@ const WuwaInventory: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-x-5 gap-y-10 bg-white/[0.01] p-10 rounded-[50px] border border-white/5 shadow-2xl min-h-[400px]">
         {filteredItems.map(item => (
           <WuwaCard key={item.id} item={item} onClick={() => setSelectedItem(item)} />
         ))}

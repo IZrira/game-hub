@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   Star, 
@@ -13,8 +13,13 @@ import {
   Info,
   RefreshCw,
   History,
-  BookOpen
+  BookOpen,
+  Share2,
+  Download,
+  Copy,
+  CheckCircle2
 } from 'lucide-react';
+import * as htmlToImage from 'html-to-image';
 import { CHARACTER_DB } from '../data/games';
 import { ITEM_META, getItemUrl, getAutoRarity } from '../data/items';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
@@ -49,6 +54,8 @@ const CharacterDetail: React.FC = () => {
   
   const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
+  const [isCopied, setIsCopied] = useState(false);
+  const characterCardRef = useRef<HTMLDivElement>(null);
 
   const rawChar = useMemo(() => CHARACTER_DB.find(c => c.name === charName), [charName]);
 
@@ -188,10 +195,10 @@ const CharacterDetail: React.FC = () => {
   };
 
   const getIllustrationUrl = () => {
-    const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+    const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
     const base = char.gameId === 'hsr' 
-      ? `${BASE_IMAGE_URL}/캐릭터/${char.folderName.normalize('NFC')}/`
-      : `${BASE_IMAGE_URL}/ww/characters/${char.folderName.normalize('NFC')}/`;
+      ? `${CDN_URL}/hsr images/캐릭터/${(char.folderName || char.name).normalize('NFC')}/`
+      : `${CDN_URL}/ww images/characters/${(char.folderName || char.name).normalize('NFC')}/`;
     
     let fileName = 'art01.webp';
     if (char.isTrailblazer) {
@@ -202,12 +209,95 @@ const CharacterDetail: React.FC = () => {
     return encodeURI(url);
   };
 
+  // 1. 웹 공유 API (Native Share)
+  const handleShare = async () => {
+    const shareData = {
+      title: `${char.name} | RIRA ARCHIVE`,
+      text: `${char.name} 캐릭터의 상세 공략과 데이터를 확인해보세요!`,
+      url: window.location.href,
+    };
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) { console.log('공유 취소됨:', err); }
+    } else {
+      navigator.clipboard.writeText(window.location.href);
+      alert('링크가 클립보드에 복사되었습니다.');
+    }
+  };
+
+  // 2. 빌드 카드 이미지 생성 (HTML to Image)
+  const handleDownloadImage = async () => {
+    if (!characterCardRef.current) return;
+    try {
+      const dataUrl = await htmlToImage.toPng(characterCardRef.current, { quality: 0.95, backgroundColor: '#121212' });
+      const link = document.createElement('a');
+      link.download = `${char.name}_RIRA_ARCHIVE.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('이미지 캡처 오류:', err);
+    }
+  };
+
+  // 4. 구형 브라우저/HTTP 환경 대응용 함수
+  const fallbackCopyText = (text: string) => {
+    const textArea = document.createElement("textarea");
+    textArea.value = text;
+    document.body.appendChild(textArea);
+    textArea.select();
+    try {
+      document.execCommand('copy');
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 2000);
+    } catch (err) {
+      console.error("Fallback 복사 실패:", err);
+    }
+    document.body.removeChild(textArea);
+  };
+
+  // 4. 재료 리스트 클립보드 복사 (Data Export)
+  const handleCopyMaterials = () => {
+    // 1. 데이터 존재 여부 정밀 체크
+    if (!char || !char.materials_v2) {
+      console.error("복사할 재료 데이터가 없습니다.", char);
+      alert("재료 데이터가 등록되지 않은 캐릭터입니다.");
+      return;
+    }
+
+    const asc = char.materials_v2.ascension?.map(m => `${m.name} x${m.count}`).join(', ') || '정보 없음';
+    const trc = char.materials_v2.traces?.map(m => `${m.name} x${m.count}`).join(', ') || '정보 없음';
+    
+    const text = `[${char.name} 육성 재료 리스트]\n\n■ 승급 재료\n${asc}\n\n■ 행적 재료\n${trc}\n\n출처: RIRA ARCHIVE`;
+
+    // 2. 최신 navigator.clipboard 시도
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          setIsCopied(true);
+          setTimeout(() => setIsCopied(false), 2000);
+        })
+        .catch((err) => {
+          console.error("클립보드 복사 실패:", err);
+          fallbackCopyText(text); // 실패 시 구형 방식으로 전환
+        });
+    } else {
+      // 3. 비보안(HTTP) 환경을 위한 구형 복사 방식
+      fallbackCopyText(text);
+    }
+  };
+
+  const seoDescription = `${char.name} 상세 가이드: 최적의 유물, ${char.gameId === 'ww' ? '무기' : '광추'}, 종결 스탯 및 육성 재료 세팅을 완벽 정리했습니다. ${char.gameId === 'ww' ? '명조' : '붕괴: 스타레일'} 게이머를 위한 최신 공략.`;
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible">
+    <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
-        title={`${char.name} 캐릭터 정보`} 
-        description={`${char.name}의 상세 정보, 스탯, 스킬, ${char.gameId === 'ww' ? '공명 체인' : '성흔'} 및 육성 재료를 확인하세요.`}
+        title={`${char.name} 캐릭터 공략 및 세팅 정보`} 
+        description={seoDescription}
         image={getIllustrationUrl()}
+        url={`/gallery/${gameId}/character/${encodeURIComponent(char.name)}`}
+        gameCategory={char.gameId === 'ww' ? '명조 (Wuthering Waves)' : '붕괴: 스타레일'}
+        itemType={char.gameId === 'hsr' ? char.path : (char as any).weaponType}
       />
       {/* Item Modal */}
       {selectedItem && itemData && (
@@ -265,9 +355,18 @@ const CharacterDetail: React.FC = () => {
 
       <div className="max-w-[1200px] mx-auto px-6 pt-10 space-y-20">
         {/* Profile Header */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-12 items-end border-b border-white/5 pb-16">
-          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#1a1a1a]">
-            <img src={getIllustrationUrl()} alt={char.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" />
+        <div className="relative grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-y-12 lg:gap-x-12 items-start lg:items-end border-b border-white/5 pb-16">
+          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#1a1a1a] max-w-xl mx-auto lg:max-w-none w-full aspect-[3/4.5]">
+            <img 
+              src={getIllustrationUrl()} 
+              alt={char.name} 
+              width="800"
+              height="1200"
+              style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+              fetchPriority="high"
+              decoding="async"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
           </div>
           <div className="space-y-8 pb-4">
@@ -296,7 +395,7 @@ const CharacterDetail: React.FC = () => {
                 )}
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-black text-white tracking-tighter italic leading-none">{char.name}</h1>
+              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-white tracking-tighter italic leading-none">{char.name}</h1>
               <div className="flex gap-2">{Array.from({ length: char.rarity }).map((_, i) => (<Star key={i} size={24} fill={theme.primary} style={{ color: theme.primary }} />))}</div>
             </div>
             
@@ -388,7 +487,13 @@ const CharacterDetail: React.FC = () => {
           <SectionHeader num="03" title="육성 재료" theme={theme} />
           <div className="flex flex-col gap-10">
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
-               <div className="flex items-center gap-4 border-b border-white/5 pb-6"><Package size={22} className="text-gray-500" /><span className="text-xl font-black uppercase tracking-tighter italic">승급 재료</span></div>
+               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
+                 <div className="flex items-center gap-4"><Package size={22} className="text-gray-500" /><span className="text-xl font-black uppercase tracking-tighter italic">승급 재료</span></div>
+                 <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">
+                   {isCopied ? <CheckCircle2 size={14} className="text-green-500" /> : <Copy size={14} />}
+                   {isCopied ? '복사 완료!' : '재료 리스트 복사'}
+                 </button>
+               </div>
                <div className="flex flex-wrap justify-center gap-8">
                   {char.materials_v2?.ascension?.map((m, i) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">No data yet.</p>}
                </div>

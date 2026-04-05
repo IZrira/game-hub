@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, X, Shield, Star, ArrowLeft } from 'lucide-react';
 import { RELIC_DB } from '../data/games';
 import PageHeader from '../components/PageHeader';
+import SEO from '../components/SEO';
 import AdPlaceholder from '../components/AdPlaceholder';
 
 const RelicDetail: React.FC = () => {
@@ -19,14 +20,14 @@ const RelicDetail: React.FC = () => {
     );
   }
 
-  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
-  
+  const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+
   const getMainImageUrl = (item: any) => {
     const safeType = item.type.normalize('NFC');
     const safeName = item.name.normalize('NFC');
     const url = item.gameId === 'ww'
-      ? `${BASE_IMAGE_URL}/ww/echoes/${safeName}.webp`
-      : `${BASE_IMAGE_URL}/${safeType}/${safeName}.webp`;
+      ? `${CDN_URL}/ww images/echoes/${safeName}.webp`
+      : `${CDN_URL}/hsr images/${safeType}/${safeName}.webp`;
     return encodeURI(url);
   };
 
@@ -34,13 +35,22 @@ const RelicDetail: React.FC = () => {
     const safeType = item.type.normalize('NFC');
     const safePieceName = item.pieces[pieceIndex].normalize('NFC');
     const url = item.gameId === 'ww'
-      ? `${BASE_IMAGE_URL}/ww/echoes/${safePieceName}.webp`
-      : `${BASE_IMAGE_URL}/${safeType}/${safePieceName}.webp`;
+      ? `${CDN_URL}/ww images/echoes/${safePieceName}.webp`
+      : `${CDN_URL}/hsr images/${safeType}/${safePieceName}.webp`;
     return encodeURI(url);
   };
 
+  const seoDescription = `${relic.name} 세트 상세 가이드: 2세트 및 4세트 효과와 추천 착용 캐릭터 세팅을 완벽 정리했습니다. ${relic.gameId === 'ww' ? '명조' : '붕괴: 스타레일'} 게이머를 위한 최신 데이터 시트.`;
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20">
+      <SEO 
+        title={`${relic.name} 상세 정보`}
+        description={seoDescription}
+        url={`/gallery/${gameId}/relic/${encodeURIComponent(relic.name)}`}
+        image={getMainImageUrl(relic)}
+        gameCategory={relic.gameId === 'ww' ? '명조 (Wuthering Waves)' : '붕괴: 스타레일'}
+        itemType={relic.gameId === 'ww' ? '에코' : '유물'}
+      />
       {/* Page Header */}
       <PageHeader gameId={gameId} category={relic.gameId === 'ww' ? "에코" : "유물"} title={relic.name} />
 
@@ -54,6 +64,8 @@ const RelicDetail: React.FC = () => {
                   src={getMainImageUrl(relic)}
                   alt={relic.name}
                   className="w-full h-full object-contain relative z-10"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-4 text-center md:text-left">
@@ -85,6 +97,8 @@ const RelicDetail: React.FC = () => {
                           src={getPieceImageUrl(relic, idx)}
                           alt={piece}
                           className="w-full h-full object-contain"
+                          loading="lazy"
+                          decoding="async"
                           onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                         />
                       </div>

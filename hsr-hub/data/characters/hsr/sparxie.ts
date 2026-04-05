@@ -120,7 +120,7 @@ const sparxie: Character = {
       energyRegen: "에너지 회복 5",
       toughnessDMG: "약점 격파 단일 1.66 / 범위 6.66",
       description: "모든 적에게 화염 속성 환락 피해를 50% 가하고, 추가로 피해를 20회 가한다. 피해를 가할 때마다 랜덤 단일 적에게 화염 속성 환락 피해를 25% 가한다. 스파키가 자신의 전투 스킬 포인트 소모를 대체할 수 있는 [킬링 포인트]를 2개 획득한다. [킬링 포인트] 소모는 전투 스킬 포인트 소모로 간주한다.",
-      icon: "special_1"
+      icon: "elation_skill_1"
     }
   ],
   additionalAbilities: [

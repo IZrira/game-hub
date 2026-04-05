@@ -109,8 +109,8 @@ const TierList: React.FC = () => {
   }, [activeCategory, roleFilter, searchQuery]);
 
   const getIconUrl = (char: TierCharacter) => {
-    const folder = char.folderName;
-    return encodeURI(`${BASE_IMAGE_URL}/캐릭터/${folder}/art01.webp`);
+    const folder = char.folderName || char.name;
+    return encodeURI(`${BASE_IMAGE_URL}/characters/${folder.normalize('NFC')}/art01.webp`);
   };
 
   return (

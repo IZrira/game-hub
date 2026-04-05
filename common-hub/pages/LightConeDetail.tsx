@@ -4,6 +4,7 @@ import { ChevronRight, Star, ShieldCheck, Info, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA, LIGHTCONE_DB } from '../data/games';
 import PageHeader from '../components/PageHeader';
 import AdPlaceholder from '../components/AdPlaceholder';
+import SEO from '../components/SEO';
 
 const LightConeDetail: React.FC = () => {
   const { gameId, lcName } = useParams<{ gameId: string; lcName: string }>();
@@ -17,12 +18,12 @@ const LightConeDetail: React.FC = () => {
   if (!lc) return <div className="p-20 text-center text-white font-black uppercase italic">Light Cone Registry Not Found</div>;
 
   const getIllustrationUrl = () => {
-    const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+    const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
     const targetName = lc.fileName || lc.folderName || lc.name;
     
     const url = lc.gameId === 'ww'
-      ? `${BASE_IMAGE_URL}/ww/weapons/${targetName.normalize('NFC')}.webp`
-      : `${BASE_IMAGE_URL}/광추/${lc.path.normalize('NFC')}/${targetName.normalize('NFC')}.webp`;
+      ? `${CDN_URL}/ww images/weapons/${targetName.normalize('NFC')}.webp`
+      : `${CDN_URL}/hsr images/광추/${(lc.path || '').normalize('NFC')}/${targetName.normalize('NFC')}.webp`;
       
     return encodeURI(url);
   };
@@ -52,23 +53,44 @@ const LightConeDetail: React.FC = () => {
     return parts;
   };
 
+  const mainStatName = lc.gameId === 'ww' ? '90레벨 기초 공격력' : '80레벨 기초 공격력';
+  const mainStatValue = lc.gameId === 'ww' ? (lc as any).stats?.atk : lc.baseStats?.lv80?.["기초 공격력"];
+  const subStatDesc = lc.gameId === 'ww' ? `, ${(lc as any).stats?.subStatName} 수치` : '';
+  const skillName = lc.skill?.name ? ` 및 [${lc.skill.name}]의` : '';
+  const gameName = lc.gameId === 'ww' ? '명조' : '붕괴: 스타레일';
+  const term = lc.gameId === 'ww' ? '재련' : '중첩';
+  const seoDescription = `${lc.name} 상세 가이드: ${mainStatName} ${mainStatValue || '???'}${subStatDesc}${skillName} ${term} 단계별 변화를 완벽 정리했습니다. ${gameName} 게이머를 위한 최신 데이터 시트.`;
+
   return (
-    <div className="min-h-screen bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible">
+    <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
+      <SEO 
+        title={`${lc.name} 상세 정보 & ${lc.gameId === 'ww' ? '재련' : '중첩'} 수치`} 
+        description={seoDescription}
+        name={lc.name}
+        image={getIllustrationUrl()}
+        url={`/gallery/${gameId}/${lc.gameId === 'ww' ? 'weapon' : 'lightcone'}/${encodeURIComponent(lc.name)}`}
+        gameCategory={lc.gameId === 'ww' ? '명조 (Wuthering Waves)' : '붕괴: 스타레일'}
+        itemType={lc.gameId === 'ww' ? (lc as any).type : lc.path}
+      />
       {/* Page Header */}
       <PageHeader gameId={gameId} category={lc.gameId === 'ww' ? "무기" : "광추"} title={lc.name} />
 
       <div className="max-w-[1200px] mx-auto px-6 pt-10 space-y-20">
         {/* Profile Header */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-12 items-start border-b border-white/5 pb-16">
-          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#1a1a1a] aspect-[3/4.5] flex items-center justify-center p-4">
+        <div className="relative grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-y-12 lg:gap-x-12 items-start border-b border-white/5 pb-16">
+          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#1a1a1a] aspect-[3/4.5] flex items-center justify-center p-4 max-w-xl mx-auto lg:max-w-none w-full">
             <img 
               src={getIllustrationUrl()} 
-              alt={lc.name} 
+              alt={`${lc.name} 아이콘`} 
+              width="800"
+              height="1200"
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" 
               style={{ 
                 imageRendering: 'auto',
                 transform: 'translateZ(0)'
               }}
+              fetchPriority="high"
+              decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
           </div>
@@ -81,7 +103,7 @@ const LightConeDetail: React.FC = () => {
                 </div>
               </div>
               
-              <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter italic leading-none whitespace-nowrap">{lc.name}</h1>
+              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-white tracking-tighter italic leading-none whitespace-nowrap">{lc.name}</h1>
               <div className="flex gap-2">{Array.from({ length: lc.rarity }).map((_, i) => (<Star key={i} size={24} fill={theme.primary} style={{ color: theme.primary }} />))}</div>
             </div>
             
@@ -135,7 +157,7 @@ const LightConeDetail: React.FC = () => {
           </div>
           
           {lc.skill ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div className="grid grid-cols-1 gap-10">
               <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                   <ShieldCheck size={22} className="text-gray-500" />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
@@ -8,14 +8,14 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   containerClassName?: string; // 이미지를 감싸는 div의 클래스
 }
 
-export default function LazyImage({ 
+const LazyImage = memo(({ 
   src, 
   alt, 
   fallbackSrc = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/unknown.webp',
   containerClassName = '',
   className = '',
   ...props 
-}: LazyImageProps) {
+}: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
 
@@ -46,4 +46,6 @@ export default function LazyImage({
       />
     </div>
   );
-}
+});
+
+export default LazyImage;

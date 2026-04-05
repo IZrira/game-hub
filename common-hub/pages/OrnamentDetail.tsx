@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { ChevronRight, X, Shield, Star, ArrowLeft } from 'lucide-react';
 import { ORNAMENT_DB } from '../data/games';
 import PageHeader from '../components/PageHeader';
+import SEO from '../components/SEO';
 import AdPlaceholder from '../components/AdPlaceholder';
 
 const OrnamentDetail: React.FC = () => {
@@ -35,8 +36,18 @@ const OrnamentDetail: React.FC = () => {
     return encodeURI(url);
   };
 
+  const seoDescription = `${ornament.name} 세트 상세 가이드: 2세트 효과와 추천 착용 캐릭터 세팅을 완벽 정리했습니다. ${ornament.gameId === 'ww' ? '명조' : '붕괴: 스타레일'} 게이머를 위한 최신 데이터 시트.`;
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20">
+      <SEO 
+        title={`${ornament.name} 상세 정보`}
+        description={seoDescription}
+        url={`/gallery/${gameId}/ornament/${encodeURIComponent(ornament.name)}`}
+        image={getMainImageUrl(ornament)}
+        gameCategory={ornament.gameId === 'ww' ? '명조 (Wuthering Waves)' : '붕괴: 스타레일'}
+        itemType={ornament.gameId === 'ww' ? '에코' : '차원 장신구'}
+      />
       {/* Page Header */}
       <PageHeader gameId={gameId} category="장신구" title={ornament.name} />
 
@@ -50,6 +61,8 @@ const OrnamentDetail: React.FC = () => {
                   src={getMainImageUrl(ornament)}
                   alt={ornament.name}
                   className="w-full h-full object-contain relative z-10"
+                  fetchPriority="high"
+                  decoding="async"
                 />
               </div>
               <div className="space-y-4 text-center md:text-left">
@@ -81,6 +94,8 @@ const OrnamentDetail: React.FC = () => {
                           src={getPieceImageUrl(ornament, idx)}
                           alt={piece}
                           className="w-full h-full object-contain"
+                          loading="lazy"
+                          decoding="async"
                           onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                         />
                       </div>

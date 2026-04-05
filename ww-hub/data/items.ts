@@ -4769,3 +4769,8 @@ export const wuwaItems: WuwaItem[] = [
   ...wuwaItemsSet5,
   ...wuwaItemsSet6
 ];
+
+export const WW_ITEM_META: Record<string, WuwaItem> = wuwaItems.reduce((acc, item) => {
+  acc[item.name] = item;
+  return acc;
+}, {} as Record<string, WuwaItem>);

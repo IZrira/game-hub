@@ -79,10 +79,13 @@ import cyrene from './characters/hsr/cyrene';
 import cypher from './characters/hsr/cypher';
 import yaoguang from './characters/hsr/yaoguang';
 import sparxie from './characters/hsr/sparxie';
+import ashveil from './characters/hsr/ashveil';
 import trailblazerHarmony from './characters/hsr/trailblazer_harmony';
 import trailblazerRemembrance from './characters/hsr/trailblazer_remembrance';
 
 export const CHARACTER_DATA: Character[] = [
+  // 4.1
+  ashveil,
   // 4.0
   sparxie,
   yaoguang,

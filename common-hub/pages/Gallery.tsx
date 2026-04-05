@@ -12,11 +12,14 @@ import { ITEM_META } from '../data/items';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import { Category, Character, Post, LightCone } from '../types';
 import InventoryGallery from '../components/InventoryGallery';
-import WuwaInventory from '../../ww-hub/pages/WuwaInventory';
+import WuwaInventory from '../components/WuwaInventory';
+import WuwaEchoGallery from '../components/WuwaEchoGallery';
 import GameDashboard from '../components/GameDashboard';
+import { WEAPON_DATA } from '../../ww-hub/data/weapons';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
 import AdPlaceholder from '../components/AdPlaceholder';
+import { DESIGN_CONCEPT } from './theme';
 
 type SidebarMenu = string;
 
@@ -35,6 +38,18 @@ const ATTR_THEMES: Record<string, { color: string; shadow: string }> = {
   '용융': { color: '#FF8A8A', shadow: 'rgba(255, 138, 138, 0.5)' },
   '응결': { color: '#3D8CFF', shadow: 'rgba(61, 140, 255, 0.5)' },
 };
+
+/* 가이드의 '일관성' 원칙을 적용한 공통 카드 레이아웃 */
+const ConceptCard = ({ children, className, onClick }: { children: React.ReactNode, className?: string, onClick?: () => void }) => (
+  <div 
+    onClick={onClick}
+    className={`${DESIGN_CONCEPT.EFFECTS.GLASS} hover:${DESIGN_CONCEPT.EFFECTS.GLOW} transition-all duration-500 overflow-hidden group relative ${className || ''}`}
+    style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}
+  >
+    <div className="absolute inset-0 bg-brand-gradient opacity-0 group-hover:opacity-100 transition-opacity" />
+    <div className="relative z-10 h-full">{children}</div>
+  </div>
+);
 
 const Gallery: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -103,10 +118,19 @@ const Gallery: React.FC = () => {
   }, [gameId, attrFilter, secondFilter, rarityFilter, searchQuery]);
 
   const filteredLightCones = useMemo(() => {
+    if (gameId === 'ww') {
+      return WEAPON_DATA.filter(w => {
+        const matchesSecond = secondFilter === '전체' || w.type === secondFilter;
+        const matchesRarity = rarityFilter === '전체' || w.rarity === parseInt(rarityFilter);
+        const matchesSearch = w.name.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesSecond && matchesSearch && matchesRarity;
+      }).map(w => ({ ...w, gameId: 'ww' })) as any[];
+    }
+    
     if (!LIGHTCONE_DB) return [];
     return LIGHTCONE_DB.filter(lc => {
       if (lc.gameId !== gameId) return false;
-      const matchesSecond = secondFilter === '전체' || (gameId === 'hsr' ? lc.path === secondFilter : lc.weaponType === secondFilter);
+      const matchesSecond = secondFilter === '전체' || lc.path === secondFilter;
       const matchesRarity = rarityFilter === '전체' || lc.rarity === parseInt(rarityFilter);
       const matchesSearch = lc.name.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesSecond && matchesSearch && matchesRarity;
@@ -139,7 +163,7 @@ const Gallery: React.FC = () => {
       };
     } else {
       return {
-        second: ['장검', '대검', '직검', '권갑', '증폭기', '권총'],
+        second: ['대검', '직검', '권총', '권갑', '증폭기'],
         attr: ['기류', '전도', '회절', '인멸', '용융', '응결']
       };
     }
@@ -154,7 +178,7 @@ const Gallery: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex flex-col font-sans">
+    <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO 
         title={`${game.title} 갤러리`} 
         description={`${game.title}의 캐릭터, 광추, 유물 및 장신구 도감을 확인하세요. 최신 업데이트 정보를 제공합니다.`}
@@ -194,7 +218,7 @@ const Gallery: React.FC = () => {
         <main className="min-h-[800px] space-y-16">
           {activeMenu === '캐릭터' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
-              <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl">
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                   <h2 className="text-4xl font-black italic tracking-tighter uppercase">캐릭터 도감</h2>
                   <div className="relative group w-full max-w-sm">
@@ -243,8 +267,9 @@ const Gallery: React.FC = () => {
               </div>
             </div>
           ) : (activeMenu === '광추' || activeMenu === '무기') ? (
-            <div className="space-y-12 animate-in fade-in duration-500">
-              <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl">
+            <>
+              <div className="space-y-12 animate-in fade-in duration-500">
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                   <h2 className="text-4xl font-black italic tracking-tighter uppercase">{gameId === 'ww' ? '무기 도감' : '광추 도감'}</h2>
                   <div className="relative group w-full max-w-sm">
@@ -285,13 +310,17 @@ const Gallery: React.FC = () => {
 
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
                 {filteredLightCones.map(lc => (
-                  <LightConePremiumCard key={lc.id} lc={lc} />
+                  <LightConePremiumCard 
+                    key={lc.id} 
+                    lc={lc} 
+                  />
                 ))}
               </div>
             </div>
-          ) : (activeMenu === '유물 & 장신구' || activeMenu === '에코') ? (
+            </>
+          ) : activeMenu === '유물 & 장신구' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
-              <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl">
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                   <h2 className="text-4xl font-black italic tracking-tighter uppercase">{gameId === 'ww' ? '에코 도감' : '유물 & 장신구 도감'}</h2>
                   <div className="relative group w-full max-w-sm">
@@ -355,14 +384,6 @@ const Gallery: React.FC = () => {
                 </div>
               )}
 
-              {gameId === 'ww' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                  {filteredRelics.map(relic => (
-                    <RelicPremiumCard key={relic.id} relic={relic} onClick={() => setSelectedRelic(relic)} />
-                  ))}
-                </div>
-              )}
-
               {/* Modals */}
               {selectedRelic && (
                 <RelicDetailModal relic={selectedRelic} onClose={() => setSelectedRelic(null)} />
@@ -373,7 +394,7 @@ const Gallery: React.FC = () => {
             </div>
           ) : activeMenu === '공략' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
-               <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl">
+               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                   <div className="space-y-2">
                     <h2 className="text-4xl font-black italic tracking-tighter uppercase">캐릭터 공략 모음</h2>
@@ -396,17 +417,20 @@ const Gallery: React.FC = () => {
                   <Link 
                     key={char.id} 
                     to={`/gallery/${gameId}/guide/${encodeURIComponent(char.name)}`} // 🚨 클릭 시 개별 공략 페이지로 이동!
-                    className="group relative bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden hover:border-brand-primary/50 transition-all duration-500 shadow-lg flex items-center h-[140px]"
+                    className={`group relative ${DESIGN_CONCEPT.EFFECTS.GLASS} hover:${DESIGN_CONCEPT.EFFECTS.GLOW} overflow-hidden transition-all duration-500 shadow-lg flex items-center h-[140px]`}
+                    style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}
                   >
                     <div className="absolute right-0 top-0 bottom-0 w-2/3" style={{ maskImage: 'linear-gradient(to right, transparent, black 40%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 40%)' }}>
                       <img 
                         src={char.gameId === 'hsr' 
-                          ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(char.folderName.normalize('NFC'))}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-                          : `${BASE_IMAGE_URL}/ww/characters/${encodeURIComponent(char.folderName.normalize('NFC'))}/art01.webp`
+                          ? `${CDN_URL}/hsr images/캐릭터/${encodeURIComponent((char.folderName || char.name).normalize('NFC'))}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
+                          : `${CDN_URL}/ww images/characters/${encodeURIComponent((char.folderName || char.name).normalize('NFC'))}/art01.webp`
                         }
                         alt={char.name}
                         className="w-full h-full object-cover object-top opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                        onError={(e) => { (e.target as HTMLImageElement).src = `${BASE_IMAGE_URL}/items/unknown.webp`; }}
+                        loading="lazy"
+                        decoding="async"
+                        onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr images/items/unknown.webp`; }}
                       />
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-r from-[#121212] via-[#121212]/80 to-transparent" />
@@ -430,6 +454,8 @@ const Gallery: React.FC = () => {
             </div>
           ) : activeMenu === '인벤토리' ? (
             gameId === 'ww' ? <WuwaInventory /> : <InventoryGallery gameId={gameId} />
+          ) : activeMenu === '에코' ? (
+            <WuwaEchoGallery />
           ) : activeMenu === '홈' ? (
             <GameDashboard game={game} setActiveMenu={handleSetActiveMenu} />
           ) : (
@@ -450,17 +476,17 @@ const Gallery: React.FC = () => {
 };
 
 /* --- 에러 #31 방어용 서브 컴포넌트 --- */
-// 🚨 수정 1: %20을 지우고 그냥 띄어쓰기('hsr images')로 바꿉니다. (encodeURI가 알아서 해줍니다)
-const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+// CDN URL
+const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
 // 🚨 수정 2: 유물 폴더 안에 바로 '유물명.webp'를 부르도록 복구 + 맥(Mac) 한글 깨짐 방지 추가
 const getMainImageUrl = (item: any) => {
   const safeType = item.type.normalize('NFC');
   const safeName = item.name.normalize('NFC');
   if (item.gameId === 'ww') {
-    return encodeURI(`${BASE_IMAGE_URL}/ww/echoes/${safeName}.webp`);
+    return encodeURI(`${CDN_URL}/ww images/echoes/${safeName}.webp`);
   }
-  const url = `${BASE_IMAGE_URL}/${safeType}/${safeName}.webp`;
+  const url = `${CDN_URL}/hsr images/${safeType}/${safeName}.webp`;
   return encodeURI(url);
 };
 
@@ -469,9 +495,9 @@ const getPieceImageUrl = (item: any, pieceIndex: number) => {
   const safeType = item.type.normalize('NFC');
   const safePieceName = item.pieces[pieceIndex].normalize('NFC');
   if (item.gameId === 'ww') {
-    return encodeURI(`${BASE_IMAGE_URL}/ww/echoes/${safePieceName}.webp`);
+    return encodeURI(`${CDN_URL}/ww images/echoes/${safePieceName}.webp`);
   }
-  const url = `${BASE_IMAGE_URL}/${safeType}/${safePieceName}.webp`;
+  const url = `${CDN_URL}/hsr images/${safeType}/${safePieceName}.webp`;
   return encodeURI(url);
 };
 
@@ -496,18 +522,22 @@ const CharacterPremiumCard: React.FC<{ char: Character }> = ({ char }) => {
   const theme = ATTR_THEMES[char.attribute] || { color: '#ffffff', shadow: 'rgba(255, 255, 255, 0.2)' };
   
   const charImageUrl = char.gameId === 'hsr' 
-    ? `${BASE_IMAGE_URL}/캐릭터/${char.folderName.normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-    : `${BASE_IMAGE_URL}/ww/characters/${char.folderName.normalize('NFC')}/art01.webp`;
+    ? `${CDN_URL}/hsr images/캐릭터/${(char.folderName || char.name).normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
+    : `${CDN_URL}/ww images/characters/${(char.folderName || char.name).normalize('NFC')}/art01.webp`;
 
   return (
-    <Link to={`/gallery/${char.gameId}/character/${encodeURIComponent(char.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] rounded-[24px] transition-all duration-500 hover:-translate-y-2">
-      <div className="absolute inset-0 rounded-[24px] transition-all opacity-0 group-hover:opacity-30 blur-xl -z-10" style={{ backgroundColor: theme.color }} />
-      <div className="relative w-full h-full rounded-[22px] border border-white/5 overflow-hidden bg-[#121212] group-hover:border-brand-primary/50 transition-all shadow-xl">
+    <Link to={`/gallery/${char.gameId}/character/${encodeURIComponent(char.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] transition-all duration-500 hover:-translate-y-2" style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
+      <div className="absolute inset-0 transition-all opacity-0 group-hover:opacity-30 blur-xl -z-10" style={{ backgroundColor: theme.color, borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }} />
+      <div className={`relative w-full h-full border border-white/5 overflow-hidden ${DESIGN_CONCEPT.EFFECTS.GLASS} group-hover:border-brand-primary/50 transition-all shadow-xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
         <img 
           src={encodeURI(charImageUrl)}
           alt={char.name}
+          width="400"
+          height="600"
+          style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
         <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
@@ -524,54 +554,79 @@ const CharacterPremiumCard: React.FC<{ char: Character }> = ({ char }) => {
   );
 };
 
-const LightConePremiumCard: React.FC<{ lc: LightCone }> = ({ lc }) => {
-  const targetName = lc.fileName || lc.folderName;
+const LightConePremiumCard: React.FC<{ lc: any; onClick?: () => void }> = ({ lc, onClick }) => {
+  const targetName = lc.fileName || lc.folderName || lc.name;
   const lcImageUrl = lc.gameId === 'hsr'
-    ? `${BASE_IMAGE_URL}/광추/${lc.path?.normalize('NFC')}/${targetName.normalize('NFC')}.webp`
-    : `${BASE_IMAGE_URL}/ww/weapons/${targetName.normalize('NFC')}.webp`;
+    ? `${CDN_URL}/hsr images/광추/${(lc.path || '').normalize('NFC')}/${targetName.normalize('NFC')}.webp`
+    : `${CDN_URL}/ww images/Weapons/${targetName.normalize('NFC')}.webp`;
 
-  return (
-    <Link to={`/gallery/${lc.gameId}/${lc.gameId === 'ww' ? 'weapon' : 'lightcone'}/${encodeURIComponent(lc.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] rounded-[24px] transition-all duration-500 hover:-translate-y-2">
-      <div className="relative w-full h-full rounded-[22px] border border-white/5 overflow-hidden bg-[#121212] group-hover:border-brand-primary/50 transition-all shadow-xl">
-        <img 
-          src={encodeURI(lcImageUrl)}
-          alt={lc.name}
-          className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
-          style={{ 
-            imageRendering: 'auto',
-            transform: 'translateZ(0)'
-          }}
-          loading="lazy"
-          onError={(e) => { (e.target as HTMLImageElement).src = `${BASE_IMAGE_URL}/items/unknown.webp`; }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-        <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-          <div className="flex gap-0.5 mb-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={8} fill={i < lc.rarity ? "#FFD600" : "none"} className={i < lc.rarity ? "text-[#FFD600]" : "text-gray-900"} />
-            ))}
+  const mainStat = lc.baseStats?.lv80?.["기초 공격력"] || lc.stats?.atk || '???';
+  const subStatValue = lc.stats?.subStatValue || '';
+
+  const cardContent = (
+    <div className={`relative w-full h-full border border-white/5 overflow-hidden ${DESIGN_CONCEPT.EFFECTS.GLASS} group-hover:border-brand-primary/50 transition-all shadow-xl flex flex-col`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
+      <div className="relative w-full h-2/3 flex items-center justify-center p-4">
+      <img 
+        src={encodeURI(lcImageUrl)}
+        alt={lc.name}
+        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+        style={{ 
+          imageRendering: 'auto',
+          transform: 'translateZ(0)'
+        }}
+        loading="lazy"
+        decoding="async"
+        onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr images/items/unknown.webp`; }}
+      />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
+        <div className="flex gap-0.5 mb-1">
+          {Array.from({ length: 5 }).map((_, i) => (
+            <Star key={i} size={8} fill={i < lc.rarity ? "#FFD600" : "none"} className={i < lc.rarity ? "text-[#FFD600]" : "text-gray-900"} />
+          ))}
+        </div>
+        <h3 className="text-lg font-black text-white italic leading-none tracking-tighter truncate mb-1">{lc.name}</h3>
+        <div className="flex justify-between items-center w-full">
+          <p className="text-[9px] font-black uppercase tracking-widest text-gray-400">{lc.gameId === 'hsr' ? lc.path : lc.type}</p>
+          <div className="flex flex-col items-end">
+            <span className="text-[12px] font-black text-brand-accent">ATK {mainStat}</span>
+            {subStatValue && <span className="text-[10px] font-bold text-gray-300">{subStatValue}</span>}
           </div>
-          <h3 className="text-lg font-black text-white italic leading-none tracking-tighter truncate mb-1">{lc.name}</h3>
-          <p className="text-[9px] font-black uppercase tracking-widest text-gray-400">{lc.gameId === 'hsr' ? lc.path : lc.weaponType}</p>
         </div>
       </div>
+    </div>
+  );
+
+  if (onClick) {
+    return (
+      <div onClick={onClick} className="group relative aspect-[3/4.5] bg-[#0d0d0d] transition-all duration-500 hover:-translate-y-2 cursor-pointer" style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
+        {cardContent}
+      </div>
+    );
+  }
+
+  return (
+    <Link to={`/gallery/${lc.gameId}/${lc.gameId === 'ww' ? 'weapon' : 'lightcone'}/${encodeURIComponent(lc.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] transition-all duration-500 hover:-translate-y-2" style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
+      {cardContent}
     </Link>
   );
 };
 
 const RelicPremiumCard: React.FC<{ relic: any; onClick: () => void }> = ({ relic, onClick }) => {
   return (
-    <div 
-      onClick={onClick}
-      className="group relative bg-[#121212] rounded-[32px] border border-white/5 p-6 hover:border-brand-primary/30 transition-all duration-500 cursor-pointer"
-    >
+    <ConceptCard onClick={onClick} className="p-6 cursor-pointer">
       <div className="flex gap-6">
         <div className="w-24 h-24 rounded-2xl bg-white/5 p-2 flex items-center justify-center shrink-0">
           <img 
             src={getMainImageUrl(relic)}
             alt={relic.name}
+            width="200"
+            height="200"
+            style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
+            decoding="async"
             onError={(e) => {
               (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp';
             }}
@@ -587,23 +642,24 @@ const RelicPremiumCard: React.FC<{ relic: any; onClick: () => void }> = ({ relic
       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
         <ArrowUpRight size={20} className="text-brand-primary" />
       </div>
-    </div>
+    </ConceptCard>
   );
 };
 
 const OrnamentPremiumCard: React.FC<{ ornament: any; onClick: () => void }> = ({ ornament, onClick }) => {
   return (
-    <div 
-      onClick={onClick}
-      className="group relative bg-[#121212] rounded-[32px] border border-white/5 p-6 hover:border-brand-primary/30 transition-all duration-500 cursor-pointer"
-    >
+    <ConceptCard onClick={onClick} className="p-6 cursor-pointer">
       <div className="flex gap-6">
         <div className="w-24 h-24 rounded-2xl bg-white/5 p-2 flex items-center justify-center shrink-0">
           <img 
             src={getMainImageUrl(ornament)}
             alt={ornament.name}
+            width="200"
+            height="200"
+            style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
             className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
             loading="lazy"
+            decoding="async"
             onError={(e) => {
               (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp';
             }}
@@ -619,7 +675,7 @@ const OrnamentPremiumCard: React.FC<{ ornament: any; onClick: () => void }> = ({
       <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
         <ArrowUpRight size={20} className="text-brand-accent" />
       </div>
-    </div>
+    </ConceptCard>
   );
 };
 
@@ -627,7 +683,7 @@ const RelicDetailModal = ({ relic, onClose }: any) => {
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">
       <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
-      <div className="relative bg-[#121212] max-w-2xl w-full rounded-[48px] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className={`relative ${DESIGN_CONCEPT.EFFECTS.GLASS} max-w-2xl w-full border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
         <button onClick={onClose} className="absolute top-8 right-8 p-3 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white z-20">
           <X size={24} />
         </button>
@@ -666,6 +722,8 @@ const RelicDetailModal = ({ relic, onClose }: any) => {
                         src={getPieceImageUrl(relic, idx)}
                         alt={piece}
                         className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                       />
                     </div>
@@ -710,7 +768,7 @@ const OrnamentDetailModal = ({ ornament, onClose }: any) => {
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">
       <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
-      <div className="relative bg-[#121212] max-w-2xl w-full rounded-[48px] border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className={`relative ${DESIGN_CONCEPT.EFFECTS.GLASS} max-w-2xl w-full border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
         <button onClick={onClose} className="absolute top-8 right-8 p-3 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white z-20">
           <X size={24} />
         </button>
@@ -749,6 +807,8 @@ const OrnamentDetailModal = ({ ornament, onClose }: any) => {
                         src={getPieceImageUrl(ornament, idx)}
                         alt={piece}
                         className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
                         onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
                       />
                     </div>
@@ -777,7 +837,7 @@ const OrnamentDetailModal = ({ ornament, onClose }: any) => {
 
 const FilterSelect = ({ label, value, onChange, options, formatOption }: any) => {
   return (
-    <div className="flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 py-2 border border-white/5 hover:border-brand-primary/30 transition-colors">
+    <div className="flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 min-w-[44px] border border-white/5 hover:border-brand-primary/30 transition-colors">
       <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
       <div className="h-4 w-px bg-white/10" />
       <select 

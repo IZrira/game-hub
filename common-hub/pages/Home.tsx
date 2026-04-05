@@ -6,6 +6,7 @@ import { ITEM_META } from '../data/items';
 import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';
 import SEO from '../components/SEO';
 import LazyImage from '../components/LazyImage';
+import SystemChangelog from '../components/SystemChangelog';
 import AdPlaceholder from '../components/AdPlaceholder';
 import { 
   ChevronRight, 
@@ -22,17 +23,6 @@ import {
   TerminalSquare
 } from 'lucide-react';
 
-const CHANGELOG_DATA = [
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "명조(WW) 인벤토리 시스템 구축 및 아이템 필터링 카테고리 추가" },
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "개발 환경 최적화: .vscode/settings.json 추가 및 CSS 유효성 검사 설정 완료" },
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "빌드 시스템 복구: Cloudflare Pages 빌드 오류 해결 및 package-lock.json 동기화 완료" },
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "대시보드 최적화: Official Links 제거 및 최신 업데이트 버전 자동 동기화 적용" },
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "공지사항 시스템 통합: 각 게임 대시보드 내 실시간 NOTICE 섹션 구축 완료" },
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-25", desc: "HSR/WW 데이터 허브 완전 분리 및 게임별 전용 티어표 시스템 구축" },
-  { type: "SYSTEM", color: "text-brand-accent", date: "2026-03-24", desc: "수석 개발자 시스템 가동 및 데이터 정밀 검수 프로세스 활성화" },
-  { type: "UPDATE", color: "text-brand-primary", date: "2026-03-21", desc: "HSR 아카이브 '스파키', '효광' 4.0 캐릭터 데이터 동기화 완료" }
-];
-
 const Home: React.FC = () => {
   const globalStats = useMemo(() => {
     const guideCount = HSR_CHARACTER_GUIDES ? HSR_CHARACTER_GUIDES.length : 0;
@@ -42,12 +32,6 @@ const Home: React.FC = () => {
       guides: ARCHIVE_DATA.games.reduce((acc, game) => acc + game.posts.length, 0) + guideCount,
       items: Object.keys(ITEM_META).length
     };
-  }, []);
-
-  const latestLogs = useMemo(() => {
-    return [...CHANGELOG_DATA]
-      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-      .slice(0, 5);
   }, []);
 
   return (
@@ -106,23 +90,16 @@ const Home: React.FC = () => {
 
       {/* 터미널 업데이트 로그 섹션 */}
       <section className="max-w-6xl mx-auto px-6 mt-16 mb-16">
-        <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-6 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">
+        <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-8 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">
           <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary/50 group-hover:bg-brand-primary transition-colors" />
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-8">
             <TerminalSquare size={18} className="text-brand-accent" />
             <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">System.Changelog</h2>
             <div className="flex-1 h-px bg-white/5 ml-4" />
           </div>
           
-          <div className="space-y-3 font-mono text-[11px] sm:text-xs text-gray-400">
-            {latestLogs.map((log, index) => (
-              <div key={index} className="flex items-center gap-4 hover:text-white transition-colors cursor-default">
-                <span className={`${log.color} font-bold`}>[{log.type}]</span>
-                <span className="text-gray-600 w-24 shrink-0">{log.date}</span>
-                <span className="truncate">{log.desc}</span>
-              </div>
-            ))}
-          </div>
+          {/* 새 자동화 컴포넌트 마운트 */}
+          <SystemChangelog />
         </div>
       </section>
 
@@ -215,12 +192,12 @@ const Home: React.FC = () => {
   );
 };
 
-const StatMetric: React.FC<{ label: string; value: number; icon: React.ReactNode; color: string }> = ({ label, value, icon, color }) => (
+const StatMetric = React.memo(({ label, value, icon, color }: { label: string; value: number; icon: React.ReactNode; color: string }) => (
   <div className="flex flex-col items-center justify-center gap-3 px-8 group text-center">
     <div className={`${color} mb-1 transition-transform group-hover:scale-125 duration-700`}>{icon}</div>
     <div className="text-3xl font-black tabular-nums tracking-tighter">{value.toLocaleString()}</div>
     <div className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">{label}</div>
   </div>
-);
+));
 
 export default Home;

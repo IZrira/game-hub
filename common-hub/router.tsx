@@ -16,6 +16,7 @@ const HSRTierList = React.lazy(() => import('../hsr-hub/pages/TierList'));
 const HSRPartyRecommendations = React.lazy(() => import('../hsr-hub/pages/PartyRecommendations'));
 const WWTierList = React.lazy(() => import('../ww-hub/pages/TierList'));
 const WWPartyRecommendations = React.lazy(() => import('../ww-hub/pages/PartyRecommendations'));
+const WuwaWeaponDetail = React.lazy(() => import('../ww-hub/pages/WuwaWeaponDetail'));
 const Terminology = React.lazy(() => import('../hsr-hub/pages/Terminology'));
 const CharacterGuideDetail = React.lazy(() => import('../hsr-hub/pages/CharacterGuideDetail'));
 
@@ -69,6 +70,7 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/lightcone/:lcName", element: <LightConeDetail /> },
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },
+      { path: "gallery/ww/weapon/:lcName", element: <WuwaWeaponDetail /> },
       { path: "gallery/:gameId/tierlist", element: <TierListDispatcher /> },
       { path: "gallery/:gameId/parties", element: <PartyDispatcher /> },
       { path: "gallery/:gameId/terminology", element: <Terminology /> },

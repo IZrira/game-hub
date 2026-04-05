@@ -209,6 +209,36 @@ export interface Relic {
   story?: string;
 }
 
+export const SONATA_SETS = [
+  "야밤의 서리", "솟구치는 용암", "울려퍼지는 뇌음", "스쳐가는 바람", "빛나는 별",
+  "빛을 삼키는 해", "찬란한 광휘", "떠오르는 구름", "끊임없는 잔향", "냉철한 결단",
+  "영원의 광채", "어둠의 장막", "하늘의 합주곡", "파도에 맞선 용기", "끝없는 하늘",
+  "영광이 깃든 바람", "울부짖는 늑대의 불꽃", "뒤틀린 피안의 꿈", "영광의 칼날로 만들어진 왕관",
+  "만물의 숨결에 비롯된 울림", "불타는 깃털을 펼친 사냥꾼의 그림자", "운명을 붕괴시키는 현",
+  "역광 속 눈부신 서약", "빛을 쫓는 별의 고리", "흐르는 금빛 속 진리의 답",
+  "긴 여정을 떠나는 별", "오색찬란한 거품", "함의의 소리를 따라"
+] as const;
+
+export type SonataType = typeof SONATA_SETS[number];
+
+export interface WuwaEcho {
+  id: string;
+  name: string;
+  cost: 1 | 3 | 4;
+  sonataSets: SonataType[]; // ✅ 배열로 처리하여 중복 세트 대응
+  description: string;
+  folderName?: string; 
+  cooldown?: number;
+  enemyInfo?: {
+    originalName?: string;
+    grade?: string;
+    description?: string;
+    specialNote?: string;
+    resistances?: Record<string, number>;
+    drops?: string[];
+  };
+}
+
 export interface Ornament {
   id: string;
   gameId?: GameId;

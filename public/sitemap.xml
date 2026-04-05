@@ -17,4 +17,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- 동적 생성될 무기/캐릭터/광추 상세 페이지 예시 -->
+  <url>
+    <loc>https://rira-archive.com/gallery/ww/weapon/%EC%B2%9C%EB%85%84%EC%9D%98%20%ED%9A%8C%EB%A5%98</loc>
+    <priority>0.8</priority>
+  </url>
 </urlset>

@@ -75,6 +75,9 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
         <img 
           src={imgSrc} 
           alt={name}
+          width="150"
+          height="150"
+          style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
           className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110"
           onError={handleError}
         />

@@ -1,4 +1,3 @@
-
 import { ArchiveData, Character, LightCone, Relic, Ornament } from '../types';
 import { CHARACTER_DATA } from '../../hsr-hub/data/characters';
 import { SORTED_LIGHTCONE_DATA } from '../../hsr-hub/data/lightcones';
@@ -16,9 +15,9 @@ export const LIGHTCONE_DB: LightCone[] = [
   ...SORTED_LIGHTCONE_DATA.map(lc => ({ ...lc, gameId: lc.gameId || 'hsr' })),
   ...WEAPON_DATA.map(w => ({ ...w, gameId: w.gameId || 'ww' }))
 ];
-export const RELIC_DB: Relic[] = [
+export const RELIC_DB: any[] = [
   ...RELIC_DATA.map(r => ({ ...r, gameId: r.gameId || 'hsr' })),
-  ...ECHO_DATA.map(e => ({ ...e, gameId: e.gameId || 'ww' }))
+  ...ECHO_DATA.map((e: any) => ({ ...e, gameId: e.gameId || 'ww' }))
 ];
 export const ORNAMENT_DB: Ornament[] = ORNAMENT_DATA.map(o => ({ ...o, gameId: o.gameId || 'hsr' }));
 

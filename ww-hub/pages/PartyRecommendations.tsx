@@ -25,8 +25,9 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
 const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined }> = ({ party, gameId }) => {
   const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
 
-  const getIconUrl = (member: { folderName: string }) => {
-    return encodeURI(`${BASE_IMAGE_URL}/캐릭터/${member.folderName}/art01.webp`);
+  const getIconUrl = (member: { folderName?: string; name: string }) => {
+    const folder = member.folderName || member.name;
+    return encodeURI(`${BASE_IMAGE_URL}/characters/${folder.normalize('NFC')}/art01.webp`);
   };
 
   return (
