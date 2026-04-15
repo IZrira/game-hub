@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ChevronLeft, Copy, Check, Share2, Bookmark, ChevronRight, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA } from '../data/games';
 import PageHeader from '../components/PageHeader';
@@ -14,6 +15,7 @@ interface TOCItem {
 }
 
 const Detail: React.FC = () => {
+  const { t } = useTranslation();
   const { gameId, postId } = useParams<{ gameId: string; postId: string }>();
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
@@ -46,7 +48,7 @@ const Detail: React.FC = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  if (!post) return <div className="p-20 text-center">Post not found.</div>;
+  if (!post) return <div className="p-20 text-center">{t('Post not found.')}</div>;
 
   return (
     <div className="min-h-screen pb-20 bg-[#0a0a0a] overflow-visible">
@@ -99,13 +101,13 @@ const Detail: React.FC = () => {
 
           <div className="mt-12 p-8 rounded-2xl bg-white/5 border border-white/10">
             <div className="flex items-center justify-between mb-4">
-              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">공략 데이터 복사</span>
+              <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('공략 데이터 복사')}</span>
               <button 
                 onClick={() => handleCopy('SUNDAYGIFT2024')} 
                 className="flex items-center gap-2 text-brand-accent hover:text-white transition-colors"
               >
                 {copied ? <Check size={18} className="text-green-500" /> : <Copy size={18} />}
-                <span className="text-xs font-black uppercase tracking-widest">{copied ? '복사됨!' : '코드 복사'}</span>
+                <span className="text-xs font-black uppercase tracking-widest">{copied ? t('복사됨!') : t('코드 복사')}</span>
               </button>
             </div>
             <code className="block bg-brand-dark p-4 rounded-xl text-brand-light font-mono text-center text-xl tracking-widest border border-brand-primary/30 shadow-inner">
@@ -115,10 +117,10 @@ const Detail: React.FC = () => {
 
           <div className="mt-16 flex items-center justify-center gap-4 border-t border-white/5 pt-8">
             <button className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] font-black uppercase tracking-widest text-white transition-all hover:scale-105 active:scale-95">
-              <Bookmark size={16} /> 저장하기
+              <Bookmark size={16} /> {t('저장하기')}
             </button>
             <button className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-brand-primary/20 hover:bg-brand-primary/30 text-[10px] font-black uppercase tracking-widest text-brand-accent transition-all hover:scale-105 active:scale-95">
-              <Share2 size={16} /> 공유하기
+              <Share2 size={16} /> {t('공유하기')}
             </button>
           </div>
         </article>

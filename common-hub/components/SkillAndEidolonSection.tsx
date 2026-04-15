@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Character, SkillDetail } from '../types';
 import { ShieldAlert, PlusCircle, MinusCircle, Sparkles, Zap } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface SkillAndEidolonSectionProps {
   char: Character;
@@ -20,7 +21,13 @@ const STAT_ICON_MAP: Record<string, string> = {
   '번개 속성 피해 증가': 'lightning_dmg.webp', '화염 속성 피해 증가': 'fire_dmg.webp',
   '얼음 속성 피해 증가': 'ice_dmg.webp', '바람 속성 피해 증가': 'wind_dmg.webp',
   '양자 속성 피해 증가': 'quantum_dmg.webp', '허수 속성 피해 증가': 'imaginary_dmg.webp',
-  '물리 속성 피해 증가': 'physical_dmg.webp'
+  '물리 속성 피해 증가': 'physical_dmg.webp',
+  
+  // 영문 모드 속성 보너스 (English Fallback)
+  'CRIT DMG': 'crit_dmg.webp', 'CRIT Rate': 'crit_rate.webp',
+  'Lightning DMG Boost': 'lightning_dmg.webp', 'Fire DMG Boost': 'fire_dmg.webp',
+  'Ice DMG Boost': 'ice_dmg.webp', 'Wind DMG Boost': 'wind_dmg.webp', 'ATK Boost': 'atk.webp',
+  'Quantum DMG Boost': 'quantum_dmg.webp', 'Imaginary DMG Boost': 'imaginary_dmg.webp', 'Physical DMG Boost': 'physical_dmg.webp'
 };
 
 const SKILL_CATEGORIES_HSR = [
@@ -42,6 +49,7 @@ const SKILL_CATEGORIES_WW = [
 ];
 
 const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, theme, renderContent, gender, setGender, setTooltip }) => {
+  const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('basic_atk');
   const [activeServantCategory, setActiveServantCategory] = useState(() => {
     if (char.skills?.some(s => s.tag?.includes('기억 정령 스킬'))) return 'servant_skill';
@@ -71,17 +79,18 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
       const tag = skill.tag || "";
       let type = 'talent';
       
-      if (tag.includes('기억 정령 스킬')) type = 'servant_skill';
-      else if (tag.includes('기억 정령 특성')) type = 'servant_talent';
-      else if (tag.includes('기억 정령')) type = 'servant_info';
-      else if (tag.includes('일반 공격')) type = 'basic_atk';
-      else if (tag.includes('전투 스킬') || tag.includes('공명 스킬')) type = 'skill';
-      else if (tag.includes('필살기') || tag.includes('공명 해방')) type = 'ultimate';
-      else if (tag.includes('비술')) type = 'technique';
-      else if (tag.includes('환락 스킬')) type = 'elation_skill';
-      else if (tag.includes('특성') || tag.includes('공명 회로')) type = 'talent';
-      else if (tag.includes('변주 스킬')) type = 'intro';
-      else if (tag.includes('반주 스킬')) type = 'outro';
+      // 한글 태그와 영문 태그(English DB) 모두 호환되도록 수정
+      if (tag.includes('기억 정령 스킬') || tag.toLowerCase().includes('memokeeper skill')) type = 'servant_skill';
+      else if (tag.includes('기억 정령 특성') || tag.toLowerCase().includes('memokeeper talent')) type = 'servant_talent';
+      else if (tag.includes('기억 정령') || tag.toLowerCase().includes('memokeeper')) type = 'servant_info';
+      else if (tag.includes('일반 공격') || tag.toLowerCase().includes('basic atk')) type = 'basic_atk';
+      else if (tag.includes('전투 스킬') || tag.includes('공명 스킬') || tag.toLowerCase().includes('skill')) type = 'skill';
+      else if (tag.includes('필살기') || tag.includes('공명 해방') || tag.toLowerCase().includes('ultimate')) type = 'ultimate';
+      else if (tag.includes('비술') || tag.toLowerCase().includes('technique')) type = 'technique';
+      else if (tag.includes('환락 스킬') || tag.toLowerCase().includes('elation')) type = 'elation_skill';
+      else if (tag.includes('특성') || tag.includes('공명 회로') || tag.toLowerCase().includes('talent')) type = 'talent';
+      else if (tag.includes('변주 스킬') || tag.toLowerCase().includes('intro')) type = 'intro';
+      else if (tag.includes('반주 스킬') || tag.toLowerCase().includes('outro')) type = 'outro';
 
       let filename;
       if (skill.icon) {
@@ -120,17 +129,24 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
 
   const simplifyValue = (label: string, value: string) => {
     if (!value || value === "0") return null;
-    if (label === '약점 격파') {
+    if (label === '약점 격파' || label === 'Weakness Break') {
       return value
+        .replace(/Weakness Break/gi, '')
         .replace(/약점 격파/g, '')
+        .replace(/\(Single\)/gi, t('단일'))
+        .replace(/\(AoE\)/gi, `/${t('범위')}`)
+        .replace(/\(Blast\)/gi, `/${t('확산')}`)
+        .replace(/\(Bounce\)/gi, `/${t('바운스')}`)
         .replace(/공격/g, '')
-        .replace(/단일/g, '단일')
-        .replace(/확산/g, '/확산')
-        .replace(/범위/g, '/범위')
+        .replace(/단일/g, t('단일'))
+        .replace(/확산/g, `/${t('확산')}`)
+        .replace(/범위/g, `/${t('범위')}`)
         .trim();
     }
-    if (label === '에너지 회복') {
+    if (label === '에너지 회복' || label === 'Energy Regeneration') {
       return value
+        .replace(/Energy Regeneration/gi, '')
+        .replace(/Energy Regen/gi, '')
         .replace(/에너지 회복/g, '')
         .replace(/pt/g, '')
         .replace(/회복/g, '')
@@ -145,7 +161,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
-          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">스킬 정보</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('스킬 정보')}</h2>
         </div>
         
         <div className="flex flex-col gap-8">
@@ -165,7 +181,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                     onError={(e) => (e.currentTarget.style.opacity = '0.3')} 
                   />
                 </div>
-                <span className={`text-xs font-black uppercase tracking-widest ${activeCategory === cat.id ? 'text-brand-accent' : 'text-gray-600'}`}>{cat.label}</span>
+                <span className={`text-xs font-black uppercase tracking-widest ${activeCategory === cat.id ? 'text-brand-accent' : 'text-gray-600'}`}>{t(cat.label)}</span>
               </button>
             ))}
           </div>
@@ -180,9 +196,9 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                   </div>
                   <div className="space-y-4 flex-1 min-w-0">
                      <div className="space-y-2">
-                        <h4 className="text-2xl font-black text-white leading-none">{skill.name}</h4>
+                        <h4 className="text-2xl font-black text-white leading-none">{t(skill.name)}</h4>
                         <div className="flex flex-wrap items-center gap-2">
-                           <span className="text-xs font-bold text-gray-400 uppercase tracking-wider border border-white/10 px-2 py-1 rounded">{skill.tag}</span>
+                           {skill.tag && <span className="text-xs font-bold text-gray-400 uppercase tracking-wider border border-white/10 px-2 py-1 rounded">{skill.tag.split('|').map(part => t(part.trim())).join(' | ')}</span>}
                            {skill.spRecovery && skill.spRecovery !== '0' && (
                               <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-[11px] font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                 {skill.spRecovery.includes('+') ? <PlusCircle size={12}/> : <MinusCircle size={12}/>} SP {skill.spRecovery}
@@ -192,7 +208,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                      </div>
                      
                      <div className="text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line pl-4 border-l-2 border-white/10">
-                        {renderContent(skill.description)}
+                        {renderContent(t(skill.description, { keySeparator: false, nsSeparator: false }))}
                      </div>
 
                      <div className="flex flex-wrap gap-3 pt-2">
@@ -221,7 +237,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
         <section className="space-y-10">
           <div className="flex items-center gap-6 px-4">
             <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>05</div>
-            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">기억 정령</h2>
+          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('기억 정령')}</h2>
           </div>
 
           <div className="grid grid-cols-1 gap-6">
@@ -248,7 +264,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                       onError={(e) => (e.currentTarget.style.opacity = '0.3')} 
                     />
                   </div>
-                  <span className={`text-xs font-black uppercase tracking-widest ${activeServantCategory === cat.id ? 'text-brand-accent' : 'text-gray-600'}`}>{cat.label}</span>
+                  <span className={`text-xs font-black uppercase tracking-widest ${activeServantCategory === cat.id ? 'text-brand-accent' : 'text-gray-600'}`}>{t(cat.label)}</span>
                 </button>
               ))}
             </div>
@@ -262,9 +278,9 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                     </div>
                     <div className="space-y-4 flex-1 min-w-0">
                        <div className="space-y-2">
-                          <h4 className="text-2xl font-black text-white leading-none">{skill.name}</h4>
+                        <h4 className="text-2xl font-black text-white leading-none">{t(skill.name)}</h4>
                           <div className="flex flex-wrap items-center gap-2">
-                             <span className="text-xs font-bold text-gray-400 uppercase tracking-wider border border-white/10 px-2 py-1 rounded">{skill.tag}</span>
+                           {skill.tag && <span className="text-xs font-bold text-gray-400 uppercase tracking-wider border border-white/10 px-2 py-1 rounded">{skill.tag.split('|').map(part => t(part.trim())).join(' | ')}</span>}
                              {skill.spRecovery && skill.spRecovery !== '0' && (
                                 <div className={`flex items-center gap-1.5 px-2 py-1 rounded text-[11px] font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                   {skill.spRecovery.includes('+') ? <PlusCircle size={12}/> : <MinusCircle size={12}/>} SP {skill.spRecovery}
@@ -274,7 +290,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                        </div>
                        
                        <div className="text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line pl-4 border-l-2 border-white/10">
-                          {renderContent(skill.description)}
+                          {renderContent(t(skill.description))}
                        </div>
 
                        <div className="flex flex-wrap gap-3 pt-2">
@@ -303,7 +319,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '06' : '05'}</div>
-          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">추가 능력 & 속성 보너스</h2>
+        <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('추가 능력 & 속성 보너스')}</h2>
         </div>
         
         <div className="flex flex-col gap-6">
@@ -315,11 +331,11 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                   </div>
                   <div className="space-y-4 flex-1 min-w-0">
                      <div className="space-y-2">
-                        <h4 className="text-2xl font-black text-white leading-none">{ability.name}</h4>
+                        <h4 className="text-2xl font-black text-white leading-none">{t(ability.name)}</h4>
                      </div>
                      
                      <div className="text-gray-300 text-lg leading-relaxed font-medium whitespace-pre-line pl-4 border-l-2 border-white/10">
-                        {renderContent(ability.description || '')}
+                        {renderContent(t(ability.description || '', { keySeparator: false, nsSeparator: false }))}
                      </div>
                   </div>
                </div>
@@ -335,7 +351,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
               </div>
               <div className="text-center space-y-1">
                 <div className="text-2xl font-black text-white tabular-nums">+{stat.value}</div>
-                <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{stat.type}</div>
+            <div className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t(stat.type)}</div>
               </div>
             </div>
           ))}
@@ -346,7 +362,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '07' : '06'}</div>
-          <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{char.gameId === 'ww' ? '공명 체인' : '성흔'}</h2>
+      <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t(char.gameId === 'ww' ? '공명 체인' : '성흔')}</h2>
         </div>
         <div className="grid grid-cols-1 gap-8">
           {char.eidolons?.map((eidolon: any, idx) => {
@@ -369,13 +385,13 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
                   
                   <div className="text-center z-10 relative w-full px-2">
                     <span className="inline-block text-[10px] font-black text-brand-primary px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1.5">{eidolon.rank || (char.gameId === 'ww' ? `S${idx + 1}` : `E${String(idx + 1).padStart(2, '0')}`)}</span>
-                    <h5 className="text-lg font-black text-white leading-tight group-hover:text-brand-accent transition-colors whitespace-nowrap overflow-hidden text-ellipsis">{eidolon.name}</h5>
+                    <h5 className="text-lg font-black text-white leading-tight group-hover:text-brand-accent transition-colors whitespace-nowrap overflow-hidden text-ellipsis">{t(eidolon.name)}</h5>
                   </div>
                 </div>
                 
                 <div className="p-6 md:p-8 flex items-center flex-1 bg-black/10">
                   <div className="text-base md:text-lg text-gray-300 leading-relaxed font-medium whitespace-pre-line">
-                    {renderContent(eidolon.description)}
+                    {renderContent(t(eidolon.description, { keySeparator: false, nsSeparator: false }))}
                   </div>
                 </div>
               </div>

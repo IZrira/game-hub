@@ -83,39 +83,39 @@ const WuwaInventory: React.FC = () => {
   return (
     <div className="w-full space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="space-y-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-2">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-3xl font-black text-brand-accent italic flex items-center gap-4">
+        <div className="flex flex-col gap-1 border-b border-white/5 pb-6 px-2">
+            <h2 className="text-4xl font-black italic tracking-tighter uppercase text-brand-accent flex items-center gap-4">
               명조 인벤토리 <span className="text-xs text-gray-600 font-bold not-italic uppercase tracking-normal">({filteredItems.length} 항목)</span>
             </h2>
-          </div>
-          <div className="relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors" size={16} />
+        </div>
+        
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center px-2">
+          <div className="relative w-full lg:w-72 shrink-0">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
             <input 
               type="text" 
-              id="ww-inventory-search"
-              name="ww-inventory-search"
-              placeholder="아이템 명칭 검색..."
+              placeholder="명칭으로 필터링..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full md:w-80 transition-all focus:bg-white/10 text-white placeholder:text-gray-600 font-bold"
+              className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
             />
           </div>
-        </div>
-        <div className="flex flex-wrap gap-2 pb-6 border-b border-white/5 overflow-x-auto scrollbar-hide">
-          {WUWA_FILTER_CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-4 py-2 rounded-xl text-[11px] font-black transition-all whitespace-nowrap border ${
-                activeTab === cat 
-                ? "bg-brand-accent border-brand-accent text-black shadow-[0_0_20px_rgba(226,110,229,0.3)]" 
-                : "bg-white/5 border-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+
+          <div className="flex flex-wrap gap-2 overflow-x-auto scrollbar-hide w-full">
+            {WUWA_FILTER_CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveTab(cat)}
+                className={`h-11 px-5 rounded-xl text-[11px] font-black transition-all whitespace-nowrap border flex items-center justify-center ${
+                  activeTab === cat 
+                  ? "bg-brand-accent border-brand-accent text-black shadow-lg shadow-brand-accent/20" 
+                  : "bg-white/[0.03] border-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

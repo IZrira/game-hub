@@ -33,3 +33,38 @@ export const GLOBAL_SPECIAL_TERMS: Record<string, string> = {
   "아하": "행동 시 아하 타임을 발동하고, 환락 스킬을 발동할 수 있는 유닛이 각각 환락 스킬을 1회 발동한다.\n만약 아하가 행동할 때 환락 스킬을 발동할 수 있는 유닛이 없다면, 아하가 [웃음이 있으리라]를 발동한다.\n아하 타임은 이번의 마지막 환락 스킬 발동이 종료될 때까지 지속된다.\n아하 타임 종료 시, 공연에 참가한 캐릭터는 이번에 웃음 포인트로 집계되는 [훌륭한 솜씨에는 보상을] 상태를 획득한다. 지속 시간: 2턴.\n아하 행동 후 모든 웃음 포인트를 소모한다",
   "훌륭한 솜씨에는 보상을": "아하 타임에 참가한 캐릭터가 [훌륭한 솜씨에는 보상을] 상태를 획득하게 하며, 이번 아하 타임의 웃음 포인트를 해당 상태에 집계한다. 지속 시간: 2턴.\n[훌륭한 솜씨에는 보상을] 상태가 발생하는 스킬 효과와 환락 피해는 [훌륭한 솜씨에는 보상을]에 집계된 웃음 포인트에 따라 계산한다.\n여러 [훌륭한 솜씨에는 보상을]에 집계된 웃음 포인트는 합산하여 계산된다.\n각각의 [훌륭한 솜씨에는 보상을] 지속 시간은 각자 독립적으로 계산된다"
 };
+
+export const GLOBAL_SPECIAL_TERMS_EN: Record<string, string> = {
+  "Base Chance": "The base chance to inflict a debuff on the target. The final chance is affected by the attacker's Effect Hit Rate and the target's Effect RES.",
+  "Debuff": "All persistent states with debuff effects during combat can be dispelled unless otherwise specified.",
+  "Knocked Down": "A special state entered when an ally's current HP is reduced to 0. A unit in this state cannot continue fighting.",
+  "Follow-Up ATK": "An effect that automatically triggers when conditions are met. Launches 1 additional attack against the target.",
+  "Crowd Control Debuffs": "Freeze, Entanglement, Imprisonment, Domination, Outrage, Violent Tumble, Dreamscape, Confinement, Fear, Action Lock",
+  "Additional DMG": "Deals 1 additional instance of DMG to the target. This instance of DMG is not considered as launching 1 attack.",
+  "Buff": "All persistent states with buff effects in combat. Can be dispelled unless otherwise specified.",
+  "RES PEN": "When dealing DMG, ignores a portion of the target's corresponding DMG type RES.",
+  "Fixed Chance": "A fixed probability not affected by any factors.",
+  "Counter": "An effect that automatically triggers when the target is attacked. Launches 1 additional attack against the attacker. A Counter is considered a Follow-Up ATK.",
+  "Extra Turn": "Gain 1 extra turn that does not consume turn count. The Ultimate cannot be activated during this turn.",
+  "Action Advance": "The Action Gauge increases, advancing the unit's turn order.",
+  "Immediate Action": "The Action Gauge increases by 100%, immediately granting a turn.",
+  "Break DMG": "Break DMG increases based on Break Effect, target's max Toughness, and character level.\nBreak DMG cannot CRIT and is not affected by DMG Boost effects.",
+  "Weakness Broken": "A special state entered when the target's Toughness is reduced to 0. A target entering this state has its Action Gauge reduced.",
+  "Super Break DMG": "Super Break DMG increases based on Break Effect, Toughness reduced by this attack, and character level.\nSuper Break DMG cannot CRIT and is not affected by DMG Boost effects.\nSuper Break DMG is also a type of Break DMG.",
+  "[Arcana]": "[Arcana] is a DoT debuff that cannot be dispelled. A target with [Arcana] is also considered to be in Windshear. Targets with [Arcana] receive Wind DoT at the start of each turn.\nWind RES, Bleed RES, Burn RES, and Shock RES are ignored when applying [Arcana].",
+  "Summon Memokeeper": "Summons the Memokeeper onto the field. While the Memokeeper is on the field, all Crowd Control debuffs on the Memokeeper are dispelled.",
+  "Barrier": "Only one Barrier effect can exist on the entire field. While a Barrier is active, no other Barrier skill can be activated.",
+  "Chaosrana's Extra Turn": "A countdown that appears in the action order when Phainon transforms into Chaosrana. At the start of each countdown turn, Chaosrana gains 1 Extra Turn. At the start of the final countdown turn, Chaosrana delivers the final strike and ends the transformation.\nThe initial Action value is set between 0~100% and is not reset at the start of each wave.\nWhen Chaosrana receives an Action Advance effect, the first countdown Action value is increased instead.",
+  "Ruination": "Charge exclusive to Chaosrana. Max: 7 pt. Retained even when not transformed.",
+  "Backup": "Enemies cannot directly target Backup units. AoE attacks from allies do not spread to Backup units.",
+  "Out of Bounds": "Allies and enemies cannot directly target units that are Out of Bounds.",
+  "Persistent Effect": "Includes Buff, Debuff, and other effects.",
+  "True DMG": "Typeless DMG not affected by any effects. This instance of DMG is not considered as launching 1 attack.",
+  "Golden Progeny": "Cyrene, Trivie, Cerydra, Evernight, Dan Heng•Permansor Terrae, Hysilens, Hyakinth, Phainon, Anaxa, Aglaea, Mydei, Castorice, Cypher, Trailblazer (Remembrance)",
+  "Preemption": "Copies the skill about to be used and activates it in advance, then activates the original skill. Preemption cannot trigger another Preemption.",
+  "Elation DMG": "More Laugh Points accumulated, higher Elation and character level results in more Elation DMG. Elation DMG is not affected by DMG Boost effects.",
+  "Laugh Points": "Laugh Points are shared by all party members. The more Laugh Points accumulated when dealing Elation DMG, the more Elation DMG is dealt.",
+  "Performance Number": "Affects the order in which Elation Skills are activated during Aha Time. A lower Performance Number means the Elation Skill activates earlier.",
+  "Aha": "Triggers Aha Time when taking action, and each unit capable of using an Elation Skill activates one Elation Skill. If no units can use an Elation Skill when Aha acts, Aha activates [There Must Be Laughs].\nAha Time lasts until the final Elation Skill in this activation has ended.\nAt the end of Aha Time, characters who participated gain [A Reward for Excellent Work], tallying this turn's Laugh Points. Duration: 2 turn(s).\nAfter Aha acts, all Laugh Points are consumed.",
+  "A Reward for Excellent Work": "Characters who participated in Aha Time gain [A Reward for Excellent Work], tallying this Aha Time's Laugh Points. Duration: 2 turn(s).\nSkill effects and Elation DMG triggered by [A Reward for Excellent Work] are calculated based on the tallied Laugh Points.\nLaugh Points from multiple [A Reward for Excellent Work] are summed together.\nThe duration of each [A Reward for Excellent Work] is calculated independently."
+};

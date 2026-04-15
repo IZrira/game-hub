@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { 
   ChevronRight, 
   Search, 
@@ -14,6 +15,7 @@ import PageHeader from '../components/PageHeader';
 import AdPlaceholder from '../components/AdPlaceholder';
 
 const List: React.FC = () => {
+  const { t } = useTranslation();
   const { gameId } = useParams<{ gameId: string }>();
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
@@ -38,19 +40,19 @@ const List: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 mt-8">
         {/* Search and Filters */}
-        <div className="flex flex-col md:flex-row gap-4 mb-12 items-center justify-between bg-white/5 p-6 rounded-2xl border border-white/10">
-          <div className="relative w-full md:w-96">
+        <div className="flex flex-col lg:flex-row gap-6 mb-12 items-start lg:items-center justify-between bg-white/[0.02] p-6 rounded-3xl border border-white/5 shadow-sm">
+          <div className="relative w-full lg:w-80 shrink-0">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={18} />
             <input
               type="text"
-              placeholder="공략 검색 (제목, 키워드...)"
-              className="w-full bg-brand-dark border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary transition-colors"
+              placeholder={t('공략 명칭으로 필터링...')}
+              className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
-          <div className="flex items-center gap-4 w-full md:w-auto">
+          <div className="flex flex-wrap items-center gap-4 w-full lg:w-auto">
             <div className="flex bg-brand-dark p-1 rounded-xl border border-white/10">
               {categories.map(cat => (
                 <button
@@ -62,7 +64,7 @@ const List: React.FC = () => {
                     : 'text-gray-500 hover:text-white'
                   }`}
                 >
-                  {cat}
+                  {t(cat)}
                 </button>
               ))}
             </div>
@@ -176,8 +178,8 @@ const List: React.FC = () => {
             <div className="w-20 h-20 bg-white/5 rounded-full flex items-center justify-center mx-auto mb-6">
               <Search size={32} className="text-gray-700" />
             </div>
-            <h3 className="text-xl font-bold text-white mb-2">검색 결과가 없습니다</h3>
-            <p className="text-gray-500">다른 검색어나 카테고리를 선택해보세요.</p>
+            <h3 className="text-xl font-bold text-white mb-2">{t('검색 결과가 없습니다')}</h3>
+            <p className="text-gray-500">{t('다른 검색어나 카테고리를 선택해보세요.')}</p>
           </div>
         )}
       </div>

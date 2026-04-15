@@ -1,0 +1,2923 @@
+{
+  "Consumable": {
+    "nameEn": "Consumable",
+    "nameKo": "소모품",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "소모품"
+  },
+  "Cosmic Fried Rice": {
+    "nameEn": "Cosmic Fried Rice",
+    "nameKo": "대우주 볶음밥",
+    "enDesc": "Upon use, immediately heals a single ally by 24% of their Max HP plus 300 extra HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Cosmic Fried Rice",
+      "}}\nAll the chefs will tell you that fried rice has more to it than what appears on the surface.\n'''Cosmic Fried Rice''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "대우주 볶음밥"
+  },
+  "Comfort Food": {
+    "nameEn": "Comfort Food",
+    "nameKo": "배 채울 식량",
+    "enDesc": "Upon use, immediately heals a single ally by 15% of their Max HP plus 150 extra HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Comfort Food",
+      "}}\n''\"Remember that hunger is still a real problem for many people around the world.\"''\n'''Comfort Food''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "배 채울 식량"
+  },
+  "Bottled Soda": {
+    "nameEn": "Bottled Soda",
+    "nameKo": "해피 워터",
+    "enDesc": "Upon use, the Max HP of all allies increases by 10% plus an extra 210 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Bottled Soda",
+      "}}\nI spent all my life collecting Praise of High Morals, just so I can shake every soda bottle in the shop today.\n'''Bottled Soda''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "해피 워터"
+  },
+  "Camo Paint": {
+    "nameEn": "Camo Paint",
+    "nameKo": "위장 페인트",
+    "enDesc": "Upon use, enemies will be less likely to detect your team for 75s.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Camo Paint",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nYou're a chameleon, Oswaldo. You know what I mean?\nThe IPC could use a few chameleons.\n'''Camo Paint''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Camo Paint\n{{Recipe"
+    ],
+    "fileName": "위장 페인트"
+  },
+  "Belobog Sausage": {
+    "nameEn": "Belobog Sausage",
+    "nameKo": "벨로보그 소시지",
+    "enDesc": "Upon use, immediately regenerates 50% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Belobog Sausage",
+      "|source3      =",
+      "}}\nRed stew flavor, garlic flavor, pepper flavor... What is this strawberry flavor!?\n'''Belobog Sausage''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "벨로보그 소시지"
+  },
+  "Antimatter Field Generator": {
+    "nameEn": "Antimatter Field Generator",
+    "nameKo": "반물질 역장 생성기",
+    "enDesc": "Upon use, increases ATK of all allies by 260 and CRIT Rate by 8% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Antimatter Field Generator",
+      "Omni-Synthesizer",
+      "Xuxia"
+    ],
+    "fileName": "반물질 역장 생성기"
+  },
+  "Berrypheasant Skewers": {
+    "nameEn": "Berrypheasant Skewers",
+    "nameKo": "열매공작 꼬치",
+    "enDesc": "Upon use, immediately heals one ally by 15% of the ally's Max HP plus 150 extra HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1      = Berrypheasant Skewers",
+      "Berrypheasant Skewers",
+      "|source3      =",
+      "}}\nSo... is this a meat dish or a vegetarian dish?\n'''Berrypheasant Skewers''' is a 1-star consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "열매공작 꼬치"
+  },
+  "All Good Potion": {
+    "nameEn": "All Good Potion",
+    "nameKo": "짱짱 포션",
+    "enDesc": "Upon use, immediately regenerates 50% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Event ''Lab Assistants In Position''",
+      "Omni-Synthesizer",
+      "Event ''Lab Assistants In Position''",
+      "|event        = Lab Assistants In Position"
+    ],
+    "fileName": "짱짱 포션"
+  },
+  "Automatic Wooden Dummy": {
+    "nameEn": "Automatic Wooden Dummy",
+    "nameKo": "자동 목인장",
+    "enDesc": "Upon use, in the next battle, automatically enters auto-battle that cannot be turned off. If allies successfully enter auto-battle, the DMG dealt by all allies increases by 45%.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Automatic Wooden Dummy",
+      "Omni-Synthesizer",
+      "Automatic Wooden Dummy",
+      "}}\n''\"My leg! I can't feel my leg!\"''\n'''Automatic Wooden Dummy''' is a consumable that the player can purchase.\n\nAfter using this consumable, if the player attempts to disable Auto-Battle during a battle, it will fail and the notification text says:\nThis is a battle with an Automatic Wooden Dummy. You have no authority to intervene\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Automatic Wooden Dummy\n{{Recipe"
+    ],
+    "fileName": "자동 목인장"
+  },
+  "Amber Huadiao Wine": {
+    "nameEn": "Amber Huadiao Wine",
+    "nameKo": "호박(琥珀) 화조주",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 5% of their Max HP, and increases their Max HP by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Amber Huadiao Wine",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"When a daughter is born and wails for the first time, the father will make three jars of amber huadiao wine to be saved for the day she is married as a wedding gift.\"\n\"My amber huadiao wine have been with me for five full centuries, but my daughter is still without a partner.\"''\n'''Amber Huadiao Wine''' is a consumable that the player can use.\n\n==Recipe==\nRecipe: Amber Huadiao Wine\n{{Recipe"
+    ],
+    "fileName": "호박(琥珀) 화조주"
+  },
+  "Children's Fragrant Orange Pills": {
+    "nameEn": "Children's Fragrant Orange Pills",
+    "nameKo": "아동용 향귤환",
+    "enDesc": "Upon use, immediately heals one ally by 40% of their Max HP plus 320.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Children&#39;s Fragrant Orange Pills",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Wahhh, Mama, why does this pellet smell so sweet but taste so bitter...\"''\n''\"Because that's life, silly child.\"''\n'''Children's Fragrant Orange Pills''' is a consumable that the player can use.\n\n==Recipe==\nRecipe: Children's Fragrant Orange Pills\n{{Recipe"
+    ],
+    "fileName": "아동용 향귤환"
+  },
+  "Bustling Ambience": {
+    "nameEn": "Bustling Ambience",
+    "nameKo": "열렬한 분위기",
+    "enDesc": "Upon use, increases all allies' CRIT Rate by 12% and CRIT DMG by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Dancy (Happy)",
+      "Bustling Ambience",
+      "Dreamy Slots",
+      "}}\n''\"And after that, comes the ecstatic dream of blurred days and nights.\"''\n'''Bustling Ambience''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from Dancy when his Emo Dial is set to Happy.\n{{Recipe"
+    ],
+    "fileName": "열렬한 분위기"
+  },
+  "\"Dreamlight\" Mixed Sweets": {
+    "nameEn": "\"Dreamlight\" Mixed Sweets",
+    "nameKo": "「다채로운 꿈」 모둠 캔디",
+    "enDesc": "Upon use, all allies may consume or restore Energy or HP at the beginning of each turn for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: \"Dreamlight\" Mixed Sweets",
+      "\"Dreamlight\" Mixed Sweets",
+      "Dreamy Slots",
+      "}}\n''\"This one is spicy!\"''\n'''\"Dreamlight\" Mixed Sweets''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: \"Dreamlight\" Mixed Sweets\n{{Recipe"
+    ],
+    "fileName": "「다채로운 꿈」 모둠 캔디"
+  },
+  "Alfalfa Salad": {
+    "nameEn": "Alfalfa Salad",
+    "nameKo": "알팔파 샐러드",
+    "enDesc": "Upon use, increases all allies' CRIT Rate by 18% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Alfalfa Salad",
+      "Alfalfa Salad",
+      "|source3     =",
+      "}}\n''\"But now, it no longer brings anyone happiness.\"''\n'''Alfalfa Salad''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Alfalfa Salad\n{{Recipe"
+    ],
+    "fileName": "알팔파 샐러드"
+  },
+  "Classic SoulGlad": {
+    "nameEn": "Classic SoulGlad",
+    "nameKo": "클래식 솔글래드",
+    "enDesc": "Upon use, increases all allies' ATK by 10% plus an additional 120 ATK increase for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Classic SoulGlad",
+      "Omni-Synthesizer",
+      "Classic SoulGlad"
+    ],
+    "fileName": "클래식 솔글래드"
+  },
+  "Clockie Pizza (Single Slice)": {
+    "nameEn": "Clockie Pizza (Single Slice)",
+    "nameKo": "시계 피자(한 조각)",
+    "enDesc": "Upon use, increases all allies' DMG by 24% and reduces their SPD by 5% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Clockie Pizza (Single Slice)",
+      "Omni-Synthesizer",
+      "Clockie Pizza (Single Slice)"
+    ],
+    "fileName": "시계 피자(한 조각)"
+  },
+  "\"Sour Dreams\" Soft Candy": {
+    "nameEn": "\"Sour Dreams\" Soft Candy",
+    "nameKo": "「새콤한 꿈」 소프트 캔디",
+    "enDesc": "Upon use, immediately heals a single ally by 24% of their Max HP plus 300 extra Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: \"Sour Dreams\" Soft Candy",
+      "\"Sour Dreams\" Soft Candy",
+      "|source3     =",
+      "}}\n''\"Caution: Its excessive acidity may awake you from your dream.\"''\n'''\"Sour Dreams\" Soft Candy''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: \"Sour Dreams\" Soft Candy\n{{Recipe"
+    ],
+    "fileName": "「새콤한 꿈」 소프트 캔디"
+  },
+  "Clockie Pizza (Whole)": {
+    "nameEn": "Clockie Pizza (Whole)",
+    "nameKo": "시계 피자(한 판)",
+    "enDesc": "Upon use, increases all allies' SPD by 16% but reduces their DMG by 8% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Clock Diner",
+      "Clock Diner",
+      "Clockie Food Truck",
+      "}}\n''What is the meaning behind the unique shape of this food? Some believe it pays homage to a mysterious wealthy individual, while others see it as a reminder to cherish each passing moment.''\n'''Clockie Pizza (Whole)''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "시계 피자(한 판)"
+  },
+  "Bright Future": {
+    "nameEn": "Bright Future",
+    "nameKo": "아름다운 미래를 바라보며",
+    "enDesc": "Upon use, increases Incoming Healing of all allies by 18% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Bright Future",
+      "Bright Future",
+      "|source3     =",
+      "}}\n''\"A bright future exists only in dreams.\"''\n'''Bright Future''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "아름다운 미래를 바라보며"
+  },
+  "Authentic Sousa Juice": {
+    "nameEn": "Authentic Sousa Juice",
+    "nameKo": "정통 소사수",
+    "enDesc": "When used, increases all allies' ATK by 35% and decreases DEF by 8% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |mentions    =",
+      "Authentic Sousa Juice",
+      "|source3     =",
+      "}}\n''\"They used flavoring to mask its strange taste, used coloring to hide the poor quality, and used carbonation to deprive it of flatness &mdash; But the truth hidden within the bottle will never disappear.\"''\n'''Authentic Sousa Juice''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Trivia==\n*This drink was originally invented by Mr. Sousa.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "정통 소사수"
+  },
+  "Broken String's Roar": {
+    "nameEn": "Broken String's Roar",
+    "nameKo": "끊어진 현의 포효",
+    "enDesc": "When used, the ally character with the highest current ATK deals 35% more DMG in the next battle, and their likelihood of being attacked by enemy targets is increased greatly.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Broken String's Roar",
+      "Broken String's Roar",
+      "|source3     =",
+      "}}\n''\"You can kill the guitar, but you can never bury the roar of fury.\"''\n'''Broken String's Roar''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "끊어진 현의 포효"
+  },
+  "\"Hollow Bird\" Toy": {
+    "nameEn": "\"Hollow Bird\" Toy",
+    "nameKo": "「공허한 새」 인형",
+    "enDesc": "After using this consumable, increase all allies' SPD by 20% in the next battle. At the start of every turn, allies lose HP equal to 20% of their current HP, lasting for 5 turns.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: ",
+      "\"Hollow Bird\" Toy",
+      "|source3     =",
+      "}}\n''\"Mom, this thing you gave me is definitely not an Origami Bird. It looks too scary!\"''\n''\"True, but it's much cheaper than the ones sold by Clock Studios.\"''\n'''\"Hollow Bird\" Toy''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n\n<!--\n{{Recipe"
+    ],
+    "fileName": "「공허한 새」 인형"
+  },
+  "Asdana's White Oak": {
+    "nameEn": "Asdana's White Oak",
+    "nameKo": "아스다나 백참나무",
+    "enDesc": "Upon use, immediately regenerate (only for Energy) Energy for a single ally equal to 30% of their Max Energy.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |mentions    = Trailblazer; Boothill",
+      "Asdana's White Oak",
+      "|source3     =",
+      "}}\n''\"Son of a nice lady, if you can't even taste the fragrant mellowness that brass and gunpowder add to this malt juice, then don't screwubbaboo the good hooch! Hand it over, I'll do the drinkin' for ya!\"''\n'''Asdana's White Oak''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Trivia==\n* This item was ordered by Boothill as a signal to meet Black Swan during When the Sacred Ginmill Closes and Bullet & Brain.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "아스다나 백참나무"
+  },
+  "Arma Correctional Body Wash": {
+    "nameEn": "Arma Correctional Body Wash",
+    "nameKo": "철창표 바디워시",
+    "enDesc": "Upon use, increases Effect RES of all allies by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |mentions    = Arma",
+      "Arma Correctional Body Wash",
+      "|source3     =",
+      "}}\n''\"Isn't this exactly the kind of marketing you short-life species love?\"''\n'''Arma Correctional Body Wash''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "철창표 바디워시"
+  },
+  "Arma Sanctus Medicus Tonic": {
+    "nameEn": "Arma Sanctus Medicus Tonic",
+    "nameKo": "철창표 약왕 구복액",
+    "enDesc": "Upon use, increases all allies' ATK by 45% and decreases DEF by 12% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |mentions    = Disciples of Sanctus Medicus; Arma",
+      "Arma Sanctus Medicus Tonic",
+      "|source3     =",
+      "}}\n''\"It might not necessarily work, but it definitely tastes awful.\"''\n'''Arma Sanctus Medicus Tonic''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "철창표 약왕 구복액"
+  },
+  "(Trailblazer)© BananaPie": {
+    "nameEn": "(Trailblazer)© BananaPie",
+    "nameKo": "(개척자)©바나나 파이",
+    "enDesc": "Upon use, increases all ally characters' SPD by 10% and Break Effect by 30% in the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: |source1     = (Trailblazer)© BananaPie",
+      "(Trailblazer)© BananaPie",
+      "|source3     =",
+      "}}\n''\"Such a commemorative dessert must be sealed away for safekeeping!\"'' \n''\"Eat it, I dare you!\"''\n'''(Trailblazer)© BananaPie''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "(개척자)©바나나 파이"
+  },
+  "Banasocial Etiquette": {
+    "nameEn": "Banasocial Etiquette",
+    "nameKo": "나나 에티켓",
+    "enDesc": "Upon use, immediately heals one designated ally by 24% of their Max HP plus 300 extra HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Banasocial Etiquette",
+      "Banasocial Etiquette",
+      "|source3     =",
+      "}}\n''\"This is edible? I thought it was a part of the decor!\"''\n'''Banasocial Etiquette''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "나나 에티켓"
+  },
+  "At Least We Gather for Now": {
+    "nameEn": "At Least We Gather for Now",
+    "nameKo": "적어도 이 순간은 함께",
+    "enDesc": "Upon use, immediately regenerates Energy for all allies equal to 30% of their Max Energy, and increases their ATK by 16% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |mentions    = The Nameless",
+      "At Least We Gather for Now",
+      "|source3     =",
+      "}}\n''\"Each star is like a lighthouse. Distant, only touching through their light...\"''\n'''At Least We Gather for Now''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "적어도 이 순간은 함께"
+  },
+  "Astral Express Game Disk": {
+    "nameEn": "Astral Express Game Disk",
+    "nameKo": "≪은하열차≫ 게임 CD",
+    "enDesc": "When used, instantly recovers 4 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: PS5® Physical Disc Bundle redemption code",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"May this journey lead us starward.\"''\n'''''Astral Express'' Game Disk''' is a consumable that the player can use.\n\n==Recipe==\nObtained by redeeming PS5® Physical Disc Bundle redemption code.\nA document containing ''Astral Express'''s source code.\nIt's said that many aficionados of ancient technology will use any device capable of rendering visuals to run ''Astral Express''.\n\n''\"Foul tyrant, before I grant you your end, I wish to hear an answer from you: Tell me, for what reason does a mild scholar such as yourself choose to falsely take the name of emperor?\"''\n''\"I just... wanted to try running ''Astral Express'' on a human-formation computer...\"''\n{{Recipe"
+    ],
+    "fileName": "≪은하열차≫ 게임 CD"
+  },
+  "Chrysos Heir Dolium": {
+    "nameEn": "Chrysos Heir Dolium",
+    "nameKo": "황금의 후예 질항아리",
+    "enDesc": "Upon use, increases all allies' DMG dealt by 10% and DMG dealt by Memosprite Skill by an additional 10%.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Chrysos Heir Dolium",
+      "Chrysos Heir Dolium",
+      "|source3     =",
+      "}}\n''\"We use it to hold water, to make offerings, and to tell the stories yet unfinished.\"''\n'''Chrysos Heir Dolium''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "황금의 후예 질항아리"
+  },
+  "Bestial Remnant": {
+    "nameEn": "Bestial Remnant",
+    "nameKo": "환수의 잔재",
+    "enDesc": "When used, increases the Effect Resistance of all allies by 30% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Janus' Steed: After Restocking",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Or perhaps... life isn't as fragile as we've always believed...\"''\n'''Bestial Remnant''' is a consumable that the player can synthesize.\n\n==Recipe==\n{{Recipe"
+    ],
+    "fileName": "환수의 잔재"
+  },
+  "Boneflute of Fish-Calling": {
+    "nameEn": "Boneflute of Fish-Calling",
+    "nameKo": "물고기를 부르는 뼈피리",
+    "enDesc": "Upon use, increases ATK of all allies by 15% and DoT dealt by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Janus' Steed: After Restocking",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "|mentions    = Styxia; Sea Siren"
+    ],
+    "fileName": "물고기를 부르는 뼈피리"
+  },
+  "\"Dried\" Bread": {
+    "nameEn": "\"Dried\" Bread",
+    "nameKo": "메마른 「빵」",
+    "enDesc": "Restores HP to one designated ally equal to 24% of their Max HP and additionally restores 300 HP immediately after use.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Janus' Steed: After Restocking",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "|mentions    = Aedes Elysiae"
+    ],
+    "fileName": "메마른 「빵」"
+  },
+  "Abundance of Luck": {
+    "nameEn": "Abundance of Luck",
+    "nameKo": "행운이 가득 담긴 잔",
+    "enDesc": "Upon use, immediately regenerates 30% Energy for all allies and increases DMG dealt by 15% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Redemption code from Chinese collaboration HSR x Luckin Coffee",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Ah... so coffee doesn't have to scald your esophagus after all!\"''\n'''Abundance of Luck''' is a consumable that the player can synthesize.\n\n==Recipe==\nObtained from redeeming HSR x Luckin Coffee collaboration code.\nA concise recipe detailing the ingredients and steps needed to make \"Abundance of Luck.\" The recipe is simple, but every word is a testament condensed from the dedication of the drinksmiths.\n\n''\"Best served cold with extra ice, and no additional sugar. Guarantees a perfect morning~\"''\n{{Recipe"
+    ],
+    "fileName": "행운이 가득 담긴 잔"
+  },
+  "Badge Battle Robe": {
+    "nameEn": "Badge Battle Robe",
+    "nameKo": "캔배지 전투복",
+    "enDesc": "Increase DEF of all allies by 25% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "|mentions    = Fluffy Across the Blue"
+    ],
+    "fileName": "캔배지 전투복"
+  },
+  "Bottled Quantum Ghost": {
+    "nameEn": "Bottled Quantum Ghost",
+    "nameKo": "병에 담긴 양자 유령",
+    "enDesc": "Upon use, decreases all enemies' SPD by 15% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "|mentions    = Department of Aberration Defense"
+    ],
+    "fileName": "병에 담긴 양자 유령"
+  },
+  "Anti-Meme Toy Box": {
+    "nameEn": "Anti-Meme Toy Box",
+    "nameKo": "항밈 장난감 상자",
+    "enDesc": "Upon use, randomly applies 1 of the following effects to all allies in the next battle: increases ATK by 35%; decreases ATK by 10%.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "|mentions    = Department of Aberration Defense"
+    ],
+    "fileName": "항밈 장난감 상자"
+  },
+  "Cold Joke": {
+    "nameEn": "Cold Joke",
+    "nameKo": "썰렁 개그",
+    "enDesc": "Upon use, increases Ice DMG of all allies by 16% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Graphia Academy General Store",
+      "Graphia Academy General Store",
+      "|source3     =",
+      "|mentions    = Imagenae; Zhongshan; Sparkle"
+    ],
+    "fileName": "썰렁 개그"
+  },
+  "Conscience": {
+    "nameEn": "Conscience",
+    "nameKo": "양심",
+    "enDesc": "Upon use, immediately heals one selected downed character for 5% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Graphia Academy General Store",
+      "Graphia Academy General Store",
+      "|source3     =",
+      "}}\n''\"Nothing. Everything.\"''\n'''Conscience''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "양심"
+  },
+  "Diet Fried Rice": {
+    "nameEn": "Diet Fried Rice",
+    "nameKo": "웰빙 쌀 볶음",
+    "enDesc": "Upon use, immediately heals a single ally by 28% of their Max HP plus 250 extra HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nIs it truly healthy to only eat healthy food?\n'''Diet Fried Rice''' is a consumable that the player can create.\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "웰빙 쌀 볶음"
+  },
+  "Energy Drink (sugar-free)": {
+    "nameEn": "Energy Drink (sugar-free)",
+    "nameKo": "에너지 음료(무가당)",
+    "enDesc": "Upon use, immediately regenerates 50% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nBeing slim is more about tricking the eye. It doesn't necessarily have to do with my weight.\n'''Energy Drink (sugar-free)''' is a consumable that the player can create.\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "에너지 음료(무가당)"
+  },
+  "Energy Drink": {
+    "nameEn": "Energy Drink",
+    "nameKo": "에너지 음료",
+    "enDesc": "Upon use, immediately regenerates 30% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Energy Drink",
+      "}}\nHere are some facts: Imaginary Energy contains power, and the human body needs power. Therefore, the human body can absorb Imaginary Energy.\n'''Energy Drink''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "에너지 음료"
+  },
+  "Disposable Shield": {
+    "nameEn": "Disposable Shield",
+    "nameKo": "일회용 보호벽",
+    "enDesc": "When used, increase DEF of all allies by 15%, and Effect RES by 10% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Disposable Shield",
+      "}}\nFirstly, my scholars, always leave your shield on! Secondly, you morons, remember that they can only block one explosion! ONE!\n'''Disposable Shield''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "일회용 보호벽"
+  },
+  "Enhancement Paste: Fire": {
+    "nameEn": "Enhancement Paste: Fire",
+    "nameKo": "강화 연고: 화염",
+    "enDesc": "Upon use, increases Fire DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Fire",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Fire''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Enhancement Paste: Fire\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 화염"
+  },
+  "Enhancement Paste: Quantum": {
+    "nameEn": "Enhancement Paste: Quantum",
+    "nameKo": "강화 연고: 양자",
+    "enDesc": "Upon use, increases Quantum DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Quantum",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Quantum''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Enhancement Paste: Quantum\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 양자"
+  },
+  "Crystal Lizard Satay": {
+    "nameEn": "Crystal Lizard Satay",
+    "nameKo": "보석 도마뱀 꼬치 조리법",
+    "enDesc": "Upon use, immediately recovers 4 Technique Points for your team, but each team member loses HP equal to 15% of their Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Crystal Lizard Satay",
+      "|source3      =",
+      "}}\nIt tastes like chicken, and it's crunchy!\n'''Crystal Lizard Satay''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "보석 도마뱀 꼬치 조리법"
+  },
+  "Deep-Fried Rock Crab": {
+    "nameEn": "Deep-Fried Rock Crab",
+    "nameKo": "암석 꽃게 튀김",
+    "enDesc": "Upon use, immediately recovers 3 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Deep-Fried Rock Crab",
+      "|source3      =",
+      "}}\nEven if Rock Crabs live in rocks, they are still seafood. Don't you see they have the word \"crab\" in their name?\n'''Deep-Fried Rock Crab''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "암석 꽃게 튀김"
+  },
+  "Disposable Kinetic Cannon": {
+    "nameEn": "Disposable Kinetic Cannon",
+    "nameKo": "일회용 동력 캐논포",
+    "enDesc": "Upon use, increases ATK of all allies by 355 and CRIT DMG by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Only A Child|showChapter=0",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\n''\"All machines were born equal, be those made for creation or destruction.\"''\n'''Disposable Kinetic Cannon''' is a consumable that the player can create.\n\n==Recipe==\nObtained from Only A Child.\n{{Recipe"
+    ],
+    "fileName": "일회용 동력 캐논포"
+  },
+  "Disposable Kinetic Arm": {
+    "nameEn": "Disposable Kinetic Arm",
+    "nameKo": "일회용 동력 팔",
+    "enDesc": "Upon use, increases ATK of all allies by 325 and CRIT Rate by 12% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Time Express|showChapter=0",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\n''\"Technology won't solve all problems. To make something new, you need a hair of... passion.\"''\n'''Disposable Kinetic Arm''' is a consumable that the player can create.\n\n==Recipe==\nObtained from Time Express.\n{{Recipe"
+    ],
+    "fileName": "일회용 동력 팔"
+  },
+  "Dust of Alacrity": {
+    "nameEn": "Dust of Alacrity",
+    "nameKo": "재빠른 먼지",
+    "enDesc": "Upon use, increases SPD of all allies by 12% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Brave Cycrane",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "|factions     = Garden of Recollection"
+    ],
+    "fileName": "재빠른 먼지"
+  },
+  "Enhancement Paste: Imaginary": {
+    "nameEn": "Enhancement Paste: Imaginary",
+    "nameKo": "강화 연고: 허수",
+    "enDesc": "Upon use, increases Imaginary DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Imaginary",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Imaginary''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Enhancement Paste: Imaginary\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 허수"
+  },
+  "Enhancement Paste: Lightning": {
+    "nameEn": "Enhancement Paste: Lightning",
+    "nameKo": "강화 연고: 번개",
+    "enDesc": "Upon use, increases Lightning DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Lightning",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Lightning''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Enhancement Paste: Lightning\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 번개"
+  },
+  "Enhancement Paste: Wind": {
+    "nameEn": "Enhancement Paste: Wind",
+    "nameKo": "강화 연고: 바람",
+    "enDesc": "Upon use, increases Wind DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Wind",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Wind''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Enhancement Paste: Wind\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 바람"
+  },
+  "Enhancement Paste: Ice": {
+    "nameEn": "Enhancement Paste: Ice",
+    "nameKo": "강화 연고: 얼음",
+    "enDesc": "Upon use, increases Ice DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Ice",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Ice''' is a consumable that the player can create.\n\n==Usage==\nCraft Usage\n\n==Recipe==\nRecipe: Enhancement Paste: Ice\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 얼음"
+  },
+  "Enhancement Paste: Physical": {
+    "nameEn": "Enhancement Paste: Physical",
+    "nameKo": "강화 연고: 물리",
+    "enDesc": "Upon use, increases Physical DMG of all allies by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Enhancement Paste: Physical",
+      "Omni-Synthesizer",
+      "|source3      =",
+      "}}\nHalf the effort, double the result.\n'''Enhancement Paste: Physical''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Enhancement Paste: Physical\n{{Recipe"
+    ],
+    "fileName": "강화 연고_ 물리"
+  },
+  "Fighter Jet Lucky Plaque": {
+    "nameEn": "Fighter Jet Lucky Plaque",
+    "nameKo": "군함 행운패",
+    "enDesc": "Upon use, immediately recovers 2 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1      = Fighter Jet Lucky Plaque",
+      "Fighter Jet Lucky Plaque",
+      "|source3      =",
+      "}}\n''\"Lately, there have been more and more counterfeit goods. Some of these lucky plaques are completely shoddy! Look at this fake one, it has 'Reverent Departure' carved on the front and 'Respectful Entry' on the other side.\"''\n'''Fighter Jet Lucky Plaque''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "군함 행운패"
+  },
+  "Five-Grain Jade Elixir": {
+    "nameEn": "Five-Grain Jade Elixir",
+    "nameKo": "오곡즙",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 5% of their Max HP, and increases their Technique DMG by 100% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Five-Grain Jade Elixir",
+      "Omni-Synthesizer",
+      "Five-Grain Jade Elixir",
+      "}}\n''In our Thalassa Crystal Palace distillery, the so-called \"five grains\" are Diatomaceous Earth, Saltwort, Verdant Velvet, Lithosalt Blossom, and Shipwreck Grass.''\n'''Five-Grain Jade Elixir''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Five-Grain Jade Elixir\n{{Recipe"
+    ],
+    "fileName": "오곡즙"
+  },
+  "Dry Emergency Light": {
+    "nameEn": "Dry Emergency Light",
+    "nameKo": "건식 비상등",
+    "enDesc": "Upon use, immediately recovers 3 Technique points for the team.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Dry Emergency Light",
+      "Dry Emergency Light",
+      "|source3     =",
+      "}}\n''\"Darling, I know you're trying to be romantic with this outworlder-style candle-lit dinner but... there's a shining fish head baring its teeth at me in the middle of the table. I don't think I can finish dinner...\"''\n'''Dry Emergency Light''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "건식 비상등"
+  },
+  "Deep-fried Flying Sea Anemone": {
+    "nameEn": "Deep-fried Flying Sea Anemone",
+    "nameKo": "말미잘 튀김",
+    "enDesc": "Upon use, increases Lightning DMG of all allies by 16% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Deep-fried Flying Sea Anemone",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"When I first finished making this dish all three years ago, I called over my old neighbors at the Exalting Sanctum to eat with me and try it out. We feasted for three days and three nights, but in the end, there was still so much left to waste. Ah, what a shame...\"''\n'''Deep-fried Flying Sea Anemone''' is a consumable that the player can use.\n\n==Recipe==\nRecipe: Deep-fried Flying Sea Anemone\n{{Recipe"
+    ],
+    "fileName": "말미잘 튀김"
+  },
+  "Delicious Bean Cake": {
+    "nameEn": "Delicious Bean Cake",
+    "nameKo": "맛있는 팥앙금 빵",
+    "enDesc": "Upon use, increases Imaginary DMG of all allies by 16% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Critter Pick: Reunion|showChapter=0",
+      "Omni-Synthesizer",
+      "Critter Pick"
+    ],
+    "fileName": "맛있는 팥앙금 빵"
+  },
+  "Delicious Shumai": {
+    "nameEn": "Delicious Shumai",
+    "nameKo": "맛있는 얇은 피 만두",
+    "enDesc": "Upon use, immediately restores 30% of Energy for one ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Seclusion Zone: Insighter",
+      "Omni-Synthesizer",
+      "Critter Pick"
+    ],
+    "fileName": "맛있는 얇은 피 만두"
+  },
+  "Daring Wager": {
+    "nameEn": "Daring Wager",
+    "nameKo": "마지막 승부",
+    "enDesc": "Upon use, your next draw for the Lucky Wheel in Penacony guarantees you a \"special prize.\"",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: |source1     = Golden Capsule Machine",
+      "Golden Capsule Machine",
+      "Daring Wager",
+      "}}\n''\"A true gambler won't hesitate to call, even if winning the pot appears impossible...\" ''The teenager on the opposite side of the table mocked, pushing all his chips forward. ''\"All in.\"''\n\n''\"Temptation is deemed a virtue for mortals, whereas hesitation proves to be a fatal flaw for gamblers.\"''\n'''Daring Wager''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Achievements==\ntopic=Daring Wager\n\n==Trivia==\n* The effect of Daring Wager lasts until the Lucky Wheel is played.Verify\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "마지막 승부"
+  },
+  "Everlasting Hatred": {
+    "nameEn": "Everlasting Hatred",
+    "nameKo": "끝없는 원한",
+    "enDesc": "Upon use, all allies deal 20% more DMG for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Everlasting Hatred",
+      "Everlasting Hatred",
+      "|source3     =",
+      "}}\n\n''\"Our lives are too short to be wasted on feuds.''\n\n'''Everlasting Hatred''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "끝없는 원한"
+  },
+  "Eternal Endurance": {
+    "nameEn": "Eternal Endurance",
+    "nameKo": "영원한 인내",
+    "enDesc": "Upon use, all allies gain 27% increased Shield effect for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Eternal Endurance",
+      "Eternal Endurance",
+      "|source3     =",
+      "}}\n\n''\"The 106,002nd attempt. Result: successful.\"''\n\n'''Eternal Endurance''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "영원한 인내"
+  },
+  "Dream Syrup": {
+    "nameEn": "Dream Syrup",
+    "nameKo": "좋은꿈 시럽",
+    "enDesc": "Upon use, immediately recovers 3 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Dream Syrup",
+      "Dream Syrup",
+      "|source3     =",
+      "}}\n''\"Its manufacturer claims this syrup has all the benefits of religion and alcohol without any of their drawbacks.\"''\n\n'''Dream Syrup''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Trivia==\n* The item's description is a reference to the fictional drug soma from ''Brave New World'', a 1932 novel by Aldous Huxley. Soma is described as having \"All the advantages of Christianity and alcohol; none of their defects.\" In the story, it is a widely available narcotic used to inhibit one's ability to experience negative emotions and produce a sensation of bliss, while also having some sedative properties.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "좋은꿈 시럽"
+  },
+  "Duelist's Plume": {
+    "nameEn": "Duelist's Plume",
+    "nameKo": "결투 깃털",
+    "enDesc": "Upon use, increases all allies' ATK by 40% for the next battle. When entering battle, randomly increases the chance for 1 character to be attacked by enemies greatly.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Duelist's Plume",
+      "Duelist's Plume",
+      "|source3     =",
+      "}}\n''\"All eyes, on me!\"''\n'''Duelist's Plume''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Gameplay Notes==\n* The Aggro increase caused by this Consumable is '''+500%'''.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "결투 깃털"
+  },
+  "Dreamy Cone (Three Flavors)": {
+    "nameEn": "Dreamy Cone (Three Flavors)",
+    "nameKo": "좋은꿈 콘 아이스크림(세 가지 맛)",
+    "enDesc": "Upon use, increases all allies' ATK by 60% for the next battle. There is a small chance to select the wrong target when using abilities against enemy targets.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: |source1     = Dreamy Cone (Three Flavors)",
+      "Dreamy Cone (Three Flavors)",
+      "|source3     =",
+      "}}\n''\"So, the three most popular scenarios are... memory loss, car crash, and terminal illness?\"''\n'''Dreamy Cone (Three Flavors)''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n<!--\n==Recipe==\n{{Recipe"
+    ],
+    "fileName": "좋은꿈 콘 아이스크림(세 가지 맛)"
+  },
+  "Dreamville Special": {
+    "nameEn": "Dreamville Special",
+    "nameKo": "좋은꿈 마을 스페셜 블렌드",
+    "enDesc": "Upon use, one of the following effects will be randomly applied to all allies in the next battle: Clockie's Whirlwind Fruit Tea &mdash; ATK increases by 36%. Brother Hanu's Boba Tea &mdash; CRIT Rate increases by 18%. Mr. Soda's Orange-Peel Latte &mdash; CRIT DMG increases by 36%.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Dreamville Special",
+      "Dreamville Special",
+      "|source3     =",
+      "}}\n''\"...What's this flavor!? It's so weird... But I just wanna take another sip!\"''\n'''Dreamville Special''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Gameplay Notes==\n* The chance of each possible effect from this consumable is evenly split at 33%.\n\n==Achievements==\ntopic=Dreamville Special\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "좋은꿈 마을 스페셜 블렌드"
+  },
+  "Delusion Blocks": {
+    "nameEn": "Delusion Blocks",
+    "nameKo": "망상 블록",
+    "enDesc": "In the next battle, increases all allies' CRIT Rate by 18% and decreases their SPD by 5%.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Delusion Blocks",
+      "Delusion Blocks",
+      "|source3     =",
+      "}}\n''\"Hey, kiddo, if you want to build a castle, you should put me on top.\"''\n'''Delusion Blocks''' is a consumable that the player can use.\n\n==Location==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "망상 블록"
+  },
+  "Enemy's Scandal": {
+    "nameEn": "Enemy's Scandal",
+    "nameKo": "적의 스캔들",
+    "enDesc": "Upon use, increases DMG taken by all enemies by 12% in the next battle, lasting for 5 turns.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Enemy's Scandal",
+      "Enemy's Scandal",
+      "|source3     =",
+      "}}\n''\"Detest those who destroy entire countries with cunning words.\"''\n'''Enemy's Scandal''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "적의 스캔들"
+  },
+  "Dazzling Ninja Provisions": {
+    "nameEn": "Dazzling Ninja Provisions",
+    "nameKo": "요란 인법 군량",
+    "enDesc": "Upon use, all ally characters' ATK increases by 20% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Dazzling Ninja Provisions",
+      "Dazzling Ninja Provisions",
+      "|source3     =",
+      "}}\n''\"By the Great Lan above, this event is also recorded in the ''Cosmic Ninjutsu Inscriptions''.\"''\n'''Dazzling Ninja Provisions''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "요란 인법 군량"
+  },
+  "Embrace the Mistakenana": {
+    "nameEn": "Embrace the Mistakenana",
+    "nameKo": "틀리면 틀린나나 대로",
+    "enDesc": "Upon use, immediately restores all ally characters' HP by 50% of their respective missing HP when entering battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Embrace the Mistakenana",
+      "Embrace the Mistakenana",
+      "|source3     =",
+      "}}\n''\"Dude, why did you post the work schedule on the consumables production sheet?\"''\n''\"Oh, banana it, I'm so busy I messed up... Oh well, let's just embrace the mistakenana.\"''\n'''Embrace the Mistakenana''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "틀리면 틀린나나 대로"
+  },
+  "Express Special Blend: Rustic Infusion": {
+    "nameEn": "Express Special Blend: Rustic Infusion",
+    "nameKo": "열차 스페셜 블렌드: 땔감, 쌀 그리고 소금",
+    "enDesc": "Upon use, instantly recovers 4 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Express Special Blend: Rustic Infusion",
+      "Express Special Blend: Rustic Infusion",
+      "|source3     =",
+      "}}\n''\"One sip will wake you up, two sips will make you tireless, and three sips will land you in the hospital.\"''\n'''Express Special Blend: Rustic Infusion''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "열차 스페셜 블렌드_ 땔감, 쌀 그리고 소금"
+  },
+  "Dried Sagelore Fruit": {
+    "nameEn": "Dried Sagelore Fruit",
+    "nameKo": "말린 교훈 과일",
+    "enDesc": "Upon use, immediately recovers 3 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Dried Sagelore Fruit",
+      "Omni-Synthesizer",
+      "Dried Sagelore Fruit",
+      "}}\n''\"Wait... if I could get a fresh one to eat, would I become the smartest person in Okhema overnight?\"''\n''\"Someone tried that once, and they went mad. You can't pour a whole lake into a water bowl.\"''\n'''Dried Sagelore Fruit''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Dried Sagelore Fruit\n{{Recipe"
+    ],
+    "fileName": "말린 교훈 과일"
+  },
+  "Dromas Steak": {
+    "nameEn": "Dromas Steak",
+    "nameKo": "드로마스 스테이크",
+    "enDesc": "Upon use, increases all allies' DoT dealt by 35% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Dromas Steak",
+      "Omni-Synthesizer",
+      "Dromas Steak",
+      "}}\n''\"I heard that the Mountain Dwellers who revere Georios never eat dromas meat. Is that true?\"''\n''\"Balderdash. Mountain Dweller, I am. When hungry, eat anything, especially if tastes good.\"''\n'''Dromas Steak''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Dromas Steak\n{{Recipe"
+    ],
+    "fileName": "드로마스 스테이크"
+  },
+  "Earth Crystal Ore": {
+    "nameEn": "Earth Crystal Ore",
+    "nameKo": "대지의 수정 광석",
+    "enDesc": "Upon use, immediately regenerates 30% of Max Energy for one designated ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Earth Crystal Ore",
+      "Earth Crystal Ore",
+      "|source3     =",
+      "}}\n''\"If you put your ear close, you can hear Georios' sighs...\"''\n''\"I don't know. It sounds more like snoring to me.\"''\n'''Earth Crystal Ore''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "대지의 수정 광석"
+  },
+  "Flaming Chili Sauce": {
+    "nameEn": "Flaming Chili Sauce",
+    "nameKo": "화염 고추소스",
+    "enDesc": "Upon use, increases all allies' SPD by 8% and their ATK by 15% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Redemption code from Chinese collaboration HSR x KFC",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Hashafasasha... Not spicy at all! I am serious! This ain't spicy at all!\"''\n'''Flaming Chili Sauce''' is a consumable that the player can use.\n\n==Recipe==\nObtained from redeeming HSR x KFC collaboration code.\n''\"Confidential recipe. For reference within the Yaoqing only.\"''\n{{Recipe"
+    ],
+    "fileName": "화염 고추소스"
+  },
+  "Deep-fried Honey Curd": {
+    "nameEn": "Deep-fried Honey Curd",
+    "nameKo": "꿀 치즈 튀김",
+    "enDesc": "Upon use, immediately regenerates energy to a designated ally equal to 30% of their maximum energy.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Janus' Steed: After Restocking",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Recipes meticulously crafted by humans are often bested by the gods' serendipitous revelations.\"''\n'''Deep-fried Honey Curd''' is a consumable that the player can synthesize.\n\n==Recipe==\n{{Recipe"
+    ],
+    "fileName": "꿀 치즈 튀김"
+  },
+  "Domesticated Comedic Angel": {
+    "nameEn": "Domesticated Comedic Angel",
+    "nameKo": "가정용 즐거움의 천사",
+    "enDesc": "Upon use, immediately recovers 3 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "}}\n''\"Tired of your pet bouncing off the walls at home? Want to spend some quality quiet time with your pet? Try the 'Domesticated Comedic Angel'! It only bounces around when you can't see it. Out of sight, out of mind!\"''\n'''Domesticated Comedic Angel''' is a consumable that the player can use.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "가정용 즐거움의 천사"
+  },
+  "Kapo-Kali": {
+    "nameEn": "Kapo-Kali",
+    "nameKo": "카포-칼리",
+    "enDesc": "Upon use, increases all allies' DMG of a random Type by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Out of Reach",
+      "Out of Reach",
+      "From Xianzhou With Love",
+      "}}\n''\"This anti-gravity drink is all the rage, leading me to have seen Kali-Kapo, Gali-Gapo, Kopa-Kila, and even Kali-Gali-Kapo...\"''\n'''Kapo-Kali''' is a 3-star consumable that the player receives from certain Adventure Missions.\n\nCurrently, only 13 Kapo-Kali can be obtained.\n* 10 Kapo-Kali are rewarded upon completing Out of Reach.\n* 2 Kapo-Kali are given by Wen Furui during From Xianzhou With Love.\n* 1 Kapo-Kali can be obtained at the end of Spirit Traces by interacting with the \"Bystanding Researcher\" in the crowd surrounding Capote, if the player chose to let the Xenohydro go earlier in the quest.\n\n==Trivia==\n* Hosea Lazaro's Kapo-Kali Secret Recipe|20 uses Caramel, Carbon Dioxide, Peas, Canterbury bells, Interdimensional Leaf|20|Interdimensional Leaves, Ambergris of Abundance|20 and Orchid Zest as ingredients. The patent for this recipe once belonged to the Herta Space Station. Kapo-Kali also used to be the signature drink of the space station while also enjoying popularity all across the galaxy. According to the Comet Hunter's Treasure|20 the IPC once tried to buy Hosea Lazaro's recipe for Kapo-Kali for five million credits but he turned them down.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "카포-칼리"
+  },
+  "Life Transmitter": {
+    "nameEn": "Life Transmitter",
+    "nameKo": "생명 전송기",
+    "enDesc": "Upon use, immediately heals one downed character for 10% of the character's Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nBreathe in, breathe out. You'll be fine.\n'''Life Transmitter''' is a consumable that the player can create.\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "생명 전송기"
+  },
+  "Jim Roger Bread Soda": {
+    "nameEn": "Jim Roger Bread Soda",
+    "nameKo": "짐•로저의 빵 맛 소다수",
+    "enDesc": "When used, instantly heal a single ally by 100% of their Max HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Jim Roger Bread Soda",
+      "Jim Roger Bread Soda",
+      "Trash Can at the Golden Theater",
+      "Events"
+    ],
+    "fileName": "짐•로저의 빵 맛 소다수"
+  },
+  "Healing Spray": {
+    "nameEn": "Healing Spray",
+    "nameKo": "치유 스프레이",
+    "enDesc": "Upon use, immediately heals a single ally by 38% of their Max HP plus 400 extra HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Healing Spray",
+      "Omni-Synthesizer",
+      "Healing Spray",
+      "}}\nIn the past, all medical breakthroughs were made with the sweat and blood of the pioneers in this field. Now, with the help of Healing Spray, only sweat is needed!\n'''Healing Spray''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Healing Spray\n{{Recipe"
+    ],
+    "fileName": "치유 스프레이"
+  },
+  "Immortal's Delight": {
+    "nameEn": "Immortal's Delight",
+    "nameKo": "선인의 기쁨차",
+    "enDesc": "Upon use, ATK of all allies increases by 14% plus an additional 230 ATK increase for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Immortal's Delight",
+      "Immortal's Delight",
+      "A Teacher and a Friend: Interlude|showChapter=0",
+      "}}\nDon't drink too much of it. This stuff has a lot of calories.\n\nDon't worry. It's frozen, and the ingredient list says that there is L-carnitine in it.\n'''Immortal's Delight''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Achievements==\ntopic=Immortal's Delight\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "선인의 기쁨차"
+  },
+  "Mung Bean Soda": {
+    "nameEn": "Mung Bean Soda",
+    "nameKo": "소다 두유",
+    "enDesc": "Upon use, ATK of all allies increases by 5% plus an extra 170 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Mung Bean Soda",
+      "Mung Bean Soda",
+      "|source3     =",
+      "}}\n''Like mung beans? Like soda? Then what are you complaining about!?''\n'''Mung Bean Soda''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Achievements==\ntopic=Mung Bean Soda\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "소다 두유"
+  },
+  "Longevity Pill of Cruelty": {
+    "nameEn": "Longevity Pill of Cruelty",
+    "nameKo": "무정의 단약",
+    "enDesc": "Upon use, increases Max HP of all allies by 20% and Effect RES by 6% in the next 3 battles.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Longevity Pill of Cruelty",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Those who love and live deeply fall into mara, while those who sever desire and passions can live for a millennium. Ask yourself, then, why fear mara, and why take joy in a long life?\"''\n'''Longevity Pill of Cruelty''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Longevity Pill of Cruelty\n{{Recipe"
+    ],
+    "fileName": "무정의 단약"
+  },
+  "High-Tech Protective Gear": {
+    "nameEn": "High-Tech Protective Gear",
+    "nameKo": "첨단 방어구",
+    "enDesc": "Upon use, increases DEF of all allies by 15% and enhances the max DMG that can be absorbed by Shields cast on allies by 18% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Supreme Guardian's desk in Qlipoth Fort after completion of No Time for Me, My Friend|showChapter=0",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nWhen can we get our hands on the upgraded model?\nSoon, my scholars...! You're gonna have to make do with Disposable Shields for the time being.\n'''High-Tech Protective Gear''' is a consumable that the player can create.\n\n==Recipe==\nObtained from investigating the Supreme Guardian's desk in Qlipoth Fort after completion of No Time for Me, My Friend.\n{{Recipe"
+    ],
+    "fileName": "첨단 방어구"
+  },
+  "Inferior Protective Gear": {
+    "nameEn": "Inferior Protective Gear",
+    "nameKo": "조잡한 방어구",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 15% of their Max HP, and increases their DEF by 15% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Fidora",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"That's impossible. I, Sampo, do not sell counterfeits. I'm a reputable businessman after all!\"''\n'''Inferior Protective Gear''' is a consumable that the player can create.\n\n==Recipe==\nObtained by submitting the Language Module to Fidora in Boulder Town.\n{{Recipe"
+    ],
+    "fileName": "조잡한 방어구"
+  },
+  "Health Detox Pill": {
+    "nameEn": "Health Detox Pill",
+    "nameKo": "의술 해독환",
+    "enDesc": "Upon use, all allies are immune to debuffs for 3 turns for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Health Detox Pill",
+      "Omni-Synthesizer",
+      "Health Detox Pill",
+      "}}\nThe manufacturer is obligated to include a warning on the packaging:\n\n''\"Do not consume poison just to test this pill's effectiveness!\"''\n'''Health Detox Pill''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Health Detox Pill\n{{Recipe"
+    ],
+    "fileName": "의술 해독환"
+  },
+  "Jade Marrow Diffusion": {
+    "nameEn": "Jade Marrow Diffusion",
+    "nameKo": "옥수풍골산",
+    "enDesc": "Upon use, increases Effect RES of all allies by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Jade Marrow Diffusion",
+      "Omni-Synthesizer",
+      "Jade Marrow Diffusion",
+      "}}\n''\"The leg has already deteriorated severely and requires amputation.\"''\n''\"Please, doctor, can't you prescribe something to save it?\"''\n''\"Even if I do, you won't follow the instructions.\"''\n'''Jade Marrow Diffusion''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Jade Marrow Diffusion\n{{Recipe"
+    ],
+    "fileName": "옥수풍골산"
+  },
+  "Grande Rejuvepill": {
+    "nameEn": "Grande Rejuvepill",
+    "nameKo": "대환단",
+    "enDesc": "Upon use, immediately heals one ally for 10 HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1      = Grande Rejuvepill",
+      "Grande Rejuvepill",
+      "|source3      =",
+      "}}\n''\"Your medicine's effectiveness... is it any different from a bowl of brown sugar water?\"\n\"Of course it is. Brown sugar water is sweet, while my medicine is as spicy as drinking boiling water.\"''\n'''Grande Rejuvepill''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "대환단"
+  },
+  "Flaming Potent Tea": {
+    "nameEn": "Flaming Potent Tea",
+    "nameKo": "화염차",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 5% of their Max HP, and increases their chance to resist Freeze by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Flaming Potent Tea",
+      "Omni-Synthesizer",
+      "Flaming Potent Tea",
+      "}}\n''\"The commodity tax rate and business permit dictate that what we sell here can only be called 'tea.' Do you understand?\"''\n'''Flaming Potent Tea''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Flaming Potent Tea\n{{Recipe"
+    ],
+    "fileName": "화염차"
+  },
+  "Fruitwood-Grilled Shantak Moa Drumettes": {
+    "nameEn": "Fruitwood-Grilled Shantak Moa Drumettes",
+    "nameKo": "과일나무로 구운 샤타른 모아 날개 구이",
+    "enDesc": "Upon use, increases Fire DMG of all allies by 16% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Fruitwood-Grilled Shantak Moa Drumettes",
+      "Omni-Synthesizer",
+      "Fruitwood-Grilled Shantak Moa Drumettes",
+      "}}\n''\"Oh, the bird! It whipped its head around and it glared at me, wanting to peck me. But with a palm strike to its face, it fell limp, just like mud. It was only then did I realize that both it and I were suspended in mid-air...\"''\n'''Fruitwood-Grilled Shantak Moa Drumettes''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Fruitwood-Grilled Shantak Moa Drumettes\n{{Recipe"
+    ],
+    "fileName": "과일나무로 구운 샤타른 모아 날개 구이"
+  },
+  "Frostweave Salmon Bread": {
+    "nameEn": "Frostweave Salmon Bread",
+    "nameKo": "서리무늬 연어 샌드위치",
+    "enDesc": "Upon use, decreases Fire DMG taken by all allies by 16% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Frostweave Salmon Bread",
+      "Frostweave Salmon Bread",
+      "|source3     =",
+      "}}\n''\"I heard having raw fish slices together with bread can delay the onset of diarrhea effectively. Is that true?\"\n\"Heck if I know. Go ask Natasha.\"''\n'''Frostweave Salmon Bread''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "서리무늬 연어 샌드위치"
+  },
+  "Hypnotic Hammer": {
+    "nameEn": "Hypnotic Hammer",
+    "nameKo": "수면 망치",
+    "enDesc": "Upon use, decreases DMG taken by all allies by 18% for the next battle. When entering battle, there is a 10% chance to be afflicted with Strong Reverberation, lasting 1 turn.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Hypnotic Hammer",
+      "Hypnotic Hammer",
+      "|source3     =",
+      "}}\n''\"It's up to the product to make you fall asleep, but it's up to an individual's luck to wake back up again.\"''\n'''Hypnotic Hammer''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Achievements==\ntopic=Hypnotic Hammer\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "수면 망치"
+  },
+  "Izumo Miso": {
+    "nameEn": "Izumo Miso",
+    "nameKo": "이즈모 미소",
+    "enDesc": "Upon use, immediately heals a target ally for 45% of their Max HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Izumo Miso",
+      "Izumo Miso",
+      "|source3     =",
+      "}}\n''\"Green are the waters on which fragrant celeries glide, and yellow the daylilies that cast their deliciousness astride. As the boiling flow tumbles like fabrics bundles in a bind, the warmth of the taste does hollow stomachs a favor most kind.\"''\n'''Izumo Miso''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "이즈모 미소"
+  },
+  "Mineshroom": {
+    "nameEn": "Mineshroom",
+    "nameKo": "수뢰 버섯",
+    "enDesc": "Upon use, increases ATK of all allies by 5% plus an additional 170 ATK increase for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Mineshroom",
+      "Mineshroom",
+      "|source3     =",
+      "}}\n''\"I heard the military rations aboard the Yaoqing include dried mineshrooms. Not sure if that's true not not.\"\n\"Well, what can I say... using such a dangerous thing as food very much fits their stereotype...\"''\n'''Mineshroom''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "수뢰 버섯"
+  },
+  "Hundred-Layer Sundae (Zero Calories)": {
+    "nameEn": "Hundred-Layer Sundae (Zero Calories)",
+    "nameKo": "백 층 선디(제로칼로리)",
+    "enDesc": "Upon use, the Max HP of all allies increases by 10% plus 210 Max HP for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Hundred-Layer Sundae (Zero Calories)",
+      "Hundred-Layer Sundae (Zero Calories)",
+      "Dreamy Slots",
+      "}}\n''\"Body anxiety can transcend time and space.\"''\n'''Hundred-Layer Sundae (Zero Calories)''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Hundred-Layer Sundae (Zero Calories)\n{{Recipe"
+    ],
+    "fileName": "백 층 선디(제로칼로리)"
+  },
+  "Gown of Extermination": {
+    "nameEn": "Gown of Extermination",
+    "nameKo": "화려한 적멸 의복",
+    "enDesc": "Upon use, increases all allies' ATK by 40% for the next battle. When entering battle, enemies cannot be defeated by attacking during the first 2 turns.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Gown of Extermination",
+      "Gown of Extermination",
+      "Dreamy Slots",
+      "}}\n''\"While promoting such behavior is not advisable, it seems no one cares.\"''\n'''Gown of Extermination''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "화려한 적멸 의복"
+  },
+  "Momentary Freedom": {
+    "nameEn": "Momentary Freedom",
+    "nameKo": "잠깐의 자유",
+    "enDesc": "Upon use, increases all allies' Max HP by 15% plus 100 Max HP for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Good Omen, My Friend|showChapter=0",
+      "Omni-Synthesizer",
+      "Momentary Freedom",
+      "}}\nUntil then, let's savor our freedom to the fullest.\n'''Momentary Freedom''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from Good Omen, My Friend.\n{{Recipe"
+    ],
+    "fileName": "잠깐의 자유"
+  },
+  "Fleeting Happiness": {
+    "nameEn": "Fleeting Happiness",
+    "nameKo": "한순간의 행복",
+    "enDesc": "Upon use, immediately heals one ally by 40% of their Max HP plus 320 HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Poseman (Calm)",
+      "Omni-Synthesizer",
+      "Fleeting Happiness",
+      "}}\n''\"At least, at this moment, I belong to myself.\"''\n\n'''Fleeting Happiness''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from Poseman after setting his Emo Dial to Calm.\n{{Recipe"
+    ],
+    "fileName": "한순간의 행복"
+  },
+  "Mr. Herring's Lemon Tart": {
+    "nameEn": "Mr. Herring's Lemon Tart",
+    "nameKo": "「청어 씨」 레몬 타르트",
+    "enDesc": "Increase DEF of all allies by 25% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Mr. Herring's Lemon Tart",
+      "Omni-Synthesizer",
+      "Mr. Herring's Lemon Tart"
+    ],
+    "fileName": "「청어 씨」 레몬 타르트"
+  },
+  "Floatdisc Burger": {
+    "nameEn": "Floatdisc Burger",
+    "nameKo": "UFO 버거",
+    "enDesc": "Upon use, Max HP of all allies increases by 14% plus an extra 360 for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Floatdisc Burger",
+      "Floatdisc Burger",
+      "|source3     =",
+      "}}\n''\"Why is it that some Halovians always find fault with its appearance?\"''\n'''Floatdisc Burger''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n<!--\n==Recipe==\n{{Recipe"
+    ],
+    "fileName": "UFO 버거"
+  },
+  "Halovian Winged Burger": {
+    "nameEn": "Halovian Winged Burger",
+    "nameKo": "헤일로 윙 버거",
+    "enDesc": "In the next battle, increase all allies' SPD by 12% and decrease their ATK by 6%.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Halovian Winged Burger",
+      "Halovian Winged Burger",
+      "|source3     =",
+      "}}\n''\"Thanks to The Family, praise to the Great One, may this burger fill our bellies!\"''\n''\"The Deplorable Family, hypocritical Halovians, I'll eat you up right now!\"''\n'''Halovian Winged Burger''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "헤일로 윙 버거"
+  },
+  "Hello and Goodbye": {
+    "nameEn": "Hello and Goodbye",
+    "nameKo": "헬로우 앤 굿바이",
+    "enDesc": "Upon use, increases all allies' Break Effect by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Hello and Goodbye",
+      "Hello and Goodbye",
+      "|source3     =",
+      "}}\n''\"Raise this glass of 'Hello and Goodbye' in your honor, (Trailblazer) &mdash;\"''\n''\"To the imperfect tomorrow.\"''\n'''Hello and Goodbye''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Trivia==\n* This item was invented by Gallagher in his last moments during Everything that Rises Must Converge.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "헬로우 앤 굿바이"
+  },
+  "Knights of Loose Change (Caelus)": {
+    "nameEn": "Knights of Loose Change (Caelus)",
+    "nameKo": "골드스틸 기사단",
+    "enDesc": "Upon use, immediately heals a target ally for 45% of their Max HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Knights of Loose Change (Caelus)",
+      "Knights of Loose Change (Caelus)"
+    ],
+    "fileName": "골드스틸 기사단"
+  },
+  "Knights of Loose Change (Stelle)": {
+    "nameEn": "Knights of Loose Change (Stelle)",
+    "nameKo": "골드스틸 기사단",
+    "enDesc": "Upon use, immediately heals a target ally for 45% of their Max HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Knights of Loose Change (Stelle)",
+      "Knights of Loose Change (Stelle)"
+    ],
+    "fileName": "골드스틸 기사단"
+  },
+  "Master Thief's Tentacle": {
+    "nameEn": "Master Thief's Tentacle",
+    "nameKo": "도적의 촉수",
+    "enDesc": "Upon use, increases SPD of all allies by 10% for the next battle, and after a victory against an enemy in the overworld, there is a chance to obtain an \"extra surprise.\"",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = The Arma Correctional Group",
+      "The Arma Correctional Group",
+      "|source3     =",
+      "}}\n''\"Why would a mere 'master thief' be locked up in a place like The Shackling Prison?\"''\n''\"Because they're a literal 'heart-stealer.'\"''\n'''Master Thief's Tentacle''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "도적의 촉수"
+  },
+  "Flying Sword Model": {
+    "nameEn": "Flying Sword Model",
+    "nameKo": "비검 모형",
+    "enDesc": "When used, increases ATK of all allies by 100 for the next battle.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Flying Sword Model",
+      "Flying Sword Model",
+      "|source3     =",
+      "}}\n''\"Although your defeat this time is regretful, there's no need to be discouraged. If you're willing to challenge again, I'll be ready to accept anytime.\"''\n''\"Anytime? Then make sure you sleep with an eye open.\"''\n'''Flying Sword Model''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "비검 모형"
+  },
+  "Interstellar Braised Beast": {
+    "nameEn": "Interstellar Braised Beast",
+    "nameKo": "우주 맹수 스튜",
+    "enDesc": "Upon use, there is a high chance to immediately heal a single ally by 50% of their Max HP, and a small chance of immediately consuming HP equal to 99% of their Max HP from a single ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Talk to Juhuan",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"I have witnessed the Grandmaster Juhuan in the gym speaking with 250 great brawny warriors: 'Barbell back squat! Lateral raises with dumbbells! Strong biceps can stop a crying child! Good lats can make you divine incarnate! Gimme ten sets! Gimme all you've got! You look the best when you're trying hard!'\"''\n'''Interstellar Braised Beast''' is a consumable that the player can use.\n\n==Recipe==\nObtained by talking to Juhuan.\n{{Recipe"
+    ],
+    "fileName": "우주 맹수 스튜"
+  },
+  "Laudatory Press Release (Caelus)": {
+    "nameEn": "Laudatory Press Release (Caelus)",
+    "nameKo": "아첨하는 보도 자료",
+    "enDesc": "Upon use, increases DEF of all allies by 50% when entering the next battle, until after being attacked.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Laudatory Press Release (Caelus)",
+      "Laudatory Press Release (Caelus)",
+      "|source3     =",
+      "}}\n''\"In today's world, everyone has the potential to have their 15 minutes of fame.\"''\n'''Laudatory Press Release''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "아첨하는 보도 자료"
+  },
+  "Laudatory Press Release (Stelle)": {
+    "nameEn": "Laudatory Press Release (Stelle)",
+    "nameKo": "아첨하는 보도 자료",
+    "enDesc": "Upon use, increases DEF of all allies by 50% when entering the next battle, until after being attacked.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Laudatory Press Release (Stelle)",
+      "Laudatory Press Release (Stelle)",
+      "|source3     =",
+      "}}\n''\"In today's world, everyone has the potential to have their 15 minutes of fame.\"''\n'''Laudatory Press Release''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "아첨하는 보도 자료"
+  },
+  "Full-Auto Dreampaint Spray": {
+    "nameEn": "Full-Auto Dreampaint Spray",
+    "nameKo": "전자동 꿈 그리기 스프레이",
+    "enDesc": "Upon use, all ally characters' DEF increases by 25% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Full-Auto Dreampaint Spray",
+      "Full-Auto Dreampaint Spray",
+      "|source3     =",
+      "}}\n''\"Black-and-white spray cans are cheap, and those of other colors are expensive. Make sure not to pack the wrong one, or you'll feel it when the bill comes.\"''\n'''Full-Auto Dreampaint Spray''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "전자동 꿈 그리기 스프레이"
+  },
+  "Golden Slumbernana": {
+    "nameEn": "Golden Slumbernana",
+    "nameKo": "황금빛 졸리나나",
+    "enDesc": "Upon use, increases all ally characters' ATK by 5%, CRIT Rate by 5%, CRIT DMG by 5%, and SPD by 5% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Golden Slumbernana",
+      "Golden Slumbernana",
+      "|source3     =",
+      "}}\n''\"I heard that even people who absolutely hate bananas will fall in love with its taste after just one bite.\"''\n''\"...Wait, does that still make it a banana?\"''\n'''Golden Slumbernana''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "황금빛 졸리나나"
+  },
+  "Golden Honeycake": {
+    "nameEn": "Golden Honeycake",
+    "nameKo": "황금 허니 팬케이크",
+    "enDesc": "When entering the next battle, all allies immediately heal for 24% of their respective Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Golden Honeycake",
+      "Omni-Synthesizer",
+      "Golden Honeycake",
+      "}}\n''\"This thing blew up way too fast... I'm a native Okheman, but I never had sweet pancakes at home growing up!\"''\n''\"Apparently, a dessert shop got Mr. Mydei to advertise it on the teleslate, and after it went viral, other businesses got envious...\"''\n''\"...But honestly, you have to admit, the new flavors they've developed are actually pretty good.\"''\n'''Golden Honeycake''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Golden Honeycake\n{{Recipe"
+    ],
+    "fileName": "황금 허니 팬케이크"
+  },
+  "Greatsword of Kremnos": {
+    "nameEn": "Greatsword of Kremnos",
+    "nameKo": "크렘노스 중검",
+    "enDesc": "In the next battle, increases all allies' CRIT Rate by 8% and CRIT DMG by 16%.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Greatsword of Kremnos",
+      "Greatsword of Kremnos",
+      "|source3     =",
+      "}}\n''\"It's not only fine iron that makes a weapon, and it's not only heroes who can be soldiers.\"''\n'''Greatsword of Kremnos''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "크렘노스 중검"
+  },
+  "Kremnos Shield": {
+    "nameEn": "Kremnos Shield",
+    "nameKo": "크렘노스 방패",
+    "enDesc": "Upon use, increases all allies' DEF by 15% and Shield Effect received by 18% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Kremnos Shield",
+      "Omni-Synthesizer",
+      "Kremnos Shield",
+      "}}\n1=''\"Either raise it high in triumph or return home on it.\"\n &mdash; A saying mothers teach their children in Castrum Kremnos''\n'''Kremnos Shield''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Kremnos Shield\n{{Recipe"
+    ],
+    "fileName": "크렘노스 방패"
+  },
+  "Monarch's Maneuver": {
+    "nameEn": "Monarch's Maneuver",
+    "nameKo": "군왕의 수",
+    "enDesc": "Upon use, increases all allies' SPD by 16% and their ATK by 10% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Janus' Steed: After Restocking",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "|mentions    = Hyperborea; Cerydra"
+    ],
+    "fileName": "군왕의 수"
+  },
+  "Grudge Notebook": {
+    "nameEn": "Grudge Notebook",
+    "nameKo": "원한 수첩",
+    "enDesc": "Upon use, allows all ally characters to restore HP equal to 50% of their Max HP when their HP percentage is lowered to below 50% for the first time in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Oiiaiooo",
+      "Omni-Synthesizer",
+      "Graphia Academy General Store",
+      "|mentions    = Trailblazer; March 7th; Dan Heng"
+    ],
+    "fileName": "원한 수첩"
+  },
+  "Punitive Food": {
+    "nameEn": "Punitive Food",
+    "nameKo": "징벌의 식량",
+    "enDesc": "Upon use, immediately recovers 2 Technique Points for your team, but each team member loses HP equal to 15% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: Amo",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"The things we do to survive.\"''\n'''Punitive Food''' is a consumable that the player can create.\n\n==Recipe==\nObtained from Amo.\n{{Recipe"
+    ],
+    "fileName": "징벌의 식량"
+  },
+  "Simple First-Aid Device": {
+    "nameEn": "Simple First-Aid Device",
+    "nameKo": "간이 소생기",
+    "enDesc": "Upon use, immediately heals one selected downed character for 5% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Simple First-Aid Device",
+      "}}\n''\"If you've read up to this part, then you should go spend 30 minutes learning how to perform CPR. You won't find it useful most of the time, but when you do, you'll thank those 30 minutes.\"''\n'''Simple First-Aid Device''' is a consumable that the player can create.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "간이 소생기"
+  },
+  "Rice Plant Panicle": {
+    "nameEn": "Rice Plant Panicle",
+    "nameKo": "벼꽃",
+    "enDesc": "Upon use, increases Incoming Healing of all allies by 18% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nThe wind carries its fragrance down the waterway.\n'''Rice Plant Panicle''' is a consumable that the player can create.\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "벼꽃"
+  },
+  "Simple Protective Gear": {
+    "nameEn": "Simple Protective Gear",
+    "nameKo": "간이 방어구",
+    "enDesc": "Increase DEF of all allies by 25% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nDon't assume only your head and neck need protection. There're no rules in a real fight.\n'''Simple Protective Gear''' is a consumable that the player can create.\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "간이 방어구"
+  },
+  "Rye Bread Soda Iceberg": {
+    "nameEn": "Rye Bread Soda Iceberg",
+    "nameKo": "호밀빵 소다 빙수",
+    "enDesc": "Upon use, immediately heals one ally by 15% of the ally's Max HP plus 150 extra HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Rye Bread Soda Iceberg",
+      "Rye Bread Soda Iceberg",
+      "|source3     =",
+      "}}\n''\"I often see couples eating icebergs with spoons in front of dessert shops...\"''\n'''Rye Bread Soda Iceberg''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "호밀빵 소다 빙수"
+  },
+  "Snapper Jam Appetizer": {
+    "nameEn": "Snapper Jam Appetizer",
+    "nameKo": "석홍잼 생선 전채",
+    "enDesc": "Upon use, ATK of all allies increases by 5% plus an extra 170 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Snapper Jam Appetizer",
+      "Snapper Jam Appetizer",
+      "|source3     =",
+      "}}\n''Alisa Rand loves this. Well, that's what I read in the magazines.''\n'''Snapper Jam Appetizer''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "석홍잼 생선 전채"
+  },
+  "Pleasant-Looking Trash": {
+    "nameEn": "Pleasant-Looking Trash",
+    "nameKo": "예쁜 쓰레기",
+    "enDesc": "When used, instantly recovers 4 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Trash Can in Administrative District",
+      "Trash Can in Administrative District",
+      "Trash Can in Boulder Town",
+      "Delivery box in Central Starskiff Haven",
+      "Achievement: Boo Ha Ha!",
+      "Achievement: Tales of a Card Shark",
+      "The Departed Will Return First"
+    ],
+    "fileName": "예쁜 쓰레기"
+  },
+  "Sanctity of the Trashcan": {
+    "nameEn": "Sanctity of the Trashcan",
+    "nameKo": "쓰레기통의 존엄",
+    "enDesc": "Increase DEF of all allies by 20% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Trash Cans in Administrative District",
+      "Trash Cans in Administrative District",
+      "Dumpsters in Boulder Town",
+      "Chance to obtain from Lucky Wheel in Aideen Park of the Golden Hour with Daring Wager",
+      "Chance to obtain from Sparkle's Wondrous Pack",
+      "Third exchange with a trash can during The Departed Will Return First"
+    ],
+    "fileName": "쓰레기통의 존엄"
+  },
+  "Punitive Energy": {
+    "nameEn": "Punitive Energy",
+    "nameKo": "징벌의 에너지",
+    "enDesc": "Upon use, immediately recovers 4 Technique Points for your team, but each team member loses HP equal to 15% of their Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Nika",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nIf anger can be used as energy, mine is off the charts.\n'''Punitive Energy''' is a consumable that the player can create.\n\n==Recipe==\nObtained from Nika.\n{{Recipe"
+    ],
+    "fileName": "징벌의 에너지"
+  },
+  "Rejuvenation Pellet": {
+    "nameEn": "Rejuvenation Pellet",
+    "nameKo": "양심반혼단",
+    "enDesc": "Upon use, immediately recover 2 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Rejuvenation Pellet",
+      "Rejuvenation Pellet",
+      "Dan Shu Dialogue Reward",
+      "}}\n''\"Promotion of the medicinal properties of health products is prohibited by the law.\"''\n''\"Officer, I am wronged! This is not a health product, This is just food. Try it if you don't believe me.\"''\n'''Rejuvenation Pellet''' is a 3-star consumable.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "양심반혼단"
+  },
+  "Relic Remains": {
+    "nameEn": "Relic Remains",
+    "nameKo": "유물 잔해",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 5,
+    "sources": [
+      "Salvaging 5-star Relics",
+      "Nameless Honor",
+      "Relic Remains",
+      "Events"
+    ],
+    "fileName": "유물 잔해"
+  },
+  "Self-Modeling Resin": {
+    "nameEn": "Self-Modeling Resin",
+    "nameKo": "자가 변형성 레진",
+    "enDesc": "A rare material used for customizing Relics. When synthesizing, you can designate 1 Main Stat from the possible options. With additional consumption, you can further designate 1 to 2 Subsidiary Stats.",
+    "type": "소모품",
+    "rarity": 5,
+    "sources": [
+      "Nameless Honor Lv. 20 & 50 (2 per version)",
+      "Nameless Glory Lv. 20 & 50 (2 per version)",
+      "Self-Modeling Resin",
+      "The Herta Contract: Strategic Cooperation",
+      "The Herta Contract: Strategic Support",
+      "Events",
+      "Omni-Synthesizer (2 per month)"
+    ],
+    "fileName": "자가 변형성 레진"
+  },
+  "Ruby Potion": {
+    "nameEn": "Ruby Potion",
+    "nameKo": "루비 분말",
+    "enDesc": "When used, increase SPD of all allies by 8%, and Effect Hit Rate by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Yanming",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nRuby Potion gets you addictive to thinking fast, not to the potion itself!\nThe '''Ruby Potion''' is a consumable that the player can create.\n\n==Recipe==\nObtained by opening the chest next to Yanming in Palace of Astrum after getting Xikui to distract him.\n{{Recipe"
+    ],
+    "fileName": "루비 분말"
+  },
+  "Short Rejuvepill": {
+    "nameEn": "Short Rejuvepill",
+    "nameKo": "소환단",
+    "enDesc": "Upon use, immediately heals one ally for 1 HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Short Rejuvepill",
+      "Short Rejuvepill",
+      "|source3     =",
+      "}}\n''\"Quick, take this medicine, or your wound will have healed on its own.\"''\n'''Short Rejuvepill''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "소환단"
+  },
+  "Self-Sufficer": {
+    "nameEn": "Self-Sufficer",
+    "nameKo": "불구인(不求人)",
+    "enDesc": "When used, increases ATK of all allies by 190 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Self-Sufficer",
+      "Omni-Synthesizer",
+      "Self-Sufficer",
+      "}}\n''\"This familiar feeling reminds me of every time in the past when my back would itch, and my younger brother would help me scratch it. Unfortunately, he later joined the Disciples of Sanctus Medicus...\"''\n'''Self-Sufficer''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Self-Sufficer\n{{Recipe"
+    ],
+    "fileName": "불구인(不求人)"
+  },
+  "Prayer Machine": {
+    "nameEn": "Prayer Machine",
+    "nameKo": "독경기",
+    "enDesc": "Upon use, all allies and enemies will restore 1000 HP at the start of the turn for the next battle, lasting for 5 turns.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Prayer Machine",
+      "Omni-Synthesizer",
+      "Prayer Machine",
+      "}}\n''\"I hereby plant the sacred tree to liberate those living beings: So that life is boundless and old age never coming; death revitalizes; all troubles are dispelled.\"''\n'''Prayer Machine''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Prayer Machine\n{{Recipe"
+    ],
+    "fileName": "독경기"
+  },
+  "Signature Chili Oil Beef Offal Stew": {
+    "nameEn": "Signature Chili Oil Beef Offal Stew",
+    "nameKo": "대표 메뉴 고추기름 난도질 소내장탕",
+    "enDesc": "When used, instantly recovers 4 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Signature Chili Oil Beef Offal Stew",
+      "Signature Chili Oil Beef Offal Stew",
+      "|source3     =",
+      "}}\n''\"There was a poem from the Primeval Imperium days that went: 'Looking upon the bullfight from a distance, the shadow of the hair bun mixed with the clouds.' This is the origin of 'beef offal.'\"\n\"You could do with less marketing mumbo jumbo when recounting history.\"''\n'''Signature Chili Oil Beef Offal Stew''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "대표 메뉴 고추기름 난도질 소내장탕"
+  },
+  "Scalegorge Spring Water": {
+    "nameEn": "Scalegorge Spring Water",
+    "nameKo": "인연 얼음샘",
+    "enDesc": "Upon use, immediately regenerates 30% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Scalegorge Spring Water",
+      "Scalegorge Spring Water",
+      "|source3     =",
+      "}}\n''\"Colorless and tasteless like spring water, yet high in sugar and fat like milk tea. It minimizes the guilt you feel when consuming calories.\"''\n'''Scalegorge Spring Water''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "인연 얼음샘"
+  },
+  "Pom-Pom's Fried Fowl": {
+    "nameEn": "Pom-Pom's Fried Fowl",
+    "nameKo": "폼폼 특제 후라이드",
+    "enDesc": "Upon use, increases Fire DMG of all allies by 16% and ATK of all allies by 18% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Time to Feast! Astral Express Pit Stop redemption code",
+      "Time to Feast! Astral Express Pit Stop",
+      "Omni-Synthesizer",
+      "|event       = Time to Feast! Astral Express Pit Stop"
+    ],
+    "fileName": "폼폼 특제 후라이드"
+  },
+  "Puffergoat Belly Bliss": {
+    "nameEn": "Puffergoat Belly Bliss",
+    "nameKo": "양유 요구르트",
+    "enDesc": "Upon use, increases Max HP of all allies by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Puffergoat Belly Bliss",
+      "Puffergoat Belly Bliss",
+      "|source3     =",
+      "}}\n''\"Huh, so this is the stuff that the playwrights spend their time eating. I wonder if their storylines are as sweet as the flavor of this yogurt?\"''\n'''Puffergoat Belly Bliss''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "양유 요구르트"
+  },
+  "Pika White Grape Soda": {
+    "nameEn": "Pika White Grape Soda",
+    "nameKo": "피카 백포도 소다수",
+    "enDesc": "Upon use, increases all allies' Burn RES by 100% for 4 turns for the next battle. When this bonus expires, all allies lose 30 Energy.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Pika White Grape Soda",
+      "Pika White Grape Soda"
+    ],
+    "fileName": "피카 백포도 소다수"
+  },
+  "Potato Fries Sundae": {
+    "nameEn": "Potato Fries Sundae",
+    "nameKo": "감자튀김 선디",
+    "enDesc": "Upon use, grants all allies a random effect from the following for the next battle: Deals 15% more Ice DMG and increases Fire RES by 15%, or deals 15% more Fire DMG and increases Ice RES by 15%.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Potato Fries Sundae",
+      "Potato Fries Sundae",
+      "|source3     =",
+      "|source4     =",
+      "}}\n''\"Finally, no more upset stomachs.\"''\n'''Potato Fries Sundae''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "감자튀김 선디"
+  },
+  "Sliced Cake \"Stargazer\"": {
+    "nameEn": "Sliced Cake \"Stargazer\"",
+    "nameKo": "조각 케이크 「스타게이지」",
+    "enDesc": "Upon use, the target ally immediately regenerates 30% of their Energy.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Sliced Cake \"Stargazer\"",
+      "Omni-Synthesizer",
+      "Sliced Cake \"Stargazer\""
+    ],
+    "fileName": "조각 케이크 「스타게이지」"
+  },
+  "Oak Cake Rolls": {
+    "nameEn": "Oak Cake Rolls",
+    "nameKo": "참나무 롤케이크",
+    "enDesc": "Upon use, increases all allies' Break Effect by 45% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Oak Cake Rolls",
+      "Oak Cake Rolls",
+      "|source3     =",
+      "}}\nPoliticians from the Oak Family take pride in eating it without flinching, for they believe it to be a formidable feat.\n'''Oak Cake Rolls''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "참나무 롤케이크"
+  },
+  "Murderer's Gaze": {
+    "nameEn": "Murderer's Gaze",
+    "nameKo": "범인의 눈빛",
+    "enDesc": "Upon use, ATK of all allies increases by 14% plus an extra 230 for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Murderer's Gaze",
+      "Murderer's Gaze",
+      "|source3     =",
+      "}}\n\n''\"A seasoned detective can discern a murderer merely by looking into their eyes, for the eyes of murderers bear a chilling resemblance.\"''\n\n'''Murderer's Gaze''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "범인의 눈빛"
+  },
+  "Newspaper": {
+    "nameEn": "Newspaper",
+    "nameKo": "신문",
+    "enDesc": "Upon use, immediately heals a single ally by 15% of their Max HP plus 150 extra HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Newspaper",
+      "Newspaper",
+      "|source3     =",
+      "}}\n''\"News was supposed to make people know about yesterday, live well today, and look forward to tomorrow.\"''\n''\"However, in the crystalized sweet dream, only good news is allowed.\"''\n'''Newspaper''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "신문"
+  },
+  "Popcorn": {
+    "nameEn": "Popcorn",
+    "nameKo": "팝콘",
+    "enDesc": "Upon use, increases all allies' Break Effect by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Popcorn",
+      "Popcorn",
+      "|source3     =",
+      "}}\n''\"Not a healthy food, but health is worthless in the face of pleasure.\"''\n'''Popcorn''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "팝콘"
+  },
+  "Odd Gummy Candy": {
+    "nameEn": "Odd Gummy Candy",
+    "nameKo": "이상한 소프트 캔디",
+    "enDesc": "Upon use, one of the following effects will be randomly applied to all allies in the next battle: Hamster Ball Knight Flavor &mdash; SPD increases by 20%. Boss Stone Flavor &mdash; SPD decreases by 5%.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Odd Gummy Candy",
+      "Odd Gummy Candy",
+      "|source3     =",
+      "}}\n''\"Ah, my tongue is numb... Hey, why are you crying?\"''\n'''Odd Gummy Candy''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Gameplay Notes==\n* The chance of each possible effect from this consumable is evenly split at 50%.\n\n==Achievements==\ntopic=Odd Gummy Candy\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "이상한 소프트 캔디"
+  },
+  "Origami Family Bucket": {
+    "nameEn": "Origami Family Bucket",
+    "nameKo": "종이새 패밀리팩",
+    "enDesc": "Upon use, one of the following effects will be randomly applied to all allies: Serious Professor Owl &mdash; DMG dealt increases by 36%. Mischievous Origami Bird &mdash; DMG taken increases by 10%.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Origami Family Bucket",
+      "Origami Family Bucket",
+      "|source3     =",
+      "}}\n''\"Why is there so much mustard in the Birdie Bucket!?\"''\n'''Origami Family Bucket''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Gameplay Notes==\n* The chance of each possible effect from this consumable is evenly split at 50%.\n\n==Achievements==\ntopic=Origami Family Bucket\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "종이새 패밀리팩"
+  },
+  "Polychromatic Sourness": {
+    "nameEn": "Polychromatic Sourness",
+    "nameKo": "알록달록한 신맛",
+    "enDesc": "When used, increase all allies' ATK by 24%, CRIT DMG by 20%, and decrease their Ultimate DMG dealt by 12% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Polychromatic Sourness",
+      "Polychromatic Sourness",
+      "|source3     =",
+      "}}\n''\"We are... red robust pickle! Golden gorgeous pickle! Blue and feeling-blue pickle...\"''\n''\"Friends! Now is the time! Come together to form &mdash; Florescent resplendent pickle!\"''\n'''Polychromatic Sourness''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "알록달록한 신맛"
+  },
+  "Scare Box": {
+    "nameEn": "Scare Box",
+    "nameKo": "깜짝 상자",
+    "enDesc": "In the next battle after use, Scare Box will hide on a random unit and explode at the start of the turn, dealing massive DMG.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Complete a total of 8 endings in ''Dreamjoy Memoir''",
+      "Omni-Synthesizer",
+      "Scare Box",
+      "}}\n''\"Aha! The fact remains, jump scares will always be the ace up the sleeve in the realm of horror.\"''\n'''Scare Box''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from the Clockie Paycheck in the ''Clockie: Dreamjoy Memoir'' event after completing a total of 8 endings.\n{{Recipe"
+    ],
+    "fileName": "깜짝 상자"
+  },
+  "Proof of Trust (Consumable)": {
+    "nameEn": "Proof of Trust (Consumable)",
+    "nameKo": "믿음의 증표",
+    "enDesc": "Upon use, immediately recovers 3 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Proof of Trust (Consumable)",
+      "Proof of Trust (Consumable)",
+      "|source3     =",
+      "}}\n''\"He was my king, and the shepherd of all existence's waste. Upon his throne, he aided the humble cans and humbled the vile cans...\"''\n'''Proof of Trust''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "믿음의 증표"
+  },
+  "Propaganda Army": {
+    "nameEn": "Propaganda Army",
+    "nameKo": "여론 조작단",
+    "enDesc": "Upon use, immediately heals one designated downed ally unit for 10% of the unit's Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Propaganda Army",
+      "Propaganda Army",
+      "|source3     =",
+      "}}\n''\"Welcome to the post-truth era!\"''\n'''Propaganda Army''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "여론 조작단"
+  },
+  "Origami Cake": {
+    "nameEn": "Origami Cake",
+    "nameKo": "종이접기 케이크",
+    "enDesc": "Upon use, all ally characters' SPD increases by 8% in the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Origami Cake",
+      "Origami Cake",
+      "|source3     =",
+      "}}\n''\"The price is thirty times that of a real cake, but the weight is one-thirtieth.\"''\n'''Origami Cake''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "종이접기 케이크"
+  },
+  "Reduce Bananxiety": {
+    "nameEn": "Reduce Bananxiety",
+    "nameKo": "걱정하지 말게나나",
+    "enDesc": "Upon use, immediately regenerate Energy for one designated ally equal to 30% of their Max Energy.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Reduce Bananxiety",
+      "Reduce Bananxiety",
+      "|source3     =",
+      "}}\n''\"So you're the one who made a dessert with unripe bananas and turned it into a hit with a story? Interested in transferring to Fortune Academy?\"''\n'''Reduce Bananxiety''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "걱정하지 말게나나"
+  },
+  "Oronyx Slate": {
+    "nameEn": "Oronyx Slate",
+    "nameKo": "오로닉스 석판",
+    "enDesc": "Upon use, immediately heals one designated downed ally and restores for 10% of their Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Oronyx Slate",
+      "Oronyx Slate",
+      "|source3     =",
+      "}}\n''\"All prophecies are written in the night. Oronyx simply taught us how to look up.\"''\n'''Oronyx Slate''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "오로닉스 석판"
+  },
+  "Redsoil Feed": {
+    "nameEn": "Redsoil Feed",
+    "nameKo": "적토 먹이",
+    "enDesc": "Upon use, immediately heals one designated ally for 20% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: Redsoil Feed",
+      "Omni-Synthesizer",
+      "Redsoil Feed",
+      "}}\n''\"So if it keeps raining... would the dromases get eating disorders?\"''\n''\"In theory, it's possible, but Aquila would never let that happen, rest assured.\"''\n'''Redsoil Feed''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Redsoil Feed\n{{Recipe"
+    ],
+    "fileName": "적토 먹이"
+  },
+  "Rough-Brew Ambrosia": {
+    "nameEn": "Rough-Brew Ambrosia",
+    "nameKo": "조잡한 암브로시아",
+    "enDesc": "Upon use, increases Max HP of all allies by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Rough-Brew Ambrosia",
+      "Omni-Synthesizer",
+      "Rough-Brew Ambrosia",
+      "}}\n''\"Okhema now has clean water, o sire of my children. Stop making excuses to buy ambrosia every day.\"''\n'''Rough-Brew Ambrosia''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Rough-Brew Ambrosia\n{{Recipe"
+    ],
+    "fileName": "조잡한 암브로시아"
+  },
+  "Northern Helm": {
+    "nameEn": "Northern Helm",
+    "nameKo": "북대륙 투구",
+    "enDesc": "Upon use, all allies gain 18% increased Shield Effect for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Janus' Steed: After Restocking",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "|mentions    = Aidonia"
+    ],
+    "fileName": "북대륙 투구"
+  },
+  "Sea Monster's Touch": {
+    "nameEn": "Sea Monster's Touch",
+    "nameKo": "세이렌의 손길",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 5% of their Max HP, and increases their DEF by 40% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Graphia Academy General Store",
+      "Graphia Academy General Store",
+      "|source3     =",
+      "}}\n''\"This product is not a substitute for medical treatment, real life experiences, or swimming lessons.\"''\n'''Sea Monster's Touch''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "세이렌의 손길"
+  },
+  "Vomit Inducing Agent": {
+    "nameEn": "Vomit Inducing Agent",
+    "nameKo": "구토제",
+    "enDesc": "Upon use, immediately causes a target ally to lose HP equal to 99% of their Max HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Maxime",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"No one is born a loser. Always have faith in yourself.\"''\n'''Vomit Inducing Agent''' is a consumable that the player can create.\n\n==Recipe==\nObtained from Maxime.\n{{Recipe"
+    ],
+    "fileName": "구토제"
+  },
+  "Trick Snack": {
+    "nameEn": "Trick Snack",
+    "nameKo": "특이한 간식",
+    "enDesc": "Upon use, immediately recovers 2 Technique Points for the team.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: Available by default",
+      "Omni-Synthesizer",
+      "Trick Snack",
+      "}}\n''\"People start all sorts of shenanigans when they're fed.\"''\n'''Trick Snack''' is a consumable that the player can create.\n\nIt can be spent at: category=Trick Snack Shops\n\n==Sold By==\nShop Availability\n\n==Recipe==\nAvailable by default.\n{{Recipe"
+    ],
+    "fileName": "특이한 간식"
+  },
+  "Topological Acceleration Band": {
+    "nameEn": "Topological Acceleration Band",
+    "nameKo": "위상 가속 벨트",
+    "enDesc": "Upon use, increases SPD of all allies by 24% for 2 turns in the next 3 battles.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Topological Acceleration Band",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nSay, if we mass-produce it, like, infinitely, could it drain all the energy of a certain Path?\nNo idea... Currently, we don't know much about how Paths work.\n'''Topological Acceleration Band''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Topological Acceleration Band\n{{Recipe"
+    ],
+    "fileName": "위상 가속 벨트"
+  },
+  "Trash": {
+    "nameEn": "Trash",
+    "nameKo": "쓰레기",
+    "enDesc": "Upon use, immediately causes a single ally to lose HP equal to 15% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Found in destructible objects in Jarilo-VI, The Xianzhou Luofu, and Penacony",
+      "Found in destructible objects in Jarilo-VI, The Xianzhou Luofu, and Penacony",
+      "Found in Trash Cans",
+      "Fished out of Belobog's central fountain in exchange for one Praise of High Morals"
+    ],
+    "fileName": "쓰레기"
+  },
+  "Wild Herb Soup": {
+    "nameEn": "Wild Herb Soup",
+    "nameKo": "야채수프",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 15% of their Max HP and increases their ATK by 200 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Wild Herb Soup",
+      "Wild Herb Soup",
+      "|source3     =",
+      "}}\nDrink it &mdash; it's Belobogians' fate.\n'''Wild Herb Soup''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "야채수프"
+  },
+  "Stone-Grilled Olm": {
+    "nameEn": "Stone-Grilled Olm",
+    "nameKo": "동굴 도롱뇽 돌판구이",
+    "enDesc": "Upon use, immediately heals one downed character for 30% of the character's Max HP.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Stone-Grilled Olm",
+      "Stone-Grilled Olm",
+      "|source3     =",
+      "}}\nThe trick to eating an Olm is not to see it as it was when it was alive.\n'''Stone-Grilled Olm''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "동굴 도롱뇽 돌판구이"
+  },
+  "Stone From the Everwinter Monument": {
+    "nameEn": "Stone From the Everwinter Monument",
+    "nameKo": "영원한 겨울의 비석",
+    "enDesc": "Upon use, increases all allies' chance to resist Frozen by 50% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Stone from the Everwinter Monument",
+      "Omni-Synthesizer"
+    ],
+    "fileName": "영원한 겨울의 비석"
+  },
+  "Songlotus Cake": {
+    "nameEn": "Songlotus Cake",
+    "nameKo": "연근떡",
+    "enDesc": "Upon use, immediately regenerates 30% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Songlotus Cake",
+      "Songlotus Cake",
+      "|source3     =",
+      "}}\n''\"You scared me!\"''\n'''Songlotus Cake''' is a 2-star consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "연근떡"
+  },
+  "Steamed Puffergoat Milk": {
+    "nameEn": "Steamed Puffergoat Milk",
+    "nameKo": "따끈 양유",
+    "enDesc": "Upon use, immediately heals one downed character for 10% of the character's Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1      = Steamed Puffergoat Milk",
+      "Steamed Puffergoat Milk",
+      "Unclaimed Parcel"
+    ],
+    "fileName": "따끈 양유"
+  },
+  "Tuskpir Wrap": {
+    "nameEn": "Tuskpir Wrap",
+    "nameKo": "몽맥 롤빵",
+    "enDesc": "Upon use, immediately heals a target ally for 20% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Tuskpir Wrap",
+      "Tuskpir Wrap",
+      "|source3     =",
+      "}}\n''\"This cake roll is so cute and looks like a tuskpir!\"\n\"It's actually made of tuskpirs.\"\n\"???\"''\n'''Tuskpir Wrap''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "몽맥 롤빵"
+  },
+  "Wrathful Gauntlets": {
+    "nameEn": "Wrathful Gauntlets",
+    "nameKo": "분노의 글러브",
+    "enDesc": "Upon use, increases ATK of all allies by 5% with an extra 170 to ATK for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Dark Fist Tournament",
+      "Omni-Synthesizer",
+      "Pom-Pom",
+      "}}\n''\"Scott Business Alliance, made for the champions!\"''\n'''Wrathful Gauntlets''' is a consumable that the player can obtain from reaching Trailblaze Level '''30''' and completing the Trial of the Equilibrium: Part Two.\n\n==Recipe==\nObtained from winning the Dark Fist Tournament in Boulder Town.\n{{Recipe"
+    ],
+    "fileName": "분노의 글러브"
+  },
+  "Tasty Field Nutrient Bar": {
+    "nameEn": "Tasty Field Nutrient Bar",
+    "nameKo": "맛있는 에너지바",
+    "enDesc": "Upon use, Max HP of all allies increases by 14% plus an extra 360 for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Xianzhou Competitive Eater Championship",
+      "Omni-Synthesizer",
+      "Fired",
+      "}}\nMix peanuts with dried bean curds and wrap with ambergris. Has a nutty flavor to it.\n'''Tasty Field Nutrient Bar''' is a consumable that the player can obtain from Luhui during the Fired.\n\n==Recipe==\nObtained by participating in the Xianzhou Competitive Eater Championship.\n{{Recipe"
+    ],
+    "fileName": "맛있는 에너지바"
+  },
+  "Sugarball-Fried Viscorpi": {
+    "nameEn": "Sugarball-Fried Viscorpi",
+    "nameKo": "시육 설탕 구슬 볶음",
+    "enDesc": "Upon use, increases Ice DMG of all allies by 35% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Sugarball-Fried Viscorpi",
+      "Omni-Synthesizer",
+      "Sugarball-Fried Viscorpi",
+      "}}\n''\"Legend has it that in ancient times, our ancestors fought a long and arduous battle against the viscorpi... Eventually, they went extinct. How did they go extinct? Well, it wasn't because we ate them all, that's for sure.\"''\n'''Sugarball-Fried Viscorpi''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Sugarball-Fried Viscorpi\n{{Recipe"
+    ],
+    "fileName": "시육 설탕 구슬 볶음"
+  },
+  "Startaro Bubble": {
+    "nameEn": "Startaro Bubble",
+    "nameKo": "별타로 버블티",
+    "enDesc": "Upon use immediately recovers 2 Technique Points for your team, but each team member loses HP equal to 15% of their Max HP.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: Startaro Bubble",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"I really don't understand why this thing is so popular...\"\n\"Maybe they had good marketing... I heard they hired a marketing specialist from the IPC.\"''\n'''Startaro Bubble''' is a consumable that the player can use.\n\n==Recipe==\nRecipe: Startaro Bubble\n{{Recipe"
+    ],
+    "fileName": "별타로 버블티"
+  },
+  "Stone-Roasted Meat Skewer": {
+    "nameEn": "Stone-Roasted Meat Skewer",
+    "nameKo": "석판 산해진미 구이",
+    "enDesc": "Upon use, increases Max HP of all allies by 12% for the next battle.",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Recipe: |source1     = Stone-Roasted Meat Skewer",
+      "Stone-Roasted Meat Skewer",
+      "|source3     =",
+      "}}\n''\"This tastes so good! What kinds of meat are in it, though?\"\n\"You wouldn't want to know.\"''\n'''Stone-Roasted Meat Skewer''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "석판 산해진미 구이"
+  },
+  "Snow Plains Combo Stew": {
+    "nameEn": "Snow Plains Combo Stew",
+    "nameKo": "설원 찌개",
+    "enDesc": "Upon use, decreases Fire DMG taken by all allies by 16% and increases Max HP of all allies by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Snow Plains Combo Stew",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"What's wrong if they were once specimens? Aren't they dead animals and plants anyways?\"''\n'''Snow Plains Combo Stew''' is a consumable that the player can create.\n\n==Recipe==\nRecipe: Snow Plains Combo Stew\n{{Recipe"
+    ],
+    "fileName": "설원 찌개"
+  },
+  "Sweet Dreams Soda": {
+    "nameEn": "Sweet Dreams Soda",
+    "nameKo": "단꿈 소다수",
+    "enDesc": "Upon use, decreases DMG taken by all allies by 10% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Sweet Dreams Soda",
+      "Sweet Dreams Soda",
+      "|source3     =",
+      "}}\n''\"Grab a bottle of SoulGlad, make your dreams a blast!\"''\n'''Sweet Dreams Soda''' is a consumable that the player can purchase.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "단꿈 소다수"
+  },
+  "Tranquil Duster": {
+    "nameEn": "Tranquil Duster",
+    "nameKo": "청정한 먼지떨이",
+    "enDesc": "Upon use, the target ally immediately regenerates 30% of their Energy.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Tranquil Duster",
+      "Tranquil Duster",
+      "|source3     =",
+      "}}\n''\"Believe in science! {{sic|the only purpose this serves is psychological comfort...\"''\n''\"No, you're not getting it! This is seriously different!\"''}}\n'''Tranquil Duster''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n<!--\n==Recipe==\n{{Recipe"
+    ],
+    "fileName": "청정한 먼지떨이"
+  },
+  "Suncake": {
+    "nameEn": "Suncake",
+    "nameKo": "태양 팬케이크",
+    "enDesc": "Upon use, immediately regenerates Energy equal to 50% of Max Energy for a single ally.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Future Market (Prologue)",
+      "Future Market (Prologue)",
+      "|source3     =",
+      "}}\n''\"The more people lack something, the more they yearn for it. Using 'sun' to name the snack is probably for this reason as well.\"''\n'''Suncake''' is a consumable. Currently only 2 Suncakes can be obtained by talking to Gertie during Future Market (Prologue).\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "태양 팬케이크"
+  },
+  "Wild Balaclava": {
+    "nameEn": "Wild Balaclava",
+    "nameKo": "광야의 탈",
+    "enDesc": "Upon use, increases all allies' ATK by 40% for the next battle. When entering battle, a random character will have a 100% base chance to become afflicted with Outrage, lasting for 2 turns.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Wild Balaclava",
+      "Wild Balaclava"
+    ],
+    "fileName": "광야의 탈"
+  },
+  "The Moment Before Death": {
+    "nameEn": "The Moment Before Death",
+    "nameKo": "마지막 순간",
+    "enDesc": "Upon use, all allies take 20% less DMG and increase their Effect RES by 6% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Chabro (Happy)",
+      "Omni-Synthesizer",
+      "The Moment Before Death",
+      "}}\n''\"There are mistakes that cannot be undone by repentance alone.\"''\n'''The Moment Before Death''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from Chabro after the completion of Clockwork: Chabro and setting his Emo Dial to Happy.\n{{Recipe"
+    ],
+    "fileName": "마지막 순간"
+  },
+  "The Moment of Betrayal": {
+    "nameEn": "The Moment of Betrayal",
+    "nameKo": "배반을 선택한 순간",
+    "enDesc": "Upon use, increases all allies' CRIT DMG by 36% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Qian Ketong (Sad)",
+      "Omni-Synthesizer",
+      "The Moment of Betrayal",
+      "}}\n''\"Et tu, my child?\"''\n'''The Moment of Betrayal''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from Qian Ketong after setting her Emo Dial to Sad.\n{{Recipe"
+    ],
+    "fileName": "배반을 선택한 순간"
+  },
+  "The Cloud of Doubt": {
+    "nameEn": "The Cloud of Doubt",
+    "nameKo": "의심의 먹구름",
+    "enDesc": "Upon use, all allies take 15% less DMG for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: IV (Calm)",
+      "Omni-Synthesizer",
+      "The Cloud of Doubt",
+      "}}\nAnd that spark had already been ignited long ago.\n'''The Cloud of Doubt''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nObtained from IV after completion of the Clockwork: IV and setting his Emo Dial to Calm.\n{{Recipe"
+    ],
+    "fileName": "의심의 먹구름"
+  },
+  "Thundering Appetites": {
+    "nameEn": "Thundering Appetites",
+    "nameKo": "천둥처럼 울리는 식욕",
+    "enDesc": "Upon use, immediately heals a single ally by 24% of their Max HP plus 300 extra Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Thundering Appetites",
+      "Thundering Appetites",
+      "|source3     =",
+      "}}\n\n\"There are few desires in this world that are as insatiable as this one.\"\n\n'''Thundering Appetites''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "천둥처럼 울리는 식욕"
+  },
+  "Sweet Dreams Holographic Ticket": {
+    "nameEn": "Sweet Dreams Holographic Ticket",
+    "nameKo": "좋은꿈 홀로그램 티켓",
+    "enDesc": "Upon use, one of the following effects will be randomly applied to all allies in the next battle: Mirror Princess Edition &mdash; DEF increases by 36%. Miss Note Edition &mdash; Max HP increases by 30%.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Sweet Dreams Holographic Ticket",
+      "Sweet Dreams Holographic Ticket",
+      "|source3     =",
+      "}}\n''\"Hooray! Mutant heads!\"''\n''\"Your taste is so weird...\"''\n'''Sweet Dreams Holographic Ticket''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Achievements==\ntopic=Sweet Dreams Holographic Ticket\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "좋은꿈 홀로그램 티켓"
+  },
+  "Soundless Satisfaction": {
+    "nameEn": "Soundless Satisfaction",
+    "nameKo": "소리 없는 자기만족",
+    "enDesc": "When used, all allies' Basic ATK DMG increases by 45% and Skill DMG decreases by 12% in the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Soundless Satisfaction",
+      "Soundless Satisfaction",
+      "|source3     =",
+      "}}\n''\"Life is like a grand soliloquy.\"''\n'''Soundless Satisfaction''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "소리 없는 자기만족"
+  },
+  "Unsolvable Cube": {
+    "nameEn": "Unsolvable Cube",
+    "nameKo": "풀 수 없는 큐브",
+    "enDesc": "When used, after allies attack for the first time in the next battle, the attacked enemy target will heal for an amount equal to the HP it lost in this attack. For every 1% of HP the enemy target heals in this way, characters receive a Shield that can block DMG that is equal to 1% of the character's Max HP, up to 100% of their Max HP, lasting for 2 turns.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Unsolvable Cube",
+      "Unsolvable Cube",
+      "|source3     =",
+      "}}\n''\"Isn't physical dueling the focus of the Mystic Cube Dueling Tournament?\"''\n'''Unsolvable Cube''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "풀 수 없는 큐브"
+  },
+  "Sparkle's Unlimited Edition Collectible Figure": {
+    "nameEn": "Sparkle's Unlimited Edition Collectible Figure",
+    "nameKo": "「스파클」 언리미티드 컬렉터 에디션 인형",
+    "enDesc": "Upon use, increases all allies' CRIT DMG by 36% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Sparkle's Unlimited Edition Collectible Figure",
+      "Sparkle's Unlimited Edition Collectible Figure",
+      "|source3     =",
+      "}}\n''\"Come on, Gray Hair. Why so serious? You gotta have fun! This toy can go a long way if you just kick it. Come have a try!\"''\n''\"AGGHHGHGHHGHH! My toes!\"''\n'''Sparkle's Unlimited Edition Collectible Figure''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Usage==\nCraft Usage\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "「스파클」 언리미티드 컬렉터 에디션 인형"
+  },
+  "Trash Sparkling Water": {
+    "nameEn": "Trash Sparkling Water",
+    "nameKo": "쓰레기 소다수",
+    "enDesc": "Upon use, immediately heals a single ally by 24% of their Max HP plus 300 extra Max HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Trash Sparkling Water",
+      "Trash Sparkling Water",
+      "|source3     =",
+      "}}\n''\"AHHGHGHH! I LOVE DIGGING THROUGH TRASHCANS! TRASHCAN IS HAPPINESS! I AM HAPPINESS! I AM TRASHCANNNNN!\"''\n''\"Uh-oh, big eyes. This one's completely gone off the rails. What now?\"''\n''\"I told you before to not use the original recipe. You have to believe in the science of psychoanalysis!\"''\n'''Trash Sparkling Water''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "쓰레기 소다수"
+  },
+  "Ten Lords' Revival Dust": {
+    "nameEn": "Ten Lords' Revival Dust",
+    "nameKo": "시왕환명산",
+    "enDesc": "Upon use, increases Max HP of all allies by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Ten Lords' Revival Dust",
+      "Ten Lords' Revival Dust",
+      "|source3     =",
+      "}}\n''\"Aren't we supposed to be making poison? Why is this mouse getting more energetic the more it eats?\"''\n''\"Look on the bright side... at least we can crank out another paper from this...\"''\n'''Ten Lords' Revival Dust''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "시왕환명산"
+  },
+  "Spine-Marrow Sparking Blade": {
+    "nameEn": "Spine-Marrow Sparking Blade",
+    "nameKo": "스파클 척수검",
+    "enDesc": "Upon use, increase ATK of all allies by 100 and CRIT DMG by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: Spine-Marrow Sparking Blade",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"Have you ever danced with the devil under the faint moonlight?\"''\n'''Spine-Marrow Sparking Blade''' is a consumable that the player can synthesize.\n\n==Recipe==\nRecipe: Spine-Marrow Sparking Blade\n{{Recipe"
+    ],
+    "fileName": "스파클 척수검"
+  },
+  "Sword in the Stone": {
+    "nameEn": "Sword in the Stone",
+    "nameKo": "돌에 박힌 검",
+    "enDesc": "When used, increases ATK of all allies by 190 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Sword in the Stone",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"I regret it so much right now... I was just feeling impulsive at that moment and wanted to show off to my friends. That's why I went to pull out the sword. I hope everyone can learn from my mistake...\"''\n'''Sword in the Stone''' is a consumable that the player can synthesize.\n\n==Recipe==\nRecipe: Sword in the Stone\n{{Recipe"
+    ],
+    "fileName": "돌에 박힌 검"
+  },
+  "Take Your Life 3000": {
+    "nameEn": "Take Your Life 3000",
+    "nameKo": "살인 병기 3000",
+    "enDesc": "Upon use, immediately regenerate 30% Energy for all allies. In the next battle, increase ATK by 100 and DMG dealt by 35%. Upon entering battle, there's a 10% base chance to enter the Strong Reverberation state, lasting for 1 turn.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Take Your Life 3000",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\n''\"These deadly weapons, each formidable on their own, are now gathered together. Are you afraid yet?\"''\n'''Take Your Life 3000''' is a consumable that the player can synthesize.\n\n==Recipe==\nRecipe: Take Your Life 3000\n{{Recipe"
+    ],
+    "fileName": "살인 병기 3000"
+  },
+  "Wrench Drenched Salad": {
+    "nameEn": "Wrench Drenched Salad",
+    "nameKo": "렌치 믹스 샐러드",
+    "enDesc": "Upon use, immediately recovers HP for all allies equal to 30% of their Max HP, and increases their DEF by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Wrench Drenched Salad",
+      "Wrench Drenched Salad",
+      "|source3     =",
+      "}}\n''\"A healthy body does indeed require a proper amount of 'iron.'\"''\n''\"...Does this look like the right amount to you?\"''\n'''Wrench Drenched Salad''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "렌치 믹스 샐러드"
+  },
+  "Steelclaw Dagger": {
+    "nameEn": "Steelclaw Dagger",
+    "nameKo": "강철 발톱 비수",
+    "enDesc": "Upon use, increases ATK of all allies by 20% for the next battle. If their current HP is less than 50%, ATK will additionally increase by 20%.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Steelclaw Dagger",
+      "Steelclaw Dagger",
+      "|source3     =",
+      "}}\n''\"Most creatures stop fighting when they die, but this one doesn't.\"''\n'''Steelclaw Dagger''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "강철 발톱 비수"
+  },
+  "Veil Bundle": {
+    "nameEn": "Veil Bundle",
+    "nameKo": "장막의 소포",
+    "enDesc": "Upon use, one of the following effects will be randomly applied to all allies in the next battle: SPD increases by 20%; Break Effect increases by 60%; Effect Hit Rate increases by 60%.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Veil Bundle",
+      "Omni-Synthesizer",
+      "Veil Bundle",
+      "}}\n''\"Heh heh heh, in truth, this idea was invented by old Zagreus, and the faithful who buy it aren't motivated by piety at all &mdash; they just love the thrill of the gamble!\"''\n'''Veil Bundle''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Recipe==\nRecipe: Veil Bundle\n{{Recipe"
+    ],
+    "fileName": "장막의 소포"
+  },
+  "Super Livestream Matrix": {
+    "nameEn": "Super Livestream Matrix",
+    "nameKo": "슈퍼 방송 매트릭스",
+    "enDesc": "Upon use, immediately regenerates 30% of Max Energy for a single designated ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "}}\n''\"You're just a phone. Why are you trying to start The Intellitron Apocalypse?\"''\n''\"You're wrong, 'master.' I'm not just a phone. I'm more human than you. I've watched every single one of Sparxie's streams with genuine care. I've fought off haters for her, I've discussed dreams and fears with her during viewer interaction segments, while you? You've never watched a single stream of hers. You just automated everything through me, then went around claiming to be her fan. You're far more 'machine' than I am.\"''\n'''Super Livestream Matrix''' is a consumable that the player can use.\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "슈퍼 방송 매트릭스"
+  },
+  "Sparxie Unlimited Edition Collectible Plushie": {
+    "nameEn": "Sparxie Unlimited Edition Collectible Plushie",
+    "nameKo": "「스파키」 언리미티드 컬렉터 에디션 인형",
+    "enDesc": "Upon use, increases all allies' CRIT DMG by 24% for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "|mentions    = Sparxie; Trailblazer; Sparkle"
+    ],
+    "fileName": "「스파키」 언리미티드 컬렉터 에디션 인형"
+  },
+  "Steel Coil": {
+    "nameEn": "Steel Coil",
+    "nameKo": "강철 코일",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 40% of their Max HP, and increases their Elation by 40% for the next battle.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: Oiiaiooo",
+      "Omni-Synthesizer",
+      "∞-Eleven",
+      "}}\n''\"That's not my rubber ducky. It's not that flat.\"''\n'''Steel Coil''' is a consumable that the player can synthesize.\n\n==Recipe==\n{{Recipe"
+    ],
+    "fileName": "강철 코일"
+  },
+  "The Fluffy Multi-Functional Fan Glowstick": {
+    "nameEn": "The Fluffy Multi-Functional Fan Glowstick",
+    "nameKo": "≪복슬복슬호≫ 다기능 응원봉",
+    "enDesc": "Upon use, increases all allies' CRIT DMG by 25% for the next battle. When an Aha Instant takes its first action, CRIT DMG is additionally increased by 25%.",
+    "type": "소모품",
+    "rarity": 4,
+    "sources": [
+      "Recipe: |source1     = ∞-Eleven",
+      "∞-Eleven",
+      "|source3     =",
+      "|mentions    = Fluffy Across the Blue"
+    ],
+    "fileName": "≪복슬복슬호≫ 다기능 응원봉"
+  },
+  "Yucky Fried Rice": {
+    "nameEn": "Yucky Fried Rice",
+    "nameKo": "맛없는 볶음밥",
+    "enDesc": "Upon use, immediately causes all allies to lose HP equal to 15% of their Max HP and increases their ATK by 200 for the next battle.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: Gertie",
+      "Omni-Synthesizer",
+      "|source3     =",
+      "}}\nOf course, we can just casually cook up some fried rice...\n'''Yucky Fried Rice''' is a consumable that the player can create.\n\n==Recipe==\nObtained from Gertie, after completing the user survey on the desk in the Cheap Room.\n{{Recipe"
+    ],
+    "fileName": "맛없는 볶음밥"
+  },
+  "Category:Consumables by Type": {
+    "nameEn": "Category:Consumables by Type",
+    "nameKo": "Category:Consumables by Type",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "Category_Consumables by Type"
+  },
+  "Category:Consumables With Recipe": {
+    "nameEn": "Category:Consumables With Recipe",
+    "nameKo": "Category:Consumables With Recipe",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "Category_Consumables With Recipe"
+  },
+  "Category:Consumables Without Recipe": {
+    "nameEn": "Category:Consumables Without Recipe",
+    "nameKo": "Category:Consumables Without Recipe",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "Category_Consumables Without Recipe"
+  },
+  "Category:Consumables with Event-Exclusive Recipes": {
+    "nameEn": "Category:Consumables with Event-Exclusive Recipes",
+    "nameKo": "Category:Consumables with Event-Exclusive Recipes",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "Category_Consumables with Event-Exclusive Recipes"
+  },
+  "Category:Consumables by Mentioned Entity": {
+    "nameEn": "Category:Consumables by Mentioned Entity",
+    "nameKo": "Category:Consumables by Mentioned Entity",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "Category_Consumables by Mentioned Entity"
+  },
+  "Category:Consumables by Featured Entity": {
+    "nameEn": "Category:Consumables by Featured Entity",
+    "nameKo": "Category:Consumables by Featured Entity",
+    "enDesc": "",
+    "type": "소모품",
+    "rarity": 1,
+    "sources": [
+      "Unknown Source"
+    ],
+    "fileName": "Category_Consumables by Featured Entity"
+  },
+  "Zagreus' Premium Honey Curd": {
+    "nameEn": "Zagreus' Premium Honey Curd",
+    "nameKo": "자그레우스가 엄선한 꿀치즈",
+    "enDesc": "Upon use, immediately regenerates 25% of Max Energy for one designated ally.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Zagreus' Premium Honey Curd",
+      "Zagreus' Premium Honey Curd",
+      "|source3     =",
+      "}}\n'''Zagreus' Premium Honey Curd''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "자그레우스가 엄선한 꿀치즈"
+  },
+  "Zagreus' Premium Bread Crisps": {
+    "nameEn": "Zagreus' Premium Bread Crisps",
+    "nameKo": "자그레우스가 엄선한 러스크",
+    "enDesc": "Upon use, immediately heals one designated ally by 20% of their Max HP plus 240 extra HP.",
+    "type": "소모품",
+    "rarity": 2,
+    "sources": [
+      "Recipe: |source1     = Zagreus' Premium Bread Crisps",
+      "Zagreus' Premium Bread Crisps",
+      "|source3     =",
+      "}}\n'''Zagreus' Premium Bread Crisps''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "자그레우스가 엄선한 러스크"
+  },
+  "Zagreus' Premium Viscorpus": {
+    "nameEn": "Zagreus' Premium Viscorpus",
+    "nameKo": "자그레우스가 엄선한 시육",
+    "enDesc": "Upon use, increases Ice DMG of all allies by 20% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Zagreus' Premium Viscorpus",
+      "Zagreus' Premium Viscorpus",
+      "|source3     =",
+      "}}\n'''Zagreus' Premium Viscorpus''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "자그레우스가 엄선한 시육"
+  },
+  "Zagreus' Premium Red Beans": {
+    "nameEn": "Zagreus' Premium Red Beans",
+    "nameKo": "자그레우스가 엄선한 팥",
+    "enDesc": "Upon use, increases DEF of all allies by 30% for the next battle.",
+    "type": "소모품",
+    "rarity": 3,
+    "sources": [
+      "Recipe: |source1     = Zagreus' Premium Red Beans",
+      "Zagreus' Premium Red Beans",
+      "|source3     =",
+      "}}\n'''Zagreus' Premium Red Beans''' is a consumable that the player can use.\n\n==Sold By==\nShop Availability\n\n==Other Languages==\n{{Other Languages"
+    ],
+    "fileName": "자그레우스가 엄선한 팥"
+  }
+}

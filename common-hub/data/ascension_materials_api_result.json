@@ -1,0 +1,321 @@
+{
+  "Enigmatic Ectostella": {
+    "nameEn": "Enigmatic Ectostella",
+    "nameKo": "깊은 별의 외형질",
+    "enDesc": "A fathomless crystal. Ascension material for the Trailblazer.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Mission Rewards",
+      "Level Rewards",
+      "|source4 =",
+      "|source5 ="
+    ]
+  },
+  "Lightning Crown of the Past Shadow": {
+    "nameEn": "Lightning Crown of the Past Shadow",
+    "nameKo": "과거 그림자의 번개 왕관",
+    "enDesc": "Headwear of the Guardian Shadows. Can be used for the Ascension of Lightning characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Fulmination"
+    ]
+  },
+  "Horn of Snow": {
+    "nameEn": "Horn of Snow",
+    "nameKo": "눈보라의 뿔",
+    "enDesc": "Broken horn of a Frigid Prowler. Can be used for the Ascension of Ice characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Rime",
+      "Exchange through The Synthesizer"
+    ]
+  },
+  "Storm Eye": {
+    "nameEn": "Storm Eye",
+    "nameKo": "폭풍의 눈",
+    "enDesc": "Arrows belonged to a Stormbringer. Can be used for the Ascension of Wind characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Gust",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Broken Teeth of Iron Wolf": {
+    "nameEn": "Broken Teeth of Iron Wolf",
+    "nameKo": "강철 늑대의 깨진 이빨",
+    "enDesc": "Fragmented saw teeth left behind by automatons. Can be used for the Ascension of Physical characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Spike",
+      "Synthesizer"
+    ]
+  },
+  "Void Cast Iron": {
+    "nameEn": "Void Cast Iron",
+    "nameKo": "환영의 무쇠",
+    "enDesc": "Horseshoe of a Voidranger: Trampler. Can be used for the Ascension of Quantum characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Quanta",
+      "Omni-Synthesizer",
+      "Void Cast Iron"
+    ]
+  },
+  "Golden Crown of the Past Shadow": {
+    "nameEn": "Golden Crown of the Past Shadow",
+    "nameKo": "과거 그림자의 황금 장식",
+    "enDesc": "Headwear of the Decaying Shadow. Can be used for the Ascension of Imaginary characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Mirage",
+      "Synthesizer"
+    ]
+  },
+  "Endotherm Chitin": {
+    "nameEn": "Endotherm Chitin",
+    "nameKo": "상온 갑각",
+    "enDesc": "Hot, translucent substance almost like fire in the solid state. Can be used for the Ascension of Fire characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Blaze",
+      "Synthesizer"
+    ]
+  },
+  "Gelid Chitin": {
+    "nameEn": "Gelid Chitin",
+    "nameKo": "혹한 갑각",
+    "enDesc": "Frosty chitin emitting a cold humming. Can be used for the Ascension of Ice characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Icicle",
+      "Synthesizer"
+    ]
+  },
+  "Shape Shifter's Lightning Staff": {
+    "nameEn": "Shape Shifter's Lightning Staff",
+    "nameKo": "조형자의 번개 지팡이",
+    "enDesc": "A wooden staff with a pointed tip. It belonged to a shape shifter from the Disciples of Sanctus Medicus. Can be used for the Ascension of Lightning characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Doom"
+    ]
+  },
+  "Ascendant Debris": {
+    "nameEn": "Ascendant Debris",
+    "nameKo": "천인의 유해",
+    "enDesc": "Remains of The Ascended. Can be used for Ascension of Wind characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Celestial",
+      "Exchange through The Synthesizer"
+    ]
+  },
+  "Suppressing Edict": {
+    "nameEn": "Suppressing Edict",
+    "nameKo": "진령칙부",
+    "enDesc": "Parts used in the Xianzhou ingenium technology. Can be used for the Ascension of Imaginary characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Puppetry",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Nail of the Ape": {
+    "nameEn": "Nail of the Ape",
+    "nameKo": "괴수의 못",
+    "enDesc": "Remnant of an Abundance Sprite. Can be used for the Ascension of Quantum characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Abomination",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Searing Steel Blade": {
+    "nameEn": "Searing Steel Blade",
+    "nameKo": "과열된 강철 칼날",
+    "enDesc": "The broken blade of a Searing Prowler. Can be used for the Ascension of Fire-Type characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Scorch",
+      "Synthesizer"
+    ]
+  },
+  "Netherworld Token": {
+    "nameEn": "Netherworld Token",
+    "nameKo": "명부 명령",
+    "enDesc": "The Aurumaton Spectral Envoy's weapon. Can be used for the Ascension of Physical characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Perdition"
+    ]
+  },
+  "Dream Fridge": {
+    "nameEn": "Dream Fridge",
+    "nameKo": "꿈 아이스박스",
+    "enDesc": "The fridge carried by Sweet Gorilla. Can be used for the Ascension of Ice characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Nectar",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Raging Heart": {
+    "nameEn": "Raging Heart",
+    "nameKo": "격분한 심장",
+    "enDesc": "The memoria core of \"Shell of Faded Rage\". Can be used for the Ascension of Fire characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Ire",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "IPC Work Permit": {
+    "nameEn": "IPC Work Permit",
+    "nameKo": "스타피스 사원증",
+    "enDesc": "An IPC \"Senior Staff\" work permit. Can be used for the ascension of Physical characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Duty",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "A Glass of the Besotted Era": {
+    "nameEn": "A Glass of the Besotted Era",
+    "nameKo": "만취의 시대 한잔",
+    "enDesc": "A golden goblet of fine wine held by the troupe's cupbearer. Can be used for the Ascension of Wind characters. A group of believers treads across countless stars, seeking memories of numerous fine wines, brewing their offerings in dreams. Another group of believers turns themselves into yeast, fermenting ancient faiths sealed by the dust of time, distilling their ideals within dreams.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Gloam",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Nail of the Beast Coffin": {
+    "nameEn": "Nail of the Beast Coffin",
+    "nameKo": "수관(獸棺)의 못",
+    "enDesc": "A section of a mech's bionic spinal column. Can be used for the Ascension of Lightning characters. The most important central component of the mech that was built in imitation of the borisin. Though the body that nurtured it no longer has even a sliver of life left, this component still maintains the \"Slaughter Algorithm\" inherited from primordial days and buried deep within its genes.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Mechwolf",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Dream Flamer": {
+    "nameEn": "Dream Flamer",
+    "nameKo": "꿈 토치",
+    "enDesc": "A flamer that instantly cooks food. Can be used for the Ascension of Quantum characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Roast",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Chordal Mirage": {
+    "nameEn": "Chordal Mirage",
+    "nameKo": "한 곡으로 어우러진 환상",
+    "enDesc": "The silver strings from the red instruments carried by the troupe's instrumentalists. Can be used for the Ascension of Imaginary characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Timbre",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Harbinger of Strife": {
+    "nameEn": "Harbinger of Strife",
+    "nameKo": "분쟁의 전조",
+    "enDesc": "The golden wheeled blade carried by Furiae Praetor. Can be used for Ascension of Imaginary characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Sloggyre",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Darkveil Moonlight": {
+    "nameEn": "Darkveil Moonlight",
+    "nameKo": "어두운 장막의 달빛",
+    "enDesc": "An alien crown left behind by the Moonlit Pegasus. Can be used for Ascension of Quantum characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Gelidmoon",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Invasive Clot": {
+    "nameEn": "Invasive Clot",
+    "nameKo": "침략 응괴",
+    "enDesc": "Black Tide Creatures' core crystal. Can be used for the Ascension of Physical characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Deepsheaf",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Charred Bud of Twilight": {
+    "nameEn": "Charred Bud of Twilight",
+    "nameKo": "석양에 불탄 꽃봉오리",
+    "enDesc": "A corrosive core found within the head of a Dark Sun Gryphon. Can be used for Ascension of Wind characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Cinders",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Sea Siren's Torn Fin": {
+    "nameEn": "Sea Siren's Torn Fin",
+    "nameKo": "세이렌의 지느러미 잔해",
+    "enDesc": "Lady of Crashing Waves's spiny tail fin. Can be used for the Ascension of Ice characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Sirens",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Radiant Prominence": {
+    "nameEn": "Radiant Prominence",
+    "nameKo": "눈부신 홍염",
+    "enDesc": "An alien crown left behind by the Noontide Gryphon. Can be used for Ascension of Fire characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Ashes",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Thunder Strum": {
+    "nameEn": "Thunder Strum",
+    "nameKo": "광뢰의 스트로크",
+    "enDesc": "A favorite instrument of the Rocking Rebels. An ascension material for Lightning characters.",
+    "type": "캐릭터 승급 재료",
+    "rarity": 4,
+    "sources": [
+      "Stagnant Shadow: Shape of Soundburst",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  }
+}

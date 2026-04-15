@@ -1,21 +1,22 @@
 import { Character } from '../../../../common-hub/types';
+import { createHsrBaseStats, createMaterial, createSkill } from '../../dataFactory';
 
 const danHengPermansorTerrae: Character = {
   id: "dan_heng_permansor_terrae",
-  name: "단항•등황",
+  name: "character.dan_heng_permansor_terrae.name",
   folderName: "단항•등황",
   gameId: "hsr",
   attribute: "물리",
   path: "보존",
   rarity: 5,
   affiliation: "엠포리어스",
-  briefInfo: "지오리오스의 가슴, 복룡의 몸은 부서진 대지를 지탱하며 천년의 고통을 견딘다.\n무명객 단항, 「대지」의 불씨를 수호하는 황금의 후예여, 기울어가는 팔황을 바로잡고, 지상의 생령들을 머나먼 세계로 인도하라.\n——모든 강물이 바다로 흘러 들어가고 뭇산이 함께 화답하니, 불멸의 길이 만 리에 걸쳐 이어지리라",
+  briefInfo: "character.dan_heng_permansor_terrae.briefInfo",
   version: "3.6",
   releaseVersion: "3.6",
   languageNames: "🇰🇷 단항•등황 / 🇺🇸 Dan Heng•Permansor Terrae / 🇨🇳 丹恒 • 騰 荒 / 🇯🇵 丹恒 • 騰 荒 ",
   voiceActors: "🇰🇷 김혜성 / 🇺🇸 니콜라스 렁 / 🇨🇳 위둥 / 🇯🇵 이토 켄토",
   metadata: {
-    name: "단항•등황",
+    name: "character.dan_heng_permansor_terrae.metadata.name",
     language: "🇰🇷 단항•등황 / 🇺🇸 Dan Heng•Permansor Terrae / 🇨🇳 丹恒 • 騰 荒 / 🇯🇵 丹恒 • 騰 荒 ",
     element: "물리",
     path: "보존",
@@ -23,92 +24,45 @@ const danHengPermansorTerrae: Character = {
     affiliation: "엠포리어스",
     cv: "🇰🇷 김혜성 / 🇺🇸 니콜라스 렁 / 🇨🇳 위둥 / 🇯🇵 이토 켄토",
     releaseVersion: "3.6",
-    brief: "지오리오스의 가슴, 복룡의 몸은 부서진 대지를 지탱하며 천년의 고통을 견딘다.\n무명객 단항, 「대지」의 불씨를 수호하는 황금의 후예여, 기울어가는 팔황을 바로잡고, 지상의 생령들을 머나먼 세계로 인도하라.\n——모든 강물이 바다로 흘러 들어가고 뭇산이 함께 화답하니, 불멸의 길이 만 리에 걸쳐 이어지리라"
+    brief: "character.dan_heng_permansor_terrae.metadata.brief"
   },
-  baseStats: {
-    lv1: { "기초 HP": 143, "기초 공격력": 79, "기초 방어력": 106 },
-    lv20: { "기초 HP": 278, "기초 공격력": 154, "기초 방어력": 206 },
-    lv30: { "기초 HP": 406, "기초 공격력": 226, "기초 방어력": 301 },
-    lv40: { "기초 HP": 535, "기초 공격력": 297, "기초 방어력": 396 },
-    lv50: { "기초 HP": 663, "기초 공격력": 368, "기초 방어력": 491 },
-    lv60: { "기초 HP": 791, "기초 공격력": 440, "기초 방어력": 586 },
-    lv70: { "기초 HP": 920, "기초 공격력": 511, "기초 방어력": 681 },
-    lv80: { "기초 HP": 1048, "기초 공격력": 582, "기초 방어력": 776 },
-    speed: 97,
-    taunt: 150,
-    energy: 135
-  },
+  baseStats: createHsrBaseStats(
+    [143, 278, 406, 535, 663, 791, 920, 1048], // HP
+    [79, 154, 226, 297, 368, 440, 511, 582],   // ATK
+    [106, 206, 301, 396, 491, 586, 681, 776],  // DEF
+    97, 150, 135 // SPD, Taunt, Energy
+  ),
   materials_v2: {
     ascension: [
-      { name: "신용 포인트", count: "308,000", rarity: 3 },
-      { name: "침략 응괴", count: "65", rarity: 4 },
-      { name: "공포에 짓밟힌 육신", count: "15", rarity: 2 },
-      { name: "용기에 찢긴 가슴", count: "15", rarity: 3 },
-      { name: "영광의 세례를 받은 육신", count: "15", rarity: 4 }
+      createMaterial("신용 포인트", "308,000", 3),
+      createMaterial("침략 응괴", 65, 4),
+      createMaterial("공포에 짓밟힌 육신", 15, 2),
+      createMaterial("용기에 찢긴 가슴", 15, 3),
+      createMaterial("영광의 세례를 받은 육신", 15, 4)
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "태양과 번개의 회상", count: "12", rarity: 4 },
-      { name: "흩어진 별모래", count: "18", rarity: 2 },
-      { name: "유성 결정", count: "69", rarity: 3 },
-      { name: "신성한 앰버", count: "139", rarity: 4 },
-      { name: "공포에 짓밟힌 육신", count: "41", rarity: 2 },
-      { name: "용기에 찢긴 가슴", count: "56", rarity: 3 },
-      { name: "영광의 세례를 받은 육신", count: "58", rarity: 4 }
+      createMaterial("신용 포인트", "3,000,000", 3),
+      createMaterial("운명의 발자취", 8, 5),
+      createMaterial("태양과 번개의 회상", 12, 4),
+      createMaterial("흩어진 별모래", 18, 2),
+      createMaterial("유성 결정", 69, 3),
+      createMaterial("신성한 앰버", 139, 4),
+      createMaterial("공포에 짓밟힌 육신", 41, 2),
+      createMaterial("용기에 찢긴 가슴", 56, 3),
+      createMaterial("영광의 세례를 받은 육신", 58, 4)
     ]
   },
   skills: [
-    {
-      name: "악을 진압하고 창생을 지키리",
-      tag: "일반 공격 | 단일 공격",
-      energyRegen: "에너지 회복 20",
-      toughnessDMG: "약점 격파 단일 공격 10",
-      spRecovery: "+1",
-      description: "지정된 단일 적에게 단항·등황 공격력의 100%만큼 물리 속성 피해를 가한다",
-      icon: "basic_atk_1"
-    },
-    {
-      name: "팔황을 품은 변화무쌍한 대지",
-      tag: "전투 스킬 | 방어",
-      energyRegen: "에너지 회복 30",
-      toughnessDMG: "0",
-      spRecovery: "-1",
-      description: "지정된 단일 아군 캐릭터를 [전우]로 만들고, 모든 아군에게 단항·등황 공격력의 20%+400만큼 피해를 상쇄할 수 있는 실드를 제공한다, 지속 시간: 3턴. 단항•등황의 실드를 중복 획득할 시 실드량은 중첩되며, 최대 현재 전투 스킬이 제공하는 실드량의 300%를 초과할 수 없다.\n[전우]는 단항•등황 전투 스킬의 가장 최근 목표에게만 적용된다",
-      icon: "skill_1"
-    },
-    {
-      name: "후회 없이 세상을 변화시키는 승룡",
-      tag: "필살기 | 범위 공격",
-      energyRegen: "에너지 회복 5",
-      toughnessDMG: "약점 격파 범위 20",
-      spRecovery: "0",
-      description: "모든 적에게 단항•등황 공격력의 300%만큼 물리 속성 피해를 가하고, 모든 아군에게 단항•등황 공격력의 20%+400만큼 피해를 상쇄할 수 있는 실드를 부여한다, 지속 시간: 3턴. 단항•등황의 실드를 중복 획득할 시 실드량은 중첩되며, 최대 현재 전투 스킬이 제공하는 실드량의 300%를 초과할 수 없다.\n[용령]이 강화를 획득하며, [용령] 행동 시 추가 공격을 발동하고, 모든 적에게 단항•등황 공격력의 80%만큼 물리 속성 피해를 가하며, [전우] 공격력의 n%만큼 상응하는 속성의 추가 피해를 가한다. 강화는 [용령]의 행동 2회 동안 지속된다",
-      icon: "ultimate_1"
-    },
-    {
-      name: "끊임없이 흐르는 만물의 생장",
-      tag: "특성 | 방어",
-      energyRegen: "0",
-      toughnessDMG: "약점 격파 범위 20",
-      spRecovery: "0",
-      description: "아군 캐릭터가 [전우]가 될 시 단항·등황이 대상에게 [용령]을 소환한다. [용령]의 기본 속도는 165pt다.\n[용령] 행동 시 모든 아군의 디버프 효과를 1개 해제하고, 단항·등황 공격력의 10%+200만큼 피해를 상쇄할 수 있는 실드를 제공한다, 지속 시간: 3턴. 단항·등황과 [용령]이 제공하는 실드량은 중첩 가능하며, 최대 단항·등황의 전투 스킬이 제공하는 실드량의 300%를 초과하지 않는다.\n단항•등황 또는 [전우]가 전투 불능 상태에 빠질 시 [용령]은 사라진다",
-      icon: "talent_1"
-    },
-    {
-      name: "갈라진 땅",
-      tag: "비술 | 방해",
-      energyRegen: "0",
-      toughnessDMG: "0",
-      spRecovery: "0",
-      description: "비술 사용 후 [전우]를 획득하고 일정 구역 내의 적을 10초 동안 현기증 상태에 빠트린다. 현기증 상태의 적은 아군을 선공하지 않는다.\n행동 캐릭터 변경 시 [전우]는 현재 행동 캐릭터에게 이전된다. 다음 전투 시작 시 [전우]를 보유한 캐릭터에게 자동으로 전투 스킬을 1회 발동하며, 해당 전투 스킬은 전투 스킬 포인트를 소모하지 않는다",
-      icon: "technique_1"
-    }
+    createSkill("character.dan_heng_permansor_terrae.skills.0.name", "일반 공격 | 단일 공격", "에너지 회복 20", "약점 격파 단일 공격 10", "+1", "character.dan_heng_permansor_terrae.skills.0.description", "basic_atk_1"),
+    createSkill("character.dan_heng_permansor_terrae.skills.1.name", "전투 스킬 | 방어", "에너지 회복 30", "0", "-1", "character.dan_heng_permansor_terrae.skills.1.description", "skill_1"),
+    createSkill("character.dan_heng_permansor_terrae.skills.2.name", "필살기 | 범위 공격", "에너지 회복 5", "약점 격파 범위 20", "0", "character.dan_heng_permansor_terrae.skills.2.description", "ultimate_1"),
+    createSkill("character.dan_heng_permansor_terrae.skills.3.name", "특성 | 방어", "0", "약점 격파 범위 20", "0", "character.dan_heng_permansor_terrae.skills.3.description", "talent_1"),
+    createSkill("character.dan_heng_permansor_terrae.skills.4.name", "비술 | 방해", "0", "0", "0", "character.dan_heng_permansor_terrae.skills.4.description", "technique_1")
   ],
   additionalAbilities: [
-    { name: "천혜의 경관", description: "전투 스킬 발동 시 [전우]가 된 목표의 공격력이 단항·등황 공격력의 15%만큼 증가한다", icon: "bonus_1" },
-    { name: "우거진 지엽", description: "전투 시작 시 단항·등황의 행동 게이지가 40% 증가한다. [전우]가 공격 발동 시 단항·등황의 에너지를 6pt 회복하고, [용령]의 행동 게이지를 15% 증가시킨다", icon: "bonus_2" },
-    { name: "가파른 산세", description: "[용령] 행동 시 추가로 현재 실드량이 가장 낮은 아군에게 단항•등황 공격력의 5%+100만큼 피해를 상쇄할 수 있는 실드를 제공한다. 단항•등황의 실드 중복 획득 시 실드량은 중첩되며, 최대 현재 전투 스킬이 제공하는 실드량의 300%를 초과할 수 없다. 강화된 [용령] 행동 시 추가로 현재 HP가 가장 높은 단일 적에게 [전우] 공격력의 40%만큼 상응하는 속성의 추가 피해를 1회 가한다", icon: "bonus_3" }
+    { name: "character.dan_heng_permansor_terrae.additionalAbilities.0.name", description: "character.dan_heng_permansor_terrae.additionalAbilities.0.description", icon: "bonus_1" },
+    { name: "character.dan_heng_permansor_terrae.additionalAbilities.1.name", description: "character.dan_heng_permansor_terrae.additionalAbilities.1.description", icon: "bonus_2" },
+    { name: "character.dan_heng_permansor_terrae.additionalAbilities.2.name", description: "character.dan_heng_permansor_terrae.additionalAbilities.2.description", icon: "bonus_3" }
   ],
   attributeBonuses: [
     { type: "공격력", value: "28%", icon: "atk" },
@@ -116,20 +70,20 @@ const danHengPermansorTerrae: Character = {
     { type: "속도", value: "5", icon: "spd" }
   ],
   eidolons: [
-    { rank: "E01", name: "옛 비늘을 벗은 황룡", description: "단항·등황이 필살기 발동 시 전투 스킬 포인트를 1pt 회복하고, [전우]의 모든 속성 저항 관통을 18% 증가시킨다, 지속 시간: 3턴", icon: "eidolon_1" },
-    { rank: "E02", name: "개척을 지키는 순수함", description: "필살기의 강화된 용령 행동 효과가 추가로 2회 증가하고, 단항·등황이 필살기 발동 후 [용령]의 행동 게이지가 100% 증가한다. 강화된 용령 행동 시 [전우]가 가하는 추가 피해가 기존 피해의 200%가 되며, 이번에 제공하는 실드량은 기존 실드량의 200%가 된다", icon: "eidolon_2" },
-    { rank: "E03", name: "해와 달, 산과 강의 부탁", description: "필살기 레벨+2, 최대 Lv.15. 일반 공격 레벨+1, 최대 Lv.10", icon: "eidolon_3" },
-    { rank: "E04", name: "금석의 맹세, 이 몸을 배 삼아", description: "[전우]가 받는 피해가 20% 감소한다", icon: "eidolon_4" },
-    { rank: "E05", name: "끝없이 이어지는 불멸의 길", description: "전투 스킬 레벨+2, 최대 Lv.15. 특성 레벨+2, 최대 Lv.15", icon: "eidolon_5" },
-    { rank: "E06", name: "초목과 티끌 모두 꿈에 들고", description: "필드에 [전우]가 존재할 시 모든 적이 받는 피해가 20% 증가하고, [전우]가 피해를 가할 시 적의 방어력을 12% 무시한다. 단항•등황이 필살기 발동 시 [전우]는 모든 적에게 [전우] 공격력의 330%만큼 상응하는 속성의 추가 피해를 가한다", icon: "eidolon_6" }
+    { rank: "E01", name: "character.dan_heng_permansor_terrae.eidolons.0.name", description: "character.dan_heng_permansor_terrae.eidolons.0.description", icon: "eidolon_1" },
+    { rank: "E02", name: "character.dan_heng_permansor_terrae.eidolons.1.name", description: "character.dan_heng_permansor_terrae.eidolons.1.description", icon: "eidolon_2" },
+    { rank: "E03", name: "character.dan_heng_permansor_terrae.eidolons.2.name", description: "character.dan_heng_permansor_terrae.eidolons.2.description", icon: "eidolon_3" },
+    { rank: "E04", name: "character.dan_heng_permansor_terrae.eidolons.3.name", description: "character.dan_heng_permansor_terrae.eidolons.3.description", icon: "eidolon_4" },
+    { rank: "E05", name: "character.dan_heng_permansor_terrae.eidolons.4.name", description: "character.dan_heng_permansor_terrae.eidolons.4.description", icon: "eidolon_5" },
+    { rank: "E06", name: "character.dan_heng_permansor_terrae.eidolons.5.name", description: "character.dan_heng_permansor_terrae.eidolons.5.description", icon: "eidolon_6" }
   ],
   specialTerms: {
-    "행동 게이지 증가": "행동 게이지가 일정 비율 증가하여 행동 순서가 앞당겨진다.",
-    "추가 공격": "조건을 만족하면 자동으로 발동되는 효과. 목표에게 추가로 공격을 발동한다.",
-    "추가 피해": "피격자에게 추가로 피해를 가한다. 이번 피해는 공격을 1회 가한 것으로 간주하지 않는다.",
-    "디버프 효과": "전투 중 디버프 효과가 있는 모든 지속 상태는 특별 설명이 없다면 해제할 수 있다.",
-    "[전우]": "단항•등황의 전투 스킬로 지정된 단일 아군이 획득하는 버프 상태.",
-    "[용령]": "아군이 [전우]가 될 때 소환되는 독립적인 개체. 자체 속도를 가지며 행동 시 아군에게 실드를 제공하고 디버프를 해제한다."
+    "행동 게이지 증가": "character.dan_heng_permansor_terrae.specialTerms.0",
+    "추가 공격": "character.dan_heng_permansor_terrae.specialTerms.1",
+    "추가 피해": "character.dan_heng_permansor_terrae.specialTerms.2",
+    "디버프 효과": "character.dan_heng_permansor_terrae.specialTerms.3",
+    "[전우]": "character.dan_heng_permansor_terrae.specialTerms.4",
+    "[용령]": "character.dan_heng_permansor_terrae.specialTerms.5"
   }
 };
 

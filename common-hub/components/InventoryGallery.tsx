@@ -1,7 +1,9 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
-import { Info, X, Star, Filter, Package, Zap, MapPin, Search } from 'lucide-react';
+import { Info, X, Star, Filter, Package, MapPin, Search } from 'lucide-react';
 import { ITEM_META, FILTER_CATEGORIES, getAutoRarity, getItemUrl } from '../data/items';
+import { useTranslation } from 'react-i18next';
+import ItemDetailModal from './ItemDetailModal';
 
 const getItemStyles = (rarity: number) => {
   const styles: Record<number, string> = {
@@ -18,6 +20,8 @@ interface InventoryGalleryProps {
 }
 
 const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'ko';
   const [items, setItems] = useState<{ name: string; url: string; rarity: number; desc: string; type: string; sources: string[]; gameId: string }[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -70,10 +74,20 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) =
     return items.filter(item => {
       const matchGame = item.gameId === gameId;
       const matchTab = activeTab === "전체" || item.type === activeTab;
-      const matchSearch = item.name.toLowerCase().includes(search.toLowerCase());
+        
+        let displayName = item.name;
+        if (currentLang === 'en') {
+          displayName = t(item.name);
+        }
+        
+      const matchSearch = displayName.toLowerCase().includes(search.toLowerCase())
+        || item.name.toLowerCase().includes(search.toLowerCase());
       return matchGame && matchTab && matchSearch;
     });
-  }, [items, activeTab, search, gameId]);
+  }, [items, activeTab, search, gameId, currentLang, t]);
+
+  // 모달용 영문 데이터 매핑
+  const isEn = currentLang === 'en';
 
   if (loading) {
     return (
@@ -87,39 +101,39 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) =
   return (
     <div className="w-full space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="space-y-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-2">
-          <div className="flex flex-col gap-1">
-            <h2 className="text-3xl font-black text-brand-accent italic flex items-center gap-4">
-              인벤토리 <span className="text-xs text-gray-600 font-bold not-italic uppercase tracking-normal">({filteredItems.length} 항목)</span>
+        <div className="flex flex-col gap-1 border-b border-white/5 pb-6 px-2">
+            <h2 className="text-4xl font-black italic tracking-tighter uppercase">
+              {t('인벤토리')} <span className="text-xs text-gray-600 font-bold not-italic uppercase tracking-normal">({filteredItems.length})</span>
             </h2>
-          </div>
-          <div className="relative group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors" size={16} />
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-6 items-start lg:items-center px-2">
+          <div className="relative w-full lg:w-72 shrink-0">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
             <input 
               type="text" 
-              id="inventory-search"
-              name="inventory-search"
-              placeholder="아이템 명칭 검색..."
+              placeholder={t('명칭으로 필터링...')}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full md:w-80 transition-all focus:bg-white/10 text-white placeholder:text-gray-600 font-bold"
+              className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
             />
           </div>
-        </div>
-        <div className="flex flex-wrap gap-2 pb-6 border-b border-white/5 overflow-x-auto scrollbar-hide">
-          {FILTER_CATEGORIES.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveTab(cat)}
-              className={`px-4 py-2 rounded-xl text-[11px] font-black transition-all whitespace-nowrap border ${
-                activeTab === cat 
-                ? "bg-brand-accent border-brand-accent text-black shadow-[0_0_20px_rgba(226,110,229,0.3)]" 
-                : "bg-white/5 border-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+
+          <div className="flex flex-wrap gap-2 overflow-x-auto scrollbar-hide w-full">
+            {FILTER_CATEGORIES.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveTab(cat)}
+                className={`h-11 px-5 rounded-xl text-[11px] font-black transition-all whitespace-nowrap border flex items-center justify-center ${
+                  activeTab === cat 
+                  ? "bg-brand-accent border-brand-accent text-black shadow-lg shadow-brand-accent/20" 
+                  : "bg-white/[0.03] border-white/5 text-gray-500 hover:bg-white/10 hover:text-gray-300"
+                }`}
+              >
+                {t(cat)}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -127,63 +141,36 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) =
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-x-5 gap-y-10 bg-white/[0.01] p-10 rounded-[50px] border border-white/5 shadow-2xl min-h-[400px]">
           {filteredItems.map((item) => (
             <div key={item.name} onClick={() => setSelectedItem(item)} className="flex flex-col items-center gap-3 group cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95">
-              <div className={`relative w-16 h-16 md:w-20 md:h-20 rounded-[22px] overflow-hidden border-2 bg-gradient-to-b transition-all duration-500 group-hover:brightness-110 shadow-lg flex items-center justify-center ${getItemStyles(item.rarity)}`}>
+              <div className={`relative isolate w-16 h-16 md:w-20 md:h-20 rounded-[22px] overflow-hidden border-2 bg-gradient-to-b transition-all duration-500 group-hover:brightness-110 shadow-lg flex items-center justify-center ${getItemStyles(item.rarity)}`}>
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity bg-white pointer-events-none z-20" />
-                <img alt={item.name} className="w-full h-full object-contain p-2 relative z-10 filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)] transform transition-transform duration-500 group-hover:scale-110" loading="lazy" src={item.url} />
+                <img alt={item.name} className="w-full h-full object-contain p-2 relative z-10 filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)] transform transition-transform duration-500 group-hover:scale-110 text-transparent" loading="lazy" src={item.url} />
               </div>
               <div className="w-full px-1 text-center">
-                <span className="text-[10px] md:text-[11px] text-gray-500 font-bold leading-tight group-hover:text-white transition-colors uppercase tracking-tight block overflow-hidden text-ellipsis line-clamp-2 min-h-[2.5em]">{item.name}</span>
+                {(() => {
+                  const rawDisplayName = t(item.name);
+                  let listDisplayName = rawDisplayName;
+                  // 영문(en) 아이템 명칭이 너무 길 경우 격자 레이아웃을 위해 생략(...) 처리
+                  if (currentLang === 'en' && listDisplayName.length > 25) {
+                    listDisplayName = listDisplayName.substring(0, 25) + '...';
+                  }
+                  return <span className="text-[10px] md:text-[11px] text-gray-500 font-bold leading-tight group-hover:text-white transition-colors uppercase tracking-tight block truncate w-full" title={rawDisplayName}>{listDisplayName}</span>;
+                })()}
               </div>
             </div>
           ))}
         </div>
       ) : (
         <div className="py-20 text-center bg-white/5 rounded-[40px] border border-dashed border-white/10">
-          <p className="text-gray-600 font-black uppercase tracking-[0.3em] text-xs italic">검색 결과에 해당하는 아이템이 없습니다.</p>
+          <p className="text-gray-600 font-black uppercase tracking-[0.3em] text-xs italic">{t('No data yet.')}</p>
         </div>
       )}
 
-      {selectedItem && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" onClick={() => setSelectedItem(null)} />
-          <div className="relative glass-card max-w-lg w-full rounded-[40px] p-10 border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200">
-             <div className="absolute top-0 right-0 p-6">
-                <button onClick={() => setSelectedItem(null)} className="p-2 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white"><X size={24} /></button>
-             </div>
-             <div className="flex flex-col items-center text-center space-y-8">
-                <div className="relative group">
-                   <div className="absolute inset-0 opacity-40 blur-[60px]" style={{ backgroundColor: getItemStyles(selectedItem.rarity).includes('yellow') ? '#EAB308' : '#7E30E1' }} />
-                   <div className="w-40 h-40 flex items-center justify-center relative z-10">
-                      <img src={selectedItem.url} alt={selectedItem.name} className="max-w-full max-h-full object-contain p-4 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
-                   </div>
-                </div>
-                <div className="space-y-4">
-                  <h2 className="text-3xl font-black tracking-tight text-white">{selectedItem.name}</h2>
-                  <div className="flex justify-center gap-1.5">
-                    {Array.from({ length: selectedItem.rarity }).map((_, i) => (<Star key={i} size={18} fill="#EAB308" className="text-yellow-500" />))}
-                  </div>
-                </div>
-                <div className="w-full h-px bg-white/10" />
-                <div className="space-y-6 w-full text-left">
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2"><Package size={14} className="text-brand-accent" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Item Category</span></div>
-                      <span className="text-xs font-black text-brand-accent uppercase bg-brand-accent/10 px-4 py-1.5 rounded-full border border-brand-accent/20">{selectedItem.type}</span>
-                   </div>
-                   <div className="relative">
-                      <div className="flex items-center gap-2 mb-3"><Info size={14} className="text-brand-primary" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Archive Intel</span></div>
-                      <p className="text-gray-300 text-[15px] leading-relaxed font-medium bg-white/[0.03] p-6 rounded-[30px] border border-white/5 shadow-inner italic">{selectedItem.desc}</p>
-                   </div>
-                   <div className="space-y-3">
-                      <div className="flex items-center gap-2"><MapPin size={14} className="text-green-400" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Acquisition Sources</span></div>
-                      <div className="flex flex-wrap gap-2">
-                        {selectedItem.sources.map((source: string, idx: number) => (<span key={idx} className="bg-white/5 text-gray-400 px-3 py-1.5 rounded-xl text-[12px] font-bold border border-white/10">{source}</span>))}
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-        </div>
-      )}
+      <ItemDetailModal 
+        itemNameEn={selectedItem?.name || ''} 
+        isOpen={!!selectedItem} 
+        onClose={() => setSelectedItem(null)} 
+      />
+
       <div className="p-10 text-center">
         <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] italic">* Synchronization completed with GitHub Global Asset Registry.</p>
       </div>

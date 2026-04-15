@@ -1,18 +1,50 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Library, Github, Search } from 'lucide-react';
+import { Library, Github, Search, Globe, Download } from 'lucide-react';
 import GlobalSearch from './GlobalSearch';
 import AdPlaceholder from './AdPlaceholder';
 import Footer from './Footer';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const { i18n } = useTranslation(); // t 함수 제거
+
+  // Service Worker 등록 및 PWA 설치 프롬프트
+  useEffect(() => {
+    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
+      navigator.serviceWorker.register('/sw.js').catch(console.error);
+    }
+
+    const handleBeforeInstall = (e: any) => {
+      e.preventDefault();
+      setDeferredPrompt(e);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
+    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+  }, []);
+
+  const handleInstallPWA = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => setDeferredPrompt(null));
+    }
+  };
+
+  const toggleLang = () => {
+    const next = i18n.language === 'ko' ? 'en' : 'ko';
+    localStorage.setItem('rira_lang', next);
+    i18n.changeLanguage(next); // 새로고침 없이 즉시 언어 변경
+  };
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <header className="sticky top-0 z-50 bg-[#121212]/95 backdrop-blur-md border-b border-white/[0.05]">
+      <header className="sticky top-0 z-[90] bg-[#121212]/95 backdrop-blur-md border-b border-white/[0.05]">
         <div className="max-w-[1600px] mx-auto px-6 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 bg-gradient-to-br from-brand-primary to-brand-accent rounded-xl flex items-center justify-center group-hover:rotate-12 transition-transform shadow-lg shadow-brand-primary/20">
@@ -25,10 +57,22 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           <nav className="hidden md:flex items-center gap-8">
             <Link to="/" className={`text-sm font-medium transition-colors ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>
-              Hub
+              HUB
             </Link>
-            <a href="#" className="text-sm font-medium text-gray-400 hover:text-white transition-colors mr-2">About</a>
+            <a href="#" className="text-sm font-medium text-gray-400 hover:text-white transition-colors mr-2">ABOUT</a>
             
+            {/* 다국어 전환 */}
+            <button onClick={toggleLang} className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase">
+              <Globe size={18} /> {i18n.language}
+            </button>
+            
+            {/* PWA 설치 버튼 (앱 설치 가능 환경에서만 노출됨) */}
+            {deferredPrompt && (
+              <button onClick={handleInstallPWA} className="flex items-center gap-1 text-gray-400 hover:text-brand-primary transition-colors text-xs font-bold uppercase">
+                <Download size={18} /> App
+              </button>
+            )}
+
             <GlobalSearch />
 
             <div className="flex items-center gap-4 ml-4 pl-4 border-l border-white/10">

@@ -14,10 +14,13 @@ export interface Post {
   keywords: string[];
 }
 
-export type HSRAttribute = '화염' | '허수' | '양자' | '얼음' | '바람' | '물리' | '번개';
-export type HSRPath = '보존' | '파멸' | '수렵' | '지식' | '화합' | '공허' | '풍요' | '기억' | '환락';
+export type HSRAttribute = '화염' | '허수' | '양자' | '얼음' | '바람' | '물리' | '번개'
+  | 'Fire' | 'Imaginary' | 'Quantum' | 'Ice' | 'Wind' | 'Physical' | 'Lightning';
+export type HSRPath = '보존' | '파멸' | '수렵' | '지식' | '화합' | '공허' | '풍요' | '기억' | '환락'
+  | 'Preservation' | 'Destruction' | 'The Hunt' | 'Erudition' | 'Harmony' | 'Nihility' | 'Abundance' | 'Remembrance' | 'Elation';
 
-export type WWAttribute = '기류' | '전도' | '회절' | '인멸' | '융융' | '응결';
+export type WWAttribute = '기류' | '전도' | '회절' | '인멸' | '융융' | '응결'
+  | 'Aero' | 'Electro' | 'Spectro' | 'Havoc' | 'Fusion' | 'Glacio';
 export type WWWeaponType = '장검' | '대검' | '직검' | '권갑' | '증폭기';
 
 export interface MaterialItem {

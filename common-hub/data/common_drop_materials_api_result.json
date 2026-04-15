@@ -1,0 +1,343 @@
+{
+  "Extinguished Core": {
+    "nameEn": "Extinguished Core",
+    "nameKo": "소멸된 코어",
+    "enDesc": "The heart of a monster wandering the Fragmentum. Crude material used for enhancement",
+    "sources": [
+      "Fragmentum Monsters",
+      "Calyx (Golden)",
+      "Simulated Universe",
+      "Omni-Synthesizer",
+      "Extinguished Core",
+      "Assignment Rewards"
+    ]
+  },
+  "Glimmering Core": {
+    "nameEn": "Glimmering Core",
+    "nameKo": "희미한 빛의 코어",
+    "enDesc": "The heart of a monster wandering the Fragmentum. Normal material used for enhancement.",
+    "sources": [
+      "Certain Fragmentum Monsters at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Silvermane Medal": {
+    "nameEn": "Silvermane Medal",
+    "nameKo": "철위대 훈장",
+    "enDesc": "Medal of honor worn by soldiers of the Silvermane Guards with gallant and meritorious service. Advanced material used for enhancement.",
+    "sources": [
+      "Everwinter Shadewalker and Incineration Shadewalker at Equilibrium Level 4 or higher",
+      "Silvermane Guards and vagrants at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Silvermane Badge": {
+    "nameEn": "Silvermane Badge",
+    "nameKo": "철위대 배지",
+    "enDesc": "Pin badge worn by soldiers of the Silvermane Guards. Crude material used for enhancement.",
+    "sources": [
+      "Everwinter Shadewalker and Incineration Shadewalker",
+      "Silvermane Guards and vagrants",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Assignment rewards",
+      "Silvermane Badge",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden)"
+    ]
+  },
+  "Silvermane Insignia": {
+    "nameEn": "Silvermane Insignia",
+    "nameKo": "철위대 표식",
+    "enDesc": "Military rank insignia worn by captains of the Silvermane Guard. Normal material used for enhancement.",
+    "sources": [
+      "Everwinter Shadewalker and Incineration Shadewalker at Equilibrium Level 2 or higher",
+      "Silvermane Guards and vagrants at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Squirming Core": {
+    "nameEn": "Squirming Core",
+    "nameKo": "꿈틀대는 코어",
+    "enDesc": "The heart of a monster wandering the Fragmentum. Advanced material used for enhancement.",
+    "sources": [
+      "Certain Fragmentum Monsters at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Ancient Part": {
+    "nameEn": "Ancient Part",
+    "nameKo": "고대 부속품",
+    "enDesc": "Mechanical part left behind from the Old World. Crude material used for enhancement.",
+    "sources": [
+      "Automatons",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Assignment rewards",
+      "Ancient Part",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden)"
+    ]
+  },
+  "Ancient Spindle": {
+    "nameEn": "Ancient Spindle",
+    "nameKo": "고대 전동축",
+    "enDesc": "Mechanical spindle left behind from the Old World. Normal material used for enhancement.",
+    "sources": [
+      "Automatons at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Ancient Engine": {
+    "nameEn": "Ancient Engine",
+    "nameKo": "고대 엔진",
+    "enDesc": "Mechanical engine left behind from the Old World. Advanced material used for enhancement.",
+    "sources": [
+      "Automatons at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Thief's Instinct": {
+    "nameEn": "Thief's Instinct",
+    "nameKo": "약탈의 본능",
+    "enDesc": "A small amount of anti-matter. Crude material used for enhancement.",
+    "sources": [
+      "Antimatter Legion",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Assignment rewards",
+      "Thief's Instinct",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden)"
+    ]
+  },
+  "Usurper's Scheme": {
+    "nameEn": "Usurper's Scheme",
+    "nameKo": "변조된 야망",
+    "enDesc": "A moderate amount of anti-matter. Normal material used for enhancement.",
+    "sources": [
+      "Antimatter Legion at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Conqueror's Will": {
+    "nameEn": "Conqueror's Will",
+    "nameKo": "짓밟힌 의지",
+    "enDesc": "Condensed anti-matter. Advanced material used for enhancement.",
+    "sources": [
+      "Antimatter Legion at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Immortal Aeroblossom": {
+    "nameEn": "Immortal Aeroblossom",
+    "nameKo": "영생의 꽃",
+    "enDesc": "New flowers blooming out of an ancient divine construct. Normal material used for enhancement.",
+    "sources": [
+      "Abominations of Abundance at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange",
+      "Immortal Aeroblossom"
+    ]
+  },
+  "Immortal Lumintwig": {
+    "nameEn": "Immortal Lumintwig",
+    "nameKo": "영생의 가지",
+    "enDesc": "Deciduous twigs from an ancient divine construct. Advanced material used for enhancement.",
+    "sources": [
+      "Abominations of Abundance at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Artifex's Cogwheel": {
+    "nameEn": "Artifex's Cogwheel",
+    "nameKo": "공조 톱니바퀴",
+    "enDesc": "Parts of the Xianzhou machines. Normal material used for enhancement.",
+    "sources": [
+      "Entranced Ingenia at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange",
+      "Artifex's Cogwheel"
+    ]
+  },
+  "Artifex's Module": {
+    "nameEn": "Artifex's Module",
+    "nameKo": "공조 기계 부품",
+    "enDesc": "Components used in Xianzhou's ingenium creations. Crude material used for enhancement.",
+    "sources": [
+      "Entranced Ingenia",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Assignment rewards",
+      "Artifex's Module",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden)"
+    ]
+  },
+  "Artifex's Gyreheart": {
+    "nameEn": "Artifex's Gyreheart",
+    "nameKo": "공조 환류 심장",
+    "enDesc": "Components used in Xianzhou's ingenium creations. Advanced material used for enhancement.",
+    "sources": [
+      "Entranced Ingenia at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Dream Collection Component": {
+    "nameEn": "Dream Collection Component",
+    "nameKo": "꿈 저장 부품",
+    "enDesc": "A storage device for Dreamscape creations. Crude material used for enhancement",
+    "sources": [
+      "Dreamjolt Troupe",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Assignment rewards",
+      "Dream Collection Component",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden): Penacony"
+    ]
+  },
+  "Tears of Souls": {
+    "nameEn": "Tears of Souls",
+    "nameKo": "영의 눈물",
+    "enDesc": "A prison cage that sealed life's essence and soul. Can substitute materials dropped by enemies when they are insufficient. The substitution ratio of Tears of Souls varies depending on the materials' rarity.",
+    "sources": [
+      "Divergent Universe enemies",
+      "Simulated Universe enemies"
+    ]
+  },
+  "Tatters of Thought": {
+    "nameEn": "Tatters of Thought",
+    "nameKo": "생각의 가루",
+    "enDesc": "A memoria fragment of fleeting thought. Crude material used for enhancement.",
+    "sources": [
+      "Memory Zone Meme Drop",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Assignment rewards",
+      "Tatters of Thought",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden): Penacony"
+    ]
+  },
+  "Dream Flow Valve": {
+    "nameEn": "Dream Flow Valve",
+    "nameKo": "꿈 흐름 밸브",
+    "enDesc": "A control component for Dreamscape creations. Normal material used for enhancement.",
+    "sources": [
+      "Dreamjolt Troupe at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Dream Making Engine": {
+    "nameEn": "Dream Making Engine",
+    "nameKo": "꿈 제조 모터",
+    "enDesc": "An energy core for Dreamscape creations. Advanced material used for enhancement.",
+    "sources": [
+      "Dreamjolt Troupe at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Fragments of Impression": {
+    "nameEn": "Fragments of Impression",
+    "nameKo": "인상의 파편",
+    "enDesc": "Within the Memory Zone, the form memories float as fleeting glimmers of light, and only profound and memorable fragments can condense it crystals.",
+    "sources": [
+      "Memory Zone Meme at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Shards of Desires": {
+    "nameEn": "Shards of Desires",
+    "nameKo": "욕망의 거울 조각",
+    "enDesc": "A memoria fragment of obsessive desires. Advanced material used for enhancement.",
+    "sources": [
+      "Memory Zone Meme at Equilibrium Level 4 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Dropped by enemies in Divergent Universe",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Whimsy Wax": {
+    "nameEn": "Whimsy Wax",
+    "nameKo": "천진난만 크레파스",
+    "enDesc": "A Wishpower fragment from an imagenated creature. A crude material used for enhancement.",
+    "sources": [
+      "Imagenated Creatures",
+      "Divergent Universe enemies",
+      "Simulated Universe enemies",
+      "Assignment Rewards",
+      "Embers Exchange",
+      "Omni-Synthesizer Material Exchange",
+      "Calyx (Golden)"
+    ]
+  },
+  "Dreamweave Steel": {
+    "nameEn": "Dreamweave Steel",
+    "nameKo": "꿈을 만드는 딥 펜",
+    "enDesc": "A Wishpower fragment from an imagenated creature. A normal material used for enhancement.",
+    "sources": [
+      "Imagenated Creatures at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Divergent Universe enemies",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Lucid Awl": {
+    "nameEn": "Lucid Awl",
+    "nameKo": "꿈을 그리는 붓",
+    "enDesc": "A Wishpower fragment from an imagenated creature. An advanced material used for enhancement.",
+    "sources": [
+      "Imagenated Creatures at Equilibrium Level 2 or higher",
+      "Omni-Synthesizer Material Synthesis",
+      "Divergent Universe enemies",
+      "Simulated Universe enemies",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  }
+}

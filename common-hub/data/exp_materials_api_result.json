@@ -1,0 +1,141 @@
+{
+  "Travel Encounters": {
+    "nameEn": "Travel Encounters",
+    "nameKo": "여행 견문",
+    "enDesc": "Experience material for characters. Provides 1,000 character EXP.",
+    "type": "캐릭터 경험치 재료",
+    "rarity": 2,
+    "sources": [
+      "Calyx (Golden): Bud of Memories",
+      "Assignment rewards",
+      "Operation Briefing (Part 1)",
+      "|source5     ="
+    ],
+    "fileName": "여행 견문"
+  },
+  "Adventure Log": {
+    "nameEn": "Adventure Log",
+    "nameKo": "모험 기록",
+    "enDesc": "Experience material for characters. Provides 5,000 character EXP.",
+    "type": "캐릭터 경험치 재료",
+    "rarity": 3,
+    "sources": [
+      "Calyx (Golden): Bud of Memories",
+      "Daily Training",
+      "Adventure Log",
+      "Operation Briefing (Parts 1-4)",
+      "HoYoLAB Daily Check-In",
+      "Missions"
+    ],
+    "fileName": "모험 기록"
+  },
+  "Traveler's Guide": {
+    "nameEn": "Traveler's Guide",
+    "nameKo": "여행 가이드",
+    "enDesc": "Experience material for characters. Provides 20,000 character EXP.",
+    "type": "캐릭터 경험치 재료",
+    "rarity": 4,
+    "sources": [
+      "Calyx (Golden): Bud of Memories",
+      "Forgotten Hall",
+      "Operation Briefing",
+      "HoYoLAB Daily Check-In",
+      "Missions",
+      "Traveler's Guide"
+    ],
+    "fileName": "여행 가이드"
+  },
+  "Condensed Aether": {
+    "nameEn": "Condensed Aether",
+    "nameKo": "응축한 에테르",
+    "enDesc": "Enhancement material for Light Cones, provides 2000 Light Cone EXP.",
+    "type": "광추 경험치 재료",
+    "rarity": 3,
+    "sources": [
+      "Calyx (Golden): Bud of Aether",
+      "Condensed Aether",
+      "Operation Briefing (Parts 1-5)",
+      "HoYoLAB Daily Check-In",
+      "Missions"
+    ],
+    "fileName": "응축한 에테르"
+  },
+  "Sparse Aether": {
+    "nameEn": "Sparse Aether",
+    "nameKo": "희박한 에테르",
+    "enDesc": "Enhancement material for Light Cones, provides 500 Light Cone EXP.",
+    "type": "광추 경험치 재료",
+    "rarity": 2,
+    "sources": [
+      "Calyx (Golden): Bud of Aether",
+      "Assignment rewards",
+      "Operation Briefing (Part 1)",
+      "Light Cone salvaging"
+    ],
+    "fileName": "희박한 에테르"
+  },
+  "Refined Aether": {
+    "nameEn": "Refined Aether",
+    "nameKo": "정제한 에테르",
+    "enDesc": "Enhancement material for Light Cones, provides 6000 Light Cone EXP.",
+    "type": "광추 경험치 재료",
+    "rarity": 4,
+    "sources": [
+      "Calyx (Golden): Bud of Aether",
+      "Forgotten Hall",
+      "Refined Aether",
+      "Operation Briefing",
+      "HoYoLAB Daily Check-In",
+      "Missions",
+      "Events"
+    ],
+    "fileName": "정제한 에테르"
+  },
+  "Lost Gold Fragment": {
+    "nameEn": "Lost Gold Fragment",
+    "nameKo": "유실된 황금 파편",
+    "enDesc": "Experience material for Relics. Provides 500 Relic EXP.",
+    "type": "유물 경험치 재료",
+    "rarity": 3,
+    "sources": [
+      "Daily Training Activity",
+      "Salvage 3/4/5-Star Relics",
+      "Lost Gold Fragment",
+      "Operation Briefing (Parts 2-4)",
+      "Simulated Universe Point Rewards",
+      "HoYoLAB Daily Check-In",
+      "Missions",
+      "Events"
+    ],
+    "fileName": "유실된 황금 파편"
+  },
+  "Lost Crystal": {
+    "nameEn": "Lost Crystal",
+    "nameKo": "유실된 수정덩이",
+    "enDesc": "Experience material for Relics. Provides 1,000 Relic EXP.",
+    "type": "유물 경험치 재료",
+    "rarity": 4,
+    "sources": [
+      "Forgotten Hall",
+      "Lost Crystal",
+      "Operation Briefing",
+      "HoYoLAB Daily Check-In",
+      "Missions",
+      "Events"
+    ],
+    "fileName": "유실된 수정덩이"
+  },
+  "Lost Lightdust": {
+    "nameEn": "Lost Lightdust",
+    "nameKo": "유실된 라이트더스트",
+    "enDesc": "Enhancement material for Relics. Provides 100 Relic EXP.",
+    "type": "유물 경험치 재료",
+    "rarity": 2,
+    "sources": [
+      "Salvage 2-Star Relics",
+      "Simulated Universe extra drops",
+      "Events"
+    ],
+    "fileName": "유실된 라이트더스트"
+  }
+}

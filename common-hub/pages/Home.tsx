@@ -5,6 +5,7 @@ import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META } from '../data/items';
 import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';
 import SEO from '../components/SEO';
+import { useTranslation } from 'react-i18next';
 import LazyImage from '../components/LazyImage';
 import SystemChangelog from '../components/SystemChangelog';
 import AdPlaceholder from '../components/AdPlaceholder';
@@ -24,6 +25,12 @@ import {
 } from 'lucide-react';
 
 const Home: React.FC = () => {
+  const { t } = useTranslation();
+
+  /**
+   * @description 프로젝트 전체의 메트릭(게임, 캐릭터, 가이드, 아이템 수)을 연산하여 반환합니다.
+   * @returns {{ games: number, characters: number, guides: number, items: number }} 글로벌 통계 객체
+   */
   const globalStats = useMemo(() => {
     const guideCount = HSR_CHARACTER_GUIDES ? HSR_CHARACTER_GUIDES.length : 0;
     return {
@@ -53,17 +60,17 @@ const Home: React.FC = () => {
         <div className="max-w-[1600px] mx-auto relative z-10 text-center space-y-10">
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md animate-in fade-in slide-in-from-top-4 duration-700">
             <Terminal size={14} className="text-brand-accent animate-pulse" />
-            <span className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">Initializing Core Intelligence Terminal...</span>
+          <span className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">{t('Initializing Core Intelligence Terminal...')}</span>
           </div>
           
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
             <h1 className="text-5xl md:text-6xl font-black leading-[0.85] tracking-tighter">
-              완벽한 플레이를 위한<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary italic">데이터의 정점.</span>
+          {t('완벽한 플레이를 위한')}<br/>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary italic">{t('데이터의 정점.')}</span>
             </h1>
             <p className="max-w-3xl mx-auto text-gray-500 text-lg md:text-xl font-medium leading-relaxed">
-              리라 아카이브는 고밀도 데이터와 심층 분석을 통해<br/>
-              당신의 성장을 완벽하게 서포트하는 프리미엄 전략 가이드입니다.
+          {t('리라 아카이브는 고밀도 데이터와 심층 분석을 통해')}<br/>
+          {t('당신의 성장을 완벽하게 서포트하는 프리미엄 전략 가이드입니다.')}
             </p>
           </div>
 
@@ -81,10 +88,10 @@ const Home: React.FC = () => {
       {/* 글로벌 통계 메트릭 */}
       <section className="relative z-20 max-w-6xl mx-auto -mt-12 px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 bg-[#121212]/90 backdrop-blur-2xl border border-white/10 rounded-[32px] p-8 shadow-[0_32px_64px_rgba(0,0,0,0.6)] divide-x divide-white/5">
-          <StatMetric label="보유 캐릭터" value={globalStats.characters} icon={<Database size={16}/>} color="text-brand-accent" />
-          <StatMetric label="전략 리포트" value={globalStats.guides} icon={<FileText size={16}/>} color="text-brand-primary" />
-          <StatMetric label="분석 데이터" value={globalStats.items} icon={<Zap size={16}/>} color="text-yellow-500" />
-          <StatMetric label="활성 아카이브" value={globalStats.games} icon={<ShieldCheck size={16}/>} color="text-green-500" />
+        <StatMetric label={t('보유 캐릭터')} value={globalStats.characters} icon={<Database size={16}/>} color="text-brand-accent" />
+        <StatMetric label={t('전략 리포트')} value={globalStats.guides} icon={<FileText size={16}/>} color="text-brand-primary" />
+        <StatMetric label={t('분석 데이터')} value={globalStats.items} icon={<Zap size={16}/>} color="text-yellow-500" />
+        <StatMetric label={t('활성 아카이브')} value={globalStats.games} icon={<ShieldCheck size={16}/>} color="text-green-500" />
         </div>
       </section>
 
@@ -94,7 +101,7 @@ const Home: React.FC = () => {
           <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary/50 group-hover:bg-brand-primary transition-colors" />
           <div className="flex items-center gap-3 mb-8">
             <TerminalSquare size={18} className="text-brand-accent" />
-            <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">System.Changelog</h2>
+        <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">{t('System.Changelog')}</h2>
             <div className="flex-1 h-px bg-white/5 ml-4" />
           </div>
           
@@ -108,12 +115,12 @@ const Home: React.FC = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-10">
           <div className="space-y-2">
             <h2 className="text-3xl font-black tracking-tighter italic flex items-center gap-4">
-              <span className="text-brand-accent">/</span> 아카이브 탐색
+          <span className="text-brand-accent">/</span> {t('아카이브 탐색')}
             </h2>
-            <p className="text-gray-600 text-sm font-bold uppercase tracking-widest">분석이 필요한 게임의 데이터베이스를 선택하세요</p>
+        <p className="text-gray-600 text-sm font-bold uppercase tracking-widest">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>
           </div>
           <div className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-            <TrendingUp size={14} className="text-brand-accent" /> 현재 인기 아카이브
+        <TrendingUp size={14} className="text-brand-accent" /> {t('현재 인기 아카이브')}
           </div>
         </div>
 
@@ -136,10 +143,10 @@ const Home: React.FC = () => {
               <div className="absolute inset-0 p-14 flex flex-col justify-between">
                 <div className="flex items-center gap-4">
                   <span className="px-4 py-1.5 rounded-full bg-brand-primary/30 backdrop-blur-md border border-brand-primary/30 text-[10px] font-black uppercase tracking-widest text-brand-accent">
-                    시스템 코드: {game.id.toUpperCase()}
+                {t('시스템 코드:')} {game.id.toUpperCase()}
                   </span>
                   <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black uppercase text-gray-400">
-                    <Activity size={12} className="text-green-500" /> 데이터 동기화 완료
+                <Activity size={12} className="text-green-500" /> {t('데이터 동기화 완료')}
                   </div>
                 </div>
 
@@ -155,19 +162,19 @@ const Home: React.FC = () => {
                   
                   <div className="flex items-center gap-10 pt-4">
                     <div className="flex flex-col">
-                      <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1">캐릭터 명단</span>
+                  <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1">{t('캐릭터 명단')}</span>
                       <span className="text-3xl font-black tabular-nums">{CHARACTER_DB.filter(c => c.gameId === game.id).length}</span>
                     </div>
                     <div className="w-px h-10 bg-white/10" />
                     <div className="flex flex-col">
-                      <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1">전략 보고서</span>
+                  <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1">{t('전략 보고서')}</span>
                       <span className="text-3xl font-black tabular-nums">{game.posts.length}</span>
                     </div>
                   </div>
 
                   <div className="pt-6">
                     <div className="inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest transition-all group-hover:bg-brand-accent group-hover:text-white group-hover:scale-105 group-hover:-translate-y-1 shadow-lg shadow-white/5">
-                      데이터베이스 입장 <ChevronRight size={16} />
+                  {t('데이터베이스 입장')} <ChevronRight size={16} />
                     </div>
                   </div>
                 </div>
@@ -179,8 +186,8 @@ const Home: React.FC = () => {
             <div className="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5">
               <Cpu size={40} className="text-gray-700" />
             </div>
-            <h4 className="text-xl font-black text-gray-600 uppercase tracking-[0.2em] mb-4">새로운 데이터 연결 준비 중</h4>
-            <p className="text-gray-700 text-base font-medium">Coming Soon: 젠레스 존 제로 & 원신 임팩트</p>
+        <h4 className="text-xl font-black text-gray-600 uppercase tracking-[0.2em] mb-4">{t('새로운 데이터 연결 준비 중')}</h4>
+        <p className="text-gray-700 text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
           </div>
         </div>
       </section>

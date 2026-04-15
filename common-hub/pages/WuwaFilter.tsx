@@ -1,5 +1,6 @@
 import React from 'react';
 import { WuwaCategory } from '../components/ww';
+import { useTranslation } from 'react-i18next';
 
 interface Props {
   selectedCategory: WuwaCategory | '전체';
@@ -13,6 +14,7 @@ const categories: (WuwaCategory | '전체')[] = [
 ];
 
 const WuwaFilter: React.FC<Props> = ({ selectedCategory, onSelect }) => {
+  const { t } = useTranslation();
   return (
     <div className="w-full mb-6">
       <div className="flex flex-wrap gap-2">
@@ -26,7 +28,7 @@ const WuwaFilter: React.FC<Props> = ({ selectedCategory, onSelect }) => {
                 : 'bg-white/5 text-gray-500 border-white/10 hover:bg-white/10 hover:text-white'
               }`}
           >
-            {cat}
+            {t(cat)}
           </button>
         ))}
       </div>

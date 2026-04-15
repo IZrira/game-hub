@@ -42,7 +42,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "characters": [
         { "id": "char_스파키", "folderName": "스파키", "role": "메인 딜러", "name": "스파키", "change": "new" },
         { "id": "char_효광", "folderName": "효광", "role": "서포터", "name": "효광", "change": "new" },
-        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 기억", "change": "up" }
+        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (기억)", "change": "up" }
       ]
     },
     {
@@ -104,7 +104,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
         { "id": "char_마이데이", "folderName": "마이데이", "role": "메인 딜러", "name": "마이데이", "change": "stay" },
         { "id": "char_아글라이아", "folderName": "아글라이아", "role": "메인 딜러", "name": "아글라이아", "change": "stay" },
         { "id": "char_은랑", "folderName": "은랑", "role": "서포터", "name": "은랑", "change": "stay" },
-        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 화합", "change": "stay" },
+        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (화합)", "change": "stay" },
         { "id": "char_어벤츄린", "folderName": "어벤츄린", "role": "유지력", "name": "어벤츄린", "change": "stay" },
         { "id": "char_갤러거", "folderName": "갤러거", "role": "유지력", "name": "갤러거", "change": "stay" }
       ]
@@ -146,7 +146,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
         { "id": "char_경원", "folderName": "경원", "role": "메인 딜러", "name": "경원", "change": "stay" },
         { "id": "char_브로냐", "folderName": "브로냐", "role": "서포터", "name": "브로냐", "change": "stay" },
         { "id": "char_정운", "folderName": "정운", "role": "서포터", "name": "정운", "change": "stay" },
-        { "id": "char_Mar_7th_Hunt", "folderName": "Mar. 7th (수렵)", "role": "서브 딜러", "name": "Mar.7th (수렵)", "change": "stay" },
+        { "id": "char_Mar_7th_Hunt", "folderName": "Mar. 7th (수렵)", "role": "서브 딜러", "name": "Mar. 7th (수렵)", "change": "stay" },
         { "id": "char_히메코", "folderName": "히메코", "role": "메인 딜러", "name": "히메코", "change": "stay" },
         { "id": "char_토파즈_복순이", "folderName": "토파즈 & 복순이", "role": "서브 딜러", "name": "토파즈 & 복순이", "change": "stay" }
       ]
@@ -156,7 +156,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "label": "F",
       "color": "#1e272e",
       "characters": [
-        { "id": "char_Dr_레이시오", "folderName": "Dr. 레이시오", "role": "메인 딜러", "name": "Dr.레이시오", "change": "stay" },
+        { "id": "char_Dr_레이시오", "folderName": "Dr. 레이시오", "role": "메인 딜러", "name": "Dr. 레이시오", "change": "stay" },
         { "id": "char_단항음월", "folderName": "단항•음월", "role": "메인 딜러", "name": "단항•음월", "change": "stay" },
         { "id": "char_아젠티", "folderName": "아젠티", "role": "메인 딜러", "name": "아젠티", "change": "stay" },
         { "id": "char_미샤", "folderName": "미샤", "role": "메인 딜러", "name": "미샤", "change": "stay" },
@@ -196,7 +196,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "characters": [
         { "id": "char_스파키", "folderName": "스파키", "role": "메인 딜러", "name": "스파키", "change": "stay" },
         { "id": "char_효광", "folderName": "효광", "role": "서포터", "name": "효광", "change": "stay" },
-        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 기억", "change": "stay" }
+        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (기억)", "change": "stay" }
       ]
     },
     {
@@ -273,7 +273,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "color": "#8395A7",
       "characters": [
         { "id": "char_초구", "folderName": "초구", "role": "서포터", "name": "초구", "change": "stay" },
-        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 화합", "change": "stay" },
+        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (화합)", "change": "stay" },
         { "id": "char_블레이드", "folderName": "블레이드", "role": "메인 딜러", "name": "블레이드", "change": "stay" },
         { "id": "char_은랑", "folderName": "은랑", "role": "서포터", "name": "은랑", "change": "stay" },
         { "id": "char_나찰", "folderName": "나찰", "role": "유지력", "name": "나찰", "change": "stay" },
@@ -314,10 +314,10 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "characters": [
         { "id": "char_비소", "folderName": "비소", "role": "메인 딜러", "name": "비소", "change": "stay" },
         { "id": "char_맥택", "folderName": "맥택", "role": "서브 딜러", "name": "맥택", "change": "stay" },
-        { "id": "char_Mar_7th_Hunt", "folderName": "Mar. 7th (수렵)", "role": "서브 딜러", "name": "Mar.7th (수렵)", "change": "stay" },
+        { "id": "char_Mar_7th_Hunt", "folderName": "Mar. 7th (수렵)", "role": "서브 딜러", "name": "Mar. 7th (수렵)", "change": "stay" },
         { "id": "char_부트힐", "folderName": "부트힐", "role": "메인 딜러", "name": "부트힐", "change": "stay" },
         { "id": "char_미샤", "folderName": "미샤", "role": "메인 딜러", "name": "미샤", "change": "stay" },
-        { "id": "char_Dr_레이시오", "folderName": "Dr. 레이시오", "role": "메인 딜러", "name": "Dr.레이시오", "change": "stay" },
+        { "id": "char_Dr_레이시오", "folderName": "Dr. 레이시오", "role": "메인 딜러", "name": "Dr. 레이시오", "change": "stay" },
         { "id": "char_설의", "folderName": "설의", "role": "메인 딜러", "name": "설의", "change": "stay" },
         { "id": "char_한아", "folderName": "한아", "role": "서포터", "name": "한아", "change": "stay" },
         { "id": "char_토파즈_복순이", "folderName": "토파즈 & 복순이", "role": "서브 딜러", "name": "토파즈 & 복순이", "change": "stay" },
@@ -386,8 +386,8 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "characters": [
         { "id": "char_로빈", "folderName": "로빈", "role": "서포터", "name": "로빈", "change": "stay" },
         { "id": "char_정운", "folderName": "정운", "role": "서포터", "name": "정운", "change": "stay" },
-        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 화합", "change": "stay" },
-        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 기억", "change": "stay" },
+        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (화합)", "change": "stay" },
+        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (기억)", "change": "stay" },
         { "id": "char_사이퍼", "folderName": "사이퍼", "role": "서브 딜러", "name": "사이퍼", "change": "stay" },
         { "id": "char_아케론", "folderName": "아케론", "role": "메인 딜러", "name": "아케론", "change": "stay" },
         { "id": "char_비소", "folderName": "비소", "role": "메인 딜러", "name": "비소", "change": "stay" },
@@ -456,7 +456,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "characters": [
         { "id": "char_스파키", "folderName": "스파키", "role": "메인 딜러", "name": "스파키", "change": "stay" },
         { "id": "char_효광", "folderName": "효광", "role": "서포터", "name": "효광", "change": "stay" },
-        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 기억", "change": "stay" }
+        { "id": "char_개척자_기억", "folderName": "개척자 (기억)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (기억)", "change": "stay" }
       ]
     },
     {
@@ -520,7 +520,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
         { "id": "char_아글라이아", "folderName": "아글라이아", "role": "메인 딜러", "name": "아글라이아", "change": "stay" },
         { "id": "char_비소", "folderName": "비소", "role": "메인 딜러", "name": "비소", "change": "stay" },
         { "id": "char_더_헤르타", "folderName": "더 헤르타", "role": "메인 딜러", "name": "더 헤르타", "change": "stay" },
-        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 화합", "change": "stay" },
+        { "id": "char_개척자_화합", "folderName": "개척자 (화합)", "role": "서포터", "isTrailblazer": true, "name": "개척자 (화합)", "change": "stay" },
         { "id": "char_어벤츄린", "folderName": "어벤츄린", "role": "유지력", "name": "어벤츄린", "change": "stay" }
       ]
     },
@@ -547,7 +547,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
         { "id": "char_초구", "folderName": "초구", "role": "서포터", "name": "초구", "change": "stay" },
         { "id": "char_페라", "folderName": "페라", "role": "서포터", "name": "페라", "change": "stay" },
         { "id": "char_부현", "folderName": "부현", "role": "유지력", "name": "부현", "change": "stay" },
-        { "id": "char_Mar_7th_Hunt", "folderName": "Mar. 7th (수렵)", "role": "서브 딜러", "name": "Mar.7th (수렵)", "change": "stay" },
+        { "id": "char_Mar_7th_Hunt", "folderName": "Mar. 7th (수렵)", "role": "서브 딜러", "name": "Mar. 7th (수렵)", "change": "stay" },
         { "id": "char_히메코", "folderName": "히메코", "role": "메인 딜러", "name": "히메코", "change": "stay" },
         { "id": "char_토파즈_복순이", "folderName": "토파즈 & 복순이", "role": "서브 딜러", "name": "토파즈 & 복순이", "change": "stay" }
       ]
@@ -571,7 +571,7 @@ export const HSR_TIER_DATA: Record<string, TierGroup[]> = {
       "label": "F",
       "color": "#1e272e",
       "characters": [
-        { "id": "char_Dr_레이시오", "folderName": "Dr. 레이시오", "role": "메인 딜러", "name": "Dr.레이시오", "change": "stay" },
+        { "id": "char_Dr_레이시오", "folderName": "Dr. 레이시오", "role": "메인 딜러", "name": "Dr. 레이시오", "change": "stay" },
         { "id": "char_단항음월", "folderName": "단항•음월", "role": "메인 딜러", "name": "단항•음월", "change": "stay" },
         { "id": "char_아젠티", "folderName": "아젠티", "role": "메인 딜러", "name": "아젠티", "change": "stay" },
         { "id": "char_미샤", "folderName": "미샤", "role": "메인 딜러", "name": "미샤", "change": "stay" },

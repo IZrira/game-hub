@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
-// Fix: ITEM_DATABASE was missing, using ITEM_META and getAutoRarity instead
-import { ITEM_META, getItemUrl, getAutoRarity } from '../data/items';
+import { getItemMeta, getItemUrl, getAutoRarity, REVERSE_ITEM_MAP } from '../data/items';
+import { useTranslation } from 'react-i18next';
 
 interface ItemIconProps {
   name: string;
@@ -20,8 +20,8 @@ const RARITY_THEMES: Record<number, string> = {
 };
 
 const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverride, size = 'md' }) => {
-  // Fix: Replaced missing ITEM_DATABASE with ITEM_META and added getAutoRarity fallback
-  const itemInfo = ITEM_META[name];
+  const { t, i18n } = useTranslation();
+  const itemInfo = getItemMeta(name);
   const rarity = rarityOverride || itemInfo?.rarity || getAutoRarity(name);
   const [imgSrc, setImgSrc] = useState(getItemUrl(name));
 
@@ -56,7 +56,10 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
   };
 
   const currentSize = sizeClasses[size];
-  const displayName = truncateMiddle(name, currentSize.limit);
+  
+  const koName = REVERSE_ITEM_MAP[name] || name;
+  const translatedName = t(koName, { keySeparator: false });
+  const displayName = truncateMiddle(translatedName, currentSize.limit);
 
   return (
     <div 
@@ -65,7 +68,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
       title={name}
     >
       <div className={`
-        relative ${currentSize.box} rounded-xl overflow-hidden border-2 
+        relative isolate ${currentSize.box} rounded-xl overflow-hidden border-2 
         bg-gradient-to-b transition-all duration-500
         group-hover:brightness-110 shadow-lg flex items-center justify-center
         ${RARITY_THEMES[rarity] || RARITY_THEMES[1]}
@@ -77,8 +80,8 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
           alt={name}
           width="150"
           height="150"
-          style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-          className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110"
+          style={{ imageRendering: 'auto' }}
+          className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110 text-transparent"
           onError={handleError}
         />
 
@@ -90,7 +93,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
       </div>
       
       <div className="w-full px-1 text-center">
-        <span className={`${currentSize.text} text-gray-500 font-bold leading-none whitespace-nowrap group-hover:text-brand-accent transition-colors uppercase tracking-tight block`}>
+        <span className={`${currentSize.text} text-gray-500 font-bold leading-none whitespace-nowrap group-hover:text-brand-accent transition-colors uppercase tracking-tight block truncate w-full`} title={translatedName}>
           {displayName}
         </span>
       </div>

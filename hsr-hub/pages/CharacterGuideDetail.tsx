@@ -55,9 +55,17 @@ const CharacterGuideDetail: React.FC = () => {
     y: number;
   } | null>(null);
   
-  const guide = useMemo(() => 
-    HSR_CHARACTER_GUIDES.find(g => g.characterName.normalize('NFC') === charName?.normalize('NFC')), 
-    [charName]
+  // charName은 이제 id(영문) 또는 한국어 이름 둘 다 올 수 있음
+  // CHARACTER_DB에서 id로 찾아 originalName(한국어)을 가져온 뒤 가이드 조회
+  const resolvedKoName = useMemo(() => {
+    if (!charName) return undefined;
+    const found = CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName);
+    return (found as any)?.originalName || found?.name || charName;
+  }, [charName]);
+
+  const guide = useMemo(() =>
+    HSR_CHARACTER_GUIDES.find(g => g.characterName.normalize('NFC') === resolvedKoName?.normalize('NFC')),
+    [resolvedKoName]
   );
 
   const currentVariant = useMemo(() => {
@@ -143,14 +151,14 @@ const CharacterGuideDetail: React.FC = () => {
     return { full, twoPiece };
   }, [currentVariant]);
 
-  const character = useMemo(() => 
-    CHARACTER_DB.find(c => c.name.normalize('NFC') === charName?.normalize('NFC')), 
-    [charName]
+  const character = useMemo(() =>
+    CHARACTER_DB.find((c: any) => c.id === charName || c.name.normalize('NFC') === resolvedKoName?.normalize('NFC')),
+    [charName, resolvedKoName]
   );
 
-  const recommendedParties = useMemo(() => 
-    HSR_PARTIES.filter(p => p.members.some(m => m.name.normalize('NFC') === charName?.normalize('NFC'))),
-    [charName]
+  const recommendedParties = useMemo(() =>
+    HSR_PARTIES.filter(p => p.members.some(m => m.name.normalize('NFC') === resolvedKoName?.normalize('NFC'))),
+    [resolvedKoName]
   );
 
   const handleMouseEnter = (e: React.MouseEvent, name: string, type: 'relic' | 'ornament' | 'lightcone', note?: string) => {

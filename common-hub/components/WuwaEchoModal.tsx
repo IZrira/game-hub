@@ -17,8 +17,8 @@ const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail }: any) => {
   const SONATA_ICON_BASE = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/sonata/';
 
   return (
-    // z-index를 100으로 설정하여 팝업되는 아이템 모달(보통 200 이상)보다 뒤에 배치
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
+    // z-index를 9998으로 설정하여 일반 아이템 모달(9999) 뒤에 뜨면서도 경로바보다는 최상단에 노출되도록 배치
+    <div className="fixed inset-0 z-[9998] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md">
       <div className="absolute inset-0" onClick={onClose} />
       
       <div className="relative w-full max-w-2xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-[40px] overflow-hidden flex flex-col shadow-[0_0_50px_rgba(0,0,0,0.5)]">

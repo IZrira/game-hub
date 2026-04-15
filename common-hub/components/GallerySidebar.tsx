@@ -13,6 +13,7 @@ import {
   LayoutGrid,
   Bell
 } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface SidebarItem {
   label: string;
@@ -27,6 +28,7 @@ interface GallerySidebarProps {
 }
 
 const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMenu }) => {
+  const { t } = useTranslation();
   const { gameId } = useParams<{ gameId: string }>();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -94,7 +96,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
               <div className={`p-2.5 rounded-xl ${isActive ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/50' : 'bg-white/5'}`}>
                 {item.icon}
               </div>
-              <span className="text-[14px] font-black tracking-tight">{displayLabel}</span>
+              <span className="text-[14px] font-black tracking-tight">{t(displayLabel)}</span>
             </button>
           );
         })}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   Users, 
@@ -20,11 +20,9 @@ import {
   Sparkles
 } from 'lucide-react';
 import { Character, Game } from '../types';
-import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
-import { HSR_NOTICES } from '../../hsr-hub/data/notices';
-import { WW_NOTICES } from '../../ww-hub/data/notices';
-import { WEAPON_DATA } from '../../ww-hub/data/weapons';
 import { Bell } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { getGameData } from '../data/dataManager';
 
 interface GameDashboardProps {
   game: Game;
@@ -32,6 +30,10 @@ interface GameDashboardProps {
 }
 
 const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) => {
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'ko';
+  const { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, WEAPON_DATA, HSR_NOTICES, WW_NOTICES } = useMemo(() => getGameData(currentLang), [currentLang]);
+
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
 
@@ -44,13 +46,13 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
 
   // Get latest characters
   const latestCharacters = CHARACTER_DB
-    .filter(c => c.gameId === game.id)
+    .filter((c: Character) => c.gameId === game.id)
     .slice(0, 7);
 
   // Get latest updates (Characters, Light Cones, Relics/Ornaments)
   const latestUpdates = [
     // 1. 캐릭터 매핑 수정 (art01.webp 사용)
-    ...CHARACTER_DB.filter(c => c.gameId === game.id).slice(0, 3).map(c => ({
+    ...CHARACTER_DB.filter((c: Character) => c.gameId === game.id).slice(0, 3).map((c: Character) => ({
       id: c.id,
       name: c.name,
       type: '캐릭터',
@@ -58,7 +60,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
       image: game.id === 'hsr' 
         ? encodeURI(`${CDN_URL}/hsr images/캐릭터/${(c.folderName || c.name).normalize('NFC')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
         : encodeURI(`${CDN_URL}/ww images/characters/${(c.folderName || c.name).normalize('NFC')}/art01.webp`),
-      link: `/gallery/${game.id}/character/${c.name}`
+      link: `/gallery/${game.id}/character/${c.id}`
     })),
     
     // 2. 광추 / 무기 매핑 수정 (운명의 길 폴더 경로 추가 및 WW 데이터 분리)
@@ -152,22 +154,12 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             </div>
             <p className="text-gray-400 font-medium text-sm">{game.subTitle}</p>
           </div>
-          
-          {/* Quick Search */}
-          <div className="relative w-full md:w-96 group">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-primary transition-colors" size={18} />
-            <input 
-              type="text" 
-              placeholder="캐릭터, 광추, 공략 검색..." 
-              className="w-full bg-[#151515] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary/50 transition-all placeholder:text-gray-600"
-            />
-          </div>
         </div>
 
         {/* Quick Access Grid (Shortcuts) */}
         <div>
           <h2 className="text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
-            <LayoutGrid size={14} /> Quick Access
+            <LayoutGrid size={14} /> {t('Quick Access')}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
             {shortcuts.map((item, idx) => (
@@ -179,7 +171,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 <div className={`p-3 rounded-xl bg-[#0a0a0a] border border-white/5 group-hover:border-white/10 transition-colors ${item.color}`}>
                   {item.icon}
                 </div>
-                <span className="text-xs font-bold text-gray-300 group-hover:text-white">{item.label}</span>
+                <span className="text-xs font-bold text-gray-300 group-hover:text-white">{t(item.label)}</span>
               </button>
             ))}
           </div>
@@ -192,34 +184,37 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
-                  <Sparkles size={18} className="text-brand-accent" /> 최신 캐릭터
+                  <Sparkles size={18} className="text-brand-accent" /> {t('최신 캐릭터')}
                 </h2>
                 <button onClick={() => setActiveMenu('캐릭터')} className="text-xs font-bold text-gray-500 hover:text-white flex items-center gap-1 transition-colors">
-                  전체보기 <ChevronRight size={12} />
+                  {t('전체보기')} <ChevronRight size={12} />
                 </button>
               </div>
               
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-                {latestCharacters.map(char => (
+                {latestCharacters.map((char: Character) => (
                   <Link 
                     key={char.id} 
-                    to={`/gallery/${game.id}/character/${char.name}`}
-                    className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all"
+                    to={`/gallery/${game.id}/character/${char.id}`}
+                    className="group relative isolate aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all"
                   >
                     <img 
                       src={game.id === 'hsr' 
                         ? encodeURI(`${CDN_URL}/hsr images/캐릭터/${(char.folderName || char.name).normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
                         : encodeURI(`${CDN_URL}/ww images/characters/${(char.folderName || char.name).normalize('NFC')}/art01.webp`)
                       }
-                      alt={char.name}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      alt={t(char.name)}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp';
+                      }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
                     <div className="absolute bottom-0 left-0 p-3 w-full">
                       <div className="flex justify-between items-end">
                         <div>
-                          <p className="text-white font-bold text-sm leading-none mb-1">{char.name}</p>
-                          <p className="text-[10px] text-gray-400 uppercase">{char.attribute}</p>
+                          <p className="text-white font-bold text-sm leading-none mb-1">{t(char.name)}</p>
+                          <p className="text-[10px] text-gray-400 uppercase">{t(char.attribute)}</p>
                         </div>
                         {char.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5" />}
                       </div>
@@ -230,7 +225,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                     <ChevronRight size={16} />
                   </div>
-                  <span className="text-xs font-bold">더보기</span>
+                  <span className="text-xs font-bold">{t('더보기')}</span>
                 </button>
               </div>
             </div>
@@ -239,10 +234,10 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
-                  <Sparkles size={18} className="text-brand-primary" /> 최신 업데이트 목록
+                  <Sparkles size={18} className="text-brand-primary" /> {t('최신 업데이트 목록')}
                 </h2>
                 <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5">
-                  New Content
+                  {t('New Content')}
                 </div>
               </div>
 
@@ -251,12 +246,12 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                   <Link 
                     key={`${item.id}-${idx}`}
                     to={item.link}
-                    className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all"
+                    className="group relative isolate aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all"
                   >
                     <img 
                       src={item.image} 
-                      alt={item.name} 
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      alt={t(item.name)} 
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent border-none outline-none"
                       onError={(e) => {
                         (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp';
                       }}
@@ -265,12 +260,12 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                     <div className="absolute bottom-0 left-0 p-3 w-full">
                       <div className="flex justify-between items-end">
                         <div className="min-w-0">
-                          <p className="text-white font-bold text-sm leading-none mb-1 truncate">{item.name}</p>
+                          <p className="text-white font-bold text-sm leading-none mb-1 truncate">{t(item.name)}</p>
                           <p className={`text-[9px] font-black uppercase ${
-                            item.type === '캐릭터' ? 'text-brand-accent' :
-                            item.type === '광추' ? 'text-yellow-500' :
+                            item.type === '캐릭터' || item.type === 'Character' ? 'text-brand-accent' :
+                            item.type === '광추' || item.type === 'Light Cone' ? 'text-yellow-500' :
                             'text-blue-500'
-                          }`}>{item.type}</p>
+                          }`}>{t(item.type)}</p>
                         </div>
                         {item.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5 flex-shrink-0" />}
                       </div>
@@ -287,7 +282,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6 shadow-xl">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-sm font-black text-brand-accent uppercase tracking-widest flex items-center gap-2">
-                  <Bell size={16} /> Notice
+                  <Bell size={16} /> {t('Notice')}
                 </h2>
                 <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
               </div>
@@ -319,7 +314,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 
                 {notices.length === 0 && (
                   <div className="py-8 text-center">
-                    <p className="text-[10px] font-bold text-gray-700 uppercase tracking-widest">No Recent Notices</p>
+                    <p className="text-[10px] font-bold text-gray-700 uppercase tracking-widest">{t('No Recent Notices')}</p>
                   </div>
                 )}
               </div>

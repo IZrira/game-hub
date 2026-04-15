@@ -7,7 +7,8 @@ import {
   TrendingUp, Filter, Layers, Sword, Book, Hash, ArrowLeft 
 } from 'lucide-react';
 
-import { ARCHIVE_DATA, CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../data/games';
+import { ARCHIVE_DATA } from '../data/games';
+import { getGameData } from '../data/dataManager';
 import { ITEM_META } from '../data/items';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import { Category, Character, Post, LightCone } from '../types';
@@ -15,41 +16,18 @@ import InventoryGallery from '../components/InventoryGallery';
 import WuwaInventory from '../components/WuwaInventory';
 import WuwaEchoGallery from '../components/WuwaEchoGallery';
 import GameDashboard from '../components/GameDashboard';
-import { WEAPON_DATA } from '../../ww-hub/data/weapons';
+import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../components/GallerySidebar';
 import SEO from '../components/SEO';
 import AdPlaceholder from '../components/AdPlaceholder';
+import SearchModal from '../components/SearchModal';
 import { DESIGN_CONCEPT } from './theme';
+import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
+import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentPremiumCard } from '@/common-hub/components/GalleryCards';
+import { RelicDetailModal, OrnamentDetailModal } from '@/common-hub/components/GalleryModals';
+import { CDN_URL } from '@/common-hub/utils/assetManager';
 
 type SidebarMenu = string;
-
-const ATTR_THEMES: Record<string, { color: string; shadow: string }> = {
-  '화염': { color: '#FF4D4D', shadow: 'rgba(255, 77, 77, 0.5)' },
-  '얼음': { color: '#3D8CFF', shadow: 'rgba(61, 140, 255, 0.5)' },
-  '바람': { color: '#00E676', shadow: 'rgba(0, 230, 118, 0.5)' },
-  '번개': { color: '#9D4DFF', shadow: 'rgba(157, 77, 255, 0.5)' },
-  '양자': { color: '#8080FF', shadow: 'rgba(128, 128, 255, 0.5)' },
-  '허수': { color: '#FFD600', shadow: 'rgba(255, 214, 0, 0.5)' },
-  '물리': { color: '#A1A1A1', shadow: 'rgba(161, 161, 161, 0.5)' },
-  '기류': { color: '#00E676', shadow: 'rgba(0, 230, 118, 0.5)' },
-  '전도': { color: '#9D4DFF', shadow: 'rgba(157, 77, 255, 0.5)' },
-  '회절': { color: '#FFD600', shadow: 'rgba(255, 214, 0, 0.5)' },
-  '인멸': { color: '#FF4D4D', shadow: 'rgba(255, 77, 77, 0.5)' },
-  '용융': { color: '#FF8A8A', shadow: 'rgba(255, 138, 138, 0.5)' },
-  '응결': { color: '#3D8CFF', shadow: 'rgba(61, 140, 255, 0.5)' },
-};
-
-/* 가이드의 '일관성' 원칙을 적용한 공통 카드 레이아웃 */
-const ConceptCard = ({ children, className, onClick }: { children: React.ReactNode, className?: string, onClick?: () => void }) => (
-  <div 
-    onClick={onClick}
-    className={`${DESIGN_CONCEPT.EFFECTS.GLASS} hover:${DESIGN_CONCEPT.EFFECTS.GLOW} transition-all duration-500 overflow-hidden group relative ${className || ''}`}
-    style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}
-  >
-    <div className="absolute inset-0 bg-brand-gradient opacity-0 group-hover:opacity-100 transition-opacity" />
-    <div className="relative z-10 h-full">{children}</div>
-  </div>
-);
 
 const Gallery: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -68,6 +46,9 @@ const Gallery: React.FC = () => {
   const [relicSubTab, setRelicSubTab] = useState<'유물' | '차원 장신구'>('유물');
   const [selectedRelic, setSelectedRelic] = useState<any>(null);
   const [selectedOrnament, setSelectedOrnament] = useState<any>(null);
+  const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'ko';
 
   // Sync activeMenu and searchQuery with searchParams
   useEffect(() => {
@@ -80,6 +61,18 @@ const Gallery: React.FC = () => {
       setSearchQuery(searchParam);
     }
   }, [searchParams]);
+
+  // Ctrl+K (or Cmd+K) 단축키로 글로벌 검색 모달 열기
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        setIsGlobalSearchOpen(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   const handleSetActiveMenu = (menu: string) => {
     setActiveMenu(menu);
@@ -101,73 +94,16 @@ const Gallery: React.FC = () => {
     rarityFilter !== '전체' && setRarityFilter('전체');
   }, [gameId, activeMenu]);
 
+  const { CHARACTER_DB, LIGHTCONE_DB, WEAPON_DATA, RELIC_DB, ORNAMENT_DB } = useMemo(() => getGameData(currentLang), [currentLang]);
+
   const game = useMemo(() => {
     return ARCHIVE_DATA?.games?.find(g => g.id === gameId) || null;
   }, [gameId]);
 
-  const filteredCharacters = useMemo(() => {
-    if (!CHARACTER_DB) return [];
-    return CHARACTER_DB.filter(c => {
-      if (c.gameId !== gameId) return false;
-      const matchesAttr = attrFilter === '전체' || c.attribute === attrFilter;
-      const matchesSecond = secondFilter === '전체' || (gameId === 'hsr' ? c.path === secondFilter : c.weaponType === secondFilter);
-      const matchesRarity = rarityFilter === '전체' || c.rarity === parseInt(rarityFilter);
-      const matchesSearch = c.name.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesAttr && matchesSecond && matchesSearch && matchesRarity;
-    });
-  }, [gameId, attrFilter, secondFilter, rarityFilter, searchQuery]);
-
-  const filteredLightCones = useMemo(() => {
-    if (gameId === 'ww') {
-      return WEAPON_DATA.filter(w => {
-        const matchesSecond = secondFilter === '전체' || w.type === secondFilter;
-        const matchesRarity = rarityFilter === '전체' || w.rarity === parseInt(rarityFilter);
-        const matchesSearch = w.name.toLowerCase().includes(searchQuery.toLowerCase());
-        return matchesSecond && matchesSearch && matchesRarity;
-      }).map(w => ({ ...w, gameId: 'ww' })) as any[];
-    }
-    
-    if (!LIGHTCONE_DB) return [];
-    return LIGHTCONE_DB.filter(lc => {
-      if (lc.gameId !== gameId) return false;
-      const matchesSecond = secondFilter === '전체' || lc.path === secondFilter;
-      const matchesRarity = rarityFilter === '전체' || lc.rarity === parseInt(rarityFilter);
-      const matchesSearch = lc.name.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSecond && matchesSearch && matchesRarity;
-    });
-  }, [gameId, secondFilter, rarityFilter, searchQuery]);
-
-  const filteredRelics = useMemo(() => {
-    if (!RELIC_DB) return [];
-    return RELIC_DB.filter(relic => {
-      if (relic.gameId !== gameId) return false;
-      const matchesSearch = relic.name.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSearch;
-    });
-  }, [gameId, searchQuery]);
-
-  const filteredOrnaments = useMemo(() => {
-    if (!ORNAMENT_DB) return [];
-    return ORNAMENT_DB.filter(ornament => {
-      if (ornament.gameId !== gameId) return false;
-      const matchesSearch = ornament.name.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchesSearch;
-    });
-  }, [gameId, searchQuery]);
-
-  const filterOptions = useMemo(() => {
-    if (gameId === 'hsr') {
-      return {
-        second: ['파멸', '수렵', '지식', '화합', '공허', '보존', '풍요', '기억', '환락'],
-        attr: ['물리', '화염', '얼음', '번개', '바람', '양자', '허수']
-      };
-    } else {
-      return {
-        second: ['대검', '직검', '권총', '권갑', '증폭기'],
-        attr: ['기류', '전도', '회절', '인멸', '용융', '응결']
-      };
-    }
-  }, [gameId]);
+  const { filteredCharacters, filteredLightCones, filteredRelics, filteredOrnaments, filterOptions } = useGalleryFilter(
+    gameId, searchQuery, attrFilter, secondFilter, rarityFilter,
+    CHARACTER_DB, LIGHTCONE_DB, WEAPON_DATA, RELIC_DB, ORNAMENT_DB
+  );
 
   if (!game) {
     return (
@@ -184,26 +120,26 @@ const Gallery: React.FC = () => {
         description={`${game.title}의 캐릭터, 광추, 유물 및 장신구 도감을 확인하세요. 최신 업데이트 정보를 제공합니다.`}
       />
       {/* 상단바 */}
-      <div className="bg-[#121212] border-b border-white/5 sticky top-16 z-[100] h-12 flex items-center px-8 shadow-2xl justify-between">
+      <div className="bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 sticky top-16 z-[40] h-12 flex items-center px-8 shadow-2xl justify-between w-full">
         <div className="flex items-center gap-6">
           <button 
             onClick={() => window.history.back()}
             className="flex items-center gap-2 text-[11px] font-black text-gray-500 hover:text-white transition-colors group"
           >
             <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            <span>이전으로</span>
+            <span>{t('이전으로')}</span>
           </button>
           <div className="h-3 w-px bg-white/10" />
           <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
             <Link to="/" className="flex items-center gap-2 hover:text-brand-accent transition-colors">
-              <HomeIcon size={12} /> 메인
+              <HomeIcon size={12} /> {t('메인')}
             </Link>
             <ChevronRight size={10} />
             <span className="text-brand-light/70">{game.title}</span>
             {activeMenu !== '홈' && (
               <>
                 <ChevronRight size={10} />
-                <span className="text-brand-accent">{activeMenu}</span>
+                <span className="text-brand-accent">{t(activeMenu)}</span>
               </>
             )}
           </nav>
@@ -215,53 +151,56 @@ const Gallery: React.FC = () => {
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
 
         {/* 메인 섹션 */}
-        <main className="min-h-[800px] space-y-16">
+        <main className="min-h-[800px] space-y-16 relative z-10">
           {activeMenu === '캐릭터' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-                  <h2 className="text-4xl font-black italic tracking-tighter uppercase">캐릭터 도감</h2>
-                  <div className="relative group w-full max-w-sm">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8 mb-8">
+                  <h2 className="text-4xl font-black italic tracking-tighter uppercase">{t('캐릭터 도감')}</h2>
+                </div>
+
+                <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center animate-in fade-in slide-in-from-top-2 duration-500">
+                  <div className="relative w-full xl:w-72 shrink-0">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                     <input 
                       type="text" 
                       autoComplete="off"
-                      placeholder="유닛 검색..." 
-                      className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold"
+                      placeholder={t('캐릭터 명칭으로 필터링...')} 
+                      className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
                       value={searchQuery}
                       onChange={(e) => handleSearchChange(e.target.value)}
                     />
                   </div>
-                </div>
-
-                <div className="flex flex-wrap gap-4 mt-8 pt-8 border-t border-white/5 items-center animate-in fade-in slide-in-from-top-2 duration-500">
-                  <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-4">
-                    <Filter size={12} /> FILTER
+                  
+                  <div className="flex flex-wrap gap-3 items-center w-full">
+                    <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-2">
+                      <Filter size={12} /> FILTER
+                    </div>
+                    <FilterSelect 
+                      label={gameId === 'hsr' ? t('운명의 길') : t('무기')} 
+                      value={secondFilter} 
+                      onChange={setSecondFilter} 
+                      options={filterOptions.second} 
+                    />
+                    <FilterSelect 
+                      label={t('속성')} 
+                      value={attrFilter} 
+                      onChange={setAttrFilter} 
+                      options={filterOptions.attr} 
+                    />
+                    <FilterSelect 
+                      label={t('등급')} 
+                      value={rarityFilter} 
+                      onChange={setRarityFilter} 
+                      options={['5', '4']} 
+                      formatOption={(opt: string) => `${opt}${t('성')}`}
+                    />
                   </div>
-                  <FilterSelect 
-                    label={gameId === 'hsr' ? '운명의 길' : '무기'} 
-                    value={secondFilter} 
-                    onChange={setSecondFilter} 
-                    options={filterOptions.second} 
-                  />
-                  <FilterSelect 
-                    label="속성" 
-                    value={attrFilter} 
-                    onChange={setAttrFilter} 
-                    options={filterOptions.attr} 
-                  />
-                  <FilterSelect 
-                    label="등급" 
-                    value={rarityFilter} 
-                    onChange={setRarityFilter} 
-                    options={['5', '4']} 
-                    formatOption={(opt: string) => `${opt}성`}
-                  />
                 </div>
               </div>
 
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-                {filteredCharacters.map(char => (
+                {filteredCharacters.map((char: any) => (
                   <CharacterPremiumCard key={char.id} char={char} />
                 ))}
               </div>
@@ -269,39 +208,42 @@ const Gallery: React.FC = () => {
           ) : (activeMenu === '광추' || activeMenu === '무기') ? (
             <>
               <div className="space-y-12 animate-in fade-in duration-500">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-                  <h2 className="text-4xl font-black italic tracking-tighter uppercase">{gameId === 'ww' ? '무기 도감' : '광추 도감'}</h2>
-                  <div className="relative group w-full max-w-sm">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8 mb-8">
+                  <h2 className="text-4xl font-black italic tracking-tighter uppercase">{gameId === 'ww' ? t('무기 도감') : t('광추 도감')}</h2>
+                </div>
+
+                <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center animate-in fade-in slide-in-from-top-2 duration-500">
+                  <div className="relative w-full xl:w-72 shrink-0">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                     <input 
                       type="text" 
                       autoComplete="off"
-                      placeholder="이름 검색..." 
-                      className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold"
+                      placeholder={t('명칭으로 필터링...')} 
+                      className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
                       value={searchQuery}
                       onChange={(e) => handleSearchChange(e.target.value)}
                     />
                   </div>
-                </div>
-
-                <div className="flex flex-wrap gap-4 mt-8 pt-8 border-t border-white/5 items-center animate-in fade-in slide-in-from-top-2 duration-500">
-                  <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-4">
-                    <Filter size={12} /> FILTER
+                  
+                  <div className="flex flex-wrap gap-3 items-center w-full">
+                    <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-2">
+                      <Filter size={12} /> FILTER
+                    </div>
+                    <FilterSelect 
+                      label={gameId === 'hsr' ? t('운명의 길') : t('무기')} 
+                      value={secondFilter} 
+                      onChange={setSecondFilter} 
+                      options={filterOptions.second} 
+                    />
+                    <FilterSelect 
+                      label={t('등급')} 
+                      value={rarityFilter} 
+                      onChange={setRarityFilter} 
+                      options={['5', '4', '3']} 
+                      formatOption={(opt: string) => `${opt}${t('성')}`}
+                    />
                   </div>
-                  <FilterSelect 
-                    label={gameId === 'hsr' ? '운명의 길' : '무기'} 
-                    value={secondFilter} 
-                    onChange={setSecondFilter} 
-                    options={filterOptions.second} 
-                  />
-                  <FilterSelect 
-                    label="등급" 
-                    value={rarityFilter} 
-                    onChange={setRarityFilter} 
-                    options={['5', '4', '3']} 
-                    formatOption={(opt: string) => `${opt}성`}
-                  />
                 </div>
               </div>
 
@@ -309,7 +251,7 @@ const Gallery: React.FC = () => {
               <AdPlaceholder type="leaderboard" className="my-8" />
 
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-                {filteredLightCones.map(lc => (
+                {filteredLightCones.map((lc: any) => (
                   <LightConePremiumCard 
                     key={lc.id} 
                     lc={lc} 
@@ -320,38 +262,44 @@ const Gallery: React.FC = () => {
             </>
           ) : activeMenu === '유물 & 장신구' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-                  <h2 className="text-4xl font-black italic tracking-tighter uppercase">{gameId === 'ww' ? '에코 도감' : '유물 & 장신구 도감'}</h2>
-                  <div className="relative group w-full max-w-sm">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8 mb-8">
+                  <h2 className="text-4xl font-black italic tracking-tighter uppercase">{gameId === 'ww' ? t('에코 도감') : t('유물 & 장신구 도감')}</h2>
+                </div>
+
+                <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center animate-in fade-in slide-in-from-top-2 duration-500">
+                  <div className="relative w-full xl:w-72 shrink-0">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                     <input 
                       type="text" 
                       autoComplete="off"
-                      placeholder="이름 검색..." 
-                      className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold"
+                      placeholder={t('명칭으로 필터링...')} 
+                      className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
                       value={searchQuery}
                       onChange={(e) => handleSearchChange(e.target.value)}
                     />
                   </div>
+                  
+                  {gameId === 'hsr' && (
+                    <div className="flex flex-wrap gap-3 items-center w-full">
+                      <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-2">
+                        <Filter size={12} /> TYPE
+                      </div>
+                      <button 
+                        onClick={() => setRelicSubTab('유물')}
+                        className={`h-11 px-6 rounded-xl text-sm font-black transition-all border flex items-center justify-center ${relicSubTab === '유물' ? 'bg-brand-primary border-brand-primary text-white shadow-lg shadow-brand-primary/30' : 'bg-white/[0.03] border-white/5 text-gray-500 hover:bg-white/10'}`}
+                      >
+                        {t('터널 유물')}
+                      </button>
+                      <button 
+                        onClick={() => setRelicSubTab('차원 장신구')}
+                        className={`h-11 px-6 rounded-xl text-sm font-black transition-all border flex items-center justify-center ${relicSubTab === '차원 장신구' ? 'bg-brand-accent border-brand-accent text-black shadow-lg shadow-brand-accent/30' : 'bg-white/[0.03] border-white/5 text-gray-500 hover:bg-white/10'}`}
+                      >
+                        {t('차원 장신구')}
+                      </button>
+                    </div>
+                  )}
                 </div>
-
-                {gameId === 'hsr' && (
-                  <div className="flex gap-4 mt-8 pt-8 border-t border-white/5">
-                    <button 
-                      onClick={() => setRelicSubTab('유물')}
-                      className={`px-8 py-3 rounded-2xl text-sm font-black transition-all border ${relicSubTab === '유물' ? 'bg-brand-primary border-brand-primary text-white shadow-lg shadow-brand-primary/30' : 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'}`}
-                    >
-                      터널 유물
-                    </button>
-                    <button 
-                      onClick={() => setRelicSubTab('차원 장신구')}
-                      className={`px-8 py-3 rounded-2xl text-sm font-black transition-all border ${relicSubTab === '차원 장신구' ? 'bg-brand-accent border-brand-accent text-black shadow-lg shadow-brand-accent/30' : 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'}`}
-                    >
-                      차원 장신구
-                    </button>
-                  </div>
-                )}
               </div>
 
               {gameId === 'hsr' && (
@@ -360,10 +308,10 @@ const Gallery: React.FC = () => {
                     <div className="space-y-8">
                       <div className="flex items-center gap-4">
                         <div className="w-1.5 h-8 bg-brand-primary rounded-full" />
-                        <h3 className="text-2xl font-black italic tracking-tight uppercase">터널 유물 아카이브</h3>
+                        <h3 className="text-2xl font-black italic tracking-tight uppercase">{t('터널 유물 아카이브')}</h3>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                        {filteredRelics.map(relic => (
+                        {filteredRelics.map((relic: any) => (
                           <RelicPremiumCard key={relic.id} relic={relic} onClick={() => setSelectedRelic(relic)} />
                         ))}
                       </div>
@@ -372,10 +320,10 @@ const Gallery: React.FC = () => {
                     <div className="space-y-8">
                       <div className="flex items-center gap-4">
                         <div className="w-1.5 h-8 bg-brand-accent rounded-full" />
-                        <h3 className="text-2xl font-black italic tracking-tight uppercase">차원 장신구 아카이브</h3>
+                        <h3 className="text-2xl font-black italic tracking-tight uppercase">{t('차원 장신구 아카이브')}</h3>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                        {filteredOrnaments.map(ornament => (
+                        {filteredOrnaments.map((ornament: any) => (
                           <OrnamentPremiumCard key={ornament.id} ornament={ornament} onClick={() => setSelectedOrnament(ornament)} />
                         ))}
                       </div>
@@ -394,18 +342,18 @@ const Gallery: React.FC = () => {
             </div>
           ) : activeMenu === '공략' ? (
             <div className="space-y-12 animate-in fade-in duration-500">
-               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col md:flex-row justify-between items-center gap-8">
                   <div className="space-y-2">
-                    <h2 className="text-4xl font-black italic tracking-tighter uppercase">캐릭터 공략 모음</h2>
-                    <p className="text-gray-600 font-bold text-sm">캐릭터별 최적의 유물, 광추, 스탯 세팅 가이드를 확인하세요.</p>
+                    <h2 className="text-4xl font-black italic tracking-tighter uppercase">{t('캐릭터 공략 모음')}</h2>
+                    <p className="text-gray-600 font-bold text-sm">{t('캐릭터별 최적의 유물, 광추, 스탯 세팅 가이드를 확인하세요.')}</p>
                   </div>
                   
                   {/* 용어 사전 등 기타 가이드 링크 */}
                   <div className="flex gap-4">
                     <Link to={`/gallery/${gameId}/terminology`} className="flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/10 px-6 py-3 rounded-2xl transition-all">
                       <Book size={18} className="text-brand-accent" />
-                      <span className="text-sm font-bold text-white">용어 사전</span>
+                      <span className="text-sm font-bold text-white">{t('용어 사전')}</span>
                     </Link>
                   </div>
                 </div>
@@ -413,11 +361,11 @@ const Gallery: React.FC = () => {
               
               {/* 캐릭터 공략 리스트 (프리미엄 배너 카드 스타일) */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {filteredCharacters.map(char => (
+                {filteredCharacters.map((char: any) => (
                   <Link 
                     key={char.id} 
-                    to={`/gallery/${gameId}/guide/${encodeURIComponent(char.name)}`} // 🚨 클릭 시 개별 공략 페이지로 이동!
-                    className={`group relative ${DESIGN_CONCEPT.EFFECTS.GLASS} hover:${DESIGN_CONCEPT.EFFECTS.GLOW} overflow-hidden transition-all duration-500 shadow-lg flex items-center h-[140px]`}
+                    to={`/gallery/${gameId}/guide/${char.id}`}
+                    className={`group relative isolate ${DESIGN_CONCEPT.EFFECTS.GLASS} hover:${DESIGN_CONCEPT.EFFECTS.GLOW} overflow-hidden transition-all duration-500 shadow-lg flex items-center h-[140px]`}
                     style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}
                   >
                     <div className="absolute right-0 top-0 bottom-0 w-2/3" style={{ maskImage: 'linear-gradient(to right, transparent, black 40%)', WebkitMaskImage: 'linear-gradient(to right, transparent, black 40%)' }}>
@@ -438,14 +386,14 @@ const Gallery: React.FC = () => {
                     <div className="relative z-10 p-6 flex flex-col justify-center h-full w-full">
                       <div className="flex items-center gap-1.5 mb-3">
                         <span className="flex items-center gap-1 px-2.5 py-1 bg-brand-primary/20 text-brand-accent text-[9px] font-black rounded-lg uppercase tracking-widest border border-brand-primary/30">
-                          <Book size={10} /> 세팅 공략
+                          <Book size={10} /> {t('세팅 공략')}
                         </span>
                       </div>
                       <h3 className="text-xl md:text-2xl font-black text-white italic tracking-tight group-hover:text-brand-accent transition-colors truncate">
-                        {char.name}
+                        {t(char.name)}
                       </h3>
                       <p className="text-[10px] text-gray-500 font-bold mt-1 uppercase tracking-widest">
-                        {char.attribute} · {char.gameId === 'hsr' ? char.path : char.weaponType}
+                        {t(char.attribute)} · {t(char.gameId === 'hsr' ? char.path : char.weaponType)}
                       </p>
                     </div>
                   </Link>
@@ -461,7 +409,7 @@ const Gallery: React.FC = () => {
           ) : (
             <div className="flex flex-col items-center justify-center h-96 border border-dashed border-white/10 rounded-[48px] text-gray-600">
                <Layers size={48} className="mb-4 opacity-20" />
-               <p className="font-black uppercase tracking-widest text-sm">준비 중인 섹션입니다</p>
+               <p className="font-black uppercase tracking-widest text-sm">{t('준비 중인 섹션입니다')}</p>
             </div>
           )}
 
@@ -471,369 +419,12 @@ const Gallery: React.FC = () => {
           )}
         </main>
       </div>
+
+      <SearchModal isOpen={isGlobalSearchOpen} onClose={() => setIsGlobalSearchOpen(false)} gameId={gameId} />
     </div>
   );
 };
 
-/* --- 에러 #31 방어용 서브 컴포넌트 --- */
-// CDN URL
-const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
-
-// 🚨 수정 2: 유물 폴더 안에 바로 '유물명.webp'를 부르도록 복구 + 맥(Mac) 한글 깨짐 방지 추가
-const getMainImageUrl = (item: any) => {
-  const safeType = item.type.normalize('NFC');
-  const safeName = item.name.normalize('NFC');
-  if (item.gameId === 'ww') {
-    return encodeURI(`${CDN_URL}/ww images/echoes/${safeName}.webp`);
-  }
-  const url = `${CDN_URL}/hsr images/${safeType}/${safeName}.webp`;
-  return encodeURI(url);
-};
-
-// 🚨 수정 3: 유물 폴더 안에 바로 '파츠명.webp'를 부르도록 복구 + 맥(Mac) 한글 깨짐 방지 추가
-const getPieceImageUrl = (item: any, pieceIndex: number) => {
-  const safeType = item.type.normalize('NFC');
-  const safePieceName = item.pieces[pieceIndex].normalize('NFC');
-  if (item.gameId === 'ww') {
-    return encodeURI(`${CDN_URL}/ww images/echoes/${safePieceName}.webp`);
-  }
-  const url = `${CDN_URL}/hsr images/${safeType}/${safePieceName}.webp`;
-  return encodeURI(url);
-};
-
-const SidebarButton = ({ label, active, onClick, icon }: any) => {
-  // label이 혹시라도 객체라면 문자열로 강제 변환하여 에러 #31 방지
-  const safeLabel = typeof label === 'string' ? label : String(label);
-
-  return (
-    <button
-      onClick={onClick}
-      className={`w-full flex items-center gap-5 px-5 py-4 rounded-2xl transition-all border ${active ? 'bg-brand-primary/10 text-brand-accent border-brand-primary/20' : 'text-gray-600 hover:bg-white/[0.05] border-transparent'}`}
-    >
-      <div className={`p-2.5 rounded-xl ${active ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/50' : 'bg-white/5'}`}>
-        {icon}
-      </div>
-      <span className="text-[14px] font-black tracking-tight">{safeLabel}</span>
-    </button>
-  );
-};
-
-const CharacterPremiumCard: React.FC<{ char: Character }> = ({ char }) => {
-  const theme = ATTR_THEMES[char.attribute] || { color: '#ffffff', shadow: 'rgba(255, 255, 255, 0.2)' };
-  
-  const charImageUrl = char.gameId === 'hsr' 
-    ? `${CDN_URL}/hsr images/캐릭터/${(char.folderName || char.name).normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-    : `${CDN_URL}/ww images/characters/${(char.folderName || char.name).normalize('NFC')}/art01.webp`;
-
-  return (
-    <Link to={`/gallery/${char.gameId}/character/${encodeURIComponent(char.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] transition-all duration-500 hover:-translate-y-2" style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
-      <div className="absolute inset-0 transition-all opacity-0 group-hover:opacity-30 blur-xl -z-10" style={{ backgroundColor: theme.color, borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }} />
-      <div className={`relative w-full h-full border border-white/5 overflow-hidden ${DESIGN_CONCEPT.EFFECTS.GLASS} group-hover:border-brand-primary/50 transition-all shadow-xl`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
-        <img 
-          src={encodeURI(charImageUrl)}
-          alt={char.name}
-          width="400"
-          height="600"
-          style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          loading="lazy"
-          decoding="async"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-        <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-          <div className="flex gap-0.5 mb-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={8} fill={i < char.rarity ? "#FFD600" : "none"} className={i < char.rarity ? "text-[#FFD600]" : "text-gray-900"} />
-            ))}
-          </div>
-          <h3 className="text-lg font-black text-white italic leading-none tracking-tighter truncate mb-1">{char.name}</h3>
-          <p className="text-[9px] font-black uppercase tracking-widest" style={{ color: theme.color }}>{char.attribute}</p>
-        </div>
-      </div>
-    </Link>
-  );
-};
-
-const LightConePremiumCard: React.FC<{ lc: any; onClick?: () => void }> = ({ lc, onClick }) => {
-  const targetName = lc.fileName || lc.folderName || lc.name;
-  const lcImageUrl = lc.gameId === 'hsr'
-    ? `${CDN_URL}/hsr images/광추/${(lc.path || '').normalize('NFC')}/${targetName.normalize('NFC')}.webp`
-    : `${CDN_URL}/ww images/Weapons/${targetName.normalize('NFC')}.webp`;
-
-  const mainStat = lc.baseStats?.lv80?.["기초 공격력"] || lc.stats?.atk || '???';
-  const subStatValue = lc.stats?.subStatValue || '';
-
-  const cardContent = (
-    <div className={`relative w-full h-full border border-white/5 overflow-hidden ${DESIGN_CONCEPT.EFFECTS.GLASS} group-hover:border-brand-primary/50 transition-all shadow-xl flex flex-col`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
-      <div className="relative w-full h-2/3 flex items-center justify-center p-4">
-      <img 
-        src={encodeURI(lcImageUrl)}
-        alt={lc.name}
-        className="absolute inset-0 w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
-        style={{ 
-          imageRendering: 'auto',
-          transform: 'translateZ(0)'
-        }}
-        loading="lazy"
-        decoding="async"
-        onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr images/items/unknown.webp`; }}
-      />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-      <div className="absolute bottom-0 left-0 right-0 p-4 flex flex-col justify-end">
-        <div className="flex gap-0.5 mb-1">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} size={8} fill={i < lc.rarity ? "#FFD600" : "none"} className={i < lc.rarity ? "text-[#FFD600]" : "text-gray-900"} />
-          ))}
-        </div>
-        <h3 className="text-lg font-black text-white italic leading-none tracking-tighter truncate mb-1">{lc.name}</h3>
-        <div className="flex justify-between items-center w-full">
-          <p className="text-[9px] font-black uppercase tracking-widest text-gray-400">{lc.gameId === 'hsr' ? lc.path : lc.type}</p>
-          <div className="flex flex-col items-end">
-            <span className="text-[12px] font-black text-brand-accent">ATK {mainStat}</span>
-            {subStatValue && <span className="text-[10px] font-bold text-gray-300">{subStatValue}</span>}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  if (onClick) {
-    return (
-      <div onClick={onClick} className="group relative aspect-[3/4.5] bg-[#0d0d0d] transition-all duration-500 hover:-translate-y-2 cursor-pointer" style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
-        {cardContent}
-      </div>
-    );
-  }
-
-  return (
-    <Link to={`/gallery/${lc.gameId}/${lc.gameId === 'ww' ? 'weapon' : 'lightcone'}/${encodeURIComponent(lc.name)}`} className="group relative aspect-[3/4.5] bg-[#0d0d0d] transition-all duration-500 hover:-translate-y-2" style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.CARD }}>
-      {cardContent}
-    </Link>
-  );
-};
-
-const RelicPremiumCard: React.FC<{ relic: any; onClick: () => void }> = ({ relic, onClick }) => {
-  return (
-    <ConceptCard onClick={onClick} className="p-6 cursor-pointer">
-      <div className="flex gap-6">
-        <div className="w-24 h-24 rounded-2xl bg-white/5 p-2 flex items-center justify-center shrink-0">
-          <img 
-            src={getMainImageUrl(relic)}
-            alt={relic.name}
-            width="200"
-            height="200"
-            style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
-            loading="lazy"
-            decoding="async"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp';
-            }}
-          />
-        </div>
-        <div className="flex flex-col justify-center min-w-0 flex-1 pr-2">
-          <h3 className="text-[14px] md:text-[16px] font-black text-white italic tracking-tighter truncate mb-1 whitespace-nowrap">{relic.name}</h3>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 bg-brand-primary/20 text-brand-accent text-[10px] font-black rounded-md uppercase tracking-widest">{relic.type}</span>
-          </div>
-        </div>
-      </div>
-      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-        <ArrowUpRight size={20} className="text-brand-primary" />
-      </div>
-    </ConceptCard>
-  );
-};
-
-const OrnamentPremiumCard: React.FC<{ ornament: any; onClick: () => void }> = ({ ornament, onClick }) => {
-  return (
-    <ConceptCard onClick={onClick} className="p-6 cursor-pointer">
-      <div className="flex gap-6">
-        <div className="w-24 h-24 rounded-2xl bg-white/5 p-2 flex items-center justify-center shrink-0">
-          <img 
-            src={getMainImageUrl(ornament)}
-            alt={ornament.name}
-            width="200"
-            height="200"
-            style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-            className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
-            loading="lazy"
-            decoding="async"
-            onError={(e) => {
-              (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp';
-            }}
-          />
-        </div>
-        <div className="flex flex-col justify-center min-w-0 flex-1 pr-2">
-          <h3 className="text-[14px] md:text-[16px] font-black text-white italic tracking-tighter truncate mb-1 whitespace-nowrap">{ornament.name}</h3>
-          <div className="flex items-center gap-2">
-            <span className="px-2 py-0.5 bg-brand-primary/20 text-brand-accent text-[10px] font-black rounded-md uppercase tracking-widest">{ornament.type}</span>
-          </div>
-        </div>
-      </div>
-      <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-        <ArrowUpRight size={20} className="text-brand-accent" />
-      </div>
-    </ConceptCard>
-  );
-};
-
-const RelicDetailModal = ({ relic, onClose }: any) => {
-  return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
-      <div className={`relative ${DESIGN_CONCEPT.EFFECTS.GLASS} max-w-2xl w-full border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-        <button onClick={onClose} className="absolute top-8 right-8 p-3 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white z-20">
-          <X size={24} />
-        </button>
-        
-        <div className="p-12 space-y-10">
-          <div className="flex items-center gap-8">
-            <div className="w-32 h-32 rounded-3xl bg-white/5 p-4 flex items-center justify-center shrink-0 relative group">
-              <div className="absolute inset-0 bg-brand-primary/20 blur-2xl rounded-full opacity-50" />
-              <img 
-                src={getMainImageUrl(relic)}
-                alt={relic.name}
-                className="w-full h-full object-contain relative z-10"
-              />
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="px-3 py-1 bg-brand-primary/20 text-brand-accent text-[11px] font-black rounded-full uppercase tracking-widest border border-brand-primary/30">
-                  {relic.type}
-                </span>
-              </div>
-              <h2 className="text-4xl font-black italic tracking-tighter text-white">{relic.name}</h2>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-10">
-            {/* 세부 파츠 (위로 이동 및 1줄 정렬) */}
-            <div className="space-y-6">
-              <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" /> 세부 파츠
-              </h4>
-              <div className="grid grid-cols-4 gap-3">
-                {relic.pieces.map((piece: string, idx: number) => (
-                  <div key={idx} className="bg-white/5 rounded-2xl p-4 border border-white/5 flex flex-col items-center text-center gap-3 group hover:bg-white/10 transition-colors">
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-black/20 p-2">
-                      <img 
-                        src={getPieceImageUrl(relic, idx)}
-                        alt={piece}
-                        className="w-full h-full object-contain"
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
-                      />
-                    </div>
-                    <span className="text-[9px] md:text-[10px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors truncate w-full px-1">{piece}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 세트 효과 (아래로 이동 및 세로 배치) */}
-            <div className="space-y-6">
-              <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" /> 세트 효과
-              </h4>
-              <div className="grid grid-cols-1 gap-4">
-                <div className="bg-white/5 rounded-3xl p-6 border border-white/5">
-                  <div className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-2">2세트</div>
-                  <p className="text-gray-300 text-sm font-medium leading-relaxed">{relic.setEffect['2piece']}</p>
-                </div>
-                {relic.setEffect['4piece'] && (
-                  <div className="bg-white/5 rounded-3xl p-6 border border-white/5">
-                    <div className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-2">4세트</div>
-                    <p className="text-gray-300 text-sm font-medium leading-relaxed">{relic.setEffect['4piece']}</p>
-                  </div>
-                )}
-                {relic.setEffect['5piece'] && (
-                  <div className="bg-white/5 rounded-3xl p-6 border border-white/5">
-                    <div className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-2">5세트</div>
-                    <p className="text-gray-300 text-sm font-medium leading-relaxed">{relic.setEffect['5piece']}</p>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const OrnamentDetailModal = ({ ornament, onClose }: any) => {
-  return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
-      <div className={`relative ${DESIGN_CONCEPT.EFFECTS.GLASS} max-w-2xl w-full border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-        <button onClick={onClose} className="absolute top-8 right-8 p-3 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white z-20">
-          <X size={24} />
-        </button>
-        
-        <div className="p-12 space-y-10">
-          <div className="flex items-center gap-8">
-            <div className="w-32 h-32 rounded-3xl bg-white/5 p-4 flex items-center justify-center shrink-0 relative group">
-              <div className="absolute inset-0 bg-brand-accent/20 blur-2xl rounded-full opacity-50" />
-              <img 
-                src={getMainImageUrl(ornament)}
-                alt={ornament.name}
-                className="w-full h-full object-contain relative z-10"
-              />
-            </div>
-            <div className="space-y-3">
-              <div className="flex items-center gap-3">
-                <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary text-[11px] font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
-                  {ornament.type}
-                </span>
-              </div>
-              <h2 className="text-4xl font-black italic tracking-tighter text-white">{ornament.name}</h2>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-10">
-            {/* 세부 파츠 (위로 이동 및 1줄 정렬) */}
-            <div className="space-y-6">
-              <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" /> 세부 파츠
-              </h4>
-              <div className="grid grid-cols-2 gap-4">
-                {ornament.pieces.map((piece: string, idx: number) => (
-                  <div key={idx} className="bg-white/5 rounded-2xl p-6 border border-white/5 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-colors">
-                    <div className="w-16 h-16 md:w-20 md:h-20 rounded-xl bg-black/20 p-2">
-                      <img 
-                        src={getPieceImageUrl(ornament, idx)}
-                        alt={piece}
-                        className="w-full h-full object-contain"
-                        loading="lazy"
-                        decoding="async"
-                        onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
-                      />
-                    </div>
-                    <span className="text-[11px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{piece}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 세트 효과 (아래로 이동) */}
-            <div className="space-y-6">
-              <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" /> 세트 효과
-              </h4>
-              <div className="bg-white/5 rounded-3xl p-8 border border-white/5">
-                <div className="text-[10px] font-black text-brand-accent uppercase tracking-widest mb-4">2세트</div>
-                <p className="text-gray-300 text-[15px] font-medium leading-relaxed italic">"{ornament.setEffect['2piece']}"</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 const FilterSelect = ({ label, value, onChange, options, formatOption }: any) => {
   return (

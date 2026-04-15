@@ -5,17 +5,19 @@ import { ARCHIVE_DATA, LIGHTCONE_DB } from '../data/games';
 import PageHeader from '../components/PageHeader';
 import AdPlaceholder from '../components/AdPlaceholder';
 import SEO from '../components/SEO';
+import { useTranslation } from 'react-i18next';
 
 const LightConeDetail: React.FC = () => {
   const { gameId, lcName } = useParams<{ gameId: string; lcName: string }>();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const game = useMemo(() => ARCHIVE_DATA.games.find(g => g.id === gameId), [gameId]);
   const lc = useMemo(() => LIGHTCONE_DB.find(l => l.name === lcName), [lcName]);
 
   const theme = { primary: '#EAB308', secondary: '#FDE047', shadow: 'rgba(234, 179, 8, 0.4)' };
 
-  if (!lc) return <div className="p-20 text-center text-white font-black uppercase italic">Light Cone Registry Not Found</div>;
+  if (!lc) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Light Cone Registry Not Found')}</div>;
 
   const getIllustrationUrl = () => {
     const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
@@ -73,7 +75,7 @@ const LightConeDetail: React.FC = () => {
         itemType={lc.gameId === 'ww' ? (lc as any).type : lc.path}
       />
       {/* Page Header */}
-      <PageHeader gameId={gameId} category={lc.gameId === 'ww' ? "무기" : "광추"} title={lc.name} />
+      <PageHeader gameId={gameId} category={lc.gameId === 'ww' ? t("무기") : t("광추")} title={t(lc.name)} />
 
       <div className="max-w-[1200px] mx-auto px-6 pt-10 space-y-20">
         {/* Profile Header */}
@@ -84,11 +86,8 @@ const LightConeDetail: React.FC = () => {
               alt={`${lc.name} 아이콘`} 
               width="800"
               height="1200"
-              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" 
-              style={{ 
-                imageRendering: 'auto',
-                transform: 'translateZ(0)'
-              }}
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000 text-transparent" 
+              style={{ imageRendering: 'auto' }}
               fetchPriority="high"
               decoding="async"
             />
@@ -98,12 +97,12 @@ const LightConeDetail: React.FC = () => {
             <div className="space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex flex-wrap items-center gap-4">
-                  <span className="px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border backdrop-blur-md" style={{ backgroundColor: `${theme.primary}15`, color: theme.primary, borderColor: `${theme.primary}40` }}>{lc.path}</span>
-                  <span className="bg-white/5 text-gray-400 px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border border-white/10">{lc.gameId === 'ww' ? '무기' : '광추'}</span>
+                  <span className="px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border backdrop-blur-md" style={{ backgroundColor: `${theme.primary}15`, color: theme.primary, borderColor: `${theme.primary}40` }}>{t(lc.path || (lc as any).type || '')}</span>
+                  <span className="bg-white/5 text-gray-400 px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border border-white/10">{lc.gameId === 'ww' ? t('무기') : t('광추')}</span>
                 </div>
               </div>
               
-              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-white tracking-tighter italic leading-none whitespace-nowrap">{lc.name}</h1>
+              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-white tracking-tighter italic leading-none whitespace-nowrap">{t(lc.name)}</h1>
               <div className="flex gap-2">{Array.from({ length: lc.rarity }).map((_, i) => (<Star key={i} size={24} fill={theme.primary} style={{ color: theme.primary }} />))}</div>
             </div>
             
@@ -112,11 +111,11 @@ const LightConeDetail: React.FC = () => {
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6">
                     <div className="flex items-center gap-3">
                         <Info size={20} style={{ color: theme.primary }} />
-                        <h3 className="text-[12px] font-black text-white uppercase tracking-widest italic">Story</h3>
+                        <h3 className="text-[12px] font-black text-white uppercase tracking-widest italic">{t('Story')}</h3>
                     </div>
                 </div>
                 <div className="text-gray-300 text-lg leading-relaxed italic bg-black/30 p-8 rounded-[25px] border border-white/5 shadow-inner whitespace-pre-line">
-                  {lc.story}
+                  {t(lc.story || '')}
                 </div>
               </div>
             )}
@@ -128,20 +127,20 @@ const LightConeDetail: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="flex items-center gap-6">
               <span className="text-6xl md:text-8xl font-black italic tracking-tighter opacity-20" style={{ color: theme.primary }}>01</span>
-              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic">기본 스탯 (Lv. 80)</h2>
+              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic">{t('기본 스탯 (Lv. 80)')}</h2>
             </div>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 py-16 border-y border-white/10 text-center">
             <div className="space-y-4">
-              <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">기초 HP</span>
+              <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('기초 HP')}</span>
               <div className="text-4xl font-black text-white">{lc.baseStats?.lv80?.["기초 HP"] || '---'}</div>
             </div>
             <div className="space-y-4">
-              <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">기초 공격력</span>
+              <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('기초 공격력')}</span>
               <div className="text-4xl font-black text-white">{lc.baseStats?.lv80?.["기초 공격력"] || '---'}</div>
             </div>
             <div className="space-y-4">
-              <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">기초 방어력</span>
+              <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('기초 방어력')}</span>
               <div className="text-4xl font-black text-white">{lc.baseStats?.lv80?.["기초 방어력"] || '---'}</div>
             </div>
           </div>
@@ -152,7 +151,7 @@ const LightConeDetail: React.FC = () => {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div className="flex items-center gap-6">
               <span className="text-6xl md:text-8xl font-black italic tracking-tighter opacity-20" style={{ color: theme.primary }}>02</span>
-              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic">광추 능력</h2>
+              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic">{t('광추 능력')}</h2>
             </div>
           </div>
           
@@ -161,24 +160,24 @@ const LightConeDetail: React.FC = () => {
               <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                   <ShieldCheck size={22} className="text-gray-500" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{lc.skill.name} (1중첩)</span>
+                  <span className="text-xl font-black uppercase tracking-tighter italic">{t(lc.skill.name || '')} ({t('1중첩')})</span>
                 </div>
                 <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
-                  {renderDescription(lc.skill.description, 1)}
+                  {renderDescription(t(lc.skill.description || ''), 1)}
                 </p>
               </div>
               <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                   <ShieldCheck size={22} style={{ color: theme.primary }} />
-                  <span className="text-xl font-black uppercase tracking-tighter italic" style={{ color: theme.primary }}>{lc.skill.name} (5중첩)</span>
+                  <span className="text-xl font-black uppercase tracking-tighter italic" style={{ color: theme.primary }}>{t(lc.skill.name || '')} ({t('5중첩')})</span>
                 </div>
                 <p className="text-gray-300 text-lg leading-relaxed whitespace-pre-line">
-                  {renderDescription(lc.skill.description, 5)}
+                  {renderDescription(t(lc.skill.description || ''), 5)}
                 </p>
               </div>
             </div>
           ) : (
-            <p className="text-gray-500 italic">스킬 정보가 없습니다.</p>
+            <p className="text-gray-500 italic">{t('스킬 정보가 없습니다.')}</p>
           )}
         </section>
 
@@ -187,15 +186,15 @@ const LightConeDetail: React.FC = () => {
           <section className="space-y-8">
             <div className="flex items-center gap-6">
               <span className="text-6xl md:text-8xl font-black italic tracking-tighter opacity-20" style={{ color: theme.primary }}>03</span>
-              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic">획득처</h2>
+              <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tighter italic">{t('획득처')}</h2>
             </div>
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8 h-fit">
               <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                 <Info size={22} className="text-gray-500" />
-                <span className="text-xl font-black uppercase tracking-tighter italic">획득처</span>
+                <span className="text-xl font-black uppercase tracking-tighter italic">{t('획득처')}</span>
               </div>
               <p className="text-gray-300 leading-relaxed">
-                {lc.source}
+                {t(lc.source || '')}
               </p>
             </div>
           </section>

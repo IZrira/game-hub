@@ -42,7 +42,7 @@ const WuwaItemModal: React.FC<Props> = ({ item, isOpen, onClose }) => {
   const categoryLabel = isEcho ? "에코" : (item as WuwaItem).category;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300">
       {/* 배경 클릭 시 닫기 */}
       <div className="absolute inset-0" onClick={onClose} />
 

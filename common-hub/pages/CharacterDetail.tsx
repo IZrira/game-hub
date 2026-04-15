@@ -20,26 +20,17 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
-import { CHARACTER_DB } from '../data/games';
-import { ITEM_META, getItemUrl, getAutoRarity } from '../data/items';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import ItemIcon from '../components/ItemIcon';
+import ItemDetailModal from '../components/ItemDetailModal';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
 import AdPlaceholder from '../components/AdPlaceholder';
+import { getGameData } from '../data/dataManager';
+import { useTranslation } from 'react-i18next';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
-
-const getItemStyles = (rarity: number) => {
-  const styles: Record<number, string> = {
-    5: "from-[#9c7b3c] to-[#5e4a24] border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]",
-    4: "from-[#634e9e] to-[#3d2f63] border-purple-500/30",
-    3: "from-[#3b608a] to-[#1e3045] border-blue-500/30",
-    2: "from-[#3b5a41] to-[#25392a] border-green-500/30",
-  };
-  return styles[rarity] || "from-[#4d4d4d] to-[#333333] border-gray-400/20";
-};
 
 const Flag: React.FC<{ code: string }> = ({ code }) => (
   <img src={`https://flagcdn.com/w20/${code}.png`} alt={code} className="inline-block w-4 h-3 object-cover rounded-sm mr-1.5" />
@@ -47,6 +38,10 @@ const Flag: React.FC<{ code: string }> = ({ code }) => (
 
 const CharacterDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
+  const { t, i18n } = useTranslation();
+  const currentLang = i18n.language || 'ko';
+  
+  const { CHARACTER_DB } = useMemo(() => getGameData(currentLang), [currentLang]);
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(true);
   const [levelIdx, setLevelIdx] = useState(7);
   
@@ -57,7 +52,7 @@ const CharacterDetail: React.FC = () => {
   const [isCopied, setIsCopied] = useState(false);
   const characterCardRef = useRef<HTMLDivElement>(null);
 
-  const rawChar = useMemo(() => CHARACTER_DB.find(c => c.name === charName), [charName]);
+  const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
 
   // AS Mode State
   const [isASMode, setIsASMode] = useState(false);
@@ -89,17 +84,31 @@ const CharacterDetail: React.FC = () => {
     if (!char) return { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
     const ELEMENT_THEMES: Record<string, { primary: string, secondary: string, shadow: string }> = {
       '얼음': { primary: '#A1D9FF', secondary: '#3D8CFF', shadow: 'rgba(161, 217, 255, 0.4)' },
+      'Ice': { primary: '#A1D9FF', secondary: '#3D8CFF', shadow: 'rgba(161, 217, 255, 0.4)' },
       '번개': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
+      'Lightning': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
+      'Electro': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
       '물리': { primary: '#E5E5E5', secondary: '#A1A1A1', shadow: 'rgba(229, 229, 229, 0.4)' },
+      'Physical': { primary: '#E5E5E5', secondary: '#A1A1A1', shadow: 'rgba(229, 229, 229, 0.4)' },
       '화염': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      'Fire': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      'Fusion': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
       '바람': { primary: '#80FFB3', secondary: '#00E676', shadow: 'rgba(128, 255, 179, 0.4)' },
+      'Wind': { primary: '#80FFB3', secondary: '#00E676', shadow: 'rgba(128, 255, 179, 0.4)' },
+      'Aero': { primary: '#80FFB3', secondary: '#00E676', shadow: 'rgba(128, 255, 179, 0.4)' },
       '양자': { primary: '#8080FF', secondary: '#651FFF', shadow: 'rgba(128, 128, 255, 0.4)' },
+      'Quantum': { primary: '#8080FF', secondary: '#651FFF', shadow: 'rgba(128, 128, 255, 0.4)' },
       '허수': { primary: '#E6E600', secondary: '#FFD600', shadow: 'rgba(230, 214, 0, 0.4)' },
+      'Imaginary': { primary: '#E6E600', secondary: '#FFD600', shadow: 'rgba(230, 214, 0, 0.4)' },
       '기류': { primary: '#00E676', secondary: '#00C853', shadow: 'rgba(0, 230, 118, 0.4)' },
       '전도': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
       '회절': { primary: '#FFF176', secondary: '#FBC02D', shadow: 'rgba(255, 241, 118, 0.4)' },
+      'Spectro': { primary: '#FFF176', secondary: '#FBC02D', shadow: 'rgba(255, 241, 118, 0.4)' },
       '인멸': { primary: '#FF5252', secondary: '#D32F2F', shadow: 'rgba(255, 82, 82, 0.4)' },
-      '융융': { primary: '#FFB74D', secondary: '#F57C00', shadow: 'rgba(255, 183, 77, 0.4)' },
+      'Havoc': { primary: '#FF5252', secondary: '#D32F2F', shadow: 'rgba(255, 82, 82, 0.4)' },
+      '용융': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      '응결': { primary: '#3D8CFF', secondary: '#1E88E5', shadow: 'rgba(61, 140, 255, 0.4)' },
+      'Glacio': { primary: '#3D8CFF', secondary: '#1E88E5', shadow: 'rgba(61, 140, 255, 0.4)' },
     };
     return ELEMENT_THEMES[char.attribute] || { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
   }, [char]);
@@ -110,10 +119,10 @@ const CharacterDetail: React.FC = () => {
     
     const allText = [
       char.briefInfo,
-      ...(char.skills?.map(s => s.description) || []),
-      ...(char.eidolons?.map(e => e.description) || []),
-      ...(char.additionalAbilities?.map(a => a.description) || []),
-      ...(char.bonusAbilities?.map(a => a.description) || [])
+      ...(char.skills?.map((s: any) => s.description) || []),
+      ...(char.eidolons?.map((e: any) => e.description) || []),
+      ...(char.additionalAbilities?.map((a: any) => a.description) || []),
+      ...(char.bonusAbilities?.map((a: any) => a.description) || [])
     ].join('\n');
 
     // Action Gauge Automation
@@ -140,22 +149,13 @@ const CharacterDetail: React.FC = () => {
     return terms;
   }, [char]);
 
-  const itemData = useMemo(() => {
-    if (!selectedItem) return null;
-    const meta = ITEM_META[selectedItem];
-    const rarity = meta?.rarity || getAutoRarity(selectedItem);
-    const desc = meta?.desc || "아카이브에 아직 상세 정보가 등록되지 않은 아이템입니다.";
-    const type = meta?.type || "미분류";
-    const sources = meta?.sources || ["게임 내 확인 필요"];
-    return { name: selectedItem, url: getItemUrl(selectedItem), rarity, desc, type, sources };
-  }, [selectedItem]);
 
-  if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">Character Registry Not Found</div>;
+  if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
 
   const currentLevel = LEVEL_STEPS[levelIdx];
 
   const calculateStat = (statType: 'hp' | 'atk' | 'def'): string | number => {
-    const labelMap: Record<string, string> = { hp: '기초 HP', atk: '기초 공격력', def: '기초 방어력' };
+    const labelMap: Record<string, string> = { hp: t('기초 HP'), atk: t('기초 공격력'), def: t('기초 방어력') };
     const label = labelMap[statType];
     const lvKey = `lv${currentLevel}` as keyof typeof char.baseStats;
     const lvData = char.baseStats?.[lvKey] as Record<string, number> | undefined;
@@ -212,8 +212,8 @@ const CharacterDetail: React.FC = () => {
   // 1. 웹 공유 API (Native Share)
   const handleShare = async () => {
     const shareData = {
-      title: `${char.name} | RIRA ARCHIVE`,
-      text: `${char.name} 캐릭터의 상세 공략과 데이터를 확인해보세요!`,
+      title: `${t(char.name)} | RIRA ARCHIVE`,
+      text: `${t(char.name)} ${t('캐릭터의 상세 공략과 데이터를 확인해보세요!')}`,
       url: window.location.href,
     };
     if (navigator.share) {
@@ -222,7 +222,7 @@ const CharacterDetail: React.FC = () => {
       } catch (err) { console.log('공유 취소됨:', err); }
     } else {
       navigator.clipboard.writeText(window.location.href);
-      alert('링크가 클립보드에 복사되었습니다.');
+      alert(t('링크가 클립보드에 복사되었습니다.'));
     }
   };
 
@@ -261,14 +261,14 @@ const CharacterDetail: React.FC = () => {
     // 1. 데이터 존재 여부 정밀 체크
     if (!char || !char.materials_v2) {
       console.error("복사할 재료 데이터가 없습니다.", char);
-      alert("재료 데이터가 등록되지 않은 캐릭터입니다.");
+      alert(t('재료 데이터가 등록되지 않은 캐릭터입니다.'));
       return;
     }
 
-    const asc = char.materials_v2.ascension?.map(m => `${m.name} x${m.count}`).join(', ') || '정보 없음';
-    const trc = char.materials_v2.traces?.map(m => `${m.name} x${m.count}`).join(', ') || '정보 없음';
+    const asc = char.materials_v2.ascension?.map((m: any) => `${t(m.name)} x${m.count}`).join(', ') || t('정보 없음');
+    const trc = char.materials_v2.traces?.map((m: any) => `${t(m.name)} x${m.count}`).join(', ') || t('정보 없음');
     
-    const text = `[${char.name} 육성 재료 리스트]\n\n■ 승급 재료\n${asc}\n\n■ 행적 재료\n${trc}\n\n출처: RIRA ARCHIVE`;
+    const text = `[${t(char.name)} ${t('육성 재료 리스트')}]\n\n■ ${t('승급 재료')}\n${asc}\n\n■ ${t('행적 재료')}\n${trc}\n\n출처: RIRA ARCHIVE`;
 
     // 2. 최신 navigator.clipboard 시도
     if (navigator.clipboard && window.isSecureContext) {
@@ -287,60 +287,24 @@ const CharacterDetail: React.FC = () => {
     }
   };
 
-  const seoDescription = `${char.name} 상세 가이드: 최적의 유물, ${char.gameId === 'ww' ? '무기' : '광추'}, 종결 스탯 및 육성 재료 세팅을 완벽 정리했습니다. ${char.gameId === 'ww' ? '명조' : '붕괴: 스타레일'} 게이머를 위한 최신 공략.`;
+  const seoDescription = `${t(char.name)} ${t('상세 가이드: 최적의 유물,')} ${char.gameId === 'ww' ? t('무기') : t('광추')}, ${t('종결 스탯 및 육성 재료 세팅을 완벽 정리했습니다.')} ${char.gameId === 'ww' ? t('명조 (Wuthering Waves)') : t('붕괴: 스타레일')} ${t('게이머를 위한 최신 공략.')}`;
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
-        title={`${char.name} 캐릭터 공략 및 세팅 정보`} 
+        title={`${t(char.name)} ${t('캐릭터 공략 및 세팅 정보')}`} 
         description={seoDescription}
         image={getIllustrationUrl()}
-        url={`/gallery/${gameId}/character/${encodeURIComponent(char.name)}`}
-        gameCategory={char.gameId === 'ww' ? '명조 (Wuthering Waves)' : '붕괴: 스타레일'}
-        itemType={char.gameId === 'hsr' ? char.path : (char as any).weaponType}
+        url={`/gallery/${gameId}/character/${char.id}`}
+        gameCategory={char.gameId === 'ww' ? t('명조 (Wuthering Waves)') : t('붕괴: 스타레일')}
+        itemType={char.gameId === 'hsr' ? t(char.path) : t((char as any).weaponType)}
       />
       {/* Item Modal */}
-      {selectedItem && itemData && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-6 animate-in fade-in duration-300">
-          <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" onClick={() => setSelectedItem(null)} />
-          <div className="relative glass-card max-w-lg w-full rounded-[40px] p-10 border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200">
-             <div className="absolute top-0 right-0 p-6">
-                <button onClick={() => setSelectedItem(null)} className="p-2 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white"><X size={24} /></button>
-             </div>
-             <div className="flex flex-col items-center text-center space-y-8">
-                <div className="relative group">
-                   <div className="absolute inset-0 opacity-40 blur-[60px]" style={{ backgroundColor: getItemStyles(itemData.rarity).includes('yellow') ? '#EAB308' : '#7E30E1' }} />
-                   <div className={`relative w-40 h-40 flex items-center justify-center rounded-[32px] overflow-hidden border-2 bg-gradient-to-b ${getItemStyles(itemData.rarity)}`}>
-                      <img src={itemData.url} alt={itemData.name} className="max-w-full max-h-full object-contain p-4 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
-                   </div>
-                </div>
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-black tracking-tight text-white">{itemData.name}</h2>
-                  <div className="flex justify-center gap-1.5">
-                    {Array.from({ length: itemData.rarity }).map((_, i) => (<Star key={i} size={18} fill="#EAB308" className="text-yellow-500" />))}
-                  </div>
-                </div>
-                <div className="w-full h-px bg-white/10" />
-                <div className="space-y-6 w-full text-left">
-                   <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2"><Package size={14} className="text-brand-accent" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Item Category</span></div>
-                      <span className="text-xs font-black text-brand-accent uppercase bg-brand-accent/10 px-4 py-1.5 rounded-full border border-brand-accent/20">{itemData.type}</span>
-                   </div>
-                   <div className="relative">
-                      <div className="flex items-center gap-2 mb-3"><Info size={14} className="text-brand-primary" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Archive Intel</span></div>
-                      <p className="text-gray-300 text-[15px] leading-relaxed font-medium bg-white/[0.03] p-6 rounded-[30px] border border-white/5 shadow-inner italic">{itemData.desc}</p>
-                   </div>
-                   <div className="space-y-3">
-                      <div className="flex items-center gap-2"><MapPin size={14} className="text-green-400" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Acquisition Sources</span></div>
-                      <div className="flex flex-wrap gap-2">
-                        {itemData.sources.map((source: string, idx: number) => (<span key={idx} className="bg-white/5 text-gray-400 px-3 py-1.5 rounded-xl text-[12px] font-bold border border-white/10">{source}</span>))}
-                      </div>
-                   </div>
-                </div>
-             </div>
-          </div>
-        </div>
-      )}
+      <ItemDetailModal 
+        itemNameEn={selectedItem || ''} 
+        isOpen={!!selectedItem} 
+        onClose={() => setSelectedItem(null)} 
+      />
 
       {/* Tooltip */}
       {tooltip && (
@@ -351,7 +315,7 @@ const CharacterDetail: React.FC = () => {
       )}
 
       {/* Page Header */}
-      <PageHeader gameId={gameId} category="캐릭터" title={char.name} />
+      <PageHeader gameId={gameId} category={t("캐릭터")} title={t(char.name)} />
 
       <div className="max-w-[1200px] mx-auto px-6 pt-10 space-y-20">
         {/* Profile Header */}
@@ -362,8 +326,8 @@ const CharacterDetail: React.FC = () => {
               alt={char.name} 
               width="800"
               height="1200"
-              style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+              style={{ imageRendering: 'auto' }}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 text-transparent" 
               fetchPriority="high"
               decoding="async"
             />
@@ -373,8 +337,8 @@ const CharacterDetail: React.FC = () => {
             <div className="space-y-4">
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex flex-wrap items-center gap-4">
-                  <span className="px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border backdrop-blur-md" style={{ backgroundColor: `${theme.primary}15`, color: theme.primary, borderColor: `${theme.primary}40` }}>{char.attribute}</span>
-                  <span className="bg-white/5 text-gray-400 px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border border-white/10">{char.gameId === 'hsr' ? char.path : char.weaponType}</span>
+                  <span className="px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border backdrop-blur-md" style={{ backgroundColor: `${theme.primary}15`, color: theme.primary, borderColor: `${theme.primary}40` }}>{t(char.attribute)}</span>
+                  <span className="bg-white/5 text-gray-400 px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border border-white/10">{char.gameId === 'hsr' ? t(char.path) : t(char.weaponType)}</span>
                 </div>
                 {/* AS Buff Toggle */}
                 {rawChar?.hasASBuff && (
@@ -383,19 +347,19 @@ const CharacterDetail: React.FC = () => {
                       onClick={() => setIsASMode(false)}
                       className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-[11px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white shadow-sm' : 'text-gray-500 hover:text-gray-300'}`}
                     >
-                      <History size={12} /> Original
+                      <History size={12} /> {t('Original')}
                     </button>
                     <button 
                       onClick={() => setIsASMode(true)}
                       className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-[11px] font-black transition-all ${isASMode ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-white shadow-lg shadow-brand-primary/20' : 'text-gray-500 hover:text-gray-300'}`}
                     >
-                      <RefreshCw size={12} className={isASMode ? "animate-spin-once" : ""} /> AS Remake
+                      <RefreshCw size={12} className={isASMode ? "animate-spin-once" : ""} /> {t('AS Remake')}
                     </button>
                   </div>
                 )}
               </div>
               
-              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-white tracking-tighter italic leading-none">{char.name}</h1>
+              <h1 className="text-[clamp(2.5rem,8vw,5rem)] font-black text-white tracking-tighter italic leading-none">{t(char.name)}</h1>
               <div className="flex gap-2">{Array.from({ length: char.rarity }).map((_, i) => (<Star key={i} size={24} fill={theme.primary} style={{ color: theme.primary }} />))}</div>
             </div>
             
@@ -403,26 +367,26 @@ const CharacterDetail: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 mb-6">
                   <div className="flex items-center gap-3">
                       <ShieldCheck size={20} style={{ color: theme.primary }} />
-                      <h3 className="text-[12px] font-black text-white uppercase tracking-widest italic">Combat Unit Profile</h3>
+                      <h3 className="text-[12px] font-black text-white uppercase tracking-widest italic">{t("Combat Unit Profile")}</h3>
                   </div>
                   {char.isTrailblazer && (
                       <div className="flex bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                          <button onClick={() => setGender('m')} className={`px-6 py-2 rounded-lg text-[11px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>남성</button>
-                          <button onClick={() => setGender('f')} className={`px-6 py-2 rounded-lg text-[11px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>여성</button>
+                          <button onClick={() => setGender('m')} className={`px-6 py-2 rounded-lg text-[11px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>{t('남성')}</button>
+                          <button onClick={() => setGender('f')} className={`px-6 py-2 rounded-lg text-[11px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>{t('여성')}</button>
                       </div>
                   )}
               </div>
               <div className="text-gray-300 text-lg md:text-xl leading-relaxed italic bg-black/30 p-8 rounded-[25px] border border-white/5 shadow-inner whitespace-pre-line">
-                {char.briefInfo || char.brief || ''}
+                {t(char.briefInfo || char.brief || '')}
               </div>
 
               {/* 캐릭터 공략 보기 버튼 추가 */}
               <Link 
-                to={`/gallery/${gameId}/guide/${char.name}`} 
+                to={`/gallery/${gameId}/guide/${char.id}`}
                 className="mt-8 inline-flex items-center gap-3 bg-brand-primary text-white px-8 py-4 rounded-2xl font-black text-sm shadow-[0_20px_40px_rgba(var(--brand-primary),0.3)] hover:scale-105 transition-all group"
               >
                 <BookOpen size={18} className="group-hover:rotate-12 transition-transform" />
-                <span className="tracking-tight">{char.name} 세팅 공략 보기</span>
+                <span className="tracking-tight">{t(char.name)} {t('세팅 공략 보기')}</span>
               </Link>
             </div>
           </div>
@@ -430,18 +394,18 @@ const CharacterDetail: React.FC = () => {
 
         {/* 01 Metadata */}
         <section className="space-y-8">
-          <SectionHeader num="01" title="캐릭터 메타데이터 & 기본 정보" theme={theme} expanded={isMetadataExpanded} onToggle={() => setIsMetadataExpanded(!isMetadataExpanded)} />
+          <SectionHeader num="01" title={t("캐릭터 메타데이터 & 기본 정보")} theme={theme} expanded={isMetadataExpanded} onToggle={() => setIsMetadataExpanded(!isMetadataExpanded)} />
           <div className={`overflow-hidden transition-all duration-500 ${isMetadataExpanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'}`}>
             <div className="glass-card rounded-[40px] border border-white/5 p-10 space-y-10">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16">
-                <MetadataRow label={char.gameId === 'hsr' ? "운명의 길" : "무기 유형"} value={(char.gameId === 'hsr' ? char.path : char.weaponType) || ''} />
-                <MetadataRow label="소속" value={char.affiliation || 'Unknown'} />
-                <MetadataRow label="버전" value={`v${char.releaseVersion || '1.0'}`} />
+                <MetadataRow label={char.gameId === 'hsr' ? t("운명의 길") : t("무기 유형")} value={t(char.gameId === 'hsr' ? char.path : char.weaponType) || ''} />
+                <MetadataRow label={t("소속")} value={t(char.affiliation || 'Unknown')} />
+                <MetadataRow label={t("버전")} value={`v${char.releaseVersion || '1.0'}`} />
                 <div className="space-y-4 py-6 border-b border-white/5">
-                  <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest block">Voice Registry</span>
+                  <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest block">{t("Voice Registry")}</span>
                   <div className="flex flex-wrap gap-5 text-[15px] font-black text-gray-300">
-                    {char.voiceActors?.split('/').map((n, i) => (
-                      <div key={i} className="flex items-center gap-1.5"><Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} /> {n.trim()}</div>
+                    {char.voiceActors?.split('/').map((n: string, i: number) => (
+                      <div key={i} className="flex items-center gap-1.5"><Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} /> {t(n.trim())}</div>
                     ))}
                   </div>
                 </div>
@@ -453,10 +417,10 @@ const CharacterDetail: React.FC = () => {
         {/* 02 Basic Stats */}
         <section className="space-y-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <SectionHeader num="02" title="기본 스탯" theme={theme} />
+            <SectionHeader num="02" title={t("기본 스탯")} theme={theme} />
             <div className="glass-card p-8 rounded-[35px] border border-white/10 min-w-[340px]">
               <div className="flex items-center justify-between mb-5">
-                <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">Synchronized Level</span>
+                <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t("Synchronized Level")}</span>
                 <span className="font-black text-3xl italic" style={{ color: theme.primary }}>Lv. {currentLevel}</span>
               </div>
               <input 
@@ -473,39 +437,35 @@ const CharacterDetail: React.FC = () => {
             </div>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-10 py-16 border-y border-white/10 text-center">
-            <StatCard label="기초 HP" value={calculateStat('hp')} />
-            <StatCard label="기초 공격력" value={calculateStat('atk')} />
-            <StatCard label="기초 방어력" value={calculateStat('def')} />
-            <StatCard label="속도" value={char.baseStats?.speed || 0} />
-            <StatCard label="도발" value={char.baseStats?.taunt || 0} />
-            <StatCard label="에너지" value={char.baseStats?.energy || 0} />
+            <StatCard label={t("기초 HP")} value={calculateStat('hp')} />
+            <StatCard label={t("기초 공격력")} value={calculateStat('atk')} />
+            <StatCard label={t("기초 방어력")} value={calculateStat('def')} />
+            <StatCard label={t("속도")} value={char.baseStats?.speed || 0} />
+            <StatCard label={t("도발")} value={char.baseStats?.taunt || 0} />
+            <StatCard label={t("에너지")} value={char.baseStats?.energy || 0} />
           </div>
         </section>
 
         {/* 03 Materials */}
         <section className="space-y-8">
-          <SectionHeader num="03" title="육성 재료" theme={theme} />
+          <SectionHeader num="03" title={t("육성 재료")} theme={theme} />
           <div className="flex flex-col gap-10">
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
-                 <div className="flex items-center gap-4"><Package size={22} className="text-gray-500" /><span className="text-xl font-black uppercase tracking-tighter italic">승급 재료</span></div>
+                 <div className="flex items-center gap-4"><Package size={22} className="text-gray-500" /><span className="text-xl font-black uppercase tracking-tighter italic">{t("승급 재료")}</span></div>
                  <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">
                    {isCopied ? <CheckCircle2 size={14} className="text-green-500" /> : <Copy size={14} />}
-                   {isCopied ? '복사 완료!' : '재료 리스트 복사'}
+                   {isCopied ? t('복사 완료!') : t('재료 리스트 복사')}
                  </button>
                </div>
                <div className="flex flex-wrap justify-center gap-8">
-                  {char.materials_v2?.ascension?.map((m, i) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">No data yet.</p>}
+                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('No data yet.')}</p>}
                </div>
             </div>
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
-               <div className="flex items-center gap-4 border-b border-white/5 pb-6"><Sparkles size={22} className="text-gray-500" /><span className="text-xl font-black uppercase tracking-tighter italic">행적 재료</span></div>
+               <div className="flex items-center gap-4 border-b border-white/5 pb-6"><Sparkles size={22} className="text-gray-500" /><span className="text-xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span></div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start">
-                  {char.materials_v2?.traces?.map((m, i) => (
-                    <div key={i} className="shrink-0">
-                      <ItemIcon name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />
-                    </div>
-                  )) || <p className="text-gray-700 italic">No data yet.</p>}
+                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('No data yet.')}</p>}
                   <div className="w-8 shrink-0" />
                </div>
             </div>

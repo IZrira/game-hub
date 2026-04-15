@@ -44,7 +44,7 @@ const WuwaCard: React.FC<Props> = ({ item, onClick }) => {
     <div className="flex flex-col items-center gap-3 group cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95" onClick={onClick}>
       {/* 카드 본체 */}
       <div 
-        className={`relative w-16 h-16 md:w-20 md:h-20 border-2 rounded-[22px] overflow-hidden flex items-center justify-center transition-all duration-500 shadow-lg group-hover:brightness-110 ${bgStyle || 'bg-[#1a1a1a] border-white/10'}`}
+        className={`relative isolate w-16 h-16 md:w-20 md:h-20 border-2 rounded-[22px] overflow-hidden flex items-center justify-center transition-all duration-500 shadow-lg group-hover:brightness-110 ${bgStyle || 'bg-[#1a1a1a] border-white/10'}`}
       >
         <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity bg-white pointer-events-none z-20" />
         {/* 에코 이미지 (가득 채우기) */}
@@ -54,8 +54,8 @@ const WuwaCard: React.FC<Props> = ({ item, onClick }) => {
           loading="lazy"
           width="200"
           height="200"
-          style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-          className="w-full h-full object-contain p-2 relative z-10 filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)] transform transition-transform duration-500 group-hover:scale-110"
+          style={{ imageRendering: 'auto' }}
+          className="w-full h-full object-contain p-2 relative z-10 filter drop-shadow-[0_4px_10px_rgba(0,0,0,0.6)] transform transition-transform duration-500 group-hover:scale-110 text-transparent"
           onError={(e) => {
             (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/unknown.webp';
           }}
@@ -69,7 +69,7 @@ const WuwaCard: React.FC<Props> = ({ item, onClick }) => {
 
       {/* 카드 외부 이름 */}
       <div className="w-full px-1 text-center">
-        <span className="text-[10px] md:text-[11px] text-gray-500 font-bold leading-tight group-hover:text-white transition-colors uppercase tracking-tight block overflow-hidden text-ellipsis line-clamp-2 min-h-[2.5em]">
+        <span className="text-[10px] md:text-[11px] text-gray-500 font-bold leading-tight group-hover:text-white transition-colors uppercase tracking-tight block truncate w-full" title={item.name}>
           {item.name}
         </span>
       </div>

@@ -1,4 +1,4 @@
-import { WuwaWeapon } from "../pages/weapon";
+import { WuwaWeapon } from "./weapon";
 
 // --- 1. 대검 (Broadblade) ---
 const BROADBLADES: WuwaWeapon[] = [
