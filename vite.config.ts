@@ -15,20 +15,6 @@ export default defineConfig(({ mode }) => {
         tailwindcss(),
       ],
       build: {
-        rollupOptions: {
-          output: {
-            manualChunks: (id) => {
-              if (id.includes('node_modules')) {
-                if (id.includes('react')) return 'vendor-react';
-                if (id.includes('framer-motion') || id.includes('motion')) return 'vendor-motion';
-                if (id.includes('lucide-react')) return 'vendor-lucide';
-                return 'vendor';
-              }
-              if (id.includes('hsr-hub/data/characters/')) return 'hsr-characters';
-              if (id.includes('ww-hub/data/characters/')) return 'ww-characters';
-            }
-          }
-        },
         chunkSizeWarningLimit: 1000,
       },
       define: {

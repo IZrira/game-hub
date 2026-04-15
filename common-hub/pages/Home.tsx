@@ -12,7 +12,7 @@ import AdPlaceholder from '../components/AdPlaceholder';
 import { 
   ChevronRight, 
   Zap, 
-  Activity, 
+  Activity as ActivityIcon, 
   Database, 
   FileText, 
   ShieldCheck,
@@ -146,7 +146,7 @@ const Home: React.FC = () => {
                 {t('시스템 코드:')} {game.id.toUpperCase()}
                   </span>
                   <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black uppercase text-gray-400">
-                <Activity size={12} className="text-green-500" /> {t('데이터 동기화 완료')}
+                <ActivityIcon size={12} className="text-green-500" /> {t('데이터 동기화 완료')}
                   </div>
                 </div>
 

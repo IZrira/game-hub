@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Layers, Activity } from 'lucide-react';
+import { Search, Layers, Activity as ActivityIcon } from 'lucide-react';
 import { ECHO_DATA } from '../../ww-hub/data/echoes';
 import { SONATA_SETS, WuwaEcho, SonataType } from '../types';
 import WuwaCard from './WuwaCard';
@@ -49,7 +49,7 @@ const WuwaEchoGallery: React.FC = () => {
           <div className="space-y-2 w-full">
             <h2 className="text-4xl font-black italic tracking-tighter uppercase text-brand-accent">에코 도감</h2>
             <p className="text-gray-600 font-bold text-sm flex items-center gap-2">
-              <Activity size={14} /> 분석된 에코 개체: {ECHO_DATA.length}
+              <ActivityIcon size={14} /> 분석된 에코 개체: {ECHO_DATA.length}
             </p>
           </div>
         </div>

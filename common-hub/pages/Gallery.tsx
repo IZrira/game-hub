@@ -3,7 +3,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { 
   Box, Users, Zap, Shield, Backpack, ChevronRight, Sparkles, 
-  Search, Star, Home as HomeIcon, X, Activity, ArrowUpRight, 
+  Search, Star, Home as HomeIcon, X, Activity as ActivityIcon, ArrowUpRight, 
   TrendingUp, Filter, Layers, Sword, Book, Hash, ArrowLeft 
 } from 'lucide-react';
 
@@ -108,7 +108,7 @@ const Gallery: React.FC = () => {
   if (!game) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#0a0a0a] text-white">
-        <Activity className="animate-spin text-brand-primary" size={48} />
+        <ActivityIcon className="animate-spin text-brand-primary" size={48} />
       </div>
     );
   }
