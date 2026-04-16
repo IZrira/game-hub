@@ -14,19 +14,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const { i18n } = useTranslation(); // t 함수 제거
 
-  // Service Worker 등록 및 PWA 설치 프롬프트
+  // Service Worker 등록 로직 제거됨 (CSP 오류 방지)
   useEffect(() => {
-    if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
-      navigator.serviceWorker.register('/sw.js').catch(console.error);
-    }
-
-    const handleBeforeInstall = (e: any) => {
-      e.preventDefault();
-      setDeferredPrompt(e);
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-    return () => window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
+    // PWA 기능을 사용하지 않으므로 비워둠
   }, []);
 
   const handleInstallPWA = () => {
