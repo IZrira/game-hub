@@ -14,9 +14,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const { i18n } = useTranslation(); // t 함수 제거
 
-  // Service Worker 등록 로직 제거됨 (CSP 오류 방지)
+  // 46,000건 에러 중지용 킬 스위치 등록 (임시)
   useEffect(() => {
-    // PWA 기능을 사용하지 않으므로 비워둠
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(console.error);
+    }
   }, []);
 
   const handleInstallPWA = () => {
