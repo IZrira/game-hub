@@ -47,15 +47,15 @@ const boothill: Character = {
       { name: "욕망의 거울 조각", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "공동의 염원의 유음", count: "12", rarity: 4 },
-      { name: "운철 탄환", count: "18", rarity: 2 },
-      { name: "숙명적인 사인", count: "69", rarity: 3 },
-      { name: "시간을 역행하는 일격", count: "139", rarity: 4 },
-      { name: "생각의 가루", count: "41", rarity: 2 },
-      { name: "인상의 파편", count: "56", rarity: 3 },
-      { name: "욕망의 거울 조각", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "공동의 염원의 유음", count: "9", rarity: 4 },
+      { name: "운철 탄환", count: "12", rarity: 2 },
+      { name: "숙명적인 사인", count: "53", rarity: 3 },
+      { name: "시간을 역행하는 일격", count: "101", rarity: 4 },
+      { name: "생각의 가루", count: "33", rarity: 2 },
+      { name: "인상의 파편", count: "46", rarity: 3 },
+      { name: "욕망의 거울 조각", count: "28", rarity: 4 }
     ]
   },
   skills: [

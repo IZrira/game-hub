@@ -9,8 +9,7 @@ const sparxie: Character = {
   path: "환락",
   rarity: 5,
   affiliation: "가면의 우인",
-  briefInfo: "좋아요! 팔로우! 라이브! 조회 수! 세상 끝까지 즐겨보자! 스파키와 스파클, 가면과 우인은 본래 다르지 않다—— 주목받고 사랑받는 자가 바로 정답이다!",
-  version: "4.0",
+  briefInfo: "좋아요! 팔로우! 라이브! 조회 수! 세상 끝까지 즐겨보자!\n스파키와 스파클, 가면과 우인은 본래 다르지 않다——\n주목받고 사랑받는 자가 바로 정답이다!",
   releaseVersion: "4.0",
   languageNames: "🇰🇷 스파키 / 🇺🇸 Sparxie / 🇨🇳 火花 / 🇯🇵 火花",
   voiceActors: "🇰🇷 성예원 / 🇺🇸 리지 프리먼 / 🇨🇳 자오솽 / 🇯🇵 우에다 레이나",
@@ -23,7 +22,7 @@ const sparxie: Character = {
     affiliation: "가면의 우인",
     cv: "🇰🇷 성예원 / 🇺🇸 리지 프리먼 / 🇨🇳 자오솽 / 🇯🇵 우에다 레이나",
     releaseVersion: "4.0",
-    brief: "좋아요! 팔로우! 라이브! 조회 수! 세상 끝까지 즐겨보자! 스파키와 스파클, 가면과 우인은 본래 다르지 않다—— 주목받고 사랑받는 자가 바로 정답이다!"
+    brief: "좋아요! 팔로우! 라이브! 조회 수! 세상 끝까지 즐겨보자!\n스파키와 스파클, 가면과 우인은 본래 다르지 않다——\n주목받고 사랑받는 자가 바로 정답이다!"
   },
   baseStats: {
     lv1: { "기초 HP": 143, "기초 공격력": 87, "기초 방어력": 63 },
@@ -47,15 +46,15 @@ const sparxie: Character = {
       { name: "꿈을 그리는 붓", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "범람을 끊는 침묵", count: "12", rarity: 4 },
-      { name: "≪복슬복슬호≫ 수작업 스토리보드", count: "18", rarity: 2 },
-      { name: "≪복슬복슬호≫ 연재 기념호", count: "69", rarity: 3 },
-      { name: "≪복슬복슬호≫ 소장판 합본", count: "139", rarity: 4 },
-      { name: "천진난만 크레파스", count: "41", rarity: 2 },
-      { name: "꿈을 만드는 딥 펜", count: "56", rarity: 3 },
-      { name: "꿈을 그리는 붓", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,260,000", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "범람을 끊는 침묵", count: "9", rarity: 4 },
+      { name: "≪복슬복슬호≫ 수작업 스토리보드", count: "14", rarity: 2 },
+      { name: "≪복슬복슬호≫ 연재 기념호", count: "53", rarity: 3 },
+      { name: "≪복슬복슬호≫ 소장판 합본", count: "104", rarity: 4 },
+      { name: "천진난만 크레파스", count: "33", rarity: 2 },
+      { name: "꿈을 만드는 딥 펜", count: "49", rarity: 3 },
+      { name: "꿈을 그리는 붓", count: "36", rarity: 4 }
     ]
   },
   skills: [

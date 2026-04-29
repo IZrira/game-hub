@@ -10,7 +10,7 @@ const silverWolf: Character = {
   path: "공허",
   rarity: 5,
   affiliation: "스텔라론 헌터",
-  briefInfo: "「스텔라론 헌터」의 멤버, 프로 해커. 우주를 몰입감 넘치는 대형 시뮬레이션 게임으로 여기며 즐기고 있다.\n현실 데이터를 수정할 수 있는 「에테르 편집」을 마스터했다",
+  briefInfo: "「스텔라론 헌터」의 멤버, 프로 해커\n우주를 몰입감 넘치는 대형 시뮬레이션 게임으로 여기며 즐기고 있다\n현실 데이터를 수정할 수 있는 「에테르 편집」을 마스터했다",
   version: "1.1",
   releaseVersion: "1.1",
   languageNames: "🇰🇷 은랑 / 🇺🇸 Silver Wolf / 🇨🇳 银狼 / 🇯🇵 銀狼",
@@ -25,7 +25,7 @@ const silverWolf: Character = {
     affiliation: "스텔라론 헌터",
     cv: "🇰🇷 장미 / 🇺🇸 멜리사 판 / 🇨🇳 Hanser / 🇯🇵 아스미 카나",
     releaseVersion: "1.1",
-    brief: "「스텔라론 헌터」의 멤버, 프로 해커. 우주를 몰입감 넘치는 대형 시뮬레이션 게임으로 여기며 즐기고 있다.\n현실 데이터를 수정할 수 있는 「에테르 편집」을 마스터했다"
+    brief: "「스텔라론 헌터」의 멤버, 프로 해커\n우주를 몰입감 넘치는 대형 시뮬레이션 게임으로 여기며 즐기고 있다\n현실 데이터를 수정할 수 있는 「에테르 편집」을 마스터했다"
   },
   baseStats: {
     lv1: { "기초 HP": 143, "기초 공격력": 87, "기초 방어력": 63 },
@@ -49,15 +49,15 @@ const silverWolf: Character = {
       { name: "고대 엔진", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "어두운 흑요", count: "18", rarity: 2 },
-      { name: "허공의 흑요", count: "69", rarity: 3 },
-      { name: "타락의 흑요", count: "139", rarity: 4 },
-      { name: "고대 부속품", count: "41", rarity: 2 },
-      { name: "고대 전동축", count: "56", rarity: 3 },
-      { name: "고대 엔진", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "어두운 흑요", count: "12", rarity: 2 },
+      { name: "허공의 흑요", count: "53", rarity: 3 },
+      { name: "타락의 흑요", count: "101", rarity: 4 },
+      { name: "고대 부속품", count: "33", rarity: 2 },
+      { name: "고대 전동축", count: "46", rarity: 3 },
+      { name: "고대 엔진", count: "28", rarity: 4 }
     ]
   },
   skills: [

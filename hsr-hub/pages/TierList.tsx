@@ -1,16 +1,17 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, useMemo, memo, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ChevronRight, Filter, Star, Trophy, Search, Users, Shield, Zap, Sword,
   ArrowUp, ArrowDown, Sparkles, LayoutGrid, Compass, Swords, Skull, Box,
   Loader2, ArrowLeft
 } from 'lucide-react';
-import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, HSR_TIER_CHANGE_LOG } from '../data/tiers';
-import ALL_CHARACTERS from '../data/characters.json';
+import { motion, AnimatePresence } from 'motion/react';
+import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, TierGroup } from '../data/tiers';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
+import { supabase } from '../../common-hub/lib/supabase';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -47,6 +48,27 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   'divergent': <Box size={16} />,
 };
 
+const CharacterSkeleton = () => (
+  <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-white/5 animate-pulse border border-white/5">
+    <div className="absolute bottom-0 left-0 p-2.5 w-full">
+      <div className="h-2 w-12 bg-white/10 rounded" />
+    </div>
+  </div>
+);
+
+const TierSkeleton = () => (
+  <div className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
+    <div className="w-full md:w-32 flex flex-col items-center justify-center p-6 bg-white/5 shrink-0 border-b md:border-b-0 md:border-r border-white/5">
+      <div className="w-12 h-10 bg-white/10 rounded-lg animate-pulse" />
+    </div>
+    <div className="flex-1 p-8">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
+        {[...Array(10)].map((_, i) => <CharacterSkeleton key={i} />)}
+      </div>
+    </div>
+  </div>
+);
+
 const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter, gameId: string | undefined, getIconUrl: (char: TierCharacter) => string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -67,6 +89,25 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
         loading="lazy"
         decoding="async"
         onLoad={() => setIsLoaded(true)}
+        onError={(e) => {
+          const originalUrl = e.currentTarget.src;
+          console.error('Tier Image Load Failed:', originalUrl);
+          
+          if (originalUrl.includes('cdn.jsdelivr.net')) {
+            const fallbackUrl = originalUrl.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net');
+            if (originalUrl !== fallbackUrl) {
+              e.currentTarget.src = fallbackUrl;
+              return;
+            }
+          }
+
+          e.currentTarget.style.display = 'none';
+          const parent = e.currentTarget.parentElement;
+          if (parent) {
+            parent.classList.add('bg-white/5', 'flex', 'items-center', 'justify-center');
+            parent.innerHTML = '<span class="text-[8px] text-gray-700 font-black uppercase">No Image</span>';
+          }
+        }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
       
@@ -75,7 +116,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
         {ROLE_ICONS[char.role]}
       </div>
 
-      {/* Change Badge - Prominent next to image */}
+      {/* Change Badge */}
       {char.change && char.change !== 'stay' && (
         <div className="absolute top-1.5 left-1.5 z-20 scale-110 shadow-xl">
           {CHANGE_BADGES[char.change]}
@@ -100,67 +141,118 @@ const ROLE_PRIORITY: Record<string, number> = {
 
 const TierList: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
-  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState<string>('chaos');
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState('');
+  const [liveData, setLiveData] = useState<Record<string, TierGroup[]>>(HSR_TIER_DATA);
+  const [allCharacters, setAllCharacters] = useState<any[]>([]);
+  const [isSyncing, setIsSyncing] = useState(true);
 
-  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+  const TIER_COLORS: Record<string, string> = {
+    'OP': '#FF4D4D', 'SS': '#FF9F43', 'S+': '#1DD1A1', 'S': '#54A0FF',
+    'A': '#A8A8A8', 'B': '#5F27CD', 'C': '#8395A7', 'D': '#485460',
+    'E': '#2d3436', 'F': '#1e272e',
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!supabase) return;
+      setIsSyncing(true);
+      
+      const { data: charData } = await supabase.from('characters').select('*');
+      if (charData) setAllCharacters(charData);
+
+      const { data: tierData, error } = await supabase.from('tier_lists').select('*').eq('game_id', 'hsr');
+
+      if (error) {
+        setIsSyncing(false);
+        return;
+      }
+
+      const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·\s()]/g, '').trim();
+
+      if (tierData) {
+        const transformed: Record<string, TierGroup[]> = JSON.parse(JSON.stringify(HSR_TIER_DATA));
+        
+        tierData.forEach(row => {
+          if (!transformed[row.category_id]) transformed[row.category_id] = [];
+          const targetName = normalizeName(row.character_name);
+
+          transformed[row.category_id].forEach(group => {
+            group.characters = group.characters.filter(c => normalizeName(c.name) !== targetName);
+          });
+
+          let group = transformed[row.category_id].find(g => g.tier === row.tier);
+          if (!group) {
+            const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F'];
+            group = { tier: row.tier, label: row.tier, color: TIER_COLORS[row.tier] || '#ffffff', characters: [] };
+            transformed[row.category_id].push(group);
+            transformed[row.category_id].sort((a, b) => rankOrder.indexOf(a.tier) - rankOrder.indexOf(b.tier));
+          }
+
+          const baseChar = charData?.find(c => normalizeName(c.name) === targetName);
+          
+          group.characters.push({
+            id: `char_${row.character_name}`,
+            name: row.character_name,
+            folderName: baseChar?.folder_name || row.character_name,
+            role: row.role as any,
+            change: row.change as any,
+            displayOrder: row.display_order ?? 100,
+            isTrailblazer: row.character_name.includes('개척자')
+          });
+        });
+
+        setLiveData(transformed);
+      }
+      setIsSyncing(false);
+    };
+
+    fetchData();
+  }, []);
 
   const filteredTierList = useMemo(() => {
-    const data = HSR_TIER_DATA[activeCategory] || [];
+    const data = liveData[activeCategory] || [];
     const query = searchQuery.toLowerCase().trim();
-    
-    // Helper to normalize names for reliable matching (handles dots, bullets, and spaces)
-    const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·]/g, '·').replace(/\s+/g, '').trim();
-
-    // Create a map for quick character lookup with normalized keys
-    const charMap = new Map((ALL_CHARACTERS as any[]).map(c => [normalizeName(c.name), c]));
-
-    // Get all character names already in the tier list for this category
+    const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·\s()]/g, '').trim();
+    const charMap = new Map(allCharacters.map(c => [normalizeName(c.name), c]));
     const ratedNames = new Set(data.flatMap(group => group.characters.map(char => normalizeName(char.name))));
 
-    // Find characters in ALL_CHARACTERS that are not in ratedNames
-    const EXCLUDED_UNRATED = new Set([
-      '단항•음월', '단항·음월',
-      '토파즈&복순이', '토파즈 & 복순이',
-      'Dr. 레이시오', 'Dr.레이시오',
-      '개척자 (파멸)', '개척자 (보존)', '개척자 (화합)', '개척자 (기억)',
-      'Mar. 7th', 'Mar. 7th (수렵)', 'Mar.7th (수렵)',
-      '완•매', '완·매', '완매'
-    ].map(n => normalizeName(n)));
-
-    const unratedCharacters: TierCharacter[] = (ALL_CHARACTERS as any[])
-      .filter(char => !ratedNames.has(normalizeName(char.name)) && !EXCLUDED_UNRATED.has(normalizeName(char.name)))
+    const unratedCharacters: TierCharacter[] = allCharacters
+      .filter(char => !ratedNames.has(normalizeName(char.name)))
       .map(char => {
-        // Map path to role
         let role: '메인 딜러' | '서브 딜러' | '서포터' | '유지력' = '메인 딜러';
         if (['보존', '풍요'].includes(char.path)) role = '유지력';
         else if (['화합', '공허', '환락'].includes(char.path)) role = '서포터';
-        else if (['기억'].includes(char.path)) role = '서브 딜러';
 
         return {
           id: `char_${char.id}`,
           name: char.name,
-          folderName: char.folderName,
-          isTrailblazer: char.id.startsWith('trailblazer'),
+          folderName: char.folder_name,
+          isTrailblazer: char.name.includes('개척자'),
           role: role,
-          change: 'stay'
+          change: 'stay',
+          displayOrder: 100
         };
       });
 
     const allGroups = [...data];
     if (unratedCharacters.length > 0) {
-      allGroups.push({
-        tier: '?',
-        label: '미편성',
-        color: '#444444',
-        characters: unratedCharacters
-      });
+      allGroups.push({ tier: '?', label: '미편성', color: '#444444', characters: unratedCharacters });
     }
 
+    const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'];
+    allGroups.sort((a, b) => {
+      const idxA = rankOrder.indexOf(a.tier);
+      const idxB = rankOrder.indexOf(b.tier);
+      if (idxA === -1 && idxB === -1) return 0;
+      if (idxA === -1) return 1;
+      if (idxB === -1) return -1;
+      return idxA - idxB;
+    });
+
     const parseVersion = (v: string | undefined) => {
-      if (!v || v === '데이터 소실') return [0, 0]; // Default to oldest if truly missing
+      if (!v || v === '데이터 소실') return [0, 0];
       return v.split('.').map(Number);
     };
 
@@ -173,188 +265,154 @@ const TierList: React.FC = () => {
           return matchesRole && matchesSearch;
         })
         .sort((a, b) => {
+          if ((a as any).displayOrder !== (b as any).displayOrder) {
+            return (a as any).displayOrder - (b as any).displayOrder;
+          }
           const charA = charMap.get(normalizeName(a.name));
           const charB = charMap.get(normalizeName(b.name));
-          
           const vA = parseVersion(charA?.version);
           const vB = parseVersion(charB?.version);
-
-          // 1. Version Sort (Descending - Newest first)
           for (let i = 0; i < Math.max(vA.length, vB.length); i++) {
             const p1 = vA[i] || 0;
             const p2 = vB[i] || 0;
             if (p1 !== p2) return p2 - p1;
           }
-
-          // 2. Role Sort (Priority: Main > Sub > Support > Sustain)
           const roleA = ROLE_PRIORITY[a.role] || 99;
           const roleB = ROLE_PRIORITY[b.role] || 99;
           if (roleA !== roleB) return roleA - roleB;
-
-          // 3. Alphabetical Fallback
           return a.name.localeCompare(b.name);
         })
     })).filter(group => group.tier !== '?' || group.characters.length > 0);
-  }, [activeCategory, roleFilter, searchQuery]);
+  }, [activeCategory, roleFilter, searchQuery, liveData, allCharacters]);
 
-  const getIconUrl = (char: TierCharacter) => {
-    const folder = char.folderName.normalize('NFC');
-    // art01.webp is high-res, but we use CSS optimization to fix jaggedness.
-    // If a smaller icon exists, it would be better, but sticking to art01 for consistency.
-    const fileName = char.isTrailblazer ? 'art01-01.webp' : 'art01.webp';
-    return encodeURI(`${BASE_IMAGE_URL}/캐릭터/${folder}/${fileName}`);
+  const getIconUrl = (char: any) => {
+    const folder = char.folderName || char.name;
+    if (!folder) return '';
+    const rawUrl = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/캐릭터/${folder.trim()}/art01.webp`;
+    return encodeURI(rawUrl)
+      .replace(/\(/g, '%28')
+      .replace(/\)/g, '%29');
   };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24">
-      <SEO 
-        title="붕괴: 스타레일 티어표" 
-        description="최신 메타 분석을 통한 붕괴: 스타레일 캐릭터 티어표입니다. 혼돈의 기억, 허구 이야기, 종말의 환영 등 콘텐츠별 추천 캐릭터를 확인하세요."
-      />
-      {/* Page Header */}
-      <PageHeader gameId={gameId} category="티어표" title="종합 메타 랭킹" />
+      <SEO title="붕괴: 스타레일 티어표" description="최신 메타 분석 가이드" />
+      <PageHeader gameId={gameId} title="종합 메타 랭킹" />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
-        {/* 사이드바 */}
         <GallerySidebar />
 
-        {/* 메인 섹션 */}
         <div className="space-y-12">
-          {/* Header Section */}
           <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-            <Trophy size={200} />
-          </div>
-          
-          <div className="relative z-10 space-y-8">
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-              <div className="space-y-2">
-                <h1 className="text-5xl font-black italic tracking-tighter uppercase flex items-center gap-4">
-                  <Trophy className="text-brand-primary" size={40} />
-                  {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표
-                </h1>
-                <p className="text-gray-500 font-bold text-lg">
-                  {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.description} - 최신 메타 분석 가이드
-                </p>
-              </div>
-
-              <Link 
-                to={`/gallery/${gameId}/parties`}
-                className="flex items-center gap-3 px-6 py-3 bg-brand-primary/10 border border-brand-primary/20 rounded-2xl text-brand-accent text-sm font-black uppercase tracking-widest hover:bg-brand-primary/20 hover:scale-105 transition-all shadow-lg shadow-brand-primary/10 whitespace-nowrap"
-              >
-                <Users size={18} /> 추천 파티 조합
-              </Link>
-
-              <div className="relative group w-full max-w-sm">
-                <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
-                <input 
-                  type="text" 
-                  placeholder="캐릭터 검색..." 
-                  className="bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold transition-all"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
+            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+              <Trophy size={200} />
             </div>
+            
+            <div className="relative z-10 space-y-8">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+                <div className="space-y-2">
+                  <h1 className="text-5xl font-black italic tracking-tighter uppercase flex items-center gap-4">
+                    <Trophy className="text-brand-primary" size={40} />
+                    {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표
+                  </h1>
+                  <p className="text-gray-500 font-bold text-lg">
+                    {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.description}
+                    {isSyncing && <span className="ml-3 text-[10px] text-brand-primary animate-pulse">● SYNCING...</span>}
+                  </p>
+                </div>
 
-            {/* Category Tabs */}
-            <div className="pt-8 border-t border-white/5">
-              <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mb-4">
-                <LayoutGrid size={12} /> SELECT CONTENT
+                <div className="relative group w-full max-w-sm">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+                  <input 
+                    type="text" 
+                    placeholder="캐릭터 검색..." 
+                    className="bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold transition-all"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                  />
+                </div>
               </div>
-              <div className="flex flex-wrap gap-3">
-                {HSR_TIER_CATEGORIES.map(cat => (
+
+              <div className="pt-8 border-t border-white/5">
+                <div className="flex flex-wrap gap-3">
+                  {HSR_TIER_CATEGORIES.map(cat => (
+                    <button
+                      key={cat.id}
+                      onClick={() => { setActiveCategory(cat.id); setRoleFilter('전체'); }}
+                      className={`px-6 py-3 rounded-xl text-xs font-black transition-all border flex items-center gap-3 ${
+                        activeCategory === cat.id ? 'bg-brand-primary border-brand-primary text-white' : 'bg-white/5 border-white/5 text-gray-500'
+                      }`}
+                    >
+                      {CATEGORY_ICONS[cat.id]}
+                      <span>{cat.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-8 border-t border-white/5 items-center">
+                {['전체', '메인 딜러', '서브 딜러', '서포터', '유지력'].map(role => (
                   <button
-                    key={cat.id}
-                    onClick={() => {
-                      setActiveCategory(cat.id);
-                      setRoleFilter('전체');
-                    }}
-                    className={`px-6 py-3 rounded-xl text-xs font-black transition-all border flex items-center gap-3 ${
-                      activeCategory === cat.id
-                        ? 'bg-brand-primary border-brand-primary text-white shadow-lg shadow-brand-primary/20'
-                        : 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'
+                    key={role}
+                    onClick={() => setRoleFilter(role)}
+                    className={`px-6 py-2.5 rounded-xl text-xs font-black transition-all border flex items-center gap-2 ${
+                      roleFilter === role ? 'bg-brand-primary border-brand-primary text-white shadow-lg' : 'bg-white/5 border-white/5 text-gray-500'
                     }`}
                   >
-                    {CATEGORY_ICONS[cat.id]}
-                    <div className="text-left">
-                      <div className="leading-none">{cat.name}</div>
-                    </div>
+                    {role !== '전체' && ROLE_ICONS[role]}
+                    {role}
                   </button>
                 ))}
               </div>
             </div>
-
-            <div className="flex flex-wrap gap-4 pt-8 border-t border-white/5 items-center">
-              <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest mr-4">
-                <Filter size={12} /> ROLE FILTER
-              </div>
-              {['전체', '메인 딜러', '서브 딜러', '서포터', '유지력'].map(role => (
-                <button
-                  key={role}
-                  onClick={() => setRoleFilter(role)}
-                  className={`px-6 py-2.5 rounded-xl text-xs font-black transition-all border flex items-center gap-2 ${
-                    roleFilter === role 
-                      ? 'bg-brand-primary border-brand-primary text-white shadow-lg shadow-brand-primary/30' 
-                      : 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'
-                  }`}
-                >
-                  {role !== '전체' && ROLE_ICONS[role]}
-                  {role}
-                </button>
-              ))}
-            </div>
           </div>
-        </div>
 
-        {/* Tier List Content */}
-        <div className="space-y-8">
-            {filteredTierList.map((group) => (
-              <div key={group.tier} className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
-                {/* Tier Label */}
-                <div 
-                  className="w-full md:w-32 flex flex-col items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5"
-                  style={{ backgroundColor: `${group.color}10` }}
-                >
-                  <div 
-                    className={`${group.tier === '?' ? 'text-xl' : 'text-4xl'} font-black italic tracking-tighter text-center`}
-                    style={{ color: group.color }}
-                  >
-                    {group.tier === '?' ? group.label : group.tier}
+          <AnimatePresence mode="wait">
+            {isSyncing ? (
+              <motion.div 
+                key="skeleton"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
+                className="space-y-8"
+              >
+                {[...Array(4)].map((_, i) => <TierSkeleton key={i} />)}
+              </motion.div>
+            ) : (
+              <motion.div 
+                key="content"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="space-y-8"
+              >
+                {filteredTierList.map((group) => (
+                  <div key={group.tier} className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
+                    <div className="w-full md:w-32 flex flex-col items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5" style={{ backgroundColor: `${group.color}10` }}>
+                      <div className={`${group.tier === '?' ? 'text-xl' : 'text-4xl'} font-black italic tracking-tighter text-center`} style={{ color: group.color }}>
+                        {group.tier === '?' ? group.label : group.tier}
+                      </div>
+                    </div>
+
+                    <div className="flex-1 p-8">
+                      {group.characters.length > 0 ? (
+                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
+                          {group.characters.map((char) => (
+                            <CharacterCard key={char.id} char={char} gameId={gameId} getIconUrl={getIconUrl} />
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="h-full flex items-center justify-center py-4">
+                          <p className="text-gray-700 font-black uppercase tracking-widest text-[10px] opacity-30">Empty</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-
-                {/* Characters Grid */}
-                <div className="flex-1 p-8">
-                  {group.characters.length > 0 ? (
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
-                      {group.characters.map((char) => (
-                        <CharacterCard 
-                          key={char.id} 
-                          char={char} 
-                          gameId={gameId} 
-                          getIconUrl={getIconUrl} 
-                        />
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="h-full flex items-center justify-center py-4">
-                      <p className="text-gray-700 font-black uppercase tracking-widest text-[10px] opacity-30">No Characters in this Tier</p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-            {filteredTierList.length === 0 && (
-              <div className="py-32 text-center space-y-4 bg-[#121212] rounded-[48px] border border-dashed border-white/10">
-                <Search size={48} className="mx-auto text-gray-700 opacity-20" />
-                <p className="text-gray-500 font-black uppercase tracking-widest">검색 결과가 없습니다</p>
-              </div>
+                ))}
+              </motion.div>
             )}
-          </div>
-
-          <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
+          </AnimatePresence>
         </div>
       </div>
     </div>

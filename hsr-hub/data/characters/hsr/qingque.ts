@@ -10,7 +10,7 @@ const qingque: Character = {
   path: "지식",
   rarity: 4,
   affiliation: "선주 「나부」",
-  briefInfo: "태복사의 일반 점술가. 일을 땡땡이치고 마작을 하러 다닌다. 승진에는 관심이 없다.",
+  briefInfo: "선주 「나부」의 태복사 소속 점술가 겸 서고 관리자\n업무를 너무 태만히 한 탓에 곧 「문지기」로 좌천될 예정이라고 한다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 청작 / 🇺🇸 Qingque / 🇨🇳 青雀 / 🇯🇵 青雀",
   voiceActors: "🇰🇷 서다혜 / 🇺🇸 브린 아프릴 / 🇨🇳 류스쓰 / 🇯🇵 다테 아리사",
@@ -36,15 +36,15 @@ const qingque: Character = {
       { name: "짓밟힌 의지", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "영감의 열쇠", count: "12", rarity: 2 },
-      { name: "계몽의 열쇠", count: "54", rarity: 3 },
-      { name: "지식의 열쇠", count: "105", rarity: 4 },
-      { name: "약탈의 본능", count: "28", rarity: 2 },
-      { name: "변조된 야망", count: "42", rarity: 3 },
-      { name: "짓밟힌 의지", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "영감의 열쇠", count: "8", rarity: 2 },
+      { name: "계몽의 열쇠", count: "42", rarity: 3 },
+      { name: "지식의 열쇠", count: "77", rarity: 4 },
+      { name: "약탈의 본능", count: "22", rarity: 2 },
+      { name: "변조된 야망", count: "35", rarity: 3 },
+      { name: "짓밟힌 의지", count: "20", rarity: 4 }
     ]
   },
   skills: [

@@ -40,11 +40,11 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
     setIsFavorite(!isFavorite);
   };
 
-  // 카테고리 기본 주소 생성 (예: /gallery/hsr?category=캐릭터)
-  const defaultCategoryUrl = gameId && category ? `/gallery/${gameId}?category=${category}` : '/';
+  // 카테고리 기본 주소 생성 (예: /gallery/hsr?menu=캐릭터)
+  const defaultCategoryUrl = gameId && category ? `/gallery/${gameId}?menu=${category}` : '/';
 
   return (
-    <div className="bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 h-14 flex items-center px-4 md:px-8 sticky top-[112px] z-[80] justify-between w-full">
+    <div className="bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 h-14 flex items-center px-4 md:px-8 sticky top-16 z-[80] justify-between w-full">
       
       {/* 1. 뒤로 가기 버튼 */}
       <button 

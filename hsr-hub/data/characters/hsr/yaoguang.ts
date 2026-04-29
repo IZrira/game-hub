@@ -47,15 +47,15 @@ const yaoguang: Character = {
       { name: "꿈을 그리는 붓", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "범람을 끊는 침묵", count: "12", rarity: 4 },
-      { name: "≪복슬복슬호≫ 수작업 스토리보드", count: "18", rarity: 2 },
-      { name: "≪복슬복슬호≫ 연재 기념호", count: "69", rarity: 3 },
-      { name: "≪복슬복슬호≫ 소장판 합본", count: "139", rarity: 4 },
-      { name: "천진난만 크레파스", count: "41", rarity: 2 },
-      { name: "꿈을 만드는 딥 펜", count: "56", rarity: 3 },
-      { name: "꿈을 그리는 붓", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,260,000", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "범람을 끊는 침묵", count: "9", rarity: 4 },
+      { name: "≪복슬복슬호≫ 수작업 스토리보드", count: "14", rarity: 2 },
+      { name: "≪복슬복슬호≫ 연재 기념호", count: "53", rarity: 3 },
+      { name: "≪복슬복슬호≫ 소장판 합본", count: "104", rarity: 4 },
+      { name: "천진난만 크레파스", count: "33", rarity: 2 },
+      { name: "꿈을 만드는 딥 펜", count: "49", rarity: 3 },
+      { name: "꿈을 그리는 붓", count: "36", rarity: 4 }
     ]
   },
   skills: [

@@ -23,29 +23,12 @@ const getItemStyles = (rarity: number) => {
 export default function ItemDetailModal({ itemNameEn, isOpen, onClose }: ItemDetailModalProps) {
   const { t, i18n } = useTranslation();
 
-  // 1. 역매핑을 통해 항상 기준이 되는 국문명(Key) 확보
   const koName = REVERSE_ITEM_MAP[itemNameEn] || itemNameEn;
-  
-  // 2. 중앙 레지스트리(INVENTORY_DB)에서 아이템 데이터 가져오기
   const itemData = getItemMeta(koName);
 
-  // [디버깅] 아이템 데이터 로드 확인
-  useEffect(() => {
-    if (isOpen) {
-      console.log('Synthesis Item Data [Debug]:', itemData);
-    }
-  }, [isOpen, itemData]);
-
-  // 훅(Hook) 선언부 이후에 Early Return 배치 (Rules of Hooks 준수)
   if (!isOpen) return null;
 
-  // 3. 글로벌 언어 설정에 따른 출력 텍스트 처리 (i18next t() 함수 단일 파이프라인)
-  // (i18next가 마침표(.)나 콜론(:)을 객체/네임스페이스 탐색 구분자로 오인하지 않도록 nsSeparator, keySeparator 모두 false 강제 적용)
   const rawDisplayName = t(koName, { keySeparator: false, nsSeparator: false });
-  
-  const displayName = rawDisplayName;
-
-  // en.json에 정의된 desc_접두어 키를 먼저 찾고, 없으면 한국어 원문(itemData.desc)을 키로 다시 찾으며, 최후의 경우 원문을 노출합니다.
   const description = itemData?.desc 
     ? t(`desc_${koName}`, { defaultValue: t(itemData.desc, { defaultValue: itemData.desc, keySeparator: false, nsSeparator: false }), keySeparator: false, nsSeparator: false }) 
     : t("아카이브에 아직 상세 정보가 등록되지 않은 아이템입니다.", { keySeparator: false, nsSeparator: false });
@@ -60,50 +43,93 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose }: ItemDet
   const itemType = itemData?.type || "미분류";
   const url = getItemUrl(koName, itemData?.gameId || 'hsr');
 
+  const getRarityTheme = (r: number) => {
+    switch (r) {
+      case 5: return { color: 'text-yellow-500', glow: 'bg-yellow-500/20', border: 'border-yellow-500/40', accent: 'shadow-[0_0_40px_rgba(234,179,8,0.3)]' };
+      case 4: return { color: 'text-purple-500', glow: 'bg-purple-500/20', border: 'border-purple-500/40', accent: 'shadow-[0_0_40px_rgba(168,85,247,0.3)]' };
+      case 3: return { color: 'text-blue-500', glow: 'bg-blue-500/20', border: 'border-blue-500/40', accent: 'shadow-[0_0_40px_rgba(59,130,246,0.3)]' };
+      case 2: return { color: 'text-green-500', glow: 'bg-green-500/20', border: 'border-green-500/40', accent: 'shadow-[0_0_40px_rgba(34,197,94,0.3)]' };
+      default: return { color: 'text-gray-500', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };
+    }
+  };
+
+  const theme = getRarityTheme(rarity);
+
   return createPortal(
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-6 animate-in fade-in duration-300">
-      <div className="absolute inset-0 bg-black/80 backdrop-blur-xl" onClick={onClose} />
-      <div className="relative glass-card max-w-lg w-full rounded-[40px] p-10 border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.8)] overflow-hidden animate-in zoom-in-95 duration-200">
-         <div className="absolute top-0 right-0 p-6">
-            <button onClick={onClose} className="p-2 rounded-full hover:bg-white/5 transition-colors text-gray-400 hover:text-white"><X size={24} /></button>
-         </div>
-         <div className="flex flex-col items-center text-center space-y-8">
-            <div className="relative group">
-               <div className="absolute inset-0 opacity-40 blur-[60px]" style={{ backgroundColor: getItemStyles(rarity).includes('yellow') ? '#EAB308' : '#7E30E1' }} />
-               <div className={`relative w-40 h-40 flex items-center justify-center rounded-[32px] overflow-hidden border-2 bg-gradient-to-b ${getItemStyles(rarity)}`}>
-                  <img src={url} alt={koName} className="max-w-full max-h-full object-contain p-4 filter drop-shadow-[0_0_20px_rgba(255,255,255,0.2)]" />
-               </div>
-            </div>
-            <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-black tracking-tight text-white break-words leading-tight w-full px-2" title={rawDisplayName}>{displayName}</h2>
-              <div className="flex justify-center gap-1.5">
-                {Array.from({ length: rarity }).map((_, i) => (<Star key={i} size={18} fill="#EAB308" className="text-yellow-500" />))}
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-300">
+      <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
+      
+      <div className={`relative w-full max-w-2xl bg-[#0a0a0a] rounded-[40px] border ${theme.border} ${theme.accent} overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row shadow-2xl`}>
+        {/* Left Section: Visuals */}
+        <div className={`w-full md:w-1/2 relative bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] p-12 flex items-center justify-center`}>
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:20px_20px]" />
+          <div className={`absolute inset-0 ${theme.glow} blur-[80px] opacity-40`} />
+          
+          <div className="relative z-10 w-full aspect-square flex items-center justify-center group">
+            <div className={`absolute inset-0 border-2 ${theme.border} rounded-[48px] rotate-6 group-hover:rotate-12 transition-transform duration-700`} />
+            <div className={`absolute inset-0 border border-white/5 rounded-[48px] -rotate-3 group-hover:-rotate-6 transition-transform duration-700`} />
+            <img 
+              src={url} 
+              alt={koName} 
+              className="relative z-10 w-3/4 h-3/4 object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-700" 
+            />
+          </div>
+        </div>
+
+        {/* Right Section: Details */}
+        <div className="w-full md:w-1/2 p-10 flex flex-col space-y-8 bg-black/40 backdrop-blur-md">
+          <div className="absolute top-6 right-6 z-30">
+            <button onClick={onClose} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all">
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="space-y-4 pt-4">
+            <div className="flex items-center gap-3">
+              <span className={`px-3 py-1 rounded-full bg-white/5 border ${theme.border} text-[10px] font-black uppercase tracking-widest ${theme.color}`}>
+                {t(itemType)}
+              </span>
+              <div className="flex gap-0.5">
+                {Array.from({ length: rarity }).map((_, i) => (<Star key={i} size={10} className={`${theme.color} fill-current`} />))}
               </div>
             </div>
-            <div className="w-full h-px bg-white/10" />
-            <div className="space-y-6 w-full text-left">
-               <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2"><Package size={14} className="text-brand-accent" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t("Item Category")}</span></div>
-                  <span className="text-xs font-black text-brand-accent uppercase bg-brand-accent/10 px-4 py-1.5 rounded-full border border-brand-accent/20">{t(itemType)}</span>
-               </div>
-               <div className="relative">
-                  <div className="flex items-center gap-2 mb-3"><Info size={14} className="text-brand-primary" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t("Archive Intel")}</span></div>
-                 <div className="bg-white/[0.03] p-6 rounded-[30px] border border-white/5 shadow-inner">
-                    <div className="max-h-[120px] overflow-y-auto scrollbar-hide pr-2">
-                       <p className="text-gray-300 text-[14px] md:text-[15px] leading-relaxed font-medium italic break-words">
-                          {description}
-                       </p>
-                    </div>
-                 </div>
-               </div>
-               <div className="space-y-3">
-                  <div className="flex items-center gap-2"><MapPin size={14} className="text-green-400" /><span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t("Acquisition Sources")}</span></div>
-                  <div className="flex flex-wrap gap-2">
-                    {sources.map((source: string, idx: number) => (<span key={idx} className="bg-white/5 text-gray-400 px-3 py-1.5 rounded-xl text-[11px] md:text-[12px] font-bold border border-white/10 line-clamp-2 break-words" title={source}>{source}</span>))}
-                  </div>
-               </div>
+            <h2 className="text-3xl font-black tracking-tighter text-white leading-none italic uppercase">{rawDisplayName}</h2>
+          </div>
+
+          <div className="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <Info size={14} className="text-brand-accent" />
+                <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t("Archive Entry")}</span>
+              </div>
+              <div className="bg-white/5 p-5 rounded-3xl border border-white/5">
+                <p className="text-gray-300 text-sm leading-relaxed font-medium italic">
+                  "{description}"
+                </p>
+              </div>
             </div>
-         </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center gap-2">
+                <MapPin size={14} className="text-brand-primary" />
+                <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t("Location Data")}</span>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {sources.map((source: string, idx: number) => (
+                  <span key={idx} className="bg-white/[0.03] text-gray-400 px-3.5 py-1.5 rounded-xl text-[11px] font-bold border border-white/10 hover:border-white/20 transition-all cursor-default">
+                    {source}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-6 border-t border-white/10">
+            <p className="text-[9px] font-black text-gray-600 uppercase tracking-[0.3em] italic">
+              Data synchronized with Galactic Network v4.1
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   , document.body);

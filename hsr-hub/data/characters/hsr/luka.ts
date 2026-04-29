@@ -10,7 +10,7 @@ const luka: Character = {
   path: "공허",
   rarity: 4,
   affiliation: "벨로보그",
-  briefInfo: "벨로보그 하층 구역의 챔피언 격투선수, 「와일드 파이어」의 실력파 멤버 중 하나. 격투 클럽의 연속 디펜딩 챔피언, 자신의 열정으로 하층 구역의 꿈이 있는 아이들을 격려한다",
+  briefInfo: "벨로보그 하층 구역의 챔피언 격투선수, 「와일드 파이어」의 실력파 멤버 중 하나.\n격투 클럽의 연속 디펜딩 챔피언, 자신의 열정으로 하층 구역의 꿈이 있는 아이들을 격려한다",
   releaseVersion: "1.2",
   version: "1.2",
   languageNames: "🇰🇷 루카 / 🇺🇸 Luka / 🇨🇳 卢卡 / 🇯🇵 ルカ",
@@ -24,7 +24,7 @@ const luka: Character = {
     affiliation: "벨로보그",
     cv: "🇰🇷 이주승 / 🇺🇸 하워드 웡 / 🇨🇳 샤오자이 / 🇯🇵 카지와라 가쿠토",
     releaseVersion: "1.2",
-    brief: "벨로보그 하층 구역의 챔피언 격투선수, 「와일드 파이어」의 실력파 멤버 중 하나. 격투 클럽의 연속 디펜딩 챔피언, 자신의 열정으로 하층 구역의 꿈이 있는 아이들을 격려한다"
+    brief: "벨로보그 하층 구역의 챔피언 격투선수, 「와일드 파이어」의 실력파 멤버 중 하나.\n격투 클럽의 연속 디펜딩 챔피언, 자신의 열정으로 하층 구역의 꿈이 있는 아이들을 격려한다"
   },
   baseStats: {
     lv1: { "기초 HP": 125, "기초 공격력": 79, "기초 방어력": 66 },
@@ -48,15 +48,15 @@ const luka: Character = {
       { name: "고대 엔진", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "어두운 흑요", count: "12", rarity: 2 },
-      { name: "허공의 흑요", count: "54", rarity: 3 },
-      { name: "타락의 흑요", count: "105", rarity: 4 },
-      { name: "고대 부속품", count: "28", rarity: 2 },
-      { name: "고대 전동축", count: "42", rarity: 3 },
-      { name: "고대 엔진", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "어두운 흑요", count: "8", rarity: 2 },
+      { name: "허공의 흑요", count: "42", rarity: 3 },
+      { name: "타락의 흑요", count: "77", rarity: 4 },
+      { name: "고대 부속품", count: "22", rarity: 2 },
+      { name: "고대 전동축", count: "35", rarity: 3 },
+      { name: "고대 엔진", count: "20", rarity: 4 }
     ]
   },
   skills: [

@@ -1,8 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import WuwaFilter from '../../common-hub/pages/WuwaFilter'; // Assuming WuwaFilter is correctly located here
-import WuwaCard from '../../common-hub/components/WuwaCard'; // Corrected path
-import WuwaItemModal from '../../common-hub/components/WuwaItemModal';
-import { WuwaItem, WuwaCategory } from '../../common-hub/components/ww'; // Corrected path
+import WuwaFilter from './WuwaFilter'; 
+import WuwaCard from '../components/WuwaCard'; 
+import WuwaItemModal from '../components/WuwaItemModal';
+import { WuwaItem, WuwaCategory } from '../types'; 
 import { Search } from 'lucide-react';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { wuwaItems } from '../data/items';

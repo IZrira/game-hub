@@ -10,7 +10,7 @@ const moze: Character = {
   path: "수렵",
   rarity: 4,
   affiliation: "선주 「요청」",
-  briefInfo: "선주 「요청」의 그림자 호위, 과묵하고 홀로 움직인다.정보에 관한 일과 공개적으로 처리할 수 없는 일을 전담하며, 사람들 앞에 모습을 드러내는 일이 드물다.\n맥택이 칼끝을 드러내는 순간, 적에게는 죽음의 시간이 임박한 것이다.암살 수단이 다양하고, 청결과 정리 정돈에 대해 남다른 집착을 보인다",
+  briefInfo: "선주 「요청」의 그림자 호위. 과묵하고 혼자 다닌다.\n정보와 비공식적인 일을 전담하며, 사람들 앞에 모습을 드러내는 일이 드물다. 맥택이 능력을 발휘하는 때는 적이 죽음을 맞이하는 순간이다.\n암살 수단이 다양하고, 청결과 질서에 대해 남다른 집착을 보인다.",
   version: "2.5",
   releaseVersion: "2.5",
   languageNames: "🇰🇷 맥택 / 🇺🇸 Moze / 🇨🇳 貊泽 / 🇯🇵 モゼ",
@@ -24,7 +24,7 @@ const moze: Character = {
     affiliation: "선주 「요청」",
     cv: "🇰🇷 최현식 / 🇺🇸 벤 발마세다 / 🇨🇳 황진쩌 / 🇯🇵 사카타 쇼고",
     releaseVersion: "2.5",
-    brief: "선주 「요청」의 그림자 호위, 과묵하고 홀로 움직인다.정보에 관한 일과 공개적으로 처리할 수 없는 일을 전담하며, 사람들 앞에 모습을 드러내는 일이 드물다.\n맥택이 칼끝을 드러내는 순간, 적에게는 죽음의 시간이 임박한 것이다.암살 수단이 다양하고, 청결과 정리 정돈에 대해 남다른 집착을 보인다"
+    brief: "선주 「요청」의 그림자 호위. 과묵하고 혼자 다닌다.\n정보와 비공식적인 일을 전담하며, 사람들 앞에 모습을 드러내는 일이 드물다. 맥택이 능력을 발휘하는 때는 적이 죽음을 맞이하는 순간이다.\n암살 수단이 다양하고, 청결과 질서에 대해 남다른 집착을 보인다."
   },
   baseStats: {
     lv1: { "기초 HP": 110, "기초 공격력": 82, "기초 방어력": 48 },
@@ -48,15 +48,15 @@ const moze: Character = {
       { name: "공조 환류 심장", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "길광편우", count: "12", rarity: 4 },
-      { name: "운철 탄환", count: "12", rarity: 2 },
-      { name: "숙명적인 사인", count: "54", rarity: 3 },
-      { name: "시간을 역행하는 일격", count: "105", rarity: 4 },
-      { name: "공조 기계 부품", count: "28", rarity: 2 },
-      { name: "공조 톱니바퀴", count: "42", rarity: 3 },
-      { name: "공조 환류 심장", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "길광편우", count: "9", rarity: 4 },
+      { name: "운철 탄환", count: "8", rarity: 2 },
+      { name: "숙명적인 사인", count: "42", rarity: 3 },
+      { name: "시간을 역행하는 일격", count: "77", rarity: 4 },
+      { name: "공조 기계 부품", count: "22", rarity: 2 },
+      { name: "공조 톱니바퀴", count: "35", rarity: 3 },
+      { name: "공조 환류 심장", count: "20", rarity: 4 }
     ]
   },
   skills: [

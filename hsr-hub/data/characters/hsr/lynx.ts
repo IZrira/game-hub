@@ -10,7 +10,7 @@ const lynx: Character = {
   path: "풍요",
   rarity: 4,
   affiliation: "벨로보그",
-  briefInfo: "벨로보그의 설원 탐험가, 랜도 가문의 막내 여동생. 담담한 성격에 행동력이 매우 강하다. 종종 홀로 설원을 탐험한다. 위험한 야외 환경을 탐험하며 단련된 그녀의 생존 기술은 아군을 지탱하는 강력한 수단이 된다.",
+  briefInfo: "벨로보그의 설원 탐험가, 랜도 가문의 막내 여동생.\n담담한 성격에 행동력이 매우 강하다. 종종 홀로 설원을 탐험한다",
   releaseVersion: "1.3",
   languageNames: "🇰🇷 링스 / 🇺🇸 Lynx / 🇨🇳 玲可 / 🇯🇵 リンクス",
   voiceActors: "🇰🇷 이은조 / 🇺🇸 리사 메이 / 🇨🇳 미호 / 🇯🇵 테루이 하루카",
@@ -36,15 +36,15 @@ const lynx: Character = {
       { name: "꿈틀대는 코어", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "풍요의 씨앗", count: "12", rarity: 2 },
-      { name: "생명의 새싹", count: "54", rarity: 3 },
-      { name: "영원의 꽃", count: "105", rarity: 4 },
-      { name: "소멸된 코어", count: "28", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "42", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "풍요의 씨앗", count: "8", rarity: 2 },
+      { name: "생명의 새싹", count: "42", rarity: 3 },
+      { name: "영원의 꽃", count: "77", rarity: 4 },
+      { name: "소멸된 코어", count: "22", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "35", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "20", rarity: 4 }
     ]
   },
   skills: [

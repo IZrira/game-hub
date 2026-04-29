@@ -10,7 +10,7 @@ const pela: Character = {
   path: "공허",
   rarity: 4,
   affiliation: "벨로보그",
-  briefInfo: "실버메인 철위대의 정보관. 빈틈없고 똑똑하다. 본명은 페라게야 세르게예브나. 나이는 어리지만 머리 회전이 빠르고 업무 능력도 뛰어나다.",
+  briefInfo: "실버메인 철위대의 서기관\n진중한 성격 덕에 철위대 멤버들에게 존경을 받고 있다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 페라 / 🇺🇸 Pela / 🇨🇳 佩拉 / 🇯🇵 ペラ",
   voiceActors: "🇰🇷 이다은 / 🇺🇸 잰시 윈 / 🇨🇳 옌닝 / 🇯🇵 모로호시 스미레",
@@ -36,15 +36,15 @@ const pela: Character = {
       { name: "꿈틀대는 코어", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "어두운 흑요", count: "12", rarity: 2 },
-      { name: "허공의 흑요", count: "54", rarity: 3 },
-      { name: "타락의 흑요", count: "105", rarity: 4 },
-      { name: "소멸된 코어", count: "28", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "42", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "어두운 흑요", count: "8", rarity: 2 },
+      { name: "허공의 흑요", count: "42", rarity: 3 },
+      { name: "타락의 흑요", count: "77", rarity: 4 },
+      { name: "소멸된 코어", count: "22", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "35", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "20", rarity: 4 }
     ]
   },
   skills: [

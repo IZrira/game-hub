@@ -10,6 +10,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.104.1",
     "@types/cheerio": "^1.0.0",
     "axios": "^1.15.0",
     "cheerio": "^1.2.0",

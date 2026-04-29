@@ -8,9 +8,8 @@ const cyrene: Character = {
   attribute: "얼음",
   path: "기억",
   rarity: 5,
-  affiliation: "엠포리어스",
-  briefInfo: "유성이 밤하늘을 가로지르고, 생명의 강물에 일렁이는 물결이 열세 가지 빛깔로 반짝인다.\n엘리사이 에데스의 딸, 「███ █」를 키우는 황금의 후예여, 기억의 씨앗을 심어 과거의 꽃이 내일 피어나게 하여라——「그리고, 이전과는 다른 시를 함께 써 내려가자♪」",
-  version: "3.7",
+  affiliation: "앰포리어스",
+  briefInfo: "유성이 밤하늘을 가로지르고, 생명의 강물에 물결이 열세 가지 빛깔로 반짝인다.\n엘리사이 에데스의 딸, 「██」를 키우는 황금의 후예여, 기억의 씨앗을 심어 과거의 꽃이 내일 피어나게 하여라.\n——「그리고, 이전과는 다른 시를 함께 써 내려가자♪」",
   releaseVersion: "3.7",
   languageNames: "🇰🇷 키레네 / 🇺🇸 Cyrene / 🇨🇳 昔涟 / 🇯🇵 キュレネ ",
   voiceActors: "🇰🇷 조경이 / 🇺🇸 에이든 돈 / 🇨🇳 옌닝 / 🇯🇵 이노우에 마리나",
@@ -20,10 +19,10 @@ const cyrene: Character = {
     element: "얼음",
     path: "기억",
     rarity: 5,
-    affiliation: "엠포리어스",
+    affiliation: "앰포리어스",
     cv: "🇰🇷 조경이 / 🇺🇸 에이든 돈 / 🇨🇳 옌닝 / 🇯🇵 이노우에 마리나",
     releaseVersion: "3.7",
-    brief: "유성이 밤하늘을 가로지르고, 생명의 강물에 일렁이는 물결이 열세 가지 빛깔로 반짝인다.\n엘리사이 에데스의 딸, 「███ █」를 키우는 황금의 후예여, 기억의 씨앗을 심어 과거의 꽃이 내일 피어나게 하여라——「그리고, 이전과는 다른 시를 함께 써 내려가자♪」"
+    brief: "유성이 밤하늘을 가로지르고, 생명의 강물에 물결이 열세 가지 빛깔로 반짝인다.\n엘리사이 에데스의 딸, 「██」를 키우는 황금의 후예여, 기억의 씨앗을 심어 과거의 꽃이 내일 피어나게 하여라.\n——「그리고, 이전과는 다른 시를 함께 써 내려가자♪」"
   },
   baseStats: {
     lv1: { "기초 HP": 190, "기초 공격력": 61, "기초 방어력": 79 },
@@ -47,15 +46,15 @@ const cyrene: Character = {
       { name: "영광의 세례를 받은 육신", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "태양과 번개의 회상", count: "12", rarity: 4 },
-      { name: "사량의 씨앗", count: "18", rarity: 2 },
-      { name: "말나 새싹", count: "69", rarity: 3 },
-      { name: "아뢰야 꽃", count: "139", rarity: 4 },
-      { name: "공포에 짓밟힌 육신", count: "41", rarity: 2 },
-      { name: "용기에 찢긴 가슴", count: "56", rarity: 3 },
-      { name: "영광의 세례를 받은 육신", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,221,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "태양과 번개의 회상", count: "9", rarity: 4 },
+      { name: "사량의 씨앗", count: "12", rarity: 2 },
+      { name: "말나 새싹", count: "54", rarity: 3 },
+      { name: "아뢰야 꽃", count: "102", rarity: 4 },
+      { name: "공포에 짓밟힌 육신", count: "33", rarity: 2 },
+      { name: "용기에 찢긴 가슴", count: "48", rarity: 3 },
+      { name: "영광의 세례를 받은 육신", count: "30", rarity: 4 }
     ]
   },
   skills: [
@@ -129,7 +128,7 @@ const cyrene: Character = {
       toughnessDMG: "0",
       spRecovery: "0",
       description: "",
-      icon: "talent_2"
+      icon: "memo"
     },
     {
       name: "꽃과 화살의 무곡",

@@ -48,15 +48,15 @@ const yunli: Character = {
       { name: "공조 환류 심장", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "보리인의 송곳니", count: "18", rarity: 2 },
-      { name: "늑대 독 송곳니", count: "69", rarity: 3 },
-      { name: "달의 광기 이빨", count: "139", rarity: 4 },
-      { name: "공조 기계 부품", count: "41", rarity: 2 },
-      { name: "공조 톱니바퀴", count: "56", rarity: 3 },
-      { name: "공조 환류 심장", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "보리인의 송곳니", count: "12", rarity: 2 },
+      { name: "늑대 독 송곳니", count: "53", rarity: 3 },
+      { name: "달의 광기 이빨", count: "101", rarity: 4 },
+      { name: "공조 기계 부품", count: "33", rarity: 2 },
+      { name: "공조 톱니바퀴", count: "46", rarity: 3 },
+      { name: "공조 환류 심장", count: "28", rarity: 4 }
     ]
   },
   skills: [

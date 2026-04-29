@@ -1,0 +1,28 @@
+# RIRA Game Hub (리라 아카이브)
+
+## Introduction
+RIRA Game Hub(리라 아카이브) is a comprehensive database, strategy guide, and build recommendation platform for popular global gacha games. It provides accurate, up-to-date, and highly detailed information for gamers.
+
+## Key Hubs & Offerings
+
+### 1. Honkai: Star Rail Hub (붕괴: 스타레일 공략)
+- **Character Guides (캐릭터 공략)**: Comprehensive character details including base stats, materials, skills, eidolons, best relics, light cones, and stat priorities.
+- **Relics & Planar Ornaments (유물 및 장신구)**: Detailed effects for 4-piece relics and 2-piece planar ornaments.
+- **Light Cones (광추)**: Complete database of light cones with their respective Paths and ascension materials.
+- **Party Recommendations (파티 추천)**: Pre-built optimal team setups, synergy breakdowns, and substitute character suggestions.
+- **A.S. Mode (AS 버프)**: Special alternative state data sets for specific characters.
+
+### 2. Wuthering Waves Hub (명조: 워더링 웨이브 공략)
+- **Resonators (공명자 공략)**: Complete resonator guides including skills, resonance chains, best weapons, and echo sets.
+- **Weapons (무기)**: Database of all weapons categorized by type.
+- **Echoes & Sonata Effects (에코 및 반향 효과)**: Detailed breakdown of echo sets, main stat recommendations, and optimal combinations.
+- **Parties (파티 추천)**: Recommended team compositions and combat rotation guides.
+
+## Key Features
+- **Multi-language Support**: Supports Korean (KR), English (US), Chinese (CN), and Japanese (JP).
+- **Responsive & Accessible Design**: Built with a premium Dark Mode aesthetic, glassmorphism UI, and optimized for mobile devices.
+- **Special Terms Tooltips**: Interactive glossaries for game-specific jargon (e.g., Action Gauge mechanics).
+
+## About
+- Developed and maintained by the RIRA ARCHIVE community.
+- Game assets and trademarks belong to their respective developers (HoYoverse, Kuro Games).

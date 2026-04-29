@@ -97,7 +97,7 @@ const TierList: React.FC = () => {
     const data = WW_TIER_DATA[activeCategory] || [];
     const query = searchQuery.toLowerCase().trim();
     
-    return data.map(group => ({
+    const allGroups = data.map(group => ({
       ...group,
       characters: group.characters
         .filter(char => {
@@ -106,6 +106,16 @@ const TierList: React.FC = () => {
           return matchesRole && matchesSearch;
         })
     })).filter(group => group.characters.length > 0);
+
+    const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'];
+    return allGroups.sort((a, b) => {
+      const idxA = rankOrder.indexOf(a.tier);
+      const idxB = rankOrder.indexOf(b.tier);
+      if (idxA === -1 && idxB === -1) return 0;
+      if (idxA === -1) return 1;
+      if (idxB === -1) return -1;
+      return idxA - idxB;
+    });
   }, [activeCategory, roleFilter, searchQuery]);
 
   const getIconUrl = (char: TierCharacter) => {
@@ -119,7 +129,7 @@ const TierList: React.FC = () => {
         title="명조: 워더링 웨이브 티어표" 
         description="최신 메타 분석을 통한 명조: 워더링 웨이브 캐릭터 티어표입니다."
       />
-      <PageHeader gameId={gameId} category="티어표" title="종합 메타 랭킹" />
+      <PageHeader gameId={gameId} title="종합 메타 랭킹" />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar />

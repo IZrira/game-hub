@@ -10,7 +10,7 @@ const arlan: Character = {
   path: "파멸",
   rarity: 4,
   affiliation: "우주정거장 「헤르타」",
-  briefInfo: "우주정거장 「헤르타」 방위과 책임자. 이해심이 많으며, 자신보다 남을 더 소중히 여긴다.",
+  briefInfo: "우주정거장 「헤르타」 방위과 책임자\n말주변이 없으며, 연구를 사랑하는 사람들이 편히 연구할 수 있도록 보호하고자 한다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 아를란 / 🇺🇸 Arlan / 🇨🇳 阿兰 / 🇯🇵 アーラン",
   voiceActors: "🇰🇷 김사랑 / 🇺🇸 다니 J. 에드워즈 / 🇨🇳 타오뎬 / 🇯🇵 시라이시 료코",
@@ -36,15 +36,15 @@ const arlan: Character = {
       { name: "꿈틀대는 코어", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "12", rarity: 2 },
-      { name: "무생의 칼날", count: "54", rarity: 3 },
-      { name: "정화의 칼날", count: "105", rarity: 4 },
-      { name: "소멸된 코어", count: "28", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "42", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "8", rarity: 2 },
+      { name: "무생의 칼날", count: "42", rarity: 3 },
+      { name: "정화의 칼날", count: "77", rarity: 4 },
+      { name: "소멸된 코어", count: "22", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "35", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "20", rarity: 4 }
     ]
   },
   skills: [

@@ -10,7 +10,7 @@ const jingliu: Character = {
   path: "파멸",
   rarity: 5,
   affiliation: "선주 「나부」",
-  briefInfo: "과거에 나부 검수였던, 운기군 불패신화의 창시자. 오늘날 이름이 지워진 마각의 몸의 경계를 걷는 배신자가 되었다",
+  briefInfo: "과거에 나부 검수였던, 운기군 불패신화의 창시자.\n오늘날 이름이 지워진 마각의 몸의 경계를 걷는 배신자가 되었다",
   version: "1.4",
   releaseVersion: "1.4",
   languageNames: "🇰🇷 경류 / 🇺🇸 Jingliu / 🇨🇳 镜流 / 🇯🇵 鏡流",
@@ -25,7 +25,7 @@ const jingliu: Character = {
     affiliation: "선주 「나부」",
     cv: "🇰🇷 박이서 / 🇺🇸 아만다 리 / 🇨🇳 두밍야 / 🇯🇵 쿠와시마 호우코",
     releaseVersion: "1.4",
-    brief: "과거에 나부 검수였던, 운기군 불패신화의 창시자. 오늘날 이름이 지워진 마각의 몸의 경계를 걷는 배신자가 되었다"
+    brief: "과거에 나부 검수였던, 운기군 불패신화의 창시자.\n오늘날 이름이 지워진 마각의 몸의 경계를 걷는 배신자가 되었다"
   },
   baseStats: {
     lv1: { "기초 HP": 195, "기초 공격력": 92, "기초 방어력": 66 },
@@ -49,15 +49,15 @@ const jingliu: Character = {
       { name: "영생의 가지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "18", rarity: 2 },
-      { name: "무생의 칼날", count: "69", rarity: 3 },
-      { name: "정화의 칼날", count: "139", rarity: 4 },
-      { name: "영생의 새싹", count: "41", rarity: 2 },
-      { name: "영생의 꽃", count: "56", rarity: 3 },
-      { name: "영생의 가지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "12", rarity: 2 },
+      { name: "무생의 칼날", count: "53", rarity: 3 },
+      { name: "정화의 칼날", count: "101", rarity: 4 },
+      { name: "영생의 새싹", count: "33", rarity: 2 },
+      { name: "영생의 꽃", count: "46", rarity: 3 },
+      { name: "영생의 가지", count: "28", rarity: 4 }
     ]
   },
   skills: [

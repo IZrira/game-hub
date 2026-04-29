@@ -22,7 +22,7 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
   '생존': <Shield size={14} className="text-emerald-500" />,
 };
 
-const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined }> = ({ party, gameId }) => {
+const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined }> = React.memo(({ party, gameId }) => {
   const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
 
   const getIconUrl = (member: { folderName?: string; name: string }) => {
@@ -93,7 +93,7 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
       </div>
     </div>
   );
-};
+});
 
 const PartyRecommendations: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();

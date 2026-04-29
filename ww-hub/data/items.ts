@@ -1,4 +1,4 @@
-import { WuwaItem } from '../../common-hub/components/ww';
+import { WuwaItem } from '../types';
 
 export const wuwaItemsSet1: WuwaItem[] = [
   {

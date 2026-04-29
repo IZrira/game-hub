@@ -48,15 +48,15 @@ const lingsha: Character = {
       { name: "영생의 가지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "길광편우", count: "12", rarity: 4 },
-      { name: "보리인의 송곳니", count: "18", rarity: 2 },
-      { name: "이계 나무의 씨앗", count: "69", rarity: 3 },
-      { name: "생장의 꽃꿀", count: "139", rarity: 4 },
-      { name: "만상의 과실", count: "41", rarity: 2 },
-      { name: "공조 톱니바퀴", count: "56", rarity: 3 },
-      { name: "공조 환류 심장", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "길광편우", count: "9", rarity: 4 },
+      { name: "보리인의 송곳니", count: "12", rarity: 2 },
+      { name: "이계 나무의 씨앗", count: "53", rarity: 3 },
+      { name: "생장의 꽃꿀", count: "101", rarity: 4 },
+      { name: "만상의 과실", count: "33", rarity: 2 },
+      { name: "공조 톱니바퀴", count: "46", rarity: 3 },
+      { name: "공조 환류 심장", count: "28", rarity: 4 }
     ]
   },
   skills: [

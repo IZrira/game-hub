@@ -19,7 +19,7 @@ export const 루카Guide: CharacterGuide = {
       { label: "속도", value: "145 이상" }
     ],
     bestLightCones: [
-      { name: "필요한 건 기다림 뿐", note: "1순위" },
+      { name: "필요한 건 기다림뿐", note: "1순위" },
       { name: "밤 인사와 잠든 얼굴", note: "2순위" },
       { name: "그 무수한 봄날", note: "3순위" },
       "땀방울처럼 빛나는 결심"

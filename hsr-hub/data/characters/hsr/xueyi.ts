@@ -10,7 +10,7 @@ const xueyi: Character = {
   path: "파멸",
   rarity: 4,
   affiliation: "선주 「나부」",
-  briefInfo: "선주 「나부」에서 생사를 관찰하는 「시왕사」의 판관. 이미 죽은 지 오래지만, 만든 몸을 빌려 「환생」하여 사명을 이행한다",
+  briefInfo: "선주 「나부」에서 생사를 관찰하는 「시왕사」의 판관.\n이미 죽은 지 오래지만, 만든 몸을 빌려 「환생」하여 사명을 이행한다",
   version: "1.6",
   releaseVersion: "1.6",
   languageNames: "🇰🇷 설의 / 🇺🇸 Xueyi / 🇨🇳 雪衣 / 🇯🇵 雪衣",
@@ -24,7 +24,7 @@ const xueyi: Character = {
     affiliation: "선주 「나부」",
     cv: "🇰🇷 박리나 / 🇺🇸 제니 요코보리 / 🇨🇳 쑤쉰 / 🇯🇵 카와세 마키",
     releaseVersion: "1.6",
-    brief: "선주 「나부」에서 생사를 관찰하는 「시왕사」의 판관. 이미 죽은 지 오래지만, 만든 몸을 빌려 「환생」하여 사명을 이행한다"
+    brief: "선주 「나부」에서 생사를 관찰하는 「시왕사」의 판관.\n이미 죽은 지 오래지만, 만든 몸을 빌려 「환생」하여 사명을 이행한다"
   },
   baseStats: {
     lv1: { "기초 HP": 144, "기초 공격력": 82, "기초 방어력": 54 },
@@ -48,15 +48,15 @@ const xueyi: Character = {
       { name: "꿈틀대는 코어", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "12", rarity: 2 },
-      { name: "무생의 칼날", count: "54", rarity: 3 },
-      { name: "정화의 칼날", count: "105", rarity: 4 },
-      { name: "소멸된 코어", count: "28", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "42", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "8", rarity: 2 },
+      { name: "무생의 칼날", count: "42", rarity: 3 },
+      { name: "정화의 칼날", count: "77", rarity: 4 },
+      { name: "소멸된 코어", count: "22", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "35", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "20", rarity: 4 }
     ]
   },
   skills: [

@@ -24,14 +24,14 @@ const Footer: React.FC = () => {
           {/* 컬럼 1: 브랜드 슬로건 */}
           <div className="space-y-6">
             <div className="space-y-2">
-              <h2 className="text-2xl font-black italic tracking-tighter text-white">RIRA ARCHIVE</h2>
+              <h2 className="text-2xl font-black italic tracking-tighter text-white">RIRA GAME HUB</h2>
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-primary">
                 Integrated Game Intelligence Terminal
               </p>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-xs font-medium">
               Comprehensive game data and tactical analysis platform for advanced explorers. 
-              All systems operational via Archive API.
+              All systems operational via RIRA GAME HUB API.
             </p>
             <div className="flex items-center gap-3 text-[10px] font-black text-green-500/60 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />

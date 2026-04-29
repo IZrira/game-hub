@@ -8,9 +8,8 @@ const castorice: Character = {
   attribute: "양자",
   path: "기억",
   rarity: 5,
-  affiliation: "엠포리어스",
-  briefInfo: "죽음을 경애하는 나라, 종일 눈이 내리는 아이도니아는 오늘날 곤히 단잠에 빠졌다.\n저승의 강의 딸 카스토리스, 「죽음」의 불씨를 찾는 황금의 후예여, 출발하라. 세상의 영혼의 통곡을 감싸고, 운명의 고독을 끌어안아라.\n——죽음과 삶은 모두 여정이요, 나비가 나뭇가지 끝에 내려앉을 때 시들어가던 것이 다시 태어나리니",
-  version: "3.2",
+  affiliation: "앰포리어스",
+  briefInfo: "죽음을 경애하는 나라, 종일 눈이 내리는 아이도니아는 오늘날 곤히 단잠에 빠졌다.\n저승의 강의 딸 카스토리스, 「죽음」의 불씨를 찾는 황금의 후예여, 출발하라.\n세상의 영혼의 통곡을 감싸고, 운명의 고독을 끌어안아라.\n——죽음과 삶은 모두 여정이요, 나비가 나뭇가지 끝에 내려앉을 때 시들어가던 것이 다시 태어나리니.",
   releaseVersion: "3.2",
   languageNames: "🇰🇷 카스토리스 / 🇺🇸 Castorice / 🇨🇳 遐蝶 / 🇯🇵 キャストリス ",
   voiceActors: "🇰🇷 이세레나 / 🇺🇸 멜로디 뮤즈 / 🇨🇳 루안총칭 / 🇯🇵 사이토 치와",
@@ -20,10 +19,10 @@ const castorice: Character = {
     element: "양자",
     path: "기억",
     rarity: 5,
-    affiliation: "엠포리어스",
+    affiliation: "앰포리어스",
     cv: "🇰🇷 이세레나 / 🇺🇸 멜로디 뮤즈 / 🇨🇳 루안총칭 / 🇯🇵 사이토 치와",
     releaseVersion: "3.2",
-    brief: "죽음을 경애하는 나라, 종일 눈이 내리는 아이도니아는 오늘날 곤히 단잠에 빠졌다.\n저승의 강의 딸 카스토리스, 「죽음」의 불씨를 찾는 황금의 후예여, 출발하라. 세상의 영혼의 통곡을 감싸고, 운명의 고독을 끌어안아라.\n——죽음과 삶은 모두 여정이요, 나비가 나뭇가지 끝에 내려앉을 때 시들어가던 것이 다시 태어나리니"
+    brief: "죽음을 경애하는 나라, 종일 눈이 내리는 아이도니아는 오늘날 곤히 단잠에 빠졌다.\n저승의 강의 딸 카스토리스, 「죽음」의 불씨를 찾는 황금의 후예여, 출발하라.\n세상의 영혼의 통곡을 감싸고, 운명의 고독을 끌어안아라.\n——죽음과 삶은 모두 여정이요, 나비가 나뭇가지 끝에 내려앉을 때 시들어가던 것이 다시 태어나리니."
   },
   baseStats: {
     lv1: { "기초 HP": 222, "기초 공격력": 71, "기초 방어력": 66 },
@@ -47,15 +46,15 @@ const castorice: Character = {
       { name: "끝없는 탄식", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "길광편우", count: "12", rarity: 4 },
-      { name: "사량의 씨앗", count: "18", rarity: 2 },
-      { name: "말나 새싹", count: "69", rarity: 3 },
-      { name: "아뢰야 꽃", count: "139", rarity: 4 },
-      { name: "있는 듯 없는 듯한 조짐", count: "41", rarity: 2 },
-      { name: "점점 가까워지는 비명", count: "56", rarity: 3 },
-      { name: "끝없는 탄식", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,221,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "길광편우", count: "9", rarity: 4 },
+      { name: "사량의 씨앗", count: "12", rarity: 2 },
+      { name: "말나 새싹", count: "54", rarity: 3 },
+      { name: "아뢰야 꽃", count: "102", rarity: 4 },
+      { name: "있는 듯 없는 듯한 조짐", count: "33", rarity: 2 },
+      { name: "점점 가까워지는 비명", count: "48", rarity: 3 },
+      { name: "끝없는 탄식", count: "30", rarity: 4 }
     ]
   },
   skills: [

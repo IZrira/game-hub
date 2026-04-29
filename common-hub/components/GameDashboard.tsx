@@ -23,6 +23,7 @@ import { Character, Game } from '../types';
 import { Bell } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../data/dataManager';
+import { safeEncodeURIComponent } from '../utils/assetManager';
 
 interface GameDashboardProps {
   game: Game;
@@ -52,14 +53,14 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
   // Get latest updates (Characters, Light Cones, Relics/Ornaments)
   const latestUpdates = [
     // 1. 캐릭터 매핑 수정 (art01.webp 사용)
-    ...CHARACTER_DB.filter((c: Character) => c.gameId === game.id).slice(0, 3).map((c: Character) => ({
+    ...CHARACTER_DB.filter((c: any) => c.gameId === game.id).slice(0, 3).map((c: any) => ({
       id: c.id,
       name: c.name,
       type: '캐릭터',
       rarity: c.rarity,
       image: game.id === 'hsr' 
-        ? encodeURI(`${CDN_URL}/hsr images/캐릭터/${(c.folderName || c.name).normalize('NFC')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
-        : encodeURI(`${CDN_URL}/ww images/characters/${(c.folderName || c.name).normalize('NFC')}/art01.webp`),
+        ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(c.folderName || c.name || '')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
+        : `${CDN_URL}/ww%20images/characters/${safeEncodeURIComponent(c.folderName || c.name || '')}/art01.webp`,
       link: `/gallery/${game.id}/character/${c.id}`
     })),
     
@@ -70,17 +71,17 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
           name: w.name,
           type: '무기',
           rarity: w.rarity,
-          image: encodeURI(`${CDN_URL}/ww images/Weapons/${w.name.normalize('NFC')}.webp`),
+          image: `${CDN_URL}/ww%20images/Weapons/${safeEncodeURIComponent(w.name || '')}.webp`,
           link: `/gallery/ww/weapon/${encodeURIComponent(w.name)}`
         }))
-      : LIGHTCONE_DB.filter(lc => lc.gameId === game.id).slice(0, 3).map(lc => {
+      : LIGHTCONE_DB.filter(lc => lc.gameId === game.id).slice(0, 3).map((lc: any) => {
           const targetName = lc.fileName || lc.folderName || lc.name;
           return {
             id: lc.id,
             name: lc.name,
             type: '광추',
             rarity: lc.rarity,
-            image: encodeURI(`${CDN_URL}/hsr images/광추/${(lc.path || '').normalize('NFC')}/${targetName.normalize('NFC')}.webp`),
+            image: `${CDN_URL}/hsr%20images/광추/${safeEncodeURIComponent(lc.path || '')}/${safeEncodeURIComponent(targetName || '')}.webp`,
             link: `/gallery/${game.id}/lightcone/${lc.name}`
           };
         })
@@ -96,8 +97,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
         type: isWW ? '에코' : '유물',
         rarity: 5,
         image: isWW
-          ? encodeURI(`${CDN_URL}/ww images/echoes/${r.name.normalize('NFC')}.webp`)
-          : encodeURI(`${CDN_URL}/hsr images/유물/${r.name.normalize('NFC')}.webp`),
+          ? `${CDN_URL}/ww%20images/echoes/${safeEncodeURIComponent(r.name || '')}.webp`
+          : `${CDN_URL}/hsr%20images/유물/${safeEncodeURIComponent(r.name || '')}.webp`,
         link: `/gallery/${game.id}/relic/${r.name}`
       };
     }),
@@ -109,7 +110,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
       name: o.name,
       type: '장신구',
       rarity: 5,
-      image: encodeURI(`${CDN_URL}/hsr images/차원 장신구/${o.name.normalize('NFC')}.webp`),
+      image: `${CDN_URL}/hsr%20images/차원%20장신구/${safeEncodeURIComponent(o.name)}.webp`,
       link: `/gallery/${game.id}/ornament/${o.name}`
     }))
   ];
@@ -200,13 +201,13 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                   >
                     <img 
                       src={game.id === 'hsr' 
-                        ? encodeURI(`${CDN_URL}/hsr images/캐릭터/${(char.folderName || char.name).normalize('NFC')}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`)
-                        : encodeURI(`${CDN_URL}/ww images/characters/${(char.folderName || char.name).normalize('NFC')}/art01.webp`)
+                        ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(char.folderName || char.name)}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
+                        : `${CDN_URL}/ww%20images/characters/${safeEncodeURIComponent(char.folderName || char.name)}/art01.webp`
                       }
                       alt={t(char.name)}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp';
+                        (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/unknown.webp`;
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
@@ -253,7 +254,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       alt={t(item.name)} 
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent border-none outline-none"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/unknown.webp';
+                        (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/unknown.webp`;
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />

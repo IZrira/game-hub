@@ -9,7 +9,7 @@ const robin: Character = {
   path: "화합",
   rarity: 5,
   affiliation: "페나코니",
-  briefInfo: "페나코니에서 태어난 은하에서 유명한 헤일로족 가수. 차분하고 우아한 분위기의 소녀다.이번에 가족의 초대를 받고 고향으로 돌아와 「조화의 축제」에서 손님들을 위해 노래를 부르게 되었다.\n「화합」의 힘을 빌려 노랫소리를 전하고, 팬들뿐만 아니라 만계의 생령들에게 「공명」을 일으킬 수 있다",
+  briefInfo: "페나코니에서 태어난 은하에서 유명한 헤일로족 가수. 차분하고 우아한 분위기의 소녀다.\n이번에 가족의 초대를 받고 고향으로 돌아와 「조화의 축제」에서 손님들을 위해 노래를 부르게 되었다.\n「화합」의 힘을 빌려 노랫소리를 전하고, 팬들뿐만 아니라 만계의 생령들에게 「공명」을 일으킬 수 있다",
   version: "2.1",
   releaseVersion: "2.1",
   languageNames: "🇰🇷 로빈 / 🇺🇸 Robin / 🇨🇳 知更鸟 / 🇯🇵 ロビン",
@@ -23,7 +23,7 @@ const robin: Character = {
     affiliation: "페나코니",
     cv: "🇰🇷 신온유 / 🇺🇸 앨리스 히모라 / 🇨🇳 첸천 / 🇯🇵 나즈카 카오리 // 보컬(vocal) : Chevy",
     releaseVersion: "2.1",
-    brief: "페나코니에서 태어난 은하에서 유명한 헤일로족 가수. 차분하고 우아한 분위기의 소녀다.이번에 가족의 초대를 받고 고향으로 돌아와 「조화의 축제」에서 손님들을 위해 노래를 부르게 되었다.\n「화합」의 힘을 빌려 노랫소리를 전하고, 팬들뿐만 아니라 만계의 생령들에게 「공명」을 일으킬 수 있다"
+    brief: "페나코니에서 태어난 은하에서 유명한 헤일로족 가수. 차분하고 우아한 분위기의 소녀다.\n이번에 가족의 초대를 받고 고향으로 돌아와 「조화의 축제」에서 손님들을 위해 노래를 부르게 되었다.\n「화합」의 힘을 빌려 노랫소리를 전하고, 팬들뿐만 아니라 만계의 생령들에게 「공명」을 일으킬 수 있다"
   },
   baseStats: {
     lv1: { "기초 HP": 174, "기초 공격력": 87, "기초 방어력": 66 },
@@ -47,15 +47,15 @@ const robin: Character = {
       { name: "꿈 제조 모터", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "구름 위 음표", count: "18", rarity: 2 },
-      { name: "천상의 소절", count: "69", rarity: 3 },
-      { name: "천외의 악장", count: "139", rarity: 4 },
-      { name: "꿈 저장 부품", count: "41", rarity: 2 },
-      { name: "꿈 흐름 밸브", count: "56", rarity: 3 },
-      { name: "꿈 제조 모터", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "구름 위 음표", count: "12", rarity: 2 },
+      { name: "천상의 소절", count: "53", rarity: 3 },
+      { name: "천외의 악장", count: "101", rarity: 4 },
+      { name: "꿈 저장 부품", count: "33", rarity: 2 },
+      { name: "꿈 흐름 밸브", count: "46", rarity: 3 },
+      { name: "꿈 제조 모터", count: "28", rarity: 4 }
     ]
   },
   skills: [

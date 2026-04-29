@@ -10,7 +10,7 @@ const danHeng: Character = {
   path: "수렵",
   rarity: 4,
   affiliation: "은하열차",
-  briefInfo: "과묵한 청년. 창 「격운」을 들고 은하열차의 호위를 맡고 있다. 과거를 숨기기 위해 열차에 탑승했다.",
+  briefInfo: "자신의 과거를 깊이 숨긴, 차가운 분위기의 과묵한 청년\n혈예 동족을 피하기 위해 은하열차에 올랐다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 단항 / 🇺🇸 Dan Heng / 🇨🇳 丹恒 / 🇯🇵 丹恒",
   voiceActors: "🇰🇷 김혜성 / 🇺🇸 니콜라스 렁 / 🇨🇳 위디 / 🇯🇵 이토 켄토",
@@ -36,15 +36,15 @@ const danHeng: Character = {
       { name: "꿈틀대는 코어", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "짐승 사냥용 화살", count: "12", rarity: 2 },
-      { name: "악마 사냥용 화살", count: "54", rarity: 3 },
-      { name: "별 쫓는 화살", count: "105", rarity: 4 },
-      { name: "소멸된 코어", count: "28", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "42", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "짐승 사냥용 화살", count: "8", rarity: 2 },
+      { name: "악마 사냥용 화살", count: "42", rarity: 3 },
+      { name: "별 쫓는 화살", count: "77", rarity: 4 },
+      { name: "소멸된 코어", count: "22", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "35", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "20", rarity: 4 }
     ]
   },
   skills: [

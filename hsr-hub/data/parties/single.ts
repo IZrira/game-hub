@@ -51,9 +51,9 @@ export const singleParties: PartyCombination[] = [
     tags: ['아처', '하이퍼캐리', '트리비']
   },
   {
-    id: 'party_archer_hyper_3',
-    name: '아처 하이퍼캐리 (개척자 조합)',
-    description: '개척자(기억)와 스파클의 서포팅을 받는 3순위 조합입니다.',
+    id: 'party_trailblazer_memory_gen_3',
+    name: '개척자 (기억) 범용 파티 (아처)',
+    description: '아처의 화력을 개척자(기억)와 스파클로 보조하는 조합입니다.',
     mainDPS: '아처',
     category: '단일',
     members: [
@@ -62,7 +62,7 @@ export const singleParties: PartyCombination[] = [
       { id: 'char_스파클', name: '스파클', role: '서포터', folderName: '스파클' },
       { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
     ],
-    tags: ['아처', '하이퍼캐리', '개척자']
+    tags: ['개척자', '기억', '아처']
   },
   {
     id: 'party_phinon_hyper_1',
@@ -96,6 +96,20 @@ export const singleParties: PartyCombination[] = [
       { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
     ],
     tags: ['파이논', '하이퍼캐리', '케리드라']
+  },
+  {
+    id: 'party_trailblazer_memory_gen_4',
+    name: '개척자 (기억) 범용 파티 (파이논)',
+    description: '파이논과 케리드라의 화력을 키레네와 개척자(기억)로 보조하는 조합입니다.',
+    mainDPS: '파이논',
+    category: '단일',
+    members: [
+      { id: 'char_파이논', name: '파이논', role: '메인 딜러', folderName: '파이논' },
+      { id: 'char_케리드라', name: '케리드라', role: '서포터', folderName: '케리드라' },
+      { id: 'char_키레네', name: '키레네', role: '서포터', folderName: '키레네' },
+      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
+    ],
+    tags: ['개척자', '기억', '파이논']
   },
   {
     id: 'party_saber_hyper_1',
@@ -180,34 +194,6 @@ export const singleParties: PartyCombination[] = [
       }
     ],
     tags: ['제레', '하이퍼캐리', '트리비']
-  },
-  {
-    id: 'party_trailblazer_memory_gen_3',
-    name: '개척자 (기억) 범용 파티 (아처)',
-    description: '아처의 화력을 개척자(기억)와 스파클로 보조하는 조합입니다.',
-    mainDPS: '아처',
-    category: '단일',
-    members: [
-      { id: 'char_아처', name: '아처', role: '메인 딜러', folderName: '아처' },
-      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
-      { id: 'char_스파클', name: '스파클', role: '서포터', folderName: '스파클' },
-      { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
-    ],
-    tags: ['개척자', '기억', '아처']
-  },
-  {
-    id: 'party_trailblazer_memory_gen_4',
-    name: '개척자 (기억) 범용 파티 (파이논)',
-    description: '파이논과 케리드라의 화력을 키레네와 개척자(기억)로 보조하는 조합입니다.',
-    mainDPS: '파이논',
-    category: '단일',
-    members: [
-      { id: 'char_파이논', name: '파이논', role: '메인 딜러', folderName: '파이논' },
-      { id: 'char_케리드라', name: '케리드라', role: '서포터', folderName: '케리드라' },
-      { id: 'char_키레네', name: '키레네', role: '서포터', folderName: '키레네' },
-      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
-    ],
-    tags: ['개척자', '기억', '파이논']
   },
   {
     id: 'party_yanqing_hyper_1',

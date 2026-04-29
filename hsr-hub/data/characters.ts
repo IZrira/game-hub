@@ -21,6 +21,7 @@ import yanqing from './characters/hsr/yanqing';
 import clara from './characters/hsr/clara';
 import luka from './characters/hsr/luka';
 import yukong from './characters/hsr/yukong';
+import sushang from './characters/hsr/sushang';
 import guinaifen from './characters/hsr/guinaifen';
 import xueyi from './characters/hsr/xueyi';
 import hanya from './characters/hsr/hanya';
@@ -31,6 +32,7 @@ import acheron from './characters/hsr/acheron';
 import robin from './characters/hsr/robin';
 import boothill from './characters/hsr/boothill';
 import firefly from './characters/hsr/firefly';
+import jade from './characters/hsr/jade';
 import moze from './characters/hsr/moze';
 import march7thHunt from './characters/hsr/march_7th_hunt';
 import gallagher from './characters/hsr/gallagher';
@@ -82,8 +84,15 @@ import sparxie from './characters/hsr/sparxie';
 import ashveil from './characters/hsr/ashveil';
 import trailblazerHarmony from './characters/hsr/trailblazer_harmony';
 import trailblazerRemembrance from './characters/hsr/trailblazer_remembrance';
+import trailblazerElation from './characters/hsr/trailblazer_elation';
+import silverWolf999 from './characters/hsr/silver_wolf_999';
+import evanescia from './characters/hsr/evanescia';
 
 export const CHARACTER_DATA: Character[] = [
+  // 4.2
+  evanescia,
+  silverWolf999,
+  trailblazerElation,
   // 4.1
   ashveil,
   // 4.0
@@ -131,6 +140,7 @@ export const CHARACTER_DATA: Character[] = [
   march7thHunt,
   // 2.3
   firefly,
+  jade,
   // 2.2
   robin,
   boothill,
@@ -189,6 +199,7 @@ export const CHARACTER_DATA: Character[] = [
   serval,
   pela,
   sampo,
+  sushang,
   hook,
   qingque,
   tingyun

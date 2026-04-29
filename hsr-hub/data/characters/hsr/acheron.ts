@@ -9,7 +9,7 @@ const acheron: Character = {
   path: "공허",
   rarity: 5,
   affiliation: "자멸자",
-  briefInfo: "「갤럭시 레인저」를 자칭하는 여행자. 본명은 알 수 없다.  긴 칼 한 자루를 차고 홀로 은하를 항해하고 있다",
+  briefInfo: "「갤럭시 레인저」를 자칭하는 여행자. 본명은 알 수 없다.\n긴 칼 한 자루를 차고 홀로 은하를 항해하고 있다",
   version: "2.1",
   releaseVersion: "2.1",
   languageNames: "🇰🇷 아케론 / 🇺🇸 Acheron / 🇨🇳 黄泉 / 🇯🇵 黄泉",
@@ -23,7 +23,7 @@ const acheron: Character = {
     affiliation: "자멸자",
     cv: "🇰🇷 박지윤 / 🇺🇸 알레그라 클라크 / 🇨🇳 주화화 / 🇯🇵 사와시로 미유키",
     releaseVersion: "2.1",
-    brief: "「갤럭시 레인저」를 자칭하는 여행자. 본명은 알 수 없다.  긴 칼 한 자루를 차고 홀로 은하를 항해하고 있다"
+    brief: "「갤럭시 레인저」를 자칭하는 여행자. 본명은 알 수 없다.\n긴 칼 한 자루를 차고 홀로 은하를 항해하고 있다"
   },
   baseStats: {
     lv1: { "기초 HP": 153, "기초 공격력": 95, "기초 방어력": 59 },
@@ -47,15 +47,15 @@ const acheron: Character = {
       { name: "꿈 제조 모터", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "열렬의 영혼", count: "18", rarity: 2 },
-      { name: "불꽃의 정령", count: "69", rarity: 3 },
-      { name: "천공을 불태우는 마귀", count: "139", rarity: 4 },
-      { name: "꿈 저장 부품", count: "41", rarity: 2 },
-      { name: "꿈 흐름 밸브", count: "56", rarity: 3 },
-      { name: "꿈 제조 모터", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "열렬의 영혼", count: "12", rarity: 2 },
+      { name: "불꽃의 정령", count: "53", rarity: 3 },
+      { name: "천공을 불태우는 마귀", count: "101", rarity: 4 },
+      { name: "꿈 저장 부품", count: "33", rarity: 2 },
+      { name: "꿈 흐름 밸브", count: "46", rarity: 3 },
+      { name: "꿈 제조 모터", count: "28", rarity: 4 }
     ]
   },
   skills: [

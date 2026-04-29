@@ -1,3 +1,5 @@
+import { HsrLightConeStat } from '../types';
+
 /**
  * @fileoverview HSR 도메인 전용 데이터 생성 팩토리 유틸리티
  * @description 캐릭터, 광추 등의 반복되는 스탯 및 재료 구조 생성을 최적화하여 하드코딩을 방지합니다.
@@ -34,6 +36,47 @@ export const createHsrBaseStats = (
 export const createLv80Stats = (hp: number, atk: number, def: number) => ({
   lv80: { "기초 HP": hp, "기초 공격력": atk, "기초 방어력": def }
 });
+
+/**
+ * 전 스텝(1, 20, 30, 40, 50, 60, 70, 80) 기초 스탯 객체를 생성합니다.
+ * 두 가지 형식을 지원합니다:
+ * 1. 단일 인수: HsrLightConeStat 객체 배열 (추천)
+ * 2. 세 개 인수: HP, 공격력, 방어력 각각의 숫자 배열 (레거시)
+ */
+export function createDetailedBaseStats(statsArr: HsrLightConeStat[]): any;
+export function createDetailedBaseStats(hpArr: number[], atkArr: number[], defArr: number[]): any;
+export function createDetailedBaseStats(arg1: any, arg2?: any, arg3?: any): any {
+  // 단일 배열 인수 (HsrLightConeStat[]) 처리
+  if (Array.isArray(arg1) && arg1.length > 0 && typeof arg1[0] === 'object' && '기초 HP' in arg1[0]) {
+    const s = arg1 as HsrLightConeStat[];
+    return {
+      lv1: s[0],
+      lv20: s[1],
+      lv30: s[2],
+      lv40: s[3],
+      lv50: s[4],
+      lv60: s[5],
+      lv70: s[6],
+      lv80: s[7],
+    };
+  }
+
+  // 레거시 3배열 인수 (hp[], atk[], def[]) 처리
+  if (Array.isArray(arg1) && Array.isArray(arg2) && Array.isArray(arg3)) {
+    return {
+      lv1: { "기초 HP": arg1[0], "기초 공격력": arg2[0], "기초 방어력": arg3[0] },
+      lv20: { "기초 HP": arg1[1], "기초 공격력": arg2[1], "기초 방어력": arg3[1] },
+      lv30: { "기초 HP": arg1[2], "기초 공격력": arg2[2], "기초 방어력": arg3[2] },
+      lv40: { "기초 HP": arg1[3], "기초 공격력": arg2[3], "기초 방어력": arg3[3] },
+      lv50: { "기초 HP": arg1[4], "기초 공격력": arg2[4], "기초 방어력": arg3[4] },
+      lv60: { "기초 HP": arg1[5], "기초 공격력": arg2[5], "기초 방어력": arg3[5] },
+      lv70: { "기초 HP": arg1[6], "기초 공격력": arg2[6], "기초 방어력": arg3[6] },
+      lv80: { "기초 HP": arg1[7], "기초 공격력": arg2[7], "기초 방어력": arg3[7] },
+    };
+  }
+
+  throw new Error('createDetailedBaseStats: Invalid arguments provided.');
+}
 
 /**
  * 캐릭터 및 광추의 재료 객체를 생성합니다.

@@ -10,7 +10,7 @@ const fuXuan: Character = {
   path: "보존",
   rarity: 5,
   affiliation: "선주 「나부」",
-  briefInfo: "선주 「나부」 태복사(太卜司)의 수뇌. 제3의 눈과 궁관진을 통해 선주의 항로와 일의 길흉을 점친다",
+  briefInfo: "선주 「나부」 태복사(太卜司)의 수뇌\n제 3의 눈과 궁관진을 통해 선주의 항로와 일의 길흉을 점친다",
   version: "1.3",
   releaseVersion: "1.3",
   languageNames: "🇰🇷 부현 / 🇺🇸 Fu Xuan / 🇨🇳 符玄 / 🇯🇵 符玄",
@@ -25,7 +25,7 @@ const fuXuan: Character = {
     affiliation: "선주 「나부」",
     cv: "🇰🇷 이지현 / 🇺🇸 세라 위든헤프트 / 🇨🇳 화링 / 🇯🇵 이토 미쿠",
     releaseVersion: "1.3",
-    brief: "선주 「나부」 태복사(太卜司)의 수뇌. 제3의 눈과 궁관진을 통해 선주의 항로와 일의 길흉을 점친다"
+    brief: "선주 「나부」 태복사(太卜司)의 수뇌\n제 3의 눈과 궁관진을 통해 선주의 항로와 일의 길흉을 점친다"
   },
   baseStats: {
     lv1: { "기초 HP": 201, "기초 공격력": 63, "기초 방어력": 83 },
@@ -49,15 +49,15 @@ const fuXuan: Character = {
       { name: "공조 환류 심장", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "청동의 집념", count: "18", rarity: 2 },
-      { name: "한철의 맹세", count: "69", rarity: 3 },
-      { name: "앰버의 수호", count: "139", rarity: 4 },
-      { name: "공조 기계 부품", count: "41", rarity: 2 },
-      { name: "공조 톱니바퀴", count: "56", rarity: 3 },
-      { name: "공조 환류 심장", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "청동의 집념", count: "12", rarity: 2 },
+      { name: "한철의 맹세", count: "53", rarity: 3 },
+      { name: "앰버의 수호", count: "101", rarity: 4 },
+      { name: "공조 기계 부품", count: "33", rarity: 2 },
+      { name: "공조 톱니바퀴", count: "46", rarity: 3 },
+      { name: "공조 환류 심장", count: "28", rarity: 4 }
     ]
   },
   skills: [

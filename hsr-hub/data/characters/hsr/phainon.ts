@@ -10,7 +10,7 @@ const phainon: Character = {
   path: "파멸",
   rarity: 5,
   affiliation: "엠포리어스",
-  briefInfo: "phainon.briefInfo",
+  briefInfo: "세상과 동떨어진 변방 마을 엘리사이 에데스는 오늘날 안개에 싸인 전설로만 남아있다.\n이름 없는 영웅 █████, 「부세」의 불씨를 담은 황금의 후예여, 세상의 이상을 기억하고 모든 이의 운명을 짊어지며, 신세계에 첫 번째 서광을 가져와라.\n——「그러나 여명이 처음부터 존재하지 않았다면, 분노의 불길로 이 몸을 불태워 내일의 뜨거운 태양이 되리라!」",
   version: "3.4",
   releaseVersion: "3.4",
   languageNames: "🇰🇷 파이논 / 🇺🇸 Phainon / 🇨🇳 白厄 / 🇯🇵 ファイノン ",
@@ -24,7 +24,7 @@ const phainon: Character = {
     affiliation: "엠포리어스",
     cv: "🇰🇷 윤용식 / 🇺🇸 조슈아 워터스 / 🇨🇳 친체거 / 🇯🇵 히노 사토시",
     releaseVersion: "3.4",
-    brief: "phainon.briefInfo"
+    brief: "세상과 동떨어진 변방 마을 엘리사이 에데스는 오늘날 안개에 싸인 전설로만 남아있다.\n이름 없는 영웅 █████, 「부세」의 불씨를 담은 황금의 후예여, 세상의 이상을 기억하고 모든 이의 운명을 짊어지며, 신세계에 첫 번째 서광을 가져와라.\n——「그러나 여명이 처음부터 존재하지 않았다면, 분노의 불길로 이 몸을 불태워 내일의 뜨거운 태양이 되리라!」"
   },
   baseStats: createHsrBaseStats(
     [195, 381, 557, 733, 908, 1084, 1260, 1436],
@@ -43,7 +43,7 @@ const phainon: Character = {
       createMaterial("끝없는 탄식", "15", 4)
     ],
     traces: [
-      createMaterial("신용 포인트", "3,000,000", 3),
+      createMaterial("신용 포인트", "2,197,500", 3),
       createMaterial("운명의 발자취", "8", 5),
       createMaterial("태양과 번개의 회상", "12", 4),
       createMaterial("보리인의 송곳니", "18", 2),

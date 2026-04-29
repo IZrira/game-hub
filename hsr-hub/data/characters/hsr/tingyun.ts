@@ -10,7 +10,7 @@ const tingyun: Character = {
   path: "화합",
   rarity: 4,
   affiliation: "선주 「나부」",
-  briefInfo: "선주 「나부」 천박사의 상단 접대 담당. 겉으로는 부드러워 보이지만 속은 아주 영리하다.",
+  briefInfo: "선주 「나부」 천박사(天舶司)의 사절\n상단을 따라 수많은 세계를 돌아다니며 무역과 연맹 관련 업무를 처리해왔다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 정운 / 🇺🇸 Tingyun / 🇨🇳 停云 / 🇯🇵 停雲",
   voiceActors: "🇰🇷 이명호 / 🇺🇸 라시 매컬리 / 🇨🇳 장잉 / 🇯🇵 타카다 유우키",
@@ -36,15 +36,15 @@ const tingyun: Character = {
       { name: "영생의 가지", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "조화의 가락", count: "12", rarity: 2 },
-      { name: "가족의 찬가", count: "54", rarity: 3 },
-      { name: "별들의 악장", count: "105", rarity: 4 },
-      { name: "영생의 새싹", count: "28", rarity: 2 },
-      { name: "영생의 꽃", count: "42", rarity: 3 },
-      { name: "영생의 가지", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "조화의 가락", count: "8", rarity: 2 },
+      { name: "가족의 찬가", count: "42", rarity: 3 },
+      { name: "별들의 악장", count: "77", rarity: 4 },
+      { name: "영생의 새싹", count: "22", rarity: 2 },
+      { name: "영생의 꽃", count: "35", rarity: 3 },
+      { name: "영생의 가지", count: "20", rarity: 4 }
     ]
   },
   skills: [

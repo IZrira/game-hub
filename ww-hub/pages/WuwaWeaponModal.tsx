@@ -1,6 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
-import { renderRichText } from './formatter';
+import { renderRichText } from '../data/formatter';
 
 const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
   if (!isOpen) return null;

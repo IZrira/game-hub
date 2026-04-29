@@ -7,3 +7,15 @@ export interface ItemDetail {
   fileName?: string;
   gameId?: 'hsr' | 'ww';
 }
+
+export interface Notice {
+  id: string;
+  category: 'Update' | 'Notice' | 'Event' | 'System';
+  title: string;
+  content: string; // Markdown string
+  createdAt: string;
+  version?: string;
+  isCritical?: boolean;
+  images?: string[];
+  gameId: 'hsr' | 'ww' | 'common';
+}

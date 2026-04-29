@@ -10,7 +10,7 @@ const clara: Character = {
   path: "파멸",
   rarity: 5,
   affiliation: "벨로보그",
-  briefInfo: "로봇 스바로그와 함께 사는 소녀. 내성적이고 여리지만, 가족을 지키기 위해 강해지기로 결심했다.",
+  briefInfo: "로봇과 함께 생활하는 방랑 소녀\n내향적이고 상냥하며, 순수한 마음을 지녔다\n하층 구역의 모든 사람들이 서로의 「가족」 되기를 간절히 바란다",
   version: "4.0",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 클라라 / 🇺🇸 Clara / 🇨🇳 克拉拉 / 🇯🇵 クラーラ",
@@ -37,15 +37,15 @@ const clara: Character = {
       { name: "고대 엔진", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "18", rarity: 2 },
-      { name: "무생의 칼날", count: "69", rarity: 3 },
-      { name: "정화의 칼날", count: "139", rarity: 4 },
-      { name: "고대 부속품", count: "41", rarity: 2 },
-      { name: "고대 전동축", count: "56", rarity: 3 },
-      { name: "고대 엔진", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "12", rarity: 2 },
+      { name: "무생의 칼날", count: "53", rarity: 3 },
+      { name: "정화의 칼날", count: "101", rarity: 4 },
+      { name: "고대 부속품", count: "33", rarity: 2 },
+      { name: "고대 전동축", count: "46", rarity: 3 },
+      { name: "고대 엔진", count: "28", rarity: 4 }
     ]
   },
   skills: [

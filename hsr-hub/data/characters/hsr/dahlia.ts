@@ -9,7 +9,7 @@ const dahlia: Character = {
   path: "공허",
   rarity: 5,
   affiliation: "소멸파",
-  briefInfo: "좋은꿈은 영원한 불길의 관저를 불태우고, 「그녀」에 관한 모든 것을 가져갔다.\n「파멸」, 「기억」… 지나온 곳에는 배반의 꽃이 피어났다——아무도 모르는 꿈세계로 돌아가 그녀에게 다시 불을 지필 자는 누구일 것인가?",
+  briefInfo: "좋은 꿈은 영원한 불길의 관저를 불태우고, 「그녀」에 관한 흔적들을 가져갔다.\n「파멸」, 「기억」… 지나온 곳에 배반의 꽃이 피어났다——\n아무도 모르는 꿈세계로 돌아가 그녀에게 다시 불을 지필 자, 누구인가?",
   version: "3.8",
   releaseVersion: "3.8",
   languageNames: "🇰🇷 달리아 / 🇺🇸 The Dahlia / 🇨🇳 大丽花 / 🇯🇵 ダリア",
@@ -23,7 +23,7 @@ const dahlia: Character = {
     affiliation: "소멸파",
     cv: "🇰🇷 김도희 / 🇺🇸 제니퍼 로시 / 🇨🇳 루안총칭 / 🇯🇵 사사키 미코이",
     releaseVersion: "3.8",
-    brief: "좋은꿈은 영원한 불길의 관저를 불태우고, 「그녀」에 관한 모든 것을 가져갔다.\n「파멸」, 「기억」… 지나온 곳에는 배반의 꽃이 피어났다——아무도 모르는 꿈세계로 돌아가 그녀에게 다시 불을 지필 자는 누구일 것인가?"
+    brief: "좋은 꿈은 영원한 불길의 관저를 불태우고, 「그녀」에 관한 흔적들을 가져갔다.\n「파멸」, 「기억」… 지나온 곳에 배반의 꽃이 피어났다——\n아무도 모르는 꿈세계로 돌아가 그녀에게 다시 불을 지필 자, 누구인가?"
   },
   baseStats: {
     lv1: { "기초 HP": 148, "기초 공격력": 92, "기초 방어력": 83 },
@@ -47,15 +47,15 @@ const dahlia: Character = {
       { name: "욕망의 거울 조각", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "범람을 끊는 침묵", count: "12", rarity: 4 },
-      { name: "열렬의 영혼", count: "18", rarity: 2 },
-      { name: "불꽃의 정령", count: "69", rarity: 3 },
-      { name: "천공을 불태우는 마귀", count: "139", rarity: 4 },
-      { name: "생각의 가루", count: "41", rarity: 2 },
-      { name: "인상의 파편", count: "56", rarity: 3 },
-      { name: "욕망의 거울 조각", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "범람을 끊는 침묵", count: "9", rarity: 4 },
+      { name: "열렬의 영혼", count: "12", rarity: 2 },
+      { name: "불꽃의 정령", count: "53", rarity: 3 },
+      { name: "천공을 불태우는 마귀", count: "101", rarity: 4 },
+      { name: "생각의 가루", count: "33", rarity: 2 },
+      { name: "인상의 파편", count: "46", rarity: 3 },
+      { name: "욕망의 거울 조각", count: "28", rarity: 4 }
     ]
   },
   skills: [

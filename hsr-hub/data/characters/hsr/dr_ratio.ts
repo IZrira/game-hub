@@ -9,7 +9,7 @@ const drRatio: Character = {
   path: "수렵",
   rarity: 5,
   affiliation: "지식학회",
-  briefInfo: "지식학회 학자. 성격이 기괴하고 말이 거칠지만 품위가 있다. 기이한 석고 마스크 아래의 용모는 의외로 준수하다",
+  briefInfo: "지식학회 학자.\n성격이 기괴하고 말이 거칠지만 품위가 있다.\n기이한 석고 마스크 아래의 용모는 의외로 준수하다",
   version: "2.1",
   releaseVersion: "2.1",
   languageNames: "🇰🇷 Dr. 레이시오 / 🇺🇸 Dr. Ratio / 🇨🇳 真理医生 / 🇯🇵 Dr.レイシオ",
@@ -23,7 +23,7 @@ const drRatio: Character = {
     affiliation: "지식학회",
     cv: "🇰🇷 이동훈 / 🇺🇸 조던 폴 하로 / 🇨🇳 상위쩌 / 🇯🇵 타케우치 슌스케",
     releaseVersion: "2.1",
-    brief: "지식학회 학자. 성격이 기괴하고 말이 거칠지만 품위가 있다. 기이한 석고 마스크 아래의 용모는 의외로 준수하다"
+    brief: "지식학회 학자.\n성격이 기괴하고 말이 거칠지만 품위가 있다.\n기이한 석고 마스크 아래의 용모는 의외로 준수하다"
   },
   baseStats: {
     lv1: { "기초 HP": 143, "기초 공격력": 106, "기초 방어력": 63 },
@@ -47,15 +47,15 @@ const drRatio: Character = {
       { name: "짓밟힌 의지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "짐승 사냥용 화살", count: "18", rarity: 2 },
-      { name: "악마 사냥용 화살", count: "69", rarity: 3 },
-      { name: "별 쫓는 화살", count: "139", rarity: 4 },
-      { name: "약탈의 본능", count: "41", rarity: 2 },
-      { name: "변조된 야망", count: "56", rarity: 3 },
-      { name: "짓밟힌 의지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "짐승 사냥용 화살", count: "12", rarity: 2 },
+      { name: "악마 사냥용 화살", count: "53", rarity: 3 },
+      { name: "별 쫓는 화살", count: "101", rarity: 4 },
+      { name: "약탈의 본능", count: "33", rarity: 2 },
+      { name: "변조된 야망", count: "46", rarity: 3 },
+      { name: "짓밟힌 의지", count: "28", rarity: 4 }
     ]
   },
   skills: [

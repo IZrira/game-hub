@@ -10,7 +10,7 @@ const bronya: Character = {
   path: "화합",
   rarity: 5,
   affiliation: "벨로보그",
-  briefInfo: "벨로보그 「수호자」의 계승자. 공주의 고고함과 군인의 꿋꿋함이 공존한다",
+  briefInfo: "벨로보그 「수호자」의 계승자.\n공주의 고고함과 군인의 꿋꿋함이 공존한다",
   version: "1.0",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 브로냐 / 🇺🇸 Bronya / 🇨🇳 布洛妮娅 / 🇯🇵 ブローニャ",
@@ -24,7 +24,7 @@ const bronya: Character = {
     affiliation: "벨로보그",
     cv: "🇰🇷 이보희 / 🇺🇸 매들린 리터 / 🇨🇳 셰잉 / 🇯🇵 아스미 카나",
     releaseVersion: "1.0",
-    brief: "벨로보그 「수호자」의 계승자. 공주의 고고함과 군인의 꿋꿋함이 공존한다"
+    brief: "벨로보그 「수호자」의 계승자.\n공주의 고고함과 군인의 꿋꿋함이 공존한다"
   },
   baseStats: {
     lv1: { "기초 HP": 169, "기초 공격력": 79, "기초 방어력": 73 },
@@ -48,15 +48,15 @@ const bronya: Character = {
       { name: "철위대 훈장", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "조화의 가락", count: "18", rarity: 2 },
-      { name: "가족의 찬가", count: "69", rarity: 3 },
-      { name: "별들의 악장", count: "139", rarity: 4 },
-      { name: "철위대 배지", count: "41", rarity: 2 },
-      { name: "철위대 표식", count: "56", rarity: 3 },
-      { name: "철위대 훈장", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "조화의 가락", count: "12", rarity: 2 },
+      { name: "가족의 찬가", count: "53", rarity: 3 },
+      { name: "별들의 악장", count: "101", rarity: 4 },
+      { name: "철위대 배지", count: "33", rarity: 2 },
+      { name: "철위대 표식", count: "46", rarity: 3 },
+      { name: "철위대 훈장", count: "28", rarity: 4 }
     ]
   },
   skills: [

@@ -51,7 +51,7 @@ export const 카프카Guide: CharacterGuide = {
       { label: "속도", value: "160 이상" },
       { label: "효과 명중", value: "75%" }
     ],
-    bestLightCones: ["초보자 임무 시작 전", "필요한 건 기다림 뿐", "바람에 흩날리는 거짓말", "그 무수한 봄날", "땀방울처럼 빛나는 결심"],
+    bestLightCones: ["초보자 임무 시작 전", "필요한 건 기다림뿐", "바람에 흩날리는 거짓말", "그 무수한 봄날", "땀방울처럼 빛나는 결심"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     eidolonEfficiency: []
   };

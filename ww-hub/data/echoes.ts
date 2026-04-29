@@ -1,4 +1,4 @@
-import { WuwaEcho } from "../../common-hub/types";
+import { WuwaEcho } from "../types";
 
 const PART_1: WuwaEcho[] = [
   

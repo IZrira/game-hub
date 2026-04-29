@@ -10,7 +10,7 @@ const march7th: Character = {
   path: "보존",
   rarity: 4,
   affiliation: "은하열차",
-  briefInfo: "한 번의 표류 후 깨어난 소녀. 자신의 이름조차 잊어버린 채 은하열차와 함께하게 된다. 밝고 긍정적이며 사진 찍기를 좋아한다.",
+  briefInfo: "얼음 속에 깊이 잠들어 있던 기억을 잃은 소녀\n출생의 진실을 찾기 위해 은하열차에 올랐다\n본인을 위해 약 67가지의 「출생 스토리」를 준비해뒀다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 Mar. 7th / 🇺🇸 March 7th / 🇨🇳 三月七 / 🇯🇵 三月なのか",
   voiceActors: "🇰🇷 정혜원 / 🇺🇸 앤디 깁슨 / 🇨🇳 눠야 / 🇯🇵 오구라 유이",
@@ -36,15 +36,15 @@ const march7th: Character = {
       { name: "짓밟힌 의지", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "청동의 집념", count: "12", rarity: 2 },
-      { name: "한철의 맹세", count: "54", rarity: 3 },
-      { name: "앰버의 수호", count: "105", rarity: 4 },
-      { name: "약탈의 본능", count: "28", rarity: 2 },
-      { name: "변조된 야망", count: "42", rarity: 3 },
-      { name: "짓밟힌 의지", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "청동의 집념", count: "8", rarity: 2 },
+      { name: "한철의 맹세", count: "42", rarity: 3 },
+      { name: "앰버의 수호", count: "77", rarity: 4 },
+      { name: "약탈의 본능", count: "22", rarity: 2 },
+      { name: "변조된 야망", count: "35", rarity: 3 },
+      { name: "짓밟힌 의지", count: "20", rarity: 4 }
     ]
   },
   skills: [

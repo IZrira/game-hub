@@ -48,15 +48,15 @@ const ruanMei: Character = {
       { name: "영생의 가지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "조화의 가락", count: "18", rarity: 2 },
-      { name: "가족의 찬가", count: "69", rarity: 3 },
-      { name: "별들의 악장", count: "139", rarity: 4 },
-      { name: "영생의 새싹", count: "41", rarity: 2 },
-      { name: "영생의 꽃", count: "56", rarity: 3 },
-      { name: "영생의 가지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "조화의 가락", count: "12", rarity: 2 },
+      { name: "가족의 찬가", count: "53", rarity: 3 },
+      { name: "별들의 악장", count: "101", rarity: 4 },
+      { name: "영생의 새싹", count: "33", rarity: 2 },
+      { name: "영생의 꽃", count: "46", rarity: 3 },
+      { name: "영생의 가지", count: "28", rarity: 4 }
     ]
   },
   skills: [

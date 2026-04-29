@@ -1,131 +1,187 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Star, Layers } from 'lucide-react';
+import { useParams, Link } from 'react-router-dom';
+import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, BookOpen } from 'lucide-react';
 import { WEAPON_DATA } from '../data/weapons';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
-import { renderRichText, formatDescriptionByRank } from './formatter';
+import { renderRichText, formatDescriptionByRank } from '../data/formatter';
+import { useTranslation } from 'react-i18next';
 
 const WuwaWeaponDetail = () => {
+  const { t } = useTranslation();
   const params = useParams();
   const routeParam = params.lcName || params.weaponName || params.name || params.id || Object.values(params).pop() || '';
   const targetName = String(routeParam).normalize('NFC');
-  const [rank, setRank] = useState<number>(1);
+  const [rankIdx, setRankIdx] = useState<number>(0);
+  const [isStoryOpen, setIsStoryOpen] = useState(false);
 
   const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName);
-  
-  const theme = { primary: '#EAB308', secondary: '#FDE047', shadow: 'rgba(234, 179, 8, 0.4)' };
+  const theme = { primary: '#EAB308', secondary: '#FDE047' };
 
-  if (!weapon) return <div className="p-20 text-center text-white font-black uppercase italic">Weapon not found. ({targetName})</div>;
+  if (!weapon) return (
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+      <div className="p-20 text-center text-white font-black uppercase italic opacity-20 tracking-widest text-2xl">
+        Weapon not found. ({targetName})
+      </div>
+    </div>
+  );
 
   const getIllustrationUrl = () => {
     return encodeURI(`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/Weapons/${weapon.name.normalize('NFC')}.webp`);
   };
 
   return (
-    <div className="min-h-[100dvh] bg-[#0a0a0a] text-white pb-24 font-sans selection:bg-brand-primary">
+    <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary overflow-x-hidden">
       <SEO 
         title={`${weapon.name} 정보`} 
         description={`${weapon.name}의 상세 스탯, 무기 스킬, 스토리를 확인하세요.`}
         name={weapon.name}
         image={getIllustrationUrl()}
       />
-      <PageHeader gameId="ww" category="무기" title={weapon.name} />
+      
+      <PageHeader gameId="ww" category={t("무기")} title={t(weapon.name)} />
 
-      {/* 메인 컨테이너 그리드 */}
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-12 pb-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-x-20 items-start">
+      <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-4 space-y-6">
+        {/* Top Section: Image & Info Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-[550px_1fr] gap-8 items-start">
           
-          {/* [LEFT] 비주얼 섹션 (5/12 차지) */}
-          <aside className="lg:col-span-5 lg:sticky lg:top-24 space-y-12 max-w-xl mx-auto lg:max-w-none w-full">
-            <div className="aspect-square bg-white/[0.02] border border-white/5 rounded-[60px] p-12 relative overflow-hidden shadow-inner group">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+          {/* Left: Image with Overlay */}
+          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
             <img 
               src={getIllustrationUrl()} 
-              alt={`${weapon.name} 아이콘`}
-              width="800"
-              height="800"
-              style={{ imageRendering: 'auto', transform: 'translateZ(0)' }}
-              className="w-full h-full object-contain relative z-10 drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-700" 
+              alt={weapon.name} 
+              className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" 
             />
+            {/* Overlay Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/10 to-transparent" />
+            
+            {/* Integrated Info Overlay (Bottom-Left) */}
+            <div className="absolute bottom-8 left-8 right-8 space-y-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                  {t('무기 종류')} : {t(weapon.type || '')}
+                </div>
+                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
+                  {t(weapon.name)}
+                </h1>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="flex gap-1">
+                  {Array.from({ length: weapon.rarity }).map((_, i) => (
+                    <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-            {/* 스토리 그리드: 흐리게 처리하여 정보 위계를 낮춤 */}
-            {weapon.description && (
-              <div className="px-4 space-y-4 opacity-40 hover:opacity-100 transition-opacity duration-500">
-                <h4 className="text-[10px] font-black uppercase tracking-[0.4em] text-brand-primary">Weapon Story</h4>
-                <p className="text-sm leading-relaxed italic break-keep text-gray-400 whitespace-pre-line">{weapon.description}</p>
-              </div>
-            )}
-          </aside>
-
-          {/* [RIGHT] 정보 섹션 (7/12 차지) */}
-          <main className="lg:col-span-7 space-y-16 break-keep">
-            {/* 타이틀 및 핵심 스탯 그리드 (2열) */}
-            <section className="space-y-10 border-b border-white/5 pb-16">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div className="flex flex-wrap items-center gap-4">
-                  <span className="px-5 py-1.5 rounded-xl text-[11px] font-black uppercase border backdrop-blur-md bg-brand-primary/15 text-brand-primary border-brand-primary/40">{weapon.type}</span>
-                  <div className="flex gap-1.5 items-center bg-white/5 px-4 py-1.5 rounded-full border border-white/10">
-                    {Array.from({ length: weapon.rarity }).map((_, i) => (<Star key={i} size={14} fill={theme.primary} style={{ color: theme.primary }} />))}
+          {/* Right: Consolidated Controls and Info */}
+          <div className="space-y-6 flex flex-col h-full">
+            
+            {/* 01. Compact Control & Stats Card */}
+            <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+              
+              <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-6">
+                {/* Resonance (Superimposition) Slider */}
+                <div className="space-y-3 flex-grow relative pt-6 group/rslider">
+                  <div className="flex justify-between items-end">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl font-black italic opacity-20" style={{ color: theme.primary }}>01</span>
+                      <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('중첩')}</h2>
+                    </div>
                   </div>
+                  {/* Floating Rank Label */}
+                  <div 
+                    className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg z-10"
+                    style={{ 
+                      left: `${(rankIdx / 4) * 100}%`,
+                      boxShadow: `0 0 10px rgba(255,255,255,0.4)`
+                    }}
+                  >
+                    R{rankIdx + 1}
+                  </div>
+                  <input 
+                    type="range" min="0" max="4" value={rankIdx} 
+                    onChange={(e) => setRankIdx(parseInt(e.target.value))}
+                    className="w-full h-1 bg-white/15 rounded-full appearance-none cursor-pointer"
+                    style={{ accentColor: theme.primary }}
+                  />
+                  <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5">
+                    <span>1</span>
+                    <span>5</span>
+                  </div>
+                </div>
+
+                {/* Quick Link/Guide */}
+                <div className="mt-4 md:mt-0">
+                   <Link 
+                     to={`/gallery/ww/guide/${weapon.name}`} 
+                     className="flex items-center gap-2 px-6 py-2 bg-brand-primary text-white rounded-xl text-[10px] font-black shadow-lg hover:scale-105 transition-transform"
+                   >
+                     <BookOpen size={12} /> {t('무기 공략')}
+                   </Link>
+                </div>
+              </div>
+
+              {/* Stats Row */}
+              <div className="grid grid-cols-2 gap-4 bg-white/5 p-6 rounded-2xl border border-white/5">
+                <div className="space-y-0.5">
+                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('기초 공격력')} (Lv.90)</div>
+                  <div className="text-xl font-black tabular-nums tracking-tighter italic">{weapon.stats.atk}</div>
+                </div>
+                <div className="space-y-0.5 border-l border-white/5 px-4">
+                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t(weapon.stats.subStatName)}</div>
+                  <div className="text-xl font-black tabular-nums tracking-tighter italic text-brand-accent">{weapon.stats.subStatValue}</div>
+                </div>
+              </div>
+            </div>
+
+            {/* 02. Skill Detail Section (REDUCED SIZE) */}
+            <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
+              <div className="flex items-center gap-3 mb-6">
+                <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: theme.primary }}>02</span>
+                <div className="flex items-center gap-3">
+                   <ShieldCheck size={20} style={{ color: theme.primary }} />
+                   <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90">{t(weapon.skill?.name || '')}</h2>
                 </div>
               </div>
               
-              <h2 className="text-[clamp(2.5rem,8vw,5rem)] font-black italic tracking-tighter uppercase leading-none">{weapon.name}</h2>
-              
-              <div className="grid grid-cols-2 gap-6 pt-4">
-                <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 space-y-2 hover:bg-white/10 transition-colors">
-                  <p className="text-[11px] font-black text-gray-500 uppercase tracking-widest">Base ATK (Lv.90)</p>
-                  <p className="text-4xl font-black italic text-white">{weapon.stats.atk}</p>
-                </div>
-                <div className="bg-white/5 border border-white/10 rounded-[32px] p-8 space-y-2 hover:bg-white/10 transition-colors">
-                  <p className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{weapon.stats.subStatName}</p>
-                  <p className="text-4xl font-black text-brand-accent italic">{weapon.stats.subStatValue}</p>
-                </div>
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
+                {renderRichText(formatDescriptionByRank(weapon.skill?.description || '', rankIdx + 1))}
               </div>
-            </section>
-
-            {/* 재련 정보 섹션 (강조 그리드) */}
-            {weapon.skill && (
-              <section className="space-y-8">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 border-l-4 border-brand-primary pl-6">
-                  <h3 className="text-xl font-black uppercase tracking-widest italic flex flex-col gap-1">
-                    <span className="text-[10px] text-gray-500 tracking-[0.3em]">Resonance Effect</span>
-                    {weapon.skill.name}
-                  </h3>
-                  
-                  {/* 1~5중첩 선택 스위치 */}
-                  <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 shrink-0">
-                    {[1, 2, 3, 4, 5].map((v) => (
-                      <button
-                        key={v}
-                        onClick={() => setRank(v)}
-                        className={`h-11 min-w-[44px] px-4 rounded-xl text-xs font-black transition-all flex items-center justify-center ${rank === v ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'}`}
-                      >
-                        R{v}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-                
-                <div className="bg-[#111] border border-white/10 rounded-[48px] p-10 md:p-14 shadow-2xl relative overflow-hidden group hover:border-brand-primary/30 transition-colors duration-500">
-                  <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:scale-110 transition-transform duration-700">
-                    <Layers size={120} />
-                  </div>
-                  <div className="absolute -inset-1 bg-gradient-to-r from-brand-primary/10 to-brand-accent/10 rounded-[48px] blur-xl opacity-0 group-hover:opacity-100 transition duration-1000" />
-                  
-                  <div className="relative z-10 text-xl md:text-2xl leading-relaxed font-medium italic text-gray-200 whitespace-pre-line break-keep">
-                    {renderRichText(formatDescriptionByRank(weapon.skill.description, rank))}
-                  </div>
-                </div>
-              </section>
-            )}
-
-            <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
-          </main>
+            </div>
+            
+            <AdPlaceholder type="leaderboard" className="mt-4 mb-2 scale-90 opacity-40" />
+          </div>
         </div>
+
+        {/* 03. Story Section (Toggle) - BOTTOM FULL WIDTH */}
+        {weapon.description && (
+          <div className="glass-card overflow-hidden rounded-[35px] border border-white/5 transition-all duration-300">
+              <button 
+                onClick={() => setIsStoryOpen(!isStoryOpen)}
+                className="w-full p-8 flex items-center justify-between group/story hover:bg-white/[0.02] transition-colors"
+              >
+                <div className="flex items-center gap-6">
+                  <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>03</span>
+                  <h2 className="text-xl font-black uppercase tracking-widest text-gray-400 group-hover/story:text-white transition-colors">{t('무기 스토리')}</h2>
+                </div>
+                <div className={`p-3 rounded-full bg-white/5 border border-white/10 transition-transform duration-500 ${isStoryOpen ? 'rotate-180 bg-brand-primary/20 border-brand-primary/20' : ''}`} style={isStoryOpen ? { color: theme.primary } : {}}>
+                  {isStoryOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                </div>
+              </button>
+              
+              <div className={`transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100 pb-10' : 'max-h-0 opacity-0'}`}>
+                <div className="px-8 border-t border-white/5 pt-8">
+                  <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">
+                      {t(weapon.description)}
+                  </div>
+                </div>
+              </div>
+          </div>
+        )}
       </div>
     </div>
   );

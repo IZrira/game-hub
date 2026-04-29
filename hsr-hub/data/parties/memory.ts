@@ -124,6 +124,20 @@ export const memoryParties: PartyCombination[] = [
     tags: ['카스토리스', '기억', '에버나이트']
   },
   {
+    id: 'party_trailblazer_memory_gen_1',
+    name: '개척자 (기억) 범용 파티 (카스토리스)',
+    description: '카스토리스와 에버나이트의 기억 메커니즘을 개척자(기억)로 보조하는 조합입니다.',
+    mainDPS: '카스토리스',
+    category: '기억',
+    members: [
+      { id: 'char_카스토리스', name: '카스토리스', role: '메인 딜러', folderName: '카스토리스' },
+      { id: 'char_에버나이트', name: '에버나이트', role: '서포터', folderName: '에버나이트' },
+      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
+      { id: 'char_히아킨', name: '히아킨', role: '탱커/힐러', folderName: '히아킨' }
+    ],
+    tags: ['개척자', '기억', '카스토리스']
+  },
+  {
     id: 'party_evernight_hyper_1',
     name: '에버나이트 하이퍼캐리 파티 (1순위)',
     description: '에버나이트의 화력을 키레네와 개척자(기억)로 극대화한 조합입니다.',
@@ -153,20 +167,6 @@ export const memoryParties: PartyCombination[] = [
       }
     ],
     tags: ['에버나이트', '하이퍼캐리', '키레네']
-  },
-  {
-    id: 'party_trailblazer_memory_gen_1',
-    name: '개척자 (기억) 범용 파티 (카스토리스)',
-    description: '카스토리스와 에버나이트의 기억 메커니즘을 개척자(기억)로 보조하는 조합입니다.',
-    mainDPS: '카스토리스',
-    category: '기억',
-    members: [
-      { id: 'char_카스토리스', name: '카스토리스', role: '메인 딜러', folderName: '카스토리스' },
-      { id: 'char_에버나이트', name: '에버나이트', role: '서포터', folderName: '에버나이트' },
-      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
-      { id: 'char_히아킨', name: '히아킨', role: '탱커/힐러', folderName: '히아킨' }
-    ],
-    tags: ['개척자', '기억', '카스토리스']
   },
   {
     id: 'party_trailblazer_memory_gen_2',

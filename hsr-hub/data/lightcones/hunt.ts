@@ -1,266 +1,705 @@
-import { LightCone } from '../../../common-hub/types';
-import { createLv80Stats } from '../dataFactory';
+import { HsrLightCone } from '../../../hsr-hub/types';
+import { createDetailedBaseStats, createMaterial } from '../dataFactory';
 
-export const huntLightcones: LightCone[] = [
+export const huntLightcones: HsrLightCone[] = [
   {
-    id: "lc_대립",
-    name: "lightcone.lc_대립.name",
-    folderName: "대립",
-    rarity: 3,
-    path: "수렵",
-    baseStats: createLv80Stats(740, 370, 264),
-    skill: {
-      name: "lightcone.lc_대립.skill.name",
-      description: "lightcone.lc_대립.skill.desc"
+    "id": "lc_야경_속에서",
+    "name": "야경 속에서",
+    "releaseVersion": "1.0",
+    "folderName": "야경 속에서",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [21, 81, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "꽃과 나비",
+      "description": "장착한 캐릭터의 치명타 확률이 18%/21%/24%/27%/30% 증가한다. 장착한 캐릭터의 전투 중 속도가 100보다 높을 경우, 10pt 초과할 때마다 일반 공격 및 전투 스킬이 가하는 피해가 6%/7%/8%/9%/10% 증가하고, 필살기의 치명타 피해가 12%/14%/16%/18%/20% 증가한다. 최대 중첩수: 6스택",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 18% 증가한다. 장착한 캐릭터의 전투 중 속도가 100보다 높을 경우, 10pt 초과할 때마다 일반 공격 및 전투 스킬이 가하는 피해가 6% 증가하고, 필살기의 치명타 피해가 12% 증가한다. 최대 중첩수: 6스택",
+        "장착한 캐릭터의 치명타 확률이 21% 증가한다. 장착한 캐릭터의 전투 중 속도가 100보다 높을 경우, 10pt 초과할 때마다 일반 공격 및 전투 스킬이 가하는 피해가 7% 증가하고, 필살기의 치명타 피해가 14% 증가한다. 최대 중첩수: 6스택",
+        "장착한 캐릭터의 치명타 확률이 24% 증가한다. 장착한 캐릭터의 전투 중 속도가 100보다 높을 경우, 10pt 초과할 때마다 일반 공격 및 전투 스킬이 가하는 피해가 8% 증가하고, 필살기의 치명타 피해가 16% 증가한다. 최대 중첩수: 6스택",
+        "장착한 캐릭터의 치명타 확률이 27% 증가한다. 장착한 캐릭터의 전투 중 속도가 100보다 높을 경우, 10pt 초과할 때마다 일반 공격 및 전투 스킬이 가하는 피해가 9% 증가하고, 필살기의 치명타 피해가 18% 증가한다. 최대 중첩수: 6스택",
+        "장착한 캐릭터의 치명타 확률이 30% 증가한다. 장착한 캐릭터의 전투 중 속도가 100보다 높을 경우, 10pt 초과할 때마다 일반 공격 및 전투 스킬이 가하는 피해가 10% 증가하고, 필살기의 치명타 피해가 20% 증가한다. 최대 중첩수: 6스택"
+      ]
     },
-    story: "lightcone.lc_대립.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("약탈의 본능", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("약탈의 본능", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 4, 3), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 5, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 14, 4)] }
+    ],
+    "story": "소녀가 희미한 미소를 짓는다.\n「왜?」\n「난 지금 분명 혼자인데…」\n「왜… 혼자가 아닌 기분이 들까」"
   },
   {
-    id: "lc_움트는_봄물",
-    name: "lightcone.lc_움트는_봄물.name",
-    folderName: "움트는 봄물",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(846, 476, 396),
-    skill: {
-      name: "lightcone.lc_움트는_봄물.skill.name",
-      description: "lightcone.lc_움트는_봄물.skill.desc"
+    "id": "lc_깊게_든_단잠",
+    "name": "깊게 든 단잠",
+    "releaseVersion": "1.0",
+    "folderName": "깊게 든 단잠",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [21, 81, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "좋은꿈",
+      "description": "장착한 캐릭터의 치명타 피해가 30%/35%/40%/45%/50% 증가한다. 장착한 캐릭터의 일반 공격 혹은 전투 스킬 피해가 치명타를 발동하지 않으면 자신의 치명타 확률이 36%/42%/48%/54%/60% 증가한다. 지속 시간: 1턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 피해가 30% 증가한다. 장착한 캐릭터의 일반 공격 혹은 전투 스킬 피해가 치명타를 발동하지 않으면 자신의 치명타 확률이 36% 증가한다. 지속 시간: 1턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 피해가 35% 증가한다. 장착한 캐릭터의 일반 공격 혹은 전투 스킬 피해가 치명타를 발동하지 않으면 자신의 치명타 확률이 42% 증가한다. 지속 시간: 1턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 피해가 40% 증가한다. 장착한 캐릭터의 일반 공격 혹은 전투 스킬 피해가 치명타를 발동하지 않으면 자신의 치명타 확률이 48% 증가한다. 지속 시간: 1턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 피해가 45% 증가한다. 장착한 캐릭터의 일반 공격 혹은 전투 스킬 피해가 치명타를 발동하지 않으면 자신의 치명타 확률이 54% 증가한다. 지속 시간: 1턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 피해가 50% 증가한다. 장착한 캐릭터의 일반 공격 혹은 전투 스킬 피해가 치명타를 발동하지 않으면 자신의 치명타 확률이 60% 증가한다. 지속 시간: 1턴. 해당 효과는 3턴마다 1회만 발동할 수 있다"
+      ]
     },
-    story: "lightcone.lc_움트는_봄물.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("약탈의 본능", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("약탈의 본능", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 4, 3), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 5, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 14, 4)] }
+    ],
+    "story": "장군의 어깨에 기대어 곤히 잠든 상태에서도 소년은 검을 꽉 움켜쥐고 있었다.\n그가 소년의 뺨을 부드럽게 토닥이자 소년은 잠꼬대를 중얼거렸다.\n「장군님… 드디어… 이겼다……」\n\n그는 잠시 멍해졌다. 매일 노력하며 성장해나가는 소년에 비해\n자신은 이미 너무 오랜 세월을 살아왔고, 그동안 「변하지 않는 것」에 익숙해져 있었다는 것이 문득 떠올랐기 때문이다.\n\n「너는 곧 모든 사람을 이길 수 있게 될 거야. 그리고 그때부터가 시작이지……」"
   },
   {
-    id: "lc_팔로우를_부탁해",
-    name: "lightcone.lc_팔로우를_부탁해.name",
-    folderName: "팔로우를 부탁해!",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 476, 330),
-    skill: {
-      name: "lightcone.lc_팔로우를_부탁해.skill.name",
-      description: "lightcone.lc_팔로우를_부탁해.skill.desc"
+    "id": "lc_고민_그리고_행복",
+    "name": "고민, 그리고 행복",
+    "releaseVersion": "1.4",
+    "folderName": "고민, 그리고 행복",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [21, 81, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "한 번에 하나씩",
+      "description": "장착한 캐릭터의 치명타 확률이 18%/21%/24%/27%/30% 증가하고, 추가 공격으로 가하는 피해가 30%/35%/40%/45%/50% 증가한다. 장착한 캐릭터가 추가 공격을 발동하면 목표가 [온순] 상태에 빠진다. 해당 효과 최대 중첩수: 2스택. 아군이 [온순] 상태의 적을 명중하면 [온순] 스택마다 가하는 치명타 피해가 12%/14%/16%/18%/20% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 18% 증가하고, 추가 공격으로 가하는 피해가 30% 증가한다. 장착한 캐릭터가 추가 공격을 발동하면 목표가 [온순] 상태에 빠진다. 해당 효과 최대 중첩수: 2스택. 아군이 [온순] 상태의 적을 명중하면 [온순] 스택마다 가하는 치명타 피해가 12% 증가한다",
+        "장착한 캐릭터의 치명타 확률이 21% 증가하고, 추가 공격으로 가하는 피해가 35% 증가한다. 장착한 캐릭터가 추가 공격을 발동하면 목표가 [온순] 상태에 빠진다. 해당 효과 최대 중첩수: 2스택. 아군이 [온순] 상태의 적을 명중하면 [온순] 스택마다 가하는 치명타 피해가 14% 증가한다",
+        "장착한 캐릭터의 치명타 확률이 24% 증가하고, 추가 공격으로 가하는 피해가 40% 증가한다. 장착한 캐릭터가 추가 공격을 발동하면 목표가 [온순] 상태에 빠진다. 해당 효과 최대 중첩수: 2스택. 아군이 [온순] 상태의 적을 명중하면 [온순] 스택마다 가하는 치명타 피해가 16% 증가한다",
+        "장착한 캐릭터의 치명타 확률이 27% 증가하고, 추가 공격으로 가하는 피해가 45% 증가한다. 장착한 캐릭터가 추가 공격을 발동하면 목표가 [온순] 상태에 빠진다. 해당 효과 최대 중첩수: 2스택. 아군이 [온순] 상태의 적을 명중하면 [온순] 스택마다 가하는 치명타 피해가 18% 증가한다",
+        "장착한 캐릭터의 치명타 확률이 30% 증가하고, 추가 공격으로 가하는 피해가 50% 증가한다. 장착한 캐릭터가 추가 공격을 발동하면 목표가 [온순] 상태에 빠진다. 해당 효과 최대 중첩수: 2스택. 아군이 [온순] 상태의 적을 명중하면 [온순] 스택마다 가하는 치명타 피해가 20% 증가한다"
+      ]
     },
-    story: "lightcone.lc_팔로우를_부탁해.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("철위대 배지", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("철위대 배지", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 4, 3), createMaterial("철위대 배지", 20, 2), createMaterial("철위대 표식", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("철위대 배지", 20, 2), createMaterial("철위대 표식", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 5, 4), createMaterial("철위대 배지", 20, 2), createMaterial("철위대 표식", 20, 3), createMaterial("철위대 훈장", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("철위대 배지", 20, 2), createMaterial("철위대 표식", 20, 3), createMaterial("철위대 훈장", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("철위대 배지", 20, 2), createMaterial("철위대 표식", 20, 3), createMaterial("철위대 훈장", 14, 4)] }
+    ],
+    "story": "적격한 컴퍼니 직원이라면 「압박에 무너지는」 것은 절대 용납할 수 없는 일이다.\n스트레스나 피로에도 가슴을 펴고 맞서야 한다!\n물론… 「그들」에게 무너지는 건 어쩔 수 없지만.\n\n「아이참, 재촉하지 마! 내 손은 두 개뿐이라고!」\n야근을 마치고 귀가한 소녀는 털이 보송보송한 생명체들에 눌려 바닥에 쓰러진다.\n그들은 그녀의 말을 알아듣지 못했는지 동그란 머리를 그녀의 손에 대기 바쁘다.\n피로가 점차 사라지면서 부드러운 털의 온기가 온몸으로 퍼진다"
   },
   {
-    id: "lc_별바다_순항",
-    name: "lightcone.lc_별바다_순항.name",
-    folderName: "별바다 순항",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(1058, 529, 463),
-    skill: {
-      name: "lightcone.lc_별바다_순항.skill.name",
-      description: "lightcone.lc_별바다_순항.skill.desc"
+    "id": "lc_순수_사유의_세례",
+    "name": "순수 사유의 세례",
+    "releaseVersion": "1.6",
+    "folderName": "순수 사유의 세례",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [24, 92, 157, 232, 306, 380, 455, 529]
+    ),
+    "skill": {
+      "name": "사고력 훈련",
+      "description": "장착한 캐릭터의 치명타 피해가 20%/23%/26%/29%/32% 증가한다. 적이 보유한 디버프 효과 1개당 장착한 캐릭터가 해당 적에게 가하는 치명타 피해가 추가로 8%/9%/10%/11%/12% 증가한다, 해당 효과 최대 중첩수: 3스택. 필살기로 적 공격 시 장착한 캐릭터는 [변론] 효과를 획득해 가하는 피해가 36%/42%/48%/54%/60% 증가하고, 추가 공격은 목표의 방어력을 24%/28%/32%/36%/40% 무시한다, 해당 효과 지속 시간: 2턴",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 피해가 20% 증가한다. 적이 보유한 디버프 효과 1개당 장착한 캐릭터가 해당 적에게 가하는 치명타 피해가 추가로 8% 증가한다, 해당 효과 최대 중첩수: 3스택. 필살기로 적 공격 시 장착한 캐릭터는 [변론] 효과를 획득해 가하는 피해가 36% 증가하고, 추가 공격은 목표의 방어력을 24% 무시한다, 해당 효과 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 피해가 23% 증가한다. 적이 보유한 디버프 효과 1개당 장착한 캐릭터가 해당 적에게 가하는 치명타 피해가 추가로 9% 증가한다, 해당 효과 최대 중첩수: 3스택. 필살기로 적 공격 시 장착한 캐릭터는 [변론] 효과를 획득해 가하는 피해가 42% 증가하고, 추가 공격은 목표의 방어력을 28% 무시한다, 해당 효과 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 피해가 26% 증가한다. 적이 보유한 디버프 효과 1개당 장착한 캐릭터가 해당 적에게 가하는 치명타 피해가 추가로 10% 증가한다, 해당 효과 최대 중첩수: 3스택. 필살기로 적 공격 시 장착한 캐릭터는 [변론] 효과를 획득해 가하는 피해가 48% 증가하고, 추가 공격은 목표의 방어력을 32% 무시한다, 해당 효과 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 피해가 29% 증가한다. 적이 보유한 디버프 효과 1개당 장착한 캐릭터가 해당 적에게 가하는 치명타 피해가 추가로 11% 증가한다, 해당 효과 최대 중첩수: 3스택. 필살기로 적 공격 시 장착한 캐릭터는 [변론] 효과를 획득해 가하는 피해가 54% 증가하고, 추가 공격은 목표의 방어력을 36% 무시한다, 해당 효과 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 피해가 32% 증가한다. 적이 보유한 디버프 효과 1개당 장착한 캐릭터가 해당 적에게 가하는 치명타 피해가 추가로 12% 증가한다, 해당 효과 최대 중첩수: 3스택. 필살기로 적 공격 시 장착한 캐릭터는 [변론] 효과를 획득해 가하는 피해가 60% 증가하고, 추가 공격은 목표의 방어력을 40% 무시한다, 해당 효과 지속 시간: 2턴"
+      ]
     },
-    story: "lightcone.lc_별바다_순항.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("약탈의 본능", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("약탈의 본능", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 4, 3), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 5, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("약탈의 본능", 20, 2), createMaterial("변조된 야망", 20, 3), createMaterial("짓밟힌 의지", 14, 4)] }
+    ],
+    "story": "오후의 햇살이 기분 좋게 내리쬐고, 향긋한 꽃향기가 퍼져 나온다.\n그는 항상 청결에 신경을 썼지만, 생각은 둔해지면 먼지가 쌓이기 마련이다.\n\n「생각의 힐링은 건강을 유지하는 것만큼 중요하다」\n어리석은 자의 소란은 피곤과 함께 멀어졌고, 물에 잠겨 생각이 흐르도록 놔두자 마음이 점점 맑아졌다.\n\n「진리는 불결을 멀리하며, 순수한 자만이 진리에 다가갈 수 있다」"
   },
   {
-    id: "lc_깊게_든_단잠",
-    name: "lightcone.lc_깊게_든_단잠.name",
-    folderName: "깊게 든 단잠",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(1058, 582, 463),
-    skill: {
-      name: "lightcone.lc_깊게_든_단잠.skill.name",
-      description: "lightcone.lc_깊게_든_단잠.skill.desc"
+    "id": "lc_두_번째_생명을_향해",
+    "name": "두 번째 생명을 향해",
+    "releaseVersion": "2.2",
+    "folderName": "두 번째 생명을 향해",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [21, 81, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "고된 항해",
+      "description": "장착한 캐릭터의 격파 특수효과가 60%/70%/80%/90%/100% 증가하고, 가하는 격파 피해는 목표의 방어력을 20%/23%/26%/29%/32% 무시한다. 전투 중 장착한 캐릭터의 격파 특수효과가 150% 이상일 경우 속도가 12%/14%/16%/18%/20% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 격파 특수효과가 60% 증가하고, 가하는 격파 피해는 목표의 방어력을 20% 무시한다. 전투 중 장착한 캐릭터의 격파 특수효과가 150% 이상일 경우 속도가 12% 증가한다",
+        "장착한 캐릭터의 격파 특수효과가 70% 증가하고, 가하는 격파 피해는 목표의 방어력을 23% 무시한다. 전투 중 장착한 캐릭터의 격파 특수효과가 150% 이상일 경우 속도가 14% 증가한다",
+        "장착한 캐릭터의 격파 특수효과가 80% 증가하고, 가하는 격파 피해는 목표의 방어력을 26% 무시한다. 전투 중 장착한 캐릭터의 격파 특수효과가 150% 이상일 경우 속도가 16% 증가한다",
+        "장착한 캐릭터의 격파 특수효과가 90% 증가하고, 가하는 격파 피해는 목표의 방어력을 29% 무시한다. 전투 중 장착한 캐릭터의 격파 특수효과가 150% 이상일 경우 속도가 18% 증가한다",
+        "장착한 캐릭터의 격파 특수효과가 100% 증가하고, 가하는 격파 피해는 목표의 방어력을 32% 무시한다. 전투 중 장착한 캐릭터의 격파 특수효과가 150% 이상일 경우 속도가 20% 증가한다"
+      ]
     },
-    story: "lightcone.lc_깊게_든_단잠.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("생각의 가루", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("생각의 가루", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 4, 3), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 5, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 15, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 15, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 14, 4)] }
+    ],
+    "story": "그는 깊은 바다에 떨어진 것 같았다. 모든 것이 그를 떠났고, 텅 빈 사고만이 날뛰며 몸부림쳤다.\n\n공포, 불안, 고독, 어둠, 분노… 그 감정들은 육신과 함께 사라지지 않았고, 오히려 또 다른 방식으로 기계의 껍데기에 남아 점점 무거워졌다.\n\n그는 죽은 자의 부름을 듣고, 타는 냄새를 맡았다. 기계의 윙윙 소리가 그의 귓가에 맴돌았고, 푸른 피가 그의 굶주린 심장으로 흘러들었다…. 몇몇 잔인한 기억들이 다시 떠올랐고, 뼈에 새긴 원한이 어둠 속에서 희미한 빛으로 변했다. 그는 빛을 따라 끝으로 걸어갔고, 온 힘을 다해 수면 위로 떠올랐다.\n\n그는 눈을 떴다. 불꽃이 번쩍이며 지나갔고, 그는 의사의 축하 인사를 들었다——\n「이 세상에 다시 오신 걸 환영합니다」\n그는 두 손을 꼭 쥐었다. 지금은 강철로 만들어진, 차가운 두 손을…\n그는 더 이상 자신을 위해 살지 않을 것이다"
   },
   {
-    id: "lc_야경_속에서",
-    name: "lightcone.lc_야경_속에서.name",
-    folderName: "야경 속에서",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(1058, 582, 463),
-    skill: {
-      name: "lightcone.lc_야경_속에서.skill.name",
-      description: "lightcone.lc_야경_속에서.skill.desc"
+    "id": "lc_정복하고_사냥하리",
+    "name": "정복하고 사냥하리",
+    "releaseVersion": "2.5",
+    "folderName": "정복하고 사냥하리",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [29, 111, 189, 278, 367, 456, 546, 635],
+      [21, 81, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "진섭",
+      "description": "장착한 캐릭터의 치명타 확률이 15%/17.5%/20%/22.5%/25% 증가한다. 장착한 캐릭터가 추가 공격 발동 시 [유광]을 1스택 획득한다, 최대 중첩수: 2스택. [유광] 1스택마다 장착한 캐릭터가 가하는 필살기 피해가 목표의 방어력을 27%/30%/33%/36%/39% 무시한다. 장착한 캐릭터의 턴 종료 시 [유광]이 1스택 해제된다",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 15% 증가한다. 장착한 캐릭터가 추가 공격 발동 시 [유광]을 1스택 획득한다, 최대 중첩수: 2스택. [유광] 1스택마다 장착한 캐릭터가 가하는 필살기 피해가 목표의 방어력을 27% 무시한다. 장착한 캐릭터의 턴 종료 시 [유광]이 1스택 해제된다",
+        "장착한 캐릭터의 치명타 확률이 17.5% 증가한다. 장착한 캐릭터가 추가 공격 발동 시 [유광]을 1스택 획득한다, 최대 중첩수: 2스택. [유광] 1스택마다 장착한 캐릭터가 가하는 필살기 피해가 목표의 방어력을 30% 무시한다. 장착한 캐릭터의 턴 종료 시 [유광]이 1스택 해제된다",
+        "장착한 캐릭터의 치명타 확률이 20% 증가한다. 장착한 캐릭터가 추가 공격 발동 시 [유광]을 1스택 획득한다, 최대 중첩수: 2스택. [유광] 1스택마다 장착한 캐릭터가 가하는 필살기 피해가 목표의 방어력을 33% 무시한다. 장착한 캐릭터의 턴 종료 시 [유광]이 1스택 해제된다",
+        "장착한 캐릭터의 치명타 확률이 22.5% 증가한다. 장착한 캐릭터가 추가 공격 발동 시 [유광]을 1스택 획득한다, 최대 중첩수: 2스택. [유광] 1스택마다 장착한 캐릭터가 가하는 필살기 피해가 목표의 방어력을 36% 무시한다. 장착한 캐릭터의 턴 종료 시 [유광]이 1스택 해제된다",
+        "장착한 캐릭터의 치명타 확률이 25% 증가한다. 장착한 캐릭터가 추가 공격 발동 시 [유광]을 1스택 획득한다, 최대 중첩수: 2스택. [유광] 1스택마다 장착한 캐릭터가 가하는 필살기 피해가 목표의 방어력을 39% 무시한다. 장착한 캐릭터의 턴 종료 시 [유광]이 1스택 해제된다"
+      ]
     },
-    story: "lightcone.lc_야경_속에서.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("공조 기계 부품", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("공조 기계 부품", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 4, 3), createMaterial("공조 기계 부품", 20, 2), createMaterial("공조 톱니바퀴", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("공조 기계 부품", 20, 2), createMaterial("공조 톱니바퀴", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 5, 4), createMaterial("공조 기계 부품", 20, 2), createMaterial("공조 톱니바퀴", 20, 3), createMaterial("공조 환류 심장", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 15, 4), createMaterial("공조 기계 부품", 20, 2), createMaterial("공조 톱니바퀴", 20, 3), createMaterial("공조 환류 심장", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 15, 4), createMaterial("공조 기계 부품", 20, 2), createMaterial("공조 톱니바퀴", 20, 3), createMaterial("공조 환류 심장", 14, 4)] }
+    ],
+    "story": "「가엽고 가소로운 노예들이여……」\n수많은 풍요의 백성 군대가 경계선으로 몰려오고, 늑대 독은 홍수처럼 청구군을 집어삼키며 군인들 마음속 깊이 숨겨진 공포를 불러일으키려 한다. 다양한 공포로 이루어진 환상은 군인들이 무기를 내려놓고 주저하게 만들었다.\n전선은 철통같은 방비로 보리인의 경멸의 소리에도 흔들리지 않았다. 그때 그림자 하나가 천천히 걸어 나왔다.\n그녀가 천천히 몸을 움직이자, 눈에 보이지 않는 살기에 깃발이 흔들렸다.\n「장군님, 장군님이 오셨다……」\n「비소 장군님……」\n「『천격』 장군!」\n작은 외침이 모여 하늘을 울리는 함성이 되었다.\n「추락하지 않고, 만고불변의 승리를 이어가리!」\n그녀는 그곳에 홀로 서 있었지만, 그 모습은 마치 하나의 군대 같았다"
   },
   {
-    id: "lc_또다시_저승으로",
-    name: "lightcone.lc_또다시_저승으로.name",
-    folderName: "또다시 저승으로",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(846, 529, 330),
-    skill: {
-      name: "lightcone.lc_또다시_저승으로.skill.name",
-      description: "lightcone.lc_또다시_저승으로.skill.desc"
+    "id": "lc_이상이_불타는_지옥",
+    "name": "이상이 불타는 지옥",
+    "releaseVersion": "3.4",
+    "folderName": "이상이 불타는 지옥",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [24, 92, 157, 232, 306, 380, 455, 529]
+    ),
+    "skill": {
+      "name": "적원엽병",
+      "description": "장착한 캐릭터의 치명타 확률이 16%/20%/24%/28%/32% 증가한다. 전투 진입 시 아군의 전투 스킬 포인트 최대치가 6pt 이상일 경우, 장착한 캐릭터의 공격력이 40%/50%/60%/70%/80% 증가한다. 장착한 캐릭터가 전투 스킬을 발동할 때마다 장착한 캐릭터의 공격력이 10%/12.5%/15%/17.5%/20% 증가한다, 최대 중첩수: 4회",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 16% 증가한다. 전투 진입 시 아군의 전투 스킬 포인트 최대치가 6pt 이상일 경우, 장착한 캐릭터의 공격력이 40% 증가한다. 장착한 캐릭터가 전투 스킬을 발동할 때마다 장착한 캐릭터의 공격력이 10% 증가한다, 최대 중첩수: 4회",
+        "장착한 캐릭터의 치명타 확률이 20% 증가한다. 전투 진입 시 아군의 전투 스킬 포인트 최대치가 6pt 이상일 경우, 장착한 캐릭터의 공격력이 50% 증가한다. 장착한 캐릭터가 전투 스킬을 발동할 때마다 장착한 캐릭터의 공격력이 12.5% 증가한다, 최대 중첩수: 4회",
+        "장착한 캐릭터의 치명타 확률이 24% 증가한다. 전투 진입 시 아군의 전투 스킬 포인트 최대치가 6pt 이상일 경우, 장착한 캐릭터의 공격력이 60% 증가한다. 장착한 캐릭터가 전투 스킬을 발동할 때마다 장착한 캐릭터의 공격력이 15% 증가한다, 최대 중첩수: 4회",
+        "장착한 캐릭터의 치명타 확률이 28% 증가한다. 전투 진입 시 아군의 전투 스킬 포인트 최대치가 6pt 이상일 경우, 장착한 캐릭터의 공격력이 70% 증가한다. 장착한 캐릭터가 전투 스킬을 발동할 때마다 장착한 캐릭터의 공격력이 17.5% 증가한다, 최대 중첩수: 4회",
+        "장착한 캐릭터의 치명타 확률이 32% 증가한다. 전투 진입 시 아군의 전투 스킬 포인트 최대치가 6pt 이상일 경우, 장착한 캐릭터의 공격력이 80% 증가한다. 장착한 캐릭터가 전투 스킬을 발동할 때마다 장착한 캐릭터의 공격력이 20% 증가한다, 최대 중첩수: 4회"
+      ]
     },
-    story: "lightcone.lc_또다시_저승으로.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("소멸된 코어", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("소멸된 코어", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 4, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 5, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("운철 탄환", 4, 2), createMaterial("숙명적인 사인", 12, 3), createMaterial("시간을 역행하는 일격", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] }
+    ],
+    "story": "평원에 업화가 타오른다. 누군가의 이상은 재가 되었고, 누군가의 이상은 활활 타오른다.\n수호자는 탄환과 화살 사이를 가로지른다.\n이곳에는 그가 구원할 수 있는 대상은 없고, 그가 구원하고 싶은 대상으로 가득하다.\n한 사람을 구하면 한 사람을 죽이고, 만 명을 구하면 만 명을 죽인다. 서로를 짓밟는 운명 역시 인류 존속의 일환이다.\n이 모든 것에 익숙해진 수호자는 걸음을 멈춘 적이 없다.\n두 다리를 덮는 의지는 바람과 같고, 두 팔을 덮는 의지는 불과 같다.\n그는 여전히 구원의 기적을 찾고 있다"
   },
   {
-    id: "lc_논검",
-    name: "lightcone.lc_논검.name",
-    folderName: "논검",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 476, 330),
-    skill: {
-      name: "lightcone.lc_논검.skill.name",
-      description: "lightcone.lc_논검.skill.desc"
+    "id": "lc_거짓말의_종막",
+    "name": "거짓말의 종막",
+    "releaseVersion": "4.1",
+    "folderName": "거짓말의 종막",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [29, 111, 189, 278, 367, 456, 546, 635],
+      [24, 92, 157, 232, 306, 380, 455, 529]
+    ),
+    "skill": {
+      "name": "잠식",
+      "description": "장착한 캐릭터의 치명타 확률이 18%/21%/24%/27%/30% 증가한다. 전투 시작 시 또는 장착한 캐릭터가 추가 공격을 누적 4회 발동할 때마다 장착한 캐릭터는 [그림자 포식]을 획득한다, 지속 시간: 3턴. 장착한 캐릭터가 [그림자 포식] 보유 시, 공격력이 40%/50%/60%/70%/80% 증가하고, 모든 적이 받는 피해를 20%/22.5%/25%/27.5%/30% 증가시키며, 같은 유형의 효과는 중첩되지 않는다",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 18% 증가한다. 전투 시작 시 또는 장착한 캐릭터가 추가 공격을 누적 4회 발동할 때마다 장착한 캐릭터는 [그림자 포식]을 획득한다, 지속 시간: 3턴. 장착한 캐릭터가 [그림자 포식] 보유 시, 공격력이 40% 증가하고, 모든 적이 받는 피해를 20% 증가시키며, 같은 유형의 효과는 중첩되지 않는다",
+        "장착한 캐릭터의 치명타 확률이 21% 증가한다. 전투 시작 시 또는 장착한 캐릭터가 추가 공격을 누적 4회 발동할 때마다 장착한 캐릭터는 [그림자 포식]을 획득한다, 지속 시간: 3턴. 장착한 캐릭터가 [그림자 포식] 보유 시, 공격력이 50% 증가하고, 모든 적이 받는 피해를 22.5% 증가시키며, 같은 유형의 효과는 중첩되지 않는다",
+        "장착한 캐릭터의 치명타 확률이 24% 증가한다. 전투 시작 시 또는 장착한 캐릭터가 추가 공격을 누적 4회 발동할 때마다 장착한 캐릭터는 [그림자 포식]을 획득한다, 지속 시간: 3턴. 장착한 캐릭터가 [그림자 포식] 보유 시, 공격력이 60% 증가하고, 모든 적이 받는 피해를 25% 증가시키며, 같은 유형의 효과는 중첩되지 않는다",
+        "장착한 캐릭터의 치명타 확률이 27% 증가한다. 전투 시작 시 또는 장착한 캐릭터가 추가 공격을 누적 4회 발동할 때마다 장착한 캐릭터는 [그림자 포식]을 획득한다, 지속 시간: 3턴. 장착한 캐릭터가 [그림자 포식] 보유 시, 공격력이 70% 증가하고, 모든 적이 받는 피해를 27.5% 증가시키며, 같은 유형의 효과는 중첩되지 않는다",
+        "장착한 캐릭터의 치명타 확률이 30% 증가한다. 전투 시작 시 또는 장착한 캐릭터가 추가 공격을 누적 4회 발동할 때마다 장착한 캐릭터는 [그림자 포식]을 획득한다, 지속 시간: 3턴. 장착한 캐릭터가 [그림자 포식] 보유 시, 공격력이 80% 증가하고, 모든 적이 받는 피해를 30% 증가시키며, 같은 유형의 효과는 중첩되지 않는다"
+      ]
     },
-    story: "lightcone.lc_논검.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("천진난만 크레파스", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("분쟁의 혈진", 4, 2), createMaterial("천진난만 크레파스", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("분쟁의 혈진", 4, 2), createMaterial("전혼의 혈정", 4, 3), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("분쟁의 혈진", 4, 2), createMaterial("전혼의 혈정", 12, 3), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("분쟁의 혈진", 4, 2), createMaterial("전혼의 혈정", 12, 3), createMaterial("천벌의 혈창", 5, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("분쟁의 혈진", 4, 2), createMaterial("전혼의 혈정", 12, 3), createMaterial("천벌의 혈창", 15, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("분쟁의 혈진", 4, 2), createMaterial("전혼의 혈정", 12, 3), createMaterial("천벌의 혈창", 15, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] }
+    ],
+    "story": "「≪탐정 추리 입문≫에서 뭐라고 했더라? 정말 부득이한 경우가 아니라면······」\n붉은색과 검은색이 뒤엉킨 송곳니가, 어깨 위로 조금씩 타고 오른다.\n밤빛이 깊게 잠긴 곳에 의구심이 피어오르고, 어둑한 숲속에는 사나운 짐승이 숨어 있다.\n「쫓고 쫓기는 이 게임, 이제 끝낼 때가 됐어」\n핏빛이 가시고, 하늘 위 달빛은 여전히 교결하며, 별들은 고이 잠들어 있다.\n이것은 진상을 향한 그의 또 한 번의 탐색이다. 하지만 과거의 그림자가 그의 어깨를 두드리더니, 이내 흩어져 사라졌다.\n지금 이 순간의 대치를, 계속 이어질 것이다──\n「······죄악의 징벌을 내리는, 그날까지」"
   },
   {
-    id: "lc_침묵만이",
-    name: "lightcone.lc_침묵만이.name",
-    folderName: "침묵만이",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 476, 330),
-    skill: {
-      name: "lightcone.lc_침묵만이.skill.name",
-      description: "lightcone.lc_침묵만이.skill.desc"
+    "id": "lc_별바다_순항",
+    "name": "별바다 순항",
+    "releaseVersion": "1.0",
+    "folderName": "별바다 순항",
+    "rarity": 5,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [24, 92, 157, 232, 306, 380, 455, 529],
+      [21, 80, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "사냥감 추적",
+      "description": "장착한 캐릭터의 치명타 확률이 8%/10%/12%/14%/16% 증가한다. 장착한 캐릭터는 HP 백분율이 50% 이하인 적에게 가하는 치명타 확률이 추가로 8%/10%/12%/14%/16% 증가한다. 장착한 캐릭터는 적을 처치 후 공격력이 20%/25%/30%/35%/40% 증가한다. 지속 시간: 2턴",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 8% 증가한다. 장착한 캐릭터는 HP 백분율이 50% 이하인 적에게 가하는 치명타 확률이 추가로 8% 증가한다. 장착한 캐릭터는 적을 처치 후 공격력이 20% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 확률이 10% 증가한다. 장착한 캐릭터는 HP 백분율이 50% 이하인 적에게 가하는 치명타 확률이 추가로 10% 증가한다. 장착한 캐릭터는 적을 처치 후 공격력이 25% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 확률이 12% 증가한다. 장착한 캐릭터는 HP 백분율이 50% 이하인 적에게 가하는 치명타 확률이 추가로 12% 증가한다. 장착한 캐릭터는 적을 처치 후 공격력이 30% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 확률이 14% 증가한다. 장착한 캐릭터는 HP 백분율이 50% 이하인 적에게 가하는 치명타 확률이 추가로 14% 증가한다. 장착한 캐릭터는 적을 처치 후 공격력이 35% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 치명타 확률이 16% 증가한다. 장착한 캐릭터는 HP 백분율이 50% 이하인 적에게 가하는 치명타 확률이 추가로 16% 증가한다. 장착한 캐릭터는 적을 처치 후 공격력이 40% 증가한다. 지속 시간: 2턴"
+      ]
     },
-    story: "lightcone.lc_침묵만이.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("소멸된 코어", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("소멸된 코어", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 4, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 5, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("짐승 사냥용 화살", 4, 2), createMaterial("악마 사냥용 화살", 12, 3), createMaterial("별 쫓는 화살", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] }
+    ],
+    "story": "별바다 사이를 오가는,\n그의 속도는 빛처럼 빠르다.\n불사의 흉물을 포위하고,\n신비의 명약을 찾아내,\n벗어날 길을 찾는다.\n그의 항해는 깨지지 않는 서약처럼,\n영원히 끝나지 않는다"
   },
   {
-    id: "lc_시위를_떠난_화살",
-    name: "lightcone.lc_시위를_떠난_화살.name",
-    folderName: "시위를 떠난 화살",
-    rarity: 3,
-    path: "수렵",
-    baseStats: createLv80Stats(740, 370, 264),
-    skill: {
-      name: "lightcone.lc_시위를_떠난_화살.skill.name",
-      description: "lightcone.lc_시위를_떠난_화살.skill.desc"
+    "id": "lc_침묵만이",
+    "name": "침묵만이",
+    "releaseVersion": "1.0",
+    "folderName": "침묵만이",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "기록",
+      "description": "장착한 캐릭터의 공격력이 16%/20%/24%/28%/32% 증가한다. 필드 위의 적이 2명 이하일 경우, 장착한 캐릭터의 치명타 확률이 12%/15%/18%/21%/24% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 공격력이 16% 증가한다. 필드 위의 적이 2명 이하일 경우, 장착한 캐릭터의 치명타 확률이 12% 증가한다",
+        "장착한 캐릭터의 공격력이 20% 증가한다. 필드 위의 적이 2명 이하일 경우, 장착한 캐릭터의 치명타 확률이 15% 증가한다",
+        "장착한 캐릭터의 공격력이 24% 증가한다. 필드 위의 적이 2명 이하일 경우, 장착한 캐릭터의 치명타 확률이 18% 증가한다",
+        "장착한 캐릭터의 공격력이 28% 증가한다. 필드 위의 적이 2명 이하일 경우, 장착한 캐릭터의 치명타 확률이 21% 증가한다",
+        "장착한 캐릭터의 공격력이 32% 증가한다. 필드 위의 적이 2명 이하일 경우, 장착한 캐릭터의 치명타 확률이 24% 증가한다"
+      ]
     },
-    story: "lightcone.lc_시위를_떠난_화살.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("철위대 배지", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("철위대 배지", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 3, 3), createMaterial("철위대 배지", 15, 2), createMaterial("철위대 표식", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("철위대 배지", 15, 2), createMaterial("철위대 표식", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 4, 4), createMaterial("철위대 배지", 15, 2), createMaterial("철위대 표식", 15, 3), createMaterial("철위대 훈장", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("철위대 배지", 15, 2), createMaterial("철위대 표식", 15, 3), createMaterial("철위대 훈장", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("철위대 배지", 15, 2), createMaterial("철위대 표식", 15, 3), createMaterial("철위대 훈장", 12, 4)] }
+    ],
+    "story": "「이미 도착했는데, 안 내려?」\n머리 위에서 작은 웃음소리가 들린다. 그는 눈만 치켜뜨고 고개는 들지 않았다.\n「미리 말하자면, Mar. 7th가 자꾸 너보고 무표정이라고 하는데, 난 그렇게 생각 안해」\n「열차 아카이브의 데이터에 업데이트한 흔적이 있는데, 결과를 저장하지 못했어」\n「그래서… 뭐가 문제야?」\n그가 펜을 움켜쥐고 노트에 기억대로 다시 쓴 참혹한 장면을 본다.\n「아, 너에 대한 일이구나…」"
   },
   {
-    id: "lc_화살촉",
-    name: "lightcone.lc_화살촉.name",
-    folderName: "화살촉",
-    rarity: 3,
-    path: "수렵",
-    baseStats: createLv80Stats(740, 370, 264),
-    skill: {
-      name: "lightcone.lc_화살촉.skill.name",
-      description: "lightcone.lc_화살촉.skill.desc"
+    "id": "lc_논검",
+    "name": "논검",
+    "releaseVersion": "1.0",
+    "folderName": "논검",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "각자의 답",
+      "description": "장착한 캐릭터가 동일한 적을 여러 회 명중 후 매번 가하는 피해가 8%/10%/12%/14%/16% 증가한다. 해당 효과 최대 중첩수: 5스택. 공격 목표에 변화가 생길 경우 현재 버프 효과가 해제된다",
+      "descriptions": [
+        "장착한 캐릭터가 동일한 적을 여러 회 명중 후 매번 가하는 피해가 8% 증가한다. 해당 효과 최대 중첩수: 5스택. 공격 목표에 변화가 생길 경우 현재 버프 효과가 해제된다",
+        "장착한 캐릭터가 동일한 적을 여러 회 명중 후 매번 가하는 피해가 10% 증가한다. 해당 효과 최대 중첩수: 5스택. 공격 목표에 변화가 생길 경우 현재 버프 효과가 해제된다",
+        "장착한 캐릭터가 동일한 적을 여러 회 명중 후 매번 가하는 피해가 12% 증가한다. 해당 효과 최대 중첩수: 5스택. 공격 목표에 변화가 생길 경우 현재 버프 효과가 해제된다",
+        "장착한 캐릭터가 동일한 적을 여러 회 명중 후 매번 가하는 피해가 14% 증가한다. 해당 효과 최대 중첩수: 5스택. 공격 목표에 변화가 생길 경우 현재 버프 효과가 해제된다",
+        "장착한 캐릭터가 동일한 적을 여러 회 명중 후 매번 가하는 피해가 16% 증가한다. 해당 효과 최대 중첩수: 5스택. 공격 목표에 변화가 생길 경우 현재 버프 효과가 해제된다"
+      ]
     },
-    story: "lightcone.lc_화살촉.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("소멸된 코어", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("소멸된 코어", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 3, 3), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 4, 4), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3), createMaterial("꿈틀대는 코어", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3), createMaterial("꿈틀대는 코어", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3), createMaterial("꿈틀대는 코어", 12, 4)] }
+    ],
+    "story": "소녀는 이해할 수 없다는 듯 손에 든 얇은 검을 바라봤다.\n검은 양손으로 휘둘러야 제맛인 데, 이런 검도 검이라고 할 수 있을까? 이런 검으로 정말 적을 무찌를 수는 있는 결식까?\n하지만 검의 주인은 이 점을 전혀 신경 쓰지 않는 것 같다.\n적을 처치하는 건 검의 성능에 달린 게 아니라 마음에 달렸다.\n검이 무겁든 가볍든 무슨 차이가 있을까"
   },
   {
-    id: "lc_고민_그리고_행복",
-    name: "lightcone.lc_고민_그리고_행복.name",
-    folderName: "고민, 그리고 행복",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(1058, 582, 463),
-    skill: {
-      name: "lightcone.lc_고민_그리고_행복.skill.name",
-      description: "lightcone.lc_고민_그리고_행복.skill.desc"
+    "id": "lc_팔로우를_부탁해",
+    "name": "팔로우를 부탁해!",
+    "releaseVersion": "1.0",
+    "folderName": "팔로우를 부탁해!",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "좋아요도 안 하고 가려고?",
+      "description": "장착한 캐릭터의 일반 공격 혹은 전투 스킬이 가하는 피해가 24%/30%/36%/42%/48% 증가하며, 장착한 캐릭터의 현재 에너지가 에너지 최대치일 시, 해당 효과는 추가로 24%/30%/36%/42%/48% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 일반 공격 혹은 전투 스킬이 가하는 피해가 24% 증가하며, 장착한 캐릭터의 현재 에너지가 에너지 최대치일 시, 해당 효과는 추가로 24% 증가한다",
+        "장착한 캐릭터의 일반 공격 혹은 전투 스킬이 가하는 피해가 30% 증가하며, 장착한 캐릭터의 현재 에너지가 에너지 최대치일 시, 해당 효과는 추가로 30% 증가한다",
+        "장착한 캐릭터의 일반 공격 혹은 전투 스킬이 가하는 피해가 36% 증가하며, 장착한 캐릭터의 현재 에너지가 에너지 최대치일 시, 해당 효과는 추가로 36% 증가한다",
+        "장착한 캐릭터의 일반 공격 혹은 전투 스킬이 가하는 피해가 42% 증가하며, 장착한 캐릭터의 현재 에너지가 에너지 최대치일 시, 해당 효과는 추가로 42% 증가한다",
+        "장착한 캐릭터의 일반 공격 혹은 전투 스킬이 가하는 피해가 48% 증가하며, 장착한 캐릭터의 현재 에너지가 에너지 최대치일 시, 해당 효과는 추가로 48% 증가한다"
+      ]
     },
-    story: "lightcone.lc_고민_그리고_행복.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("공조 기계 부품", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("공조 기계 부품", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 3, 3), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 4, 4), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3), createMaterial("공조 환류 심장", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3), createMaterial("공조 환류 심장", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3), createMaterial("공조 환류 심장", 12, 4)] }
+    ],
+    "story": "「아——아——! 시청자 여러분, 여기 신호 잘 통하나요?」\n주황 머리의 소녀가 격하게 외치며 카메라를 향해 여유롭게 망치를 든다.\n「여러분——소녀가 가슴 위에 있는 돌을 깨는 모습 본 적 있나요!」\n「제가 이런 일하려고 운기군이 된 게 아닌데 말이죠!」\n갈색 머리 소녀의 눈에 별이 반짝이고, 주황색 머리의 소녀가 교활하게 웃는다.\n「부탁할게요——이것도 흔쾌히 남을 돕는 거라고요!」"
   },
   {
-    id: "lc_순수_사유의_세례",
-    name: "lightcone.lc_순수_사유의_세례.name",
-    folderName: "순수 사유의 세례",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 582, 529),
-    skill: {
-      name: "lightcone.lc_순수_사유의_세례.skill.name",
-      description: "lightcone.lc_순수_사유의_세례.skill.desc"
+    "id": "lc_움트는_봄물",
+    "name": "움트는 봄물",
+    "releaseVersion": "1.0",
+    "folderName": "움트는 봄물",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [18, 69, 118, 174, 230, 285, 341, 397]
+    ),
+    "skill": {
+      "name": "남은 추위 몰아내기",
+      "description": "전투 진입 후 장착한 캐릭터의 속도가 8%/9%/10%/11%/12% 증가하고, 가하는 피해가 12%/15%/18%/21%/24% 증가한다. 장착한 캐릭터가 피해를 받은 후 해당 효과는 사라지며 다음 턴이 종료되면 해당 효과는 회복된다",
+      "descriptions": [
+        "전투 진입 후 장착한 캐릭터의 속도가 8% 증가하고, 가하는 피해가 12% 증가한다. 장착한 캐릭터가 피해를 받은 후 해당 효과는 사라지며 다음 턴이 종료되면 해당 효과는 회복된다",
+        "전투 진입 후 장착한 캐릭터의 속도가 9% 증가하고, 가하는 피해가 15% 증가한다. 장착한 캐릭터가 피해를 받은 후 해당 효과는 사라지며 다음 턴이 종료되면 해당 효과는 회복된다",
+        "전투 진입 후 장착한 캐릭터의 속도가 10% 증가하고, 가하는 피해가 18% 증가한다. 장착한 캐릭터가 피해를 받은 후 해당 효과는 사라지며 다음 턴이 종료되면 해당 효과는 회복된다",
+        "전투 진입 후 장착한 캐릭터의 속도가 11% 증가하고, 가하는 피해가 21% 증가한다. 장착한 캐릭터가 피해를 받은 후 해당 효과는 사라지며 다음 턴이 종료되면 해당 효과는 회복된다",
+        "전투 진입 후 장착한 캐릭터의 속도가 12% 증가하고, 가하는 피해가 24% 증가한다. 장착한 캐릭터가 피해를 받은 후 해당 효과는 사라지며 다음 턴이 종료되면 해당 효과는 회복된다"
+      ]
     },
-    story: "lightcone.lc_순수_사유의_세례.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("고대 부속품", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("고대 부속품", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 3, 3), createMaterial("고대 부속품", 15, 2), createMaterial("고대 전동축", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("고대 부속품", 15, 2), createMaterial("고대 전동축", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 4, 4), createMaterial("고대 부속품", 15, 2), createMaterial("고대 전동축", 15, 3), createMaterial("고대 엔진", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("고대 부속품", 15, 2), createMaterial("고대 전동축", 15, 3), createMaterial("고대 엔진", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("고대 부속품", 15, 2), createMaterial("고대 전동축", 15, 3), createMaterial("고대 엔진", 12, 4)] }
+    ],
+    "story": "검을 연마하던 소년은 잠시 휴식을 취한다.\n햇살이 그의 뜨거운 목덜미를 데우고 그는 천천히 물에 들어간다.\n물이 발에 찰랑 거리자 차가웠지만,\n종이 울리고, 새가 지저귄다.\n먼 곳의 사람들은 봄이 온 것을 알아차린다"
   },
   {
-    id: "lc_최후의_승자",
-    name: "lightcone.lc_최후의_승자.name",
-    folderName: "최후의 승자",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 476, 330),
-    skill: {
-      name: "lightcone.lc_최후의_승자.skill.name",
-      description: "lightcone.lc_최후의_승자.skill.desc"
+    "id": "lc_또다시_저승으로",
+    "name": "또다시 저승으로",
+    "releaseVersion": "1.0",
+    "folderName": "또다시 저승으로",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [24, 92, 157, 232, 306, 380, 455, 529],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "용솟음",
+      "description": "장착한 캐릭터의 치명타 확률이 12%/15%/18%/21%/24% 증가한다. 치명타 발동 후 16%/20%/24%/28%/32%의 고정 확률로 피격된 적이 보유한 버프 효과를 1개 해제한다. 해당 효과는 턴마다 1회만 발동할 수 있다",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 확률이 12% 증가한다. 치명타 발동 후 16%의 고정 확률로 피격된 적이 보유한 버프 효과를 1개 해제한다. 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 확률이 15% 증가한다. 치명타 발동 후 20%의 고정 확률로 피격된 적이 보유한 버프 효과를 1개 해제한다. 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 확률이 18% 증가한다. 치명타 발동 후 24%의 고정 확률로 피격된 적이 보유한 버프 효과를 1개 해제한다. 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 확률이 21% 증가한다. 치명타 발동 후 28%의 고정 확률로 피격된 적이 보유한 버프 효과를 1개 해제한다. 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 치명타 확률이 24% 증가한다. 치명타 발동 후 32%의 고정 확률로 피격된 적이 보유한 버프 효과를 1개 해제한다. 해당 효과는 턴마다 1회만 발동할 수 있다"
+      ]
     },
-    story: "lightcone.lc_최후의_승자.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("영생의 새싹", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("영생의 새싹", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 3, 3), createMaterial("영생의 새싹", 15, 2), createMaterial("영생의 꽃", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("영생의 새싹", 15, 2), createMaterial("영생의 꽃", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 4, 4), createMaterial("영생의 새싹", 15, 2), createMaterial("영생의 꽃", 15, 3), createMaterial("영생의 가지", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("영생의 새싹", 15, 2), createMaterial("영생의 꽃", 15, 3), createMaterial("영생의 가지", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("영생의 새싹", 15, 2), createMaterial("영생의 꽃", 15, 3), createMaterial("영생의 가지", 12, 4)] }
+    ],
+    "story": "언니의 곁에 있지만 그녀는 아무것도 들을 수 없었다.\n마음속의 소리만이 점점 더 커져 갔다.\n「언니의 몸이 차가워」\n「언니의 몸이 안 움직여」\n분노가 파도처럼 밀려와 그녀를 잠기게 했다. 그녀는 이미 생각할 겨를이 없었다——\n「언니의 몸은, 이미 오래전에 차가워졌어」"
   },
   {
-    id: "lc_두_번째_생명을_향해",
-    name: "lightcone.lc_두_번째_생명을_향해.name",
-    folderName: "두 번째 생명을 향해",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(1058, 582, 463),
-    skill: {
-      name: "lightcone.lc_두_번째_생명을_향해.skill.name",
-      description: "lightcone.lc_두_번째_생명을_향해.skill.desc"
+    "id": "lc_최후의_승자",
+    "name": "최후의 승자",
+    "releaseVersion": "2.0",
+    "folderName": "최후의 승자",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "베팅",
+      "description": "장착한 캐릭터의 공격력이 12%/14%/16%/18%/20% 증가한다. 장착한 캐릭터가 적에게 치명타를 가하면 [행운]을 1스택 획득한다. 최대 중첩수: 4스택. [행운] 스택당 장착한 캐릭터의 치명타 피해가 8%/9%/10%/11%/12% 증가한다. [행운]은 장착한 캐릭터의 턴 종료 시 해제된다",
+      "descriptions": [
+        "장착한 캐릭터의 공격력이 12% 증가한다. 장착한 캐릭터가 적에게 치명타를 가하면 [행운]을 1스택 획득한다. 최대 중첩수: 4스택. [행운] 스택당 장착한 캐릭터의 치명타 피해가 8% 증가한다. [행운]은 장착한 캐릭터의 턴 종료 시 해제된다",
+        "장착한 캐릭터의 공격력이 14% 증가한다. 장착한 캐릭터가 적에게 치명타를 가하면 [행운]을 1스택 획득한다. 최대 중첩수: 4스택. [행운] 스택당 장착한 캐릭터의 치명타 피해가 9% 증가한다. [행운]은 장착한 캐릭터의 턴 종료 시 해제된다",
+        "장착한 캐릭터의 공격력이 16% 증가한다. 장착한 캐릭터가 적에게 치명타를 가하면 [행운]을 1스택 획득한다. 최대 중첩수: 4스택. [행운] 스택당 장착한 캐릭터의 치명타 피해가 10% 증가한다. [행운]은 장착한 캐릭터의 턴 종료 시 해제된다",
+        "장착한 캐릭터의 공격력이 18% 증가한다. 장착한 캐릭터가 적에게 치명타를 가하면 [행운]을 1스택 획득한다. 최대 중첩수: 4스택. [행운] 스택당 장착한 캐릭터의 치명타 피해가 11% 증가한다. [행운]은 장착한 캐릭터의 턴 종료 시 해제된다",
+        "장착한 캐릭터의 공격력이 20% 증가한다. 장착한 캐릭터가 적에게 치명타를 가하면 [행운]을 1스택 획득한다. 최대 중첩수: 4스택. [행운] 스택당 장착한 캐릭터의 치명타 피해가 12% 증가한다. [행운]은 장착한 캐릭터의 턴 종료 시 해제된다"
+      ]
     },
-    story: "lightcone.lc_두_번째_생명을_향해.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("생각의 가루", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("생각의 가루", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 3, 3), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 4, 4), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3), createMaterial("욕망의 거울 조각", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3), createMaterial("욕망의 거울 조각", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("짐승 사냥용 화살", 3, 2), createMaterial("악마 사냥용 화살", 9, 3), createMaterial("별 쫓는 화살", 12, 4), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3), createMaterial("욕망의 거울 조각", 12, 4)] }
+    ],
+    "story": "「날 못 믿는 건가?」\n그는 도발하듯 눈앞에 있는 남자를 바라봤다. 총을 한 자루 꺼내서는, 총알 한 발을 남기고 나머지 총알을 비웠다.\n「보아하니, 즐거운 협력을 위해서는 내가 일하는 방식을 설명해야 할 것 같네」\n그는 권총을 상대의 손에 쥐어주고, 실린더를 회전한 후 총구를 자신에게 향하게 했다.\n그는 연속으로 방아쇠를 당겼다. 공이가 빈 약실을 치는 소리가 세 차례 울렸고, 그의 미소에는 변화가 없었다.\n「생명은 하나의 거대한 도박이야. 그리고 난 언제나 최후의 승자지」"
   },
   {
-    id: "lc_그림자처럼_뒤따르는_밤",
-    name: "lightcone.lc_그림자처럼_뒤따르는_밤.name",
-    folderName: "그림자처럼 뒤따르는 밤",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(846, 476, 396),
-    skill: {
-      name: "lightcone.lc_그림자처럼_뒤따르는_밤.skill.name",
-      description: "lightcone.lc_그림자처럼_뒤따르는_밤.skill.desc"
+    "id": "lc_그림자처럼_뒤따르는_밤",
+    "name": "그림자처럼 뒤따르는 밤",
+    "releaseVersion": "2.5",
+    "folderName": "그림자처럼 뒤따르는 밤",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [18, 69, 118, 174, 230, 285, 341, 397]
+    ),
+    "skill": {
+      "name": "은닉",
+      "description": "장착한 캐릭터의 격파 특수효과가 28%/35%/42%/49%/56% 증가한다. 전투 진입 시 또는 격파 피해를 가한 후 속도가 8%/9%/10%/11%/12% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동할 수 있다",
+      "descriptions": [
+        "장착한 캐릭터의 격파 특수효과가 28% 증가한다. 전투 진입 시 또는 격파 피해를 가한 후 속도가 8% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 격파 특수효과가 35% 증가한다. 전투 진입 시 또는 격파 피해를 가한 후 속도가 9% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 격파 특수효과가 42% 증가한다. 전투 진입 시 또는 격파 피해를 가한 후 속도가 10% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 격파 특수효과가 49% 증가한다. 전투 진입 시 또는 격파 피해를 가한 후 속도가 11% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터의 격파 특수효과가 56% 증가한다. 전투 진입 시 또는 격파 피해를 가한 후 속도가 12% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동할 수 있다"
+      ]
     },
-    story: "lightcone.lc_그림자처럼_뒤따르는_밤.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("공조 기계 부품", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("공조 기계 부품", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 3, 3), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 4, 4), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3), createMaterial("공조 환류 심장", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 12, 4), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3), createMaterial("공조 환류 심장", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 12, 4), createMaterial("공조 기계 부품", 15, 2), createMaterial("공조 톱니바퀴", 15, 3), createMaterial("공조 환류 심장", 12, 4)] }
+    ],
+    "story": "「발자국」\n「긁힌 자국」\n「냄새」\n모든 것을 깔끔하게 처리한 후, 그는 까마귀 깃털 하나를 주워 옥상으로 가볍게 뛰어올랐다.\n넓은 도시 속, 칠흑 같은 그림자가 아무도 주목하지 않는 구석을 가로질렀다.\n「난 그림자에 녹아들어 너희를 지켜볼게」"
   },
   {
-    id: "lc_정복하고_사냥하리",
-    name: "lightcone.lc_정복하고_사냥하리.name",
-    folderName: "정복하고 사냥하리",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 635, 463),
-    skill: {
-      name: "lightcone.lc_정복하고_사냥하리.skill.name",
-      description: "lightcone.lc_정복하고_사냥하리.skill.desc"
+    "id": "lc_그_종착지에서_다시_만나자",
+    "name": "그 종착지에서 다시 만나자",
+    "releaseVersion": "3.4",
+    "folderName": "그 종착지에서 다시 만나자",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [24, 92, 157, 232, 306, 380, 455, 529],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "집념",
+      "description": "장착한 캐릭터의 치명타 피해가 24%/28%/32%/36%/40% 증가한다. 장착한 캐릭터의 전투 스킬과 추가 공격이 가하는 피해가 24%/28%/32%/36%/40% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 치명타 피해가 24% 증가한다. 장착한 캐릭터의 전투 스킬과 추가 공격이 가하는 피해가 24% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 28% 증가한다. 장착한 캐릭터의 전투 스킬과 추가 공격이 가하는 피해가 28% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 32% 증가한다. 장착한 캐릭터의 전투 스킬과 추가 공격이 가하는 피해가 32% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 36% 증가한다. 장착한 캐릭터의 전투 스킬과 추가 공격이 가하는 피해가 36% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 40% 증가한다. 장착한 캐릭터의 전투 스킬과 추가 공격이 가하는 피해가 40% 증가한다"
+      ]
     },
-    story: "lightcone.lc_정복하고_사냥하리.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("있는 듯 없는 듯한 조짐", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("있는 듯 없는 듯한 조짐", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 3, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 4, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] }
+    ],
+    "story": "분함의 눈물이 뺨을 타고 흘러내렸다. 파괴된 법진 중앙에 남은 것은 죽음의 그림자, 그리고 끝없는 고요함과 공허함이었다.\n그때, 어둠 속에서 탄식이 들려왔다. 그것은 「영혼」의 떨림이었다.\n「…누나?」\n소년은 손을 들어 올렸고, 그 눈동자에는 한 줄기 빛이 스쳤다. 가족의 모습은 아주 잠시 머물렀지만, 그 순간은 그의 마음속에서 천 년 동안 멈춰 있는 듯했다.\n「알겠어…. 마지막으로 작별 인사를 하러 와줘서 고마워」\n그는 천천히 몸을 일으켰고, 첫 번째 아침 햇살이 단호한 얼굴과 마르지 않은 눈물 자국을 비췄다.\n「탐구는 길고 고독한 여정이 될 테니, 우린 종착점에서 다시 만나자……」"
   },
   {
-    id: "lc_이상이_불타는_지옥",
-    name: "lightcone.lc_이상이_불타는_지옥.name",
-    folderName: "이상이 불타는 지옥",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(1058, 582, 463),
-    skill: {
-      name: "lightcone.lc_이상이_불타는_지옥.skill.name",
-      description: "lightcone.lc_이상이_불타는_지옥.skill.desc"
+    "id": "lc_대립",
+    "name": "대립",
+    "releaseVersion": "1.0",
+    "folderName": "대립",
+    "rarity": 3,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [34, 129, 220, 324, 428, 533, 637, 741],
+      [17, 65, 110, 162, 214, 266, 318, 370],
+      [12, 46, 79, 116, 153, 190, 227, 265]
+    ),
+    "skill": {
+      "name": "연맹",
+      "description": "장착한 캐릭터는 적을 처치한 후 속도가 10%/12%/14%/16%/18% 증가한다. 지속 시간: 2턴",
+      "descriptions": [
+        "장착한 캐릭터는 적을 처치한 후 속도가 10% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터는 적을 처치한 후 속도가 12% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터는 적을 처치한 후 속도가 14% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터는 적을 처치한 후 속도가 16% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터는 적을 처치한 후 속도가 18% 증가한다. 지속 시간: 2턴"
+      ]
     },
-    story: "lightcone.lc_이상이_불타는_지옥.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 3000, 3), createMaterial("고대 부속품", 4, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 9000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("고대 부속품", 12, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 21000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 2, 2), createMaterial("고대 부속품", 12, 2), createMaterial("고대 전동축", 4, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 51000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("고대 부속품", 12, 2), createMaterial("고대 전동축", 10, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 111000, 4), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 3, 4), createMaterial("고대 부속품", 12, 2), createMaterial("고대 전동축", 10, 3), createMaterial("고대 엔진", 3, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("고대 부속품", 12, 2), createMaterial("고대 전동축", 10, 3), createMaterial("고대 엔진", 8, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("고대 부속품", 12, 2), createMaterial("고대 전동축", 10, 3), createMaterial("고대 엔진", 8, 4)] }
+    ],
+    "story": "세월에서 추출한 희박한 힘. 보잘것없는 찰나의 순간들이 모여 엮어진 장렬한 운명\n\n「자유를 위해 싸우는 사람은 죽지 않는다. 그의 이야기는 영원히 노래로 불릴 것이다」"
   },
   {
-    id: "lc_그_종착지에서_다시_만나자",
-    name: "lightcone.lc_그_종착지에서_다시_만나자.name",
-    folderName: "그 종착지에서 다시 만나자",
-    rarity: 4,
-    path: "수렵",
-    baseStats: createLv80Stats(952, 476, 330),
-    skill: {
-      name: "lightcone.lc_그_종착지에서_다시_만나자.skill.name",
-      description: "lightcone.lc_그_종착지에서_다시_만나자.skill.desc"
+    "id": "lc_시위를_떠난_화살",
+    "name": "시위를 떠난 화살",
+    "releaseVersion": "1.0",
+    "folderName": "시위를 떠난 화살",
+    "rarity": 3,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [34, 129, 220, 324, 428, 533, 637, 741],
+      [17, 65, 110, 162, 214, 266, 318, 370],
+      [12, 46, 79, 116, 153, 190, 227, 265]
+    ),
+    "skill": {
+      "name": "호각",
+      "description": "장착한 캐릭터는 적을 처치한 후 공격력이 24%/30%/36%/42%/48% 증가한다. 지속 시간: 3턴",
+      "descriptions": [
+        "장착한 캐릭터는 적을 처치한 후 공격력이 24% 증가한다. 지속 시간: 3턴",
+        "장착한 캐릭터는 적을 처치한 후 공격력이 30% 증가한다. 지속 시간: 3턴",
+        "장착한 캐릭터는 적을 처치한 후 공격력이 36% 증가한다. 지속 시간: 3턴",
+        "장착한 캐릭터는 적을 처치한 후 공격력이 42% 증가한다. 지속 시간: 3턴",
+        "장착한 캐릭터는 적을 처치한 후 공격력이 48% 증가한다. 지속 시간: 3턴"
+      ]
     },
-    story: "lightcone.lc_그_종착지에서_다시_만나자.story"
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 3000, 3), createMaterial("철위대 배지", 4, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 9000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("철위대 배지", 12, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 21000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 2, 2), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 4, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 51000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 111000, 4), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 3, 4), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3), createMaterial("철위대 훈장", 3, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3), createMaterial("철위대 훈장", 8, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3), createMaterial("철위대 훈장", 8, 4)] }
+    ],
+    "story": "세월에서 추출한 희박한 힘. 보잘것없는 찰나의 순간들이 모여 엮어진 장렬한 운명.\n\n「전쟁은 시작되었고 다음 화살의 목표를 찾아야 한다」"
   },
   {
-    id: "lc_거짓말의_종막",
-    gameId: "hsr",
-    name: "lightcone.lc_거짓말의_종막.name",
-    folderName: "거짓말의 종막",
-    rarity: 5,
-    path: "수렵",
-    baseStats: createLv80Stats(847, 635, 529),
-    skill: {
-      name: "lightcone.lc_거짓말의_종막.skill.name",
-      description: "lightcone.lc_거짓말의_종막.skill.desc"
+    "id": "lc_화살촉",
+    "name": "화살촉",
+    "releaseVersion": "1.0",
+    "folderName": "화살촉",
+    "rarity": 3,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [14, 55, 94, 139, 184, 228, 273, 318],
+      [12, 46, 79, 116, 153, 190, 227, 265]
+    ),
+    "skill": {
+      "name": "위기",
+      "description": "전투 시작 시 장착한 캐릭터의 치명타 확률이 12%/15%/18%/21%/24% 증가한다. 지속 시간: 3턴",
+      "descriptions": [
+        "전투 시작 시 장착한 캐릭터의 치명타 확률이 12% 증가한다. 지속 시간: 3턴",
+        "전투 시작 시 장착한 캐릭터의 치명타 확률이 15% 증가한다. 지속 시간: 3턴",
+        "전투 시작 시 장착한 캐릭터의 치명타 확률이 18% 증가한다. 지속 시간: 3턴",
+        "전투 시작 시 장착한 캐릭터의 치명타 확률이 21% 증가한다. 지속 시간: 3턴",
+        "전투 시작 시 장착한 캐릭터의 치명타 확률이 24% 증가한다. 지속 시간: 3턴"
+      ]
     },
-    story: "lightcone.lc_거짓말의_종막.story"
-  }
-];
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 3000, 3), createMaterial("약탈의 본능", 4, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 9000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("약탈의 본능", 12, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 21000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 2, 2), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 4, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 51000, 3), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 111000, 4), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 3, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 3, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 8, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 8, 4)] }
+    ],
+    "story": "세월에서 추출한 희박한 힘. 보잘것없는 찰나의 순간들이 모여 엮어진 장렬한 운명.\n「당겨진 화살과 활을 들고 사슴을 쫓을 때, 사냥꾼의 두 눈이 가장 맑다」"
+  }];
+

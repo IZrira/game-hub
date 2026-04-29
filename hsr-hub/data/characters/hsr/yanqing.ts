@@ -10,7 +10,7 @@ const yanqing: Character = {
   path: "수렵",
   rarity: 5,
   affiliation: "선주 「나부」",
-  briefInfo: "선주 「나부」의 최강 검객이자 경원의 호위무사. 어리지만 검술 천재로 명성이 자자하다.",
+  briefInfo: "경원 장군의 수행원이다. 어린 나이임에도 불구하고 천재라 불릴 정도로 뛰어난 검술을 지니고 있다.\n검 한 자루만 있으면 누구에게도 지지 않는다.",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 연경 / 🇺🇸 Yanqing / 🇨🇳 彦卿 / 🇯🇵 彦卿",
   voiceActors: "🇰🇷 이새벽 / 🇺🇸 앰버 메이 / 🇨🇳 먀오장 / 🇯🇵 이노우에 마리나",
@@ -36,15 +36,15 @@ const yanqing: Character = {
       { name: "짓밟힌 의지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "짐승 사냥용 화살", count: "18", rarity: 2 },
-      { name: "악마 사냥용 화살", count: "69", rarity: 3 },
-      { name: "별 쫓는 화살", count: "139", rarity: 4 },
-      { name: "약탈의 본능", count: "41", rarity: 2 },
-      { name: "변조된 야망", count: "56", rarity: 3 },
-      { name: "짓밟힌 의지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "짐승 사냥용 화살", count: "12", rarity: 2 },
+      { name: "악마 사냥용 화살", count: "53", rarity: 3 },
+      { name: "별 쫓는 화살", count: "101", rarity: 4 },
+      { name: "약탈의 본능", count: "33", rarity: 2 },
+      { name: "변조된 야망", count: "46", rarity: 3 },
+      { name: "짓밟힌 의지", count: "28", rarity: 4 }
     ]
   },
   skills: [

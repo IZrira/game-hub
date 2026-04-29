@@ -10,7 +10,7 @@ const serval: Character = {
   path: "지식",
   rarity: 4,
   affiliation: "벨로보그",
-  briefInfo: "character.serval.brief",
+  briefInfo: "축성가 기술 부서의 연구원이었던 벨로보그의 엔지니어\n게파드•랜도의 누나지만 남동생과 전혀 다른 성격을 가졌다\n한파 이전에 있던 「로큰롤」이라는 고대 음악에 빠져있다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 서벌 / 🇺🇸 Serval / 🇨🇳 希露瓦 / 🇯🇵 セーバル",
   voiceActors: "🇰🇷 민아 / 🇺🇸 나탈리 반 시스틴 / 🇨🇳 무페이 / 🇯🇵 아이미",
@@ -29,7 +29,7 @@ const serval: Character = {
       createMaterial("철위대 훈장", 12, 4)
     ],
     traces: [
-      createMaterial("신용 포인트", "2,400,000", 3),
+      createMaterial("신용 포인트", "1,758,000", 3),
       createMaterial("운명의 발자취", 5, 5),
       createMaterial("수호자의 비원(悲願)", 12, 4),
       createMaterial("영감의 열쇠", 12, 2),

@@ -10,7 +10,7 @@ const hanya: Character = {
   path: "화합",
   rarity: 4,
   affiliation: "선주 「나부」",
-  briefInfo: "선주 「나부」 시왕사의 판관. 시왕의 명을 받아 명참천필을 관장하고 여러 가지 죄업을 판독하고 업보를 판결한다",
+  briefInfo: "선주 「나부」 시왕사의 판관.\n시왕의 명을 받아 명참천필을 관장하고 여러 가지 죄업을 판독하고 업보를 판결한다",
   version: "1.5",
   releaseVersion: "1.5",
   languageNames: "🇰🇷 한아/ 🇺🇸 Hanya / 🇨🇳 寒鸦 / 🇯🇵 寒鴉",
@@ -24,7 +24,7 @@ const hanya: Character = {
     affiliation: "선주 「나부」",
     cv: "🇰🇷 윤은서 / 🇺🇸 수지 영 / 🇨🇳 장위씨 / 🇯🇵 스즈시로 사유미",
     releaseVersion: "1.5",
-    brief: "선주 「나부」 시왕사의 판관. 시왕의 명을 받아 명참천필을 관장하고 여러 가지 죄업을 판독하고 업보를 판결한다"
+    brief: "선주 「나부」 시왕사의 판관.\n시왕의 명을 받아 명참천필을 관장하고 여러 가지 죄업을 판독하고 업보를 판결한다"
   },
   baseStats: {
     lv1: { "기초 HP": 125, "기초 공격력": 77, "기초 방어력": 48 },
@@ -48,15 +48,15 @@ const hanya: Character = {
       { name: "공조 환류 심장", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "조화의 가락", count: "12", rarity: 2 },
-      { name: "가족의 찬가", count: "54", rarity: 3 },
-      { name: "별들의 악장", count: "105", rarity: 4 },
-      { name: "공조 기계 부품", count: "28", rarity: 2 },
-      { name: "공조 톱니바퀴", count: "42", rarity: 3 },
-      { name: "공조 환류 심장", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "조화의 가락", count: "8", rarity: 2 },
+      { name: "가족의 찬가", count: "42", rarity: 3 },
+      { name: "별들의 악장", count: "77", rarity: 4 },
+      { name: "공조 기계 부품", count: "22", rarity: 2 },
+      { name: "공조 톱니바퀴", count: "35", rarity: 3 },
+      { name: "공조 환류 심장", count: "20", rarity: 4 }
     ]
   },
   skills: [

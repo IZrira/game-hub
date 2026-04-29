@@ -44,20 +44,20 @@ const trailblazerPreservation: Character = {
       ascension: [
         { name: "신용 포인트", count: "308,000", rarity: 3 },
         { name: "깊은 별의 외형질", count: "28", rarity: 4 },
-        { name: "약탈의 본능", count: "15", rarity: 2 },
-        { name: "변조된 야망", count: "15", rarity: 3 },
-        { name: "짓밟힌 의지", count: "15", rarity: 4 }
+        { name: "약탈의 본능", count: "12", rarity: 2 },
+        { name: "변조된 야망", count: "13", rarity: 3 },
+        { name: "짓밟힌 의지", count: "12", rarity: 4 }
       ],
       traces: [
-        { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-        { name: "운명의 발자취", count: "8", rarity: 5 },
-        { name: "파멸자의 말로", count: "12", rarity: 4 },
-        { name: "청동의 집념", count: "18", rarity: 2 },
-        { name: "한철의 맹세", count: "69", rarity: 3 },
-        { name: "앰버의 수호", count: "139", rarity: 4 },
-        { name: "약탈의 본능", count: "41", rarity: 2 },
-        { name: "변조된 야망", count: "56", rarity: 3 },
-        { name: "짓밟힌 의지", count: "58", rarity: 4 }
+        { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+        { name: "운명의 발자취", count: "3", rarity: 5 },
+        { name: "파멸자의 말로", count: "9", rarity: 4 },
+        { name: "청동의 집념", count: "8", rarity: 2 },
+        { name: "한철의 맹세", count: "42", rarity: 3 },
+        { name: "앰버의 수호", count: "77", rarity: 4 },
+        { name: "약탈의 본능", count: "22", rarity: 2 },
+        { name: "변조된 야망", count: "35", rarity: 3 },
+        { name: "짓밟힌 의지", count: "20", rarity: 4 }
       ]
     },
     skills: [
@@ -93,7 +93,7 @@ const trailblazerPreservation: Character = {
       },
       {
         name: "비술 - 수호자의 부름",
-        tag: "비술 | 방어",
+        tag: "비술 | 방해",
         energyRegen: "없음",
         toughnessDMG: "없음",
         description: "비술 발동 후 다음 전투 시작 시 자신에게 개척자 방어력 30%+384만큼의 피해를 상쇄할 수 있는 실드를 제공한다. 지속 시간: 1턴."
@@ -110,12 +110,12 @@ const trailblazerPreservation: Character = {
       { type: "HP", value: "10%" }
     ],
     eidolons: [
-      { rank: "E01", name: "대지의 울부짖음", description: "일반 공격 발동 시 추가로 개척자 방어력 25%만큼의 화염 속성 피해를 가한다. 일반 공격 강화 발동 시 추가로 개척자 방어력 50%만큼의 화염 속성 피해를 가한다.", icon: "eidolon_1" },
-      { rank: "E02", name: "옛 한철의 굳건함", description: "특성 발동 시 모든 아군에게 제공한 실드가 개척자 방어력 2%+27만큼의 피해를 추가로 상쇄할 수 있다.", icon: "eidolon_2" },
-      { rank: "E03", name: "미래를 축조하는 청사진", description: "전투 스킬 레벨+2, 최대 Lv.15. 특성 레벨+2, 최대 Lv.15.", icon: "eidolon_3" },
-      { rank: "E04", name: "문명에 머무는 맹세", description: "전투 시작 시 [불타는 의지]를 즉시 4스택 획득한다.", icon: "eidolon_4" },
-      { rank: "E05", name: "불을 지필 용기", description: "필살기 레벨+2, 최대 Lv.15. 일반 공격 레벨+1, 최대 Lv.10.", icon: "eidolon_5" },
-      { rank: "E06", name: "영원토록 굳건한 성벽", description: "일반 공격 강화 혹은 필살기 발동 후 개척자의 방어력이 10% 증가한다. 최대 중첩수: 3스택.", icon: "eidolon_6" }
+      { rank: "E01", name: "대지의 울부짖음", description: "일반 공격 발동 시 추가로 개척자 방어력 25%만큼의 화염 속성 피해를 가한다. 일반 공격 강화 발동 시 추가로 개척자 방어력 50%만큼의 화염 속성 피해를 가한다.", icon_f: "eidolon_1_f", icon_m: "eidolon_1_m" },
+      { rank: "E02", name: "옛 한철의 굳건함", description: "특성 발동 시 모든 아군에게 제공한 실드가 개척자 방어력 2%+27만큼의 피해를 추가로 상쇄할 수 있다.", icon_f: "eidolon_2_f", icon_m: "eidolon_2_m" },
+      { rank: "E03", name: "미래를 축조하는 청사진", description: "전투 스킬 레벨+2, 최대 Lv.15. 특성 레벨+2, 최대 Lv.15.", icon_f: "eidolon_3_f", icon_m: "eidolon_3_m" },
+      { rank: "E04", name: "문명에 머무는 맹세", description: "전투 시작 시 [불타는 의지]를 즉시 4스택 획득한다.", icon_f: "eidolon_4_f", icon_m: "eidolon_4_m" },
+      { rank: "E05", name: "불을 지필 용기", description: "필살기 레벨+2, 최대 Lv.15. 일반 공격 레벨+1, 최대 Lv.10.", icon_f: "eidolon_5_f", icon_m: "eidolon_5_m" },
+      { rank: "E06", name: "영원토록 굳건한 성벽", description: "일반 공격 강화 혹은 필살기 발동 후 개척자의 방어력이 10% 증가한다. 최대 중첩수: 3스택.", icon_f: "eidolon_6_f", icon_m: "eidolon_6_m" }
     ],
     specialTerms: {
       "기본 확률": "피격자에게 디버프 효과를 부여하는 기본 확률. 최종 확률은 공격자의 효과 명중과 적의 효과 저항의 영향을 받는다.",

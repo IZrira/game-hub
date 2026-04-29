@@ -48,15 +48,15 @@ const gallagher: Character = {
       { name: "꿈 제조 모터", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "이계 나무의 씨앗", count: "12", rarity: 2 },
-      { name: "생장의 꽃꿀", count: "54", rarity: 3 },
-      { name: "만상의 과실", count: "105", rarity: 4 },
-      { name: "꿈 저장 부품", count: "28", rarity: 2 },
-      { name: "꿈 흐름 밸브", count: "42", rarity: 3 },
-      { name: "꿈 제조 모터", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "이계 나무의 씨앗", count: "8", rarity: 2 },
+      { name: "생장의 꽃꿀", count: "42", rarity: 3 },
+      { name: "만상의 과실", count: "77", rarity: 4 },
+      { name: "꿈 저장 부품", count: "22", rarity: 2 },
+      { name: "꿈 흐름 밸브", count: "35", rarity: 3 },
+      { name: "꿈 제조 모터", count: "20", rarity: 4 }
     ]
   },
   skills: [

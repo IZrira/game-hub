@@ -47,15 +47,15 @@ const anaxa: Character = {
       { name: "끝없는 탄식", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "공동의 염원의 유음", count: "12", rarity: 4 },
-      { name: "거친 스케치", count: "18", rarity: 2 },
-      { name: "역동적인 선화", count: "69", rarity: 3 },
-      { name: "정교한 컬러 원고", count: "139", rarity: 4 },
-      { name: "있는 듯 없는 듯한 조짐", count: "41", rarity: 2 },
-      { name: "점점 가까워지는 비명", count: "56", rarity: 3 },
-      { name: "끝없는 탄식", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "공동의 염원의 유음", count: "9", rarity: 4 },
+      { name: "거친 스케치", count: "12", rarity: 2 },
+      { name: "역동적인 선화", count: "53", rarity: 3 },
+      { name: "정교한 컬러 원고", count: "101", rarity: 4 },
+      { name: "있는 듯 없는 듯한 조짐", count: "33", rarity: 2 },
+      { name: "점점 가까워지는 비명", count: "46", rarity: 3 },
+      { name: "끝없는 탄식", count: "28", rarity: 4 }
     ]
   },
   skills: [

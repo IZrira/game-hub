@@ -3,13 +3,13 @@ import { Character } from '../../../../common-hub/types';
 const ashveil: Character = {
   id: "ashveil",
   name: "애쉬베일",
-  folderName: "애쉬베일",
+  folderName: "ashveil",
   gameId: "hsr",
   attribute: "번개",
   path: "수렵",
   rarity: 5,
   affiliation: "이상 낙원 - 불사의 명탐정 사무소",
-  briefInfo: "연 닿는 대로 영업하고, 하드코어하게 추리하며, 오직 직감에 의존해 기이한 사건들을 연달아 해결한다. 원숭이를 조수로 두고 은퇴만 바라고 있는 탐정은 냉장고에서 잠을 자며 스스로 걸려들기만을 기다리고 있다. 환월 아래, 사나운 짐승이 울부짖는다. 그의 사냥 게임은 어떻게 마무리될 것인가?",
+  briefInfo: "연 닿는 대로 영업하고, 하드코어하게 추리하며, 오직 직감에 의존해 기이한 사건들을 연달아 해결한다.\n원숭이를 조수로 두고 은퇴만 바라고 있는 탐정은 냉장고에서 잠을 자며 스스로 걸려들기만을 기다리고 있다.\n환월 아래, 사나운 짐승이 울부짖는다. 그의 사냥 게임은 어떻게 마무리될 것인가?",
   version: "4.1",
   releaseVersion: "4.1",
   languageNames: "🇰🇷 애쉬베일 / 🇺🇸 Ashveil / 🇨🇳 亚什维尔 / 🇯🇵 アッシュベイル",
@@ -23,7 +23,7 @@ const ashveil: Character = {
     affiliation: "이상 낙원 - 불사의 명탐정 사무소",
     cv: "🇰🇷 강수진 / 🇺🇸 블라이스 멀린 / 🇨🇳 장페이 / 🇯🇵 코야스 타케히토",
     releaseVersion: "4.1",
-    brief: "연 닿는 대로 영업하고, 하드코어하게 추리하며, 오직 직감에 의존해 기이한 사건들을 연달아 해결한다. 원숭이를 조수로 두고 은퇴만 바라고 있는 탐정은 냉장고에서 잠을 자며 스스로 걸려들기만을 기다리고 있다. 환월 아래, 사나운 짐승이 울부짖는다. 그의 사냥 게임은 어떻게 마무리될 것인가?"
+    brief: "연 닿는 대로 영업하고, 하드코어하게 추리하며, 오직 직감에 의존해 기이한 사건들을 연달아 해결한다.\n원숭이를 조수로 두고 은퇴만 바라고 있는 탐정은 냉장고에서 잠을 자며 스스로 걸려들기만을 기다리고 있다.\n환월 아래, 사나운 짐승이 울부짖는다. 그의 사냥 게임은 어떻게 마무리될 것인가?"
   },
   baseStats: {
     lv1: { "기초 HP": 116, "기초 공격력": 106, "기초 방어력": 53 },
@@ -47,15 +47,15 @@ const ashveil: Character = {
       { name: "꿈을 그리는 붓", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "범람을 끊는 침묵", count: "12", rarity: 4 },
-      { name: "분쟁의 혈진", count: "18", rarity: 2 },
-      { name: "전혼의 혈정", count: "69", rarity: 3 },
-      { name: "천벌의 혈창", count: "139", rarity: 4 },
-      { name: "천진난만 크레파스", count: "41", rarity: 2 },
-      { name: "꿈을 만드는 딥 펜", count: "56", rarity: 3 },
-      { name: "꿈을 그리는 붓", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "범람을 끊는 침묵", count: "9", rarity: 4 },
+      { name: "분쟁의 혈진", count: "12", rarity: 2 },
+      { name: "전혼의 혈정", count: "53", rarity: 3 },
+      { name: "천벌의 혈창", count: "101", rarity: 4 },
+      { name: "천진난만 크레파스", count: "33", rarity: 2 },
+      { name: "꿈을 만드는 딥 펜", count: "46", rarity: 3 },
+      { name: "꿈을 그리는 붓", count: "28", rarity: 4 }
     ]
   },
   skills: [

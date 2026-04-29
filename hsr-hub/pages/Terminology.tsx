@@ -18,7 +18,7 @@ const Terminology: React.FC = () => {
       if (char.specialTerms) {
         Object.entries(char.specialTerms).forEach(([term, desc]) => {
           if (!termsMap.has(term)) {
-            termsMap.set(term, desc);
+            termsMap.set(term, desc as string);
           }
         });
       }

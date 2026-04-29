@@ -10,7 +10,7 @@ const himeko: Character = {
   path: "지식",
   rarity: 5,
   affiliation: "은하열차",
-  briefInfo: "은하열차의 복원가. 광활한 별하늘을 보기 위해 은하열차와 함께하는 것을 택했다. 취미는 핸드메이드 커피 만들기",
+  briefInfo: "은하열차의 복원가\n광활한 별하늘을 보기 위해 은하열차와 함께하는 것을 택했다\n취미는 핸드메이드 커피 만들기",
   version: "1.0",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 히메코 / 🇺🇸 Himeko / 🇨🇳 姬子 / 🇯🇵 姬子",
@@ -24,7 +24,7 @@ const himeko: Character = {
     affiliation: "은하열차",
     cv: "🇰🇷 김보나 / 🇺🇸 치아 코트 / 🇨🇳 린스 / 🇯🇵 타나카 리에",
     releaseVersion: "1.0",
-    brief: "은하열차의 복원가. 광활한 별하늘을 보기 위해 은하열차와 함께하는 것을 택했다. 취미는 핸드메이드 커피 만들기"
+    brief: "은하열차의 복원가\n광활한 별하늘을 보기 위해 은하열차와 함께하는 것을 택했다\n취미는 핸드메이드 커피 만들기"
   },
   baseStats: {
     lv1: { "기초 HP": 143, "기초 공격력": 103, "기초 방어력": 59 },
@@ -48,15 +48,15 @@ const himeko: Character = {
       { name: "꿈틀대는 코어", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "영감의 열쇠", count: "18", rarity: 2 },
-      { name: "계몽의 열쇠", count: "69", rarity: 3 },
-      { name: "지식의 열쇠", count: "139", rarity: 4 },
-      { name: "소멸된 코어", count: "41", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "56", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "영감의 열쇠", count: "12", rarity: 2 },
+      { name: "계몽의 열쇠", count: "53", rarity: 3 },
+      { name: "지식의 열쇠", count: "101", rarity: 4 },
+      { name: "소멸된 코어", count: "33", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "46", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "28", rarity: 4 }
     ]
   },
   skills: [

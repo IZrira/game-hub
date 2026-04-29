@@ -10,7 +10,7 @@ const guinaifen: Character = {
   path: "공허",
   rarity: 4,
   affiliation: "선주 「나부」",
-  briefInfo: "선주 「나부」에 방문한 행위 예술가——혹은 길거리 예술가. 삼시세끼가 보장된 상황에서 자신의 새로운 삶을 나부에서 추구하고 있다",
+  briefInfo: "선주 「나부」에 방문한 행위 예술가——혹은 길거리 예술가.\n삼시세끼가 보장된 상황에서 자신의 새로운 삶을 나부에서 추구하고 있다",
   version: "1.4",
   releaseVersion: "1.4",
   languageNames: "🇰🇷 계네빈 / 🇺🇸 Guinaifen / 🇨🇳 桂乃芬 / 🇯🇵 桂乃芬",
@@ -24,7 +24,7 @@ const guinaifen: Character = {
     affiliation: "선주 「나부」",
     cv: "🇰🇷 김수영 / 🇺🇸 모건 개릿 / 🇨🇳 샤오간 / 🇯🇵 스구타 히나",
     releaseVersion: "1.4",
-    brief: "선주 「나부」에 방문한 행위 예술가——혹은 길거리 예술가. 삼시세끼가 보장된 상황에서 자신의 새로운 삶을 나부에서 추구하고 있다"
+    brief: "선주 「나부」에 방문한 행위 예술가——혹은 길거리 예술가.\n삼시세끼가 보장된 상황에서 자신의 새로운 삶을 나부에서 추구하고 있다"
   },
   baseStats: {
     lv1: { "기초 HP": 120, "기초 공격력": 79, "기초 방어력": 60 },
@@ -48,15 +48,15 @@ const guinaifen: Character = {
       { name: "공조 환류 심장", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "어두운 흑요", count: "12", rarity: 2 },
-      { name: "허공의 흑요", count: "54", rarity: 3 },
-      { name: "타락의 흑요", count: "105", rarity: 4 },
-      { name: "공조 기계 부품", count: "28", rarity: 2 },
-      { name: "공조 톱니바퀴", count: "42", rarity: 3 },
-      { name: "공조 환류 심장", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "어두운 흑요", count: "8", rarity: 2 },
+      { name: "허공의 흑요", count: "42", rarity: 3 },
+      { name: "타락의 흑요", count: "77", rarity: 4 },
+      { name: "공조 기계 부품", count: "22", rarity: 2 },
+      { name: "공조 톱니바퀴", count: "35", rarity: 3 },
+      { name: "공조 환류 심장", count: "20", rarity: 4 }
     ]
   },
   skills: [

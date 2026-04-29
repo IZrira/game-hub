@@ -10,7 +10,7 @@ const hook: Character = {
   path: "파멸",
   rarity: 4,
   affiliation: "벨로보그",
-  briefInfo: "두더지파의 대장. 본명은 후크 더 그레이트. 하층 구역의 골목대장이다.",
+  briefInfo: "지하 모험단 「두더지파」의 대장(자칭)\n자유를 사랑하며 인생을 끊이지 않는 모험이라고 생각한다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 후크 / 🇺🇸 Hook / 🇨🇳 虎克 / 🇯🇵 フック",
   voiceActors: "🇰🇷 이재현 / 🇺🇸 펠리시아 앤젤 / 🇨🇳 왕야촨 / 🇯🇵 토쿠이 소라",
@@ -36,15 +36,15 @@ const hook: Character = {
       { name: "고대 엔진", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "12", rarity: 2 },
-      { name: "무생의 칼날", count: "54", rarity: 3 },
-      { name: "정화의 칼날", count: "105", rarity: 4 },
-      { name: "고대 부속품", count: "28", rarity: 2 },
-      { name: "고대 전동축", count: "42", rarity: 3 },
-      { name: "고대 엔진", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "8", rarity: 2 },
+      { name: "무생의 칼날", count: "42", rarity: 3 },
+      { name: "정화의 칼날", count: "77", rarity: 4 },
+      { name: "고대 부속품", count: "22", rarity: 2 },
+      { name: "고대 전동축", count: "35", rarity: 3 },
+      { name: "고대 엔진", count: "20", rarity: 4 }
     ]
   },
   skills: [

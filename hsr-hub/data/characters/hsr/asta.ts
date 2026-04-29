@@ -10,7 +10,7 @@ const asta: Character = {
   path: "화합",
   rarity: 4,
   affiliation: "우주정거장 「헤르타」",
-  briefInfo: "우주정거장 「헤르타」의 책임자. 명문가 출신의 아가씨. 호기심 넘치는 천문학 연구자로 자기주장이 강한 연구원을 다루는 데 능하다.",
+  briefInfo: "우주정거장 「헤르타」의 책임자. 명문가 출신의 아가씨\n호기심 넘치는 천문학 연구자로 자기주장이 강한 연구원을 다루는 데 능하다",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 아스타 / 🇺🇸 Asta / 🇨🇳 艾丝妲 / 🇯🇵 アスター",
   voiceActors: "🇰🇷 김현지 / 🇺🇸 펄리샤 앤절 / 🇨🇳 귀냥 / 🇯🇵 아카사키 치나츠",
@@ -36,15 +36,15 @@ const asta: Character = {
       { name: "철위대 훈장", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "2,400,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "조화의 가락", count: "12", rarity: 2 },
-      { name: "가족의 찬가", count: "54", rarity: 3 },
-      { name: "별들의 악장", count: "105", rarity: 4 },
-      { name: "철위대 배지", count: "28", rarity: 2 },
-      { name: "철위대 표식", count: "42", rarity: 3 },
-      { name: "철위대 훈장", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "조화의 가락", count: "8", rarity: 2 },
+      { name: "가족의 찬가", count: "42", rarity: 3 },
+      { name: "별들의 악장", count: "77", rarity: 4 },
+      { name: "철위대 배지", count: "22", rarity: 2 },
+      { name: "철위대 표식", count: "35", rarity: 3 },
+      { name: "철위대 훈장", count: "20", rarity: 4 }
     ]
   },
   skills: [

@@ -9,7 +9,7 @@ const sparkle: Character = {
   path: "화합",
   rarity: 5,
   affiliation: "가면의 우인",
-  briefInfo: "「가면의 우인」 중 하나, 종잡을 수 없으며 목적을 이루기 위해 수단과 방법을 가리지 않는다. 역할에 심취하는 위험한 연극 대가. 천의 얼굴을 지닌 그녀는 수많은 모습을 가지고 있다. \n스파클에게 재물, 지위, 권력 따위는 중요하지 않다. 그녀를 움직일 수 있는 건 오직 「즐거움」 뿐이다",
+  briefInfo: "「가면의 우인」 중 하나, 종잡을 수 없으며 목적을 이루기 위해 수단과 방법을 가리지 않는다. 역할에 심취하는 위험한 연극 대가. 천의 얼굴을 지닌 그녀는 수많은 모습을 가지고 있다. 스파클에게 재물, 지위, 권력 따위는 중요하지 않다. 그녀를 움직일 수 있는 건 오직 「즐거움」 뿐이다",
   version: "2.0",
   releaseVersion: "2.0",
   languageNames: "🇰🇷 스파클 / 🇺🇸 Sparkle / 🇨🇳 花火 / 🇯🇵 花火",
@@ -24,7 +24,7 @@ const sparkle: Character = {
     affiliation: "가면의 우인",
     cv: "🇰🇷 성예원 / 🇺🇸 리지 프리먼 / 🇨🇳 자오솽 / 🇯🇵 우에다 레이나",
     releaseVersion: "2.0",
-    brief: "「가면의 우인」 중 하나, 종잡을 수 없으며 목적을 이루기 위해 수단과 방법을 가리지 않는다. 역할에 심취하는 위험한 연극 대가. 천의 얼굴을 지닌 그녀는 수많은 모습을 가지고 있다. \n스파클에게 재물, 지위, 권력 따위는 중요하지 않다. 그녀를 움직일 수 있는 건 오직 「즐거움」 뿐이다"
+    brief: "「가면의 우인」 중 하나, 종잡을 수 없으며 목적을 이루기 위해 수단과 방법을 가리지 않는다. 역할에 심취하는 위험한 연극 대가. 천의 얼굴을 지닌 그녀는 수많은 모습을 가지고 있다. 스파클에게 재물, 지위, 권력 따위는 중요하지 않다. 그녀를 움직일 수 있는 건 오직 「즐거움」 뿐이다"
   },
   baseStats: {
     lv1: { "기초 HP": 190, "기초 공격력": 71, "기초 방어력": 66 },
@@ -48,15 +48,15 @@ const sparkle: Character = {
       { name: "욕망의 거울 조각", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "구름 위 음표", count: "18", rarity: 2 },
-      { name: "천상의 소절", count: "69", rarity: 3 },
-      { name: "천외의 악장", count: "139", rarity: 4 },
-      { name: "생각의 가루", count: "41", rarity: 2 },
-      { name: "인상의 파편", count: "56", rarity: 3 },
-      { name: "욕망의 거울 조각", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "구름 위 음표", count: "12", rarity: 2 },
+      { name: "천상의 소절", count: "53", rarity: 3 },
+      { name: "천외의 악장", count: "101", rarity: 4 },
+      { name: "생각의 가루", count: "33", rarity: 2 },
+      { name: "인상의 파편", count: "46", rarity: 3 },
+      { name: "욕망의 거울 조각", count: "28", rarity: 4 }
     ]
   },
   skills: [

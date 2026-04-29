@@ -2,7 +2,8 @@ import React from 'react';
 import { createPortal } from 'react-dom';
 import { X, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { CDN_URL } from '@/common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';
+import { getItemUrl } from '../data/items';
 import { getGameData } from '../data/dataManager';
 
 export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () => void }) => {
@@ -19,8 +20,8 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
   // 이미지는 무조건 한국어 기반
   const typeStr = relic.type === '터널 유물' ? '유물' : (relic.type || '유물');
   const imgPath = relic.gameId === 'ww'
-    ? `${CDN_URL}/ww images/echoes/${encodeURIComponent(relic.name?.normalize?.('NFC') || relic.name)}.webp`
-    : `${CDN_URL}/hsr images/${typeStr}/${encodeURIComponent(relic.name?.normalize?.('NFC') || relic.name)}.webp`;
+    ? `${CDN_URL}/ww%20images/echoes/${safeEncodeURIComponent(relic.name)}.webp`
+    : `${CDN_URL}/hsr%20images/${safeEncodeURIComponent(typeStr)}/${safeEncodeURIComponent(relic.name)}.webp`;
 
   const getPieceImageUrl = (idx: number) => {
     const piece = relic.pieces?.[idx];
@@ -28,7 +29,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
     const pieceName = typeof piece === 'string' ? piece : piece.name; // 한국어 이름 사용
     if (!pieceName || typeof pieceName !== 'string') return '';
     
-    return `${CDN_URL}/hsr images/${typeStr}/${encodeURIComponent(pieceName?.normalize?.('NFC') || pieceName)}.webp`;
+    return `${CDN_URL}/hsr%20images/${safeEncodeURIComponent(typeStr)}/${safeEncodeURIComponent(pieceName)}.webp`;
   };
 
   return createPortal(
@@ -79,7 +80,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
                             src={getPieceImageUrl(idx)} 
                             alt={pieceKoName} 
                             className="w-full h-full object-contain" 
-                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/relic_placeholder.webp`; }}
                           />
                         </div>
                         <span className="text-[10px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{displayPieceName}</span>
@@ -123,6 +124,69 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
   , document.body);
 };
 
+export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => void }) => {
+  const { t } = useTranslation();
+  if (!item) return null;
+
+  const imgPath = getItemUrl(item.name, item.gameId);
+
+  const getRarityColor = (r: number) => {
+    switch (r) {
+      case 5: return 'text-yellow-500 fill-yellow-500';
+      case 4: return 'text-purple-500 fill-purple-500';
+      case 3: return 'text-blue-500 fill-blue-500';
+      case 2: return 'text-green-500 fill-green-500';
+      default: return 'text-gray-500 fill-gray-500';
+    }
+  };
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
+      <div className="absolute inset-0" onClick={onClose} />
+      <div className="relative bg-[#121212] border border-white/10 rounded-[40px] p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95">
+        <button onClick={onClose} className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-20">
+          <X size={24} />
+        </button>
+        
+        <div className="space-y-8">
+          <div className="flex items-center gap-6">
+            <div className="w-24 h-24 bg-white/5 rounded-2xl p-4 border border-white/10 shrink-0">
+              <img src={imgPath} alt={t(item.name)} className="w-full h-full object-contain" onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/unknown.webp`; }} />
+            </div>
+            <div className="space-y-2">
+              <div className="flex gap-0.5 items-center">
+                {Array.from({ length: item.rarity || 2 }).map((_, i) => (
+                  <Star key={i} size={10} className={getRarityColor(item.rarity)} />
+                ))}
+              </div>
+              <h3 className="text-2xl font-black text-white italic tracking-tighter">{t(item.name)}</h3>
+              <p className="text-[10px] text-brand-accent font-bold uppercase tracking-widest">{t(item.type)}</p>
+            </div>
+          </div>
+
+          <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-4">
+            <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('아이템 설명')}</div>
+            <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">{t(item.desc || item.description || '설명이 없습니다.')}</p>
+          </div>
+
+          {item.sources && item.sources.length > 0 && (
+            <div className="space-y-3">
+              <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('획득처')}</div>
+              <div className="flex flex-wrap gap-2">
+                {item.sources.map((src: string, i: number) => (
+                  <span key={i} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400">
+                    {t(src)}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  , document.body);
+};
+
 export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onClose: () => void }) => {
   const { t, i18n } = useTranslation();
   const isEn = i18n.language === 'en';
@@ -133,7 +197,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
   const koOrnament = KO_ORNAMENT_DB.find((o: any) => o.id === ornament.id) || ornament;
 
   const typeStr = koOrnament.type || '차원 장신구';
-  const imgPath = `${CDN_URL}/hsr images/${typeStr}/${encodeURIComponent(koOrnament.name?.normalize?.('NFC') || koOrnament.name)}.webp`;
+  const imgPath = `${CDN_URL}/hsr%20images/${safeEncodeURIComponent(typeStr)}/${safeEncodeURIComponent(koOrnament.name)}.webp`;
 
   const getPieceImageUrl = (idx: number) => {
     const piece = koOrnament.pieces?.[idx];
@@ -141,7 +205,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
     const pieceName = typeof piece === 'string' ? piece : piece.name;
     if (!pieceName || typeof pieceName !== 'string') return '';
 
-    return `${CDN_URL}/hsr images/${typeStr}/${encodeURIComponent(pieceName?.normalize?.('NFC') || pieceName)}.webp`;
+    return `${CDN_URL}/hsr%20images/${safeEncodeURIComponent(typeStr)}/${safeEncodeURIComponent(pieceName)}.webp`;
   };
 
   const displayName = isEn && ornament.enName ? ornament.enName : t(ornament.name);
@@ -195,7 +259,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
                             src={getPieceImageUrl(idx)} 
                             alt={pieceKoName} 
                             className="w-full h-full object-contain" 
-                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/relic_placeholder.webp`; }}
                           />
                         </div>
                         <span className="text-[11px] font-bold text-gray-400 group-hover:text-white transition-colors">{displayPieceName}</span>

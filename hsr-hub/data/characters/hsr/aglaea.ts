@@ -8,9 +8,8 @@ const aglaea: Character = {
   attribute: "번개",
   path: "기억",
   rarity: 5,
-  affiliation: "엠포리어스",
-  briefInfo: "여명이 비추는 거룩한 도시에서 방직공은 금실을 어루만지며 운명을 연결한다.\n「낭만」의 불씨를 짊어진 황금의 후예, 세간의 영웅들을 모아 그들을 이끌고 다시 기나긴 여정에 오른다.\n——그것은 바로 신들을 쓰러뜨리고 신의 불을 반환하여 멸망 직전의 앰포리어스에 신생을 부여하는 여정이다",
-  version: "3.0",
+  affiliation: "앰포리어스",
+  briefInfo: "여명이 비추는 거룩한 도시에서 방직공은 금실을 어루만지며 운명을 잇는다.\n「낭만」의 불씨를 짊어진 황금의 후예는 세간의 영웅들을 불러 모아 그들을 이끌고 다시 기나긴 여정에 올랐다.\n——신들을 쓰러뜨리고 신의 불을 반환하여 멸망에 다다른 앰포리어스에 신생을 부여하기 위해.",
   releaseVersion: "3.0",
   languageNames: "🇰🇷 아글라이아 / 🇺🇸 Aglaea / 🇨🇳 阿格萊雅 / 🇯🇵 アグライア",
   voiceActors: "🇰🇷 오로아 / 🇺🇸 모건 개릿 / 🇨🇳 추웨 / 🇯🇵 엔도 아야",
@@ -20,10 +19,10 @@ const aglaea: Character = {
     element: "번개",
     path: "기억",
     rarity: 5,
-    affiliation: "엠포리어스",
+    affiliation: "앰포리어스",
     cv: "🇰🇷 오로아 / 🇺🇸 모건 개릿 / 🇨🇳 추웨 / 🇯🇵 엔도 아야",
     releaseVersion: "3.0",
-    brief: "여명이 비추는 거룩한 도시에서 방직공은 금실을 어루만지며 운명을 연결한다.\n「낭만」의 불씨를 짊어진 황금의 후예, 세간의 영웅들을 모아 그들을 이끌고 다시 기나긴 여정에 오른다.\n——그것은 바로 신들을 쓰러뜨리고 신의 불을 반환하여 멸망 직전의 앰포리어스에 신생을 부여하는 여정이다"
+    brief: "여명이 비추는 거룩한 도시에서 방직공은 금실을 어루만지며 운명을 잇는다.\n「낭만」의 불씨를 짊어진 황금의 후예는 세간의 영웅들을 불러 모아 그들을 이끌고 다시 기나긴 여정에 올랐다.\n——신들을 쓰러뜨리고 신의 불을 반환하여 멸망에 다다른 앰포리어스에 신생을 부여하기 위해."
   },
   baseStats: {
     lv1: { "기초 HP": 169, "기초 공격력": 95, "기초 방어력": 66 },
@@ -47,15 +46,15 @@ const aglaea: Character = {
       { name: "영광의 세례를 받은 육신", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "길광편우", count: "12", rarity: 4 },
-      { name: "사량의 씨앗", count: "18", rarity: 2 },
-      { name: "말나 새싹", count: "69", rarity: 3 },
-      { name: "아뢰야 꽃", count: "139", rarity: 4 },
-      { name: "공포에 짓밟힌 육신", count: "41", rarity: 2 },
-      { name: "용기에 찢긴 가슴", count: "56", rarity: 3 },
-      { name: "영광의 세례를 받은 육신", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,221,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "길광편우", count: "9", rarity: 4 },
+      { name: "사량의 씨앗", count: "12", rarity: 2 },
+      { name: "말나 새싹", count: "54", rarity: 3 },
+      { name: "아뢰야 꽃", count: "102", rarity: 4 },
+      { name: "공포에 짓밟힌 육신", count: "33", rarity: 2 },
+      { name: "용기에 찢긴 가슴", count: "48", rarity: 3 },
+      { name: "영광의 세례를 받은 육신", count: "30", rarity: 4 }
     ]
   },
   skills: [

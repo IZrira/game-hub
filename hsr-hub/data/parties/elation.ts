@@ -2,28 +2,6 @@ import { PartyCombination } from './index';
 
 export const elationParties: PartyCombination[] = [
   {
-    id: 'party_clara_counter_1',
-    name: '클라라 반격 파티 (1순위)',
-    description: '클라라의 반격 능력을 선데이와 트리비로 보조하는 조합입니다.',
-    mainDPS: '클라라',
-    category: '환락',
-    members: [
-      { id: 'char_클라라', name: '클라라', role: '메인 딜러', folderName: '클라라' },
-      { 
-        id: 'char_선데이', 
-        name: '선데이', 
-        role: '서포터', 
-        folderName: '선데이',
-        substitutes: [
-          { name: '스파클', folderName: '스파클' }
-        ]
-      },
-      { id: 'char_트리비', name: '트리비', role: '서포터', folderName: '트리비' },
-      { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
-    ],
-    tags: ['클라라', '반격', '환락']
-  },
-  {
     id: 'party_sparky_elation_1',
     name: '스파키 환락 파티 (1순위)',
     description: '스파키의 환락 메커니즘을 스파클과 효광으로 보조하는 조합입니다.',
@@ -126,5 +104,27 @@ export const elationParties: PartyCombination[] = [
       { id: 'char_곽향', name: '곽향', role: '탱커/힐러', folderName: '곽향' }
     ],
     tags: ['운리', '반격', '로빈']
+  },
+  {
+    id: 'party_clara_counter_1',
+    name: '클라라 반격 파티 (1순위)',
+    description: '클라라의 반격 능력을 선데이와 트리비로 보조하는 조합입니다.',
+    mainDPS: '클라라',
+    category: '환락',
+    members: [
+      { id: 'char_클라라', name: '클라라', role: '메인 딜러', folderName: '클라라' },
+      { 
+        id: 'char_선데이', 
+        name: '선데이', 
+        role: '서포터', 
+        folderName: '선데이',
+        substitutes: [
+          { name: '스파클', folderName: '스파클' }
+        ]
+      },
+      { id: 'char_트리비', name: '트리비', role: '서포터', folderName: '트리비' },
+      { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
+    ],
+    tags: ['클라라', '반격', '환락']
   }
 ];

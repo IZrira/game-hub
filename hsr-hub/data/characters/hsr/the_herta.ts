@@ -9,7 +9,7 @@ const theHerta: Character = {
   path: "지식",
   rarity: 5,
   affiliation: "지니어스 클럽",
-  briefInfo: "존귀한 「지니어스 클럽」 #83. 인간, 여성, 젊고 아름답고 귀엽다.\n그녀는 은하 변경에 은거하며 그곳을 벗어나는 일이 거의 없다고 전해진다. 이번에 모습을 드러낸 건——\n직접 나설 수밖에 없는 문제 때문이 아닐까?",
+  briefInfo: "존귀한 「지니어스 클럽」 #83. 젊고 아름답고 사랑스러운 인간 여성.\n그녀는 은하 변경에 은거하며 그곳을 벗어나는 일이 거의 없다고 전해진다. 이번에 모습을 드러낸 건——\n직접 나설 수밖에 없는 어떤 문제 때문이 아닐까?",
   version: "3.0",
   releaseVersion: "3.0",
   languageNames: "🇰🇷 더 헤르타 / 🇺🇸 The Herta / 🇨🇳 大黑塔 / 🇯🇵 マダム・ヘルタ",
@@ -23,7 +23,7 @@ const theHerta: Character = {
     affiliation: "지니어스 클럽",
     cv: "🇰🇷 김서영 / 🇺🇸 패티 맷슨 / 🇨🇳 허우샤오페이 / 🇯🇵 야마자키 하루카",
     releaseVersion: "3.0",
-    brief: "존귀한 「지니어스 클럽」 #83. 인간, 여성, 젊고 아름답고 귀엽다.\n그녀는 은하 변경에 은거하며 그곳을 벗어나는 일이 거의 없다고 전해진다. 이번에 모습을 드러낸 건——\n직접 나설 수밖에 없는 문제 때문이 아닐까?"
+    brief: "존귀한 「지니어스 클럽」 #83. 젊고 아름답고 사랑스러운 인간 여성.\n그녀는 은하 변경에 은거하며 그곳을 벗어나는 일이 거의 없다고 전해진다. 이번에 모습을 드러낸 건——\n직접 나설 수밖에 없는 어떤 문제 때문이 아닐까?"
   },
   baseStats: {
     lv1: { "기초 HP": 158, "기초 공격력": 92, "기초 방어력": 66 },
@@ -47,15 +47,15 @@ const theHerta: Character = {
       { name: "꿈틀대는 코어", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "길광편우", count: "12", rarity: 4 },
-      { name: "거친 스케치", count: "18", rarity: 2 },
-      { name: "역동적인 선화", count: "69", rarity: 3 },
-      { name: "정교한 컬러 원고", count: "139", rarity: 4 },
-      { name: "소멸된 코어", count: "41", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "56", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "길광편우", count: "9", rarity: 4 },
+      { name: "거친 스케치", count: "12", rarity: 2 },
+      { name: "역동적인 선화", count: "53", rarity: 3 },
+      { name: "정교한 컬러 원고", count: "101", rarity: 4 },
+      { name: "소멸된 코어", count: "33", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "46", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "28", rarity: 4 }
     ]
   },
   skills: [

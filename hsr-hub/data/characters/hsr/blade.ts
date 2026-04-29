@@ -9,7 +9,7 @@ const blade: Character = {
   path: "파멸",
   rarity: 5,
   affiliation: "스텔라론 헌터",
-  briefInfo: "선「스텔라론 헌터」의 멤버, 전장에 몸을 내던지는 검객.「운명의 노예」에 충성을 다하며 무서운 자가 치유 능력을 가지고 있다",
+  briefInfo: "「스텔라론 헌터」의 멤버, 전장에 몸을 내던지는 검객\n「운명의 노예」에 충성을 다하며 무서운 자가 치유 능력을 가지고 있다",
   version: "1.2",
   releaseVersion: "1.2",
   languageNames: "🇰🇷 블레이드 / 🇺🇸 Blade / 🇨🇳 刃 / 🇯🇵 刃",
@@ -24,7 +24,7 @@ const blade: Character = {
     affiliation: "스텔라론 헌터",
     cv: "🇰🇷 곽윤상 / 🇺🇸 데이먼 밀스 / 🇨🇳 류이자 / 🇯🇵 미키 신이치로",
     releaseVersion: "1.2",
-    brief: "선「스텔라론 헌터」의 멤버, 전장에 몸을 내던지는 검객.「운명의 노예」에 충성을 다하며 무서운 자가 치유 능력을 가지고 있다"
+    brief: "「스텔라론 헌터」의 멤버, 전장에 몸을 내던지는 검객\n「운명의 노예」에 충성을 다하며 무서운 자가 치유 능력을 가지고 있다"
   },
   baseStats: {
     lv1: { "기초 HP": 185, "기초 공격력": 74, "기초 방어력": 66 },
@@ -48,15 +48,15 @@ const blade: Character = {
       { name: "영생의 가지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "18", rarity: 2 },
-      { name: "무생의 칼날", count: "69", rarity: 3 },
-      { name: "정화의 칼날", count: "139", rarity: 4 },
-      { name: "영생의 새싹", count: "41", rarity: 2 },
-      { name: "영생의 꽃", count: "56", rarity: 3 },
-      { name: "영생의 가지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "12", rarity: 2 },
+      { name: "무생의 칼날", count: "53", rarity: 3 },
+      { name: "정화의 칼날", count: "101", rarity: 4 },
+      { name: "영생의 새싹", count: "33", rarity: 2 },
+      { name: "영생의 꽃", count: "46", rarity: 3 },
+      { name: "영생의 가지", count: "28", rarity: 4 }
     ]
   },
   skills: [

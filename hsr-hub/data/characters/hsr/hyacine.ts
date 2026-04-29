@@ -8,9 +8,8 @@ const hyacine: Character = {
   attribute: "바람",
   path: "기억",
   rarity: 5,
-  affiliation: "엠포리어스",
-  briefInfo: "구름 속 도시 국가 세월을 따라 분열되었으나, 놀빛 정원은 다시금 문을 열어 영원한 밤에 희미한 빛을 가져다주었다.\n의사 히아킨티아는 「하늘」 불씨를 수호하는 황금의 후예다. 선조의 의지를 계승하여 찢어진 조석을 메꾼다.\n——무지갯빛이 쏟아져 원한을 녹이고, 여명이 대지에 다시 돌아오기를",
-  version: "3.3",
+  affiliation: "앰포리어스",
+  briefInfo: "구름 속 도시 국가는 세월을 따라 분열되었으나, 놀빛 정원은 다시금 문을 열어 영원한 밤에 희미한 빛을 가져다주었다.\n의사 히아킨티아는 「하늘」 불씨를 수호하는 황금의 후예다. 선조의 의지를 계승하여 찢어진 조석을 메꾼다.\n——무지갯빛이 쏟아져 원한을 녹이고, 여명이 대지에 다시 돌아오기를",
   releaseVersion: "3.3",
   languageNames: "🇰🇷 히아킨 / 🇺🇸 Hyacine / 🇨🇳 风堇 / 🇯🇵 ヒアンシー ",
   voiceActors: "🇰🇷 김연우 / 🇺🇸 홀리 얼 / 🇨🇳 징천 / 🇯🇵 요우미야 히나",
@@ -20,10 +19,10 @@ const hyacine: Character = {
     element: "바람",
     path: "기억",
     rarity: 5,
-    affiliation: "엠포리어스",
+    affiliation: "앰포리어스",
     cv: "🇰🇷 김연우 / 🇺🇸 홀리 얼 / 🇨🇳 징천 / 🇯🇵 요우미야 히나",
     releaseVersion: "3.3",
-    brief: "구름 속 도시 국가 세월을 따라 분열되었으나, 놀빛 정원은 다시금 문을 열어 영원한 밤에 희미한 빛을 가져다주었다.\n의사 히아킨티아는 「하늘」 불씨를 수호하는 황금의 후예다. 선조의 의지를 계승하여 찢어진 조석을 메꾼다.\n——무지갯빛이 쏟아져 원한을 녹이고, 여명이 대지에 다시 돌아오기를"
+    brief: "구름 속 도시 국가는 세월을 따라 분열되었으나, 놀빛 정원은 다시금 문을 열어 영원한 밤에 희미한 빛을 가져다주었다.\n의사 히아킨티아는 「하늘」 불씨를 수호하는 황금의 후예다. 선조의 의지를 계승하여 찢어진 조석을 메꾼다.\n——무지갯빛이 쏟아져 원한을 녹이고, 여명이 대지에 다시 돌아오기를"
   },
   baseStats: {
     lv1: { "기초 HP": 148, "기초 공격력": 53, "기초 방어력": 86 },
@@ -47,15 +46,15 @@ const hyacine: Character = {
       { name: "영광의 세례를 받은 육신", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "공동의 염원의 유음", count: "12", rarity: 4 },
-      { name: "사량의 씨앗", count: "18", rarity: 2 },
-      { name: "말나 새싹", count: "69", rarity: 3 },
-      { name: "아뢰야 꽃", count: "139", rarity: 4 },
-      { name: "공포에 짓밟힌 육신", count: "41", rarity: 2 },
-      { name: "용기에 찢긴 가슴", count: "56", rarity: 3 },
-      { name: "영광의 세례를 받은 육신", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,221,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "공동의 염원의 유음", count: "9", rarity: 4 },
+      { name: "사량의 씨앗", count: "12", rarity: 2 },
+      { name: "말나 새싹", count: "54", rarity: 3 },
+      { name: "아뢰야 꽃", count: "102", rarity: 4 },
+      { name: "공포에 짓밟힌 육신", count: "33", rarity: 2 },
+      { name: "용기에 찢긴 가슴", count: "48", rarity: 3 },
+      { name: "영광의 세례를 받은 육신", count: "30", rarity: 4 }
     ]
   },
   skills: [

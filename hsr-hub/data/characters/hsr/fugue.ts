@@ -48,15 +48,15 @@ const fugue: Character = {
       { name: "영생의 가지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "열렬의 영혼", count: "18", rarity: 2 },
-      { name: "불꽃의 정령", count: "69", rarity: 3 },
-      { name: "천공을 불태우는 마귀", count: "139", rarity: 4 },
-      { name: "영생의 새싹", count: "41", rarity: 2 },
-      { name: "영생의 꽃", count: "56", rarity: 3 },
-      { name: "영생의 가지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "열렬의 영혼", count: "12", rarity: 2 },
+      { name: "불꽃의 정령", count: "53", rarity: 3 },
+      { name: "천공을 불태우는 마귀", count: "101", rarity: 4 },
+      { name: "영생의 새싹", count: "33", rarity: 2 },
+      { name: "영생의 꽃", count: "46", rarity: 3 },
+      { name: "영생의 가지", count: "28", rarity: 4 }
     ]
   },
   skills: [

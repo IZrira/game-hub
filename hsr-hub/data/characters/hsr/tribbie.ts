@@ -47,15 +47,15 @@ const tribbie: Character = {
       { name: "영광의 세례를 받은 육신", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "공동의 염원의 유음", count: "12", rarity: 4 },
-      { name: "구름 위 음표", count: "18", rarity: 2 },
-      { name: "천상의 소절", count: "69", rarity: 3 },
-      { name: "천외의 악장", count: "139", rarity: 4 },
-      { name: "공포에 짓밟힌 육신", count: "41", rarity: 2 },
-      { name: "용기에 찢긴 가슴", count: "56", rarity: 3 },
-      { name: "영광의 세례를 받은 육신", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "공동의 염원의 유음", count: "9", rarity: 4 },
+      { name: "구름 위 음표", count: "12", rarity: 2 },
+      { name: "천상의 소절", count: "53", rarity: 3 },
+      { name: "천외의 악장", count: "101", rarity: 4 },
+      { name: "공포에 짓밟힌 육신", count: "33", rarity: 2 },
+      { name: "용기에 찢긴 가슴", count: "46", rarity: 3 },
+      { name: "영광의 세례를 받은 육신", count: "28", rarity: 4 }
     ]
   },
   skills: [

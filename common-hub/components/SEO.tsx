@@ -11,6 +11,7 @@ interface SEOProps {
   type?: 'website' | 'article';
   gameCategory?: string;  // 게임 구분 (명조, 붕스 등)
   itemType?: string;      // 아이템 종류 (직검, 파멸, 유물 등)
+  faqData?: Array<{ question: string; answer: string }>; // AEO를 위한 FAQ 스키마 데이터
 }
 
 export default function SEO({ 
@@ -22,7 +23,8 @@ export default function SEO({
   keywords = "리라 아카이브, 붕괴 스타레일, 명조, 게임 공략, 티어표, 위키",
   type = 'website',
   gameCategory,
-  itemType
+  itemType,
+  faqData
 }: SEOProps) {
   
   const siteName = "RIRA ARCHIVE";
@@ -30,22 +32,51 @@ export default function SEO({
   const baseUrl = "https://rira-archive.com";
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
-  // 구글 검색 로봇에게 전달할 구조화 데이터 (JSON-LD)
-  const structuredData = {
+  // 구글 검색 로봇 및 AI 크롤러에게 전달할 구조화 데이터 (JSON-LD)
+  const baseSchema = {
     "@context": "https://schema.org",
-    "@type": "GameContent",
+    "@type": type === 'article' ? "Article" : "WebPage",
     "name": name || title,
+    "headline": name || title,
     "description": description,
     "image": image,
-    "genre": "Open World RPG",
-    "gameItem": itemType || gameCategory ? {
+    "author": {
+      "@type": "Organization",
+      "name": "RIRA ARCHIVE",
+      "url": "https://rira-archive.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "RIRA ARCHIVE",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp"
+      }
+    },
+    "about": itemType || gameCategory ? {
       "@type": "Thing",
-      "name": name || title,
-      "category": itemType,
-      "game": gameCategory
-    } : undefined,
-    "author": { "@type": "Person", "name": "Rira" }
+      "name": gameCategory,
+      "description": itemType
+    } : undefined
   };
+
+  const schemas: any[] = [baseSchema];
+
+  // AEO(Answer Engine Optimization)를 위한 FAQ 스키마 주입
+  if (faqData && faqData.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": faqData.map(faq => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    });
+  }
 
   return (
     <Helmet>
@@ -81,9 +112,9 @@ export default function SEO({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
 
-      {/* 구조화 데이터 주입 */}
+      {/* 구조화 데이터 주입 (AEO/SEO) */}
       <script type="application/ld+json">
-        {JSON.stringify(structuredData)}
+        {JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)}
       </script>
     </Helmet>
   );

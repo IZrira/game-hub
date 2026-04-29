@@ -48,15 +48,15 @@ const argenti: Character = {
       { name: "꿈틀대는 코어", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "영감의 열쇠", count: "18", rarity: 2 },
-      { name: "계몽의 열쇠", count: "69", rarity: 3 },
-      { name: "지식의 열쇠", count: "139", rarity: 4 },
-      { name: "소멸된 코어", count: "41", rarity: 2 },
-      { name: "희미한 빛의 코어", count: "56", rarity: 3 },
-      { name: "꿈틀대는 코어", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "영감의 열쇠", count: "12", rarity: 2 },
+      { name: "계몽의 열쇠", count: "53", rarity: 3 },
+      { name: "지식의 열쇠", count: "101", rarity: 4 },
+      { name: "소멸된 코어", count: "33", rarity: 2 },
+      { name: "희미한 빛의 코어", count: "46", rarity: 3 },
+      { name: "꿈틀대는 코어", count: "28", rarity: 4 }
     ]
   },
   skills: [

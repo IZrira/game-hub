@@ -95,21 +95,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 터미널 업데이트 로그 섹션 */}
-      <section className="max-w-6xl mx-auto px-6 mt-16 mb-16">
-        <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-8 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">
-          <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary/50 group-hover:bg-brand-primary transition-colors" />
-          <div className="flex items-center gap-3 mb-8">
-            <TerminalSquare size={18} className="text-brand-accent" />
-        <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">{t('System.Changelog')}</h2>
-            <div className="flex-1 h-px bg-white/5 ml-4" />
-          </div>
-          
-          {/* 새 자동화 컴포넌트 마운트 */}
-          <SystemChangelog />
-        </div>
-      </section>
-
       {/* 게임 라이브러리 센터 */}
       <section className="max-w-[1600px] mx-auto px-10 py-32 space-y-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-10">
@@ -132,7 +117,7 @@ const Home: React.FC = () => {
               className="group relative h-[480px] rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
             >
               <LazyImage 
-                src={game.bannerImage} 
+                src={game.id === 'hsr' ? '/assets/banners/hsr_placeholder.png' : game.id === 'ww' ? '/assets/banners/ww_placeholder.png' : game.bannerImage} 
                 alt={game.title}
                 containerClassName="absolute inset-0 w-full h-full"
                 className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
@@ -189,6 +174,21 @@ const Home: React.FC = () => {
         <h4 className="text-xl font-black text-gray-600 uppercase tracking-[0.2em] mb-4">{t('새로운 데이터 연결 준비 중')}</h4>
         <p className="text-gray-700 text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
           </div>
+        </div>
+      </section>
+
+      {/* 터미널 업데이트 로그 섹션 (공통 공지) */}
+      <section className="max-w-6xl mx-auto px-6 mt-16 mb-16">
+        <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-8 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">
+          <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary/50 group-hover:bg-brand-primary transition-colors" />
+          <div className="flex items-center gap-3 mb-8">
+            <TerminalSquare size={18} className="text-brand-accent" />
+        <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">{t('System.Changelog')}</h2>
+            <div className="flex-1 h-px bg-white/5 ml-4" />
+          </div>
+          
+          {/* 새 자동화 컴포넌트 마운트 */}
+          <SystemChangelog />
         </div>
       </section>
 

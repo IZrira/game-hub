@@ -10,7 +10,7 @@ const danHengPermansorTerrae: Character = {
   path: "보존",
   rarity: 5,
   affiliation: "엠포리어스",
-  briefInfo: "character.dan_heng_permansor_terrae.briefInfo",
+  briefInfo: "지오리오스의 가슴, 복룡의 몸은 부서진 대지를 지탱하며 천 년의 고통을 견딘다.\n무명객 단항, 「대지」의 불씨를 수호하는 황금의 후예. 기울어가는 팔황을 바로잡고, 지상의 생령들을 머나먼 세계로 인도하라.\n——모든 강물이 바다로 흘러 들어가고 뭇산이 함께 화답하니, 불멸의 길이 만 리에 걸쳐 이어지리라",
   version: "3.6",
   releaseVersion: "3.6",
   languageNames: "🇰🇷 단항•등황 / 🇺🇸 Dan Heng•Permansor Terrae / 🇨🇳 丹恒 • 騰 荒 / 🇯🇵 丹恒 • 騰 荒 ",
@@ -24,7 +24,7 @@ const danHengPermansorTerrae: Character = {
     affiliation: "엠포리어스",
     cv: "🇰🇷 김혜성 / 🇺🇸 니콜라스 렁 / 🇨🇳 위둥 / 🇯🇵 이토 켄토",
     releaseVersion: "3.6",
-    brief: "character.dan_heng_permansor_terrae.metadata.brief"
+    brief: "지오리오스의 가슴, 복룡의 몸은 부서진 대지를 지탱하며 천 년의 고통을 견딘다.\n무명객 단항, 「대지」의 불씨를 수호하는 황금의 후예. 기울어가는 팔황을 바로잡고, 지상의 생령들을 머나먼 세계로 인도하라.\n——모든 강물이 바다로 흘러 들어가고 뭇산이 함께 화답하니, 불멸의 길이 만 리에 걸쳐 이어지리라"
   },
   baseStats: createHsrBaseStats(
     [143, 278, 406, 535, 663, 791, 920, 1048], // HP
@@ -41,7 +41,7 @@ const danHengPermansorTerrae: Character = {
       createMaterial("영광의 세례를 받은 육신", 15, 4)
     ],
     traces: [
-      createMaterial("신용 포인트", "3,000,000", 3),
+      createMaterial("신용 포인트", "2,197,500", 3),
       createMaterial("운명의 발자취", 8, 5),
       createMaterial("태양과 번개의 회상", 12, 4),
       createMaterial("흩어진 별모래", 18, 2),

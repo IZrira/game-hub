@@ -10,7 +10,7 @@ const gepard: Character = {
   path: "보존",
   rarity: 5,
   affiliation: "벨로보그",
-  briefInfo: "실버메인 철위대의 방위관, 벨로보그 최고의 전사 중 하나. 겉과 속이 같고 빈틈없이 항상 성실하다",
+  briefInfo: "실버메인 철위대의 방위관, 벨로보그 최고의 전사 중 하나\n겉과 속이 같고 빈틈없이 항상 성실하다",
   version: "1.0",
   releaseVersion: "1.0",
   languageNames: "🇰🇷 게파드 / 🇺🇸 Gepard / 🇨🇳 杰帕德 / 🇯🇵 ジェパード",
@@ -24,7 +24,7 @@ const gepard: Character = {
     affiliation: "벨로보그",
     cv: "🇰🇷 민승우 / 🇺🇸 브라이슨 바우거스 / 🇨🇳 마양 / 🇯🇵 후루카와 마코토",
     releaseVersion: "1.0",
-    brief: "실버메인 철위대의 방위관, 벨로보그 최고의 전사 중 하나. 겉과 속이 같고 빈틈없이 항상 성실하다"
+    brief: "실버메인 철위대의 방위관, 벨로보그 최고의 전사 중 하나\n겉과 속이 같고 빈틈없이 항상 성실하다"
   },
   baseStats: {
     lv1: { "기초 HP": 190, "기초 공격력": 74, "기초 방어력": 89 },
@@ -48,15 +48,15 @@ const gepard: Character = {
       { name: "철위대 훈장", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "수호자의 비원(悲願)", count: "12", rarity: 4 },
-      { name: "조화의 가락", count: "18", rarity: 2 },
-      { name: "가족의 찬가", count: "69", rarity: 3 },
-      { name: "별들의 악장", count: "139", rarity: 4 },
-      { name: "철위대 배지", count: "41", rarity: 2 },
-      { name: "철위대 표식", count: "56", rarity: 3 },
-      { name: "철위대 훈장", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "수호자의 비원(悲願)", count: "9", rarity: 4 },
+      { name: "조화의 가락", count: "12", rarity: 2 },
+      { name: "가족의 찬가", count: "53", rarity: 3 },
+      { name: "별들의 악장", count: "101", rarity: 4 },
+      { name: "철위대 배지", count: "33", rarity: 2 },
+      { name: "철위대 표식", count: "46", rarity: 3 },
+      { name: "철위대 훈장", count: "28", rarity: 4 }
     ]
   },
   skills: [

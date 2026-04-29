@@ -1,7 +1,7 @@
 
-import { Character } from '../../../../common-hub/types';
+import { WuwaCharacter } from '../../../types';
 
-const jiyan: Character = {
+const jiyan: WuwaCharacter = {
   id: "jiyan",
   gameId: "ww",
   name: "기염",

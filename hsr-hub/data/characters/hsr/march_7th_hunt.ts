@@ -48,15 +48,15 @@ const march7thHunt: Character = {
       { name: "짓밟힌 의지", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "5", rarity: 5 },
-      { name: "파멸자의 말로", count: "12", rarity: 4 },
-      { name: "운철 탄환", count: "12", rarity: 2 },
-      { name: "숙명적인 사인", count: "54", rarity: 3 },
-      { name: "시간을 역행하는 일격", count: "105", rarity: 4 },
-      { name: "약탈의 본능", count: "28", rarity: 2 },
-      { name: "변조된 야망", count: "42", rarity: 3 },
-      { name: "짓밟힌 의지", count: "42", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "파멸자의 말로", count: "9", rarity: 4 },
+      { name: "운철 탄환", count: "8", rarity: 2 },
+      { name: "숙명적인 사인", count: "42", rarity: 3 },
+      { name: "시간을 역행하는 일격", count: "77", rarity: 4 },
+      { name: "약탈의 본능", count: "22", rarity: 2 },
+      { name: "변조된 야망", count: "35", rarity: 3 },
+      { name: "짓밟힌 의지", count: "20", rarity: 4 }
     ]
   },
   skills: [

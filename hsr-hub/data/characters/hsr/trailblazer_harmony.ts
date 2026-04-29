@@ -41,21 +41,21 @@ const trailblazerHarmony: Character = {
   materials_v2: {
     ascension: [
       { name: "신용 포인트", count: "308,000", rarity: 3 },
-      { name: "깊은 별의 외형질", count: "65", rarity: 4 },
-      { name: "약탈의 본능", count: "15", rarity: 2 },
-      { name: "변조된 야망", count: "15", rarity: 3 },
-      { name: "짓밟힌 의지", count: "15", rarity: 4 }
+      { name: "깊은 별의 외형질", count: "28", rarity: 4 },
+      { name: "약탈의 본능", count: "12", rarity: 2 },
+      { name: "변조된 야망", count: "13", rarity: 3 },
+      { name: "짓밟힌 의지", count: "12", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "12", rarity: 4 },
-      { name: "구름 위 음표", count: "18", rarity: 2 },
-      { name: "천상의 소절", count: "69", rarity: 3 },
-      { name: "천외의 악장", count: "139", rarity: 4 },
-      { name: "약탈의 본능", count: "41", rarity: 2 },
-      { name: "변조된 야망", count: "56", rarity: 3 },
-      { name: "짓밟힌 의지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "1,758,000", rarity: 3 },
+      { name: "운명의 발자취", count: "3", rarity: 5 },
+      { name: "별을 갉아먹고 재앙을 낳는 구악", count: "9", rarity: 4 },
+      { name: "구름 위 음표", count: "8", rarity: 2 },
+      { name: "천상의 소절", count: "42", rarity: 3 },
+      { name: "천외의 악장", count: "77", rarity: 4 },
+      { name: "약탈의 본능", count: "22", rarity: 2 },
+      { name: "변조된 야망", count: "35", rarity: 3 },
+      { name: "짓밟힌 의지", count: "20", rarity: 4 }
     ]
   },
   skills: [

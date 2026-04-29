@@ -1,5 +1,5 @@
 import React from 'react';
-import { CHANGELOG_DATA } from '../data/changelog';
+import { CHANGELOG_DATA } from '../data/SystemChangelog';
 import { Sparkles } from 'lucide-react';
 
 const SystemChangelog = () => {

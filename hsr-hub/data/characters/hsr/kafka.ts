@@ -10,7 +10,7 @@ const kafka: Character = {
   path: "공허",
   rarity: 5,
   affiliation: "스텔라론 헌터",
-  briefInfo: "「스텔라론 헌터」의 멤버, 시크하고 차분한 분위기의 오피스룩 미녀. 언령술을 사용하며, 개척자이/가 스텔라론을 흡수할 수 있도록 설계한다. 취미는 코트 구매 및 정리하기",
+  briefInfo: "「스텔라론 헌터」의 멤버, 시크하고 차분한 분위기의 오피스룩 미녀\n언령술을 사용하며, 개척자이/가 스텔라론을 흡수할 수 있도록 설계했다\n취미는 코트 구매 및 정리하기",
   version: "1.2",
   releaseVersion: "1.2",
   languageNames: "🇰🇷 카프카 / 🇺🇸 Kafka / 🇨🇳 卡芙卡 / 🇯🇵 カフカ",
@@ -25,7 +25,7 @@ const kafka: Character = {
     affiliation: "스텔라론 헌터",
     cv: "🇰🇷 사문영 / 🇺🇸 셰릴 텍시에라 / 🇨🇳 쑤훼이 / 🇯🇵 이토 시즈카",
     releaseVersion: "1.2",
-    brief: "「스텔라론 헌터」의 멤버, 시크하고 차분한 분위기의 오피스룩 미녀. 언령술을 사용하며, 개척자이/가 스텔라론을 흡수할 수 있도록 설계한다. 취미는 코트 구매 및 정리하기"
+    brief: "「스텔라론 헌터」의 멤버, 시크하고 차분한 분위기의 오피스룩 미녀\n언령술을 사용하며, 개척자이/가 스텔라론을 흡수할 수 있도록 설계했다\n취미는 코트 구매 및 정리하기"
   },
   baseStats: {
     lv1: { "기초 HP": 148, "기초 공격력": 92, "기초 방어력": 66 },
@@ -49,15 +49,15 @@ const kafka: Character = {
       { name: "짓밟힌 의지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "어두운 흑요", count: "18", rarity: 2 },
-      { name: "허공의 흑요", count: "69", rarity: 3 },
-      { name: "타락의 흑요", count: "139", rarity: 4 },
-      { name: "약탈의 본능", count: "41", rarity: 2 },
-      { name: "변조된 야망", count: "56", rarity: 3 },
-      { name: "짓밟힌 의지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "어두운 흑요", count: "12", rarity: 2 },
+      { name: "허공의 흑요", count: "53", rarity: 3 },
+      { name: "타락의 흑요", count: "101", rarity: 4 },
+      { name: "약탈의 본능", count: "33", rarity: 2 },
+      { name: "변조된 야망", count: "46", rarity: 3 },
+      { name: "짓밟힌 의지", count: "28", rarity: 4 }
     ]
   },
   skills: [

@@ -14,6 +14,9 @@ import {
   Bell
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useNoticeBadge } from './NoticeComponents';
+import { GLOBAL_NOTICES } from '../data/notices';
+import { Notice } from '../data/types';
 
 interface SidebarItem {
   label: string;
@@ -32,6 +35,10 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
   const { gameId } = useParams<{ gameId: string }>();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const { hasUnread } = useNoticeBadge();
+
+  const gameNotices = GLOBAL_NOTICES.filter(n => n.gameId === gameId || n.gameId === 'common');
+  const showNewBadge = hasUnread(gameNotices);
 
   const MAIN_NAVIGATION: SidebarItem[] = [
     { label: '홈', icon: <HomeIcon size={14} />, menuKey: '홈' },
@@ -96,7 +103,12 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
               <div className={`p-2.5 rounded-xl ${isActive ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/50' : 'bg-white/5'}`}>
                 {item.icon}
               </div>
-              <span className="text-[14px] font-black tracking-tight">{t(displayLabel)}</span>
+              <div className="flex-1 flex items-center justify-between">
+                <span className="text-[14px] font-black tracking-tight">{t(displayLabel)}</span>
+                {item.label === '공지사항' && showNewBadge && (
+                  <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                )}
+              </div>
             </button>
           );
         })}

@@ -12,7 +12,7 @@ async function testGemma() {
       models: {
         local: {
           baseUrl: "http://127.0.0.1:11434/v1",
-          model: "gemma4:e4b"
+          model: "gemma4:e2b"
         }
       }
     };

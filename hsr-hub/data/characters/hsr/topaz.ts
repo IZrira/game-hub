@@ -48,15 +48,15 @@ const topaz: Character = {
       { name: "철위대 훈장", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "짐승 사냥용 화살", count: "18", rarity: 2 },
-      { name: "악마 사냥용 화살", count: "69", rarity: 3 },
-      { name: "별 쫓는 화살", count: "139", rarity: 4 },
-      { name: "철위대 배지", count: "41", rarity: 2 },
-      { name: "철위대 표식", count: "56", rarity: 3 },
-      { name: "철위대 훈장", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "짐승 사냥용 화살", count: "12", rarity: 2 },
+      { name: "악마 사냥용 화살", count: "53", rarity: 3 },
+      { name: "별 쫓는 화살", count: "101", rarity: 4 },
+      { name: "철위대 배지", count: "33", rarity: 2 },
+      { name: "철위대 표식", count: "46", rarity: 3 },
+      { name: "철위대 훈장", count: "28", rarity: 4 }
     ]
   },
   skills: [

@@ -10,7 +10,7 @@ const danHengIL: Character = {
   path: "파멸",
   rarity: 5,
   affiliation: "선주 「나부」",
-  briefInfo: "단항의 비디아다라족으로서의 본모습, 전생의 「음월군」이 남긴 힘. 이마의 각관을 받으면 그 죄인의 모든 공과를 이어받아야 한다",
+  briefInfo: "단항의 비디아다라족으로서의 본모습, 전생의 「음월군」이 남긴 힘.\n이맛전의 각관을 받으면 그 죄인의 모든 공과를 이어받아야 한다",
   version: "1.3",
   releaseVersion: "1.3",
   languageNames: "🇰🇷 단항·음월 / 🇺🇸 Dan Heng·Imbibitor Lunae / 🇨🇳 丹恒 · 饮月 / 🇯🇵  丹恒 · 饮月",
@@ -24,7 +24,7 @@ const danHengIL: Character = {
     affiliation: "선주 「나부」",
     cv: "🇰🇷 김혜성 / 🇺🇸 니콜라스 렁 / 🇨🇳 위둥 / 🇯🇵 이토 켄토",
     releaseVersion: "1.3",
-    brief: "단항의 비디아다라족으로서의 본모습, 전생의 「음월군」이 남긴 힘. 이마의 각관을 받으면 그 죄인의 모든 공과를 이어받아야 한다"
+    brief: "단항의 비디아다라족으로서의 본모습, 전생의 「음월군」이 남긴 힘.\n이맛전의 각관을 받으면 그 죄인의 모든 공과를 이어받아야 한다"
   },
   baseStats: {
     lv1: { "기초 HP": 169, "기초 공격력": 95, "기초 방어력": 50 },
@@ -48,15 +48,15 @@ const danHengIL: Character = {
       { name: "영생의 가지", count: "15", rarity: 4 }
     ],
     traces: [
-      { name: "신용 포인트", count: "3,000,000", rarity: 3 },
-      { name: "운명의 발자취", count: "8", rarity: 5 },
-      { name: "무한한 가짜의 여한", count: "12", rarity: 4 },
-      { name: "부서진 칼날", count: "18", rarity: 2 },
-      { name: "무생의 칼날", count: "69", rarity: 3 },
-      { name: "정화의 칼날", count: "139", rarity: 4 },
-      { name: "영생의 새싹", count: "41", rarity: 2 },
-      { name: "영생의 꽃", count: "56", rarity: 3 },
-      { name: "영생의 가지", count: "58", rarity: 4 }
+      { name: "신용 포인트", count: "2,197,500", rarity: 3 },
+      { name: "운명의 발자취", count: "6", rarity: 5 },
+      { name: "무한한 가짜의 여한", count: "9", rarity: 4 },
+      { name: "부서진 칼날", count: "12", rarity: 2 },
+      { name: "무생의 칼날", count: "53", rarity: 3 },
+      { name: "정화의 칼날", count: "101", rarity: 4 },
+      { name: "영생의 새싹", count: "33", rarity: 2 },
+      { name: "영생의 꽃", count: "46", rarity: 3 },
+      { name: "영생의 가지", count: "28", rarity: 4 }
     ]
   },
   skills: [

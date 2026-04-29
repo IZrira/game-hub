@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { getItemMeta, getItemUrl, getAutoRarity, REVERSE_ITEM_MAP } from '../data/items';
 import { useTranslation } from 'react-i18next';
@@ -23,14 +22,14 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
   const { t, i18n } = useTranslation();
   const itemInfo = getItemMeta(name);
   const rarity = rarityOverride || itemInfo?.rarity || getAutoRarity(name);
-  const [imgSrc, setImgSrc] = useState(getItemUrl(name));
+  const [imgSrc, setImgSrc] = useState(getItemUrl(name) || (itemInfo?.enName ? getItemUrl(itemInfo.enName) : null));
 
   useEffect(() => {
-    setImgSrc(getItemUrl(name));
-  }, [name]);
+    setImgSrc(getItemUrl(name) || (itemInfo?.enName ? getItemUrl(itemInfo.enName) : null));
+  }, [name, itemInfo?.enName]);
 
   const handleError = () => {
-    setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/신용 포인트.webp");
+    setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp");
   };
 
   const truncateMiddle = (text: string, maxLength: number) => {
@@ -63,7 +62,11 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
 
   return (
     <div 
-      className={`flex flex-col items-center gap-2 group cursor-pointer transition-all duration-300 hover:scale-105 ${currentSize.container}`}
+      role={onClick ? "button" : "img"}
+      tabIndex={onClick ? 0 : undefined}
+      aria-label={`${translatedName} ${count ? count + '개' : ''}`}
+      onKeyDown={(e) => { if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onClick(); } }}
+      className={`flex flex-col items-center gap-2 group cursor-pointer transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-xl ${currentSize.container}`}
       onClick={onClick}
       title={name}
     >
@@ -77,16 +80,18 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
         
         <img 
           src={imgSrc} 
-          alt={name}
+          alt={translatedName}
           width="150"
           height="150"
+          loading="lazy"
+          decoding="async"
           style={{ imageRendering: 'auto' }}
-          className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110 text-transparent"
+          className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110"
           onError={handleError}
         />
 
         {count && (
-          <div className="absolute bottom-0 right-0 left-0 bg-black/80 backdrop-blur-sm px-1.5 py-0.5 text-[9px] md:text-[10px] font-black text-white text-right z-30 border-t border-white/10 font-mono tracking-tighter">
+          <div className="absolute bottom-0 right-0 left-0 bg-black/85 backdrop-blur-md px-2 py-1 text-[11px] md:text-[13px] font-black text-white text-right z-30 border-t border-white/10 font-sans tabular-nums tracking-tight">
             {count}
           </div>
         )}
