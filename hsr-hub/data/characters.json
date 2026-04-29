@@ -83,6 +83,6 @@
   { "id": "yaoguang", "name": "효광", "folderName": "효광", "attribute": "물리", "path": "환락", "rarity": 5, "materials": "데이터 소실", "version": "4.0" },
   { "id": "ashveil", "name": "애쉬베일", "folderName": "애쉬베일", "attribute": "번개", "path": "수렵", "rarity": 5, "materials": "데이터 소실", "version": "4.1" },
   { "id": "evanescia", "name": "에바네시아", "folderName": "에바네시아", "attribute": "물리", "path": "환락", "rarity": 5, "version": "4.2" },
-  { "id": "silver_wolf_999", "name": "은랑 LV.999", "folderName": "은랑 LV.999", "attribute": "양자", "path": "공허", "rarity": 5, "version": "4.2" },
+  { "id": "silver_wolf_999", "name": "은랑 LV.999", "folderName": "silver_wolf_999", "attribute": "양자", "path": "공허", "rarity": 5, "version": "4.2" },
   { "id": "trailblazer_elation", "name": "개척자 (환락)", "folderName": "개척자 (환락)", "imageFile": "art01.webp", "attribute": "번개", "path": "환락", "rarity": 5, "version": "4.2" }
 ]

@@ -3,7 +3,7 @@ import { Character } from '../../../../common-hub/types';
 const silverWolf999: Character = {
   id: "silver_wolf_999",
   name: "은랑 LV.999",
-  folderName: "은랑",
+  folderName: "silver_wolf_999",
   gameId: "hsr",
   attribute: "허수",
   path: "환락",
