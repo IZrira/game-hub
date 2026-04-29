@@ -3,7 +3,7 @@ import { Character } from '../../../../common-hub/types';
 const ashveil: Character = {
   id: "ashveil",
   name: "애쉬베일",
-  folderName: "ashveil",
+  folderName: "애쉬베일",
   gameId: "hsr",
   attribute: "번개",
   path: "수렵",
