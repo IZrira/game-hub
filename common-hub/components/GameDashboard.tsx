@@ -289,7 +289,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
               </div>
               
               <div className="space-y-4">
-                {notices.map((notice) => (
+                {notices.slice(0, 3).map((notice) => (
                   <div key={notice.id} className="group cursor-default">
                     <div className="flex items-center gap-2 mb-1">
                       <span className={`text-[8px] font-black px-1.5 py-0.5 rounded border ${
