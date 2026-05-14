@@ -26,6 +26,8 @@
 - [[notice-policy]]: 공지사항 작성 및 버전 관리 정책
 - [[tier-update-standard]]: 티어표 업데이트 JSON 서식 및 등급 기준
 - [[obsidian-setup-guide]]: P-Reinforce 지식의 Obsidian 연동 및 시각화 방법
+- [[obsidian-premium-enhancement]]: Obsidian을 프리미엄 지식 OS로 진화시키기 위한 고도화 가이드
+
 
 ## 💎 Obsidian
 - [[Obsidian_Dashboard]]: Dataview 기반 실시간 지식 대시보드
