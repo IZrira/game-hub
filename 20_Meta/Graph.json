@@ -17,6 +17,6 @@
     { "source": "ux-principles", "target": "Skills" },
     { "source": "development-roadmap", "target": "Projects" },
     { "source": "rover-mapping", "target": "Skills" },
-    { "source": "design-system", "source": "ux-principles" }
+    { "source": "design-system", "target": "ux-principles" }
   ]
 }
