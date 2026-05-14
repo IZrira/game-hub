@@ -13,4 +13,7 @@
 
 ## 🚀 Skills
 - [[ux-principles]]: 프리미엄 다크 테마 및 인터랙션 구현 지침
+- [[text-formatting-guide]]: 마크다운 기반 자동 스타일링 및 하이라이트 시스템
 - [[rover-mapping]]: 방랑자 성별 대응 및 에셋 자동 매핑 기술
+- [[character-detail-standard]]: 명조 캐릭터 상세 페이지 표준 및 데이터 매핑
+- [[skill-input-guide]]: A/B 타입 캐릭터 스킬 조작 가이드라인

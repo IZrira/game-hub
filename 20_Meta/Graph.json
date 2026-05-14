@@ -6,6 +6,9 @@
     { "id": "ux-principles", "label": "ux-principles", "group": "Skills" },
     { "id": "development-roadmap", "label": "development-roadmap", "group": "Projects" },
     { "id": "rover-mapping", "label": "rover-mapping", "group": "Skills" },
+    { "id": "character-detail-standard", "label": "character-detail-standard", "group": "Skills" },
+    { "id": "skill-input-guide", "label": "skill-input-guide", "group": "Skills" },
+    { "id": "text-formatting-guide", "label": "text-formatting-guide", "group": "Skills" },
     { "id": "Projects", "label": "Projects", "group": "Category" },
     { "id": "Topics", "label": "Topics", "group": "Category" },
     { "id": "Skills", "label": "Skills", "group": "Category" }
@@ -17,6 +20,12 @@
     { "source": "ux-principles", "target": "Skills" },
     { "source": "development-roadmap", "target": "Projects" },
     { "source": "rover-mapping", "target": "Skills" },
-    { "source": "design-system", "target": "ux-principles" }
+    { "source": "character-detail-standard", "target": "Skills" },
+    { "source": "skill-input-guide", "target": "Skills" },
+    { "source": "text-formatting-guide", "target": "Skills" },
+    { "source": "design-system", "target": "ux-principles" },
+    { "source": "character-detail-standard", "target": "skill-input-guide" },
+    { "source": "character-detail-standard", "target": "text-formatting-guide" },
+    { "source": "text-formatting-guide", "target": "ux-principles" }
   ]
 }
