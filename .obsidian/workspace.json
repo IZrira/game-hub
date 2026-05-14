@@ -11,14 +11,10 @@
             "id": "24d0fb3e420189e4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "obsidian-premium-enhancement"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "obsidian-premium-enhancement 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "obsidian-premium-enhancement 의 나가는 링크"
+              "title": "나가는 링크"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "obsidian-premium-enhancement 의 개요"
+              "title": "개요"
             }
           }
         ]
@@ -183,8 +176,24 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "76efecf5dd5090b5",
+  "active": "24d0fb3e420189e4",
   "lastOpenFiles": [
+    "10_Wiki/👥 Characters/HSR/rappa.md",
+    "10_Wiki/👥 Characters/HSR/yunli.md",
+    "10_Wiki/👥 Characters/HSR/boothill.md",
+    "10_Wiki/👥 Characters/HSR/jade.md",
+    "10_Wiki/👥 Characters/HSR/acheron.md",
+    "10_Wiki/👥 Characters/HSR/argenti.md",
+    "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
+    "10_Wiki/👥 Characters/HSR/jing-yuan.md",
+    "10_Wiki/👥 Characters/HSR/topaz.md",
+    "10_Wiki/👥 Characters/HSR/dr-ratio.md",
+    "10_Wiki/👥 Characters/HSR/luocha.md",
+    "10_Wiki/👥 Characters/HSR/blade.md",
+    "10_Wiki/👥 Characters/HSR/seele.md",
+    "10_Wiki/👥 Characters/HSR/silver-wolf.md",
+    "10_Wiki/👥 Characters/HSR/black-swan.md",
+    "10_Wiki/👥 Characters/HSR/kafka.md",
     "10_Wiki/👥 Characters/HSR/sunday.md",
     "10_Wiki/👥 Characters/HSR/aglaea.md",
     "10_Wiki/👥 Characters/HSR/fugue.md",
@@ -195,22 +204,7 @@
     "10_Wiki/👥 Characters/HSR/huohuo.md",
     "10_Wiki/👥 Characters/HSR/fu-xuan.md",
     "10_Wiki/👥 Characters/HSR/aventurine.md",
-    "10_Wiki/👥 Characters/HSR/sparkle.md",
-    "10_Wiki/👥 Characters/HSR/robin.md",
-    "10_Wiki/👥 Characters/HSR/ruan-mei.md",
-    "10_Wiki/👥 Characters/HSR/firefly.md",
-    "10_Wiki/👥 Characters/HSR/dan-heng-permansor-terrae.md",
-    "10_Wiki/👥 Characters/HSR/acheron.md",
-    "10_Wiki/👥 Characters/HSR/trailblazer-remembrance.md",
-    "10_Wiki/👥 Characters/HSR/yaoguang.md",
-    "10_Wiki/👥 Characters/HSR/sparxie.md",
-    "10_Wiki/👥 Characters/HSR/silver-wolf-999.md",
-    "10_Wiki/👥 Characters/HSR/ashveil.md",
     "10_Wiki/👥 Characters/HSR",
-    "10_Wiki/👥 Characters",
-    "10_Wiki/🚀 Skills/General/obsidian-setup-guide.md",
-    "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
-    "node_modules/undici/docs/docs/api/MockCallHistory.md",
-    "20_Meta/Obsidian_Dashboard.md"
+    "10_Wiki/👥 Characters"
   ]
 }
