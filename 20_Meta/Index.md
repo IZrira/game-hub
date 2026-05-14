@@ -28,6 +28,15 @@
 - [[obsidian-setup-guide]]: P-Reinforce 지식의 Obsidian 연동 및 시각화 방법
 - [[obsidian-premium-enhancement]]: Obsidian을 프리미엄 지식 OS로 진화시키기 위한 고도화 가이드
 
+## 👥 Characters (HSR)
+- [[ashveil]]: v4.1 번개 수렵 | 추가 공격의 정점
+- [[silver-wolf-999]]: v4.2 허수 환락 | 시스템 해킹 및 랜덤 유틸
+- [[sparxie]]: v4.0 화염 환락 | 환락 시너지 및 자원 서포트
+- [[yaoguang]]: v4.0 물리 환락 | 협공 및 환락도 증폭
+- [[trailblazer-remembrance]]: v3.0 얼음 기억 | 미미 소환 및 확정 피해
+- [[acheron]]: v2.1 번개 공허 | 비상 스택 기반 폭발적 딜링
+- [[dan-heng-permansor-terrae]]: v3.1 물리 보존 | 파티 생존의 철벽수호
+
 
 ## 💎 Obsidian
 - [[Obsidian_Dashboard]]: Dataview 기반 실시간 지식 대시보드

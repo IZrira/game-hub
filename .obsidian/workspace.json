@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-setup-guide.md",
+                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "obsidian-setup-guide"
+              "title": "obsidian-premium-enhancement"
             }
           }
         ]
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-setup-guide.md",
+                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "obsidian-setup-guide 의 백링크"
+              "title": "obsidian-premium-enhancement 의 백링크"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-setup-guide.md",
+                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "obsidian-setup-guide 의 나가는 링크"
+              "title": "obsidian-premium-enhancement 의 나가는 링크"
             }
           },
           {
@@ -156,13 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "10_Wiki/🚀 Skills/General/obsidian-setup-guide.md",
+                "file": "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "obsidian-setup-guide 의 개요"
+              "title": "obsidian-premium-enhancement 의 개요"
             }
           }
         ]
@@ -183,8 +183,18 @@
       "bases:새 베이스 생성하기": false
     }
   },
-  "active": "24d0fb3e420189e4",
+  "active": "76efecf5dd5090b5",
   "lastOpenFiles": [
+    "10_Wiki/👥 Characters/HSR/dan-heng-permansor-terrae.md",
+    "10_Wiki/👥 Characters/HSR/acheron.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-remembrance.md",
+    "10_Wiki/👥 Characters/HSR/yaoguang.md",
+    "10_Wiki/👥 Characters/HSR/sparxie.md",
+    "10_Wiki/👥 Characters/HSR/silver-wolf-999.md",
+    "10_Wiki/👥 Characters/HSR/ashveil.md",
+    "10_Wiki/👥 Characters/HSR",
+    "10_Wiki/👥 Characters",
+    "10_Wiki/🚀 Skills/General/obsidian-setup-guide.md",
     "10_Wiki/🚀 Skills/General/obsidian-premium-enhancement.md",
     "node_modules/undici/docs/docs/api/MockCallHistory.md",
     "20_Meta/Obsidian_Dashboard.md"
