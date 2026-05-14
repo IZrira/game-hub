@@ -34,6 +34,13 @@
   .card-glass {
     @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl;
   }
+
+  .inline-icon {
+    height: 1.2em; /* 텍스트 높이에 맞춤 */
+    vertical-align: -0.2em; /* 미세한 높이 조절 */
+    display: inline-block;
+    margin: 0 0.2em;
+  }
 }
 
 /* Custom Animations */

@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams, Link, useSearchParams } from 'react-router-dom';
 import { 
   Search, Home as HomeIcon, ChevronRight, Filter, Book, Activity as ActivityIcon, ArrowLeft,
-  LayoutGrid, Users, Zap, Shield, Backpack, Sparkles, Bell
+  LayoutGrid, Users, Zap, Shield, Backpack, Sparkles, Bell, Star
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
@@ -10,14 +10,16 @@ import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SearchModal from '../../common-hub/components/SearchModal';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { LightConePremiumCard, CharacterPremiumCard, ItemPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
 import { ItemDetailModal } from '@/common-hub/components/GalleryModals';
-import WuwaInventory from './WuwaInventory';
+import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import WuwaEchoGallery from '../components/WuwaEchoGallery';
+import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
@@ -27,6 +29,7 @@ import { Notice } from '../../common-hub/data/types';
 
 const GalleryWW: React.FC = () => {
   const gameId = 'ww';
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   
   const [activeMenu, setActiveMenu] = useState<string>(() => {
@@ -80,14 +83,30 @@ const GalleryWW: React.FC = () => {
     setSearchParams(newParams);
   };
 
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState(searchQuery);
+
+  // 검색 디바운스 로직: 타이핑 시 깜빡임 및 상단 튀기 방지
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearchQuery(searchQuery);
+      
+      const newParams = new URLSearchParams(searchParams);
+      if (searchQuery) {
+        newParams.set('search', searchQuery);
+      } else {
+        newParams.delete('search');
+      }
+      setSearchParams(newParams, { replace: true });
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
   const handleSearchChange = (query: string) => {
     setSearchQuery(query);
-    const newParams: any = { menu: activeMenu };
-    if (query) newParams.search = query;
-    setSearchParams(newParams);
   };
 
-  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, WW_INVENTORY, GUIDES: WW_CHARACTER_GUIDES } = useMemo(() => getGameData(currentLang), [currentLang]);
+  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, WW_INVENTORY, GUIDES: WW_CHARACTER_GUIDES } = useMemo(() => getGameData(gameId), [gameId]);
   
   const [gameNotices, setGameNotices] = useState<Notice[]>([]);
 
@@ -102,29 +121,34 @@ const GalleryWW: React.FC = () => {
   }, []);
 
   const { filteredCharacters, filteredLightCones, filteredItems, filterOptions } = useGalleryFilter(
-    gameId, searchQuery, attrFilter, secondFilter, rarityFilter,
-    CHARACTER_DB, [], [], WEAPON_DB, ECHO_DB, WW_INVENTORY, categoryFilter
+    gameId, debouncedSearchQuery, attrFilter, secondFilter, rarityFilter,
+    CHARACTER_DB, [], WEAPON_DB, ECHO_DB, [], WW_INVENTORY, categoryFilter
   );
 
   if (!game) return null;
 
+  const seoTitle = activeMenu === '홈' 
+    ? `${game.title}: ${t('워더링 웨이브')} ${t('아카이브 | 공략 및 데이터베이스')}`
+    : `${game.title}: ${t('워더링 웨이브')} ${t(activeMenu)} ${t('도감 및 데이터베이스')}`;
+  
+  const seoDescription = activeMenu === '홈'
+    ? `${game.title} ${t('의 모든 공명자, 무기, 에코 데이터를 한눈에 확인하세요. 최신 업데이트 소식과 상세 가이드를 제공합니다.')}`
+    : `${game.title} ${t(activeMenu)} ${t('카테고리의 상세 목록과 필터링된 데이터를 제공합니다.')}`;
+
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
-      <SEO title={`${game.title} 갤러리`} description={`${game.title} 도감을 확인하세요.`} />
-      <div className="bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 sticky top-16 z-[40] h-12 flex items-center px-8 shadow-2xl justify-between w-full">
-        <div className="flex items-center gap-6">
-          <button onClick={() => window.history.back()} className="flex items-center gap-2 text-[11px] font-black text-gray-500 hover:text-white transition-colors group">
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            <span>{t('이전으로')}</span>
-          </button>
-          <div className="h-3 w-px bg-white/10" />
-          <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-            <Link to="/" className="flex items-center gap-2 hover:text-brand-accent transition-colors"><HomeIcon size={12} /> {t('메인')}</Link>
-            <ChevronRight size={10} /><span className="text-brand-light/70">{game.title}</span>
-            {activeMenu !== '홈' && <><ChevronRight size={10} /><span className="text-brand-accent">{t(activeMenu)}</span></>}
-          </nav>
-        </div>
-      </div>
+      <SEO 
+        title={seoTitle} 
+        description={seoDescription}
+        url={`/gallery/${gameId}?menu=${activeMenu}`}
+        gameCategory={game.title}
+        breadcrumbData={[
+          { name: t('홈'), url: '/' },
+          { name: game.title, url: `/gallery/${gameId}` },
+          { name: t(activeMenu), url: `/gallery/${gameId}?menu=${activeMenu}` }
+        ]}
+      />
+      <PageHeader gameId="ww" title={activeMenu === '홈' ? '' : activeMenu} />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
@@ -135,7 +159,7 @@ const GalleryWW: React.FC = () => {
               <section className="relative p-10 md:p-12 rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
                 <div 
                   style={{
-                    backgroundImage: `url(${getCharacterArtPath('ww', '기연')})`,
+                    backgroundImage: `url(${getCharacterArtPath('ww', '기염')})`,
                     maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
                     WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
                     filter: 'brightness(0.35)',
@@ -193,8 +217,8 @@ const GalleryWW: React.FC = () => {
                   <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('최근 공명자 업데이트')}</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                  {CHARACTER_DB.slice(0, 5).map((char: any) => (
-                    <CharacterPremiumCard key={char.id} char={char} />
+                  {CHARACTER_DB.slice(0, 5).map((char: any, idx: number) => (
+                    <CharacterPremiumCard key={char.id} char={char} index={idx} />
                   ))}
                 </div>
               </section>
@@ -219,7 +243,7 @@ const GalleryWW: React.FC = () => {
                     </button>
                   </div>
                   <NoticeListView 
-                    notices={gameNotices} 
+                    notices={gameNotices.slice(0, 3)} 
                     onNoticeClick={(n) => {
                       setSelectedNotice(n);
                       markAsRead(n.id);
@@ -246,7 +270,7 @@ const GalleryWW: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-                {filteredCharacters.map((char: any) => <CharacterPremiumCard key={char.id} char={char} />)}
+                {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
           ) : activeMenu === '공지사항' ? (
@@ -271,35 +295,30 @@ const GalleryWW: React.FC = () => {
                 <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("무기 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
                     <input type="text" placeholder={t("명칭 필터링...")} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                   </div>
                   <div className="flex flex-wrap gap-3 items-center">
                     <FilterSelect label={t("무기")} value={secondFilter} onChange={(val: string) => updateFilterParams('weapon', val)} options={filterOptions.second} />
-                    <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4", "3"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
+                    <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4", "3", "2", "1"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-                {filteredLightCones.map((lc: any) => <LightConePremiumCard key={lc.id} lc={lc} />)}
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+                {filteredLightCones.map((lc: any) => (
+                  <WuwaWeaponCard 
+                    key={lc.id} 
+                    weapon={lc} 
+                    onClick={() => navigate(`/gallery/ww/weapon/${encodeURIComponent(lc.name)}`)} 
+                  />
+                ))}
               </div>
             </div>
           ) : activeMenu === "인벤토리" ? (
-            <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("아이템 도감")}</h2>
-                <div className="flex flex-wrap gap-3 items-center">
-                  <FilterSelect label={t("분류")} value={categoryFilter} onChange={(val: string) => updateFilterParams('category', val)} options={["요리", "돌파 재료", "특수 화폐", "소모품", "무기 및 스킬 재료", "재료", "튜닝 관련 아이템", "에코 육성 재료", "공명자 경험치 재료", "무기 경험치 재료", "공명자 돌파 재료"]} />
-                  <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4", "3", "2", "1"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
-                </div>
-              </div>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4">
-                {filteredItems.map((item: any, idx: number) => (
-                  <ItemPremiumCard key={`${item.id}-${idx}`} item={item} onClick={() => setSelectedItem(item)} />
-                ))}
-              </div>
-              {selectedItem && <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} />}
-            </div>
+            <InventoryGallery 
+              gameId="ww" 
+              customCategories={["전체", "요리", "돌파 재료", "특수 화폐", "소모품", "무기 및 스킬 재료", "재료", "튜닝 관련 아이템", "에코 육성 재료", "공명자 경험치 재료", "무기 경험치 재료", "공명자 돌파 재료", "무기 제작 재료", "스킬 업그레이드 재료"]} 
+            />
           ) : activeMenu === "에코" ? (
             <WuwaEchoGallery />
           ) : activeMenu === '공략' ? (
@@ -337,15 +356,62 @@ const GalleryWW: React.FC = () => {
   );
 };
 
-const FilterSelect = ({ label, value, onChange, options, formatOption }: any) => (
-  <div className="flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border border-white/5">
-    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{label}</span>
-    <select value={value} onChange={(e) => onChange(e.target.value)} className="bg-transparent text-xs font-bold text-white focus:outline-none appearance-none cursor-pointer">
-      <option value="전체">ALL</option>
-      {options.map((opt: string) => <option key={opt} value={opt}>{formatOption ? formatOption(opt) : opt}</option>)}
-    </select>
-    <ChevronRight size={12} className="text-gray-600 rotate-90" />
-  </div>
-);
+const FilterSelect = ({ label, value, onChange, options, formatOption }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={containerRef}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
+      >
+        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
+        <span className="text-xs font-bold text-white min-w-[60px] text-left">
+          {value === '전체' ? 'ALL' : (formatOption ? formatOption(value) : value)}
+        </span>
+        <ChevronRight size={12} className={`text-gray-600 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 w-full min-w-[160px] bg-[#1a1a1a]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-fade-in z-[100]">
+          <div className="max-h-[300px] overflow-y-auto py-2 custom-scrollbar">
+            <button
+              onClick={() => {
+                onChange('전체');
+                setIsOpen(false);
+              }}
+              className={`w-full px-4 py-2.5 text-left text-xs font-bold transition-colors ${value === '전체' ? 'bg-brand-primary/20 text-brand-accent' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+            >
+              ALL
+            </button>
+            {options.map((opt: string) => (
+              <button
+                key={opt}
+                onClick={() => {
+                  onChange(opt);
+                  setIsOpen(false);
+                }}
+                className={`w-full px-4 py-2.5 text-left text-xs font-bold transition-colors ${value === opt ? 'bg-brand-primary/20 text-brand-accent' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+              >
+                {formatOption ? formatOption(opt) : opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default GalleryWW;

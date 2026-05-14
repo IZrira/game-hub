@@ -5,7 +5,12 @@ import { WEAPON_DATA } from '../data/weapons';
 import { WuwaWeapon } from './weapon';
 import WuwaWeaponCard from './WuwaWeaponCard';
 
+import SEO from '../../common-hub/components/SEO';
+import PageHeader from '../../common-hub/components/PageHeader';
+import { useTranslation } from 'react-i18next';
+
 const WuwaWeaponGallery = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedType, setSelectedType] = useState<string>('전체');
@@ -22,8 +27,11 @@ const WuwaWeaponGallery = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
+      <SEO title="무기 도감 | 명조 아카이브" description="명조: 워더링 웨이브의 무기 정보를 확인하세요." />
+      <PageHeader gameId="ww" category={t("무기")} title={t("무기 도감")} />
+      
       {/* 1. 헤더 영역 그리드 */}
-      <header className="max-w-[1440px] mx-auto px-6 md:px-12 pt-16 pb-12 border-b border-white/5">
+      <header className="max-w-[1440px] mx-auto px-6 md:px-12 pt-10 pb-12 border-b border-white/5">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="space-y-4 w-full md:w-auto">
           <h1 className="text-4xl md:text-5xl font-black italic tracking-tighter uppercase">Archive: Weapons</h1>

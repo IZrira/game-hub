@@ -6,7 +6,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_태양보다_밝게_빛나는_것",
     "name": "태양보다 밝게 빛나는 것",
     "gameId": "hsr",
-    "releaseVersion": "1.0",
+    "releaseVersion": "1.3",
     "folderName": "태양보다 밝게 빛나는 것",
     "rarity": 5,
     "path": "파멸",
@@ -37,7 +37,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_닿을_수_없는_저편",
     "name": "닿을 수 없는 저편",
     "gameId": "hsr",
-    "releaseVersion": "1.0",
+    "releaseVersion": "1.2",
     "folderName": "닿을 수 없는 저편",
     "rarity": 5,
     "path": "파멸",
@@ -130,7 +130,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_이_몸이_검이니",
     "name": "이 몸이 검이니",
     "gameId": "hsr",
-    "releaseVersion": "1.0",
+    "releaseVersion": "1.4",
     "folderName": "이 몸이 검이니",
     "rarity": 5,
     "path": "파멸",
@@ -161,7 +161,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_꿈은_어디로_돌아가야_하는가",
     "name": "꿈은 어디로 돌아가야 하는가",
     "gameId": "hsr",
-    "releaseVersion": "1.0",
+    "releaseVersion": "2.3",
     "folderName": "꿈은 어디로 돌아가야 하는가",
     "rarity": 5,
     "path": "파멸",
@@ -192,7 +192,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_해_질_무렵_시작되는_춤",
     "name": "해 질 무렵 시작되는 춤",
     "gameId": "hsr",
-    "releaseVersion": "1.0",
+    "releaseVersion": "2.4",
     "folderName": "해 질 무렵 시작되는 춤",
     "rarity": 5,
     "path": "파멸",
@@ -254,7 +254,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_보답_없는_왕관",
     "name": "보답 없는 왕관",
     "gameId": "hsr",
-    "releaseVersion": "3.7",
+    "releaseVersion": "3.4",
     "folderName": "보답 없는 왕관",
     "rarity": 5,
     "path": "파멸",
@@ -285,7 +285,7 @@ export const destructionLightcones: HsrLightCone[] = [
     "id": "lc_피의_불꽃이여_앞길을_태워라",
     "name": "피의 불꽃이여, 앞길을 태워라",
     "gameId": "hsr",
-    "releaseVersion": "3.5",
+    "releaseVersion": "3.1",
     "folderName": "피의 불꽃이여, 앞길을 태워라",
     "rarity": 5,
     "path": "파멸",
@@ -435,5 +435,67 @@ export const destructionLightcones: HsrLightCone[] = [
       { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("파멸의 칼날", 4, 2), createMaterial("혼돈의 칼날", 12, 3), createMaterial("정멸의 칼날", 15, 4), createMaterial("고대 부품", 20, 2), createMaterial("고대 전달 장치", 20, 3), createMaterial("고대 엔진", 14, 4)] }
     ],
     "story": "푸른 하늘 아래 이삭이 파도처럼 출렁인다.\n소녀는 정성껏 화환을 엮어\n가장 사랑하는 여동생의 머리에 얹었다.\n그때의 그들은 비슷한 키였고,\n그때의 그들은 여전히 그렇게 웃었다"
+  },
+  {
+    "id": "lc_불의_먼_곳에서",
+    "name": "불의 먼 곳에서",
+    "gameId": "hsr",
+    "releaseVersion": "2.0",
+    "folderName": "불의 먼 곳에서",
+    "rarity": 4,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats([48, 185, 314, 463, 612, 761, 910, 1058], [21, 83, 141, 208, 275, 342, 409, 476], [12, 46, 79, 116, 153, 190, 227, 265]),
+    "skill": {
+      "name": "성불",
+      "description": "장착한 캐릭터가 단일 공격에서 소모한 HP가 자신의 최대 HP의 25% 이상이거나, 소모한 HP의 누계가 자신의 최대 HP의 25% 이상일 경우, 즉시 자신의 최대 HP의 15%를 회복하고 가하는 피해가 25% 증가한다. 지속 시간: 2턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+      "descriptions": [
+        "장착한 캐릭터가 단일 공격에서 소모한 HP가 자신의 최대 HP의 25% 이상이거나, 소모한 HP의 누계가 자신의 최대 HP의 25% 이상일 경우, 즉시 자신의 최대 HP의 15%를 회복하고 가하는 피해가 25% 증가한다. 지속 시간: 2턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터가 단일 공격에서 소모한 HP가 자신의 최대 HP의 25% 이상이거나, 소모한 HP의 누계가 자신의 최대 HP의 25% 이상일 경우, 즉시 자신의 최대 HP의 18%를 회복하고 가하는 피해가 31.25% 증가한다. 지속 시간: 2턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터가 단일 공격에서 소모한 HP가 자신의 최대 HP의 25% 이상이거나, 소모한 HP의 누계가 자신의 최대 HP의 25% 이상일 경우, 즉시 자신의 최대 HP의 21%를 회복하고 가하는 피해가 37.5% 증가한다. 지속 시간: 2턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터가 단일 공격에서 소모한 HP가 자신의 최대 HP의 25% 이상이거나, 소모한 HP의 누계가 자신의 최대 HP의 25% 이상일 경우, 즉시 자신의 최대 HP의 24%를 회복하고 가하는 피해가 43.75% 증가한다. 지속 시간: 2턴. 해당 효과는 3턴마다 1회만 발동할 수 있다",
+        "장착한 캐릭터가 단일 공격에서 소모한 HP가 자신의 최대 HP의 25% 이상이거나, 소모한 HP의 누계가 자신의 최대 HP의 25% 이상일 경우, 즉시 자신의 최대 HP의 27%를 회복하고 가하는 피해가 50% 증가한다. 지속 시간: 2턴. 해당 효과는 3턴마다 1회만 발동할 수 있다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("꿈 저장 부품", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("보리인의 송곳니", 4, 2), createMaterial("꿈 저장 부품", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 4, 3), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("달의 광기 이빨", 5, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("달의 광기 이빨", 15, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("달의 광기 이빨", 15, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 14, 4)] }
+    ],
+    "story": "폭발음과 함께 불길이 치솟았다. 그는 뜨거운 열기 속에서도 미동조차 하지 않았다. 자신의 몸이 불타는 것보다, 동료들의 희생이 더 아팠기에.\n\n*「이 불길이 모든 것을 태워버린다면, 나도 함께 타오르겠다」*\n\n그는 무기를 꽉 쥐었다. 자신의 생명을 깎아내어 승리를 쟁취하는 것, 그것이 그가 선택한 파멸의 길이었다. 연기가 자욱한 전장 너머로, 그는 먼 곳에서 불타오르는 희망을 보았다."
+  },
+  {
+    "id": "lc_마음에_새긴_약속",
+    "name": "마음에 새긴 약속",
+    "gameId": "hsr",
+    "releaseVersion": "2.0",
+    "folderName": "마음에 새긴 약속",
+    "rarity": 4,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats([43, 166, 283, 417, 551, 685, 819, 952], [21, 83, 141, 208, 275, 342, 409, 476], [15, 58, 98, 145, 191, 238, 284, 330]),
+    "skill": {
+      "name": "계승",
+      "description": "장착한 캐릭터의 격파 특수효과가 28% 증가한다. 장착한 캐릭터가 필살기를 발동하면 치명타 확률이 15% 증가한다. 지속 시간: 2턴",
+      "descriptions": [
+        "장착한 캐릭터의 격파 특수효과가 28% 증가한다. 장착한 캐릭터가 필살기를 발동하면 치명타 확률이 15% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 격파 특수효과가 35% 증가한다. 장착한 캐릭터가 필살기를 발동하면 치명타 확률이 18.75% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 격파 특수효과가 42% 증가한다. 장착한 캐릭터가 필살기를 발동하면 치명타 확률이 22.5% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 격파 특수효과가 49% 증가한다. 장착한 캐릭터가 필살기를 발동하면 치명타 확률이 26.25% 증가한다. 지속 시간: 2턴",
+        "장착한 캐릭터의 격파 특수효과가 56% 증가한다. 장착한 캐릭터가 필살기를 발동하면 치명타 확률이 30% 증가한다. 지속 시간: 2턴"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("꿈 저장 부품", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("보리인의 송곳니", 4, 2), createMaterial("꿈 저장 부품", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 4, 3), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("달의 광기 이빨", 5, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("달의 광기 이빨", 15, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("보리인의 송곳니", 4, 2), createMaterial("늑대 독 송곳니", 12, 3), createMaterial("달의 광기 이빨", 15, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 14, 4)] }
+    ],
+    "story": "소년은 낡은 시계를 꼭 쥐었다. 그것은 누군가와의 소중한 약속이자, 그가 나아가야 할 이유였다. 비록 앞길이 어둡고 험난할지라도, 그는 약속을 잊지 않았다.\n\n*「이 약속을 마음에 새기고, 나는 멈추지 않겠어」*\n\n그는 눈물을 닦고 앞을 보았다. 전해진 의지는 그의 안에서 새로운 힘이 되었다. 그는 자신이 받은 것을 다음 사람에게 전하기 위해, 오늘도 묵묵히 자신의 길을 걸어갔다."
   },
 ];

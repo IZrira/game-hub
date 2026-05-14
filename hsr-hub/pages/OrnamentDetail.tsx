@@ -7,6 +7,7 @@ import SEO from '../../common-hub/components/SEO';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
+import { matchesSlug } from '../../common-hub/utils/urlUtils';
 
 const OrnamentDetail: React.FC = () => {
   const { gameId, ornamentName } = useParams<{ gameId: string; ornamentName: string }>();
@@ -16,7 +17,11 @@ const OrnamentDetail: React.FC = () => {
   
   // 다국어 텍스트 출력을 위해 현재 언어에 맞는 DB를 로드합니다.
   const { ORNAMENT_DB } = getGameData(i18n.language || 'ko');
-  const ornament: any = ORNAMENT_DB.find((o: any) => o.name === ornamentName || o.id === ornamentName);
+  const ornament: any = ORNAMENT_DB.find((o: any) => 
+    o.id === ornamentName || 
+    o.name === ornamentName || 
+    matchesSlug(o.name, ornamentName || '')
+  );
 
   if (!ornament) {
     return (
@@ -144,7 +149,7 @@ const OrnamentDetail: React.FC = () => {
           </div>
         </div>
 
-        <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
+
       </div>
     </div>
   );

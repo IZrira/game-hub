@@ -3,9 +3,11 @@ import React, { useState, memo } from 'react';
 interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   src: string;
   alt: string;
-  className?: string; // Explicitly add className
-  fallbackSrc?: string; // 에러 났을 때 보여줄 기본 이미지 (옵션)
-  containerClassName?: string; // 이미지를 감싸는 div의 클래스
+  className?: string; 
+  fallbackSrc?: string; 
+  containerClassName?: string; 
+  loading?: 'lazy' | 'eager';
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 const LazyImage = memo(({ 
@@ -14,6 +16,8 @@ const LazyImage = memo(({
   fallbackSrc = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/unknown.webp',
   containerClassName = '',
   className = '',
+  loading = 'lazy',
+  fetchPriority = 'auto',
   ...props 
 }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -30,7 +34,8 @@ const LazyImage = memo(({
       <img
         src={hasError ? fallbackSrc : src}
         alt={alt}
-        loading="lazy" // 브라우저 기본 레이지 로딩
+        loading={loading}
+        fetchPriority={fetchPriority}
         decoding="async" // 비동기 디코딩으로 성능 향상
         onLoad={() => setIsLoaded(true)}
         onError={() => {

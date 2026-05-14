@@ -1,5 +1,5 @@
 /** 중앙화된 에셋 매니저 유틸리티 */
-export const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+export const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
 /**
  * jsDelivr/GitHub CDN에서 괄호() 문자를 포함하거나 유니코드 불일치(NFC/NFD), 

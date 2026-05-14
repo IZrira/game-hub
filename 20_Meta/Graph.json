@@ -1,0 +1,12 @@
+{
+  "nodes": [
+    { "id": "local-analysis", "label": "local-analysis", "group": "Projects" },
+    { "id": "competitor-roi-strategy", "label": "competitor-roi-strategy", "group": "Topics" },
+    { "id": "Projects", "label": "Projects", "group": "Category" },
+    { "id": "Topics", "label": "Topics", "group": "Category" }
+  ],
+  "links": [
+    { "source": "local-analysis", "target": "Projects" },
+    { "source": "competitor-roi-strategy", "target": "Topics" }
+  ]
+}

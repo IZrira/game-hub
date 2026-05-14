@@ -7,6 +7,7 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
 import { renderRichText, formatDescriptionByRank } from '../data/formatter';
 import { useTranslation } from 'react-i18next';
+import { Compass, Zap, MapPin, History, Globe, Shield } from 'lucide-react';
 
 const WuwaWeaponDetail = () => {
   const { t } = useTranslation();
@@ -17,7 +18,18 @@ const WuwaWeaponDetail = () => {
   const [isStoryOpen, setIsStoryOpen] = useState(false);
 
   const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName);
-  const theme = { primary: '#EAB308', secondary: '#FDE047' };
+
+  const getRarityTheme = (rarity: number) => {
+    switch (rarity) {
+      case 5: return { primary: '#EAB308', secondary: '#FDE047' };
+      case 4: return { primary: '#A855F7', secondary: '#D8B4FE' };
+      case 3: return { primary: '#3B82F6', secondary: '#93C5FD' };
+      case 2: return { primary: '#10B981', secondary: '#6EE7B7' };
+      case 1: return { primary: '#64748B', secondary: '#94A3B8' };
+      default: return { primary: '#EAB308', secondary: '#FDE047' };
+    }
+  };
+  const theme = getRarityTheme(weapon?.rarity || 5);
 
   if (!weapon) return (
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
@@ -32,12 +44,18 @@ const WuwaWeaponDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary overflow-x-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary relative">
       <SEO 
-        title={`${weapon.name} 정보`} 
-        description={`${weapon.name}의 상세 스탯, 무기 스킬, 스토리를 확인하세요.`}
-        name={weapon.name}
+        title={`${weapon.name} ${t('상세 정보 및 스탯 | 명조 아카이브')}`} 
+        description={`${t('명조 (Wuthering Waves)')} ${weapon.rarity}${t('성')} ${t(weapon.type)} ${weapon.name}${t('의 상세 스탯, 무기 스킬, 획득처 및 스토리를 확인하세요.')}`}
         image={getIllustrationUrl()}
+        url={`/gallery/ww/weapon/${weapon.name}`}
+        breadcrumbData={[
+          { name: t('홈'), url: '/' },
+          { name: t('명조 (Wuthering Waves)'), url: '/gallery/ww' },
+          { name: t('무기'), url: '/gallery/ww?menu=무기' },
+          { name: weapon.name, url: `/gallery/ww/weapon/${weapon.name}` }
+        ]}
       />
       
       <PageHeader gameId="ww" category={t("무기")} title={t(weapon.name)} />
@@ -87,9 +105,9 @@ const WuwaWeaponDetail = () => {
                 {/* Resonance (Superimposition) Slider */}
                 <div className="space-y-3 flex-grow relative pt-6 group/rslider">
                   <div className="flex justify-between items-end">
-                    <div className="flex items-center gap-2">
-                      <span className="text-xl font-black italic opacity-20" style={{ color: theme.primary }}>01</span>
-                      <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('중첩')}</h2>
+                    <div className="flex items-center gap-4">
+                      <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                      <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400 italic">{t('중첩')}</h2>
                     </div>
                   </div>
                   {/* Floating Rank Label */}
@@ -119,32 +137,27 @@ const WuwaWeaponDetail = () => {
                    <Link 
                      to={`/gallery/ww/guide/${weapon.name}`} 
                      className="flex items-center gap-2 px-6 py-2 bg-brand-primary text-white rounded-xl text-[10px] font-black shadow-lg hover:scale-105 transition-transform"
+                     style={{ backgroundColor: theme.primary }}
                    >
                      <BookOpen size={12} /> {t('무기 공략')}
                    </Link>
                 </div>
               </div>
 
-              {/* Stats Row */}
-              <div className="grid grid-cols-2 gap-4 bg-white/5 p-6 rounded-2xl border border-white/5">
-                <div className="space-y-0.5">
-                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('기초 공격력')} (Lv.90)</div>
-                  <div className="text-xl font-black tabular-nums tracking-tighter italic">{weapon.stats.atk}</div>
-                </div>
-                <div className="space-y-0.5 border-l border-white/5 px-4">
-                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t(weapon.stats.subStatName)}</div>
-                  <div className="text-xl font-black tabular-nums tracking-tighter italic text-brand-accent">{weapon.stats.subStatValue}</div>
-                </div>
+              {/* Stats Grid */}
+              <div className="grid grid-cols-2 gap-4">
+                <StatRow label={t("기초 공격력")} value={weapon.stats.atk} color={theme.primary} />
+                <StatRow label={t(weapon.stats.subStatName)} value={weapon.stats.subStatValue} color={theme.primary} />
               </div>
             </div>
 
-            {/* 02. Skill Detail Section (REDUCED SIZE) */}
+            {/* 02. Skill Detail Section */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
-              <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: theme.primary }}>02</span>
-                <div className="flex items-center gap-3">
-                   <ShieldCheck size={20} style={{ color: theme.primary }} />
-                   <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90">{t(weapon.skill?.name || '')}</h2>
+              <div className="flex items-center gap-6 mb-6">
+                <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
+                <div className="flex flex-col border-l-4 border-white/10 pl-6">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">{t('무기 스킬')}</span>
+                  <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90 leading-none">{t(weapon.skill?.name || '')}</h2>
                 </div>
               </div>
               
@@ -159,32 +172,46 @@ const WuwaWeaponDetail = () => {
 
         {/* 03. Story Section (Toggle) - BOTTOM FULL WIDTH */}
         {weapon.description && (
-          <div className="glass-card overflow-hidden rounded-[35px] border border-white/5 transition-all duration-300">
-              <button 
-                onClick={() => setIsStoryOpen(!isStoryOpen)}
-                className="w-full p-8 flex items-center justify-between group/story hover:bg-white/[0.02] transition-colors"
-              >
-                <div className="flex items-center gap-6">
-                  <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>03</span>
-                  <h2 className="text-xl font-black uppercase tracking-widest text-gray-400 group-hover/story:text-white transition-colors">{t('무기 스토리')}</h2>
-                </div>
-                <div className={`p-3 rounded-full bg-white/5 border border-white/10 transition-transform duration-500 ${isStoryOpen ? 'rotate-180 bg-brand-primary/20 border-brand-primary/20' : ''}`} style={isStoryOpen ? { color: theme.primary } : {}}>
-                  {isStoryOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                </div>
-              </button>
-              
-              <div className={`transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100 pb-10' : 'max-h-0 opacity-0'}`}>
-                <div className="px-8 border-t border-white/5 pt-8">
-                  <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">
-                      {t(weapon.description)}
-                  </div>
+          <div className="space-y-8">
+            <SectionHeader num="03" title={t('무기 스토리')} theme={theme} expanded={isStoryOpen} onToggle={() => setIsStoryOpen(!isStoryOpen)} />
+            <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="glass-card p-8 rounded-[35px] border border-white/5">
+                <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">
+                    {t(weapon.description)}
                 </div>
               </div>
+            </div>
           </div>
         )}
       </div>
     </div>
   );
 };
+
+const SectionHeader: React.FC<{ 
+  num: string; 
+  title: string; 
+  theme: { primary: string; secondary: string }; 
+  expanded?: boolean; 
+  onToggle?: () => void 
+}> = ({ num, title, theme, expanded, onToggle }) => (
+  <div className="flex items-center justify-between w-full group">
+    <div className="flex items-center gap-6">
+      <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{num}</div>
+      <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{title}</h2>
+    </div>
+    {onToggle && (<button onClick={onToggle} className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
+  </div>
+);
+
+const StatRow: React.FC<{ label: string; value: string | number; color: string }> = ({ label, value, color }) => (
+  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5 group hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300">
+    <div className="flex items-center gap-4">
+      <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: color }} />
+      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors">{label}</span>
+    </div>
+    <div className="text-xl font-black tabular-nums text-white group-hover:scale-105 transition-transform">{value}</div>
+  </div>
+);
 
 export default WuwaWeaponDetail;

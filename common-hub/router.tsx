@@ -22,6 +22,8 @@ const WuwaWeaponDetail = React.lazy(() => import('../ww-hub/pages/WuwaWeaponDeta
 const Terminology = React.lazy(() => import('../hsr-hub/pages/Terminology'));
 const CharacterGuideDetail = React.lazy(() => import('../hsr-hub/pages/CharacterGuideDetail'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
+const WuwaEchoDetail = React.lazy(() => import('../ww-hub/pages/WuwaEchoDetail'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 // Game Specific Page Dispatchers
 const TierListDispatcher = () => {
@@ -91,14 +93,15 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },
       { path: "gallery/ww/weapon/:lcName", element: <WuwaWeaponDetail /> },
+      { path: "gallery/ww/echo/:echoName", element: <WuwaEchoDetail /> },
       { path: "gallery/:gameId/tierlist", element: <TierListDispatcher /> },
       { path: "gallery/:gameId/parties", element: <PartyDispatcher /> },
       { path: "gallery/:gameId/terminology", element: <Terminology /> },
       { path: "gallery/:gameId/character/:charName/guide", element: <CharacterGuideDetail /> },
       { path: "admin", element: <AdminDashboard /> },
       
-      // 404 Not Found 처리 (잘못된 주소로 왔을 때 Home으로 돌려보내기)
-      { path: "*", element: <Home /> }
+      // 404 Not Found 처리 (존재하지 않는 페이지 접근 시)
+      { path: "*", element: <NotFound /> }
     ],
   },
 ]);

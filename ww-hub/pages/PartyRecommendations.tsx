@@ -14,6 +14,7 @@ import {
 import { WW_PARTY_COMBINATIONS, PartyCombination } from '../data/parties';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import PageHeader from '../../common-hub/components/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} className="text-rose-500" />,
@@ -96,6 +97,7 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
 });
 
 const PartyRecommendations: React.FC = () => {
+  const { t } = useTranslation();
   const { gameId } = useParams<{ gameId: string }>();
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -109,7 +111,7 @@ const PartyRecommendations: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-24">
-      <PageHeader gameId={gameId} category="파티" title="추천 파티 조합" />
+      <PageHeader gameId={gameId} category={t("파티")} title={t("추천 파티 조합")} />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar />

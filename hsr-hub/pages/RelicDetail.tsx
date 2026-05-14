@@ -7,6 +7,7 @@ import SEO from '../../common-hub/components/SEO';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
+import { matchesSlug } from '../../common-hub/utils/urlUtils';
 
 const RelicDetail: React.FC = () => {
   const { gameId, relicName } = useParams<{ gameId: string; relicName: string }>();
@@ -15,7 +16,11 @@ const RelicDetail: React.FC = () => {
   
   // 다국어 텍스트 출력을 위해 현재 언어에 맞는 DB를 로드합니다.
   const { RELIC_DB } = getGameData(i18n.language || 'ko');
-  const relic: any = RELIC_DB.find((r: any) => r.name === relicName || r.id === relicName);
+  const relic: any = RELIC_DB.find((r: any) => 
+    r.id === relicName || 
+    r.name === relicName || 
+    matchesSlug(r.name, relicName || '')
+  );
 
   if (!relic) {
     return (
@@ -160,7 +165,7 @@ const RelicDetail: React.FC = () => {
           </div>
         </div>
 
-        <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
+
       </div>
     </div>
   );

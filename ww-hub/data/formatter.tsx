@@ -1,12 +1,12 @@
 import React from 'react';
 
 export const ELEMENT_COLORS: Record<string, string> = {
-  '응결': '#3D8CFF',
-  '용융': '#FF4D4D',
-  '전도': '#B14DFF',
-  '기류': '#4DFF94',
-  '회절': '#FFD600',
-  '인멸': '#FF4DB1',
+  '기류': '#4ade80',
+  '응결': '#60a5fa',
+  '전도': '#a78bfa',
+  '용융': '#fb7185',
+  '회절': '#fde047',
+  '인멸': '#F472B6',
   '물리': '#E5E7EB',
 };
 
@@ -15,18 +15,79 @@ export const renderRichText = (text: string) => {
 
   const elementKeywords = Object.keys(ELEMENT_COLORS).join('|');
   
-  // [핵심 수정] 정규식의 속성명 매칭을 엄격하게 제한
-  // (?:속성명)\s*(?:피해 보너스|피해) -> 속성명 뒤에 반드시 피해/피해 보너스가 붙어야 함
+  // [핵심 수정] 정규식의 속성명 매칭을 엄격하게 제한 + {icon:xxx} 태그 지원
   // [\d./+%]+ -> 수치 덩어리
-  const regex = new RegExp(`((?:${elementKeywords})\\s*(?:피해 보너스|피해)|[\\d./+%]+)`, 'g');
+  const ICON_COMMON_BASE = `https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/position/`;
+  const regex = new RegExp(`({{KEY_(?:[eErR]|LSHIFT)}}|{{MOUSE_L}}|\\[[mM]ouse\\s+[lL]eft\\]|\\[[kK]ey\\s+[eErR]\\]|\\[[lL]eft\\s+[sS]hift\\]|\\[[^\\]]+\\.webp\\]|{icon:[^}]+}|(?:${elementKeywords})\\s*(?:피해)(?!\\s*보너스)|[\\d./+%]+)`, 'g');
   const tokens = text.split(regex);
 
   return tokens.map((part, i) => {
     if (!part) return null;
 
-    // A. 엄격한 속성 문구 매칭 (예: "전도 피해"만 통과, "전도 레이저"는 탈락)
+    // A. 아이콘 태그 매칭
+    const iconMatch = part.match(/\{icon:([^}]+)\}/);
+    const manualMouseMatch = part.match(/\[\s*mouse\s+left\s*\]/i);
+    const manualKeyMatch = part.match(/\[\s*key\s+([eErR])\s*\]/i);
+    const manualShiftMatch = part.match(/\[\s*left\s+shift\s*\]/i);
+    const keyMatch = part.match(/{{KEY_([eErR]|LSHIFT)}}/i);
+    const mouseMatch = part.match(/{{MOUSE_L}}/i);
+    const imageMatch = part.match(/\[([^\]]+\.webp)\]/);
+
+    if (iconMatch || manualMouseMatch || manualKeyMatch || manualShiftMatch || keyMatch || mouseMatch || imageMatch) {
+      let fileName = '';
+      let alt = '';
+
+      if (iconMatch) {
+        fileName = `${iconMatch[1]}.png`; // Legacy support
+        alt = iconMatch[1];
+        return (
+          <img 
+            key={i} 
+            src={`/assets/icons/${fileName}`} 
+            className="inline-icon" 
+            alt={alt}
+            onError={(e) => (e.currentTarget.style.display = 'none')}
+          />
+        );
+      } else if (imageMatch) {
+        const imageName = imageMatch[1];
+        const lowerName = imageName.toLowerCase();
+        if (lowerName.includes('mouse') || lowerName.includes('key') || lowerName.includes('shift')) {
+          if (lowerName.includes('mouse left')) fileName = 'mouse%20left.webp';
+          else if (lowerName.includes('key e')) fileName = 'key%20E.webp';
+          else if (lowerName.includes('key r')) fileName = 'key%20R.webp';
+          else if (lowerName.includes('left shift') || lowerName.includes('lshift')) fileName = 'left%20shift.webp';
+          else fileName = imageName.replace(' ', '%20');
+          alt = imageName.replace('.webp', '');
+        } else {
+          return null; 
+        }
+      } else if (manualMouseMatch || mouseMatch) {
+        fileName = `mouse%20left.webp`;
+        alt = "mouse left";
+      } else if (manualKeyMatch || keyMatch) {
+        const rawKey = (keyMatch ? keyMatch[1] : manualKeyMatch![1]).toUpperCase();
+        const key = rawKey === 'LSHIFT' ? 'left shift' : `key ${rawKey}`;
+        fileName = `${key.replace(' ', '%20')}.webp`;
+        alt = key;
+      } else if (manualShiftMatch) {
+        fileName = `left%20shift.webp`;
+        alt = 'left shift';
+      }
+
+      return (
+        <img 
+          key={i} 
+          src={`${ICON_COMMON_BASE}${fileName}`} 
+          className="inline-block w-5 h-5 object-contain align-middle mx-0.5 brightness-110" 
+          alt={alt}
+        />
+      );
+    }
+
+    // B. 엄격한 속성 문구 매칭 (예: "전도 피해"만 통과, "전도 레이저"는 탈락)
     const attrMatch = Object.keys(ELEMENT_COLORS).find(attr => 
-      part.includes(attr) && (part.includes('피해') || part.includes('피해 보너스'))
+      part.includes(attr) && part.includes('피해') && !part.includes('보너스')
     );
     
     if (attrMatch) {
@@ -43,7 +104,7 @@ export const renderRichText = (text: string) => {
         if (!nextToken) continue;
 
         const foundAttr = Object.keys(ELEMENT_COLORS).find(attr => 
-          nextToken.includes(attr) && (nextToken.includes('피해') || nextToken.includes('피해 보너스'))
+          nextToken.includes(attr) && nextToken.includes('피해') && !nextToken.includes('보너스')
         );
 
         if (foundAttr) {

@@ -1,64 +1,106 @@
-
 import { WuwaCharacter } from '../../../types';
+import { createMaterial, createWwSkill } from '../../dataFactory';
 
 const jiyan: WuwaCharacter = {
   id: "jiyan",
   gameId: "ww",
-  name: "기염",
-  folderName: "Jiyan",
+  name: "character.jiyan.name",
+  folderName: "기염",
   attribute: "기류",
   weaponType: "대검",
   rarity: 5,
   affiliation: "황룡 (금주)",
-  briefInfo: "금주 야귀군의 장군. 청룡의 힘을 빌려 바람을 가르는 강력한 공격을 퍼붓는다. 책임감이 강하고 병사들의 신뢰가 두텁다.",
+  briefInfo: "character.jiyan.briefInfo",
+  metadata: {
+    name: "character.jiyan.name",
+    brief: "character.jiyan.briefInfo",
+    element: "기류",
+    weapon: "대검",
+    rarity: 5
+  },
   releaseVersion: "1.0",
   languageNames: "🇰🇷 기염 / 🇺🇸 Jiyan / 🇨🇳 忌炎 / 🇯🇵 忌炎",
-  voiceActors: "🇰🇷 표영재 / 🇺🇸 알렉스 조던 / 🇨🇳 쑨예 / 🇯🇵 오노 유우키",
+  voiceActors: "🇰🇷 남도형 / 🇺🇸 알렉스 조던 / 🇨🇳 쑨예 / 🇯🇵 오노 유우키",
+  roles: [
+    { label: "공명 해방 피해", description: "비교적 높은 공명 해방 피해" },
+    { label: "강공격 피해", description: "비교적 높은 강공격 피해" },
+    { label: "견인", description: "일정 범위 내의 목표를 특정 위치로 견인 가능" }
+  ],
   baseStats: {
-    lv1: { "기초 HP": 450, "기초 공격력": 45, "기초 방어력": 38 },
-    lv20: { "기초 HP": 1200, "기초 공격력": 120, "기초 방어력": 95 },
-    lv30: { "기초 HP": 2350, "기초 공격력": 185, "기초 방어력": 135 },
-    lv40: { "기초 HP": 3500, "기초 공격력": 240, "기초 방어력": 180 },
-    lv50: { "기초 HP": 4850, "기초 공격력": 295, "기초 방어력": 225 },
-    lv60: { "기초 HP": 6200, "기초 공격력": 350, "기초 방어력": 265 },
-    lv70: { "기초 HP": 7800, "기초 공격력": 385, "기초 방어력": 310 },
-    lv80: { "기초 HP": 10500, "기초 공격력": 420, "기초 방어력": 350 },
+    lv1: { "기초 HP": 839, "기초 공격력": 35, "기초 방어력": 97 },
+    lv20: { "기초 HP": 2182, "기초 공격력": 91, "기초 방어력": 249 },
+    lv30: { "기초 HP": 3449, "기초 공격력": 147, "기초 방어력": 392 },
+    lv40: { "기초 HP": 4156, "기초 공격력": 176, "기초 방어력": 472 },
+    lv50: { "기초 HP": 5422, "기초 공격력": 232, "기초 방어력": 614 },
+    lv60: { "기초 HP": 6688, "기초 공격력": 288, "기초 방어력": 757 },
+    lv70: { "기초 HP": 7955, "기초 공격력": 344, "기초 방어력": 900 },
+    lv80: { "기초 HP": 9221, "기초 공격력": 391, "기초 방어력": 1043 },
+    lv90: { "기초 HP": 10488, "기초 공격력": 438, "기초 방어력": 1186 },
     speed: 100,
     taunt: 0,
     energy: 0
   },
   materials_v2: {
     ascension: [
-      { name: "조개 코인", count: "170,000", rarity: 3 },
-      { name: "포효의 강철", count: "46", rarity: 4 },
-      { name: "비명을 지르는 코어", count: "60", rarity: 3 }
+      createMaterial("클램 코인", "170,000", 3),
+      createMaterial("저주파수 포효 성핵", 4, 2),
+      createMaterial("중주파수 포효 성핵", 12, 3),
+      createMaterial("고주파수 포효 성핵", 12, 4),
+      createMaterial("전주파수 포효 성핵", 4, 5),
+      createMaterial("울부짖는 바위주먹", 46, 4),
+      createMaterial("공작화", 60, 3)
     ],
     traces: [
-      { name: "조개 코인", count: "2,000,000", rarity: 3 },
-      { name: "해룡의 비늘", count: "26", rarity: 4 }
+      createMaterial("클램 코인", "2,030,000", 3),
+      createMaterial("저주파수 포효 성핵", 25, 2),
+      createMaterial("중주파수 포효 성핵", 28, 3),
+      createMaterial("고주파수 포효 성핵", 40, 4),
+      createMaterial("전주파수 포효 성핵", 57, 5),
+      createMaterial("비문 고종", 26, 4),
+      createMaterial("비명 이상 키메라 210", 25, 3),
+      createMaterial("비명 이상 키메라 226", 28, 3),
+      createMaterial("비명 이상 키메라 235", 55, 3),
+      createMaterial("비명 이상 키메라 239", 67, 3)
     ]
   },
   skills: [
-    { name: "삭풍의 칼날", tag: "공명 스킬 | 단일 공격", description: "전방으로 돌진하며 기류 피해를 입힌다.", icon: "skill_1" },
-    { name: "청룡의 현신", tag: "공명 해방 | 강화", description: "청룡 상태에 진입하여 모든 공격이 강력한 기류 추가 피해를 입히는 창술로 변한다.", icon: "ultimate_1" },
-    { name: "바람을 타는 창", tag: "공명 회로 | 강화", description: "강공격 명중 시 공명 에너지를 획득한다.", icon: "talent_1" }
+    createWwSkill("character.jiyan.skills.0.name", "일반 공격", "character.jiyan.skills.0.description", "basic_1"),
+    createWwSkill("character.jiyan.skills.1.name", "공명 스킬", "character.jiyan.skills.1.description", "skill_1"),
+    createWwSkill("character.jiyan.skills.2.name", "공명 회로", "character.jiyan.skills.2.description", "talent_1"),
+    createWwSkill("character.jiyan.skills.3.name", "공명 해방", "character.jiyan.skills.3.description", "ultimate_1"),
+    createWwSkill("character.jiyan.skills.4.name", "변주 스킬", "character.jiyan.skills.4.description", "intro_1"),
+    createWwSkill("character.jiyan.skills.5.name", "반주 스킬", "character.jiyan.skills.5.description", "outro_1")
   ],
   additionalAbilities: [
-    { name: "바람의 가호", description: "기류 피해가 15% 증가한다.", icon: "bonus_1" },
-    { name: "용의 맹세", description: "치명타 피해가 20% 증가한다.", icon: "bonus_2" }
-  ],
-  attributeBonuses: [
-    { type: "치명타 확률", value: "8.0%", icon: "crit_rate" },
-    { type: "공격력", value: "12.0%", icon: "atk" }
+    { name: "character.jiyan.additionalAbilities.0.name", description: "character.jiyan.additionalAbilities.0.description", icon: "bonus_1" },
+    { name: "character.jiyan.additionalAbilities.1.name", description: "character.jiyan.additionalAbilities.1.description", icon: "bonus_2" }
   ],
   eidolons: [
-    { rank: "R1", name: "바람의 결의", description: "공명 스킬 사용 횟수가 1회 증가한다.", icon: "eidolon_1" },
-    { rank: "R2", name: "청룡의 가호", description: "공명 해방 발동 후 공격력이 30% 증가한다.", icon: "eidolon_2" },
-    { rank: "R3", name: "폭풍의 눈", description: "공명 스킬 레벨+2.", icon: "eidolon_3" },
-    { rank: "R4", name: "용의 꼬리", description: "강공격 피해 보너스가 50% 증가한다.", icon: "eidolon_4" },
-    { rank: "R5", name: "하늘을 가르는 창", description: "공명 해방 레벨+2.", icon: "eidolon_5" },
-    { rank: "R6", name: "무한한 바람", description: "모든 기류 피해 보너스가 20% 증가한다.", icon: "eidolon_6" }
-  ]
+    { rank: "R1", name: "character.jiyan.eidolons.0.name", description: "character.jiyan.eidolons.0.description", icon: "eidolon_1" },
+    { rank: "R2", name: "character.jiyan.eidolons.1.name", description: "character.jiyan.eidolons.1.description", icon: "eidolon_2" },
+    { rank: "R3", name: "character.jiyan.eidolons.2.name", description: "character.jiyan.eidolons.2.description", icon: "eidolon_3" },
+    { rank: "R4", name: "character.jiyan.eidolons.3.name", description: "character.jiyan.eidolons.3.description", icon: "eidolon_4" },
+    { rank: "R5", name: "character.jiyan.eidolons.4.name", description: "character.jiyan.eidolons.4.description", icon: "eidolon_5" },
+    { rank: "R6", name: "character.jiyan.eidolons.5.name", description: "character.jiyan.eidolons.5.description", icon: "eidolon_6" }
+  ],
+  concertDissipation: {
+    name: "조화도 파괴 · 대검",
+    description: "character.jiyan.concertDissipation.description"
+  },
+  terms: [
+    { name: "character.jiyan.terms.0.name", description: "character.jiyan.terms.0.description" },
+    { name: "character.jiyan.terms.1.name", description: "character.jiyan.terms.1.description" }
+  ],
+  skillInput: {
+    overview: "character.jiyan.skillInput.overview",
+    inputs: [
+      "character.jiyan.skillInput.inputs.0",
+      "character.jiyan.skillInput.inputs.1",
+      "character.jiyan.skillInput.inputs.2",
+      "character.jiyan.skillInput.inputs.3",
+      "character.jiyan.skillInput.inputs.4"
+    ]
+  }
 };
 
 export default jiyan;

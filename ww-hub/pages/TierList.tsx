@@ -3,13 +3,15 @@ import { useParams, Link } from 'react-router-dom';
 import { 
   Filter, Trophy, Search, Users, Shield, Zap, Sword,
   ArrowUp, ArrowDown, Sparkles, LayoutGrid, Swords, Skull,
-  Loader2
+  Loader2, ArrowLeft
 } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 import { WW_TIER_DATA, WW_TIER_CATEGORIES, TierCharacter } from '../data/tiers';
 import { WW_CHARACTERS } from '../data/characters';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import { useTranslation } from 'react-i18next';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -43,6 +45,27 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   'tower': <Swords size={16} />,
   'hologram': <Skull size={16} />,
 };
+
+const CharacterSkeleton = () => (
+  <div className="relative aspect-[3/4] rounded-xl overflow-hidden bg-white/5 animate-pulse border border-white/5">
+    <div className="absolute bottom-0 left-0 p-2.5 w-full">
+      <div className="h-2 w-12 bg-white/10 rounded" />
+    </div>
+  </div>
+);
+
+const TierSkeleton = () => (
+  <div className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
+    <div className="w-full md:w-32 flex flex-col items-center justify-center p-6 bg-white/5 shrink-0 border-b md:border-b-0 md:border-r border-white/5">
+      <div className="w-12 h-10 bg-white/10 rounded-lg animate-pulse" />
+    </div>
+    <div className="flex-1 p-8">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
+        {[...Array(10)].map((_, i) => <CharacterSkeleton key={i} />)}
+      </div>
+    </div>
+  </div>
+);
 
 const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter, gameId: string | undefined, getIconUrl: (char: TierCharacter) => string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -86,6 +109,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
 });
 
 const TierList: React.FC = () => {
+  const { t } = useTranslation();
   const { gameId } = useParams<{ gameId: string }>();
   const [activeCategory, setActiveCategory] = useState<string>('tower');
   const [roleFilter, setRoleFilter] = useState<string>('전체');
@@ -124,12 +148,12 @@ const TierList: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24">
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24 relative">
       <SEO 
         title="명조: 워더링 웨이브 티어표" 
         description="최신 메타 분석을 통한 명조: 워더링 웨이브 캐릭터 티어표입니다."
       />
-      <PageHeader gameId={gameId} title="종합 메타 랭킹" />
+      <PageHeader gameId={gameId} category={t("티어표")} title={t("종합 메타 랭킹")} />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar />
@@ -197,36 +221,50 @@ const TierList: React.FC = () => {
             </div>
           </div>
 
-          <div className="space-y-8">
-            {filteredTierList.map((group) => (
-              <div key={group.tier} className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
-                <div 
-                  className="w-full md:w-32 flex flex-col items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5"
-                  style={{ backgroundColor: `${group.color}10` }}
-                >
+          <AnimatePresence mode="wait">
+            <motion.div 
+              key={activeCategory + roleFilter}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-8"
+            >
+              {filteredTierList.map((group) => (
+                <div key={group.tier} className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row group/tier transition-all hover:border-white/10">
                   <div 
-                    className="text-4xl font-black italic tracking-tighter text-center"
-                    style={{ color: group.color }}
+                    className="w-full md:w-32 flex flex-col items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5 transition-colors"
+                    style={{ backgroundColor: `${group.color}10` }}
                   >
-                    {group.tier}
+                    <div 
+                      className="text-4xl font-black italic tracking-tighter text-center transition-transform group-hover/tier:scale-110"
+                      style={{ color: group.color }}
+                    >
+                      {group.tier}
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex-1 p-8">
-                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
-                    {group.characters.map((char) => (
-                      <CharacterCard 
-                        key={char.id} 
-                        char={char} 
-                        gameId={gameId} 
-                        getIconUrl={getIconUrl} 
-                      />
-                    ))}
+                  <div className="flex-1 p-8">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
+                      {group.characters.map((char) => (
+                        <CharacterCard 
+                          key={char.id} 
+                          char={char} 
+                          gameId={gameId} 
+                          getIconUrl={getIconUrl} 
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+              {filteredTierList.length === 0 && (
+                <div className="py-20 text-center bg-white/[0.02] rounded-[48px] border border-white/5">
+                  <p className="text-gray-600 font-black uppercase tracking-widest text-xs opacity-50">데이터가 없습니다.</p>
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>

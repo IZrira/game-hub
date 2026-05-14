@@ -5,6 +5,15 @@ import { renderRichText } from '../data/formatter';
 const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
   if (!isOpen) return null;
 
+  const RARITY_COLORS: any = {
+    5: 'yellow-500',
+    4: 'purple-500',
+    3: 'blue-500',
+    2: 'emerald-500',
+    1: 'slate-500',
+  };
+  const rarityColor = RARITY_COLORS[weapon.rarity] || 'yellow-500';
+
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl animate-in fade-in duration-300">
       <div className="relative w-full max-w-2xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-[40px] overflow-hidden flex flex-col">
@@ -19,10 +28,10 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           </div>
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black bg-brand-primary text-white px-2 py-0.5 rounded tracking-tighter uppercase">{weapon.type}</span>
+              <span className={`text-[10px] font-black bg-${rarityColor} text-white px-2 py-0.5 rounded tracking-tighter uppercase`}>{weapon.type}</span>
               <div className="flex gap-0.5">
                 {[...Array(weapon.rarity)].map((_, i) => (
-                  <div key={i} className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
+                  <div key={i} className={`w-1.5 h-1.5 rounded-full bg-${rarityColor}`} />
                 ))}
               </div>
             </div>
@@ -46,11 +55,11 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
 
           {/* 무기 스킬 (지능형 컬러 적용) */}
           <section className="space-y-4">
-            <div className="flex items-center gap-3 border-l-4 border-brand-primary pl-4">
+            <div className={`flex items-center gap-3 border-l-4 border-${rarityColor} pl-4`}>
               <h4 className="text-sm font-black text-white uppercase tracking-widest">{weapon.skill.name}</h4>
               <span className="text-[10px] font-bold text-gray-600">RANK 1</span>
             </div>
-            <div className="bg-brand-primary/5 p-8 rounded-[32px] border border-brand-primary/10">
+            <div className={`bg-${rarityColor}/5 p-8 rounded-[32px] border border-${rarityColor}/10`}>
               <p className="text-gray-200 leading-relaxed font-medium text-base whitespace-pre-wrap italic">
                 {renderRichText(weapon.skill.description)}
               </p>

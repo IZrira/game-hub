@@ -89,7 +89,7 @@ const Terminology: React.FC = () => {
           )}
         </div>
 
-        <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
+
       </main>
 
       <footer className="py-20 text-center border-t border-white/5">

@@ -137,6 +137,15 @@ export const wuwaItemsSet1: WuwaItem[] = [
     source: "???"
   },
   {
+    id: "clam_coin",
+    name: "클램 코인",
+    folderName: "클램 코인",
+    rarity: 3,
+    category: "특수 화폐",
+    description: "황룡 지역에서 널리 유통되는 통용 화폐.",
+    source: "솔라리스 탐색, 임무 완료, 시뮬레이션 연습장 등"
+  },
+  {
     id: "gansoo",
     name: "간수",
     folderName: "간수",
@@ -3083,7 +3092,7 @@ export const wuwaItemsSet4: WuwaItem[] = [
     id: "rhythm_stem",
     name: "음률의 배주",
     folderName: "음률의 배주",
-    rarity: 3,
+    rarity: 2,
     category: "무기 및 스킬 재료",
     description: "권갑을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 특급 재료",
     source: "응소의 영역 · 축제 바다, 합성 - 정제, 합성 - 교체, 응소의 영역 · 달빛의 숲, 물자 상자 오픈으로 획득"
@@ -3092,7 +3101,7 @@ export const wuwaItemsSet4: WuwaItem[] = [
     id: "rhythm_sprout",
     name: "음률의 새싹",
     folderName: "음률의 새싹",
-    rarity: 2,
+    rarity: 3,
     category: "무기 및 스킬 재료",
     description: "권갑을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 특급 재료",
     source: "응소의 영역 · 축제 바다, 합성 - 정제, 합성 - 교체, 응소의 영역 · 달빛의 숲, 물자 상자 오픈으로 획득"
@@ -3101,7 +3110,7 @@ export const wuwaItemsSet4: WuwaItem[] = [
     id: "rhythm_new_leaf",
     name: "음률의 새잎",
     folderName: "음률의 새잎",
-    rarity: 2,
+    rarity: 4,
     category: "무기 및 스킬 재료",
     description: "권갑을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 특급 재료",
     source: "응소의 영역 · 축제 바다, 합성 - 정제, 합성 - 교체, 응소의 영역 · 달빛의 숲, 물자 상자 오픈으로 획득"

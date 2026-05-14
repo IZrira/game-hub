@@ -21,7 +21,7 @@ export type HSRPath = '보존' | '파멸' | '수렵' | '지식' | '화합' | '�
 
 export type WWAttribute = '기류' | '전도' | '회절' | '인멸' | '용융' | '응결'
   | 'Aero' | 'Electro' | 'Spectro' | 'Havoc' | 'Fusion' | 'Glacio';
-export type WWWeaponType = '장검' | '대검' | '직검' | '권갑' | '증폭기';
+export type WWWeaponType = '장검' | '대검' | '직검' | '권갑' | '증폭기' | '권총';
 
 export interface MaterialItem {
   name: string;
@@ -74,6 +74,7 @@ export interface CharacterBaseStats {
   lv60?: Record<string, number>;
   lv70?: Record<string, number>;
   lv80?: Record<string, number>;
+  lv90?: Record<string, number>;
   speed?: number;
   taunt_val?: number;
 }

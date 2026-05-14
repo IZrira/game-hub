@@ -50,20 +50,23 @@ export const getGameData = (targetId: string) => {
       CHARACTER_DB: wwData.CHARACTER_DB,
       WEAPON_DB: wwData.WEAPON_DB,
       ECHO_DB: wwData.ECHO_DB,
-      WW_INVENTORY: wwData.INVENTORY_DB, // 하위 호환성 유지
+      WW_INVENTORY: wwData.INVENTORY_DB,
       INVENTORY_DB: wwData.INVENTORY_DB,
       NOTICES: wwData.NOTICES,
       GUIDES: wwData.GUIDES
     };
   } else {
-    // 폴백: 전체 병합 (필요한 경우에만 사용)
+    // 폴백: 전체 병합 (언어 코드 'ko' 등이 들어왔을 때 데이터 유실 방지)
     baseData = {
       CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
-      RELIC_DB: [...hsrData.RELIC_DB, ...wwData.ECHO_DB],
+      WEAPON_DB: wwData.WEAPON_DB, // 명조 무기 복구
+      ECHO_DB: wwData.ECHO_DB,     // 명조 에코 복구
+      RELIC_DB: hsrData.RELIC_DB,
       ORNAMENT_DB: hsrData.ORNAMENT_DB,
       INVENTORY_DB: { ...hsrData.INVENTORY_DB, ...wwData.INVENTORY_DB },
-      GUIDES: hsrData.GUIDES
+      GUIDES: [...hsrData.GUIDES, ...wwData.GUIDES],
+      NOTICES: [...hsrData.NOTICES, ...wwData.NOTICES]
     };
   }
 

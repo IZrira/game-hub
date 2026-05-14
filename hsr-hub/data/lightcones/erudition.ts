@@ -321,7 +321,7 @@ export const eruditionLightcones: HsrLightCone[] = [
     "id": "lc_우주_대사업",
     "name": "우주 대사업",
     "gameId": "hsr",
-    "releaseVersion": "3.0",
+    "releaseVersion": "3.2",
     "folderName": "우주 대사업",
     "rarity": 4,
     "path": "지식",

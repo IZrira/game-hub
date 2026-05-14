@@ -261,7 +261,7 @@ const PartyRecommendations: React.FC = () => {
             )}
           </div>
           
-          <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
+
         </div>
       </div>
     </div>

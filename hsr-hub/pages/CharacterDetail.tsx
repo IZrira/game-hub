@@ -20,7 +20,8 @@ import {
   CheckCircle2,
   Compass,
   Zap,
-  Globe
+  Globe,
+  Users
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
@@ -169,10 +170,25 @@ const CharacterDetail: React.FC = () => {
     const sortedKeys = [...Object.keys(specialTerms), ...protectedTerms].sort((a, b) => b.length - a.length);
     
     // Construct regex
-    const combinedRegex = new RegExp(`(${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
+    const combinedRegex = new RegExp(`({icon:[^}]+}|${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
     
     return processedText.split(combinedRegex).map((part, i) => {
-      // If part is in protectedTerms, it just falls through to plain text
+      // 0. 아이콘 태그 매칭 ({icon:mouse_left})
+      const iconMatch = part.match(/\{icon:([^}]+)\}/);
+      if (iconMatch) {
+        const iconName = iconMatch[1];
+        return (
+          <img 
+            key={i} 
+            src={`/assets/icons/${iconName}.png`} 
+            className="inline-icon" 
+            alt={iconName}
+            onError={(e) => (e.currentTarget.style.display = 'none')}
+          />
+        );
+      }
+
+      // 1. If part is in protectedTerms, it just falls through to plain text
       if (protectedTerms.includes(part)) return part;
 
       // Prioritize special terms (with tooltip)
@@ -324,11 +340,19 @@ const CharacterDetail: React.FC = () => {
           <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.5]">
             <img 
               src={getIllustrationUrl()} 
-              alt={char.name} 
+              alt={`${t(char.name)} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+              fetchPriority="high"
+              decoding="async"
               onError={(e) => {
+                const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
                 if (e.currentTarget.src.includes('art01_as.webp')) {
                   e.currentTarget.src = e.currentTarget.src.replace('art01_as.webp', 'art01.webp');
+                } else if (char.isTrailblazer && !e.currentTarget.src.includes('%EA%B0%9C%EC%B2%99%EC%9E%90/')) {
+                  // 개척자 이미지 로드 실패 시 공통 폴더('개척자')에서 시도
+                  const baseFolderName = safeEncodeURIComponent('개척자');
+                  const currentFileName = gender === 'f' ? "art01.webp" : "art01-01.webp";
+                  e.currentTarget.src = `${CDN_URL}/hsr%20images/캐릭터/${baseFolderName}/${currentFileName}`;
                 }
               }}
             />
@@ -545,7 +569,24 @@ const CharacterDetail: React.FC = () => {
           setTooltip={setTooltip}
         />
         
-        <AdPlaceholder type="leaderboard" className="mt-16 mb-8" />
+
+        {/* E-E-A-T Authorship & Methodology Note */}
+        <section className="mt-12 pt-8 border-t border-white/5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/5">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
+                <Users size={20} className="text-brand-primary" />
+              </div>
+              <div className="space-y-1">
+                <h4 className="text-sm font-black text-white uppercase tracking-widest">{t('Intelligence Source')}</h4>
+                <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
+              </div>
+            </div>
+            <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+              {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

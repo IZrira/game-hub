@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router-dom';
 import { 
   Search, Home as HomeIcon, ChevronRight, Filter, Book, Activity as ActivityIcon, ArrowLeft,
-  BookOpen, Users, Zap, Shield, Backpack, Bell, Sparkles, LayoutGrid
+  BookOpen, Users, Zap, Shield, Backpack, Bell, Sparkles, LayoutGrid, Star
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
@@ -10,6 +10,7 @@ import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SearchModal from '../../common-hub/components/SearchModal';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
@@ -18,6 +19,7 @@ import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentP
 import { RelicDetailModal, OrnamentDetailModal, ItemDetailModal } from '@/common-hub/components/GalleryModals';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
+import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
 import { getCharacterArtPath, getCharacterImage } from '../../common-hub/utils/imageHelper';
 // import removed
@@ -132,20 +134,7 @@ const GalleryHSR: React.FC = () => {
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO title={`${game.title} 갤러리`} description={`${game.title} 도감을 확인하세요.`} />
-      <div className="bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 sticky top-16 z-[40] h-12 flex items-center px-8 shadow-2xl justify-between w-full">
-        <div className="flex items-center gap-6">
-          <button onClick={() => window.history.back()} className="flex items-center gap-2 text-[11px] font-black text-gray-500 hover:text-white transition-colors group">
-            <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
-            <span>{t('이전으로')}</span>
-          </button>
-          <div className="h-3 w-px bg-white/10" />
-          <nav className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
-            <Link to="/" className="flex items-center gap-2 hover:text-brand-accent transition-colors"><HomeIcon size={12} /> {t('메인')}</Link>
-            <ChevronRight size={10} /><span className="text-brand-light/70">{game.title}</span>
-            {activeMenu !== '홈' && <><ChevronRight size={10} /><span className="text-brand-accent">{t(activeMenu)}</span></>}
-          </nav>
-        </div>
-      </div>
+      <PageHeader gameId="hsr" title={activeMenu === '홈' ? '' : activeMenu} />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
@@ -231,8 +220,8 @@ const GalleryHSR: React.FC = () => {
                       return (b.rarity || 0) - (a.rarity || 0);
                     })
                     .slice(0, 5)
-                    .map((char: any) => (
-                      <CharacterPremiumCard key={char.id} char={char} />
+                    .map((char: any, idx: number) => (
+                      <CharacterPremiumCard key={char.id} char={char} index={idx} />
                     ))}
                 </div>
               </section>
@@ -257,7 +246,7 @@ const GalleryHSR: React.FC = () => {
                     </button>
                   </div>
                   <NoticeListView 
-                    notices={gameNotices} 
+                    notices={gameNotices.slice(0, 3)} 
                     onNoticeClick={(n) => {
                       setSelectedNotice(n);
                       markAsRead(n.id);
@@ -284,7 +273,7 @@ const GalleryHSR: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
-                {filteredCharacters.map((char: any) => <CharacterPremiumCard key={char.id} char={char} />)}
+                {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
           ) : activeMenu === '공지사항' ? (
@@ -376,76 +365,10 @@ const GalleryHSR: React.FC = () => {
               </div>
             </div>
           ) : activeMenu === '인벤토리' ? (
-            <div className="space-y-8">
-              {/* Simplified Header */}
-              <div className="flex flex-col gap-8 pb-8 border-b border-white/5">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                  <div className="space-y-1">
-                    <h2 className="text-3xl font-black tracking-tight text-white uppercase italic">{t('Archive Index')}</h2>
-                    <p className="text-[10px] text-gray-500 font-bold tracking-widest uppercase">{t('Inventory Synchronization Complete')}</p>
-                  </div>
-                  <div className="flex items-center gap-3 bg-white/[0.03] px-4 py-2 rounded-xl border border-white/5">
-                    <span className="text-[10px] text-gray-500 font-bold uppercase">{t('Database Status')}</span>
-                    <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
-                    <span className="text-[11px] text-white font-black">{Object.keys(HSR_INVENTORY || {}).length} {t('Items')}</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col xl:flex-row gap-4 items-center">
-                  <div className="relative w-full xl:w-80">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-600" size={16} />
-                    <input 
-                      type="text" 
-                      placeholder={t('Filter by name...')} 
-                      className="w-full h-11 bg-white/[0.02] border border-white/10 rounded-xl py-2 pl-11 pr-4 text-sm text-white placeholder:text-gray-700 focus:outline-none focus:border-white/20 transition-all" 
-                      value={searchQuery} 
-                      onChange={(e) => handleSearchChange(e.target.value)} 
-                    />
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {[
-                      "전체", "캐릭터 경험치 재료", "캐릭터 승급 재료", "행적 재료&광추 승급 재료", 
-                      "행적 재료", "광추 경험치 재료", "유물 경험치 재료", "워프 아이템", "소모품", "통용 화폐", "시뮬레이션 우주"
-                    ].map(cat => {
-                      const isActive = categoryFilter === cat || (cat === '전체' && (!categoryFilter || categoryFilter === '전체'));
-                      return (
-                        <button
-                          key={cat}
-                          onClick={() => updateFilterParams('category', cat)}
-                          className={`px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all border ${
-                            isActive 
-                              ? 'bg-white text-black border-white' 
-                              : 'text-gray-500 border-white/10 hover:border-white/20 hover:text-gray-300'
-                          }`}
-                        >
-                          {t(cat === '전체' ? 'ALL' : cat)}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
-
-              {/* Compact Grid */}
-              <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 min-h-[600px] content-start">
-                {filteredItems.map((item: any) => (
-                  <ItemPremiumCard 
-                    key={item.name} 
-                    item={item} 
-                    onClick={() => setSelectedItem(item)} 
-                  />
-                ))}
-              </div>
-
-              {filteredItems.length === 0 && (
-                <div className="py-20 text-center">
-                  <p className="text-gray-600 font-bold uppercase tracking-widest text-[10px]">{t('No matches found.')}</p>
-                </div>
-              )}
-
-              {selectedItem && <ItemDetailModal item={selectedItem} onClose={() => setSelectedItem(null)} />}
-            </div>
+            <InventoryGallery 
+              gameId="hsr" 
+              customCategories={["전체", "캐릭터 경험치 재료", "광추 경험치 재료", "유물 경험치 재료", "캐릭터 승급 재료", "행적 재료&광추 승급 재료", "행적 재료", "행적 재료&캐릭터 승급 재료", "합성 소재", "워프 아이템", "소모품", "통용 화폐", "시뮬레이션 우주"]} 
+            />
           ) : null}
         </main>
       </div>

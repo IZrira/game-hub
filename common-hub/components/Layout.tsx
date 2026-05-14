@@ -39,7 +39,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="min-h-screen flex flex-col font-sans">
       <Navbar />
 
-      <div className="max-w-[1600px] mx-auto w-full px-6 pt-32">
+      <div className="max-w-[1600px] mx-auto w-full px-8 pt-32">
         <AdPlaceholder type="leaderboard" />
       </div>
 
@@ -47,7 +47,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         {children}
       </main>
 
-      <div className="max-w-[1600px] mx-auto w-full px-6 pb-8">
+      <div className="max-w-[1600px] mx-auto w-full px-8 pb-8">
         <AdPlaceholder type="leaderboard" />
       </div>
 

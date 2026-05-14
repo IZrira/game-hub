@@ -1,26 +1,29 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
-import { getItemMetaDB, FILTER_CATEGORIES, getItemUrl, getAutoRarity } from '../data/items';
+import { getItemMetaDB, FILTER_CATEGORIES, getItemUrl, getAutoRarity, categorizeItem } from '../data/items';
 import { useTranslation } from 'react-i18next';
 import ItemDetailModal from './ItemDetailModal';
 import { ItemPremiumCard } from './GalleryCards';
 
 interface InventoryGalleryProps {
   gameId?: string;
+  customCategories?: string[];
 }
 
-const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) => {
+const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', customCategories }) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
-  const [activeTab, setActiveTab] = useState(() => sessionStorage.getItem('inventory_active_tab') || "전체");
-  const [search, setSearch] = useState(() => sessionStorage.getItem('inventory_search_query') || "");
+  const displayCategories = useMemo(() => customCategories || FILTER_CATEGORIES, [customCategories]);
+
+  const [activeTab, setActiveTab] = useState(() => sessionStorage.getItem(`inventory_tab_${gameId}`) || "전체");
+  const [search, setSearch] = useState(() => sessionStorage.getItem(`inventory_search_${gameId}`) || "");
   const [selectedItem, setSelectedItem] = useState<any>(null);
 
-  useEffect(() => { sessionStorage.setItem('inventory_active_tab', activeTab); }, [activeTab]);
-  useEffect(() => { sessionStorage.setItem('inventory_search_query', search); }, [search]);
+  useEffect(() => { sessionStorage.setItem(`inventory_tab_${gameId}`, activeTab); }, [activeTab, gameId]);
+  useEffect(() => { sessionStorage.setItem(`inventory_search_${gameId}`, search); }, [search, gameId]);
 
   useEffect(() => {
     const loadItems = () => {
@@ -52,11 +55,24 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) =
 
   const filteredItems = useMemo(() => {
     return items.filter(item => {
+      const matchGame = !gameId || item.gameId === gameId;
       const matchSearch = item.name.toLowerCase().includes(search.toLowerCase());
-      const matchTab = activeTab === "전체" || item.type.includes(activeTab) || (activeTab === '캐릭터 성장' && item.type.includes('재료'));
-      return matchSearch && matchTab;
+      
+      let matchTab = activeTab === "전체";
+      if (!matchTab) {
+        if (customCategories) {
+          // 커스텀 카테고리가 있는 경우 (명조 등) 정확한 타입 매칭
+          matchTab = item.type === activeTab;
+        } else {
+          // 공통 카테고리인 경우 대분류 매칭
+          const mainCategory = categorizeItem(item.type);
+          matchTab = mainCategory === activeTab;
+        }
+      }
+      
+      return matchGame && matchSearch && matchTab;
     });
-  }, [items, search, activeTab]);
+  }, [items, search, activeTab, gameId, customCategories]);
 
   if (loading) {
     return (
@@ -93,7 +109,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) =
           </div>
           
           <div className="flex flex-wrap gap-2">
-            {FILTER_CATEGORIES.map(cat => {
+            {displayCategories.map(cat => {
               const isActive = activeTab === cat;
               return (
                 <button
@@ -105,7 +121,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr' }) =
                       : "text-gray-600 border-white/5 hover:border-white/10 hover:text-gray-400"
                   }`}
                 >
-                  {t(cat)}
+                  {t(cat === '전체' ? 'ALL' : cat)}
                 </button>
               );
             })}

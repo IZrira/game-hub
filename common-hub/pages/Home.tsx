@@ -15,6 +15,7 @@ import {
   Activity as ActivityIcon, 
   Database, 
   FileText, 
+  Users,
   ShieldCheck,
   TrendingUp,
   Cpu,
@@ -44,8 +45,8 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">
       <SEO 
-        title="메인" 
-        description="리라 아카이브는 붕괴: 스타레일, 명조 등 서브컬쳐 게임의 고밀도 데이터와 심층 분석을 제공하는 프리미엄 전략 가이드입니다."
+        title={t('리라 아카이브 | 스타레일 & 명조 고밀도 전략 데이터베이스')} 
+        description="리라 아카이브는 붕괴: 스타레일, 명조 등 서브컬쳐 게임의 고밀도 데이터와 심층 분석을 제공하는 프리미엄 전략 가이드입니다. 최신 메타와 티어표, 육성 가이드를 확인하세요."
       />
       {/* Background Grid/Matrix Effect */}
       <div className="fixed inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #333 1px, transparent 0)', backgroundSize: '40px 40px' }} />
@@ -110,7 +111,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          {ARCHIVE_DATA.games.map((game) => (
+          {ARCHIVE_DATA.games.map((game, index) => (
             <Link 
               key={game.id}
               to={`/gallery/${game.id}`}
@@ -118,7 +119,9 @@ const Home: React.FC = () => {
             >
               <LazyImage 
                 src={game.id === 'hsr' ? '/assets/banners/hsr_placeholder.png' : game.id === 'ww' ? '/assets/banners/ww_placeholder.png' : game.bannerImage} 
-                alt={game.title}
+                alt={`${game.title} - ${t('리라 아카이브 게임 데이터베이스 탐색')}`}
+                loading="eager"
+                fetchPriority={index === 0 ? "high" : "auto"}
                 containerClassName="absolute inset-0 w-full h-full"
                 className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
               />
@@ -159,7 +162,7 @@ const Home: React.FC = () => {
 
                   <div className="pt-6">
                     <div className="inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest transition-all group-hover:bg-brand-accent group-hover:text-white group-hover:scale-105 group-hover:-translate-y-1 shadow-lg shadow-white/5">
-                  {t('데이터베이스 입장')} <ChevronRight size={16} />
+                  {game.title} {t('데이터베이스 탐색')} <ChevronRight size={16} />
                     </div>
                   </div>
                 </div>
@@ -173,6 +176,39 @@ const Home: React.FC = () => {
             </div>
         <h4 className="text-xl font-black text-gray-600 uppercase tracking-[0.2em] mb-4">{t('새로운 데이터 연결 준비 중')}</h4>
         <p className="text-gray-700 text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* 데이터 분석 방법론 섹션 (E-E-A-T 강화) */}
+      <section className="max-w-6xl mx-auto px-6 py-32 space-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="space-y-6">
+            <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
+              <Users size={20} className="text-brand-primary" />
+            </div>
+            <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('Who Created This?')}</h3>
+            <p className="text-sm text-gray-500 leading-relaxed font-medium">
+              {t('리라 아카이브의 모든 데이터는 수년간의 서브컬쳐 게임 플레이 경력을 보유한 전담 데이터 분석팀과 에디터들에 의해 정밀하게 검토되고 작성됩니다.')}
+            </p>
+          </div>
+          <div className="space-y-6">
+            <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
+              <Database size={20} className="text-brand-accent" />
+            </div>
+            <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('How Is It Built?')}</h3>
+            <p className="text-sm text-gray-500 leading-relaxed font-medium">
+              {t('최신 생성형 AI 기술을 활용한 정밀 데이터 프로세싱과 공식 게임 에셋 추출 기술을 결합합니다. 모든 데이터는 전문 에디터의 인게임 테스트를 통해 최종 검토되어 가장 높은 신뢰도를 보장합니다.')}
+            </p>
+          </div>
+          <div className="space-y-6">
+            <div className="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
+              <Globe size={20} className="text-yellow-500" />
+            </div>
+            <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('Why Rira Archive?')}</h3>
+            <p className="text-sm text-gray-500 leading-relaxed font-medium">
+              {t('단순한 정보 나열을 넘어, 사용자가 가장 직관적이고 빠르게 최적의 플레이를 찾을 수 있도록 고밀도의 전술 지능을 제공하는 것이 리라 아카이브의 유일한 목표입니다.')}
+            </p>
           </div>
         </div>
       </section>

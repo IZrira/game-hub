@@ -4,26 +4,60 @@ import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';
 import { getItemUrl } from '@/common-hub/data/items';
+import { slugify } from '@/common-hub/utils/urlUtils';
 
-export const CharacterPremiumCard = ({ char }: { char: any }) => {
+export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: number }) => {
   const { t } = useTranslation();
   const { gameId } = useParams();
   const folderName = char.folderName || char.name || '';
-  const imgPath = gameId === 'hsr'
-    ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(folderName)}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-    : `${CDN_URL}/ww%20images/characters/${safeEncodeURIComponent(folderName)}/art01.webp`;
+  
+  let imgPath = "";
+  if (gameId === 'hsr') {
+    const fileName = char.isTrailblazer ? (index % 2 === 0 ? 'art01.webp' : 'art01-01.webp') : 'art01.webp';
+    imgPath = `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(folderName)}/${fileName}`;
+  } else {
+    if (char.isRover) {
+      const baseFolderName = char.folderName || `방랑자 · ${char.attribute}`;
+      const genderSuffix = index % 2 === 0 ? '(여)' : '(남)';
+      const fileName = `${baseFolderName}${genderSuffix}.webp`;
+      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolderName)}/${safeEncodeURIComponent(fileName)}`;
+    } else {
+      const targetName = char.folderName || t(char.name);
+      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(targetName)}.webp`;
+    }
+  }
 
   return (
-    <Link to={`/gallery/${gameId}/character/${char.id}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
-      <img src={imgPath} alt={t(char.name || '')} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+    <Link to={`/gallery/${gameId}/character/${char.id}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all duration-500">
+      <img 
+        src={imgPath} 
+        alt={`${t(char.name || '')} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
+        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 will-change-transform" 
+        style={{ 
+          imageRendering: '-webkit-optimize-contrast',
+          backfaceVisibility: 'hidden',
+          transform: 'translateZ(0)',
+        }}
+        loading="lazy" 
+        onError={(e) => {
+          if (char.isTrailblazer && !e.currentTarget.src.includes('%EA%B0%9C%EC%B2%99%EC%9E%90/')) {
+            const baseFolderName = safeEncodeURIComponent('개척자');
+            const fileName = e.currentTarget.src.includes('art01-01.webp') ? 'art01-01.webp' : 'art01.webp';
+            e.currentTarget.src = `${CDN_URL}/hsr%20images/캐릭터/${baseFolderName}/${fileName}`;
+          }
+        }}
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
-      <div className="absolute bottom-0 left-0 p-3 w-full">
+      
+      <div className="absolute bottom-0 left-0 p-3 w-full z-10">
         <div className="flex justify-between items-end">
           <div>
-            <p className="text-white font-bold text-sm leading-none mb-1">{t(char.name || '')}</p>
-            <p className="text-[10px] text-gray-400 uppercase">{t(char.attribute || '')}</p>
+            <p className="text-white font-bold text-sm leading-none mb-1 drop-shadow-md">{t(char.name || '')}</p>
+            <p className="text-[10px] text-gray-400 uppercase tracking-wider">{t(char.attribute || '')}</p>
           </div>
-          {char.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5" />}
+          {char.rarity === 5 && (
+            <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5" />
+          )}
         </div>
       </div>
     </Link>
@@ -42,7 +76,12 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
 
   return (
     <Link to={`/gallery/${gameId}/${gameId === 'ww' ? 'weapon' : 'lightcone'}/${encodeURIComponent(lc.name || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
-      <img src={imgPath} alt={t(lc.name || '')} className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+      <img 
+        src={imgPath} 
+        alt={`${t(lc.name || '')} - ${t('상세 데이터 및 효과 정보')}`} 
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+        loading="lazy" 
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-0 p-3 w-full">
         <div className="flex justify-between items-end">
@@ -57,16 +96,16 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
   );
 };
 
-export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick: () => void }) => {
+export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick?: () => void }) => {
   const { t } = useTranslation();
   const { gameId } = useParams();
   const targetName = relic.name || '';
   const imgPath = gameId === 'hsr'
     ? `${CDN_URL}/hsr%20images/유물/${safeEncodeURIComponent(targetName)}.webp`
-    : `${CDN_URL}/ww%20images/echoes/${safeEncodeURIComponent(targetName)}.webp`;
+    : `${CDN_URL}/ww%20images/Echo/${safeEncodeURIComponent(targetName)}.webp`;
 
-  return (
-    <button onClick={onClick} className="group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left">
+  const content = (
+    <>
       <div className="w-16 h-16 shrink-0 bg-black/50 rounded-xl p-2 border border-white/5">
         <img src={imgPath} alt={t(relic.name || '')} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" />
       </div>
@@ -74,7 +113,23 @@ export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick: () =
         <h4 className="text-white font-black text-sm truncate">{t(relic.name || '')}</h4>
         <p className="text-gray-400 text-xs truncate mt-1">{t(relic.setEffect?.['2'] || relic.description || '')}</p>
       </div>
-    </button>
+    </>
+  );
+
+  const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left";
+
+  if (onClick) {
+    return (
+      <button onClick={onClick} className={className}>
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <Link to={`/gallery/${gameId}/relic/${slugify(targetName)}`} className={className}>
+      {content}
+    </Link>
   );
 };
 
@@ -151,13 +206,14 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
   );
 };
 
-export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onClick: () => void }) => {
+export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onClick?: () => void }) => {
   const { t } = useTranslation();
+  const { gameId } = useParams();
   const ornamentName = ornament.name || '';
   const imgPath = `${CDN_URL}/hsr%20images/차원%20장신구/${safeEncodeURIComponent(ornamentName)}.webp`;
 
-  return (
-    <button onClick={onClick} className="group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left">
+  const content = (
+    <>
       <div className="w-16 h-16 shrink-0 bg-black/50 rounded-xl p-2 border border-white/5">
         <img src={imgPath} alt={t(ornament.name)} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" />
       </div>
@@ -165,6 +221,22 @@ export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onCl
         <h4 className="text-white font-black text-sm truncate">{t(ornament.name)}</h4>
         <p className="text-gray-400 text-xs truncate mt-1">{t(ornament.setEffect?.['2'] || ornament.description || '')}</p>
       </div>
-    </button>
+    </>
+  );
+
+  const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left";
+
+  if (onClick) {
+    return (
+      <button onClick={onClick} className={className}>
+        {content}
+      </button>
+    );
+  }
+
+  return (
+    <Link to={`/gallery/${gameId}/ornament/${slugify(ornamentName)}`} className={className}>
+      {content}
+    </Link>
   );
 };

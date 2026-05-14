@@ -18,7 +18,26 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- 동적 생성될 무기/캐릭터/광추 상세 페이지 예시 -->
+  <!-- Wuthering Waves Major Characters -->
+  <url><loc>https://rira-archive.com/gallery/ww/character/the_shorekeeper</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/ww/character/camellya</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/ww/character/jinhsi</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/ww/character/changli</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/ww/character/yinlin</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/ww/character/lumi</loc><priority>0.8</priority></url>
+
+  <!-- Honkai Star Rail Major Characters -->
+  <url><loc>https://rira-archive.com/gallery/hsr/character/acheron</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/firefly</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/sparkle</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/robin</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/feixiao</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/seele</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/silver_wolf</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/sunday</loc><priority>0.8</priority></url>
+  <url><loc>https://rira-archive.com/gallery/hsr/character/trailblazer_elation</loc><priority>0.8</priority></url>
+
+  <!-- Wuthering Waves Weapons -->
   <url>
     <loc>https://rira-archive.com/gallery/ww/weapon/%EC%B2%9C%EB%85%84%EC%9D%98%20%ED%9A%8C%EB%A5%98</loc>
     <priority>0.8</priority>

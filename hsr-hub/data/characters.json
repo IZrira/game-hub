@@ -57,9 +57,9 @@
   { "id": "rappa", "name": "라파", "folderName": "라파", "attribute": "허수", "path": "지식", "rarity": 5, "materials": "갤럭시 레인저", "version": "2.6" },
   { "id": "yunli", "name": "운리", "folderName": "운리", "attribute": "물리", "path": "파멸", "rarity": 5, "materials": "주명", "version": "2.4" },
   { "id": "aglaea", "name": "아글라이아", "folderName": "아글라이아", "attribute": "번개", "path": "기억", "rarity": 5, "materials": "암포레우스", "version": "3.0" },
-  { "id": "trailblazer_destruction", "name": "개척자 (파멸)", "folderName": "개척자 (파멸)", "imageFile": "art01.webp", "attribute": "물리", "path": "파멸", "rarity": 5, "materials": "은하열차", "version": "1.0" },
-  { "id": "trailblazer_preservation", "name": "개척자 (보존)", "folderName": "개척자 (보존)", "imageFile": "art01.webp", "attribute": "화염", "path": "보존", "rarity": 5, "materials": "은하열차", "version": "1.0" },
-  { "id": "trailblazer_harmony", "name": "개척자 (화합)", "folderName": "개척자 (화합)", "imageFile": "art01.webp", "attribute": "허수", "path": "화합", "rarity": 5, "materials": "은하열차", "version": "2.2" },
+  { "id": "trailblazer_destruction", "name": "개척자 (파멸)", "folderName": "개척자 (파멸)", "imageFile": "art01.webp", "attribute": "물리", "path": "파멸", "rarity": 5, "materials": "은하열차", "version": "1.0", "isTrailblazer": true },
+  { "id": "trailblazer_preservation", "name": "개척자 (보존)", "folderName": "개척자 (보존)", "imageFile": "art01.webp", "attribute": "화염", "path": "보존", "rarity": 5, "materials": "은하열차", "version": "1.0", "isTrailblazer": true },
+  { "id": "trailblazer_harmony", "name": "개척자 (화합)", "folderName": "개척자 (화합)", "imageFile": "art01.webp", "attribute": "허수", "path": "화합", "rarity": 5, "materials": "은하열차", "version": "2.2", "isTrailblazer": true },
   { "id": "march_7th_hunt", "name": "Mar. 7th (수렵)", "folderName": "Mar. 7th (수렵)", "imageFile": "art01.webp", "attribute": "허수", "path": "수렵", "rarity": 4, "materials": "은하열차", "version": "2.4" },
   { "id": "cypher", "name": "사이퍼", "folderName": "사이퍼", "attribute": "양자", "path": "공허", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
   { "id": "hyacine", "name": "히아킨", "folderName": "히아킨", "attribute": "바람", "path": "기억", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
@@ -68,7 +68,7 @@
   { "id": "mydei", "name": "마이데이", "folderName": "마이데이", "attribute": "허수", "path": "파멸", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
   { "id": "tribbie", "name": "트리비", "folderName": "트리비", "attribute": "양자", "path": "화합", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
   { "id": "the_herta", "name": "더 헤르타", "folderName": "더 헤르타", "imageFile": "art01.webp", "attribute": "얼음", "path": "지식", "rarity": 5, "materials": "데이터 소실", "version": "3.0" },
-  { "id": "trailblazer_remembrance", "name": "개척자 (기억)", "folderName": "개척자 (기억)", "imageFile": "art01.webp", "attribute": "얼음", "path": "기억", "rarity": 5, "materials": "은하열차", "version": "3.0" },
+  { "id": "trailblazer_remembrance", "name": "개척자 (기억)", "folderName": "개척자 (기억)", "imageFile": "art01.webp", "attribute": "얼음", "path": "기억", "rarity": 5, "materials": "은하열차", "version": "3.0", "isTrailblazer": true },
   { "id": "fugue", "name": "망귀인", "folderName": "망귀인", "attribute": "화염", "path": "공허", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
   { "id": "archer", "name": "아처", "folderName": "아처", "attribute": "양자", "path": "수렵", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
   { "id": "phainon", "name": "파이논", "folderName": "파이논", "attribute": "물리", "path": "파멸", "rarity": 5, "materials": "데이터 소실", "version": "3.1" },
@@ -84,5 +84,5 @@
   { "id": "ashveil", "name": "애쉬베일", "folderName": "애쉬베일", "attribute": "번개", "path": "수렵", "rarity": 5, "materials": "데이터 소실", "version": "4.1" },
   { "id": "evanescia", "name": "에바네시아", "folderName": "에바네시아", "attribute": "물리", "path": "환락", "rarity": 5, "version": "4.2" },
   { "id": "silver_wolf_999", "name": "은랑 LV.999", "folderName": "은랑 LV.999", "attribute": "양자", "path": "환락", "rarity": 5, "version": "4.2" },
-  { "id": "trailblazer_elation", "name": "개척자 (환락)", "folderName": "개척자 (환락)", "imageFile": "art01.webp", "attribute": "번개", "path": "환락", "rarity": 5, "version": "4.2" }
+  { "id": "trailblazer_elation", "name": "개척자 (환락)", "folderName": "개척자 (환락)", "imageFile": "art01.webp", "attribute": "번개", "path": "환락", "rarity": 5, "version": "4.2", "isTrailblazer": true }
 ]

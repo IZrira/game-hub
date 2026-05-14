@@ -1,27 +1,69 @@
 import { GameId, WWAttribute, WWWeaponType, MaterialItem, SkillDetail, CharacterBaseStats, BaseItem, HSRAttribute } from '../common-hub/types';
 
 export type SonataType = 
-  | '떠오르는 구름' 
-  | '은빛 구름' 
-  | '끊임없는 잔향' 
-  | '용암의 틈' 
-  | '야밤의 서리' 
-  | '울려퍼지는 뇌음' 
-  | '포효하는 광풍' 
-  | '찬란한 광휘' 
-  | '파멸의 흑염';
+  | '야밤의 서리'
+  | '솟구치는 용암'
+  | '울려퍼지는 뇌음'
+  | '스쳐가는 바람'
+  | '빛나는 별'
+  | '빛을 삼키는 해'
+  | '찬란한 광휘'
+  | '떠오르는 구름'
+  | '끊임없는 잔향'
+  | '냉철한 결단'
+  | '영원의 광채'
+  | '어둠의 장막'
+  | '하늘의 합주곡'
+  | '파도에 맞선 용기'
+  | '끝없는 하늘'
+  | '영광이 깃든 바람'
+  | '울부짖는 늑대의 불꽃'
+  | '뒤틀린 피안의 꿈'
+  | '영광의 칼날로 만들어진 왕관'
+  | '만물의 숨결에 비롯된 울림'
+  | '불타는 깃털을 펼친 사냥꾼의 그림자'
+  | '운명을 붕괴시키는 현'
+  | '역광 속 눈부신 서약'
+  | '빛을 쫓는 별의 고리'
+  | '흐르는 금빛 속 진리의 답'
+  | '긴 여정을 떠나는 별'
+  | '오색찬란한 거품'
+  | '함의의 소리를 따라'
+  | '소리 없이 내려앉은 기도의 눈'
+  | '마음을 엮은 꿈의 그림자';
 
 export const SONATA_SETS: SonataType[] = [
-  '떠오르는 구름',
-  '은빛 구름',
-  '끊임없는 잔향',
-  '용암의 틈',
   '야밤의 서리',
+  '솟구치는 용암',
   '울려퍼지는 뇌음',
-  '포효하는 광풍',
+  '스쳐가는 바람',
+  '빛나는 별',
+  '빛을 삼키는 해',
   '찬란한 광휘',
-  '파멸의 흑염'
-];
+  '떠오르는 구름',
+  '끊임없는 잔향',
+  '냉철한 결단',
+  '영원의 광채',
+  '어둠의 장막',
+  '하늘의 합주곡',
+  '파도에 맞선 용기',
+  '끝없는 하늘',
+  '영광이 깃든 바람',
+  '울부짖는 늑대의 불꽃',
+  '뒤틀린 피안의 꿈',
+  '영광의 칼날로 만들어진 왕관',
+  '만물의 숨결에 비롯된 울림',
+  '불타는 깃털을 펼친 사냥꾼의 그림자',
+  '운명을 붕괴시키는 현',
+  '역광 속 눈부신 서약',
+  '빛을 쫓는 별의 고리',
+  '흐르는 금빛 속 진리의 답',
+  '긴 여정을 떠나는 별',
+  '오색찬란한 거품',
+  '함의의 소리를 따라',
+  '소리 없이 내려앉은 기도의 눈',
+  '마음을 엮은 꿈의 그림자'
+] as const;
 
 export type WuwaCategory = 
   | "전체"
@@ -61,11 +103,19 @@ export interface WuwaCharacter extends BaseItem {
     ascension: any[];
     traces: any[];
   };
+  metadata?: {
+    name: string;
+    brief?: string;
+    element: string;
+    weapon: string;
+    rarity: number;
+  };
   baseStats?: CharacterBaseStats;
   skills?: SkillDetail[];
   additionalAbilities?: any[];
   attributeBonuses?: any[];
   eidolons?: any[];
+  isRover?: boolean;
   [key: string]: any;
 }
 
@@ -94,6 +144,7 @@ export interface WuwaEcho extends BaseItem {
   sonataSets: string[];
   description: string;
   folderName?: string; 
+  hasPhantom?: boolean;
   cooldown?: number;
   enemyInfo?: {
     originalName?: string;
