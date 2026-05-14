@@ -2,11 +2,21 @@
   "nodes": [
     { "id": "local-analysis", "label": "local-analysis", "group": "Projects" },
     { "id": "competitor-roi-strategy", "label": "competitor-roi-strategy", "group": "Topics" },
+    { "id": "design-system", "label": "design-system", "group": "Topics" },
+    { "id": "ux-principles", "label": "ux-principles", "group": "Skills" },
+    { "id": "development-roadmap", "label": "development-roadmap", "group": "Projects" },
+    { "id": "rover-mapping", "label": "rover-mapping", "group": "Skills" },
     { "id": "Projects", "label": "Projects", "group": "Category" },
-    { "id": "Topics", "label": "Topics", "group": "Category" }
+    { "id": "Topics", "label": "Topics", "group": "Category" },
+    { "id": "Skills", "label": "Skills", "group": "Category" }
   ],
   "links": [
     { "source": "local-analysis", "target": "Projects" },
-    { "source": "competitor-roi-strategy", "target": "Topics" }
+    { "source": "competitor-roi-strategy", "target": "Topics" },
+    { "source": "design-system", "target": "Topics" },
+    { "source": "ux-principles", "target": "Skills" },
+    { "source": "development-roadmap", "target": "Projects" },
+    { "source": "rover-mapping", "target": "Skills" },
+    { "source": "design-system", "source": "ux-principles" }
   ]
 }
