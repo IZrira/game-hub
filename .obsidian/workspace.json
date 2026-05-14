@@ -11,10 +11,14 @@
             "id": "24d0fb3e420189e4",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "그래프 뷰"
+              "type": "markdown",
+              "state": {
+                "file": "10_Wiki/👥 Characters/HSR/seele.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "seele"
             }
           }
         ]
@@ -90,6 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "10_Wiki/👥 Characters/HSR/seele.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -99,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "백링크"
+              "title": "seele 의 백링크"
             }
           },
           {
@@ -108,11 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "10_Wiki/👥 Characters/HSR/seele.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "나가는 링크"
+              "title": "seele 의 나가는 링크"
             }
           },
           {
@@ -150,12 +156,13 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "10_Wiki/👥 Characters/HSR/seele.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "개요"
+              "title": "seele 의 개요"
             }
           }
         ]
@@ -178,6 +185,20 @@
   },
   "active": "24d0fb3e420189e4",
   "lastOpenFiles": [
+    "10_Wiki/👥 Characters/HSR/asta.md",
+    "10_Wiki/👥 Characters/HSR/lynx.md",
+    "10_Wiki/👥 Characters/HSR/qingque.md",
+    "10_Wiki/👥 Characters/HSR/herta.md",
+    "10_Wiki/👥 Characters/HSR/gallagher.md",
+    "10_Wiki/👥 Characters/HSR/pela.md",
+    "10_Wiki/👥 Characters/HSR/tingyun.md",
+    "10_Wiki/👥 Characters/HSR/yanqing.md",
+    "10_Wiki/👥 Characters/HSR/bailu.md",
+    "10_Wiki/👥 Characters/HSR/clara.md",
+    "10_Wiki/👥 Characters/HSR/gepard.md",
+    "10_Wiki/👥 Characters/HSR/welt.md",
+    "10_Wiki/👥 Characters/HSR/himeko.md",
+    "10_Wiki/👥 Characters/HSR/bronya.md",
     "10_Wiki/👥 Characters/HSR/rappa.md",
     "10_Wiki/👥 Characters/HSR/yunli.md",
     "10_Wiki/👥 Characters/HSR/boothill.md",
@@ -190,20 +211,6 @@
     "10_Wiki/👥 Characters/HSR/dr-ratio.md",
     "10_Wiki/👥 Characters/HSR/luocha.md",
     "10_Wiki/👥 Characters/HSR/blade.md",
-    "10_Wiki/👥 Characters/HSR/seele.md",
-    "10_Wiki/👥 Characters/HSR/silver-wolf.md",
-    "10_Wiki/👥 Characters/HSR/black-swan.md",
-    "10_Wiki/👥 Characters/HSR/kafka.md",
-    "10_Wiki/👥 Characters/HSR/sunday.md",
-    "10_Wiki/👥 Characters/HSR/aglaea.md",
-    "10_Wiki/👥 Characters/HSR/fugue.md",
-    "10_Wiki/👥 Characters/HSR/jingliu.md",
-    "10_Wiki/👥 Characters/HSR/dan-heng-il.md",
-    "10_Wiki/👥 Characters/HSR/feixiao.md",
-    "10_Wiki/👥 Characters/HSR/lingsha.md",
-    "10_Wiki/👥 Characters/HSR/huohuo.md",
-    "10_Wiki/👥 Characters/HSR/fu-xuan.md",
-    "10_Wiki/👥 Characters/HSR/aventurine.md",
     "10_Wiki/👥 Characters/HSR",
     "10_Wiki/👥 Characters"
   ]

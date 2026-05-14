@@ -22,7 +22,7 @@
       }
     },
     {
-      "query": "path:",
+      "query": "path:\"10_Wiki/👥 Characters/HSR\"  ",
       "color": {
         "a": 1,
         "rgb": 11657298
@@ -39,6 +39,6 @@
   "repelStrength": 10,
   "linkStrength": 1,
   "linkDistance": 250,
-  "scale": 0.16495755536196888,
-  "close": false
+  "scale": 2.4621465215244323,
+  "close": true
 }
