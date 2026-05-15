@@ -102,12 +102,7 @@ const sigrika: WuwaCharacter = {
   skillInput: {
     hideGauge: true,
     overview: "character.sigrika.skillInput.overview",
-    inputs: [
-      "character.sigrika.skillInput.inputs.0",
-      "character.sigrika.skillInput.inputs.1",
-      "character.sigrika.skillInput.inputs.2",
-      "character.sigrika.skillInput.inputs.3"
-    ]
+    inputs: []
   }
 
 };

@@ -1,34 +1,33 @@
 ---
 id: hsr-char-ashveil
-category: "[[10_Wiki/👥 Characters/HSR]]"
+category: "[[10_Wiki/?�� Characters/HSR]]"
 confidence_score: 1.0
-tags: [hsr, lightning, the-hunt, follow-up, meta-ss]
+tags: [hsr, lightning, the-hunt, bait, indulgence, detective, v4-1]
 rarity: 5
 element: Lightning
 path: The Hunt
 release_version: "4.1"
 last_reinforced: 2026-05-14
-github_commit: "reinforce-hsr-codex-batch-1"
+github_commit: "reinforce-hsr-codex-final-batch"
 ---
 
-# [[ashveil]]
+# [[ashveil]] (?�쉬베일)
 
-## 📌 한 줄 통찰 (The Karpathy Summary)
-> [미끼]를 향한 본능적인 추격, 턴 횟수를 무시하는 무한 추가 공격으로 적의 방어선을 붕괴시키는 최강의 수렵 탐정.
+## ?�� ??�??�찰 (The Karpathy Summary)
+> "?�월 ?�래, ?�나??짐승???��?짖는??" ?�을 [미끼]�?지?�하??방어?�을 40% 깎고, ?�군??공격??반응?�여 무한??추�? 공격???�붓??불사??명탐??
 
-## 📖 구조화된 지식 (Synthesized Content)
-- **핵심 메커니즘:**
-  - **[미끼(Bait)]**: 전투 스킬과 필살기로 지정. 아군이 [미끼]를 공격할 때마다 애쉬베일이 즉시 에너지를 회복하고 **추가 공격**을 발동함.
-  - **[식탐(Gluttony)]**: 스택을 쌓아 필살기의 추가 대미지를 증폭시키며, 적 처치 시 스택이 전이되어 무한 사냥 가능.
-- **데이터 분석 (Pros & Cons):**
-  - **장점**: 압도적인 DEF 40% 감소 디버프와 턴 외 공격 빈도. 단일 보스전에서 타의 추종을 불허함.
-  - **단점**: 150의 높은 에너지통 요구. [미끼]가 사라지면 화력이 급감함.
-- **콘텐츠별 티어:**
-  - **혼돈 12층**: SS
-  - **종말의 환영**: SS (고점 특화)
-  - **허구 이야기**: S (단일 타격 위주 한계)
+## ?�� 구조?�된 지??(Synthesized Content)
+- **?�심 메커?�즘:**
+  - **[미끼] & 추�? 공격**: ?�드??미끼가 존재????모든 ??방어??감소. ?�군??미끼�?치면 ?�쉬베일??충전???�모??강력??추�? 공격??가??
+  - **[?�닉] ?�택**: 추�? 공격 ???�득. ?�살�??�용 ???�닉 ?�택???�모?�여 ?�쇄?�인 ??�� ?�해�??�으?�며 ?�이 죽을 ?�까지 ?�냥??멈추지 ?�음.
+  - **치명?� ?�너지**: ?�군 ?�체??치명?� ?�해�??�이�??�히 추�? 공격??치명?� ?�해�?극�??�함.
+- **?�이??분석 (Pros & Cons):**
+  - **?�점**: ?�렵 캐릭?�임?�도 ?�살�??�쇄 기�????�해 ?�수???�을 ?�차?�으�?처단?�는 ?�력???�어??
+  - **?�점**: 미끼가 ?�는 ?�태?�서???�링 ?�텐?�이 급감?��?�??�킬 ?�용 ?�서가 중요??
+- **콘텐츠별 ?�어 (?�상):**
+  - **?�돈 12�?*: **SS**
+  - **?�구 ?�야�?*: S (?�쇄 처치 ?�용 ??
+  - **종말???�영**: S+
 
-## 🔗 지식 연결 (Graph)
-- **Parent:** [[👥 Characters]]
-- **Related:** [[hsr-party-strategies]], [[lightcone-config]]
-- **Synergy:** [[sunday]], [[tribbie]]
+## ?�� 지???�결 (Graph)
+- [[the-hunt]], [[topaz]], [[feixiao]], [[march-7th-hunt]]

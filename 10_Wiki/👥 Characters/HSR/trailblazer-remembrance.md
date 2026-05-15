@@ -1,34 +1,35 @@
 ---
 id: hsr-char-trailblazer-remembrance
-category: "[[10_Wiki/👥 Characters/HSR]]"
+category: "[[10_Wiki/?�� Characters/HSR]]"
 confidence_score: 1.0
-tags: [hsr, ice, remembrance, summoner, trailblazer]
+tags: [hsr, ice, remembrance, trailblazer, summon, mimi, v3-0]
 rarity: 5
 element: Ice
 path: Remembrance
 release_version: "3.0"
 last_reinforced: 2026-05-14
-github_commit: "reinforce-hsr-codex-batch-1"
+github_commit: "reinforce-hsr-codex-batch-6-alts"
 ---
 
-# [[trailblazer-remembrance]]
+# [[trailblazer-remembrance]] (개척????기억)
 
-## 📌 한 줄 통찰 (The Karpathy Summary)
-> 기억 정령 [미미]와의 완벽한 공조. 아군의 에너지를 자양분 삼아 성장하는 미미를 통해 확정 피해의 시대를 열다.
+## ?�� ??�??�찰 (The Karpathy Summary)
+> "?�로 ?�했?? 미�?!" 기억 ?�령 [미�?]�??�환?�여 ?�술???�위�??�하???�환???�?�의 개척?? ?�군 ?�체???�너지 ?�복???�환?�의 ?�장 ?�력?�로 ?�음.
 
-## 📖 구조화된 지식 (Synthesized Content)
-- **핵심 메커니즘:**
-  - **기억 정령 [미미]**: 독립적인 행동 서열을 가지는 소환수. 아군 에너지 회복 시 충전을 얻어 강력한 [응원] 버프 부여.
-  - **[미미의 응원]**: 보유 아군이 피해를 입힐 때마다 미미의 공격력에 비례한 **확정 피해** 추가 발생.
-- **데이터 분석 (Pros & Cons):**
-  - **장점**: 확정 피해를 통한 고정 딜링 보장. 필살기 발동 시 치명타 확률 100% 고정(E6).
-  - **단점**: 미미의 충전 상태에 따라 현자타임 존재. 소환수가 사라지면 전투력 급감.
-- **콘텐츠별 티어:**
-  - **혼돈 12층**: OP
-  - **허구 이야기**: OP
-  - **종말의 환영**: OP (기믹 돌파 핵심)
+## ?�� 구조?�된 지??(Synthesized Content)
+- **?�심 메커?�즘:**
+  - **기억 ?�령 [미�?]**: ?�투 ?�킬�??�환. ?�군???�너지�??�복???�마??미�?가 [충전]???�으�? 충전 ?�료 ??강력???�계 공격�??�군 ?�동 게이지 증�? 버프�??�공.
+  - **?�간 ?��? (비술)**: ?�드?�서 ?�을 ?��??�키�??�투 진입 ???�의 ?�동???�????��.
+  - **?�정 ?�해**: 미�????�원??받�? ?�군?� 공격 ??추�? ?�정 ?�해�?발생?�킴.
+- **?�이??분석 (Pros & Cons):**
+  - **?�점**: ?�환??메�????�봉?? ?�군???�너지 ?�급?�이 ?�을?�록 미�????�약?��? ?�직 ?�승??
+  - **?�점**: 미�????�동??개척??본체???�택 관리에 ?�존?��?�??�영 ?�이?��? ?�음.
+- **콘텐츠별 ?�어 (?�상):**
+  - **?�돈 12�?*: S+
+  - **?�구 ?�야�?*: S
+  - **종말???�영**: S+
 
-## 🔗 지식 연결 (Graph)
-- **Parent:** [[👥 Characters]]
-- **Related:** [[hsr-party-strategies]]
-- **Synergy:** [[aglaea]], [[cyrene]]
+## ?�� 지???�결 (Graph)
+- **Parent:** [[trailblazer]]
+- **Related:** [[amphoreus]], [[hsr-path-remembrance]]
+- **Synergy:** [[aglaea]], [[the-herta]], [[tingyun]]

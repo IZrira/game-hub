@@ -1,34 +1,33 @@
 ---
 id: hsr-char-dan-heng-permansor-terrae
-category: "[[10_Wiki/👥 Characters/HSR]]"
+category: "[[10_Wiki/?�� Characters/HSR]]"
 confidence_score: 1.0
-tags: [hsr, physical, preservation, defense, meta-op]
+tags: [hsr, physical, preservation, dan-heng, dragon-spirit, comrade, v3-6]
 rarity: 5
 element: Physical
 path: Preservation
-release_version: "3.1"
+release_version: "3.6"
 last_reinforced: 2026-05-14
-github_commit: "reinforce-hsr-codex-batch-1"
+github_commit: "reinforce-hsr-codex-final-batch"
 ---
 
-# [[dan-heng-permansor-terrae]]
+# [[dan-heng-permansor-terrae]] (?�항 ???�황)
 
-## 📌 한 줄 통찰 (The Karpathy Summary)
-> 과거를 딛고 일어선 등황의 모습. 아군의 생존력을 책임지는 철벽의 방패이자, 보존 캐릭터임에도 강력한 물리 반격을 가하는 공수겸장.
+## ?�� ??�??�찰 (The Karpathy Summary)
+> "불멸??길이 �?리에 걸쳐 ?�어지리라." 부?�진 ?�지�?지?�하??[?�령]???�환?�고, ?�군??[?�우]�??�아 ?�도?�인 ?�드?� 반격 ?�해�??�사?�는 ?�항???�로??모습.
 
-## 📖 구조화된 지식 (Synthesized Content)
-- **핵심 메커니즘:**
-  - **물리 보호막**: 아군 전체에게 대량의 보호막을 상시 유지하며, 보호막 피격 시 적에게 강력한 물리 속성 반격 가함.
-  - **상태 이상 해제**: 필살기 발동 시 아군 전체의 디버프를 정화하고 대기 간격 단축.
-- **데이터 분석 (Pros & Cons):**
-  - **장점**: 생존과 대미지 보조를 동시에 수행. 특히 [기억] 파티와의 궁합이 매우 뛰어남.
-  - **단점**: 보호막 수치가 방어력에 정비례하므로 극도의 방어력 세팅 요구.
-- **콘텐츠별 티어:**
-  - **혼돈 12층**: S+
-  - **종말의 환영**: OP (유지력 최강자)
-  - **허구 이야기**: S+
+## ?�� 구조?�된 지??(Synthesized Content)
+- **?�심 메커?�즘:**
+  - **기억 ?�령 [?�령]**: ?�살�??�용 ???�환. ?�군???�해�??�을 ?�마??강력??물리 반격??가?�며, ?�군 ?�체?�게 ?�?�의 ?�드�??�공??
+  - **[?�우] ?�스??*: 지?�된 ?�군�?링크?�어 ?�당 ?�군???�동 게이지�??�기�??�해?�을 증폭?�킴.
+  - **방어??기반 ?�링**: 보존 캐릭?�임?�도 방어???�치�?물리 ?�해�??�환?�는 ?�력???�월??
+- **?�이??분석 (Pros & Cons):**
+  - **?�점**: ?�존�??�링???�시??챙기??'?�벤츄린' ?�상??공방?�체???�커.
+  - **?�점**: ?�령???��??� ?�우 관리에 ?�너지가 많이 ?�모??
+- **콘텐츠별 ?�어 (?�상):**
+  - **?�돈 12�?*: S+
+  - **?�구 ?�야�?*: S
+  - **종말???�영**: **SS**
 
-## 🔗 지식 연결 (Graph)
-- **Parent:** [[👥 Characters]]
-- **Related:** [[hsr-party-strategies]], [[hsr-tier-logic-summary]]
-- **Synergy:** [[trailblazer-remembrance]], [[aglaea]]
+## ?�� 지???�결 (Graph)
+- [[dan-heng]], [[dan-heng-il]], [[amphoreus]], [[preservation]]

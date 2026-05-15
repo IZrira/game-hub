@@ -97,6 +97,7 @@ const chisa: WuwaCharacter = {
     { name: "character.chisa.terms.9.name", description: "character.chisa.terms.9.description" }
   ],
   skillInput: {
+    hideGauge: true,
     overview: "character.chisa.skillInput.overview",
     inputs: [
       "character.chisa.skillInput.inputs.0",

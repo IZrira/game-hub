@@ -98,9 +98,7 @@ const augusta: WuwaCharacter = {
     inputs: [
       "character.augusta.skillInput.inputs.0",
       "character.augusta.skillInput.inputs.1",
-      "character.augusta.skillInput.inputs.2",
-      "character.augusta.skillInput.inputs.3",
-      "character.augusta.skillInput.inputs.4"
+      "character.augusta.skillInput.inputs.2"
     ]
   }
 };

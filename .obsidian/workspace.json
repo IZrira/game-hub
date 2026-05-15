@@ -11,14 +11,10 @@
             "id": "24d0fb3e420189e4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "10_Wiki/👥 Characters/HSR/seele.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "seele"
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
             }
           }
         ]
@@ -94,7 +90,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "10_Wiki/👥 Characters/HSR/seele.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +99,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "seele 의 백링크"
+              "title": "백링크"
             }
           },
           {
@@ -113,12 +108,11 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "10_Wiki/👥 Characters/HSR/seele.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "seele 의 나가는 링크"
+              "title": "나가는 링크"
             }
           },
           {
@@ -156,13 +150,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "10_Wiki/👥 Characters/HSR/seele.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "seele 의 개요"
+              "title": "개요"
             }
           }
         ]
@@ -185,32 +178,40 @@
   },
   "active": "24d0fb3e420189e4",
   "lastOpenFiles": [
-    "10_Wiki/👥 Characters/HSR/hanya.md",
-    "10_Wiki/👥 Characters/HSR/hook.md",
-    "10_Wiki/👥 Characters/HSR/arlan.md",
-    "10_Wiki/👥 Characters/HSR/moze.md",
-    "10_Wiki/👥 Characters/HSR/misha.md",
+    "10_Wiki/👥 Characters/WW/denia.md",
+    "10_Wiki/👥 Characters/WW/aemeath.md",
+    "10_Wiki/👥 Characters/WW",
+    "ww-hub/data/characters/ww/aemeath.ts",
+    "patch_aemeath.py",
+    "patch_denia.py",
+    "patch.py",
+    "scratch/update_localization.py",
+    "scratch/detect_encoding.py",
+    "ww-hub/data/characters/ww/denia.ts",
+    "10_Wiki/👥 Characters/HSR/kafka.md",
     "10_Wiki/👥 Characters/HSR/xueyi.md",
-    "10_Wiki/👥 Characters/HSR/guinaifen.md",
-    "10_Wiki/👥 Characters/HSR/luka.md",
-    "10_Wiki/👥 Characters/HSR/sushang.md",
-    "10_Wiki/👥 Characters/HSR/sampo.md",
-    "10_Wiki/👥 Characters/HSR/natasha.md",
-    "10_Wiki/👥 Characters/HSR/serval.md",
-    "10_Wiki/👥 Characters/HSR/march-7th.md",
-    "10_Wiki/👥 Characters/HSR/dan-heng.md",
-    "10_Wiki/👥 Characters/HSR/asta.md",
-    "10_Wiki/👥 Characters/HSR/lynx.md",
-    "10_Wiki/👥 Characters/HSR/qingque.md",
-    "10_Wiki/👥 Characters/HSR/herta.md",
-    "10_Wiki/👥 Characters/HSR/gallagher.md",
-    "10_Wiki/👥 Characters/HSR/pela.md",
-    "10_Wiki/👥 Characters/HSR/tingyun.md",
-    "10_Wiki/👥 Characters/HSR/yanqing.md",
-    "10_Wiki/👥 Characters/HSR/bailu.md",
-    "10_Wiki/👥 Characters/HSR/clara.md",
-    "10_Wiki/👥 Characters/HSR/gepard.md",
-    "10_Wiki/👥 Characters/HSR/welt.md",
+    "10_Wiki/👥 Characters/HSR/seele.md",
+    "10_Wiki/👥 Characters/HSR/saber.md",
+    "10_Wiki/👥 Characters/HSR/archer.md",
+    "10_Wiki/👥 Characters/HSR/dahlia.md",
+    "10_Wiki/👥 Characters/HSR/evanescia.md",
+    "10_Wiki/👥 Characters/HSR/cypher.md",
+    "10_Wiki/👥 Characters/HSR/phainon.md",
+    "10_Wiki/👥 Characters/HSR/mydei.md",
+    "10_Wiki/👥 Characters/HSR/hysilens.md",
+    "10_Wiki/👥 Characters/HSR/hyacine.md",
+    "10_Wiki/👥 Characters/HSR/evernight.md",
+    "10_Wiki/👥 Characters/HSR/cyrene.md",
+    "10_Wiki/👥 Characters/HSR/cerydra.md",
+    "10_Wiki/👥 Characters/HSR/anaxa.md",
+    "10_Wiki/👥 Characters/HSR/castorice.md",
+    "10_Wiki/👥 Characters/HSR/tribbie.md",
+    "10_Wiki/👥 Characters/HSR/the-herta.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-elation.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-harmony.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-preservation.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-destruction.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer.md",
     "10_Wiki/👥 Characters/HSR",
     "10_Wiki/👥 Characters"
   ]

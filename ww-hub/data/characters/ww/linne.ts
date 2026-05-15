@@ -102,6 +102,7 @@ const linne: WuwaCharacter = {
     { name: "character.linne.terms.10.name", description: "character.linne.terms.10.description" }
   ],
   skillInput: {
+    hideGauge: true,
     overview: "character.linne.skillInput.overview",
     inputs: [
       "character.linne.skillInput.inputs.0",

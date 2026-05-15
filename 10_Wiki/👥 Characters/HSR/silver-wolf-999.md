@@ -1,34 +1,33 @@
 ---
 id: hsr-char-silver-wolf-999
-category: "[[10_Wiki/👥 Characters/HSR]]"
+category: "[[10_Wiki/?�� Characters/HSR]]"
 confidence_score: 1.0
-tags: [hsr, imaginary, elation, rng, meta-op]
+tags: [hsr, imaginary, elation, invincible-player, hack-mechanic, v4-2]
 rarity: 5
 element: Imaginary
-path: Elation
+path: Elation (?�락)
 release_version: "4.2"
 last_reinforced: 2026-05-14
-github_commit: "reinforce-hsr-codex-batch-1"
+github_commit: "reinforce-hsr-codex-final-batch"
 ---
 
-# [[silver-wolf-999]]
+# [[silver-wolf-999]] (?�??LV.999)
 
-## 📌 한 줄 통찰 (The Karpathy Summary)
-> "시스템은 내 손안에 있다." 무적 플레이어 결계와 보급상자의 랜덤 유틸리티로 전장을 자신의 게임판으로 바꾸는 해커.
+## ?�� ??�??�찰 (The Karpathy Summary)
+> "???�자�?만렙!" ?�?�계 최고??게이머�? ?�락??권능???�킹?�여 ?�아??모습. ?�의 ?�점 ?�??�� 0?�로 고정?�키�?[무적 ?�레?�어] 모드�??�장??게임?�으�?바꾸???�기?�인 ?�포??
 
-## 📖 구조화된 지식 (Synthesized Content)
-- **핵심 메커니즘:**
-  - **[무적 플레이어]**: 필살기 진입 상태. 제어 디버프 면역 및 결계 내 아군의 SP 소모 시 [최상급 보급상자] 협공 발동.
-  - **[히든 스코어]**: 치명타 확률과 피해를 동적으로 증가시키며, 필살기 활성화의 핵심 자원.
-- **데이터 분석 (Pros & Cons):**
-  - **장점**: E6 달성 시 모든 적에게 모든 속성 약점 이식 및 저항 0% 고정(사기적 유틸리티). SP 회복과 대미지를 동시에 챙김.
-  - **단점**: 보급상자 효과의 랜덤성. [히든 스코어] 관리에 따른 운영 난이도 존재.
-- **콘텐츠별 티어:**
-  - **혼돈 12층**: OP
-  - **허구 이야기**: OP
-  - **종말의 환영**: OP (범용성 끝판왕)
+## ?�� 구조?�된 지??(Synthesized Content)
+- **?�심 메커?�즘:**
+  - **[무적 ?�레?�어] ?�태**: ?�살�??�용 ??진입. ?�어 면역???�며 모든 ?�반 공격??100?� 바운??공격??[?�프 ?�???�로 강화??
+  - **[?�든 ?�코??**: ?�음 ?�인?�에 비�???치명?� ?�률�??�해�?무한???�는 고유 ?�원.
+  - **[금�?/?�한 ?�점]**: 6?�혼 ?�성 ???�의 모든 기초 ?�??�� 0?�로 만들�?모든 ?�점??강제 부?�함.
+- **?�이??분석 (Pros & Cons):**
+  - **?�점**: 게임??메커?�즘 ?�체�?비�??�버리는 ?�도?�인 ?�틸리티?� ?�링 ?�력.
+  - **?�점**: 무적 ?�태 종료 ???�든 ?�코?��? 초기?�되므�??�이??관리�? ?�수.
+- **콘텐츠별 ?�어 (?�상):**
+  - **?�돈 12�?*: **SSS**
+  - **?�구 ?�야�?*: **SSS**
+  - **종말???�영**: **SSS**
 
-## 🔗 지식 연결 (Graph)
-- **Parent:** [[👥 Characters]]
-- **Related:** [[hsr-tier-logic-summary]], [[text-formatting-guide]]
-- **Synergy:** [[sparxie]], [[yaoguang]]
+## ?�� 지???�결 (Graph)
+- [[silver-wolf]], [[evanescia]], [[sparxie]], [[elation]]

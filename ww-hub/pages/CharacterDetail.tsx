@@ -101,7 +101,7 @@ const CharacterDetail: React.FC = () => {
       'Spectro': { primary: '#FFF176', secondary: '#FBC02D', shadow: 'rgba(255, 241, 118, 0.4)' },
       '인멸': { primary: '#F472B6', secondary: '#EC4899', shadow: 'rgba(244, 114, 182, 0.4)' },
       'Havoc': { primary: '#F472B6', secondary: '#EC4899', shadow: 'rgba(244, 114, 182, 0.4)' },
-      '융융': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      '용융': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
       'Fusion': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
       '응결': { primary: '#3D8CFF', secondary: '#1E88E5', shadow: 'rgba(61, 140, 255, 0.4)' },
       'Glacio': { primary: '#3D8CFF', secondary: '#1E88E5', shadow: 'rgba(61, 140, 255, 0.4)' },

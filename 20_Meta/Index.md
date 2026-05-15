@@ -58,6 +58,28 @@
 - [[luocha]]: v1.1 허수 풍요 | 자동 힐 및 결계의 치유사
 - [[dr-ratio]]: v2.1 허수 수렵 | 디버프 시너지 추공 딜러
 - [[topaz]]: v1.4 화염 수렵 | 추공 파티의 핵심 엔진
+- [[trailblazer]]: 개척자 (전체)
+- [[trailblazer-destruction]]: v1.0 물리 파멸
+- [[trailblazer-preservation]]: v1.2 화염 보존
+- [[trailblazer-harmony]]: v2.2 허수 화합
+- [[trailblazer-elation]]: 환락 개척자
+- [[tribbie]]: v3.0 소환수
+- [[yukong]]: v1.1 허수 화합 | 활의 조율사
+- [[the-herta]]: v3.0 얼음 지식
+- [[castorice]]: v3.x 얼음 화합
+- [[anaxa]]: v3.x 허수 지식
+- [[cerydra]]: v3.x 물리 풍요
+- [[cyrene]]: v3.x 번개 수렵
+- [[evernight]]: v3.x 화염 보존
+- [[hyacine]]: v3.x 바람 공허
+- [[hysilens]]: v3.x 얼음 파멸
+- [[mydei]]: v3.x 양자 화합
+- [[phainon]]: v3.x 화염 지식
+- [[dahlia]]: v3.x 물리 공허
+- [[archer]]: v4.x 수렵
+- [[saber]]: v4.x 파멸
+- [[cypher]]: v4.x 지식
+- [[march-7th-hunt]]: v2.3 허수 수렵 | 검술 수련 7일
 - [[jing-yuan]]: v1.0 번개 지식 | 신군 소환 지식 장군
 - [[argenti]]: v1.5 물리 지식 | 허구 이야기의 미의 기사
 - [[jade]]: v2.3 양자 지식 | 지식형 추공 서브 딜러

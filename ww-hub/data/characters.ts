@@ -34,9 +34,13 @@ import augusta from './characters/ww/augusta';
 import xiangli_yao from './characters/ww/xiangli_yao';
 import yuanwu from './characters/ww/yuanwu';
 import calcharo from './characters/ww/calcharo';
+import denia from './characters/ww/denia';
+import aemeath from './characters/ww/aemeath';
 
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
+  aemeath,
+  denia,
   yuanwu,
   xiangli_yao,
   chaconne,
