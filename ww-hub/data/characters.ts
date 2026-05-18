@@ -42,10 +42,12 @@ import lupa from './characters/ww/lupa';
 import brant from './characters/ww/brant';
 import encore from './characters/ww/encore';
 import mortefi from './characters/ww/mortefi';
+import chixia from './characters/ww/chixia';
 
 
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
+  chixia,
   mortefi,
   encore,
   brant,
