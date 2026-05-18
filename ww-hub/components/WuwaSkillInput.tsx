@@ -167,10 +167,10 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
         {t('스킬 입력 가이드')}
       </h2>
 
-      {(!char.skillInput?.hideGauge) && (
+      {(!char.skillInput?.hideGauge && char?.folderName) && (
         <div className="mb-10 bg-white/[0.02] p-4 rounded-[30px] border border-white/5 flex justify-center items-center overflow-hidden">
           <img 
-            src={`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char?.folderName || '')}/공명 회로 게이지.webp`}
+            src={`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char.folderName)}/공명 회로 게이지.webp`}
             className="w-full max-w-xl h-auto object-contain rounded-2xl shadow-2xl transition-transform hover:scale-105 duration-700"
             alt={t('공명 회로 게이지')}
             onError={(e) => {

@@ -304,6 +304,39 @@ const CharacterDetail: React.FC = () => {
 
   const seoDescription = `${t(char.name)} ${t('상세 가이드: 최적의 유물,')} ${t('광추')}, ${t('종결 스탯 및 육성 재료 세팅을 완벽 정리했습니다.')} ${t('붕괴: 스타레일')} ${t('게이머를 위한 최신 공략.')}`;
 
+  const faqData = useMemo(() => {
+    if (!char) return [];
+    const questions = [
+      {
+        question: `${t(char.name)} ${t('의 전투 속성과 운명의 길은 무엇인가요?')}`,
+        answer: `${t(char.name)}${t('은(는)')} ${t('붕괴: 스타레일의')} ${t(char.attribute)} ${t('속성 및')} ${t(char.path)} ${t('운명의 길 캐릭터입니다.')}`
+      }
+    ];
+
+    if (char.materials_v2?.ascension && char.materials_v2.ascension.length > 0) {
+      questions.push({
+        question: `${t(char.name)} ${t('의 돌파를 위해 필요한 주요 재료는 무엇인가요?')}`,
+        answer: `${t(char.name)}${t('의 캐릭터 돌파를 위해서는')} ${char.materials_v2.ascension.slice(0, 3).map((m: any) => t(m.name)).join(', ')} ${t('등의 육성 재료가 필요합니다.')}`
+      });
+    }
+
+    if (char.baseStats) {
+      // Calculate specifically at max level (80) for SEO accuracy
+      const lvKey = 'lv80';
+      const lvData = char.baseStats?.[lvKey] as Record<string, number> | undefined;
+      const maxHp = lvData ? lvData[t('기초 HP')] : '---';
+      const maxAtk = lvData ? lvData[t('기초 공격력')] : '---';
+      const maxDef = lvData ? lvData[t('기초 방어력')] : '---';
+
+      questions.push({
+        question: `${t(char.name)} ${t('의 기본 기초 스탯(공격력, 방어력, HP)은 어떻게 되나요?')}`,
+        answer: `${t(char.name)}${t('의 80레벨 기준 기초 HP는')} ${maxHp}, ${t('기초 공격력은')} ${maxAtk}, ${t('기초 방어력은')} ${maxDef}${t('입니다.')}`
+      });
+    }
+
+    return questions;
+  }, [char, t]);
+
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
@@ -313,6 +346,7 @@ const CharacterDetail: React.FC = () => {
         url={`/gallery/${gameId}/character/${char.id}`}
         gameCategory={t('붕괴: 스타레일')}
         itemType={t(char.path)}
+        faqData={faqData}
       />
       {/* Item Modal */}
       <ItemDetailModal 

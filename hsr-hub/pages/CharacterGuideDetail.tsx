@@ -317,6 +317,66 @@ const CharacterGuideDetail: React.FC = () => {
     );
   }
 
+  const faqData = useMemo(() => {
+    if (!guide || !character) return [];
+    
+    const charNameKo = character.name;
+    const questions = [];
+
+    // 1. 추천 광추 FAQ
+    if (guide.bestLightCones && guide.bestLightCones.length > 0) {
+      const firstLcName = typeof guide.bestLightCones[0] === 'string' 
+        ? guide.bestLightCones[0] 
+        : (guide.bestLightCones[0] as any).name;
+      questions.push({
+        question: `${charNameKo}의 추천 광추 세팅은 무엇인가요?`,
+        answer: `${charNameKo}에게 가장 추천하는 광추는 "${firstLcName}"입니다. 그 외에도 ${guide.bestLightCones.slice(1, 4).map(lc => typeof lc === 'string' ? lc : (lc as any).name).join(', ')} 등을 활용할 수 있습니다.`
+      });
+    }
+
+    // 2. 추천 유물/장신구 FAQ
+    if (guide.bestRelics && guide.bestRelics.length > 0) {
+      const firstRelicName = typeof guide.bestRelics[0] === 'string' 
+        ? guide.bestRelics[0] 
+        : (guide.bestRelics[0] as any).name;
+      const firstOrnamentName = guide.bestOrnaments && guide.bestOrnaments.length > 0
+        ? (typeof guide.bestOrnaments[0] === 'string' ? guide.bestOrnaments[0] : (guide.bestOrnaments[0] as any).name)
+        : null;
+      
+      let answerText = `${charNameKo}의 추천 터널 유물 세팅은 "${firstRelicName}" 4세트입니다.`;
+      if (firstOrnamentName) {
+        answerText += ` 차원 장신구는 "${firstOrnamentName}" 2세트를 추천합니다.`;
+      }
+      questions.push({
+        question: `${charNameKo}의 추천 유물 및 차원 장신구 세팅은 어떻게 되나요?`,
+        answer: answerText
+      });
+    }
+
+    // 3. 주요 속성 및 추천 부옵션 FAQ
+    if (guide.mainStats || guide.subStats) {
+      let statText = `${charNameKo}의 주요 권장 주옵션은 몸통(${guide.mainStats?.body || '공격력/치명타'}), 신발(${guide.mainStats?.boots || '속도'}), 구체(${guide.mainStats?.sphere || '속성 피해'}), 매듭(${guide.mainStats?.rope || '에너지 회복/공격력'})입니다.`;
+      if (guide.subStats && guide.subStats.length > 0) {
+        statText += ` 추천하는 핵심 부옵션 우선순위는 ${guide.subStats.slice(0, 4).join(', ')} 순입니다.`;
+      }
+      questions.push({
+        question: `${charNameKo}의 추천 주옵션 및 부옵션 우선순위는 무엇인가요?`,
+        answer: statText
+      });
+    }
+
+    // 4. 추천 파티 조합 FAQ
+    if (recommendedParties && recommendedParties.length > 0) {
+      const partyNames = recommendedParties.map(p => p.members.map(m => m.name).join(' + ')).slice(0, 2);
+      questions.push({
+        question: `${charNameKo}의 추천 파티 조합 및 팀 구성은 어떻게 되나요?`,
+        answer: `${charNameKo}의 대표적인 시너지 파티 조합으로는 [${partyNames.join('] 또는 [')}] 구성이 가장 널리 권장됩니다.`
+      });
+    }
+
+    return questions;
+  }, [guide, character, recommendedParties]);
+
   const cdnFolderName = character.folderName.normalize('NFC');
   const heroImageUrl = `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(cdnFolderName)}/${character.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`;
 
@@ -326,7 +386,12 @@ const CharacterGuideDetail: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
-      <SEO title={`${character?.name || charName} 세팅 가이드`} description={`${character?.name || charName}의 추천 광추, 유물, 파티 조합 등 종결 세팅 가이드를 확인하세요.`} image={heroImageUrl} />
+      <SEO 
+        title={`${character?.name || charName} 세팅 가이드`} 
+        description={`${character?.name || charName}의 추천 광추, 유물, 파티 조합 등 종결 세팅 가이드를 확인하세요.`} 
+        image={heroImageUrl} 
+        faqData={faqData}
+      />
       
       <AnimatePresence>
         {hoveredItem && (

@@ -7,7 +7,7 @@ rarity: 5
 element: Fusion
 weapon: Sword
 release_version: "3.1"
-last_reinforced: 2026-05-15
+last_reinforced: 2026-05-18
 ---
 
 # [[aemeath]] (에이메스)

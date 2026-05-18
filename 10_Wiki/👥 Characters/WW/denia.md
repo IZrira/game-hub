@@ -7,7 +7,7 @@ rarity: 5
 element: Fusion
 weapon: Amplifier
 release_version: "3.3"
-last_reinforced: 2026-05-15
+last_reinforced: 2026-05-18
 ---
 
 # [[denia]] (데니아)

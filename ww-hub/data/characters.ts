@@ -36,10 +36,24 @@ import yuanwu from './characters/ww/yuanwu';
 import calcharo from './characters/ww/calcharo';
 import denia from './characters/ww/denia';
 import aemeath from './characters/ww/aemeath';
+import mornye from './characters/ww/mornye';
+import galbrena from './characters/ww/galbrena';
+import lupa from './characters/ww/lupa';
+import brant from './characters/ww/brant';
+import encore from './characters/ww/encore';
+import mortefi from './characters/ww/mortefi';
+
 
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
+  mortefi,
+  encore,
+  brant,
+  lupa,
+  galbrena,
+  mornye,
   aemeath,
+
   denia,
   yuanwu,
   xiangli_yao,

@@ -40,7 +40,7 @@ export default function SEO({
   
   const siteName = "RIRA ARCHIVE";
   const siteTitle = `${title} | ${siteName}`;
-  const baseUrl = "https://rira-archive.com";
+  const baseUrl = "https://rira-game-hub.pages.dev";
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
   // 구글 검색 로봇 및 AI 크롤러에게 전달할 구조화 데이터 (JSON-LD)
@@ -60,7 +60,7 @@ export default function SEO({
     "author": {
       "@type": "Organization",
       "name": "RIRA ARCHIVE",
-      "url": "https://rira-archive.com"
+      "url": "https://rira-game-hub.pages.dev"
     },
     "publisher": {
       "@type": "Organization",
