@@ -1,0 +1,577 @@
+{
+  "Key of Inspiration": {
+    "nameEn": "Key of Inspiration",
+    "nameKo": "영감의 열쇠",
+    "enDesc": "A mythical key that appears in the hands of the Meditative Scholars. Used to level up Traces slightly for Erudition characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Erudition",
+      "Key of Inspiration"
+    ]
+  },
+  "Key of Knowledge": {
+    "nameEn": "Key of Knowledge",
+    "nameKo": "계몽의 열쇠",
+    "enDesc": "A mythical key that appears in the hands of the sages of the worlds. Used to level up Traces moderately for Erudition characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Erudition",
+      "Omni-Synthesizer",
+      "Key of Knowledge"
+    ]
+  },
+  "Key of Wisdom": {
+    "nameEn": "Key of Wisdom",
+    "nameKo": "지식의 열쇠",
+    "enDesc": "A mythical key that appears in the hands of the greatest prodigies of the cosmos. Used to level up Traces significantly for Erudition characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Erudition (Rivet Town)",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Shattered Blade": {
+    "nameEn": "Shattered Blade",
+    "nameKo": "부서진 칼날",
+    "enDesc": "Weapon fragments left behind by members of the Antimatter Legion. Used to level up Traces slightly for Destruction characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Destruction",
+      "Shattered Blade"
+    ]
+  },
+  "Lifeless Blade": {
+    "nameEn": "Lifeless Blade",
+    "nameKo": "무생의 칼날",
+    "enDesc": "Weapon fragments left behind by members of the Antimatter Legion. Used to level up Traces moderately for Destruction.",
+    "sources": [
+      "Calyx (Storage Zone)",
+      "Omni-Synthesizer",
+      "Aetherium Wars Event Rewards",
+      "Lifeless Blade"
+    ]
+  },
+  "Worldbreaker Blade": {
+    "nameEn": "Worldbreaker Blade",
+    "nameKo": "정화의 칼날",
+    "enDesc": "Broken weapon left behind by members of the Antimatter Legion. Used to level up Traces significantly for Destruction.",
+    "sources": [
+      "Calyx (Storage Zone)",
+      "Omni-Synthesizer",
+      "Certain Event Rewards"
+    ]
+  },
+  "Arrow of the Beast Hunter": {
+    "nameEn": "Arrow of the Beast Hunter",
+    "nameKo": "짐승 사냥용 화살",
+    "enDesc": "An arrowhead forged with Frost Steel by the craftsmen of Xianzhou. Used to level up Traces slightly for Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Arrow of the Beast Hunter"
+    ]
+  },
+  "Arrow of the Demon Slayer": {
+    "nameEn": "Arrow of the Demon Slayer",
+    "nameKo": "악마 사냥용 화살",
+    "enDesc": "An arrowhead forged with Stellaris Essence by the craftsmen of Xianzhou. Used to level up Traces moderately for Hunt characters.",
+    "sources": [
+      "Calyx (Outlying Snow Plains)",
+      "Omni-Synthesizer",
+      "Arrow of the Demon Slayer"
+    ]
+  },
+  "Arrow of the Starchaser": {
+    "nameEn": "Arrow of the Starchaser",
+    "nameKo": "별 쫓는 화살",
+    "enDesc": "A shard of the Sky-Shattering Lux Arrow shot by the Reignbow Arbiter. Used to level up Traces significantly for Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt (Outlying Snow Plains)",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Tears of Dreams": {
+    "nameEn": "Tears of Dreams",
+    "nameKo": "꿈의 눈물",
+    "enDesc": "Sealed thoughts and feelings. Can substitute Path Materials when they are insufficient. The substitution ratio of Tears of Dreams varies depending on the materials' rarity.",
+    "sources": [
+      "Nameless Honor",
+      "Herta Contract: Resource Supply V2",
+      "Increase Synchronicity Level of Divergent Universe",
+      "Gift of Stardust",
+      "Mail: ''Some New Samples''"
+    ]
+  },
+  "Lupitoxin Sawteeth": {
+    "nameEn": "Lupitoxin Sawteeth",
+    "nameKo": "늑대 독 송곳니",
+    "enDesc": "Blood-sucking sharp fangs left behind during the borisins' conquests. Used to level up Traces moderately for Destruction characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Destruction",
+      "Omni-Synthesizer",
+      "Lupitoxin Sawteeth"
+    ]
+  },
+  "Borisin Teeth": {
+    "nameEn": "Borisin Teeth",
+    "nameKo": "보리인의 송곳니",
+    "enDesc": "Broken teeth fragments left behind during the borisins' conquests. Used to level up Traces slightly for Destruction characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Destruction",
+      "Omni-Synthesizer",
+      "Borisin Teeth"
+    ]
+  },
+  "Moon Rage Fang": {
+    "nameEn": "Moon Rage Fang",
+    "nameKo": "달의 광기 이빨",
+    "enDesc": "Terrifying tusks left behind during the borisins' conquests. Used to level up Traces significantly for Destruction.",
+    "sources": [
+      "Calyx (Crimson): Bud of Destruction",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Countertemporal Shot": {
+    "nameEn": "Countertemporal Shot",
+    "nameKo": "시간을 역행하는 일격",
+    "enDesc": "A spiral bullet forever going against the arrow of time, like a hound eternally chasing the immortal that defies time. Used to level up Traces significantly for The Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Destined Expiration": {
+    "nameEn": "Destined Expiration",
+    "nameKo": "숙명적인 사인",
+    "enDesc": "Embedded in the deceased's brow, piercing through the crevice of matter, this bullet forever resides where its bullet hole should be. Used to level up Traces moderately for The Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Omni-Synthesizer Material Synthesis",
+      "Destined Expiration",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Meteoric Bullet": {
+    "nameEn": "Meteoric Bullet",
+    "nameKo": "운철 탄환",
+    "enDesc": "Iron pellets forged for hunting monsters. Each one bears scratches that seem to record the number of prey that perished because of it. Used to level up Traces slightly for The Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Meteoric Bullet",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Rough Sketch": {
+    "nameEn": "Rough Sketch",
+    "nameKo": "거친 스케치",
+    "enDesc": "A Clockie sketch that outlines the shape of a dream with a few strokes. Used to level up Traces slightly for Erudition characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Erudition",
+      "Rough Sketch",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Grit of Strife": {
+    "nameEn": "Grit of Strife",
+    "nameKo": "분쟁의 혈진",
+    "enDesc": "Crimson crystal dust that Castrum Kremnos craftsmen use to coat their weapons. Slightly increases the Traces of The Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Grit of Strife",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Resin of Valor": {
+    "nameEn": "Resin of Valor",
+    "nameKo": "전혼의 혈정",
+    "enDesc": "Crimson crystal amber forged by the craftsmen of Castrum Kremnos while tempering weapons. Moderately increases the Traces of The Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Omni-Synthesizer Material Synthesis",
+      "Resin of Valor",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Lance of Retribution": {
+    "nameEn": "Lance of Retribution",
+    "nameKo": "천벌의 혈창",
+    "enDesc": "A crimson spear forged from the lives and dignity of the craftsmen of Castrum Kremnos. Greatly increases the Traces of The Hunt characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of The Hunt",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Endurance of Bronze": {
+    "nameEn": "Endurance of Bronze",
+    "nameKo": "청동의 집념",
+    "enDesc": "A crude but durable ancient hand-held bronze shield. Used to level up Traces slightly for Preservation characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Preservation",
+      "Endurance of Bronze"
+    ]
+  },
+  "Harmonic Tune": {
+    "nameEn": "Harmonic Tune",
+    "nameKo": "조화의 가락",
+    "enDesc": "A compact music box made by an unknown person. Used to level up Traces slightly for Harmony characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Harmony",
+      "Harmonic Tune"
+    ]
+  },
+  "Oath of Steel": {
+    "nameEn": "Oath of Steel",
+    "nameKo": "강철의 맹세",
+    "enDesc": "A shield forged with irreplaceable craftsmanship from an unknown alloy. Used to level up Traces moderately for Preservation characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Preservation",
+      "Omni-Synthesizer",
+      "Oath of Steel"
+    ]
+  },
+  "Safeguard of Amber": {
+    "nameEn": "Safeguard of Amber",
+    "nameKo": "앰버의 수호",
+    "enDesc": "An unusual shield embedded with ambers mined from beyond the skies. Used to level up Traces significantly for Preservation characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Preservation (Supply Zone)",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Ancestral Hymn": {
+    "nameEn": "Ancestral Hymn",
+    "nameKo": "가족의 찬가",
+    "enDesc": "A music box made by an unknown person. Used to level up Traces moderately for Harmony characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Harmony",
+      "Omni-Synthesizer",
+      "Ancestral Hymn"
+    ]
+  },
+  "Stellaris Symphony": {
+    "nameEn": "Stellaris Symphony",
+    "nameKo": "별들의 악장",
+    "enDesc": "A music box with complex structures made by an unknown person. Used to level up Traces significantly for Harmony characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Harmony (Robot Settlement)",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Obsidian of Dread": {
+    "nameEn": "Obsidian of Dread",
+    "nameKo": "어두운 흑요",
+    "enDesc": "A fragment of dark matter captured from the void. Used to level up Traces slightly for Nihility characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Nihility",
+      "Obsidian of Dread"
+    ]
+  },
+  "Obsidian of Desolation": {
+    "nameEn": "Obsidian of Desolation",
+    "nameKo": "허공의 흑요",
+    "enDesc": "A chunk of dark matter captured from the void. Used to level up Traces moderately for Nihility characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Nihility",
+      "Omni-Synthesizer",
+      "Obsidian of Desolation"
+    ]
+  },
+  "Obsidian of Obsession": {
+    "nameEn": "Obsidian of Obsession",
+    "nameKo": "타락의 흑요",
+    "enDesc": "A sizable piece of dark matter captured from the void. Used to level up Traces significantly for Nihility characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Nihility",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Fiery Spirit": {
+    "nameEn": "Fiery Spirit",
+    "nameKo": "열렬의 영혼",
+    "enDesc": "Feeble heliobus that scattered after the Flaming Catastrophe War. Used to level up Traces slightly for Nihility characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Nihility",
+      "Omni-Synthesizer",
+      "Fiery Spirit"
+    ]
+  },
+  "Starfire Essence": {
+    "nameEn": "Starfire Essence",
+    "nameKo": "불꽃의 정령",
+    "enDesc": "A mature heliobus that ran away after the Flaming Catastrophe War. Used to level up Traces moderately for Nihility characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Nihility",
+      "Omni-Synthesizer",
+      "Starfire Essence"
+    ]
+  },
+  "Heaven Incinerator": {
+    "nameEn": "Heaven Incinerator",
+    "nameKo": "천공을 불태우는 마귀",
+    "enDesc": "A beast-form heliobus that homogenized after the Flaming Catastrophe War. Used to level up Traces significantly for Nihility characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Nihility",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Firmament Note": {
+    "nameEn": "Firmament Note",
+    "nameKo": "구름 위 음표",
+    "enDesc": "Scattered note from the firmament. Used to level up Traces slightly for Harmony characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Harmony",
+      "Firmament Note",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Celestial Section": {
+    "nameEn": "Celestial Section",
+    "nameKo": "천상의 소절",
+    "enDesc": "Melodious section fallen from the heavens. Used to level up Traces moderately for Harmony characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Harmony",
+      "Omni-Synthesizer Material Synthesis",
+      "Celestial Section",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Heavenly Melody": {
+    "nameEn": "Heavenly Melody",
+    "nameKo": "천외의 악장",
+    "enDesc": "Symphonic movements from the cosmos. Used to level up Traces significantly for Harmony characters.",
+    "sources": [
+      "Calyx: The Reverie (Dreamscape)",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Divine Amber": {
+    "nameEn": "Divine Amber",
+    "nameKo": "신성한 앰버",
+    "enDesc": "The amber that rains from the Amber Lord's body when THEY swing the celestial hammer. Used to level up Traces significantly for Preservation characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Preservation",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Dynamic Outlining": {
+    "nameEn": "Dynamic Outlining",
+    "nameKo": "역동적인 선화",
+    "enDesc": "A Clockie outlint drawing that clearly depicts the silhouette of a dream upon paper. Used to level up Traces moderately for Erudition characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Erudition",
+      "Dynamic Outlining",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Exquisite Colored Draft": {
+    "nameEn": "Exquisite Colored Draft",
+    "nameKo": "정교한 컬러 원고",
+    "enDesc": "A colored drawing of Clockie that brings the dream to life with vibrant colors. Used to level up traces significantly for Erudition characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Erudition",
+      "Exquisite Colored Draft",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Tracks of Destiny": {
+    "nameEn": "Tracks of Destiny",
+    "nameKo": "운명의 발자취",
+    "enDesc": "Advanced level-up material for Traces.",
+    "sources": [
+      "Simulated Universe Point Rewards",
+      "Currency Wars Point Rewards",
+      "Nameless Honor",
+      "Tracks of Destiny",
+      "Limited-Time Event Rewards",
+      "Trailblaze Level Rewards",
+      "World Shops"
+    ]
+  },
+  "Seed of Abundance": {
+    "nameEn": "Seed of Abundance",
+    "nameKo": "풍요의 씨앗",
+    "enDesc": "A seed of blessing sown by the Aeon of Abundance. Used to level up Traces slightly for Abundance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Abundance",
+      "Seed of Abundance"
+    ]
+  },
+  "Flower of Eternity": {
+    "nameEn": "Flower of Eternity",
+    "nameKo": "영원의 꽃",
+    "enDesc": "A gorgeous flower blooming from the Sprout of Life. Used to level up Traces significantly for Abundance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Abundance (Backwater Pass)",
+      "Omni-Synthesizer"
+    ]
+  },
+  "Sprout of Life": {
+    "nameEn": "Sprout of Life",
+    "nameKo": "생명의 새싹",
+    "enDesc": "A young sprout emerging from the Seed of Abundance. Used to level up Traces moderately for Abundance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Abundance",
+      "Omni-Synthesizer",
+      "Sprout of Life"
+    ]
+  },
+  "Destroyer's Final Road": {
+    "nameEn": "Destroyer's Final Road",
+    "nameKo": "파멸자의 말로",
+    "enDesc": "Advanced level-up material for Traces.",
+    "sources": [
+      "Echo of War: Destruction's Beginning"
+    ]
+  },
+  "Guardian's Lament": {
+    "nameEn": "Guardian's Lament",
+    "nameKo": "수호자의 비원(悲願)",
+    "enDesc": "Advanced level-up material for Traces.",
+    "sources": [
+      "Echo of War: End of the Eternal Freeze"
+    ]
+  },
+  "Regret of Infinite Ochema": {
+    "nameEn": "Regret of Infinite Ochema",
+    "nameKo": "무한한 가짜의 여한",
+    "enDesc": "Advanced level-up material for Traces.",
+    "sources": [
+      "Echo of War: Divine Seed"
+    ]
+  },
+  "Past Evils of the Borehole Planet Disaster": {
+    "nameEn": "Past Evils of the Borehole Planet Disaster",
+    "nameKo": "별을 갉아먹고 재앙을 낳는 구악",
+    "enDesc": "Advanced level-up material for Traces.",
+    "sources": [
+      "Echo of War: Borehole Planet's Past Nightmares"
+    ]
+  },
+  "Alien Tree Seed": {
+    "nameEn": "Alien Tree Seed",
+    "nameKo": "이계 나무의 씨앗",
+    "enDesc": "The seed obtained from the fruit of the heart tree in the sacred Vonwacq forest, carrying the genes of various life forms. Used to level up Traces slightly for Abundance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Abundance",
+      "Alien Tree Seed",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Myriad Fruit": {
+    "nameEn": "Myriad Fruit",
+    "nameKo": "만상의 과실",
+    "enDesc": "The fruit grown on the tip of the heart tree's branch in the sacred Vonwacq forest. It contains the essence of myriad lifeforms. Used to level up Traces significantly for Abundance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Abundance",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Nourishing Honey": {
+    "nameEn": "Nourishing Honey",
+    "nameKo": "생장의 꽃꿀",
+    "enDesc": "The nectar brewed from the juice of flowers growing on the heart tree in the sacred Vonwacq forest. A honey that can accelerate the growth of life. Used to level up Traces moderately for Abundance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Abundance",
+      "Omni-Synthesizer Material Synthesis",
+      "Nourishing Honey",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Lost Echo of the Shared Wish": {
+    "nameEn": "Lost Echo of the Shared Wish",
+    "nameKo": "공동의 염원의 유음",
+    "enDesc": "Advanced level-up material for Traces.",
+    "sources": [
+      "Echo of War: Salutations of Ashen Dreams"
+    ]
+  },
+  "Auspice Sliver": {
+    "nameEn": "Auspice Sliver",
+    "nameKo": "길광편우",
+    "enDesc": "Advanced upgrade material for Traces.",
+    "sources": [
+      "Echo of War: Inner Beast's Battlefield"
+    ]
+  },
+  "Bīja of Consciousness": {
+    "nameEn": "Bīja of Consciousness",
+    "nameKo": "사량의 씨앗",
+    "enDesc": "Consciousness fuses with matter, giving rise to the embryo of memory. Used to level up Traces slightly for Remembrance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Remembrance (\"Strife Ruins\" Castrum Kremnos)",
+      "Bīja of Consciousness",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Flower of Ālaya": {
+    "nameEn": "Flower of Ālaya",
+    "nameKo": "아뢰야 꽃",
+    "enDesc": "This is another form for life to exist and a substance that the universe cannot forget. Used to level up Traces significantly for Remembrance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Remembrance (\"Strife Ruins\" Castrum Kremnos)",
+      "Omni-Synthesizer Material Synthesis",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Seedling of Manas": {
+    "nameEn": "Seedling of Manas",
+    "nameKo": "말나 새싹",
+    "enDesc": "Memory's cells extract thoughts, propagating in the heart of the inscriber. Used to level up Traces moderately for Remembrance characters.",
+    "sources": [
+      "Calyx (Crimson): Bud of Remembrance (\"Strife Ruins\" Castrum Kremnos)",
+      "Omni-Synthesizer Material Synthesis",
+      "Seedling of Manas",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Daythunder Anamnesis": {
+    "nameEn": "Daythunder Anamnesis",
+    "nameKo": "태양과 번개의 회상",
+    "enDesc": "Advanced upgrade material for Traces.",
+    "sources": [
+      "Echo of War: Glance of Twilight"
+    ]
+  },
+  "The Fluffy Hand-drawn Storyboards": {
+    "nameEn": "The Fluffy Hand-drawn Storyboards",
+    "nameKo": "≪복슬복슬호≫ 수작업 스토리보드",
+    "enDesc": "''Fluffy Across the Blue'' in its storyboard stage. Slightly increases the Traces of Elation.",
+    "sources": [
+      "Calyx (Crimson): Bud of Elation",
+      "Embers Exchange",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "The Fluffy Serialization Memorial Issue": {
+    "nameEn": "The Fluffy Serialization Memorial Issue",
+    "nameKo": "≪복슬복슬호≫ 연재 기념호",
+    "enDesc": "''Fluffy Across the Blue'' currently in magazine serialization. Moderately increases the Traces of Elation.",
+    "sources": [
+      "Calyx (Crimson): Bud of Elation",
+      "Omni-Synthesizer Material Synthesis",
+      "Embers Exchange",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "The Fluffy Collector's Edition": {
+    "nameEn": "The Fluffy Collector's Edition",
+    "nameKo": "≪복슬복슬호≫ 소장판 합본",
+    "enDesc": "''Fluffy Across the Blue'', now in published standalone volumes. Greatly increases the Traces of Elation.",
+    "sources": [
+      "Calyx (Crimson): Bud of Elation",
+      "Omni-Synthesizer Material Synthesis",
+      "Embers Exchange",
+      "Omni-Synthesizer Material Exchange"
+    ]
+  },
+  "Vanquished Flow's Reticence": {
+    "nameEn": "Vanquished Flow's Reticence",
+    "nameKo": "범람을 끊는 침묵",
+    "enDesc": "Advanced upgrade material for Traces.",
+    "sources": [
+      "Echo of War: Rusted Crypt of the Iron Carcass"
+    ]
+  }
+}

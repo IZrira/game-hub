@@ -1,0 +1,59 @@
+
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Library, Github, Search, Globe, Download } from 'lucide-react';
+import GlobalSearch from './GlobalSearch';
+import AdPlaceholder from './AdPlaceholder';
+import Footer from './Footer';
+import Navbar from './Navbar';
+import { useTranslation } from 'react-i18next';
+import '../i18n';
+
+const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const { i18n } = useTranslation(); // t 함수 제거
+
+  // 46,000건 에러 중지용 킬 스위치 등록 (임시)
+  useEffect(() => {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(console.error);
+    }
+  }, []);
+
+  const handleInstallPWA = () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(() => setDeferredPrompt(null));
+    }
+  };
+
+  const toggleLang = () => {
+    const next = i18n.language === 'ko' ? 'en' : 'ko';
+    localStorage.setItem('rira_lang', next);
+    i18n.changeLanguage(next); // 새로고침 없이 즉시 언어 변경
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col font-sans">
+      <Navbar />
+
+      <div className="max-w-[1600px] mx-auto w-full px-8 pt-32">
+        <AdPlaceholder type="leaderboard" />
+      </div>
+
+      <main className="flex-grow">
+        {children}
+      </main>
+
+      <div className="max-w-[1600px] mx-auto w-full px-8 pb-8">
+        <AdPlaceholder type="leaderboard" />
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Layout;

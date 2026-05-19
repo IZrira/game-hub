@@ -1,0 +1,218 @@
+{
+  "main": {
+    "id": "81e3d8daf52068e9",
+    "type": "split",
+    "children": [
+      {
+        "id": "9d1366ed56a4408a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "24d0fb3e420189e4",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "그래프 뷰"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "3cc4d2836bfa14b7",
+    "type": "split",
+    "children": [
+      {
+        "id": "f444874cd7417c52",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "76efecf5dd5090b5",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "파일 탐색기"
+            }
+          },
+          {
+            "id": "bd88f57ef77abd1e",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "검색"
+            }
+          },
+          {
+            "id": "f2e4d04051a3e559",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "북마크"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "02fb5b1a5ef775fb",
+    "type": "split",
+    "children": [
+      {
+        "id": "f041c1b3a65a335d",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a8ac147091749596",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "백링크"
+            }
+          },
+          {
+            "id": "53708dd173b7056d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "나가는 링크"
+            }
+          },
+          {
+            "id": "19325a533efe0778",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "태그"
+            }
+          },
+          {
+            "id": "0f2fe539c81ba0f3",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "모든 속성"
+            }
+          },
+          {
+            "id": "475659d42047fde4",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "개요"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:빠른 전환기 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 일일 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false,
+      "bases:새 베이스 생성하기": false
+    }
+  },
+  "active": "24d0fb3e420189e4",
+  "lastOpenFiles": [
+    "10_Wiki/👥 Characters/WW/denia.md",
+    "10_Wiki/👥 Characters/WW/aemeath.md",
+    "10_Wiki/👥 Characters/WW",
+    "ww-hub/data/characters/ww/aemeath.ts",
+    "patch_aemeath.py",
+    "patch_denia.py",
+    "patch.py",
+    "scratch/update_localization.py",
+    "scratch/detect_encoding.py",
+    "ww-hub/data/characters/ww/denia.ts",
+    "10_Wiki/👥 Characters/HSR/kafka.md",
+    "10_Wiki/👥 Characters/HSR/xueyi.md",
+    "10_Wiki/👥 Characters/HSR/seele.md",
+    "10_Wiki/👥 Characters/HSR/saber.md",
+    "10_Wiki/👥 Characters/HSR/archer.md",
+    "10_Wiki/👥 Characters/HSR/dahlia.md",
+    "10_Wiki/👥 Characters/HSR/evanescia.md",
+    "10_Wiki/👥 Characters/HSR/cypher.md",
+    "10_Wiki/👥 Characters/HSR/phainon.md",
+    "10_Wiki/👥 Characters/HSR/mydei.md",
+    "10_Wiki/👥 Characters/HSR/hysilens.md",
+    "10_Wiki/👥 Characters/HSR/hyacine.md",
+    "10_Wiki/👥 Characters/HSR/evernight.md",
+    "10_Wiki/👥 Characters/HSR/cyrene.md",
+    "10_Wiki/👥 Characters/HSR/cerydra.md",
+    "10_Wiki/👥 Characters/HSR/anaxa.md",
+    "10_Wiki/👥 Characters/HSR/castorice.md",
+    "10_Wiki/👥 Characters/HSR/tribbie.md",
+    "10_Wiki/👥 Characters/HSR/the-herta.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-elation.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-harmony.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-preservation.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer-destruction.md",
+    "10_Wiki/👥 Characters/HSR/trailblazer.md",
+    "10_Wiki/👥 Characters/HSR",
+    "10_Wiki/👥 Characters"
+  ]
+}
