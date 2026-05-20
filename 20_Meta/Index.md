@@ -14,7 +14,7 @@
 
 ## ⚖️ Decisions
 - [[work-log]]: 프로젝트 마일스톤 및 기술적 성과 타임라인
-- [[data-integrity-report]]: 데이터 전수 조사 결과 및 누락 항목 감사
+
 
 ## 🚀 Skills
 - [[ux-principles]]: 4대 UI 상태 처리 및 접근성 구현 지침

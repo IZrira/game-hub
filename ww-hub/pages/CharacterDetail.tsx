@@ -129,6 +129,8 @@ const CharacterDetail: React.FC = () => {
         if (cleanName !== name) {
           terms[cleanName] = t(`${key}.description`);
         }
+        const bracketedName = `「${cleanName}」`;
+        terms[bracketedName] = t(`${key}.description`);
       }
     });
 
@@ -141,6 +143,8 @@ const CharacterDetail: React.FC = () => {
         if (cleanName !== name) {
           terms[cleanName] = t(termObj.description);
         }
+        const bracketedName = `「${cleanName}」`;
+        terms[bracketedName] = t(termObj.description);
       }
     });
     

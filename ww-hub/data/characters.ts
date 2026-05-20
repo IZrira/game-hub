@@ -41,12 +41,15 @@ import galbrena from './characters/ww/galbrena';
 import lupa from './characters/ww/lupa';
 import brant from './characters/ww/brant';
 import encore from './characters/ww/encore';
+import carlotta from './characters/ww/carlotta';
 import mortefi from './characters/ww/mortefi';
+import hiyuki from './characters/ww/hiyuki';
 import chixia from './characters/ww/chixia';
-
-
+import sanhua from './characters/ww/sanhua';
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
+  carlotta,
+  hiyuki,
   chixia,
   mortefi,
   encore,
@@ -92,6 +95,6 @@ export const WW_CHARACTERS: WuwaCharacter[] = [
   luuk,
   linne,
   sigrika,
-  chisa
-
+  chisa,
+  sanhua
 ];

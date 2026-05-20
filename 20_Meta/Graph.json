@@ -9,7 +9,6 @@
     { "id": "hsr-tier-logic-summary", "label": "hsr-tier-logic-summary", "group": "Topics" },
     { "id": "competitor-roi-strategy", "label": "competitor-roi-strategy", "group": "Topics" },
     { "id": "work-log", "label": "work-log", "group": "Decisions" },
-    { "id": "data-integrity-report", "label": "data-integrity-report", "group": "Decisions" },
     { "id": "ux-principles", "label": "ux-principles", "group": "Skills" },
     { "id": "text-formatting-guide", "label": "text-formatting-guide", "group": "Skills" },
     { "id": "rover-mapping", "label": "rover-mapping", "group": "Skills" },
@@ -33,7 +32,6 @@
     { "source": "hsr-tier-logic-summary", "target": "Topics" },
     { "source": "competitor-roi-strategy", "target": "Topics" },
     { "source": "work-log", "target": "Decisions" },
-    { "source": "data-integrity-report", "target": "Decisions" },
     { "source": "ux-principles", "target": "Skills" },
     { "source": "text-formatting-guide", "target": "Skills" },
     { "source": "rover-mapping", "target": "Skills" },
@@ -47,7 +45,6 @@
     { "source": "character-detail-standard", "target": "skill-input-guide" },
     { "source": "character-detail-standard", "target": "text-formatting-guide" },
     { "source": "hsr-party-strategies", "target": "hsr-tier-logic-summary" },
-    { "source": "tier-update-standard", "target": "hsr-tier-logic-summary" },
-    { "source": "data-integrity-report", "target": "lightcone-config" }
+    { "source": "tier-update-standard", "target": "hsr-tier-logic-summary" }
   ]
 }
