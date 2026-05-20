@@ -20,9 +20,9 @@ const sanhua: WuwaCharacter = {
   },
   releaseVersion: "1.0",
   languageNames: "🇰🇷 산화 / 🇺🇸 Sanhua / 🇨🇳 散华 / 🇯🇵 散華",
-  voiceActors: "🇰🇷 유영 / 🇺🇸 제니퍼 아머 / 🇨🇳 송위안위안 / 🇯🇵 마츠다 리사에",
+  voiceActors: "🇰🇷 유영 / 🇺🇸 제니퍼 아머 / 🇨🇳 송위엔위엔 / 🇯🇵 마츠다 리사에",
   roles: [
-    { label: "빠른 협주", description: "짧은 시간에 비교적 높은 협주 효율 보유" },
+    { label: "빠른 협주", description: "짭은 시간에 비교적 높은 협주 효율 보유" },
     { label: "일반 공격 피해 부스트", description: "파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능" }
   ],
   baseStats: createWwBaseStats(
@@ -80,16 +80,13 @@ const sanhua: WuwaCharacter = {
     { rank: "R6", name: "character.sanhua.eidolons.5.name", description: "character.sanhua.eidolons.5.description", icon: "eidolon_6" }
   ],
   concertDissipation: {
+    name: "character.sanhua.concertDissipation.name",
     description: "character.sanhua.concertDissipation.description"
   },
   terms: [
     { name: "character.sanhua.terms.0.name", description: "character.sanhua.terms.0.description" },
     { name: "character.sanhua.terms.1.name", description: "character.sanhua.terms.1.description" },
-    { name: "character.sanhua.terms.2.name", description: "character.sanhua.terms.2.description" },
-    { name: "character.sanhua.terms.3.name", description: "character.sanhua.terms.3.description" },
-    { name: "character.sanhua.terms.4.name", description: "character.sanhua.terms.4.description" },
-    { name: "character.sanhua.terms.5.name", description: "character.sanhua.terms.5.description" },
-    { name: "character.sanhua.terms.6.name", description: "character.sanhua.terms.6.description" }
+    { name: "character.sanhua.terms.2.name", description: "character.sanhua.terms.2.description" }
   ],
   skillInput: {
     overview: "character.sanhua.skillInput.overview",

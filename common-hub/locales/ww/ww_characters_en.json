@@ -372,8 +372,13 @@
   "character.sanhua.eidolons.5.name": "6. Daybreak Radiance",
   "character.sanhua.eidolons.5.description": "Detonating ice structures boosts team ATK by 10% for 20s. Max 2 stacks.",
   "character.sanhua.concertDissipation.description": "When the target's \"Vibration Strength\" is depleted, trigger \"Concert Dissipation\".",
-  "character.sanhua.terms.0.name": "Detonation",
-  "character.sanhua.terms.0.description": "Detonating ice creations using Heavy Attack at the correct timing is Sanhua's core combat loop.",
+  "character.sanhua.concertDissipation.name": "Concert Dissipation: Sword",
+  "character.sanhua.terms.0.description": "Can be detonated by Heavy Attack: Detonate to deal Glacio DMG.",
+  "character.sanhua.terms.0.name": "Ice Thorn",
+  "character.sanhua.terms.1.description": "Can be detonated by Heavy Attack: Detonate to deal Glacio DMG.",
+  "character.sanhua.terms.1.name": "Ice Prism",
+  "character.sanhua.terms.2.description": "Can be detonated by Heavy Attack: Detonate to deal Glacio DMG.",
+  "character.sanhua.terms.2.name": "Glacier",
   "character.sanhua.skillInput.overview": "Create ice structures using Basic Attacks, Resonance Skills, and Resonance Liberation, then detonate them with Heavy Attack.",
   "character.sanhua.skillInput.inputs.0": "· Detonate: Release {{MOUSE_L}} when the indicator is in the designated zone"
 }
