@@ -1670,7 +1670,7 @@
   "character.sanhua.skillInput.inputs.0": "강공격 폭발: {{MOUSE_L}} 길게 눌러 「얼음 흔적」 영역에서 {{MOUSE_L}} 떼기",
   "character.sanhua.skillInput.inputs.1": "얼음 파편: 얼음 가시, 얼음 모서리 또는 빙하를 강공격·폭발로 통과",
   "character.sanhua.skillInput.inputs.2": "강공격: {{MOUSE_L}} 길게 누른 후 {{MOUSE_L}} 떼기",
-  "character.sanhua.skillInput.overview": "[공명 회로 게이지.webp]\n\n**개요**\n\n일반 공격을 길게 누를 시, 특수 에너지 위의 커서가 움직인다",
+  "character.sanhua.skillInput.overview": "개요\n\n일반 공격, 공명 스킬, 공명 해방으로 얼음 구조물을 생성하고, 강공격의 타이밍 조작을 통해 이를 폭발시켜 강력한 피해를 입힙니다.",
   "character.sanhua.skills.0.description": "**일반 공격**\n최대 5단 연속 공격을 하여 응결 피해를 가한다.\n\n**강공격**\n스태미나를 소모하여 공격을 진행하며 응결 피해를 가한다.\n\n**공중 공격**\n스태미나를 소모하여 공중 낙하 공격을 하여 응결 피해를 가한다.\n\n**회피 반격**\n==회피== 성공 후 일정 시간 동안 ==일반 공격==을 짧게 누르면 목표를 공격하고 응결 피해를 가한다",
   "character.sanhua.skills.0.name": "차가운 빛",
   "character.sanhua.skills.1.description": "응결 피해를 입히며, 검기는 1개의 「얼음 기둥」을 남긴다",
