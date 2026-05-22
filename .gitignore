@@ -7,3 +7,9 @@ node_modules/
 *.log
 .cache/
 Thumbs.db
+
+# Security & Build Artifacts
+.env
+.env.*
+dist/
+logs/
