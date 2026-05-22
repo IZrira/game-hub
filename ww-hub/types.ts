@@ -125,6 +125,7 @@ export interface WuwaWeapon extends BaseItem {
   name: string;
   rarity: number;
   type: WWWeaponType;
+  releaseVersion?: string;
   stats: {
     atk: number;
     subStatName: string;

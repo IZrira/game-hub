@@ -51,8 +51,8 @@ const GalleryWW: React.FC = () => {
   const { markAsRead } = useNoticeBadge();
 
   useEffect(() => {
-    const menuParam = searchParams.get('menu');
-    if (menuParam && menuParam !== activeMenu) setActiveMenu(menuParam);
+    const menuParam = searchParams.get('menu') || '홈';
+    if (menuParam !== activeMenu) setActiveMenu(menuParam);
     const searchParam = searchParams.get('search');
     if (searchParam !== null && searchParam !== searchQuery) setSearchQuery(searchParam);
     

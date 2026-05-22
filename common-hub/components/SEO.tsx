@@ -19,6 +19,14 @@ interface SEOProps {
   itemType?: string;      // 아이템 종류 (직검, 파멸, 유물 등)
   faqData?: Array<{ question: string; answer: string }>; // AEO를 위한 FAQ 스키마 데이터
   breadcrumbData?: BreadcrumbItem[]; // 검색엔진 경로 구조화를 위한 데이터
+  noindex?: boolean;      // 검색 노출 차단 옵션 (관리자 페이지 등 전용)
+  publishedTime?: string; // 콘텐츠 발행일 (ISO 포맷 또는 YYYY-MM-DD)
+  modifiedTime?: string;  // 콘텐츠 최종 수정일 (ISO 포맷 또는 YYYY-MM-DD)
+  isHomepage?: boolean;   // 홈페이지 여부
+  ratingValue?: number;   // 평점 별점 노출용 값 (예: 4.0, 5.0 등)
+  reviewCount?: number;   // 평점 리뷰 수
+  carouselData?: Array<{ name: string; url: string; position: number }>; // 캐러셀 목록 데이터
+  googleVerification?: string; // 구글 서치콘솔 인증 토큰
 }
 
 export default function SEO({ 
@@ -32,7 +40,15 @@ export default function SEO({
   gameCategory,
   itemType,
   faqData,
-  breadcrumbData
+  breadcrumbData,
+  noindex = false,
+  publishedTime,
+  modifiedTime,
+  isHomepage = false,
+  ratingValue,
+  reviewCount,
+  carouselData,
+  googleVerification
 }: SEOProps) {
   const { i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
@@ -43,41 +59,156 @@ export default function SEO({
   const baseUrl = "https://rira-game-hub.pages.dev";
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
-  // 구글 검색 로봇 및 AI 크롤러에게 전달할 구조화 데이터 (JSON-LD)
-  const baseSchema = {
-    "@context": "https://schema.org",
-    "@type": type === 'article' ? "Article" : "WebPage",
-    "name": name || title,
-    "headline": name || title,
-    "description": description,
-    "image": image,
-    "datePublished": "2024-05-01T00:00:00Z", // 사이트 개편 기준일
-    "dateModified": new Date().toISOString(),
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": fullUrl
-    },
-    "author": {
-      "@type": "Organization",
-      "name": "RIRA ARCHIVE",
-      "url": "https://rira-game-hub.pages.dev"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "RIRA ARCHIVE",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp"
+  // 쿼리 매개변수를 사전순으로 정렬하고 lng 파라미터를 강제/정제하는 헬퍼 함수
+  const getSortedUrl = (rawUrl: string, targetLang?: string) => {
+    try {
+      const isAbsolute = rawUrl.startsWith('http');
+      const dummyBase = "https://dummy-url-for-parsing.com";
+      const urlObj = new URL(rawUrl, isAbsolute ? undefined : dummyBase);
+      
+      // lng는 canonical/alternate를 위해 동적으로 제어하므로 일단 제거
+      urlObj.searchParams.delete('lng');
+      
+      if (targetLang) {
+        urlObj.searchParams.set('lng', targetLang);
       }
-    },
-    "about": itemType || gameCategory ? {
-      "@type": "Thing",
-      "name": gameCategory,
-      "description": itemType
-    } : undefined
+      
+      // 쿼리 파라미터를 사전 순으로 정렬하여 일관성 강제
+      urlObj.searchParams.sort();
+      
+      if (isAbsolute) {
+        return urlObj.toString();
+      } else {
+        // 상대 경로일 경우 파싱용 더미 베이스 제거하여 원본 양식 보존
+        return urlObj.pathname + urlObj.search + urlObj.hash;
+      }
+    } catch (e) {
+      return rawUrl;
+    }
   };
 
-  const schemas: any[] = [baseSchema];
+  const canonicalUrl = getSortedUrl(fullUrl, currentLang);
+  const alternateKo = getSortedUrl(fullUrl, 'ko');
+  const alternateEn = getSortedUrl(fullUrl, 'en');
+  const alternateDefault = getSortedUrl(fullUrl);
+
+  const schemas: any[] = [];
+
+  if (isHomepage) {
+    // 1. 홈페이지일 경우 WebSite 구조화 데이터 주입 (사이트 이름 및 사이트링크 검색창)
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "RIRA ARCHIVE",
+      "alternateName": ["리라 아카이브", "Rira Archive"],
+      "url": baseUrl,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${baseUrl}/gallery/hsr?search={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
+    });
+  } else {
+    // 2. 일반 페이지일 경우 기존 baseSchema (Article 또는 WebPage) 적용
+    const baseSchema = {
+      "@context": "https://schema.org",
+      "@type": type === 'article' ? "Article" : "WebPage",
+      "name": name || title,
+      "headline": name || title,
+      "description": description,
+      "image": image,
+      "datePublished": publishedTime || "2024-05-01T00:00:00Z", // 사이트 개편 기준일
+      "dateModified": modifiedTime || publishedTime || "2024-05-01T00:00:00Z", // 실제 수정일이 없으면 매번 바뀌는 현재 시간 대신 안정된 기준일 사용
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": canonicalUrl
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "RIRA ARCHIVE",
+        "url": "https://rira-game-hub.pages.dev"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "RIRA ARCHIVE",
+        "url": "https://rira-game-hub.pages.dev",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://rira-game-hub.pages.dev/logo192.png"
+        },
+        "sameAs": [
+          "https://github.com/IZrira/game-hub"
+        ]
+      },
+      "about": itemType || gameCategory ? {
+        "@type": "Thing",
+        "name": gameCategory,
+        "description": itemType
+      } : undefined
+    };
+    schemas.push(baseSchema);
+  }
+
+  // 3. 평점 별점 노출을 위한 Product 구조화 데이터 주입
+  if (ratingValue !== undefined) {
+    const cleanRating = ratingValue.toFixed(1);
+    const count = reviewCount || 1;
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": name || title,
+      "image": image,
+      "description": description,
+      "brand": {
+        "@type": "Brand",
+        "name": "RIRA ARCHIVE"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": cleanRating,
+        "bestRating": "5.0",
+        "worstRating": "1.0",
+        "ratingCount": count
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW",
+        "availability": "https://schema.org/InStock",
+        "url": canonicalUrl
+      },
+      "review": {
+        "@type": "Review",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": cleanRating,
+          "bestRating": "5.0"
+        },
+        "author": {
+          "@type": "Organization",
+          "name": "RIRA ARCHIVE"
+        },
+        "reviewBody": `${name || title} - ${description}`
+      }
+    });
+  }
+
+  // 4. 리스트 캐러셀 노출을 위한 ItemList 구조화 데이터 주입
+  if (carouselData && carouselData.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "itemListElement": carouselData.map((item) => ({
+        "@type": "ListItem",
+        "position": item.position,
+        "name": item.name,
+        "url": item.url.startsWith('http') ? item.url : `${baseUrl}${item.url}`
+      }))
+    });
+  }
 
   // AEO(Answer Engine Optimization)를 위한 FAQ 스키마 주입
   if (faqData && faqData.length > 0) {
@@ -109,25 +240,36 @@ export default function SEO({
     });
   }
 
+  // 관리자 페이지 등 인덱싱 원천 차단 시 단순 noindex 태그만 삽입
+  if (noindex) {
+    return (
+      <Helmet>
+        <title>{siteTitle}</title>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
+    );
+  }
+
   return (
     <Helmet>
       {/* 기본 메타 태그 */}
+      {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
       <title>{siteTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={fullUrl} />
+      <link rel="canonical" href={canonicalUrl} />
 
       {/* 다국어 SEO (hreflang) 설정: 실제 언어 파라미터를 포함하여 개별 색인 유도 */}
-      <link rel="alternate" hrefLang="ko" href={fullUrl.includes('?') ? `${fullUrl}&lng=ko` : `${fullUrl}?lng=ko`} />
-      <link rel="alternate" hrefLang="en" href={fullUrl.includes('?') ? `${fullUrl}&lng=en` : `${fullUrl}?lng=en`} />
-      <link rel="alternate" hrefLang="x-default" href={fullUrl} />
+      <link rel="alternate" hrefLang="ko" href={alternateKo} />
+      <link rel="alternate" hrefLang="en" href={alternateEn} />
+      <link rel="alternate" hrefLang="x-default" href={alternateDefault} />
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={siteTitle} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
-      <meta property="og:url" content={fullUrl} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content={siteName} />
       {/* 가이드 권장 사이즈 및 포맷 명시 */}
       <meta property="og:image:width" content="1200" />
@@ -138,12 +280,13 @@ export default function SEO({
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta property="og:locale" content={locale} />
       
-      {/* 업데이트 일자 표기 (네이버 최신성 점수 가산점용) */}
-      <meta property="article:published_time" content={new Date().toISOString()} />
+      {/* 업데이트 일자 표기 (구글/네이버 최신성 가산점용) */}
+      {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+      {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 
       {/* Twitter Card */}
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:url" content={fullUrl} />
+      <meta name="twitter:url" content={canonicalUrl} />
       <meta name="twitter:title" content={siteTitle} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />

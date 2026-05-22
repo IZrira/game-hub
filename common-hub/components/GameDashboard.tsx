@@ -66,14 +66,17 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
     
     // 2. 광추 / 무기 매핑 수정 (운명의 길 폴더 경로 추가 및 WW 데이터 분리)
     ...(game.id === 'ww' 
-      ? [...WEAPON_DATA].reverse().slice(0, 3).map(w => ({
-          id: w.id,
-          name: w.name,
-          type: '무기',
-          rarity: w.rarity,
-          image: `${CDN_URL}/ww%20images/Weapons/${safeEncodeURIComponent(w.name || '')}.webp`,
-          link: `/gallery/ww/weapon/${encodeURIComponent(w.name)}`
-        }))
+      ? [...(WEAPON_DATA || [])]
+          .sort((a, b) => parseFloat(b.releaseVersion || '1.0') - parseFloat(a.releaseVersion || '1.0'))
+          .slice(0, 3)
+          .map(w => ({
+              id: w.id,
+              name: w.name,
+              type: '무기',
+              rarity: w.rarity,
+              image: `${CDN_URL}/ww%20images/Weapons/${safeEncodeURIComponent(w.name || '')}.webp`,
+              link: `/gallery/ww/weapon/${encodeURIComponent(w.name)}`
+            }))
       : LIGHTCONE_DB.filter(lc => lc.gameId === game.id).slice(0, 3).map((lc: any) => {
           const targetName = lc.fileName || lc.folderName || lc.name;
           return {

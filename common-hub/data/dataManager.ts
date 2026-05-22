@@ -49,6 +49,7 @@ export const getGameData = (targetId: string) => {
     baseData = {
       CHARACTER_DB: wwData.CHARACTER_DB,
       WEAPON_DB: wwData.WEAPON_DB,
+      WEAPON_DATA: wwData.WEAPON_DB,
       ECHO_DB: wwData.ECHO_DB,
       WW_INVENTORY: wwData.INVENTORY_DB,
       INVENTORY_DB: wwData.INVENTORY_DB,
@@ -61,6 +62,7 @@ export const getGameData = (targetId: string) => {
       CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
       WEAPON_DB: wwData.WEAPON_DB, // 명조 무기 복구
+      WEAPON_DATA: wwData.WEAPON_DB,
       ECHO_DB: wwData.ECHO_DB,     // 명조 에코 복구
       RELIC_DB: hsrData.RELIC_DB,
       ORNAMENT_DB: hsrData.ORNAMENT_DB,

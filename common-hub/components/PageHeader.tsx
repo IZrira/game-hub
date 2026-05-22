@@ -84,7 +84,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
           {/* 게임 이름 (스타레일 / 명조) */}
           {gameId && (
             <>
-              <Link to={`/gallery/${gameId}`} className="hover:text-brand-accent transition-colors shrink-0">
+              <Link to={`/gallery/${gameId}?menu=홈`} className="hover:text-brand-accent transition-colors shrink-0">
                 {t(GAME_NAME_KEYS[gameId] || gameId)}
               </Link>
               <ChevronRight size={10} className="shrink-0" />

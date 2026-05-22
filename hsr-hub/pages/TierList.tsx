@@ -285,6 +285,22 @@ const TierList: React.FC = () => {
     })).filter(group => group.tier !== '?' || group.characters.length > 0);
   }, [activeCategory, roleFilter, searchQuery, liveData, allCharacters]);
 
+  const carouselData = useMemo(() => {
+    let position = 1;
+    const items: Array<{ name: string; url: string; position: number }> = [];
+    filteredTierList.forEach(group => {
+      group.characters.forEach(char => {
+        if (items.some(i => i.name === char.name)) return;
+        items.push({
+          name: char.name,
+          url: `/gallery/${gameId}/character/${char.name}`,
+          position: position++
+        });
+      });
+    });
+    return items.slice(0, 30);
+  }, [filteredTierList, gameId]);
+
   const getIconUrl = (char: any) => {
     const folder = char.folderName || char.name;
     if (!folder) return '';
@@ -296,7 +312,11 @@ const TierList: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24">
-      <SEO title="붕괴: 스타레일 티어표" description="최신 메타 분석 가이드" />
+      <SEO 
+        title="붕괴: 스타레일 티어표" 
+        description="최신 메타 분석 가이드" 
+        carouselData={carouselData}
+      />
       <PageHeader gameId={gameId} title="종합 메타 랭킹" />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">

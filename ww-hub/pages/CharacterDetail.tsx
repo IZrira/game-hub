@@ -41,6 +41,27 @@ import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetMan
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80, 90];
 
+const VERSION_UPDATES: Record<string, string> = {
+  "1.0": "2024-05-23",
+  "1.1": "2024-06-28",
+  "1.2": "2024-08-15",
+  "1.3": "2024-09-29",
+  "1.4": "2024-11-14",
+  "1.5": "2024-12-26",
+  "2.0": "2025-01-02",
+  "2.1": "2025-02-13",
+  "2.2": "2025-03-27",
+  "2.3": "2025-05-08",
+  "2.4": "2025-06-19",
+  "2.5": "2025-07-31",
+  "2.6": "2025-10-12",
+  "3.0": "2025-11-20",
+  "3.1": "2026-01-01",
+  "3.2": "2026-02-12",
+  "3.3": "2026-05-23",
+};
+
+
 const Flag: React.FC<{ code: string }> = ({ code }) => (
   <img src={`https://flagcdn.com/w20/${code}.png`} alt={code} className="inline-block w-4 h-3 object-cover rounded-sm mr-1.5" />
 );
@@ -89,6 +110,8 @@ const CharacterDetail: React.FC = () => {
     }
     return rawChar;
   }, [rawChar, isASMode]);
+
+  const lastUpdatedDate = char ? (VERSION_UPDATES[char.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 
   const theme = useMemo(() => {
     if (!char) return { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
@@ -434,7 +457,10 @@ const CharacterDetail: React.FC = () => {
         url={`/gallery/${gameId}/character/${char.id}`}
         gameCategory={t('명조 (Wuthering Waves)')}
         itemType={t((char as any).weaponType)}
+        modifiedTime={lastUpdatedDate}
         faqData={faqData}
+        ratingValue={char.rarity}
+        reviewCount={1}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: `/gallery/${gameId}` },
@@ -743,6 +769,13 @@ const CharacterDetail: React.FC = () => {
               {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
             </div>
           </div>
+          {char && (
+            <div className="mt-4 flex justify-end">
+              <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+                {t('최종 업데이트')} : {lastUpdatedDate} (v{char.releaseVersion || '1.0'})
+              </p>
+            </div>
+          )}
         </section>
       </div>
     </div>

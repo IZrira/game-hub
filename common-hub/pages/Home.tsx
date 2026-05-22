@@ -47,6 +47,9 @@ const Home: React.FC = () => {
       <SEO 
         title={t('리라 아카이브 | 스타레일 & 명조 고밀도 전략 데이터베이스')} 
         description="리라 아카이브는 붕괴: 스타레일, 명조 등 서브컬쳐 게임의 고밀도 데이터와 심층 분석을 제공하는 프리미엄 전략 가이드입니다. 최신 메타와 티어표, 육성 가이드를 확인하세요."
+        isHomepage={true}
+        name="RIRA ARCHIVE"
+        googleVerification={import.meta.env.VITE_GOOGLE_VERIFICATION}
       />
       {/* Background Grid/Matrix Effect */}
       <div className="fixed inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #333 1px, transparent 0)', backgroundSize: '40px 40px' }} />

@@ -142,6 +142,22 @@ const TierList: React.FC = () => {
     });
   }, [activeCategory, roleFilter, searchQuery]);
 
+  const carouselData = useMemo(() => {
+    let position = 1;
+    const items: Array<{ name: string; url: string; position: number }> = [];
+    filteredTierList.forEach(group => {
+      group.characters.forEach(char => {
+        if (items.some(i => i.name === char.name)) return;
+        items.push({
+          name: char.name,
+          url: `/gallery/${gameId || 'ww'}/character/${char.name}`,
+          position: position++
+        });
+      });
+    });
+    return items.slice(0, 30);
+  }, [filteredTierList, gameId]);
+
   const getIconUrl = (char: TierCharacter) => {
     const folder = char.folderName || char.name;
     return encodeURI(`${BASE_IMAGE_URL}/characters/${folder.normalize('NFC')}/art01.webp`);
@@ -152,6 +168,7 @@ const TierList: React.FC = () => {
       <SEO 
         title="명조: 워더링 웨이브 티어표" 
         description="최신 메타 분석을 통한 명조: 워더링 웨이브 캐릭터 티어표입니다."
+        carouselData={carouselData}
       />
       <PageHeader gameId={gameId} category={t("티어표")} title={t("종합 메타 랭킹")} />
 

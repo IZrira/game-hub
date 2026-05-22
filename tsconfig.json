@@ -29,5 +29,12 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "noEmit": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "dist",
+    "40_템플릿",
+    "production_artifacts",
+    "scratch"
+  ]
 }

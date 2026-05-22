@@ -8,6 +8,7 @@ import HSR_CHARACTERS from '../../hsr-hub/data/characters.json';
 import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
 import { HSR_NOTICES } from '../../hsr-hub/data/notices';
 import { WW_NOTICES } from '../../ww-hub/data/notices';
+import SEO from '../components/SEO';
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -371,6 +372,7 @@ const AdminDashboard: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#080808] text-white p-6 md:p-12 font-sans selection:bg-amber-500/30">
+      <SEO title="관리자 대시보드" noindex={true} />
       <div className="max-w-[1600px] mx-auto space-y-10">
         {/* 헤더 섹션 */}
         <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 bg-[#111] p-10 rounded-[48px] border border-white/5 shadow-2xl relative overflow-hidden group">

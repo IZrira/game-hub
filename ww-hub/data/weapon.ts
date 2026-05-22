@@ -5,6 +5,7 @@ export interface WuwaWeapon {
   name: string;
   rarity: 1 | 2 | 3 | 4 | 5;
   type: WuwaWeaponType;
+  releaseVersion?: string;
   stats: {
     atk: number;     // 90레벨 기준 공격력
     subStatName: string; 

@@ -57,8 +57,8 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Supported Sectors</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-500">
-              <li><a href="https://hsr.hoyoverse.com/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors">Honkai: Star Rail ↗</a></li>
-              <li><a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer" className="hover:text-brand-primary transition-colors">Wuthering Waves ↗</a></li>
+              <li><a href="https://hsr.hoyoverse.com/" target="_blank" rel="noopener noreferrer nofollow" className="hover:text-brand-primary transition-colors">Honkai: Star Rail ↗</a></li>
+              <li><a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer nofollow" className="hover:text-brand-primary transition-colors">Wuthering Waves ↗</a></li>
               <li className="opacity-30 cursor-not-allowed italic">Next Project Encrypted...</li>
             </ul>
           </div>

@@ -45,10 +45,13 @@ const BROADBLADES: WuwaWeapon[] = [
     description: "허공에 나타난 진홍빛 실은 마치 모든 존재의 골격을 하나의 현으로 꿰어 놓은 듯하다. 끝없이 이어지던 긴 계절은 그녀의 손끝에서 팽팽히 당겨져, 재단되어 다시 엮였고, 산산이 흩어진 궤적도 마침내 이 시간선으로 다시 모여들었다"
   },
   {
-    id: "wp-5-bb-08", name: "별하늘 연산 측정기", rarity: 5, type: "대검",
-    stats: { atk: 412, subStatName: "공명 효율", subStatValue: "77.0%" },
-    skill: { name: "운명의 해답", description: "방어력이 16%/20%/24%/28%/32% 증가된다. 공명 스킬 발동 시, 자신의 협주 에너지를 8pt/10pt/12pt/14pt/16pt 회복하며, 20초마다 1회 발생할 수 있다. 치료 효과 발동 시, 근처 파티 내 모든 캐릭터의 크리티컬 피해를 20%/25%/30%/35%/40% 증가시키며, 4초간 지속된다. 같은 이름의 효과는 중첩이 불가하다" },
-    description: "모든 법칙은 관측 가능하고, 모든 현상은 해석 가능하다. 수만 광년 너머에 있는 이상에, 두 손이 닿을 수 있듯이"
+    id: "wp-5-bb-08", name: "별하늘 연산 측정기", rarity: 5, type: "대검", releaseVersion: "3.0",
+    stats: { atk: 413, subStatName: "공명 효율", subStatValue: "77%" },
+    skill: { 
+      name: "적막", 
+      description: "방어력이 16%/20%/24%/28%/32% 증가된다. 공명 스킬 발동 시, 자신의 협주 에너지를 8pt/10pt/12pt/14pt/16pt 회복하며, 20초마다 1회 발생할 수 있다. 치료 효과 발동 시, 근처 파티 내 모든 캐릭터의 크리티컬 피해를 20%/25%/30%/35%/40% 증가시키며, 4초간 지속된다. 같은 이름의 효과는 중첩이 불가하다" 
+    },
+    description: "모든 법칙은 관측 가능하고, 모든 현상은 해석 가능하다.\n\n수만 광년 너머에 있는 이상에, 두 손이 닿을 수 있듯이"
   },
   { id: "wp-3-bb-01", name: "장야의 불빛", rarity: 3, type: "대검", stats: { atk: 337, subStatName: "방어력", subStatValue: "61.5%" }, skill: { name: "만반의 준비", description: "변주 스킬 발동 시, 자신의 공격력이 8%/10%/12%/14%/16% 증가하고, 방어력이 15%/18.75%/22.5%/26.25%/30% 증가하며, 15초간 지속된다" }, description: "야귀군을 위해 특별히 제작된 대검. 야귀 전사의 꾸준한 양성에 대한 신념을 담고 있다. 한 시에서는 이를 「끝없이 긴 가을밤에, 서러운 바람이 쌩쌩 불고, 희미한 별빛 아래, 출정 준비를 마쳤다.」라고 찬양한다" },
   { id: "wp-3-bb-02", name: "기묘한 울림", rarity: 3, type: "대검", stats: { atk: 337, subStatName: "공명 효율", subStatValue: "51.8%" }, skill: { name: "끝없는 메아리", description: "공명 스킬 발동 시, 협주 에너지 8/10/12/14/16pt를 회복하며, 20초마다 1번 발생할 수 있다" }, description: "악보의 주파수를 영감으로 제작한 대검이다. 음계가 내려앉은 칼을 들면 굉음의 힘으로 전장을 지배할 것이며, 가작은 영원히 막을 내리지 않을 것이다" },
@@ -69,6 +72,15 @@ const BROADBLADES: WuwaWeapon[] = [
 
 // --- 2. 직검 (Sword) ---
 const SWORDS: WuwaWeapon[] = [
+  {
+    id: "wp-5-sw-10", name: "서린 불꽃", rarity: 5, type: "직검", releaseVersion: "3.3",
+    stats: { atk: 500, subStatName: "크리티컬", subStatValue: "36%" },
+    skill: { 
+      name: "적막", 
+      description: "공격력이 12%/15%/18%/21%/24% 증가된다. 불꽃 효과 혹은 조화 밀집 · 이탈 추가 후, 공명 해방 피해 보너스가 36%/45%/54%/63%/72% 증가되고 5초간 지속된다. 해당 효과 적용 기간 동안, 파티 내 캐릭터가 불꽃 효과 혹은 조화 밀집 · 이탈 추가 후, 해당 캐릭터의 공격력이 24%/30%/36%/42%/48% 증가되고 15초간 지속된다. 같은 이름의 효과는 중첩이 불가하다" 
+    },
+    description: "꿈은 거품처럼 사라지고, 고요한 작은별만 홀로 남았다.\n\n그럼에도, 한때 우주를 밝혔던 그 찬란한 빛은 조금도 바래지 않았다.\n\n그녀는 조용히 기다린다. 빌려온 빛을 주계열성에게 돌려줄 순간을"
+  },
   {
     id: "wp-5-sw-01", name: "천년의 회류", rarity: 5, type: "직검",
     stats: { atk: 587, subStatName: "크리티컬", subStatValue: "24.3%" },
@@ -244,12 +256,21 @@ const RECTIFIERS: WuwaWeapon[] = [
   { id: "wp-5-rc-05", name: "광휘의 찬송가", rarity: 5, type: "증폭기", stats: { atk: 500, subStatName: "크리티컬", subStatValue: "36.0%" }, skill: { name: "단결자의 찬가", description: "공격력이 12%/15%/18%/21%/24% 증가된다. 「광학 효과」가 있는 목표에게 피해를 입힐 시, 자신의 일반 공격, 강공격 피해 보너스 증가. 반주 스킬 발동 시 「광학 효과」피해 부스트" }, description: "자애로운 수호신의 은혜 덕분에, 새 보금자리를 찾게 되었다. 사랑으로 단결을 이뤄 파도를 헤치고, 마침내 신성한 광채가 면류관으로 변했다" },
   { id: "wp-5-rc-06", name: "바다의 속삭임", rarity: 5, type: "증폭기", stats: { atk: 500, subStatName: "크리티컬 피해", subStatValue: "72.0%" }, skill: { name: "바닷속에서", description: "공격력이 12%/15%/18%/21%/24% 증가된다. 변주 스킬 혹은 일반 공격 발동 후 10초 내에, 에코 어빌리티 발동 시, 「부드러운 꿈」 1스택 획득. 1스택당 일반공격 피해 보너스 및 인멸 속성 저항 무시" }, description: "바다에서 누군가는 별을 보고, 누군가는 달을 건져내며, 또 다른 누군가는 수많은 속삭임을 듣는다. 그 속삭임들은 그녀의 독에 스며들어, 휘어진 강줄기를 타고 흘러간다. 마지막엔 마치 해파리 양산처럼, 바다처럼 그녀를 감싸 안는다" },
   { id: "wp-5-rc-07", name: "잊혀진 피안의 슬픈 악장", rarity: 5, type: "증폭기", stats: { atk: 587, subStatName: "크리티컬", subStatValue: "24.3%" }, skill: { name: "진혼곡", description: "공격력이 12%/15%/18%/21%/24% 증가된다. 에코 어빌리티 피해를 입힌 후 12초 내에, 공명 스킬 피해 보너스 및 에코 피해 부스트, 방어력 무시 효과 획득" }, description: "나는 그곳에 있지 않아, 죽었다고 생각하지 마. 난 죽음을 쫓으며 쾌락으로 공포를 가리고 미래로 과거를 맞바굴 거야" },
+  {
+    id: "wp-5-rc-08", name: "위조된 작은별", rarity: 5, type: "증폭기", releaseVersion: "3.3",
+    stats: { atk: 500, subStatName: "크리티컬", subStatValue: "36%" },
+    skill: { 
+      name: "적막", 
+      description: "공격력이 12%/15%/18%/21%/24% 증가된다. 불꽃 효과 혹은 조화 밀집 · 이탈 추가 후, 공명 해방 피해 보너스가 36%/45%/54%/63%/72% 증가되고 5초간 지속된다. 해당 효과 적용 기간 동안, 파티 내 캐릭터가 불꽃 효과 혹은 조화 밀집 · 이탈 추가 후, 해당 캐릭터의 공격력이 24%/30%/36%/42%/48% 증가되고 15초간 지속된다. 같은 이름의 효과는 중첩이 불가하다" 
+    },
+    description: "꿈은 거품처럼 사라지고, 고요한 작은별만 홀로 남았다.\n\n그럼에도, 한때 우주를 밝혔던 그 찬란한 빛은 조금도 바래지 않았다.\n\n그녀는 조용히 기다린다. 빌려온 빛을 주계열성에게 돌려줄 순간을"
+  },
   { id: "wp-4-rc-02", name: "금주의 수호", rarity: 4, type: "증폭기", stats: { atk: 387, subStatName: "공격력", subStatValue: "36.4%" }, skill: { name: "전사의 충정", description: "변주 스킬 발동 시, 자신의 공격력이 8%/10%/12%/14%/16% 증가하고, HP가 10%/12.5%/15%/17.5%/20% 증가하며, 15초간 지속된다" }, description: "야귀군을 위해 특별히 제작된 증폭기. 야귀 전사의 금주 수호의 의지가 담겨있다. 한 시에서는 이를「어두운 밤 자욱한 안개비가 흩날리고 있으니 호성 황석령의 북쪽 하늘을 뒤덮는구나!」라고 찬양한다" },
   { id: "wp-3-rc-01", name: "판타지 변주", rarity: 3, type: "증폭기", stats: { atk: 337, subStatName: "공명 효율", subStatValue: "51.8%" }, skill: { name: "끝없는 메아리", description: "공명 스킬 발동 시, 협주 에너지 8/10/12/14/16pt를 회복하며, 20초마다 1회 발생할 수 있다" }, description: "공명이 내려앉는 무기를 손에 쥐고 모든 것을 꿰뚫어 전략을 찾으니 협주의 변화가 일어난다" },
   { id: "wp-4-rc-03", name: "굉음", rarity: 4, type: "증폭기", stats: { atk: 412, subStatName: "HP", subStatValue: "30.3%" }, skill: { name: "빛의 비호", description: "일반 공격이나 강공격을 사용하여 피해를 입힐 경우, 치료 효과 보너스가 3%/3.5%/4%/4.5%/5% 증가하고, 8초간 지속되며, 최대 3스택 중첩이 가능하다" }, description: "공기 중의 이상현상으로 탄생한 증폭기. 제작자는 이상한 별을 본 느낌을 무기에 녹여, 그것을 가볍고 세련되게 보이게 했지만, 안정적이고 지속적이며, 적응할 수 있게 했다" },
   { id: "wp-4-rc-04", name: "융합의 원반", rarity: 4, type: "증폭기", stats: { atk: 462, subStatName: "공격력", subStatValue: "18.2%" }, skill: { name: "피안의 눈동자", description: "공명 스킬 발동 시, 공명 에너지를 6/7/8/9/10pt 획득하고, 공격력이 10%/12.5%/15%/17.5%/20% 증가하며, 16초간 지속된다" }, description: "검은 해안이 베테랑 전투원을 위해 개발한 실험용 무기로, 블레이자의 죄에서 이름을 지은 증폭기. 「블레이자」는 특수 천체의 이름으로서, 뿜어내는 빛은 오로지 이곳만을 향하고 있어 백억 광년의 거리를 두고서도 그것들의 흔적을 관측할 수 있다" },
   { id: "wp-4-rc-05", name: "청음", rarity: 4, type: "증폭기", stats: { atk: 412, subStatName: "크리티컬", subStatValue: "20.2%" }, skill: { name: "강유병존", description: "공명 해방 발동 시, 자신의 공격력이 15%/23.25%/31.5%/39.75%/48% 증가하고, 15초간 지속된다" }, description: "이 증폭기는 황룡 1주(州)의 영윤이 취임식에서 사용한 의식 무기로, 금색 은행잎 무늬는 황룡이 은행나무처럼 오래도록 번영하기를 기원하는 의미를 담고 있다" },
-  { id: "wp-4-rc-06", name: "눈부신 빛", rarity: 4, type: "증폭기", stats: { atk: 412, subStatName: "크리티컬 피해", subStatValue: "40.5%" }, skill: { name: "흑조(黑潮) 사냥의 맹세", description: "공명 스킬 발동 시, 공격력과 일반 공격 피해 보너스가 9%/13.9%/18.9%/23.8%/28.8% 증가되고 10초간 지속된다" }, description: "일곱 언덕이 걸출한 검투사에게 수여하는 증폭기. 무기에 조각된 문양은 그리펙을 모티브로 디자인되었다. 그리펙은 타고난 사냥꾼이자 일곱 언덕 사람이 이 땅에서 만난 최초의 파트너이기도 하다" },
+  { id: "wp-4-rc-06", name: "눈부신 빛", rarity: 4, type: "증폭기", releaseVersion: "2.6", stats: { atk: 413, subStatName: "크리티컬 피해", subStatValue: "40.5%" }, skill: { name: "흑조(黑潮) 사냥의 맹세", description: "공명 스킬 발동 시, 공격력과 일반 공격 피해 보너스가 9%/13.9%/18.9%/23.8%/28.8% 증가되고 10초간 지속된다" }, description: "일곱 언덕이 걸출한 검투사에게 수여하는 증폭기. 무기에 조각된 문양은 그리펙을 모티브로 디자인되었다. 그리펙은 타고난 사냥꾼이자 일곱 언덕 사람이 이 땅에서 만난 최초의 파트너이기도 하다. 이 우정은 글로 표현할 필요가 없으며, 세월이 흘러도 결코 흐려지지 않는 고결한 태양처럼 찬란하게 빛난다" },
   { id: "wp-4-rc-07", name: "25형 증폭기 · 울림의 멜로디", rarity: 4, type: "증폭기", stats: { atk: 337, subStatName: "공명 효율", subStatValue: "51.8%" }, skill: { name: "새로운 법칙", description: "공명 스킬 발동 시, 캐릭터의 HP가 60% 이하일 경우 HP 회복. 캐릭터의 HP가 60% 이상일 경우 공격력이 12%/15%/18%/21%/24% 증가하며, 10초간 지속" }, description: "화서연구원이 이전의 원능 무기를 기반으로 개발한 첫 번째 실용적인 고성능 증폭기. 연구원의 다양성과 혁신을 대표한다" },
   { id: "wp-4-rc-08", name: "허위의 왈츠", rarity: 4, type: "증폭기", stats: { atk: 462, subStatName: "공격력", subStatValue: "18.2%" }, skill: { name: "수식", description: "「이상 효과」가 있는 몬스터에게 피해를 입힐 시, 자신의 공격력이 4%/5%/6%/7%/8% 증가하며, 10초간 지속" }, description: "무기의 디자인은 연극 「허위의 왈츠」에서 영감을 받았다. 형식일 뿐 본질이 없는 왈츠, 그의 웅장한 교향악은 귓가에 들리는 음모와 속삭임을 덮고, 휘날리는 치맛자락은 몰래 교환된 문서와 서신을 가린다" },
   { id: "wp-3-rc-02", name: "심해의 메아리", rarity: 3, type: "증폭기", stats: { atk: 337, subStatName: "공명 효율", subStatValue: "51.8%" }, skill: { name: "은하수 조망", description: "공명 해방 발동 시, 자신의 치료효과 보너스가 16%/20%/24%/28%/32% 증가하며, 15초간 지속된다" }, description: "위대한 창작물을 조종하는 권력의 도구, 그것을 지키는 이 역시 한때 왕관을 쥐고 별들을 지배하던 자였다. 오르간 소리가 울려 퍼지는 리나시타의 긴 세월 속에서, 그것은 이미 본래의 모습을 잃어버렸다" },
@@ -263,10 +284,22 @@ const RECTIFIERS: WuwaWeapon[] = [
 ];
 
 // --- 최종 데이터 통합 및 Export ---
-export const WEAPON_DATA: WuwaWeapon[] = [
+const ALL_WEAPONS: WuwaWeapon[] = [
   ...BROADBLADES,
   ...SWORDS,
   ...PISTOLS,
   ...GAUNTLETS,
   ...RECTIFIERS
 ];
+
+export const WEAPON_DATA: WuwaWeapon[] = [...ALL_WEAPONS].sort((a, b) => {
+  const vA = parseFloat(a.releaseVersion || '1.0');
+  const vB = parseFloat(b.releaseVersion || '1.0');
+  if (vA !== vB) return vB - vA;
+
+  const rA = a.rarity || 0;
+  const rB = b.rarity || 0;
+  if (rA !== rB) return rB - rA;
+
+  return (a.name || '').localeCompare(b.name || '');
+});

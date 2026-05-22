@@ -1,4 +1,7 @@
 User-agent: *
+Disallow: /scratch/
+Disallow: /_company/
+Disallow: /supabase/
 Allow: /
 
 Sitemap: https://rira-game-hub.pages.dev/sitemap.xml
