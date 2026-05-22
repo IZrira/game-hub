@@ -47,6 +47,8 @@ import hiyuki from './characters/ww/hiyuki';
 import chixia from './characters/ww/chixia';
 import sanhua from './characters/ww/sanhua';
 import youhu from './characters/ww/youhu';
+import lingyang from './characters/ww/lingyang';
+import baizhi from './characters/ww/baizhi';
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
   carlotta,
@@ -98,5 +100,7 @@ export const WW_CHARACTERS: WuwaCharacter[] = [
   sigrika,
   chisa,
   sanhua,
-  youhu
+  youhu,
+  lingyang,
+  baizhi
 ];
