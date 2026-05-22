@@ -1,0 +1,61 @@
+{
+  "id": "lingyang",
+  "name": {
+    "ko": "능양",
+    "en": "Lingyang",
+    "zh": "凌阳",
+    "ja": "凌陽"
+  },
+  "rarity": 5,
+  "element": "응결",
+  "weapon": "권갑",
+  "affiliation": "금주",
+  "version": "1.0",
+  "briefInfo": {
+    "ko": "능양은 건장한 체격으로 주위 일정 범위 내에 냉혹한 투기와 저온 자기장을 생성하여 적에게 위압을 준다. 또한 사자춤의 북소리에 맞춰 권법을 사용하는데, 한 수 한 수가 역동적이고 힘이 있어 위풍당당하다.",
+    "en": "Lingyang has a robust build, generating icy fighting spirit and low-temperature magnetic fields within a certain area around him to awe enemies. He uses fist techniques to the beat of lion dance drums, with each move dynamic and powerful, exuding majesty."
+  },
+  "roles": [
+    { "label": "메인 딜러", "description": "비교적 강한 피해 부여 가능" }
+  ],
+  "voiceActors": {
+    "ko": "이상호",
+    "en": "알렉산더 바라디안",
+    "zh": "진리",
+    "ja": "하나에 나츠키"
+  },
+  "baseStats": [
+    { "level": 1, "hp": 831, "atk": 35, "def": 99, "crit": 0 },
+    { "level": 20, "hp": 2162, "atk": 91, "def": 254, "crit": 0 },
+    { "level": 30, "hp": 3416, "atk": 147, "def": 400, "crit": 0 },
+    { "level": 40, "hp": 4116, "atk": 176, "def": 481, "crit": 0 },
+    { "level": 50, "hp": 5370, "atk": 232, "def": 627, "crit": 0 },
+    { "level": 60, "hp": 6625, "atk": 288, "def": 773, "crit": 0 },
+    { "level": 70, "hp": 7879, "atk": 344, "def": 919, "crit": 0 },
+    { "level": 80, "hp": 9133, "atk": 391, "def": 1064, "crit": 0 },
+    { "level": 90, "hp": 10388, "atk": 438, "def": 1210, "crit": 0 }
+  ],
+  "materials": {
+    "ascension": [
+      { "name": "클램 코인", "count": 170000 },
+      { "name": "저주파수 의음 성핵", "count": 4, "rarity": 2 },
+      { "name": "중주파수 의음 성핵", "count": 12, "rarity": 3 },
+      { "name": "고주파수 의음 성핵", "count": 12, "rarity": 4 },
+      { "name": "전주파수 의음 성핵", "count": 4, "rarity": 5 },
+      { "name": "음향의 성핵", "count": 46, "rarity": 4 },
+      { "name": "구름버섯", "count": 60, "rarity": 1 }
+    ],
+    "traces": [
+      { "name": "클램 코인", "count": 2030000 },
+      { "name": "저주파수 의음 성핵", "count": 25, "rarity": 2 },
+      { "name": "중주파수 의음 성핵", "count": 28, "rarity": 3 },
+      { "name": "고주파수 의음 성핵", "count": 40, "rarity": 4 },
+      { "name": "전주파수 의음 성핵", "count": 57, "rarity": 5 },
+      { "name": "끊임없는 파괴", "count": 26, "rarity": 4 },
+      { "name": "음률의 배주", "count": 28, "rarity": 2 },
+      { "name": "음률의 새싹", "count": 28, "rarity": 3 },
+      { "name": "음률의 새잎", "count": 55, "rarity": 4 },
+      { "name": "음률의 꽃망울", "count": 67, "rarity": 5 }
+    ]
+  }
+}

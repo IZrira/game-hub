@@ -1,0 +1,61 @@
+{
+  "id": "baizhi",
+  "name": {
+    "ko": "설지",
+    "en": "Baizhi",
+    "zh": "白芷",
+    "ja": "白芷"
+  },
+  "rarity": 5,
+  "element": "응결",
+  "weapon": "증폭기",
+  "affiliation": "금주",
+  "version": "1.0",
+  "briefInfo": {
+    "ko": "간절한 신념에서 탄생한 「우담」은, 설지의 내면과 연결되어 그녀의 갈망이 있을 때마다 그 모습을 드러낸다. 상처를 치유하고 죽어 가는 사람을 회복시키려는 그녀의 갈망이 차가운 빙하를 건너 그의 응답을 받았다.",
+    "en": "Born from earnest conviction, 'You'tan' is connected with Baizhi's inner self, revealing its form whenever she desires. Her yearning to heal wounds and revive the dying crossed the cold glacier and received his response."
+  },
+  "roles": [
+    { "label": "메인 딜러", "description": "비교적 강한 피해 부여 가능" }
+  ],
+  "voiceActors": {
+    "ko": "성예원",
+    "en": "서맨사 데이킨",
+    "zh": "천팅팅",
+    "ja": "세토 아사미"
+  },
+  "baseStats": [
+    { "level": 1, "hp": 1025, "atk": 17, "def": 82, "crit": 0 },
+    { "level": 20, "hp": 2666, "atk": 44, "def": 210, "crit": 0 },
+    { "level": 30, "hp": 4213, "atk": 71, "def": 331, "crit": 0 },
+    { "level": 40, "hp": 5077, "atk": 86, "def": 399, "crit": 0 },
+    { "level": 50, "hp": 6624, "atk": 113, "def": 519, "crit": 0 },
+    { "level": 60, "hp": 8171, "atk": 140, "def": 640, "crit": 0 },
+    { "level": 70, "hp": 9718, "atk": 167, "def": 761, "crit": 0 },
+    { "level": 80, "hp": 11265, "atk": 190, "def": 882, "crit": 0 },
+    { "level": 90, "hp": 12813, "atk": 213, "def": 1002, "crit": 0 }
+  ],
+  "materials": {
+    "ascension": [
+      { "name": "클램 코인", "count": 170000 },
+      { "name": "저주파수 포효 성핵", "count": 4, "rarity": 2 },
+      { "name": "중주파수 포효 성핵", "count": 12, "rarity": 3 },
+      { "name": "고주파수 포효 성핵", "count": 12, "rarity": 4 },
+      { "name": "전주파수 포효 성핵", "count": 4, "rarity": 5 },
+      { "name": "음향의 성핵", "count": 46, "rarity": 4 },
+      { "name": "등롱초", "count": 60, "rarity": 1 }
+    ],
+    "traces": [
+      { "name": "클램 코인", "count": 2030000 },
+      { "name": "저주파수 포효 성핵", "count": 25, "rarity": 2 },
+      { "name": "중주파수 포효 성핵", "count": 28, "rarity": 3 },
+      { "name": "고주파수 포효 성핵", "count": 40, "rarity": 4 },
+      { "name": "전주파수 포효 성핵", "count": 57, "rarity": 5 },
+      { "name": "비문 고종", "count": 26, "rarity": 5 },
+      { "name": "렌토 와전류", "count": 28, "rarity": 2 },
+      { "name": "아다지오 와전류", "count": 28, "rarity": 3 },
+      { "name": "안단테 와전류", "count": 55, "rarity": 4 },
+      { "name": "프레스토 와전류", "count": 67, "rarity": 5 }
+    ]
+  }
+}

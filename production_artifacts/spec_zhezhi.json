@@ -1,0 +1,66 @@
+{
+  "id": "zhezhi",
+  "name": {
+    "ko": "절지",
+    "en": "Zhezhi",
+    "zh": "折枝",
+    "ja": "折枝"
+  },
+  "rarity": 5,
+  "element": "응결",
+  "weapon": "증폭기",
+  "affiliation": "금주",
+  "version": "1.2",
+  "briefInfo": {
+    "ko": "붓으로 그려 낸 풍경은 실체가 되어 현실에 나타난다. 살아 있는 듯한 그림은 짧은 시간이지만 쉬이 잊기 힘든 인상을 남긴다.",
+    "en": "The scenery painted with a brush becomes a reality. The lifelike paintings leave an impression that is hard to forget, even if only for a short time."
+  },
+  "roles": [
+    { "label": "빠른 협주", "description": "짧은 시간에 비교적 높은 협주 효율 보유" },
+    { "label": "일반 공격 피해", "description": "비교적 높은 일반 공격 피해" },
+    { "label": "협동 공격", "description": "비교적 강한 협동 공격 능력 보유" },
+    { "label": "공명 해방 차지", "description": "파티 내 특정 캐릭터의 공명 에너지 회복 가능" },
+    { "label": "응결 피해 부스트", "description": "파티 내 특정 캐릭터의 응결 피해 부스트 가능" },
+    { "label": "공명 스킬 피해 부스트", "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능" }
+  ],
+  "voiceActors": {
+    "ko": "김하루",
+    "en": "신페이 첸",
+    "zh": "먀오쯔",
+    "ja": "마키노 유이"
+  },
+  "baseStats": [
+    { "level": 1, "hp": 980, "atk": 30, "def": 98, "crit": 0 },
+    { "level": 20, "hp": 2549, "atk": 78, "def": 251, "crit": 0 },
+    { "level": 30, "hp": 4028, "atk": 126, "def": 396, "crit": 0 },
+    { "level": 40, "hp": 4854, "atk": 151, "def": 476, "crit": 0 },
+    { "level": 50, "hp": 6333, "atk": 199, "def": 621, "crit": 0 },
+    { "level": 60, "hp": 7812, "atk": 247, "def": 765, "crit": 0 },
+    { "level": 70, "hp": 9292, "atk": 294, "def": 909, "crit": 0 },
+    { "level": 80, "hp": 10771, "atk": 335, "def": 1054, "crit": 0 },
+    { "level": 90, "hp": 12250, "atk": 375, "def": 1198, "crit": 0 }
+  ],
+  "materials": {
+    "ascension": [
+      { "name": "클램 코인", "count": 170000 },
+      { "name": "저주파수 포효 성핵", "count": 4, "rarity": 2 },
+      { "name": "중주파수 포효 성핵", "count": 12, "rarity": 3 },
+      { "name": "고주파수 포효 성핵", "count": 12, "rarity": 4 },
+      { "name": "전주파수 포효 성핵", "count": 4, "rarity": 5 },
+      { "name": "음향의 성핵", "count": 46, "rarity": 4 },
+      { "name": "등롱초", "count": 60, "rarity": 1 }
+    ],
+    "traces": [
+      { "name": "클램 코인", "count": 2030000 },
+      { "name": "저주파수 포효 성핵", "count": 25, "rarity": 2 },
+      { "name": "중주파수 포효 성핵", "count": 28, "rarity": 3 },
+      { "name": "고주파수 포효 성핵", "count": 40, "rarity": 4 },
+      { "name": "전주파수 포효 성핵", "count": 57, "rarity": 5 },
+      { "name": "비문 고종", "count": 26, "rarity": 5 },
+      { "name": "렌토 와전류", "count": 28, "rarity": 2 },
+      { "name": "아다지오 와전류", "count": 28, "rarity": 3 },
+      { "name": "안단테 와전류", "count": 55, "rarity": 4 },
+      { "name": "프레스토 와전류", "count": 67, "rarity": 5 }
+    ]
+  }
+}
