@@ -22,7 +22,9 @@ const baizhi: WuwaCharacter = {
   languageNames: "🇰🇷 설지 / 🇺🇸 Baizhi / 🇨🇳 白芷 / 🇯🇵 白芷",
   voiceActors: "🇰🇷 성예원 / 🇺🇸 서맨사 데이킨 / 🇨🇳 천팅팅 / 🇯🇵 세토 아사미",
     roles: [
-    { label: "메인 딜러", description: "비교적 강한 피해 부여 가능" }
+    { label: "생존 치료", description: "파티의 생존력 향상" },
+    { label: "협동 공격", description: "비교적 강한 협동 공격 능력 보유" },
+    { label: "피해 부스트", description: "파티 내 특정 캐릭터의 피해 부스트 가능" }
   ],
   baseStats: createWwBaseStats(
     [1025, 17, 82, 0],
