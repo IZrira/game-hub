@@ -1,5 +1,42 @@
 # 작업 완료 보고서 (Walkthrough)
 
+## [2026-05-23] Google Search Central 가이드 기반 검색 노출(SEO/AEO) 1&2단계 고도화 및 배포
+
+### 주요 구현 내용
+*   **구글 서치 콘솔 연동 모니터링 지원 (`google-site-verification`)**:
+    *   `SEO.tsx` 컴포넌트에 `googleVerification` 프로퍼티를 추가하여, 메인 홈 페이지 로드 시 구글 서치콘솔 소유권 인증 메타 태그가 `<head>` 영역 내에 동적으로 삽입되도록 구현했습니다.
+    *   보안 규칙 및 비하드코딩 정책을 충족하기 위해 `.env` 및 `.env.example` 파일에 `VITE_GOOGLE_VERIFICATION` 환경 변수를 사용하도록 바인딩을 연동했습니다.
+*   **다국어 Canonical URL 매개변수 정렬 (중복 색인 및 트래픽 분열 방지)**:
+    *   다국어 쿼리(`?lng=ko`)와 도감 필터 쿼리(`?menu=캐릭터&search=...`)가 무작위 순서로 조합되어 크롤러가 별개의 페이지로 인덱싱(중복 색인 및 도메인 검색 점수 하락)하는 현상을 원천 방어했습니다.
+    *   모든 Canonical 및 Alternate URL 생성 시 `URLSearchParams.sort()`를 실행하여 쿼리 스트링의 매개변수를 항상 사전순으로 강제 정렬하여 URL 일관성을 100% 정규화했습니다.
+*   **Product 구조화 데이터 필수/권장 누락 필드 보완 (리치 결과 경고 제거)**:
+    *   구글 전자상거래 검색 가이드 규격을 완벽히 충족하기 위해, 인게임 캐릭터와 무기/광추의 `Product` 스키마에 무료 획득을 의미하는 가상의 `offers` 정보(가격 `0` KRW, 재고 있음) 및 가이드 요약을 연계한 `review` 구조를 기본 주입하여 구글 서치콘솔의 권장 필드 경고(Warning)를 완전히 소거했습니다.
+*   **검색 노출 최적화 1단계 (브랜드, 평점, 캐러셀 스키마)**:
+    *   **홈페이지 (`Home.tsx`)**: `WebSite` 구조화 데이터(`name` 및 `alternateName`)와 사이트링크 검색창(`SearchAction`) 연동을 구현했습니다.
+    *   **상세 페이지 (캐릭터/무기)**: `Product` 구조화 데이터 내에 성급 정보(`char.rarity` 및 `weapon.rarity`)를 활용하여 평점 별점(`AggregateRating`)이 검색 스니펫에 노출되도록 구현했습니다.
+    *   **티어표 페이지 (`TierList.tsx`)**: 상위 30개 캐릭터 목록을 `useMemo` 기반의 캐러셀 목록 데이터 구조화 스키마(`ItemList`)로 연동하여 검색 노출 완성도를 높였습니다.
+*   **프로젝트 린트 및 프로덕션 빌드 검증 성공**:
+    *   `npm run lint` 및 `npm run build`를 동작하여 코드 변경 이후의 타입 안정성을 검증하였고, 정적인 sitemap 생성 및 프로덕션 빌드가 성공적으로 동작하는 것을 최종 검증 완료했습니다.
+*   **깃허브 배포**:
+    *   최종 변경 코드를 `feat(seo): optimize search appearance and implement search console verification` 커밋으로 깃허브 원격 저장소(`main` 브랜치)로 배포 완료했습니다.
+
+### 변경된 파일 목록
+| 파일 위치 | 변경 내용 |
+| :--- | :--- |
+| `common-hub/components/SEO.tsx` | `googleVerification` 메타 주입, Canonical 쿼리 정렬, Product offers/review 및 캐러셀/홈페이지 스키마 분기 처리 추가 |
+| `common-hub/pages/Home.tsx` | 메인 홈 `<SEO>` 호출 시 `isHomepage={true}`, `googleVerification` 환경 변수 연동 바인딩 |
+| `hsr-hub/pages/CharacterDetail.tsx` | 캐릭터 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
+| `hsr-hub/pages/LightConeDetail.tsx` | 광추 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
+| `hsr-hub/pages/TierList.tsx` | 상위 30개 캐릭터 데이터를 `carouselData` 캐러셀 목록 데이터로 가공 및 전달 |
+| `ww-hub/pages/CharacterDetail.tsx` | 캐릭터 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
+| `ww-hub/pages/WuwaWeaponDetail.tsx` | 무기 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
+| `ww-hub/pages/TierList.tsx` | 상위 30개 캐릭터 데이터를 `carouselData` 캐러셀 목록 데이터로 가공 및 전달 |
+| `.env.example` | `VITE_GOOGLE_VERIFICATION` 환경 변수 플레이스홀더 추가 |
+| `.env` | `VITE_GOOGLE_VERIFICATION` 환경 변수 빈 키 추가 |
+| `docs/reports/completed_tasks.md` | 최근 작업 현황 업데이트 |
+
+---
+
 ## [2026-05-13] 금희(Jinhsi) 캐릭터 데이터 통합 및 로컬라이제이션 표준화
 
 ### 주요 구현 내용
