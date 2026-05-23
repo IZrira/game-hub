@@ -126,6 +126,7 @@ export interface WuwaWeapon extends BaseItem {
   rarity: number;
   type: WWWeaponType;
   releaseVersion?: string;
+  obtain?: string;
   stats: {
     atk: number;
     subStatName: string;
@@ -136,6 +137,8 @@ export interface WuwaWeapon extends BaseItem {
     description: string;
   };
   description?: string;
+  isNotion?: boolean;
+  content?: string;
 }
 
 export interface WuwaEcho extends BaseItem {

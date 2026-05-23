@@ -17,4 +17,6 @@ export interface WuwaWeapon {
     description: string; // renderRichText 적용 대상
   };
   description: string; // 무기 플레이버 텍스트
+  isNotion?: boolean;
+  content?: string;
 }

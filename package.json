@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/fetch-notion-data.js",
     "build": "node scripts/generate-sitemap.js && vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@notionhq/client": "^5.22.0",
     "@supabase/supabase-js": "^2.104.1",
     "@types/cheerio": "^1.0.0",
     "axios": "^1.15.0",
@@ -18,6 +20,7 @@
     "i18next": "^26.0.3",
     "lucide-react": "^0.564.0",
     "motion": "^12.35.1",
+    "notion-to-md": "^3.1.9",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-helmet-async": "^3.0.0",

@@ -11,6 +11,18 @@ const WW_CHAR_DIR = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
 const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr');
 const HSR_GUIDE_INDEX = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides', 'index.ts');
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
+const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
+
+function getNotionData() {
+  try {
+    if (!fs.existsSync(NOTION_DATA_FILE)) return [];
+    const content = fs.readFileSync(NOTION_DATA_FILE, 'utf8');
+    return JSON.parse(content) || [];
+  } catch (error) {
+    console.error('Error reading notion-data.json:', error);
+    return [];
+  }
+}
 
 const BASE_URL = 'https://rira-game-hub.pages.dev';
 const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
@@ -318,6 +330,30 @@ async function generateSitemap() {
       
       xml += buildUrlNode(url, weaponsLastmod, '0.8', 'daily', [imageUrl]);
       urlList.push(url);
+    });
+
+    // 5. Notion Imported Items Detail Pages
+    xml += `\n  <!-- Notion Imported Items Detail Pages -->\n`;
+    const notionData = getNotionData();
+    console.log(`Processing ${notionData.length} Notion items for sitemap...`);
+    notionData.forEach(item => {
+      if (!item.name) return;
+      const cleanType = item.type || '';
+      const isWeapon = ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
+      const isCharacter = cleanType === '캐릭터';
+
+      if (isWeapon) {
+        // 상세 페이지에서 이름 또는 ID로 라우팅을 매칭하므로 이름 기반의 경로 생성
+        const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`;
+        xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+        urlList.push(url);
+      } else if (isCharacter) {
+        const url = `${BASE_URL}/gallery/ww/character/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
+        xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+        urlList.push(url);
+      }
     });
 
     xml += `</urlset>\n`;

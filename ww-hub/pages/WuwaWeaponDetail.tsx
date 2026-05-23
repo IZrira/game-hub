@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { Compass, Zap, MapPin, History, Globe, Shield } from 'lucide-react';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
+import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 
 const LEVEL_STEPS = [1, 20, 40, 50, 60, 70, 80, 90];
 
@@ -340,7 +341,7 @@ const WuwaWeaponDetail = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
-  const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName);
+  const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName);
 
   const lastUpdatedDate = weapon ? (VERSION_UPDATES[weapon.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 
@@ -408,6 +409,113 @@ const WuwaWeaponDetail = () => {
   };
 
   const currentStats = getWwWeaponStatsForLevel(weapon.stats.atk, weapon.stats.subStatValue, LEVEL_STEPS[levelIdx], weapon.name);
+
+  if (weapon.isNotion) {
+    const notionTheme = { primary: '#A855F7', secondary: '#D8B4FE', shadow: 'rgba(168, 85, 247, 0.4)' }; // Default notion purple theme
+    const lastUpdatedDate = weapon.releaseVersion ? (VERSION_UPDATES[weapon.releaseVersion] || '2026-05-23') : '2026-05-23';
+
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary relative">
+        <SEO 
+          title={`${weapon.name} ${t('상세 정보 및 가이드 | 명조 아카이브')}`} 
+          description={`${t('명조 (Wuthering Waves)')} ${weapon.rarity}${t('성')} ${t(weapon.type)} ${weapon.name}${t('의 상세 정보를 확인하세요.')}`}
+          image={getIllustrationUrl()}
+          url={`/gallery/ww/weapon/${weapon.name}`}
+          modifiedTime={lastUpdatedDate}
+          ratingValue={weapon.rarity}
+          reviewCount={1}
+          breadcrumbData={[
+            { name: t('홈'), url: '/' },
+            { name: t('명조 (Wuthering Waves)'), url: '/gallery/ww' },
+            { name: t('무기'), url: '/gallery/ww?menu=무기' },
+            { name: weapon.name, url: `/gallery/ww/weapon/${weapon.name}` }
+          ]}
+        />
+        
+        <PageHeader gameId="ww" category={t("무기")} title={t(weapon.name)} />
+
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-4 space-y-6">
+          {/* Main Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-8 items-start">
+            
+            {/* Left: Image with Overlay */}
+            <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
+              <img 
+                src={getIllustrationUrl()} 
+                alt={weapon.name} 
+                className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
+              
+              <div className="absolute bottom-8 left-8 right-8 space-y-4">
+                <div className="space-y-1">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: notionTheme.primary }}>
+                    <span>{t('무기 종류')} : {t(weapon.type || '')}</span>
+                    {weapon.obtain && (
+                      <>
+                        <span className="text-white/20">|</span>
+                        <span className="text-gray-300">{t('획득 경로')} : {t(weapon.obtain)}</span>
+                      </>
+                    )}
+                  </div>
+                  <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
+                    {t(weapon.name)}
+                  </h1>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex gap-1">
+                    {Array.from({ length: weapon.rarity || 5 }).map((_, i) => (
+                      <Star key={i} size={18} fill={notionTheme.primary} style={{ color: notionTheme.primary }} className="drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right: Info Panels */}
+            <div className="space-y-6 flex flex-col h-full justify-between">
+              
+              {/* Stat card (Notion custom values if parsed) */}
+              <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+                <div className="flex items-center gap-4 border-b border-white/5 pb-4">
+                  <div className="w-10 h-10 rounded-[15px] border-2 flex items-center justify-center font-black text-sm shadow-xl" style={{ backgroundColor: `${notionTheme.primary}20`, color: notionTheme.primary, borderColor: `${notionTheme.primary}60` }}>I</div>
+                  <h2 className="text-xl font-black uppercase tracking-widest text-white/95 italic">{t('무기 정보')}</h2>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <StatRow label={t("기초 공격력")} value={weapon.stats?.atk || 500} color={notionTheme.primary} />
+                  <StatRow label={t(weapon.stats?.subStatName || "부스탯")} value={weapon.stats?.subStatValue || "36.4%"} color={notionTheme.primary} />
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <span className="text-gray-400 font-bold text-xs uppercase tracking-wider">{t('출시 버전')}</span>
+                    <span className="font-extrabold text-white">{weapon.releaseVersion || '1.0'}</span>
+                  </div>
+                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                    <span className="text-gray-400 font-bold text-xs uppercase tracking-wider">{t('획득 경로')}</span>
+                    <span className="font-extrabold text-white truncate max-w-[150px]">{t(weapon.obtain || '노션 연동')}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Body Content */}
+              <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow">
+                <div className="flex items-center gap-4 border-b border-white/5 pb-4 mb-6">
+                  <div className="w-10 h-10 rounded-[15px] border-2 flex items-center justify-center font-black text-sm shadow-xl" style={{ backgroundColor: `${notionTheme.primary}20`, color: notionTheme.primary, borderColor: `${notionTheme.primary}60` }}>II</div>
+                  <h2 className="text-xl font-black uppercase tracking-widest text-white/95 italic">{t('상세 본문')}</h2>
+                </div>
+                
+                <div className="p-4 rounded-[25px] bg-white/[0.01] border border-white/5 max-h-[500px] overflow-y-auto custom-scrollbar">
+                  <MarkdownRenderer content={weapon.content || ''} />
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary relative">
