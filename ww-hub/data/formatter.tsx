@@ -125,9 +125,9 @@ export const renderRichText = (text: string) => {
 
 export const formatDescriptionByRank = (description: string, rank: number) => {
   // Notion 데이터의 경우 줄바꿈(\n)으로 R1 ~ R5 단계의 전체 스킬 설명이 분리되어 들어옵니다.
-  // 5개의 비어있지 않은 문단이 감지되면 선택된 중첩(rank)에 맞는 문단 하나만 반환합니다.
+  // 5개 이상의 비어있지 않은 문단이 감지되면 선택된 중첩(rank)에 맞는 문단 하나만 반환합니다.
   const lines = description.split('\n').map(l => l.trim()).filter(l => l.length > 0);
-  if (lines.length === 5) {
+  if (lines.length >= 5) {
     return lines[rank - 1];
   }
 

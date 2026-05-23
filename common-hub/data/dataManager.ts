@@ -20,8 +20,8 @@ export const getGameData = (targetId: string) => {
       let description = item.content || '노션에서 연동된 무기 스토리입니다.';
 
       if (item.content) {
-        // 90레벨 최종 스탯에서 고정밀 추출 시도
-        const lv90Regex = /90\s*:\s*(?:기초\s*)?공격력\s*\*?\*?(\d+)\*?\*?\s*\/\s*([^\s\n*]+)\s*\*?\*?([\d.]+%?)\*?\*?/i;
+        // 90레벨 최종 스탯에서 고정밀 추출 시도 (부옵션명에 공백 포함 가능하도록 [^\n*]+? 적용)
+        const lv90Regex = /90\s*:\s*(?:기초\s*)?공격력\s*\*?\*?(\d+)\*?\*?\s*\/\s*([^\n*]+?)\s*\*?\*?([\d.]+%?)\*?\*?/i;
         const lv90Match = item.content.match(lv90Regex);
 
         if (lv90Match) {
@@ -38,11 +38,11 @@ export const getGameData = (targetId: string) => {
           }
           subStatValue = parsedSubValue;
         } else {
-          // 폴백: 기존 라벨 기반 추출 시도
+          // 폴백: 기존 라벨 기반 추출 시도 (부옵션명 공백 허용)
           const atkMatch = item.content.match(/(?:기초\s*공격력|공격력)\s*:\s*(\d+)/i);
           if (atkMatch) atk = parseInt(atkMatch[1], 10);
 
-          const subNameMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯|부옵션명)\s*:\s*([^\d\s\n]+)/i);
+          const subNameMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯|부옵션명)\s*:\s*([^\d\n]+)/i);
           if (subNameMatch) subStatName = subNameMatch[1].trim();
 
           const subValMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯)\s*:[^\n]*?([\d.]+%?)/i);
