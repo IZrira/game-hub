@@ -452,8 +452,14 @@ const WuwaWeaponDetail = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
-                  {t('무기 종류')} : {t(weapon.type || '')}
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                  <span>{t('무기 종류')} : {t(weapon.type || '')}</span>
+                  {weapon.obtain && (
+                    <>
+                      <span className="text-white/20">|</span>
+                      <span className="text-gray-300">{t('획득 경로')} : {t(weapon.obtain)}</span>
+                    </>
+                  )}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
                   {t(weapon.name)}

@@ -27,8 +27,9 @@
 ### 변경된 파일 목록
 | 파일 위치 | 변경 내용 |
 | :--- | :--- |
-| `ww-hub/data/weapons.ts` | 신규 무기 "허위의 왈츠", "융합의 원반", "청음" 출시 버전 기초 스펙(공격력 463/413, 설명문) 수정 |
-| `ww-hub/pages/WuwaWeaponDetail.tsx` | "허위의 왈츠", "융합의 원반", "청음" 정밀 성장 스탯(1~90Lv) 예외 처리 추가 및 돌파 재료 바인딩 |
+| `ww-hub/data/weapons.ts` | 신규 무기 "허위의 왈츠", "융합의 원반", "청음" 출시 버전 기초 스펙(공격력 463/413, 설명문) 수정 및 획득 경로 필드 추가 |
+| `ww-hub/pages/WuwaWeaponDetail.tsx` | "허위의 왈츠", "융합의 원반", "청음" 정밀 성장 스탯(1~90Lv) 예외 처리 추가, 돌파 재료 바인딩 및 획득 경로 UI 렌더링 지원 |
+| `ww-hub/data/weapon.ts` | `WuwaWeapon` 인터페이스 내 `obtain` 선택적 속성 필드 추가 |
 | `common-hub/components/SEO.tsx` | `googleVerification` 메타 주입, Canonical 쿼리 정렬, Product offers/review 및 캐러셀/홈페이지 스키마 분기 처리 추가 |
 | `common-hub/pages/Home.tsx` | 메인 홈 `<SEO>` 호출 시 `isHomepage={true}`, `googleVerification` 환경 변수 연동 바인딩 |
 | `hsr-hub/pages/CharacterDetail.tsx` | 캐릭터 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
