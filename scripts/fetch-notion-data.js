@@ -49,13 +49,16 @@ async function fetchNotionData() {
   }
 
   console.log('[Notion Sync] Connecting to Notion API...');
-  const notion = new Client({ auth: NOTION_TOKEN });
+  const notion = new Client({ auth: NOTION_TOKEN, notionVersion: '2022-06-28' });
   const n2m = new NotionToMarkdown({ notionClient: notion });
 
   try {
-    const response = await notion.databases.query({
-      database_id: NOTION_DATABASE_ID,
-      sorts: [{ property: '이름', direction: 'ascending' }]
+    const response = await notion.request({
+      path: `databases/${NOTION_DATABASE_ID}/query`,
+      method: 'POST',
+      body: {
+        sorts: [{ property: '이름', direction: 'ascending' }]
+      }
     });
 
     const items = [];
