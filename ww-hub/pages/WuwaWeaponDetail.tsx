@@ -561,7 +561,7 @@ const WuwaWeaponDetail = () => {
                 </div>
               </div>
               
-              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
+              <div className="flex flex-col justify-center text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
                 {renderRichText(formatDescriptionByRank(weapon.skill?.description || '', rankIdx + 1))}
               </div>
             </div>
