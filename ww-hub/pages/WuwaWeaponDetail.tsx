@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2 } from 'lucide-react';
-import { WEAPON_DATA } from '../data/weapons';
+import { getGameData } from '../../common-hub/data/dataManager';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
@@ -341,6 +341,8 @@ const WuwaWeaponDetail = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
+  // 통합 getGameData를 사용해 중복 제거 및 노션 데이터 반영
+  const { WEAPON_DATA } = React.useMemo(() => getGameData('ww'), []);
   const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName);
 
   const lastUpdatedDate = weapon ? (VERSION_UPDATES[weapon.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';

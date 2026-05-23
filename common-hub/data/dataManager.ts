@@ -20,20 +20,58 @@ export const getGameData = (targetId: string) => {
       let description = item.content || '노션에서 연동된 무기 스토리입니다.';
 
       if (item.content) {
-        const atkMatch = item.content.match(/(?:기초\s*공격력|공격력)\s*:\s*(\d+)/i);
-        if (atkMatch) atk = parseInt(atkMatch[1], 10);
+        // 90레벨 최종 스탯에서 고정밀 추출 시도
+        const lv90Regex = /90\s*:\s*(?:기초\s*)?공격력\s*\*?\*?(\d+)\*?\*?\s*\/\s*([^\s\n*]+)\s*\*?\*?([\d.]+%?)\*?\*?/i;
+        const lv90Match = item.content.match(lv90Regex);
 
-        const subNameMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯|부옵션명)\s*:\s*([^\d\s\n]+)/i);
-        if (subNameMatch) subStatName = subNameMatch[1].trim();
+        if (lv90Match) {
+          atk = parseInt(lv90Match[1], 10);
+          subStatName = lv90Match[2].trim();
+          
+          let parsedSubValue = lv90Match[3].trim();
+          // 백분율 값 중 소수점 누락 오류 교차 검증 보정 (예: 201% -> 20.1%)
+          if (parsedSubValue.endsWith('%')) {
+            const num = parseFloat(parsedSubValue);
+            if (num > 100) {
+              parsedSubValue = (num / 10).toFixed(1).replace(/\.0$/, '') + '%';
+            }
+          }
+          subStatValue = parsedSubValue;
+        } else {
+          // 폴백: 기존 라벨 기반 추출 시도
+          const atkMatch = item.content.match(/(?:기초\s*공격력|공격력)\s*:\s*(\d+)/i);
+          if (atkMatch) atk = parseInt(atkMatch[1], 10);
 
-        const subValMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯)\s*:[^\n]*?([\d.]+%?)/i);
-        if (subValMatch) subStatValue = subValMatch[1].trim();
+          const subNameMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯|부옵션명)\s*:\s*([^\d\s\n]+)/i);
+          if (subNameMatch) subStatName = subNameMatch[1].trim();
 
-        const skillNameMatch = item.content.match(/(?:스킬명|무기\s*스킬명)\s*:\s*([^\n]+)/i);
-        if (skillNameMatch) skillName = skillNameMatch[1].trim();
+          const subValMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯)\s*:[^\n]*?([\d.]+%?)/i);
+          if (subValMatch) {
+            let val = subValMatch[1].trim();
+            if (val.endsWith('%')) {
+              const num = parseFloat(val);
+              if (num > 100) {
+                val = (num / 10).toFixed(1).replace(/\.0$/, '') + '%';
+              }
+            }
+            subStatValue = val;
+          }
+        }
 
-        const skillDescMatch = item.content.match(/(?:스킬\s*설명|스킬\s*효과)\s*:\s*([^\n]+)/i);
-        if (skillDescMatch) skillDescription = skillDescMatch[1].trim();
+        // 스킬명 및 설명 정밀 추출 (스킬 아래 **스킬명** 및 돌파재료 이전 영역)
+        const skillRegex = /스킬\s*[\r\n]+(?:\s*[\r\n]+)*\*\*([^*]+)\*\*\s*[\r\n]+([\s\S]*?)(?=돌파\s*재료|설명|###|스토리|$)/i;
+        const skillMatch = item.content.match(skillRegex);
+        if (skillMatch) {
+          skillName = skillMatch[1].trim();
+          skillDescription = skillMatch[2].trim();
+        } else {
+          // 폴백: 기존 라벨 기반 추출
+          const skillNameMatch = item.content.match(/(?:스킬명|무기\s*스킬명)\s*:\s*([^\n]+)/i);
+          if (skillNameMatch) skillName = skillNameMatch[1].trim();
+
+          const skillDescMatch = item.content.match(/(?:스킬\s*설명|스킬\s*효과)\s*:\s*([^\n]+)/i);
+          if (skillDescMatch) skillDescription = skillDescMatch[1].trim();
+        }
       }
 
       return {
@@ -142,10 +180,42 @@ export const getGameData = (targetId: string) => {
       };
     });
 
-  const mergedCharacters = [...WW_DATA_ALL.CHARACTER_DB, ...notionCharacters];
-  const mergedWeapons = [...WW_DATA_ALL.WEAPON_DATA, ...notionWeapons];
-  const mergedHsrCharacters = [...HSR_DATA_ALL.CHARACTER_DB, ...notionHsrCharacters];
-  const mergedLightcones = [...HSR_DATA_ALL.LIGHTCONE_DB, ...notionLightcones];
+  // 중복 제거 및 노션 오버라이드 병합 로직 (이름 기준)
+  const wwCharMap = new Map<string, any>();
+  WW_DATA_ALL.CHARACTER_DB.forEach(c => {
+    if (c.name) wwCharMap.set(c.name.trim(), c);
+  });
+  notionCharacters.forEach(c => {
+    if (c.name) wwCharMap.set(c.name.trim(), c);
+  });
+  const mergedCharacters = Array.from(wwCharMap.values());
+
+  const wwWeaponMap = new Map<string, any>();
+  WW_DATA_ALL.WEAPON_DATA.forEach(w => {
+    if (w.name) wwWeaponMap.set(w.name.trim(), w);
+  });
+  notionWeapons.forEach(w => {
+    if (w.name) wwWeaponMap.set(w.name.trim(), w);
+  });
+  const mergedWeapons = Array.from(wwWeaponMap.values());
+
+  const hsrCharMap = new Map<string, any>();
+  HSR_DATA_ALL.CHARACTER_DB.forEach(c => {
+    if (c.name) hsrCharMap.set(c.name.trim(), c);
+  });
+  notionHsrCharacters.forEach(c => {
+    if (c.name) hsrCharMap.set(c.name.trim(), c);
+  });
+  const mergedHsrCharacters = Array.from(hsrCharMap.values());
+
+  const hsrLcMap = new Map<string, any>();
+  HSR_DATA_ALL.LIGHTCONE_DB.forEach(lc => {
+    if (lc.name) hsrLcMap.set(lc.name.trim(), lc);
+  });
+  notionLightcones.forEach(lc => {
+    if (lc.name) hsrLcMap.set(lc.name.trim(), lc);
+  });
+  const mergedLightcones = Array.from(hsrLcMap.values());
 
   // 2. 도메인별 데이터를 독립적으로 정의합니다.
   const hsrData = {

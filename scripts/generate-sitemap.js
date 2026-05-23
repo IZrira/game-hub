@@ -292,8 +292,10 @@ async function generateSitemap() {
       const charFilePath = path.join(WW_CHAR_DIR, `${id}.ts`);
       const charLastmod = getFileLastmod(charFilePath, defaultLastmod);
       
-      xml += buildUrlNode(url, charLastmod, '0.8', 'daily', images);
-      urlList.push(url);
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, charLastmod, '0.8', 'daily', images);
+        urlList.push(url);
+      }
     });
 
     // 3. Honkai Star Rail Characters Detail & Guide Pages
@@ -306,8 +308,10 @@ async function generateSitemap() {
 
       // 캐릭터 상세 페이지
       const detailUrl = `${BASE_URL}/gallery/hsr/character/${id}`;
-      xml += buildUrlNode(detailUrl, charLastmod, '0.8', 'daily', images);
-      urlList.push(detailUrl);
+      if (!urlList.includes(detailUrl)) {
+        xml += buildUrlNode(detailUrl, charLastmod, '0.8', 'daily', images);
+        urlList.push(detailUrl);
+      }
 
       // 캐릭터 가이드 페이지
       if (charData) {
@@ -315,8 +319,10 @@ async function generateSitemap() {
                          (charData.name && registeredHsrGuides.has(charData.name));
         if (hasGuide) {
           const guideUrl = `${BASE_URL}/gallery/hsr/character/${id}/guide`;
-          xml += buildUrlNode(guideUrl, charLastmod, '0.8', 'daily', images);
-          urlList.push(guideUrl);
+          if (!urlList.includes(guideUrl)) {
+            xml += buildUrlNode(guideUrl, charLastmod, '0.8', 'daily', images);
+            urlList.push(guideUrl);
+          }
         }
       }
     });
@@ -325,11 +331,13 @@ async function generateSitemap() {
     xml += `\n  <!-- Wuthering Waves Weapons Detail Pages -->\n`;
     const weaponsLastmod = getFileLastmod(WEAPONS_FILE, defaultLastmod);
     wwWeapons.forEach(wp => {
-      const url = `${BASE_URL}/gallery/ww/weapon/${wp.id}`;
+      const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(wp.name)}`;
       const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`;
       
-      xml += buildUrlNode(url, weaponsLastmod, '0.8', 'daily', [imageUrl]);
-      urlList.push(url);
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, weaponsLastmod, '0.8', 'daily', [imageUrl]);
+        urlList.push(url);
+      }
     });
 
     // 5. Notion Imported Items Detail Pages
@@ -343,16 +351,19 @@ async function generateSitemap() {
       const isCharacter = cleanType === '캐릭터';
 
       if (isWeapon) {
-        // 상세 페이지에서 이름 또는 ID로 라우팅을 매칭하므로 이름 기반의 경로 생성
         const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`;
-        xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
-        urlList.push(url);
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          urlList.push(url);
+        }
       } else if (isCharacter) {
         const url = `${BASE_URL}/gallery/ww/character/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
-        xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
-        urlList.push(url);
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          urlList.push(url);
+        }
       }
     });
 

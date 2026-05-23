@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { WEAPON_DATA } from '../data/weapons';
+import { getGameData } from '../../common-hub/data/dataManager';
 import { WuwaWeapon } from './weapon';
 import WuwaWeaponCard from './WuwaWeaponCard';
 
@@ -15,6 +15,9 @@ const WuwaWeaponGallery = () => {
   const [search, setSearch] = useState('');
   const [selectedType, setSelectedType] = useState<string>('전체');
   const [selectedRarity, setSelectedRarity] = useState<number | '전체'>('전체');
+
+  // 통합 getGameData를 사용해 중복 제거 및 노션 데이터 반영
+  const { WEAPON_DATA } = useMemo(() => getGameData('ww'), []);
 
   const filteredWeapons = useMemo(() => {
     return (WEAPON_DATA as unknown as WuwaWeapon[]).filter(w => {
