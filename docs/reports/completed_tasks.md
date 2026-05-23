@@ -1,8 +1,12 @@
 # 작업 완료 보고서 (Walkthrough)
 
-## [2026-05-23] Google Search Central 가이드 기반 검색 노출(SEO/AEO) 1&2단계 고도화 및 배포
+## [2026-05-23] Google Search Central 가이드 기반 검색 노출(SEO/AEO) 고도화 및 신규 무기 데이터 반영
 
 ### 주요 구현 내용
+*   **명조 신규 4성 증폭기 무기 "허위의 왈츠" 데이터 추가 및 정밀 스펙 연동**:
+    *   `weapons.ts` 파일의 `허위의 왈츠` 무기 기초 데이터를 2.0 출시 버전 스펙에 맞춰 공격력 `463` 및 상세 플레이버 설명문 전체를 반영하여 갱신했습니다.
+    *   `WuwaWeaponDetail.tsx`에 예외 스탯 테이블(`customStats`)을 신설하여 레벨별 성장치(1~90레벨 공격력 및 부옵션 비율)에 반올림 오차가 생기지 않도록 정밀 매핑했습니다.
+    *   무기 돌파에 사용되는 클램 코인 및 재료(낡은 구속팔찌, 프레스토 와전류 등)를 정확하게 매핑했습니다.
 *   **구글 서치 콘솔 연동 모니터링 지원 (`google-site-verification`)**:
     *   `SEO.tsx` 컴포넌트에 `googleVerification` 프로퍼티를 추가하여, 메인 홈 페이지 로드 시 구글 서치콘솔 소유권 인증 메타 태그가 `<head>` 영역 내에 동적으로 삽입되도록 구현했습니다.
     *   보안 규칙 및 비하드코딩 정책을 충족하기 위해 `.env` 및 `.env.example` 파일에 `VITE_GOOGLE_VERIFICATION` 환경 변수를 사용하도록 바인딩을 연동했습니다.
@@ -23,13 +27,14 @@
 ### 변경된 파일 목록
 | 파일 위치 | 변경 내용 |
 | :--- | :--- |
+| `ww-hub/data/weapons.ts` | 신규 무기 "허위의 왈츠" 2.0 출시 버전 기초 스펙(공격력 463, 설명문) 수정 |
+| `ww-hub/pages/WuwaWeaponDetail.tsx` | "허위의 왈츠" 정밀 성장 스탯(1~90Lv) 예외 처리 추가 및 돌파 재료 바인딩 |
 | `common-hub/components/SEO.tsx` | `googleVerification` 메타 주입, Canonical 쿼리 정렬, Product offers/review 및 캐러셀/홈페이지 스키마 분기 처리 추가 |
 | `common-hub/pages/Home.tsx` | 메인 홈 `<SEO>` 호출 시 `isHomepage={true}`, `googleVerification` 환경 변수 연동 바인딩 |
 | `hsr-hub/pages/CharacterDetail.tsx` | 캐릭터 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
 | `hsr-hub/pages/LightConeDetail.tsx` | 광추 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
 | `hsr-hub/pages/TierList.tsx` | 상위 30개 캐릭터 데이터를 `carouselData` 캐러셀 목록 데이터로 가공 및 전달 |
 | `ww-hub/pages/CharacterDetail.tsx` | 캐릭터 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
-| `ww-hub/pages/WuwaWeaponDetail.tsx` | 무기 성급 정보를 이용한 `ratingValue`, `reviewCount` 주입 |
 | `ww-hub/pages/TierList.tsx` | 상위 30개 캐릭터 데이터를 `carouselData` 캐러셀 목록 데이터로 가공 및 전달 |
 | `.env.example` | `VITE_GOOGLE_VERIFICATION` 환경 변수 플레이스홀더 추가 |
 | `.env` | `VITE_GOOGLE_VERIFICATION` 환경 변수 빈 키 추가 |
