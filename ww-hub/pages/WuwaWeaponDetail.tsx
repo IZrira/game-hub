@@ -600,10 +600,26 @@ const WuwaWeaponDetail = () => {
           </div>
         </div>
 
-        {/* 04. Story Section (Toggle) - BOTTOM FULL WIDTH */}
+        {/* 04. Obtain Path Section */}
+        <div className="space-y-8">
+          <SectionHeader num="04" title={t("획득 경로")} theme={theme} />
+          <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-6">
+            <div className="flex items-center gap-4 border-b border-white/5 pb-4">
+              <Compass size={22} style={{ color: theme.primary }} className="opacity-80" />
+              <span className="text-xl font-black uppercase tracking-tighter italic">{t("획득 방법")}</span>
+            </div>
+            <div className="flex items-center gap-4 bg-white/[0.02] p-6 rounded-[25px] border border-white/5">
+              <div className="text-gray-300 text-lg font-black italic">
+                {weapon.obtain ? t(weapon.obtain) : t("인게임 소환, 제작 또는 이벤트를 통해 획득 가능합니다.")}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 05. Story Section (Toggle) - BOTTOM FULL WIDTH */}
         {weapon.description && (
           <div className="space-y-8">
-            <SectionHeader num="04" title={t('무기 스토리')} theme={theme} expanded={isStoryOpen} onToggle={() => setIsStoryOpen(!isStoryOpen)} />
+            <SectionHeader num="05" title={t('무기 스토리')} theme={theme} expanded={isStoryOpen} onToggle={() => setIsStoryOpen(!isStoryOpen)} />
             <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="glass-card p-8 rounded-[35px] border border-white/5">
                 <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">
