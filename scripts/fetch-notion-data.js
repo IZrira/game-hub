@@ -77,11 +77,11 @@ async function fetchNotionData() {
 
       // 속성 매핑 (이름, 성급, 종류, 출시 버전, 획득 경로 등)
       // 노션 속성명에 따라 텍스트/셀렉트 유형 처리
-      const name = props['이름']?.title[0]?.plain_text || '';
+      const name = props['이름']?.title?.[0]?.plain_text || '';
       const rarity = props['성급']?.select?.name || '';
       const type = props['종류']?.select?.name || '';
-      const releaseVersion = props['출시 버전']?.rich_text[0]?.plain_text || '';
-      const obtain = props['획득 경로']?.rich_text[0]?.plain_text || '';
+      const releaseVersion = props['출시 버전']?.rich_text?.[0]?.plain_text || '';
+      const obtain = props['획득 경로']?.rich_text?.[0]?.plain_text || '';
 
       items.push({
         id: page.id,
