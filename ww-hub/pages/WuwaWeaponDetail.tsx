@@ -62,7 +62,7 @@ function getWwWeaponStatsForLevel(
   level: number,
   name?: string
 ) {
-  if (name === "허위의 왈츠") {
+  if (name === "허위의 왈츠" || name === "융합의 원반") {
     const customStats: Record<number, { atk: number; sub: string }> = {
       1: { atk: 37, sub: "4.1%" },
       20: { atk: 96, sub: "7.2%" },
@@ -236,7 +236,7 @@ function getWeaponMaterials(rarity: number, type: string, name: string): { name:
     ];
   }
 
-  if (name === "눈부신 빛" || name === "허위의 왈츠") {
+  if (name === "눈부신 빛" || name === "허위의 왈츠" || name === "융합의 원반") {
     return [
       { name: "클램 코인", count: 264000 },
       { name: "낡은 구속팔찌", count: 5 },
