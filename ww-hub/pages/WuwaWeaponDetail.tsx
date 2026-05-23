@@ -62,6 +62,25 @@ function getWwWeaponStatsForLevel(
   level: number,
   name?: string
 ) {
+  if (name === "청음") {
+    const customStats: Record<number, { atk: number; sub: string }> = {
+      1: { atk: 33, sub: "4.5%" },
+      20: { atk: 86, sub: "8%" },
+      40: { atk: 213, sub: "13.25%" },
+      50: { atk: 239, sub: "11.9%" },
+      60: { atk: 263, sub: "15%" },
+      70: { atk: 313, sub: "16.75%" },
+      80: { atk: 363, sub: "18.5%" },
+      90: { atk: 413, sub: "20.2%" },
+    };
+    if (customStats[level]) {
+      return {
+        atk: customStats[level].atk,
+        subStatValue: customStats[level].sub,
+      };
+    }
+  }
+
   if (name === "허위의 왈츠" || name === "융합의 원반") {
     const customStats: Record<number, { atk: number; sub: string }> = {
       1: { atk: 37, sub: "4.1%" },
@@ -236,7 +255,7 @@ function getWeaponMaterials(rarity: number, type: string, name: string): { name:
     ];
   }
 
-  if (name === "눈부신 빛" || name === "허위의 왈츠" || name === "융합의 원반") {
+  if (name === "눈부신 빛" || name === "허위의 왈츠" || name === "융합의 원반" || name === "청음") {
     return [
       { name: "클램 코인", count: 264000 },
       { name: "낡은 구속팔찌", count: 5 },
