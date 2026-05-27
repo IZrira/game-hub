@@ -18,13 +18,13 @@ export const renderRichText = (text: string) => {
   // [핵심 수정] 정규식의 속성명 매칭을 엄격하게 제한 + {icon:xxx} 태그 지원
   // [\d./+%]+ -> 수치 덩어리
   const ICON_COMMON_BASE = `https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/position/`;
-  const regex = new RegExp(`({{KEY_(?:[eErR]|LSHIFT)}}|{{MOUSE_L}}|\\[[mM]ouse\\s+[lL]eft\\]|\\[[kK]ey\\s+[eErR]\\]|\\[[lL]eft\\s+[sS]hift\\]|\\[[^\\]]+\\.webp\\]|{icon:[^}]+}|(?:${elementKeywords})\\s*(?:피해)(?!\\s*보너스)|[\\d./+%]+)`, 'g');
+  const regex = new RegExp(`({{YELLOW_START}}.*?{{YELLOW_END}}|{{KEY_(?:[eErR]|LSHIFT)}}|{{MOUSE_L}}|\\[[mM]ouse\\s+[lL]eft\\]|\\[[kK]ey\\s+[eErR]\\]|\\[[lL]eft\\s+[sS]hift\\]|\\[[^\\]]+\\.webp\\]|{icon:[^}]+}|(?:${elementKeywords})\\s*(?:피해)(?!\\s*보너스)|[\\d./+%]+)`, 'g');
   const tokens = text.split(regex);
 
   return tokens.map((part, i) => {
     if (!part) return null;
 
-    // A. 아이콘 태그 매칭
+    const yellowMatch = part.match(/{{YELLOW_START}}(.*?){{YELLOW_END}}/);
     const iconMatch = part.match(/\{icon:([^}]+)\}/);
     const manualMouseMatch = part.match(/\[\s*mouse\s+left\s*\]/i);
     const manualKeyMatch = part.match(/\[\s*key\s+([eErR])\s*\]/i);
@@ -32,6 +32,10 @@ export const renderRichText = (text: string) => {
     const keyMatch = part.match(/{{KEY_([eErR]|LSHIFT)}}/i);
     const mouseMatch = part.match(/{{MOUSE_L}}/i);
     const imageMatch = part.match(/\[([^\]]+\.webp)\]/);
+
+    if (yellowMatch) {
+      return <span key={i} className="text-[#EAB308] font-black">{yellowMatch[1]}</span>;
+    }
 
     if (iconMatch || manualMouseMatch || manualKeyMatch || manualShiftMatch || keyMatch || mouseMatch || imageMatch) {
       let fileName = '';
@@ -124,14 +128,17 @@ export const renderRichText = (text: string) => {
 };
 
 export const formatDescriptionByRank = (description: string, rank: number) => {
-  // Notion 데이터의 경우 중첩 단계(R1 ~ R5) 간에 2개 이상의 연속된 개행(\n\n)으로 문단이 분리되어 들어옵니다.
-  // 연속 개행 패턴을 기준으로 쪼개어 R1~R5 단계별 묶음 블록을 만듭니다.
-  const paragraphs = description.split(/\r?\n\s*\r?\n/).map(p => p.trim()).filter(p => p.length > 0);
-  if (paragraphs.length >= 5) {
-    return paragraphs[rank - 1];
+  // 1. 명시적인 중첩 구분자가 있는 경우 (예: [1중첩], [R1], @중첩1 등)
+  // 해당 구분자를 기준으로 텍스트를 쪼갭니다.
+  const rankSplitRegex = /(?:\[\s*[1-5]\s*중첩\s*\]|\[\s*R[1-5]\s*\]|@\s*중첩\s*[1-5])/i;
+  const parts = description.split(rankSplitRegex).map(p => p.trim()).filter(p => p.length > 0);
+  
+  if (parts.length >= 5) {
+    // 5단계로 명확히 나뉘어진 경우 해당 랭크의 텍스트 반환
+    return parts[rank - 1] || parts[0];
   }
 
-  // 슬래시(/)로 구분된 5단계 수치 패턴을 찾습니다. (pt 등 단위 포함)
+  // 2. 구분자가 없는 경우 전체 텍스트를 유지한 채 슬래시(/)로 구분된 5단계 수치 패턴만 치환합니다.
   const rankPattern = /([\d.]+[%pt]*)\/([\d.]+[%pt]*)\/([\d.]+[%pt]*)\/([\d.]+[%pt]*)\/([\d.]+[%pt]*)/g;
 
   return description.replace(rankPattern, (match, g1, g2, g3, g4, g5) => {
@@ -142,6 +149,6 @@ export const formatDescriptionByRank = (description: string, rank: number) => {
     if (unitMatch && !val.match(/[^\d.]+$/)) {
       val += unitMatch[0];
     }
-    return val;
+    return `{{YELLOW_START}}${val}{{YELLOW_END}}`;
   });
 };

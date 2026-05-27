@@ -227,7 +227,26 @@ function getWeaponCommonDropSeries(name: string): string[] {
   return commonSeriesList[index];
 }
 
-function getWeaponMaterials(rarity: number, type: string, name: string): { name: string; count: number }[] {
+function getWeaponMaterials(weapon: any): { name: string; count: number }[] {
+  if (weapon.ascensionMaterials) {
+    const lines = weapon.ascensionMaterials.split('\n');
+    const parsed = [];
+    for (const line of lines) {
+      if (!line.trim()) continue;
+      const parts = line.split(/x/i);
+      if (parts.length >= 2) {
+        const name = parts[0].trim();
+        const count = parseInt(parts[1].replace(/,/g, ''), 10) || 0;
+        parsed.push({ name, count });
+      }
+    }
+    if (parsed.length > 0) return parsed;
+  }
+
+  const rarity = weapon.rarity || 5;
+  const type = weapon.type || '직검';
+  const name = weapon.name || '';
+
   if (name === "서린 불꽃" || name === "위조된 작은별") {
     return [
       { name: "클램 코인", count: 330000 },
@@ -364,7 +383,7 @@ const WuwaWeaponDetail = () => {
 
   const handleCopyMaterials = () => {
     if (!weapon) return;
-    const materials = getWeaponMaterials(weapon.rarity, weapon.type, weapon.name);
+    const materials = getWeaponMaterials(weapon);
     const materialsText = materials
       .map((m) => `${t(m.name)} x${m.count.toLocaleString()}`)
       .join(', ');
@@ -595,7 +614,7 @@ const WuwaWeaponDetail = () => {
                </button>
              </div>
              <div className="flex flex-wrap justify-center gap-8 px-4">
-                {getWeaponMaterials(weapon.rarity, weapon.type, weapon.name).map((m, i) => (
+                {getWeaponMaterials(weapon).map((m, i) => (
                   <ItemIcon 
                     key={i} 
                     name={m.name} 

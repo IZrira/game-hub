@@ -58,8 +58,7 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
       if (adRef.current.offsetWidth > 0) {
         try {
           const clientId = adRef.current.getAttribute('data-ad-client');
-          // 클라이언트 ID가 아직 임시 값인 경우, 구글 서버 400 에러를 방지하기 위해 요청을 중단합니다.
-          if (clientId === 'ca-pub-YOUR_CLIENT_ID') {
+          if (!clientId || clientId === 'ca-pub-YOUR_CLIENT_ID') {
             pushedRef.current = true;
             return;
           }
@@ -90,8 +89,8 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
         ref={adRef}
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', height: '100%' }}
-        data-ad-client="ca-pub-YOUR_CLIENT_ID" // User should replace this
-        data-ad-slot={slot || "YOUR_AD_SLOT_ID"} // User should replace this
+        data-ad-client="ca-pub-7014148671633305"
+        data-ad-slot={slot || "YOUR_AD_SLOT_ID"}
         data-ad-format={getAdFormat()}
         data-full-width-responsive="true"
       ></ins>

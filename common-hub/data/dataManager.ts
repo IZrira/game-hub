@@ -19,16 +19,16 @@ export const getGameData = (targetId: string) => {
       let skillDescription = '노션에서 연동된 무기 스킬 설명입니다.';
       let description = item.content || '노션에서 연동된 무기 스토리입니다.';
 
-      if (item.content) {
-        // 90레벨 최종 스탯에서 고정밀 추출 시도 (부옵션명에 공백 포함 가능하도록 [^\n*]+? 적용)
-        const lv90Regex = /90\s*:\s*(?:기초\s*)?공격력\s*\*?\*?(\d+)\*?\*?\s*\/\s*([^\n*]+?)\s*\*?\*?([\d.]+%?)\*?\*?/i;
-        const lv90Match = item.content.match(lv90Regex);
+      if (item.growthStats) {
+        // 90레벨(또는 1~2성 무기의 경우 70레벨) 최종 스탯에서 고정밀 추출 시도 (부옵션명에 공백 포함 가능하도록 [^\n*]+? 적용)
+        const lvRegex = /(?:90|80|70)\s*:\s*(?:기초\s*)?공격력\s*\*?\*?(\d+)\*?\*?\s*\/\s*([^\n*]+?)\s*\*?\*?([\d.]+%?)\*?\*?/i;
+        const lvMatch = item.growthStats.match(lvRegex);
 
-        if (lv90Match) {
-          atk = parseInt(lv90Match[1], 10);
-          subStatName = lv90Match[2].trim();
+        if (lvMatch) {
+          atk = parseInt(lvMatch[1], 10);
+          subStatName = lvMatch[2].trim();
           
-          let parsedSubValue = lv90Match[3].trim();
+          let parsedSubValue = lvMatch[3].trim();
           // 백분율 값 중 소수점 누락 오류 교차 검증 보정 (예: 201% -> 20.1%)
           if (parsedSubValue.endsWith('%')) {
             const num = parseFloat(parsedSubValue);
@@ -39,13 +39,13 @@ export const getGameData = (targetId: string) => {
           subStatValue = parsedSubValue;
         } else {
           // 폴백: 기존 라벨 기반 추출 시도 (부옵션명 공백 허용)
-          const atkMatch = item.content.match(/(?:기초\s*공격력|공격력)\s*:\s*(\d+)/i);
+          const atkMatch = item.growthStats.match(/(?:기초\s*공격력|공격력)\s*:\s*(\d+)/i);
           if (atkMatch) atk = parseInt(atkMatch[1], 10);
 
-          const subNameMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯|부옵션명)\s*:\s*([^\d\n]+)/i);
+          const subNameMatch = item.growthStats.match(/(?:부옵션|서브\s*스탯|부스탯|부옵션명)\s*:\s*([^\d\n]+)/i);
           if (subNameMatch) subStatName = subNameMatch[1].trim();
 
-          const subValMatch = item.content.match(/(?:부옵션|서브\s*스탯|부스탯)\s*:[^\n]*?([\d.]+%?)/i);
+          const subValMatch = item.growthStats.match(/(?:부옵션|서브\s*스탯|부스탯)\s*:[^\n]*?([\d.]+%?)/i);
           if (subValMatch) {
             let val = subValMatch[1].trim();
             if (val.endsWith('%')) {
@@ -57,22 +57,11 @@ export const getGameData = (targetId: string) => {
             subStatValue = val;
           }
         }
-
-        // 스킬명 및 설명 정밀 추출 (스킬 아래 **스킬명** 및 돌파재료 이전 영역)
-        const skillRegex = /스킬\s*[\r\n]+(?:\s*[\r\n]+)*\*\*([^*]+)\*\*\s*[\r\n]+([\s\S]*?)(?=돌파\s*재료|설명|###|스토리|$)/i;
-        const skillMatch = item.content.match(skillRegex);
-        if (skillMatch) {
-          skillName = skillMatch[1].trim();
-          skillDescription = skillMatch[2].trim();
-        } else {
-          // 폴백: 기존 라벨 기반 추출
-          const skillNameMatch = item.content.match(/(?:스킬명|무기\s*스킬명)\s*:\s*([^\n]+)/i);
-          if (skillNameMatch) skillName = skillNameMatch[1].trim();
-
-          const skillDescMatch = item.content.match(/(?:스킬\s*설명|스킬\s*효과)\s*:\s*([^\n]+)/i);
-          if (skillDescMatch) skillDescription = skillDescMatch[1].trim();
-        }
       }
+
+      if (item.skillName) skillName = item.skillName.trim();
+      if (item.skillDescription) skillDescription = item.skillDescription.trim();
+      if (item.weaponStory) description = item.weaponStory.trim();
 
       return {
         id: item.id,
@@ -91,6 +80,7 @@ export const getGameData = (targetId: string) => {
           name: skillName,
           description: skillDescription
         },
+        ascensionMaterials: item.ascensionMaterials || '',
         description: description,
         isNotion: true,
         content: item.content

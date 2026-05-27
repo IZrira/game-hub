@@ -61,38 +61,70 @@ async function fetchNotionData() {
       }
     });
 
-    const items = [];
+    const itemsMap = new Map();
     for (const page of response.results) {
       const props = page.properties;
       
-      // 본문 내용을 마크다운으로 변환하여 가져오기
+      // 무기가 아닌 경우(예: 캐릭터)에는 기존처럼 본문 마크다운을 파싱
+      const type = props['종류']?.select?.name || '';
       let contentMarkdown = '';
-      try {
-        const mdblocks = await n2m.pageToMarkdown(page.id);
-        const mdString = n2m.toMarkdownString(mdblocks);
-        contentMarkdown = mdString.parent || '';
-      } catch (mdErr) {
-        console.error(`[Notion Sync] Failed to fetch markdown content for page ${page.id}:`, mdErr);
+      if (!['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(type)) {
+        try {
+          const mdblocks = await n2m.pageToMarkdown(page.id);
+          const mdString = n2m.toMarkdownString(mdblocks);
+          contentMarkdown = mdString.parent || '';
+        } catch (mdErr) {
+          console.error(`[Notion Sync] Failed to fetch markdown content for page ${page.id}:`, mdErr);
+        }
       }
 
-      // 속성 매핑 (이름, 성급, 종류, 출시 버전, 획득 경로 등)
-      // 노션 속성명에 따라 텍스트/셀렉트 유형 처리
+      // 속성 매핑 헬퍼 함수
+      const extractRichText = (prop) => {
+        if (!prop || !prop.rich_text) return '';
+        return prop.rich_text.map(rt => rt.plain_text).join('');
+      };
+
+      // 속성 매핑
       const name = props['이름']?.title?.[0]?.plain_text || '';
       const rarity = props['성급']?.select?.name || '';
-      const type = props['종류']?.select?.name || '';
-      const releaseVersion = props['출시 버전']?.rich_text?.[0]?.plain_text || '';
-      const obtain = props['획득 경로']?.rich_text?.[0]?.plain_text || '';
+      const releaseVersion = extractRichText(props['출시 버전']);
+      
+      let obtain = '';
+      if (props['획득 경로']?.type === 'select') {
+        obtain = props['획득 경로']?.select?.name || '';
+      } else if (props['획득 경로']?.type === 'multi_select') {
+        obtain = props['획득 경로']?.multi_select?.map(s => s.name).join(', ') || '';
+      } else {
+        obtain = extractRichText(props['획득 경로']);
+      }
+      
+      const growthStats = extractRichText(props['성장 스텟']);
+      const skillName = extractRichText(props['스킬명']);
+      const skillDescription = extractRichText(props['스킬 설명']);
+      const ascensionMaterials = extractRichText(props['돌파 재료']);
+      const weaponStory = extractRichText(props['무기 스토리']);
 
-      items.push({
-        id: page.id,
-        name,
-        rarity: rarity ? parseInt(rarity.replace(/[^0-9]/g, '')) || 4 : 4,
-        type,
-        releaseVersion,
-        obtain,
-        content: contentMarkdown
-      });
+      const normalizedName = name.trim();
+      
+      if (normalizedName) {
+        itemsMap.set(normalizedName, {
+          id: page.id,
+          name,
+          rarity: rarity ? parseInt(rarity.replace(/[^0-9]/g, '')) || 4 : 4,
+          type,
+          releaseVersion,
+          obtain,
+          growthStats,
+          skillName,
+          skillDescription,
+          ascensionMaterials,
+          weaponStory,
+          content: contentMarkdown
+        });
+      }
     }
+
+    const items = Array.from(itemsMap.values());
 
     fs.writeFileSync(jsonPath, JSON.stringify(items, null, 2), 'utf8');
     console.log(`[Notion Sync] Successfully fetched ${items.length} items from Notion and updated notion-data.json!`);
