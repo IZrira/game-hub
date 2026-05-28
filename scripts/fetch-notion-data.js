@@ -87,8 +87,14 @@ async function fetchNotionData() {
       // 속성 매핑
       const name = props['이름']?.title?.[0]?.plain_text || '';
       const rarity = props['성급']?.select?.name || '';
-      const releaseVersion = extractRichText(props['출시 버전']);
-      
+      let releaseVersion = '';
+      if (props['출시 버전']?.type === 'select') {
+        releaseVersion = props['출시 버전']?.select?.name || '';
+      } else if (props['출시 버전']?.type === 'number') {
+        releaseVersion = props['출시 버전']?.number?.toString() || '';
+      } else {
+        releaseVersion = extractRichText(props['출시 버전']);
+      }      
       let obtain = '';
       if (props['획득 경로']?.type === 'select') {
         obtain = props['획득 경로']?.select?.name || '';
