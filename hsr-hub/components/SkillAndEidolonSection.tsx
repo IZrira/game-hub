@@ -3,6 +3,7 @@ import { SkillDetail } from '../../common-hub/types';
 import { HsrCharacter } from '../types';
 import { ShieldAlert, PlusCircle, MinusCircle, Sparkles, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
 interface SkillAndEidolonSectionProps {
   char: any;
@@ -50,7 +51,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
   });
   const categories = SKILL_CATEGORIES_HSR;
 
-  const CDN_BASE = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/skills/${encodeURIComponent(char.folderName)}/`;
+  const CDN_BASE = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/skills/${safeEncodeURIComponent(char.folderName)}/`;
   const STAT_ICON_BASE = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/stats/";
 
   const groupedSkills = useMemo(() => {

@@ -75,7 +75,7 @@ const mortenax_blade: Character = {
       toughnessDMG: "약점 격파 단일 10",
       spRecovery: "+1",
       description: "지정된 단일 적에게 천야•블레이드 HP 최대치의 100%만큼 화염 속성 피해를 가하고, 목표를 도발 상태에 빠트린다, 지속 시간: 1턴",
-      icon: "basic_atk_2"
+      icon: "basic_atk_1" // 임시 매핑: basic_atk_2.webp 미존재
     },
     {
       name: "검날 아래, 귀장",
@@ -100,7 +100,7 @@ const mortenax_blade: Character = {
       energyRegen: "에너지 회복 5",
       toughnessDMG: "약점 격파 범위 20",
       description: "모든 적에게 천야•블레이드 HP 최대치의 350%만큼 화염 속성 피해를 가한다",
-      icon: "ultimate_2"
+      icon: "ultimate_1" // 임시 매핑: ultimate_2.webp 미존재
     },
     {
       name: "인과 청산",

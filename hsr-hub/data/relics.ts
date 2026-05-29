@@ -508,6 +508,42 @@ export const RELIC_DATA = [
     "en_2piece": "Increases Imaginary DMG by 10%.",
     "4piece": "장착한 캐릭터가 디버프 효과에 빠진 적에게 피해를 가할 시 치명타 확률이 10% 증가한다. 속박 상태에 빠진 적에게 피해를 가할 시 치명타 피해가 20% 증가한다",
     "en_4piece": "When attacking debuffed enemies, the wearer's CRIT Rate increases by 10%, and their CRIT DMG increases by 20% against Imprisoned enemies."
+  },
+  {
+    id: "navigator_craving_for_stars",
+    gameId: "hsr",
+    type: "터널 유물",
+    name: "별을 갈망하는 항법사 아집",
+    enName: "Navigator Craving for the Stars",
+    releaseVersion: "4.3",
+    pieces: [
+      { type: "Head", name: "항법사의 심우주 망원경", enName: "Navigator's Deep Space Telescope" },
+      { type: "Hand", name: "항법사의 게임 주사위", enName: "Navigator's Gaming Dice" },
+      { type: "Body", name: "항법사의 성도 제복", enName: "Navigator's Star Map Uniform" },
+      { type: "Feet", name: "항법사의 영원한 여정 부츠", enName: "Navigator's Eternal Journey Boots" }
+    ],
+    "2piece": "공격력 12% 증가",
+    "en_2piece": "Increases ATK by 12%.",
+    "4piece": "장착한 캐릭터가 전투 진입 시/전투 스킬 발동 시, 가하는 전투 스킬 및 필살기 피해가 18% 증가한다, 최대 중첩수: 3스택, 장착한 캐릭터의 턴 시작 시/필살기 발동 후, 해당 효과를 1스택 해제한다",
+    "en_4piece": "When the wearer enters battle or uses their Skill, increases their Skill and Ultimate DMG dealt by 18%, stacking up to 3 time(s). At the start of the wearer's turn or after using their Ultimate, removes 1 stack of this effect."
+  },
+  {
+    id: "master_seeking_divine_craft",
+    gameId: "hsr",
+    type: "터널 유물",
+    name: "신공을 탐구하는 명장",
+    enName: "Master Seeking Divine Craft",
+    releaseVersion: "4.3",
+    pieces: [
+      { type: "Head", name: "명장의 화염 짐승 안면 보호구", enName: "Master's Flame Beast Visor" },
+      { type: "Hand", name: "명장의 단철 보호 장갑", enName: "Master's Forged Iron Gauntlet" },
+      { type: "Body", name: "명장의 방염 장인복", enName: "Master's Fireproof Artisan Robe" },
+      { type: "Feet", name: "명장의 무애 중장화", enName: "Master's Unhindered Heavy Boots" }
+    ],
+    "2piece": "HP 최대치 12% 증가",
+    "en_2piece": "Increases Max HP by 12%.",
+    "4piece": "장착한 캐릭터가 방어력 감소 상태의 적에게 가하는 치명타 피해가 28% 증가한다. 장착한 캐릭터가 적에게 방어력 감소 상태를 부여하면 모든 아군은 [연소 촉진]을 획득한다, 지속 시간: 2턴, 해당 효과는 중첩되지 않으며, [연소 촉진]을 보유한 아군은 가하는 피해가 15% 증가한다. 해당 효과는 장착한 캐릭터가 공격을 발동하면 다시 발동할 수 있다",
+    "en_4piece": "Increases CRIT DMG dealt by the wearer to enemies with DEF reduction by 28%. When the wearer inflicts DEF reduction on an enemy, all allies gain [Combustion Boost] for 2 turn(s). This effect cannot stack. Allies with [Combustion Boost] deal 15% more DMG. This effect can be triggered again when the wearer attacks."
   }
 ];
 
