@@ -3,7 +3,7 @@ import { Character } from '../../../../common-hub/types';
 const mortenax_blade: Character = {
   id: "mortenax_blade",
   name: "천야•블레이드",
-  folderName: "천야블레이드",
+  folderName: "천야•블레이드",
   gameId: "hsr",
   attribute: "화염",
   path: "공허",
