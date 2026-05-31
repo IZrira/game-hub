@@ -60,11 +60,41 @@ const AdminDashboard: React.FC = () => {
 
   useEffect(() => {
     if (user && isAdmin(user.id)) {
-      fetchBaseData();
+      autoSyncOnLoad();
       fetchTierData();
       fetchMgmtNotices();
     }
   }, [user]);
+
+  const autoSyncOnLoad = async () => {
+    console.log("🔄 [AutoSync] Started. Total characters in local JSON:", HSR_CHARACTERS.length);
+    const hasBlade = HSR_CHARACTERS.find(c => c.id === 'mortenax_blade');
+    console.log("🔄 [AutoSync] Has 'mortenax_blade' in local JSON?", hasBlade ? "YES" : "NO");
+
+    try {
+      const charTasks = HSR_CHARACTERS.map(c => ({
+        id: c.id,
+        name: c.name,
+        folder_name: (c as any).folderName || c.name,
+        rarity: c.rarity,
+        attribute: c.attribute,
+        path: c.path,
+        version: c.version || '3.1'
+      }));
+      
+      const { error } = await supabase.from('characters').upsert(charTasks, { onConflict: 'id' });
+      
+      if (error) {
+        console.error('❌ [AutoSync] DB Upsert Error:', error);
+        alert('자동 동기화 DB 오류: ' + error.message);
+      } else {
+        console.log("✅ [AutoSync] DB Upsert Success.");
+      }
+    } catch (err) {
+      console.error('❌ [AutoSync] Unexpected Error:', err);
+    }
+    fetchBaseData(); 
+  };
 
   const normalizeName = (n: string) => n ? n.normalize('NFC').replace(/[\s•·().\-_*]/g, '').toLowerCase().trim() : '';
 
@@ -496,7 +526,16 @@ const AdminDashboard: React.FC = () => {
                           </td>
                           <td className="p-8 text-center font-bold text-gray-400">{bc.attribute}</td>
                           <td className="p-8 text-center font-bold text-gray-400">{bc.path}</td>
-                          <td className="p-8 text-center font-bold text-amber-500/60 tracking-widest">{bc.version}</td>
+                          <td className="p-8 text-center">
+                            <input 
+                              className="w-16 text-center font-bold text-amber-500/60 tracking-widest bg-transparent border-b border-transparent hover:border-amber-500/30 focus:border-amber-500 focus:outline-none transition-all p-1"
+                              value={bc.version}
+                              onChange={async (e) => {
+                                await supabase.from('characters').update({ version: e.target.value }).eq('id', bc.id);
+                                fetchBaseData();
+                              }}
+                            />
+                          </td>
                           <td className="p-8 text-right">
                             <button onClick={() => deleteCharacter(bc.id, bc.name)} className="p-4 bg-rose-500/10 hover:bg-rose-500/20 rounded-2xl text-rose-500/40 hover:text-rose-500 transition-all active:scale-90 border border-transparent hover:border-rose-500/20"><Trash2 size={18} /></button>
                           </td>
@@ -539,6 +578,10 @@ const AdminDashboard: React.FC = () => {
                           {['파멸', '수렵', '지식', '화합', '공허', '보존', '풍요', '기억', '환락'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)}
                         </select>
                       </div>
+                    </div>
+                    <div className="space-y-2">
+                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">버전 (Version)</label>
+                      <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.version} onChange={e => setNewChar({...newChar, version: e.target.value})} placeholder="예: 4.3" />
                     </div>
                     <button onClick={addCharacterToDB} className="w-full py-5 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3">
                       <Save size={18} /> DB에 저장하기

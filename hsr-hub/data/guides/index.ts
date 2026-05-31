@@ -163,6 +163,9 @@ import { 더헤르타Guide } from './더헤르타';
 import { 망귀인Guide } from './망귀인';
 import { 운리Guide } from './운리';
 import { 애쉬베일Guide } from './애쉬베일';
+import { 은랑LV999Guide } from './은랑LV999';
+import { 에바네시아Guide } from './에바네시아';
+import { 개척자환락Guide } from './개척자환락';
 export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   반디Guide,
   백로Guide,
@@ -256,5 +259,8 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   더헤르타Guide,
   망귀인Guide,
   운리Guide,
-  애쉬베일Guide
+  애쉬베일Guide,
+  은랑LV999Guide,
+  에바네시아Guide,
+  개척자환락Guide
 ];
