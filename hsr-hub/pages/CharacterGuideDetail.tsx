@@ -278,6 +278,29 @@ const CharacterGuideDetail: React.FC = () => {
     return HSR_PARTIES.filter(p => p.members.some(m => normalizeName(m.name) === searchName));
   }, [resolvedKoName]);
 
+  const synergyCharacters = useMemo(() => {
+    const searchName = normalizeName(resolvedKoName || "");
+    const chars = new Map<string, any>();
+    
+    HSR_PARTIES.forEach(p => {
+      if (p.members.some(m => normalizeName(m.name) === searchName)) {
+        p.members.forEach(m => {
+          if (normalizeName(m.name) !== searchName) {
+            chars.set(normalizeName(m.name), m);
+          }
+          if (m.substitutes) {
+            m.substitutes.forEach((sub: any) => {
+              if (normalizeName(sub.name) !== searchName) {
+                chars.set(normalizeName(sub.name), { ...sub, role: m.role });
+              }
+            });
+          }
+        });
+      }
+    });
+    return Array.from(chars.values());
+  }, [resolvedKoName]);
+
   const lastUpdatedDate = guide ? (guide.lastUpdated || '2026-05-23') : '2026-05-23';
 
   const updateTooltipPosition = (x: number, y: number) => {
@@ -368,17 +391,17 @@ const CharacterGuideDetail: React.FC = () => {
       });
     }
 
-    // 4. 추천 파티 조합 FAQ
-    if (recommendedParties && recommendedParties.length > 0) {
-      const partyNames = recommendedParties.map(p => p.members.map(m => m.name).join(' + ')).slice(0, 2);
+    // 4. 추천 시너지 FAQ
+    if (synergyCharacters && synergyCharacters.length > 0) {
+      const synergyNames = synergyCharacters.slice(0, 5).map(m => m.name);
       questions.push({
-        question: `${charNameKo}의 추천 파티 조합 및 팀 구성은 어떻게 되나요?`,
-        answer: `${charNameKo}의 대표적인 시너지 파티 조합으로는 [${partyNames.join('] 또는 [')}] 구성이 가장 널리 권장됩니다.`
+        question: `${charNameKo}와(과) 잘 어울리는 추천 시너지 캐릭터는 누구인가요?`,
+        answer: `${charNameKo}와(과) 조합하기 좋은 대표적인 캐릭터로는 ${synergyNames.join(', ')} 등이 널리 권장됩니다.`
       });
     }
 
     return questions;
-  }, [guide, character, recommendedParties]);
+  }, [guide, character, synergyCharacters]);
 
   const cdnFolderName = character.folderName.normalize('NFC');
   const heroImageUrl = `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(cdnFolderName)}/${character.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`;
@@ -434,8 +457,17 @@ const CharacterGuideDetail: React.FC = () => {
 
       <PageHeader gameId={gameId} category={t("공략")} title={`${character?.name || charName} 가이드`} />
 
-      <div className="max-w-[1400px] mx-auto px-6 md:px-12 pt-12 flex flex-col lg:flex-row gap-12">
-        <div className="flex-1 space-y-16 guide-content">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-8 flex flex-col lg:flex-row gap-12 justify-between">
+        <div className="flex-1 w-full space-y-16 guide-content">
+          {/* 돌아가기 토글 버튼 */}
+          <Link 
+            to={`/gallery/${gameId}/character/${character.id}`}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl text-sm font-black text-gray-300 hover:text-white transition-all backdrop-blur-md group w-fit"
+          >
+            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+            {t('캐릭터 상세 정보로 돌아가기')}
+          </Link>
+
           {/* Hero Section */}
           <section className="relative p-12 md:p-16 rounded-[60px] bg-[#0c0c0c] border border-white/5 overflow-hidden group">
             <div 
@@ -491,18 +523,22 @@ const CharacterGuideDetail: React.FC = () => {
                     onMouseEnter={(e) => handleMouseEnter(e, lcName, '추천 광추', lcNote)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`group glass-card rounded-[32px] border ${isBest ? 'border-brand-primary/50 shadow-[0_0_30px_rgba(126,48,225,0.2)]' : 'border-white/5'} p-4 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 hover:border-brand-primary/20 text-center relative overflow-hidden`}
+                    className={`group glass-card rounded-[32px] p-4 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
+                      isBest 
+                        ? 'border-2 border-brand-accent shadow-[0_0_50px_rgba(255,214,0,0.15)] hover:shadow-[0_0_80px_rgba(255,214,0,0.3)] scale-[1.02] hover:scale-105 z-10 bg-brand-primary/5' 
+                        : 'border border-white/5 hover:border-brand-primary/30'
+                    }`}
                   >
                     {isBest && (
-                      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20" />
+                      <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20" />
                     )}
                     <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
                       {lcUrl ? <img src={lcUrl} alt={lcName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-700" />}
-                      <div className={`absolute top-2 left-2 px-2 py-0.5 rounded-lg text-[9px] font-black ${isBest ? 'bg-brand-accent text-black' : 'bg-black/60 text-brand-accent'} uppercase tracking-widest z-10 shadow-lg`}>
+                    </div>
+                    <div className="flex flex-col items-center gap-1.5 w-full">
+                      <div className={`px-2.5 py-0.5 rounded-full text-[9px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300'} uppercase tracking-widest`}>
                         {i + 1}순위
                       </div>
-                    </div>
-                    <div className="space-y-1.5 w-full">
                       <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(lcName)}</h4>
                       {isBest && (
                         <div className="flex items-center justify-center gap-1">
@@ -541,14 +577,20 @@ const CharacterGuideDetail: React.FC = () => {
                     const rName = typeof rItem === 'string' ? rItem : (rItem as any).name;
                     const rNote = typeof rItem === 'string' ? undefined : (rItem as any).note;
                     const relic = RELIC_DB.find(r => r.name === rName);
+                    const isFirst = i === 0;
                     return (
-                      <Link key={i} to={`/gallery/${gameId}/relic/${encodeURIComponent(rName)}`} onMouseEnter={(e) => handleMouseEnter(e, rName, '터널 유물', rNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="flex items-center gap-4 p-4 bg-white/5 rounded-3xl border border-white/5 group hover:border-brand-primary/30 transition-all">
-                        <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform">
+                      <Link key={i} to={`/gallery/${gameId}/relic/${encodeURIComponent(rName)}`} onMouseEnter={(e) => handleMouseEnter(e, rName, '터널 유물', rNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                        {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
+                        <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
                           {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-700" />}
                         </div>
-                        <div className="flex flex-col">
-                          <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(rName)}</span>
-                          <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">{t(rNote || '추천')}</span>
+                        <div className="flex flex-col gap-1 w-full z-10">
+                          <div className="flex items-center justify-between w-full">
+                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(rName)}</span>
+                            <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                              {i + 1}순위
+                            </span>
+                          </div>
                         </div>
                       </Link>
                     );
@@ -566,14 +608,20 @@ const CharacterGuideDetail: React.FC = () => {
                     const oName = typeof oItem === 'string' ? oItem : (oItem as any).name;
                     const oNote = typeof oItem === 'string' ? undefined : (oItem as any).note;
                     const ornament = ORNAMENT_DB.find(o => o.name === oName);
+                    const isFirst = i === 0;
                     return (
-                      <Link key={i} to={`/gallery/${gameId}/ornament/${encodeURIComponent(oName)}`} onMouseEnter={(e) => handleMouseEnter(e, oName, '차원 장신구', oNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="flex items-center gap-4 p-4 bg-white/5 rounded-3xl border border-white/5 group hover:border-brand-primary/30 transition-all">
-                        <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform">
+                      <Link key={i} to={`/gallery/${gameId}/ornament/${encodeURIComponent(oName)}`} onMouseEnter={(e) => handleMouseEnter(e, oName, '차원 장신구', oNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                        {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
+                        <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
                           {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-700" />}
                         </div>
-                        <div className="flex flex-col">
-                          <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(oName)}</span>
-                          <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">{t(oNote || '추천')}</span>
+                        <div className="flex flex-col gap-1 w-full z-10">
+                          <div className="flex items-center justify-between w-full">
+                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(oName)}</span>
+                            <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                              {i + 1}순위
+                            </span>
+                          </div>
                         </div>
                       </Link>
                     );
@@ -604,12 +652,12 @@ const CharacterGuideDetail: React.FC = () => {
                     >
                       <div className="flex flex-col">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-xs font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-200 transition-colors whitespace-nowrap">{t(s.label)}</span>
-                          {s.note && <Info size={12} className="text-brand-accent/60" />}
+                          <span className="text-sm font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-200 transition-colors whitespace-nowrap">{t(s.label)}</span>
+                          {s.note && <Info size={14} className="text-brand-accent/60" />}
                         </div>
                       </div>
                       <div className="flex flex-col items-end">
-                        <span className="text-2xl font-black text-brand-accent italic tabular-nums group-hover:scale-110 transition-transform whitespace-nowrap">{t(s.value)}</span>
+                        <span className="text-lg font-black text-brand-accent italic tabular-nums whitespace-nowrap">{t(s.value)}</span>
                         <div className="w-12 h-1 bg-brand-primary/20 rounded-full mt-1 overflow-hidden">
                            <div className="w-full h-full bg-brand-accent/40 animate-pulse" />
                         </div>
@@ -662,24 +710,39 @@ const CharacterGuideDetail: React.FC = () => {
           </section>
 
 
-          {/* 05 추천 파티 */}
-          <section id="추천 파티" className="space-y-10">
-            <SectionHeader num="05" title="추천 파티 구성" theme={theme} />
-            <div className="grid grid-cols-1 gap-12">
-              {recommendedParties.map((party, i) => (
-                <div key={i} className="glass-card rounded-[50px] border border-white/5 overflow-visible group hover:border-brand-primary/20 transition-all duration-700 bg-gradient-to-br from-white/[0.02] to-transparent">
-                  <PartyCardContent party={party} gameId={gameId} />
-                  {party.description && (
-                    <div className="px-10 pb-10">
-                      <p className="text-xs text-gray-500 font-bold leading-relaxed italic border-l-2 border-brand-primary/30 pl-4">
-                        "{t(party.description).replace(/\s*\([^)]*대체:[^)]*\)/g, '').replace(/\s*[^)]*대체:[^)]*/g, '').trim()}"
-                      </p>
-                    </div>
-                  )}
+          {/* 04 시너지 캐릭터 */}
+          {synergyCharacters.length > 0 && (
+            <section id="시너지 캐릭터" className="space-y-10">
+              <SectionHeader num="04" title="추천 시너지 캐릭터" theme={theme} />
+              <div className="glass-card rounded-[45px] p-10 md:p-12 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
+                <div className="flex flex-wrap gap-8">
+                  {synergyCharacters.map((member, idx) => {
+                    const memberChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(member.name)) || normalizeName(c.folderName) === normalizeName(t(member.name)));
+                    const memberImg = memberChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(memberChar.folderName.normalize('NFC'))}/${memberChar.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}` : '';
+                    
+                    return (
+                      <Link 
+                        key={idx}
+                        to={`/gallery/${gameId}/character/${memberChar?.id || member.name}`}
+                        className="flex flex-col items-center gap-4 group/member w-[100px]"
+                      >
+                        <div className="relative w-20 h-20 md:w-24 md:h-24">
+                           <div className="absolute inset-0 bg-brand-primary/20 rounded-full blur-xl opacity-0 group-hover/member:opacity-100 transition-opacity" />
+                           <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-accent transition-all duration-300 p-1 bg-black/40 shadow-xl">
+                              <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full group-hover/member:scale-110 transition-transform duration-500" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                           </div>
+                        </div>
+                        <div className="text-center space-y-1">
+                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
+                          <div className="text-[10px] font-bold text-gray-600 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
-              ))}
-            </div>
-          </section>
+              </div>
+            </section>
+          )}
 
           {/* E-E-A-T Authorship & Methodology Note */}
           <section className="mt-12 pt-8 border-t border-white/5">

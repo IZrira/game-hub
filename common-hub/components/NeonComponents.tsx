@@ -9,7 +9,7 @@ export const NeonDivider: React.FC = () => (
 
 interface GlowStatsProps {
   data: any[];
-  type: 'attribute' | 'path' | 'element';
+  type: 'attribute' | 'path' | 'element' | 'weaponType';
   title: string;
 }
 

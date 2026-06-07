@@ -2,6 +2,84 @@ import { PartyCombination } from './index';
 
 export const elationParties: PartyCombination[] = [
   {
+    id: 'party_evanescia_elation_1',
+    name: '에바네시아 파티 (1순위)',
+    description: '에바네시아의 화력을 극대화하는 환락 특화 시너지 조합입니다.',
+    mainDPS: '에바네시아',
+    category: '환락',
+    members: [
+      { id: 'char_에바네시아', name: '에바네시아', role: '메인 딜러', folderName: '에바네시아' },
+      { 
+        id: 'char_효광', 
+        name: '효광', 
+        role: '서포터', 
+        folderName: '효광',
+        substitutes: [
+          { name: '트리비', folderName: '트리비' },
+          { name: '완•매', folderName: '완•매' },
+          { name: '선데이', folderName: '선데이' },
+          { name: '키레네', folderName: '키레네' }
+        ]
+      },
+      { 
+        id: 'char_개척자_환락', 
+        name: '개척자 (환락)', 
+        role: '서포터', 
+        folderName: '개척자 (환락)',
+        isTrailblazer: true,
+        substitutes: [
+          { name: '스파키', folderName: '스파키' },
+          { name: '트리비', folderName: '트리비' }
+        ]
+      },
+      { 
+        id: 'char_곽향', 
+        name: '곽향', 
+        role: '탱커/힐러', 
+        folderName: '곽향',
+        substitutes: [
+          { name: '단항•등황', folderName: '단항•등황' },
+          { name: '히아킨', folderName: '히아킨' },
+          { name: '어벤츄린', folderName: '어벤츄린' },
+          { name: '부현', folderName: '부현' }
+        ]
+      }
+    ],
+    tags: ['에바네시아', '환락', '효광']
+  },
+  {
+    id: 'party_silverwolf_999_elation_1',
+    name: '은랑 LV.999 파티',
+    description: '은랑 LV.999의 화력을 스파키와 효광으로 보조하는 환락 특화 시너지 조합입니다.',
+    mainDPS: '은랑 LV.999',
+    category: '환락',
+    members: [
+      { id: 'char_은랑_LV999', name: '은랑 LV.999', role: '메인 딜러', folderName: '은랑 LV.999' },
+      { id: 'char_스파키', name: '스파키', role: '서브 딜러', folderName: '스파키' },
+      { 
+        id: 'char_효광', 
+        name: '효광', 
+        role: '서포터', 
+        folderName: '효광',
+        substitutes: [
+          { name: '아스타', folderName: '아스타' },
+          { name: '개척자 (환락)', folderName: '개척자 (환락)', isTrailblazer: true }
+        ]
+      },
+      { 
+        id: 'char_곽향', 
+        name: '곽향', 
+        role: '탱커/힐러', 
+        folderName: '곽향',
+        substitutes: [
+          { name: '단항•등황', folderName: '단항•등황' },
+          { name: '히아킨', folderName: '히아킨' }
+        ]
+      }
+    ],
+    tags: ['은랑 LV.999', '환락', '스파키']
+  },
+  {
     id: 'party_sparky_elation_1',
     name: '스파키 환락 파티 (1순위)',
     description: '스파키의 환락 메커니즘을 스파클과 효광으로 보조하는 조합입니다.',
@@ -49,61 +127,6 @@ export const elationParties: PartyCombination[] = [
       { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
     ],
     tags: ['개척자', '기억', '스파키']
-  },
-  {
-    id: 'party_yunli_counter_1',
-    name: '운리 반격 파티 (1순위)',
-    description: '운리의 반격 능력을 선데이와 트리비로 보조하는 조합입니다.',
-    mainDPS: '운리',
-    category: '환락',
-    members: [
-      { id: 'char_운리', name: '운리', role: '메인 딜러', folderName: '운리' },
-      { 
-        id: 'char_선데이', 
-        name: '선데이', 
-        role: '서포터', 
-        folderName: '선데이',
-        substitutes: [
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true },
-          { name: '스파클', folderName: '스파클' }
-        ]
-      },
-      { 
-        id: 'char_트리비', 
-        name: '트리비', 
-        role: '서포터', 
-        folderName: '트리비',
-        substitutes: [
-          { name: '로빈', folderName: '로빈' },
-          { name: '스파클', folderName: '스파클' }
-        ]
-      },
-      { 
-        id: 'char_단항등황', 
-        name: '단항•등황', 
-        role: '탱커/힐러', 
-        folderName: '단항•등황',
-        substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '히아킨', folderName: '히아킨' }
-        ]
-      }
-    ],
-    tags: ['운리', '반격', '선데이']
-  },
-  {
-    id: 'party_yunli_counter_2',
-    name: '운리 반격 파티 (2순위)',
-    description: '개척자(기억)와 로빈의 서포팅을 받는 운리 조합입니다.',
-    mainDPS: '운리',
-    category: '환락',
-    members: [
-      { id: 'char_운리', name: '운리', role: '메인 딜러', folderName: '운리' },
-      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
-      { id: 'char_로빈', name: '로빈', role: '서포터', folderName: '로빈' },
-      { id: 'char_곽향', name: '곽향', role: '탱커/힐러', folderName: '곽향' }
-    ],
-    tags: ['운리', '반격', '로빈']
   },
   {
     id: 'party_clara_counter_1',

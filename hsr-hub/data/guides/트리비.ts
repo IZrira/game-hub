@@ -50,7 +50,8 @@ export const 트리비Guide: CharacterGuide = {
     },
     subStats: ["치명타 피해", "치명타 확률", "HP"],
     targetStats: [
-      { label: "속도", value: "95 미만 or 141 이상" },
+      { label: "속도", value: "95 미만" },
+      { label: "속도", value: "141 이상" },
       { label: "HP", value: "6000 이상" }
     ],
     bestLightCones: [

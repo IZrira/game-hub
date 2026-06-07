@@ -20,10 +20,17 @@ const WWTierList = React.lazy(() => import('../ww-hub/pages/TierList'));
 const WWPartyRecommendations = React.lazy(() => import('../ww-hub/pages/PartyRecommendations'));
 const WuwaWeaponDetail = React.lazy(() => import('../ww-hub/pages/WuwaWeaponDetail'));
 const Terminology = React.lazy(() => import('../hsr-hub/pages/Terminology'));
-const CharacterGuideDetail = React.lazy(() => import('../hsr-hub/pages/CharacterGuideDetail'));
+const CharacterGuideDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterGuideDetail'));
+const CharacterGuideDetailWW = React.lazy(() => import('../ww-hub/pages/WuwaCharacterGuideDetail'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
 const WuwaEchoDetail = React.lazy(() => import('../ww-hub/pages/WuwaEchoDetail'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
+
+// 새로 추가된 정책 및 블로그 페이지
+const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
+const TermsOfService = React.lazy(() => import('./pages/TermsOfService'));
+const BlogList = React.lazy(() => import('./pages/BlogList'));
+const BlogPost = React.lazy(() => import('./pages/BlogPost'));
 
 // Game Specific Page Dispatchers
 const TierListDispatcher = () => {
@@ -48,6 +55,12 @@ const CharacterDetailDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <CharacterDetailWW />;
   return <CharacterDetailHSR />;
+};
+
+const CharacterGuideDispatcher = () => {
+  const { gameId } = useParams<{ gameId: string }>();
+  if (gameId === 'ww') return <CharacterGuideDetailWW />;
+  return <CharacterGuideDetailHSR />;
 };
 
 // 로딩 화면 폴백
@@ -97,8 +110,14 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/tierlist", element: <TierListDispatcher /> },
       { path: "gallery/:gameId/parties", element: <PartyDispatcher /> },
       { path: "gallery/:gameId/terminology", element: <Terminology /> },
-      { path: "gallery/:gameId/character/:charName/guide", element: <CharacterGuideDetail /> },
+      { path: "gallery/:gameId/character/:charName/guide", element: <CharacterGuideDispatcher /> },
       { path: "admin", element: <AdminDashboard /> },
+      
+      // 애드센스 승인 대비 정책 및 정보성 라우트
+      { path: "privacy", element: <PrivacyPolicy /> },
+      { path: "tos", element: <TermsOfService /> },
+      { path: "blog", element: <BlogList /> },
+      { path: "blog/:id", element: <BlogPost /> },
       
       // 404 Not Found 처리 (존재하지 않는 페이지 접근 시)
       { path: "*", element: <NotFound /> }

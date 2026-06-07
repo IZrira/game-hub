@@ -4767,6 +4767,24 @@ export const wuwaItemsSet6: WuwaItem[] = [
     category: "무기 및 스킬 재료",
     description: "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
     source: "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 로야 유랑민 신물"
+  },
+  {
+    id: "stars_dream",
+    name: "별의 꿈",
+    folderName: "별의 꿈",
+    rarity: 1,
+    category: "돌파 재료",
+    description: "공명자 돌파에 사용되는 재료",
+    source: "야외 채집 획득"
+  },
+  {
+    id: "red_lily_of_the_valley",
+    name: "붉은 은방울꽃",
+    folderName: "붉은 은방울꽃",
+    rarity: 1,
+    category: "돌파 재료",
+    description: "공명자 돌파에 사용되는 재료",
+    source: "야외 채집 획득"
   }
 ];
 

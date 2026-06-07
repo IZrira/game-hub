@@ -206,8 +206,8 @@ const GalleryWW: React.FC = () => {
 
               {/* 데이터 시각화: 공명자 분석 */}
               <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
-                <GlowStatsDistribution data={CHARACTER_DB} type="element" title="공명 속성 분포" />
-                <GlowStatsDistribution data={CHARACTER_DB} type="path" title="공명자 역할 분포" />
+                <GlowStatsDistribution data={CHARACTER_DB} type="attribute" title="공명 속성 분포" />
+                <GlowStatsDistribution data={CHARACTER_DB} type="weaponType" title="공명자 무기 분포" />
               </section>
 
               {/* 최근 업데이트 캐릭터 행: 반응형 가로 스크롤 적용 */}
@@ -332,9 +332,9 @@ const GalleryWW: React.FC = () => {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {(WW_CHARACTER_GUIDES || [])
-                  .filter((g: any) => !searchQuery || g.characterName.includes(searchQuery))
+                  .filter((g: any) => !searchQuery || g.id.includes(searchQuery))
                   .map((guide: any) => {
-                    const char = CHARACTER_DB.find((c: any) => c.name === guide.characterName || c.id === guide.characterName);
+                    const char = CHARACTER_DB.find((c: any) => c.name === guide.id || c.id === guide.id);
                     return { guide, char };
                   })
                   .filter(item => item.char)

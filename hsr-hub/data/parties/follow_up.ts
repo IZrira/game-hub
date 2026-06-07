@@ -269,5 +269,60 @@ export const followUpParties: PartyCombination[] = [
       }
     ],
     tags: ['레이시오', '추가공격', '사이퍼']
-  }
+  },
+  {
+    id: 'party_yunli_counter_1',
+    name: '운리 반격 파티 (1순위)',
+    description: '운리의 반격 능력을 선데이와 트리비로 보조하는 조합입니다.',
+    mainDPS: '운리',
+    category: '추가 공격',
+    members: [
+      { id: 'char_운리', name: '운리', role: '메인 딜러', folderName: '운리' },
+      { 
+        id: 'char_선데이', 
+        name: '선데이', 
+        role: '서포터', 
+        folderName: '선데이',
+        substitutes: [
+          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true },
+          { name: '스파클', folderName: '스파클' }
+        ]
+      },
+      { 
+        id: 'char_트리비', 
+        name: '트리비', 
+        role: '서포터', 
+        folderName: '트리비',
+        substitutes: [
+          { name: '로빈', folderName: '로빈' },
+          { name: '스파클', folderName: '스파클' }
+        ]
+      },
+      { 
+        id: 'char_단항등황', 
+        name: '단항•등황', 
+        role: '탱커/힐러', 
+        folderName: '단항•등황',
+        substitutes: [
+          { name: '곽향', folderName: '곽향' },
+          { name: '히아킨', folderName: '히아킨' }
+        ]
+      }
+    ],
+    tags: ['운리', '반격', '선데이']
+  },
+  {
+    id: 'party_yunli_counter_2',
+    name: '운리 반격 파티 (2순위)',
+    description: '개척자(기억)와 로빈의 서포팅을 받는 운리 조합입니다.',
+    mainDPS: '운리',
+    category: '추가 공격',
+    members: [
+      { id: 'char_운리', name: '운리', role: '메인 딜러', folderName: '운리' },
+      { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
+      { id: 'char_로빈', name: '로빈', role: '서포터', folderName: '로빈' },
+      { id: 'char_곽향', name: '곽향', role: '탱커/힐러', folderName: '곽향' }
+    ],
+    tags: ['운리', '반격', '로빈']
+  },
 ];

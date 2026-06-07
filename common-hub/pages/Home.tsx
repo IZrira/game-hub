@@ -216,6 +216,26 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* SEO & AdSense 봇을 위한 사이트 상세 소개글 (Text-heavy block) */}
+      <section className="max-w-6xl mx-auto px-6 pb-24">
+        <div className="bg-[#111] border border-white/5 rounded-3xl p-10 md:p-14 space-y-8">
+          <h2 className="text-2xl font-black text-white border-b border-white/10 pb-4">
+            Rira Game Hub: 최고의 서브컬쳐 게임 공략 및 데이터베이스
+          </h2>
+          <div className="space-y-6 text-gray-400 text-sm md:text-base leading-loose">
+            <p>
+              Rira Game Hub(리라 게임 허브)는 전 세계 수많은 플레이어들이 열광하는 서브컬쳐 모바일 및 PC 게임에 대한 심도 깊은 데이터베이스와 공략을 제공하는 통합 인텔리전스 터미널입니다. 현재 <strong>붕괴: 스타레일(Honkai: Star Rail)</strong>과 <strong>명조: 워더링 웨이브(Wuthering Waves)</strong>의 실시간 메타 분석, 캐릭터 최적화 세팅, 장비 추천 및 파티 시너지 정보를 제공하고 있으며, 유저들이 게임 내에서 마주하는 다양한 난관을 논리적이고 효율적으로 돌파할 수 있도록 돕고 있습니다.
+            </p>
+            <p>
+              단순히 게임 데이터를 스크래핑하여 나열하는 일반적인 위키나 도감 사이트와는 다릅니다. 당사의 분석팀은 매 업데이트마다 변동되는 몬스터의 스탯, 신규 기믹, 그리고 장비 세트 효과를 자체적으로 시뮬레이션 및 검증합니다. 이를 바탕으로 도출된 <strong>오리지널 칼럼과 가이드</strong>는 초보자부터 최상위 랭커까지 모두가 참고할 수 있는 귀중한 지표가 됩니다. 각 캐릭터의 세팅 페이지에는 최우선으로 투자해야 할 스탯의 목표치와, 타협 가능한 부옵션의 우선순위가 명확히 기재되어 있어 재화 낭비를 최소화할 수 있습니다.
+            </p>
+            <p>
+              또한, 저희 Rira Game Hub는 유저 경험(UX)을 최우선으로 생각합니다. 빠르고 직관적인 SPA(Single Page Application) 환경을 통해 로딩 없는 데이터 검색을 지원하며, 정보의 정확성과 최신성을 유지하기 위해 자동화된 데이터 파이프라인과 전문 에디터의 크로스체크 시스템을 동시에 가동 중입니다. 앞으로도 젠레스 존 제로(Zenless Zone Zero)를 비롯한 다양한 신작 서브컬쳐 게임들의 데이터를 순차적으로 연동하여, 명실상부한 글로벌 최고 수준의 게임 전략 플랫폼으로 도약할 것입니다.
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* 터미널 업데이트 로그 섹션 (공통 공지) */}
       <section className="max-w-6xl mx-auto px-6 mt-16 mb-16">
         <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-8 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">

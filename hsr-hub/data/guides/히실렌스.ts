@@ -15,7 +15,8 @@ export const 히실렌스Guide: CharacterGuide = {
     subStats: ["효과 명중", "속도", "공격력"],
     targetStats: [
       { label: "효과 명중", value: "120% 이상" },
-      { label: "속도", value: "134 or 168 이상" },
+      { label: "속도", value: "134 이상" },
+      { label: "속도", value: "168 이상" },
       { label: "공격력", value: "2400 이상" }
     ],
     bestLightCones: ["바다는 왜 노래하는가", "시간의 기억에 대한 재구성", "그 무수한 봄날", "사냥감의 시선", "밤 인사와 잠든 얼굴"],

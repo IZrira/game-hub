@@ -17,7 +17,8 @@ export const 초구Guide: CharacterGuide = {
         },
         subStats: ["속도", "효과 명중"],
         targetStats: [
-          { label: "속도", value: "143 or 167" },
+          { label: "속도", value: "143" },
+          { label: "속도", value: "167" },
           { label: "효과 명중", value: "178%" }
         ]
       },
@@ -33,7 +34,8 @@ export const 초구Guide: CharacterGuide = {
         },
         subStats: ["속도", "효과 명중", "공격력"],
         targetStats: [
-          { label: "속도", value: "143 or 167" },
+          { label: "속도", value: "143" },
+          { label: "속도", value: "167" },
           { label: "효과 명중", value: "178%" },
           { label: "참고", value: "초구 2돌 이상 추천" }
         ]
@@ -49,7 +51,8 @@ export const 초구Guide: CharacterGuide = {
     },
     subStats: ["속도", "효과 명중"],
     targetStats: [
-      { label: "속도", value: "143 or 167" },
+      { label: "속도", value: "143" },
+      { label: "속도", value: "167" },
       { label: "효과 명중", value: "178%" }
     ],
     bestLightCones: ["그 무수한 봄날", "바람에 흩날리는 거짓말", "사냥감의 시선", "두더지파가 환영해"],

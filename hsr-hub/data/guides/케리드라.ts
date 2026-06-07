@@ -15,7 +15,8 @@ export const 케리드라Guide: CharacterGuide = {
     subStats: ["속도", "공격력"],
     targetStats: [
       { label: "공격력", value: "4000" },
-      { label: "속도", value: "114 or 134 이상" },
+      { label: "속도", value: "114 이상" },
+      { label: "속도", value: "134 이상" },
       { label: "참고", value: "파이논 파티 파이논(115) → 케리드라(114) → 선데이 순서 권장" }
     ],
     bestLightCones: [

@@ -14,7 +14,8 @@ export const 은랑LV999Guide: CharacterGuide = {
     },
     subStats: ["속도", "치명타 확률", "치명타 피해"],
     targetStats: [
-      { label: "속도", value: "160 or 200 이상", note: "곽향 1돌파 시 188 이상" }
+      { label: "속도", value: "160 이상" },
+      { label: "속도", value: "200 이상", note: "곽향 1돌파 시 188 이상" }
     ],
     bestLightCones: [
       "갤럭시 시티에 오신 것을 환영합니다",

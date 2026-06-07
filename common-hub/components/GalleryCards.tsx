@@ -192,11 +192,32 @@ export const ItemPremiumCard = ({ item, onClick }: { item: any, onClick: () => v
 export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => {
   const { t } = useTranslation();
   const { gameId } = useParams();
-  const imgPath = `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(char.folderName || char.name || '')}/art01.webp`;
+  
+  let imgPath = "";
+  if (gameId === 'hsr') {
+    imgPath = `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(char.folderName || char.name || '')}/art01.webp`;
+  } else {
+    // 명조 캐릭터 이미지 매핑
+    const folder = char.folderName || char.name || '';
+    if (char.isRover) {
+      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder + '(여)')}.webp`;
+    } else {
+      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder)}.webp`;
+    }
+  }
+
+  let objectPos = gameId === 'ww' ? 'center 25%' : 'center 20%';
+  if (char.id === 'baizhi') objectPos = 'center 30%'; // 설지의 얼굴을 더 위로 끌어올림
 
   return (
     <Link to={`/gallery/${gameId}/character/${char.id}/guide`} className="group relative aspect-video rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
-      <img src={imgPath} alt={t(char.name)} className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" loading="lazy" />
+      <img 
+        src={imgPath} 
+        alt={t(char.name)} 
+        style={{ objectPosition: objectPos }}
+        className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" 
+        loading="lazy" 
+      />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       <div className="absolute bottom-0 left-0 p-4 w-full">
         <p className="text-white font-black text-lg leading-none mb-1 group-hover:text-brand-accent transition-colors">{t(char.name)} {t('공략')}</p>

@@ -5,7 +5,7 @@
   <!-- Core Static Pages -->
   <url>
     <loc>https://rira-game-hub.pages.dev/</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/?lng=ko"/>
@@ -14,7 +14,7 @@
   </url>
   <url>
     <loc>https://rira-game-hub.pages.dev/gallery/hsr</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/hsr?lng=ko"/>
@@ -26,7 +26,7 @@
   </url>
   <url>
     <loc>https://rira-game-hub.pages.dev/gallery/ww</loc>
-    <lastmod>2026-05-22</lastmod>
+    <lastmod>2026-05-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww?lng=ko"/>
@@ -1190,6 +1190,18 @@
     </image:image>
   </url>
   <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/hsr/character/evanescia/guide</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/hsr/character/evanescia/guide?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/hsr/character/evanescia/guide?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/hsr/character/evanescia/guide"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EC%97%90%EB%B0%94%EB%84%A4%EC%8B%9C%EC%95%84/art01.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://rira-game-hub.pages.dev/gallery/hsr/character/evernight</loc>
     <lastmod>2026-04-28</lastmod>
     <changefreq>daily</changefreq>
@@ -1811,6 +1823,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/hsr/character/misha/guide"/>
     <image:image>
       <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EB%AF%B8%EC%83%A4/art01.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/hsr/character/mortenax_blade</loc>
+    <lastmod>2026-05-29</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/hsr/character/mortenax_blade?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/hsr/character/mortenax_blade?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/hsr/character/mortenax_blade"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EC%B2%9C%EC%95%BC%E2%80%A2%EB%B8%94%EB%A0%88%EC%9D%B4%EB%93%9C/art01.webp</image:loc>
     </image:image>
   </url>
   <url>
