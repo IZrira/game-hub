@@ -371,3 +371,4 @@
 - 세이버(Saber) AoE 파티 배치 정합성 검증 확인 (oe.ts).
 - 운리(Yunli) 추가 공격 파티 배치 정합성 검증 확인 (ollow_up.ts).
 - guides.ts 및 items.ts 타입 에러(Lint) 해결 및 정규화.
+- GitHub Actions CI/CD 파이프라인 (security-scan) 통과를 위해 `react-router` 패키지의 High 레벨 취약점 패치 진행 (`npm audit fix`).
