@@ -149,10 +149,10 @@ const PartyRecommendations: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('전체');
 
   const allCategories = useMemo(() => {
+    const FILTER_ORDER = ['범위', '단일', '추가 공격', '지속 피해', '격파', '기억', '환락'];
     const categories = new Set<string>();
-    categories.add('전체');
     HSR_PARTIES.forEach(p => categories.add(p.category));
-    return Array.from(categories);
+    return ['전체', ...FILTER_ORDER.filter(c => categories.has(c))];
   }, []);
 
   const charMap = useMemo(() => {

@@ -523,7 +523,7 @@ const CharacterGuideDetail: React.FC = () => {
                     onMouseEnter={(e) => handleMouseEnter(e, lcName, '추천 광추', lcNote)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
-                    className={`group glass-card rounded-[32px] p-4 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
+                    className={`group glass-card rounded-[32px] p-4 pt-6 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
                       isBest 
                         ? 'border-2 border-brand-accent shadow-[0_0_50px_rgba(255,214,0,0.15)] hover:shadow-[0_0_80px_rgba(255,214,0,0.3)] scale-[1.02] hover:scale-105 z-10 bg-brand-primary/5' 
                         : 'border border-white/5 hover:border-brand-primary/30'
@@ -532,19 +532,21 @@ const CharacterGuideDetail: React.FC = () => {
                     {isBest && (
                       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20" />
                     )}
+                    <div className={`absolute top-0 left-0 z-20 px-3 py-1.5 rounded-br-[20px] text-[10px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300 backdrop-blur-md'} uppercase tracking-widest`}>
+                      {i + 1}순위
+                    </div>
+                    {isBest && (
+                      <div className="absolute top-2 right-2 z-20 bg-black/40 p-1.5 rounded-full backdrop-blur-md border border-brand-accent/30 shadow-lg">
+                        <Crown size={12} className="text-brand-accent" />
+                      </div>
+                    )}
                     <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
                       {lcUrl ? <img src={lcUrl} alt={lcName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-700" />}
                     </div>
                     <div className="flex flex-col items-center gap-1.5 w-full">
-                      <div className={`px-2.5 py-0.5 rounded-full text-[9px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300'} uppercase tracking-widest`}>
-                        {i + 1}순위
-                      </div>
                       <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(lcName)}</h4>
                       {isBest && (
-                        <div className="flex items-center justify-center gap-1">
-                          <Crown size={10} className="text-brand-accent" />
-                          <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
-                        </div>
+                        <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
                       )}
                     </div>
                   </Link>

@@ -11,20 +11,14 @@ export interface WuwaCharacterGuide {
     name: string;
     rank: number;
   }[];
-  echoSets: {
-    name: string;
-    note?: string;
-  }[];
+  echoSets: (string | { name: string; note?: string })[];
   mainEchoes: {
     name: string;
     reason?: string;
   }[];
   variants?: {
     name: string;
-    echoSets: {
-      name: string;
-      note?: string;
-    }[];
+    echoSets: (string | { name: string; note?: string })[];
     mainEchoes: {
       name: string;
       reason?: string;
@@ -39,6 +33,7 @@ export interface WuwaCharacterGuide {
   mainStats: WuwaMainStat[];
   subStats: string[];
   skillPriority: string[];
+  isUniversalSynergy?: boolean;
   synergyCharacters: string[];
 }
 
@@ -171,12 +166,12 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "sanhua",
     patchVersion: "2.3",
     weapons: [
-      { name: "솟아오르는 화염", note: "1순위" },
-      { name: "천년의 회류", note: "2순위" },
-      { name: "행진의 서곡", note: "3순위" },
-      { name: "예리한 날개깃", note: "4순위" }
+      { name: "솟아오르는 화염", rank: 1 },
+      { name: "천년의 회류", rank: 2 },
+      { name: "행진의 서곡", rank: 3 },
+      { name: "예리한 날개깃", rank: 4 }
     ],
-    echoSets: [], // Variants fallback
+    echoSets: [], mainEchoes: [], // Variants fallback
     variants: [
       {
         name: "떠오르는 구름 세팅",
@@ -207,11 +202,11 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
       { label: "공명 효율", value: "150% 이하" }
     ],
     mainStats: [
-      { cost: "4", stats: ["크리티컬", "크리티컬 피해"] },
-      { cost: "3", stats: ["응결 피해 보너스"] },
-      { cost: "3", stats: ["공격력"] },
-      { cost: "1", stats: ["공격력"] },
-      { cost: "1", stats: ["공격력"] }
+      { cost: 4, stats: ["크리티컬", "크리티컬 피해"] },
+      { cost: 3, stats: ["응결 피해 보너스"] },
+      { cost: 3, stats: ["공격력"] },
+      { cost: 1, stats: ["공격력"] },
+      { cost: 1, stats: ["공격력"] }
     ],
     subStats: [
       "크리티컬",
@@ -240,10 +235,10 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "lingyang",
     patchVersion: "3.0",
     weapons: [
-      { name: "세상 만물의 진리", note: "1순위" },
-      { name: "팔방의 천추", note: "2순위" },
-      { name: "물결의 파동", note: "3순위" },
-      { name: "천상의 나선", note: "4순위" }
+      { name: "세상 만물의 진리", rank: 1 },
+      { name: "팔방의 천추", rank: 2 },
+      { name: "물결의 파동", rank: 3 },
+      { name: "천상의 나선", rank: 4 }
     ],
     echoSets: ["야밤의 서리 5세트"],
     mainEchoes: [
@@ -258,11 +253,11 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
       { label: "공명 효율", value: "125% 이상" }
     ],
     mainStats: [
-      { cost: "4", stats: ["크리티컬", "크리티컬 피해"] },
-      { cost: "3", stats: ["응결 피해 보너스"] },
-      { cost: "3", stats: ["응결 피해 보너스"] },
-      { cost: "1", stats: ["공격력"] },
-      { cost: "1", stats: ["공격력"] }
+      { cost: 4, stats: ["크리티컬", "크리티컬 피해"] },
+      { cost: 3, stats: ["응결 피해 보너스"] },
+      { cost: 3, stats: ["응결 피해 보너스"] },
+      { cost: 1, stats: ["공격력"] },
+      { cost: 1, stats: ["공격력"] }
     ],
     subStats: [
       "크리티컬",
@@ -291,12 +286,13 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "zhezhi",
     patchVersion: "2.6",
     weapons: [
-      { name: "옥수 비단", note: "1순위" },
-      { name: "꼭두각시의 손", note: "2순위" },
-      { name: "파도의 기록", note: "3순위" },
-      { name: "청음", note: "4순위" }
+      { name: "옥수 비단", rank: 1 },
+      { name: "꼭두각시의 손", rank: 2 },
+      { name: "파도의 기록", rank: 3 },
+      { name: "청음", rank: 4 }
     ],
     echoSets: [],
+    mainEchoes: [],
     variants: [
       {
         name: "하늘의 합주곡 세팅",
@@ -332,11 +328,11 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
       { label: "공명 효율", value: "160% 이상" }
     ],
     mainStats: [
-      { cost: "4", stats: ["크리티컬", "크리티컬 피해"] },
-      { cost: "3", stats: ["응결 피해 보너스", "공격력"] },
-      { cost: "3", stats: ["공명 효율", "공격력"] },
-      { cost: "1", stats: ["공격력"] },
-      { cost: "1", stats: ["공격력"] }
+      { cost: 4, stats: ["크리티컬", "크리티컬 피해"] },
+      { cost: 3, stats: ["응결 피해 보너스", "공격력"] },
+      { cost: 3, stats: ["공명 효율", "공격력"] },
+      { cost: 1, stats: ["공격력"] },
+      { cost: 1, stats: ["공격력"] }
     ],
     subStats: [
       "크리티컬",
@@ -364,12 +360,13 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "youhu",
     patchVersion: "2.1",
     weapons: [
-      { name: "팔방의 천추", note: "1순위" },
-      { name: "물결의 파동", note: "2순위" },
-      { name: "바람의 악센트", note: "3순위" },
-      { name: "21형 권갑 · 아이언 팬텀", note: "4순위" }
+      { name: "팔방의 천추", rank: 1 },
+      { name: "물결의 파동", rank: 2 },
+      { name: "바람의 악센트", rank: 3 },
+      { name: "21형 권갑 · 아이언 팬텀", rank: 4 }
     ],
     echoSets: [],
+    mainEchoes: [],
     variants: [
       {
         name: "야밤의 서리 세팅",
@@ -381,11 +378,11 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
           }
         ],
         mainStats: [
-          { cost: "4", stats: ["크리티컬", "크리티컬 피해"] },
-          { cost: "3", stats: ["공격력"] },
-          { cost: "3", stats: ["응결 피해 보너스"] },
-          { cost: "1", stats: ["공격력"] },
-          { cost: "1", stats: ["공격력"] }
+          { cost: 4, stats: ["크리티컬", "크리티컬 피해"] },
+          { cost: 3, stats: ["공격력"] },
+          { cost: 3, stats: ["응결 피해 보너스"] },
+          { cost: 1, stats: ["공격력"] },
+          { cost: 1, stats: ["공격력"] }
         ],
         note: "유호의 딜링 성능을 극대화 하기 위한 세트"
       },
@@ -403,11 +400,11 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
           }
         ],
         mainStats: [
-          { cost: "4", stats: ["치료 효과 보너스"] },
-          { cost: "3", stats: ["공격력"] },
-          { cost: "3", stats: ["응결 피해 보너스"] },
-          { cost: "1", stats: ["공격력"] },
-          { cost: "1", stats: ["공격력"] }
+          { cost: 4, stats: ["치료 효과 보너스"] },
+          { cost: 3, stats: ["공격력"] },
+          { cost: 3, stats: ["응결 피해 보너스"] },
+          { cost: 1, stats: ["공격력"] },
+          { cost: 1, stats: ["공격력"] }
         ],
         note: "유호를 힐러 포지션으로 사용하고 싶은 경우 좋은 선택지"
       }
@@ -441,10 +438,10 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "carlotta",
     patchVersion: "3.0",
     weapons: [
-      { name: "죽음과 춤", note: "1순위" },
-      { name: "위상의 파동", note: "2순위" },
-      { name: "뇌전", note: "3순위" },
-      { name: "불멸의 성화", note: "4순위" }
+      { name: "죽음과 춤", rank: 1 },
+      { name: "위상의 파동", rank: 2 },
+      { name: "뇌전", rank: 3 },
+      { name: "불멸의 성화", rank: 4 }
     ],
     echoSets: [
       {
@@ -498,10 +495,10 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "hiyuki",
     patchVersion: "3.3",
     weapons: [
-      { name: "서린 불꽃", note: "1순위" },
-      { name: "천년의 회류", note: "2순위" },
-      { name: "예리한 날개깃", note: "3순위" },
-      { name: "풍류의 우화시", note: "4순위" }
+      { name: "서린 불꽃", rank: 1 },
+      { name: "천년의 회류", rank: 2 },
+      { name: "예리한 날개깃", rank: 3 },
+      { name: "풍류의 우화시", rank: 4 }
     ],
     echoSets: [
       {
@@ -555,12 +552,13 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "chixia",
     patchVersion: "2.1",
     weapons: [
-      { name: "죽음과 춤", note: "1순위" },
-      { name: "부동의 안개", note: "2순위" },
-      { name: "불멸의 성화", note: "3순위" },
-      { name: "역설의 격류", note: "4순위" }
+      { name: "죽음과 춤", rank: 1 },
+      { name: "부동의 안개", rank: 2 },
+      { name: "불멸의 성화", rank: 3 },
+      { name: "역설의 격류", rank: 4 }
     ],
     echoSets: [],
+    mainEchoes: [],
     variants: [
       {
         name: "솟구치는 용암 세팅",
@@ -622,12 +620,13 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
     id: "mortefi",
     patchVersion: "2.3",
     weapons: [
-      { name: "죽음과 춤", note: "1순위" },
-      { name: "부동의 안개", note: "2순위" },
-      { name: "화려한 악곡", note: "3순위" },
-      { name: "천공의 순간", note: "4순위" }
+      { name: "죽음과 춤", rank: 1 },
+      { name: "부동의 안개", rank: 2 },
+      { name: "화려한 악곡", rank: 3 },
+      { name: "천공의 순간", rank: 4 }
     ],
     echoSets: [],
+    mainEchoes: [],
     variants: [
       {
         name: "떠오르는 구름 세팅",

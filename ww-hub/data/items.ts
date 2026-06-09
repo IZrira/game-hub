@@ -4788,13 +4788,116 @@ export const wuwaItemsSet6: WuwaItem[] = [
   }
 ];
 
+export const wuwaItemsSet7: WuwaItem[] = [
+  {
+    id: "cred_chip",
+    name: "크레드 칩",
+    folderName: "크레드 칩",
+    rarity: 4,
+    category: "이벤트 아이템",
+    description: "엣지러너들이 가져온, 나이트 시티에서 유통되는 전자 화폐. 이 아이템을 수집하여 두 사람에게 보상으로 교환할 수 있다",
+    source: "???"
+  },
+  {
+    id: "can_ring",
+    name: "캔 고리",
+    folderName: "캔 고리",
+    rarity: 4,
+    category: "특수 화폐",
+    description: "화폐. 상점에서 아이템 교환에 사용된다",
+    source: "???"
+  },
+  {
+    id: "dream_catching_pattern",
+    name: "꿈을 잡는 무늬",
+    folderName: "꿈을 잡는 무늬",
+    rarity: 5,
+    category: "튜닝 관련 아이템",
+    description: "사용 시 아래 튜닝에서 캐릭터 콜라보 튜닝 1회 진행 가능:\n「달 위를 거니는 꿈」, 「잿불 속 다시 깨어난 분노」",
+    source: "패키지 상점, 환상의 산호, 별의 소리"
+  },
+  {
+    id: "engraved_shadow_pattern",
+    name: "새겨진 그림자의 무늬",
+    folderName: "새겨진 그림자의 무늬",
+    rarity: 5,
+    category: "튜닝 관련 아이템",
+    description: "사용 시 아래 튜닝에서 무기 콜라보 튜닝 1회 진행 가능:\n「스펙트럴 트리거」, 「스컬 스래셔」",
+    source: "패키지 상점, 환상의 산호, 별의 소리"
+  },
+  {
+    id: "fantasy_coral",
+    name: "환상의 산호",
+    folderName: "환상의 산호",
+    rarity: 5,
+    category: "튜닝 관련 아이템",
+    description: "환상의 산호 상점에서 아이템을 교환하는 데 사용할 수 있다",
+    source: "튜닝 획득"
+  },
+  {
+    id: "nightmare_remnant",
+    name: "악몽의 잔재",
+    folderName: "악몽의 잔재",
+    rarity: 4,
+    category: "공명자 돌파 재료",
+    description: "악몽 아담 · 스매셔의 드랍 아이템. 루시, 레베카 돌파에 사용된다",
+    source: "악몽 아담 · 스매셔 도전에서 획득, 악몽 아담 · 스매셔 - 조기 오픈"
+  },
+  {
+    id: "past_illusion",
+    name: "지난날의 환상",
+    folderName: "지난날의 환상",
+    rarity: 1,
+    category: "공명자 돌파 재료",
+    description: "루시와 레베카 돌파에 사용되는 재료",
+    source: "군생지 채집 획득, 마음의 영역 · 나이트 시티의 AI 잡화점에서 교환, 마음의 영역 · 나이트 시티"
+  },
+  {
+    id: "edge_dream_resonance_band",
+    name: "엣지 드림 · 울림 주파수 대역",
+    folderName: "엣지 드림 · 울림 주파수 대역",
+    rarity: 5,
+    category: "공명자 돌파 재료",
+    description: "오픈 후 다음 울림 주파수 대역 중 하나를 선택하여 획득 가능: 루시의 울림 주파수 대역, 레베카의 울림 주파수 대역",
+    source: "???"
+  },
+  {
+    id: "quickhack_module",
+    name: "퀵핵 모듈",
+    folderName: "퀵핵 모듈",
+    rarity: 4,
+    category: "임무 아이템",
+    description: "루시가 제공한 퀵핵 모듈. 마음의 영역 · 나이트 시티에 있는 장치를 빠르게 해킹하는 데 사용할 수 있다",
+    source: "???"
+  },
+  {
+    id: "david_martinez",
+    name: "데이비드 · 마르티네즈",
+    folderName: "데이비드 · 마르티네즈",
+    rarity: 4,
+    category: "요리",
+    description: "파티 내 모든 공명자의 공격력이 30% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    source: "요리 획득"
+  },
+  {
+    id: "hot_dawn",
+    name: "뜨거운 새벽",
+    folderName: "뜨거운 새벽",
+    rarity: 3,
+    category: "요리",
+    description: "파티 내 모든 공명자의 HP 최대치가 1250pt 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    source: "요리 획득"
+  }
+];
+
 export const wuwaItems: WuwaItem[] = [
   ...wuwaItemsSet1,
   ...wuwaItemsSet2,
   ...wuwaItemsSet3,
   ...wuwaItemsSet4,
   ...wuwaItemsSet5,
-  ...wuwaItemsSet6
+  ...wuwaItemsSet6,
+  ...wuwaItemsSet7
 ];
 
 export const WW_ITEM_META: Record<string, WuwaItem> = wuwaItems.reduce((acc, item) => {

@@ -15,7 +15,7 @@ export const memoryParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '키레네',
         substitutes: [
-          { name: '로빈', folderName: '로빈' }
+          { name: '로빈', role: '서포터', folderName: '로빈' }
         ]
       },
       { 
@@ -25,7 +25,7 @@ export const memoryParties: PartyCombination[] = [
         folderName: '개척자 (기억)', 
         isTrailblazer: true,
         substitutes: [
-          { name: '선데이', folderName: '선데이' }
+          { name: '선데이', role: '서포터', folderName: '선데이' }
         ]
       },
       { 
@@ -34,8 +34,8 @@ export const memoryParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '히아킨', folderName: '히아킨' }
+          { name: '곽향', role: '힐러', folderName: '곽향' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' }
         ]
       }
     ],
@@ -97,7 +97,7 @@ export const memoryParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '에버나이트',
         substitutes: [
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -106,8 +106,8 @@ export const memoryParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '키레네',
         substitutes: [
-          { name: '트리비', folderName: '트리비' },
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '트리비', role: '서포터', folderName: '트리비' },
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -116,8 +116,8 @@ export const memoryParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '히아킨',
         substitutes: [
-          { name: '나찰', folderName: '나찰' },
-          { name: '갤러거', folderName: '갤러거' }
+          { name: '나찰', role: '힐러', folderName: '나찰' },
+          { name: '갤러거', role: '힐러', folderName: '갤러거' }
         ]
       }
     ],
@@ -151,7 +151,7 @@ export const memoryParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '키레네',
         substitutes: [
-          { name: '트리비', folderName: '트리비' }
+          { name: '트리비', role: '서포터', folderName: '트리비' }
         ]
       },
       { id: 'char_개척자_기억', name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
@@ -161,8 +161,8 @@ export const memoryParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '히아킨',
         substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '단항•등황', folderName: '단항•등황' }
+          { name: '곽향', role: '힐러', folderName: '곽향' },
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' }
         ]
       }
     ],

@@ -15,9 +15,9 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '스파클', folderName: '스파클' },
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true },
-          { name: '로빈', folderName: '로빈' }
+          { name: '스파클', role: '서포터', folderName: '스파클' },
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
+          { name: '로빈', role: '서포터', folderName: '로빈' }
         ]
       },
       { 
@@ -26,7 +26,7 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '사이퍼', folderName: '사이퍼' }
+          { name: '사이퍼', role: '서브 딜러', folderName: '사이퍼' }
         ]
       },
       { 
@@ -35,8 +35,8 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '곽향', folderName: '곽향' }
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '곽향', role: '힐러', folderName: '곽향' }
         ]
       }
     ],
@@ -56,9 +56,9 @@ export const followUpParties: PartyCombination[] = [
         role: '서브 딜러', 
         folderName: '애쉬베일',
         substitutes: [
-          { name: '사이퍼', folderName: '사이퍼' },
-          { name: '토파즈 & 복순이', folderName: '토파즈 & 복순이' },
-          { name: '맥택', folderName: '맥택' }
+          { name: '사이퍼', role: '서브 딜러', folderName: '사이퍼' },
+          { name: '토파즈 & 복순이', role: '서브 딜러', folderName: '토파즈 & 복순이' },
+          { name: '맥택', role: '서브 딜러', folderName: '맥택' }
         ]
       },
       { 
@@ -67,8 +67,8 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '로빈', folderName: '로빈' },
-          { name: '효광', folderName: '효광' }
+          { name: '로빈', role: '서포터', folderName: '로빈' },
+          { name: '효광', role: '탱커', folderName: '효광' }
         ]
       },
       { 
@@ -77,8 +77,8 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '곽향', folderName: '곽향' }
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '곽향', role: '힐러', folderName: '곽향' }
         ]
       }
     ],
@@ -99,7 +99,7 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -108,8 +108,8 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '히아킨',
         substitutes: [
-          { name: '나찰', folderName: '나찰' },
-          { name: '갤러거', folderName: '갤러거' }
+          { name: '나찰', role: '힐러', folderName: '나찰' },
+          { name: '갤러거', role: '힐러', folderName: '갤러거' }
         ]
       }
     ],
@@ -131,8 +131,8 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '히아킨',
         substitutes: [
-          { name: '나찰', folderName: '나찰' },
-          { name: '갤러거', folderName: '갤러거' }
+          { name: '나찰', role: '힐러', folderName: '나찰' },
+          { name: '갤러거', role: '힐러', folderName: '갤러거' }
         ]
       }
     ],
@@ -180,9 +180,9 @@ export const followUpParties: PartyCombination[] = [
         role: '서브 딜러', 
         folderName: '사이퍼',
         substitutes: [
-          { name: '토파즈 & 복순이', folderName: '토파즈 & 복순이' },
-          { name: '맥택', folderName: '맥택' },
-          { name: 'Mar. 7th (수렵)', folderName: 'Mar. 7th (수렵)' }
+          { name: '토파즈 & 복순이', role: '서브 딜러', folderName: '토파즈 & 복순이' },
+          { name: '맥택', role: '서브 딜러', folderName: '맥택' },
+          { name: 'Mar. 7th (수렵)', role: '서브 딜러', folderName: 'Mar. 7th (수렵)' }
         ]
       },
       { 
@@ -191,9 +191,9 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '로빈',
         substitutes: [
-          { name: '트리비', folderName: '트리비' },
-          { name: '효광', folderName: '효광' },
-          { name: '스파클', folderName: '스파클' }
+          { name: '트리비', role: '서포터', folderName: '트리비' },
+          { name: '효광', role: '탱커', folderName: '효광' },
+          { name: '스파클', role: '서포터', folderName: '스파클' }
         ]
       },
       { 
@@ -202,7 +202,7 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '어벤츄린', folderName: '어벤츄린' }
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' }
         ]
       }
     ],
@@ -224,7 +224,7 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '어벤츄린',
         substitutes: [
-          { name: '단항•등황', folderName: '단항•등황' }
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' }
         ]
       }
     ],
@@ -244,7 +244,7 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '로빈',
         substitutes: [
-          { name: '초구', folderName: '초구' }
+          { name: '초구', role: '디버퍼', folderName: '초구' }
         ]
       },
       { 
@@ -253,9 +253,9 @@ export const followUpParties: PartyCombination[] = [
         role: '서브 딜러', 
         folderName: '사이퍼',
         substitutes: [
-          { name: '토파즈 & 복순이', folderName: '토파즈 & 복순이' },
-          { name: '맥택', folderName: '맥택' },
-          { name: 'Mar. 7th (수렵)', folderName: 'Mar. 7th (수렵)' }
+          { name: '토파즈 & 복순이', role: '서브 딜러', folderName: '토파즈 & 복순이' },
+          { name: '맥택', role: '서브 딜러', folderName: '맥택' },
+          { name: 'Mar. 7th (수렵)', role: '서브 딜러', folderName: 'Mar. 7th (수렵)' }
         ]
       },
       { 
@@ -264,7 +264,7 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '어벤츄린', folderName: '어벤츄린' }
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' }
         ]
       }
     ],
@@ -284,8 +284,8 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true },
-          { name: '스파클', folderName: '스파클' }
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
+          { name: '스파클', role: '서포터', folderName: '스파클' }
         ]
       },
       { 
@@ -294,8 +294,8 @@ export const followUpParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '로빈', folderName: '로빈' },
-          { name: '스파클', folderName: '스파클' }
+          { name: '로빈', role: '서포터', folderName: '로빈' },
+          { name: '스파클', role: '서포터', folderName: '스파클' }
         ]
       },
       { 
@@ -304,8 +304,8 @@ export const followUpParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '히아킨', folderName: '히아킨' }
+          { name: '곽향', role: '힐러', folderName: '곽향' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' }
         ]
       }
     ],

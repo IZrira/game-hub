@@ -53,16 +53,26 @@ async function fetchNotionData() {
   const n2m = new NotionToMarkdown({ notionClient: notion });
 
   try {
-    const response = await notion.request({
-      path: `databases/${NOTION_DATABASE_ID}/query`,
-      method: 'POST',
-      body: {
-        sorts: [{ property: '이름', direction: 'ascending' }]
-      }
-    });
+    let results = [];
+    let hasMore = true;
+    let nextCursor = undefined;
+
+    while (hasMore) {
+      const response = await notion.request({
+        path: `databases/${NOTION_DATABASE_ID}/query`,
+        method: 'POST',
+        body: {
+          sorts: [{ property: '이름', direction: 'ascending' }],
+          start_cursor: nextCursor
+        }
+      });
+      results.push(...response.results);
+      hasMore = response.has_more;
+      nextCursor = response.next_cursor;
+    }
 
     const itemsMap = new Map();
-    for (const page of response.results) {
+    for (const page of results) {
       const props = page.properties;
       
       // 무기가 아닌 경우(예: 캐릭터)에는 기존처럼 본문 마크다운을 파싱

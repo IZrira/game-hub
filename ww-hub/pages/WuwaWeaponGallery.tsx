@@ -20,13 +20,36 @@ const WuwaWeaponGallery = () => {
   const { WEAPON_DATA } = useMemo(() => getGameData('ww'), []);
 
   const filteredWeapons = useMemo(() => {
-    return (WEAPON_DATA as unknown as WuwaWeapon[]).filter(w => {
+    const filtered = (WEAPON_DATA as unknown as WuwaWeapon[]).filter(w => {
       const matchSearch = w.name.includes(search);
       const matchType = selectedType === '전체' || w.type === selectedType;
       const matchRarity = selectedRarity === '전체' || w.rarity === selectedRarity;
       return matchSearch && matchType && matchRarity;
     });
-  }, [search, selectedType, selectedRarity]);
+
+    return filtered.sort((a, b) => {
+      // 1. 버전 내림차순 정렬
+      const vA = parseFloat(a.releaseVersion) || 0;
+      const vB = parseFloat(b.releaseVersion) || 0;
+      if (vA !== vB) return vB - vA;
+
+      // 2. 3.4 버전 특수 정렬 (프리즈 프레임 -> 스컬 스래셔 -> 스펙트럴 트리거)
+      if (a.releaseVersion === '3.4' && b.releaseVersion === '3.4') {
+        const order = ['프리즈 프레임', '스컬 스래셔', '스펙트럴 트리거'];
+        const indexA = order.indexOf(a.name);
+        const indexB = order.indexOf(b.name);
+        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+        if (indexA !== -1) return -1;
+        if (indexB !== -1) return 1;
+      }
+
+      // 3. 성급 내림차순 정렬
+      if (a.rarity !== b.rarity) return b.rarity - a.rarity;
+
+      // 4. 이름 오름차순 정렬
+      return a.name.localeCompare(b.name, 'ko-KR');
+    });
+  }, [search, selectedType, selectedRarity, WEAPON_DATA]);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">

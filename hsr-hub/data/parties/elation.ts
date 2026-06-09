@@ -15,10 +15,10 @@ export const elationParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '효광',
         substitutes: [
-          { name: '트리비', folderName: '트리비' },
-          { name: '완•매', folderName: '완•매' },
-          { name: '선데이', folderName: '선데이' },
-          { name: '키레네', folderName: '키레네' }
+          { name: '트리비', role: '서포터', folderName: '트리비' },
+          { name: '완•매', role: '서포터', folderName: '완•매' },
+          { name: '선데이', role: '서포터', folderName: '선데이' },
+          { name: '키레네', role: '서포터', folderName: '키레네' }
         ]
       },
       { 
@@ -28,8 +28,8 @@ export const elationParties: PartyCombination[] = [
         folderName: '개척자 (환락)',
         isTrailblazer: true,
         substitutes: [
-          { name: '스파키', folderName: '스파키' },
-          { name: '트리비', folderName: '트리비' }
+          { name: '스파키', role: '서포터', folderName: '스파키' },
+          { name: '트리비', role: '서포터', folderName: '트리비' }
         ]
       },
       { 
@@ -38,10 +38,10 @@ export const elationParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '곽향',
         substitutes: [
-          { name: '단항•등황', folderName: '단항•등황' },
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '부현', folderName: '부현' }
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '부현', role: '탱커', folderName: '부현' }
         ]
       }
     ],
@@ -62,8 +62,8 @@ export const elationParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '효광',
         substitutes: [
-          { name: '아스타', folderName: '아스타' },
-          { name: '개척자 (환락)', folderName: '개척자 (환락)', isTrailblazer: true }
+          { name: '아스타', role: '서포터', folderName: '아스타' },
+          { name: '개척자 (환락)', role: '서포터', folderName: '개척자 (환락)', isTrailblazer: true }
         ]
       },
       { 
@@ -72,8 +72,8 @@ export const elationParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '곽향',
         substitutes: [
-          { name: '단항•등황', folderName: '단항•등황' },
-          { name: '히아킨', folderName: '히아킨' }
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' }
         ]
       }
     ],
@@ -94,8 +94,8 @@ export const elationParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '효광',
         substitutes: [
-          { name: '트리비', folderName: '트리비' },
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '트리비', role: '서포터', folderName: '트리비' },
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -104,11 +104,11 @@ export const elationParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '부현', folderName: '부현' },
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '나찰', folderName: '나찰' }
+          { name: '곽향', role: '힐러', folderName: '곽향' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '부현', role: '탱커', folderName: '부현' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '나찰', role: '힐러', folderName: '나찰' }
         ]
       }
     ],
@@ -142,7 +142,7 @@ export const elationParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '스파클', folderName: '스파클' }
+          { name: '스파클', role: '서포터', folderName: '스파클' }
         ]
       },
       { id: 'char_트리비', name: '트리비', role: '서포터', folderName: '트리비' },

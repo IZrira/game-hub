@@ -1,5 +1,24 @@
 # 작업 완료 보고서 (Walkthrough)
 
+## [2026-06-09] 신규 에코 데이터 추가 및 명조 시스템 고도화
+
+### 주요 구현 내용
+*   **신규 에코 추가 및 데이터 안정화**:
+    *   신규 에코 2종(글로모스 이상, 공명의 메아리 · 악몽 아담 · 스매셔) 데이터 추가 완료 및 필터 정합성 확보.
+    *   전역 라우터(`Layout.tsx`)에 페이지 이동 시 스크롤 위치를 최상단으로 초기화하는 기능 추가.
+*   **노션 데이터 동기화 및 무기 정렬 최적화**:
+    *   노션 API 페이지네이션(`next_cursor`) 처리를 `fetch-notion-data.js`에 추가하여, 100개 이상의 항목이 누락 없이 동기화되도록 버그 픽스.
+    *   명조 3.4 버전 무기 갤러리 정렬 로직 고도화: `프리즈 프레임 -> 스컬 스래셔 -> 스펙트럴 트리거` 우선순위로 노출되도록 커스텀 정렬 로직 반영.
+
+### 변경된 파일 목록
+| 파일 위치 | 변경 내용 |
+| :--- | :--- |
+| `ww-hub/data/echoes.ts` | 글로모스(이상), 공명의 메아리 · 악몽 아담 · 스매셔 에코 데이터 추가 |
+| `common-hub/components/Layout.tsx` | 전역 스크롤 위치 초기화 로직 구현 |
+| `scripts/fetch-notion-data.js` | 노션 동기화 페이지네이션 적용 |
+| `ww-hub/pages/WuwaWeaponGallery.tsx` | 3.4 무기 커스텀 정렬 로직 반영 |
+
+---
 ## [2026-05-29] HSR 4.3 신규 캐릭터 및 장비 데이터 통합
 
 ### 주요 구현 내용
@@ -345,3 +364,10 @@
 | `ww-hub/components/WuwaEchoGallery.tsx` | 팬텀 에코 이미지 렌더링 최적화 |
 | `ww-hub/pages/Gallery.tsx` | 명조 전용 인벤토리 카테고리 필터 복구 |
 | `common-hub/components/SystemChangelog.tsx` | 비로그인 사용자 공지 노출 개수 제한 로직 추가 |
+
+## 2026-06-09: HSR 및 WW 광추/무기 UI 개선 및 파티 배치 검증 완료
+- HSR CharacterGuideDetail.tsx 광추 추천 카드 UI 플로팅 뱃지 적용 완료.
+- 명조(WW) WuwaCharacterGuideDetail.tsx 무기 추천 카드 UI 플로팅 뱃지 적용 완료.
+- 세이버(Saber) AoE 파티 배치 정합성 검증 확인 (oe.ts).
+- 운리(Yunli) 추가 공격 파티 배치 정합성 검증 확인 (ollow_up.ts).
+- guides.ts 및 items.ts 타입 에러(Lint) 해결 및 정규화.

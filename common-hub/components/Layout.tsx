@@ -13,7 +13,12 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const { i18n } = useTranslation(); // t 함수 제거
+  const { i18n } = useTranslation();
+
+  // 강제 스크롤 최상단 이동 (페이지 전환 시)
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname]);
 
   // 46,000건 에러 중지용 킬 스위치 등록 (임시)
   useEffect(() => {

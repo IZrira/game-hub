@@ -16,11 +16,11 @@ export const singleParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '효광',
         substitutes: [
-          { name: '트리비', folderName: '트리비' },
-          { name: '은랑', folderName: '은랑' },
-          { name: '사이퍼', folderName: '사이퍼' },
-          { name: '로빈', folderName: '로빈' },
-          { name: '선데이', folderName: '선데이' }
+          { name: '트리비', role: '서포터', folderName: '트리비' },
+          { name: '은랑', role: '디버퍼', folderName: '은랑' },
+          { name: '사이퍼', role: '서브 딜러', folderName: '사이퍼' },
+          { name: '로빈', role: '서포터', folderName: '로빈' },
+          { name: '선데이', role: '서포터', folderName: '선데이' }
         ]
       },
       { 
@@ -29,8 +29,8 @@ export const singleParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '곽향', folderName: '곽향' }
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '곽향', role: '힐러', folderName: '곽향' }
         ]
       }
     ],
@@ -78,9 +78,9 @@ export const singleParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '케리드라', folderName: '케리드라' },
-          { name: '로빈', folderName: '로빈' },
-          { name: '은랑', folderName: '은랑' }
+          { name: '케리드라', role: '서포터', folderName: '케리드라' },
+          { name: '로빈', role: '서포터', folderName: '로빈' },
+          { name: '은랑', role: '디버퍼', folderName: '은랑' }
         ]
       },
       { 
@@ -89,9 +89,9 @@ export const singleParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '스파클',
         substitutes: [
-          { name: '케리드라', folderName: '케리드라' },
-          { name: '선데이', folderName: '선데이' },
-          { name: '브로냐', folderName: '브로냐' }
+          { name: '케리드라', role: '서포터', folderName: '케리드라' },
+          { name: '선데이', role: '서포터', folderName: '선데이' },
+          { name: '브로냐', role: '서포터', folderName: '브로냐' }
         ]
       },
       { 
@@ -100,9 +100,9 @@ export const singleParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '부현', folderName: '부현' },
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '나찰', folderName: '나찰' }
+          { name: '부현', role: '탱커', folderName: '부현' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '나찰', role: '힐러', folderName: '나찰' }
         ]
       }
     ],
@@ -122,10 +122,10 @@ export const singleParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '케리드라', folderName: '케리드라' },
-          { name: '스파클', folderName: '스파클' },
-          { name: '브로냐', folderName: '브로냐' },
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '케리드라', role: '서포터', folderName: '케리드라' },
+          { name: '스파클', role: '서포터', folderName: '스파클' },
+          { name: '브로냐', role: '서포터', folderName: '브로냐' },
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -134,10 +134,10 @@ export const singleParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '케리드라',
         substitutes: [
-          { name: '선데이', folderName: '선데이' },
-          { name: '스파클', folderName: '스파클' },
-          { name: '브로냐', folderName: '브로냐' },
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '선데이', role: '서포터', folderName: '선데이' },
+          { name: '스파클', role: '서포터', folderName: '스파클' },
+          { name: '브로냐', role: '서포터', folderName: '브로냐' },
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -146,8 +146,8 @@ export const singleParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '히아킨', folderName: '히아킨' }
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' }
         ]
       }
     ],

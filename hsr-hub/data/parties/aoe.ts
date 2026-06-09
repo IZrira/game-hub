@@ -15,8 +15,8 @@ export const aoeParties: PartyCombination[] = [
         role: '서브 딜러', 
         folderName: '아낙사',
         substitutes: [
-          { name: '헤르타', folderName: '헤르타' },
-          { name: '제이드', folderName: '제이드' }
+          { name: '헤르타', role: '서브 딜러', folderName: '헤르타' },
+          { name: '제이드', role: '서브 딜러', folderName: '제이드' }
         ]
       },
       { 
@@ -25,7 +25,7 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true }
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true }
         ]
       },
       { 
@@ -34,9 +34,9 @@ export const aoeParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '곽향', folderName: '곽향' }
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '곽향', role: '힐러', folderName: '곽향' }
         ]
       }
     ],
@@ -58,8 +58,8 @@ export const aoeParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '어벤츄린', folderName: '어벤츄린' }
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' }
         ]
       }
     ],
@@ -79,9 +79,9 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '케리드라',
         substitutes: [
-          { name: '선데이', folderName: '선데이' },
-          { name: '로빈', folderName: '로빈' },
-          { name: '스파클', folderName: '스파클' }
+          { name: '선데이', role: '서포터', folderName: '선데이' },
+          { name: '로빈', role: '서포터', folderName: '로빈' },
+          { name: '스파클', role: '서포터', folderName: '스파클' }
         ]
       },
       { 
@@ -90,7 +90,7 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '키레네',
         substitutes: [
-          { name: '선데이', folderName: '선데이' }
+          { name: '선데이', role: '서포터', folderName: '선데이' }
         ]
       },
       { 
@@ -99,8 +99,8 @@ export const aoeParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '어벤츄린', folderName: '어벤츄린' }
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' }
         ]
       }
     ],
@@ -121,9 +121,9 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '로빈', folderName: '로빈' },
-          { name: '선데이', folderName: '선데이' },
-          { name: '효광', folderName: '효광' }
+          { name: '로빈', role: '서포터', folderName: '로빈' },
+          { name: '선데이', role: '서포터', folderName: '선데이' },
+          { name: '효광', role: '탱커', folderName: '효광' }
         ]
       },
       { 
@@ -132,8 +132,8 @@ export const aoeParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '어벤츄린',
         substitutes: [
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '단항•등황', folderName: '단항•등황' }
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' }
         ]
       }
     ],
@@ -153,8 +153,8 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '초구',
         substitutes: [
-          { name: '은랑', folderName: '은랑' },
-          { name: '사이퍼', folderName: '사이퍼' }
+          { name: '은랑', role: '디버퍼', folderName: '은랑' },
+          { name: '사이퍼', role: '서브 딜러', folderName: '사이퍼' }
         ]
       },
       { 
@@ -163,8 +163,8 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '스파클',
         substitutes: [
-          { name: '트리비', folderName: '트리비' },
-          { name: '선데이', folderName: '선데이' }
+          { name: '트리비', role: '서포터', folderName: '트리비' },
+          { name: '선데이', role: '서포터', folderName: '선데이' }
         ]
       },
       { 
@@ -173,8 +173,8 @@ export const aoeParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '히아킨', folderName: '히아킨' }
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' }
         ]
       }
     ],
@@ -223,8 +223,8 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '스파클', folderName: '스파클' },
-          { name: '효광', folderName: '효광' }
+          { name: '스파클', role: '서포터', folderName: '스파클' },
+          { name: '효광', role: '탱커', folderName: '효광' }
         ]
       },
       { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
@@ -245,8 +245,8 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '개척자 (기억)', folderName: '개척자 (기억)', isTrailblazer: true },
-          { name: '스파클', folderName: '스파클' }
+          { name: '개척자 (기억)', role: '서포터', folderName: '개척자 (기억)', isTrailblazer: true },
+          { name: '스파클', role: '서포터', folderName: '스파클' }
         ]
       },
       { id: 'char_트리비', name: '트리비', role: '서포터', folderName: '트리비' },
@@ -269,7 +269,7 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '로빈', folderName: '로빈' }
+          { name: '로빈', role: '서포터', folderName: '로빈' }
         ]
       },
       { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
@@ -290,7 +290,7 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '케리드라',
         substitutes: [
-          { name: '브로냐', folderName: '브로냐' }
+          { name: '브로냐', role: '서포터', folderName: '브로냐' }
         ]
       },
       { 
@@ -299,10 +299,10 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '키레네', folderName: '키레네' },
-          { name: '스파클', folderName: '스파클' },
-          { name: '완•매', folderName: '완•매' },
-          { name: '트리비', folderName: '트리비' }
+          { name: '키레네', role: '서포터', folderName: '키레네' },
+          { name: '스파클', role: '서포터', folderName: '스파클' },
+          { name: '완•매', role: '서포터', folderName: '완•매' },
+          { name: '트리비', role: '서포터', folderName: '트리비' }
         ]
       },
       { id: 'char_단항등황', name: '단항•등황', role: '탱커/힐러', folderName: '단항•등황' }
@@ -337,8 +337,8 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '선데이',
         substitutes: [
-          { name: '스파클', folderName: '스파클' },
-          { name: '브로냐', folderName: '브로냐' }
+          { name: '스파클', role: '서포터', folderName: '스파클' },
+          { name: '브로냐', role: '서포터', folderName: '브로냐' }
         ]
       },
       { 
@@ -347,7 +347,7 @@ export const aoeParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '트리비',
         substitutes: [
-          { name: '로빈', folderName: '로빈' }
+          { name: '로빈', role: '서포터', folderName: '로빈' }
         ]
       },
       { 
@@ -356,8 +356,8 @@ export const aoeParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '히아킨', folderName: '히아킨' }
+          { name: '곽향', role: '힐러', folderName: '곽향' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' }
         ]
       }
     ],

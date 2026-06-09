@@ -17,10 +17,10 @@ export const breakParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '영사',
         substitutes: [
-          { name: '갤러거', folderName: '갤러거' },
-          { name: '개척자 (화합)', folderName: '개척자 (화합)', isTrailblazer: true },
-          { name: '단항•등황', folderName: '단항•등황' },
-          { name: '완•매', folderName: '완•매' }
+          { name: '갤러거', role: '힐러', folderName: '갤러거' },
+          { name: '개척자 (화합)', role: '서포터', folderName: '개척자 (화합)', isTrailblazer: true },
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' },
+          { name: '완•매', role: '서포터', folderName: '완•매' }
         ]
       }
     ],
@@ -42,9 +42,9 @@ export const breakParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '영사',
         substitutes: [
-          { name: '개척자 (화합)', folderName: '개척자 (화합)', isTrailblazer: true },
-          { name: '갤러거', folderName: '갤러거' },
-          { name: '완•매', folderName: '완•매' }
+          { name: '개척자 (화합)', role: '서포터', folderName: '개척자 (화합)', isTrailblazer: true },
+          { name: '갤러거', role: '힐러', folderName: '갤러거' },
+          { name: '완•매', role: '서포터', folderName: '완•매' }
         ]
       }
     ],
@@ -65,7 +65,7 @@ export const breakParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '완•매',
         substitutes: [
-          { name: '개척자 (화합)', folderName: '개척자 (화합)', isTrailblazer: true }
+          { name: '개척자 (화합)', role: '서포터', folderName: '개척자 (화합)', isTrailblazer: true }
         ]
       },
       { id: 'char_달리아', name: '달리아', role: '탱커/힐러', folderName: '달리아' }
@@ -87,7 +87,7 @@ export const breakParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '완•매',
         substitutes: [
-          { name: '개척자 (화합)', folderName: '개척자 (화합)', isTrailblazer: true }
+          { name: '개척자 (화합)', role: '서포터', folderName: '개척자 (화합)', isTrailblazer: true }
         ]
       },
       { 
@@ -96,8 +96,8 @@ export const breakParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '영사',
         substitutes: [
-          { name: '단항•등황', folderName: '단항•등황' },
-          { name: '어벤츄린', folderName: '어벤츄린' }
+          { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' }
         ]
       }
     ],

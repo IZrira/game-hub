@@ -49,8 +49,13 @@ import sanhua from './characters/ww/sanhua';
 import youhu from './characters/ww/youhu';
 import lingyang from './characters/ww/lingyang';
 import baizhi from './characters/ww/baizhi';
+import lucilla from './characters/ww/lucilla';
+import lucy from './characters/ww/lucy';
+import rebecca from './characters/ww/rebecca';
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
+  lucy,
+  lucilla,
   carlotta,
   hiyuki,
   chixia,
@@ -102,5 +107,6 @@ export const WW_CHARACTERS: WuwaCharacter[] = [
   sanhua,
   youhu,
   lingyang,
-  baizhi
+  baizhi,
+  rebecca,
 ];

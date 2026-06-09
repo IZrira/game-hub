@@ -4,7 +4,7 @@ export interface PartyMember {
   role: '메인 딜러' | '서브 딜러' | '서포터' | '탱커/힐러';
   folderName: string;
   isTrailblazer?: boolean;
-  substitutes?: { name: string; folderName: string; isTrailblazer?: boolean }[];
+  substitutes?: { name: string; folderName: string; isTrailblazer?: boolean; role?: string; }[];
 }
 
 export interface PartyCombination {
@@ -27,10 +27,15 @@ import { dotParties } from './dot';
 
 // 캐릭터 도감 최신순 기반 버전 매핑
 const CHAR_VERSION_MAP: Record<string, number> = {
-  // v4.x (프로젝트 최신/커스텀)
+  // v4.2
+  '에바네시아': 4.2,
+  '은랑 LV.999': 4.2,
+  '개척자 (환락)': 4.2,
+  // v4.1
   '애쉬베일': 4.1,
   '스파키': 4.1,
   '효광': 4.1,
+  // v4.0
   '아처': 4.0,
   // v3.x
   '마이데이': 3.5,

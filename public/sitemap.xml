@@ -351,6 +351,30 @@
     </image:image>
   </url>
   <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/character/lucilla</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/character/lucilla?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/character/lucilla?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/character/lucilla"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EC%8B%A4%EB%9D%BC/%EB%A3%A8%EC%8B%A4%EB%9D%BC.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/character/lucy</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/character/lucy?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/character/lucy?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/character/lucy"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EC%8B%9C/%EB%A3%A8%EC%8B%9C.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://rira-game-hub.pages.dev/gallery/ww/character/lumi</loc>
     <lastmod>2026-05-07</lastmod>
     <changefreq>daily</changefreq>
@@ -444,6 +468,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/character/qiuyuan"/>
     <image:image>
       <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B5%AC%EC%9B%90/%EA%B5%AC%EC%9B%90.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/character/rebecca</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/character/rebecca?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/character/rebecca?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/character/rebecca"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A0%88%EB%B2%A0%EC%B9%B4/%EB%A0%88%EB%B2%A0%EC%B9%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -3932,4 +3968,40 @@
   </url>
 
   <!-- Notion Imported Items Detail Pages -->
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/weapon/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>

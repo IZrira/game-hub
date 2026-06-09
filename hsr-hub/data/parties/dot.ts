@@ -16,9 +16,9 @@ export const dotParties: PartyCombination[] = [
         role: '서포터', 
         folderName: '블랙 스완',
         substitutes: [
-          { name: '완•매', folderName: '완•매' },
-          { name: '키레네', folderName: '키레네' },
-          { name: '로빈', folderName: '로빈' }
+          { name: '완•매', role: '서포터', folderName: '완•매' },
+          { name: '키레네', role: '서포터', folderName: '키레네' },
+          { name: '로빈', role: '서포터', folderName: '로빈' }
         ]
       },
       { 
@@ -27,11 +27,11 @@ export const dotParties: PartyCombination[] = [
         role: '탱커/힐러', 
         folderName: '단항•등황',
         substitutes: [
-          { name: '곽향', folderName: '곽향' },
-          { name: '히아킨', folderName: '히아킨' },
-          { name: '어벤츄린', folderName: '어벤츄린' },
-          { name: '갤러거', folderName: '갤러거' },
-          { name: '나찰', folderName: '나찰' }
+          { name: '곽향', role: '힐러', folderName: '곽향' },
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
+          { name: '갤러거', role: '힐러', folderName: '갤러거' },
+          { name: '나찰', role: '힐러', folderName: '나찰' }
         ]
       }
     ],
