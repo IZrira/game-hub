@@ -28,7 +28,7 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
 
   const getIconUrl = (member: { folderName?: string; name: string }) => {
     const folder = member.folderName || member.name;
-    return encodeURI(`${BASE_IMAGE_URL}/characters/${folder.normalize('NFC')}/art01.webp`);
+    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${folder.normalize('NFC')}.webp`);
   };
 
   return (

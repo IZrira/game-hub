@@ -160,7 +160,7 @@ const TierList: React.FC = () => {
 
   const getIconUrl = (char: TierCharacter) => {
     const folder = char.folderName || char.name;
-    return encodeURI(`${BASE_IMAGE_URL}/characters/${folder.normalize('NFC')}/art01.webp`);
+    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${folder.normalize('NFC')}.webp`);
   };
 
   return (

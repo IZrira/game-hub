@@ -60,7 +60,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
       rarity: c.rarity,
       image: game.id === 'hsr' 
         ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(c.folderName || c.name || '')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-        : `${CDN_URL}/ww%20images/characters/${safeEncodeURIComponent(c.folderName || c.name || '')}/art01.webp`,
+        : `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(c.folderName || c.name || '')}/${safeEncodeURIComponent(c.folderName || c.name || '')}.webp`,
       link: `/gallery/${game.id}/character/${c.id}`
     })),
     
@@ -201,7 +201,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                     <img 
                       src={game.id === 'hsr' 
                         ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(char.folderName || char.name)}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-                        : `${CDN_URL}/ww%20images/characters/${safeEncodeURIComponent(char.folderName || char.name)}/art01.webp`
+                        : `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/${safeEncodeURIComponent(char.folderName || char.name)}.webp`
                       }
                       alt={t(char.name)}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent"

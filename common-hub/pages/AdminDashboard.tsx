@@ -383,8 +383,10 @@ const AdminDashboard: React.FC = () => {
 
   const getEncodedUrl = (folder: string) => {
     if (!folder) return '';
-    const imagePath = activeGame === 'ww' ? 'characters' : '캐릭터';
-    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/${imagePath}/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
+    if (activeGame === 'ww') {
+      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(folder.trim())}/${safeEncodeURIComponent(folder.trim())}.webp`;
+    }
+    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Activity className="animate-spin text-amber-500" size={48} /></div>;
