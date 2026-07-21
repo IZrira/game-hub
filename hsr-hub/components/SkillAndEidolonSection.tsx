@@ -38,7 +38,8 @@ const SKILL_CATEGORIES_HSR = [
   { id: 'ultimate', label: '필살기' },
   { id: 'talent', label: '특성' },
   { id: 'elation_skill', label: '환락 스킬' },
-  { id: 'technique', label: '비술' }
+  { id: 'technique', label: '비술' },
+  { id: 'assist_skill', label: '지원 스킬' }
 ];
 
 const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, theme, renderContent, gender, setGender, setTooltip }) => {
@@ -56,12 +57,12 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
 
   const groupedSkills = useMemo(() => {
     const groups: Record<string, { skill: SkillDetail, filename: string }[]> = {
-      basic_atk: [], skill: [], ultimate: [], talent: [], technique: [], elation_skill: [],
+      basic_atk: [], skill: [], ultimate: [], talent: [], technique: [], elation_skill: [], assist_skill: [],
       memo_info: [], memo_skill: [], memo_talent: [],
       intro: [], outro: []
     };
     const counters: Record<string, number> = { 
-      basic_atk: 0, skill: 0, ultimate: 0, talent: 0, technique: 0, elation_skill: 0,
+      basic_atk: 0, skill: 0, ultimate: 0, talent: 0, technique: 0, elation_skill: 0, assist_skill: 0,
       memo_info: 0, memo_skill: 0, memo_talent: 0,
       intro: 0, outro: 0
     };
@@ -78,6 +79,7 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
       else if (tag.includes('필살기') || tag.toLowerCase().includes('ultimate')) type = 'ultimate';
       else if (tag.includes('비술') || tag.toLowerCase().includes('technique')) type = 'technique';
       else if (tag.includes('환락 스킬') || tag.toLowerCase().includes('elation')) type = 'elation_skill';
+      else if (tag.includes('지원 스킬') || tag.toLowerCase().includes('assist skill')) type = 'assist_skill';
       else if (tag.includes('특성') || tag.toLowerCase().includes('talent')) type = 'talent';
 
       let filename;
@@ -94,6 +96,8 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
              else filename = `memo_${type.replace('memo_', '')}_${counters[type]}.webp`;
         } else if (type === 'elation_skill') {
              filename = `elation_skill_${counters[type]}.webp`;
+        } else if (type === 'assist_skill') {
+             filename = `assist_skill_${counters[type]}.webp`;
         } else {
              filename = `${type}_${counters[type]}.webp`;
         }
