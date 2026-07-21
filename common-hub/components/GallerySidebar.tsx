@@ -11,7 +11,8 @@ import {
   Backpack, 
   Trophy,
   LayoutGrid,
-  Bell
+  Bell,
+  FileText
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useNoticeBadge } from './NoticeComponents';
@@ -46,6 +47,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
     { label: '광추', icon: <Zap size={14} />, menuKey: '광추' },
     { label: '유물 & 장신구', icon: <Shield size={14} />, menuKey: '유물 & 장신구' },
     { label: '공략', icon: <BookOpen size={14} />, menuKey: '공략' },
+    { label: '블로그 / 칼럼', icon: <FileText size={14} />, path: gameId ? `/blog?game=${gameId}` : '/blog' },
     { label: '티어표', icon: <Trophy size={14} />, path: `/gallery/${gameId}/tierlist` },
     { label: '추천 파티 조합', icon: <LayoutGrid size={14} />, path: `/gallery/${gameId}/parties` },
     { label: '인벤토리', icon: <Backpack size={14} />, menuKey: '인벤토리' },
@@ -80,6 +82,16 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
             if (displayLabel === '유물 & 장신구') {
               displayLabel = '에코';
               menuKey = '에코';
+            }
+          }
+          if (gameId === 'nte') {
+            if (displayLabel === '광추') {
+              displayLabel = '아크';
+              menuKey = '아크';
+            }
+            if (displayLabel === '유물 & 장신구') {
+              displayLabel = '콘솔';
+              menuKey = '콘솔';
             }
           }
 

@@ -6,14 +6,14 @@ import { Navigate } from 'react-router-dom';
 import { safeEncodeURIComponent } from '../utils/assetManager';
 import HSR_CHARACTERS from '../../hsr-hub/data/characters.json';
 import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
-import { HSR_NOTICES } from '../../hsr-hub/data/notices';
-import { WW_NOTICES } from '../../ww-hub/data/notices';
 import SEO from '../components/SEO';
+import { getGameData } from '../data/dataManager';
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'characters' | 'tiers' | 'notices'>('characters');
+  const [activeTab, setActiveTab] = useState<'home' | 'characters' | 'tiers' | 'notices'>('home');
+  const [activeGame, setActiveGame] = useState<'hsr' | 'ww' | 'nte' | null>(null);
   const [activeCategoryId, setActiveCategoryId] = useState<string>('chaos');
   
   // 데이터 상태
@@ -59,42 +59,14 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (user && isAdmin(user.id)) {
-      autoSyncOnLoad();
+    if (user && isAdmin(user.id) && activeGame) {
+      fetchBaseData();
       fetchTierData();
       fetchMgmtNotices();
     }
-  }, [user]);
+  }, [user, activeGame]);
 
-  const autoSyncOnLoad = async () => {
-    console.log("🔄 [AutoSync] Started. Total characters in local JSON:", HSR_CHARACTERS.length);
-    const hasBlade = HSR_CHARACTERS.find(c => c.id === 'mortenax_blade');
-    console.log("🔄 [AutoSync] Has 'mortenax_blade' in local JSON?", hasBlade ? "YES" : "NO");
-
-    try {
-      const charTasks = HSR_CHARACTERS.map(c => ({
-        id: c.id,
-        name: c.name,
-        folder_name: (c as any).folderName || c.name,
-        rarity: c.rarity,
-        attribute: c.attribute,
-        path: c.path,
-        version: c.version || '3.1'
-      }));
-      
-      const { error } = await supabase.from('characters').upsert(charTasks, { onConflict: 'id' });
-      
-      if (error) {
-        console.error('❌ [AutoSync] DB Upsert Error:', error);
-        alert('자동 동기화 DB 오류: ' + error.message);
-      } else {
-        console.log("✅ [AutoSync] DB Upsert Success.");
-      }
-    } catch (err) {
-      console.error('❌ [AutoSync] Unexpected Error:', err);
-    }
-    fetchBaseData(); 
-  };
+  // autoSyncOnLoad removed as per unified dashboard strategy
 
   const normalizeName = (n: string) => n ? n.normalize('NFC').replace(/[\s•·().\-_*]/g, '').toLowerCase().trim() : '';
 
@@ -109,11 +81,17 @@ const AdminDashboard: React.FC = () => {
   }, [mgmtTiers]);
 
   const fetchBaseData = async () => {
-    const { data } = await supabase
-      .from('characters')
+    const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
+    const { data, error } = await supabase
+      .from(tableName)
       .select('*')
       .order('name')
       .range(0, 2000);
+    if (error) {
+      console.error('Fetch error:', error);
+      setBaseCharacters([]);
+      return;
+    }
     if (data) setBaseCharacters(data);
   };
 
@@ -121,7 +99,7 @@ const AdminDashboard: React.FC = () => {
     const { data } = await supabase
       .from('tier_lists')
       .select('*')
-      .eq('game_id', 'hsr')
+      .eq('game_id', activeGame)
       .range(0, 4000);
     if (data) setMgmtTiers(data);
   };
@@ -130,6 +108,7 @@ const AdminDashboard: React.FC = () => {
     const { data } = await supabase
       .from('notices')
       .select('*')
+      .in('game_id', [activeGame, 'common'])
       .order('created_at', { ascending: false });
     if (data) setMgmtNotices(data);
   };
@@ -175,16 +154,24 @@ const AdminDashboard: React.FC = () => {
     }
 
     const charId = newChar.name.toLowerCase().replace(/\s+/g, '_');
+    const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
     
-    const { error: charError } = await supabase.from('characters').insert([{
+    const payload: any = {
       id: charId,
       name: newChar.name,
       folder_name: newChar.folder_name,
       rarity: newChar.rarity,
       attribute: newChar.attribute,
-      path: newChar.path,
       version: newChar.version
-    }]);
+    };
+    
+    if (activeGame === 'ww') {
+      payload.weapon_type = newChar.path;
+    } else {
+      payload.path = newChar.path;
+    }
+
+    const { error: charError } = await supabase.from(tableName).insert([payload]);
 
     if (charError) {
       alert('캐릭터 생성 실패: ' + charError.message);
@@ -192,7 +179,7 @@ const AdminDashboard: React.FC = () => {
     }
 
     const tierEntries = CATEGORIES.map(cat => ({
-      game_id: 'hsr',
+      game_id: activeGame,
       category_id: cat.id,
       character_name: newChar.name,
       tier: '?',
@@ -214,42 +201,61 @@ const AdminDashboard: React.FC = () => {
     const existing = mgmtTiers.find(t => normalizeName(t.character_name) === targetNameNorm && t.category_id === categoryId);
     
     if (existing) {
-      await supabase.from('tier_lists').update(updates).match({ game_id: 'hsr', category_id: categoryId, character_name: existing.character_name });
+      await supabase.from('tier_lists').update(updates).match({ game_id: activeGame, category_id: categoryId, character_name: existing.character_name });
     } else {
-      await supabase.from('tier_lists').insert([{ game_id: 'hsr', category_id: categoryId, character_name: name, tier: '?', role: '메인 딜러', change: 'stay', display_order: 100, ...updates }]);
+      await supabase.from('tier_lists').insert([{ game_id: activeGame, category_id: categoryId, character_name: name, tier: '?', role: '메인 딜러', change: 'stay', display_order: 100, ...updates }]);
     }
     fetchTierData();
   };
 
   const deleteCharacter = async (id: string, name: string) => {
     if (!window.confirm(`'${name}' 캐릭터를 삭제하시겠습니까?`)) return;
-    await supabase.from('tier_lists').delete().eq('character_name', name);
-    await supabase.from('characters').delete().eq('id', id);
+    await supabase.from('tier_lists').delete().eq('character_name', name).eq('game_id', activeGame);
+    const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
+    await supabase.from(tableName).delete().eq('id', id);
     fetchBaseData();
     fetchTierData();
   };
 
   const syncCharactersFromLocal = async () => {
-    if (!window.confirm('로컬 파일의 캐릭터 도감 데이터를 DB로 전송하시겠습니까?')) return;
+    if (!window.confirm(`로컬 파일의 ${activeGame.toUpperCase()} 캐릭터 데이터를 DB로 전송하시겠습니까?`)) return;
     
     setLoading(true);
     try {
-      const charTasks = HSR_CHARACTERS.map(c => ({
-        id: c.id,
-        name: c.name,
-        folder_name: (c as any).folderName || c.name,
-        rarity: c.rarity,
-        attribute: c.attribute,
-        path: c.path,
-        version: c.version || '3.1'
-      }));
+      let charTasks: any[] = [];
+      const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
+
+      if (activeGame === 'hsr') {
+        charTasks = HSR_CHARACTERS.map(c => ({
+          id: c.id,
+          name: c.name,
+          folder_name: (c as any).folderName || c.name,
+          rarity: c.rarity,
+          attribute: c.attribute,
+          path: c.path,
+          version: c.version || '3.1'
+        }));
+      } else if (activeGame === 'ww') {
+        const { CHARACTER_DB } = getGameData('ww');
+        charTasks = CHARACTER_DB.map((c: any) => ({
+          id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
+          name: c.name,
+          folder_name: c.folderName || c.name,
+          rarity: c.rarity || 5,
+          attribute: c.attribute || '회절',
+          weapon_type: c.weaponType || '직검',
+          version: c.releaseVersion || '1.0'
+        }));
+      } else {
+        throw new Error('NTE local data sync is not implemented yet.');
+      }
 
       const { error } = await supabase
-        .from('characters')
+        .from(tableName)
         .upsert(charTasks, { onConflict: 'id' });
 
       if (error) throw error;
-      alert('성공적으로 캐릭터 도감이 동기화되었습니다!');
+      alert(`성공적으로 ${activeGame.toUpperCase()} 캐릭터 도감이 동기화되었습니다!`);
       fetchBaseData();
     } catch (err: any) {
       console.error('Sync Error:', err);
@@ -260,6 +266,11 @@ const AdminDashboard: React.FC = () => {
   };
 
   const syncFromLocalData = async () => {
+    if (activeGame !== 'hsr') {
+      alert(`${activeGame.toUpperCase()} 티어표 로컬 동기화는 현재 지원되지 않으며, 인게임 데이터 또는 대시보드 UI에서 직접 관리해야 합니다.`);
+      return;
+    }
+    
     if (!window.confirm('로컬 파일의 티어 데이터를 DB로 전송하시겠습니까?\n(이미 존재하는 데이터는 덮어씌워지거나 유지됩니다.)')) return;
     
     setLoading(true);
@@ -299,51 +310,7 @@ const AdminDashboard: React.FC = () => {
   };
 
   const syncNoticesFromLocal = async () => {
-    if (!window.confirm('로컬 파일의 공지사항 데이터를 DB로 전송하시겠습니까?')) return;
-    
-    setLoading(true);
-    try {
-      const allLocalNotices: any[] = [];
-      
-      // HSR 공지 변환
-      HSR_NOTICES.forEach(n => {
-        allLocalNotices.push({
-          id: n.id,
-          title: n.title,
-          category: n.type === 'update' ? 'Update' : n.type === 'event' ? 'Event' : 'Notice',
-          game_id: 'hsr',
-          content: n.content,
-          created_at: new Date(n.date).toISOString(),
-          is_critical: false
-        });
-      });
-
-      // WW 공지 변환
-      WW_NOTICES.forEach(n => {
-        allLocalNotices.push({
-          id: n.id,
-          title: n.title,
-          category: n.type === 'update' ? 'Update' : n.type === 'event' ? 'Event' : 'Notice',
-          game_id: 'ww',
-          content: n.content,
-          created_at: new Date(n.date).toISOString(),
-          is_critical: false
-        });
-      });
-
-      const { error } = await supabase
-        .from('notices')
-        .upsert(allLocalNotices, { onConflict: 'id' });
-
-      if (error) throw error;
-      alert('성공적으로 공지사항이 동기화되었습니다!');
-      fetchMgmtNotices();
-    } catch (err: any) {
-      console.error('Sync Error:', err);
-      alert('동기화 실패: ' + err.message);
-    } finally {
-      setLoading(false);
-    }
+    alert('더 이상 로컬 파일을 통한 공지사항 동기화 기능을 지원하지 않습니다.');
   };
 
   const exportSQLToCode = async () => {
@@ -392,7 +359,7 @@ const AdminDashboard: React.FC = () => {
 
   const getEncodedUrl = (folder: string) => {
     if (!folder) return '';
-    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
+    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Activity className="animate-spin text-amber-500" size={48} /></div>;
@@ -415,32 +382,47 @@ const AdminDashboard: React.FC = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-60">RIRA Advanced Admin</span>
             </div>
             <h1 className="text-5xl font-black italic tracking-tighter uppercase leading-none">Management Dashboard</h1>
-            <p className="text-gray-500 font-bold flex items-center gap-2">
+            <p className="text-gray-500 font-bold flex items-center gap-2 mt-4">
               <Activity size={14} className="text-emerald-500" />
               시스템 관리자: <span className="text-amber-500/80">{user?.email}</span>
             </p>
+            {activeGame && (
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-500 text-xs font-black tracking-widest mt-2 uppercase">
+                현재 관리 중인 게임: {activeGame === 'hsr' ? '스타레일' : activeGame === 'ww' ? '명조' : 'NTE'}
+              </div>
+            )}
           </div>
           
           {/* 탭 네비게이션 */}
           <nav className="relative z-10 flex flex-wrap bg-black/40 p-2 rounded-3xl border border-white/5 backdrop-blur-xl">
             <button 
-              onClick={() => setActiveTab('characters')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+              onClick={() => setActiveTab('home')}
+              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'home' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
             >
-              <Users size={18} /> 캐릭터 관리
+              <LayoutGrid size={18} /> 게임 선택
             </button>
-            <button 
-              onClick={() => setActiveTab('tiers')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
-            >
-              <Trophy size={18} /> 티어표 관리
-            </button>
-            <button 
-              onClick={() => setActiveTab('notices')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
-            >
-              <Bell size={18} /> 공지사항 관리
-            </button>
+            {activeGame && (
+              <>
+                <button 
+                  onClick={() => setActiveTab('characters')}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+                >
+                  <Users size={18} /> 캐릭터 관리
+                </button>
+                <button 
+                  onClick={() => setActiveTab('tiers')}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+                >
+                  <Trophy size={18} /> 티어표 관리
+                </button>
+                <button 
+                  onClick={() => setActiveTab('notices')}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+                >
+                  <Bell size={18} /> 공지사항 관리
+                </button>
+              </>
+            )}
           </nav>
 
           <button onClick={() => supabase.auth.signOut()} className="relative z-10 px-6 py-4 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 rounded-2xl text-rose-500 transition-all flex items-center gap-3 font-black text-xs uppercase tracking-widest active:scale-95">
@@ -450,7 +432,53 @@ const AdminDashboard: React.FC = () => {
 
         {/* 메인 컨텐츠 영역 */}
         <main className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          {/* 공통 검색바 */}
+          
+          {activeTab === 'home' && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12">
+              <button 
+                onClick={() => { setActiveGame('hsr'); setActiveTab('characters'); }}
+                className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
+              >
+                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                  <Database size={48} />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Honkai: Star Rail</h3>
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">붕괴: 스타레일 관리</p>
+                </div>
+              </button>
+              
+              <button 
+                onClick={() => { setActiveGame('ww'); setActiveTab('characters'); }}
+                className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
+              >
+                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                  <LayoutGrid size={48} />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Wuthering Waves</h3>
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">명조 관리</p>
+                </div>
+              </button>
+
+              <button 
+                onClick={() => { setActiveGame('nte'); setActiveTab('characters'); }}
+                className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
+              >
+                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
+                  <Sparkles size={48} />
+                </div>
+                <div className="text-center">
+                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Neverness to Everness</h3>
+                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">NTE 관리</p>
+                </div>
+              </button>
+            </div>
+          )}
+
+          {activeTab !== 'home' && (
+            <>
+              {/* 공통 검색바 */}
           <div className="flex flex-col md:flex-row items-center gap-6 bg-[#111] p-6 rounded-[32px] border border-white/5 shadow-xl">
             <div className="relative flex-1 w-full">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
@@ -484,7 +512,7 @@ const AdminDashboard: React.FC = () => {
                       <tr className="bg-white/[0.02] text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">
                         <th className="p-8">캐릭터 프로필</th>
                         <th className="p-8 text-center">속성</th>
-                        <th className="p-8 text-center">운명의 길</th>
+                        <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : '운명의 길'}</th>
                         <th className="p-8 text-center">버전</th>
                         <th className="p-8 text-right">관리</th>
                       </tr>
@@ -525,7 +553,7 @@ const AdminDashboard: React.FC = () => {
                             </div>
                           </td>
                           <td className="p-8 text-center font-bold text-gray-400">{bc.attribute}</td>
-                          <td className="p-8 text-center font-bold text-gray-400">{bc.path}</td>
+                          <td className="p-8 text-center font-bold text-gray-400">{bc.path || bc.weapon_type}</td>
                           <td className="p-8 text-center">
                             <input 
                               className="w-16 text-center font-bold text-amber-500/60 tracking-widest bg-transparent border-b border-transparent hover:border-amber-500/30 focus:border-amber-500 focus:outline-none transition-all p-1"
@@ -569,13 +597,19 @@ const AdminDashboard: React.FC = () => {
                       <div className="space-y-2">
                         <label className="text-[10px] font-black text-gray-500 uppercase ml-1">속성</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.attribute} onChange={e => setNewChar({...newChar, attribute: e.target.value})}>
-                          {['물리', '화염', '얼음', '번개', '바람', '양자', '허수'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)}
+                          {activeGame === 'ww'
+                            ? ['기류', '전도', '회절', '인멸', '용융', '응결'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
+                            : ['물리', '화염', '얼음', '번개', '바람', '양자', '허수'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
+                          }
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-500 uppercase ml-1">운명</label>
+                        <label className="text-[10px] font-black text-gray-500 uppercase ml-1">{activeGame === 'ww' ? '무기' : '운명'}</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.path} onChange={e => setNewChar({...newChar, path: e.target.value})}>
-                          {['파멸', '수렵', '지식', '화합', '공허', '보존', '풍요', '기억', '환락'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)}
+                          {activeGame === 'ww'
+                            ? ['장검', '대검', '직검', '권갑', '증폭기', '권총'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
+                            : ['파멸', '수렵', '지식', '화합', '공허', '보존', '풍요', '기억', '환락'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
+                          }
                         </select>
                       </div>
                     </div>
@@ -765,7 +799,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                 </div>
                                 <div className="min-w-0">
                                   <p className="text-sm font-black truncate">{bc.name}</p>
-                                  <p className="text-[9px] text-gray-600 font-bold uppercase">{bc.path}</p>
+                                  <p className="text-[9px] text-gray-600 font-bold uppercase">{bc.path || bc.weapon_type}</p>
                                 </div>
                               </div>
 
@@ -992,7 +1026,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                   </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </main>
       </div>

@@ -48,11 +48,20 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
       else if (tag.includes('공명 스킬') || tag.includes('공명 어빌리티') || tag.toLowerCase().includes('skill')) type = 'skill';
       else if (tag.includes('공명 해방') || tag.toLowerCase().includes('ultimate')) type = 'ultimate';
       else if (tag.includes('공명 회로') || tag.toLowerCase().includes('talent')) type = 'talent';
+      else if (tag.includes('고유 스킬') || tag.includes('고유스킬') || tag.toLowerCase().includes('bonus')) type = 'bonus';
       else if (tag.includes('변주 스킬') || tag.toLowerCase().includes('intro')) type = 'intro';
       else if (tag.includes('반주 스킬') || tag.toLowerCase().includes('outro')) type = 'outro';
+      else if (tag.includes('조화도 파괴') || tag.toLowerCase().includes('dissipation')) type = 'dissipation';
 
       const catLabel = SKILL_CATEGORIES_WW.find(c => c.id === type)?.label || '공명 회로';
-      const filename = type === 'basic_atk' ? '기본 공격.webp' : `${catLabel}.webp`;
+      let filename = type === 'basic_atk' ? '기본 공격.webp' : `${catLabel}.webp`;
+      
+      if (type === 'bonus') {
+        const normalizedTag = tag.replace(/\s+/g, '');
+        if (normalizedTag.includes('1')) filename = '고유 스킬1.webp';
+        else if (normalizedTag.includes('2')) filename = '고유 스킬2.webp';
+      }
+      
       groups[type].push({ skill, filename });
     });
 

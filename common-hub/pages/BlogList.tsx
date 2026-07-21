@@ -1,11 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
 import { BLOG_POSTS } from '../data/blogData';
 import { Clock, User, ChevronRight } from 'lucide-react';
 
 const BlogList: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const game = searchParams.get('game') || undefined;
+  const gameQuery = game ? `?game=${game}` : '';
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO 
@@ -13,14 +17,14 @@ const BlogList: React.FC = () => {
         description="Rira Game Hub의 심층 분석 게임 칼럼과 가이드를 만나보세요." 
         url="/blog" 
       />
-      <PageHeader title="Intelligence Blog" category="Blog" />
+      <PageHeader title="리라 아카이브 칼럼" category="블로그" categoryUrl={`/blog${gameQuery}`} gameId={game} />
       
       <main className="max-w-[1200px] mx-auto px-6 md:px-12 pt-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {BLOG_POSTS.map(post => (
             <Link 
               key={post.id} 
-              to={`/blog/${post.id}`}
+              to={`/blog/${post.id}${gameQuery}`}
               className="group glass-card rounded-[32px] overflow-hidden border border-white/5 hover:border-brand-primary/30 transition-all duration-500 flex flex-col bg-gradient-to-br from-white/[0.03] to-transparent hover:shadow-2xl"
             >
               {post.imageUrl && (

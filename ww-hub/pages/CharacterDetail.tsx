@@ -36,7 +36,6 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import { WuwaCharacter } from '../types';
-import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { ELEMENT_COLORS } from '../data/formatter';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
@@ -343,7 +342,8 @@ const CharacterDetail: React.FC = () => {
     const folder = char.folderName || t(char.name);
     
     if (char.isRover) {
-      const folderName = char.folderName || `방랑자 · ${char.attribute}`;
+      let folderName = char.folderName || `방랑자 · ${char.attribute}`;
+      if (folderName === '방랑자 · 전도') folderName = '방랑자 · 회절';
       const genderSuffix = gender === 'f' ? '(여)' : '(남)';
       const fileName = `${folderName}${genderSuffix}.webp`;
       return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(fileName)}`;
@@ -411,8 +411,8 @@ const CharacterDetail: React.FC = () => {
       return;
     }
 
-    const asc = char.materials_v2.ascension?.map((m: any) => `${t(m.name)} x${m.count}`).join(', ') || t('정보 없음');
-    const trc = char.materials_v2.traces?.map((m: any) => `${t(m.name)} x${m.count}`).join(', ') || t('정보 없음');
+    const asc = char.materials_v2.ascension?.map((m: any) => `${t(m.name)} x${typeof m.count === 'number' ? m.count.toLocaleString() : m.count}`).join(', ') || t('정보 없음');
+    const trc = char.materials_v2.traces?.map((m: any) => `${t(m.name)} x${typeof m.count === 'number' ? m.count.toLocaleString() : m.count}`).join(', ') || t('정보 없음');
     
     const text = `[${t(char.name)} ${t('육성 재료 리스트')}]\n\n■ ${t('승급 재료')}\n${asc}\n\n■ ${t('행적 재료')}\n${trc}\n\n출처: RIRA ARCHIVE`;
 
@@ -449,114 +449,6 @@ const CharacterDetail: React.FC = () => {
     ];
   }, [char, t]);
 
-  if (char.isNotion) {
-    const notionTheme = { primary: '#A855F7', secondary: '#D8B4FE', shadow: 'rgba(168, 85, 247, 0.4)' }; // Default notion purple theme
-    const lastUpdatedDate = char.releaseVersion ? (VERSION_UPDATES[char.releaseVersion] || '2026-05-23') : '2026-05-23';
-
-    return (
-      <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
-        <SEO 
-          title={`${t(char.name)} | ${t('캐릭터 정보 및 가이드 | 명조 아카이브')}`} 
-          description={`${t('명조 (Wuthering Waves)')} ${t(char.name)} ${t('의 상세 정보를 확인하세요.')}`}
-          image={getIllustrationUrl()}
-          url={`/gallery/${gameId}/character/${char.id}`}
-          gameCategory={t('명조 (Wuthering Waves)')}
-          modifiedTime={lastUpdatedDate}
-          ratingValue={char.rarity || 5}
-          reviewCount={1}
-          breadcrumbData={[
-            { name: t('홈'), url: '/' },
-            { name: t('명조 (Wuthering Waves)'), url: `/gallery/${gameId}` },
-            { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
-            { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
-          ]}
-        />
-        
-        <PageHeader gameId={gameId} category={t("캐릭터")} title={t(char.name)} />
-
-        <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-4 space-y-6">
-          {/* Profile Header for Notion items */}
-          <div className="relative grid grid-cols-1 lg:grid-cols-[450px_1fr] gap-8 items-start border-b border-white/5 pb-8">
-            
-            {/* Left: Image with Integrated Info Overlay */}
-            <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.5] flex items-center justify-center">
-              <img 
-                src={getIllustrationUrl()} 
-                alt={char.name} 
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
-              
-              <div className="absolute bottom-8 left-8 right-8 space-y-3">
-                <div className="space-y-0.5">
-                  <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: notionTheme.primary }}>
-                    {t(char.weaponType || '')} | {t(char.attribute || '')}
-                  </div>
-                  <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
-                    {t(char.name)}
-                  </h1>
-                </div>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex gap-1">
-                    {Array.from({ length: char.rarity || 5 }).map((_, i) => (
-                      <Star key={i} size={18} fill={notionTheme.primary} style={{ color: notionTheme.primary }} className="drop-shadow-[0_0_8px_rgba(168,85,247,0.6)]" />
-                    ))}
-                  </div>
-                  <div className="text-gray-400 font-bold tracking-widest text-[9px] uppercase italic opacity-40 px-2 py-0.5 border border-white/10 rounded-lg">
-                     Ver {char.releaseVersion || '1.0'}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Info Card & Content */}
-            <div className="space-y-6 h-full flex flex-col justify-between">
-              
-              {/* Profile details */}
-              <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
-                <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-                  <div className="w-10 h-10 rounded-[15px] border-2 flex items-center justify-center font-black text-sm shadow-xl" style={{ backgroundColor: `${notionTheme.primary}20`, color: notionTheme.primary, borderColor: `${notionTheme.primary}60` }}>I</div>
-                  <h2 className="text-xl font-black uppercase tracking-widest text-white/95 italic">{t('기본 정보')}</h2>
-                </div>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base">
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-400 font-bold">{t('속성')}</span>
-                    <span className="font-extrabold text-white">{t(char.attribute || '회절')}</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-400 font-bold">{t('무기')}</span>
-                    <span className="font-extrabold text-white">{t(char.weaponType || '직검')}</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-400 font-bold">{t('출시 버전')}</span>
-                    <span className="font-extrabold text-white">{char.releaseVersion || '1.0'}</span>
-                  </div>
-                  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-gray-400 font-bold">{t('획득 경로')}</span>
-                    <span className="font-extrabold text-white">{t(char.obtain || '노션 연동')}</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Dynamic content rendering using MarkdownRenderer */}
-              <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow">
-                <div className="flex items-center gap-4 border-b border-white/5 pb-4 mb-6">
-                  <div className="w-10 h-10 rounded-[15px] border-2 flex items-center justify-center font-black text-sm shadow-xl" style={{ backgroundColor: `${notionTheme.primary}20`, color: notionTheme.primary, borderColor: `${notionTheme.primary}60` }}>II</div>
-                  <h2 className="text-xl font-black uppercase tracking-widest text-white/95 italic">{t('가이드 및 본문')}</h2>
-                </div>
-                <div className="p-4 rounded-[25px] bg-white/[0.01] border border-white/5 max-h-[500px] overflow-y-auto custom-scrollbar">
-                  <MarkdownRenderer content={char.content || ''} />
-                </div>
-              </div>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
@@ -750,23 +642,49 @@ const CharacterDetail: React.FC = () => {
               </div>
               
 
-              {/* Voice Actors Card */}
-              <div className="glass-card rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-8 space-y-6">
-                <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                  <Globe size={18} className="text-gray-500" />
-                  <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t("성우 정보 리스트")}</h3>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {char.voiceActors?.split('/').map((n: string, i: number) => (
-                    <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.06] transition-all">
-                      <div className="flex items-center gap-3">
-                        <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
-                        <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i]}</span>
-                      </div>
-                      <span className="text-lg font-black text-gray-200 group-hover:text-white">{t(n.trim())}</span>
+              {/* Voice Actors & Locales Cards */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Voice Actors Card */}
+                {char.voiceActors && (
+                  <div className="glass-card rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-8 space-y-6">
+                    <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                      <Globe size={18} className="text-gray-500" />
+                      <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t("성우 정보")}</h3>
                     </div>
-                  ))}
-                </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {char.voiceActors.split(/[\n/,]+/).filter(Boolean).map((n: string, i: number) => (
+                        <div key={`va-${i}`} className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.06] transition-all">
+                          <div className="flex items-center gap-3">
+                            <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
+                            <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>
+                          </div>
+                          <span className="text-sm font-black text-gray-200 group-hover:text-white text-right break-words max-w-[120px]">{t(n.trim())}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Locales Card */}
+                {char.locales && (
+                  <div className="glass-card rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-8 space-y-6">
+                    <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                      <Globe size={18} className="text-gray-500" />
+                      <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t("언어별 표기")}</h3>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {char.locales.split(/[\n/,]+/).filter(Boolean).map((n: string, i: number) => (
+                        <div key={`loc-${i}`} className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.06] transition-all">
+                          <div className="flex items-center gap-3">
+                            <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
+                            <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>
+                          </div>
+                          <span className="text-sm font-black text-gray-200 group-hover:text-white text-right break-words max-w-[120px]">{t(n.trim())}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

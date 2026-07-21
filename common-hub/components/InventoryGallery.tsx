@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import { getItemMetaDB, FILTER_CATEGORIES, getItemUrl, getAutoRarity, categorizeItem } from '../data/items';
+import { getGameData } from '../data/dataManager';
 import { useTranslation } from 'react-i18next';
-import ItemDetailModal from './ItemDetailModal';
 import { ItemPremiumCard } from './GalleryCards';
 
 interface InventoryGalleryProps {
@@ -16,11 +16,20 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
-  const displayCategories = useMemo(() => customCategories || FILTER_CATEGORIES, [customCategories]);
+  const displayCategories = useMemo(() => {
+    const base = customCategories || FILTER_CATEGORIES;
+    const itemTypes = new Set(items.map(item => item.type).filter(Boolean));
+    const merged = [...base];
+    itemTypes.forEach(t => {
+      if (!merged.includes(t) && t !== '미분류') {
+        merged.push(t);
+      }
+    });
+    return merged;
+  }, [customCategories, items]);
 
   const [activeTab, setActiveTab] = useState(() => sessionStorage.getItem(`inventory_tab_${gameId}`) || "전체");
   const [search, setSearch] = useState(() => sessionStorage.getItem(`inventory_search_${gameId}`) || "");
-  const [selectedItem, setSelectedItem] = useState<any>(null);
 
   useEffect(() => { sessionStorage.setItem(`inventory_tab_${gameId}`, activeTab); }, [activeTab, gameId]);
   useEffect(() => { sessionStorage.setItem(`inventory_search_${gameId}`, search); }, [search, gameId]);
@@ -28,18 +37,21 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
   useEffect(() => {
     const loadItems = () => {
       try {
-        const db = getItemMetaDB(); // 런타임에 안전하게 데이터 로드
+        const gameData = getGameData(gameId);
+        const db = gameData.INVENTORY_DB || {}; // 노션 연동 데이터가 합쳐진 DB 사용
+        
         const processed = Object.entries(db).map(([name, meta]) => {
           const itemMeta = meta as any;
           const rarity = itemMeta.rarity || getAutoRarity(name);
           return {
             name,
-            url: getItemUrl(name) || '',
+            url: getItemUrl(name, itemMeta.gameId || gameId, itemMeta.fileName) || '',
             rarity,
-            desc: itemMeta.desc || "상세 정보가 없습니다.",
-            type: itemMeta.type || "미분류",
-            sources: itemMeta.sources || ["게임 내 확인"],
-            gameId: itemMeta.gameId || 'hsr'
+            desc: itemMeta.desc || itemMeta.description || itemMeta.content || "상세 정보가 없습니다.",
+            type: itemMeta.type || itemMeta.category || "미분류",
+            sources: itemMeta.sources || (itemMeta.source ? (typeof itemMeta.source === 'string' ? itemMeta.source.split(',').map((s:string) => s.trim()) : itemMeta.source) : ["게임 내 확인"]),
+            gameId: itemMeta.gameId || 'hsr',
+            itemAttribute: itemMeta.itemAttribute // 남여 분리 등 특수 속성
           };
         });
         processed.sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name));
@@ -136,7 +148,6 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
             <ItemPremiumCard 
               key={item.name} 
               item={{ ...item, rarity: item.rarity }} 
-              onClick={() => setSelectedItem(item)} 
             />
           ))}
         </div>
@@ -147,12 +158,6 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
           </p>
         </div>
       )}
-
-      <ItemDetailModal 
-        itemNameEn={selectedItem?.name || ''} 
-        isOpen={!!selectedItem} 
-        onClose={() => setSelectedItem(null)} 
-      />
 
       <div className="p-10 text-center">
         <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] italic">* GitHub Asset Registry Synchronization Active.</p>

@@ -1,70 +1,65 @@
-# 🪐 P-Reinforce: 자율형 지식 정원사 (Autonomous Knowledge Gardener)
+# 🪐 Rira Game Hub & P-Reinforce: Autonomous Knowledge Engine
 
-> **"파편화된 정보의 중력을 거슬러, 지식의 잎귀를 하나씩 틔웁니다."**
+> **"파편화된 게임 데이터를 모아 거대한 지식의 우주를 구축합니다."**
 
-P-Reinforce는 Andre Karpathy의 LLM-Wiki 아키텍처와 강화학습(RL) 이론을 결합한 지식 자동화 엔진입니다. 사용자가 던지는 파편화된 정보를 읽어 의미론적으로 분류하고, 스스로 폴더 트리를 설계하며, 지식 간의 상호 연결을 통해 하나의 거대한 '외부 뇌'를 구축합니다.
-
----
-
-## 📌 주요 기능 요약
-P-Reinforce는 `00_Raw/` 폴더에 입력되는 데이터를 실시간으로 감시하여 다음 작업을 수행합니다:
-1.  **의미론적 분류 (Semantic Classification)**: 최신 LLM을 사용하여 문맥과 의도를 파악합니다.
-2.  **자동 폴더 관리 (Dynamic Folder Management)**: 지식의 위계에 따라 폴더를 생성하고, 파일이 12개를 초과하면 스스로 하위 카테고리로 세분화(Refactoring)합니다.
-3.  **지식 합성 (Knowledge Synthesis)**: 파편화된 정보를 Karpathy의 '영속적 위키' 템플릿에 맞춰 정제합니다.
-4.  **GitHub 자동화 (Git Sync)**: 모든 변화를 자동으로 커밋하여 지식의 타임라인을 보존합니다.
+이 프로젝트는 최신 프론트엔드 스택(React, Vite, Tailwind CSS)으로 구축된 **통합 게임 정보 위키 (Rira Game Hub)**와 이를 자동화하는 **자율형 지식 엔진 (P-Reinforce)**의 결합체입니다. 사용자가 던지는 파편화된 데이터나 스크립트를 에이전트가 해석하고, 구조화하며, 시각적으로 매력적인 웹사이트로 렌더링합니다.
 
 ---
 
-## 🧠 강화학습 기반 구조화 로직 (RL Logic)
-엔진은 아래 보상 함수 $R$을 극대화하는 방향으로 동작합니다:
-$$R = w_1(\text{Categorization Accuracy}) + w_2(\text{Graph Connectivity}) + w_3(\text{User Satisfaction})$$
+## 🎮 주요 서비스 도메인 (Game Hubs)
 
-### 운영 사이클:
-- **상태 분석 (State Analysis)**: 현재 `10_Wiki/` 하위의 모든 폴더 트리와 `20_Meta/Graph.json`을 통해 지식 지형도를 파악합니다.
-- **분류 행동 (Action - Categorization)**: 
-    - **유사도 85% 이상**: 기존 폴더에 배치합니다.
-    - **신규 개념**: 즉시 상위 개념을 도출하여 새로운 폴더 브랜치를 생성합니다.
-    - **구조 재설계**: 특정 폴더의 파일이 과도하게 많아지면 세분화를 제안합니다.
-- **지식 합성 (Action - Synthesis)**: 내용을 정제하고 최소 2개 이상의 [[쌍방향 링크]]를 생성하여 그래프를 강화합니다.
-- **보상 및 정책 업데이트**: 사용자의 피드백을 수집하여 `20_Meta/Policy.md` 가중치를 갱신합니다.
+현재 Rira Game Hub는 3개의 주요 게임 도메인을 지원 및 확장 중입니다:
+
+1. **Honkai: Star Rail (붕괴: 스타레일 - HSR)**: 턴제 메커니즘, 속성/운명의 길, 상세 티어 리스트 및 파티 조합 가이드.
+2. **Wuthering Waves (명조 - WW)**: 실시간 액션, 공명 체인, 에코 데이터, 복잡한 스킬 콤보 가이드.
+3. **Neverness to Everness (이환 - NTE)**: 신규 추가된 게임 아카이브. GitHub CDN과 호환성을 위해 에셋 호출 시 특수 문자(`:`)를 안전하게 언더바(`_`)로 자동 파싱하는 로직 탑재.
 
 ---
 
-## 📂 표준 폴더 구조 (The Structure)
+## 📌 주요 기능 및 아키텍처 요약
+
+1. **멀티 도메인 허브 구조 (Multi-Hub Architecture)**:
+   - `common-hub`: 전역 상태, 디자인 토큰, Footer, 라우터, Asset Manager 공유.
+   - `hsr-hub`, `ww-hub`, `nte-hub`: 각 게임별 특화 로직 및 UI 분리.
+2. **비동기 데이터 동기화 (Notion API)**:
+   - `fetch-notion-data.js` 스크립트가 Notion 데이터베이스를 정기적으로 크롤링하여 로컬 JSON 스키마로 변환합니다.
+3. **SEO 및 수익화 호환성 (AdSense Compliance)**:
+   - 검색 엔진 최적화(SEO)를 위한 `sitemap.xml` 동적 생성 및 `prerender-meta.js` 구동.
+   - 구글 애드센스 승인을 위한 필수 보안/정책 페이지 완비 (`Privacy Policy`, `Terms of Service`, `Contact Us`).
+4. **P-Reinforce 지식 엔진**:
+   - `00_Raw/` 폴더에 입력된 원시 데이터를 `10_Wiki/` 폴더의 구조화된 마크다운으로 자동 변환.
+
+---
+
+## 🛠️ 기술 스택 (Tech Stack)
+
+- **Frontend Framework**: React 18, Vite, TypeScript
+- **Styling**: Tailwind CSS (글래스모피즘 및 다크 모드 특화), Framer Motion, Lucide React
+- **Data Layer**: JSON 정적 데이터 + Notion API
+- **CDN**: GitHub Raw Content (IZrira/riragameinfo)
+
+---
+
+## 📂 프로젝트 구조 (Project Structure)
+
 ```plaintext
 root/
-├── 00_Raw/                 # [불변] 사용자로부터 입력된 가공되지 않은 모든 원본 데이터
-├── 10_Wiki/                # [자동 구조화] 에이전트가 RL 정책에 따라 관리하는 지식 층
-│   ├── 🛠️ Projects/        # 프로젝트 중심 요약
-│   ├── 💡 Topics/          # 스스로 생성한 주제별 분류
-│   ├── ⚖️ Decisions/       # 의사결정 기록
-│   └── 🚀 Skills/          # 워크플로우 및 스킬 패턴
-├── 20_Meta/                # [시스템] 엔진의 두뇌 데이터 (Policy, Graph, Index)
-└── .github/                # GitHub Sync 및 자동화 워크플로우
+├── common-hub/             # [공용] 메인 라우터, 전역 컴포넌트, 디자인 시스템, 유틸리티
+├── hsr-hub/                # [붕괴: 스타레일] 특화 컴포넌트 및 데이터베이스
+├── ww-hub/                 # [명조] 특화 컴포넌트 및 데이터베이스
+├── nte-hub/                # [이환] 신규 허브 컴포넌트
+├── scripts/                # 데이터 페칭, 사이트맵 생성, 메타태그 주입 등 빌드 파이프라인
+├── 00_Raw/                 # [불변] 가공되지 않은 사용자 데이터
+├── 10_Wiki/                # [자동 구조화] 에이전트가 관리하는 개발 지식/위키 마크다운 층
+└── .github/                # GitHub Sync 및 워크플로우
 ```
 
 ---
 
-## 📝 지식 문서 변환 규격 (The Wiki Template)
-모든 강화된 문서는 엄격한 마크다운 표준을 따릅니다:
-- **ID 및 메타데이터**: UUID, 확신도(Confidence Score), 강화된 날짜 기록.
-- **Karpathy Summary**: 지식의 핵심을 꿰뚫는 단 한 줄의 통찰.
-- **구조화된 지식**: 추출된 패턴과 불렛포인트 위주의 간결한 정리.
-- **RL 업데이트**: 과거 데이터와의 충돌 여부 및 정책 변화 기록.
-- **지식 연결 (Graph)**: 상위(Parent), 연관(Related), 원본(Source) 링크 자동 생성.
+## 📞 문의 및 비즈니스 (Contact)
+
+본 프로젝트의 법적, 상업적 문의 또는 구글 애드센스/파트너십 관련 사항은 아래 공식 이메일로 소통하실 수 있습니다:
+- **Email**: [rira.game.hub@gmail.com](mailto:rira.game.hub@gmail.com)
 
 ---
-
-## 💻 GitHub 동기화 프로토콜
-모든 구조적 변화는 즉시 커밋되어 반영됩니다:
-`git commit -m "[P-Reinforce] reinforce: 'Topics/Psychology' 폴더 생성 및 문서 연결 최적화"`
-
----
-
-## 💡 에이전트 학습 가이드
-- **칭찬**: *"이 분류가 아주 정확해."* → 해당 주제의 유사도 가중치를 높입니다.
-- **교정**: *"이건 '코딩'이 아니라 '비즈니스' 폴더로 옮겨줘."* → 의미론적 경계선(Boundary Shift)을 재설정합니다.
-- **사용**: 에이전트가 만든 구조를 유지하며 계속 사용하는 것 자체가 임묵적 보상으로 간주됩니다.
-
----
-*P-Reinforce Architect에 의해 생성되었습니다.*
+*Powered by Rira Archive & P-Reinforce AI Engines.*

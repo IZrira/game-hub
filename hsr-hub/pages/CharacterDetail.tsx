@@ -21,12 +21,14 @@ import {
   Compass,
   Zap,
   Globe,
-  Users
+  Users,
+  MessageSquareWarning
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
+import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -79,6 +81,7 @@ const CharacterDetail: React.FC = () => {
   const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const characterCardRef = useRef<HTMLDivElement>(null);
 
   const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
@@ -304,8 +307,8 @@ const CharacterDetail: React.FC = () => {
       return;
     }
 
-    const asc = char.materials_v2.ascension?.map((m: any) => `${t(m.name)} x${m.count}`).join(', ') || t('정보 없음');
-    const trc = char.materials_v2.traces?.map((m: any) => `${t(m.name)} x${m.count}`).join(', ') || t('정보 없음');
+    const asc = char.materials_v2.ascension?.map((m: any) => `${t(m.name)} x${typeof m.count === 'number' ? m.count.toLocaleString() : m.count}`).join(', ') || t('정보 없음');
+    const trc = char.materials_v2.traces?.map((m: any) => `${t(m.name)} x${typeof m.count === 'number' ? m.count.toLocaleString() : m.count}`).join(', ') || t('정보 없음');
     
     const text = `[${t(char.name)} ${t('육성 재료 리스트')}]\n\n■ ${t('돌파 재료')}\n${asc}\n\n■ ${t('행적 재료')}\n${trc}\n\n출처: RIRA ARCHIVE`;
 
@@ -654,13 +657,31 @@ const CharacterDetail: React.FC = () => {
             </div>
           </div>
           {char && (
-            <div className="mt-4 flex justify-end">
+            <div className="mt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+              <button 
+                onClick={() => setIsFeedbackModalOpen(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/10 hover:border-brand-primary/50 transition-all uppercase tracking-widest"
+              >
+                <MessageSquareWarning size={14} />
+                {t('데이터 오류 제보')}
+              </button>
               <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
                 {t('최종 업데이트')} : {lastUpdatedDate} (v{char.releaseVersion || '1.0'})
               </p>
             </div>
           )}
         </section>
+
+        <FeedbackReportModal 
+          isOpen={isFeedbackModalOpen}
+          onClose={() => setIsFeedbackModalOpen(false)}
+          contextData={{
+            gameId,
+            targetId: char?.id || charName,
+            targetName: char?.name || charName,
+            type: 'character'
+          }}
+        />
       </div>
     </div>
   );

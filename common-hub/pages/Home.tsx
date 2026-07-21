@@ -1,17 +1,19 @@
 
 import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META } from '../data/items';
 import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import LazyImage from '../components/LazyImage';
-import SystemChangelog from '../components/SystemChangelog';
+import { NoticeListView, useNoticeBadge } from '../components/NoticeComponents';
+import { Notice } from '../data/types';
 import AdPlaceholder from '../components/AdPlaceholder';
 import { 
   ChevronRight, 
   Zap, 
+  Bell,
   Activity as ActivityIcon, 
   Database, 
   FileText, 
@@ -22,11 +24,22 @@ import {
   Globe,
   Terminal,
   Server,
-  TerminalSquare
+  TerminalSquare,
+  BookOpen
 } from 'lucide-react';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
+  const [globalNotices, setGlobalNotices] = React.useState<Notice[]>([]);
+  const navigate = useNavigate();
+  const [dailyHubTab, setDailyHubTab] = React.useState<'patch_notes' | 'notices'>('patch_notes');
+  const { markAsRead } = useNoticeBadge();
+
+  React.useEffect(() => {
+    import('../data/notices').then(({ fetchNotices }) => {
+      fetchNotices().then(setGlobalNotices);
+    });
+  }, []);
 
   /**
    * @description 프로젝트 전체의 메트릭(게임, 캐릭터, 가이드, 아이템 수)을 연산하여 반환합니다.
@@ -64,7 +77,7 @@ const Home: React.FC = () => {
         <div className="max-w-[1600px] mx-auto relative z-10 text-center space-y-10">
           <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md animate-in fade-in slide-in-from-top-4 duration-700">
             <Terminal size={14} className="text-brand-accent animate-pulse" />
-          <span className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">{t('Initializing Core Intelligence Terminal...')}</span>
+          <span className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">{t('Initializing Rira Archive Database...')}</span>
           </div>
           
           <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
@@ -78,12 +91,17 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          <div className="pt-8 flex justify-center gap-6 animate-in fade-in duration-1000 delay-500">
-            <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest">
-              <Server size={12} className="text-brand-primary" /> Multi-Game Synchronized
-            </div>
-            <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest">
-              <Zap size={12} className="text-yellow-500" /> Real-time Analytics
+          <div className="pt-8 flex justify-center items-center gap-4 animate-in fade-in duration-1000 delay-500 flex-wrap">
+            <Link to="/blog" className="flex items-center gap-2 text-xs font-black text-white bg-brand-primary/20 border border-brand-primary/50 hover:bg-brand-primary hover:text-black px-6 py-3 rounded-full uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(var(--brand-primary-rgb),0.3)] hover:shadow-[0_0_30px_rgba(var(--brand-primary-rgb),0.6)] hover:scale-105">
+              <BookOpen size={16} /> {t('인기 공략/칼럼 모아보기')}
+            </Link>
+            <div className="flex gap-4 px-4">
+              <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest">
+                <Server size={12} className="text-brand-primary" /> Multi-Game Synchronized
+              </div>
+              <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest">
+                <Zap size={12} className="text-yellow-500" /> Real-time Analytics
+              </div>
             </div>
           </div>
         </div>
@@ -99,8 +117,63 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Rira Daily Hub (패치 노트 및 공지사항 탭) */}
+      <section className="max-w-6xl mx-auto px-6 mt-24 mb-8 relative z-20">
+        <div className="bg-[#121212] border border-white/5 rounded-[32px] p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
+          
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-6">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-3">
+                <FileText size={20} className="text-brand-accent" />
+                <h2 className="text-lg font-black text-white uppercase tracking-[0.2em] font-mono">{t('Rira Daily Hub')}</h2>
+              </div>
+              <div className="flex items-center gap-2 bg-[#121212] p-1 rounded-xl border border-white/5">
+                <button
+                  onClick={() => setDailyHubTab('patch_notes')}
+                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-500 hover:text-white'}`}
+                >
+                  {t('패치 노트')}
+                </button>
+                <button
+                  onClick={() => setDailyHubTab('notices')}
+                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'}`}
+                >
+                  {t('전체 공지')}
+                </button>
+              </div>
+            </div>
+            
+            <Link to="/notices" className="inline-flex items-center gap-2 text-xs font-black text-gray-400 hover:text-brand-primary uppercase tracking-widest transition-colors">
+              {t('+ 더보기')} <ChevronRight size={14} />
+            </Link>
+          </div>
+          
+          <div className="min-h-[200px]">
+            {dailyHubTab === 'patch_notes' ? (
+              <NoticeListView 
+                notices={globalNotices.filter(n => n.category === 'Update').slice(0, 3)} 
+                onNoticeClick={(n) => {
+                  markAsRead(n.id);
+                  navigate(`/notices/${n.id}`);
+                }}
+                emptyMessage={t('새로운 패치 노트가 없습니다.')}
+              />
+            ) : (
+              <NoticeListView 
+                notices={globalNotices.slice(0, 3)} 
+                onNoticeClick={(n) => {
+                  markAsRead(n.id);
+                  navigate(`/notices/${n.id}`);
+                }} 
+              />
+            )}
+          </div>
+        </div>
+      </section>
+
       {/* 게임 라이브러리 센터 */}
-      <section className="max-w-[1600px] mx-auto px-10 py-32 space-y-16">
+      <section className="max-w-[1600px] mx-auto px-10 py-16 space-y-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-10">
           <div className="space-y-2">
             <h2 className="text-3xl font-black tracking-tighter italic flex items-center gap-4">
@@ -201,7 +274,7 @@ const Home: React.FC = () => {
             </div>
             <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('How Is It Built?')}</h3>
             <p className="text-sm text-gray-500 leading-relaxed font-medium">
-              {t('최신 생성형 AI 기술을 활용한 정밀 데이터 프로세싱과 공식 게임 에셋 추출 기술을 결합합니다. 모든 데이터는 전문 에디터의 인게임 테스트를 통해 최종 검토되어 가장 높은 신뢰도를 보장합니다.')}
+              {t('수년간의 하드코어 플레이 경험을 가진 전문 에디터 팀의 자체 데이터 시뮬레이션 및 교차 검증을 통해 최상의 전략과 가이드를 도출합니다. 모든 데이터는 철저한 인게임 테스트를 통해 최종 검토되어 가장 높은 신뢰도를 보장합니다.')}
             </p>
           </div>
           <div className="space-y-6">
@@ -236,20 +309,8 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 터미널 업데이트 로그 섹션 (공통 공지) */}
-      <section className="max-w-6xl mx-auto px-6 mt-16 mb-16">
-        <div className="bg-[#0B0E14] border border-white/10 rounded-[24px] p-8 shadow-2xl relative overflow-hidden group hover:border-brand-primary/50 transition-colors duration-500">
-          <div className="absolute top-0 left-0 w-1 h-full bg-brand-primary/50 group-hover:bg-brand-primary transition-colors" />
-          <div className="flex items-center gap-3 mb-8">
-            <TerminalSquare size={18} className="text-brand-accent" />
-        <h2 className="text-sm font-black text-white uppercase tracking-[0.2em] font-mono">{t('System.Changelog')}</h2>
-            <div className="flex-1 h-px bg-white/5 ml-4" />
-          </div>
-          
-          {/* 새 자동화 컴포넌트 마운트 */}
-          <SystemChangelog />
-        </div>
-      </section>
+
+
 
       <div className="max-w-[1600px] mx-auto px-10 pb-24">
         <AdPlaceholder type="leaderboard" />

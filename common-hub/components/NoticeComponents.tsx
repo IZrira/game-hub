@@ -109,7 +109,7 @@ export const useNoticeBadge = () => {
 };
 
 // 공지사항 리스트 컴포넌트 (대시보드 노출용 및 전체보기용 공용)
-export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: Notice) => void }> = ({ notices, onNoticeClick }) => {
+export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: Notice) => void; emptyMessage?: string }> = ({ notices, onNoticeClick, emptyMessage }) => {
   const { t } = useTranslation();
   const { checkedIds } = useNoticeBadge();
   
@@ -119,18 +119,18 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
   if (safeNotices.length === 0) {
     return (
       <div className="p-8 text-center text-gray-600 font-bold bg-white/[0.02] rounded-[32px] border border-dashed border-white/5">
-        {t('새로운 소식이 없습니다.')}
+        {emptyMessage || t('새로운 소식이 없습니다.')}
       </div>
     );
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {safeNotices.map((notice) => (
         <div 
           key={notice.id} 
           onClick={() => onNoticeClick(notice)}
-          className="p-6 rounded-[32px] bg-[#121212] border border-white/5 hover:border-brand-primary/20 transition-all group cursor-pointer relative overflow-hidden"
+          className="p-4 rounded-[24px] bg-[#121212] border border-white/5 hover:border-brand-primary/20 transition-all group cursor-pointer relative overflow-hidden"
         >
           {!checkedIds.includes(notice.id) && (
             <div className="absolute top-4 right-4 w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]" />

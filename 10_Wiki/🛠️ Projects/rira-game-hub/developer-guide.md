@@ -51,6 +51,24 @@ last_reinforced: 2026-05-19
 
 ---
 
+## 🛠️ Neverness to Everness (이환 - NTE) 개발 표준 규격
+
+- **허브 아키텍처**: `nte-hub/` 디렉토리에 전용 컴포넌트(`CharacterDetail.tsx` 등)를 구현합니다.
+- **이미지 파싱 필수 규칙 (Asset Pathing)**:
+  - 깃허브 CDN 호환성 및 Windows 파일 시스템 정책을 준수하기 위해 아이템이나 캐릭터 명칭, 스킨 이름에 콜론(`:`) 문자가 포함된 경우 반드시 **언더바(`_`)로 치환**해야 합니다.
+  - 적용 함수: `common-hub/data/items.ts` 내 `getItemUrl()`, `common-hub/utils/imageHelper.ts` 내 `getCharacterArtPath()`
+
+---
+
+## 🛡️ AdSense & Legal Compliance (애드센스 및 보안 정책)
+
+- 구글 애드센스 승인 및 비즈니스 사이트 신뢰도 충족을 위해 다음 3종의 필수 페이지를 유지 관리합니다.
+  - `PrivacyPolicy.tsx` (개인정보처리방침 및 DART 쿠키 거부)
+  - `TermsOfService.tsx` (이용약관 및 게임 정보/가챠 확률에 대한 면책)
+  - `ContactUs.tsx` (문의하기 - 공식 이메일 `rira.game.hub@gmail.com`으로 `mailto:` 링크 연결)
+
+---
+
 ## 🎨 캐릭터 상세 위키 페이지 레이아웃 표준 (Section Sequence)
 
 위키 마크다운 빌더가 생성하는 명조 캐릭터 상세 페이지는 다음 **10단계 고정 레이아웃 순서**를 엄격히 따라야 한다:

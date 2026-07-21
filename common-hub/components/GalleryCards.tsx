@@ -17,7 +17,8 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
     imgPath = `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(folderName)}/${fileName}`;
   } else {
     if (char.isRover) {
-      const baseFolderName = char.folderName || `방랑자 · ${char.attribute}`;
+      let baseFolderName = char.folderName || `방랑자 · ${char.attribute}`;
+      if (baseFolderName === '방랑자 · 전도') baseFolderName = '방랑자 · 회절';
       const genderSuffix = index % 2 === 0 ? '(여)' : '(남)';
       const fileName = `${baseFolderName}${genderSuffix}.webp`;
       imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolderName)}/${safeEncodeURIComponent(fileName)}`;
@@ -133,12 +134,12 @@ export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick?: () 
   );
 };
 
-export const ItemPremiumCard = ({ item, onClick }: { item: any, onClick: () => void }) => {
+export const ItemPremiumCard = ({ item }: { item: any }) => {
   const { t } = useTranslation();
   const { gameId } = useParams();
   
   const itemName = item.name || '';
-  const imgPath = getItemUrl(itemName, gameId);
+  const imgPath = item.url || getItemUrl(itemName, gameId);
 
   const getRarityStyles = (r: number) => {
     switch (r) {
@@ -152,9 +153,17 @@ export const ItemPremiumCard = ({ item, onClick }: { item: any, onClick: () => v
 
   const styles = getRarityStyles(item.rarity);
 
+  const isGenderSplit = item.itemAttribute?.includes('남여 분리');
+  let imgPathM = '';
+  let imgPathF = '';
+  if (isGenderSplit && imgPath) {
+    imgPathM = imgPath.replace(/\.(png|webp)$/, '_m.$1');
+    imgPathF = imgPath.replace(/\.(png|webp)$/, '_f.$1');
+  }
+
   return (
-    <button 
-      onClick={onClick} 
+    <Link 
+      to={`/gallery/${gameId}/item/${encodeURIComponent(itemName)}`}
       className={`group relative aspect-[1/1.2] rounded-xl overflow-hidden border ${styles.border} bg-[#121212] transition-all duration-300 hover:bg-[#1a1a1a] hover:border-white/20 active:scale-95 flex flex-col`}
     >
       {/* Subtle Rarity Glow (Top) */}
@@ -163,12 +172,27 @@ export const ItemPremiumCard = ({ item, onClick }: { item: any, onClick: () => v
       {/* Image Container */}
       <div className="flex-1 relative flex items-center justify-center p-3">
         <div className={`absolute inset-0 ${styles.bg} opacity-20 group-hover:opacity-40 transition-opacity`} />
-        <div className="w-4/5 aspect-square relative z-10 transform transition-transform duration-500 group-hover:scale-110">
-          <img 
-            src={imgPath} 
-            alt={t(itemName)} 
-            className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
-          />
+        <div className="w-4/5 aspect-square relative z-10 transform transition-transform duration-500 group-hover:scale-110 flex items-center justify-center gap-1">
+          {isGenderSplit && imgPathM && imgPathF ? (
+            <>
+              <img 
+                src={imgPathM} 
+                alt={`${t(itemName)} (M)`} 
+                className="w-1/2 h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
+              />
+              <img 
+                src={imgPathF} 
+                alt={`${t(itemName)} (F)`} 
+                className="w-1/2 h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
+              />
+            </>
+          ) : (
+            <img 
+              src={imgPath || ''} 
+              alt={t(itemName)} 
+              className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
+            />
+          )}
         </div>
         
         {/* Rarity Stars (Floating) */}
@@ -185,7 +209,7 @@ export const ItemPremiumCard = ({ item, onClick }: { item: any, onClick: () => v
           {t(itemName)}
         </p>
       </div>
-    </button>
+    </Link>
   );
 };
 
@@ -200,7 +224,8 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
     // 명조 캐릭터 이미지 매핑
     const folder = char.folderName || char.name || '';
     if (char.isRover) {
-      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder + '(여)')}.webp`;
+      const baseFolder = folder === '방랑자 · 전도' ? '방랑자 · 회절' : folder;
+      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolder)}/${safeEncodeURIComponent(baseFolder + '(여)')}.webp`;
     } else {
       imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder)}.webp`;
     }

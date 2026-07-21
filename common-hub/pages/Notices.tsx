@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { Bell, Calendar, Info, Megaphone, Sparkles } from 'lucide-react';
-import { HSR_NOTICES } from '../../hsr-hub/data/notices';
-import { WW_NOTICES } from '../../ww-hub/data/notices';
-import GallerySidebar from '../components/GallerySidebar';
+import { fetchNotices } from '../data/notices';
+import { Notice } from '../data/types';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
+import { Link } from 'react-router-dom';
 
 const TYPE_ICONS = {
   update: <Sparkles size={16} className="text-brand-accent" />,
@@ -21,32 +21,36 @@ const TYPE_LABELS = {
 
 const Notices: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
+  const [notices, setNotices] = React.useState<Notice[]>([]);
+  const [loading, setLoading] = React.useState(true);
 
-  const notices = useMemo(() => {
-    if (gameId === 'hsr') return HSR_NOTICES;
-    if (gameId === 'ww') return WW_NOTICES;
-    return [];
+  React.useEffect(() => {
+    async function load() {
+      setLoading(true);
+      const data = await fetchNotices(gameId as 'hsr' | 'ww');
+      setNotices(data);
+      setLoading(false);
+    }
+    load();
   }, [gameId]);
 
-  const gameName = gameId === 'hsr' ? '붕괴: 스타레일' : '명조: 워더링 웨이브';
+  const displayTitle = gameId === 'hsr' ? '붕괴: 스타레일 공지사항' : gameId === 'ww' ? '명조 공지사항' : '통합 공지사항';
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
       <SEO 
-        title={`${gameName} 공지사항`} 
-        description={`${gameName}의 최신 업데이트 및 이벤트 소식을 확인하세요.`}
+        title={displayTitle} 
+        description="최신 업데이트 및 이벤트 소식을 확인하세요."
       />
       <PageHeader gameId={gameId} category="공지사항" title="최신 소식" />
 
-      <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
-        <GallerySidebar />
-
+      <div className="max-w-[1000px] mx-auto w-full px-8 pt-10 pb-24">
         <div className="space-y-8">
           <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl relative overflow-hidden">
             <div className="relative z-10">
               <h1 className="text-5xl font-black italic tracking-tighter uppercase flex items-center gap-4">
                 <Bell className="text-brand-primary" size={40} />
-                {gameName} 공지사항
+                {displayTitle}
               </h1>
               <p className="text-gray-500 font-bold text-lg mt-2">
                 게임의 최신 업데이트와 이벤트 소식을 한눈에 확인하세요.
@@ -55,36 +59,38 @@ const Notices: React.FC = () => {
           </div>
 
           <div className="grid gap-4">
-            {notices.map((notice) => (
-              <div 
-                key={notice.id}
-                className="group bg-[#121212] border border-white/5 rounded-3xl p-6 hover:border-brand-primary/30 transition-all"
-              >
-                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest">
-                        {TYPE_ICONS[notice.type]}
-                        {TYPE_LABELS[notice.type]}
+            {loading ? (
+              <div className="text-center text-gray-500 py-12">공지사항을 불러오는 중...</div>
+            ) : notices.length === 0 ? (
+              <div className="text-center text-gray-500 py-12">등록된 공지사항이 없습니다.</div>
+            ) : (
+              notices.map((notice) => (
+                <Link 
+                  key={notice.id}
+                  to={`/notices/${notice.id}`}
+                  className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-8 hover:bg-white/[0.04] hover:border-brand-primary/30 transition-all group block"
+                >
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className={`px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 shrink-0 ${
+                        notice.category === 'Update' ? 'bg-brand-accent/20 text-brand-accent border border-brand-accent/30' :
+                        notice.category === 'Event' ? 'bg-emerald-400/20 text-emerald-400 border border-emerald-400/30' :
+                        'bg-blue-400/20 text-blue-400 border border-blue-400/30'
+                      }`}>
+                        {notice.category}
                       </div>
-                      <div className="flex items-center gap-1.5 text-gray-500 text-[10px] font-bold">
-                        <Calendar size={12} />
-                        {notice.date}
-                      </div>
+                      <h3 className="text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">
+                        {notice.title}
+                      </h3>
                     </div>
-                    <h3 className="text-xl font-black text-white group-hover:text-brand-accent transition-colors">
-                      {notice.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm leading-relaxed">
-                      {notice.content}
-                    </p>
+                    <div className="flex items-center gap-2 text-sm text-gray-400 font-bold shrink-0 pl-4 md:pl-0">
+                      <Calendar size={14} />
+                      {notice.createdAt}
+                    </div>
                   </div>
-                  <button className="px-6 py-3 rounded-2xl bg-white/5 border border-white/10 text-xs font-black uppercase tracking-widest hover:bg-white/10 transition-all self-start md:self-center">
-                    자세히 보기
-                  </button>
-                </div>
-              </div>
-            ))}
+                </Link>
+              ))
+            )}
 
             {notices.length === 0 && (
               <div className="py-32 text-center space-y-4 bg-[#121212] rounded-[48px] border border-dashed border-white/10">

@@ -4890,6 +4890,225 @@ export const wuwaItemsSet7: WuwaItem[] = [
   }
 ];
 
+export const wuwaItemsSet8: WuwaItem[] = [
+  {
+    id: "fire_engraved_justice",
+    name: "화염에 새겨진 정의",
+    folderName: "화염에 새겨진 정의",
+    rarity: 4,
+    category: "돌파 재료",
+    description: "잔상 킬러가 남긴 전리품. 모든 불의의 적을 불태워라.",
+    source: "잔상 킬러 처치 획득"
+  },
+  {
+    id: "sunset_cloud_feather",
+    name: "노을빛 구름 깃털",
+    folderName: "노을빛 구름 깃털",
+    rarity: 4,
+    category: "돌파 재료",
+    description: "비명 이상 개체가 드랍한 깃털. 노을빛 같은 아름다운 붉은 색을 띠고 있다.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "low_freq_howling_core",
+    name: "저주파수 포효 성핵",
+    folderName: "저주파수 포효 성핵",
+    rarity: 2,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 저주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "mid_freq_howling_core",
+    name: "중주파수 포효 성핵",
+    folderName: "중주파수 포효 성핵",
+    rarity: 3,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 중주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "high_freq_howling_core",
+    name: "고주파수 포효 성핵",
+    folderName: "고주파수 포효 성핵",
+    rarity: 4,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 고주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "full_freq_howling_core",
+    name: "전주파수 포효 성핵",
+    folderName: "전주파수 포효 성핵",
+    rarity: 5,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 전주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "damaged_wing_polarizer",
+    name: "손상 날개 편광체",
+    folderName: "손상 날개 편광체",
+    rarity: 2,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 손상된 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "one_wing_polarizer",
+    name: "한쪽 날개 편광체",
+    folderName: "한쪽 날개 편광체",
+    rarity: 3,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "multiple_wing_polarizer",
+    name: "여러 날개 편광체",
+    folderName: "여러 날개 편광체",
+    rarity: 4,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "nested_wing_polarizer",
+    name: "중첩 날개 편광체",
+    folderName: "중첩 날개 편광체",
+    rarity: 5,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "sky_path_glass_heart",
+    name: "하늘길 유리의 마음",
+    folderName: "하늘길 유리의 마음",
+    rarity: 4,
+    category: "행적 재료",
+    description: "주간 보스가 드랍하는 희귀한 재료.",
+    source: "주간 보스 처치 획득"
+  },
+  {
+    id: "low_freq_howling_core_typo",
+    name: "저주파수 포후핵심",
+    folderName: "저주파수 포효 성핵",
+    rarity: 2,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 저주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "mid_freq_howling_core_typo",
+    name: "중주파수 포후핵심",
+    folderName: "중주파수 포효 성핵",
+    rarity: 3,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 중주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "high_freq_howling_core_typo",
+    name: "고주파수 포후핵심",
+    folderName: "고주파수 포효 성핵",
+    rarity: 4,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 고주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "full_freq_howling_core_typo",
+    name: "전주파수 포후핵심",
+    folderName: "전주파수 포효 성핵",
+    rarity: 5,
+    category: "돌파 재료",
+    description: "비명 이상 개체의 전주파수 성핵.",
+    source: "비명 이상 개체 처치 획득"
+  },
+  {
+    id: "damaged_wing_polarizer_typo",
+    name: "손상 날개 핀광체",
+    folderName: "손상 날개 편광체",
+    rarity: 2,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 손상된 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "one_wing_polarizer_typo",
+    name: "한쪽 날개 핀광체",
+    folderName: "한쪽 날개 편광체",
+    rarity: 3,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "multiple_wing_polarizer_typo",
+    name: "여러 날개 핀광체",
+    folderName: "여러 날개 편광체",
+    rarity: 4,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "nested_wing_polarizer_typo",
+    name: "중첩 날개 핀광체",
+    folderName: "중첩 날개 편광체",
+    rarity: 5,
+    category: "행적 재료",
+    description: "날개가 달린 잔상이 드랍한 편광체.",
+    source: "잔상 처치 획득"
+  },
+  {
+    id: "sky_path_glass_heart_typo",
+    name: "하늘끝 유리의 마음",
+    folderName: "하늘길 유리의 마음",
+    rarity: 4,
+    category: "행적 재료",
+    description: "주간 보스가 드랍하는 희귀한 재료.",
+    source: "주간 보스 처치 획득"
+  },
+  {
+    id: "low_freq_machine_doll_core",
+    name: "저주파수 기관 인형 중추 핵심",
+    folderName: "저주파수 기관 인형 중추 핵심",
+    rarity: 2,
+    category: "돌파 재료",
+    description: "기관 인형이 남긴 저주파수 코어.",
+    source: "기계 잔상 처치 획득"
+  },
+  {
+    id: "mid_freq_machine_doll_core",
+    name: "중주파수 기관 인형 중추 핵심",
+    folderName: "중주파수 기관 인형 중추 핵심",
+    rarity: 3,
+    category: "돌파 재료",
+    description: "기관 인형이 남긴 중주파수 코어.",
+    source: "기계 잔상 처치 획득"
+  },
+  {
+    id: "high_freq_machine_doll_core",
+    name: "고주파수 기관 인형 중추 핵심",
+    folderName: "고주파수 기관 인형 중추 핵심",
+    rarity: 4,
+    category: "돌파 재료",
+    description: "기관 인형이 남긴 고주파수 코어.",
+    source: "기계 잔상 처치 획득"
+  },
+  {
+    id: "full_freq_machine_doll_core",
+    name: "전주파수 기관 인형 중추 핵심",
+    folderName: "전주파수 기관 인형 중추 핵심",
+    rarity: 5,
+    category: "돌파 재료",
+    description: "기관 인형이 남긴 전주파수 코어.",
+    source: "기계 잔상 처치 획득"
+  }
+];
+
 export const wuwaItems: WuwaItem[] = [
   ...wuwaItemsSet1,
   ...wuwaItemsSet2,
@@ -4897,7 +5116,8 @@ export const wuwaItems: WuwaItem[] = [
   ...wuwaItemsSet4,
   ...wuwaItemsSet5,
   ...wuwaItemsSet6,
-  ...wuwaItemsSet7
+  ...wuwaItemsSet7,
+  ...wuwaItemsSet8
 ];
 
 export const WW_ITEM_META: Record<string, WuwaItem> = wuwaItems.reduce((acc, item) => {

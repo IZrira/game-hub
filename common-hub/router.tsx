@@ -8,9 +8,11 @@ import { Loader2 } from 'lucide-react';
 const Home = React.lazy(() => import('./pages/Home'));
 const GalleryHSR = React.lazy(() => import('../hsr-hub/pages/Gallery'));
 const GalleryWW = React.lazy(() => import('../ww-hub/pages/Gallery'));
+const GalleryNTE = React.lazy(() => import('../nte-hub/pages/Gallery'));
 const Detail = React.lazy(() => import('./pages/Detail'));
 const CharacterDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterDetail'));
 const CharacterDetailWW = React.lazy(() => import('../ww-hub/pages/CharacterDetail'));
+const CharacterDetailNTE = React.lazy(() => import('../nte-hub/pages/CharacterDetail'));
 const LightConeDetail = React.lazy(() => import('../hsr-hub/pages/LightConeDetail'));
 const RelicDetail = React.lazy(() => import('../hsr-hub/pages/RelicDetail'));
 const OrnamentDetail = React.lazy(() => import('../hsr-hub/pages/OrnamentDetail'));
@@ -24,13 +26,18 @@ const CharacterGuideDetailHSR = React.lazy(() => import('../hsr-hub/pages/Charac
 const CharacterGuideDetailWW = React.lazy(() => import('../ww-hub/pages/WuwaCharacterGuideDetail'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
 const WuwaEchoDetail = React.lazy(() => import('../ww-hub/pages/WuwaEchoDetail'));
+const ItemDetailDispatcher = React.lazy(() => import('./pages/ItemDetail'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 // 새로 추가된 정책 및 블로그 페이지
+const AboutUs = React.lazy(() => import('./pages/AboutUs'));
 const PrivacyPolicy = React.lazy(() => import('./pages/PrivacyPolicy'));
 const TermsOfService = React.lazy(() => import('./pages/TermsOfService'));
+const ContactUs = React.lazy(() => import('./pages/ContactUs'));
 const BlogList = React.lazy(() => import('./pages/BlogList'));
 const BlogPost = React.lazy(() => import('./pages/BlogPost'));
+const Notices = React.lazy(() => import('./pages/Notices'));
+const NoticeDetail = React.lazy(() => import('./pages/NoticeDetail'));
 
 // Game Specific Page Dispatchers
 const TierListDispatcher = () => {
@@ -48,12 +55,14 @@ const PartyDispatcher = () => {
 const GalleryDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <GalleryWW />;
+  if (gameId === 'nte') return <GalleryNTE />;
   return <GalleryHSR />;
 };
 
 const CharacterDetailDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <CharacterDetailWW />;
+  if (gameId === 'nte') return <CharacterDetailNTE />;
   return <CharacterDetailHSR />;
 };
 
@@ -106,7 +115,8 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },
       { path: "gallery/ww/weapon/:lcName", element: <WuwaWeaponDetail /> },
-      { path: "gallery/ww/echo/:echoName", element: <WuwaEchoDetail /> },
+      { path: "gallery/:gameId/echo/:echoName", element: <WuwaEchoDetail /> },
+      { path: "gallery/:gameId/item/:itemName", element: <ItemDetailDispatcher /> },
       { path: "gallery/:gameId/tierlist", element: <TierListDispatcher /> },
       { path: "gallery/:gameId/parties", element: <PartyDispatcher /> },
       { path: "gallery/:gameId/terminology", element: <Terminology /> },
@@ -114,10 +124,14 @@ export const router = createBrowserRouter([
       { path: "admin", element: <AdminDashboard /> },
       
       // 애드센스 승인 대비 정책 및 정보성 라우트
+      { path: "about", element: <AboutUs /> },
       { path: "privacy", element: <PrivacyPolicy /> },
       { path: "tos", element: <TermsOfService /> },
+      { path: "contact", element: <ContactUs /> },
       { path: "blog", element: <BlogList /> },
       { path: "blog/:id", element: <BlogPost /> },
+      { path: "notices", element: <Notices /> },
+      { path: "notices/:id", element: <NoticeDetail /> },
       
       // 404 Not Found 처리 (존재하지 않는 페이지 접근 시)
       { path: "*", element: <NotFound /> }

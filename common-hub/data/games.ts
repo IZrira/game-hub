@@ -33,6 +33,13 @@ export const ARCHIVE_DATA: ArchiveData = {
       subTitle: 'Wuthering Waves Archive',
       bannerImage: 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/banners/ww_main.webp',
       posts: []
+    },
+    {
+      id: 'nte',
+      title: '이환',
+      subTitle: 'Neverness to Everness Archive',
+      bannerImage: 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/banners/ww_main.webp', // TODO: 임시 배너
+      posts: []
     }
   ]
 };

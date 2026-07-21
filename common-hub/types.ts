@@ -1,5 +1,5 @@
 
-export type GameId = 'hsr' | 'ww';
+export type GameId = 'hsr' | 'ww' | 'nte';
 export type Category = '전체' | '캐릭터' | '광추' | '유물' | '공략' | '쿠폰' | '무기' | '에코';
 
 export interface Post {

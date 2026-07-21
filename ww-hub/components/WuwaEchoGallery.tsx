@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Layers, Activity as ActivityIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { ECHO_DATA } from '../../ww-hub/data/echoes';
+import { getGameData } from '../../common-hub/data/dataManager';
 import { SONATA_SETS, WuwaEcho, SonataType } from '../types';
 import { ItemDetail } from '../../common-hub/types';
 import { ItemPremiumCard, RelicPremiumCard } from '../../common-hub/components/GalleryCards';
@@ -21,6 +21,9 @@ const WuwaEchoGallery: React.FC = () => {
   const [search, setSearch] = useState('');
   const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState<ItemDetail | null>(null);
+
+  const { ECHO_DB } = useMemo(() => getGameData('ww'), []);
+  const ECHO_DATA = ECHO_DB || [];
 
   // 필터 로직: 세트 + 코스트 + 검색어
   const filteredEchoes = useMemo(() => {

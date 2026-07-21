@@ -14,14 +14,15 @@ github_commit: "reinforce-100-coverage"
 
 ## 📖 구조화된 지식 (Synthesized Content)
 - **추출된 패턴:**
-  - **환경 설정**: `GEMINI_API_KEY`를 필수로 하며, Node.js 환경에서 `npm run dev`를 통해 구동됨.
-  - **배포**: AI Studio 앱으로 배포되며, 로컬과 원격 환경 간의 동기화를 지원함.
+  - **멀티 허브 아키텍처**: `hsr-hub`(붕괴: 스타레일), `ww-hub`(명조), `nte-hub`(이환) 3대 게임 허브 체제 구축 완료.
+  - **비즈니스 규정 준수 (AdSense Compliance)**: `PrivacyPolicy`, `TermsOfService`, `ContactUs` 3종 필수 정책 페이지 및 sitemap/SEO 시스템 도입.
+  - **데이터베이스 자동화**: `fetch-notion-data.js`를 통해 Notion API와 동기화하며, CDN을 통해 에셋을 제공함(특수 문자 안전 치환 로직 포함).
 - **세부 내용:**
-  - **실행 순서**: 의존성 설치(`npm install`) -> 환경 변수 설정 -> 개발 서버 실행.
+  - **개발 환경**: React 18, Vite, Tailwind CSS 구조이며, Node.js 환경에서 `npm run build`를 통해 정적 메타태그 주입까지 완료.
 
 ## ⚠️ 모순 및 업데이트 (Contradictions & RL Update)
-- **과거 데이터와의 충돌:** 없음.
-- **정책 변화:** 프로젝트 개요를 지식화하여 신규 에이전트 투입 시 즉각적인 온보딩이 가능하도록 함.
+- **과거 데이터와의 충돌:** 구 P-Reinforce 구조에서 통합 게임 허브(Rira Game Hub)로 완전히 패러다임 쉬프트.
+- **정책 변화:** 애드센스 승인 및 비즈니스 전환을 최우선으로 하여, 공식 이메일(`rira.game.hub@gmail.com`) 연동 및 약관 구조화 적용.
 
 ## 🔗 지식 연결 (Graph)
 - **Parent:** [[🛠️ Projects]]

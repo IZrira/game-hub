@@ -6,6 +6,7 @@ const Footer: React.FC = () => {
 
   const navLinks = [
     { name: 'Hub Index', path: '/' },
+    { name: 'About Us', path: '/about' },
     { name: 'Data Repositories', path: '/database' },
     { name: 'Archive API', path: '/api' },
     { name: 'Intelligence Blog', path: '/blog' },
@@ -14,6 +15,7 @@ const Footer: React.FC = () => {
   const policyLinks = [
     { name: 'Privacy Policy', path: '/privacy' },
     { name: 'Terms of Service', path: '/tos' },
+    { name: 'Contact Us', path: '/contact' },
   ];
 
   return (
@@ -26,7 +28,7 @@ const Footer: React.FC = () => {
             <div className="space-y-2">
               <h2 className="text-2xl font-black italic tracking-tighter text-white">RIRA GAME HUB</h2>
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-primary">
-                Integrated Game Intelligence Terminal
+                Integrated Game Database
               </p>
             </div>
             <p className="text-xs text-gray-500 leading-relaxed max-w-xs font-medium">
@@ -74,7 +76,6 @@ const Footer: React.FC = () => {
                   </Link>
                 </li>
               ))}
-              <li><a href="mailto:contact@rira.archive" className="hover:text-white transition-colors">Business Inquiries</a></li>
             </ul>
           </div>
         </div>
@@ -96,7 +97,7 @@ const Footer: React.FC = () => {
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-black text-gray-800 uppercase tracking-tighter">
               <span>Source Entities: © HoYoverse</span>
               <span>© Kuro Games</span>
-              <span>© RIRA ARCHIVE Integrated Intelligence</span>
+              <span>© RIRA ARCHIVE Game Database</span>
             </div>
           </div>
         </div>

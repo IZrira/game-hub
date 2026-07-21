@@ -21,11 +21,9 @@ import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import WuwaEchoGallery from '../components/WuwaEchoGallery';
 import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
-import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 // import removed
-import { Notice } from '../../common-hub/data/types';
 
 const GalleryWW: React.FC = () => {
   const gameId = 'ww';
@@ -47,8 +45,6 @@ const GalleryWW: React.FC = () => {
   const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
-  const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
-  const { markAsRead } = useNoticeBadge();
 
   useEffect(() => {
     const menuParam = searchParams.get('menu') || '홈';
@@ -108,13 +104,7 @@ const GalleryWW: React.FC = () => {
 
   const { CHARACTER_DB, WEAPON_DB, ECHO_DB, WW_INVENTORY, GUIDES: WW_CHARACTER_GUIDES } = useMemo(() => getGameData(gameId), [gameId]);
   
-  const [gameNotices, setGameNotices] = useState<Notice[]>([]);
 
-  useEffect(() => {
-    import('../../common-hub/data/notices').then(({ fetchNotices }) => {
-      fetchNotices('ww').then(setGameNotices);
-    });
-  }, []);
 
   const game = useMemo(() => {
     return ARCHIVE_DATA?.games?.find(g => g.id === gameId) || null;
@@ -223,35 +213,7 @@ const GalleryWW: React.FC = () => {
                 </div>
               </section>
 
-              <NeonDivider />
 
-              <div className="grid grid-cols-1 xl:grid-cols-3 gap-12">
-                {/* 메인 콘텐츠: 최근 공지사항 중심의 배치 */}
-                <section className="xl:col-span-2 space-y-8">
-                  <div className="flex items-center justify-between px-2">
-                    <h3 className="text-sm font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
-                      <Bell size={14} /> {t('최신 업데이트 공지')}
-                    </h3>
-                    <button 
-                      onClick={() => {
-                        setSearchParams({ menu: '공지사항' });
-                        setActiveMenu('공지사항');
-                      }}
-                      className="text-[10px] font-black text-brand-primary hover:text-brand-accent transition-all flex items-center gap-1 group"
-                    >
-                      {t('전체 보기')} <ChevronRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-                    </button>
-                  </div>
-                  <NoticeListView 
-                    notices={gameNotices.slice(0, 3)} 
-                    onNoticeClick={(n) => {
-                      setSelectedNotice(n);
-                      markAsRead(n.id);
-                    }} 
-                  />
-                </section>
-              </div>
-              {selectedNotice && <NoticeDetailModal notice={selectedNotice} onClose={() => setSelectedNotice(null)} />}
             </div>
           ) : activeMenu === "캐릭터" ? (
             <div className="space-y-12">
@@ -273,22 +235,7 @@ const GalleryWW: React.FC = () => {
                 {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
-          ) : activeMenu === '공지사항' ? (
-            <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-4">{t('공지사항 아카이브')}</h2>
-                <p className="text-gray-400 text-sm">{t('명조 허브의 모든 소식과 업데이트 내역을 한눈에 확인하세요.')}</p>
-              </div>
-              <div className="glass-card p-10 rounded-[40px] border border-white/5">
-                <NoticeListView 
-                  notices={gameNotices} 
-                  onNoticeClick={(n) => {
-                    setSelectedNotice(n);
-                    markAsRead(n.id);
-                  }} 
-                />
-              </div>
-            </div>
+
           ) : activeMenu === "무기" ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>

@@ -31,7 +31,10 @@ export type SonataType =
   | '함의의 소리를 따라'
   | '소리 없이 내려앉은 기도의 눈'
   | '마음을 엮은 꿈의 그림자'
-  | '꿈을 깨뜨리는 망령의 악몽';
+  | '꿈을 깨뜨리는 망령의 악몽'
+  | '내려앉은 깃털의 노래'
+  | '악을 씻어내는 마음'
+  | '황천길을 밝히는 등불';
 
 export const SONATA_SETS: SonataType[] = [
   '야밤의 서리',
@@ -64,7 +67,10 @@ export const SONATA_SETS: SonataType[] = [
   '함의의 소리를 따라',
   '소리 없이 내려앉은 기도의 눈',
   '마음을 엮은 꿈의 그림자',
-  '꿈을 깨뜨리는 망령의 악몽'
+  '꿈을 깨뜨리는 망령의 악몽',
+  '내려앉은 깃털의 노래',
+  '악을 씻어내는 마음',
+  '황천길을 밝히는 등불'
 ] as const;
 
 export type WuwaCategory = 
@@ -72,7 +78,7 @@ export type WuwaCategory =
   | "공명자 돌파 재료" | "공명자 경험치 재료" | "무기 경험치 재료" | "스킬 업그레이드 재료"
   | "무기 및 스킬 재료" | "재료" | "소모품" | "특수 화폐" | "튜닝 관련 아이템" 
   | "에코 육성 재료" | "돌파 재료" | "무기 제작 재료" | "요리" | "에코"
-  | "이벤트 아이템" | "임무 아이템";
+  | "이벤트 아이템" | "임무 아이템" | "행적 재료";
 
 export interface WuwaItem {
   id: string;
@@ -113,6 +119,8 @@ export interface WuwaCharacter extends BaseItem {
     weapon: string;
     rarity: number;
   };
+  skillInputGuide?: string;
+  combatCycle?: string;
   baseStats?: CharacterBaseStats;
   skills?: SkillDetail[];
   additionalAbilities?: any[];

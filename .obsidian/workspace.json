@@ -11,10 +11,14 @@
             "id": "24d0fb3e420189e4",
             "type": "leaf",
             "state": {
-              "type": "graph",
-              "state": {},
-              "icon": "lucide-git-fork",
-              "title": "그래프 뷰"
+              "type": "markdown",
+              "state": {
+                "file": "node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "undici-vs-builtin-fetch"
             }
           }
         ]
@@ -178,20 +182,26 @@
   },
   "active": "24d0fb3e420189e4",
   "lastOpenFiles": [
+    "dist/gallery/ww/weapon/21%ED%98%95%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EC%95%84%EC%9D%B4%EC%96%B8%20%ED%8C%AC%ED%85%80/index.html",
+    "dist/gallery/ww/weapon/41%ED%98%95%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EB%AC%B4%EA%B1%B0%EC%9A%B4%20%EC%B1%85%EC%9E%84/index.html",
+    "dist/gallery/ww/weapon/26%ED%98%95%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EB%A7%B9%EB%A0%AC%ED%95%9C%20%EB%8F%8C%EA%B2%A9/index.html",
+    "dist/gallery/ww/weapon/25%ED%98%95%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EC%9A%B8%EB%A6%BC%EC%9D%98%20%EB%A9%9C%EB%A1%9C%EB%94%94/index.html",
+    "dist/gallery/ww/weapon/18%ED%98%95%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EC%88%9C%EA%B0%84%EC%9D%98%20%EC%B9%BC%EB%B9%9B/index.html",
+    "dist/gallery/ww/weapon/%ED%9D%AC%EB%B9%84%EA%B7%B9/index.html",
+    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%ED%9D%91%EC%84%B1/index.html",
+    "dist/gallery/ww/weapon/%ED%9D%94%EB%93%A4%EB%A6%AC%EC%A7%80%20%EC%95%8A%EB%8A%94%20%EC%9A%A9%EA%B8%B0/index.html",
+    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%ED%98%84%EB%AA%85/index.html",
+    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%ED%9D%91%EB%A2%B0/index.html",
+    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%ED%9D%91%EA%B4%91/index.html",
+    "10_Wiki/👥 Characters/WW/luuk.md",
+    "10_Wiki/👥 Characters/WW/lumi.md",
+    "10_Wiki/👥 Characters/WW/rebecca.md",
+    "10_Wiki/👥 Characters/WW/hiyuki.md",
     "10_Wiki/👥 Characters/WW.md",
+    "10_Wiki/👥 Characters/HSR/ashveil.md",
     "10_Wiki/👥 Characters/HSR/silver-wolf-999.md",
     "10_Wiki/🛠️ Projects/rira-game-hub/developer-guide.md",
     "10_Wiki/👥 Characters/WW/carlotta.md",
-    "scratch/merge_carlotta_locale.cjs",
-    "ww-hub/data/characters/ww/carlotta.ts",
-    "scratch/test_sequential.js",
-    "scratch/test_gemma.js",
-    "scratch/rag_search.ps1",
-    "10_Wiki/👥 Characters/WW/hiyuki.md",
-    "ww-hub/data/characters/ww/hiyuki.ts",
-    "scratch/add_hiyuki_loc.cjs",
-    "scratch/find_lines.cjs",
-    "cleanup_temp_files.ps1",
     "node_modules/ms/license.md",
     "node_modules/@types/react/README.md",
     "10_Wiki/👥 Characters/HSR/dahlia.md",
@@ -207,12 +217,6 @@
     "10_Wiki/👥 Characters/WW/sigrika.md",
     "10_Wiki/👥 Characters/WW/rover-spectro.md",
     "10_Wiki/👥 Characters/WW/rover-havoc.md",
-    "10_Wiki/👥 Characters/WW/rover-aero.md",
-    "10_Wiki/👥 Characters/WW/rococo.md",
-    "10_Wiki/👥 Characters/WW/qiuyuan.md",
-    "10_Wiki/👥 Characters/WW/phrolova.md",
-    "10_Wiki/👥 Characters/WW/phoebe.md",
-    "10_Wiki/👥 Characters/WW/luuk.md",
-    "rebuild_ww_wiki.py"
+    "10_Wiki/👥 Characters/WW/rover-aero.md"
   ]
 }

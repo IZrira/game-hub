@@ -33,7 +33,7 @@ interface GameDashboardProps {
 const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
-  const { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, WEAPON_DATA, HSR_NOTICES, WW_NOTICES } = useMemo(() => getGameData(currentLang), [currentLang]);
+  const { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, WEAPON_DATA } = useMemo(() => getGameData(currentLang), [currentLang]);
 
   const [isLoaded, setIsLoaded] = useState(false);
   const navigate = useNavigate();
@@ -127,12 +127,8 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
     { label: '추천 파티 조합', icon: <Users size={20} />, action: () => navigate(`/gallery/${game.id}/parties`), color: 'text-pink-400' },
   ];
 
-  const notices = game.id === 'hsr' ? HSR_NOTICES : WW_NOTICES;
-  
-  // Extract version from the latest update notice
-  const latestUpdate = notices.find(n => n.type === 'update');
-  const versionMatch = latestUpdate?.title.match(/v?\d+(\.\d+)+/i);
-  const currentVersion = versionMatch ? versionMatch[0] : 'Latest';
+  const currentVersion = 'Latest';
+  const notices: any[] = [];
 
   return (
     <div className={`relative min-h-[800px] rounded-[32px] overflow-hidden bg-[#0a0a0a] transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>

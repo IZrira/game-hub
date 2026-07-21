@@ -3,7 +3,6 @@ import { SORTED_LIGHTCONE_DATA } from './lightcones';
 import { RELIC_DATA } from './relics';
 import { ORNAMENT_DATA } from './ornaments';
 import { HSR_CHARACTER_GUIDES } from './guides';
-import { HSR_NOTICES } from './notices';
 import { ITEM_META } from './items';
 import { Character, LightCone, Relic, Ornament } from '../../common-hub/types';
 
@@ -18,6 +17,5 @@ export const HSR_DATA_ALL = {
   RELIC_DB: HSR_RELIC_DB,
   ORNAMENT_DB: HSR_ORNAMENT_DB,
   GUIDES: HSR_CHARACTER_GUIDES,
-  NOTICES: HSR_NOTICES,
   INVENTORY_DB: ITEM_META
 };

@@ -1,4 +1,4 @@
-﻿---
+---
 id: ww-char-luuk
 category: "[[10_Wiki/👥 Characters/WW]]"
 confidence_score: 1.0

@@ -1,4 +1,4 @@
-﻿---
+---
 id: ww-char-lumi
 category: "[[10_Wiki/👥 Characters/WW]]"
 confidence_score: 1.0

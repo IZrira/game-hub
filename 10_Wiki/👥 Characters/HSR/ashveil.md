@@ -1,4 +1,4 @@
-﻿---
+---
 id: hsr-char-ashveil
 category: "[[10_Wiki/👥 Characters/HSR]]"
 confidence_score: 1.0

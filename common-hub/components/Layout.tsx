@@ -6,6 +6,7 @@ import GlobalSearch from './GlobalSearch';
 import AdPlaceholder from './AdPlaceholder';
 import Footer from './Footer';
 import Navbar from './Navbar';
+import CookieBanner from './CookieBanner';
 import { useTranslation } from 'react-i18next';
 import '../i18n';
 
@@ -57,6 +58,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </div>
 
       <Footer />
+      <CookieBanner />
     </div>
   );
 };

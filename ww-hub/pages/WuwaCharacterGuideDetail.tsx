@@ -24,12 +24,14 @@ import {
   Users,
   Swords,
   Activity,
-  Infinity
+  Infinity,
+  MessageSquareWarning
 } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import TableOfContents from '../../common-hub/components/TableOfContents';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
+import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
 
@@ -41,9 +43,13 @@ const normalizeName = (name: string) => {
 };
 
 const getCharacterImage = (folderName: string, isRover?: boolean) => {
-  const safeFolder = encodeURIComponent(folderName.normalize('NFC'));
+  let mappedFolderName = folderName;
+  if (isRover && mappedFolderName === '방랑자 · 전도') {
+    mappedFolderName = '방랑자 · 회절';
+  }
+  const safeFolder = encodeURIComponent(mappedFolderName.normalize('NFC'));
   if (isRover) {
-    return `${BASE_IMAGE_URL}/skills/${safeFolder}/${encodeURIComponent(folderName.normalize('NFC') + '(여)')}.webp`;
+    return `${BASE_IMAGE_URL}/skills/${safeFolder}/${encodeURIComponent(mappedFolderName.normalize('NFC') + '(여)')}.webp`;
   }
   return `${BASE_IMAGE_URL}/skills/${safeFolder}/${safeFolder}.webp`;
 };
@@ -168,6 +174,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   const mouseY = useMotionValue(0);
   const [hoveredItem, setHoveredItem] = useState<{ name: string; description: string; type: string; } | null>(null);
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
   const { CHARACTER_DB, WEAPON_DB, ECHO_DB, GUIDES } = useMemo(() => getGameData('ww'), []);
 
@@ -642,8 +649,28 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 {t('이 분석 리포트는 게임 데이터 분석과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
               </div>
             </div>
+            <div className="mt-4 flex justify-end">
+              <button 
+                onClick={() => setIsFeedbackModalOpen(true)}
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/10 hover:border-brand-primary/50 transition-all uppercase tracking-widest"
+              >
+                <MessageSquareWarning size={14} />
+                {t('데이터 오류 제보')}
+              </button>
+            </div>
           </section>
         </div>
+
+        <FeedbackReportModal 
+          isOpen={isFeedbackModalOpen}
+          onClose={() => setIsFeedbackModalOpen(false)}
+          contextData={{
+            gameId,
+            targetId: character?.id || charName,
+            targetName: character?.name || charName,
+            type: 'guide'
+          }}
+        />
 
         {/* Sidebar / TOC */}
         <aside className="hidden lg:block w-[320px] shrink-0 sticky top-32 h-fit space-y-8">

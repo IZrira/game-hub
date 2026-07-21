@@ -12,9 +12,13 @@ export const getCharacterImage = (src: string | undefined): string => {
  * 캐릭터 폴더 구조에 기반한 경로를 생성합니다.
  */
 export const getCharacterArtPath = (gameId: string, folderName: string, artNum: string = 'art01') => {
+  const safeFolderName = folderName.replace(/: /g, '_').replace(/:/g, '_');
   if (gameId === 'ww') {
     // 명조는 folderName(한글) 기반 skills 폴더 구조 사용
-    return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(folderName)}.webp`;
+    return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(safeFolderName)}/${safeEncodeURIComponent(safeFolderName)}.webp`;
   }
-  return `${CDN_URL}/${gameId}%20images/캐릭터/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(artNum)}.webp`;
+  if (gameId === 'nte') {
+    return `${CDN_URL}/nte%20images/characters/${safeEncodeURIComponent(safeFolderName)}/${safeEncodeURIComponent(artNum)}.png`;
+  }
+  return `${CDN_URL}/${gameId}%20images/캐릭터/${safeEncodeURIComponent(safeFolderName)}/${safeEncodeURIComponent(artNum)}.webp`;
 };

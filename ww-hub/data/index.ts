@@ -1,7 +1,6 @@
 import { WW_CHARACTERS } from './characters';
 import { WEAPON_DATA } from './weapons';
 import { ECHO_DATA } from './echoes';
-import { WW_NOTICES } from './notices';
 import { wuwaItemsSet1 } from './items';
 import { WW_CHARACTER_GUIDES } from './guides';
 import { Character, BaseItem } from '../../common-hub/types';
@@ -15,6 +14,5 @@ export const WW_DATA_ALL = {
   WEAPON_DATA: WW_WEAPON_DB,
   ECHO_DATA: WW_ECHO_DB,
   ITEM_DATA: wuwaItemsSet1,
-  NOTICES: WW_NOTICES,
   GUIDES: WW_CHARACTER_GUIDES
 };

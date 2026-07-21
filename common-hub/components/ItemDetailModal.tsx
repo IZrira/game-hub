@@ -8,6 +8,7 @@ interface ItemDetailModalProps {
   itemNameEn: string; // 영문명 또는 국문명
   isOpen: boolean;
   onClose: () => void;
+  item?: any; // 동적 데이터 우선 사용
 }
 
 const getItemStyles = (rarity: number) => {
@@ -20,17 +21,20 @@ const getItemStyles = (rarity: number) => {
   return styles[rarity] || "from-[#4d4d4d] to-[#333333] border-gray-400/20";
 };
 
-export default function ItemDetailModal({ itemNameEn, isOpen, onClose }: ItemDetailModalProps) {
+export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: ItemDetailModalProps) {
   const { t, i18n } = useTranslation();
 
-  const koName = REVERSE_ITEM_MAP[itemNameEn] || itemNameEn;
-  const itemData = getItemMeta(koName);
+  const koName = item?.name || REVERSE_ITEM_MAP[itemNameEn] || itemNameEn;
+  const staticData = getItemMeta(koName);
+  
+  // item prop이 있으면 그것을 최우선으로, 없으면 staticData 사용
+  const itemData = item || staticData;
 
   if (!isOpen) return null;
 
   const rawDisplayName = t(koName, { keySeparator: false, nsSeparator: false });
-  const description = itemData?.desc 
-    ? t(`desc_${koName}`, { defaultValue: t(itemData.desc, { defaultValue: itemData.desc, keySeparator: false, nsSeparator: false }), keySeparator: false, nsSeparator: false }) 
+  const description = itemData?.desc || itemData?.description || itemData?.content
+    ? t(`desc_${koName}`, { defaultValue: t(itemData.desc || itemData.description || itemData.content, { defaultValue: itemData.desc || itemData.description || itemData.content, keySeparator: false, nsSeparator: false }), keySeparator: false, nsSeparator: false }) 
     : t("아카이브에 아직 상세 정보가 등록되지 않은 아이템입니다.", { keySeparator: false, nsSeparator: false });
     
   const isEn = i18n.language.startsWith('en');
@@ -41,7 +45,8 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose }: ItemDet
 
   const rarity = itemData?.rarity || getAutoRarity(koName);
   const itemType = itemData?.type || "미분류";
-  const url = getItemUrl(koName, itemData?.gameId || 'hsr');
+  // item.url이 미리 생성되어 있으면 사용하고, 아니면 getItemUrl 호출 (fileName 포함)
+  const url = itemData?.url || getItemUrl(koName, itemData?.gameId || 'hsr', itemData?.fileName);
 
   const getRarityTheme = (r: number) => {
     switch (r) {

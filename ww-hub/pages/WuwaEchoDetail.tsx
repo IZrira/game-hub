@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { ChevronRight, Home as HomeIcon, Shield, Zap, Info, Box, Star } from 'lucide-react';
-import { ECHO_DATA } from '../data/echoes';
+import { getGameData } from '../../common-hub/data/dataManager';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 import { renderRichText, ELEMENT_COLORS } from '../data/formatter';
 import { CDN_URL } from '../../common-hub/utils/assetManager';
@@ -20,9 +20,12 @@ export const WuwaEchoDetail = () => {
   const [showPhantom, setShowPhantom] = useState(false);
   const [selectedItem, setSelectedItem] = useState<ItemDetail | null>(null);
 
+  const { ECHO_DB } = useMemo(() => getGameData('ww'), []);
+  const ECHO_DATA = ECHO_DB || [];
+
   const echo = useMemo(() => {
-    return ECHO_DATA.find(e => e.name === echoName);
-  }, [echoName]);
+    return ECHO_DATA.find((e: any) => e.name === echoName);
+  }, [echoName, ECHO_DATA]);
 
   if (!echo) {
     return (
@@ -150,93 +153,61 @@ export const WuwaEchoDetail = () => {
               </div>
             </div>
 
-            {/* 02. Attribute Resistance Card */}
+            {/* 02. Sonata Sets Section */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl font-black italic opacity-20" style={{ color: theme.primary }}>02</span>
-                <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('속성 저항')}</h2>
+                <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('화음 세트')}</h2>
               </div>
               
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {Object.entries((echo as any).enemyInfo?.resistances || {}).slice(0, 8).map(([attr, val]) => (
-                  <div key={attr} className="flex items-center gap-3 px-4 py-3 rounded-2xl bg-white/5 border border-white/5 group/stat hover:border-brand-accent/50 transition-all">
-                    <img src={`${CDN_URL}/ww%20images/common/stats/${attr}%20피해%20저항.webp`} className="w-6 h-6 opacity-80 group-hover/stat:scale-110 transition-transform" alt={attr} />
-                    <div className="flex flex-col">
-                      <span className="text-[9px] font-black text-gray-500 uppercase leading-none mb-1">{attr}</span>
-                      <span className="text-sm font-black text-white italic leading-none">{val as number}%</span>
+              <div className="grid grid-cols-1 gap-6">
+                {(echo as any).sonataSets?.map((setName: any) => {
+                  const effect = SONATA_EFFECTS.find(s => s.setName === setName)?.effect;
+                  if (!effect) return null;
+                  return (
+                    <div key={setName} className="p-6 rounded-[30px] bg-white/[0.03] border border-white/10 space-y-6 hover:bg-white/[0.05] transition-all group/sonata">
+                      <div className="flex items-center gap-4">
+                        <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover/sonata:scale-110 transition-transform shadow-inner shrink-0">
+                          <img src={`${SONATA_ICON_BASE}${encodeURIComponent(setName.normalize('NFC'))}.webp`} className="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]" alt={setName} />
+                        </div>
+                        <div className="flex flex-col">
+                          <span className="text-xl md:text-2xl font-black text-brand-accent italic tracking-tighter uppercase leading-none">{setName}</span>
+                          <span className="text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] pt-1">Resonance Synergy</span>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-1 gap-4 pl-3 border-l-2 border-white/5">
+                        {effect.twoPiece && (
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-3">
+                              <span className="text-[9px] font-black text-brand-primary uppercase tracking-[0.2em] bg-brand-primary/20 px-2 py-0.5 rounded-full border border-brand-primary/30">2-Piece</span>
+                              <div className="h-px flex-1 bg-gradient-to-r from-brand-primary/40 to-transparent" />
+                            </div>
+                            <p className="text-sm text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.twoPiece}</p>
+                          </div>
+                        )}
+                        {effect.fivePiece && (
+                          <div className="space-y-2">
+                            <div className="flex items-center gap-3">
+                              <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em] bg-brand-accent/20 px-2 py-0.5 rounded-full border border-brand-accent/30">5-Piece</span>
+                              <div className="h-px flex-1 bg-gradient-to-r from-brand-accent/40 to-transparent" />
+                            </div>
+                            <p className="text-sm text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.fivePiece}</p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>
         </div>
 
-        {/* 03. Sonata Sets Section (Full Width Below) */}
-        <section className="glass-card p-10 rounded-[40px] border border-white/5 bg-black/20">
-            <div className="flex items-center gap-5 mb-8">
-              <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>03</span>
-              <div className="flex items-center gap-3">
-                <Shield size={20} style={{ color: theme.primary }} />
-                <h3 className="text-xl font-black uppercase tracking-widest text-gray-400">Sonata Synergy Matrix</h3>
-              </div>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {(echo as any).sonataSets.map((setName: any) => {
-                const effect = SONATA_EFFECTS.find(s => s.setName === setName)?.effect;
-                if (!effect) return null;
-                return (
-                  <div key={setName} className="p-10 rounded-[40px] bg-white/[0.03] border border-white/10 space-y-8 hover:bg-white/[0.05] transition-all group/sonata">
-                    <div className="flex items-center gap-6">
-                      <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover/sonata:scale-110 transition-transform shadow-inner">
-                        <img src={`${SONATA_ICON_BASE}${encodeURIComponent(setName.normalize('NFC'))}.webp`} className="w-10 h-10 drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]" alt={setName} />
-                      </div>
-                      <div className="flex flex-col">
-                        <span className="text-3xl font-black text-brand-accent italic tracking-tighter uppercase leading-none">{setName}</span>
-                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] pt-1">Resonance Synergy</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 gap-8 pl-4 border-l-2 border-white/5">
-                      {effect.twoPiece && (
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-4">
-                            <span className="text-[10px] font-black text-brand-primary uppercase tracking-[0.2em] bg-brand-primary/20 px-3 py-1 rounded-full border border-brand-primary/30">2-Piece</span>
-                            <div className="h-px flex-1 bg-gradient-to-r from-brand-primary/40 to-transparent" />
-                          </div>
-                          <p className="text-[15px] text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.twoPiece}</p>
-                        </div>
-                      )}
-                      {effect.threePiece && (
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-4">
-                            <span className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] bg-emerald-500/20 px-3 py-1 rounded-full border border-emerald-500/30">3-Piece</span>
-                            <div className="h-px flex-1 bg-gradient-to-r from-emerald-500/40 to-transparent" />
-                          </div>
-                          <p className="text-[15px] text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.threePiece}</p>
-                        </div>
-                      )}
-                      {effect.fivePiece && (
-                        <div className="space-y-3">
-                          <div className="flex items-center gap-4">
-                            <span className="text-[10px] font-black text-brand-accent uppercase tracking-[0.2em] bg-brand-accent/20 px-3 py-1 rounded-full border border-brand-accent/30">5-Piece</span>
-                            <div className="h-px flex-1 bg-gradient-to-r from-brand-accent/40 to-transparent" />
-                          </div>
-                          <p className="text-[15px] text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.fivePiece}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-        </section>
-
-        {/* 04. Acquisition Section (Full Width) */}
+        {/* 03. Acquisition Section (Full Width) */}
         <section className="glass-card p-10 rounded-[40px] border border-white/5">
           <div className="flex items-center gap-5 mb-8">
-            <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>04</span>
+            <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>03</span>
             <div className="flex items-center gap-3">
               <Box size={20} className="text-gray-400" />
               <h4 className="text-xl font-black uppercase tracking-widest text-gray-300">Acquisition Sources</h4>

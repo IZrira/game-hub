@@ -7,6 +7,7 @@ import { CONSUMABLE_DATA } from '../../hsr-hub/data/consumables';
 import { EXP_ITEM_DATA, CHARACTER_ASCENSION_DATA, TRACE_PATH_DATA, ADVANCED_TRACE_DATA, COMMON_DROP_DATA, SYNTHESIS_MATERIAL_DATA } from '../../hsr-hub/data/materials';
 import { WARP_ITEM_DATA, CURRENCY_DATA, SIMULATED_UNIVERSE_DATA, CURRENCY_WARS_DATA } from '../../hsr-hub/data/currencies';
 import { WW_ITEM_META } from '../../ww-hub/data/items';
+import notionData from './notion-data.json';
 
 /** 아이템 데이터베이스를 조립하는 함수 (내부용) */
 const assembleItemDB = (): Record<string, any> => {
@@ -38,6 +39,27 @@ const assembleItemDB = (): Record<string, any> => {
     return acc;
   }, {} as Record<string, any>);
 
+  // 노션 아이템 데이터 병합 (노션이 우선순위를 가짐)
+  if (Array.isArray(notionData)) {
+    notionData.forEach((item: any) => {
+      if (item.dbSource === 'ww_items' || (!item.dbSource && (item.type === '아이템' || item.type === '소모품' || item.type === '재료' || item.type === '육성 아이템' || item.type === '성급' || !item.type))) {
+        const itemName = item.name;
+        if (itemName) {
+          wwDB[itemName] = {
+            name: itemName,
+            type: item.type || wwDB[itemName]?.type || '기타',
+            rarity: item.rarity || wwDB[itemName]?.rarity || 3,
+            desc: item.content || item.skillDescription || wwDB[itemName]?.desc || '',
+            sources: item.obtain ? item.obtain.split(/[\n,]+/).map((s: string) => s.trim()).filter(Boolean) : wwDB[itemName]?.sources || ["정보 없음"],
+            folderName: itemName,
+            fileName: item.fileName || wwDB[itemName]?.fileName || '',
+            gameId: 'ww'
+          };
+        }
+      }
+    });
+  }
+
   return { ...hsrDB, ...wwDB };
 };
 
@@ -61,17 +83,24 @@ export const getAutoRarity = (name: string): number => {
 };
 
 /** 아이템 에셋 URL 생성 */
-export const getItemUrl = (name: string, gameId: string = 'hsr'): string | null => {
+export const getItemUrl = (name: string, gameId: string = 'hsr', overrideFileName?: string): string | null => {
   if (!name) return null;
   const normalized = name.normalize('NFC').replace(/\u00A0/g, ' ');
   const originalName = REVERSE_ITEM_MAP[normalized] || normalized;
   const itemDetail = ITEM_META[originalName];
   
   const targetGameId = itemDetail?.gameId || gameId;
-  const targetFileName = itemDetail?.fileName || itemDetail?.folderName || originalName.replace(/: /g, '_').replace(/:/g, '_');
+  let targetFileName = overrideFileName || itemDetail?.fileName || itemDetail?.folderName || originalName.replace(/: /g, '_').replace(/:/g, '_');
+  
+  // Windows 파일 시스템 규칙에 맞춰 특수문자 치환 (사용자 요청: V???의 노트 -> V의 노트, <수감 판타지> -> 수감 판타지)
+  targetFileName = targetFileName.replace(/[?<>]/g, '');
   
   if (targetGameId === 'ww') {
     return `${CDN_URL}/ww%20images/items/${safeEncodeURIComponent(targetFileName)}.webp`;
+  }
+  
+  if (targetGameId === 'nte') {
+    return `${CDN_URL}/nte%20images/items/${safeEncodeURIComponent(targetFileName)}.png`;
   }
   
   return `${CDN_URL}/hsr%20images/items/${safeEncodeURIComponent(targetFileName)}.webp`;

@@ -24,6 +24,8 @@ triggers: ["Design a new component", "Fix UI layout", "Apply styling", "Create a
   - Fire (화염): `#FF8A8A` / `#FF4D4D`
   - Wind (바람): `#80FFB3` / `#00E676`
   - Physical (물리): `#E5E5E5` / `#A1A1A1`
+- **NTE Element Themes** (이환 특화):
+  - Primary (메인): `#00D287` / `#34D399`
 
 ### Typography Utilities
 - **섹션 헤딩**: `text-2xl font-black uppercase tracking-widest text-gray-400 italic`

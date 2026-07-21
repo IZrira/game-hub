@@ -35,11 +35,11 @@ const PrivacyPolicy: React.FC = () => {
         <section className="space-y-4">
           <h2 className="text-2xl font-black text-white border-b border-white/10 pb-4">3. 구글 애드센스(Google AdSense) 및 타사 광고</h2>
           <p>
-            본 사이트는 구글(Google)을 포함한 타사 공급업체와 광고 네트워크의 광고를 게재할 수 있습니다. 구글은 쿠키를 사용하여 사용자가 본 사이트 또는 다른 웹사이트를 방문한 기록을 기반으로 맞춤형 광고를 게재합니다.
+            본 사이트는 구글(Google)을 포함한 타사 공급업체와 광고 네트워크의 광고를 게재할 수 있습니다. 구글은 쿠키(웹에서 사용자의 활동을 기록하는 파일)를 사용하여 사용자가 본 사이트 또는 다른 웹사이트를 방문한 기록을 기반으로 맞춤형 광고를 게재합니다. 특히 구글은 **DART 쿠키**를 사용하여 인터넷의 여러 사이트 방문 기록을 바탕으로 사용자에게 적절한 광고를 게재합니다.
           </p>
           <ul className="list-disc pl-6 space-y-2 text-gray-400">
             <li>구글 및 타사 공급업체는 쿠키를 사용하여 이전 방문 기록을 기반으로 광고를 제공합니다.</li>
-            <li>사용자는 <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline">Google 광고 설정</a>을 방문하여 맞춤설정 광고에 사용되는 쿠키를 거부할 수 있습니다.</li>
+            <li>사용자는 <a href="https://myadcenter.google.com/" target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline">Google 광고 설정</a>을 방문하여 맞춤설정 광고에 사용되는 DART 쿠키를 거부할 수 있습니다.</li>
             <li>기타 타사 공급업체의 쿠키 사용을 거부하시려면 <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener noreferrer" className="text-brand-primary hover:underline">aboutads.info</a>를 방문하시기 바랍니다.</li>
           </ul>
         </section>
@@ -56,7 +56,7 @@ const PrivacyPolicy: React.FC = () => {
           <p>
             개인정보처리방침과 관련된 문의사항이 있으실 경우, 아래의 연락처로 문의해주시기 바랍니다.
             <br/><br/>
-            이메일: <a href="mailto:contact@rira.archive" className="text-brand-primary hover:underline">contact@rira.archive</a>
+            이메일: <a href="mailto:rira.game.hub@gmail.com" className="text-brand-primary hover:underline">rira.game.hub@gmail.com</a>
           </p>
         </section>
 

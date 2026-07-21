@@ -27,7 +27,10 @@ import sigrika from './characters/ww/sigrika';
 import qiuyuan from './characters/ww/qiuyuan';
 import iuno from './characters/ww/iuno';
 import cartethyia from './characters/ww/cartethyia';
+import susu from './characters/ww/susu';
+import yangyang_magistrate from './characters/ww/yangyang_magistrate';
 import rover_aero from './characters/ww/rover_aero';
+import rover_electro from './characters/ww/rover_electro';
 import chaconne from './characters/ww/chaconne';
 import jianxin from './characters/ww/jianxin';
 import augusta from './characters/ww/augusta';
@@ -54,6 +57,9 @@ import lucy from './characters/ww/lucy';
 import rebecca from './characters/ww/rebecca';
 
 export const WW_CHARACTERS: WuwaCharacter[] = [
+  susu,
+  rover_electro,
+  yangyang_magistrate,
   lucy,
   lucilla,
   carlotta,

@@ -1,0 +1,1970 @@
+{
+  "object": "page",
+  "id": "37895fae-3dc7-80b5-a01c-dd19f5c97f43",
+  "created_time": "2026-06-07T05:37:00.000Z",
+  "last_edited_time": "2026-06-10T16:37:00.000Z",
+  "created_by": {
+    "object": "user",
+    "id": "9ef24005-5149-479f-aeaa-490c4dfd52ce"
+  },
+  "last_edited_by": {
+    "object": "user",
+    "id": "9ef24005-5149-479f-aeaa-490c4dfd52ce"
+  },
+  "cover": null,
+  "icon": null,
+  "parent": {
+    "type": "database_id",
+    "database_id": "35595fae-3dc7-80aa-8040-e41d21d27af4"
+  },
+  "in_trash": false,
+  "is_archived": false,
+  "is_locked": false,
+  "properties": {
+    "고유 스킬 1": {
+      "id": "%3Bgtj",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "슬로우 모션\n루실라가 ==포커스 링==을 펼치는 기간 동안, 촬영 범위 내 목표의 시간 흐름을 늦춘다.\n==공명 스킬 · 팔로우 스폿== 발동 시, 루실라는 ==공명 모드==에 따라 서로 다른 강화 효과를 제공한다.\n· ==공명 모드 · 서리==에 있을 시, 파티 내 등장 캐릭터의 일정 범위 내에 있는 목표의 응결 저항이 8% 감소되고, 30초간 지속된다. 해당 기간 동안 적군이 ==「서리 효과」==의 피해에 격파될 시, 이번 격파는 거리가 가장 가까운 등장 캐릭터가 격파한 것으로 간주된다.\n· ==공명 모드 · 에코==에 있을 시, 파티 내 캐릭터의 에코 어빌리티 피해 보너스가 25% 증가되고, 30초간 지속된다.\n루실라가 모드 전환 시, 위에 설명된 효과는 즉시 종료된다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "슬로우 모션\n루실라가 ==포커스 링==을 펼치는 기간 동안, 촬영 범위 내 목표의 시간 흐름을 늦춘다.\n==공명 스킬 · 팔로우 스폿== 발동 시, 루실라는 ==공명 모드==에 따라 서로 다른 강화 효과를 제공한다.\n· ==공명 모드 · 서리==에 있을 시, 파티 내 등장 캐릭터의 일정 범위 내에 있는 목표의 응결 저항이 8% 감소되고, 30초간 지속된다. 해당 기간 동안 적군이 ==「서리 효과」==의 피해에 격파될 시, 이번 격파는 거리가 가장 가까운 등장 캐릭터가 격파한 것으로 간주된다.\n· ==공명 모드 · 에코==에 있을 시, 파티 내 캐릭터의 에코 어빌리티 피해 보너스가 25% 증가되고, 30초간 지속된다.\n루실라가 모드 전환 시, 위에 설명된 효과는 즉시 종료된다",
+          "href": null
+        }
+      ]
+    },
+    "성급": {
+      "id": "B%7Bcp",
+      "type": "select",
+      "select": {
+        "id": "47153d9e-6ed2-44fd-8997-b7a844d665ea",
+        "name": "5성",
+        "color": "yellow"
+      }
+    },
+    "승급 재료": {
+      "id": "E%5E%3C%40",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "클램 코인x170,000\n저주파수 메카 성핵x4\n중주파수 메카 성핵x12\n고주파수 메카 성핵x12\n전주파수 메카 성핵x4\n태양을 노리는 손끝x46\n물망초x60",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "클램 코인x170,000\n저주파수 메카 성핵x4\n중주파수 메카 성핵x12\n고주파수 메카 성핵x12\n전주파수 메카 성핵x4\n태양을 노리는 손끝x46\n물망초x60",
+          "href": null
+        }
+      ]
+    },
+    "출시 버전": {
+      "id": "GaWk",
+      "type": "select",
+      "select": {
+        "id": "13125ca8-20a1-47af-8eaa-791e64980cce",
+        "name": "3.4",
+        "color": "gray"
+      }
+    },
+    "무기": {
+      "id": "INQH",
+      "type": "select",
+      "select": {
+        "id": "2e9f1cf5-66d3-40c0-b5c3-531116827943",
+        "name": "증폭기",
+        "color": "default"
+      }
+    },
+    "공명 어빌리티": {
+      "id": "OpiK",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "기억 궁전",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "기억 궁전",
+          "href": null
+        }
+      ]
+    },
+    "공명 체인": {
+      "id": "OvMQ",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "1.",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "1.",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " 아득한 한낮\n==공명 스킬 · 환상 프레임==을 발동하고 ==포커스 링==을 펼치는 기간 동안, 바늘이 ==완벽한 초점 거리==에 처음 진입 시, ==포커스 링==을 즉시 ==완벽한 초점 거리==로 가득 채운다.\n==공명 스킬 · 팔로우 스폿== 발동 시, 루실라의 크리티컬이 20% 증가되고, 10초간 지속된다.\n==공명 스킬 · 환상 프레임==, ==일반 공격 · 플래시 백 3단==은 적의 공격에 의해 중단되지 않는다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " 아득한 한낮\n==공명 스킬 · 환상 프레임==을 발동하고 ==포커스 링==을 펼치는 기간 동안, 바늘이 ==완벽한 초점 거리==에 처음 진입 시, ==포커스 링==을 즉시 ==완벽한 초점 거리==로 가득 채운다.\n==공명 스킬 · 팔로우 스폿== 발동 시, 루실라의 크리티컬이 20% 증가되고, 10초간 지속된다.\n==공명 스킬 · 환상 프레임==, ==일반 공격 · 플래시 백 3단==은 적의 공격에 의해 중단되지 않는다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "2.",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "2.",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " 깊이 잠든 달빛\n==공명 해방 · 생생한 기억== 발동 시, 루실라는 ==공명 모드==에 따라 추가 강화 효과를 제공한다.\n· ==공명 모드 · 서리==에 있을 시, 파티 내 등장 캐릭터의 일정 범위 내에 있는 목표가 받는 ==「서리 효과」==의 피해가 80% 부스트된다.\n· ==공명 모드 · 에코==에 있을 시, 파티 내 캐릭터의 에코 어빌리티 피해 보너스가 40% 증가된다.\n추억 상태 지속 기간 동안, 위에 설명된 효과가 지속적으로 유지된다. ==추억 상태== 종료 후, 위에 설명된 효과가 30초간 유지된다.\n루실라가 모드 전환 시, 위에 설명된 효과가 즉시 종료된다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " 깊이 잠든 달빛\n==공명 해방 · 생생한 기억== 발동 시, 루실라는 ==공명 모드==에 따라 추가 강화 효과를 제공한다.\n· ==공명 모드 · 서리==에 있을 시, 파티 내 등장 캐릭터의 일정 범위 내에 있는 목표가 받는 ==「서리 효과」==의 피해가 80% 부스트된다.\n· ==공명 모드 · 에코==에 있을 시, 파티 내 캐릭터의 에코 어빌리티 피해 보너스가 40% 증가된다.\n추억 상태 지속 기간 동안, 위에 설명된 효과가 지속적으로 유지된다. ==추억 상태== 종료 후, 위에 설명된 효과가 30초간 유지된다.\n루실라가 모드 전환 시, 위에 설명된 효과가 즉시 종료된다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "3.",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "3.",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " 소리 없는 곳에서 사라지는 시간\n==내려놓기==의 피해 배율이 100% 상승된다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " 소리 없는 곳에서 사라지는 시간\n==내려놓기==의 피해 배율이 100% 상승된다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "4.",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "4.",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " 고요히 침묵하는 과거\n==망각== 명중 시 주변 목표를 끌어당긴다. ==망각== 발동 시, 루실라의 공격력이 10% 증가되고 3스택 중첩이 가능하며, 6초간 지속된다. 지속 시간 종료 시, 모든 스택이 제거된다.\n==일반 공격 · 플래시 백 3단== 발동 시, 루실라가 받는 피해가 30% 감소된다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " 고요히 침묵하는 과거\n==망각== 명중 시 주변 목표를 끌어당긴다. ==망각== 발동 시, 루실라의 공격력이 10% 증가되고 3스택 중첩이 가능하며, 6초간 지속된다. 지속 시간 종료 시, 모든 스택이 제거된다.\n==일반 공격 · 플래시 백 3단== 발동 시, 루실라가 받는 피해가 30% 감소된다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "5.",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "5.",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " 시냇물 같은 세월\n==망각==의 피해 배율이 50% 상승된다\n6. 아지랑이 같은 시간 속 바라보는 시선\n==추억 상태== 지속 기간 동안, 루실라가 ==「사진」==을 소모할 때마다 1스택의 ==명심==을 획득하고, 3스택 중첩이 가능하다. ==명심== 1스택 당 ==내려놓기==로 입히는 피해를 200% 증가시키며 최대 600%까지 증가시킬 수 있다. ==내려놓기== 발동 후, 모든 ==명심== 스택이 제거된다.\n루실라가 ==추억 상태== 지속 기간 동안 임의 목표를 격파하면 ==그리움==을 획득한다. ==추억 상태==가 종료되고 비전투 상태에 있을 시, ==그리움==을 소모하여 루실라는 150pt의 ==「인상」==을 회복한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " 시냇물 같은 세월\n==망각==의 피해 배율이 50% 상승된다\n6. 아지랑이 같은 시간 속 바라보는 시선\n==추억 상태== 지속 기간 동안, 루실라가 ==「사진」==을 소모할 때마다 1스택의 ==명심==을 획득하고, 3스택 중첩이 가능하다. ==명심== 1스택 당 ==내려놓기==로 입히는 피해를 200% 증가시키며 최대 600%까지 증가시킬 수 있다. ==내려놓기== 발동 후, 모든 ==명심== 스택이 제거된다.\n루실라가 ==추억 상태== 지속 기간 동안 임의 목표를 격파하면 ==그리움==을 획득한다. ==추억 상태==가 종료되고 비전투 상태에 있을 시, ==그리움==을 소모하여 루실라는 150pt의 ==「인상」==을 회복한다",
+          "href": null
+        }
+      ]
+    },
+    "변주 스킬": {
+      "id": "R%40%3Af",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "편집",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "편집",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n목표를 공격하여 응결 피해를 입히고, 목표에게 1스택의 ==「서리 효과」==를 추가한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n목표를 공격하여 응결 피해를 입히고, 목표에게 1스택의 ==「서리 효과」==를 추가한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "편집 · 하드 컷",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "편집 · 하드 컷",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==추억 상태== 지속 기간 동안, ==변주 스킬==은 ==편집 · 하드 컷==으로 대체된다.\n목표를 공격하여 응결 피해를 입히고, 목표에게 1 스택의 ==「서리 효과」==를 추가한다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 · 플래시 백 3단==을 발동한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==추억 상태== 지속 기간 동안, ==변주 스킬==은 ==편집 · 하드 컷==으로 대체된다.\n목표를 공격하여 응결 피해를 입히고, 목표에게 1 스택의 ==「서리 효과」==를 추가한다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 · 플래시 백 3단==을 발동한다",
+          "href": null
+        }
+      ]
+    },
+    "성우": {
+      "id": "VLtz",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "🇰🇷 민아 / 🇺🇸 루시 피시 / 🇨🇳 류이눠 / 🇯🇵 이토 시즈카",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "🇰🇷 민아 / 🇺🇸 루시 피시 / 🇨🇳 류이눠 / 🇯🇵 이토 시즈카",
+          "href": null
+        }
+      ]
+    },
+    "용어 정리": {
+      "id": "%5Bjc%5B",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "인상",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "인상",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==「인상」== 최대 누적 가능: 150pt\n==변주 스킬 · 편집== 발동 기간 동안, 100pt의 ==「인상」== 을 회복한다.\n==공명 스킬 · 팔로우 스폿== 발동 기간 동안, 50pt의 ==「인상」== 을 회복한다.\n==일반 공격 3단 · 매력가득== 발동 기간 동안, 50pt의 ==「인상」== 을 회복한다.\n==공명 스킬 · 필 라이트 혹은 일반 공격 3단 · 무색무취== 발동 기간 동안, 25pt의 ==「인상」== 을 회복한다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==「인상」== 최대 누적 가능: 150pt\n==변주 스킬 · 편집== 발동 기간 동안, 100pt의 ==「인상」== 을 회복한다.\n==공명 스킬 · 팔로우 스폿== 발동 기간 동안, 50pt의 ==「인상」== 을 회복한다.\n==일반 공격 3단 · 매력가득== 발동 기간 동안, 50pt의 ==「인상」== 을 회복한다.\n==공명 스킬 · 필 라이트 혹은 일반 공격 3단 · 무색무취== 발동 기간 동안, 25pt의 ==「인상」== 을 회복한다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "추억 상태",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "추억 상태",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==추억 상태== 지속 기간 동안, 루실라의 경직 저항력이 증가되고 ==공명 스킬==, ==공명 해방을 발동할 수 없으며==, ==일반 공격==, ==회피 반격==, ==공중 공격==, ==변주 스킬 · 편집은 일반 공격 · 플래시 백==, ==회피 반격 · 추억==, ==공중 공격 · 추억==, ==변주 스킬 · 편집 · 하드 컷==으로 대체된다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==추억 상태== 지속 기간 동안, 루실라의 경직 저항력이 증가되고 ==공명 스킬==, ==공명 해방을 발동할 수 없으며==, ==일반 공격==, ==회피 반격==, ==공중 공격==, ==변주 스킬 · 편집은 일반 공격 · 플래시 백==, ==회피 반격 · 추억==, ==공중 공격 · 추억==, ==변주 스킬 · 편집 · 하드 컷==으로 대체된다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "「조화도 파괴」",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "「조화도 파괴」",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n목표의 ==「부조화 수치」== 가 가득 찰 시, ==조화 소실== 상태에 진입한다.\n파티 내 등장 캐릭터는 해당 목표에게 ==「조화도 파괴 스킬」== 을 발동하여 피해를 입히고, 이후 목표의 ==조화 소실== 상태가 종료된다.\n목표가 경파급일 경우, 파티 내 캐릭터의 일부 스킬이 목표에 명중 시, 목표에게 ==조화도 파괴 피해==를 1회 입히며, 이후 목표의 ==조화 소실== 상태가 종료된다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n목표의 ==「부조화 수치」== 가 가득 찰 시, ==조화 소실== 상태에 진입한다.\n파티 내 등장 캐릭터는 해당 목표에게 ==「조화도 파괴 스킬」== 을 발동하여 피해를 입히고, 이후 목표의 ==조화 소실== 상태가 종료된다.\n목표가 경파급일 경우, 파티 내 캐릭터의 일부 스킬이 목표에 명중 시, 목표에게 ==조화도 파괴 피해==를 1회 입히며, 이후 목표의 ==조화 소실== 상태가 종료된다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "서리 효과",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "서리 효과",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n· 「서리 효과」 추가 시 목표에게 응결 피해를 입힌다.\n· ==「서리 효과」== 스택이 증가함에 따라 목표 자신의 이동 속도가 점차 감소된다.\n· 「서리 효과」 가 최대 스택에 도달 시 목표 자신이 ==동결== 상태가 되고 자신의 「서리 효과」 스택이 제거되며, 몸부림을 치면 동결 상태에서 더 빠르게 회복될 수 있다.\n· 「서리 효과」 의 기본 최대 스택은 10스택이며, 중첩 스택이 많을수록 입히는 피해가 높아지며 ==동결== 상태 지속 시간이 길어진다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n· 「서리 효과」 추가 시 목표에게 응결 피해를 입힌다.\n· ==「서리 효과」== 스택이 증가함에 따라 목표 자신의 이동 속도가 점차 감소된다.\n· 「서리 효과」 가 최대 스택에 도달 시 목표 자신이 ==동결== 상태가 되고 자신의 「서리 효과」 스택이 제거되며, 몸부림을 치면 동결 상태에서 더 빠르게 회복될 수 있다.\n· 「서리 효과」 의 기본 최대 스택은 10스택이며, 중첩 스택이 많을수록 입히는 피해가 높아지며 ==동결== 상태 지속 시간이 길어진다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "사진",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "사진",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==「사진」== 최대 누적 가능: 3장\n50pt의 ==「인상」== 을 회복할 때마다, 자동으로 1장의 ==「사진」== 으로 전환되어 인화된다\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==「사진」== 최대 누적 가능: 3장\n50pt의 ==「인상」== 을 회복할 때마다, 자동으로 1장의 ==「사진」== 으로 전환되어 인화된다\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "줌",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "줌",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==줌== 1스택 당 파티 내 등장 캐릭터가 입히는 에코 어빌리티 피해의 크리티컬 피해를 10% 증가시킨다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==줌== 1스택 당 파티 내 등장 캐릭터가 입히는 에코 어빌리티 피해의 크리티컬 피해를 10% 증가시킨다",
+          "href": null
+        }
+      ]
+    },
+    "반주 스킬": {
+      "id": "cP%60m",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "몽타주\n==공명 모드 · 서리==에 있을 시, 파티 내 등장 캐릭터의 일정 범위 내에 있는 목표가 받는 ==「서리 효과」==의 피해가 60% 부스트되고, 30초간 지속된다.\n루실라가 모드 전환 시, 해당 효과는 즉시 종료된다.\n\n==공명 모드 · 에코==에 있을 시, 다음 등장 캐릭터의 에코 어빌리티 피해가 50% 부스트되고, 14초간 지속된다.\n다른 캐릭터로 전환하거나 혹은 루실라가 모드 전환 시, 해당 효과는 즉시 종료된다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "몽타주\n==공명 모드 · 서리==에 있을 시, 파티 내 등장 캐릭터의 일정 범위 내에 있는 목표가 받는 ==「서리 효과」==의 피해가 60% 부스트되고, 30초간 지속된다.\n루실라가 모드 전환 시, 해당 효과는 즉시 종료된다.\n\n==공명 모드 · 에코==에 있을 시, 다음 등장 캐릭터의 에코 어빌리티 피해가 50% 부스트되고, 14초간 지속된다.\n다른 캐릭터로 전환하거나 혹은 루실라가 모드 전환 시, 해당 효과는 즉시 종료된다",
+          "href": null
+        }
+      ]
+    },
+    "캐릭터 간단 정보": {
+      "id": "gC%3Fi",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "루실라는 기억을 되살리는 방법에 정통할 뿐만 아니라, 기억의 조각을 떼어내어 이를 한층 더 실체화하는 능력도 지니고 있다.\n그녀는 지난날의 윤곽을 재구성할 수 있으며, 나아가 자신이 직접 겪었던 과거의 어느 순간을 투영하여 현실 세계에 그대로 재현해 낼 수도 있다.",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "루실라는 기억을 되살리는 방법에 정통할 뿐만 아니라, 기억의 조각을 떼어내어 이를 한층 더 실체화하는 능력도 지니고 있다.\n그녀는 지난날의 윤곽을 재구성할 수 있으며, 나아가 자신이 직접 겪었던 과거의 어느 순간을 투영하여 현실 세계에 그대로 재현해 낼 수도 있다.",
+          "href": null
+        }
+      ]
+    },
+    "공명 회로": {
+      "id": "mt%5EE",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "기억 궁전\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "기억 궁전\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "기시감",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "기시감",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==공명 해방 · 생생한 기억== 발동 시, 루실라는 ==공명 모드==에 따라 서로 다른 강화 효과를 제공한다.\n· ==공명 모드 · 서리==에 있을 시, 4스택의 ==필름==을 획득하고 30초간 지속되며, 4스택 중첩이 가능하다. 지속 시간 종료 시 모든 스택이 제거된다.\n· ==공명 모드 · 에코==에 있을 시, 1스택의 ==줌==을 획득하고 30초간 지속되며, 1스택 중첩이 가능하다. 지속 시간 종료 시 모든 스택이 제거된다.\n루실라가 모드 전환 시, 위에 설명된 효과는 즉시 종료된다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==공명 해방 · 생생한 기억== 발동 시, 루실라는 ==공명 모드==에 따라 서로 다른 강화 효과를 제공한다.\n· ==공명 모드 · 서리==에 있을 시, 4스택의 ==필름==을 획득하고 30초간 지속되며, 4스택 중첩이 가능하다. 지속 시간 종료 시 모든 스택이 제거된다.\n· ==공명 모드 · 에코==에 있을 시, 1스택의 ==줌==을 획득하고 30초간 지속되며, 1스택 중첩이 가능하다. 지속 시간 종료 시 모든 스택이 제거된다.\n루실라가 모드 전환 시, 위에 설명된 효과는 즉시 종료된다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "필름",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "필름",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n파티 내 루실라를 제외한 등장 캐릭터가 목표에게 ==「서리 효과」==를 추가 시, 루실라는 1스택의 ==필름==을 소모하여 주변 목표에게 ==「서리 효과」==를 2회 추가하고, 0.5초마다 1회 발생할 수 있다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n파티 내 루실라를 제외한 등장 캐릭터가 목표에게 ==「서리 효과」==를 추가 시, 루실라는 1스택의 ==필름==을 소모하여 주변 목표에게 ==「서리 효과」==를 2회 추가하고, 0.5초마다 1회 발생할 수 있다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "줌",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "줌",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==줌== 1스택 당 파티 내 등장 캐릭터가 입히는 에코 어빌리티 피해의 크리티컬 피해를 10% 증가시킨다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==줌== 1스택 당 파티 내 등장 캐릭터가 입히는 에코 어빌리티 피해의 크리티컬 피해를 10% 증가시킨다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "망각",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "망각",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==일반 공격 · 플래시 백 3단== 발동 기간 동안, 루실라는 일정 시간마다 ==「사진」== 1장을 소모하여 ==망각==을 발동하고 응결 피해를 1회 입힌다.\n· ==공명 모드 · 서리==에 있을 시, 해당 피해는 ==일반 공격 피해==로 적용되고 명중된 목표에게 1스택의 ==「서리 효과」==를 추가한다.\n· ==공명 모드 · 에코==에 있을 시, 해당 피해는 ==에코 어빌리티 피해==로 적용된다. ==망각==을 발동할 때마다 서로 다른 이름의 에코 어빌리티를 발동한 것으로 간주한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==일반 공격 · 플래시 백 3단== 발동 기간 동안, 루실라는 일정 시간마다 ==「사진」== 1장을 소모하여 ==망각==을 발동하고 응결 피해를 1회 입힌다.\n· ==공명 모드 · 서리==에 있을 시, 해당 피해는 ==일반 공격 피해==로 적용되고 명중된 목표에게 1스택의 ==「서리 효과」==를 추가한다.\n· ==공명 모드 · 에코==에 있을 시, 해당 피해는 ==에코 어빌리티 피해==로 적용된다. ==망각==을 발동할 때마다 서로 다른 이름의 에코 어빌리티를 발동한 것으로 간주한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "순간 포착",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "순간 포착",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n조준 버튼을 짧게 누르면 루실라는 촬영 상태에 진입한다. 촬영 상태에서 루실라는 렌즈 범위 내의 잔향, 환경 채집물 및 일부 수집품을 표기한다. 셔터를 누를 시, 루실라는 현재의 기념할 만한 순간을 촬영하고 위의 내용을 수집한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n조준 버튼을 짧게 누르면 루실라는 촬영 상태에 진입한다. 촬영 상태에서 루실라는 렌즈 범위 내의 잔향, 환경 채집물 및 일부 수집품을 표기한다. 셔터를 누를 시, 루실라는 현재의 기념할 만한 순간을 촬영하고 위의 내용을 수집한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "「인상」 획득 규칙",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "「인상」 획득 규칙",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==「인상」== 최대 누적 가능: 150pt\n==변주 스킬 · 편집== 발동 기간 동안, 100pt의 ==「인상」==을 회복한다.\n==공명 스킬 · 팔로우 스폿== 발동 기간 동안, 50pt의 ==「인상」==을 회복한다.\n==일반 공격 3단 · 매력가득== 발동 기간 동안, 50pt의 「인상」을 회복한다.\n==공명 스킬 · 필 라이트== 혹은 ==일반 공격 3단 · 무색무취== 발동 기간 동안, 25pt의 ==「인상」==을 회복한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==「인상」== 최대 누적 가능: 150pt\n==변주 스킬 · 편집== 발동 기간 동안, 100pt의 ==「인상」==을 회복한다.\n==공명 스킬 · 팔로우 스폿== 발동 기간 동안, 50pt의 ==「인상」==을 회복한다.\n==일반 공격 3단 · 매력가득== 발동 기간 동안, 50pt의 「인상」을 회복한다.\n==공명 스킬 · 필 라이트== 혹은 ==일반 공격 3단 · 무색무취== 발동 기간 동안, 25pt의 ==「인상」==을 회복한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "「사진」 획득 규칙",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "「사진」 획득 규칙",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n==「사진」== 최대 누적 가능: 3장\n50pt의 ==「인상」==을 회복할 때마다, 자동으로 1장의 ==「사진」==으로 전환되어 인화된다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n==「사진」== 최대 누적 가능: 3장\n50pt의 ==「인상」==을 회복할 때마다, 자동으로 1장의 ==「사진」==으로 전환되어 인화된다",
+          "href": null
+        }
+      ]
+    },
+    "공명 해방": {
+      "id": "nfZd",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "생생한 기억\n루실라의 공명 에너지 최대치는 0이며, ==생생한 기억==은 공명 에너지를 소모하지 않는다.\n==「사진」== 3장을 모두 보유 시, ==생생한 기억==이 해제된다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "생생한 기억\n루실라의 공명 에너지 최대치는 0이며, ==생생한 기억==은 공명 에너지를 소모하지 않는다.\n==「사진」== 3장을 모두 보유 시, ==생생한 기억==이 해제된다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "생생한 기억",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "생생한 기억",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n응결 피해를 입히고 ==추억 상태==에 진입한다.\n· ==공명 모드 · 서리==에 있을 시, 해당 피해는 ==일반 공격 피해==로 적용된다. 해당 스킬 발동 시, 루실라의 일반 공격 피해 보너스가 30% 증가되고, 10초간 지속된다.\n· ==공명 모드 · 에코==에 있을 시, 해당 피해는 ==에코 어빌리티 피해==로 적용된다. 해당 스킬 발동 시, 루실라의 에코 어빌리티 피해 보너스가 30% 증가되고, 10초간 지속된다.\n==추억 상태== 지속 기간 동안, 루실라의 경직 저항력이 증가되고 ==공명 스킬==, ==공명 해방==을 발동할 수 없으며, ==일반 공격==, ==회피 반격==, ==공중 공격==, ==변주 스킬 · 편집==은 ==일반 공격 · 플래시 백==, ==회피 반격 · 추억==, ==공중 공격 · 추억==, ==변주 스킬 · 편집 · 하드 컷==으로 대체된다.\n낮은 공중에서 발동 가능하다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n응결 피해를 입히고 ==추억 상태==에 진입한다.\n· ==공명 모드 · 서리==에 있을 시, 해당 피해는 ==일반 공격 피해==로 적용된다. 해당 스킬 발동 시, 루실라의 일반 공격 피해 보너스가 30% 증가되고, 10초간 지속된다.\n· ==공명 모드 · 에코==에 있을 시, 해당 피해는 ==에코 어빌리티 피해==로 적용된다. 해당 스킬 발동 시, 루실라의 에코 어빌리티 피해 보너스가 30% 증가되고, 10초간 지속된다.\n==추억 상태== 지속 기간 동안, 루실라의 경직 저항력이 증가되고 ==공명 스킬==, ==공명 해방==을 발동할 수 없으며, ==일반 공격==, ==회피 반격==, ==공중 공격==, ==변주 스킬 · 편집==은 ==일반 공격 · 플래시 백==, ==회피 반격 · 추억==, ==공중 공격 · 추억==, ==변주 스킬 · 편집 · 하드 컷==으로 대체된다.\n낮은 공중에서 발동 가능하다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "일반 공격 · 플래시 백",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "일반 공격 · 플래시 백",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n최대 3단 연속 공격을 가하여 응결 피해를 입히고, 해당 피해는 ==일반 공격 피해==로 적용된다.\n==일반 공격==을 길게 누르면 ==일반 공격 · 플래시 백 1, 2, 3단==을 순차적으로 발동할 수 있다.\n==일반 공격 · 플래시 백 3단== 발동 시, 일반 공격을 연속으로 짧게 누르거나 혹은 길게 누르면 지속적으로 목표를 공격할 수 있다.\n==일반 공격 · 플래시 백 3단== 발동 시, ==일반 공격==에서 손을 떼거나 혹은 ==일반 공격 · 플래시 백 3단== 종료 후, 자동으로 내려놓기를 발동한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n최대 3단 연속 공격을 가하여 응결 피해를 입히고, 해당 피해는 ==일반 공격 피해==로 적용된다.\n==일반 공격==을 길게 누르면 ==일반 공격 · 플래시 백 1, 2, 3단==을 순차적으로 발동할 수 있다.\n==일반 공격 · 플래시 백 3단== 발동 시, 일반 공격을 연속으로 짧게 누르거나 혹은 길게 누르면 지속적으로 목표를 공격할 수 있다.\n==일반 공격 · 플래시 백 3단== 발동 시, ==일반 공격==에서 손을 떼거나 혹은 ==일반 공격 · 플래시 백 3단== 종료 후, 자동으로 내려놓기를 발동한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "내려놓기",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "내려놓기",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n범위 내에 있는 목표에게 응결 피해를 입히고, 루실라가 공명 모드 · 서리 / 공명 모드 · 에코에 있을 시, 해당 피해는 일반 공격 피해 / 에코 어빌리티 피해로 적용된다.\n내려놓기는 피해와 공격에 면역되고, 해당 기간 동안 캐릭터를 전환할 수 없다.\n내려놓기 발동 기간 동안, 루실라 자신의 협주 에너지가 추가로 20pt 회복된다.\n내려놓기 발동 후, 추억 상태가 종료된다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n범위 내에 있는 목표에게 응결 피해를 입히고, 루실라가 공명 모드 · 서리 / 공명 모드 · 에코에 있을 시, 해당 피해는 일반 공격 피해 / 에코 어빌리티 피해로 적용된다.\n내려놓기는 피해와 공격에 면역되고, 해당 기간 동안 캐릭터를 전환할 수 없다.\n내려놓기 발동 기간 동안, 루실라 자신의 협주 에너지가 추가로 20pt 회복된다.\n내려놓기 발동 후, 추억 상태가 종료된다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "공중 공격 · 추억",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "공중 공격 · 추억",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n스태미나를 소모하여 공중 낙하 공격을 가하고 응결 피해를 입히며, 해당 피해는 일반 공격 피해로 적용된다.\n해당 스킬 발동 후 일정 시간 내에, 일반 공격을 짧게 누르면 일반 공격 · 플래시 백 2단을 발동한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n스태미나를 소모하여 공중 낙하 공격을 가하고 응결 피해를 입히며, 해당 피해는 일반 공격 피해로 적용된다.\n해당 스킬 발동 후 일정 시간 내에, 일반 공격을 짧게 누르면 일반 공격 · 플래시 백 2단을 발동한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "회피 반격 · 추억",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "회피 반격 · 추억",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n회피 성공 후 일정 시간 내에, 일반 공격을 짧게 누르면 목표를 공격하고 응결 피해를 입히며, 해당 피해는 일반 공격 피해로 적용된다.\n해당 스킬 발동 후 일정 시간 내에, 일반 공격을 짧게 누르면 일반 공격 · 플래시 백 3단을 발동한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n회피 성공 후 일정 시간 내에, 일반 공격을 짧게 누르면 목표를 공격하고 응결 피해를 입히며, 해당 피해는 일반 공격 피해로 적용된다.\n해당 스킬 발동 후 일정 시간 내에, 일반 공격을 짧게 누르면 일반 공격 · 플래시 백 3단을 발동한다",
+          "href": null
+        }
+      ]
+    },
+    "조화도 파괴": {
+      "id": "ns%40%40",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "조화도 파괴 · 증폭기\n목표의 ==「부조화 수치」==가 가득 찰 시, 해당 목표에게 ==「조화도 파괴」==를 발동한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "조화도 파괴 · 증폭기\n목표의 ==「부조화 수치」==가 가득 찰 시, 해당 목표에게 ==「조화도 파괴」==를 발동한다",
+          "href": null
+        }
+      ]
+    },
+    "성장 스텟": {
+      "id": "o%3DTU",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "1 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "1 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "979",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "979",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "30",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "30",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "98",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "98",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n20 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n20 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "2,546 78 251",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "2,546 78 251",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n30 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n30 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "4,024 155 367",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "4,024 155 367",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n40 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n40 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "4,849 126 476",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "4,849 126 476",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n50 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n50 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "6,327 151 621",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "6,327 151 621",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n60 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n60 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "7,804 247 765",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "7,804 247 765",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n70 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n70 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "9,282 294 909",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "9,282 294 909",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n80 : ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n80 : ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "10,760 335",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "10,760 335",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": " ",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": " ",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "1,054\n90 : 12,238 375 1,198",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "1,054\n90 : 12,238 375 1,198",
+          "href": null
+        }
+      ]
+    },
+    "고유 스킬 2": {
+      "id": "r%5B~U",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "명심\n==필름==의 중첩 가능한 스택 최대치가 10스택까지 증가되고, ==줌==의 중첩 가능한 스택 최대치가 4스택까지 증가된다.\n루실라가 ==「사진」==을 소모할 때마다 ==공명 모드 · 서리== / ==공명 모드 · 에코==에 있을 시, 2스택의 ==필름== / 1스택의 ==줌==을 획득한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "명심\n==필름==의 중첩 가능한 스택 최대치가 10스택까지 증가되고, ==줌==의 중첩 가능한 스택 최대치가 4스택까지 증가된다.\n루실라가 ==「사진」==을 소모할 때마다 ==공명 모드 · 서리== / ==공명 모드 · 에코==에 있을 시, 2스택의 ==필름== / 1스택의 ==줌==을 획득한다",
+          "href": null
+        }
+      ]
+    },
+    "기본 공격": {
+      "id": "t%40zW",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "스냅샷\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "스냅샷\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "일반 공격",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "일반 공격",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n최대 3단 연속 공격을 가하고 응결 피해를 입힌다.\n==일반 공격 3단== 발동 시, ==일반 공격==을 길게 누르면 ==포커스 링==을 펼치고, 바늘이 ==포커스 링==에서 움직인다.\n· 바늘이 ==완벽한 초점 거리==에 있지 않을 시, ==일반 공격==에서 손을 떼면 루실라는 ==일반 공격 3단 · 무색무취==를 발동하고, 응결 피해를 입히며 ==「인상」==을 회복한다.\n· 바늘이 ==완벽한 초점 거리==에 있을 시, ==일반 공격==에서 손을 떼면 루실라는 ==일반 공격 3단 · 매력가득==을 발동하고, 더 높은 응결 피해를 입히며 더 많은 ==「인상」==을 회복한다.\n==일반 공격 2단== 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==포커스 링==을 펼치지 않고, 즉시 ==일반 공격 3단 · 무색무취==를 발동한다.\n==포커스 링==을 펼치는 기간 동안, ==완벽한 초점 거리== 구역이 점차 확대된다. ==포커스 링==이 ==완벽한 초점 거리== 구역으로 가득 채워진 후 자동으로 접히고, 루실라는 즉시 ==일반 공격 3단 · 매력가득==을 발동한다.\n==일반 공격==을 길게 누를 시 ==일반 공격 1, 2, 3단==을 순차적으로 발동하고, ==일반 공격 3단== 발동 시 ==포커스 링==을 펼친다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n최대 3단 연속 공격을 가하고 응결 피해를 입힌다.\n==일반 공격 3단== 발동 시, ==일반 공격==을 길게 누르면 ==포커스 링==을 펼치고, 바늘이 ==포커스 링==에서 움직인다.\n· 바늘이 ==완벽한 초점 거리==에 있지 않을 시, ==일반 공격==에서 손을 떼면 루실라는 ==일반 공격 3단 · 무색무취==를 발동하고, 응결 피해를 입히며 ==「인상」==을 회복한다.\n· 바늘이 ==완벽한 초점 거리==에 있을 시, ==일반 공격==에서 손을 떼면 루실라는 ==일반 공격 3단 · 매력가득==을 발동하고, 더 높은 응결 피해를 입히며 더 많은 ==「인상」==을 회복한다.\n==일반 공격 2단== 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==포커스 링==을 펼치지 않고, 즉시 ==일반 공격 3단 · 무색무취==를 발동한다.\n==포커스 링==을 펼치는 기간 동안, ==완벽한 초점 거리== 구역이 점차 확대된다. ==포커스 링==이 ==완벽한 초점 거리== 구역으로 가득 채워진 후 자동으로 접히고, 루실라는 즉시 ==일반 공격 3단 · 매력가득==을 발동한다.\n==일반 공격==을 길게 누를 시 ==일반 공격 1, 2, 3단==을 순차적으로 발동하고, ==일반 공격 3단== 발동 시 ==포커스 링==을 펼친다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "공중 공격",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "공중 공격",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n스태미나를 소모하여 공중 낙하 공격을 가하고 응결 피해를 입힌다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 2단==을 발동한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n스태미나를 소모하여 공중 낙하 공격을 가하고 응결 피해를 입힌다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 2단==을 발동한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "회피 반격",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "회피 반격",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n회피 성공 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 목표를 공격하고 응결 피해를 입힌다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 3단==을 발동한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n회피 성공 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 목표를 공격하고 응결 피해를 입힌다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 3단==을 발동한다",
+          "href": null
+        }
+      ]
+    },
+    "공명 스킬": {
+      "id": "tgyL",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "환상 프레임",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "환상 프레임",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n주변 목표를 끌어당기고 응결 피해를 입힌다.\n발동 시, ==공명 스킬==을 길게 누르면 ==포커스 링==을 펼치고 바늘이 ==포커스 링==에서 움직인다.\n· 바늘이 ==완벽한 초점 거리==에 있지 않을 시, ==공명 스킬==에서 손을 떼면 루실라는 ==필 라이트==를 발동하고, 응결 피해를 입히며 ==「인상」==을 회복한다.\n· 바늘이 ==완벽한 초점 거리==에 있을 시, ==공명 스킬==에서 손을 떼면 루실라는 ==팔로우 스폿==을 발동하고, 더 높은 응결 피해를 입히며 더 많은 ==「인상」==을 회복한다.\n발동 시, ==공명 스킬==을 길게 누르지 않고 루실라가 등장 캐릭터일 경우, ==포커스 링==을 펼치지 않고, 즉시 ==필 라이트==를 발동한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n주변 목표를 끌어당기고 응결 피해를 입힌다.\n발동 시, ==공명 스킬==을 길게 누르면 ==포커스 링==을 펼치고 바늘이 ==포커스 링==에서 움직인다.\n· 바늘이 ==완벽한 초점 거리==에 있지 않을 시, ==공명 스킬==에서 손을 떼면 루실라는 ==필 라이트==를 발동하고, 응결 피해를 입히며 ==「인상」==을 회복한다.\n· 바늘이 ==완벽한 초점 거리==에 있을 시, ==공명 스킬==에서 손을 떼면 루실라는 ==팔로우 스폿==을 발동하고, 더 높은 응결 피해를 입히며 더 많은 ==「인상」==을 회복한다.\n발동 시, ==공명 스킬==을 길게 누르지 않고 루실라가 등장 캐릭터일 경우, ==포커스 링==을 펼치지 않고, 즉시 ==필 라이트==를 발동한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "필 라이트",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "필 라이트",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n목표를 공격하고 응결 피해를 입히며 ==공명 스킬==의 쿨타임을 8초 감소시킨다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 2단==을 발동한다.\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n목표를 공격하고 응결 피해를 입히며 ==공명 스킬==의 쿨타임을 8초 감소시킨다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 2단==을 발동한다.\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "팔로우 스폿",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "팔로우 스폿",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n목표를 공격하고 응결 피해를 입힌다.\n==팔로우 스폿== 발동 기간 동안, 루실라 자신의 협주 에너지가 추가로 20pt 회복되고 루실라가 ==공명 모드 · 서리==에 있을 시, 명중된 목표에게 1스택의 ==「서리 효과」==를 추가한다.\n==팔로우 스폿==은 적의 공격에 의해 중단되지 않으며, ==팔로우 스폿== 발동 기간 동안 다른 캐릭터로 전환하면 즉시 종료된다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 2단==을 발동한다",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n목표를 공격하고 응결 피해를 입힌다.\n==팔로우 스폿== 발동 기간 동안, 루실라 자신의 협주 에너지가 추가로 20pt 회복되고 루실라가 ==공명 모드 · 서리==에 있을 시, 명중된 목표에게 1스택의 ==「서리 효과」==를 추가한다.\n==팔로우 스폿==은 적의 공격에 의해 중단되지 않으며, ==팔로우 스폿== 발동 기간 동안 다른 캐릭터로 전환하면 즉시 종료된다.\n해당 스킬 발동 후 일정 시간 내에, ==일반 공격==을 짧게 누르면 ==일반 공격 2단==을 발동한다",
+          "href": null
+        }
+      ]
+    },
+    "이름": {
+      "id": "tzCm",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "루실라",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "루실라",
+          "href": null
+        }
+      ]
+    },
+    "전투 역할": {
+      "id": "urqL",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n에코 어빌리티 피해 부스트 : 파티 내 특정 캐릭터의 에코 어빌리티 피해를 부스트 시킨다\n서리 : 서리 효과 사용 가능\n에코 어빌리티 피해 : 에코 어빌리티 피해 비교적 높음",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n에코 어빌리티 피해 부스트 : 파티 내 특정 캐릭터의 에코 어빌리티 피해를 부스트 시킨다\n서리 : 서리 효과 사용 가능\n에코 어빌리티 피해 : 에코 어빌리티 피해 비교적 높음",
+          "href": null
+        }
+      ]
+    },
+    "언어별 표기": {
+      "id": "y%3C%5Cn",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "🇰🇷 루실라 / 🇺🇸 Lucilla / 🇨🇳 洛瑟菈 / 🇯🇵 ルシラー",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "🇰🇷 루실라 / 🇺🇸 Lucilla / 🇨🇳 洛瑟菈 / 🇯🇵 ルシラー",
+          "href": null
+        }
+      ]
+    },
+    "스킬 입력 가이드": {
+      "id": "%7C%3AFk",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "스킬 입력 가이드 a 타입\n",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "스킬 입력 가이드 a 타입\n",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "특징",
+            "link": null
+          },
+          "annotations": {
+            "bold": true,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "특징",
+          "href": null
+        },
+        {
+          "type": "text",
+          "text": {
+            "content": "\n파티 내 캐릭터에게 피해 보너스 효과를 제공한다\n==공명 모드 · 서리==에 있을 시, ==「서리 효과」==를 추가하는 능력을 지니며, 서리 효과 파티의 피해를 증가시킬 수 있다\n==공명 모드 · 에코==에 있을 시, 에코 어빌리티를 여러 번 발동하는 능력을 지니며, 에코 어빌리티 파티의 피해를 증가시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지1.webp]\n· ==공명 스킬== 혹은 ==일반 공격 3단== 발동 시, ==공명 스킬== 혹은 ==일반 공격==을 길게 누르면 ==포커스 링==을 펼칠 수 있다.\n바늘이 ==완벽한 초점 거리==에 있을 시, ==공명 스킬== 혹은 ==일반 공격==에서 손을 떼면, ==루실라==는 더 높은 피해를 입히고, 더 많은 특수 에너지 ==「인상」==을 회복한다\n[공명 회로 게이지2.webp]\n· ==변주 스킬==, ==공명 스킬==, ==일반 공격 3단==을 발동하면 특수 에너지 ==「인상」==을 회복할 수 있으며, 50pt의 ==「인상」==을 회복할 때마다 자동으로 1장의 ==「사진」==으로 전환되어 인화된다\n[공명 회로 게이지3.webp]\n· ==공명 해방==을 발동하고 ==추억 상태==에 진입한 기간 동안, ==일반 공격 · 플래시 백 3단== 발동 시 ==일반 공격==을 짧게 누르거나 혹은 길게 누르면 지속적으로 ==「사진」==을 소모하고 추가 공격을 가하여 피해를 입힌다\n메커니즘 설명\n· 공명 스킬 · 팔로우 스폿: ==공명 스킬== 발동 시,  [key e] 길게 눌러 ==포커스 링==을 펼치고, 바늘이 ==완벽한 초점 거리==에 있을 시 [key e]에서 손 떼기\n· 일반 공격 3단 · 매력가득: ==일반 공격 3단== 발동 시, [mouse left] 길게 눌러 포커스 링을 펼치고, 바늘이 완벽한 초점 거리에 있을 시 [mouse left]에서 손 떼기\n· 일반 공격 · 플래시 백: 추억 상태 기간 동안 [mouse left] 짧게 누르거나 길게 누르기",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "\n파티 내 캐릭터에게 피해 보너스 효과를 제공한다\n==공명 모드 · 서리==에 있을 시, ==「서리 효과」==를 추가하는 능력을 지니며, 서리 효과 파티의 피해를 증가시킬 수 있다\n==공명 모드 · 에코==에 있을 시, 에코 어빌리티를 여러 번 발동하는 능력을 지니며, 에코 어빌리티 파티의 피해를 증가시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지1.webp]\n· ==공명 스킬== 혹은 ==일반 공격 3단== 발동 시, ==공명 스킬== 혹은 ==일반 공격==을 길게 누르면 ==포커스 링==을 펼칠 수 있다.\n바늘이 ==완벽한 초점 거리==에 있을 시, ==공명 스킬== 혹은 ==일반 공격==에서 손을 떼면, ==루실라==는 더 높은 피해를 입히고, 더 많은 특수 에너지 ==「인상」==을 회복한다\n[공명 회로 게이지2.webp]\n· ==변주 스킬==, ==공명 스킬==, ==일반 공격 3단==을 발동하면 특수 에너지 ==「인상」==을 회복할 수 있으며, 50pt의 ==「인상」==을 회복할 때마다 자동으로 1장의 ==「사진」==으로 전환되어 인화된다\n[공명 회로 게이지3.webp]\n· ==공명 해방==을 발동하고 ==추억 상태==에 진입한 기간 동안, ==일반 공격 · 플래시 백 3단== 발동 시 ==일반 공격==을 짧게 누르거나 혹은 길게 누르면 지속적으로 ==「사진」==을 소모하고 추가 공격을 가하여 피해를 입힌다\n메커니즘 설명\n· 공명 스킬 · 팔로우 스폿: ==공명 스킬== 발동 시,  [key e] 길게 눌러 ==포커스 링==을 펼치고, 바늘이 ==완벽한 초점 거리==에 있을 시 [key e]에서 손 떼기\n· 일반 공격 3단 · 매력가득: ==일반 공격 3단== 발동 시, [mouse left] 길게 눌러 포커스 링을 펼치고, 바늘이 완벽한 초점 거리에 있을 시 [mouse left]에서 손 떼기\n· 일반 공격 · 플래시 백: 추억 상태 기간 동안 [mouse left] 짧게 누르거나 길게 누르기",
+          "href": null
+        }
+      ]
+    },
+    "소속": {
+      "id": "%7C%3Deu",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "스타토치 아카데미",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "스타토치 아카데미",
+          "href": null
+        }
+      ]
+    },
+    "스킬 재료": {
+      "id": "%7CDJV",
+      "type": "rich_text",
+      "rich_text": [
+        {
+          "type": "text",
+          "text": {
+            "content": "클램 코인x2,030,000\n저주파수 메카 성핵x25\n중주파수 메카 성핵x28\n고주파수 메카 성핵x40\n전주파수 메카 성핵x57\n되묻는 우리x26\n긁어모은 현x25\n끊어진 현x28\n응고된 현x55\n노래하는 현x67",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "클램 코인x2,030,000\n저주파수 메카 성핵x25\n중주파수 메카 성핵x28\n고주파수 메카 성핵x40\n전주파수 메카 성핵x57\n되묻는 우리x26\n긁어모은 현x25\n끊어진 현x28\n응고된 현x55\n노래하는 현x67",
+          "href": null
+        }
+      ]
+    },
+    "속성": {
+      "id": "%7D%5DTH",
+      "type": "select",
+      "select": {
+        "id": "c4e1c628-46ab-4b2d-a86f-7e6e90469f87",
+        "name": "응결",
+        "color": "blue"
+      }
+    },
+    "캐릭터": {
+      "id": "title",
+      "type": "title",
+      "title": [
+        {
+          "type": "text",
+          "text": {
+            "content": "루실라",
+            "link": null
+          },
+          "annotations": {
+            "bold": false,
+            "italic": false,
+            "strikethrough": false,
+            "underline": false,
+            "code": false,
+            "color": "default"
+          },
+          "plain_text": "루실라",
+          "href": null
+        }
+      ]
+    }
+  },
+  "url": "https://app.notion.com/p/37895fae3dc780b5a01cdd19f5c97f43",
+  "public_url": null,
+  "archived": false
+}

@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 interface ItemIconProps {
   name: string;
-  count?: string;
+  count?: string | number;
   onClick?: () => void;
   rarityOverride?: number;
   size?: 'sm' | 'md';
@@ -90,9 +90,9 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
           onError={handleError}
         />
 
-        {count && (
+        {count !== undefined && count !== null && (
           <div className="absolute bottom-0 right-0 left-0 bg-black/85 backdrop-blur-md px-2 py-1 text-[11px] md:text-[13px] font-black text-white text-right z-30 border-t border-white/10 font-sans tabular-nums tracking-tight">
-            {count}
+            {typeof count === 'number' ? count.toLocaleString() : count}
           </div>
         )}
       </div>

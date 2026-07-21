@@ -8,6 +8,7 @@ This document serves as the **Source of Truth** for the visual language and comp
 - **Global Background**: `#0a0a0a` (Solid), `#121212` (Card surfaces)
 - **HSR Theme**: `#7E30E1` (Primary), `#E26EE5` (Secondary)
 - **WW Theme**: `#EAB308` (Primary), `#FDE047` (Secondary)
+- **NTE Theme**: `#00D287` (Primary), `#34D399` (Secondary)
 - **System**: `#FFD600` (Accent/Numbers), `#00E676` (Success/Aero), `#FF5252` (Error/Havoc)
 
 ### Glassmorphism (Glass Card)
@@ -30,6 +31,13 @@ Standard definition for `glass-card`:
 - **Max Width**: `max-w-[1600px]`
 - **Alignment**: `mx-auto`
 - **Responsive Padding**: `px-4 md:px-8`
+
+### Image Asset Standards (CDN)
+- **GitHub CDN Integration**: All images are loaded from the official GitHub repository via `raw.githubusercontent.com` or `cdn.jsdelivr.net`.
+- **Game Directories**: `hsr images/`, `ww images/`, `nte images/`
+- **Naming Conventions**: 
+  - Standard formatting: `[Korean Folder Name]/[Image Type].webp` (e.g., `portrait.png`, `art01.webp`).
+  - **NTE Compliance Rule**: If a Neverness to Everness (NTE) asset contains a colon (`:`) in its name, it **must** be replaced with an underscore (`_`) in the URL path to ensure GitHub and Windows file system compatibility.
 
 ### Standard Grid Patterns
 - **Detail Pages**: 
