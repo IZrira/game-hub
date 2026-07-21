@@ -5,6 +5,7 @@ export interface TierCharacter {
   folderName: string;
   role: '메인 딜러' | '서브 딜러' | '서포터' | '생존';
   change?: 'up' | 'down' | 'new' | 'stay';
+  displayOrder?: number;
 }
 
 export interface TierCategory {

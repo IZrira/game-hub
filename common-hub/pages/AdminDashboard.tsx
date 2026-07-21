@@ -279,11 +279,48 @@ const AdminDashboard: React.FC = () => {
         .upsert(charTasks, { onConflict: 'id' });
 
       if (error) throw error;
-      alert(`성공적으로 ${activeGame.toUpperCase()} 캐릭터 도감이 동기화되었습니다!`);
+      alert('캐릭터 동기화가 완료되었습니다.');
       fetchBaseData();
-    } catch (err: any) {
+    } catch (err) {
       console.error('Sync Error:', err);
-      alert('동기화 실패: ' + err.message);
+      alert('오류가 발생했습니다.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const syncWwWeaponsFromLocal = async () => {
+    if (activeGame !== 'ww') return;
+    if (!window.confirm(`로컬 파일의 WW 무기 데이터를 DB로 전송하시겠습니까?`)) return;
+    
+    setLoading(true);
+    try {
+      const { WEAPON_DB } = getGameData('ww');
+      const weaponTasks = WEAPON_DB.map((w: any) => ({
+        id: w.id || w.name.toLowerCase().replace(/\s+/g, '_'),
+        name: w.name,
+        rarity: w.rarity || 5,
+        type: w.type || '직검',
+        release_version: w.releaseVersion || '1.0',
+        obtain: w.obtain || '',
+        base_atk: w.stats?.atk || 0,
+        sub_stat_name: w.stats?.subStatName || '',
+        sub_stat_value: w.stats?.subStatValue || '',
+        skill_name: w.skill?.name || '',
+        skill_description: w.skill?.description || '',
+        description: w.description || ''
+      }));
+
+      const { error } = await supabase
+        .from('ww_weapons')
+        .upsert(weaponTasks, { onConflict: 'id' });
+
+      if (error) throw error;
+      
+      alert('WW 무기 데이터 연동이 완료되었습니다.');
+    } catch (err) {
+      console.error('Weapon Sync Error:', err);
+      alert('무기 동기화 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }
@@ -761,6 +798,15 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     <Users size={14} />
                     도감 데이터 동기화
                   </button>
+                  {activeGame === 'ww' && (
+                    <button 
+                      onClick={syncWwWeaponsFromLocal}
+                      className="flex items-center gap-2 px-6 py-3 bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/20 rounded-2xl text-[11px] font-black transition-all active:scale-95 text-blue-500"
+                    >
+                      <Database size={14} />
+                      WW 무기 동기화
+                    </button>
+                  )}
                   <button 
                     onClick={syncFromLocalData}
                     className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-[11px] font-black transition-all active:scale-95 text-gray-300"
