@@ -22,7 +22,8 @@ export interface TierGroup {
 
 export const WW_TIER_CATEGORIES: TierCategory[] = [
   { id: 'tower', name: '역경의 탑', description: '심층 구역 기준' },
-  { id: 'hologram', name: '홀로그램', description: '전략적 대응 필요' },
+  { id: 'illusive', name: '죽음의 노래와 바닷속 폐허', description: '로그라이크 컨텐츠' },
+  { id: 'hologram', name: '종말 매트릭스', description: '전략적 대응 필요' },
 ];
 
 export const WW_TIER_DATA: Record<string, TierGroup[]> = {
@@ -40,6 +41,16 @@ export const WW_TIER_DATA: Record<string, TierGroup[]> = {
       "label": "T1",
       "color": "#FF9F43",
       "characters": []
+    }
+  ],
+  'illusive': [
+    {
+      "tier": "T0",
+      "label": "T0",
+      "color": "#FF4D4D",
+      "characters": [
+        { "id": "char_jiyan", "folderName": "기염", "role": "메인 딜러", "name": "기염", "change": "stay" }
+      ]
     }
   ],
   'hologram': [

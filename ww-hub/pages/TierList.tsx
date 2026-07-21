@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, useMemo, memo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   Filter, Trophy, Search, Users, Shield, Zap, Sword,
@@ -6,12 +6,13 @@ import {
   Loader2, ArrowLeft
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { WW_TIER_DATA, WW_TIER_CATEGORIES, TierCharacter } from '../data/tiers';
+import { WW_TIER_DATA, WW_TIER_CATEGORIES, TierCharacter, TierGroup } from '../data/tiers';
 import { WW_CHARACTERS } from '../data/characters';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
+import { supabase } from '../../common-hub/lib/supabase';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -117,11 +118,98 @@ const TierList: React.FC = () => {
 
   const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
 
+  const [liveData, setLiveData] = useState<Record<string, TierGroup[]>>(WW_TIER_DATA);
+  const [allCharacters, setAllCharacters] = useState<any[]>([]);
+  const [isSyncing, setIsSyncing] = useState(true);
+
+  const TIER_COLORS: Record<string, string> = {
+    'OP': '#FF4D4D', 'SS': '#FF9F43', 'S+': '#1DD1A1', 'S': '#54A0FF',
+    'A': '#A8A8A8', 'B': '#5F27CD', 'C': '#8395A7', 'D': '#485460',
+    'E': '#2d3436', 'F': '#1e272e',
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (!supabase) return;
+      setIsSyncing(true);
+      
+      const { data: charData } = await supabase.from('ww_characters').select('*');
+      if (charData) setAllCharacters(charData);
+
+      const { data: tierData, error } = await supabase.from('tier_lists').select('*').eq('game_id', 'ww');
+
+      if (error) {
+        setIsSyncing(false);
+        return;
+      }
+
+      const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·\s()]/g, '').trim();
+
+      if (tierData) {
+        const transformed: Record<string, TierGroup[]> = JSON.parse(JSON.stringify(WW_TIER_DATA));
+        
+        tierData.forEach(row => {
+          if (!transformed[row.category_id]) transformed[row.category_id] = [];
+          const targetName = normalizeName(row.character_name);
+
+          transformed[row.category_id].forEach(group => {
+            group.characters = group.characters.filter(c => normalizeName(c.name) !== targetName);
+          });
+
+          let group = transformed[row.category_id].find(g => g.tier === row.tier);
+          if (!group) {
+            const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F'];
+            group = { tier: row.tier, label: row.tier, color: TIER_COLORS[row.tier] || '#ffffff', characters: [] };
+            transformed[row.category_id].push(group);
+            transformed[row.category_id].sort((a, b) => rankOrder.indexOf(a.tier) - rankOrder.indexOf(b.tier));
+          }
+
+          const baseChar = charData?.find(c => normalizeName(c.name) === targetName);
+          
+          group.characters.push({
+            id: `char_${row.character_name}`,
+            name: row.character_name,
+            folderName: baseChar?.folder_name || row.character_name,
+            role: row.role as any,
+            change: row.change as any,
+            displayOrder: row.display_order ?? 100
+          });
+        });
+
+        setLiveData(transformed);
+      }
+      setIsSyncing(false);
+    };
+
+    fetchData();
+  }, []);
+
   const filteredTierList = useMemo(() => {
-    const data = WW_TIER_DATA[activeCategory] || [];
+    const data = liveData[activeCategory] || [];
     const query = searchQuery.toLowerCase().trim();
-    
-    const allGroups = data.map(group => ({
+    const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·\s()]/g, '').trim();
+    const ratedNames = new Set(data.flatMap(group => group.characters.map(char => normalizeName(char.name))));
+
+    const unratedCharacters: TierCharacter[] = allCharacters
+      .filter(char => !ratedNames.has(normalizeName(char.name)))
+      .map(char => {
+        return {
+          id: `char_${char.id}`,
+          name: char.name,
+          folderName: char.folder_name,
+          role: '메인 딜러',
+          change: 'stay',
+          displayOrder: 100
+        };
+      });
+
+    const allGroups = [...data];
+    if (unratedCharacters.length > 0) {
+      allGroups.push({ tier: '?', label: '미편성', color: '#444444', characters: unratedCharacters });
+    }
+
+    const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'];
+    const filteredGroups = allGroups.map(group => ({
       ...group,
       characters: group.characters
         .filter(char => {
@@ -131,8 +219,7 @@ const TierList: React.FC = () => {
         })
     })).filter(group => group.characters.length > 0);
 
-    const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'];
-    return allGroups.sort((a, b) => {
+    return filteredGroups.sort((a, b) => {
       const idxA = rankOrder.indexOf(a.tier);
       const idxB = rankOrder.indexOf(b.tier);
       if (idxA === -1 && idxB === -1) return 0;
@@ -140,7 +227,7 @@ const TierList: React.FC = () => {
       if (idxB === -1) return -1;
       return idxA - idxB;
     });
-  }, [activeCategory, roleFilter, searchQuery]);
+  }, [liveData, activeCategory, roleFilter, searchQuery, allCharacters]);
 
   const carouselData = useMemo(() => {
     let position = 1;
