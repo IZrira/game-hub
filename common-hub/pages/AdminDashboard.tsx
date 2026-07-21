@@ -384,7 +384,13 @@ const AdminDashboard: React.FC = () => {
   const getEncodedUrl = (folder: string) => {
     if (!folder) return '';
     if (activeGame === 'ww') {
-      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(folder.trim())}/${safeEncodeURIComponent(folder.trim())}.webp`;
+      let mappedFolder = folder.trim();
+      const isRover = mappedFolder.startsWith('방랑자');
+      if (isRover && mappedFolder === '방랑자 · 전도') {
+        mappedFolder = '방랑자 · 회절';
+      }
+      const fileName = isRover ? `${mappedFolder}(여)` : mappedFolder;
+      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
     return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
   };

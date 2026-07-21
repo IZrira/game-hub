@@ -159,8 +159,13 @@ const TierList: React.FC = () => {
   }, [filteredTierList, gameId]);
 
   const getIconUrl = (char: TierCharacter) => {
-    const folder = char.folderName || char.name;
-    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${folder.normalize('NFC')}.webp`);
+    let folder = char.folderName || char.name;
+    const isRover = folder.startsWith('방랑자');
+    if (isRover && folder === '방랑자 · 전도') {
+      folder = '방랑자 · 회절';
+    }
+    const fileName = isRover ? `${folder}(여)` : folder;
+    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${fileName.normalize('NFC')}.webp`);
   };
 
   return (

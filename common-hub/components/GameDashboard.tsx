@@ -45,6 +45,17 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
   // CDN URL
   const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
+  const getWwCharacterImage = (folder: string) => {
+    let mappedFolder = (folder || '').trim();
+    if (!mappedFolder) return '';
+    const isRover = mappedFolder.startsWith('방랑자');
+    if (isRover && mappedFolder === '방랑자 · 전도') {
+      mappedFolder = '방랑자 · 회절';
+    }
+    const fileName = isRover ? `${mappedFolder}(여)` : mappedFolder;
+    return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
+  };
+
   // Get latest characters
   const latestCharacters = CHARACTER_DB
     .filter((c: Character) => c.gameId === game.id)
@@ -60,7 +71,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
       rarity: c.rarity,
       image: game.id === 'hsr' 
         ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(c.folderName || c.name || '')}/${c.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-        : `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(c.folderName || c.name || '')}/${safeEncodeURIComponent(c.folderName || c.name || '')}.webp`,
+        : getWwCharacterImage(c.folderName || c.name || ''),
       link: `/gallery/${game.id}/character/${c.id}`
     })),
     
@@ -201,7 +212,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                     <img 
                       src={game.id === 'hsr' 
                         ? `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(char.folderName || char.name)}/${char.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`
-                        : `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/${safeEncodeURIComponent(char.folderName || char.name)}.webp`
+                        : getWwCharacterImage(char.folderName || char.name)
                       }
                       alt={t(char.name)}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent"

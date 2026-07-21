@@ -27,8 +27,13 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
   const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
 
   const getIconUrl = (member: { folderName?: string; name: string }) => {
-    const folder = member.folderName || member.name;
-    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${folder.normalize('NFC')}.webp`);
+    let folder = member.folderName || member.name;
+    const isRover = folder.startsWith('방랑자');
+    if (isRover && folder === '방랑자 · 전도') {
+      folder = '방랑자 · 회절';
+    }
+    const fileName = isRover ? `${folder}(여)` : folder;
+    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${fileName.normalize('NFC')}.webp`);
   };
 
   return (
