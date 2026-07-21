@@ -21,9 +21,12 @@ export const getGameData = (targetId: string) => {
       let description = item.content || '노션에서 연동된 무기 스토리입니다.';
 
       if (item.growthStats) {
-        // 90레벨(또는 1~2성 무기의 경우 70레벨) 최종 스탯에서 고정밀 추출 시도 (부옵션명에 공백 포함 가능하도록 [^\n*]+? 적용)
-        const lvRegex = /(?:90|80|70)\s*:\s*(?:기초\s*)?공격력\s*\*?\*?(\d+)\*?\*?\s*\/\s*([^\n*]+?)\s*\*?\*?([\d.]+%?)\*?\*?/i;
-        const lvMatch = item.growthStats.match(lvRegex);
+        // 90레벨(또는 1~2성 무기의 경우 70레벨) 최종 스탯에서 고정밀 추출 시도
+        const extractStats = (level: number) => {
+          const regex = new RegExp(`${level}\\s*:\\s*(?:기초\\s*)?공격력\\s*\\*?\\*?(\\d+)\\*?\\*?\\s*\\/\\s*([^\\n*]+?)\\s*\\*?\\*?([\\d.]+%?)\\*?\\*?`, 'i');
+          return item.growthStats.match(regex);
+        };
+        const lvMatch = extractStats(90) || extractStats(80) || extractStats(70);
 
         if (lvMatch) {
           atk = parseInt(lvMatch[1], 10);
