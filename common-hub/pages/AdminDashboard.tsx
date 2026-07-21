@@ -1026,6 +1026,8 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                   </div>
                 </div>
               </div>
+            </div>
+            )}
             </>
           )}
         </main>
