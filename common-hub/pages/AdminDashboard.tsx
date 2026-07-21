@@ -33,13 +33,37 @@ const AdminDashboard: React.FC = () => {
     is_critical: false
   });
 
-  // 컨텐츠 카테고리
-  const CATEGORIES = [
-    { id: 'chaos', name: '혼돈' },
-    { id: 'fiction', name: '허구' },
-    { id: 'shadow', name: '종말' },
-    { id: 'divergent', name: '이상' }
-  ];
+  // 컨텐츠 카테고리 동적 구성
+  const getCategories = () => {
+    if (activeGame === 'ww') {
+      return [
+        { id: 'tower', name: '역경의 탑' },
+        { id: 'illusive', name: '죽음의 노래와 바닷속 폐허' },
+        { id: 'hologram', name: '종말 매트릭스' }
+      ];
+    }
+    if (activeGame === 'nte') {
+      return [
+        { id: 'endgame1', name: '엔드 컨텐츠 1' },
+        { id: 'endgame2', name: '엔드 컨텐츠 2' }
+      ];
+    }
+    return [
+      { id: 'chaos', name: '혼돈' },
+      { id: 'fiction', name: '허구' },
+      { id: 'shadow', name: '종말' },
+      { id: 'divergent', name: '이상' }
+    ];
+  };
+
+  const CATEGORIES = getCategories();
+
+  // 게임 변경 시 카테고리 초기화
+  useEffect(() => {
+    if (activeGame) {
+      setActiveCategoryId(getCategories()[0].id);
+    }
+  }, [activeGame]);
 
   // 신규 캐릭터 양식
   const [newChar, setNewChar] = useState({
@@ -359,7 +383,8 @@ const AdminDashboard: React.FC = () => {
 
   const getEncodedUrl = (folder: string) => {
     if (!folder) return '';
-    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
+    const imagePath = activeGame === 'ww' ? 'characters' : '캐릭터';
+    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/${imagePath}/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Activity className="animate-spin text-amber-500" size={48} /></div>;
