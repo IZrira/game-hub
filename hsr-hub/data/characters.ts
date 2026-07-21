@@ -88,8 +88,11 @@ import trailblazerElation from './characters/hsr/trailblazer_elation';
 import silverWolf999 from './characters/hsr/silver_wolf_999';
 import evanescia from './characters/hsr/evanescia';
 import mortenaxBlade from './characters/hsr/mortenax_blade';
+import himekoNova from './characters/hsr/himeko_nova';
 
 export const CHARACTER_DATA: Character[] = [
+  // 4.4
+  himekoNova,
   // 4.3
   mortenaxBlade,
   // 4.2
