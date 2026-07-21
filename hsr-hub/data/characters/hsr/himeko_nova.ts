@@ -3,7 +3,7 @@ import { Character } from '../../../../common-hub/types';
 const himekoNova: Character = {
   id: 'himeko_nova',
   name: '히메코·노바',
-  folderName: '히메코·노바',
+  folderName: '히메코•노바',
   gameId: 'hsr',
   path: '지식',
   attribute: '화염',
