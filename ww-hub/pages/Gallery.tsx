@@ -207,7 +207,7 @@ const GalleryWW: React.FC = () => {
                   <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('최근 공명자 업데이트')}</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                  {CHARACTER_DB.slice(0, 5).map((char: any, idx: number) => (
+                  {filteredCharacters.slice(0, 5).map((char: any, idx: number) => (
                     <CharacterPremiumCard key={char.id} char={char} index={idx} />
                   ))}
                 </div>

@@ -192,22 +192,7 @@ const GalleryHSR: React.FC = () => {
                   <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('최근 업데이트 캐릭터')}</h3>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                  {[...CHARACTER_DB]
-                    .sort((a, b) => {
-                      const vA = parseFloat(a.releaseVersion || '1.0');
-                      const vB = parseFloat(b.releaseVersion || '1.0');
-                      if (vA !== vB) return vB - vA;
-                      
-                      // 4.2 버전 특별 정렬
-                      if (vA === 4.2) {
-                        const order42 = ['에바네시아', '은랑 LV.999', '개척자 (환락)'];
-                        const idxA = order42.indexOf(a.name);
-                        const idxB = order42.indexOf(b.name);
-                        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
-                      }
-
-                      return (b.rarity || 0) - (a.rarity || 0);
-                    })
+                  {filteredCharacters
                     .slice(0, 5)
                     .map((char: any, idx: number) => (
                       <CharacterPremiumCard key={char.id} char={char} index={idx} />
