@@ -39,6 +39,7 @@ import gallagher from './characters/hsr/gallagher';
 import himeko from './characters/hsr/himeko';
 import welt from './characters/hsr/welt';
 import rinTohsaka from './characters/hsr/rin_tohsaka';
+import gilgamesh from './characters/hsr/gilgamesh';
 import kafka from './characters/hsr/kafka';
 import silverWolf from './characters/hsr/silver_wolf';
 import saber from './characters/hsr/saber';
@@ -211,5 +212,6 @@ export const CHARACTER_DATA: Character[] = [
   qingque,
   tingyun,
   // Custom
-  rinTohsaka
+  rinTohsaka,
+  gilgamesh
 ];
