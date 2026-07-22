@@ -463,5 +463,37 @@ export const ORNAMENT_DATA: Ornament[] = [
       { type: "Link Rope", name: "살소토의명암 경계선", enName: "Salsotto's Terminator Line" }
     ],
     image: "회전을 멈춘 살소토"
+  },
+  {
+    id: "ornament_우주_생명과학연구원",
+    gameId: "hsr",
+    name: "우주 생명과학연구원",
+    enName: "Space Life Science Research Institute",
+    folderName: "우주 생명과학연구원",
+    type: "차원 장신구",
+    setEffect: {
+      "2piece": "전투 진입 시 장착한 캐릭터의 에너지 최대치가 200pt 이상일 경우, 초과한 에너지 최대치 1pt당 장착한 캐릭터가 가하는 피해가 0.2% 증가하며, 최대 32% 증가한다"
+    },
+    pieces: [
+      { type: "Planar Sphere", name: "생명과학연구원의 중심 시냅스", enName: "Central Synapse of Life Science Research Institute" },
+      { type: "Link Rope", name: "생명과학연구원의 외곽 파이프라인", enName: "Peripheral Pipeline of Life Science Research Institute" }
+    ],
+    image: "우주 생명과학연구원"
+  },
+  {
+    id: "ornament_추락한_별의_출항지",
+    gameId: "hsr",
+    name: "추락한 별의 출항지",
+    enName: "Stranded Star's Point of Departure",
+    folderName: "추락한 별의 출항지",
+    type: "차원 장신구",
+    setEffect: {
+      "2piece": "장착한 캐릭터의 치명타 확률이 8% 증가한다. 전투 진입 시, 장착한 캐릭터와 다른 동료 1명이 모두 개척 동행 캐릭터일 경우, 장착한 캐릭터의 치명타 피해가 32% 증가한다"
+    },
+    pieces: [
+      { type: "Planar Sphere", name: "출항지의 좌초된 열차", enName: "Stranded Train at Point of Departure" },
+      { type: "Link Rope", name: "출항지의 꿈이 깃든 은하 궤도", enName: "Dream-Infused Galactic Track at Point of Departure" }
+    ],
+    image: "추락한 별의 출항지"
   }
 ];
