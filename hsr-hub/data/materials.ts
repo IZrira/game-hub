@@ -74,7 +74,8 @@ const MANUAL_CHARACTER_ASCENSION_DATA: Record<string, MaterialDetail> = {
   "광뢰의 스트로크": { desc: "로큰롤 매니악들이 애용하는 악기. 번개 속성 캐릭터의 승급 소재", type: "캐릭터 승급 재료", rarity: 4, sources: ["정체된 허영 [폭음의 형체]", "「만능 합성기」- 재료 치환"] },
   "석양에 불탄 꽃봉오리": { desc: "검은 태양의 그리핀 머리에 있는 침식 코어. 바람 속성 캐릭터의 승급 소재", type: "캐릭터 승급 재료", rarity: 4, sources: ["정체된 허영 [「천궁 요새」 조석의 눈]", "「만능 합성기」- 재료 치환"] },
   "어두운 장막의 달빛": { desc: "달밤의 페가수스가 떨군 기이한 형태의 머리 장식. 양자 속성 캐릭터의 승급 소재", type: "캐릭터 승급 재료", rarity: 4, sources: ["정체된 허영 [「잠꼬대의 밀림」 깨달음의 나무 정원]", "「만능 합성기」- 재료 치환"] },
-  "분쟁의 전조": { desc: "천벌의 집정관이 짊어진 황금빛 원형 날. 허수 속성 캐릭터의 승급 소재", type: "캐릭터 승급 재료", rarity: 4, sources: ["정체된 허영 [「운명의 심연」 야누소폴리스]", "「만능 합성기」- 재료 치환"] }
+  "분쟁의 전조": { desc: "천벌의 집정관이 짊어진 황금빛 원형 날. 허수 속성 캐릭터의 승급 소재", type: "캐릭터 승급 재료", rarity: 4, sources: ["정체된 허영 [「운명의 심연」 야누소폴리스]", "「만능 합성기」- 재료 치환"] },
+  "비웃는 광대 가면": { desc: "양자 속성 캐릭터의 승급 소재", type: "캐릭터 승급 재료", rarity: 4, sources: ["정체된 허영", "「만능 합성기」- 재료 치환"] }
 };
 
 export const CHARACTER_ASCENSION_DATA: Record<string, MaterialDetail> = { ...MANUAL_CHARACTER_ASCENSION_DATA };

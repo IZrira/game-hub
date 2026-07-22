@@ -38,6 +38,7 @@ import march7thHunt from './characters/hsr/march_7th_hunt';
 import gallagher from './characters/hsr/gallagher';
 import himeko from './characters/hsr/himeko';
 import welt from './characters/hsr/welt';
+import rinTohsaka from './characters/hsr/rin_tohsaka';
 import kafka from './characters/hsr/kafka';
 import silverWolf from './characters/hsr/silver_wolf';
 import saber from './characters/hsr/saber';
@@ -208,5 +209,7 @@ export const CHARACTER_DATA: Character[] = [
   sushang,
   hook,
   qingque,
-  tingyun
+  tingyun,
+  // Custom
+  rinTohsaka
 ];
