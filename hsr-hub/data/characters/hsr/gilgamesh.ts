@@ -77,6 +77,7 @@ const gilgamesh: Character = {
     {
       name: '나른한 방심',
       tag: '전투 스킬 | 단일',
+      icon: 'talent_2',
       description: '지정된 단일 적에게 길가메시 공격력의 100%만큼 번개 속성 피해를 가한다',
       energyRegen: '에너지 회복 20',
       toughnessDMG: '약점 격파 단일 10'
