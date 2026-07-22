@@ -116,7 +116,7 @@ export const useGalleryFilter = (
       if (r.gameId !== gameId) return false;
       if (searchQuery && !(r.name || '').toLowerCase().includes(searchQuery.toLowerCase())) return false;
       return true;
-    });
+    }).reverse();
   }, [RELIC_DB, gameId, searchQuery]);
 
   const filteredOrnaments = useMemo(() => {
@@ -124,7 +124,7 @@ export const useGalleryFilter = (
       if (o.gameId !== gameId) return false;
       if (searchQuery && !(o.name || '').toLowerCase().includes(searchQuery.toLowerCase())) return false;
       return true;
-    });
+    }).reverse();
   }, [ORNAMENT_DB, gameId, searchQuery]);
 
   const filteredItems = useMemo(() => {
