@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const jiyan: WuwaCharacter = {
   id: "jiyan",
@@ -26,20 +26,17 @@ const jiyan: WuwaCharacter = {
     { label: "강공격 피해", description: "비교적 높은 강공격 피해" },
     { label: "견인", description: "일정 범위 내의 목표를 특정 위치로 견인 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 839, "기초 공격력": 35, "기초 방어력": 97 },
-    lv20: { "기초 HP": 2182, "기초 공격력": 91, "기초 방어력": 249 },
-    lv30: { "기초 HP": 3449, "기초 공격력": 147, "기초 방어력": 392 },
-    lv40: { "기초 HP": 4156, "기초 공격력": 176, "기초 방어력": 472 },
-    lv50: { "기초 HP": 5422, "기초 공격력": 232, "기초 방어력": 614 },
-    lv60: { "기초 HP": 6688, "기초 공격력": 288, "기초 방어력": 757 },
-    lv70: { "기초 HP": 7955, "기초 공격력": 344, "기초 방어력": 900 },
-    lv80: { "기초 HP": 9221, "기초 공격력": 391, "기초 방어력": 1043 },
-    lv90: { "기초 HP": 10488, "기초 공격력": 438, "기초 방어력": 1186 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [839, 35, 97, 0],
+    [2182, 91, 249, 0],
+    [3449, 147, 392, 0],
+    [4156, 176, 472, 0],
+    [5422, 232, 614, 0],
+    [6688, 288, 757, 0],
+    [7955, 344, 900, 0],
+    [9221, 391, 1043, 0],
+    [10488, 438, 1186, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),

@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const the_shorekeeper: WuwaCharacter = {
   id: "the_shorekeeper",
@@ -26,20 +26,17 @@ const the_shorekeeper: WuwaCharacter = {
     { label: "견인", description: "일정 범위 내의 목표를 특정 위치로 견인 가능" },
     { label: "피해 부스트", description: "파티 내 특정 캐릭터의 피해 부스트 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 1337, "기초 공격력": 23, "기초 방어력": 90, "조화도 파괴 증폭": 0 },
-    lv20: { "기초 HP": 3478, "기초 공격력": 60, "기초 방어력": 231, "조화도 파괴 증폭": 0 },
-    lv30: { "기초 HP": 5496, "기초 공격력": 96, "기초 방어력": 363, "조화도 파괴 증폭": 0 },
-    lv40: { "기초 HP": 6622, "기초 공격력": 116, "기초 방어력": 438, "조화도 파괴 증폭": 0 },
-    lv50: { "기초 HP": 8640, "기초 공격력": 152, "기초 방어력": 570, "조화도 파괴 증폭": 0 },
-    lv60: { "기초 HP": 10658, "기초 공격력": 189, "기초 방어력": 703, "조화도 파괴 증폭": 0 },
-    lv70: { "기초 HP": 12676, "기초 공격력": 226, "기초 방어력": 835, "조화도 파괴 증폭": 0 },
-    lv80: { "기초 HP": 14694, "기초 공격력": 257, "기초 방어력": 968, "조화도 파괴 증폭": 0 },
-    lv90: { "기초 HP": 16713, "기초 공격력": 288, "기초 방어력": 1100, "조화도 파괴 증폭": 0 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [1337, 23, 90, 0],
+    [3478, 60, 231, 0],
+    [5496, 96, 363, 0],
+    [6622, 116, 438, 0],
+    [8640, 152, 570, 0],
+    [10658, 189, 703, 0],
+    [12676, 226, 835, 0],
+    [14694, 257, 968, 0],
+    [16713, 288, 1100, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),

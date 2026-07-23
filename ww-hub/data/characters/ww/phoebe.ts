@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const phoebe: WuwaCharacter = {
   id: "phoebe",
@@ -26,20 +26,17 @@ const phoebe: WuwaCharacter = {
     { label: "빠른 협주", description: "짧은 시간에 비교적 높은 협주 효율 보유" },
     { label: "광학", description: "광학 효과 사용 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 866, "기초 공격력": 33, "기초 방어력": 103, "조화도 파괴 증폭": 0 },
-    lv20: { "기초 HP": 2253, "기초 공격력": 86, "기초 방어력": 264, "조화도 파괴 증폭": 0 },
-    lv30: { "기초 HP": 3560, "기초 공격력": 138, "기초 방어력": 416, "조화도 파괴 증폭": 0 },
-    lv40: { "기초 HP": 4289, "기초 공격력": 166, "기초 방어력": 501, "조화도 파괴 증폭": 0 },
-    lv50: { "기초 HP": 5597, "기초 공격력": 219, "기초 방어력": 652, "조화도 파괴 증폭": 0 },
-    lv60: { "기초 HP": 6904, "기초 공격력": 271, "기초 방어력": 804, "조화도 파괴 증폭": 0 },
-    lv70: { "기초 HP": 8211, "기초 공격력": 324, "기초 방어력": 956, "조화도 파괴 증폭": 0 },
-    lv80: { "기초 HP": 9518, "기초 공격력": 368, "기초 방어력": 1107, "조화도 파괴 증폭": 0 },
-    lv90: { "기초 HP": 10825, "기초 공격력": 413, "기초 방어력": 1259, "조화도 파괴 증폭": 0 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [866, 33, 103, 0],
+    [2253, 86, 264, 0],
+    [3560, 138, 416, 0],
+    [4289, 166, 501, 0],
+    [5597, 219, 652, 0],
+    [6904, 271, 804, 0],
+    [8211, 324, 956, 0],
+    [9518, 368, 1107, 0],
+    [10825, 413, 1259, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),

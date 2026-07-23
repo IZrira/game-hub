@@ -61,3 +61,54 @@ export const createMaterial = (name: string, count: string | number, rarity: num
 export const createWwSkill = (name: string, tag: string, description: string, icon: string) => ({
   name, tag, description, icon
 });
+
+/**
+ * WW 무기 객체를 생성합니다.
+ * @param id 무기 ID
+ * @param name 무기명 (i18n 키)
+ * @param rarity 레어도
+ * @param type 무기 종류
+ * @param atk 90레벨 기본 공격력
+ * @param subStatName 부옵션 이름
+ * @param subStatValue 부옵션 수치
+ * @param releaseVersion 출시 버전
+ * @returns WuwaWeapon 객체
+ */
+export const createWwWeapon = (
+  id: string,
+  name: string,
+  rarity: 1 | 2 | 3 | 4 | 5,
+  type: '직검' | '대검' | '권총' | '권갑' | '증폭기',
+  atk: number,
+  subStatName: string,
+  subStatValue: string,
+  releaseVersion?: string
+) => {
+  const weaponTypeMapping: Record<string, string> = {
+    '직검': 'sw',
+    '대검': 'bb',
+    '권총': 'pi',
+    '권갑': 'ga',
+    '증폭기': 're'
+  };
+  const typeKey = weaponTypeMapping[type] || 'ot';
+  const baseKey = `weapon.${typeKey}.${id}`;
+
+  return {
+    id,
+    name,
+    rarity,
+    type,
+    releaseVersion,
+    stats: {
+      atk,
+      subStatName,
+      subStatValue
+    },
+    skill: {
+      name: `${baseKey}.skillName`,
+      description: `${baseKey}.skillDescription`
+    },
+    description: `${baseKey}.description`
+  };
+};

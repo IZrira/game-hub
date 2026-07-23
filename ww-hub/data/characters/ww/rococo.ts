@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const rococo: WuwaCharacter = {
   id: "rococo",
@@ -28,20 +28,17 @@ const rococo: WuwaCharacter = {
     { label: "인멸 피해 부스트", description: "파티 내 특정 캐릭터의 인멸 피해 부스트 가능" },
     { label: "일반 공격 피해 부스트", description: "파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 980, "기초 공격력": 30, "기초 방어력": 98 },
-    lv20: { "기초 HP": 2549, "기초 공격력": 78, "기초 방어력": 251 },
-    lv30: { "기초 HP": 4028, "기초 공격력": 126, "기초 방어력": 396 },
-    lv40: { "기초 HP": 4854, "기초 공격력": 151, "기초 방어력": 476 },
-    lv50: { "기초 HP": 6333, "기초 공격력": 199, "기초 방어력": 621 },
-    lv60: { "기초 HP": 7812, "기초 공격력": 247, "기초 방어력": 765 },
-    lv70: { "기초 HP": 9292, "기초 공격력": 294, "기초 방어력": 909 },
-    lv80: { "기초 HP": 10771, "기초 공격력": 335, "기초 방어력": 1054 },
-    lv90: { "기초 HP": 12250, "기초 공격력": 375, "기초 방어력": 1198 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [980, 30, 98, 0],
+    [2549, 78, 251, 0],
+    [4028, 126, 396, 0],
+    [4854, 151, 476, 0],
+    [6333, 199, 621, 0],
+    [7812, 247, 765, 0],
+    [9292, 294, 909, 0],
+    [10771, 335, 1054, 0],
+    [12250, 375, 1198, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),

@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const phrolova: WuwaCharacter = {
   id: "phrolova",
@@ -27,20 +27,17 @@ const phrolova: WuwaCharacter = {
     { label: "인멸 피해 부스트", description: "파티 내 특정 캐릭터의 인멸 피해 부스트 가능" },
     { label: "강공격 피해 부스트", description: "파티 내 특정 캐릭터의 강공격 피해 부스트 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 862, "기초 공격력": 35, "기초 방어력": 93 },
-    lv20: { "기초 HP": 2242, "기초 공격력": 91, "기초 방어력": 239 },
-    lv30: { "기초 HP": 3543, "기초 공격력": 147, "기초 방어력": 375 },
-    lv40: { "기초 HP": 4270, "기초 공격력": 176, "기초 방어력": 452 },
-    lv50: { "기초 HP": 5571, "기초 공격력": 232, "기초 방어력": 589 },
-    lv60: { "기초 HP": 6872, "기초 공격력": 288, "기초 방어력": 726 },
-    lv70: { "기초 HP": 8173, "기초 공격력": 344, "기초 방어력": 863 },
-    lv80: { "기초 HP": 9474, "기초 공격력": 391, "기초 방어력": 1000 },
-    lv90: { "기초 HP": 10775, "기초 공격력": 438, "기초 방어력": 1137 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [862, 35, 93, 0],
+    [2242, 91, 239, 0],
+    [3543, 147, 375, 0],
+    [4270, 176, 452, 0],
+    [5571, 232, 589, 0],
+    [6872, 288, 726, 0],
+    [8173, 344, 863, 0],
+    [9474, 391, 1000, 0],
+    [10775, 438, 1137, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),

@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const cantarella: WuwaCharacter = {
   id: "cantarella",
@@ -29,20 +29,17 @@ const cantarella: WuwaCharacter = {
     { label: "인멸 피해 부스트", description: "파티 내 특정 캐릭터의 인멸 피해 부스트 가능" },
     { label: "공명 스킬 피해 부스트", description: "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 928, "기초 공격력": 32, "기초 방어력": 90 },
-    lv20: { "기초 HP": 2414, "기초 공격력": 83, "기초 방어력": 231 },
-    lv30: { "기초 HP": 3814, "기초 공격력": 134, "기초 방어력": 363 },
-    lv40: { "기초 HP": 4596, "기초 공격력": 161, "기초 방어력": 438 },
-    lv50: { "기초 HP": 5997, "기초 공격력": 212, "기초 방어력": 570 },
-    lv60: { "기초 HP": 7398, "기초 공격력": 263, "기초 방어력": 703 },
-    lv70: { "기초 HP": 8799, "기초 공격력": 314, "기초 방어력": 835 },
-    lv80: { "기초 HP": 10199, "기초 공격력": 357, "기초 방어력": 968 },
-    lv90: { "기초 HP": 11600, "기초 공격력": 400, "기초 방어력": 1100 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [928, 32, 90, 0],
+    [2414, 83, 231, 0],
+    [3814, 134, 363, 0],
+    [4596, 161, 438, 0],
+    [5997, 212, 570, 0],
+    [7398, 263, 703, 0],
+    [8799, 314, 835, 0],
+    [10199, 357, 968, 0],
+    [11600, 400, 1100, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),

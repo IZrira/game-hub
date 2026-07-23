@@ -1,5 +1,5 @@
 import { WuwaCharacter } from '../../../types';
-import { createMaterial, createWwSkill } from '../../dataFactory';
+import { createMaterial, createWwSkill , createWwBaseStats } from '../../dataFactory';
 
 const rover_spectro: WuwaCharacter = {
   id: "rover_spectro",
@@ -27,20 +27,17 @@ const rover_spectro: WuwaCharacter = {
     { label: "정체", description: "일정 범위 내에서 목표의 행동 속도 낮추기 가능" },
     { label: "광학", description: "광학 효과 사용 가능" }
   ],
-  baseStats: {
-    lv1: { "기초 HP": 912, "기초 공격력": 30, "기초 방어력": 112, "조화도 파괴 증폭": 0 },
-    lv20: { "기초 HP": 2372, "기초 공격력": 78, "기초 방어력": 287, "조화도 파괴 증폭": 0 },
-    lv30: { "기초 HP": 3749, "기초 공격력": 126, "기초 방어력": 452, "조화도 파괴 증폭": 0 },
-    lv40: { "기초 HP": 4517, "기초 공격력": 151, "기초 방어력": 544, "조화도 파괴 증폭": 0 },
-    lv50: { "기초 HP": 5894, "기초 공격력": 199, "기초 방어력": 709, "조화도 파괴 증폭": 0 },
-    lv60: { "기초 HP": 7270, "기초 공격력": 247, "기초 방어력": 874, "조화도 파괴 증폭": 0 },
-    lv70: { "기초 HP": 8647, "기초 공격력": 294, "기초 방어력": 1039, "조화도 파괴 증폭": 0 },
-    lv80: { "기초 HP": 10023, "기초 공격력": 335, "기초 방어력": 1204, "조화도 파괴 증폭": 0 },
-    lv90: { "기초 HP": 11400, "기초 공격력": 375, "기초 방어력": 1369, "조화도 파괴 증폭": 0 },
-    speed: 100,
-    taunt: 0,
-    energy: 0
-  },
+  baseStats: createWwBaseStats(
+    [912, 30, 112, 0],
+    [2372, 78, 287, 0],
+    [3749, 126, 452, 0],
+    [4517, 151, 544, 0],
+    [5894, 199, 709, 0],
+    [7270, 247, 874, 0],
+    [8647, 294, 1039, 0],
+    [10023, 335, 1204, 0],
+    [11400, 375, 1369, 0]
+  ),
   materials_v2: {
     ascension: [
       createMaterial("클램 코인", "170,000", 3),
