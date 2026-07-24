@@ -3,6 +3,41 @@ import { createDetailedBaseStats, createMaterial } from '../dataFactory';
 
 export const eruditionLightcones: HsrLightCone[] = [
   {
+    "id": "lc_별이_밤하늘을_밝힐_때",
+    "name": "별이 밤하늘을 밝힐 때",
+    "gameId": "hsr",
+    "releaseVersion": "4.4",
+    "folderName": "별이 밤하늘을 밝힐 때",
+    "rarity": 5,
+    "path": "지식",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 250, 371, 490, 612, 728, 847],
+      [29, 111, 189, 278, 367, 456, 546, 635],
+      [24, 92, 156, 232, 306, 380, 455, 529]
+    ),
+    "skill": {
+      "name": "알 수 없음",
+      "description": "알 수 없음",
+      "descriptions": [
+        "알 수 없음",
+        "알 수 없음",
+        "알 수 없음",
+        "알 수 없음",
+        "알 수 없음"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("천진난만 크레파스", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("천체 모형", 4, 2), createMaterial("천진난만 크레파스", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("천체 모형", 4, 2), createMaterial("은하계 프레임", 4, 3), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("천체 모형", 4, 2), createMaterial("은하계 프레임", 12, 3), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("천체 모형", 4, 2), createMaterial("은하계 프레임", 12, 3), createMaterial("은하 모형판", 5, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("천체 모형", 4, 2), createMaterial("은하계 프레임", 12, 3), createMaterial("은하 모형판", 15, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("천체 모형", 4, 2), createMaterial("은하계 프레임", 12, 3), createMaterial("은하 모형판", 15, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] }
+    ],
+    "story": ""
+  },
+  {
     "id": "lc_값을_매길_수_없는_건_희망뿐",
     "name": "값을 매길 수 없는 건 희망뿐",
     "gameId": "hsr",

@@ -211,10 +211,33 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
 
     const normalizedName = name.trim();
     
+    // 자동화 파이프라인: autoDescription 생성 (Programmatic SEO)
+    let autoDescription = '';
+    if (isCharacterDB || type === '캐릭터') {
+      const charAttr = itemAttribute || props['운명의 길']?.select?.name || props['운명의 길']?.rich_text?.[0]?.plain_text || '속성 미상';
+      const isHSR = props['운명의 길'] !== undefined;
+      if (isHSR) {
+        const path = props['운명의 길']?.select?.name || props['운명의 길']?.rich_text?.[0]?.plain_text || '운명의 길 미상';
+        autoDescription = `${name}은(는) 붕괴: 스타레일의 ${charAttr} 속성, ${path} 운명의 길 캐릭터입니다.`;
+      } else {
+        const weaponStr = weapon ? ` ${weapon} 무기를 사용하는` : '';
+        autoDescription = `${name}은(는) 명조의 ${charAttr} 속성,${weaponStr} 공명자입니다. 주로 ${combatRoles || '딜러 혹은 서포터'} 역할을 수행합니다.`;
+      }
+      
+      if (briefInfo) {
+        autoDescription += ` ${briefInfo}`;
+      }
+    } else if (weapon) {
+      // 무기용 설명
+      autoDescription = `${name}은(는) ${weapon} 무기입니다.`;
+      if (weaponStory) autoDescription += ` ${weaponStory.substring(0, 100)}...`;
+    }
+
     if (normalizedName) {
       itemsMap.set(normalizedName, {
         id: page.id,
         name,
+        autoDescription,
         rarity: rarity ? parseInt(rarity.replace(/[^0-9]/g, '')) || 4 : 4,
         type,
         releaseVersion,

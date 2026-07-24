@@ -3,6 +3,41 @@ import { createDetailedBaseStats, createMaterial } from '../dataFactory';
 
 export const destructionLightcones: HsrLightCone[] = [
   {
+    "id": "lc_보이는_곳이_곧_나",
+    "name": "보이는 곳이 곧 나",
+    "gameId": "hsr",
+    "releaseVersion": "4.4",
+    "folderName": "보이는 곳이 곧 나",
+    "rarity": 5,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [29, 111, 189, 278, 367, 456, 546, 635],
+      [21, 81, 138, 203, 268, 333, 398, 463]
+    ),
+    "skill": {
+      "name": "알 수 없음",
+      "description": "알 수 없음",
+      "descriptions": [
+        "알 수 없음",
+        "알 수 없음",
+        "알 수 없음",
+        "알 수 없음",
+        "알 수 없음"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("소멸된 코어", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("사상, 도하장군", 4, 2), createMaterial("소멸된 코어", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 4, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("만색, 풀스 메이트", 5, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("만색, 풀스 메이트", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("만색, 풀스 메이트", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] }
+    ],
+    "story": ""
+  },
+  {
     "id": "lc_태양보다_밝게_빛나는_것",
     "name": "태양보다 밝게 빛나는 것",
     "gameId": "hsr",

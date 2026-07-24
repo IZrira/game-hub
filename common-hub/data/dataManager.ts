@@ -5,13 +5,44 @@ import { CHARACTER_DB_EN } from './index';
 import i18n from '../i18n';
 import notionData from './notion-data.json';
 
+export interface NotionItem {
+  id: string;
+  name: string;
+  rarity?: number | string;
+  type?: string;
+  releaseVersion?: string;
+  obtain?: string;
+  growthStats?: string;
+  skillName?: string;
+  skillDescription?: string;
+  ascensionMaterials?: string;
+  skillMaterials?: string;
+  weaponStory?: string;
+  fileName?: string;
+  skillInputGuide?: string;
+  combatCycle?: string;
+  itemAttribute?: string;
+  weapon?: string;
+  affiliation?: string;
+  content?: string;
+  dbSource?: string;
+  pieces?: string;
+  effect2?: string;
+  effect4?: string;
+  effect5?: string;
+  sonataEffect?: string;
+  cost?: string;
+}
+
 export const getGameData = (targetId: string) => {
   const isEn = targetId === 'en';
   const gameId = isEn ? 'hsr' : targetId; // 기본적으로 'en' 요청은 HSR 번역용으로 처리
 
   // 1. Notion 데이터 파싱 및 매핑
-  const notionWeapons = ((notionData || []) as any[])
-    .filter(item => ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(item.type))
+  const typedNotionData: any[] = (notionData || []) as any[];
+
+  const notionWeapons = typedNotionData
+    .filter(item => item.type && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(item.type))
     .map(item => {
       let atk = 500;
       let subStatName = '공격력';
@@ -91,7 +122,7 @@ export const getGameData = (targetId: string) => {
       };
     });
 
-  const notionCharacters = ((notionData || []) as any[])
+  const notionCharacters = typedNotionData
     .filter(item => item.type === '캐릭터')
     .map(item => {
       let attribute = item.itemAttribute || '회절';
@@ -260,8 +291,8 @@ export const getGameData = (targetId: string) => {
       };
     });
 
-  const notionLightcones = ((notionData || []) as any[])
-    .filter(item => item.type === '광추')
+  const notionLightcones = typedNotionData
+    .filter(item => item.dbSource === 'weapons' && ['지식', '수렵', '파멸', '보존', '풍요', '공허', '화합'].includes(item.type || ''))
     .map(item => ({
       id: item.id,
       gameId: 'hsr' as const,
@@ -273,7 +304,7 @@ export const getGameData = (targetId: string) => {
       content: item.content
     }));
 
-  const notionHsrCharacters = ((notionData || []) as any[])
+  const notionHsrCharacters = typedNotionData
     .filter(item => item.type === 'HSR 캐릭터')
     .map(item => {
       let attribute = '물리';
@@ -311,7 +342,7 @@ export const getGameData = (targetId: string) => {
     });
 
   // 노션 명조 아이템 추출
-  const notionWwItems = ((notionData || []) as any[])
+  const notionWwItems = typedNotionData
     .filter(item => item.dbSource === 'ww_items' || (!item.dbSource && (item.type === '아이템' || item.type === '소모품' || item.type === '재료' || item.type === '육성 아이템' || item.type === '성급' || !item.type)))
     .map(item => {
       return {
@@ -330,7 +361,7 @@ export const getGameData = (targetId: string) => {
     });
 
   // 노션 명조 에코 추출 및 매핑
-  const notionWwEchoes = ((notionData || []) as any[])
+  const notionWwEchoes = typedNotionData
     .filter(item => item.dbSource === 'ww_echoes')
     .map(item => {
       return {
@@ -361,8 +392,9 @@ export const getGameData = (targetId: string) => {
   const normalizeNotionGuide = (text: string) => {
     if (!text) return '';
     let normalized = text.replace(/\r\n/g, '\n');
-    normalized = normalized.replace(/^스킬 입력 가이드.*?타입\n?/i, '');
+    normalized = normalized.replace(/^스킬 입력 가이드[^\n]*\n?/i, '');
     normalized = normalized.replace(/(?<!\n)\n(?!\n)/g, '\n\n');
+    normalized = normalized.replace(/\[공명 회로 게이지 이미지(\d*)(?:\.webp)?\]/g, '[공명 회로 게이지$1.webp]');
     return normalized.trim();
   };
 
@@ -383,7 +415,10 @@ export const getGameData = (targetId: string) => {
     const key = (c.folderName || c.originalName || c.name || '').trim();
     if (key) {
       const existing = wwCharMap.get(key);
-      const normalizedGuide = c.skillInputGuide ? normalizeNotionGuide(c.skillInputGuide) : '';
+      let rawGuide = c.skillInputGuide || '';
+      if (rawGuide.trim().toLowerCase() === 'a') rawGuide = ''; // Ignore 'a' placeholder
+
+      const normalizedGuide = rawGuide ? normalizeNotionGuide(rawGuide) : '';
       const { overview, extractedInputs } = extractOverviewAndInputs(normalizedGuide);
 
       let finalInputs = c.combatCycle ? c.combatCycle.split('\n').filter(Boolean) : [];

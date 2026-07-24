@@ -121,10 +121,31 @@ function getWwCharacterImageUrl(charData) {
 }
 
 // ---------------------------------------------------------------------
+// Blog Data Parsing
+// ---------------------------------------------------------------------
+function getBlogPosts() {
+  const filePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
+  if (!fs.existsSync(filePath)) return [];
+  const content = fs.readFileSync(filePath, 'utf8');
+  try {
+    const arrayStringMatch = content.match(/export const BLOG_POSTS[^\[]*(\[[\s\S]*\]);/);
+    if (arrayStringMatch && arrayStringMatch[1]) {
+      // Remove type annotations if any, though eval usually handles plain JS literals
+      // Use Function constructor instead of eval for safer execution of literals
+      const posts = new Function('return ' + arrayStringMatch[1])();
+      return posts;
+    }
+  } catch (e) {
+    console.error("Failed to parse blogData.ts", e);
+  }
+  return [];
+}
+
+// ---------------------------------------------------------------------
 // Injection Logic
 // ---------------------------------------------------------------------
 
-function injectMetaTags(html, title, description, imageUrl, urlPath) {
+function injectMetaAndContent(html, title, description, imageUrl, urlPath, innerContent = '') {
   let injected = html;
   
   // Replace Title
@@ -151,15 +172,20 @@ function injectMetaTags(html, title, description, imageUrl, urlPath) {
   
   injected = injected.replace('</head>', `${extraTags}\n  </head>`);
   
+  // Inject DOM Content for AdSense Bot
+  if (innerContent) {
+    injected = injected.replace('<div id="root"></div>', `<div id="root">${innerContent}</div>`);
+  }
+  
   return injected;
 }
 
-function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml) {
+function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml, innerContent = '') {
   // routePath example: /gallery/ww/character/lucy
   const targetDir = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean));
   fs.mkdirSync(targetDir, { recursive: true });
   
-  const finalHtml = injectMetaTags(baseHtml, title, description, imageUrl, routePath);
+  const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent);
   fs.writeFileSync(path.join(targetDir, 'index.html'), finalHtml, 'utf8');
 }
 
@@ -249,7 +275,77 @@ function runPrerender() {
     }
   });
 
-  console.log(`✅ Successfully injected static meta tags for ${count} dynamic routes!`);
+  // 5. AdSense SEO Pages (Privacy, ToS, About, Blog List)
+  const policyPages = [
+    {
+      path: '/about',
+      title: 'About Us',
+      desc: 'Rira Archive 소개 및 운영 원칙에 대해 안내합니다.',
+      content: `<h1>About Us - RIRA ARCHIVE</h1><p>Rira Archive는 붕괴: 스타레일, 명조 등 최신 트렌디한 게임들의 데이터를 분석하고 최고의 공략과 티어표를 제공하는 게임 허브입니다. 유저들에게 가장 신속하고 정확한 정보를 전달하는 것을 목표로 합니다.</p>`
+    },
+    {
+      path: '/privacy',
+      title: '개인정보 처리방침 (Privacy Policy)',
+      desc: 'Rira Archive의 개인정보 처리방침을 확인하세요.',
+      content: `<h1>개인정보 처리방침 (Privacy Policy)</h1><p>본 사이트는 Google AdSense를 포함한 서드파티 쿠키를 사용하여 사용자 맞춤형 광고를 제공할 수 있습니다. 수집된 데이터는 오직 더 나은 서비스 제공과 사이트 분석을 위해서만 사용되며, 철저하게 보호됩니다.</p>`
+    },
+    {
+      path: '/tos',
+      title: '이용약관 (Terms of Service)',
+      desc: 'Rira Archive 서비스 이용약관을 확인하세요.',
+      content: `<h1>이용약관 (Terms of Service)</h1><p>본 사이트의 모든 정보와 공략글은 참고용으로 제공되며, 게임사의 공식적인 입장을 대변하지 않습니다. 무단 전재 및 재배포를 금지합니다.</p>`
+    },
+    {
+      path: '/blog',
+      title: '인텔리전스 블로그',
+      desc: 'Rira Game Hub의 심층 분석 게임 칼럼과 가이드를 만나보세요.',
+      content: `<h1>인텔리전스 블로그</h1><p>Rira Archive에서 제공하는 게임 심층 분석, 최신 메타 리뷰, 그리고 패치 노트 해석을 만나보실 수 있습니다.</p>`
+    }
+  ];
+
+  policyPages.forEach(page => {
+    createPrerenderedPage(
+      page.path,
+      page.title,
+      page.desc,
+      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      page.content
+    );
+    count++;
+  });
+
+  // 6. Blog Posts (Critical for AdSense Content Check)
+  const blogPosts = getBlogPosts();
+  blogPosts.forEach(post => {
+    // Generate inner text DOM for AdSense crawler
+    const postHtmlContent = `
+      <article>
+        <h1>${post.title}</h1>
+        <p><strong>작성일:</strong> ${post.date} | <strong>작성자:</strong> ${post.author} | <strong>카테고리:</strong> ${post.category}</p>
+        <p><em>${post.excerpt}</em></p>
+        <div class="blog-content">
+          ${post.content.split('\n').map(line => {
+            if (line.startsWith('###')) return `<h3>${line.replace(/###/g, '').trim()}</h3>`;
+            if (line.trim() === '') return '<br/>';
+            return `<p>${line}</p>`;
+          }).join('\n')}
+        </div>
+      </article>
+    `;
+
+    createPrerenderedPage(
+      `/blog/${post.id}`,
+      post.title,
+      post.excerpt,
+      post.imageUrl || `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      postHtmlContent
+    );
+    count++;
+  });
+
+  console.log(`✅ Successfully injected static meta and DOM tags for ${count} dynamic routes!`);
 }
 
 runPrerender();

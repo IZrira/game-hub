@@ -27,6 +27,7 @@ import {
 import * as htmlToImage from 'html-to-image';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
+import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import WuwaSkillSection from '../components/WuwaSkillSection';
 import WuwaSkillInput from '../components/WuwaSkillInput';
 import WuwaResonanceChain from '../components/WuwaResonanceChain';
@@ -613,7 +614,7 @@ const CharacterDetail: React.FC = () => {
               <div className={`transition-all duration-500 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
                 <div className="px-6 border-t border-white/5 pt-6">
                   <div className="text-gray-400 text-base leading-relaxed italic bg-black/20 p-6 rounded-[25px] border border-white/5 shadow-inner whitespace-pre-line">
-                    {t(char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.')}
+                    {t(char.autoDescription || char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.')}
                   </div>
                 </div>
               </div>
@@ -805,6 +806,8 @@ const CharacterDetail: React.FC = () => {
             </div>
           )}
         </section>
+
+        <CharacterReviewBoard characterId={char?.id || charName || ''} gameId={gameId || 'ww'} />
       </div>
     </div>
   );

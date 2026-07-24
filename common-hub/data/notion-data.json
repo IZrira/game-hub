@@ -2,6 +2,7 @@
   {
     "id": "36e95fae-3dc7-8046-b5df-de05239af3de",
     "name": "18형 직검 · 순간의 칼빛",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -47,6 +48,7 @@
   {
     "id": "36b95fae-3dc7-8047-bff7-cfe69ac8b81a",
     "name": "21형 권갑 · 아이언 팬텀",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -92,6 +94,7 @@
   {
     "id": "36a95fae-3dc7-8062-a0c4-e8426530e700",
     "name": "25형 증폭기 · 울림의 멜로디",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -137,6 +140,7 @@
   {
     "id": "36c95fae-3dc7-8087-8416-e52f43ac1494",
     "name": "26형 권총 · 맹렬한 돌격",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -182,6 +186,7 @@
   {
     "id": "36e95fae-3dc7-8015-af73-e8d1bd222553",
     "name": "41형 대검 · 무거운 책임",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -227,6 +232,7 @@
   {
     "id": "36e95fae-3dc7-806f-ab83-ca18cc36f69a",
     "name": "가을의 무늬",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -272,6 +278,7 @@
   {
     "id": "36b95fae-3dc7-806e-b345-f79712875502",
     "name": "거침없는 비상",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "2.6",
@@ -317,6 +324,7 @@
   {
     "id": "36b95fae-3dc7-803b-ab61-e75e0a74cc97",
     "name": "격동의 조력",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "3.0",
@@ -362,6 +370,7 @@
   {
     "id": "36c95fae-3dc7-8007-808b-e56a0d7a3dfe",
     "name": "견습용 권갑",
+    "autoDescription": "",
     "rarity": 1,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -407,6 +416,7 @@
   {
     "id": "36c95fae-3dc7-8012-a124-c06ce0451a1f",
     "name": "견습용 권총",
+    "autoDescription": "",
     "rarity": 1,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -452,6 +462,7 @@
   {
     "id": "36e95fae-3dc7-809b-bf9b-c531ecc549bf",
     "name": "견습용 대검",
+    "autoDescription": "",
     "rarity": 1,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -497,6 +508,7 @@
   {
     "id": "36b95fae-3dc7-8033-956a-decaad4750d0",
     "name": "견습용 증폭기",
+    "autoDescription": "",
     "rarity": 1,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -542,6 +554,7 @@
   {
     "id": "36e95fae-3dc7-80de-a114-dc0e45a3e2e3",
     "name": "견습용 직검",
+    "autoDescription": "",
     "rarity": 1,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -587,6 +600,7 @@
   {
     "id": "36995fae-3dc7-8007-808c-f921b7f441e9",
     "name": "광휘의 찬송가",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "2.1",
@@ -632,6 +646,7 @@
   {
     "id": "36995fae-3dc7-80a2-bbd5-c65c57d92cce",
     "name": "굉음",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -677,6 +692,7 @@
   {
     "id": "36e95fae-3dc7-8042-9197-f31d25426060",
     "name": "금빛 하늘",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "2.6",
@@ -722,6 +738,7 @@
   {
     "id": "36995fae-3dc7-806e-9e98-ed3b90511a1a",
     "name": "금주의 수호",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -767,6 +784,7 @@
   {
     "id": "36e95fae-3dc7-8077-bb47-c5f3ccc00107",
     "name": "기묘한 울림",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -812,6 +830,7 @@
   {
     "id": "36a95fae-3dc7-80bb-b76f-f2b62e62a88d",
     "name": "꼭두각시의 손",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -857,6 +876,7 @@
   {
     "id": "36e95fae-3dc7-80bd-9946-d7ed0be86a01",
     "name": "날카로운 봄",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "1.4",
@@ -902,6 +922,7 @@
   {
     "id": "3a495fae-3dc7-800c-9987-e569cd164fcd",
     "name": "노을에 깃든 이슬",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "3.5",
@@ -947,6 +968,7 @@
   {
     "id": "36c95fae-3dc7-802d-84f8-e7ae72e49204",
     "name": "뇌전",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -992,6 +1014,7 @@
   {
     "id": "36895fae-3dc7-8061-aeb1-d870a858027c",
     "name": "눈부신 빛",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "2.6",
@@ -1037,6 +1060,7 @@
   {
     "id": "36d95fae-3dc7-808b-8591-e02f83ac4bfe",
     "name": "레이저 변형",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "3.0",
@@ -1082,6 +1106,7 @@
   {
     "id": "36e95fae-3dc7-80eb-b38b-e994d51254a3",
     "name": "마음의 닻",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.4",
@@ -1127,6 +1152,7 @@
   {
     "id": "36b95fae-3dc7-80f3-af37-ca652e88614f",
     "name": "만취의 영웅지",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "2.0",
@@ -1172,6 +1198,7 @@
   {
     "id": "36e95fae-3dc7-8090-bd07-cf2abcc3a50c",
     "name": "멸망의 주파수",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "1.3",
@@ -1217,6 +1244,7 @@
   {
     "id": "36c95fae-3dc7-804d-9c40-e915a6c24b29",
     "name": "물결의 파동",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -1262,6 +1290,7 @@
   {
     "id": "36995fae-3dc7-804c-9990-ef449dfe5bce",
     "name": "뭇별의 교향곡",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "1.3",
@@ -1307,6 +1336,7 @@
   {
     "id": "36a95fae-3dc7-80c6-9dee-ff680ad5c4e5",
     "name": "바다의 선물",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "2.1",
@@ -1352,6 +1382,7 @@
   {
     "id": "36995fae-3dc7-8074-9f17-f86ff8134042",
     "name": "바다의 속삭임",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "2.2",
@@ -1397,6 +1428,7 @@
   {
     "id": "36c95fae-3dc7-8082-941c-edd4504e19fb",
     "name": "바람의 악센트",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -1442,6 +1474,7 @@
   {
     "id": "36895fae-3dc7-806c-8354-e616a333fd04",
     "name": "별하늘 연산 측정기",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "3.0",
@@ -1487,6 +1520,7 @@
   {
     "id": "36995fae-3dc7-802c-8ab1-c251135de0fe",
     "name": "보손 관측기",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "3.0",
@@ -1532,6 +1566,7 @@
   {
     "id": "36c95fae-3dc7-80a8-8163-de4cf1cd3453",
     "name": "부동의 안개",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -1577,6 +1612,7 @@
   {
     "id": "36e95fae-3dc7-8027-911c-f075d932598e",
     "name": "불길",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "2.4",
@@ -1622,6 +1658,7 @@
   {
     "id": "36c95fae-3dc7-8010-8b34-dabeaa0a295a",
     "name": "불멸의 성화",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -1667,6 +1704,7 @@
   {
     "id": "36b95fae-3dc7-8002-b16e-f6f086e0ff39",
     "name": "불빛의 심판",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "2.3",
@@ -1712,6 +1750,7 @@
   {
     "id": "36d95fae-3dc7-80e6-8a31-fc71bf39aa3a",
     "name": "상승의 서녘",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -1757,6 +1796,7 @@
   {
     "id": "36895fae-3dc7-8096-b16c-e718ada2d197",
     "name": "서린 불꽃",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "3.3",
@@ -1802,6 +1842,7 @@
   {
     "id": "36b95fae-3dc7-80d6-b9ca-fefcb9626134",
     "name": "세상 만물의 진리",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "2.6",
@@ -1847,6 +1888,7 @@
   {
     "id": "36b95fae-3dc7-803b-8e63-f1ca75ae17fb",
     "name": "솔스원의 해석",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "3.2",
@@ -1892,6 +1934,7 @@
   {
     "id": "36e95fae-3dc7-80fb-b96f-fdc787d9b49b",
     "name": "솟아오르는 화염",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "1.1",
@@ -1937,6 +1980,7 @@
   {
     "id": "36b95fae-3dc7-8068-b3d8-ff5af480c42d",
     "name": "수행자의 권갑 · 파괴",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -1982,6 +2026,7 @@
   {
     "id": "36c95fae-3dc7-80ee-a0f0-f221f74c163b",
     "name": "수행자의 권총 · 통찰",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -2027,6 +2072,7 @@
   {
     "id": "36e95fae-3dc7-8034-bba0-f2f0be996d1f",
     "name": "수행자의 대검 · 벽로",
+    "autoDescription": "",
     "rarity": 3,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -2072,6 +2118,7 @@
   {
     "id": "36995fae-3dc7-8051-8676-e7875e5f599d",
     "name": "수행자의 증폭기 · 탐색",
+    "autoDescription": "",
     "rarity": 3,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -2117,6 +2164,7 @@
   {
     "id": "36d95fae-3dc7-80bb-b98c-e8edb8982c83",
     "name": "수행자의 직검 · 행적",
+    "autoDescription": "",
     "rarity": 3,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -2162,6 +2210,7 @@
   {
     "id": "36b95fae-3dc7-808c-97fb-c6fa1dc77fdd",
     "name": "수호자의 권갑 · 강력",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -2207,6 +2256,7 @@
   {
     "id": "36c95fae-3dc7-8032-b170-d005f40a69a0",
     "name": "수호자의 권총 · 용맹",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -2252,6 +2302,7 @@
   {
     "id": "36e95fae-3dc7-8032-b9c1-c0be9f52fcf0",
     "name": "수호자의 대검 · 근성",
+    "autoDescription": "",
     "rarity": 3,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -2297,6 +2348,7 @@
   {
     "id": "36995fae-3dc7-8098-8e55-f8b0c660d4b2",
     "name": "수호자의 증폭기 · 모략",
+    "autoDescription": "",
     "rarity": 3,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -2342,6 +2394,7 @@
   {
     "id": "36d95fae-3dc7-805a-b224-d82bd13e0196",
     "name": "수호자의 직검 · 기민",
+    "autoDescription": "",
     "rarity": 3,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -2387,6 +2440,7 @@
   {
     "id": "36d95fae-3dc7-8028-98d4-e2e380efbaaa",
     "name": "숙명에 맞서는 관",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "2.4",
@@ -2432,6 +2486,7 @@
   {
     "id": "36c95fae-3dc7-80db-bf2c-f42fc2bae439",
     "name": "숲속의 아리아",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "2.3",
@@ -2477,6 +2532,7 @@
   {
     "id": "37995fae-3dc7-8022-ad6d-c943c052e794",
     "name": "스컬 스래셔",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "3.4",
@@ -2522,6 +2578,7 @@
   {
     "id": "37995fae-3dc7-8083-a92a-ef58ce995814",
     "name": "스펙트럴 트리거",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "3.4",
@@ -2567,6 +2624,7 @@
   {
     "id": "36c95fae-3dc7-806c-8856-e1e5ac10cf72",
     "name": "스펙트럼 블래스터",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "3.0",
@@ -2612,6 +2670,7 @@
   {
     "id": "36a95fae-3dc7-80a0-98a4-e70f2dc1dbc3",
     "name": "심해의 메아리",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "2.0",
@@ -2657,6 +2716,7 @@
   {
     "id": "3a495fae-3dc7-808e-8a07-fda5fc7181a8",
     "name": "아득히 푸른 하늘",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "3.5",
@@ -2702,6 +2762,7 @@
   {
     "id": "36d95fae-3dc7-8024-8e6f-fd6019f2d295",
     "name": "야귀의 신념",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -2747,6 +2808,7 @@
   {
     "id": "36c95fae-3dc7-80f5-bb1a-e2e74a4867f8",
     "name": "얽혀진 빛과 그림자",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "2.7",
@@ -2792,6 +2854,7 @@
   {
     "id": "36e95fae-3dc7-8013-96e3-faabd42e63ac",
     "name": "에너지 절단",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "3.0",
@@ -2837,6 +2900,7 @@
   {
     "id": "36c95fae-3dc7-8092-b2d7-ca6fdce90c42",
     "name": "역설의 격류",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "1.3",
@@ -2882,6 +2946,7 @@
   {
     "id": "36d95fae-3dc7-8005-b4d3-dac132e649d9",
     "name": "영원의 붕괴",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.3",
@@ -2927,6 +2992,7 @@
   {
     "id": "36d95fae-3dc7-806f-8095-d1aa03595cc4",
     "name": "영원한 샛별",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "3.1",
@@ -2972,6 +3038,7 @@
   {
     "id": "36d95fae-3dc7-80fa-8815-c64fd78f9d02",
     "name": "예리한 날개깃",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "2.6",
@@ -3017,6 +3084,7 @@
   {
     "id": "36a95fae-3dc7-804a-9069-c4cbcbe708e5",
     "name": "옥수 비단",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "1.2",
@@ -3062,6 +3130,7 @@
   {
     "id": "36e95fae-3dc7-8019-8bb1-d2af4476b302",
     "name": "용서의 명상록",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "2.0",
@@ -3107,6 +3176,7 @@
   {
     "id": "36c95fae-3dc7-8073-b95c-f6c9909629b5",
     "name": "원능의 권갑 · 견습IV",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -3152,6 +3222,7 @@
   {
     "id": "36c95fae-3dc7-808d-bc2b-e69ea7cbf804",
     "name": "원능의 권총 · 견습III",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -3197,6 +3268,7 @@
   {
     "id": "36e95fae-3dc7-808f-9463-d25d897aa638",
     "name": "원능의 대검 · 견습I",
+    "autoDescription": "",
     "rarity": 3,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -3242,6 +3314,7 @@
   {
     "id": "36a95fae-3dc7-8075-bce2-ec069b66a8ae",
     "name": "원능의 증폭기 · 견습V",
+    "autoDescription": "",
     "rarity": 3,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -3287,6 +3360,7 @@
   {
     "id": "36e95fae-3dc7-8084-993e-ddb2335917a7",
     "name": "원능의 직검 · 견습II",
+    "autoDescription": "",
     "rarity": 3,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -3332,6 +3406,7 @@
   {
     "id": "36c95fae-3dc7-80ca-9127-c51e79d4b21c",
     "name": "위상의 파동",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "3.0",
@@ -3377,6 +3452,7 @@
   {
     "id": "36895fae-3dc7-8087-9125-ff1a5c6febfa",
     "name": "위조된 작은별",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "3.3",
@@ -3422,6 +3498,7 @@
   {
     "id": "36995fae-3dc7-8053-bf6b-e234da80d183",
     "name": "융합의 원반",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "1.3",
@@ -3467,6 +3544,7 @@
   {
     "id": "36995fae-3dc7-80a8-bd8e-cb24e27bbfa0",
     "name": "잊혀진 피안의 슬픈 악장",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "2.5",
@@ -3512,6 +3590,7 @@
   {
     "id": "36c95fae-3dc7-80c1-9c24-e422271deb90",
     "name": "작별의 로맨스",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "2.0",
@@ -3557,6 +3636,7 @@
   {
     "id": "36e95fae-3dc7-8064-a035-ffb34f88db2c",
     "name": "장야의 불빛",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -3602,6 +3682,7 @@
   {
     "id": "36e95fae-3dc7-80fa-8e3e-f0de03a2c802",
     "name": "저무는 동녘",
+    "autoDescription": "",
     "rarity": 4,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -3647,6 +3728,7 @@
   {
     "id": "36b95fae-3dc7-805e-9200-f6a9fd514881",
     "name": "전우의 의리",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -3692,6 +3774,7 @@
   {
     "id": "36c95fae-3dc7-80b1-9e5b-d473788c5996",
     "name": "죽음과 춤",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권총",
     "releaseVersion": "2.0",
@@ -3737,6 +3820,7 @@
   {
     "id": "36d95fae-3dc7-8034-bd38-ca93bd186bb9",
     "name": "천공의 광경",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -3782,6 +3866,7 @@
   {
     "id": "36c95fae-3dc7-80ad-923b-eff4fda96ee3",
     "name": "천공의 순간",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -3827,6 +3912,7 @@
   {
     "id": "36b95fae-3dc7-80cf-a678-cf12f19c3ce2",
     "name": "천공의 역행",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -3872,6 +3958,7 @@
   {
     "id": "36e95fae-3dc7-8091-9792-cd64ddeeb256",
     "name": "천년의 회류",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -3917,6 +4004,7 @@
   {
     "id": "36e95fae-3dc7-807b-8da5-e43cdc95195e",
     "name": "천둥벼락을 다스리는 권능",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "2.6",
@@ -3962,6 +4050,7 @@
   {
     "id": "36b95fae-3dc7-8007-a081-dacbd8bf7d06",
     "name": "천상의 나선",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "1.3",
@@ -4007,6 +4096,7 @@
   {
     "id": "36e95fae-3dc7-8093-8f2a-f87b0d29de25",
     "name": "천상의 음률",
+    "autoDescription": "",
     "rarity": 3,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -4052,6 +4142,7 @@
   {
     "id": "36e95fae-3dc7-80b1-9ca9-c26923ada4c5",
     "name": "청룡의 천장",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -4097,6 +4188,7 @@
   {
     "id": "36995fae-3dc7-800b-803a-db2d9b12d537",
     "name": "청음",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -4142,6 +4234,7 @@
   {
     "id": "36e95fae-3dc7-8073-8bf2-ea2afbfbc257",
     "name": "쿠모키리(曇斬)",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "2.8",
@@ -4187,6 +4280,7 @@
   {
     "id": "36c95fae-3dc7-805d-9da1-f1411a5ab4ac",
     "name": "태양 불꽃",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "2.6",
@@ -4232,6 +4326,7 @@
   {
     "id": "36c95fae-3dc7-8082-9958-e63d9029bc3a",
     "name": "태초의 권갑",
+    "autoDescription": "",
     "rarity": 2,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -4277,6 +4372,7 @@
   {
     "id": "36c95fae-3dc7-80fc-ac58-c03700557585",
     "name": "태초의 권총",
+    "autoDescription": "",
     "rarity": 2,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -4322,6 +4418,7 @@
   {
     "id": "36e95fae-3dc7-80a1-92a6-ed37269c16ba",
     "name": "태초의 대검",
+    "autoDescription": "",
     "rarity": 2,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -4367,6 +4464,7 @@
   {
     "id": "36b95fae-3dc7-8066-b911-d719ddda32bb",
     "name": "태초의 증폭기",
+    "autoDescription": "",
     "rarity": 2,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -4412,6 +4510,7 @@
   {
     "id": "36e95fae-3dc7-80d5-9397-c79b5978f455",
     "name": "태초의 직검",
+    "autoDescription": "",
     "rarity": 2,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -4457,6 +4556,7 @@
   {
     "id": "36e95fae-3dc7-80bc-9e3e-f154b7bd5ea4",
     "name": "태평성대",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "1.1",
@@ -4502,6 +4602,7 @@
   {
     "id": "36b95fae-3dc7-8002-814f-f965536b649f",
     "name": "파도의 기록",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -4547,6 +4648,7 @@
   {
     "id": "36a95fae-3dc7-80aa-944d-fc39774c9f5d",
     "name": "판타지 변주",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -4592,6 +4694,7 @@
   {
     "id": "36c95fae-3dc7-8098-964c-ddeb20d412c4",
     "name": "팔방의 천추",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "1.2",
@@ -4637,6 +4740,7 @@
   {
     "id": "36d95fae-3dc7-80bb-85e5-db0d3fe0dd4b",
     "name": "푸른 의지",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "2.7",
@@ -4682,6 +4786,7 @@
   {
     "id": "36e95fae-3dc7-804b-8f0d-de59860dbb9b",
     "name": "푸른물결의 빛",
+    "autoDescription": "",
     "rarity": 5,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -4727,6 +4832,7 @@
   {
     "id": "36d95fae-3dc7-809d-aa21-d578d7d3cec9",
     "name": "풍류의 우화시",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "2.0",
@@ -4772,6 +4878,7 @@
   {
     "id": "37995fae-3dc7-8044-a4ea-f959789829f7",
     "name": "프리즈 프레임",
+    "autoDescription": "",
     "rarity": 5,
     "type": "증폭기",
     "releaseVersion": "3.4",
@@ -4817,6 +4924,7 @@
   {
     "id": "36b95fae-3dc7-80d0-9e9d-cf76282b247a",
     "name": "한낮의 의지",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "3.1",
@@ -4862,6 +4970,7 @@
   {
     "id": "36e95fae-3dc7-80d2-bb8b-dbfcc40dd575",
     "name": "행진의 서곡",
+    "autoDescription": "",
     "rarity": 4,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -4907,6 +5016,7 @@
   {
     "id": "36895fae-3dc7-805d-841f-f00fbb9a5fb1",
     "name": "허위의 왈츠",
+    "autoDescription": "",
     "rarity": 4,
     "type": "증폭기",
     "releaseVersion": "2.0",
@@ -4952,6 +5062,7 @@
   {
     "id": "36d95fae-3dc7-8099-9587-c08edf760d0a",
     "name": "혈맹의 약속",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "2.2",
@@ -4997,6 +5108,7 @@
   {
     "id": "36c95fae-3dc7-80e2-8367-c20dc6117f5b",
     "name": "화려한 악곡",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -5042,6 +5154,7 @@
   {
     "id": "36b95fae-3dc7-801f-8983-c21385142fa5",
     "name": "황금 권갑",
+    "autoDescription": "",
     "rarity": 4,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -5087,6 +5200,7 @@
   {
     "id": "36c95fae-3dc7-80fd-9dd9-c845f38f18d4",
     "name": "흑야의 권갑 · 흑빛",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권갑",
     "releaseVersion": "1.0",
@@ -5132,6 +5246,7 @@
   {
     "id": "36c95fae-3dc7-807a-bc7d-d4250b9f72ed",
     "name": "흑야의 권총 · 흑성",
+    "autoDescription": "",
     "rarity": 3,
     "type": "권총",
     "releaseVersion": "1.0",
@@ -5177,6 +5292,7 @@
   {
     "id": "36e95fae-3dc7-8050-9294-ef461610881e",
     "name": "흑야의 대검 · 현명",
+    "autoDescription": "",
     "rarity": 3,
     "type": "대검",
     "releaseVersion": "1.0",
@@ -5222,6 +5338,7 @@
   {
     "id": "36b95fae-3dc7-8048-8117-ef81ca62b5c6",
     "name": "흑야의 증폭기 · 흑광",
+    "autoDescription": "",
     "rarity": 3,
     "type": "증폭기",
     "releaseVersion": "1.0",
@@ -5267,6 +5384,7 @@
   {
     "id": "36e95fae-3dc7-8093-a1db-c689d5694fab",
     "name": "흑야의 직검 · 흑뢰",
+    "autoDescription": "",
     "rarity": 3,
     "type": "직검",
     "releaseVersion": "1.0",
@@ -5312,6 +5430,7 @@
   {
     "id": "36e95fae-3dc7-8078-a3dd-c29637e556f8",
     "name": "흔들리지 않는 용기",
+    "autoDescription": "",
     "rarity": 5,
     "type": "직검",
     "releaseVersion": "2.1",
@@ -5357,6 +5476,7 @@
   {
     "id": "36b95fae-3dc7-80ad-bfb1-d19b0528e026",
     "name": "희비극",
+    "autoDescription": "",
     "rarity": 5,
     "type": "권갑",
     "releaseVersion": "2.0",
@@ -5402,6 +5522,7 @@
   {
     "id": "36395fae-3dc7-80b5-a488-c0d33cfb73df",
     "name": "갈브레나",
+    "autoDescription": "갈브레나은(는) 명조의 용융 속성, 권총 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n강공격 피해 : 비교적 높은 강공격 피해 역할을 수행합니다. 공포스러운 ｢악마들｣은 갈브레나의 불꽃에 휩싸여 모조리 불타 삼켜져 버린다.\n불꽃에 집어삼킨 ｢악마들｣에겐 단 두 가지 선택만이 존재할 뿐.\n정화되어 그녀의 힘이 되거나... 혹은, 재가 되어 완전히 소멸되거나.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.7",
@@ -5447,6 +5568,7 @@
   {
     "id": "35b95fae-3dc7-8057-bbc4-d49d5fb0e1c1",
     "name": "감심",
+    "autoDescription": "감심은(는) 명조의 기류 속성, 권갑 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n강공격 피해 : 비교적 높은 강공격 피해\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n공명 해방 피해 부스트 : 파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능 역할을 수행합니다. 만물의 기운을 자신의 힘으로 응축하여 맥박 속에 자유롭게 흐르게 한다. 그뿐만 아니라 '기'를 이용해 주변을 정화한다. 움직임이 바뀌고, 긴장과 이완을 반복하기도 하며, 부드러운 모습에 아무것도 없어 보이지만, 실제로는 엄청난 힘이 있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -5492,6 +5614,7 @@
   {
     "id": "35a95fae-3dc7-8059-98be-c859fcb8b352",
     "name": "구원",
+    "autoDescription": "구원은(는) 명조의 기류 속성, 직검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n강공격 피해 : 비교적 높은 강공격 피해\n에코 어빌리티 피해 부스트 : 파티 내 특정 캐릭터의 에코 어빌리티 피해를 부스트시킨다 역할을 수행합니다. 돌연 비바람이 몰아치고 댓잎이 마구 흩날린다.숨을 죽이고 정신을 집중한 그는, 서늘하게 빛나는 검을 단단히 움켜쥔다.\n찰나에 적의 마음과 빈틈을 꿰뚫고, 바람처럼 검을 움직인다. 한 점의 흔적도 남기지 않고...",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.7",
@@ -5537,6 +5660,7 @@
   {
     "id": "35e95fae-3dc7-8012-a62d-fef7c4edf10e",
     "name": "금희",
+    "autoDescription": "금희은(는) 명조의 회절 속성, 대검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해 역할을 수행합니다. 금희는 수호신 공명자로서, 수호신 「각」과 같은 주파수의 힘을 다룰 수 있다. 그녀는 경칩의 햇빛을 모아 봄기운으로 눈을 녹이고, 만물을 흐르게 할 수 있다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.1",
@@ -5582,6 +5706,7 @@
   {
     "id": "35595fae-3dc7-802b-bc16-fc93764fd817",
     "name": "기염",
+    "autoDescription": "기염은(는) 명조의 기류 속성, 대검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n강공격 피해 : 비교적 높은 강공격 피해\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능 역할을 수행합니다. 정의를 품은 황룡 야귀의 리더. 번개처럼 맹렬하며, 바람처럼 신속하다.\n바람으로 청룡을 창조하는 어빌리티를 가지고 있으며, 만부부당의 무력을 가지고 있다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -5627,6 +5752,7 @@
   {
     "id": "36795fae-3dc7-8096-a858-fd8a9c3bf21d",
     "name": "능양",
+    "autoDescription": "능양은(는) 명조의 응결 속성, 권갑 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능 역할을 수행합니다. 능양은 건장한 체격으로 주위 일정 범위 내에 냉혹한 투기와 저온 자기장을 생성하여 적에게 위압을 준다. 또한 사자춤의 북소리에 맞춰 권법을 사용하는데, 한 수 한 수가 역동적이고 힘이 있어 위풍당당하다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -5672,6 +5798,7 @@
   {
     "id": "35895fae-3dc7-800c-bbd8-eb8bb35227e2",
     "name": "단근",
+    "autoDescription": "단근은(는) 명조의 인멸 속성, 직검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n인멸 피해 부스트 : 파티 내 특정 캐릭터의 인멸 피해 부스트 가능 역할을 수행합니다. 자신의 혈액을 조종하여 붉은 빛 칼날을 응집시킨다. 손에 든 붉은 칼날로 눈에 닿는 어둠을 헤치고, 모든 사람에게 밝은 빛을 되찾아 준다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -5717,6 +5844,7 @@
   {
     "id": "36095fae-3dc7-80f6-b1cb-fc2a357967de",
     "name": "데니아",
+    "autoDescription": "데니아은(는) 명조의 용융 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n불꽃: 불꽃 효과 사용 가능\n조화도 파괴 증폭 : 파티 내 특정 캐릭터의 조화도 파괴 증폭을 증가시킬 수 있다\n조화 밀집 대응 : 자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가한다 역할을 수행합니다. 데니아가 화려한 장식의 지팡이를 휘두르면 분홍빛 거품들이 뿜어져 나온다.\n이 거품들은 보이드매터에 대해 어느 정도의 방호 작용을 하며, 부드럽고 가벼워 보이지만 실은 살짝 흔들리는 것만으로도 적을 환상의 별무리 속에 가둘 수 있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.3",
@@ -5728,7 +5856,7 @@
     "skillMaterials": "클램 코인x2,030,000\n저주파수 메카 성핵x25\n중주파수 메카 성핵x28\n고주파수 메카 성핵x40\n전주파수 메카 성핵x57\n되묻는 우리x26\n긁어모은 현x28\n끊어진 현x28\n응고된 현x55\n노래하는 현x67",
     "weaponStory": "",
     "fileName": "",
-    "skillInputGuide": "스킬 입력 가이드 a 타입\n[공명 회로 게이지.webp]\n특징\n파티 내 캐릭터에게 피해 보너스 효과를 제공한다\n==공명 모드 · 불꽃==에 있을 시, 높은 빈도로 ==「불꽃 효과」==를 추가하는 능력을 지니며 불꽃 효과 파티의 피해를 증가시킬 수 있다\n==공명 모드 · 조화 밀집==에 있을 시, ==「조화 밀집 · 이탈」== 추가, ==「조화 밀집 · 간섭」== 지속 시간 리셋, 목표의 ==「부조화 수치」==를 빠르게 누적시킬 수 있는 능력을 지니며, 조화 밀집 대응 파티의 피해를 증가시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지1.webp]\n· ==「연극의 모습」==에 있을 시, 공격으로 ==「보이드매터 입자」==를 획득할 수 있다\n[공명 회로 게이지2.webp]\n· ==「환멸의 모습」==에 있을 시, 공격으로 ==「보이드매터 입자」==를 소모하여 ==「위상 동형 에너지」==로 전환하고 ==「막이 내리는 순간 · 환멸의 모습」==을 차지할 수 있다\n[공명 회로 게이지3.webp]\n· ==「엔트로피 변이 강화」== 상태에 있을 시, 시간이 지남에 따라 ==「어둠의 핵심」==을 획득하고 ==강화된 공명 스킬== 발동에 사용할 수 있다\n[공명 회로 게이지4.webp]\n· ==공명 해방 · 연극의 모습==을 발동할 경우, 데니아는 ==엔트로피 변이 강화 · 환멸의 모습==을 획득하고 공격력이 증가된다.\n==공명 해방 · 환멸의 모습==을 발동할 경우, 데니아는 ==엔트로피 변이 강화 · 연극의 모습==을 획득하고 ==「보이드매터 입자」==를 지속적으로 회복한다\n메커니즘 설명\n· 추방 · 환멸의 모습: **「환멸의 모습」**에서의 강화된 공명 스킬; 「어둠의 핵심」 보유 시, [key e]+[key e] 혹은 [key e]+[mouse left]\n· 막이 내리는 순간 · 환멸의 모습: ==「환멸의 모습」==에서의 ==공명 해방==; ==「위상 동형 에너지」==가 가득 찰 시  [key r] 짧게 누르기",
+    "skillInputGuide": "스킬 입력 가이드 a 타입\n특징\n파티 내 캐릭터에게 피해 보너스 효과를 제공한다\n==공명 모드 · 불꽃==에 있을 시, 높은 빈도로 ==「불꽃 효과」==를 추가하는 능력을 지니며 불꽃 효과 파티의 피해를 증가시킬 수 있다\n==공명 모드 · 조화 밀집==에 있을 시, ==「조화 밀집 · 이탈」== 추가, ==「조화 밀집 · 간섭」== 지속 시간 리셋, 목표의 ==「부조화 수치」==를 빠르게 누적시킬 수 있는 능력을 지니며, 조화 밀집 대응 파티의 피해를 증가시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지1.webp]\n· ==「연극의 모습」==에 있을 시, 공격으로 ==「보이드매터 입자」==를 획득할 수 있다\n[공명 회로 게이지2.webp]\n· ==「환멸의 모습」==에 있을 시, 공격으로 ==「보이드매터 입자」==를 소모하여 ==「위상 동형 에너지」==로 전환하고 ==「막이 내리는 순간 · 환멸의 모습」==을 차지할 수 있다\n[공명 회로 게이지3.webp]\n· ==「엔트로피 변이 강화」== 상태에 있을 시, 시간이 지남에 따라 ==「어둠의 핵심」==을 획득하고 ==강화된 공명 스킬== 발동에 사용할 수 있다\n[공명 회로 게이지4.webp]\n· ==공명 해방 · 연극의 모습==을 발동할 경우, 데니아는 ==엔트로피 변이 강화 · 환멸의 모습==을 획득하고 공격력이 증가된다.\n==공명 해방 · 환멸의 모습==을 발동할 경우, 데니아는 ==엔트로피 변이 강화 · 연극의 모습==을 획득하고 ==「보이드매터 입자」==를 지속적으로 회복한다\n메커니즘 설명\n· 추방 · 환멸의 모습: **「환멸의 모습」**에서의 강화된 공명 스킬; 「어둠의 핵심」 보유 시, [key e]+[key e] 혹은 [key e]+[mouse left]\n· 막이 내리는 순간 · 환멸의 모습: ==「환멸의 모습」==에서의 ==공명 해방==; ==「위상 동형 에너지」==가 가득 찰 시  [key r] 짧게 누르기",
     "combatCycle": "",
     "itemAttribute": "용융",
     "weapon": "증폭기",
@@ -5762,6 +5890,7 @@
   {
     "id": "35895fae-3dc7-80cd-b053-dca32ecb0037",
     "name": "도기",
+    "autoDescription": "도기은(는) 명조의 인멸 속성, 대검 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n공명 스킬 피해 부스트 : 파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능 역할을 수행합니다. 공격 시, 적의 에너지를 흡수하고 이를 자신의 치유력으로 전환한다. 대검이 주는 압박감은 적에게 주는 경고일 뿐만 아니라 대중의 의지와 믿음이 담겨있다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -5807,6 +5936,7 @@
   {
     "id": "37995fae-3dc7-807a-8e0e-cba40a2adb10",
     "name": "레베카",
+    "autoDescription": "레베카은(는) 명조의 전도 속성, 권총 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n강공격 피해 부스트 : 파티 내 특정 캐릭터의 강공격 피해 부스트 가능\n조화도 파괴 증폭 : 파티 내 특정 캐릭터의 조화도 파괴 증폭을 증가시킬 수 있다\n해킹 대응 : 목표에게 해킹 피해를 입힐 수 있다 역할을 수행합니다. 루시와 같은 엣지러너이지만, 하는 행동은 전혀 다르다.\n당신의 고민쯤은 손에 든 샷건으로 시원하게 날려버릴 준비가 된, 예측 불가의 불꽃같은 존재",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.4",
@@ -5852,6 +5982,7 @@
   {
     "id": "35795fae-3dc7-8011-812e-f98c621655b3",
     "name": "로코코",
+    "autoDescription": "로코코은(는) 명조의 인멸 속성, 권갑 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n강공격 피해 : 비교적 높은 강공격 피해\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n인멸 피해 부스트 : 파티 내 특정 캐릭터의 인멸 피해 부스트 가능\n일반 공격 피해 부스트 : 파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능 역할을 수행합니다. 그녀가 항상 지니고 다니는 신비한 상자에는 마치 온 세상이 들어 있는 것 같다──\n오색찬란한 리본, 반짝이는 바다반디석, 그리고 흥겨운 불꽃놀이까지……\n온갖 물건들이 상자에서 날아와, 자유롭게 노래하는 연극 무대를 자아낸다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.0",
@@ -5897,6 +6028,7 @@
   {
     "id": "35995fae-3dc7-80f3-ad73-e164ef0ddba6",
     "name": "루미",
+    "autoDescription": "루미은(는) 명조의 전도 속성, 대검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n공명 스킬 피해 부스트 : 파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능 역할을 수행합니다. 만물의 일곱 빛깔을 소중한 수첩에 기록해 두었다. 반짝이는 별들은 모두 다 빛의 기억이다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.4",
@@ -5942,6 +6074,7 @@
   {
     "id": "37995fae-3dc7-80e1-85f2-c013122340b5",
     "name": "루시",
+    "autoDescription": "루시은(는) 명조의 회절 속성, 권총 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n강공격 피해 : 비교적 높은 강공격 피해\n일반 공격 피해 부스트 : 파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능\n해킹 대응 : 목표에게 해킹 피해를 입힐 수 있다 역할을 수행합니다. 나이트 시티에서 온 엣지러너. 크루에서 넷러너를 맡고 있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.4",
@@ -5987,6 +6120,7 @@
   {
     "id": "37895fae-3dc7-80b5-a01c-dd19f5c97f43",
     "name": "루실라",
+    "autoDescription": "루실라은(는) 명조의 응결 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n에코 어빌리티 피해 부스트 : 파티 내 특정 캐릭터의 에코 어빌리티 피해를 부스트 시킨다\n서리 : 서리 효과 사용 가능\n에코 어빌리티 피해 : 에코 어빌리티 피해 비교적 높음 역할을 수행합니다. 루실라는 기억을 되살리는 방법에 정통할 뿐만 아니라, 기억의 조각을 떼어내어 이를 한층 더 실체화하는 능력도 지니고 있다.\n그녀는 지난날의 윤곽을 재구성할 수 있으며, 나아가 자신이 직접 겪었던 과거의 어느 순간을 투영하여 현실 세계에 그대로 재현해 낼 수도 있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.4",
@@ -6032,6 +6166,7 @@
   {
     "id": "35895fae-3dc7-80f7-bc8b-fb6ad634b8d4",
     "name": "루크 · 헤르센",
+    "autoDescription": "루크 · 헤르센은(는) 명조의 회절 속성, 권갑 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n조화 밀집 대응 : 자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가된다 역할을 수행합니다. 작열통, 그리고 순간적인 체온 상승과 함께 이질적인 에너지의 흐름이 루크 · 헤르센의 의지에 따라 상을 변화시킨다.\n그의 손바닥에 흐르는 혈액은 날카로운 칼날이 되어, 눈앞의 적을 예리하게 공격한다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.1",
@@ -6043,7 +6178,7 @@
     "skillMaterials": "클램 코인x2,030,000\n파손된 엑소스웜 펜던트x25\n허름한 엑소스웜 펜던트x28\n흠집이 있는 엑소스웜 펜던트x40\n완전한 엑소스웜 펜던트x57\n기억 속 금빛x26\n저주파수 비명 이상 결정 조각x25\n중주파수 비명 이상 결정 조각x28\n고주파수 비명 이상 결정 조각x55\n전주파수 비명 이상 결정 조각x67",
     "weaponStory": "",
     "fileName": "",
-    "skillInputGuide": "스킬 입력 가이드 a\n특징\n루크 · 헤르센은 공중에서 3가지 형태의 강화된 공명 스킬을 자유롭게 사용하여, 강력한 일반 공격 피해를 입힐 수 있다\n**==조화 밀집 · 간섭==**의 추가와 대응을 통해, 자신이 입히는 최종 피해를 추가로 증가시킬 수 있다\n파티 내 캐릭터가 제공하는 조화도 파괴 증폭을 이용하여, 자신이 입히는 피해를 대폭 부스트시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지 이미지]\n· 기본 공격, 공명 스킬로 명중하거나 변주 스킬 발동 시, 「이코르 에너지의 흐름」 을 회복할 수 있다\n「이코르 에너지의 흐름」 이 가득 찰 시, ==황금의 재량== 상태에 진입한다\n==황금의 재량== 상태에서, 공명 스킬 ==햇무리 참살==의 피해 배율이 상승되고, 매번 발동할 때마다 100pt의 「이코르 에너지의 흐름」 을 소모한다\n메커니즘 설명\n· 햇무리 참살: 지면에서 [mouse left] + [mouse left] + [mouse left] + [mouse left] 짧게 누르거나 공중에서 [mouse left] + [mouse left]/점프+[mouse left] /점프를 짧게 누르면 공명 스킬 ==햇무리 참살==을 활성화할 수 있다. 활성화 후 [key e] 짧게 누르면, 공명 스킬 ==햇무리 참살==을 발동할 수 있다\n· 되살아난 금빛의 흐름: 공명 스킬 ==햇무리 참살== 비활성화 시, [key e]  짧게 누르면, 공중으로 뛰어올라 목표 위치로 빠르게 이동할 수 있다\n· 강공격: 지면에서 [mouse left] 길게 누르면, 스태미나를 소모하여 공중으로 뛰어오를 수 있다\n· 공중 낙하 공격: 공중에서 [mouse left] 길게 누르거나 [mouse left] + [mouse left] + [mouse left] + [mouse left] 짧게 누르면, 공중 낙하 공격을 가할 수 있다\n· 금빛비의 재단: 공중에서 회피를 짧게 누르면, 회피를 진행하고 공중에 잠깐 떠있는 동시에 날아드는 날을 발사하여 목표를 공격할 수 있다",
+    "skillInputGuide": "스킬 입력 가이드 a\n특징\n루크 · 헤르센은 공중에서 3가지 형태의 강화된 공명 스킬을 자유롭게 사용하여, 강력한 일반 공격 피해를 입힐 수 있다\n**==조화 밀집 · 간섭==**의 추가와 대응을 통해, 자신이 입히는 최종 피해를 추가로 증가시킬 수 있다\n파티 내 캐릭터가 제공하는 조화도 파괴 증폭을 이용하여, 자신이 입히는 피해를 대폭 부스트시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지.webp]\n· 기본 공격, 공명 스킬로 명중하거나 변주 스킬 발동 시, 「이코르 에너지의 흐름」 을 회복할 수 있다\n「이코르 에너지의 흐름」 이 가득 찰 시, ==황금의 재량== 상태에 진입한다\n==황금의 재량== 상태에서, 공명 스킬 ==햇무리 참살==의 피해 배율이 상승되고, 매번 발동할 때마다 100pt의 「이코르 에너지의 흐름」 을 소모한다\n메커니즘 설명\n· 햇무리 참살: 지면에서 [mouse left] + [mouse left] + [mouse left] + [mouse left] 짧게 누르거나 공중에서 [mouse left] + [mouse left]/점프+[mouse left] /점프를 짧게 누르면 공명 스킬 ==햇무리 참살==을 활성화할 수 있다. 활성화 후 [key e] 짧게 누르면, 공명 스킬 ==햇무리 참살==을 발동할 수 있다\n· 되살아난 금빛의 흐름: 공명 스킬 ==햇무리 참살== 비활성화 시, [key e]  짧게 누르면, 공중으로 뛰어올라 목표 위치로 빠르게 이동할 수 있다\n· 강공격: 지면에서 [mouse left] 길게 누르면, 스태미나를 소모하여 공중으로 뛰어오를 수 있다\n· 공중 낙하 공격: 공중에서 [mouse left] 길게 누르거나 [mouse left] + [mouse left] + [mouse left] + [mouse left] 짧게 누르면, 공중 낙하 공격을 가할 수 있다\n· 금빛비의 재단: 공중에서 회피를 짧게 누르면, 회피를 진행하고 공중에 잠깐 떠있는 동시에 날아드는 날을 발사하여 목표를 공격할 수 있다",
     "combatCycle": "",
     "itemAttribute": "회절",
     "weapon": "권갑",
@@ -6077,6 +6212,7 @@
   {
     "id": "36395fae-3dc7-80ea-b4a9-fa66592df03f",
     "name": "루파",
+    "autoDescription": "루파은(는) 명조의 용융 속성, 대검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n용융 피해 부스트 : 파티 내 특정 캐릭터의 용융 피해 부스트 가능\n일반 공격 피해 부스트 : 파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능 역할을 수행합니다. 은은하게 타오르기 시작한 불꽃이 몸에서 분출되며, 손에 쥔 대검에는 열기가 모여든다.\n그녀는 이 격렬한 전투에 기꺼이 몸을 던져, 늑대처럼 예리하게 적을 추적하여 악인을 물어뜯을 것이다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.4",
@@ -6122,6 +6258,7 @@
   {
     "id": "35895fae-3dc7-804a-a32b-c2fd208f91fa",
     "name": "린네",
+    "autoDescription": "린네은(는) 명조의 회절 속성, 권총 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능\n공명 해방 피해 부스트 : 파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능\n조화 파동 대응 : 목표에게 조화 파동 피해를 입힐 수 있다\n조화도 파괴 증폭 : 파티 내 특정 캐릭터의 조화도 파괴 증폭을 증가시킬 수 있다\n조화 밀집 대응 : 자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가된다 역할을 수행합니다. 린네는 페인트 통을 들고, 자신의 「스페셜 페인트」를 배합하여 허공으로 거침없이 뿌려낸다.\n찬란한 스펙트럼의 그림이 공중에 수놓아지고, 눈부신 색채와 선이 활기차게, 자유로이 움직인다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.0",
@@ -6167,6 +6304,7 @@
   {
     "id": "36195fae-3dc7-8018-9295-e487837f428a",
     "name": "모니에",
+    "autoDescription": "모니에은(는) 명조의 용융 속성, 대검 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능\n조화 파동 대응 : 목표에게 조화 파동 피해를 입힐 수 있다\n부조화 수치 누적 효율 : 파티 내 특정 캐릭터의 부조화 수치 누적 효율을 증가시킬 수 있다\n조화 밀집 대응 : 자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가된다 역할을 수행합니다. 모니에는 정밀한 컨트롤 패널들을 하나하나 불러내어, 치밀한 계산과 추론, 수정을 진행한다.\n정교한 부품들을 세밀하게 조종하는 모습은, 마치 올려다봐야 할 별하늘이 그대로 그녀의 손에 담긴 듯한 인상을 준다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.0",
@@ -6212,6 +6350,7 @@
   {
     "id": "36395fae-3dc7-8099-9781-d3666239ff54",
     "name": "모르테피",
+    "autoDescription": "모르테피은(는) 명조의 용융 속성, 권갑 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n강공격 피해 부스트 : 파티 내 특정 캐릭터의 강공격 피해 부스트 가능 역할을 수행합니다. 열을 모아 불꽃을 만들며, 타오르는 불꽃은 마치 폭주하는 레드 드래곤처럼 팔을 휘감듯 감싼다. 자욱한 초연 가운데 적을 격퇴하는 귀족의 우아한 모습을 볼 수 있다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6257,6 +6396,7 @@
   {
     "id": "35b95fae-3dc7-8061-b3a4-e298eddef115",
     "name": "방랑자 · 기류",
+    "autoDescription": "방랑자 · 기류은(는) 명조의 기류 속성, 직검 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해\n풍식 : 풍식 효과 사용 가능 역할을 수행합니다. 정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제2장 제4막 클리어 후에 획득",
@@ -6302,6 +6442,7 @@
   {
     "id": "35795fae-3dc7-80ec-82ee-ea72d22597c5",
     "name": "방랑자 · 인멸",
+    "autoDescription": "방랑자 · 인멸은(는) 명조의 인멸 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능 역할을 수행합니다. 정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "조수 임무 제1장 제6막 클리어 후 획득",
@@ -6347,6 +6488,7 @@
   {
     "id": "3a195fae-3dc7-80eb-9f34-fd6775a3704d",
     "name": "방랑자 · 전도",
+    "autoDescription": "방랑자 · 전도은(는) 명조의 전도 속성, 직검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해\n전자 : 전자 효과 사용 가능 역할을 수행합니다. 정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제4장 제2막 완료 후 개방",
@@ -6392,6 +6534,7 @@
   {
     "id": "35995fae-3dc7-80eb-bd6c-e91a846ee106",
     "name": "방랑자 · 회절",
+    "autoDescription": "방랑자 · 회절은(는) 명조의 회절 속성, 직검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n정체 : 일정 범위 내에서 목표의 행동 속도 낮추기 가능\n광학: 광학 효과 사용 가능 역할을 수행합니다. 정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6437,6 +6580,7 @@
   {
     "id": "35995fae-3dc7-809a-a4c1-c8adb9ad40f7",
     "name": "벨리나",
+    "autoDescription": "벨리나은(는) 명조의 회절 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능 역할을 수행합니다. 식물의 말을 들을 수 있는 벨리나가 피어나는 꽃들 하나하나의 목소리를 듣는 건 생명의 기적을 보호하기 위해서다. 그리고 식물들도 자신들의 생기로 그녀의 보살핌에 응답한다. 덩굴이 자라 퍼지고... 그녀가 뛰어다니는 자리에는 별과 같은 꽃들이 피어난다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6482,6 +6626,7 @@
   {
     "id": "35d95fae-3dc7-80a0-896c-e530a891a081",
     "name": "복링",
+    "autoDescription": "복링은(는) 명조의 전도 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능\n전자 : 전자 효과 사용 가능 역할을 수행합니다. 그녀는 공명 어빌리티를 통해 특별한 소리를 들을 수 있으며, 잔향의 주파수에 대한 감지력이 극도로 예민하다.\n헤드셋을 벗고 숨을 죽인 채 귀를 기울인 그녀가 손가락을 꼽으며 수를 세면, 천둥이 천지를 울리며 모든 사악한 기운이 흩어진다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "2.8",
@@ -6527,6 +6672,7 @@
   {
     "id": "36395fae-3dc7-8027-b026-fc2628b1a8c0",
     "name": "브렌트",
+    "autoDescription": "브렌트은(는) 명조의 용융 속성, 직검 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n용융 피해 부스트 : 파티 내 특정 캐릭터의 용융 피해 부스트 가능\n공명 스킬 피해 부스트 : 파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능 역할을 수행합니다. 로프를 풀고, 닻을 올린 다음 커다란 불꽃을 피워 올린다.\n출항의 시간이 다가옵니다, 폭풍과도 같은 도전을 맞이하세요!",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.1",
@@ -6572,6 +6718,7 @@
   {
     "id": "36695fae-3dc7-805a-8c75-cdc070994252",
     "name": "산화",
+    "autoDescription": "산화은(는) 명조의 응결 속성, 직검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짭은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 부스트 : 파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능 역할을 수행합니다. 눈꽃을 소환하여 직검을 덮고 뒤틀린 세상의 중심을 향해 휘두릅니다. 순수한 눈꽃은 잿빛을 가릴 수 없지만, 적어도 뒤틀린 세상에 하얗게 빛나는 눈꽃의 잔영을 남길 수 있습니다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6617,6 +6764,7 @@
   {
     "id": "35e95fae-3dc7-806e-85d1-d3dd5a158c22",
     "name": "상리요",
+    "autoDescription": "상리요은(는) 명조의 전도 속성, 권갑 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 해방 피해 : 비교적 높은 공명 해방 피해 역할을 수행합니다. 만물은 손에서 끊임없이 분열하고, 변화하며, 재구성한다.\n개조는 새로운 생명을 부여하며, 이러한 창조물은 마치 별들에게서 따온 것처럼 기묘하면서도 아름답다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.2",
@@ -6662,6 +6810,7 @@
   {
     "id": "35b95fae-3dc7-8060-a8d9-fe3851fb1cb9",
     "name": "샤콘",
+    "autoDescription": "샤콘은(는) 명조의 기류 속성, 권총 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n풍식 : 풍식 효과 사용 가능 역할을 수행합니다. 그녀는 세상 만물로부터 흘러나오는 다채로운 멜로디를 찾고, 느끼며 듣는다.\n그렇게 멜로디를 시로 그리고, 이야기로 써내고, 만물로 자아내어 멜로디에 새로운 의미를 심는다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.3",
@@ -6707,6 +6856,7 @@
   {
     "id": "36795fae-3dc7-8099-a028-e8cbba01a587",
     "name": "설지",
+    "autoDescription": "설지은(는) 명조의 응결 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능 역할을 수행합니다. 간절한 신념에서 탄생한 「우담」은, 설지의 내면과 연결되어 그녀의 갈망이 있을 때마다 그 모습을 드러낸다. 상처를 치유하고 죽어 가는 사람을 회복시키려는 그녀의 갈망이 차가운 빙하를 건너 그의 응답을 받았다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6752,6 +6902,7 @@
   {
     "id": "3a295fae-3dc7-8087-99ff-c7df503277be",
     "name": "수수",
+    "autoDescription": "수수은(는) 명조의 응결 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능\n서리 : 서리 효과 사용 가능 역할을 수행합니다. 수수는 자연의 물결을 ｢조화｣하고 ｢부릴｣ 수 있다. 강과 바다의 파도, 비와 안개의 물방울, 심지어는 사람 옷소매의 습기까지 모두 그녀의 뜻에 따라 자유자재로 움직인다. 공명 어빌리티를 펼치는 순간, 천지는 마치 보이지 않는 한 폭의 그림이 서서히 펼쳐지듯 강산은 찬연히 빛나고 물안개는 서로 어우러진다. 전장에서의 그녀는 부드러움 속에 예리한 칼날을 감추고 있어, 물의 부채를 휘둘러 영작의 공격을 인도하거나, 소매를 휘둘러 구름을 부릴 수도 있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.5",
@@ -6797,6 +6948,7 @@
   {
     "id": "35a95fae-3dc7-80fe-bdf8-d2cacb35ceff",
     "name": "시그리카",
+    "autoDescription": "시그리카은(는) 명조의 기류 속성, 권갑 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n에코 어빌리티 피해 : 에코 어빌리티 피해 비교적 높음 역할을 수행합니다. 별처럼 반짝이는 룬이 시그리카의 눈 앞에 펼쳐진다. 서로 이어지고 겹쳐지는 그것들은 마치 먼 옛날 복잡한 수수께끼와도 같다.\n그녀는 룬에 담긴 주파수를 해석하여 자신의 힘으로 삼고, 그 아름다우면서도 눈부신 의미 그 자체를 느낀다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.2",
@@ -6808,7 +6960,7 @@
     "skillMaterials": "클램 코인x2,030,000\n파손된 엑소스웜 펜던트x25\n허름한 엑소스웜 펜던트x28\n흠집이 있는 엑소스웜 펜던트x40\n완전한 엑소스웜 펜던트x57\n기억 속 금빛x26\n저주파수 비명 이상 결정 조각x25\n중주파수 비명 이상 결정 조각x28\n고주파수 비명 이상 결정 조각x55\n전주파수 비명 이상 결정 조각x67",
     "weaponStory": "",
     "fileName": "",
-    "skillInputGuide": "스킬 입력 가이드 a 타입\n특징\n강력한 에코 어빌리티 피해를 입힌다\n==강화된 강공격==의 발동은 서로 다른 환경에 따라 끌어당김과 정체를 포함한 서로 다른 효과를 추가할 수 있다\n파티 내 캐릭터의 에코 어빌리티 발동을 통해 특수 에너지를 획득하여 자신의 피해를 대폭 부스트시킬 수 있다\n설명 → 소제목\n특수 에너지\n[공명 회로 게이지1.webp]\n· ==일반 공격 · 깨달음== 혹은 ==회피 반격 · 해독== 발동 기간 동안, ==일반 공격 · 깨달음== 혹은 ==회피 반격 · 해독==으로 목표 명중 시 「==룬 · 기대==」 를 획득하며, ==공명 스킬 · 쿠쿵팡!== 혹은 ==공명 스킬 · 태양의 정령 도와줘== 발동 기간 동안, ==공명 스킬 · 쿠쿵팡!== 혹은 ==공명 스킬 · 태양의 정령 도와줘==로 목표 명중 시 「==룬 · 문답==」 을 획득한다\n[공명 회로 게이지2.webp]\n· ==강공격 · 룬 · 근원== 발동 후, 50pt의 「==마침표==」 를 획득하고, 최대치는 100pt이다. 「==마침표==」 가 100pt일 시, 공명 스킬을 길게 누르면 100pt의 「==마침표==」 를 소모하고 ==공명 회로 · 나 곧 함의이니==를 발동할 수 있다\n· 근처 파티 내 모든 캐릭터가 에코 어빌리티 발동 시, 시그리카는 10pt의 「==태양의 정령 에너지==」 를 획득하고, 최대치는 60pt이다. ==강공격 · 룬 · 근원== 발동 시, 「==태양의 정령 에너지==」 가 30pt 이상일 경우, 30pt의 「==태양의 정령 에너지==」 를 소모하고 버프를 획득한다\n메커니즘 설명\n· 쿠쿵팡!: [mouse left] + [mouse left] + [mouse left] + [mouse left] + [key e]\n· 태양의 정령 도와줘: [mouse left] + [mouse left] + [mouse left] + [key e]\n· 룬 · 근원: 2개의 ==「룬」== 보유 시, [mouse left] 길게 누르기\n· 나 곧 함의이니: ==「마침표」==가 가득 찰 시, [key e] 길게 누르기",
+    "skillInputGuide": "스킬 입력 가이드 a 타입\n특징\n강력한 에코 어빌리티 피해를 입힌다\n==강화된 강공격==의 발동은 서로 다른 환경에 따라 끌어당김과 정체를 포함한 서로 다른 효과를 추가할 수 있다\n파티 내 캐릭터의 에코 어빌리티 발동을 통해 특수 에너지를 획득하여 자신의 피해를 대폭 부스트시킬 수 있다\n설명\n특수 에너지\n[공명 회로 게이지1.webp]\n· ==일반 공격 · 깨달음== 혹은 ==회피 반격 · 해독== 발동 기간 동안, ==일반 공격 · 깨달음== 혹은 ==회피 반격 · 해독==으로 목표 명중 시 「==룬 · 기대==」 를 획득하며, ==공명 스킬 · 쿠쿵팡!== 혹은 ==공명 스킬 · 태양의 정령 도와줘== 발동 기간 동안, ==공명 스킬 · 쿠쿵팡!== 혹은 ==공명 스킬 · 태양의 정령 도와줘==로 목표 명중 시 「==룬 · 문답==」 을 획득한다\n[공명 회로 게이지2.webp]\n· ==강공격 · 룬 · 근원== 발동 후, 50pt의 「==마침표==」 를 획득하고, 최대치는 100pt이다. 「==마침표==」 가 100pt일 시, 공명 스킬을 길게 누르면 100pt의 「==마침표==」 를 소모하고 ==공명 회로 · 나 곧 함의이니==를 발동할 수 있다\n· 근처 파티 내 모든 캐릭터가 에코 어빌리티 발동 시, 시그리카는 10pt의 「==태양의 정령 에너지==」 를 획득하고, 최대치는 60pt이다. ==강공격 · 룬 · 근원== 발동 시, 「==태양의 정령 에너지==」 가 30pt 이상일 경우, 30pt의 「==태양의 정령 에너지==」 를 소모하고 버프를 획득한다\n메커니즘 설명\n· 쿠쿵팡!: [mouse left] + [mouse left] + [mouse left] + [mouse left] + [key e]\n· 태양의 정령 도와줘: [mouse left] + [mouse left] + [mouse left] + [key e]\n· 룬 · 근원: 2개의 ==「룬」== 보유 시, [mouse left] 길게 누르기\n· 나 곧 함의이니: ==「마침표」==가 가득 찰 시, [key e] 길게 누르기",
     "combatCycle": "",
     "itemAttribute": "기류",
     "weapon": "권갑",
@@ -6842,6 +6994,7 @@
   {
     "id": "35e95fae-3dc7-8021-9f9c-f6008eafa491",
     "name": "아우구스타",
+    "autoDescription": "아우구스타은(는) 명조의 전도 속성, 대검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n강공격 피해 : 비교적 높은 강공격 피해\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능 역할을 수행합니다. 아우구스타가 검을 휘두르는 순간, 타오르는 금빛 전류가 전신에서 솟구쳐 무기를 진동시킨다.\n그 찰나의 섬광은 마치 깊은 암야를 뚫고 떠오른 태양처럼 눈부시게 타올라, 모든 두려움과 망설임을 불태운다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.6",
@@ -6887,6 +7040,7 @@
   {
     "id": "35c95fae-3dc7-80b0-b805-f5dd16c4d378",
     "name": "알토",
+    "autoDescription": "알토은(는) 명조의 기류 속성, 권총 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n기류 피해 부스트 : 파티 내 특정 캐릭터의 기류 피해 부스트 가능 역할을 수행합니다. 알토는 안개를 만들 수 있을 뿐만 아니라, 안개 그 자체가 될 수도 있다. 안개의 미로 속에서 그는 모두를 놀라게 할 마술을 선보일 수 있다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6932,6 +7086,7 @@
   {
     "id": "36395fae-3dc7-8050-9e7f-da65568d7669",
     "name": "앙코",
+    "autoDescription": "앙코은(는) 명조의 용융 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n일반 공격 피해 : 비교적 높은 일반 공격 피해 역할을 수행합니다. 앙코는 환상속의 친구 그늘이와 구름이를 소환하여 함께 작전한다. 앙코의 상상속에 전쟁은 재밌는 모험과도 같다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -6977,6 +7132,7 @@
   {
     "id": "35d95fae-3dc7-80e3-9749-e9e8e0644d40",
     "name": "양양",
+    "autoDescription": "양양은(는) 명조의 기류 속성, 직검 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n공명 해방 차지 : 파티 내 특정 캐릭터의 공명 에너지 회복 가능 역할을 수행합니다. 기류가 주변을 맴돌며, 감지 가능한 메시지를 전달하며 독특한 영역으로 모여든다. 강한 바람이 온 하늘에 가득 차며, 유연하면서도 날카로움을 잃지 않는다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -7022,6 +7178,7 @@
   {
     "id": "3a195fae-3dc7-8059-88d7-eb79d0e3bc7d",
     "name": "양양 · 현령",
+    "autoDescription": "양양 · 현령은(는) 명조의 인멸 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n강공격 피해 : 비교적 높은 강공격 피해\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n암흑 : 암흑 효과 사용 가능 역할을 수행합니다. 양양은 자연의 기류를 감지하고 모아 기의 영역을 자아낼 수 있다. 그녀는 공명의 힘으로 ｢푸른 날갯짓｣을 응집하여, 만물의 주파수를 통찰하고 중화시킴으로써 맹렬한 에너지를 부드러운 바람으로 녹여내거나, 생물 혹은 무생물에 가해진 공명 어빌리티와 그로 인한 영향을 제거할 수도 있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.5",
@@ -7067,6 +7224,7 @@
   {
     "id": "36095fae-3dc7-80b6-9c8c-c02dd95b89d4",
     "name": "에이메스",
+    "autoDescription": "에이메스은(는) 명조의 용융 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능\n불꽃 : 불꽃 효과 사용 가능\n조화 파동 대응 : 목표에게 조화 파동 피해를 입힐 수 있다 역할을 수행합니다. 에이메스가 공명 어빌리티를 사용하면 ｢엑소스트라이더 무장｣을 구현하고 이와 융합하여 메카스카우트의 형태로 변신할 수 있다.\n그녀는 부드러운 별빛이 되어, 노래를 흥얼거리며 끝없는 밤하늘을 날아올라 어둠 속의 뭇별을 밝힌다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.1",
@@ -7112,6 +7270,7 @@
   {
     "id": "35f95fae-3dc7-8095-b3da-f410525c6d75",
     "name": "연무",
+    "autoDescription": "연무은(는) 명조의 전도 속성, 권갑 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n공진 수치 파괴 : 효과적으로 목표의 공진 수치 감소 가능\n경직 저항력 : 파티 내 특정 캐릭터의 경직 저항력 향상 가능 역할을 수행합니다. 연무는 뇌전의 힘을 모아 온 힘을 다해 적에게 공격을 가한다. 뛰어난 권법은 마치 천둥과 같았고, 눈부신 천둥은 삽시간에 하늘을 가른다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -7157,6 +7316,7 @@
   {
     "id": "35b95fae-3dc7-80a2-9590-c4584dd02c12",
     "name": "유노",
+    "autoDescription": "유노은(는) 명조의 기류 속성, 권갑 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n강공격 피해 부스트 : 파티 내 특정 캐릭터의 강공격 피해 부스트 가능 역할을 수행합니다. 그녀는 눈동자에 담긴 이슬을 대가로 달의 화살을 띄운다.\n세상을 떠도는 달은 모든 계절에 스며든다. 멈추고, 흐르고, 되풀이되며...... 끝내, 무한을 뛰어넘은 이에게 붙들려 그녀에게 끊임없는 변화를 선사할 때까지.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.6",
@@ -7202,6 +7362,7 @@
   {
     "id": "36695fae-3dc7-80ac-b8ca-e2ceaf42bb35",
     "name": "유호",
+    "autoDescription": "유호은(는) 명조의 응결 속성, 권갑 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해\n공진 수치 파괴 : 효과적으로 목표의 공진 수치 감소 가능\n협동 공격 피해 부스트 : 파티 내 특정 캐릭터의 협동 공격 피해 부스트 가능 역할을 수행합니다. 유호가 손을 한 차례 움직이면, 얼음으로 된 작은 골동품의 복제품이 상자 속에서 쏟아져 나온다.\n다채로운 아름다움을 자랑하는 이 진귀한 보물들은, 그녀가 골동품을 찾아다니며 쌓은 이야기들을 품고 있다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.3",
@@ -7247,6 +7408,7 @@
   {
     "id": "35f95fae-3dc7-80a1-9dfa-ff8d9ad698eb",
     "name": "음림",
+    "autoDescription": "음림은(는) 명조의 전도 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n전도 피해 부스트 : 파티 내 특정 캐릭터의 전도 피해 부스트 가능\n공명 해방 피해 부스트 : 파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능 역할을 수행합니다. 인형을 소환하고, 번개의 실로 이를 조종하여 전기 공격을 가한다. 자색의 번개가 무수히 많은 사슬이 되어, 적을 단번에 묶어서 쓰러뜨린다",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -7292,6 +7454,7 @@
   {
     "id": "36395fae-3dc7-8052-83fd-d433c30447ef",
     "name": "장리",
+    "autoDescription": "장리은(는) 명조의 용융 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해\n용융 피해 부스트 : 파티 내 특정 캐릭터의 용융 피해 부스트 가능\n공명 해방 피해 부스트 : 파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능 역할을 수행합니다. 장리는 극도로 뜨거우면서도 광범위한 파괴를 유발하는 화염을 일으킬 수 있다. 깃털 형상의 화염을 부리는 그녀는 적을 새장 속의 새처럼 도망칠 곳 없이 가두기도 한다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.1",
@@ -7337,6 +7500,7 @@
   {
     "id": "36695fae-3dc7-807a-99f2-c76206882c3e",
     "name": "절지",
+    "autoDescription": "절지은(는) 명조의 응결 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n공명 해방 차지 : 파티 내 특정 캐릭터의 공명 에너지 회복 가능\n응결 피해 부스트 : 파티 내 특정 캐릭터의 응결 피해 부스트 가능\n공명 스킬 피해 부스트 : 파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능 역할을 수행합니다. 붓으로 그려 낸 풍경은 실체가 되어 현실에 나타난다\n살아 있는 듯한 그림은 짧은 시간이지만 쉬이 잊기 힘든 인상을 남긴다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.2",
@@ -7382,6 +7546,7 @@
   {
     "id": "35995fae-3dc7-8074-8718-cd76010c505b",
     "name": "젠니",
+    "autoDescription": "젠니은(는) 명조의 회절 속성, 권갑 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n강공격 피해 : 비교적 높은 강공격 피해\n회절 피해 부스트 : 파티 내 특정 캐릭터의 회절 피해 부스트 가능\n광학 : 광학 효과 사용 가능 역할을 수행합니다. 젠니는 거대한 무기를 이용해, 힘을 모아 강력한 일격을 가한다.\n넘쳐나는 에너지는 그녀의 흉터와 머리카락에서 거칠게 흐르기 때문에, 닿으면 미약한 작열감이 느껴진다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.3",
@@ -7427,6 +7592,7 @@
   {
     "id": "35995fae-3dc7-800d-8ffb-c8f0ed5b128c",
     "name": "치사",
+    "autoDescription": "치사은(는) 명조의 인멸 속성, 대검 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n암흑 : 암흑 효과 사용 가능 역할을 수행합니다. 치사의 눈에는 세상 만물의 약점이 ｢현｣의 형태로 드러난다.\n그녀가 사물의 ｢구조｣를 꿰뚫어 분석하면, 어느샌가 적의 ｢현｣은 그녀의 가위에 의해 잘려있다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.8",
@@ -7472,6 +7638,7 @@
   {
     "id": "36495fae-3dc7-8019-8d04-da704ef9f982",
     "name": "치샤",
+    "autoDescription": "치샤은(는) 명조의 용융 속성, 권총 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능 역할을 수행합니다. 치샤의 대표 무기는, 그녀의 끝없이 샘솟는 열정이다. 그녀는 이 열정을 손끝으로 끌어내어 총알로 변환하며, 적에게 끝없는 총알을 쏘아낸다.",
     "rarity": 4,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -7517,6 +7684,7 @@
   {
     "id": "35b95fae-3dc7-807a-9575-f629deafad31",
     "name": "카르티시아",
+    "autoDescription": "카르티시아은(는) 명조의 기류 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n기류 피해 부스트 : 파티 내 특정 캐릭터의 기류 피해 부스트 가능\n풍식 : 풍식 효과 사용 가능 역할을 수행합니다. 만물을 녹여내는 바다와 세상을 가르는 폭풍을 서로 분리하고 또 융합시킨다.\n하늘까지 닿는 파도를 일으키고, 소용돌이와 조수를 휘몰아치게 하는 이 힘 속에서 기사의 적은 무너지고 사라진다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.4",
@@ -7562,6 +7730,7 @@
   {
     "id": "36595fae-3dc7-80ec-b4d4-c19dd7082fef",
     "name": "카를로타",
+    "autoDescription": "카를로타은(는) 명조의 응결 속성, 권총 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해 역할을 수행합니다. 그녀는 예술적 미학을 전투 기술에 녹여내어, 찬란한 결정체를 통해 죽음의 인사를 건넨다.\n피어나고 또 시드는 화려한 춤사위가 균형을 찾는다. 종막이 내리고, 모든 것이 다시 고요함 속에 잠긴다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.0",
@@ -7607,6 +7776,7 @@
   {
     "id": "35795fae-3dc7-807c-a95f-d944d5255c86",
     "name": "카멜리아",
+    "autoDescription": "카멜리아은(는) 명조의 인멸 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해 역할을 수행합니다. 머리카락 끝에서 붉은 빛이 층층히 피어오르고, 넝쿨이 주변을 휘감으며 사방을 향해 뻗어나간다.\n그렇게 물 흐르듯 굽이굽이 자라난 넝쿨은 살아 있는 듯이 움직이며, 주위의 혼란스러운 파장을 천천히 씹어삼킨다...",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.4",
@@ -7652,6 +7822,7 @@
   {
     "id": "35f95fae-3dc7-807f-b61f-e21ea8bcbc09",
     "name": "카카루",
+    "autoDescription": "카카루은(는) 명조의 전도 속성, 대검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 해방 피해 : 비교적 높은 공명 해방 피해 역할을 수행합니다. 전도 속성을 제어하여 팬텀을 만들어, 협동 공격을 가할 수 있다. 전기와 자기장이 상생하듯, 사람과 팬텀이 교차하며, 검을 휘두르는 것이 마치 빠르고 맹렬한 뇌전처럼 종잡을 수가 없다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.0",
@@ -7697,6 +7868,7 @@
   {
     "id": "35695fae-3dc7-804a-bb71-ccce821045b8",
     "name": "칸타렐라",
+    "autoDescription": "칸타렐라은(는) 명조의 인멸 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n일반 공격 피해 : 비교적 높은 일반 공격 피해\n협동 공격 : 비교적 강한 협동 공격 능력 보유\n인멸 피해 부스트 : 파티 내 특정 캐릭터의 인멸 피해 부스트 가능\n공명 스킬 피해 부스트 : 파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능 역할을 수행합니다. 해파리들이 춤추듯 몰려들어, 부드러운 촉수로 기묘한 환상의 바다를 엮어낸다.\n바다에 빠진 이가 끝없이 펼쳐진 파도 속에서 보는 것은 기괴하면서도 찬란한 꿈이니, 이는 곧 내면의 갈망이자 나지막이 속삭이는 환상이다.\n잠들려무나, 몽롱한 꿈결 속에서 깊은 곳까지 가라앉도록.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.2",
@@ -7742,6 +7914,7 @@
   {
     "id": "35995fae-3dc7-8079-9c6f-f75255bcf64d",
     "name": "파수인",
+    "autoDescription": "파수인은(는) 명조의 회절 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 생존 치료 : 파티의 생존력 향상\n견인 : 일정 범위 내의 목표를 특정 위치로 견인 가능\n피해 부스트 : 파티 내 특정 캐릭터의 피해 부스트 가능 역할을 수행합니다. 교차하는 울림, 마치 베틀 위의 실 같은 그것들을 그녀는 새로운 경지로 창조해 낸다.\n해석, 형태, 연역... \"나비\"의 모든 날갯짓은 생명의 연장을 바라는 갈망이자, 그녀의 수호에 대한 증명이다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "1.3",
@@ -7787,6 +7960,7 @@
   {
     "id": "35995fae-3dc7-80da-960a-f73787566eba",
     "name": "페비",
+    "autoDescription": "페비은(는) 명조의 회절 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n빠른 협주 : 짧은 시간에 비교적 높은 협주 효율 보유\n광학 : 광학 효과 사용 가능 역할을 수행합니다. 성스러운 광채가 반짝이며 떠오르고, 조각난 빛살이 한데 모여 아름다운 형상을 빚어낸다.\n그녀의 모든 동작은 희망의 빛을 모아 광명의 형태를 그려내어, 온기와 평온을 전달한다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.1",
@@ -7832,6 +8006,7 @@
   {
     "id": "35695fae-3dc7-8094-9f1f-d862fb5f918d",
     "name": "플로로",
+    "autoDescription": "플로로은(는) 명조의 인멸 속성, 증폭기 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 스킬 피해 : 비교적 높은 공명 스킬 피해\n인멸 피해 부스트 : 파티 내 특정 캐릭터의 인멸 피해 부스트 가능\n강공격 피해 부스트 : 파티 내 특정 캐릭터의 강공격 피해 부스트 가능 역할을 수행합니다. 그녀는 지휘자로서 손 안의 피안화를 가볍게, 마음 가는 대로 휘두르며 연주를 지휘한다.\n그 선율 하나하나가 곧 그녀의 무기이니, 주파수는 그녀의 손 안에서 다시 배열되고 조율되어, 때로는 침묵 속에 가라앉거나, 때로는 광기에 집어삼켜진다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "2.5",
@@ -7877,6 +8052,7 @@
   {
     "id": "36595fae-3dc7-8057-8983-ca5518047efd",
     "name": "히유키",
+    "autoDescription": "히유키은(는) 명조의 응결 속성, 직검 무기를 사용하는 공명자입니다. 주로 메인 딜러 : 비교적 강한 피해 부여 가능\n공명 해방 피해 : 비교적 높은 공명 해방 피해\n서리 : 서리 효과 사용 가능 역할을 수행합니다. 히유키는 ｢방울｣을 매개체로 삼아, 스스로가 지닌 미래의 가능성을 엿보고 그 힘을 미리 빌려와 사용할 수 있다.\n허공에 얼음이 맺히고 꽃잎과 눈송이가 흩날리면, 그녀는 칼을 춤추듯 휘두르며 적을 매섭게 베어낸다.",
     "rarity": 5,
     "type": "캐릭터",
     "releaseVersion": "3.3",
@@ -7922,6 +8098,7 @@
   {
     "id": "39895fae-3dc7-80b9-a3b6-f39f2985a5d3",
     "name": "5성 무기 보급 상자 · 새출발",
+    "autoDescription": "",
     "rarity": 5,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -7968,6 +8145,7 @@
   {
     "id": "39895fae-3dc7-8064-be8f-c390aed2c34e",
     "name": "검객 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8014,6 +8192,7 @@
   {
     "id": "39895fae-3dc7-8095-a2c1-f06eae5b8c5d",
     "name": "검객 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8060,6 +8239,7 @@
   {
     "id": "39895fae-3dc7-8082-af76-c001743e67af",
     "name": "검객 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8106,6 +8286,7 @@
   {
     "id": "39895fae-3dc7-800a-8aec-c4a0c96430d8",
     "name": "경옥함금",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -8152,6 +8333,7 @@
   {
     "id": "39895fae-3dc7-8007-aed8-f1114cedf7ac",
     "name": "고급 습유물 밀봉 상자 · 현방 지계",
+    "autoDescription": "",
     "rarity": 4,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -8198,6 +8380,7 @@
   {
     "id": "39895fae-3dc7-8006-85f0-f2b7cfb9d176",
     "name": "고급 습유물 밀봉 상자 Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -8244,6 +8427,7 @@
   {
     "id": "39895fae-3dc7-8067-8c45-defb6e7fdbd6",
     "name": "고주파수 기관 인형 중추 핵심",
+    "autoDescription": "",
     "rarity": 4,
     "type": "무기 및 스킬 재료",
     "releaseVersion": "3.5",
@@ -8290,6 +8474,7 @@
   {
     "id": "39895fae-3dc7-8071-b853-f96343b5b6f9",
     "name": "군가의 중주 물자 상자 V",
+    "autoDescription": "",
     "rarity": 4,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -8336,6 +8521,7 @@
   {
     "id": "39895fae-3dc7-805a-9902-d1f048830879",
     "name": "군가의 중주 새출발 물자 상자",
+    "autoDescription": "",
     "rarity": 4,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -8382,6 +8568,7 @@
   {
     "id": "39895fae-3dc7-80d5-bf93-dd5b97902575",
     "name": "금하 완자",
+    "autoDescription": "",
     "rarity": 4,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -8428,6 +8615,7 @@
   {
     "id": "39895fae-3dc7-80f8-98e1-ef8c00725f15",
     "name": "꽃게 생선 조림",
+    "autoDescription": "",
     "rarity": 4,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -8474,6 +8662,7 @@
   {
     "id": "39895fae-3dc7-8095-b652-cdb862dec472",
     "name": "꿈을 잡는 무늬",
+    "autoDescription": "",
     "rarity": 5,
     "type": "튜닝 관련 아이템",
     "releaseVersion": "3.4",
@@ -8520,6 +8709,7 @@
   {
     "id": "39895fae-3dc7-80f0-bdd8-e1f2977af106",
     "name": "나그네의 가을 추억",
+    "autoDescription": "",
     "rarity": 4,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -8566,6 +8756,7 @@
   {
     "id": "39895fae-3dc7-801a-bb64-f6a4f6806b73",
     "name": "낚시 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8612,6 +8803,7 @@
   {
     "id": "39895fae-3dc7-801f-8401-f5beb329935d",
     "name": "낚시 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8658,6 +8850,7 @@
   {
     "id": "39895fae-3dc7-80db-b36a-cb1405f45ff5",
     "name": "낚시 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8704,6 +8897,7 @@
   {
     "id": "39895fae-3dc7-8052-9008-dd1de4480813",
     "name": "노을빛 구름 깃털",
+    "autoDescription": "",
     "rarity": 1,
     "type": "돌파 재료",
     "releaseVersion": "3.5",
@@ -8750,6 +8944,7 @@
   {
     "id": "39895fae-3dc7-807c-8dd0-fb5317b0a767",
     "name": "노을을 헤엄치는 비단 잉어",
+    "autoDescription": "",
     "rarity": 1,
     "type": "돌파 재료",
     "releaseVersion": "3.5",
@@ -8796,6 +8991,7 @@
   {
     "id": "39895fae-3dc7-803f-a995-eb277e0a47d4",
     "name": "데이비드 · 마르티네즈",
+    "autoDescription": "",
     "rarity": 4,
     "type": "요리",
     "releaseVersion": "3.4",
@@ -8842,6 +9038,7 @@
   {
     "id": "39895fae-3dc7-80c4-8d33-c154d632d0a8",
     "name": "도약 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8888,6 +9085,7 @@
   {
     "id": "39895fae-3dc7-8070-a58e-d1fc84bcf501",
     "name": "도약 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8934,6 +9132,7 @@
   {
     "id": "39895fae-3dc7-807d-b997-e422e82dbb3a",
     "name": "도약 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -8980,6 +9179,7 @@
   {
     "id": "39895fae-3dc7-804f-82eb-cf2ae7f3638c",
     "name": "등소기",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9026,6 +9226,7 @@
   {
     "id": "39895fae-3dc7-80bb-8056-d7d7b3c785e9",
     "name": "뜨거운 새벽",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.4",
@@ -9072,6 +9273,7 @@
   {
     "id": "39895fae-3dc7-8044-994b-e875dde305d1",
     "name": "미탁옥",
+    "autoDescription": "",
     "rarity": 1,
     "type": "식재료",
     "releaseVersion": "3.5",
@@ -9118,6 +9320,7 @@
   {
     "id": "39895fae-3dc7-80b8-a3b6-e5411dc2a69c",
     "name": "방송국 새출발 특급 물자 상자",
+    "autoDescription": "",
     "rarity": 5,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -9164,6 +9367,7 @@
   {
     "id": "39895fae-3dc7-801b-8897-e99795fd822b",
     "name": "백옥 고기 국수",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9210,6 +9414,7 @@
   {
     "id": "39895fae-3dc7-8024-a5d4-eb872889ab5e",
     "name": "백옥 미인",
+    "autoDescription": "",
     "rarity": 1,
     "type": "식재료",
     "releaseVersion": "3.5",
@@ -9256,6 +9461,7 @@
   {
     "id": "39895fae-3dc7-8068-be2e-fbb877cdf5d3",
     "name": "백은 칼날",
+    "autoDescription": "",
     "rarity": 1,
     "type": "돌파 재료",
     "releaseVersion": "3.5",
@@ -9302,6 +9508,7 @@
   {
     "id": "39895fae-3dc7-808d-b3ab-c0654e2de354",
     "name": "별미의 비법",
+    "autoDescription": "",
     "rarity": 4,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -9348,6 +9555,7 @@
   {
     "id": "39895fae-3dc7-80ea-bde3-fea875f28814",
     "name": "보름달 설기",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -9394,6 +9602,7 @@
   {
     "id": "39895fae-3dc7-808c-b68f-ed57fb7cd0b1",
     "name": "보물 탐사기 허가증 · 몽주",
+    "autoDescription": "",
     "rarity": 4,
     "type": "소모품",
     "releaseVersion": "3.5",
@@ -9440,6 +9649,7 @@
   {
     "id": "39895fae-3dc7-8093-a9f2-ec6b66bdb370",
     "name": "봉정 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9486,6 +9696,7 @@
   {
     "id": "39895fae-3dc7-8035-9e16-d97ea6276c80",
     "name": "봉정 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9532,6 +9743,7 @@
   {
     "id": "39895fae-3dc7-80a2-b7e3-cf29f6517a00",
     "name": "봉정 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9578,6 +9790,7 @@
   {
     "id": "39895fae-3dc7-805e-a092-c714ca1d202a",
     "name": "사운드 탐사기 허가증 · 몽주",
+    "autoDescription": "",
     "rarity": 4,
     "type": "소모품",
     "releaseVersion": "3.5",
@@ -9624,6 +9837,7 @@
   {
     "id": "39895fae-3dc7-8023-bd5b-ce28d01fd5e6",
     "name": "삼선 볶음",
+    "autoDescription": "",
     "rarity": 4,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -9670,6 +9884,7 @@
   {
     "id": "39895fae-3dc7-80a5-9ec8-f11e41cdf02a",
     "name": "새겨진 그림자의 무늬",
+    "autoDescription": "",
     "rarity": 5,
     "type": "튜닝 관련 아이템",
     "releaseVersion": "3.4",
@@ -9716,6 +9931,7 @@
   {
     "id": "39895fae-3dc7-805f-baec-c9570b126e71",
     "name": "소생의 꽃술",
+    "autoDescription": "",
     "rarity": 3,
     "type": "특수 화폐",
     "releaseVersion": "3.5",
@@ -9762,6 +9978,7 @@
   {
     "id": "39895fae-3dc7-8006-886e-c11c83544957",
     "name": "수존 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9808,6 +10025,7 @@
   {
     "id": "39895fae-3dc7-8051-9ae1-cd34a963257e",
     "name": "수존 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9854,6 +10072,7 @@
   {
     "id": "39895fae-3dc7-8098-b213-f160bd8f497c",
     "name": "수존 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9900,6 +10119,7 @@
   {
     "id": "39895fae-3dc7-802f-b458-f5dfbd3e6a66",
     "name": "습유물 돌파 보급 상자 Ⅳ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -9946,6 +10166,7 @@
   {
     "id": "39895fae-3dc7-80bb-bd1e-f678f3f6723d",
     "name": "씨름 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -9992,6 +10213,7 @@
   {
     "id": "39895fae-3dc7-80f0-a165-c462f9b7caa6",
     "name": "씨름 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10038,6 +10260,7 @@
   {
     "id": "39895fae-3dc7-806c-8f34-feafccf69583",
     "name": "씨름 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10084,6 +10307,7 @@
   {
     "id": "39895fae-3dc7-80ea-a876-e3adca9db66d",
     "name": "악몽의 잔재",
+    "autoDescription": "",
     "rarity": 4,
     "type": "공명자 돌파 재료",
     "releaseVersion": "3.4",
@@ -10130,6 +10354,7 @@
   {
     "id": "39895fae-3dc7-80f9-8da3-f9dbeee8b741",
     "name": "안정 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10176,6 +10401,7 @@
   {
     "id": "39895fae-3dc7-8074-8863-ce056e4ee9f7",
     "name": "안정 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10222,6 +10448,7 @@
   {
     "id": "39895fae-3dc7-80e8-ab0f-febdec60244d",
     "name": "안정 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10268,6 +10495,7 @@
   {
     "id": "39895fae-3dc7-80ad-b4ef-d22a0261961d",
     "name": "엣지 드림 · 울림 주파수 대역",
+    "autoDescription": "",
     "rarity": 5,
     "type": "공명자 돌파 재료",
     "releaseVersion": "3.4",
@@ -10314,6 +10542,7 @@
   {
     "id": "39895fae-3dc7-801f-90a0-d3961905c9e3",
     "name": "여우 모양의 가면",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10360,6 +10589,7 @@
   {
     "id": "39895fae-3dc7-80ff-9af4-c91a58b83dd6",
     "name": "연무 코인",
+    "autoDescription": "",
     "rarity": 4,
     "type": "특수 화폐",
     "releaseVersion": "3.5",
@@ -10406,6 +10636,7 @@
   {
     "id": "39895fae-3dc7-8001-9df7-d5caca0572f0",
     "name": "엽중장",
+    "autoDescription": "",
     "rarity": 1,
     "type": "약재",
     "releaseVersion": "3.5",
@@ -10452,6 +10683,7 @@
   {
     "id": "39895fae-3dc7-80a5-9763-f81474ed5fba",
     "name": "옥화벽",
+    "autoDescription": "",
     "rarity": 1,
     "type": "약재",
     "releaseVersion": "3.5",
@@ -10498,6 +10730,7 @@
   {
     "id": "39895fae-3dc7-8074-bb3e-dd542f12dc37",
     "name": "원·프로젝트 무기 보급 상자",
+    "autoDescription": "",
     "rarity": 4,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -10544,6 +10777,7 @@
   {
     "id": "39895fae-3dc7-8041-bf13-d39c3efcea04",
     "name": "육합영",
+    "autoDescription": "",
     "rarity": 1,
     "type": "식재료",
     "releaseVersion": "3.5",
@@ -10590,6 +10824,7 @@
   {
     "id": "39895fae-3dc7-800b-abb1-f9351c8a4076",
     "name": "저주파수 기관 인형 중추 핵심",
+    "autoDescription": "",
     "rarity": 2,
     "type": "무기 및 스킬 재료",
     "releaseVersion": "3.5",
@@ -10636,6 +10871,7 @@
   {
     "id": "39895fae-3dc7-802c-bbd6-cc750ab616cb",
     "name": "전옥비취탕",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -10682,6 +10918,7 @@
   {
     "id": "39895fae-3dc7-801b-ac94-e04d44b9ba4a",
     "name": "전주파수 기관 인형 중추 핵심",
+    "autoDescription": "",
     "rarity": 5,
     "type": "무기 및 스킬 재료",
     "releaseVersion": "3.5",
@@ -10728,6 +10965,7 @@
   {
     "id": "39895fae-3dc7-80ef-a77f-c489657a3896",
     "name": "정호각 약품",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -10774,6 +11012,7 @@
   {
     "id": "39895fae-3dc7-80f1-8774-c2de01c9095d",
     "name": "주인 없는 양연",
+    "autoDescription": "",
     "rarity": 5,
     "type": "재료",
     "releaseVersion": "3.5",
@@ -10820,6 +11059,7 @@
   {
     "id": "39895fae-3dc7-80bc-8575-eb401f2a98de",
     "name": "죽순",
+    "autoDescription": "",
     "rarity": 1,
     "type": "식재료",
     "releaseVersion": "3.5",
@@ -10866,6 +11106,7 @@
   {
     "id": "39895fae-3dc7-80e3-95e5-e01e5f0e73db",
     "name": "중급 습유물 밀봉 상자 · 현방 지계",
+    "autoDescription": "",
     "rarity": 3,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -10912,6 +11153,7 @@
   {
     "id": "39895fae-3dc7-8016-a053-f73d6b0ac05b",
     "name": "중급 습유물 밀봉 상자 Ⅲ",
+    "autoDescription": "",
     "rarity": 3,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -10958,6 +11200,7 @@
   {
     "id": "39895fae-3dc7-80fe-be47-f6517d3dec25",
     "name": "중주파수 기관 인형 중추 핵심",
+    "autoDescription": "",
     "rarity": 3,
     "type": "무기 및 스킬 재료",
     "releaseVersion": "3.5",
@@ -11004,6 +11247,7 @@
   {
     "id": "39895fae-3dc7-8088-8685-f5ab4f789361",
     "name": "지난날의 환상",
+    "autoDescription": "",
     "rarity": 1,
     "type": "공명자 돌파 재료",
     "releaseVersion": "3.4",
@@ -11050,6 +11294,7 @@
   {
     "id": "39895fae-3dc7-80d8-a9e2-cab1349ba5bc",
     "name": "천하별미",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -11096,6 +11341,7 @@
   {
     "id": "39895fae-3dc7-8023-bbce-e214aa1088e6",
     "name": "청운상",
+    "autoDescription": "",
     "rarity": 5,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -11142,6 +11388,7 @@
   {
     "id": "39895fae-3dc7-804a-a204-cb7c498bd564",
     "name": "초급 습유물 밀봉 상자 · 현방 지계",
+    "autoDescription": "",
     "rarity": 2,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -11188,6 +11435,7 @@
   {
     "id": "39895fae-3dc7-8089-8699-c23429e18470",
     "name": "초급 습유물 밀봉 상자 Ⅲ",
+    "autoDescription": "",
     "rarity": 2,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -11234,6 +11482,7 @@
   {
     "id": "39895fae-3dc7-806f-9074-c7d8329e70a4",
     "name": "추억을 담은 전설의 요리",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -11280,6 +11529,7 @@
   {
     "id": "39895fae-3dc7-8075-b1f6-ef44356901e2",
     "name": "캔 고리",
+    "autoDescription": "",
     "rarity": 4,
     "type": "특수 화폐",
     "releaseVersion": "3.4",
@@ -11326,6 +11576,7 @@
   {
     "id": "39895fae-3dc7-8049-b59b-d8f09708a15f",
     "name": "퀵핵 모듈",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.4",
@@ -11372,6 +11623,7 @@
   {
     "id": "39895fae-3dc7-80e8-a764-ecb92aae527e",
     "name": "크레드 칩",
+    "autoDescription": "",
     "rarity": 4,
     "type": "이벤트 아이템",
     "releaseVersion": "3.4",
@@ -11418,6 +11670,7 @@
   {
     "id": "39895fae-3dc7-800a-b1f8-d0c7ee4d6a3f",
     "name": "특급 습유물 밀봉 상자 · 현방 지계",
+    "autoDescription": "",
     "rarity": 5,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -11464,6 +11717,7 @@
   {
     "id": "39895fae-3dc7-8057-be89-db83a13b2ddf",
     "name": "특급 습유물 밀봉 상자 Ⅲ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "물자 상자",
     "releaseVersion": "3.5",
@@ -11510,6 +11764,7 @@
   {
     "id": "39895fae-3dc7-80f4-9ca6-c97069f5dde8",
     "name": "하늘길 유리의 마음",
+    "autoDescription": "",
     "rarity": 4,
     "type": "스킬 업그레이드 재료",
     "releaseVersion": "3.5",
@@ -11556,6 +11811,7 @@
   {
     "id": "39895fae-3dc7-8049-99f2-dc6beb8bac73",
     "name": "학술 기관 인형 · Ⅰ",
+    "autoDescription": "",
     "rarity": 5,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -11602,6 +11858,7 @@
   {
     "id": "39895fae-3dc7-80e0-bbfa-d20c8dc72163",
     "name": "학술 기관 인형 · Ⅱ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -11648,6 +11905,7 @@
   {
     "id": "39895fae-3dc7-803d-b0b1-e5f0fbb29d38",
     "name": "학술 기관 인형 · Ⅲ",
+    "autoDescription": "",
     "rarity": 4,
     "type": "임무 아이템",
     "releaseVersion": "3.5",
@@ -11694,6 +11952,7 @@
   {
     "id": "39895fae-3dc7-80ae-8a95-fbc5917cc8e2",
     "name": "한 조각 현방",
+    "autoDescription": "",
     "rarity": 4,
     "type": "소모품",
     "releaseVersion": "3.5",
@@ -11740,6 +11999,7 @@
   {
     "id": "39895fae-3dc7-80af-b0c6-d02d52a33e3a",
     "name": "화방옥쇄",
+    "autoDescription": "",
     "rarity": 3,
     "type": "요리",
     "releaseVersion": "3.5",
@@ -11786,6 +12046,7 @@
   {
     "id": "39895fae-3dc7-80d3-9a2c-de6bf1a57ac2",
     "name": "화염에 새겨진 정의",
+    "autoDescription": "",
     "rarity": 4,
     "type": "스킬 업그레이드 재료",
     "releaseVersion": "3.5",
@@ -11832,6 +12093,7 @@
   {
     "id": "39895fae-3dc7-80db-a52b-eb70003961ac",
     "name": "환상의 산호",
+    "autoDescription": "",
     "rarity": 5,
     "type": "튜닝 관련 아이템",
     "releaseVersion": "3.4",
@@ -11878,6 +12140,7 @@
   {
     "id": "39895fae-3dc7-80ca-a7c0-e343b9ddcfb2",
     "name": "회음석",
+    "autoDescription": "",
     "rarity": 1,
     "type": "식재료",
     "releaseVersion": "3.5",
@@ -11924,6 +12187,7 @@
   {
     "id": "3a395fae-3dc7-8015-8ef3-cddcb11067d0",
     "name": "금정후",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -11972,6 +12236,7 @@
   {
     "id": "3a395fae-3dc7-807d-9f5a-c24b1467731c",
     "name": "만와뢰 · 잔해",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12021,6 +12286,7 @@
   {
     "id": "3a395fae-3dc7-800f-a5ce-f69d0287f7cf",
     "name": "봉정계유",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12071,6 +12337,7 @@
   {
     "id": "3a395fae-3dc7-8061-b1f3-f4ff0541eac7",
     "name": "분해된 전사",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12119,6 +12386,7 @@
   {
     "id": "3a395fae-3dc7-801e-8c04-ce644f674d6a",
     "name": "불씨의 사냥꾼",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12167,6 +12435,7 @@
   {
     "id": "3a395fae-3dc7-80a9-8397-e2a7fe888a34",
     "name": "석정후",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12215,6 +12484,7 @@
   {
     "id": "3a395fae-3dc7-8042-aa11-cc843798aaad",
     "name": "심월 인형 · 공(恐)",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12263,6 +12533,7 @@
   {
     "id": "3a395fae-3dc7-8088-8b86-ca53d3785afc",
     "name": "심월 인형 · 노(怒)",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12311,6 +12582,7 @@
   {
     "id": "3a395fae-3dc7-80b9-ae56-c9684985c5c9",
     "name": "심월 인형 · 비(悲)",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12359,6 +12631,7 @@
   {
     "id": "3a395fae-3dc7-8060-a29b-cb933d173a8f",
     "name": "심월 인형 · 사(思)",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12407,6 +12680,7 @@
   {
     "id": "3a395fae-3dc7-806a-acf7-cc11a6f64341",
     "name": "심월 인형 · 우(憂)",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12455,6 +12729,7 @@
   {
     "id": "3a395fae-3dc7-8059-95f1-eb5fc61ffd17",
     "name": "심월 인형 · 희(喜)",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12503,6 +12778,7 @@
   {
     "id": "3a395fae-3dc7-8025-9aa8-e035e787fedd",
     "name": "안개 수존",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12553,6 +12829,7 @@
   {
     "id": "3a395fae-3dc7-8036-bbe2-e88eac4c7b07",
     "name": "안개 수존 · 머리",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12601,6 +12878,7 @@
   {
     "id": "3a395fae-3dc7-8081-8fb0-d3719647ffb1",
     "name": "안개 수존 · 몸",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12649,6 +12927,7 @@
   {
     "id": "3a395fae-3dc7-800c-9cc8-ff4f5acb116a",
     "name": "자정후",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",
@@ -12697,6 +12976,7 @@
   {
     "id": "3a395fae-3dc7-8005-ab00-d125801cec0e",
     "name": "천괴중루",
+    "autoDescription": "",
     "rarity": 4,
     "type": "",
     "releaseVersion": "",

@@ -112,19 +112,83 @@ export const useGalleryFilter = (
   }, [LIGHTCONE_DB, WEAPON_DATA, gameId, searchQuery, secondFilter, rarityFilter]);
 
   const filteredRelics = useMemo(() => {
-    return (RELIC_DB || []).filter(r => {
+    const result = (RELIC_DB || []).filter(r => {
       if (r.gameId !== gameId) return false;
       if (searchQuery && !(r.name || '').toLowerCase().includes(searchQuery.toLowerCase())) return false;
       return true;
-    }).reverse();
+    }).sort((a, b) => {
+      const order = [
+        "신공을 탐구하는 명장", "별을 갈망하는 항법사 아집", 
+        "천명에 응해 먼 길을 떠난 점술가", "빛나는 공훈의 마법 소녀",
+        "별빛에 숨은 은둔자", "천지를 재창조한 구세주",
+        "거친 파도를 헤치는 선장", "태양과 번개의 여전사",
+        "망국을 애도하는 시인", "개선가를 울리는 영웅",
+        "지식의 바다에 빠진 학자", "고행의 길에 다시 오른 사제",
+        "바람과 구름을 가르는 용맹함", "곤충 재앙을 잠재우는 철기군",
+        "꿈을 조작하는 시계공", "사수에 잠수한 선구자",
+        "깊은 감옥에 수감된 죄수", "재와 뼈마저 불사르는 대공",
+        "가상공간을 누비는 메신저", "장수를 원하는 제자",
+        "황무지의 도적, 황야인", "용암 단조의 화장(火匠)", "뇌전을 울리는 밴드", "정토 교황의 팔라딘",
+        "별처럼 빛나는 천재", "눈보라에 맞서는 철위대", "들이삭과 동행하는 거너",
+        "흔적을 남기지 않은 과객", "유성을 쫓는 괴도", "스트리트 격투왕",
+        "밤낮의 경계를 나는 매", "혹한 밀림의 사냥꾼"
+      ];
+      const idxA = order.findIndex(n => a.name?.includes(n));
+      const idxB = order.findIndex(n => b.name?.includes(n));
+      if (idxA === -1 && idxB === -1) return 0;
+      if (idxA === -1) return 1;
+      if (idxB === -1) return -1;
+      return idxA - idxB;
+    });
+    return result;
   }, [RELIC_DB, gameId, searchQuery]);
 
   const filteredOrnaments = useMemo(() => {
-    return (ORNAMENT_DB || []).filter(o => {
+    const result = (ORNAMENT_DB || []).filter(o => {
       if (o.gameId !== gameId) return false;
       if (searchQuery && !(o.name || '').toLowerCase().includes(searchQuery.toLowerCase())) return false;
       return true;
-    }).reverse();
+    }).sort((a, b) => {
+      const order = [
+        "우주 생명과학연구원",
+        "추락한 별의 출항지",
+        "천 개의 별이 모인 도시",
+        "0호 스테이지 펑크 로드",
+        "텐고쿠@라이브스트리밍",
+        "영원의 땅 앰포리어스",
+        "즐거움에 취한 바다의 일각",
+        "꿈을 엮는 요정의 낙원",
+        "사색하는 거목",
+        "고요한 습골지",
+        "기묘한 나나 낙원",
+        "바다에 잠긴 루샤카",
+        "겁화 연등의 연마궁",
+        "도람 왕조", // user: 질주하는 늑대의 도람 왕조
+        "이즈모 현세와 타카마 신국",
+        "주인 없는 황폐한 별 츠가냐",
+        "꿈의 땅 페나코니",
+        "창공 전선 그라모스",
+        "부러진 용골",
+        "뭇별 경기장",
+        "회전을 멈춘 살소토",
+        "축성가의 벨로보그",
+        "천체 차분기관",
+        "범은하 상사",
+        "생명의 바커 공",
+        "도적국 탈리아",
+        "불로인의 선주",
+        "우주 봉인 정거장"
+      ];
+      let idxA = order.findIndex(n => a.name?.includes(n));
+      let idxB = order.findIndex(n => b.name?.includes(n));
+      if (idxA === -1 && a.name?.includes("도람")) idxA = order.indexOf("도람 왕조");
+      if (idxB === -1 && b.name?.includes("도람")) idxB = order.indexOf("도람 왕조");
+      if (idxA === -1 && idxB === -1) return 0;
+      if (idxA === -1) return 1;
+      if (idxB === -1) return -1;
+      return idxA - idxB;
+    });
+    return result;
   }, [ORNAMENT_DB, gameId, searchQuery]);
 
   const filteredItems = useMemo(() => {

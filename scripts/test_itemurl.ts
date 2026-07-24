@@ -1,4 +1,4 @@
-import { getItemUrl } from './common-hub/data/items';
+import { getItemUrl } from '../common-hub/data/items';
 import fs from 'fs';
 
 console.log("고주파수 의음 성핵 URL:", getItemUrl("고주파수 의음 성핵"));
