@@ -4,6 +4,16 @@ import { supabase } from '../lib/supabase';
 // 정적 공지사항 데이터 (DB 연동 실패 시 폴백 및 사이드바 뱃지용으로 사용)
 export const GLOBAL_NOTICES: Notice[] = [
   {
+    id: "update-2026-07-25",
+    category: "Update",
+    title: "구글 로그인 연동 및 HSR 4.4 / WW 3.5 업데이트 안내",
+    content: "Rira Game Hub에 새로운 기능과 데이터가 업데이트되었습니다.\n\n- 소셜 로그인 연동: 이제 구글 및 디스코드 계정으로 로그인하여 본인의 리뷰를 수정하고 관리할 수 있습니다.\n- [붕괴: 스타레일] 4.4 버전 데이터베이스 및 최신 가이드 반영\n- [명조: 워더링 웨이브] 3.5 버전 신규 캐릭터 및 에코 세팅 추가\n\n항상 발전하는 Rira Game Hub가 되겠습니다.",
+    createdAt: "2026-07-25",
+    version: "2.2.0",
+    isCritical: true,
+    gameId: "common"
+  },
+  {
     id: "notice-2026-06-17",
     category: "System",
     title: "Rira Game Hub 시스템 최적화 및 UI 개편 안내",
