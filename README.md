@@ -23,10 +23,13 @@
    - `hsr-hub`, `ww-hub`, `nte-hub`: 각 게임별 특화 로직 및 UI 분리.
 2. **비동기 데이터 동기화 (Notion API)**:
    - `fetch-notion-data.js` 스크립트가 Notion 데이터베이스를 정기적으로 크롤링하여 로컬 JSON 스키마로 변환합니다.
-3. **SEO 및 수익화 호환성 (AdSense Compliance)**:
+3. **소셜 로그인 및 보안 리뷰 시스템 (Supabase)**:
+   - Google 및 Discord OAuth 로그인을 지원하는 완벽한 인증 모달 시스템 구축.
+   - 캐릭터 리뷰 및 댓글 작성 시 작성자 본인만 수정/삭제 가능하도록 데이터베이스 레벨의 행 수준 보안(RLS) 적용.
+4. **SEO 및 수익화 호환성 (AdSense Compliance)**:
    - 검색 엔진 최적화(SEO)를 위한 `sitemap.xml` 동적 생성 및 `prerender-meta.js` 구동.
    - 구글 애드센스 승인을 위한 필수 보안/정책 페이지 완비 (`Privacy Policy`, `Terms of Service`, `Contact Us`).
-4. **P-Reinforce 지식 엔진**:
+5. **P-Reinforce 지식 엔진**:
    - `00_Raw/` 폴더에 입력된 원시 데이터를 `10_Wiki/` 폴더의 구조화된 마크다운으로 자동 변환.
 
 ---
@@ -36,6 +39,7 @@
 - **Frontend Framework**: React 18, Vite, TypeScript
 - **Styling**: Tailwind CSS (글래스모피즘 및 다크 모드 특화), Framer Motion, Lucide React
 - **Data Layer**: JSON 정적 데이터 + Notion API
+- **Backend & Auth**: Supabase (PostgreSQL, OAuth, RLS)
 - **CDN**: GitHub Raw Content (IZrira/riragameinfo)
 
 ---

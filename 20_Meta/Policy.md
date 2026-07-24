@@ -12,3 +12,4 @@
 
 ## User Feedback Log
 - [2026-04-16] Initial policy created.
+- [2026-07-25] Implemented Supabase Auth, Google Login, RLS Reviews, React Router V8 security bypass, and Admin Notice sync features.

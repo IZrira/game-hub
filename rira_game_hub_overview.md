@@ -1,9 +1,9 @@
 # 🌐 RIRA Game Hub 프로젝트 개요 (Project Overview)
 
-**[ID]** `RIRA-GH-20260416`
-**[Confidence Score]** 0.95 (높음)
-**[Reinforced Date]** 2024-05-16
-**[Source]** `00_Raw/2026-04-16 rira game hub.md`
+**[ID]** `RIRA-GH-20260725`
+**[Confidence Score]** 0.99 (매우 높음)
+**[Reinforced Date]** 2026-07-25
+**[Source]** `00_Raw/2026-07-25 rira game hub.md`
 
 ---
 
@@ -25,8 +25,9 @@ P-Reinforce는 Andre Karpathy의 LLM-Wiki 아키텍처와 강화학습(RL) 이�
 P-Reinforce는 `00_Raw/` 폴더에 입력되는 데이터를 실시간으로 감시하여 다음 작업을 수행합니다:
 1.  **의미론적 분류 (Semantic Classification)**: 최신 LLM을 사용하여 문맥과 의도를 파악합니다.
 2.  **자동 폴더 관리 (Dynamic Folder Management)**: 지식의 위계에 따라 폴더를 생성하고, 파일이 12개를 초과하면 스스로 하위 카테고리로 세분화(Refactoring)합니다.
-3.  **지식 합성 (Knowledge Synthesis)**: 파편화된 정보를 Karpathy의 '영속적 위키' 템플릿에 맞춰 정제합니다.
-4.  **GitHub 자동화 (Git Sync)**: 모든 변화를 자동으로 커밋하여 지식의 타임라인을 보존합니다.
+3. **지식 합성 (Knowledge Synthesis)**: 파편화된 정보를 Karpathy의 '영속적 위키' 템플릿에 맞춰 정제합니다.
+4. **GitHub 자동화 (Git Sync)**: 모든 변화를 자동으로 커밋하여 지식의 타임라인을 보존합니다.
+5. **보안 및 인증 연동 (Security & Auth)**: Supabase RLS 정책 및 OAuth 로그인을 통해 안전한 데이터 관리를 수행합니다.
 
 ---
 
