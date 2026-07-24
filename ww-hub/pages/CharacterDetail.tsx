@@ -193,8 +193,10 @@ const CharacterDetail: React.FC = () => {
 
   const renderTextWithHighlights = (text: string) => {
     if (!text) return [];
+    // HTML 태그 제거 (Notion 등에서 딸려온 span 등)
+    const noHtmlText = text.replace(/<[^>]*>/g, '');
     // Handle gender placeholders
-    const processedText = text.replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
+    const processedText = noHtmlText.replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
     
     // Add protected terms that shouldn't be broken up
     const protectedTerms = ["Mar. 7th", "Mar. 7th (수렵)"]; 

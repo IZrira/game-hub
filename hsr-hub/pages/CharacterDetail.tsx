@@ -191,7 +191,8 @@ const CharacterDetail: React.FC = () => {
 
   const renderTextWithHighlights = (text: string) => {
     if (!text) return [];
-    const processedText = text.replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
+    const noHtmlText = text.replace(/<[^>]*>/g, '');
+    const processedText = noHtmlText.replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
     
     // Add protected terms that shouldn't be broken up (e.g., character names with numbers)
     const protectedTerms = ["Mar. 7th", "Mar. 7th (수렵)"]; 
