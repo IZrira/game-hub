@@ -1,5 +1,5 @@
 import React, { useState, useMemo, memo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router';
 import { 
   Users, 
   Search, 

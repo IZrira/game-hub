@@ -1,5 +1,5 @@
 import React, { useState, useMemo, memo, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router';
 import { 
   Filter, Trophy, Search, Users, Shield, Zap, Sword,
   ArrowUp, ArrowDown, Sparkles, LayoutGrid, Swords, Skull,

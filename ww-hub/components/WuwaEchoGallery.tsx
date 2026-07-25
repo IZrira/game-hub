@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Layers, Activity as ActivityIcon } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { SONATA_SETS, WuwaEcho, SonataType } from '../types';
 import { ItemDetail } from '../../common-hub/types';

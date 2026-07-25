@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router';
 import { motion, AnimatePresence, useMotionValue } from 'motion/react';
 import { 
   ChevronLeft, 

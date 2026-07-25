@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
 import { ChevronLeft, Calendar } from 'lucide-react';
 import { fetchNotices } from '../data/notices';
 import { Notice } from '../data/types';

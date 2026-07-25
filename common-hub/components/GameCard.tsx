@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { ChevronRight } from 'lucide-react';
 import { Game } from '../types';
 import LazyImage from './LazyImage';

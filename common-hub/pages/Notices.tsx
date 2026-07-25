@@ -1,11 +1,11 @@
 import React, { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { Bell, Calendar, Info, Megaphone, Sparkles } from 'lucide-react';
 import { fetchNotices } from '../data/notices';
 import { Notice } from '../data/types';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 
 const TYPE_ICONS = {
   update: <Sparkles size={16} className="text-brand-accent" />,

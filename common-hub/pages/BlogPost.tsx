@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams, Link, useNavigate, useSearchParams } from 'react-router-dom';
+import { useParams, Link, useNavigate, useSearchParams } from 'react-router';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
 import { BLOG_POSTS } from '../data/blogData';

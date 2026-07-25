@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, Link, useLocation } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router';
 import { ChevronRight, ArrowLeft, Home, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 

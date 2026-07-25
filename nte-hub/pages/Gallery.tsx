@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router';
 import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter } from 'lucide-react';
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
 import { getGameData } from '../../common-hub/data/dataManager';

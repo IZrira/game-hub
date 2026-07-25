@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router';
 import { ChevronRight, Home as HomeIcon, Shield, Zap, Info, Box, Star } from 'lucide-react';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { SONATA_EFFECTS } from '../data/sonataEffects';

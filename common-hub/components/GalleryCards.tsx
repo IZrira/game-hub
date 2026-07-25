@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';

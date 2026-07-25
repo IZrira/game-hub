@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Search, User, Sword, BookOpen, AlertCircle, ChevronRight, X, Sparkles, Compass, Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../data/dataManager';

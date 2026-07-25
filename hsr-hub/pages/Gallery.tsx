@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useParams, Link, useSearchParams } from 'react-router-dom';
+import { useParams, Link, useSearchParams } from 'react-router';
 import { 
   Search, Home as HomeIcon, ChevronRight, Filter, Book, Activity as ActivityIcon, ArrowLeft,
   BookOpen, Users, Zap, Shield, Backpack, Bell, Sparkles, LayoutGrid, Star

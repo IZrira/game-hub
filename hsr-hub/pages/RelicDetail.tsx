@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router';
 import { ChevronRight, X, Shield, Star, ArrowLeft } from 'lucide-react';
 import { RELIC_DB } from '../../common-hub/data/games';
 import PageHeader from '../../common-hub/components/PageHeader';

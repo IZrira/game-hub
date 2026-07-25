@@ -1,6 +1,6 @@
 
 import React, { useMemo, useState } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router';
 import { Hash, Search, ChevronLeft, Book, Info, ArrowLeft } from 'lucide-react';
 import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import { CHARACTER_DB } from '../../common-hub/data/games';

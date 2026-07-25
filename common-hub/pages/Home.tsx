@@ -1,6 +1,6 @@
 
 import React, { useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router';
 import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
 import { ITEM_META } from '../data/items';
 import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';

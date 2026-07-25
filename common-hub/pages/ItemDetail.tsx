@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, Star, Package, Info, MapPin } from 'lucide-react';
 import { getItemMeta, getAutoRarity, getItemUrl, REVERSE_ITEM_MAP } from '../data/items';

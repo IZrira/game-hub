@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router';
 import { ArrowLeft, Star, MapPin } from 'lucide-react';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';

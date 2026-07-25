@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { ARCHIVE_DATA } from '../data/games';
 import PageHeader from '../components/PageHeader';
 import GameDashboard from '../components/GameDashboard';

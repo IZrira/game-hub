@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { WuwaWeapon } from './weapon';
 import WuwaWeaponCard from './WuwaWeaponCard';

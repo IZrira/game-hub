@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { createBrowserRouter, Outlet, ScrollRestoration, useParams } from 'react-router-dom';
+import { createBrowserRouter, Outlet, ScrollRestoration, useParams } from 'react-router';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';

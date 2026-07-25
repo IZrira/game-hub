@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2 } from 'lucide-react';
 import { getGameData } from '../../common-hub/data/dataManager';
 import PageHeader from '../../common-hub/components/PageHeader';

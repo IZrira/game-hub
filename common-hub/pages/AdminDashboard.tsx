@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
-import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router';
 import { safeEncodeURIComponent } from '../utils/assetManager';
 import HSR_CHARACTERS from '../../hsr-hub/data/characters.json';
 import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';

@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router';
 import { ChevronRight, Star, ShieldCheck, Info, ArrowLeft, Package, ChevronDown, ChevronUp, Users } from 'lucide-react';
 import { ARCHIVE_DATA, LIGHTCONE_DB } from '../../common-hub/data/games';
 import PageHeader from '../../common-hub/components/PageHeader';
