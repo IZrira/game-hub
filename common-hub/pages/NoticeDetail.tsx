@@ -91,7 +91,7 @@ const NoticeDetail: React.FC = () => {
           </div>
 
           <div className="prose prose-invert max-w-4xl mx-auto md:mx-0 text-gray-300 leading-loose font-medium text-lg">
-            <MarkdownRenderer content={notice.content} />
+            <MarkdownRenderer content={notice.content} variant="notice" />
           </div>
         </article>
       </div>

@@ -5,6 +5,7 @@ import { Lock } from 'lucide-react';
 
 interface MarkdownRendererProps {
   content: string;
+  variant?: 'default' | 'notice';
 }
 
 const SpoilerSpan: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -30,7 +31,7 @@ const SpoilerSpan: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) => {
+export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, variant = 'default' }) => {
   if (!content) return null;
 
   // Preprocess custom spoilers (||text|| or <span data-spoiler="true">...</span>)
@@ -96,12 +97,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
             </p>
           ),
           ul: ({ node, children, ...props }) => (
-            <ul className="my-4 space-y-2" {...props}>
+            <ul className={variant === 'notice' ? "my-4 space-y-2" : "list-disc pl-6 my-4 space-y-2"} {...props}>
               {children}
             </ul>
           ),
           ol: ({ node, children, ...props }) => (
-            <ol className="my-4 space-y-2" {...props}>
+            <ol className={variant === 'notice' ? "my-4 space-y-2" : "list-decimal pl-6 my-4 space-y-2"} {...props}>
               {children}
             </ol>
           ),
@@ -111,7 +112,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
             </li>
           ),
           strong: ({ node, children, ...props }) => (
-            <strong className="font-bold text-white" {...props}>
+            <strong className={`font-bold ${variant === 'notice' ? '!text-white' : 'text-white'}`} {...props}>
               {children}
             </strong>
           ),

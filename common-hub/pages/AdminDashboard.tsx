@@ -1094,7 +1094,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                 </button>
                               </div>
                               <div className="text-sm text-gray-300 leading-relaxed font-medium">
-                                <MarkdownRenderer content={notice.content} />
+                                <MarkdownRenderer content={notice.content} variant="notice" />
                               </div>
                             </div>
                           </div>
