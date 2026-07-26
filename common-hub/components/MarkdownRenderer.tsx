@@ -96,21 +96,24 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
               {children}
             </p>
           ),
-          ul: ({ node, children, ...props }) => (
-            <ul className={variant === 'notice' ? "my-4 space-y-2" : "list-disc pl-6 my-4 space-y-2"} {...props}>
-              {children}
-            </ul>
-          ),
-          ol: ({ node, children, ...props }) => (
-            <ol className={variant === 'notice' ? "my-4 space-y-2" : "list-decimal pl-6 my-4 space-y-2"} {...props}>
-              {children}
-            </ol>
-          ),
-          li: ({ node, children, ...props }) => (
-            <li className="leading-relaxed text-sm md:text-base" {...props}>
-              {children}
-            </li>
-          ),
+          ul: ({ node, children, ...props }) => {
+            if (variant === 'notice') {
+              return <div className="my-4 space-y-2" {...props}>{children}</div>;
+            }
+            return <ul className="list-disc pl-6 my-4 space-y-2" {...props}>{children}</ul>;
+          },
+          ol: ({ node, children, ...props }) => {
+            if (variant === 'notice') {
+              return <div className="my-4 space-y-2" {...props}>{children}</div>;
+            }
+            return <ol className="list-decimal pl-6 my-4 space-y-2" {...props}>{children}</ol>;
+          },
+          li: ({ node, children, ...props }) => {
+            if (variant === 'notice') {
+              return <div className="leading-relaxed text-sm md:text-base" {...props}>{children}</div>;
+            }
+            return <li className="leading-relaxed text-sm md:text-base" {...props}>{children}</li>;
+          },
           strong: ({ node, children, ...props }) => (
             <strong className={`font-bold ${variant === 'notice' ? '!text-white' : 'text-white'}`} {...props}>
               {children}
