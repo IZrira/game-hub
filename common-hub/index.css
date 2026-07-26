@@ -94,7 +94,7 @@
 }
 
 .prose strong {
-  @apply text-brand-accent font-bold;
+  @apply text-white font-bold;
 }
 
 .prose a {

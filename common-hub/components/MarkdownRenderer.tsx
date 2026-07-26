@@ -96,12 +96,12 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content }) =
             </p>
           ),
           ul: ({ node, children, ...props }) => (
-            <ul className="list-disc pl-6 my-4 space-y-2" {...props}>
+            <ul className="my-4 space-y-2" {...props}>
               {children}
             </ul>
           ),
           ol: ({ node, children, ...props }) => (
-            <ol className="list-decimal pl-6 my-4 space-y-2" {...props}>
+            <ol className="my-4 space-y-2" {...props}>
               {children}
             </ol>
           ),
