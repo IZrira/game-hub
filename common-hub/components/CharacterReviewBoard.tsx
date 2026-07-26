@@ -1,18 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { MessageSquare, ArrowUpDown, Flame, Clock } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { Trash2, Edit3, Star, User, MessageSquare } from 'lucide-react';
-import LoginModal from './LoginModal';
-
-interface Review {
-  id: string;
-  created_at: string;
-  game_id: string;
-  character_id: string;
-  nickname: string;
-  rating: number;
-  comment_text: string;
-  user_id?: string;
-}
+import { useAuth } from '../context/AuthContext';
+import { isAdmin as checkIsAdmin } from '../lib/admin';
+import CommentForm from './CommentForm';
+import CommentCard, { Review } from './CommentCard';
 
 interface Props {
   characterId: string;
@@ -20,165 +12,504 @@ interface Props {
 }
 
 export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) => {
+  const { user, openLoginModal } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
-  const [currentUser, setCurrentUser] = useState<any>(null);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
-  // Form states
-  const [rating, setRating] = useState(5);
-  const [commentText, setCommentText] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [sortMode, setSortMode] = useState<'newest' | 'best'>('newest');
 
-  // Edit states
-  const [editingReviewId, setEditingReviewId] = useState<string | null>(null);
-  const [editRating, setEditRating] = useState(5);
-  const [editCommentText, setEditCommentText] = useState('');
-  const [isEditing, setIsEditing] = useState(false);
+  const storageKey = `rira_local_reviews_${gameId}_${characterId}`;
+  const upvotesKey = `rira_local_upvotes_${gameId}_${characterId}`;
+  const reportsKey = `rira_local_reports_${gameId}_${characterId}`;
 
-  useEffect(() => {
-    // Auth Listener
-    const checkSession = async () => {
-      if (!supabase) return;
-      const { data: { session } } = await supabase.auth.getSession();
-      setCurrentUser(session?.user || null);
-    };
-    checkSession();
-
-    if (supabase) {
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-        setCurrentUser(session?.user || null);
-      });
-      return () => subscription.unsubscribe();
-    }
-  }, []);
+  const isAdmin = useMemo(() => {
+    if (!user) return false;
+    return checkIsAdmin(user.id);
+  }, [user]);
 
   useEffect(() => {
     fetchReviews();
-  }, [characterId, gameId]);
+  }, [characterId, gameId, user?.id]);
 
   const fetchReviews = async () => {
     setIsLoading(true);
     setError(null);
+
+    let rawReviews: Review[] = [];
+    let upvotesData: { comment_id: string; user_id: string }[] = [];
+    let reportsData: { comment_id: string; user_id: string }[] = [];
+    let isOfflineMode = false;
+
+    if (supabase) {
+      try {
+        const { data: revs, error: revErr } = await supabase
+          .from('character_reviews')
+          .select('*')
+          .eq('game_id', gameId)
+          .eq('character_id', characterId)
+          .order('created_at', { ascending: false });
+
+        if (revErr) {
+          throw revErr;
+        }
+
+        rawReviews = revs || [];
+
+        const reviewIds = rawReviews.map((r) => r.id);
+        if (reviewIds.length > 0) {
+          try {
+            const { data: uvs } = await supabase
+              .from('comment_upvotes')
+              .select('comment_id, user_id')
+              .in('comment_id', reviewIds);
+
+            if (uvs) upvotesData = uvs;
+          } catch (uvErr) {
+            console.warn('Could not fetch upvotes table from Supabase:', uvErr);
+          }
+
+          try {
+            const { data: rps } = await supabase
+              .from('comment_reports')
+              .select('comment_id, user_id')
+              .in('comment_id', reviewIds);
+
+            if (rps) reportsData = rps;
+          } catch (rpErr) {
+            console.warn('Could not fetch comment_reports table from Supabase:', rpErr);
+          }
+        }
+      } catch (err) {
+        console.warn('Supabase fetch failed, falling back to local state:', err);
+        isOfflineMode = true;
+      }
+    } else {
+      isOfflineMode = true;
+    }
+
+    if (isOfflineMode) {
+      try {
+        const localData = localStorage.getItem(storageKey);
+        if (localData) {
+          rawReviews = JSON.parse(localData);
+        } else {
+          // Default sample reviews for smooth local dev / preview
+          rawReviews = [
+            {
+              id: 'sample-1',
+              created_at: new Date(Date.now() - 3600000 * 24).toISOString(),
+              game_id: gameId,
+              character_id: characterId,
+              nickname: 'Archive Explorer',
+              rating: 5,
+              comment_text: 'Outstanding character design and synergy! Highly recommended for end-game content.',
+              user_id: 'sample-user-1',
+              parent_id: null,
+              media_urls: [],
+              is_pinned: true,
+              upvotes_count: 5,
+              report_count: 0,
+            },
+            {
+              id: 'sample-2',
+              created_at: new Date(Date.now() - 3600000 * 12).toISOString(),
+              game_id: gameId,
+              character_id: characterId,
+              nickname: 'Tactical Analyst',
+              rating: 5,
+              comment_text: 'Totally agree! Pairing with top-tier supports yields massive damage output.',
+              user_id: 'sample-user-2',
+              parent_id: 'sample-1',
+              media_urls: [],
+              is_pinned: false,
+              upvotes_count: 2,
+              report_count: 0,
+            },
+          ];
+          localStorage.setItem(storageKey, JSON.stringify(rawReviews));
+        }
+
+        const localUpvotes = localStorage.getItem(upvotesKey);
+        if (localUpvotes) {
+          upvotesData = JSON.parse(localUpvotes);
+        }
+
+        const localReports = localStorage.getItem(reportsKey);
+        if (localReports) {
+          reportsData = JSON.parse(localReports);
+        }
+      } catch (e) {
+        console.error('LocalStorage error:', e);
+      }
+    }
+
+    // Process upvote counts, report counts, and user interaction state
+    const upvotesCountMap = new Map<string, number>();
+    const userUpvotedSet = new Set<string>();
+
+    upvotesData.forEach((uv) => {
+      upvotesCountMap.set(uv.comment_id, (upvotesCountMap.get(uv.comment_id) || 0) + 1);
+      if (user && uv.user_id === user.id) {
+        userUpvotedSet.add(uv.comment_id);
+      }
+    });
+
+    const reportsCountMap = new Map<string, number>();
+    const userReportedSet = new Set<string>();
+
+    reportsData.forEach((rp) => {
+      reportsCountMap.set(rp.comment_id, (reportsCountMap.get(rp.comment_id) || 0) + 1);
+      if (user && rp.user_id === user.id) {
+        userReportedSet.add(rp.comment_id);
+      }
+    });
+
+    const processed = rawReviews.map((r) => {
+      const computedUpvotes = upvotesCountMap.get(r.id) ?? r.upvotes_count ?? r.like_count ?? 0;
+      const computedReports = reportsCountMap.get(r.id) ?? r.report_count ?? 0;
+
+      return {
+        ...r,
+        media_urls: r.media_urls || [],
+        upvotes_count: computedUpvotes,
+        like_count: computedUpvotes,
+        report_count: computedReports,
+        user_has_upvoted: user ? userUpvotedSet.has(r.id) : false,
+        user_has_reported: user ? userReportedSet.has(r.id) : false,
+      };
+    });
+
+    setReviews(processed);
+    setIsLoading(false);
+  };
+
+  const saveLocalReviews = (updated: Review[]) => {
     try {
-      if (!supabase) throw new Error("Supabase not initialized");
-      const { data, error } = await supabase
-        .from('character_reviews')
-        .select('*')
-        .eq('game_id', gameId)
-        .eq('character_id', characterId)
-        .order('created_at', { ascending: false });
-
-      if (error) throw error;
-      setReviews(data || []);
-    } catch (err) {
-      console.error("Failed to fetch reviews:", err);
-      setError("Reviews temporarily unavailable.");
-    } finally {
-      setIsLoading(false);
+      localStorage.setItem(storageKey, JSON.stringify(updated));
+    } catch (e) {
+      console.error('LocalStorage save error:', e);
     }
   };
 
-  const handlePostClick = (e: React.MouseEvent) => {
-    if (!currentUser) {
-      e.preventDefault();
-      setIsLoginModalOpen(true);
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!currentUser) {
-      setIsLoginModalOpen(true);
+  const handleCreateReview = async (
+    text: string,
+    rating: number,
+    parentId: string | null = null,
+    mediaUrls: string[] = []
+  ) => {
+    if (!user) {
+      openLoginModal();
       return;
     }
-    if (!commentText.trim() || commentText.length > 500) return;
-    
+
+    const trimmedText = text.trim();
+    if (!trimmedText) return;
+
     setIsSubmitting(true);
-    try {
-      const newReview = {
-        game_id: gameId,
-        character_id: characterId,
-        nickname: currentUser.user_metadata?.full_name || currentUser.user_metadata?.name || 'User',
-        rating,
-        comment_text: commentText.trim(),
-        user_id: currentUser.id
-      };
+    const nickname =
+      user.user_metadata?.full_name ||
+      user.user_metadata?.name ||
+      user.email?.split('@')[0] ||
+      'User';
 
-      const { data, error } = await supabase
-        .from('character_reviews')
-        .insert([newReview])
-        .select()
-        .single();
+    const tempId = 'temp_' + Date.now();
+    const newReviewData = {
+      game_id: gameId,
+      character_id: characterId,
+      nickname,
+      rating,
+      comment_text: trimmedText,
+      media_urls: mediaUrls,
+      user_id: user.id,
+      parent_id: parentId,
+      is_pinned: false,
+      report_count: 0,
+      like_count: 0,
+      author_is_admin: isAdmin,
+    };
 
-      if (error) throw error;
-      
-      if (data) {
-        setReviews([data, ...reviews]);
+    const tempReview: Review = {
+      ...newReviewData,
+      id: tempId,
+      created_at: new Date().toISOString(),
+      upvotes_count: 0,
+      user_has_upvoted: false,
+      user_has_reported: false,
+      author_is_admin: isAdmin,
+    };
+
+    // Optimistic UI update
+    const prevReviews = [...reviews];
+    const updated = [tempReview, ...reviews];
+    setReviews(updated);
+    setIsSubmitting(false); // Enable form immediately
+
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('character_reviews')
+          .insert([newReviewData])
+          .select()
+          .single();
+
+        if (error) throw error;
+        
+        if (data) {
+          // Replace temp review with real DB data
+          setReviews((current) =>
+            current.map((r) => (r.id === tempId ? { ...data, upvotes_count: 0, user_has_upvoted: false, user_has_reported: false } : r))
+          );
+        }
+      } catch (err) {
+        console.warn('Supabase post failed, rolling back:', err);
+        setReviews(prevReviews);
+        alert('댓글 등록에 실패했습니다. 네트워크 상태를 확인해주세요.');
       }
-      setCommentText('');
-      setRating(5);
-    } catch (err) {
-      console.error("Failed to post review:", err);
-      alert("Failed to post review. Please try again later.");
-    } finally {
-      setIsSubmitting(false);
+    } else {
+      saveLocalReviews(updated);
     }
+  };
+
+  const handleToggleUpvote = async (commentId: string) => {
+    if (!user) {
+      openLoginModal();
+      return;
+    }
+
+    const target = reviews.find((r) => r.id === commentId);
+    if (!target) return;
+
+    const currentlyUpvoted = !!target.user_has_upvoted;
+    const newCount = currentlyUpvoted
+      ? Math.max(0, (target.upvotes_count || target.like_count || 0) - 1)
+      : (target.upvotes_count || target.like_count || 0) + 1;
+
+    // Optimistic state update
+    const updatedReviews = reviews.map((r) =>
+      r.id === commentId
+        ? { ...r, upvotes_count: newCount, like_count: newCount, user_has_upvoted: !currentlyUpvoted }
+        : r
+    );
+    setReviews(updatedReviews);
+    saveLocalReviews(updatedReviews);
+
+    // Sync with Supabase
+    if (supabase) {
+      try {
+        if (currentlyUpvoted) {
+          const { error } = await supabase
+            .from('comment_upvotes')
+            .delete()
+            .eq('comment_id', commentId)
+            .eq('user_id', user.id);
+          if (error) throw error;
+        } else {
+          const { error } = await supabase
+            .from('comment_upvotes')
+            .insert([{ comment_id: commentId, user_id: user.id }]);
+          if (error) throw error;
+        }
+      } catch (err) {
+        console.warn('Supabase upvote sync failed, rolling back:', err);
+        setReviews(reviews); // Rollback
+        saveLocalReviews(reviews);
+        alert('일시적인 오류가 발생했습니다. 다시 시도해주세요.');
+        return;
+      }
+    }
+
+    try {
+      let localUpvotes: { comment_id: string; user_id: string }[] = [];
+      const stored = localStorage.getItem(upvotesKey);
+      if (stored) localUpvotes = JSON.parse(stored);
+
+      if (currentlyUpvoted) {
+        localUpvotes = localUpvotes.filter(
+          (uv) => !(uv.comment_id === commentId && uv.user_id === user.id)
+        );
+      } else {
+        localUpvotes.push({ comment_id: commentId, user_id: user.id });
+      }
+      localStorage.setItem(upvotesKey, JSON.stringify(localUpvotes));
+    } catch (e) {
+      console.error('LocalStorage upvote save error:', e);
+    }
+  };
+
+  const handleEdit = async (id: string, text: string, rating: number, mediaUrls: string[] = []) => {
+    if (!user) {
+      openLoginModal();
+      return;
+    }
+
+    const trimmedText = text.trim();
+    if (!trimmedText) return;
+
+    if (supabase) {
+      try {
+        await supabase
+          .from('character_reviews')
+          .update({
+            comment_text: trimmedText,
+            rating,
+            media_urls: mediaUrls,
+            updated_at: new Date().toISOString(),
+          })
+          .eq('id', id)
+          .eq('user_id', user.id);
+      } catch (err) {
+        console.warn('Supabase edit failed, updating locally:', err);
+      }
+    }
+
+    const updated = reviews.map((r) =>
+      r.id === id ? { ...r, comment_text: trimmedText, rating, media_urls: mediaUrls } : r
+    );
+    setReviews(updated);
+    saveLocalReviews(updated);
   };
 
   const handleDelete = async (id: string) => {
-    if (!window.confirm("Are you sure you want to delete this comment?")) return;
-    try {
-      const { error } = await supabase
-        .from('character_reviews')
-        .delete()
-        .eq('id', id)
-        .eq('user_id', currentUser.id);
+    if (!user) {
+      openLoginModal();
+      return;
+    }
+    if (!window.confirm('Are you sure you want to delete this comment?')) return;
 
-      if (error) throw error;
-      setReviews(reviews.filter(r => r.id !== id));
-    } catch (err) {
-      console.error("Failed to delete review:", err);
-      alert("Failed to delete review.");
+    const prevReviews = [...reviews];
+    const updated = reviews.filter((r) => r.id !== id && r.parent_id !== id);
+    setReviews(updated); // Optimistic UI update
+
+    if (supabase) {
+      try {
+        const { error } = await supabase
+          .from('character_reviews')
+          .delete()
+          .eq('id', id)
+          .eq('user_id', user.id);
+          
+        if (error) throw error;
+      } catch (err) {
+        console.warn('Supabase delete failed, rolling back:', err);
+        setReviews(prevReviews); // Rollback
+        alert('삭제에 실패했습니다. 다시 시도해주세요.');
+        return;
+      }
+    }
+    saveLocalReviews(updated);
+  };
+
+  const handleTogglePin = async (commentId: string, currentPinned: boolean) => {
+    if (!user) {
+      openLoginModal();
+      return;
+    }
+
+    const newPinned = !currentPinned;
+
+    if (supabase) {
+      try {
+        await supabase
+          .from('character_reviews')
+          .update({ is_pinned: newPinned })
+          .eq('id', commentId);
+      } catch (err) {
+        console.warn('Supabase pin update failed, updating locally:', err);
+      }
+    }
+
+    const updated = reviews.map((r) =>
+      r.id === commentId ? { ...r, is_pinned: newPinned } : r
+    );
+    setReviews(updated);
+    saveLocalReviews(updated);
+  };
+
+  const handleReport = async (commentId: string) => {
+    if (!user) {
+      openLoginModal();
+      return;
+    }
+
+    const target = reviews.find((r) => r.id === commentId);
+    if (!target || target.user_has_reported) return;
+
+    const newReportCount = (target.report_count || 0) + 1;
+
+    // Optimistic state update
+    const updatedReviews = reviews.map((r) =>
+      r.id === commentId
+        ? { ...r, report_count: newReportCount, user_has_reported: true }
+        : r
+    );
+    setReviews(updatedReviews);
+    saveLocalReviews(updatedReviews);
+
+    // Sync with Supabase
+    if (supabase) {
+      try {
+        await supabase
+          .from('comment_reports')
+          .insert([{ comment_id: commentId, user_id: user.id }]);
+      } catch (err) {
+        console.warn('Supabase report sync failed, updated locally:', err);
+      }
+    }
+
+    try {
+      let localReports: { comment_id: string; user_id: string }[] = [];
+      const stored = localStorage.getItem(reportsKey);
+      if (stored) localReports = JSON.parse(stored);
+
+      localReports.push({ comment_id: commentId, user_id: user.id });
+      localStorage.setItem(reportsKey, JSON.stringify(localReports));
+    } catch (e) {
+      console.error('LocalStorage report save error:', e);
     }
   };
 
-  const handleEditStart = (review: Review) => {
-    setEditingReviewId(review.id);
-    setEditRating(review.rating);
-    setEditCommentText(review.comment_text);
-  };
+  // Build tree structure and sort root comments
+  const reviewIds = useMemo(() => new Set(reviews.map((r) => r.id)), [reviews]);
 
-  const handleEditCancel = () => {
-    setEditingReviewId(null);
-  };
+  const rootReviews = useMemo(() => {
+    // Include orphans whose parent_id doesn't exist in current reviews dataset
+    const roots = reviews.filter((r) => !r.parent_id || !reviewIds.has(r.parent_id));
 
-  const handleEditSubmit = async (id: string) => {
-    if (!editCommentText.trim() || editCommentText.length > 500) return;
-    setIsEditing(true);
-    try {
-      const { error } = await supabase
-        .from('character_reviews')
-        .update({
-          rating: editRating,
-          comment_text: editCommentText.trim()
-        })
-        .eq('id', id)
-        .eq('user_id', currentUser.id);
+    return roots.sort((a, b) => {
+      // 1. Elevate pinned comments first!
+      if (a.is_pinned && !b.is_pinned) return -1;
+      if (!a.is_pinned && b.is_pinned) return 1;
 
-      if (error) throw error;
+      // 2. Sort mode: 'best' vs 'newest'
+      if (sortMode === 'best') {
+        const upvotesA = a.upvotes_count || a.like_count || 0;
+        const upvotesB = b.upvotes_count || b.like_count || 0;
+        if (upvotesA !== upvotesB) {
+          return upvotesB - upvotesA;
+        }
+      }
 
-      setReviews(reviews.map(r => r.id === id ? { ...r, rating: editRating, comment_text: editCommentText.trim() } : r));
-      setEditingReviewId(null);
-    } catch (err) {
-      console.error("Failed to edit review:", err);
-      alert("Failed to edit review.");
-    } finally {
-      setIsEditing(false);
-    }
-  };
+      // Default or fallback: newest created_at
+      return new Date(b.created_at).getTime() - new Date(a.created_at).getTime();
+    });
+  }, [reviews, reviewIds, sortMode]);
+
+  const repliesMap = useMemo(() => {
+    const map = new Map<string, Review[]>();
+    reviews.forEach((r) => {
+      if (r.parent_id && reviewIds.has(r.parent_id)) {
+        const list = map.get(r.parent_id) || [];
+        list.push(r);
+        map.set(r.parent_id, list);
+      }
+    });
+    // Sort replies chronologically
+    map.forEach((list) => {
+      list.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
+    });
+    return map;
+  }, [reviews, reviewIds]);
 
   if (error) {
     return (
@@ -188,184 +519,101 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
     );
   }
 
-  const userNickname = currentUser ? (currentUser.user_metadata?.full_name || currentUser.user_metadata?.name || 'User') : 'Anonymous';
-  const userAvatar = currentUser?.user_metadata?.avatar_url;
-
   return (
     <section className="mt-12 pt-8 border-t border-white/5">
-      <div className="flex items-center gap-4 mb-8 px-2">
-        <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-          <MessageSquare size={20} className="text-brand-primary" />
-        </div>
-        <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase">Community Reviews</h2>
-      </div>
-
-      <div className="glass-card p-6 md:p-8 rounded-[35px] border border-white/5 mb-8 bg-gradient-to-br from-white/[0.03] to-transparent">
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex-1">
-              <label className="block text-[11px] font-black text-gray-500 uppercase tracking-widest mb-2">Posting as</label>
-              <div className="flex items-center gap-3 w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white">
-                {userAvatar ? (
-                  <img src={userAvatar} alt={userNickname} className="w-6 h-6 rounded-full" />
-                ) : (
-                  <User size={16} className="text-gray-400" />
-                )}
-                <span>{userNickname}</span>
-                {!currentUser && <span className="text-xs text-brand-primary ml-auto font-bold cursor-pointer hover:underline" onClick={() => setIsLoginModalOpen(true)}>Login required</span>}
-              </div>
-            </div>
-            <div className="w-full md:w-32">
-              <label className="block text-[11px] font-black text-gray-500 uppercase tracking-widest mb-2">Rating</label>
-              <select 
-                value={rating}
-                onChange={(e) => setRating(Number(e.target.value))}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary/50 transition-colors appearance-none"
-                disabled={!currentUser}
-              >
-                {[5, 4, 3, 2, 1].map(num => (
-                  <option key={num} value={num} className="bg-gray-900 text-white">{num} Stars</option>
-                ))}
-              </select>
-            </div>
+      {/* Header and Sorting Toolbar */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 px-2">
+        <div className="flex items-center gap-4">
+          <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
+            <MessageSquare size={20} className="text-brand-primary" />
           </div>
-          <div className="relative">
-            <label className="block text-[11px] font-black text-gray-500 uppercase tracking-widest mb-2">Your Review</label>
-            <textarea 
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              placeholder={currentUser ? "Share your thoughts about this character... (max 500 characters)" : "Please login to write a review."}
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary/50 transition-colors min-h-[100px] resize-y placeholder:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
-              maxLength={500}
-              disabled={!currentUser}
-              required
-            />
-            {!currentUser && (
-              <div 
-                className="absolute inset-0 z-10 cursor-pointer" 
-                onClick={() => setIsLoginModalOpen(true)}
-              />
-            )}
-            <div className="flex justify-between items-center mt-2">
-              <span className={`text-xs ${commentText.length > 500 ? 'text-red-400' : 'text-gray-500'}`}>
-                {commentText.length} / 500
+          <div>
+            <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2">
+              Community Reviews
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 not-italic">
+                {reviews.length}
               </span>
-              <button 
-                type="submit" 
-                onClick={handlePostClick}
-                disabled={isSubmitting || (currentUser && (!commentText.trim() || commentText.length > 500))}
-                className="px-6 py-2 bg-brand-primary hover:bg-brand-primary/80 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-sm"
-              >
-                {isSubmitting ? 'Posting...' : 'Post Review'}
-              </button>
-            </div>
+            </h2>
+            <p className="text-xs text-gray-500 font-medium">
+              Share your experience and tactics with other players.
+            </p>
           </div>
-        </form>
+        </div>
+
+        {/* Sorting Options UI */}
+        <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 p-1 rounded-xl self-start md:self-auto">
+          <button
+            onClick={() => setSortMode('newest')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              sortMode === 'newest'
+                ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20'
+                : 'text-gray-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Clock size={13} />
+            <span>최신순 (Newest)</span>
+          </button>
+          <button
+            onClick={() => setSortMode('best')}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+              sortMode === 'best'
+                ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20'
+                : 'text-gray-400 hover:text-white hover:bg-white/5'
+            }`}
+          >
+            <Flame size={13} />
+            <span>베스트/추천순 (Best)</span>
+          </button>
+        </div>
       </div>
 
-      <div className="space-y-4">
+      <div className="mb-8">
+        <CommentForm
+          onSubmit={async (text, rating, mediaUrls) =>
+            handleCreateReview(text, rating, null, mediaUrls)
+          }
+          isSubmitting={isSubmitting}
+          user={user}
+          onRequireAuth={openLoginModal}
+          placeholder="Share your thoughts about this character..."
+          buttonLabel="Post Review"
+          showRating={true}
+        />
+      </div>
+
+      <div className="space-y-6">
         {isLoading ? (
-          <div className="text-center py-12 text-gray-500 animate-pulse">Loading reviews...</div>
-        ) : reviews.length === 0 ? (
-          <div className="text-center py-12 text-gray-500 italic bg-white/[0.02] rounded-[30px] border border-white/5">No reviews yet. Be the first to share your thoughts!</div>
+          <div className="text-center py-12 text-gray-500 animate-pulse font-medium">
+            Loading reviews...
+          </div>
+        ) : rootReviews.length === 0 ? (
+          <div className="text-center py-12 text-gray-500 italic bg-white/[0.02] rounded-[30px] border border-white/5">
+            No reviews yet. Be the first to share your thoughts!
+          </div>
         ) : (
-          reviews.map(review => {
-            const isOwnReview = currentUser && review.user_id === currentUser.id;
-            const isEditingThis = editingReviewId === review.id;
-
-            return (
-              <div key={review.id} className={`glass-card p-6 rounded-[30px] border border-white/5 group hover:bg-white/[0.04] transition-colors relative bg-white/[0.01] ${isEditingThis ? 'ring-1 ring-brand-primary/50' : ''}`}>
-                
-                {isOwnReview && !isEditingThis && (
-                  <div className="absolute top-6 right-6 flex gap-2 opacity-0 group-hover:opacity-100 transition-all">
-                    <button 
-                      onClick={() => handleEditStart(review)}
-                      className="p-2 text-gray-600 hover:text-brand-primary rounded-lg hover:bg-brand-primary/10"
-                      title="Edit comment"
-                    >
-                      <Edit3 size={16} />
-                    </button>
-                    <button 
-                      onClick={() => handleDelete(review.id)}
-                      className="p-2 text-gray-600 hover:text-red-400 rounded-lg hover:bg-red-400/10"
-                      title="Delete comment"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                )}
-                
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-white/10 to-transparent flex items-center justify-center border border-white/10 overflow-hidden">
-                    <User size={16} className="text-gray-400" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-white flex items-center gap-2">
-                      {review.nickname}
-                      {!isEditingThis && (
-                        <div className="flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} size={12} className={i < review.rating ? "text-yellow-500 fill-yellow-500" : "text-gray-600"} />
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    <div className="text-xs text-gray-500">
-                      {new Date(review.created_at).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' })}
-                      {review.user_id && <span className="ml-2 text-brand-primary/60 text-[10px] uppercase tracking-wider">Verified</span>}
-                    </div>
-                  </div>
-                </div>
-
-                {isEditingThis ? (
-                  <div className="space-y-3 mt-4 animate-in fade-in slide-in-from-top-2">
-                    <select 
-                      value={editRating}
-                      onChange={(e) => setEditRating(Number(e.target.value))}
-                      className="w-full md:w-32 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-white focus:outline-none focus:border-brand-primary/50 text-sm appearance-none"
-                    >
-                      {[5, 4, 3, 2, 1].map(num => (
-                        <option key={num} value={num} className="bg-gray-900 text-white">{num} Stars</option>
-                      ))}
-                    </select>
-                    <textarea 
-                      value={editCommentText}
-                      onChange={(e) => setEditCommentText(e.target.value)}
-                      className="w-full bg-black/20 border border-brand-primary/30 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-primary/70 transition-colors min-h-[100px] resize-y"
-                      maxLength={500}
-                      autoFocus
-                    />
-                    <div className="flex justify-end gap-2">
-                      <button 
-                        onClick={handleEditCancel}
-                        className="px-4 py-2 text-gray-400 hover:text-white text-sm font-medium transition-colors rounded-lg hover:bg-white/5"
-                      >
-                        Cancel
-                      </button>
-                      <button 
-                        onClick={() => handleEditSubmit(review.id)}
-                        disabled={isEditing || !editCommentText.trim() || editCommentText.length > 500}
-                        className="px-4 py-2 bg-brand-primary hover:bg-brand-primary/80 text-white text-sm font-bold rounded-lg transition-all disabled:opacity-50"
-                      >
-                        {isEditing ? 'Saving...' : 'Save Changes'}
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-gray-300 whitespace-pre-wrap leading-relaxed text-sm pl-1">
-                    {review.comment_text}
-                  </p>
-                )}
-              </div>
-            );
-          })
+          rootReviews.map((review) => (
+            <CommentCard
+              key={review.id}
+              review={review}
+              repliesMap={repliesMap}
+              user={user}
+              onToggleUpvote={handleToggleUpvote}
+              onDelete={handleDelete}
+              onEdit={handleEdit}
+              onPostReply={async (parentId, text, mediaUrls) =>
+                handleCreateReview(text, 5, parentId, mediaUrls)
+              }
+              onTogglePin={handleTogglePin}
+              onReport={handleReport}
+              onRequireAuth={openLoginModal}
+              isAdmin={isAdmin}
+            />
+          ))
         )}
       </div>
-
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
-      />
     </section>
   );
 };
+
+export default CharacterReviewBoard;
+

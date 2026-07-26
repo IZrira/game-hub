@@ -2,16 +2,20 @@ import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Gamepad2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
+import { useAuth } from '../context/AuthContext';
 
 interface LoginModalProps {
-  isOpen: boolean;
-  onClose: () => void;
+  isOpen?: boolean;
+  onClose?: () => void;
 }
 
-const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
+const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: propsOnClose }) => {
   const { t } = useTranslation();
+  const { isLoginModalOpen: contextIsOpen, closeLoginModal: contextCloseModal, signInWithProvider } = useAuth();
+
+  const isOpen = propsIsOpen !== undefined ? propsIsOpen : contextIsOpen;
+  const handleClose = propsOnClose || contextCloseModal;
 
   // Disable scroll when modal is open
   useEffect(() => {
@@ -26,15 +30,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
   }, [isOpen]);
 
   const handleSocialLogin = async (provider: 'discord' | 'google') => {
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider,
-      options: {
-        redirectTo: window.location.origin
-      }
-    });
-    if (error) {
-      console.error(`${provider} Login Error:`, error.message);
-    }
+    await signInWithProvider(provider);
   };
 
   const modalContent = (
@@ -46,7 +42,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute inset-0 bg-black/60 backdrop-blur-md"
           />
 
@@ -64,7 +60,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
                 <Gamepad2 size={32} />
               </div>
               <button 
-                onClick={onClose}
+                onClick={handleClose}
                 className="absolute top-6 right-6 p-2 rounded-full bg-black/20 text-white/60 hover:text-white hover:bg-black/40 transition-all z-20"
               >
                 <X size={20} />

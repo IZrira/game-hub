@@ -8,6 +8,7 @@ import HSR_CHARACTERS from '../../hsr-hub/data/characters.json';
 import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
 import SEO from '../components/SEO';
 import { getGameData } from '../data/dataManager';
+import AdminNoticeEditor from '../components/AdminNoticeEditor';
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -981,11 +982,10 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-gray-500 uppercase ml-1">내용 (Markdown 지원)</label>
-                      <textarea 
-                        className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all h-40 resize-none custom-scrollbar" 
-                        value={newNotice.content} 
-                        onChange={e => setNewNotice({...newNotice, content: e.target.value})} 
-                        placeholder="마크다운 형식으로 내용을 입력하세요." 
+                      <AdminNoticeEditor
+                        initialContent={newNotice.content}
+                        onChange={(content) => setNewNotice({...newNotice, content})}
+                        placeholder="마크다운 형식으로 공지사항 내용을 작성하세요..."
                       />
                     </div>
                     <div className="grid grid-cols-2 gap-4">

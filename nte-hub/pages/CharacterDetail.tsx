@@ -1,11 +1,12 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
-import { ArrowLeft, Star, MapPin } from 'lucide-react';
+import { ArrowLeft, Star } from 'lucide-react';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { CDN_URL } from '../../common-hub/utils/assetManager';
+import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 
 const CharacterDetailNTE: React.FC = () => {
   const { charName } = useParams<{ charName: string }>();
@@ -14,7 +15,7 @@ const CharacterDetailNTE: React.FC = () => {
   
   const { CHARACTER_DB } = useMemo(() => getGameData(gameId), [gameId]);
   const character = useMemo(() => {
-    return CHARACTER_DB.find((c: any) => c.name === charName || c.originalName === charName);
+    return CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName);
   }, [charName, CHARACTER_DB]);
 
   if (!character) {
@@ -135,6 +136,8 @@ const CharacterDetailNTE: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <CharacterReviewBoard characterId={character.id || character.name || charName || ''} gameId={gameId} />
       </main>
     </div>
   );

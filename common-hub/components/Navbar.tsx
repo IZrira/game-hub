@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router';
-import { Gamepad2, Search, Menu, X, Bell, Globe, Download, LogOut, User as UserIcon, ShieldCheck } from 'lucide-react';
+import { Gamepad2, Globe, Download, LogOut, User as UserIcon, ShieldCheck, Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
+import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 import '../i18n';
 
@@ -11,10 +11,9 @@ const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const [user, setUser] = useState<any>(null);
-  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const location = useLocation();
-  const { t, i18n } = useTranslation(); // t 함수 다시 활성화
+  const { t, i18n } = useTranslation();
+  const { user, signOut, openLoginModal } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,70 +27,6 @@ const Navbar: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-    
-    // 1. Initialize Auth and handle session recovery
-    if (supabase) {
-      const initializeAuth = async () => {
-        const { data: { session: currentSession } } = await supabase.auth.getSession();
-        
-        // Handle edge case where session is missing but hash is present
-        if (!currentSession && window.location.hash.includes('access_token')) {
-          const timer = setTimeout(async () => {
-            try {
-              const hash = window.location.hash.substring(1);
-              const params = new URLSearchParams(hash);
-              const accessToken = params.get('access_token');
-              const refreshToken = params.get('refresh_token');
-
-              if (accessToken && refreshToken) {
-                const { data: { session } } = await supabase.auth.setSession({
-                  access_token: accessToken,
-                  refresh_token: refreshToken,
-                });
-
-                if (session) {
-                  setUser(session.user);
-                  window.history.replaceState(null, '', window.location.pathname);
-                  return;
-                }
-              }
-
-              const { data: { session: refreshedSession } } = await supabase.auth.getSession();
-              if (refreshedSession) {
-                setUser(refreshedSession.user);
-                window.history.replaceState(null, '', window.location.pathname);
-              }
-            } catch (err) {
-              // Fail silently in production
-            }
-          }, 500);
-
-          return () => clearTimeout(timer);
-        }
-        
-        setUser(currentSession?.user ?? null);
-      };
-
-      initializeAuth();
-
-      // 2. Subscribe to auth changes
-      const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-        if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
-          setUser(session?.user ?? null);
-          if (window.location.hash) {
-            window.history.replaceState(null, '', window.location.pathname);
-          }
-        } else if (event === 'SIGNED_OUT') {
-          setUser(null);
-        }
-      });
-
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-        window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
-        subscription.unsubscribe();
-      };
-    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
@@ -113,10 +48,7 @@ const Navbar: React.FC = () => {
   };
 
   const handleLogout = async () => {
-    if (supabase) {
-      const { error } = await supabase.auth.signOut();
-      if (error) console.error('Logout Error:', error.message);
-    }
+    await signOut();
   };
 
   return (
@@ -179,7 +111,7 @@ const Navbar: React.FC = () => {
             </div>
           ) : (
             <button 
-              onClick={() => setIsLoginModalOpen(true)} 
+              onClick={openLoginModal} 
               className="px-5 py-2 bg-brand-primary text-white text-[11px] font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all shadow-lg shadow-brand-primary/20 active:scale-95"
             >
               {t('LOGIN')}
@@ -213,7 +145,7 @@ const Navbar: React.FC = () => {
               </div>
             ) : (
               <button 
-                onClick={() => { setIsMobileMenuOpen(false); setIsLoginModalOpen(true); }} 
+                onClick={() => { setIsMobileMenuOpen(false); openLoginModal(); }} 
                 className="w-full p-4 bg-brand-primary text-white text-xs font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-brand-primary/20"
               >
                 {t('LOGIN')}
@@ -223,10 +155,7 @@ const Navbar: React.FC = () => {
         </div>
       )}
       {/* Login Modal */}
-      <LoginModal 
-        isOpen={isLoginModalOpen} 
-        onClose={() => setIsLoginModalOpen(false)} 
-      />
+      <LoginModal />
     </nav>
   );
 };
