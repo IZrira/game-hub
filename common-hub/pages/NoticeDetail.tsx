@@ -5,6 +5,7 @@ import { fetchNotices } from '../data/notices';
 import { Notice } from '../data/types';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const NoticeDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -89,8 +90,8 @@ const NoticeDetail: React.FC = () => {
             </div>
           </div>
 
-          <div className="prose prose-invert max-w-4xl mx-auto md:mx-0 text-gray-300 leading-loose font-medium whitespace-pre-wrap text-lg">
-            {notice.content}
+          <div className="prose prose-invert max-w-4xl mx-auto md:mx-0 text-gray-300 leading-loose font-medium text-lg">
+            <MarkdownRenderer content={notice.content} />
           </div>
         </article>
       </div>

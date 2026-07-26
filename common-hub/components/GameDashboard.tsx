@@ -24,6 +24,7 @@ import { Bell } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../data/dataManager';
 import { safeEncodeURIComponent } from '../utils/assetManager';
+import { stripMarkdown } from '../utils/markdown';
 
 interface GameDashboardProps {
   game: Game;
@@ -317,7 +318,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       {notice.title}
                     </h3>
                     <p className="text-[10px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">
-                      {notice.content}
+                      {stripMarkdown(notice.content)}
                     </p>
                     <div className="mt-3 h-px bg-white/5 group-last:hidden" />
                   </div>

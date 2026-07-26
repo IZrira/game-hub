@@ -9,6 +9,8 @@ import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
 import SEO from '../components/SEO';
 import { getGameData } from '../data/dataManager';
 import AdminNoticeEditor from '../components/AdminNoticeEditor';
+import { stripMarkdown } from '../utils/markdown';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -1091,8 +1093,8 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                   <Copy size={10} /> 내용 복사
                                 </button>
                               </div>
-                              <div className="text-sm text-gray-300 leading-relaxed whitespace-pre-wrap font-medium">
-                                {notice.content}
+                              <div className="text-sm text-gray-300 leading-relaxed font-medium">
+                                <MarkdownRenderer content={notice.content} />
                               </div>
                             </div>
                           </div>
