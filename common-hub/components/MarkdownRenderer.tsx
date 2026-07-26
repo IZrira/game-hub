@@ -92,25 +92,25 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
             </blockquote>
           ),
           p: ({ node, children, ...props }) => (
-            <p className="leading-relaxed text-sm md:text-base mb-3 whitespace-pre-wrap" {...props}>
+            <p className={`leading-relaxed text-sm md:text-base whitespace-pre-wrap ${variant === 'notice' ? '!m-0 min-h-[1.25rem]' : 'mb-3'}`} {...props}>
               {children}
             </p>
           ),
           ul: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <div className="my-4 space-y-2" {...props}>{children}</div>;
+              return <div className="!m-0" {...props}>{children}</div>;
             }
             return <ul className="list-disc pl-6 my-4 space-y-2" {...props}>{children}</ul>;
           },
           ol: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <div className="my-4 space-y-2" {...props}>{children}</div>;
+              return <div className="!m-0" {...props}>{children}</div>;
             }
             return <ol className="list-decimal pl-6 my-4 space-y-2" {...props}>{children}</ol>;
           },
           li: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <div className="leading-relaxed text-sm md:text-base" {...props}>{children}</div>;
+              return <div className="leading-relaxed text-sm md:text-base !m-0" {...props}>{children}</div>;
             }
             return <li className="leading-relaxed text-sm md:text-base" {...props}>{children}</li>;
           },
