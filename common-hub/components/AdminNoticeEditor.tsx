@@ -59,6 +59,7 @@ export const AdminNoticeEditor: React.FC<AdminNoticeEditorProps> = ({
   });
 
   useEffect(() => {
+    // @ts-expect-error markdown extension storage type is not automatically inferred
     if (editor && initialContent !== editor.storage.markdown.getMarkdown()) {
       editor.commands.setContent(initialContent);
     }
