@@ -32,6 +32,7 @@ const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID; // Weapons DB
 const NOTION_WW_CHARACTER_DB_ID = process.env.NOTION_WW_CHARACTER_DB_ID; // Characters DB
 const NOTION_WW_ITEM_DB_ID = process.env.NOTION_WW_ITEM_DB_ID; // WW Items DB
 const NOTION_WW_ECHOES_DB_ID = process.env.NOTION_WW_ECHOES_DB_ID; // WW Echoes DB
+const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
 
 const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
@@ -59,6 +60,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
           start_cursor: nextCursor
         }
       });
+      console.log(`[Notion Sync] Fetched page ${results.length + response.results.length} from ${dbId}`);
       results.push(...response.results);
       hasMore = response.has_more;
       nextCursor = response.next_cursor;
@@ -75,6 +77,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
             method: 'POST',
             body: { start_cursor: nextCursorFallback }
           });
+          console.log(`[Notion Sync] Fallback fetched page ${results.length + fallbackResp.results.length} from ${dbId}`);
           results.push(...fallbackResp.results);
           hasMoreFallback = fallbackResp.has_more;
           nextCursorFallback = fallbackResp.next_cursor;
@@ -105,7 +108,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
       wwKeysLogged = true;
     }
 
-    const type = isCharacterDB ? '캐릭터' : (props['타입']?.select?.name || props['종류']?.select?.name || props['분류']?.select?.name || props['분류']?.rich_text?.[0]?.plain_text || '');
+    const type = isCharacterDB ? '캐릭터' : (props['필터']?.select?.name || props['필터']?.rich_text?.[0]?.plain_text || props['필터']?.multi_select?.[0]?.name || props['타입']?.select?.name || props['종류']?.select?.name || props['분류']?.select?.name || props['분류']?.rich_text?.[0]?.plain_text || '');
     
     let contentMarkdown = '';
     // 무기가 아닌 경우 본문 파싱
@@ -207,6 +210,11 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
       itemAttribute = props['속성']?.multi_select?.map(s => s.name).join(', ') || '';
     } else {
       itemAttribute = extractRichText(props['속성']);
+    }
+
+    const specialNote = extractRichText(props['특이 사항']) || props['특이 사항']?.select?.name || props['특이 사항']?.multi_select?.map(s => s.name).join(', ') || '';
+    if (specialNote) {
+      itemAttribute = itemAttribute ? `${itemAttribute}, ${specialNote}` : specialNote;
     }
 
     const normalizedName = name.trim();
@@ -354,6 +362,21 @@ async function fetchNotionData() {
       
       allItems.push(...formattedEchoes);
       console.log(`[Notion Sync] Fetched ${wwEchoes.length} WW echoes.`);
+    }
+
+    // 5. Fetch from NTE Items DB
+    if (NOTION_NTE_ITEM_DB_ID && NOTION_NTE_ITEM_DB_ID !== 'xxxxxxxxxxxx') {
+      console.log(`[Notion Sync] Fetching NTE Items from ${NOTION_NTE_ITEM_DB_ID}...`);
+      const nteItems = await fetchFromDB(notion, NOTION_NTE_ITEM_DB_ID, n2m, false);
+      
+      const formattedNteItems = nteItems.map(item => ({
+        ...item,
+        type: item.type || '아이템',
+        dbSource: 'nte_items'
+      }));
+      
+      allItems.push(...formattedNteItems);
+      console.log(`[Notion Sync] Fetched ${nteItems.length} NTE items.`);
     }
 
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');

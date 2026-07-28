@@ -69,7 +69,8 @@ export default function SEO({
       // lng는 canonical/alternate를 위해 동적으로 제어하므로 일단 제거
       urlObj.searchParams.delete('lng');
       
-      if (targetLang) {
+      // 한국어(기본값)일 경우 파라미터를 추가하지 않고 클린 URL을 사용하도록 수정
+      if (targetLang && targetLang !== 'ko') {
         urlObj.searchParams.set('lng', targetLang);
       }
       

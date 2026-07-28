@@ -56,14 +56,14 @@ const GalleryNTE: React.FC = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, WW_INVENTORY, GUIDES: NTE_CHARACTER_GUIDES } = useMemo(() => getGameData(gameId), [gameId]);
+  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, INVENTORY_DB, GUIDES: NTE_CHARACTER_GUIDES } = useMemo(() => getGameData(gameId), [gameId]);
   const [gameNotices, setGameNotices] = useState<Notice[]>([]);
 
   const game = useMemo(() => ARCHIVE_DATA?.games?.find(g => g.id === gameId) || null, []);
 
   const { filteredCharacters, filterOptions } = useGalleryFilter(
     gameId, debouncedSearchQuery, attrFilter, secondFilter, rarityFilter,
-    CHARACTER_DB, [], WEAPON_DB, ECHO_DB, [], WW_INVENTORY, categoryFilter
+    CHARACTER_DB, [], WEAPON_DB, ECHO_DB, [], INVENTORY_DB, categoryFilter
   );
 
   if (!game) return null;
@@ -110,7 +110,8 @@ const GalleryNTE: React.FC = () => {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
-                  { label: "아크", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" }
+                  { label: "아크", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" },
+                  { label: "인벤토리", count: Object.keys(INVENTORY_DB || {}).length, icon: <Backpack size={14} />, color: "text-brand-accent" }
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1">
                     <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color}`}>{stat.icon}</div>
@@ -140,6 +141,11 @@ const GalleryNTE: React.FC = () => {
                 {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
+          ) : activeMenu === "인벤토리" ? (
+            <InventoryGallery 
+              gameId="nte" 
+              customCategories={["전체"]} 
+            />
           ) : (
             <div className="py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
               <Book className="mx-auto text-gray-700 opacity-20" size={48} />

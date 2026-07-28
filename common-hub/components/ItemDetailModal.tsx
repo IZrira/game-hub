@@ -60,6 +60,16 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
 
   const theme = getRarityTheme(rarity);
 
+  const isGenderSplit = itemData?.itemAttribute?.includes('남여 분리') || itemData?.itemAttribute?.includes('남녀 분리') || 
+    ['행복한 「에이본」 가족', '프로필-「비일상적인 복장」', '프로필-그래피티 타임', '프로필-헌터는 휴가 중', '프로필-환상의 콤비'].includes(koName);
+  
+  let imgPathM = '';
+  let imgPathF = '';
+  if (isGenderSplit && url) {
+    imgPathM = url.replace(/\.(png|webp)$/, '_m.$1');
+    imgPathF = url.replace(/\.(png|webp)$/, '_f.$1');
+  }
+
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-300">
       <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
@@ -73,11 +83,26 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
           <div className="relative z-10 w-full aspect-square flex items-center justify-center group">
             <div className={`absolute inset-0 border-2 ${theme.border} rounded-[48px] rotate-6 group-hover:rotate-12 transition-transform duration-700`} />
             <div className={`absolute inset-0 border border-white/5 rounded-[48px] -rotate-3 group-hover:-rotate-6 transition-transform duration-700`} />
-            <img 
-              src={url} 
-              alt={koName} 
-              className="relative z-10 w-3/4 h-3/4 object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-700" 
-            />
+            {isGenderSplit && imgPathM && imgPathF ? (
+              <div className="relative z-10 w-full h-full flex items-center justify-center gap-4 p-4 transform group-hover:scale-105 transition-transform duration-700">
+                <img 
+                  src={imgPathM} 
+                  alt={`${koName} (남)`} 
+                  className="w-1/2 h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]" 
+                />
+                <img 
+                  src={imgPathF} 
+                  alt={`${koName} (여)`} 
+                  className="w-1/2 h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]" 
+                />
+              </div>
+            ) : (
+              <img 
+                src={url} 
+                alt={koName} 
+                className="relative z-10 w-3/4 h-3/4 object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-700" 
+              />
+            )}
           </div>
         </div>
 

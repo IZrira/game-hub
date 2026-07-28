@@ -153,7 +153,8 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
 
   const styles = getRarityStyles(item.rarity);
 
-  const isGenderSplit = item.itemAttribute?.includes('남여 분리');
+  const isGenderSplit = item.itemAttribute?.includes('남여 분리') || item.itemAttribute?.includes('남녀 분리') || 
+    ['행복한 「에이본」 가족', '프로필-「비일상적인 복장」', '프로필-그래피티 타임', '프로필-헌터는 휴가 중', '프로필-환상의 콤비'].includes(itemName);
   let imgPathM = '';
   let imgPathF = '';
   if (isGenderSplit && imgPath) {

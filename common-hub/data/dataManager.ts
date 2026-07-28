@@ -360,6 +360,25 @@ export const getGameData = (targetId: string) => {
       };
     });
 
+  // 노션 이환(NTE) 아이템 추출
+  const notionNteItems = typedNotionData
+    .filter(item => item.dbSource === 'nte_items')
+    .map(item => {
+      return {
+        id: item.id,
+        name: item.name,
+        type: item.type || '아이템',
+        rarity: item.rarity,
+        desc: item.content || item.skillDescription || item.briefInfo || '',
+        sources: item.obtain ? item.obtain.split(/[\n,]+/).map((s: string) => s.trim()).filter(Boolean) : ["정보 없음"],
+        folderName: item.name,
+        fileName: item.fileName || '',
+        gameId: 'nte',
+        isNotion: true,
+        itemAttribute: item.itemAttribute
+      };
+    });
+
   // 노션 명조 에코 추출 및 매핑
   const notionWwEchoes = typedNotionData
     .filter(item => item.dbSource === 'ww_echoes')
@@ -599,7 +618,7 @@ export const getGameData = (targetId: string) => {
       WEAPON_DB: NTE_DATA_ALL.WEAPON_DATA,
       WEAPON_DATA: NTE_DATA_ALL.WEAPON_DATA,
       ECHO_DB: NTE_DATA_ALL.ECHO_DATA,
-      INVENTORY_DB: (NTE_DATA_ALL.ITEM_DATA || []).reduce((acc: any, item: any) => {
+      INVENTORY_DB: [...notionNteItems, ...(NTE_DATA_ALL.ITEM_DATA || [])].reduce((acc: any, item: any) => {
         acc[item.name || item.id] = { ...item, gameId: 'nte' };
         return acc;
       }, {}),
@@ -616,7 +635,7 @@ export const getGameData = (targetId: string) => {
       ECHO_DB: [...wwData.ECHO_DB, ...NTE_DATA_ALL.ECHO_DATA],
       RELIC_DB: hsrData.RELIC_DB,
       ORNAMENT_DB: hsrData.ORNAMENT_DB,
-      INVENTORY_DB: { ...hsrData.INVENTORY_DB, ...wwData.INVENTORY_DB, ...((NTE_DATA_ALL.ITEM_DATA || []).reduce((acc: any, item: any) => { acc[item.name || item.id] = item; return acc; }, {})) },
+      INVENTORY_DB: { ...hsrData.INVENTORY_DB, ...wwData.INVENTORY_DB, ...([...notionNteItems, ...(NTE_DATA_ALL.ITEM_DATA || [])].reduce((acc: any, item: any) => { acc[item.name || item.id] = item; return acc; }, {})) },
       GUIDES: [...hsrData.GUIDES, ...wwData.GUIDES, ...NTE_DATA_ALL.GUIDES]
     };
   }

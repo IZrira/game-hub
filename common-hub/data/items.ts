@@ -100,7 +100,13 @@ export const getItemUrl = (name: string, gameId: string = 'hsr', overrideFileNam
   }
   
   if (targetGameId === 'nte') {
-    return `${CDN_URL}/nte%20images/items/${safeEncodeURIComponent(targetFileName)}.png`;
+    let nteFileName = overrideFileName || itemDetail?.fileName || itemDetail?.folderName || originalName;
+    nteFileName = nteFileName.replace(/\//g, ''); // 1/3 -> 13
+    nteFileName = nteFileName.replace(/: /g, '_'); 
+    nteFileName = nteFileName.replace(/:/g, '_'); 
+    nteFileName = nteFileName.replace(/[?<>]/g, '');
+    
+    return `${CDN_URL}/nte%20images/items/${safeEncodeURIComponent(nteFileName)}.webp`;
   }
   
   return `${CDN_URL}/hsr%20images/items/${safeEncodeURIComponent(targetFileName)}.webp`;
