@@ -226,18 +226,29 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
   const handleMouseEnter = (e: React.MouseEvent, name: string, type: string, note?: string) => {
     if (!note) return;
+
     const isJustRank = /^[1-9]순위$/.test(note.trim());
     if (isJustRank) return;
 
-    updateTooltipPosition(e.clientX, e.clientY);
-    setHoveredItem({ name, description: note, type: t(type) });
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      updateTooltipPosition(clientX, clientY);
+      setHoveredItem({ name, description: note, type: t(type) });
+    }, 50);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    updateTooltipPosition(e.clientX, e.clientY);
+    if (hoveredItem) {
+      updateTooltipPosition(e.clientX, e.clientY);
+    }
   };
 
   const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     setHoveredItem(null);
   };
 

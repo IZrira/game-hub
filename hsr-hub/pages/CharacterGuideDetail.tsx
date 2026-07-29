@@ -329,6 +329,8 @@ const CharacterGuideDetail: React.FC = () => {
 
   const lastUpdatedDate = guide ? (guide.lastUpdated || '2026-05-23') : '2026-05-23';
 
+  const hoverTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
   const updateTooltipPosition = (x: number, y: number) => {
     const left = Math.min(x + 20, window.innerWidth - 340);
     const top = Math.min(y + 20, window.innerHeight - 200);
@@ -343,16 +345,25 @@ const CharacterGuideDetail: React.FC = () => {
     const isJustRank = /^[1-9]순위$/.test(note.trim());
     if (isJustRank) return;
 
-    // Set position first, so it's ready for the initial render
-    updateTooltipPosition(e.clientX, e.clientY);
-    setHoveredItem({ name, description: note, type: t(type) });
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    
+    const clientX = e.clientX;
+    const clientY = e.clientY;
+
+    hoverTimeoutRef.current = setTimeout(() => {
+      updateTooltipPosition(clientX, clientY);
+      setHoveredItem({ name, description: note, type: t(type) });
+    }, 50);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    updateTooltipPosition(e.clientX, e.clientY);
+    if (hoveredItem) {
+      updateTooltipPosition(e.clientX, e.clientY);
+    }
   };
 
   const handleMouseLeave = () => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
     setHoveredItem(null);
   };
 
