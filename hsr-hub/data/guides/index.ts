@@ -165,6 +165,7 @@ import { 운리Guide } from './운리';
 import { 애쉬베일Guide } from './애쉬베일';
 import { 은랑LV999Guide } from './은랑LV999';
 import { 에바네시아Guide } from './에바네시아';
+import { 개척자환락Guide } from './개척자환락';
 import { 천야블레이드Guide } from './천야블레이드';
 import { 히메코노바Guide } from './히메코노바';
 export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
