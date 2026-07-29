@@ -335,8 +335,10 @@ import { 개척자환락Guide } from './개척자환락';
 import { 천야블레이드Guide } from './천야블레이드';
 import { 히메코노바Guide } from './히메코노바';
 import { 토오사카린Guide } from './토오사카린';
+import { 길가메시Guide } from './길가메시';
 
 export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
+  길가메시Guide,
   토오사카린Guide,
   히메코노바Guide,
   천야블레이드Guide,
