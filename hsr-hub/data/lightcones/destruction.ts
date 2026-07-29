@@ -3,11 +3,11 @@ import { createDetailedBaseStats, createMaterial } from '../dataFactory';
 
 export const destructionLightcones: HsrLightCone[] = [
   {
-    "id": "lc_보이는_곳이_곧_나",
-    "name": "보이는 곳이 곧 나",
+    "id": "lc_보이는_것이_곧_나",
+    "name": "보이는 것이 곧 나",
     "gameId": "hsr",
     "releaseVersion": "4.4",
-    "folderName": "보이는 곳이 곧 나",
+    "folderName": "보이는 것이 곧 나",
     "rarity": 5,
     "path": "파멸",
     "baseStats": createDetailedBaseStats(
@@ -534,11 +534,11 @@ export const destructionLightcones: HsrLightCone[] = [
     "story": "소년은 낡은 시계를 꼭 쥐었다. 그것은 누군가와의 소중한 약속이자, 그가 나아가야 할 이유였다. 비록 앞길이 어둡고 험난할지라도, 그는 약속을 잊지 않았다.\n\n*「이 약속을 마음에 새기고, 나는 멈추지 않겠어」*\n\n그는 눈물을 닦고 앞을 보았다. 전해진 의지는 그의 안에서 새로운 힘이 되었다. 그는 자신이 받은 것을 다음 사람에게 전하기 위해, 오늘도 묵묵히 자신의 길을 걸어갔다."
   },
   {
-    "id": "lc_보이는_곳이_곧_나",
-    "name": "보이는 곳이 곧 나",
+    "id": "lc_보이는_것이_곧_나",
+    "name": "보이는 것이 곧 나",
     "gameId": "hsr",
     "releaseVersion": "4.4",
-    "folderName": "보이는 곳이 곧 나",
+    "folderName": "보이는 것이 곧 나",
     "rarity": 5,
     "path": "파멸",
     "baseStats": createDetailedBaseStats(
