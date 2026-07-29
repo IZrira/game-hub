@@ -100,19 +100,19 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
               {effect2 && (
                   <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-2">
                     <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
-                  <p className="text-gray-300 text-sm font-medium leading-relaxed italic">"{effect2}"</p>
+                  <p className="text-gray-300 text-sm font-medium leading-relaxed">{effect2}</p>
                   </div>
                 )}
               {effect4 && (
                   <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-2">
                     <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('4세트 효과')}</div>
-                  <p className="text-gray-300 text-sm font-medium leading-relaxed italic">"{effect4}"</p>
+                  <p className="text-gray-300 text-sm font-medium leading-relaxed">{effect4}</p>
                   </div>
                 )}
                 {relic.description && !relic.setEffect && (
                   <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-2">
                     <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('효과')}</div>
-                    <p className="text-gray-300 text-sm font-medium leading-relaxed italic">"{t(relic.description)}"</p>
+                    <p className="text-gray-300 text-sm font-medium leading-relaxed">{t(relic.description)}</p>
                   </div>
                 )}
               </div>
@@ -279,7 +279,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
               {effect2 && (
                   <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-2">
                     <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
-                  <p className="text-gray-300 text-sm font-medium leading-relaxed italic">"{effect2}"</p>
+                  <p className="text-gray-300 text-sm font-medium leading-relaxed">{effect2}</p>
                   </div>
                 )}
               </div>

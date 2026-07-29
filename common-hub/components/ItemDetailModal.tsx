@@ -133,8 +133,8 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
                 <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t("Archive Entry")}</span>
               </div>
               <div className="bg-white/5 p-5 rounded-3xl border border-white/5">
-                <p className="text-gray-300 text-sm leading-relaxed font-medium italic">
-                  "{description}"
+                <p className="text-gray-300 text-sm leading-relaxed font-medium">
+                  {description}
                 </p>
               </div>
             </div>

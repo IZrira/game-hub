@@ -150,7 +150,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                     <Zap size={14} className="text-brand-accent"/> Ability Description
                   </h4>
                   <div className="bg-white/5 p-6 md:p-8 rounded-[32px] border border-white/5 shadow-inner">
-                    <p className="text-gray-300 leading-relaxed font-medium text-sm md:text-base whitespace-pre-wrap italic break-words">
+                    <p className="text-gray-300 leading-relaxed font-medium text-sm md:text-base whitespace-pre-wrap break-words">
                       {renderRichText(echo.description)}
                     </p>
                   </div>
