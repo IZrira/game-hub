@@ -209,6 +209,16 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
   );
 };
 
+const getStatValue = (stat: string | { value: string; note: string } | undefined): string => {
+  if (!stat) return '';
+  return typeof stat === 'string' ? stat : stat.value;
+};
+
+const getStatNote = (stat: string | { value: string; note: string } | undefined): string | undefined => {
+  if (!stat) return undefined;
+  return typeof stat === 'string' ? undefined : stat.note;
+};
+
 const CharacterGuideDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t, i18n } = useTranslation();
@@ -381,7 +391,7 @@ const CharacterGuideDetail: React.FC = () => {
 
     // 3. 주요 속성 및 추천 부옵션 FAQ
     if (guide.mainStats || guide.subStats) {
-      let statText = `${charNameKo}의 주요 권장 주옵션은 몸통(${guide.mainStats?.body || '공격력/치명타'}), 신발(${guide.mainStats?.boots || '속도'}), 구체(${guide.mainStats?.sphere || '속성 피해'}), 매듭(${guide.mainStats?.rope || '에너지 회복/공격력'})입니다.`;
+      let statText = `${charNameKo}의 주요 권장 주옵션은 몸통(${getStatValue(guide.mainStats?.body) || '공격력/치명타'}), 신발(${getStatValue(guide.mainStats?.boots) || '속도'}), 구체(${getStatValue(guide.mainStats?.sphere) || '속성 피해'}), 매듭(${getStatValue(guide.mainStats?.rope) || '에너지 회복/공격력'})입니다.`;
       if (guide.subStats && guide.subStats.length > 0) {
         statText += ` 추천하는 핵심 부옵션 우선순위는 ${guide.subStats.slice(0, 4).join(', ')} 순입니다.`;
       }
@@ -686,10 +696,10 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('주옵션 & 부옵션')}</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <StatBoxPremium label="몸통" value={currentVariant?.mainStats.body || ''} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
-                  <StatBoxPremium label="신발" value={currentVariant?.mainStats.boots || ''} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
-                  <StatBoxPremium label="차원 구체" value={currentVariant?.mainStats.sphere || ''} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
-                  <StatBoxPremium label="연결 매듭" value={currentVariant?.mainStats.rope || ''} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
+                  <StatBoxPremium label="몸통" value={getStatValue(currentVariant?.mainStats.body)} note={getStatNote(currentVariant?.mainStats.body)} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
+                  <StatBoxPremium label="신발" value={getStatValue(currentVariant?.mainStats.boots)} note={getStatNote(currentVariant?.mainStats.boots)} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
+                  <StatBoxPremium label="차원 구체" value={getStatValue(currentVariant?.mainStats.sphere)} note={getStatNote(currentVariant?.mainStats.sphere)} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
+                  <StatBoxPremium label="연결 매듭" value={getStatValue(currentVariant?.mainStats.rope)} note={getStatNote(currentVariant?.mainStats.rope)} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
                 </div>
                 <div className="p-6 bg-white/[0.03] rounded-[32px] border border-white/5 relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-4 opacity-5">

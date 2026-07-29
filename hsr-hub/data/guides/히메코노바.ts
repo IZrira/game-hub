@@ -23,7 +23,7 @@ export const 히메코노바Guide: CharacterGuide = {
       skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
       mainStats: {
         body: "치명타 확률",
-        boots: "속도 or 공격력 (스파클 사용 시 공격력 필수)",
+        boots: { value: "속도 or 공격력", note: "스파클 사용 시 공격력 필수" },
         sphere: "공격력",
         rope: "공격력"
       },

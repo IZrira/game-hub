@@ -5,10 +5,10 @@ export interface SettingVariant {
   bestLightCones?: (string | { name: string; note: string })[];
   skillPriority?: string[];
   mainStats: {
-    body: string;
-    boots: string;
-    sphere: string;
-    rope: string;
+    body: string | { value: string; note: string };
+    boots: string | { value: string; note: string };
+    sphere: string | { value: string; note: string };
+    rope: string | { value: string; note: string };
   };
   subStats: string[];
   targetStats: {
@@ -42,10 +42,10 @@ export interface CharacterGuide {
   bestOrnaments: (string | { name: string; note: string })[];
   // 2. 권장 주옵션
   mainStats: {
-    body: string;
-    boots: string;
-    sphere: string;
-    rope: string;
+    body: string | { value: string; note: string };
+    boots: string | { value: string; note: string };
+    sphere: string | { value: string; note: string };
+    rope: string | { value: string; note: string };
   };
   // 3. 권장 부옵션
   subStats: string[];
