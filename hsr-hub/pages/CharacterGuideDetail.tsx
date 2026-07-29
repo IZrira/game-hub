@@ -121,9 +121,16 @@ const StatBoxPremium: React.FC<{ label: string; value: string; note?: string; th
       )}
       
       <div className="space-y-3 w-full relative z-10">
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
-          {note && <span className="text-[10px] font-bold text-brand-accent italic px-2 py-0.5 bg-brand-accent/10 rounded-full whitespace-nowrap">{t(note, { keySeparator: false, nsSeparator: false })}</span>}
+        <div className="flex flex-col items-center gap-1 relative group/tooltip">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
+            {note && <Info size={12} className="text-brand-accent/70 group-hover/tooltip:text-brand-accent transition-colors cursor-help" />}
+          </div>
+          {note && (
+            <div className="absolute bottom-full mb-2 opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none bg-black/90 border border-white/10 rounded-xl px-3 py-2 text-[11px] font-bold text-brand-accent whitespace-nowrap z-[100] shadow-2xl backdrop-blur-sm shadow-brand-accent/20">
+              {t(note, { keySeparator: false, nsSeparator: false })}
+            </div>
+          )}
         </div>
         
         <div className="flex flex-col gap-2 w-full">

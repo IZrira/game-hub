@@ -11,10 +11,7 @@ export const 천야블레이드Guide: CharacterGuide = {
       bestOrnaments: ["고요한 습골지", "생명의 바커 공"],
       bestLightCones: [
         { name: "연옥을 불사른 새로운 몸", note: "1순위" },
-        { name: "밤 인사와 잠든 얼굴", note: "2순위" },
-        { name: "바람에 흩날리는 거짓말", note: "2순위 (속도 170 이상 필수)" },
-        { name: "땀방울처럼 빛나는 결심", note: "3순위" },
-        { name: "초보자 임무 시작 전", note: "4순위" }
+        { name: "밤 인사와 잠든 얼굴", note: "2순위" }
       ],
       skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
       mainStats: {
@@ -52,7 +49,7 @@ export const 천야블레이드Guide: CharacterGuide = {
       subStats: ["치명타 확률", "치명타 피해", "HP", "속도"],
       targetStats: [
         { label: "속도", value: "168+", note: "최소 속도 (이상 중재 포함)" },
-        { label: "속도 (바흩거)", value: "170+", note: "광추 '바람에 흩날리는 거짓말' 한정" }
+        { label: "속도 (바람에 흩날리는 거짓말)", value: "170+", note: "광추 '바람에 흩날리는 거짓말' 한정" }
       ]
     }
   ],
