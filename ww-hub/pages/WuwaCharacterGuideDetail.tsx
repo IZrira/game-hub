@@ -520,13 +520,17 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   {guide.targetStats.map((s: any, i: number) => (
                     <div 
                       key={i} 
-                      className="flex items-center justify-between p-5 bg-white/5 rounded-3xl border border-white/5 hover:border-brand-primary/20 transition-all group relative flex-col gap-2"
+                      onMouseEnter={(e) => handleMouseEnter(e, s.label, '목표 스탯', s.note)}
+                      onMouseMove={handleMouseMove}
+                      onMouseLeave={handleMouseLeave}
+                      className="flex flex-col justify-between p-5 bg-white/5 rounded-3xl border border-white/5 hover:border-brand-primary/20 transition-all group relative gap-3 h-full overflow-hidden"
                     >
-                      <div className="flex items-center gap-1.5 w-full justify-center">
-                        <span className="text-sm font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-200 transition-colors whitespace-nowrap">{t(s.label)}</span>
+                      <div className="flex items-start justify-between gap-2 w-full">
+                        <span className="text-sm font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-200 transition-colors break-keep break-words">{t(s.label)}</span>
+                        {s.note && <Info size={14} className="text-brand-accent/60 shrink-0 mt-0.5" />}
                       </div>
-                      <div className="flex flex-col items-center w-full">
-                        <span className="text-lg font-black text-brand-accent italic tabular-nums whitespace-nowrap">{t(s.value)}</span>
+                      <div className="flex flex-col items-start w-full">
+                        <span className="text-lg font-black text-brand-accent italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
                       </div>
                     </div>
                   ))}
