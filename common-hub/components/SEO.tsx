@@ -7,6 +7,13 @@ interface BreadcrumbItem {
   url: string;
 }
 
+export interface CommentData {
+  author: string;
+  date: string;
+  content: string;
+  upvotes?: number;
+}
+
 interface SEOProps {
   title: string;
   description?: string;
@@ -27,6 +34,7 @@ interface SEOProps {
   reviewCount?: number;   // 평점 리뷰 수
   carouselData?: Array<{ name: string; url: string; position: number }>; // 캐러셀 목록 데이터
   googleVerification?: string; // 구글 서치콘솔 인증 토큰
+  commentsData?: CommentData[]; // 리뷰/댓글 구조화 데이터
 }
 
 export default function SEO({ 
@@ -48,7 +56,8 @@ export default function SEO({
   ratingValue,
   reviewCount,
   carouselData,
-  googleVerification
+  googleVerification,
+  commentsData
 }: SEOProps) {
   const { i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
@@ -223,6 +232,31 @@ export default function SEO({
           "@type": "Answer",
           "text": faq.answer
         }
+      }))
+    });
+  }
+
+  // 커뮤니티 및 리뷰 댓글을 위한 DiscussionForumPosting 스키마 주입
+  if (commentsData && commentsData.length > 0) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "DiscussionForumPosting",
+      "headline": `${name || title} 유저 평가 및 리뷰`,
+      "url": canonicalUrl,
+      "datePublished": publishedTime || "2024-05-01T00:00:00Z",
+      "author": {
+        "@type": "Organization",
+        "name": "RIRA ARCHIVE Community"
+      },
+      "comment": commentsData.map(comment => ({
+        "@type": "Comment",
+        "author": {
+          "@type": "Person",
+          "name": comment.author
+        },
+        "datePublished": comment.date,
+        "text": comment.content,
+        "upvoteCount": comment.upvotes || 0
       }))
     });
   }

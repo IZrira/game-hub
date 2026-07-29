@@ -28,10 +28,11 @@ import * as htmlToImage from 'html-to-image';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
+import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import WuwaSkillSection from '../components/WuwaSkillSection';
 import WuwaSkillInput from '../components/WuwaSkillInput';
 import WuwaResonanceChain from '../components/WuwaResonanceChain';
-import SEO from '../../common-hub/components/SEO';
+import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
@@ -82,6 +83,7 @@ const CharacterDetail: React.FC = () => {
   const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
+  const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
 
   const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
@@ -96,6 +98,15 @@ const CharacterDetail: React.FC = () => {
       setIsASMode(false);
     }
   }, [rawChar]);
+
+  // 연관 캐릭터 추천 (Internal Linking)
+  const relatedCharacters = useMemo(() => {
+    if (!rawChar) return [];
+    return CHARACTER_DB.filter((c: any) => 
+      c.id !== rawChar.id && 
+      (c.weaponType === rawChar.weaponType || c.attribute === rawChar.attribute)
+    ).slice(0, 4);
+  }, [rawChar, CHARACTER_DB]);
 
   // Derived Character Data based on Mode
   const char = useMemo(() => {
@@ -436,7 +447,20 @@ const CharacterDetail: React.FC = () => {
     }
   };
 
-  const seoDescription = `${t('명조 (Wuthering Waves)')} ${t(char.attribute)} ${t('속성')} ${t((char as any).weaponType)} ${t('캐릭터')} ${t(char.name)} ${t('상세 가이드: 최적의 세팅 정보를 완벽 정리했습니다.')}`;
+  const seoDescription = useMemo(() => {
+    const name = t(char.name);
+    const longTailKeywords = [
+      `${name} 종결 에코 세팅`,
+      `${name} 무기 대체 추천`,
+      `${name} 파티 조합 시너지`,
+      `${name} 스킬 콤보 사이클`,
+      `${name} 공명 체인 효율`
+    ];
+    const seed = char.id.charCodeAt(0) + char.id.charCodeAt(char.id.length - 1);
+    const k1 = longTailKeywords[seed % longTailKeywords.length];
+    const k2 = longTailKeywords[(seed + 1) % longTailKeywords.length];
+    return `${t('명조 (Wuthering Waves)')} ${t(char.attribute)} ${t('속성')} ${t((char as any).weaponType)} ${t('캐릭터')} ${name} 공략. ${k1}, ${k2} 등 최적의 세팅 정보를 완벽 정리했습니다.`;
+  }, [char, t]);
 
   const faqData = useMemo(() => {
     if (!char) return [];
@@ -472,6 +496,7 @@ const CharacterDetail: React.FC = () => {
           { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
           { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
         ]}
+        commentsData={commentsData}
       />
       {/* Tooltip */}
       {tooltip && (
@@ -809,7 +834,42 @@ const CharacterDetail: React.FC = () => {
           )}
         </section>
 
-        <CharacterReviewBoard characterId={char?.id || charName || ''} gameId={gameId || 'ww'} />
+        {/* Review Board (Comments) */}
+        <CharacterReviewBoard 
+          characterId={char?.id || charName || ''} 
+          gameId={gameId || 'ww'} 
+          onCommentsLoaded={setCommentsData}
+        />
+
+        {/* Internal Linking: Related Characters */}
+        {relatedCharacters.length > 0 && (
+          <section className="mt-12 pt-8 border-t border-white/5">
+            <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2 mb-6">
+              Related Characters
+              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 not-italic">
+                {t('추천')}
+              </span>
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {relatedCharacters.map((rel: any) => (
+                <Link 
+                  key={rel.id} 
+                  to={`/gallery/${gameId}/character/${rel.id}`}
+                  className="flex flex-col items-center p-4 rounded-[20px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all hover:scale-[1.02] group"
+                >
+                  <img 
+                    src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/characters/${rel.id}.webp`}
+                    alt={t(rel.name)}
+                    className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-transparent group-hover:border-brand-primary/50 transition-colors"
+                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/common/default_banner.webp' }}
+                  />
+                  <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">{t(rel.name)}</span>
+                  <span className="text-xs font-medium text-gray-500">{t(rel.attribute)}</span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

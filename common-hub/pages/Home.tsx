@@ -58,8 +58,9 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">
       <SEO 
-        title={t('리라 아카이브 | 스타레일 & 명조 고밀도 전략 데이터베이스')} 
-        description="리라 아카이브는 붕괴: 스타레일, 명조 등 서브컬쳐 게임의 고밀도 데이터와 심층 분석을 제공하는 프리미엄 전략 가이드입니다. 최신 메타와 티어표, 육성 가이드를 확인하세요."
+        title={t('리라 아카이브 | 명조, 스타레일 등 서브컬쳐 게임 데이터베이스 DB')} 
+        description="리라 아카이브는 명조(Wuthering Waves), 붕괴: 스타레일(Honkai: Star Rail) 등 최신 서브컬쳐 게임의 캐릭터 공략, 티어표, 육성 가이드를 제공하는 프리미엄 서브컬쳐 데이터베이스(DB, gg)입니다."
+        keywords="리라 아카이브, 서브컬쳐 데이터베이스, 서브컬쳐 db, 서브컬쳐 gg, 명조, Wuthering Waves, 붕괴 스타레일, Honkai Star Rail, 게임 공략, 티어표, 위키, DB, gg"
         isHomepage={true}
         name="RIRA ARCHIVE"
         googleVerification={import.meta.env.VITE_GOOGLE_VERIFICATION}

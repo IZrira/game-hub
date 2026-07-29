@@ -120,9 +120,21 @@ const GalleryHSR: React.FC = () => {
 
   if (!game) return null;
 
+  const seoTitle = activeMenu === '홈'
+    ? `${game.title} 데이터베이스 DB | 공략, 티어표, 육성 가이드 - 리라 아카이브`
+    : `${game.title} ${activeMenu} 도감 DB | 공략, 티어표 - 리라 아카이브`;
+  
+  const seoDescription = activeMenu === '홈'
+    ? `리라 아카이브는 ${game.title}(Honkai Star Rail)의 최신 캐릭터 공략, 종결 유물, 광추 세팅, 티어표를 제공하는 프리미엄 서브컬쳐 게임 데이터베이스(DB, gg)입니다.`
+    : `${game.title} ${activeMenu} 전체 목록 및 세부 정보입니다. 서브컬쳐 데이터베이스 리라 아카이브에서 확인하세요.`;
+
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
-      <SEO title={`${game.title} 갤러리`} description={`${game.title} 도감을 확인하세요.`} />
+      <SEO 
+        title={seoTitle} 
+        description={seoDescription} 
+        keywords={`리라 아카이브, 서브컬쳐 데이터베이스, 서브컬쳐 db, 서브컬쳐 gg, ${game.title}, Honkai Star Rail, 붕괴 스타레일, 붕스, 게임 공략, 티어표, 위키, DB, gg, ${activeMenu}`}
+      />
       <PageHeader gameId="hsr" title={activeMenu === '홈' ? '' : activeMenu} />
 
       <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">

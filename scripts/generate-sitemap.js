@@ -347,21 +347,45 @@ async function generateSitemap() {
     notionData.forEach(item => {
       if (!item.name) return;
       const cleanType = item.type || '';
-      const isWeapon = ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
-      const isCharacter = cleanType === '캐릭터';
+      const isWwWeapon = ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
+      const isWwCharacter = cleanType === '캐릭터';
+      const isHsrLightCone = cleanType === '광추';
+      const isHsrRelic = cleanType === '터널 유물';
+      const isHsrOrnament = cleanType === '차원 장신구';
 
-      if (isWeapon) {
+      if (isWwWeapon) {
         const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`;
         if (!urlList.includes(url)) {
           xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
           urlList.push(url);
         }
-      } else if (isCharacter) {
+      } else if (isWwCharacter) {
         const url = `${BASE_URL}/gallery/ww/character/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
         if (!urlList.includes(url)) {
           xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          urlList.push(url);
+        }
+      } else if (isHsrLightCone) {
+        const url = `${BASE_URL}/gallery/hsr/lightcone/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/hsr%20images/light%20cones/${encodeAssetPath(item.name)}.webp`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
+          urlList.push(url);
+        }
+      } else if (isHsrRelic) {
+        const url = `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
+          urlList.push(url);
+        }
+      } else if (isHsrOrnament) {
+        const url = `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
           urlList.push(url);
         }
       }

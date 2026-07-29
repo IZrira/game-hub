@@ -118,18 +118,19 @@ const GalleryWW: React.FC = () => {
   if (!game) return null;
 
   const seoTitle = activeMenu === '홈' 
-    ? `${game.title}: ${t('워더링 웨이브')} ${t('아카이브 | 공략 및 데이터베이스')}`
-    : `${game.title}: ${t('워더링 웨이브')} ${t(activeMenu)} ${t('도감 및 데이터베이스')}`;
+    ? `${game.title} 데이터베이스 DB | 명조 공략, 티어표, 에코 세팅 - 리라 아카이브`
+    : `${game.title} ${t(activeMenu)} 도감 DB | 공략, 티어표 - 리라 아카이브`;
   
   const seoDescription = activeMenu === '홈'
-    ? `${game.title} ${t('의 모든 공명자, 무기, 에코 데이터를 한눈에 확인하세요. 최신 업데이트 소식과 상세 가이드를 제공합니다.')}`
-    : `${game.title} ${t(activeMenu)} ${t('카테고리의 상세 목록과 필터링된 데이터를 제공합니다.')}`;
+    ? `리라 아카이브는 ${game.title} (Wuthering Waves)의 최신 공명자 공략, 종결 에코 세팅, 파티 조합, 티어표를 제공하는 프리미엄 서브컬쳐 게임 데이터베이스(DB, gg)입니다.`
+    : `${game.title} ${t(activeMenu)} 전체 목록 및 세부 정보입니다. 서브컬쳐 데이터베이스 리라 아카이브에서 확인하세요.`;
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO 
         title={seoTitle} 
         description={seoDescription}
+        keywords={`리라 아카이브, 서브컬쳐 데이터베이스, 서브컬쳐 db, 서브컬쳐 gg, 명조, Wuthering Waves, 워더링 웨이브, 게임 공략, 티어표, 위키, DB, gg, ${t(activeMenu)}`}
         url={`/gallery/${gameId}?menu=${activeMenu}`}
         gameCategory={game.title}
         breadcrumbData={[

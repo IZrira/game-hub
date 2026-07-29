@@ -9,9 +9,10 @@ import CommentCard, { Review } from './CommentCard';
 interface Props {
   characterId: string;
   gameId: string;
+  onCommentsLoaded?: (comments: any[]) => void;
 }
 
-export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) => {
+export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId, onCommentsLoaded }) => {
   const { user, openLoginModal } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);

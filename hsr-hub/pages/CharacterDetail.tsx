@@ -31,7 +31,7 @@ import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
-import SEO from '../../common-hub/components/SEO';
+import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
@@ -83,6 +83,7 @@ const CharacterDetail: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+  const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
 
   const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
@@ -97,6 +98,15 @@ const CharacterDetail: React.FC = () => {
       setIsASMode(false);
     }
   }, [rawChar]);
+
+  // 연관 캐릭터 추천 (Internal Linking)
+  const relatedCharacters = useMemo(() => {
+    if (!rawChar) return [];
+    return CHARACTER_DB.filter((c: any) => 
+      c.id !== rawChar.id && 
+      (c.path === rawChar.path || c.attribute === rawChar.attribute)
+    ).slice(0, 4);
+  }, [rawChar, CHARACTER_DB]);
 
   // Derived Character Data based on Mode
   const char = useMemo(() => {
@@ -331,7 +341,20 @@ const CharacterDetail: React.FC = () => {
     }
   };
 
-  const seoDescription = `${t(char.name)} ${t('상세 가이드: 최적의 유물,')} ${t('광추')}, ${t('종결 스탯 및 육성 재료 세팅을 완벽 정리했습니다.')} ${t('붕괴: 스타레일')} ${t('게이머를 위한 최신 공략.')}`;
+  const seoDescription = useMemo(() => {
+    const name = t(char.name);
+    const longTailKeywords = [
+      `${name} 종결 광추 대체`,
+      `${name} 조합 유물 스탯`,
+      `${name} 파티 시너지 덱 추천`,
+      `${name} 성능 평가 티어`,
+      `${name} 돌파 효율 우선순위`
+    ];
+    const seed = char.id.charCodeAt(0) + char.id.charCodeAt(char.id.length - 1);
+    const k1 = longTailKeywords[seed % longTailKeywords.length];
+    const k2 = longTailKeywords[(seed + 1) % longTailKeywords.length];
+    return `${name} 상세 가이드 및 공략. ${k1}, ${k2} 등 최적의 세팅을 완벽 정리했습니다. 붕괴: 스타레일 최신 메타 분석.`;
+  }, [char, t]);
 
   const faqData = useMemo(() => {
     if (!char) return [];
@@ -385,6 +408,7 @@ const CharacterDetail: React.FC = () => {
           { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
           { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
         ]}
+        commentsData={commentsData}
       />
       {/* Item Modal */}
       <ItemDetailModal 
@@ -672,9 +696,44 @@ const CharacterDetail: React.FC = () => {
               </p>
             </div>
           )}
-        </section>
 
-        <CharacterReviewBoard characterId={char?.id || charName || ''} gameId={gameId || 'hsr'} />
+          {/* Review Board (Comments) */}
+          <CharacterReviewBoard 
+            characterId={char?.id || charName || ''} 
+            gameId={gameId || 'hsr'} 
+            onCommentsLoaded={setCommentsData}
+          />
+
+          {/* Internal Linking: Related Characters */}
+          {relatedCharacters.length > 0 && (
+            <section className="mt-12 pt-8 border-t border-white/5">
+              <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2 mb-6">
+                Related Characters
+                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 not-italic">
+                  {t('추천')}
+                </span>
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                {relatedCharacters.map((rel: any) => (
+                  <Link 
+                    key={rel.id} 
+                    to={`/gallery/${gameId}/character/${rel.id}`}
+                    className="flex flex-col items-center p-4 rounded-[20px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all hover:scale-[1.02] group"
+                  >
+                    <img 
+                      src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/characters/${rel.id}.webp`}
+                      alt={t(rel.name)}
+                      className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-transparent group-hover:border-brand-primary/50 transition-colors"
+                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp' }}
+                    />
+                    <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">{t(rel.name)}</span>
+                    <span className="text-xs font-medium text-gray-500">{t(rel.path)}</span>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
+        </section>
 
         <FeedbackReportModal 
           isOpen={isFeedbackModalOpen}
