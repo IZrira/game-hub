@@ -69,7 +69,16 @@ const SectionHeader: React.FC<{ num: string; title: string; theme: any }> = ({ n
   );
 };
 
-const StatBoxPremium: React.FC<{ label: string; value: string; note?: string; theme: any; iconImage?: string }> = ({ label, value, note, theme, iconImage }) => {
+const StatBoxPremium: React.FC<{ 
+  label: string; 
+  value: string; 
+  note?: string; 
+  theme: any; 
+  iconImage?: string;
+  onMouseEnter?: (e: React.MouseEvent) => void;
+  onMouseMove?: (e: React.MouseEvent) => void;
+  onMouseLeave?: () => void;
+}> = ({ label, value, note, theme, iconImage, onMouseEnter, onMouseMove, onMouseLeave }) => {
   const { t } = useTranslation();
   const [imgUrl, setImgUrl] = useState(iconImage);
   
@@ -121,16 +130,16 @@ const StatBoxPremium: React.FC<{ label: string; value: string; note?: string; th
       )}
       
       <div className="space-y-3 w-full relative z-10">
-        <div className="flex flex-col items-center gap-1 relative group/tooltip">
-          <div className="flex items-center gap-1.5">
+        <div className="flex flex-col items-center gap-1">
+          <div 
+            className="flex items-center gap-1.5"
+            onMouseEnter={note ? onMouseEnter : undefined}
+            onMouseMove={note ? onMouseMove : undefined}
+            onMouseLeave={note ? onMouseLeave : undefined}
+          >
             <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
-            {note && <Info size={12} className="text-brand-accent/70 group-hover/tooltip:text-brand-accent transition-colors cursor-help" />}
+            {note && <Info size={12} className="text-brand-accent/70 hover:text-brand-accent transition-colors cursor-help" />}
           </div>
-          {note && (
-            <div className="absolute bottom-full mb-2 opacity-0 group-hover/tooltip:opacity-100 transition-opacity pointer-events-none bg-black/90 border border-white/10 rounded-xl px-3 py-2 text-[11px] font-bold text-brand-accent whitespace-nowrap z-[100] shadow-2xl backdrop-blur-sm shadow-brand-accent/20">
-              {t(note, { keySeparator: false, nsSeparator: false })}
-            </div>
-          )}
         </div>
         
         <div className="flex flex-col gap-2 w-full">
@@ -703,10 +712,10 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('주옵션 & 부옵션')}</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <StatBoxPremium label="몸통" value={getStatValue(currentVariant?.mainStats.body)} note={getStatNote(currentVariant?.mainStats.body)} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
-                  <StatBoxPremium label="신발" value={getStatValue(currentVariant?.mainStats.boots)} note={getStatNote(currentVariant?.mainStats.boots)} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
-                  <StatBoxPremium label="차원 구체" value={getStatValue(currentVariant?.mainStats.sphere)} note={getStatNote(currentVariant?.mainStats.sphere)} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
-                  <StatBoxPremium label="연결 매듭" value={getStatValue(currentVariant?.mainStats.rope)} note={getStatNote(currentVariant?.mainStats.rope)} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
+                  <StatBoxPremium label="몸통" value={getStatValue(currentVariant?.mainStats.body)} note={getStatNote(currentVariant?.mainStats.body)} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.body) || '', '주옵션 (몸통)', getStatNote(currentVariant?.mainStats.body))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
+                  <StatBoxPremium label="신발" value={getStatValue(currentVariant?.mainStats.boots)} note={getStatNote(currentVariant?.mainStats.boots)} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.boots) || '', '주옵션 (신발)', getStatNote(currentVariant?.mainStats.boots))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
+                  <StatBoxPremium label="차원 구체" value={getStatValue(currentVariant?.mainStats.sphere)} note={getStatNote(currentVariant?.mainStats.sphere)} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.sphere) || '', '주옵션 (구체)', getStatNote(currentVariant?.mainStats.sphere))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
+                  <StatBoxPremium label="연결 매듭" value={getStatValue(currentVariant?.mainStats.rope)} note={getStatNote(currentVariant?.mainStats.rope)} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.rope) || '', '주옵션 (매듭)', getStatNote(currentVariant?.mainStats.rope))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
                 </div>
                 <div className="p-6 bg-white/[0.03] rounded-[32px] border border-white/5 relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-4 opacity-5">
