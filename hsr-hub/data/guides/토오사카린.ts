@@ -61,7 +61,7 @@ export const 토오사카린Guide: CharacterGuide = {
       targetStats: [
         { label: "속도", value: "스파클+1", note: "스파클 속도 +1 이상 필수" },
         { label: "치명타 확률 (스파클 광추)", value: "+10%", note: "스파클 전용 광추 사용 시 치명타 확률 10% 계산 필수" },
-        { label: "속도 (고속 스파클 기준)", value: "158+", note: "린의 속도 버프(20.4) 포함 계산 필수" }
+        { label: "속도 (고속 스파클 기준)", value: "고속 스파클 속도+1", note: "린의 속도 버프(20.4) 포함 계산 필수" }
       ]
     }
   ],
