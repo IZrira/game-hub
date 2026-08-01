@@ -25,12 +25,12 @@ import {
   MessageSquareWarning
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
-import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
+import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
-import SkillAndEidolonSection from '../../hsr-hub/components/SkillAndEidolonSection';
+import NTESkillAndAwakeningSection from '../components/NTESkillAndAwakeningSection';
 import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -604,21 +604,29 @@ const CharacterDetailNTE: React.FC = () => {
               </div>
 
               {/* Vertical Stats List */}
-              <div className="flex flex-col gap-2.5">
-                <StatRow label={t("기초 HP")} value={calculateStat('hp')} color={theme.primary} />
-                <StatRow label={t("기초 공격력")} value={calculateStat('atk')} color={theme.primary} />
-                <StatRow label={t("기초 방어력")} value={calculateStat('def')} color={theme.primary} />
-                <div className="grid grid-cols-2 gap-2.5">
-                  <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("치명 확률")}</span>
-                    <span className="text-xl font-black text-white tabular-nums">{calculateStat('crit_rate')}</span>
-                  </div>
-                  <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("치명 피해")}</span>
-                    <span className="text-xl font-black text-white tabular-nums">{calculateStat('crit_dmg')}</span>
+              {char.baseStats && Object.keys(char.baseStats).length > 0 ? (
+                <div className="flex flex-col gap-2.5">
+                  <StatRow label={t("기초 HP")} value={calculateStat('hp')} color={theme.primary} />
+                  <StatRow label={t("기초 공격력")} value={calculateStat('atk')} color={theme.primary} />
+                  <StatRow label={t("기초 방어력")} value={calculateStat('def')} color={theme.primary} />
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("치명 확률")}</span>
+                      <span className="text-xl font-black text-white tabular-nums">{calculateStat('crit_rate')}</span>
+                    </div>
+                    <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
+                      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("치명 피해")}</span>
+                      <span className="text-xl font-black text-white tabular-nums">{calculateStat('crit_dmg')}</span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ) : rawChar?.growthStats ? (
+                <div className="p-4 bg-white/5 rounded-2xl border border-white/10 text-white/80 whitespace-pre-wrap font-mono text-sm">
+                  {rawChar.growthStats}
+                </div>
+              ) : (
+                <div className="p-4 text-center text-gray-500">데이터 없음</div>
+              )}
             </div>
 
             {/* 03. Profile/Story Section (Toggle) */}
@@ -721,15 +729,14 @@ const CharacterDetailNTE: React.FC = () => {
           </div>
         </section>
         
-        <SkillAndEidolonSection 
+        <NTESkillAndAwakeningSection 
             char={char} 
             gender={gender}
             setGender={setGender}
             theme={theme}
             renderContent={renderTextWithHighlights} 
             setTooltip={setTooltip}
-            gameId="nte"
-          />
+        />
         
 
         {/* E-E-A-T Authorship & Methodology Note */}
