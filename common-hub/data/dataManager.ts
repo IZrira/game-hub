@@ -401,9 +401,10 @@ export const getGameData = (targetId: string) => {
         gameId: 'nte' as const,
         folderName: item.name,
         type: '캐릭터',
-        rarity: Number(item.rarity) || 5,
-        attribute: item.abilityAttribute || '',
+        itemAttribute: item.itemAttribute || '',
+        attribute: item.abilityAttribute || item.itemAttribute || '',
         arc: item.arc || '',
+        contract: item.contract || '',
         birthday: item.birthday || '',
         citySkill: item.citySkill || '',
         virailSkill: item.virailSkill || '',
@@ -677,7 +678,7 @@ export const getGameData = (targetId: string) => {
   } else {
     // 폴백: 전체 병합 (언어 코드 'ko' 등이 들어왔을 때 데이터 유실 방지)
     baseData = {
-      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
+      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...notionNteCharacters, ...NTE_DATA_ALL.CHARACTER_DB],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
       WEAPON_DB: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],
       WEAPON_DATA: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],

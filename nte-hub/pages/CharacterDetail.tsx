@@ -22,7 +22,10 @@ import {
   Zap,
   Globe,
   Users,
-  MessageSquareWarning
+  MessageSquareWarning,
+  Book,
+  Calendar,
+  Swords
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
@@ -667,11 +670,13 @@ const CharacterDetailNTE: React.FC = () => {
           <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isMetadataExpanded ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6">
               {/* Metadata Cards Grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+                <MetadataCard label={t("이능력 속성")} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
                 <MetadataCard label={t("아크")} value={t(char.arc)} icon={<Compass size={20} />} theme={theme} />
-                <MetadataCard label={t('이능력 속성')} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
-                <MetadataCard label={t("소속 세력")} value={t(char.affiliation || 'Unknown')} icon={<MapPin size={20} />} theme={theme} />
-                <MetadataCard label={t("출시 버전")} value={`v${char.releaseVersion || '1.0'}`} icon={<History size={20} />} theme={theme} />
+                <MetadataCard label={t("소속")} value={t(char.affiliation || '알 수 없음')} icon={<MapPin size={20} />} theme={theme} />
+                <MetadataCard label={t("계약")} value={t(char.contract || '알 수 없음')} icon={<Book size={20} />} theme={theme} />
+                <MetadataCard label={t("생일")} value={t(char.birthday || '알 수 없음')} icon={<Calendar size={20} />} theme={theme} />
+                <MetadataCard label={t("전투 포지션")} value={t(char.combatRoles || '알 수 없음')} icon={<Swords size={20} />} theme={theme} />
               </div>
 
               {/* Voice Actors Card */}

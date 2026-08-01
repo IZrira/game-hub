@@ -177,6 +177,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const abilityAttribute = props['이능력 속성']?.select?.name || '';
     const arc = props['아크']?.select?.name || '';
     const birthday = extractRichText(props['생일']);
+    const contract = extractRichText(props['계약']);
     const citySkill = extractRichText(props['도시 스킬']);
     const virailSkill = extractRichText(props['바이레일 스킬']);
     const ultimateSkill = extractRichText(props['울티메이트']);
@@ -307,6 +308,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         abilityAttribute,
         arc,
         birthday,
+        contract,
         citySkill,
         virailSkill,
         ultimateSkill,
