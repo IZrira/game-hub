@@ -12,6 +12,7 @@ interface SkillAndEidolonSectionProps {
   theme: { primary: string; secondary: string; shadow: string };
   renderContent: (text: string) => (string | React.ReactElement)[];
   setTooltip: (tooltip: { text: string; x: number; y: number } | null) => void;
+  gameId?: string;
 }
 
 const STAT_ICON_MAP: Record<string, string> = {
@@ -42,7 +43,15 @@ const SKILL_CATEGORIES_HSR = [
   { id: 'assist_skill', label: '지원 스킬' }
 ];
 
-const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, theme, renderContent, gender, setGender, setTooltip }) => {
+export default function SkillAndEidolonSection({ 
+  char, 
+  gender, 
+  setGender, 
+  theme, 
+  renderContent, 
+  setTooltip,
+  gameId = 'hsr'
+}: SkillAndEidolonSectionProps) { 
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('basic_atk');
   const [activeServantCategory, setActiveServantCategory] = useState(() => {
@@ -52,7 +61,9 @@ const SkillAndEidolonSection: React.FC<SkillAndEidolonSectionProps> = ({ char, t
   });
   const categories = SKILL_CATEGORIES_HSR;
 
-  const CDN_BASE = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/skills/${safeEncodeURIComponent(char.folderName)}/`;
+  const CDN_BASE = gameId === 'nte' 
+    ? `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte images/skills/${safeEncodeURIComponent(char.name)}/`
+    : `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/`;
   const STAT_ICON_BASE = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/stats/";
 
   const groupedSkills = useMemo(() => {
@@ -426,5 +437,3 @@ const StatBox: React.FC<{ icon: React.ReactNode; label: string; value: string; c
     </div>
   );
 };
-
-export default SkillAndEidolonSection;

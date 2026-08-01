@@ -112,19 +112,45 @@ const CharacterDetailNTE: React.FC = () => {
   const char = useMemo(() => {
     if (!rawChar) return null;
     
+    const getSkillIcon = (text: string, defaultIcon: string) => {
+      if (!text) return defaultIcon;
+      // Extract custom skill name if it follows the format "Skill Name : Description" or "Skill Name: Description"
+      const match = text.match(/^([^\:\n]+)\s*\:/);
+      if (match) {
+        return match[1].trim();
+      }
+      return defaultIcon;
+    };
+
     // Convert NTE skills to structured array for SkillAndEidolonSection
     const skills = [];
-    if (rawChar.basicAttack) skills.push({ id: 'basic', name: '일반 공격', type: '기본 공격', description: rawChar.basicAttack, tag: '일반 공격' });
-    if (rawChar.citySkill) skills.push({ id: 'city', name: '도시 스킬', type: '도시 스킬', description: rawChar.citySkill, tag: '도시 스킬' });
-    if (rawChar.virailSkill) skills.push({ id: 'virail', name: '바이레일 스킬', type: '바이레일 스킬', description: rawChar.virailSkill, tag: '바이레일 스킬' });
-    if (rawChar.ultimateSkill) skills.push({ id: 'ultimate', name: '울티메이트', type: '울티메이트', description: rawChar.ultimateSkill, tag: '울티메이트' });
-    if (rawChar.supportSkill) skills.push({ id: 'support', name: '서포트 스킬', type: '서포트 스킬', description: rawChar.supportSkill, tag: '서포트 스킬' });
-    if (rawChar.passiveSkill1) skills.push({ id: 'passive1', name: '패시브 스킬 1', type: '패시브 스킬', description: rawChar.passiveSkill1, tag: '패시브 스킬 1' });
-    if (rawChar.passiveSkill2) skills.push({ id: 'passive2', name: '패시브 스킬 2', type: '패시브 스킬', description: rawChar.passiveSkill2, tag: '패시브 스킬 2' });
+    if (rawChar.basicAttack) skills.push({ id: 'basic', name: '일반 공격', type: '기본 공격', description: rawChar.basicAttack, tag: '일반 공격', icon: '일반 공격' });
+    if (rawChar.citySkill) skills.push({ id: 'city', name: '도시 스킬', type: '도시 스킬', description: rawChar.citySkill, tag: '도시 스킬', icon: '도시 스킬' });
+    if (rawChar.virailSkill) skills.push({ id: 'virail', name: '바이레일 스킬', type: '바이레일 스킬', description: rawChar.virailSkill, tag: '바이레일 스킬', icon: '바이레일 스킬' });
+    if (rawChar.ultimateSkill) skills.push({ id: 'ultimate', name: '울티메이트', type: '울티메이트', description: rawChar.ultimateSkill, tag: '울티메이트', icon: '울티메이트' });
+    if (rawChar.supportSkill) skills.push({ id: 'support', name: '서포트 스킬', type: '서포트 스킬', description: rawChar.supportSkill, tag: '서포트 스킬', icon: '서포트 스킬' });
+    if (rawChar.passiveSkill1) skills.push({ id: 'passive1', name: '패시브 스킬 1', type: '패시브 스킬', description: rawChar.passiveSkill1, tag: '패시브 스킬 1', icon: getSkillIcon(rawChar.passiveSkill1, '패시브 스킬 1') });
+    if (rawChar.passiveSkill2) skills.push({ id: 'passive2', name: '패시브 스킬 2', type: '패시브 스킬', description: rawChar.passiveSkill2, tag: '패시브 스킬 2', icon: getSkillIcon(rawChar.passiveSkill2, '패시브 스킬 2') });
 
     const eidolons = [];
-    if (rawChar.awakenings) eidolons.push({ id: 'awakenings', rank: 1, name: '각성', description: rawChar.awakenings });
-    if (rawChar.resonance) eidolons.push({ id: 'resonance', rank: 2, name: '공명', description: rawChar.resonance });
+    if (rawChar.awakenings) {
+      // Split by "1.", "2.", etc. or "각성 1", "각성 2", etc.
+      const parts = rawChar.awakenings.split(/(?:^|\n)(?:[1-6]\.|각성\s*[1-6][\s\:\.]*)/).filter((p: string) => p.trim());
+      if (parts.length > 1) {
+        parts.forEach((part: string, index: number) => {
+          eidolons.push({ 
+            id: `awakenings_${index+1}`, 
+            rank: index + 1, 
+            name: `각성 ${index + 1}`, 
+            description: part.trim(), 
+            iconKey: `각성${index + 1}` 
+          });
+        });
+      } else {
+        eidolons.push({ id: 'awakenings', rank: 1, name: '각성', description: rawChar.awakenings, iconKey: '각성1' });
+      }
+    }
+    if (rawChar.resonance) eidolons.push({ id: 'resonance', rank: eidolons.length + 1, name: '공명', description: rawChar.resonance, iconKey: '공명' });
 
     // Parse growth stats for HSR level slider
     const parsedBaseStats: any = {};
@@ -691,13 +717,14 @@ const CharacterDetailNTE: React.FC = () => {
         </section>
         
         <SkillAndEidolonSection 
-          char={char} 
-          gender={gender} 
-          setGender={setGender}
-          theme={theme} 
-          renderContent={renderTextWithHighlights} 
-          setTooltip={setTooltip}
-        />
+            char={char} 
+            gender={gender}
+            setGender={setGender}
+            theme={theme}
+            renderContent={renderTextWithHighlights} 
+            setTooltip={setTooltip}
+            gameId="nte"
+          />
         
 
         {/* E-E-A-T Authorship & Methodology Note */}
