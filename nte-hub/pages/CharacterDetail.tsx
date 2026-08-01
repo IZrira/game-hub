@@ -157,12 +157,15 @@ const CharacterDetailNTE: React.FC = () => {
     if (rawChar.growthStats) {
       const lines = rawChar.growthStats.split('\n');
       for (const line of lines) {
-        const match = line.match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)/);
+        // Parse 5 values: Level, HP, ATK, DEF, CRIT Rate, CRIT DMG
+        const match = line.match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d\.%]+)\s+([\d\.%]+)/);
         if (match) {
           parsedBaseStats[`lv${match[1]}`] = {
             "기초 HP": parseInt(match[2].replace(/,/g, '')),
             "기초 공격력": parseInt(match[3].replace(/,/g, '')),
-            "기초 방어력": parseInt(match[4].replace(/,/g, ''))
+            "기초 방어력": parseInt(match[4].replace(/,/g, '')),
+            "치명 확률": match[5],
+            "치명 피해": match[6]
           };
         }
       }
@@ -250,11 +253,17 @@ const CharacterDetailNTE: React.FC = () => {
 
   const currentLevel = LEVEL_STEPS[levelIdx];
 
-  const calculateStat = (statType: 'hp' | 'atk' | 'def'): string | number => {
-    const labelMap: Record<string, string> = { hp: t('기초 HP'), atk: t('기초 공격력'), def: t('기초 방어력') };
+  const calculateStat = (statType: 'hp' | 'atk' | 'def' | 'crit_rate' | 'crit_dmg'): string | number => {
+    const labelMap: Record<string, string> = { 
+      hp: t('기초 HP'), 
+      atk: t('기초 공격력'), 
+      def: t('기초 방어력'),
+      crit_rate: t('치명 확률'),
+      crit_dmg: t('치명 피해')
+    };
     const label = labelMap[statType];
     const lvKey = `lv${currentLevel}` as keyof typeof char.baseStats;
-    const lvData = char.baseStats?.[lvKey] as Record<string, number> | undefined;
+    const lvData = char.baseStats?.[lvKey] as Record<string, number | string> | undefined;
     if (lvData && lvData[label]) return lvData[label];
     return '---';
   };
@@ -599,18 +608,14 @@ const CharacterDetailNTE: React.FC = () => {
                 <StatRow label={t("기초 HP")} value={calculateStat('hp')} color={theme.primary} />
                 <StatRow label={t("기초 공격력")} value={calculateStat('atk')} color={theme.primary} />
                 <StatRow label={t("기초 방어력")} value={calculateStat('def')} color={theme.primary} />
-                <div className="grid grid-cols-3 gap-2.5">
+                <div className="grid grid-cols-2 gap-2.5">
                   <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("속도")}</span>
-                    <span className="text-xl font-black text-white tabular-nums">{char.baseStats?.speed || 0}</span>
+                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("치명 확률")}</span>
+                    <span className="text-xl font-black text-white tabular-nums">{calculateStat('crit_rate')}</span>
                   </div>
                   <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("도발")}</span>
-                    <span className="text-xl font-black text-white tabular-nums">{char.baseStats?.taunt || 0}</span>
-                  </div>
-                  <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("에너지")}</span>
-                    <span className="text-xl font-black text-white tabular-nums">{char.baseStats?.energy || 0}</span>
+                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("치명 피해")}</span>
+                    <span className="text-xl font-black text-white tabular-nums">{calculateStat('crit_dmg')}</span>
                   </div>
                 </div>
               </div>
