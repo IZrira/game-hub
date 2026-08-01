@@ -254,17 +254,17 @@ const CharacterDetailNTE: React.FC = () => {
   const currentLevel = LEVEL_STEPS[levelIdx];
 
   const calculateStat = (statType: 'hp' | 'atk' | 'def' | 'crit_rate' | 'crit_dmg'): string | number => {
-    const labelMap: Record<string, string> = { 
-      hp: t('기초 HP'), 
-      atk: t('기초 공격력'), 
-      def: t('기초 방어력'),
-      crit_rate: t('치명 확률'),
-      crit_dmg: t('치명 피해')
+    const dataKeys: Record<string, string> = { 
+      hp: '기초 HP', 
+      atk: '기초 공격력', 
+      def: '기초 방어력',
+      crit_rate: '치명 확률',
+      crit_dmg: '치명 피해'
     };
-    const label = labelMap[statType];
+    const key = dataKeys[statType];
     const lvKey = `lv${currentLevel}` as keyof typeof char.baseStats;
     const lvData = char.baseStats?.[lvKey] as Record<string, number | string> | undefined;
-    if (lvData && lvData[label]) return lvData[label];
+    if (lvData && lvData[key] !== undefined) return lvData[key];
     return '---';
   };
 
