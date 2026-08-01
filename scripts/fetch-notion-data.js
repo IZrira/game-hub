@@ -39,8 +39,15 @@ const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
 
 const extractRichText = (prop) => {
-  if (!prop || !prop.rich_text) return '';
-  return prop.rich_text.map(rt => rt.plain_text).join('');
+  if (!prop) return '';
+  if (prop.type === 'rich_text') return prop.rich_text?.map(rt => rt.plain_text).join('') || '';
+  if (prop.type === 'title') return prop.title?.map(rt => rt.plain_text).join('') || '';
+  if (prop.type === 'select') return prop.select?.name || '';
+  if (prop.type === 'multi_select') return prop.multi_select?.map(s => s.name).join(', ') || '';
+  if (prop.type === 'date') return prop.date?.start || '';
+  if (prop.type === 'number') return prop.number?.toString() || '';
+  if (prop.rich_text) return prop.rich_text?.map(rt => rt.plain_text).join('') || '';
+  return '';
 };
 
 async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조') {
