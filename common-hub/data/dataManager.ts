@@ -32,6 +32,17 @@ export interface NotionItem {
   effect5?: string;
   sonataEffect?: string;
   cost?: string;
+  abilityAttribute?: string;
+  arc?: string;
+  birthday?: string;
+  citySkill?: string;
+  virailSkill?: string;
+  ultimateSkill?: string;
+  supportSkill?: string;
+  passiveSkill1?: string;
+  passiveSkill2?: string;
+  awakenings?: string;
+  resonance?: string;
 }
 
 export const getGameData = (targetId: string) => {
@@ -379,6 +390,44 @@ export const getGameData = (targetId: string) => {
       };
     });
 
+  // 노션 이환(NTE) 캐릭터 추출
+  const notionNteCharacters = typedNotionData
+    .filter(item => item.dbSource === 'nte_characters')
+    .map(item => {
+      return {
+        id: item.id,
+        name: item.name,
+        originalName: item.name,
+        gameId: 'nte' as const,
+        folderName: item.name,
+        type: '캐릭터',
+        rarity: Number(item.rarity) || 5,
+        attribute: item.abilityAttribute || '',
+        arc: item.arc || '',
+        birthday: item.birthday || '',
+        citySkill: item.citySkill || '',
+        virailSkill: item.virailSkill || '',
+        ultimateSkill: item.ultimateSkill || '',
+        supportSkill: item.supportSkill || '',
+        passiveSkill1: item.passiveSkill1 || '',
+        passiveSkill2: item.passiveSkill2 || '',
+        awakenings: item.awakenings || '',
+        resonance: item.resonance || '',
+        content: item.content || '',
+        briefInfo: item.briefInfo || '',
+        locales: item.locales || '',
+        voiceActors: item.voiceActors || '',
+        affiliation: item.affiliation || '',
+        roles: item.combatRoles ? item.combatRoles.split('\n').filter(Boolean) : [],
+        growthStats: item.growthStats || '',
+        ascensionMaterials: item.ascensionMaterials || '',
+        skillMaterials: item.skillMaterials || '',
+        basicAttack: item.basicAttack || '',
+        isNotion: true,
+        fileName: item.fileName || '',
+      };
+    });
+
   // 노션 명조 에코 추출 및 매핑
   const notionWwEchoes = typedNotionData
     .filter(item => item.dbSource === 'ww_echoes')
@@ -614,7 +663,7 @@ export const getGameData = (targetId: string) => {
     };
   } else if (gameId === 'nte') {
     baseData = {
-      CHARACTER_DB: NTE_DATA_ALL.CHARACTER_DB,
+      CHARACTER_DB: [...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
       WEAPON_DB: NTE_DATA_ALL.WEAPON_DATA,
       WEAPON_DATA: NTE_DATA_ALL.WEAPON_DATA,
       ECHO_DB: NTE_DATA_ALL.ECHO_DATA,
@@ -628,7 +677,7 @@ export const getGameData = (targetId: string) => {
   } else {
     // 폴백: 전체 병합 (언어 코드 'ko' 등이 들어왔을 때 데이터 유실 방지)
     baseData = {
-      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...NTE_DATA_ALL.CHARACTER_DB],
+      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
       WEAPON_DB: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],
       WEAPON_DATA: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],

@@ -156,7 +156,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
 
     const weapon = props['무기']?.select?.name || '';
     const affiliation = extractRichText(props['소속']);
-    const combatRoles = extractRichText(props['전투 역할']);
+    const combatRoles = extractRichText(props['전투 역할']) || extractRichText(props['전투 포지션']);
     const locales = extractRichText(props['언어별 표기']);
     const voiceActors = extractRichText(props['성우']);
     const briefInfo = extractRichText(props['캐릭터 간단 정보']);
@@ -177,6 +177,14 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const abilityAttribute = props['이능력 속성']?.select?.name || '';
     const arc = props['아크']?.select?.name || '';
     const birthday = extractRichText(props['생일']);
+    const citySkill = extractRichText(props['도시 스킬']);
+    const virailSkill = extractRichText(props['바이레일 스킬']);
+    const ultimateSkill = extractRichText(props['울티메이트']);
+    const supportSkill = extractRichText(props['서포트 스킬']);
+    const passiveSkill1 = extractRichText(props['패시브 스킬1']);
+    const passiveSkill2 = extractRichText(props['패시브 스킬2']);
+    const awakenings = extractRichText(props['각성']);
+    const resonance = extractRichText(props['공명']);
 
     // 선택적 영문 파일명(이미지 매핑용) 추가
     const fileName = props['파일 명']?.rich_text?.[0]?.plain_text || props['파일명']?.rich_text?.[0]?.plain_text || props['영문명']?.rich_text?.[0]?.plain_text || '';
@@ -299,6 +307,14 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         abilityAttribute,
         arc,
         birthday,
+        citySkill,
+        virailSkill,
+        ultimateSkill,
+        supportSkill,
+        passiveSkill1,
+        passiveSkill2,
+        awakenings,
+        resonance,
         content: contentMarkdown
       });
     }
