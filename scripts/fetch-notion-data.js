@@ -33,6 +33,7 @@ const NOTION_WW_CHARACTER_DB_ID = process.env.NOTION_WW_CHARACTER_DB_ID; // Char
 const NOTION_WW_ITEM_DB_ID = process.env.NOTION_WW_ITEM_DB_ID; // WW Items DB
 const NOTION_WW_ECHOES_DB_ID = process.env.NOTION_WW_ECHOES_DB_ID; // WW Echoes DB
 const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
+const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID; // NTE Characters DB
 
 const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
@@ -42,7 +43,7 @@ const extractRichText = (prop) => {
   return prop.rich_text.map(rt => rt.plain_text).join('');
 };
 
-async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
+async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조') {
   let results = [];
   let hasMore = true;
   let nextCursor = undefined;
@@ -172,6 +173,11 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
     const resonanceChains = extractRichText(props['공명 체인']);
     const glossary = extractRichText(props['용어 정리']);
 
+    // NTE 전용 필드들 추가
+    const abilityAttribute = props['이능력 속성']?.select?.name || '';
+    const arc = props['아크']?.select?.name || '';
+    const birthday = extractRichText(props['생일']);
+
     // 선택적 영문 파일명(이미지 매핑용) 추가
     const fileName = props['파일 명']?.rich_text?.[0]?.plain_text || props['파일명']?.rich_text?.[0]?.plain_text || props['영문명']?.rich_text?.[0]?.plain_text || '';
 
@@ -227,6 +233,10 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
       if (isHSR) {
         const path = props['운명의 길']?.select?.name || props['운명의 길']?.rich_text?.[0]?.plain_text || '운명의 길 미상';
         autoDescription = `${name}은(는) 붕괴: 스타레일의 ${charAttr} 속성, ${path} 운명의 길 캐릭터입니다.`;
+      } else if (gameName === 'NTE') {
+        const arcStr = arc ? ` ${arc} 아크를 다루는` : '';
+        const attrStr = abilityAttribute ? `${abilityAttribute} 속성의` : (charAttr ? `${charAttr} 속성의` : '');
+        autoDescription = `${name}은(는) 이연(NTE)의 ${attrStr}${arcStr} 캐릭터입니다. 주로 ${combatRoles || '딜러 혹은 서포터'} 역할을 수행합니다.`;
       } else {
         const weaponStr = weapon ? ` ${weapon} 무기를 사용하는` : '';
         autoDescription = `${name}은(는) 명조의 ${charAttr} 속성,${weaponStr} 공명자입니다. 주로 ${combatRoles || '딜러 혹은 서포터'} 역할을 수행합니다.`;
@@ -286,6 +296,9 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false) {
         enemyDescription,
         enemySpecialNote,
         drops,
+        abilityAttribute,
+        arc,
+        birthday,
         content: contentMarkdown
       });
     }
@@ -367,7 +380,7 @@ async function fetchNotionData() {
     // 5. Fetch from NTE Items DB
     if (NOTION_NTE_ITEM_DB_ID && NOTION_NTE_ITEM_DB_ID !== 'xxxxxxxxxxxx') {
       console.log(`[Notion Sync] Fetching NTE Items from ${NOTION_NTE_ITEM_DB_ID}...`);
-      const nteItems = await fetchFromDB(notion, NOTION_NTE_ITEM_DB_ID, n2m, false);
+      const nteItems = await fetchFromDB(notion, NOTION_NTE_ITEM_DB_ID, n2m, false, 'NTE');
       
       const formattedNteItems = nteItems.map(item => ({
         ...item,
@@ -377,6 +390,21 @@ async function fetchNotionData() {
       
       allItems.push(...formattedNteItems);
       console.log(`[Notion Sync] Fetched ${nteItems.length} NTE items.`);
+    }
+
+    // 6. Fetch from NTE Characters DB
+    if (NOTION_NTE_CHARACTER_DB_ID && NOTION_NTE_CHARACTER_DB_ID !== 'xxxxxxxxxxxx') {
+      console.log(`[Notion Sync] Fetching NTE Characters from ${NOTION_NTE_CHARACTER_DB_ID}...`);
+      const nteCharacters = await fetchFromDB(notion, NOTION_NTE_CHARACTER_DB_ID, n2m, true, 'NTE');
+      
+      const formattedNteCharacters = nteCharacters.map(item => ({
+        ...item,
+        type: '캐릭터',
+        dbSource: 'nte_characters'
+      }));
+      
+      allItems.push(...formattedNteCharacters);
+      console.log(`[Notion Sync] Fetched ${nteCharacters.length} NTE characters.`);
     }
 
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');
