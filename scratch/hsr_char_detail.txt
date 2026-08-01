@@ -30,13 +30,14 @@ import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
-import SkillAndEidolonSection from '../../hsr-hub/components/SkillAndEidolonSection';
+import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
-import { safeEncodeURIComponent, CDN_URL } from '../../common-hub/utils/assetManager';
+import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { HsrCharacter } from '../types';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -66,9 +67,8 @@ const Flag: React.FC<{ code: string }> = ({ code }) => (
   <img src={`https://flagcdn.com/w20/${code}.png`} alt={code} className="inline-block w-4 h-3 object-cover rounded-sm mr-1.5" />
 );
 
-const CharacterDetailNTE: React.FC = () => {
-  const { charName } = useParams<{ charName: string }>();
-  const gameId = 'nte';
+const CharacterDetail: React.FC = () => {
+  const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   
@@ -111,74 +111,40 @@ const CharacterDetailNTE: React.FC = () => {
   // Derived Character Data based on Mode
   const char = useMemo(() => {
     if (!rawChar) return null;
-    
-    // Convert NTE skills to structured array for SkillAndEidolonSection
-    const skills = [];
-    if (rawChar.basicAttack) skills.push({ id: 'basic', name: '일반 공격', type: '기본 공격', description: rawChar.basicAttack, tag: '일반 공격' });
-    if (rawChar.citySkill) skills.push({ id: 'city', name: '도시 스킬', type: '도시 스킬', description: rawChar.citySkill, tag: '도시 스킬' });
-    if (rawChar.virailSkill) skills.push({ id: 'virail', name: '바이레일 스킬', type: '바이레일 스킬', description: rawChar.virailSkill, tag: '바이레일 스킬' });
-    if (rawChar.ultimateSkill) skills.push({ id: 'ultimate', name: '울티메이트', type: '울티메이트', description: rawChar.ultimateSkill, tag: '울티메이트' });
-    if (rawChar.supportSkill) skills.push({ id: 'support', name: '서포트 스킬', type: '서포트 스킬', description: rawChar.supportSkill, tag: '서포트 스킬' });
-    if (rawChar.passiveSkill1) skills.push({ id: 'passive1', name: '패시브 스킬 1', type: '패시브 스킬', description: rawChar.passiveSkill1, tag: '패시브 스킬 1' });
-    if (rawChar.passiveSkill2) skills.push({ id: 'passive2', name: '패시브 스킬 2', type: '패시브 스킬', description: rawChar.passiveSkill2, tag: '패시브 스킬 2' });
-
-    const eidolons = [];
-    if (rawChar.awakenings) eidolons.push({ id: 'awakenings', rank: 1, name: '각성', description: rawChar.awakenings });
-    if (rawChar.resonance) eidolons.push({ id: 'resonance', rank: 2, name: '공명', description: rawChar.resonance });
-
-    // Parse growth stats for HSR level slider
-    const parsedBaseStats: any = {};
-    if (rawChar.growthStats) {
-      const lines = rawChar.growthStats.split('\n');
-      for (const line of lines) {
-        const match = line.match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)/);
-        if (match) {
-          parsedBaseStats[`lv${match[1]}`] = {
-            "기초 HP": parseInt(match[2].replace(/,/g, '')),
-            "기초 공격력": parseInt(match[3].replace(/,/g, '')),
-            "기초 방어력": parseInt(match[4].replace(/,/g, ''))
-          };
-        }
-      }
+    if (isASMode && rawChar.asBuffData) {
+      return {
+        ...rawChar,
+        skills: rawChar.asBuffData.skills || rawChar.skills,
+        baseStats: rawChar.asBuffData.baseStats || rawChar.baseStats,
+        additionalAbilities: rawChar.asBuffData.additionalAbilities || rawChar.additionalAbilities || rawChar.bonusAbilities,
+        eidolons: rawChar.asBuffData.eidolons || rawChar.eidolons,
+      };
     }
-
-    return { 
-      ...rawChar,
-      skills,
-      eidolons,
-      baseStats: Object.keys(parsedBaseStats).length > 0 ? parsedBaseStats : null,
-      materials_v2: {
-        ascension: rawChar.ascensionMaterials ? [{ name: rawChar.ascensionMaterials }] : [],
-        traces: rawChar.skillMaterials ? [{ name: rawChar.skillMaterials }] : []
-      }
-    };
-  }, [rawChar]);
+    return rawChar;
+  }, [rawChar, isASMode]);
 
   const lastUpdatedDate = char ? (VERSION_UPDATES[char.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 
   const theme = useMemo(() => {
     if (!char) return { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
     const ELEMENT_THEMES: Record<string, { primary: string, secondary: string, shadow: string }> = {
-      '번개': { primary: '#b485ff', secondary: '#8946ff', shadow: 'rgba(180, 133, 255, 0.4)' },
-      '물리': { primary: '#a3a6ad', secondary: '#75787f', shadow: 'rgba(163, 166, 173, 0.4)' },
-      '화염': { primary: '#ff6252', secondary: '#d93a2b', shadow: 'rgba(255, 98, 82, 0.4)' },
-      '얼음': { primary: '#52b0ff', secondary: '#2b8ad9', shadow: 'rgba(82, 176, 255, 0.4)' },
-      '바람': { primary: '#44d7a8', secondary: '#23a37b', shadow: 'rgba(68, 215, 168, 0.4)' },
-      '양자': { primary: '#7064d7', secondary: '#483c9c', shadow: 'rgba(112, 100, 215, 0.4)' },
-      '허수': { primary: '#e3d266', secondary: '#b8a63c', shadow: 'rgba(227, 210, 102, 0.4)' },
-      '기류': { primary: '#44d7a8', secondary: '#23a37b', shadow: 'rgba(68, 215, 168, 0.4)' },
-      '전도': { primary: '#b485ff', secondary: '#8946ff', shadow: 'rgba(180, 133, 255, 0.4)' },
-      '회절': { primary: '#e3d266', secondary: '#b8a63c', shadow: 'rgba(227, 210, 102, 0.4)' },
-      '인멸': { primary: '#7064d7', secondary: '#483c9c', shadow: 'rgba(112, 100, 215, 0.4)' },
-      '용융': { primary: '#ff6252', secondary: '#d93a2b', shadow: 'rgba(255, 98, 82, 0.4)' },
-      '응결': { primary: '#52b0ff', secondary: '#2b8ad9', shadow: 'rgba(82, 176, 255, 0.4)' },
-      'Fire': { primary: '#ff6252', secondary: '#d93a2b', shadow: 'rgba(255, 98, 82, 0.4)' },
-      'Ice': { primary: '#52b0ff', secondary: '#2b8ad9', shadow: 'rgba(82, 176, 255, 0.4)' },
-      'Wind': { primary: '#44d7a8', secondary: '#23a37b', shadow: 'rgba(68, 215, 168, 0.4)' },
-      'Lightning': { primary: '#b485ff', secondary: '#8946ff', shadow: 'rgba(180, 133, 255, 0.4)' },
-      'Physical': { primary: '#a3a6ad', secondary: '#75787f', shadow: 'rgba(163, 166, 173, 0.4)' },
-      'Quantum': { primary: '#7064d7', secondary: '#483c9c', shadow: 'rgba(112, 100, 215, 0.4)' },
-      'Imaginary': { primary: '#e3d266', secondary: '#b8a63c', shadow: 'rgba(227, 210, 102, 0.4)' },
+      '얼음': { primary: '#A1D9FF', secondary: '#3D8CFF', shadow: 'rgba(161, 217, 255, 0.4)' },
+      'Ice': { primary: '#A1D9FF', secondary: '#3D8CFF', shadow: 'rgba(161, 217, 255, 0.4)' },
+      '번개': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
+      'Lightning': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
+      'Electro': { primary: '#D2A1FF', secondary: '#9D4DFF', shadow: 'rgba(210, 161, 255, 0.4)' },
+      '물리': { primary: '#E5E5E5', secondary: '#A1A1A1', shadow: 'rgba(229, 229, 229, 0.4)' },
+      'Physical': { primary: '#E5E5E5', secondary: '#A1A1A1', shadow: 'rgba(229, 229, 229, 0.4)' },
+      '화염': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      'Fire': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      'Fusion': { primary: '#FF8A8A', secondary: '#FF4D4D', shadow: 'rgba(255, 138, 138, 0.4)' },
+      '바람': { primary: '#80FFB3', secondary: '#00E676', shadow: 'rgba(128, 255, 179, 0.4)' },
+      'Wind': { primary: '#80FFB3', secondary: '#00E676', shadow: 'rgba(128, 255, 179, 0.4)' },
+      'Aero': { primary: '#80FFB3', secondary: '#00E676', shadow: 'rgba(128, 255, 179, 0.4)' },
+      '양자': { primary: '#8080FF', secondary: '#651FFF', shadow: 'rgba(128, 128, 255, 0.4)' },
+      'Quantum': { primary: '#8080FF', secondary: '#651FFF', shadow: 'rgba(128, 128, 255, 0.4)' },
+      '허수': { primary: '#E6E600', secondary: '#FFD600', shadow: 'rgba(230, 214, 0, 0.4)' },
+      'Imaginary': { primary: '#E6E600', secondary: '#FFD600', shadow: 'rgba(230, 214, 0, 0.4)' },
     };
     return ELEMENT_THEMES[char.attribute] || { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
   }, [char]);
@@ -395,7 +361,7 @@ const CharacterDetailNTE: React.FC = () => {
     const questions = [
       {
         question: `${t(char.name)} ${t('의 전투 속성과 운명의 길은 무엇인가요?')}`,
-        answer: `${t(char.name)}${t('은(는)')} ${t('붕괴: 스타레일의')} ${t(char.attribute)} ${t('속성 및')} ${t(char.arc)} ${t('운명의 길 캐릭터입니다.')}`
+        answer: `${t(char.name)}${t('은(는)')} ${t('붕괴: 스타레일의')} ${t(char.attribute)} ${t('속성 및')} ${t(char.path)} ${t('운명의 길 캐릭터입니다.')}`
       }
     ];
 
@@ -431,7 +397,7 @@ const CharacterDetailNTE: React.FC = () => {
         image={getIllustrationUrl()}
         url={`/gallery/${gameId}/character/${char.id}`}
         gameCategory={t('붕괴: 스타레일')}
-        itemType={t(char.arc)}
+        itemType={t(char.path)}
         modifiedTime={lastUpdatedDate}
         faqData={faqData}
         ratingValue={char.rarity}
@@ -482,7 +448,7 @@ const CharacterDetailNTE: React.FC = () => {
                   // 개척자 이미지 로드 실패 시 공통 폴더('개척자')에서 시도
                   const baseFolderName = safeEncodeURIComponent('개척자');
                   const currentFileName = gender === 'f' ? "art01.webp" : "art01-01.webp";
-                  e.currentTarget.src = `${CDN_URL}/nte images/icons/${char.attribute}.png/${currentFileName}`;
+                  e.currentTarget.src = `${CDN_URL}/hsr%20images/캐릭터/${baseFolderName}/${currentFileName}`;
                 }
               }}
             />
@@ -493,7 +459,7 @@ const CharacterDetailNTE: React.FC = () => {
             <div className="absolute bottom-8 left-8 right-8 space-y-3">
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
-                  {t('아크')} : {t(char.arc)} | {t(char.attribute)}
+                  {t('운명의 길')} : {t(char.path)} | {t(char.attribute)}
                 </div>
                 <div className="flex items-end justify-between gap-4">
                   <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
@@ -629,8 +595,8 @@ const CharacterDetailNTE: React.FC = () => {
             <div className="space-y-6">
               {/* Metadata Cards Grid */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <MetadataCard label={t("아크")} value={t(char.arc)} icon={<Compass size={20} />} theme={theme} />
-                <MetadataCard label={t('이능력 속성')} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
+                <MetadataCard label={t("운명의 길")} value={t(char.path)} icon={<Compass size={20} />} theme={theme} />
+                <MetadataCard label={t("전투 속성")} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
                 <MetadataCard label={t("소속 세력")} value={t(char.affiliation || 'Unknown')} icon={<MapPin size={20} />} theme={theme} />
                 <MetadataCard label={t("출시 버전")} value={`v${char.releaseVersion || '1.0'}`} icon={<History size={20} />} theme={theme} />
               </div>
@@ -755,13 +721,13 @@ const CharacterDetailNTE: React.FC = () => {
                     className="flex flex-col items-center p-4 rounded-[20px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all hover:scale-[1.02] group"
                   >
                     <img 
-                      src={`${CDN_URL}/nte images/characters/${rel.id}/portrait.png`}
+                      src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/characters/${rel.id}.webp`}
                       alt={t(rel.name)}
                       className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-transparent group-hover:border-brand-primary/50 transition-colors"
                       onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp' }}
                     />
                     <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">{t(rel.name)}</span>
-                    <span className="text-xs font-medium text-gray-500">{t(rel.arc)}</span>
+                    <span className="text-xs font-medium text-gray-500">{t(rel.path)}</span>
                   </Link>
                 ))}
               </div>
@@ -834,4 +800,4 @@ const StatRow: React.FC<{ label: string; value: string | number; color: string }
   </div>
 );
 
-export default CharacterDetailNTE;
+export default CharacterDetail;
