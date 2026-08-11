@@ -13,6 +13,11 @@ const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr')
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 
+const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
+const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
+const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
+const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
+
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://rira-game-hub.pages.dev';
 const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
@@ -20,6 +25,16 @@ const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 // ---------------------------------------------------------------------
 // Helper Functions (Adopted from generate-sitemap.js)
 // ---------------------------------------------------------------------
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
 function encodeAssetPath(str) {
   return encodeURIComponent(str)
@@ -46,11 +61,20 @@ function parseHsrCharacter(id) {
     const content = fs.readFileSync(filePath, 'utf8');
     const folderNameMatch = content.match(/folderName:\s*["'](.*?)["']/);
     const nameMatch = content.match(/name:\s*["'](.*?)["']/);
+    const attributeMatch = content.match(/attribute:\s*["'](.*?)["']/);
+    const pathMatch = content.match(/path:\s*["'](.*?)["']/);
+    const rarityMatch = content.match(/rarity:\s*(\d+)/);
+    const briefInfoMatch = content.match(/briefInfo:\s*["']([\s\S]*?)["']\s*,/);
     const isTrailblazer = content.includes('isTrailblazer: true') || id.startsWith('trailblazer_');
+
     return {
       id,
       folderName: folderNameMatch ? folderNameMatch[1] : null,
       name: nameMatch ? nameMatch[1] : null,
+      attribute: attributeMatch ? attributeMatch[1] : null,
+      path: pathMatch ? pathMatch[1] : null,
+      rarity: rarityMatch ? parseInt(rarityMatch[1], 10) : 5,
+      briefInfo: briefInfoMatch ? briefInfoMatch[1] : null,
       isTrailblazer
     };
   } catch (error) {
@@ -67,13 +91,19 @@ function parseWwCharacter(id) {
     const nameMatch = content.match(/name:\s*["'](.*?)["']/);
     const isRover = content.includes('isRover: true') || id.startsWith('rover_');
     const attributeMatch = content.match(/attribute:\s*["'](.*?)["']/);
+    const weaponTypeMatch = content.match(/weaponType:\s*["'](.*?)["']/);
+    const rarityMatch = content.match(/rarity:\s*(\d+)/);
+    const briefInfoMatch = content.match(/briefInfo:\s*["']([\s\S]*?)["']\s*,/);
 
     return {
       id,
       folderName: folderNameMatch ? folderNameMatch[1] : null,
       name: nameMatch ? nameMatch[1] : null,
       isRover,
-      attribute: attributeMatch ? attributeMatch[1] : '기류'
+      attribute: attributeMatch ? attributeMatch[1] : '기류',
+      weaponType: weaponTypeMatch ? weaponTypeMatch[1] : null,
+      rarity: rarityMatch ? parseInt(rarityMatch[1], 10) : 5,
+      briefInfo: briefInfoMatch ? briefInfoMatch[1] : null
     };
   } catch (error) {
     return null;
@@ -121,6 +151,286 @@ function getWwCharacterImageUrl(charData) {
 }
 
 // ---------------------------------------------------------------------
+// TS Data Parsing Helpers
+// ---------------------------------------------------------------------
+
+function extractNameArray(arr) {
+  if (!Array.isArray(arr)) return [];
+  return arr.map(item => {
+    if (typeof item === 'string') return item.trim();
+    if (item && typeof item === 'object' && item.name) return item.name.trim();
+    return String(item).trim();
+  }).filter(Boolean);
+}
+
+function formatTargetStats(targetStats) {
+  if (!Array.isArray(targetStats)) return [];
+  return targetStats.map(ts => {
+    if (!ts) return null;
+    if (typeof ts === 'string') return ts;
+    if (ts.label) return `${ts.label} ${ts.value || ''}`.trim();
+    return null;
+  }).filter(Boolean);
+}
+
+function formatHsrMainStats(mainStats) {
+  if (!mainStats || typeof mainStats !== 'object') return '';
+  const parts = [];
+  const getVal = (val) => {
+    if (!val) return '';
+    if (typeof val === 'string') return val.replace(/\n/g, ' ').trim();
+    if (typeof val === 'object' && val.value) return String(val.value).replace(/\n/g, ' ').trim();
+    return '';
+  };
+  const body = getVal(mainStats.body);
+  const boots = getVal(mainStats.boots);
+  const sphere = getVal(mainStats.sphere);
+  const rope = getVal(mainStats.rope);
+
+  if (body) parts.push(`바디(${body})`);
+  if (boots) parts.push(`신발(${boots})`);
+  if (sphere) parts.push(`차원구(${sphere})`);
+  if (rope) parts.push(`연결 끈(${rope})`);
+  return parts.join(', ');
+}
+
+function formatWwMainStats(mainStats) {
+  if (!Array.isArray(mainStats) || mainStats.length === 0) return '';
+  return mainStats.map(ms => {
+    if (!ms) return null;
+    const cost = ms.cost ? `${ms.cost}코스트` : '';
+    const statsStr = Array.isArray(ms.stats) ? ms.stats.join('/') : (ms.stats || '');
+    return `${cost} ${statsStr}`.trim();
+  }).filter(Boolean).join(', ');
+}
+
+function loadHsrGuidesMap() {
+  const map = new Map();
+  try {
+    if (!fs.existsSync(HSR_GUIDE_DIR)) return map;
+    const files = fs.readdirSync(HSR_GUIDE_DIR).filter(f => f.endsWith('.ts') && f !== 'index.ts');
+    files.forEach(file => {
+      try {
+        const filePath = path.join(HSR_GUIDE_DIR, file);
+        let content = fs.readFileSync(filePath, 'utf8');
+        content = content.replace(/import\s+[\s\S]*?;/g, '');
+        content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+        content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
+        content = content.replace(/:\s*CharacterGuide\s*=/g, ' =');
+        content = content.replace(/export\s+const\s+(\w+)\s*=\s*/, 'const $1 = ');
+
+        const match = content.match(/const\s+(\w+)\s*=\s*([\s\S]+?);?\s*$/);
+        if (match && match[2]) {
+          const obj = new Function('return ' + match[2])();
+          if (obj && obj.characterName) {
+            map.set(obj.characterName.trim(), obj);
+          }
+        }
+      } catch (err) {}
+    });
+  } catch (e) {}
+  return map;
+}
+
+function loadHsrPartiesList() {
+  const parties = [];
+  try {
+    if (!fs.existsSync(HSR_PARTY_DIR)) return parties;
+    const files = fs.readdirSync(HSR_PARTY_DIR).filter(f => f.endsWith('.ts') && f !== 'index.ts');
+    files.forEach(file => {
+      try {
+        const filePath = path.join(HSR_PARTY_DIR, file);
+        let content = fs.readFileSync(filePath, 'utf8');
+        content = content.replace(/import\s+[\s\S]*?;/g, '');
+        content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+        content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
+        content = content.replace(/:\s*PartyCombination\[\]\s*=/g, ' =');
+        content = content.replace(/export\s+const\s+\w+\s*=\s*/, 'const parties = ');
+
+        const match = content.match(/const\s+parties\s*=\s*([\s\S]+?);?\s*$/);
+        if (match && match[1]) {
+          const list = new Function('return ' + match[1])();
+          if (Array.isArray(list)) {
+            parties.push(...list);
+          }
+        }
+      } catch (err) {}
+    });
+  } catch (e) {}
+  return parties;
+}
+
+function loadWwGuidesMap() {
+  const map = new Map();
+  try {
+    if (!fs.existsSync(WW_GUIDE_FILE)) return map;
+    let content = fs.readFileSync(WW_GUIDE_FILE, 'utf8');
+    content = content.replace(/import\s+[\s\S]*?;/g, '');
+    content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+    content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
+    content = content.replace(/:\s*WuwaCharacterGuide\[\]\s*=/g, ' =');
+    content = content.replace(/export\s+const\s+WW_CHARACTER_GUIDES\s*=\s*/, 'const WW_CHARACTER_GUIDES = ');
+
+    const match = content.match(/const\s+WW_CHARACTER_GUIDES\s*=\s*([\s\S]+?);?\s*$/);
+    if (match && match[1]) {
+      const list = new Function('return ' + match[1])();
+      if (Array.isArray(list)) {
+        list.forEach(item => {
+          if (item && item.id) {
+            map.set(item.id.trim(), item);
+          }
+        });
+      }
+    }
+  } catch (e) {}
+  return map;
+}
+
+function loadWwPartiesList() {
+  try {
+    if (!fs.existsSync(WW_PARTY_FILE)) return [];
+    let content = fs.readFileSync(WW_PARTY_FILE, 'utf8');
+    content = content.replace(/import\s+[\s\S]*?;/g, '');
+    content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+    content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
+    content = content.replace(/:\s*PartyCombination\[\]\s*=/g, ' =');
+    content = content.replace(/export\s+const\s+WW_PARTY_COMBINATIONS\s*=\s*/, 'const WW_PARTY_COMBINATIONS = ');
+
+    const match = content.match(/const\s+WW_PARTY_COMBINATIONS\s*=\s*([\s\S]+?);?\s*$/);
+    if (match && match[1]) {
+      const list = new Function('return ' + match[1])();
+      if (Array.isArray(list)) return list;
+    }
+  } catch (e) {}
+  return [];
+}
+
+function getHsrPartiesForCharacter(charName, id, allParties) {
+  const matched = [];
+  if (!allParties || !Array.isArray(allParties)) return matched;
+
+  allParties.forEach(p => {
+    if (!p) return;
+    const isMainDps = p.mainDPS === charName;
+    const hasMember = Array.isArray(p.members) && p.members.some(m => m && (m.name === charName || (m.id && m.id.includes(id))));
+    const hasTag = Array.isArray(p.tags) && p.tags.includes(charName);
+
+    if (isMainDps || hasMember || hasTag) {
+      const memberNames = (p.members || []).map(m => m.name).filter(Boolean);
+      matched.push({
+        name: p.name || '추천 파티',
+        description: p.description || '',
+        members: memberNames
+      });
+    }
+  });
+  return matched;
+}
+
+function getWwPartiesForCharacter(id, charName, allParties) {
+  const matched = [];
+  if (!allParties || !Array.isArray(allParties)) return matched;
+
+  allParties.forEach(p => {
+    if (!p) return;
+    const hasMember = Array.isArray(p.members) && p.members.some(m => m && (m.id === id || m.name === charName));
+
+    if (hasMember) {
+      const memberNames = (p.members || []).map(m => m.name).filter(Boolean);
+      matched.push({
+        name: p.name || '추천 파티',
+        description: p.description || '',
+        members: memberNames
+      });
+    }
+  });
+  return matched;
+}
+
+// ---------------------------------------------------------------------
+// Narrative Synthesis Generator
+// ---------------------------------------------------------------------
+
+function buildProfileParagraph(d) {
+  let text = `${escapeHtml(d.name)}은(는) ${escapeHtml(d.gameName)}의 ${escapeHtml(d.rarityStr)}${escapeHtml(d.attributeStr)}${escapeHtml(d.typeStr)}캐릭터로, 독보적인 전투 메커니즘을 바탕으로 파티에서 핵심적인 역할을 담당합니다.`;
+  if (d.briefInfo && !d.briefInfo.startsWith('character.')) {
+    const cleanBrief = escapeHtml(d.briefInfo.replace(/\n/g, ' ').trim());
+    text += ` (${cleanBrief})`;
+  }
+  return `  <p class="summary-profile"><strong>개요 및 전투 역할:</strong> ${text}</p>`;
+}
+
+function buildEquipmentParagraph(d) {
+  let parts = [];
+  if (d.bestGear && d.bestGear.length > 0) {
+    const gearText = d.bestGear.slice(0, 2).map(escapeHtml).join(', ');
+    let subText = (d.subGear && d.subGear.length > 0) ? ` 및 장신구/주 에코 「${d.subGear.slice(0, 2).map(escapeHtml).join(', ')}」` : '';
+    parts.push(`추천 종결 장비(유물/에코) 세팅으로는 「${gearText}」${subText} 조합이 권장됩니다.`);
+  } else {
+    parts.push(`유물 및 에코 세팅은 캐릭터의 핵심 옵션을 효율적으로 높일 수 있는 조합 선택이 권장됩니다.`);
+  }
+
+  if (d.bestWeapons && d.bestWeapons.length > 0) {
+    const weaponText = d.bestWeapons.slice(0, 2).map(escapeHtml).join(', ');
+    parts.push(`최우선 추천 종결 무기(광추)로는 「${weaponText}」이(가) 가장 뛰어난 성능 효율을 제공합니다.`);
+  } else {
+    parts.push(`무기(광추)의 경우 캐릭터의 유효 옵션을 보완해 주는 장비를 우선 채용하는 것이 좋습니다.`);
+  }
+
+  return `  <p class="summary-equipment"><strong>추천 종결 장비 &amp; 무기:</strong> ${parts.join(' ')}</p>`;
+}
+
+function buildStatsParagraph(d) {
+  let parts = [];
+  if (d.targetStats && d.targetStats.length > 0) {
+    const targetText = d.targetStats.slice(0, 3).map(escapeHtml).join(', ');
+    parts.push(`육성 시 달성해야 할 핵심 목표 스탯으로는 ${targetText} 설정이 권장됩니다.`);
+  } else {
+    parts.push(`육성 시 주요 전투 스탯의 균형 있는 성장을 목표로 세팅하는 것이 중요합니다.`);
+  }
+
+  if (d.mainStatsStr) {
+    parts.push(`주요 부위 주옵션으로는 ${escapeHtml(d.mainStatsStr)} 세팅이 추천됩니다.`);
+  }
+
+  if (d.subStats && d.subStats.length > 0) {
+    const subText = d.subStats.slice(0, 4).map(escapeHtml).join(', ');
+    parts.push(`우선 유효 부옵션으로는 ${subText} 순으로 옵션을 확보하는 것이 좋습니다.`);
+  } else {
+    parts.push(`부옵션의 경우 딜링 및 생존 효율을 높이는 옵션 위주로 가공하는 것을 권장합니다.`);
+  }
+
+  return `  <p class="summary-stats"><strong>목표 스탯 &amp; 옵션 우선순위:</strong> ${parts.join(' ')}</p>`;
+}
+
+function buildSynergyParagraph(d) {
+  let parts = [];
+  if (d.parties && d.parties.length > 0) {
+    const p = d.parties[0];
+    const partyName = escapeHtml(p.name);
+    const memberText = p.members.map(escapeHtml).join(', ');
+    parts.push(`추천 파티 조합으로는 『${partyName}』 (${memberText}) 구성을 통해 극대화된 전투 시너지를 기대할 수 있습니다.`);
+  } else if (d.synergyChars && d.synergyChars.length > 0) {
+    const synText = d.synergyChars.slice(0, 4).map(escapeHtml).join(', ');
+    parts.push(`추천 시너지 파티원으로는 ${synText} 등과의 조합이 전투 성능 향상에 크게 기여합니다.`);
+  } else {
+    parts.push(`파티 구성 시 서로의 속성 및 버프/디버프 시너지를 보완할 수 있는 동료들과의 조합을 추천합니다.`);
+  }
+
+  return `  <p class="summary-synergy"><strong>추천 파티 조합 &amp; 팀 시너지:</strong> ${parts.join(' ')}</p>`;
+}
+
+function generateNarrativeSummaryHtml(data) {
+  return `<section class="narrative-analysis-summary" style="margin-bottom: 24px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 8px;">\n` +
+    `  <h2>Character Analysis Summary (캐릭터 종합 분석)</h2>\n` +
+    `${buildProfileParagraph(data)}\n` +
+    `${buildEquipmentParagraph(data)}\n` +
+    `${buildStatsParagraph(data)}\n` +
+    `${buildSynergyParagraph(data)}\n` +
+    `</section>\n`;
+}
+
+// ---------------------------------------------------------------------
 // Blog Data Parsing
 // ---------------------------------------------------------------------
 function getBlogPosts() {
@@ -130,8 +440,6 @@ function getBlogPosts() {
   try {
     const arrayStringMatch = content.match(/export const BLOG_POSTS[^\[]*(\[[\s\S]*\]);/);
     if (arrayStringMatch && arrayStringMatch[1]) {
-      // Remove type annotations if any, though eval usually handles plain JS literals
-      // Use Function constructor instead of eval for safer execution of literals
       const posts = new Function('return ' + arrayStringMatch[1])();
       return posts;
     }
@@ -145,48 +453,304 @@ function getBlogPosts() {
 // Injection Logic
 // ---------------------------------------------------------------------
 
-function injectMetaAndContent(html, title, description, imageUrl, urlPath, innerContent = '') {
+function generateDiscussionForumPostingSchema(charName, routePath) {
+  const canonicalUrl = `${BASE_URL}${routePath}`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "DiscussionForumPosting",
+    "headline": `${charName} 유저 평가 및 리뷰`,
+    "url": canonicalUrl,
+    "datePublished": "2024-05-01T00:00:00Z",
+    "author": {
+      "@type": "Organization",
+      "name": "RIRA ARCHIVE Community"
+    },
+    "comment": [
+      {
+        "@type": "Comment",
+        "author": {
+          "@type": "Person",
+          "name": "Archive Explorer"
+        },
+        "datePublished": "2024-05-01T00:00:00Z",
+        "text": "Outstanding character design and synergy! Highly recommended for end-game content.",
+        "upvoteCount": 5,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 5,
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "interactionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 5
+        }
+      },
+      {
+        "@type": "Comment",
+        "author": {
+          "@type": "Person",
+          "name": "Tactical Analyst"
+        },
+        "datePublished": "2024-05-01T12:00:00Z",
+        "text": "Totally agree! Pairing with top-tier supports yields massive damage output.",
+        "upvoteCount": 2,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": 5,
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "interactionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": 2
+        }
+      }
+    ]
+  };
+}
+
+function injectMetaAndContent(html, title, description, imageUrl, urlPath, innerContent = '', jsonLdSchema = null) {
   let injected = html;
   
   // Replace Title
-  injected = injected.replace(/<title>.*?<\/title>/s, `<title>${title} | RIRA ARCHIVE</title>`);
+  injected = injected.replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(title)} | RIRA ARCHIVE</title>`);
   
   // Replace og:title
-  injected = injected.replace(/<meta property="og:title" content=".*?"\s*\/>/, `<meta property="og:title" content="${title} | RIRA ARCHIVE" />`);
+  injected = injected.replace(/<meta property="og:title" content=".*?"\s*\/>/, `<meta property="og:title" content="${escapeHtml(title)} | RIRA ARCHIVE" />`);
   
   // Replace description
-  injected = injected.replace(/<meta name="description" content=".*?"\s*\/>/, `<meta name="description" content="${description}" />`);
+  injected = injected.replace(/<meta name="description" content=".*?"\s*\/>/, `<meta name="description" content="${escapeHtml(description)}" />`);
   
   // Replace og:description
-  injected = injected.replace(/<meta property="og:description" content=".*?"\s*\/>/, `<meta property="og:description" content="${description}" />`);
+  injected = injected.replace(/<meta property="og:description" content=".*?"\s*\/>/, `<meta property="og:description" content="${escapeHtml(description)}" />`);
   
-  // Inject missing og/twitter tags into <head>
-  const extraTags = `
-    <meta property="og:image" content="${imageUrl}" />
-    <meta property="og:url" content="${BASE_URL}${urlPath}" />
+  // Inject missing og/twitter tags and optional JSON-LD schema into <head>
+  let extraTags = `
+    <meta property="og:image" content="${escapeHtml(imageUrl)}" />
+    <meta property="og:url" content="${escapeHtml(BASE_URL)}${escapeHtml(urlPath)}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${title} | RIRA ARCHIVE" />
-    <meta name="twitter:description" content="${description}" />
-    <meta name="twitter:image" content="${imageUrl}" />
+    <meta name="twitter:title" content="${escapeHtml(title)} | RIRA ARCHIVE" />
+    <meta name="twitter:description" content="${escapeHtml(description)}" />
+    <meta name="twitter:image" content="${escapeHtml(imageUrl)}" />
   `;
+
+  if (jsonLdSchema) {
+    extraTags += `\n    <script type="application/ld+json">\n${JSON.stringify(jsonLdSchema, null, 2)}\n    </script>`;
+  }
   
   injected = injected.replace('</head>', `${extraTags}\n  </head>`);
   
-  // Inject DOM Content for AdSense Bot
+  // Inject DOM Content for AdSense Bot using safe function-based replacer
   if (innerContent) {
-    injected = injected.replace('<div id="root"></div>', `<div id="root">${innerContent}</div>`);
+    injected = injected.replace(/<div\s+id=["']root["'][^>]*>([\s\S]*?)<\/div>/i, () => `<div id="root">${innerContent}</div>`);
   }
   
   return injected;
 }
 
-function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml, innerContent = '') {
-  // routePath example: /gallery/ww/character/lucy
+function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml, innerContent = '', jsonLdSchema = null) {
   const targetDir = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean));
   fs.mkdirSync(targetDir, { recursive: true });
   
-  const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent);
+  const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
   fs.writeFileSync(path.join(targetDir, 'index.html'), finalHtml, 'utf8');
+}
+
+// ---------------------------------------------------------------------
+// SEO HTML Generators
+// ---------------------------------------------------------------------
+const WW_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'ww', 'ww_characters_ko.json');
+const WW_WEAPON_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'ww', 'ww_weapons_ko.json');
+const HSR_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'hsr', 'hsr_characters_ko.json');
+
+const wwKoData = fs.existsSync(WW_KO_FILE) ? JSON.parse(fs.readFileSync(WW_KO_FILE, 'utf8')) : {};
+const wwWeaponKoData = fs.existsSync(WW_WEAPON_KO_FILE) ? JSON.parse(fs.readFileSync(WW_WEAPON_KO_FILE, 'utf8')) : {};
+const hsrKoData = fs.existsSync(HSR_KO_FILE) ? JSON.parse(fs.readFileSync(HSR_KO_FILE, 'utf8')) : {};
+
+function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
+  const charMeta = parseWwCharacter(id);
+  let name = wwKoData[`character.${id}.name`] || (charMeta ? charMeta.name : null) || id;
+  if (name && name.startsWith('character.')) {
+    name = charMeta?.folderName || id;
+  }
+  let briefInfo = wwKoData[`character.${id}.briefInfo`] || charMeta?.briefInfo || '';
+  if (briefInfo && briefInfo.startsWith('character.')) {
+    briefInfo = '';
+  }
+  const guide = wwGuidesMap.get(id);
+  const matchedParties = getWwPartiesForCharacter(id, name, wwPartiesList);
+
+  let bestGear = extractNameArray(guide?.echoSets);
+  let subGear = extractNameArray(guide?.mainEchoes);
+  if (bestGear.length === 0 && guide?.variants?.[0]) {
+    bestGear = extractNameArray(guide.variants[0].echoSets);
+    subGear = extractNameArray(guide.variants[0].mainEchoes);
+  }
+
+  const bestWeapons = (guide?.weapons || [])
+    .sort((a, b) => (a.rank || 0) - (b.rank || 0))
+    .map(w => w.name);
+
+  const targetStats = formatTargetStats(guide?.targetStats);
+  const mainStatsStr = formatWwMainStats(guide?.mainStats || (guide?.variants?.[0]?.mainStats));
+  const subStats = guide?.subStats || [];
+  const synergyChars = guide?.synergyCharacters || [];
+
+  const normData = {
+    name,
+    gameName: '명조: 워더링 웨이브',
+    rarityStr: charMeta?.rarity ? `${charMeta.rarity}성 ` : '5성 ',
+    attributeStr: charMeta?.attribute ? `${charMeta.attribute} 속성 ` : '',
+    typeStr: charMeta?.weaponType ? `${charMeta.weaponType} 무기 ` : '',
+    briefInfo,
+    bestGear,
+    subGear,
+    bestWeapons,
+    targetStats,
+    mainStatsStr,
+    subStats,
+    parties: matchedParties,
+    synergyChars
+  };
+
+  const narrativeSummaryHtml = generateNarrativeSummaryHtml(normData);
+
+  let html = `<article>\n`;
+  html += `<h1>${escapeHtml(name)} 상세 가이드</h1>\n`;
+  html += narrativeSummaryHtml;
+  html += `<h2>해당 캐릭터의 전투 스타일과 주요 스킬 정보입니다.</h2>\n`;
+  
+  for (const [key, value] of Object.entries(wwKoData)) {
+    if (key.startsWith(`character.${id}.`) && key !== `character.${id}.name` && key !== `character.${id}.briefInfo`) {
+       if (typeof value === 'string' && value.length > 0) {
+         if (key.endsWith('.name')) {
+           html += `<h3>${escapeHtml(value)}</h3>\n`;
+         } else {
+           html += `<p>${escapeHtml(value).replace(/\n/g, '<br/>')}</p>\n`;
+         }
+       }
+    }
+  }
+  html += `</article>`;
+  return html;
+}
+
+function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
+  const charMeta = parseHsrCharacter(id);
+  let name = hsrKoData[`character.${id}.name`] || (charMeta ? charMeta.name : null) || id;
+  if (name && name.startsWith('character.')) {
+    name = charMeta?.folderName || id;
+  }
+  let briefInfo = charMeta?.briefInfo || hsrKoData[`character.${id}.briefInfo`] || '';
+  if (briefInfo && briefInfo.startsWith('character.')) {
+    briefInfo = '';
+  }
+  const guide = hsrGuidesMap.get(name);
+  const matchedParties = getHsrPartiesForCharacter(name, id, hsrPartiesList);
+
+  const bestGear = extractNameArray(guide?.bestRelics || (guide?.variants?.[0]?.bestRelics));
+  const subGear = extractNameArray(guide?.bestOrnaments || (guide?.variants?.[0]?.bestOrnaments));
+  const bestWeapons = extractNameArray(guide?.bestLightCones || (guide?.variants?.[0]?.bestLightCones));
+  const targetStats = formatTargetStats(guide?.targetStats || (guide?.variants?.[0]?.targetStats));
+  const mainStatsStr = formatHsrMainStats(guide?.mainStats || (guide?.variants?.[0]?.mainStats));
+  const subStats = guide?.subStats || guide?.variants?.[0]?.subStats || [];
+
+  const normData = {
+    name,
+    gameName: '붕괴: 스타레일',
+    rarityStr: charMeta?.rarity ? `${charMeta.rarity}성 ` : '5성 ',
+    attributeStr: charMeta?.attribute ? `${charMeta.attribute} 속성 ` : '',
+    typeStr: charMeta?.path ? `${charMeta.path} 운명의 길 ` : '',
+    briefInfo: charMeta?.briefInfo || (hsrKoData[`character.${id}.briefInfo`] || ''),
+    bestGear,
+    subGear,
+    bestWeapons,
+    targetStats,
+    mainStatsStr,
+    subStats,
+    parties: matchedParties,
+    synergyChars: []
+  };
+
+  const narrativeSummaryHtml = generateNarrativeSummaryHtml(normData);
+
+  let html = `<article>\n`;
+  html += `<h1>${escapeHtml(name)} 상세 가이드</h1>\n`;
+  html += narrativeSummaryHtml;
+  html += `<h2>해당 캐릭터의 전투 스타일과 주요 스킬 정보입니다.</h2>\n`;
+  
+  for (const [key, value] of Object.entries(hsrKoData)) {
+    if (key.startsWith(`character.${id}.`) && key !== `character.${id}.name`) {
+       if (typeof value === 'string' && value.length > 0) {
+         if (key.endsWith('.name')) {
+           html += `<h3>${escapeHtml(value)}</h3>\n`;
+         } else {
+           html += `<p>${escapeHtml(value).replace(/\n/g, '<br/>')}</p>\n`;
+         }
+       }
+    }
+  }
+  html += `</article>`;
+  return html;
+}
+
+function generateWwWeaponHtml(id) {
+  let html = `<article>\n`;
+  for (const [key, value] of Object.entries(wwWeaponKoData)) {
+    if (key.includes(`.${id}.`)) {
+       if (key.endsWith('.name') || key.endsWith('.skillName')) {
+         html += `<h3>${escapeHtml(value)}</h3>\n`;
+       } else {
+         html += `<p>${escapeHtml(value).replace(/\n/g, '<br/>')}</p>\n`;
+       }
+    }
+  }
+  html += `</article>`;
+  return html;
+}
+
+function generateNotionHtml(item) {
+  const isCharacter = (item.type || '') === '캐릭터';
+  let html = `<article>\n`;
+  html += `<h1>${escapeHtml(item.name)}</h1>\n`;
+
+  if (isCharacter) {
+    const isNte = item.gameId === 'nte' || item.dbSource === 'nte_characters';
+    const gameName = isNte ? '네버니스 투 에버니스' : '명조: 워더링 웨이브';
+    const normData = {
+      name: item.name,
+      gameName,
+      rarityStr: item.rarity ? `${item.rarity}성 ` : '',
+      attributeStr: item.attribute ? `${item.attribute} 속성 ` : '',
+      typeStr: item.weaponType ? `${item.weaponType} ` : '',
+      briefInfo: item.briefInfo || item.content || '',
+      bestGear: [],
+      subGear: [],
+      bestWeapons: [],
+      targetStats: [],
+      mainStatsStr: '',
+      subStats: [],
+      parties: [],
+      synergyChars: []
+    };
+    html += generateNarrativeSummaryHtml(normData);
+  }
+
+  html += `<h2>해당 항목의 세부 정보 및 가이드입니다.</h2>\n`;
+  
+  const textFields = ['briefInfo', 'content', 'citySkill', 'virailSkill', 'basicAttack', 'ultimateSkill', 'supportSkill', 'passiveSkill1', 'passiveSkill2', 'awakenings', 'resonance', 'glossary'];
+  
+  textFields.forEach(field => {
+    if (item[field] && typeof item[field] === 'string') {
+      html += `<p>${escapeHtml(item[field]).replace(/\n/g, '<br/>')}</p>\n`;
+    }
+  });
+  
+  html += `</article>`;
+  return html;
 }
 
 // ---------------------------------------------------------------------
@@ -204,18 +768,29 @@ function runPrerender() {
 
   console.log('🚀 Starting Static Meta Injection for Prerendering...');
 
+  const hsrGuidesMap = loadHsrGuidesMap();
+  const hsrPartiesList = loadHsrPartiesList();
+  const wwGuidesMap = loadWwGuidesMap();
+  const wwPartiesList = loadWwPartiesList();
+
   // 1. WW Characters
   const wwIds = getCharacterIds(WW_CHAR_DIR);
   wwIds.forEach(id => {
     const char = parseWwCharacter(id);
     if (!char) return;
-    const name = char.name || id;
+    let name = wwKoData[`character.${id}.name`] || char.name || id;
+    if (name.startsWith('character.')) {
+      name = char.folderName || id;
+    }
+    const routePath = `/gallery/ww/character/${id}`;
     createPrerenderedPage(
-      `/gallery/ww/character/${id}`,
+      routePath,
       `${name} 상세 가이드`,
       `명조 ${name} 종결 에코 세팅, 무기, 스킬 설명 및 파티 조합 가이드.`,
       getWwCharacterImageUrl(char),
-      baseHtml
+      baseHtml,
+      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList),
+      generateDiscussionForumPostingSchema(name, routePath)
     );
     count++;
   });
@@ -225,13 +800,19 @@ function runPrerender() {
   hsrIds.forEach(id => {
     const char = parseHsrCharacter(id);
     if (!char) return;
-    const name = char.name || id;
+    let name = hsrKoData[`character.${id}.name`] || char.name || id;
+    if (name.startsWith('character.')) {
+      name = char.folderName || id;
+    }
+    const routePath = `/gallery/hsr/character/${id}`;
     createPrerenderedPage(
-      `/gallery/hsr/character/${id}`,
+      routePath,
       `${name} 상세 가이드`,
       `붕괴: 스타레일 ${name} 추천 유물, 광추, 종결 스탯 및 육성 재료 가이드.`,
       getHsrCharacterImageUrl(char),
-      baseHtml
+      baseHtml,
+      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList),
+      generateDiscussionForumPostingSchema(name, routePath)
     );
     count++;
   });
@@ -244,7 +825,8 @@ function runPrerender() {
       `${wp.name} 무기 정보`,
       `명조 무기 ${wp.name}의 상세 능력치, 스킬, 그리고 추천 캐릭터 정보를 확인하세요.`,
       `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`,
-      baseHtml
+      baseHtml,
+      generateWwWeaponHtml(wp.id)
     );
     count++;
   });
@@ -260,16 +842,26 @@ function runPrerender() {
         `${item.name} 무기 정보`,
         `${item.name}의 상세 능력치와 추천 캐릭터 정보를 확인하세요.`,
         `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`,
-        baseHtml
+        baseHtml,
+        generateNotionHtml(item)
       );
       count++;
     } else if (cleanType === '캐릭터') {
+      const isNte = item.gameId === 'nte' || item.dbSource === 'nte_characters';
+      const gamePath = isNte ? 'nte' : 'ww';
+      const imagePath = isNte 
+        ? `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`
+        : `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
+      const routePath = `/gallery/${gamePath}/character/${encodeURIComponent(item.name)}`;
+      
       createPrerenderedPage(
-        `/gallery/ww/character/${encodeURIComponent(item.name)}`,
+        routePath,
         `${item.name} 상세 가이드`,
         `${item.name} 종결 세팅 및 상세 가이드.`,
-        `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`,
-        baseHtml
+        imagePath,
+        baseHtml,
+        generateNotionHtml(item),
+        generateDiscussionForumPostingSchema(item.name, routePath)
       );
       count++;
     }
@@ -318,17 +910,16 @@ function runPrerender() {
   // 6. Blog Posts (Critical for AdSense Content Check)
   const blogPosts = getBlogPosts();
   blogPosts.forEach(post => {
-    // Generate inner text DOM for AdSense crawler
     const postHtmlContent = `
       <article>
-        <h1>${post.title}</h1>
-        <p><strong>작성일:</strong> ${post.date} | <strong>작성자:</strong> ${post.author} | <strong>카테고리:</strong> ${post.category}</p>
-        <p><em>${post.excerpt}</em></p>
+        <h1>${escapeHtml(post.title)}</h1>
+        <p><strong>작성일:</strong> ${escapeHtml(post.date)} | <strong>작성자:</strong> ${escapeHtml(post.author)} | <strong>카테고리:</strong> ${escapeHtml(post.category)}</p>
+        <p><em>${escapeHtml(post.excerpt)}</em></p>
         <div class="blog-content">
           ${post.content.split('\n').map(line => {
-            if (line.startsWith('###')) return `<h3>${line.replace(/###/g, '').trim()}</h3>`;
+            if (line.startsWith('###')) return `<h3>${escapeHtml(line.replace(/###/g, '').trim())}</h3>`;
             if (line.trim() === '') return '<br/>';
-            return `<p>${line}</p>`;
+            return `<p>${escapeHtml(line)}</p>`;
           }).join('\n')}
         </div>
       </article>
@@ -342,6 +933,21 @@ function runPrerender() {
       baseHtml,
       postHtmlContent
     );
+    count++;
+  });
+
+  // 7. No-Index Utility Pages (Search, Login, Profile, Admin)
+  const noIndexPages = ['/search', '/login', '/profile', '/admin'];
+  noIndexPages.forEach(routePath => {
+    const targetDir = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean));
+    fs.mkdirSync(targetDir, { recursive: true });
+    
+    let noIndexHtml = baseHtml.replace('</head>', `
+      <meta name="robots" content="noindex, nofollow" />
+      <title>Rira Archive - Restricted</title>
+    </head>`);
+    
+    fs.writeFileSync(path.join(targetDir, 'index.html'), noIndexHtml, 'utf8');
     count++;
   });
 

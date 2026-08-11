@@ -170,7 +170,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
 
         {/* Quick Access Grid (Shortcuts) */}
         <div>
-          <h2 className="text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2">
+          <h2 className="text-xs font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
             <LayoutGrid size={14} /> {t('Quick Access')}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
@@ -198,7 +198,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
                   <Sparkles size={18} className="text-brand-accent" /> {t('최신 캐릭터')}
                 </h2>
-                <button onClick={() => setActiveMenu('캐릭터')} className="text-xs font-bold text-gray-500 hover:text-white flex items-center gap-1 transition-colors">
+                <button onClick={() => setActiveMenu('캐릭터')} className="text-xs font-bold text-gray-400 hover:text-white flex items-center gap-1 transition-colors">
                   {t('전체보기')} <ChevronRight size={12} />
                 </button>
               </div>
@@ -218,7 +218,10 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       alt={t(char.name)}
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/unknown.webp`;
+                        const target = e.target as HTMLImageElement;
+                        if (!target.src.endsWith('/assets/unknown.webp')) {
+                          target.src = '/assets/unknown.webp';
+                        }
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
@@ -233,7 +236,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                     </div>
                   </Link>
                 ))}
-                <button onClick={() => setActiveMenu('캐릭터')} className="aspect-[3/4] rounded-xl bg-[#1a1a1a] border border-dashed border-white/10 flex flex-col items-center justify-center gap-2 text-gray-500 hover:text-white hover:bg-[#202020] hover:border-white/20 transition-all">
+                <button onClick={() => setActiveMenu('캐릭터')} className="aspect-[3/4] rounded-xl bg-[#1a1a1a] border border-dashed border-white/10 flex flex-col items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-[#202020] hover:border-white/20 transition-all">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                     <ChevronRight size={16} />
                   </div>
@@ -248,7 +251,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
                   <Sparkles size={18} className="text-brand-primary" /> {t('최신 업데이트 목록')}
                 </h2>
-                <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5">
+                <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5">
                   {t('New Content')}
                 </div>
               </div>
@@ -265,7 +268,10 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       alt={t(item.name)} 
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 text-transparent border-none outline-none"
                       onError={(e) => {
-                        (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/unknown.webp`;
+                        const target = e.target as HTMLImageElement;
+                        if (!target.src.endsWith('/assets/unknown.webp')) {
+                          target.src = '/assets/unknown.webp';
+                        }
                       }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
@@ -310,14 +316,14 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       }`}>
                         {notice.type.toUpperCase()}
                       </span>
-                      <span className="text-[9px] font-bold text-gray-600 flex items-center gap-1">
+                      <span className="text-[9px] font-bold text-gray-400 flex items-center gap-1">
                         <Calendar size={10} /> {notice.date}
                       </span>
                     </div>
                     <h3 className="text-xs font-black text-gray-200 group-hover:text-white transition-colors line-clamp-1">
                       {notice.title}
                     </h3>
-                    <p className="text-[10px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-[10px] text-gray-400 mt-1 line-clamp-2 leading-relaxed">
                       {stripMarkdown(notice.content)}
                     </p>
                     <div className="mt-3 h-px bg-white/5 group-last:hidden" />
@@ -326,7 +332,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 
                 {notices.length === 0 && (
                   <div className="py-8 text-center">
-                    <p className="text-[10px] font-bold text-gray-700 uppercase tracking-widest">{t('No Recent Notices')}</p>
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t('No Recent Notices')}</p>
                   </div>
                 )}
               </div>

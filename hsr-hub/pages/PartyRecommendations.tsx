@@ -64,7 +64,7 @@ const PartyMemberItem = memo(({
       </div>
       <div className="text-center space-y-1">
         <div className="text-base font-black text-white group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-        <div className="text-[10px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
       </div>
 
       {/* Substitutes Overlay */}
@@ -126,7 +126,7 @@ const PartyCard = memo(({ party, gameId, charMap }: { party: PartyCombination; g
           )}
           <div className="flex flex-wrap gap-2">
             {party.tags.map(tag => (
-              <span key={tag} className="text-[9px] font-black uppercase tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-lg border border-white/5">
+              <span key={tag} className="text-[9px] font-black uppercase tracking-widest text-gray-400 bg-white/5 px-3 py-1 rounded-lg border border-white/5">
                 #{t(tag)}
               </span>
             ))}
@@ -225,7 +225,7 @@ const PartyRecommendations: React.FC = () => {
                   className={`px-6 py-2.5 rounded-2xl text-[11px] font-black uppercase tracking-widest transition-all whitespace-nowrap border ${
                     activeCategory === cat 
                       ? 'bg-brand-accent text-black border-brand-accent shadow-xl' 
-                      : 'bg-white/5 text-gray-500 border-white/5 hover:border-white/20'
+                      : 'bg-white/5 text-gray-400 border-white/5 hover:border-white/20'
                   }`}
                 >
                   {t(cat)}
@@ -234,7 +234,7 @@ const PartyRecommendations: React.FC = () => {
             </div>
 
             <div className="relative w-full lg:w-80 group">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors" size={18} />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-accent transition-colors" size={18} />
               <input 
                 type="text" 
                 placeholder={t("캐릭터, 파티명 검색...")}
@@ -253,7 +253,7 @@ const PartyRecommendations: React.FC = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center py-40 space-y-6 bg-white/[0.02] rounded-[50px] border border-dashed border-white/10">
-                <LayoutGrid size={48} className="text-gray-800" />
+                <LayoutGrid size={48} className="text-gray-300" />
                 <div className="text-center">
                    <h3 className="text-xl font-black text-white uppercase tracking-widest opacity-50">{t("No Results")}</h3>
                 </div>

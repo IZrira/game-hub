@@ -13,7 +13,7 @@ export default function Hero() {
           AI 1인 기업, <br className="hidden sm:block" />
           100% 무료로 시작
         </h1>
-        <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+        <p className="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed">
           {/* TODO: 무엇·누구·결과를 1줄에 응축 */}
           나만의 AI 직원 9명이 24시간 일하는 자동화. 클라우드 토큰 0원, 데이터는 내 컴퓨터에만.
         </p>

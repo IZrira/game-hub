@@ -47,7 +47,7 @@ export default function FAQ() {
                   />
                 </button>
                 {open && (
-                  <div className="px-6 pb-5 text-gray-600 leading-relaxed">{faq.a}</div>
+                  <div className="px-6 pb-5 text-gray-400 leading-relaxed">{faq.a}</div>
                 )}
               </div>
             )

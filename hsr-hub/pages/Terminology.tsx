@@ -46,18 +46,18 @@ const Terminology: React.FC = () => {
               <span className="text-[11px] font-black uppercase tracking-[0.3em]">Terminology Database</span>
             </div>
             <h2 className="text-4xl font-black italic tracking-tight">모든 게임 용어 정리</h2>
-            <p className="text-gray-500 max-w-2xl font-medium leading-relaxed">
+            <p className="text-gray-400 max-w-2xl font-medium leading-relaxed">
               게임 내에서 사용되는 특수 용어, 상태 이상, 버프 및 시스템 관련 용어들을 한곳에 모았습니다. 
               검색 기능을 통해 원하는 정보를 빠르게 찾으실 수 있습니다.
             </p>
           </div>
 
           <div className="relative group w-full max-w-md">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors" size={16} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-brand-accent transition-colors" size={16} />
             <input 
               type="text" 
               placeholder="용어 또는 설명 검색..." 
-              className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full transition-all focus:bg-white/10 text-white placeholder:text-gray-600 font-bold"
+              className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full transition-all focus:bg-white/10 text-white placeholder:text-gray-400 font-bold"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -84,7 +84,7 @@ const Terminology: React.FC = () => {
           ))}
           {filteredTerms.length === 0 && (
             <div className="col-span-full py-32 text-center bg-white/[0.02] rounded-[48px] border border-dashed border-white/5">
-              <p className="text-gray-600 font-black uppercase tracking-[0.3em] text-sm italic">일치하는 용어를 찾을 수 없습니다.</p>
+              <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm italic">일치하는 용어를 찾을 수 없습니다.</p>
             </div>
           )}
         </div>
@@ -93,7 +93,7 @@ const Terminology: React.FC = () => {
       </main>
 
       <footer className="py-20 text-center border-t border-white/5">
-        <p className="text-gray-700 text-[10px] font-black uppercase tracking-[0.5em] italic">
+        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.5em] italic">
           &copy; RIRA GAME ARCHIVE - TERMINOLOGY SYSTEM V2.0
         </p>
       </footer>

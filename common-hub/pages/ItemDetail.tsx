@@ -11,7 +11,7 @@ const getRarityTheme = (r: number) => {
     case 4: return { color: 'text-purple-500', glow: 'bg-purple-500/20', border: 'border-purple-500/40', accent: 'shadow-[0_0_60px_rgba(168,85,247,0.2)]' };
     case 3: return { color: 'text-blue-500', glow: 'bg-blue-500/20', border: 'border-blue-500/40', accent: 'shadow-[0_0_60px_rgba(59,130,246,0.2)]' };
     case 2: return { color: 'text-green-500', glow: 'bg-green-500/20', border: 'border-green-500/40', accent: 'shadow-[0_0_60px_rgba(34,197,94,0.2)]' };
-    default: return { color: 'text-gray-500', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };
+    default: return { color: 'text-gray-400', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };
   }
 };
 
@@ -139,7 +139,7 @@ export default function ItemDetail() {
             </div>
 
             <div className="pt-8 border-t border-white/10 mt-auto">
-              <p className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em] italic">
+              <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] italic">
                 Data synchronized with Galactic Network v4.1 • {gameId?.toUpperCase()} Registry
               </p>
             </div>

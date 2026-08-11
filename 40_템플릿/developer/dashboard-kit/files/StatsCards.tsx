@@ -17,7 +17,7 @@ export default function StatsCards() {
           <div key={s.label} className="bg-white border border-gray-200 rounded-2xl p-5 hover:shadow-sm transition">
             <div className="flex items-center justify-between mb-3">
               <div className="w-9 h-9 rounded-lg bg-gray-100 flex items-center justify-center">
-                <Icon className="w-4 h-4 text-gray-700" />
+                <Icon className="w-4 h-4 text-gray-400" />
               </div>
               <span className={`inline-flex items-center gap-1 text-xs font-semibold px-2 py-0.5 rounded ${s.up ? 'text-emerald-600 bg-emerald-50' : 'text-red-600 bg-red-50'}`}>
                 <Diff className="w-3 h-3" />

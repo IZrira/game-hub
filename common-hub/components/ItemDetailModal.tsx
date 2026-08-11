@@ -9,6 +9,7 @@ interface ItemDetailModalProps {
   isOpen: boolean;
   onClose: () => void;
   item?: any; // 동적 데이터 우선 사용
+  gameId?: string;
 }
 
 const getItemStyles = (rarity: number) => {
@@ -21,7 +22,7 @@ const getItemStyles = (rarity: number) => {
   return styles[rarity] || "from-[#4d4d4d] to-[#333333] border-gray-400/20";
 };
 
-export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: ItemDetailModalProps) {
+export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gameId }: ItemDetailModalProps) {
   const { t, i18n } = useTranslation();
 
   const koName = item?.name || REVERSE_ITEM_MAP[itemNameEn] || itemNameEn;
@@ -45,8 +46,10 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
 
   const rarity = itemData?.rarity || getAutoRarity(koName);
   const itemType = itemData?.type || "미분류";
+  
+  const resolvedGameId = gameId || itemData?.gameId || 'hsr';
   // item.url이 미리 생성되어 있으면 사용하고, 아니면 getItemUrl 호출 (fileName 포함)
-  const url = itemData?.url || getItemUrl(koName, itemData?.gameId || 'hsr', itemData?.fileName);
+  const url = itemData?.url || getItemUrl(koName, resolvedGameId, itemData?.fileName);
 
   const getRarityTheme = (r: number) => {
     switch (r) {
@@ -54,11 +57,21 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
       case 4: return { color: 'text-purple-500', glow: 'bg-purple-500/20', border: 'border-purple-500/40', accent: 'shadow-[0_0_40px_rgba(168,85,247,0.3)]' };
       case 3: return { color: 'text-blue-500', glow: 'bg-blue-500/20', border: 'border-blue-500/40', accent: 'shadow-[0_0_40px_rgba(59,130,246,0.3)]' };
       case 2: return { color: 'text-green-500', glow: 'bg-green-500/20', border: 'border-green-500/40', accent: 'shadow-[0_0_40px_rgba(34,197,94,0.3)]' };
-      default: return { color: 'text-gray-500', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };
+      default: return { color: 'text-gray-400', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };
     }
   };
 
   const theme = getRarityTheme(rarity);
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    if (resolvedGameId === 'nte') {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp"; // 비틀 코인
+    } else if (resolvedGameId === 'ww') {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp"; // 클레딧
+    } else {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp"; // 신용 포인트
+    }
+  };
 
   const isGenderSplit = itemData?.itemAttribute?.includes('남여 분리') || itemData?.itemAttribute?.includes('남녀 분리') || 
     ['행복한 「에이본」 가족', '프로필-「비일상적인 복장」', '프로필-그래피티 타임', '프로필-헌터는 휴가 중', '프로필-환상의 콤비'].includes(koName);
@@ -89,11 +102,13 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
                   src={imgPathM} 
                   alt={`${koName} (남)`} 
                   className="w-1/2 h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]" 
+                  onError={handleError}
                 />
                 <img 
                   src={imgPathF} 
                   alt={`${koName} (여)`} 
                   className="w-1/2 h-full object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]" 
+                  onError={handleError}
                 />
               </div>
             ) : (
@@ -101,6 +116,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
                 src={url} 
                 alt={koName} 
                 className="relative z-10 w-3/4 h-3/4 object-contain filter drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-700" 
+                onError={handleError}
               />
             )}
           </div>
@@ -109,7 +125,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
         {/* Right Section: Details */}
         <div className="w-full md:w-1/2 p-10 flex flex-col space-y-8 bg-black/40 backdrop-blur-md">
           <div className="absolute top-6 right-6 z-30">
-            <button onClick={onClose} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all">
+            <button onClick={onClose} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all">
               <X size={20} />
             </button>
           </div>
@@ -130,7 +146,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Info size={14} className="text-brand-accent" />
-                <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t("Archive Entry")}</span>
+                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t("Archive Entry")}</span>
               </div>
               <div className="bg-white/5 p-5 rounded-3xl border border-white/5">
                 <p className="text-gray-300 text-sm leading-relaxed font-medium">
@@ -142,7 +158,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <MapPin size={14} className="text-brand-primary" />
-                <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t("Location Data")}</span>
+                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t("Location Data")}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {sources.map((source: string, idx: number) => (
@@ -155,7 +171,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item }: I
           </div>
 
           <div className="pt-6 border-t border-white/10">
-            <p className="text-[9px] font-black text-gray-600 uppercase tracking-[0.3em] italic">
+            <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] italic">
               Data synchronized with Galactic Network v4.1
             </p>
           </div>

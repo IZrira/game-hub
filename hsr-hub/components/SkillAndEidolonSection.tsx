@@ -175,7 +175,7 @@ export default function SkillAndEidolonSection({
                     onError={(e) => (e.currentTarget.style.opacity = '0.3')} 
                   />
                 </div>
-                <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>
+                <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>
               </button>
             ))}
           </div>
@@ -198,7 +198,7 @@ export default function SkillAndEidolonSection({
                             <div className="space-y-1">
                                <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h4>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
-                                  {skill.tag && <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
+                                  {skill.tag && <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
                                   {skill.spRecovery && skill.spRecovery !== '0' && (
                                      <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                        {skill.spRecovery.includes('+') ? <PlusCircle size={12}/> : <MinusCircle size={12}/>} SP {skill.spRecovery}
@@ -265,7 +265,7 @@ export default function SkillAndEidolonSection({
                       onError={(e) => (e.currentTarget.style.opacity = '0.3')} 
                     />
                   </div>
-                  <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeServantCategory === cat.id ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>
+                  <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeServantCategory === cat.id ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>
                 </button>
               ))}
             </div>
@@ -288,7 +288,7 @@ export default function SkillAndEidolonSection({
                               <div className="space-y-1">
                                  <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h4>
                                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                                    {skill.tag && <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
+                                    {skill.tag && <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
                                     {skill.spRecovery && skill.spRecovery !== '0' && (
                                        <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                          {skill.spRecovery.includes('+') ? <PlusCircle size={12}/> : <MinusCircle size={12}/>} SP {skill.spRecovery}
@@ -421,7 +421,7 @@ const StatBox: React.FC<{ icon: React.ReactNode; label: string; value: string; c
           if (/^\d+(?:\.\d+)?%?$/.test(part)) {
             return <span key={i} className="text-lg md:text-xl font-black text-[#FFD600] tabular-nums">{part}</span>;
           }
-          return part ? <span key={i} className="text-[11px] font-black text-gray-500 uppercase tracking-tighter">{part}</span> : null;
+          return part ? <span key={i} className="text-[11px] font-black text-gray-400 uppercase tracking-tighter">{part}</span> : null;
         })}
       </div>
     );

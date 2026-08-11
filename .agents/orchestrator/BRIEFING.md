@@ -1,76 +1,77 @@
-# BRIEFING — 2026-07-25T17:01:09+09:00
+# BRIEFING — 2026-08-06T02:06:58+09:00
 
 ## Mission
-Orchestrate Rira Game Hub advanced community comment system implementing R1 (Auth & RLS inline edit/delete), R2 (Rich text editor & media/link previews), R3 (Reddit-style multi-depth threads & sorting options), R4 (Admin Pin & Report auto-hide >= 3 reports), and R5 (SQL Migration script with RLS policies).
+Orchestrate PageSpeed Insights Optimization for Rira Game Hub (R1: WebP Banner Optimization & Aspect Ratio, R2: Color Contrast Accessibility, R3: 404 Resource Error Fallback Resolution).
 
 ## 🔒 My Identity
-- Archetype: teamwork_preview_orchestrator
+- Archetype: self
 - Roles: orchestrator, user_liaison, human_reporter, successor
 - Working directory: c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator
 - Original parent: parent
-- Original parent conversation ID: 5df8b87e-bc3b-4a7c-935c-9c82be2b4276
+- Original parent conversation ID: cbedf31c-461a-4209-a43f-a293fb749dae
 
 ## 🔒 My Workflow
-- **Pattern**: Project
-- **Scope document**: c:\Users\User\Desktop\rira game hub\game-hub\PROJECT.md
-1. **Decompose**:
-   - Milestone 1: Gap Exploration (3 Explorers - DONE)
-   - Milestone 2: Implementation of R1-R5 features (Worker 1 - DONE)
-   - Milestone 3: Code Review & Empirical Verification (Reviewers & Challengers - APPROVED)
-   - Milestone 4: Forensic Integrity Audit & E2E Build Check (Auditor - CLEAN)
+- **Pattern**: Project Pattern
+- **Scope document**: c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\PROJECT.md
+1. **Decompose**: Survey existing codebase via 3 Explorers, create/update PROJECT.md (Feature Inventory, Architecture, Milestones, Interface Contracts), and parallel E2E Testing Track.
 2. **Dispatch & Execute**:
-   - Iteration loop (Explorer -> Worker -> Reviewer -> Challenger -> Auditor)
+   - Delegate milestones to sub-orchestrators or iteration loops (Explorer -> Worker -> Reviewer -> Challenger -> Auditor -> Gate).
 3. **On failure**: Retry -> Replace -> Skip -> Redistribute -> Redesign -> Escalate
-4. **Succession**: Spawn successor at 16 subagent spawns or context limit.
-
+4. **Succession**: Threshold 20 spawns. Write handoff.md, spawn successor.
 - **Work items**:
-  1. Gap Exploration for R1-R5 (Done)
-  2. Implementation of R1-R5 features (Done)
-  3. Review & Remediation (Done)
-  4. Forensic Audit & Build Verification (Done - CLEAN)
-- **Current phase**: Complete
-- **Current focus**: Final Human Reporting of completed project.
+  1. Survey & Map Codebase [done]
+  2. E2E Testing Track Setup [in-progress]
+  3. Milestone 1: R1 Image Size & WebP Format Optimization [in-progress]
+  4. Milestone 2: R2 Accessibility Color Contrast Improvement [in-progress]
+  5. Milestone 3: R3 Resolve 404 Resource Errors [in-progress]
+  6. Final Milestone: Pass 100% E2E tests and adversarial coverage hardening [pending]
+- **Current phase**: 2 (Parallel Execution)
+- **Current focus**: Parallel execution of E2E Track and Milestones 1, 2, 3
 
 ## 🔒 Key Constraints
-- NEVER write source code directly (only metadata in .agents/ or PROJECT.md).
-- NEVER run build/test commands directly — delegate to subagents.
-- Require workers to verify builds (`npm run build`).
-- Follow security rules in `.agents/AGENTS.md`.
+- NEVER write, modify, or create source code files directly.
+- NEVER run build/test commands yourself — require workers to do so.
+- NEVER investigate or explore the problem at the code level — dispatch Explorers for technical investigation.
+- Use file-editing tools ONLY for metadata/state files (.md) in .agents/ folder.
+- Follow Project Pattern strictly.
+- Forensic Auditor verdict is a BINARY VETO.
 
 ## Current Parent
-- Conversation ID: 5df8b87e-bc3b-4a7c-935c-9c82be2b4276
-- Updated: 2026-07-25T17:01:09+09:00
+- Conversation ID: cbedf31c-461a-4209-a43f-a293fb749dae
+- Updated: not yet
 
 ## Key Decisions Made
-- All milestones (M1-M4) completed, independently reviewed, and verified CLEAN by Forensic Auditor fa73337b-2254-49d4-a567-d09c2210315d.
+- Initiated PageSpeed Insights Optimization project.
+- Dispatched 3 parallel Survey Explorers for R1, R2, R3 (Completed).
+- Formulated global PROJECT.md index (Feature Inventory, Architecture, Contracts).
+- Dispatched parallel E2E Testing Sub-Orchestrator and Sub-Orchestrators for Milestones 1, 2, 3.
 
 ## Team Roster
 | Agent | Type | Work Item | Status | Conv ID |
 |-------|------|-----------|--------|---------|
-| Explorer 1 | teamwork_preview_explorer | Auth RLS & Schema Gap Analysis | Completed | 922610b6-7ecc-414f-b1c6-d21147e29117 |
-| Explorer 2 | teamwork_preview_explorer | RichText Media & Threads Gap Analysis | Completed | f4dc86cd-f935-4dfa-a54a-2160a8ff552f |
-| Explorer 3 | teamwork_preview_explorer | Admin Moderation & Build Gap Analysis | Completed | e2993aee-96b6-4f3b-986d-f73acf7a2ab2 |
-| Worker 1 | teamwork_preview_worker | Implementation of R1-R5 | Completed | f740bfc1-f80c-43b5-a8d6-c4872793a076 |
-| Reviewer 1 | teamwork_preview_reviewer | Auth RLS, RichText & Schema Review | Completed (VETO) | 64ae4abb-e70f-4628-b4d6-c64caee2366d |
-| Reviewer 2 | teamwork_preview_reviewer | Threads, Sorting & Moderation Review | Completed (Approve) | c8f4a272-031e-45eb-bf75-605d7f94044c |
-| Challenger 1 | teamwork_preview_challenger | Auth Guard, Form & Sorting Verification | Completed | 4c0a4308-612d-473a-b1cc-253406b522fc |
-| Challenger 2 | teamwork_preview_challenger | Admin Pin, Moderation & Build Verification | Completed | 9b81a4c6-c3b3-425c-933a-beab152cb85f |
-| Worker 2 | teamwork_preview_worker | Remediation of RLS & Markdown Parser | Completed | 4101b3cb-c4fa-431c-ba12-5945a5fec21b |
-| Reviewer 1 Re-Check | teamwork_preview_reviewer | Re-check RLS & Markdown Fixes | Completed (Approve) | b93fd745-d5fb-4721-9a17-1082349eb840 |
-| Auditor | teamwork_preview_auditor | Forensic Integrity & E2E Build Audit | Completed (CLEAN) | fa73337b-2254-49d4-a567-d09c2210315d |
+| Survey Explorer 1 | teamwork_preview_explorer | R1 WebP Image Optimization | completed | df78fc5b-ecaf-4e00-bd71-379774778719 |
+| Survey Explorer 2 | teamwork_preview_explorer | R2 Color Contrast Improvement | completed | 27ed9e6e-d181-4a31-879e-f7b873dad7ab |
+| Survey Explorer 3 | teamwork_preview_explorer | R3 404 Resource Error Fallbacks | completed | 8af01ce5-95d9-4ab6-b304-12b14ff11420 |
+| E2E Test Sub-Orch | self | E2E Testing Suite & Infrastructure | in-progress | 48bf1e53-2e3b-41f0-b6eb-feed760ff13f |
+| Milestone 1 Sub-Orch | self | M1: R1 WebP Image & CLS Optimization | in-progress | ec429f6e-059b-43d4-abf8-a9830565f163 |
+| Milestone 2 Sub-Orch | self | M2: R2 Color Contrast Accessibility | in-progress | ff59390a-e76c-4ad2-96f8-13d8a5d9e607 |
+| Milestone 3 Sub-Orch | self | M3: R3 404 Error Resolution | in-progress | 3df25ba2-4f86-4aac-bfb0-685bb274dbb4 |
 
 ## Succession Status
 - Succession required: no
-- Spawn count: 11 / 16
-- Pending subagents: none
+- Spawn count: 7 / 20
+- Pending subagents: 48bf1e53-2e3b-41f0-b6eb-feed760ff13f, ec429f6e-059b-43d4-abf8-a9830565f163, ff59390a-e76c-4ad2-96f8-13d8a5d9e607, 3df25ba2-4f86-4aac-bfb0-685bb274dbb4
 - Predecessor: none
 - Successor: not yet spawned
 
 ## Active Timers
-- Heartbeat cron: f1b5a442-48a5-47d3-8954-f6d0a544ca32/task-27 (kill on completion)
+- Heartbeat cron: task-33
+- Safety timer: none
 
 ## Artifact Index
-- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\BRIEFING.md — Working memory & state index
-- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\ORIGINAL_REQUEST.md — Original & detailed requirements
-- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\progress.md — Liveness & task checklist
-- c:\Users\User\Desktop\rira game hub\game-hub\PROJECT.md — Global architecture and milestone index
+- c:\Users\User\Desktop\rira game hub\game-hub\.agents\ORIGINAL_REQUEST.md — Original User Request
+- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\DISPATCH.md — Dispatch log
+- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\BRIEFING.md — Working memory
+- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\plan.md — Execution plan
+- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\progress.md — Liveness & task progress
+- c:\Users\User\Desktop\rira game hub\game-hub\.agents\orchestrator\PROJECT.md — Project scope document

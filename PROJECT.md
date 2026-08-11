@@ -1,66 +1,44 @@
-# Project: Rira Game Hub - Advanced Community Comment System
+# Project: Rira Game Hub PageSpeed Insights Optimization
 
 ## Architecture
-- React 19 / TypeScript / Vite frontend codebase with React Router v8.
-- Supabase Auth (`@supabase/supabase-js`) for OAuth authentication (Google, Discord).
-- Centralized `AuthContext` (`common-hub/context/AuthContext.tsx`) providing user session, social OAuth sign-in triggers, and login modal state.
-- Enhanced `CharacterReviewBoard` & `CommentCard` components supporting:
-  - Auth guards triggering `LoginModal` on any interaction (create/edit/delete/upvote/report).
-  - RLS policies & UI inline editing/deletion restricted to author (`auth.uid() = user_id`).
-  - Lightweight rich text / markdown editor toolbar (bold, italic, blockquotes, spoiler tags).
-  - Media attachments (image URLs / uploads) and link preview rendering.
-  - Reddit-style infinite/multi-depth nested reply threads with visual connecting lines.
-  - Sorting options: 'Newest' (최신순) and 'Best/Upvoted' (베스트/추천순).
-  - Admin Pin feature (`is_pinned: boolean`) pinning useful comments to top.
-  - Report & Auto-Hide (>= 3 reports blinds content with "유저들의 신고로 숨김 처리된 댓글입니다", duplicate report prevention).
-- Complete SQL migration script (`supabase/migrations/`) with `id`, `user_id`, `parent_id`, `content`, `media_urls`, `like_count`, `report_count`, `is_pinned`, `created_at`, `updated_at`, and RLS policies.
+- Image Assets & Page Speed Optimization (`public/assets/banners/`, `common-hub/pages/Home.tsx`, `common-hub/components/LazyImage.tsx`).
+- Global Color Contrast & Accessibility (`common-hub/`, `hsr-hub/`, `ww-hub/`, `nte-hub/`).
+- Image Fallback Logic & Resource Error Resolution (`common-hub/data/games.ts`, `common-hub/components/LazyImage.tsx`, `common-hub/components/GameDashboard.tsx`, `common-hub/components/GalleryModals.tsx`, `public/assets/unknown.webp`).
+
+## Feature Inventory
+| # | Feature | Description | Milestone | Source |
+|---|---------|-------------|-----------|--------|
+| 1 | WebP Banner Conversion | Convert `hsr_placeholder.png` and `ww_placeholder.png` (~900KB each) to compressed WebP format (`hsr_placeholder.webp`, `ww_placeholder.webp`) under ~30-70KB | M1 | Survey Explorer 1 |
+| 2 | Home Page WebP References & CLS Prevention | Update `common-hub/pages/Home.tsx` to reference `.webp` banner assets and pass explicit `width={1024}` and `height={1024}` props to `<LazyImage />` | M1 | Survey Explorer 1 |
+| 3 | Global WCAG AA/AAA Color Contrast Optimization | Update 357 low-contrast text instances (`text-gray-500` through `text-gray-900`, `placeholder:text-gray-600/800`) across 61 files in `common-hub`, `hsr-hub`, `ww-hub`, `nte-hub` to `text-gray-400`/`text-gray-300`/`placeholder:text-gray-400` | M2 | Survey Explorer 2 |
+| 4 | Resolve `ww_main.webp` 404 Resource Error | Update `common-hub/data/games.ts` `bannerImage` properties for WW and NTE to local WebP assets, and simplify `Home.tsx` image `src` logic | M3 | Survey Explorer 3 |
+| 5 | Resolve `unknown.webp` 404 Resource Error & Fallback Loop Safeguard | Create local fallback asset `/public/assets/unknown.webp`, update `LazyImage.tsx`, `GameDashboard.tsx`, and `GalleryModals.tsx` fallback paths to `/assets/unknown.webp`, and prevent double 404 error looping | M3 | Survey Explorer 3 |
+| 6 | E2E Verification & Adversarial Hardening | Comprehensive test suite covering Tiers 1-5 for PageSpeed WebP assets, WCAG contrast compliance, and 404 fallback handling | Final Milestone | Orchestrator Dual Track |
 
 ## Milestones
 | # | Name | Scope | Dependencies | Status |
 |---|------|-------|-------------|--------|
-| 1 | Gap Exploration | Analyze codebase for R1-R5 requirement gaps | None | DONE |
-| 2 | Implementation | Complete R1-R5 features (Auth/RLS, Rich Text/Media, Nested Threads/Sort, Admin/Report, SQL Migration) | M1 | DONE |
-| 3 | Review & Challenge | Reviewer code review & Challenger empirical test verification | M2 | DONE (APPROVED) |
-| 4 | Forensic Audit | Forensic Auditor integrity & compliance check | M3 | DONE (CLEAN) |
-
-
-
-
+| 1 | M1: R1 WebP Image & CLS Optimization | `public/assets/banners/`, `common-hub/pages/Home.tsx` | None | PLANNED |
+| 2 | M2: R2 Accessibility Color Contrast | `common-hub/`, `hsr-hub/`, `ww-hub/`, `nte-hub/` components & pages | None | PLANNED |
+| 3 | M3: R3 404 Resource Error Resolution | `common-hub/data/games.ts`, `common-hub/components/LazyImage.tsx`, `GameDashboard.tsx`, `GalleryModals.tsx`, `public/assets/unknown.webp` | None | PLANNED |
+| 4 | Final Milestone: E2E Verification & Hardening | Pass 100% E2E test suite (Tiers 1-4) & Adversarial Coverage Hardening (Tier 5) | M1, M2, M3, E2E Track | PLANNED |
 
 ## Interface Contracts
-### Auth Provider ↔ Comment UI
-- `user`: `User | null`
-- `session`: `Session | null`
-- `loading`: boolean
-- `signInWithProvider(provider: 'google' | 'discord')`: Initiates OAuth flow
-- `signOut()`: Logs user out
-- `isLoginModalOpen`: boolean
-- `openLoginModal()`: Opens login modal
-- `closeLoginModal()`: Closes login modal
+### Banner Assets & LazyImage
+- Assets: `/public/assets/banners/hsr_placeholder.webp`, `/public/assets/banners/ww_placeholder.webp`
+- Props: `<LazyImage src="/assets/banners/..." width={1024} height={1024} containerClassName="..." className="..." />`
 
-### Comment Data Structure
-- `id`: string
-- `user_id`: string
-- `parent_id`: string | null
-- `content`: string
-- `media_urls`: string[]
-- `like_count`: number
-- `report_count`: number
-- `is_pinned`: boolean
-- `created_at`: string
-- `updated_at`: string
-- `author`: { name: string; avatarUrl?: string; id: string }
-- `userUpvoted`: boolean
-- `userReported`: boolean
-- `replies`: Comment[]
+### Fallback Image Asset
+- Path: `/public/assets/unknown.webp`
+- Fallback handler logic: `onError` switches to `/assets/unknown.webp` with single-failure state guard (`hasError`) to prevent infinite looping.
 
 ## Code Layout
-- `common-hub/context/AuthContext.tsx`: Centralized Supabase Auth provider and `useAuth()` hook.
-- `common-hub/components/LoginModal.tsx`: Google and Discord social login modal.
-- `common-hub/components/CharacterReviewBoard.tsx`: Main comment board container with sorting, admin pin, and report state.
-- `common-hub/components/CommentCard.tsx`: Individual comment item rendering with nested replies, visual connecting lines, inline editor, report button, auto-hide message.
-- `common-hub/components/CommentForm.tsx`: Auth-guarded rich text comment editor toolbar (bold, italic, quote, spoiler, media URLs/uploads, link preview).
-- `common-hub/components/UpvoteButton.tsx`: Interactive upvote/like button with count.
-- `supabase/migrations/`: PostgreSQL SQL migration scripts containing full schema & RLS policies.
-- `nte-hub/pages/CharacterDetail.tsx`: Integrated `CharacterReviewBoard`.
-
+- `public/assets/banners/hsr_placeholder.webp`: Converted WebP asset
+- `public/assets/banners/ww_placeholder.webp`: Converted WebP asset
+- `public/assets/unknown.webp`: New local fallback image asset
+- `common-hub/pages/Home.tsx`: Image src updates, width/height props
+- `common-hub/data/games.ts`: Local banner path references
+- `common-hub/components/LazyImage.tsx`: Default fallback path & loop protection
+- `common-hub/components/GameDashboard.tsx`: Local fallback error handler
+- `common-hub/components/GalleryModals.tsx`: Local fallback error handler
+- `common-hub/`, `hsr-hub/`, `ww-hub/`, `nte-hub/`: Contrast utility class updates

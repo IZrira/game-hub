@@ -33,6 +33,7 @@ import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
@@ -495,14 +496,14 @@ const CharacterDetail: React.FC = () => {
             <div className="flex flex-wrap items-center gap-3 px-2">
               {rawChar?.hasASBuff && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>
-                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>{t('AS Remake')}</button>
+                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-400'}`}>{t('Original')}</button>
+                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-400'}`}>{t('AS Remake')}</button>
                 </div>
               )}
               {char.isTrailblazer && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('남성')}</button>
-                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('여성')}</button>
+                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('남성')}</button>
+                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('여성')}</button>
                 </div>
               )}
             </div>
@@ -541,15 +542,15 @@ const CharacterDetail: React.FC = () => {
                 <StatRow label={t("기초 방어력")} value={calculateStat('def')} color={theme.primary} />
                 <div className="grid grid-cols-3 gap-2.5">
                   <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("속도")}</span>
+                    <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t("속도")}</span>
                     <span className="text-xl font-black text-white tabular-nums">{char.baseStats?.speed || 0}</span>
                   </div>
                   <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("도발")}</span>
+                    <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t("도발")}</span>
                     <span className="text-xl font-black text-white tabular-nums">{char.baseStats?.taunt || 0}</span>
                   </div>
                   <div className="flex flex-col items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/5">
-                    <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1">{t("에너지")}</span>
+                    <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t("에너지")}</span>
                     <span className="text-xl font-black text-white tabular-nums">{char.baseStats?.energy || 0}</span>
                   </div>
                 </div>
@@ -604,7 +605,7 @@ const CharacterDetail: React.FC = () => {
               {/* Voice Actors Card */}
               <div className="glass-card rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-8 space-y-6">
                 <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                  <Globe size={18} className="text-gray-500" />
+                  <Globe size={18} className="text-gray-400" />
                   <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t("성우 정보 리스트")}</h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -612,7 +613,7 @@ const CharacterDetail: React.FC = () => {
                     <div key={i} className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.06] transition-all">
                       <div className="flex items-center gap-3">
                         <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
-                        <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i]}</span>
+                        <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i]}</span>
                       </div>
                       <span className="text-lg font-black text-gray-200 group-hover:text-white">{t(n.trim())}</span>
                     </div>
@@ -630,7 +631,7 @@ const CharacterDetail: React.FC = () => {
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
                  <div className="flex items-center gap-4">
-                   <Package size={22} className="text-gray-500" />
+                   <Package size={22} className="text-gray-400" />
                    <span className="text-xl font-black uppercase tracking-tighter italic">{t("돌파 재료")}</span>
                  </div>
                  <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">
@@ -639,17 +640,17 @@ const CharacterDetail: React.FC = () => {
                  </button>
                </div>
                <div className="flex flex-wrap justify-center gap-8 px-4">
-                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
 
                </div>
             </div>
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                 <Sparkles size={22} className="text-gray-500" />
+                 <Sparkles size={22} className="text-gray-400" />
                  <span className="text-2xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span>
                </div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start justify-center">
-                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
                   <div className="w-8 shrink-0" />
                </div>
             </div>
@@ -665,6 +666,13 @@ const CharacterDetail: React.FC = () => {
           setTooltip={setTooltip}
         />
         
+        {/* Recommended Synergy / Team Formations */}
+        <SynergyDeck 
+          characterName={char?.id || charName || ''} 
+          gameId="hsr" 
+          theme={theme} 
+        />
+        
 
         {/* E-E-A-T Authorship & Methodology Note */}
         <section className="mt-12 pt-8 border-t border-white/5">
@@ -675,10 +683,10 @@ const CharacterDetail: React.FC = () => {
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-black text-white uppercase tracking-widest">{t('Intelligence Source')}</h4>
-                <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
+                <p className="text-[11px] text-gray-400 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
             </div>
           </div>
@@ -691,7 +699,7 @@ const CharacterDetail: React.FC = () => {
                 <MessageSquareWarning size={14} />
                 {t('데이터 오류 제보')}
               </button>
-              <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+              <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
                 {t('최종 업데이트')} : {lastUpdatedDate} (v{char.releaseVersion || '1.0'})
               </p>
             </div>
@@ -704,35 +712,7 @@ const CharacterDetail: React.FC = () => {
             onCommentsLoaded={setCommentsData}
           />
 
-          {/* Internal Linking: Related Characters */}
-          {relatedCharacters.length > 0 && (
-            <section className="mt-12 pt-8 border-t border-white/5">
-              <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2 mb-6">
-                Related Characters
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 not-italic">
-                  {t('추천')}
-                </span>
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {relatedCharacters.map((rel: any) => (
-                  <Link 
-                    key={rel.id} 
-                    to={`/gallery/${gameId}/character/${rel.id}`}
-                    className="flex flex-col items-center p-4 rounded-[20px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all hover:scale-[1.02] group"
-                  >
-                    <img 
-                      src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/characters/${rel.id}.webp`}
-                      alt={t(rel.name)}
-                      className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-transparent group-hover:border-brand-primary/50 transition-colors"
-                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp' }}
-                    />
-                    <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">{t(rel.name)}</span>
-                    <span className="text-xs font-medium text-gray-500">{t(rel.path)}</span>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
+
         </section>
 
         <FeedbackReportModal 
@@ -777,7 +757,7 @@ const MetadataCard: React.FC<{
       <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:scale-110 group-hover:text-white transition-all duration-500" style={{ color: theme.primary }}>
         {icon}
       </div>
-      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{label}</span>
+      <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{label}</span>
     </div>
     <div className="text-xl font-black text-white tracking-tight group-hover:translate-x-1 transition-transform duration-500">{value}</div>
   </div>
@@ -785,7 +765,7 @@ const MetadataCard: React.FC<{
 
 const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
   <div className="space-y-4 group">
-    <div className="text-[11px] font-black text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
+    <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
     <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
   </div>
 );
@@ -794,7 +774,7 @@ const StatRow: React.FC<{ label: string; value: string | number; color: string }
   <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5 group hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300">
     <div className="flex items-center gap-4">
       <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors">{label}</span>
+      <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-300 transition-colors">{label}</span>
     </div>
     <div className="text-xl font-black tabular-nums text-white group-hover:scale-105 transition-transform">{value}</div>
   </div>

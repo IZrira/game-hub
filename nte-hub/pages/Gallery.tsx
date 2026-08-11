@@ -116,7 +116,7 @@ const GalleryNTE: React.FC = () => {
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1">
                     <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color}`}>{stat.icon}</div>
                     <span className="text-xl font-black text-white leading-none">{stat.count}</span>
-                    <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none pt-1">{t(stat.label)}</span>
+                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none pt-1">{t(stat.label)}</span>
                   </div>
                 ))}
               </div>
@@ -148,7 +148,7 @@ const GalleryNTE: React.FC = () => {
             />
           ) : (
             <div className="py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
-              <Book className="mx-auto text-gray-700 opacity-20" size={48} />
+              <Book className="mx-auto text-gray-400 opacity-20" size={48} />
               <p className="text-gray-500 font-bold italic uppercase tracking-widest">{t('준비 중인 페이지입니다.')}</p>
             </div>
           )}

@@ -139,7 +139,7 @@ const StatBoxPremium: React.FC<{
             {label.includes('4 Cost') && <Crown size={24} className="text-[#FFD600] drop-shadow-[0_0_8px_rgba(255,214,0,0.5)]" />}
             {label.includes('3 Cost') && <Swords size={24} className="text-purple-400 drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]" />}
             {label.includes('1 Cost') && <Box size={24} className="text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />}
-            {!label.includes('Cost') && <span className="text-gray-600 font-black text-xl uppercase opacity-40">{label.slice(0, 1)}</span>}
+            {!label.includes('Cost') && <span className="text-gray-400 font-black text-xl uppercase opacity-40">{label.slice(0, 1)}</span>}
           </div>
         </div>
       )}
@@ -217,6 +217,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     return ELEMENT_THEMES[character?.attribute] || { primary: '#4ADE80', secondary: '#22C55E', shadow: 'rgba(74, 222, 128, 0.4)' };
   }, [character]);
 
+  const hoverTimeoutRef = useRef<any>(null);
+
   const updateTooltipPosition = (x: number, y: number) => {
     const left = Math.min(x + 20, window.innerWidth - 340);
     const top = Math.min(y + 20, window.innerHeight - 200);
@@ -255,7 +257,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   if (!character || !guide) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center space-y-6">
-        <Info size={40} className="text-gray-700 mb-6" />
+        <Info size={40} className="text-gray-400 mb-6" />
         <div className="space-y-2 text-center">
           <h2 className="text-2xl font-black tracking-widest uppercase">공략을 찾을 수 없습니다</h2>
           <p className="text-sm text-gray-500 mb-8">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>
@@ -592,7 +594,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     <div className="px-6 py-3 bg-brand-primary/10 border border-brand-primary/30 rounded-2xl text-sm font-black text-brand-accent">
                       {t(skill)}
                     </div>
-                    {idx < guide.skillPriority.length - 1 && <ChevronRight size={20} className="text-gray-600" />}
+                    {idx < guide.skillPriority.length - 1 && <ChevronRight size={20} className="text-gray-400" />}
                   </React.Fragment>
                 ))}
               </div>
@@ -637,7 +639,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                         <div className="text-center space-y-1">
                           <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member)}</div>
                           {memberChar?.roles?.[0] && (
-                            <div className="text-[10px] font-bold text-gray-600 uppercase tracking-widest whitespace-nowrap">{t(memberChar.roles[0].label)}</div>
+                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(memberChar.roles[0].label)}</div>
                           )}
                         </div>
                       </Link>
@@ -660,7 +662,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
                 </div>
               </div>
-              <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+              <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
                 {t('이 분석 리포트는 게임 데이터 분석과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
               </div>
             </div>

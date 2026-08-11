@@ -70,7 +70,7 @@ const TermsOfService: React.FC = () => {
             본 약관에 명시되지 않은 사항은 관련 법령 및 상관례에 따르며, 서비스 이용과 관련하여 발생한 분쟁에 대해 소송이 제기될 경우 본 사이트 운영자의 소재지를 관할하는 법원을 전속 관할 법원으로 합니다.
           </p>
 
-          <div className="mt-12 pt-8 border-t border-white/10 text-sm text-gray-500">
+          <div className="mt-12 pt-8 border-t border-white/10 text-sm text-gray-400">
             <p>공고일자: 2026년 6월 15일</p>
             <p>시행일자: 2026년 6월 15일</p>
           </div>

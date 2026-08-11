@@ -86,7 +86,7 @@ const Home: React.FC = () => {
           {t('완벽한 플레이를 위한')}<br/>
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary italic">{t('데이터의 정점.')}</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-gray-500 text-lg md:text-xl font-medium leading-relaxed">
+            <p className="max-w-3xl mx-auto text-gray-400 text-lg md:text-xl font-medium leading-relaxed">
           {t('리라 아카이브는 고밀도 데이터와 심층 분석을 통해')}<br/>
           {t('당신의 성장을 완벽하게 서포트하는 프리미엄 전략 가이드입니다.')}
             </p>
@@ -97,10 +97,10 @@ const Home: React.FC = () => {
               <BookOpen size={16} /> {t('인기 공략/칼럼 모아보기')}
             </Link>
             <div className="flex gap-4 px-4">
-              <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                 <Server size={12} className="text-brand-primary" /> Multi-Game Synchronized
               </div>
-              <div className="flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest">
+              <div className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
                 <Zap size={12} className="text-yellow-500" /> Real-time Analytics
               </div>
             </div>
@@ -132,13 +132,13 @@ const Home: React.FC = () => {
               <div className="flex items-center gap-2 bg-[#121212] p-1 rounded-xl border border-white/5">
                 <button
                   onClick={() => setDailyHubTab('patch_notes')}
-                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-500 hover:text-white'}`}
+                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('패치 노트')}
                 </button>
                 <button
                   onClick={() => setDailyHubTab('notices')}
-                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'}`}
+                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('전체 공지')}
                 </button>
@@ -180,9 +180,9 @@ const Home: React.FC = () => {
             <h2 className="text-3xl font-black tracking-tighter italic flex items-center gap-4">
           <span className="text-brand-accent">/</span> {t('아카이브 탐색')}
             </h2>
-        <p className="text-gray-600 text-sm font-bold uppercase tracking-widest">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>
+        <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>
           </div>
-          <div className="flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest">
+          <div className="flex items-center gap-4 text-[11px] font-black text-gray-400 uppercase tracking-widest">
         <TrendingUp size={14} className="text-brand-accent" /> {t('현재 인기 아카이브')}
           </div>
         </div>
@@ -194,9 +194,12 @@ const Home: React.FC = () => {
               to={`/gallery/${game.id}`}
               className="group relative h-[480px] rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
             >
+              {/* Uses game.bannerImage (/assets/banners/hsr_placeholder.webp, /assets/banners/ww_placeholder.webp) */}
               <LazyImage 
-                src={game.id === 'hsr' ? '/assets/banners/hsr_placeholder.png' : game.id === 'ww' ? '/assets/banners/ww_placeholder.png' : game.bannerImage} 
+                src={game.bannerImage} 
                 alt={`${game.title} - ${t('리라 아카이브 게임 데이터베이스 탐색')}`}
+                width={1024}
+                height={1024}
                 loading="eager"
                 fetchPriority={index === 0 ? "high" : "auto"}
                 containerClassName="absolute inset-0 w-full h-full"
@@ -227,12 +230,12 @@ const Home: React.FC = () => {
                   
                   <div className="flex items-center gap-10 pt-4">
                     <div className="flex flex-col">
-                  <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1">{t('캐릭터 명단')}</span>
+                  <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t('캐릭터 명단')}</span>
                       <span className="text-3xl font-black tabular-nums">{CHARACTER_DB.filter(c => c.gameId === game.id).length}</span>
                     </div>
                     <div className="w-px h-10 bg-white/10" />
                     <div className="flex flex-col">
-                  <span className="text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1">{t('전략 보고서')}</span>
+                  <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t('전략 보고서')}</span>
                       <span className="text-3xl font-black tabular-nums">{game.posts.length}</span>
                     </div>
                   </div>
@@ -249,10 +252,10 @@ const Home: React.FC = () => {
           
           <div className="h-[480px] rounded-[56px] border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-12 bg-white/[0.02] group transition-all hover:bg-white/[0.04]">
             <div className="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5">
-              <Cpu size={40} className="text-gray-700" />
+              <Cpu size={40} className="text-gray-400" />
             </div>
-        <h4 className="text-xl font-black text-gray-600 uppercase tracking-[0.2em] mb-4">{t('새로운 데이터 연결 준비 중')}</h4>
-        <p className="text-gray-700 text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
+        <h4 className="text-xl font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{t('새로운 데이터 연결 준비 중')}</h4>
+        <p className="text-gray-400 text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
           </div>
         </div>
       </section>
@@ -265,7 +268,7 @@ const Home: React.FC = () => {
               <Users size={20} className="text-brand-primary" />
             </div>
             <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('Who Created This?')}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed font-medium">
+            <p className="text-sm text-gray-400 leading-relaxed font-medium">
               {t('리라 아카이브의 모든 데이터는 수년간의 서브컬쳐 게임 플레이 경력을 보유한 전담 데이터 분석팀과 에디터들에 의해 정밀하게 검토되고 작성됩니다.')}
             </p>
           </div>
@@ -274,7 +277,7 @@ const Home: React.FC = () => {
               <Database size={20} className="text-brand-accent" />
             </div>
             <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('How Is It Built?')}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed font-medium">
+            <p className="text-sm text-gray-400 leading-relaxed font-medium">
               {t('수년간의 하드코어 플레이 경험을 가진 전문 에디터 팀의 자체 데이터 시뮬레이션 및 교차 검증을 통해 최상의 전략과 가이드를 도출합니다. 모든 데이터는 철저한 인게임 테스트를 통해 최종 검토되어 가장 높은 신뢰도를 보장합니다.')}
             </p>
           </div>
@@ -283,7 +286,7 @@ const Home: React.FC = () => {
               <Globe size={20} className="text-yellow-500" />
             </div>
             <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('Why Rira Archive?')}</h3>
-            <p className="text-sm text-gray-500 leading-relaxed font-medium">
+            <p className="text-sm text-gray-400 leading-relaxed font-medium">
               {t('단순한 정보 나열을 넘어, 사용자가 가장 직관적이고 빠르게 최적의 플레이를 찾을 수 있도록 고밀도의 전술 지능을 제공하는 것이 리라 아카이브의 유일한 목표입니다.')}
             </p>
           </div>
@@ -324,7 +327,7 @@ const StatMetric = React.memo(({ label, value, icon, color }: { label: string; v
   <div className="flex flex-col items-center justify-center gap-3 px-8 group text-center">
     <div className={`${color} mb-1 transition-transform group-hover:scale-125 duration-700`}>{icon}</div>
     <div className="text-3xl font-black tabular-nums tracking-tighter">{value.toLocaleString()}</div>
-    <div className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">{label}</div>
+    <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">{label}</div>
   </div>
 ));
 

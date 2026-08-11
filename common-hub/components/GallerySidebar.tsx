@@ -69,7 +69,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
   return (
     <aside className="space-y-12">
       <div className="sticky top-20 space-y-3">
-        <h2 className="text-[11px] font-black text-gray-700 uppercase tracking-[0.4em] px-4 mb-4">MENU</h2>
+        <h2 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em] px-4 mb-4">MENU</h2>
         {MAIN_NAVIGATION.map(item => {
           let displayLabel = item.label;
           let menuKey = item.menuKey;
@@ -109,7 +109,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
               className={`w-full flex items-center gap-5 px-5 py-4 rounded-2xl transition-all border ${
                 isActive 
                   ? 'bg-brand-primary/10 text-brand-accent border-brand-primary/20' 
-                  : 'text-gray-600 hover:bg-white/[0.05] border-transparent'
+                  : 'text-gray-400 hover:bg-white/[0.05] border-transparent'
               }`}
             >
               <div className={`p-2.5 rounded-xl ${isActive ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/50' : 'bg-white/5'}`}>

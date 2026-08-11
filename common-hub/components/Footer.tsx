@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
                 Integrated Game Database
               </p>
             </div>
-            <p className="text-xs text-gray-500 leading-relaxed max-w-xs font-medium">
+            <p className="text-xs text-gray-400 leading-relaxed max-w-xs font-medium">
               Comprehensive game data and tactical analysis platform for advanced explorers. 
               All systems operational via RIRA GAME HUB API.
             </p>
@@ -44,7 +44,7 @@ const Footer: React.FC = () => {
           {/* 컬럼 2: 네비게이션 */}
           <div className="space-y-6">
             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Navigation</h3>
-            <ul className="space-y-3 text-xs font-bold text-gray-500">
+            <ul className="space-y-3 text-xs font-bold text-gray-400">
               {navLinks.map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="hover:text-brand-accent transition-colors">
@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
           {/* 컬럼 3: 지원 게임 (Supported Sectors) */}
           <div className="space-y-6">
             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Supported Sectors</h3>
-            <ul className="space-y-3 text-xs font-bold text-gray-500">
+            <ul className="space-y-3 text-xs font-bold text-gray-400">
               <li><a href="https://hsr.hoyoverse.com/" target="_blank" rel="noopener noreferrer nofollow" className="hover:text-brand-primary transition-colors">Honkai: Star Rail ↗</a></li>
               <li><a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer nofollow" className="hover:text-brand-primary transition-colors">Wuthering Waves ↗</a></li>
               <li className="opacity-30 cursor-not-allowed italic">Next Project Encrypted...</li>
@@ -68,7 +68,7 @@ const Footer: React.FC = () => {
           {/* 컬럼 4: 정책 및 소셜 */}
           <div className="space-y-6">
             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Security & Policy</h3>
-            <ul className="space-y-3 text-xs font-bold text-gray-500">
+            <ul className="space-y-3 text-xs font-bold text-gray-400">
               {policyLinks.map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="hover:text-white transition-colors">
@@ -82,19 +82,19 @@ const Footer: React.FC = () => {
 
         {/* 하단 저작권 및 면책 조항 */}
         <div className="pt-8 border-t border-white/5 space-y-6">
-          <div className="flex flex-col md:flex-row justify-between gap-4 text-[10px] font-black text-gray-700 uppercase tracking-widest">
+          <div className="flex flex-col md:flex-row justify-between gap-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
             <span>Copyright © {currentYear} RIRA ARCHIVE. All rights reserved.</span>
             <span>Archive Identity & Intellectual Property / Ver 1.0.4_Stable</span>
           </div>
           
           <div className="space-y-4">
-            <p className="text-[10px] leading-relaxed text-gray-600 font-medium">
-              <strong className="text-gray-500">Legal Disclaimer:</strong> RIRA ARCHIVE is a non-profit, unofficial fan-operated project intended for educational and research purposes. 
+            <p className="text-[10px] leading-relaxed text-gray-400 font-medium">
+              <strong className="text-gray-400">Legal Disclaimer:</strong> RIRA ARCHIVE is a non-profit, unofficial fan-operated project intended for educational and research purposes. 
               This terminal is not affiliated with, endorsed by, or representative of HoYoverse, Kuro Games, or any other game developers. 
               All game-related imagery, characters, and assets are the exclusive intellectual property and registered trademarks of their respective owners. 
               RIRA ARCHIVE operates under Fair Use principles for informational analysis.
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-black text-gray-800 uppercase tracking-tighter">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-black text-gray-300 uppercase tracking-tighter">
               <span>Source Entities: © HoYoverse</span>
               <span>© Kuro Games</span>
               <span>© RIRA ARCHIVE Game Database</span>

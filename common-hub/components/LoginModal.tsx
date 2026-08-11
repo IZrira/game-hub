@@ -98,7 +98,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: p
               </div>
 
               <div className="pt-4 border-t border-white/5">
-                <p className="text-[10px] text-gray-600 uppercase tracking-widest font-bold">
+                <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">
                   By logging in, you agree to our <span className="text-gray-400">Terms of Service</span>
                 </p>
               </div>

@@ -53,7 +53,7 @@ export const getGameData = (targetId: string) => {
   const typedNotionData: any[] = (notionData || []) as any[];
 
   const notionWeapons = typedNotionData
-    .filter(item => item.type && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(item.type))
+    .filter(item => item.type && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(item.type) && item.dbSource !== 'nte_weapons' && item.dbSource !== 'nte_characters' && item.dbSource !== 'nte_items')
     .map(item => {
       let atk = 500;
       let subStatName = '공격력';
@@ -134,7 +134,7 @@ export const getGameData = (targetId: string) => {
     });
 
   const notionCharacters = typedNotionData
-    .filter(item => item.type === '캐릭터')
+    .filter(item => item.type === '캐릭터' && item.dbSource !== 'nte_characters' && item.dbSource !== 'nte_items')
     .map(item => {
       let attribute = item.itemAttribute || '회절';
       let weaponType = '직검';
@@ -394,12 +394,147 @@ export const getGameData = (targetId: string) => {
   const notionNteCharacters = typedNotionData
     .filter(item => item.dbSource === 'nte_characters')
     .map(item => {
+      let parsedBaseStats: any = {};
+      if (item.growthStats) {
+        const lines = item.growthStats.split('\n');
+        lines.forEach((line: string) => {
+          const match = line.match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d\.%]+)\s+([\d\.%]+)/);
+          if (match) {
+            const level = match[1];
+            parsedBaseStats[`lv${level}`] = {
+              "기초 HP": parseInt(match[2].replace(/,/g, ''), 10),
+              "기초 공격력": parseInt(match[3].replace(/,/g, ''), 10),
+              "기초 방어력": parseInt(match[4].replace(/,/g, ''), 10),
+              "치명 확률": match[5],
+              "치명 피해": match[6]
+            };
+          }
+        });
+      }
+
+      const parsedAscension: any[] = [];
+      if (item.ascensionMaterials) {
+        const parts = item.ascensionMaterials.split(/\n/);
+        parts.forEach((p: string) => {
+          const trimmed = p.trim();
+          if (trimmed) {
+            const nameMatch = trimmed.match(/([^\dx*,]+)/);
+            const countMatch = trimmed.match(/[\dx*,]+$/);
+            if (nameMatch) {
+              parsedAscension.push({
+                name: nameMatch[1].trim(),
+                count: countMatch ? parseInt(countMatch[0].replace(/[x*,]/g, ''), 10) : 1
+              });
+            }
+          }
+        });
+      }
+
+      const parsedTraces: any[] = [];
+      if (item.skillMaterials) {
+        const parts = item.skillMaterials.split(/\n/);
+        parts.forEach((p: string) => {
+          const trimmed = p.trim();
+          if (trimmed) {
+            const nameMatch = trimmed.match(/([^\dx*,]+)/);
+            const countMatch = trimmed.match(/[\dx*,]+$/);
+            if (nameMatch) {
+              parsedTraces.push({
+                name: nameMatch[1].trim(),
+                count: countMatch ? parseInt(countMatch[0].replace(/[x*,]/g, ''), 10) : 1
+              });
+            }
+          }
+        });
+      }
+      if (item.citySkill) item.citySkill = item.citySkill.replace(/(Lv\.\s*\d+)\s*\n/g, '$1 ');
+      if (item.citySkill2) item.citySkill2 = item.citySkill2.replace(/(Lv\.\s*\d+)\s*\n/g, '$1 ');
+
+      const parsedSkills: any[] = [];
+      const skillMap = [
+        { key: 'citySkill', name: '도시 스킬', type: '도시 스킬' },
+        { key: 'citySkill2', name: '도시 스킬2', type: '도시 스킬', icon: '도시 스킬2' },
+        { key: 'basicAttack', name: '일반 공격', type: '기본 공격', icon: '일반 공격' },
+        { key: 'virailSkill', name: '바이레일 스킬', type: '바이레일 스킬' },
+        { key: 'ultimateSkill', name: '울티메이트', type: '울티메이트' },
+        { key: 'supportSkill', name: '서포트 스킬', type: '서포트 스킬' },
+        { key: 'passiveSkill1', name: '패시브 스킬1', type: '패시브 스킬1' },
+        { key: 'passiveSkill2', name: '패시브 스킬2', type: '패시브 스킬2' },
+        { key: 'trait', name: '특성', type: '특성', icon: '캐릭터 특성' },
+        { key: 'resonance', name: '공명', type: '공명' }
+      ];
+      
+      skillMap.forEach(s => {
+        if (item[s.key as keyof typeof item]) {
+          if (s.key === 'resonance') {
+             const blocks = (item[s.key as keyof typeof item] as string).split(/\n\n+/).filter(p => p.trim());
+             blocks.forEach((block, idx) => {
+               const lines = block.split('\n');
+               const skillName = lines[0].replace(/\*\*/g, '').trim();
+               const description = lines.slice(1).join('\n').trim();
+               parsedSkills.push({
+                 id: `notion_nte_${s.key}_${idx + 1}`,
+                 name: skillName || `${s.name} ${idx + 1}`,
+                 type: s.type,
+                 tag: s.name,
+                 description: description,
+                 icon: `공명`
+               });
+             });
+          } else {
+             const lines = (item[s.key as keyof typeof item] as string).split('\n');
+             const skillName = lines[0].replace(/\*\*/g, '').trim();
+             const description = lines.slice(1).join('\n').trim();
+
+             parsedSkills.push({
+               id: `notion_nte_${s.key}`,
+               name: skillName || s.name,
+               type: s.type,
+               tag: s.name,
+               description: description,
+               icon: s.icon || undefined
+             });
+          }
+        }
+      });
+
+      const parsedEidolons: any[] = [];
+      if (item.awakenings) {
+         const blocks = item.awakenings.split(/\n\n+/).filter((p: string) => p.trim());
+         blocks.forEach((block: string, idx: number) => {
+            const lines = block.split('\n');
+            const name = lines[0].replace(/\*\*/g, '').replace(/==/g, '').trim();
+            const desc = lines.slice(1).join('\n').trim();
+            parsedEidolons.push({
+               rank: idx + 1,
+               name: name,
+               description: desc,
+               iconKey: `각성${idx + 1}`
+            });
+         });
+      }
+
+      const specialTerms: Record<string, string> = {};
+      if (item.glossary) {
+         const blocks = item.glossary.split(/\n\n+/).filter((p: string) => p.trim());
+         blocks.forEach((block: string) => {
+            const lines = block.split('\n');
+            const term = lines[0].replace(/\*\*/g, '').replace(/==/g, '').trim();
+            const desc = lines.slice(1).join('\n').trim();
+            if (term && desc) {
+               specialTerms[term] = desc;
+            }
+         });
+      }
+
       return {
         id: item.id,
         name: item.name,
         originalName: item.name,
         gameId: 'nte' as const,
         folderName: item.name,
+        fileName: item.fileName || item.name,
+        isTrailblazer: item.name === '감정사',
         type: '캐릭터',
         itemAttribute: item.itemAttribute || '',
         attribute: item.abilityAttribute || item.itemAttribute || '',
@@ -413,19 +548,30 @@ export const getGameData = (targetId: string) => {
         passiveSkill1: item.passiveSkill1 || '',
         passiveSkill2: item.passiveSkill2 || '',
         awakenings: item.awakenings || '',
+        eidolons: parsedEidolons,
         resonance: item.resonance || '',
         content: item.content || '',
         briefInfo: item.briefInfo || '',
         locales: item.locales || '',
         voiceActors: item.voiceActors || '',
+        glossary: item.glossary || '',
         affiliation: item.affiliation || '',
+        combatRoles: item.combatRoles || '',
         roles: item.combatRoles ? item.combatRoles.split('\n').filter(Boolean) : [],
         growthStats: item.growthStats || '',
+        baseStats: Object.keys(parsedBaseStats).length > 0 ? parsedBaseStats : {},
+        specialTerms: specialTerms,
+        materials_v2: {
+          ascension: parsedAscension,
+          traces: parsedTraces
+        },
+        skills: parsedSkills,
         ascensionMaterials: item.ascensionMaterials || '',
         skillMaterials: item.skillMaterials || '',
         basicAttack: item.basicAttack || '',
         isNotion: true,
         fileName: item.fileName || '',
+        skins: item.skins || item['스킨'] ? (item.skins || item['스킨']).split('\n').map((s: string) => s.replace(/[*=]/g, '').trim()).filter(Boolean) : [],
       };
     });
 
@@ -678,7 +824,7 @@ export const getGameData = (targetId: string) => {
   } else {
     // 폴백: 전체 병합 (언어 코드 'ko' 등이 들어왔을 때 데이터 유실 방지)
     baseData = {
-      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...notionNteCharacters, ...NTE_DATA_ALL.CHARACTER_DB],
+      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
       WEAPON_DB: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],
       WEAPON_DATA: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],

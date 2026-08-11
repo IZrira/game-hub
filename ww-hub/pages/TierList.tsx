@@ -78,7 +78,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
     >
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a]">
-          <Loader2 className="text-gray-700 animate-spin" size={16} />
+          <Loader2 className="text-gray-400 animate-spin" size={16} />
         </div>
       )}
       <img 
@@ -282,7 +282,7 @@ const TierList: React.FC = () => {
                 </div>
 
                 <div className="relative group w-full max-w-sm">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                   <input 
                     type="text" 
                     placeholder="캐릭터 검색..." 
@@ -369,7 +369,7 @@ const TierList: React.FC = () => {
               ))}
               {filteredTierList.length === 0 && (
                 <div className="py-20 text-center bg-white/[0.02] rounded-[48px] border border-white/5">
-                  <p className="text-gray-600 font-black uppercase tracking-widest text-xs opacity-50">데이터가 없습니다.</p>
+                  <p className="text-gray-400 font-black uppercase tracking-widest text-xs opacity-50">데이터가 없습니다.</p>
                 </div>
               )}
             </motion.div>

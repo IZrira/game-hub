@@ -52,7 +52,7 @@ const WuwaEchoGallery: React.FC = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8">
           <div className="space-y-2 w-full">
             <h2 className="text-4xl font-black italic tracking-tighter uppercase text-brand-accent">에코 도감</h2>
-            <p className="text-gray-600 font-bold text-sm flex items-center gap-2">
+            <p className="text-gray-400 font-bold text-sm flex items-center gap-2">
               <ActivityIcon size={14} /> 분석된 에코 개체: {ECHO_DATA.length}
             </p>
           </div>
@@ -62,11 +62,11 @@ const WuwaEchoGallery: React.FC = () => {
           <div className="flex flex-col lg:flex-row items-end gap-6">
             {/* 도감 내 검색 (필터링 전용) */}
             <div className="relative w-full lg:w-72 shrink-0">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
               <input 
                 type="text" 
                 placeholder="명칭으로 필터링..." 
-                className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600"
+                className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-400"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -74,14 +74,14 @@ const WuwaEchoGallery: React.FC = () => {
 
             {/* 코스트 필터 */}
             <div className="space-y-3 w-full">
-              <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2">Cost Filter</span>
+              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">Cost Filter</span>
               <div className="flex flex-wrap gap-3">
                 {['전체', 4, 3, 1].map(cost => (
                   <button
                     key={cost}
                     onClick={() => setActiveCost(cost as any)}
                     className={`h-11 min-w-[44px] px-6 rounded-xl text-xs font-black transition-all border flex items-center justify-center ${
-                      activeCost === cost ? "bg-white text-black shadow-lg shadow-white/20" : "bg-white/[0.03] text-gray-500 border-white/5 hover:bg-white/10"
+                      activeCost === cost ? "bg-white text-black shadow-lg shadow-white/20" : "bg-white/[0.03] text-gray-400 border-white/5 hover:bg-white/10"
                     }`}
                   >
                     {cost === '전체' ? 'ALL COST' : `${cost} COST`}
@@ -93,7 +93,7 @@ const WuwaEchoGallery: React.FC = () => {
 
           {/* 세트 필터 */}
           <div className="space-y-3">
-            <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2">Sonata Sets</span>
+            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">Sonata Sets</span>
             <div className="flex flex-wrap gap-3 overflow-x-auto pb-2 scrollbar-hide">
               <button
                 onClick={() => setActiveSonata('전체')}

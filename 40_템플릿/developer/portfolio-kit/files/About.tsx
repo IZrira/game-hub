@@ -21,14 +21,14 @@ export default function About() {
               {/* TODO: 본인 이름 */}
               Jay Kim
             </h1>
-            <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+            <p className="text-xl text-gray-400 mb-6 leading-relaxed">
               {/* TODO: 한 줄 가치 제안 — [직업] · [도와주는 사람] · [결과] */}
               AI 1인 기업가의 두뇌를 디자인합니다. 10년차 풀스택 + AI 자동화 컨설팅.
             </p>
             <div className="flex flex-wrap gap-2">
               {/* TODO: 핵심 태그 3~5개 */}
               {['AI 자동화', '풀스택', '제2의 두뇌', 'YouTube'].map(tag => (
-                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-700 text-sm rounded-full">
+                <span key={tag} className="px-3 py-1 bg-gray-100 text-gray-400 text-sm rounded-full">
                   {tag}
                 </span>
               ))}

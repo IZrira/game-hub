@@ -24,21 +24,21 @@ export const ARCHIVE_DATA: ArchiveData = {
       id: 'hsr',
       title: '붕괴: 스타레일',
       subTitle: 'Honkai: Star Rail Archive',
-      bannerImage: 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/banners/hsr_main.webp',
+      bannerImage: '/assets/banners/hsr_placeholder.webp',
       posts: [] // 데이터 레이어 분리에 따라 각 도메인에서 관리
     },
     {
       id: 'ww',
       title: '명조: 워더링 웨이브',
       subTitle: 'Wuthering Waves Archive',
-      bannerImage: 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/banners/ww_main.webp',
+      bannerImage: '/assets/banners/ww_placeholder.webp',
       posts: []
     },
     {
       id: 'nte',
       title: '이환',
       subTitle: 'Neverness to Everness Archive',
-      bannerImage: 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/banners/ww_main.webp', // TODO: 임시 배너
+      bannerImage: '/assets/banners/ww_placeholder.webp',
       posts: []
     }
   ]

@@ -119,6 +119,7 @@ export interface Character extends BaseItem {
   hasASBuff?: boolean;
   specialTerms?: Record<string, string>;
   isTrailblazer?: boolean;
+  skins?: string[];
   [key: string]: any;
 }
 

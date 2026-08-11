@@ -42,7 +42,7 @@ const assembleItemDB = (): Record<string, any> => {
   // 노션 아이템 데이터 병합 (노션이 우선순위를 가짐)
   if (Array.isArray(notionData)) {
     notionData.forEach((item: any) => {
-      if (item.dbSource === 'ww_items' || (!item.dbSource && (item.type === '아이템' || item.type === '소모품' || item.type === '재료' || item.type === '육성 아이템' || item.type === '성급' || !item.type))) {
+      if (item.dbSource === 'ww_items' || item.dbSource === 'nte_items' || (!item.dbSource && (item.type === '아이템' || item.type === '소모품' || item.type === '재료' || item.type === '육성 아이템' || item.type === '성급' || !item.type))) {
         const itemName = item.name;
         if (itemName) {
           wwDB[itemName] = {
@@ -53,7 +53,7 @@ const assembleItemDB = (): Record<string, any> => {
             sources: item.obtain ? item.obtain.split(/[\n,]+/).map((s: string) => s.trim()).filter(Boolean) : wwDB[itemName]?.sources || ["정보 없음"],
             folderName: itemName,
             fileName: item.fileName || wwDB[itemName]?.fileName || '',
-            gameId: 'ww'
+            gameId: item.dbSource === 'nte_items' ? 'nte' : 'ww'
           };
         }
       }

@@ -125,7 +125,7 @@ const StatBoxPremium: React.FC<{
         </div>
       ) : (
         <div className="w-16 h-16 bg-black/30 rounded-[24px] flex items-center justify-center border border-white/5 relative z-10">
-          <span className="text-gray-700 font-black text-xl uppercase opacity-20">{label.slice(0, 1)}</span>
+          <span className="text-gray-400 font-black text-xl uppercase opacity-20">{label.slice(0, 1)}</span>
         </div>
       )}
       
@@ -137,7 +137,7 @@ const StatBoxPremium: React.FC<{
             onMouseMove={note ? onMouseMove : undefined}
             onMouseLeave={note ? onMouseLeave : undefined}
           >
-            <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
+            <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
             {note && <Info size={12} className="text-brand-accent/70 hover:text-brand-accent transition-colors cursor-help" />}
           </div>
         </div>
@@ -186,7 +186,7 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
               </div>
               <div className="text-center space-y-1">
                 <div className="text-lg font-black text-white group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-                <div className="text-[11px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+                <div className="text-[11px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
               </div>
 
               {/* Substitutes Overlay */}
@@ -370,9 +370,9 @@ const CharacterGuideDetail: React.FC = () => {
   if (!guide || !character) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white p-8">
-        <Info size={40} className="text-gray-700 mb-6" />
+        <Info size={40} className="text-gray-400 mb-6" />
         <h2 className="text-2xl font-black uppercase tracking-widest mb-2">공략을 찾을 수 없습니다</h2>
-        <p className="text-gray-500 mb-8">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>
+        <p className="text-gray-400 mb-8">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>
         <Link to={`/gallery/${gameId}`} className="flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-xl font-black text-sm hover:scale-105 transition-all">
           <ChevronLeft size={16} /> 도감으로 돌아가기
         </Link>
@@ -513,8 +513,8 @@ const CharacterGuideDetail: React.FC = () => {
             />
             <div className="absolute top-10 right-10 flex flex-col items-end gap-1.5 z-20">
               <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg border border-white/10">
-                <Clock size={12} className="text-gray-500" />
-                <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Update: {guide.lastUpdated}</span>
+                <Clock size={12} className="text-gray-400" />
+                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Update: {guide.lastUpdated}</span>
               </div>
               <div className="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
                 <Sparkles size={12} className="text-brand-accent" />
@@ -537,7 +537,7 @@ const CharacterGuideDetail: React.FC = () => {
                 <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase leading-none whitespace-nowrap">
                   {character?.name || charName} <span className="text-brand-accent">가이드</span>
                 </h1>
-                <p className="text-gray-500 font-bold text-base md:text-lg border-l-4 border-brand-primary/40 pl-6">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>
+                <p className="text-gray-400 font-bold text-base md:text-lg border-l-4 border-brand-primary/40 pl-6">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>
               </div>
             </div>
           </section>
@@ -578,7 +578,7 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                     )}
                     <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
-                      {lcUrl ? <img src={lcUrl} alt={lcName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-700" />}
+                      {lcUrl ? <img src={lcUrl} alt={lcName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-400" />}
                     </div>
                     <div className="flex flex-col items-center gap-1.5 w-full">
                       <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(lcName)}</h4>
@@ -599,7 +599,7 @@ const CharacterGuideDetail: React.FC = () => {
               {guide.variants && guide.variants.length > 1 && (
                 <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10 mx-4">
                   {guide.variants.map((v, idx) => (
-                    <button key={idx} onClick={() => setSelectedVariantIndex(idx)} className={`px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-500 hover:text-gray-300'}`}>{v.name}</button>
+                    <button key={idx} onClick={() => setSelectedVariantIndex(idx)} className={`px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-400 hover:text-gray-300'}`}>{v.name}</button>
                   ))}
                 </div>
               )}
@@ -608,7 +608,7 @@ const CharacterGuideDetail: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Layers size={22} className="text-gray-500" />
+                  <Layers size={22} className="text-gray-400" />
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('터널 유물')}</span>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
@@ -621,7 +621,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <Link key={i} to={`/gallery/${gameId}/relic/${encodeURIComponent(rName)}`} onMouseEnter={(e) => handleMouseEnter(e, rName, '터널 유물', rNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
-                          {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-700" />}
+                          {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-400" />}
                         </div>
                         <div className="flex flex-col gap-1 w-full z-10">
                           <div className="flex items-center justify-between w-full">
@@ -639,7 +639,7 @@ const CharacterGuideDetail: React.FC = () => {
 
               <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Box size={22} className="text-gray-500" />
+                  <Box size={22} className="text-gray-400" />
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('차원 장신구')}</span>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
@@ -652,7 +652,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <Link key={i} to={`/gallery/${gameId}/ornament/${encodeURIComponent(oName)}`} onMouseEnter={(e) => handleMouseEnter(e, oName, '차원 장신구', oNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
-                          {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-700" />}
+                          {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-400" />}
                         </div>
                         <div className="flex flex-col gap-1 w-full z-10">
                           <div className="flex items-center justify-between w-full">
@@ -677,7 +677,7 @@ const CharacterGuideDetail: React.FC = () => {
               {/* Target Stats Section (Top) */}
               <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent shadow-xl">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Target size={22} className="text-gray-500" />
+                  <Target size={22} className="text-gray-400" />
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -708,7 +708,7 @@ const CharacterGuideDetail: React.FC = () => {
                     <AlertCircle className="text-brand-accent shrink-0 mt-1" size={20} />
                     <div className="space-y-1">
                       <div className="text-[10px] font-black text-brand-accent uppercase tracking-widest whitespace-nowrap">{t(s.label)}</div>
-                      <div className="text-sm font-bold text-gray-300 leading-relaxed">{t(s.value)} {s.note && <span className="text-gray-500">| {t(s.note)}</span>}</div>
+                      <div className="text-sm font-bold text-gray-300 leading-relaxed">{t(s.value)} {s.note && <span className="text-gray-400">| {t(s.note)}</span>}</div>
                     </div>
                   </div>
                 ))}
@@ -717,7 +717,7 @@ const CharacterGuideDetail: React.FC = () => {
               {/* Main & Sub Stats Section (Bottom) */}
               <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <ShieldCheck size={22} className="text-gray-500" />
+                  <ShieldCheck size={22} className="text-gray-400" />
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('주옵션 & 부옵션')}</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -771,7 +771,7 @@ const CharacterGuideDetail: React.FC = () => {
                         </div>
                         <div className="text-center space-y-1">
                           <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-                          <div className="text-[10px] font-bold text-gray-600 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+                          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
                         </div>
                       </Link>
                     );
@@ -790,16 +790,16 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
                 <div className="space-y-1">
                   <h4 className="text-sm font-black text-white uppercase tracking-widest">{t('Intelligence Source')}</h4>
-                  <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
+                  <p className="text-[11px] text-gray-400 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
                 </div>
               </div>
-              <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+              <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
                 {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
               </div>
             </div>
             {guide && (
               <div className="mt-4 flex justify-end">
-                <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+                <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
                   {t('최종 업데이트')} : {lastUpdatedDate} (v{guide.patchVersion || '1.0'})
                 </p>
               </div>

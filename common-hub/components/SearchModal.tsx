@@ -224,7 +224,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={config.placeholders || `${config.gameName} 캐릭터, 장비, 공략을 검색하세요...`}
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-14 pr-6 text-base focus:outline-none focus:border-brand-primary transition-all text-white font-bold placeholder:text-gray-600"
+                className="w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-14 pr-6 text-base focus:outline-none focus:border-brand-primary transition-all text-white font-bold placeholder:text-gray-400"
               />
             </div>
             <button onClick={onClose} className="p-3 rounded-2xl bg-white/5 text-gray-400 hover:text-white hover:bg-white/10 transition-colors border border-white/5">
@@ -253,7 +253,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
                     <h3 className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.3em] flex items-center gap-2">
                       <Star size={14} className="fill-yellow-500" /> {t('My Favorites')}
                     </h3>
-                    <button onClick={() => { setFavorites([]); localStorage.removeItem('rira_favorites'); }} className="text-[10px] font-bold text-gray-500 hover:text-white transition-colors">{t('Clear')}</button>
+                    <button onClick={() => { setFavorites([]); localStorage.removeItem('rira_favorites'); }} className="text-[10px] font-bold text-gray-400 hover:text-white transition-colors">{t('Clear')}</button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {favorites.map((fav, i) => (
@@ -274,8 +274,8 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
               {recentSearches.length > 0 && (
                 <section>
                   <div className="flex items-center justify-between mb-4">
-                    <h3 className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]">{t('Recent Searches')}</h3>
-                    <button onClick={() => { setRecentSearches([]); localStorage.removeItem('recent_searches'); }} className="text-[10px] font-bold text-gray-500 hover:text-white transition-colors">{t('Clear')}</button>
+                    <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">{t('Recent Searches')}</h3>
+                    <button onClick={() => { setRecentSearches([]); localStorage.removeItem('recent_searches'); }} className="text-[10px] font-bold text-gray-400 hover:text-white transition-colors">{t('Clear')}</button>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {recentSearches.map((item) => (
@@ -359,7 +359,7 @@ const ResultSection = ({ title, icon, items, onNavigate, query }: any) => {
   if (!items || items.length === 0) return null;
   return (
     <div className="space-y-4">
-      <h3 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 px-2">
+      <h3 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 px-2">
         {icon} {title}
       </h3>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -378,7 +378,7 @@ const SearchResultItem = ({ item, onNavigate, query }: { item: any; onNavigate: 
         <span className="text-sm font-black text-gray-200 group-hover:text-brand-primary transition-colors">
           <HighlightText text={item.name} query={query || ''} />
         </span>
-        <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5 group-hover:border-brand-primary/30 transition-colors">
+        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5 group-hover:border-brand-primary/30 transition-colors">
           {item.type}
         </span>
       </div>
@@ -390,7 +390,7 @@ const SearchResultItem = ({ item, onNavigate, query }: { item: any; onNavigate: 
               <HighlightText text={path} query={query || ''} />
             </span>
             {idx < item.routePath.length - 1 && (
-              <span className="text-[10px] font-black text-gray-600 shrink-0">&gt;</span>
+              <span className="text-[10px] font-black text-gray-400 shrink-0">&gt;</span>
             )}
           </React.Fragment>
         ))}

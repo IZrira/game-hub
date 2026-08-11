@@ -362,7 +362,7 @@ const WuwaWeaponDetail = () => {
 
   // 통합 getGameData를 사용해 중복 제거 및 노션 데이터 반영
   const { WEAPON_DATA } = React.useMemo(() => getGameData('ww'), []);
-  const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName);
+  const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName || t(w.name).normalize('NFC') === targetName);
 
   const lastUpdatedDate = weapon ? (VERSION_UPDATES[weapon.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 
@@ -426,7 +426,7 @@ const WuwaWeaponDetail = () => {
   );
 
   const getIllustrationUrl = () => {
-    return encodeURI(`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/Weapons/${weapon.name.normalize('NFC')}.webp`);
+    return encodeURI(`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/Weapons/${t(weapon.name).normalize('NFC')}.webp`);
   };
 
   const currentStats = getWwWeaponStatsForLevel(weapon.stats.atk, weapon.stats.subStatValue, LEVEL_STEPS[levelIdx], weapon.name);
@@ -436,10 +436,10 @@ const WuwaWeaponDetail = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary relative">
       <SEO 
-        title={`${weapon.name} ${t('상세 정보 및 스탯 | 명조 아카이브')}`} 
-        description={`${t('명조 (Wuthering Waves)')} ${weapon.rarity}${t('성')} ${t(weapon.type)} ${weapon.name}${t('의 상세 스탯, 무기 스킬, 획득처 및 스토리를 확인하세요.')}`}
+        title={`${t(weapon.name)} ${t('상세 정보 및 스탯 | 명조 아카이브')}`} 
+        description={`${t('명조 (Wuthering Waves)')} ${weapon.rarity}${t('성')} ${t(weapon.type)} ${t(weapon.name)}${t('의 상세 스탯, 무기 스킬, 획득처 및 스토리를 확인하세요.')}`}
         image={getIllustrationUrl()}
-        url={`/gallery/ww/weapon/${weapon.name}`}
+        url={`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`}
         modifiedTime={lastUpdatedDate}
         ratingValue={weapon.rarity}
         reviewCount={1}
@@ -447,7 +447,7 @@ const WuwaWeaponDetail = () => {
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: '/gallery/ww' },
           { name: t('무기'), url: '/gallery/ww?menu=무기' },
-          { name: weapon.name, url: `/gallery/ww/weapon/${weapon.name}` }
+          { name: t(weapon.name), url: `/gallery/ww/weapon/${encodeURIComponent(weapon.name)}` }
         ]}
       />
 
@@ -467,7 +467,7 @@ const WuwaWeaponDetail = () => {
           <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
             <img 
               src={getIllustrationUrl()} 
-              alt={weapon.name} 
+              alt={t(weapon.name)} 
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000" 
             />
             {/* Overlay Gradient */}
@@ -532,7 +532,7 @@ const WuwaWeaponDetail = () => {
                     className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-brand-primary"
                     style={{ accentColor: theme.primary }}
                   />
-                  <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5">
+                  <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                     <span>1</span>
                     <span>90</span>
                   </div>
@@ -579,7 +579,7 @@ const WuwaWeaponDetail = () => {
                   className="w-full h-1 bg-white/15 rounded-full appearance-none cursor-pointer"
                   style={{ accentColor: theme.primary }}
                 />
-                <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5">
+                <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                   <span>1</span>
                   <span>5</span>
                 </div>
@@ -663,7 +663,7 @@ const WuwaWeaponDetail = () => {
       
       {weapon && (
         <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-6 mb-12 flex justify-end">
-          <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+          <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
             {t('최종 업데이트')} : {lastUpdatedDate} (v{weapon.releaseVersion || '1.0'})
           </p>
         </div>

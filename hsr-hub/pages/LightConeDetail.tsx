@@ -210,7 +210,7 @@ const LightConeDetail: React.FC = () => {
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-2">
                       <span className="text-xl font-black italic opacity-20" style={{ color: theme.primary }}>01</span>
-                      <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('레벨')}</h2>
+                      <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t('레벨')}</h2>
                     </div>
                   </div>
                   <div className="relative pt-6">
@@ -231,7 +231,7 @@ const LightConeDetail: React.FC = () => {
                       className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-brand-primary"
                       style={{ accentColor: theme.primary }}
                     />
-                    <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5">
+                    <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                       <span>1</span>
                       <span>80</span>
                     </div>
@@ -243,7 +243,7 @@ const LightConeDetail: React.FC = () => {
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-2">
                       <span className="text-xl font-black italic opacity-20" style={{ color: theme.primary }}>02</span>
-                      <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('중첩')}</h2>
+                      <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t('중첩')}</h2>
                     </div>
                   </div>
                   <div className="relative pt-6">
@@ -263,7 +263,7 @@ const LightConeDetail: React.FC = () => {
                       className="w-full h-1 bg-white/15 rounded-full appearance-none cursor-pointer"
                       style={{ accentColor: theme.primary }}
                     />
-                    <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5">
+                    <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                       <span>1</span>
                       <span>5</span>
                     </div>
@@ -274,15 +274,15 @@ const LightConeDetail: React.FC = () => {
               {/* Stats Row */}
               <div className="grid grid-cols-3 gap-4 bg-white/5 p-6 rounded-2xl border border-white/5">
                 <div className="space-y-0.5">
-                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('기초 HP')}</div>
+                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('기초 HP')}</div>
                   <div className="text-xl font-black tabular-nums tracking-tighter italic">{currentStats.hp}</div>
                 </div>
                 <div className="space-y-0.5 border-x border-white/5 px-4">
-                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('기초 공격력')}</div>
+                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('기초 공격력')}</div>
                   <div className="text-xl font-black tabular-nums tracking-tighter italic">{currentStats.atk}</div>
                 </div>
                 <div className="space-y-0.5">
-                  <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('기초 방어력')}</div>
+                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('기초 방어력')}</div>
                   <div className="text-xl font-black tabular-nums tracking-tighter italic">{currentStats.def}</div>
                 </div>
               </div>
@@ -322,7 +322,7 @@ const LightConeDetail: React.FC = () => {
                       </div>
                     ))
                   ) : (
-                    <div className="flex items-center gap-3 text-gray-600 italic py-2 text-xs">
+                    <div className="flex items-center gap-3 text-gray-400 italic py-2 text-xs">
                       <Info size={14} />
                       <span>{t('재료 정보 없음')}</span>
                     </div>
@@ -365,16 +365,16 @@ const LightConeDetail: React.FC = () => {
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-black text-white uppercase tracking-widest">{t('Intelligence Source')}</h4>
-                <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
+                <p className="text-[11px] text-gray-400 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
             </div>
           </div>
           {lc && (
             <div className="mt-4 flex justify-end">
-              <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+              <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
                 {t('최종 업데이트')} : {lastUpdatedDate} (v{lc.releaseVersion || '1.0'})
               </p>
             </div>

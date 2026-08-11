@@ -15,6 +15,15 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
   if (gameId === 'hsr') {
     const fileName = char.isTrailblazer ? (index % 2 === 0 ? 'art01.webp' : 'art01-01.webp') : 'art01.webp';
     imgPath = `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(folderName)}/${fileName}`;
+  } else if (gameId === 'nte') {
+    const targetName = char.folderName || t(char.name);
+    const fileName = char.fileName || targetName;
+    if (char.isTrailblazer) {
+      const genderSuffix = index % 2 === 0 ? '_f' : '_m';
+      imgPath = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(fileName)}${genderSuffix}.webp`;
+    } else {
+      imgPath = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(fileName)}.webp`;
+    }
   } else {
     if (char.isRover) {
       let baseFolderName = char.folderName || `방랑자 · ${char.attribute}`;
@@ -141,6 +150,17 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
   const itemName = item.name || '';
   const imgPath = item.url || getItemUrl(itemName, gameId);
 
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const fallbackGameId = item.gameId || gameId || 'hsr';
+    if (fallbackGameId === 'nte') {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
+    } else if (fallbackGameId === 'ww') {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp";
+    } else {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp";
+    }
+  };
+
   const getRarityStyles = (r: number) => {
     switch (r) {
       case 5: return { border: 'border-yellow-500/20', bg: 'bg-yellow-500/5', accent: 'bg-yellow-500' };
@@ -180,11 +200,13 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
                 src={imgPathM} 
                 alt={`${t(itemName)} (M)`} 
                 className="w-1/2 h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
+                onError={handleError}
               />
               <img 
                 src={imgPathF} 
                 alt={`${t(itemName)} (F)`} 
                 className="w-1/2 h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
+                onError={handleError}
               />
             </>
           ) : (
@@ -192,6 +214,7 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
               src={imgPath || ''} 
               alt={t(itemName)} 
               className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
+              onError={handleError}
             />
           )}
         </div>

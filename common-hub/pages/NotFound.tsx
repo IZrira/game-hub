@@ -26,7 +26,7 @@ const NotFound: React.FC = () => {
         {t('Archive Data Not Found')}
       </h2>
       
-      <p className="text-gray-500 max-w-md mx-auto mb-12 font-medium leading-relaxed">
+      <p className="text-gray-400 max-w-md mx-auto mb-12 font-medium leading-relaxed">
         {t('찾으시는 페이지가 삭제되었거나, 주소가 변경되었을 수 있습니다. 아래 버튼을 통해 메인 화면으로 돌아가거나 갤러리를 탐색해보세요.')}
       </p>
 
@@ -46,7 +46,7 @@ const NotFound: React.FC = () => {
       </div>
 
       <div className="mt-20 pt-12 border-t border-white/5 w-full max-w-2xl">
-        <h3 className="text-[10px] font-black text-gray-600 uppercase tracking-[0.3em] mb-6">{t('Quick Links')}</h3>
+        <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6">{t('Quick Links')}</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <Link to="/gallery/hsr" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all">
             {t('붕괴: 스타레일')}

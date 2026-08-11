@@ -56,7 +56,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
         <div className="absolute inset-0" onClick={onClose} />
         
         <div className="relative w-full max-w-2xl bg-[#121212] border border-white/10 rounded-[48px] p-10 shadow-2xl animate-in zoom-in-95 max-h-[90vh] flex flex-col">
-          <button onClick={onClose} className="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors z-20">
+          <button onClick={onClose} className="absolute top-8 right-8 text-gray-400 hover:text-white transition-colors z-20">
             <X size={28} />
           </button>
 
@@ -83,7 +83,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                   <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary text-[10px] font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
                     COST {echo.cost}
                   </span>
-                  <span className="px-3 py-1 bg-white/5 text-gray-500 text-[10px] font-black rounded-full uppercase tracking-widest border border-white/10">
+                  <span className="px-3 py-1 bg-white/5 text-gray-400 text-[10px] font-black rounded-full uppercase tracking-widest border border-white/10">
                     {(echo as any).enemyInfo?.grade}
                   </span>
                   <div className="flex gap-0.5 items-center bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
@@ -97,7 +97,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                   {isPhantom && (
                     <button 
                       onClick={() => setShowPhantom(!showPhantom)}
-                      className={`text-[10px] font-black px-3 py-1 rounded-full transition-all border ${showPhantom ? 'bg-brand-primary text-white border-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.4)]' : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'}`}
+                      className={`text-[10px] font-black px-3 py-1 rounded-full transition-all border ${showPhantom ? 'bg-brand-primary text-white border-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.4)]' : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'}`}
                     >
                       {showPhantom ? '팬텀 외형 ON' : '원본 외형 ON'}
                     </button>
@@ -110,14 +110,14 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
             <div className="flex gap-8 border-b border-white/5 shrink-0 px-2">
               <button 
                 onClick={() => setActiveTab('ability')} 
-                className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'ability' ? 'text-brand-accent' : 'text-gray-500 hover:text-gray-300'}`}
+                className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'ability' ? 'text-brand-accent' : 'text-gray-400 hover:text-gray-300'}`}
               >
                 ECHO ABILITY
                 {activeTab === 'ability' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-accent animate-in fade-in slide-in-from-left-2" />}
               </button>
               <button 
                 onClick={() => setActiveTab('enemy')} 
-                className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'enemy' ? 'text-brand-accent' : 'text-gray-500 hover:text-gray-300'}`}
+                className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'enemy' ? 'text-brand-accent' : 'text-gray-400 hover:text-gray-300'}`}
               >
                 ENEMY INTEL
                 {activeTab === 'enemy' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-accent animate-in fade-in slide-in-from-left-2" />}
@@ -129,7 +129,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
               <div className="space-y-10 animate-in fade-in duration-300">
                 {/* 세트 정보 및 호버 효과 */}
                 <section className="space-y-4">
-                  <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Sonata Synergy</h4>
+                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Sonata Synergy</h4>
                   <div className="flex flex-wrap gap-3">
                     {(echo as any).sonataSets.map((setName: any) => (
                       <div 
@@ -146,7 +146,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
   
                 {/* 어빌리티 원문 설명 */}
                 <section className="space-y-4">
-                  <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                     <Zap size={14} className="text-brand-accent"/> Ability Description
                   </h4>
                   <div className="bg-white/5 p-6 md:p-8 rounded-[32px] border border-white/5 shadow-inner">
@@ -158,7 +158,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
 
                 {/* 소나타 세트 효과 상세 (툴팁 대신 하단 배치) */}
                 <section className="space-y-6 pt-4 border-t border-white/5">
-                  <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                     <Shield size={14} className="text-brand-accent"/> Sonata Synergy Effects
                   </h4>
                   <div className="space-y-4">
@@ -201,7 +201,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
               <div className="space-y-10 animate-in fade-in duration-300">
                 {/* 저항 캡슐 */}
                 <section className="space-y-4">
-                  <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Resistance Matrix</h4>
+                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Resistance Matrix</h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {Object.entries((echo as any).enemyInfo?.resistances || {}).map(([attr, val]) => (
                       <div key={attr} className="flex items-center gap-3 px-4 py-2.5 rounded-full border border-white/5 bg-white/[0.03]">
@@ -217,7 +217,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
   
                 {/* 드랍 아이템 */}
                 <section className="space-y-4">
-                  <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Drop Materials</h4>
+                  <h4 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">Drop Materials</h4>
                   <div className="flex flex-wrap gap-4">
                     {(echo as any).enemyInfo?.drops.map((itemName: string) => {
                       const db = getItemMetaDB();

@@ -48,7 +48,7 @@ export const GlowStatsDistribution: React.FC<GlowStatsProps> = ({ data, type, ti
           <div key={idx} className="space-y-1.5 group cursor-default">
             <div className="flex justify-between items-end px-1">
               <span className="text-[10px] font-black text-gray-300 group-hover:neon-cyan transition-all">{t(stat.name)}</span>
-              <span className="text-[10px] font-black text-gray-500 italic">{stat.count}</span>
+              <span className="text-[10px] font-black text-gray-400 italic">{stat.count}</span>
             </div>
             <div className="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
               <motion.div

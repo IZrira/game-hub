@@ -73,7 +73,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         <div className="w-px h-4 bg-white/10 mx-1 hidden sm:block" />
 
         {/* 2. 통일된 경로 표시 (Breadcrumbs) */}
-        <nav className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-black text-gray-500 uppercase tracking-widest truncate">
+        <nav className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest truncate">
           
           {/* 홈 */}
           <Link to="/" className="hover:text-brand-accent transition-colors flex items-center gap-1 shrink-0">
@@ -112,7 +112,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         <button 
           onClick={toggleSticky} 
           className={`p-2 rounded-xl transition-all group border ${
-            isSticky ? 'bg-brand-primary/10 border-brand-primary/30 text-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.2)]' : 'bg-white/5 border-white/5 text-gray-500 hover:text-white hover:bg-white/10'
+            isSticky ? 'bg-brand-primary/10 border-brand-primary/30 text-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
           }`}
           title={isSticky ? t('고정 해제') : t('상단 고정')}
         >
@@ -123,7 +123,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         <button 
           onClick={toggleFavorite} 
           className={`p-2 rounded-xl transition-all group border ${
-            isFavorite ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.2)]' : 'bg-white/5 border-white/5 text-gray-500 hover:text-yellow-500/50 hover:bg-white/10'
+            isFavorite ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-yellow-500/50 hover:bg-white/10'
           }`}
         >
           <Star size={16} className={`${isFavorite ? 'fill-yellow-500' : ''}`} />

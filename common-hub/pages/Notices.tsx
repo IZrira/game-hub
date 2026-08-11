@@ -52,7 +52,7 @@ const Notices: React.FC = () => {
                 <Bell className="text-brand-primary" size={40} />
                 {displayTitle}
               </h1>
-              <p className="text-gray-500 font-bold text-lg mt-2">
+              <p className="text-gray-400 font-bold text-lg mt-2">
                 게임의 최신 업데이트와 이벤트 소식을 한눈에 확인하세요.
               </p>
             </div>
@@ -60,9 +60,9 @@ const Notices: React.FC = () => {
 
           <div className="grid gap-4">
             {loading ? (
-              <div className="text-center text-gray-500 py-12">공지사항을 불러오는 중...</div>
+              <div className="text-center text-gray-400 py-12">공지사항을 불러오는 중...</div>
             ) : notices.length === 0 ? (
-              <div className="text-center text-gray-500 py-12">등록된 공지사항이 없습니다.</div>
+              <div className="text-center text-gray-400 py-12">등록된 공지사항이 없습니다.</div>
             ) : (
               notices.map((notice) => (
                 <Link 
@@ -94,8 +94,8 @@ const Notices: React.FC = () => {
 
             {notices.length === 0 && (
               <div className="py-32 text-center space-y-4 bg-[#121212] rounded-[48px] border border-dashed border-white/10">
-                <Bell size={48} className="mx-auto text-gray-700 opacity-20" />
-                <p className="text-gray-500 font-black uppercase tracking-widest">등록된 공지사항이 없습니다</p>
+                <Bell size={48} className="mx-auto text-gray-400 opacity-20" />
+                <p className="text-gray-400 font-black uppercase tracking-widest">등록된 공지사항이 없습니다</p>
               </div>
             )}
           </div>

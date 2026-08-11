@@ -71,14 +71,14 @@ const Detail: React.FC = () => {
           <h1 className="text-2xl md:text-4xl font-black text-white leading-tight mb-8">
             {post.title}
           </h1>
-          <div className="flex items-center gap-4 text-sm text-gray-500">
+          <div className="flex items-center gap-4 text-sm text-gray-400">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white font-black shadow-lg shadow-brand-primary/20">
                 {post.author[0]}
               </div>
               <div className="flex flex-col">
                 <span className="text-brand-light font-bold text-xs uppercase tracking-tight">{post.author}</span>
-                <span className="text-[10px] text-gray-600 font-bold uppercase tracking-widest">{post.date}</span>
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
               </div>
             </div>
           </div>

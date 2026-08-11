@@ -8,6 +8,9 @@
     "prebuild": "node scripts/fetch-notion-data.js",
     "build": "node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js",
     "preview": "vite preview",
+    "prerender": "node scripts/prerender-meta.js",
+    "test": "vitest run",
+    "test:e2e": "node tests/e2e/runner.js",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
@@ -39,12 +42,17 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.2",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
     "@types/node": "^22.14.0",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.0.0",
+    "happy-dom": "^17.1.8",
+    "sharp": "^0.35.3",
     "tailwindcss": "^4.2.2",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^6.2.0",
+    "vitest": "^3.0.5"
   }
 }

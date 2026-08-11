@@ -60,7 +60,7 @@ const PrivacyPolicy: React.FC = () => {
           </p>
         </section>
 
-        <div className="pt-8 text-sm text-gray-500">
+        <div className="pt-8 text-sm text-gray-400">
           <p>본 개인정보처리방침은 2026년 6월 5일부터 적용됩니다.</p>
         </div>
       </main>

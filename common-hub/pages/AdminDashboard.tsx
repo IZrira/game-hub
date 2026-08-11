@@ -455,7 +455,7 @@ const AdminDashboard: React.FC = () => {
               <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-60">RIRA Advanced Admin</span>
             </div>
             <h1 className="text-5xl font-black italic tracking-tighter uppercase leading-none">Management Dashboard</h1>
-            <p className="text-gray-500 font-bold flex items-center gap-2 mt-4">
+            <p className="text-gray-400 font-bold flex items-center gap-2 mt-4">
               <Activity size={14} className="text-emerald-500" />
               시스템 관리자: <span className="text-amber-500/80">{user?.email}</span>
             </p>
@@ -470,7 +470,7 @@ const AdminDashboard: React.FC = () => {
           <nav className="relative z-10 flex flex-wrap bg-black/40 p-2 rounded-3xl border border-white/5 backdrop-blur-xl">
             <button 
               onClick={() => setActiveTab('home')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'home' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'home' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
             >
               <LayoutGrid size={18} /> 게임 선택
             </button>
@@ -478,19 +478,19 @@ const AdminDashboard: React.FC = () => {
               <>
                 <button 
                   onClick={() => setActiveTab('characters')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
                   <Users size={18} /> 캐릭터 관리
                 </button>
                 <button 
                   onClick={() => setActiveTab('tiers')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
                   <Trophy size={18} /> 티어표 관리
                 </button>
                 <button 
                   onClick={() => setActiveTab('notices')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
                   <Bell size={18} /> 공지사항 관리
                 </button>
@@ -517,7 +517,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Honkai: Star Rail</h3>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">붕괴: 스타레일 관리</p>
+                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">붕괴: 스타레일 관리</p>
                 </div>
               </button>
               
@@ -530,7 +530,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Wuthering Waves</h3>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">명조 관리</p>
+                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">명조 관리</p>
                 </div>
               </button>
 
@@ -543,7 +543,7 @@ const AdminDashboard: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Neverness to Everness</h3>
-                  <p className="text-xs text-gray-500 font-bold uppercase tracking-widest">NTE 관리</p>
+                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">NTE 관리</p>
                 </div>
               </button>
             </div>
@@ -554,7 +554,7 @@ const AdminDashboard: React.FC = () => {
               {/* 공통 검색바 */}
           <div className="flex flex-col md:flex-row items-center gap-6 bg-[#111] p-6 rounded-[32px] border border-white/5 shadow-xl">
             <div className="relative flex-1 w-full">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-600" size={20} />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
               <input 
                 type="text"
                 placeholder="관리 대상 캐릭터 검색..."
@@ -564,7 +564,7 @@ const AdminDashboard: React.FC = () => {
               />
             </div>
             <div className="flex items-center gap-6 shrink-0">
-              <div className="px-5 py-3 bg-white/[0.02] border border-white/5 rounded-2xl text-[11px] font-black text-gray-500 uppercase tracking-widest">
+              <div className="px-5 py-3 bg-white/[0.02] border border-white/5 rounded-2xl text-[11px] font-black text-gray-400 uppercase tracking-widest">
                 Matches: <span className="text-amber-500 ml-2">{filteredChars.length}</span>
               </div>
               <div className="w-px h-8 bg-white/10" />
@@ -582,7 +582,7 @@ const AdminDashboard: React.FC = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="bg-white/[0.02] text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">
+                      <tr className="bg-white/[0.02] text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
                         <th className="p-8">캐릭터 프로필</th>
                         <th className="p-8 text-center">속성</th>
                         <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : '운명의 길'}</th>
@@ -603,7 +603,7 @@ const AdminDashboard: React.FC = () => {
                                     const parent = e.currentTarget.parentElement;
                                     if (parent) {
                                       e.currentTarget.style.display = 'none';
-                                      parent.innerHTML = '<div class="w-full h-full bg-white/5 rounded-2xl flex items-center justify-center text-[8px] text-gray-700 font-black uppercase text-center p-2">No Img</div>';
+                                      parent.innerHTML = '<div class="w-full h-full bg-white/5 rounded-2xl flex items-center justify-center text-[8px] text-gray-400 font-black uppercase text-center p-2">No Img</div>';
                                     }
                                   }}
                                 />
@@ -614,7 +614,7 @@ const AdminDashboard: React.FC = () => {
                                 <div className="flex items-center gap-2">
                                   <span className="text-[9px] font-black text-amber-500/40 uppercase">Folder:</span>
                                   <input 
-                                    className="text-[10px] font-bold text-gray-600 bg-transparent border-none p-0 focus:ring-0 w-48"
+                                    className="text-[10px] font-bold text-gray-400 bg-transparent border-none p-0 focus:ring-0 w-48"
                                     value={bc.folder_name}
                                     onChange={async (e) => {
                                       await supabase.from('characters').update({ folder_name: e.target.value }).eq('id', bc.id);
@@ -659,16 +659,16 @@ const AdminDashboard: React.FC = () => {
                   </div>
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">이름</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">이름</label>
                       <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.name} onChange={e => setNewChar({...newChar, name: e.target.value})} placeholder="캐릭터명" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">폴더명 (GitHub)</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">폴더명 (GitHub)</label>
                       <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.folder_name} onChange={e => setNewChar({...newChar, folder_name: e.target.value})} placeholder="정확한 폴더명" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-500 uppercase ml-1">속성</label>
+                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">속성</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.attribute} onChange={e => setNewChar({...newChar, attribute: e.target.value})}>
                           {activeGame === 'ww'
                             ? ['기류', '전도', '회절', '인멸', '용융', '응결'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
@@ -677,7 +677,7 @@ const AdminDashboard: React.FC = () => {
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-500 uppercase ml-1">{activeGame === 'ww' ? '무기' : '운명'}</label>
+                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">{activeGame === 'ww' ? '무기' : '운명'}</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.path} onChange={e => setNewChar({...newChar, path: e.target.value})}>
                           {activeGame === 'ww'
                             ? ['장검', '대검', '직검', '권갑', '증폭기', '권총'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
@@ -687,7 +687,7 @@ const AdminDashboard: React.FC = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">버전 (Version)</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">버전 (Version)</label>
                       <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.version} onChange={e => setNewChar({...newChar, version: e.target.value})} placeholder="예: 4.3" />
                     </div>
                     <button onClick={addCharacterToDB} className="w-full py-5 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3">
@@ -696,7 +696,7 @@ const AdminDashboard: React.FC = () => {
 
                     <div className="pt-6 border-t border-white/5 space-y-4">
                       <div className="flex items-center justify-between">
-                        <label className="text-[10px] font-black text-gray-500 uppercase ml-1">TS 데이터 템플릿</label>
+                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">TS 데이터 템플릿</label>
                         <button 
                           onClick={() => {
                             const id = newChar.name.toLowerCase().replace(/\s+/g, '_');
@@ -755,7 +755,7 @@ export default ${id};`;
                         </button>
                       </div>
                       <div className="bg-black/60 rounded-2xl p-4 border border-white/5 h-48 overflow-y-auto custom-scrollbar">
-                        <pre className="text-[9px] text-gray-500 font-mono leading-relaxed">
+                        <pre className="text-[9px] text-gray-400 font-mono leading-relaxed">
                           {`import { Character } from '../../../../common-hub/types';
 
 const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = {
@@ -768,7 +768,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
   // ... 나머지 데이터`}
                         </pre>
                       </div>
-                      <p className="text-[9px] text-gray-600 leading-tight">
+                      <p className="text-[9px] text-gray-400 leading-tight">
                         * 복사한 코드를 hsr-hub/data/characters/hsr/ 폴더에 .ts 파일로 저장하세요.
                       </p>
                     </div>
@@ -788,7 +788,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     <Database className="text-amber-500" size={20} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">DB Status</p>
+                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">DB Status</p>
                     <p className="text-sm font-black text-white">로드된 티어 데이터: <span className="text-amber-500">{mgmtTiers.length}개</span></p>
                   </div>
                 </div>
@@ -840,7 +840,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       className={`px-8 py-4 rounded-2xl text-xs font-black transition-all border flex items-center gap-3 ${
                         activeCategoryId === cat.id
                           ? 'bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20'
-                          : 'bg-white/5 border-white/5 text-gray-500 hover:border-white/20'
+                          : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20'
                       }`}
                     >
                       {cat.name}
@@ -862,7 +862,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                 return (
                   <div key={tierRank} className="bg-[#111] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl flex flex-col lg:flex-row">
                     <div className="w-full lg:w-32 flex flex-col items-center justify-center p-8 shrink-0 bg-white/[0.02] border-b lg:border-b-0 lg:border-r border-white/5">
-                      <div className={`text-4xl font-black italic tracking-tighter ${tierRank === '?' ? 'text-gray-600' : 'text-amber-500'}`}>
+                      <div className={`text-4xl font-black italic tracking-tighter ${tierRank === '?' ? 'text-gray-400' : 'text-amber-500'}`}>
                         {tierRank === '?' ? '미편성' : tierRank}
                       </div>
                     </div>
@@ -881,7 +881,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                 </div>
                                 <div className="min-w-0">
                                   <p className="text-sm font-black truncate">{bc.name}</p>
-                                  <p className="text-[9px] text-gray-600 font-bold uppercase">{bc.path || bc.weapon_type}</p>
+                                  <p className="text-[9px] text-gray-400 font-bold uppercase">{bc.path || bc.weapon_type}</p>
                                 </div>
                               </div>
 
@@ -898,14 +898,14 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                   <select 
                                     value={tInfo?.change || 'stay'}
                                     onChange={(e) => updateTierInfo(bc.name, activeCategoryId, { change: e.target.value })}
-                                    className={`flex-1 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black p-2 text-center outline-none appearance-none cursor-pointer uppercase ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-500'}`}
+                                    className={`flex-1 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black p-2 text-center outline-none appearance-none cursor-pointer uppercase ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-400'}`}
                                   >
                                     {['stay', 'up', 'down', 'new'].map(c => <option key={c} value={c}>{c}</option>)}
                                   </select>
                                   <div className="flex items-center bg-white/5 border border-white/10 rounded-xl overflow-hidden">
                                     <button 
                                       onClick={() => updateTierInfo(bc.name, activeCategoryId, { display_order: (tInfo?.display_order ?? 100) - 1 })}
-                                      className="px-2 py-2 hover:bg-white/5 text-gray-500 transition-colors"
+                                      className="px-2 py-2 hover:bg-white/5 text-gray-400 transition-colors"
                                     >
                                       -
                                     </button>
@@ -917,7 +917,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                     />
                                     <button 
                                       onClick={() => updateTierInfo(bc.name, activeCategoryId, { display_order: (tInfo?.display_order ?? 100) + 1 })}
-                                      className="px-2 py-2 hover:bg-white/5 text-gray-500 transition-colors"
+                                      className="px-2 py-2 hover:bg-white/5 text-gray-400 transition-colors"
                                     >
                                       +
                                     </button>
@@ -949,7 +949,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                   </div>
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">게임</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">게임</label>
                       <select 
                         className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" 
                         value={newNotice.game_id} 
@@ -961,7 +961,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </select>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">분류</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">분류</label>
                       <select 
                         className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" 
                         value={newNotice.category} 
@@ -974,7 +974,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </select>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">제목</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">제목</label>
                       <input 
                         className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" 
                         value={newNotice.title} 
@@ -983,7 +983,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-500 uppercase ml-1">내용 (Markdown 지원)</label>
+                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">내용 (Markdown 지원)</label>
                       <AdminNoticeEditor
                         initialContent={newNotice.content}
                         onChange={(content) => setNewNotice({...newNotice, content})}
@@ -992,7 +992,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-500 uppercase ml-1">버전 (선택)</label>
+                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">버전 (선택)</label>
                         <input 
                           className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" 
                           value={newNotice.version} 
@@ -1057,11 +1057,11 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                 </span>
                               )}
                               {notice.version && (
-                                <span className="text-[10px] font-black text-gray-500 border border-white/10 px-2 py-1 rounded-full">v{notice.version}</span>
+                                <span className="text-[10px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{notice.version}</span>
                               )}
                             </div>
                             <h3 className="text-lg font-bold">{notice.title}</h3>
-                            <p className="text-xs text-gray-500 font-mono">
+                            <p className="text-xs text-gray-400 font-mono">
                               {new Date(notice.created_at).toLocaleDateString()}
                             </p>
                           </div>
@@ -1082,7 +1082,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                           <div className="pt-6 border-t border-white/5 animate-in fade-in slide-in-from-top-2 duration-300" onClick={e => e.stopPropagation()}>
                             <div className="bg-black/60 rounded-2xl p-6 border border-white/5 space-y-4">
                               <div className="flex items-center justify-between">
-                                <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest">Notice Content</span>
+                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Notice Content</span>
                                 <button 
                                   onClick={() => {
                                     navigator.clipboard.writeText(notice.content);
@@ -1102,7 +1102,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </div>
                     ))}
                     {mgmtNotices.length === 0 && (
-                      <div className="text-center py-12 text-gray-500 text-sm font-bold">등록된 공지사항이 없습니다.</div>
+                      <div className="text-center py-12 text-gray-400 text-sm font-bold">등록된 공지사항이 없습니다.</div>
                     )}
                   </div>
                 </div>

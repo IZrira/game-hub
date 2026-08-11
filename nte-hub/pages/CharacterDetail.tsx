@@ -36,10 +36,12 @@ import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal
 import NTESkillAndAwakeningSection from '../components/NTESkillAndAwakeningSection';
 import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent, CDN_URL } from '../../common-hub/utils/assetManager';
+const CDN_BASE = CDN_URL;
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -81,6 +83,8 @@ const CharacterDetailNTE: React.FC = () => {
   const [levelIdx, setLevelIdx] = useState(7);
   
   const [gender, setGender] = useState<'m' | 'f'>('f');
+  const [selectedSkinIndex, setSelectedSkinIndex] = useState<number>(0);
+  const [isSkinDropdownOpen, setIsSkinDropdownOpen] = useState(false);
   
   const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
@@ -99,6 +103,24 @@ const CharacterDetailNTE: React.FC = () => {
       setIsASMode(true);
     } else {
       setIsASMode(false);
+    }
+  }, [rawChar]);
+
+  // Preload base and skin images to prevent delay when switching skins
+  useEffect(() => {
+    if (rawChar) {
+      const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+      const folderName = rawChar.folderName || rawChar.name || '';
+      
+      const baseImg = new Image();
+      baseImg.src = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(folderName)}.webp`;
+
+      if (rawChar.skins && rawChar.skins.length > 0) {
+        rawChar.skins.forEach((skinName: string) => {
+          const img = new Image();
+          img.src = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(skinName)}.webp`;
+        });
+      }
     }
   }, [rawChar]);
 
@@ -126,14 +148,7 @@ const CharacterDetailNTE: React.FC = () => {
     };
 
     // Convert NTE skills to structured array for SkillAndEidolonSection
-    const skills = [];
-    if (rawChar.basicAttack) skills.push({ id: 'basic', name: '일반 공격', type: '기본 공격', description: rawChar.basicAttack, tag: '일반 공격', icon: '일반 공격' });
-    if (rawChar.citySkill) skills.push({ id: 'city', name: '도시 스킬', type: '도시 스킬', description: rawChar.citySkill, tag: '도시 스킬', icon: '도시 스킬' });
-    if (rawChar.virailSkill) skills.push({ id: 'virail', name: '바이레일 스킬', type: '바이레일 스킬', description: rawChar.virailSkill, tag: '바이레일 스킬', icon: '바이레일 스킬' });
-    if (rawChar.ultimateSkill) skills.push({ id: 'ultimate', name: '울티메이트', type: '울티메이트', description: rawChar.ultimateSkill, tag: '울티메이트', icon: '울티메이트' });
-    if (rawChar.supportSkill) skills.push({ id: 'support', name: '서포트 스킬', type: '서포트 스킬', description: rawChar.supportSkill, tag: '서포트 스킬', icon: '서포트 스킬' });
-    if (rawChar.passiveSkill1) skills.push({ id: 'passive1', name: '패시브 스킬 1', type: '패시브 스킬', description: rawChar.passiveSkill1, tag: '패시브 스킬 1', icon: getSkillIcon(rawChar.passiveSkill1, '패시브 스킬 1') });
-    if (rawChar.passiveSkill2) skills.push({ id: 'passive2', name: '패시브 스킬 2', type: '패시브 스킬', description: rawChar.passiveSkill2, tag: '패시브 스킬 2', icon: getSkillIcon(rawChar.passiveSkill2, '패시브 스킬 2') });
+    const skills = rawChar.skills || [];
 
     const eidolons = [];
     if (rawChar.awakenings) {
@@ -150,15 +165,31 @@ const CharacterDetailNTE: React.FC = () => {
           });
         });
       } else {
-        eidolons.push({ id: 'awakenings', rank: 1, name: '각성', description: rawChar.awakenings, iconKey: '각성1' });
+        // Fallback: split by double newlines (\n\n) to extract 6 awakenings (Name on first line, desc on rest)
+        const blocks = rawChar.awakenings.split(/\n\n+/).filter((p: string) => p.trim());
+        if (blocks.length === 6 || blocks.length > 1) {
+          blocks.forEach((block: string, index: number) => {
+            const lines = block.split('\n');
+            const name = lines[0].replace(/\*\*/g, '').trim();
+            const description = lines.slice(1).join('\n').trim();
+            eidolons.push({ 
+              id: `awakenings_${index+1}`, 
+              rank: index + 1, 
+              name: name || `각성 ${index + 1}`, 
+              description: description || block.trim(), 
+              iconKey: `각성${index + 1}` 
+            });
+          });
+        } else {
+          eidolons.push({ id: 'awakenings', rank: 1, name: '각성', description: rawChar.awakenings, iconKey: '각성1' });
+        }
       }
     }
-    if (rawChar.resonance) eidolons.push({ id: 'resonance', rank: eidolons.length + 1, name: '공명', description: rawChar.resonance, iconKey: '공명' });
-
     // Parse growth stats for HSR level slider
     const parsedBaseStats: any = {};
     if (rawChar.growthStats) {
-      const lines = rawChar.growthStats.split('\n');
+      const cleanStats = rawChar.growthStats.replace(/\*\*/g, '');
+      const lines = cleanStats.split('\n');
       for (const line of lines) {
         // Parse 5 values: Level, HP, ATK, DEF, CRIT Rate, CRIT DMG
         const match = line.match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d\.%]+)\s+([\d\.%]+)/);
@@ -179,7 +210,7 @@ const CharacterDetailNTE: React.FC = () => {
       skills,
       eidolons,
       baseStats: Object.keys(parsedBaseStats).length > 0 ? parsedBaseStats : null,
-      materials_v2: {
+      materials_v2: rawChar.materials_v2 || {
         ascension: rawChar.ascensionMaterials ? [{ name: rawChar.ascensionMaterials }] : [],
         traces: rawChar.skillMaterials ? [{ name: rawChar.skillMaterials }] : []
       }
@@ -204,6 +235,12 @@ const CharacterDetailNTE: React.FC = () => {
       '인멸': { primary: '#7064d7', secondary: '#483c9c', shadow: 'rgba(112, 100, 215, 0.4)' },
       '용융': { primary: '#ff6252', secondary: '#d93a2b', shadow: 'rgba(255, 98, 82, 0.4)' },
       '응결': { primary: '#52b0ff', secondary: '#2b8ad9', shadow: 'rgba(82, 176, 255, 0.4)' },
+      '빛': { primary: '#f1f5f9', secondary: '#ffffff', shadow: 'rgba(241, 245, 249, 0.4)' },
+      '주': { primary: '#f43f5e', secondary: '#fb7185', shadow: 'rgba(244, 63, 94, 0.4)' },
+      '암': { primary: '#a78bfa', secondary: '#c4b5fd', shadow: 'rgba(167, 139, 250, 0.4)' },
+      '령': { primary: '#34d399', secondary: '#6ee7b7', shadow: 'rgba(52, 211, 153, 0.4)' },
+      '상': { primary: '#fbbf24', secondary: '#fde047', shadow: 'rgba(251, 191, 36, 0.4)' },
+      '혼': { primary: '#38bdf8', secondary: '#7dd3fc', shadow: 'rgba(56, 189, 248, 0.4)' },
       'Fire': { primary: '#ff6252', secondary: '#d93a2b', shadow: 'rgba(255, 98, 82, 0.4)' },
       'Ice': { primary: '#52b0ff', secondary: '#2b8ad9', shadow: 'rgba(82, 176, 255, 0.4)' },
       'Wind': { primary: '#44d7a8', secondary: '#23a37b', shadow: 'rgba(68, 215, 168, 0.4)' },
@@ -212,7 +249,8 @@ const CharacterDetailNTE: React.FC = () => {
       'Quantum': { primary: '#7064d7', secondary: '#483c9c', shadow: 'rgba(112, 100, 215, 0.4)' },
       'Imaginary': { primary: '#e3d266', secondary: '#b8a63c', shadow: 'rgba(227, 210, 102, 0.4)' },
     };
-    return ELEMENT_THEMES[char.attribute] || { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
+    const currentAttr = char.attribute || char.abilityAttribute;
+    return ELEMENT_THEMES[currentAttr] || { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
   }, [char]);
 
   const specialTerms = useMemo(() => {
@@ -281,40 +319,127 @@ const CharacterDetailNTE: React.FC = () => {
     const sortedKeys = [...Object.keys(specialTerms), ...protectedTerms].sort((a, b) => b.length - a.length);
     
     // Construct regex
-    const combinedRegex = new RegExp(`({icon:[^}]+}|${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
+    const combinedRegex = new RegExp(`({icon:[^}]+}|\\*\\*[^*]+\\*\\*|==[^=]+==|${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|(?:[가-힣a-zA-Z]+속성\\s*)?(?:이능력\\s*)?피해(?!\\s*보너스)|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
     
-    return processedText.split(combinedRegex).map((part, i) => {
-      // 0. 아이콘 태그 매칭 ({icon:mouse_left})
-      const iconMatch = part.match(/\{icon:([^}]+)\}/);
-      if (iconMatch) {
-        const iconName = iconMatch[1];
-        return (
-          <img 
-            key={i} 
-            src={`/assets/icons/${iconName}.png`} 
-            className="inline-icon" 
-            alt={iconName}
-            onError={(e) => (e.currentTarget.style.display = 'none')}
-          />
-        );
-      }
-
-      // 1. If part is in protectedTerms, it just falls through to plain text
-      if (protectedTerms.includes(part)) return part;
-
-      // Prioritize special terms (with tooltip)
-      if (specialTerms[part]) {
-        return (
-          <span key={i} className="inline-flex border-b border-dashed cursor-help font-bold px-0.5" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
-            onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[part], x: r.left, y: r.top }); }}
-            onMouseLeave={() => setTooltip(null)}>{part}</span>
-        );
-      }
-
-      // Highlight numbers
-      if (/^[+-]?\d+(?:\.\d+)?%?$/.test(part)) return <span key={i} className="font-black text-[#FFD600]">{part}</span>;
+    return text.split('\n').map((line, lineIdx, linesArray) => {
+      const processedLine = line.replace(/<[^>]*>/g, '').replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
       
-      return part;
+      const parts = processedLine.split(combinedRegex).map((part, i) => {
+        if (!part) return null;
+
+        // Regex for recursively finding special terms
+        const innerRegex = new RegExp(`(${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+
+        // Markdown bold
+        if (part.startsWith('**') && part.endsWith('**')) {
+          const innerText = part.slice(2, -2);
+          const cleanText = innerText.trim().replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+          
+          if (specialTerms[cleanText]) {
+            return (
+              <span key={i} className="font-black text-white inline-flex border-b border-dashed cursor-help" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
+                onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[cleanText], x: r.left, y: r.top }); }}
+                onMouseLeave={() => setTooltip(null)}>{innerText}</span>
+            );
+          }
+          
+          const innerParts = innerText.split(innerRegex);
+          return (
+            <span key={i} className="font-black text-white">
+              {innerParts.map((innerPart, j) => {
+                if (specialTerms[innerPart]) {
+                  return (
+                    <span key={j} className="inline-flex border-b border-dashed cursor-help font-black" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
+                      onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[innerPart], x: r.left, y: r.top }); }}
+                      onMouseLeave={() => setTooltip(null)}>{innerPart}</span>
+                  );
+                }
+                return innerPart;
+              })}
+            </span>
+          );
+        }
+
+        // Markdown highlight
+        if (part.startsWith('==') && part.endsWith('==')) {
+          const innerText = part.slice(2, -2);
+          const cleanText = innerText.trim().replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+          
+          if (specialTerms[cleanText]) {
+            return (
+              <span key={i} className="font-black inline-flex border-b border-dashed cursor-help" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
+                onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[cleanText], x: r.left, y: r.top }); }}
+                onMouseLeave={() => setTooltip(null)}>{innerText}</span>
+            );
+          }
+          
+          const innerParts = innerText.split(innerRegex);
+          return (
+            <span key={i} className="font-black" style={{ color: '#b892ff' }}>
+              {innerParts.map((innerPart, j) => {
+                if (specialTerms[innerPart]) {
+                  return (
+                    <span key={j} className="inline-flex border-b border-dashed cursor-help font-black" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
+                      onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[innerPart], x: r.left, y: r.top }); }}
+                      onMouseLeave={() => setTooltip(null)}>{innerPart}</span>
+                  );
+                }
+                return innerPart;
+              })}
+            </span>
+          );
+        }
+
+        // 0. 아이콘 태그 매칭 ({icon:mouse_left})
+        const iconMatch = part.match(/\{icon:([^}]+)\}/);
+        if (iconMatch) {
+          const iconName = iconMatch[1];
+          return (
+            <img 
+              key={i} 
+              src={`/assets/icons/${iconName}.png`} 
+              className="inline-icon" 
+              alt={iconName}
+              onError={(e) => (e.currentTarget.style.display = 'none')}
+            />
+          );
+        }
+
+        // 1. If part is in protectedTerms, it just falls through to plain text
+        if (protectedTerms.includes(part)) return part;
+
+        // Prioritize special terms (with tooltip)
+        if (specialTerms[part]) {
+          return (
+            <span key={i} className="inline-flex border-b border-dashed cursor-help font-bold px-0.5" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
+              onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[part], x: r.left, y: r.top }); }}
+              onMouseLeave={() => setTooltip(null)}>{part}</span>
+          );
+        }
+
+        // Highlight numbers
+        if (/^[+-]?\d+(?:\.\d+)?%?$/.test(part)) return <span key={i} className="font-black text-[#FFD600]">{part}</span>;
+        
+        // Highlight damage
+        if (part.endsWith('피해') && !part.includes('보너스') && part.length <= 15) {
+          return <span key={i} className="font-black" style={{ color: '#c4b5fd' }}>{part}</span>;
+        }
+        
+        return part;
+      });
+
+      const isTitleLine = /^<[^>]*>|^\*\*.+?\*\*$/.test(line.trim().replace(/<[^>]*>/g, ''));
+      // HTML 태그를 무시하고 텍스트가 온전히 ** 로 둘러싸여 있는지 확인합니다.
+      const isPureBold = /^\*\*.+?\*\*$/.test(line.trim());
+      const marginClass = lineIdx === linesArray.length - 1 
+        ? (isPureBold && lineIdx !== 0 ? "mt-4" : "")
+        : (isPureBold ? (lineIdx === 0 ? "mb-1.5" : "mb-1.5 mt-4") : "mb-5");
+
+      return (
+        <div key={lineIdx} className={marginClass}>
+          {parts}
+        </div>
+      );
     });
   };
 
@@ -322,17 +447,17 @@ const CharacterDetailNTE: React.FC = () => {
     const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
     const folderName = char.folderName || char.name || '';
     
-    let fileName = 'art01.webp';
-    if (char.isTrailblazer) {
-      fileName = gender === 'f' ? "art01.webp" : "art01-01.webp";
-    } else if (isASMode && char.hasASBuff) {
-      // AS 전용 일러스트 (파일명 규칙: art01_as.webp)
-      fileName = 'art01_as.webp';
-    }
-    
     if (char.fixedUrl) return char.fixedUrl;
     
-    return `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(folderName)}/${fileName}`;
+    const isProtagonist = folderName === '감정사';
+    const suffix = isProtagonist ? `_${gender}` : '';
+
+    if (char.skins && char.skins.length > 0 && selectedSkinIndex > 0) {
+      const skinName = char.skins[selectedSkinIndex - 1];
+      return `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(skinName)}${suffix}.webp`;
+    }
+    
+    return `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(folderName)}${suffix}.webp`;
   };
 
   // 1. 웹 공유 API (Native Share)
@@ -394,7 +519,7 @@ const CharacterDetailNTE: React.FC = () => {
     const asc = char.materials_v2.ascension?.map((m: any) => `${t(m.name)} x${typeof m.count === 'number' ? m.count.toLocaleString() : m.count}`).join(', ') || t('정보 없음');
     const trc = char.materials_v2.traces?.map((m: any) => `${t(m.name)} x${typeof m.count === 'number' ? m.count.toLocaleString() : m.count}`).join(', ') || t('정보 없음');
     
-    const text = `[${t(char.name)} ${t('육성 재료 리스트')}]\n\n■ ${t('돌파 재료')}\n${asc}\n\n■ ${t('행적 재료')}\n${trc}\n\n출처: RIRA ARCHIVE`;
+    const text = `[${t(char.name)} ${t('육성 재료 리스트')}]\n\n■ ${t('돌파 재료')}\n${asc}\n\n■ ${t('스킬 재료')}\n${trc}\n\n출처: RIRA ARCHIVE`;
 
     // 2. 최신 navigator.clipboard 시도
     if (navigator.clipboard && window.isSecureContext) {
@@ -487,6 +612,7 @@ const CharacterDetailNTE: React.FC = () => {
         itemNameEn={selectedItem || ''} 
         isOpen={!!selectedItem} 
         onClose={() => setSelectedItem(null)} 
+        gameId={gameId}
       />
 
       {/* Tooltip */}
@@ -539,7 +665,7 @@ const CharacterDetailNTE: React.FC = () => {
                   </h1>
                   <Link 
                     to={`/gallery/${gameId}/character/${char.id}/guide`} 
-                    className="mb-1 flex items-center gap-2 px-5 py-2.5 bg-brand-primary text-white rounded-2xl text-[10px] font-black shadow-[0_0_20px_rgba(var(--theme-primary-rgb),0.4)] hover:scale-105 transition-all active:scale-95 border border-white/20 whitespace-nowrap"
+                    className={`mb-1 flex items-center gap-2 px-5 py-2.5 bg-brand-primary ${char.attribute === '빛' || char.abilityAttribute === '빛' ? 'text-gray-900' : 'text-white'} rounded-2xl text-[10px] font-black shadow-[0_0_20px_rgba(var(--theme-primary-rgb),0.4)] hover:scale-105 transition-all active:scale-95 border border-white/20 whitespace-nowrap`}
                     style={{ backgroundColor: theme.primary }}
                   >
                     <BookOpen size={14} /> {t('상세 공략')}
@@ -563,27 +689,73 @@ const CharacterDetailNTE: React.FC = () => {
           {/* Right: Consolidated Controls and Summary */}
           <div className="space-y-6 h-full flex flex-col">
             
-            {/* 01. Active Controls (AS Mode / Gender) */}
-            <div className="flex flex-wrap items-center gap-3 px-2">
-              {rawChar?.hasASBuff && (
-                <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>
-                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>{t('AS Remake')}</button>
-                </div>
-              )}
-              {char.isTrailblazer && (
-                <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('남성')}</button>
-                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('여성')}</button>
-                </div>
-              )}
+            {/* 01. Active Controls (AS Mode / Gender / Skins) */}
+            <div className="flex flex-col gap-4 mb-6">
+              <div className="flex flex-wrap items-center gap-3 relative z-30">
+                {rawChar?.hasASBuff && (
+                  <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
+                    <button onClick={() => setIsASMode(false)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>
+                    <button onClick={() => setIsASMode(true)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${isASMode ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500'}`}>{t('AS Remake')}</button>
+                  </div>
+                )}
+                {char.isTrailblazer && (
+                  <div className="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 shadow-inner">
+                    <span className="text-[10px] font-black text-gray-400 pl-2 pr-1">{t('성별')}</span>
+                    <button onClick={() => setGender('m')} className={`px-4 py-1 rounded-lg text-[10px] font-black transition-all ${gender === 'm' ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500 hover:bg-white/5'}`} style={gender === 'm' ? { backgroundColor: theme.primary } : {}}>{t('남성')}</button>
+                    <button onClick={() => setGender('f')} className={`px-4 py-1 rounded-lg text-[10px] font-black transition-all ${gender === 'f' ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500 hover:bg-white/5'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>
+                  </div>
+                )}
+                {char?.skins && char.skins.length > 0 && (
+                  <div className="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 shadow-inner">
+                    <span className="text-[10px] font-black text-gray-400 pl-2 pr-1">{t('스킨')}</span>
+                    <div className="relative">
+                      <button 
+                        onClick={() => setIsSkinDropdownOpen(!isSkinDropdownOpen)}
+                        className={`flex items-center justify-between min-w-[140px] px-4 py-1 rounded-lg text-[10px] font-black transition-all bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg hover:scale-[1.02] active:scale-[0.98]`}
+                        style={{ backgroundColor: theme.primary }}
+                      >
+                        <span className="truncate max-w-[100px]">{selectedSkinIndex === 0 ? t('기본') : t(char.skins[selectedSkinIndex - 1])}</span>
+                        <ChevronDown size={14} className={`ml-2 flex-shrink-0 transition-transform ${isSkinDropdownOpen ? 'rotate-180' : ''}`} />
+                      </button>
+                      
+                      {isSkinDropdownOpen && (
+                        <>
+                          <div className="fixed inset-0 z-40" onClick={() => setIsSkinDropdownOpen(false)} />
+                          <div className="absolute top-full left-0 mt-2 w-max min-w-full bg-[#121212] border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col py-1 backdrop-blur-xl">
+                            <button 
+                              onClick={() => { setSelectedSkinIndex(0); setIsSkinDropdownOpen(false); }}
+                              className={`px-4 py-2.5 text-[10px] font-black text-left transition-all ${selectedSkinIndex === 0 ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                            >
+                              {t('기본')}
+                            </button>
+                            {char.skins.map((skinName: string, idx: number) => (
+                              <button 
+                                key={idx} 
+                                onClick={() => { setSelectedSkinIndex(idx + 1); setIsSkinDropdownOpen(false); }}
+                                className={`px-4 py-2.5 text-[10px] font-black text-left transition-all ${selectedSkinIndex === idx + 1 ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                              >
+                                {t(skinName)}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
 
             {/* 02. Level Slider & Visual Stats Card */}
             <div className="glass-card p-6 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                  <div className="relative w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl overflow-hidden" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>
+                    <span className="relative z-10">01</span>
+                    {char.abilityAttribute && (
+                      <img src={`${CDN_BASE}common/type/${char.abilityAttribute}.webp`} className="absolute inset-0 w-full h-full object-cover opacity-30" alt="" />
+                    )}
+                  </div>
                   <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400 italic">{t('기본 스텟')}</h2>
                 </div>
                 <div className="flex flex-col gap-1.5 flex-1 max-w-md relative pt-6">
@@ -625,7 +797,7 @@ const CharacterDetailNTE: React.FC = () => {
                 </div>
               ) : rawChar?.growthStats ? (
                 <div className="p-4 bg-white/5 rounded-2xl border border-white/10 text-white/80 whitespace-pre-wrap font-mono text-sm">
-                  {rawChar.growthStats}
+                  {rawChar.growthStats.replace(/\*\*/g, '')}
                 </div>
               ) : (
                 <div className="p-4 text-center text-gray-500">데이터 없음</div>
@@ -639,7 +811,12 @@ const CharacterDetailNTE: React.FC = () => {
                 className="w-full p-6 flex items-center justify-between group hover:bg-white/[0.02] transition-colors"
               >
                 <div className="flex items-center gap-4">
-                   <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl transition-transform group-hover:scale-110" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
+                   <div className="relative w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl overflow-hidden transition-transform group-hover:scale-110" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>
+                     <span className="relative z-10">02</span>
+                     {char.abilityAttribute && (
+                       <img src={`${CDN_BASE}common/type/${char.abilityAttribute}.webp`} className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity" alt="" />
+                     )}
+                   </div>
                    <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors italic">{t('캐릭터 소개')}</h2>
                 </div>
                 <div className={`p-2 rounded-full border border-white/10 transition-transform duration-500 ${isProfileExpanded ? 'rotate-180 border-brand-primary' : ''}`}>
@@ -670,13 +847,13 @@ const CharacterDetailNTE: React.FC = () => {
           <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isMetadataExpanded ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6">
               {/* Metadata Cards Grid */}
-              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-4">
                 <MetadataCard label={t("이능력 속성")} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
                 <MetadataCard label={t("아크")} value={t(char.arc)} icon={<Compass size={20} />} theme={theme} />
                 <MetadataCard label={t("소속")} value={t(char.affiliation || '알 수 없음')} icon={<MapPin size={20} />} theme={theme} />
                 <MetadataCard label={t("계약")} value={t(char.contract || '알 수 없음')} icon={<Book size={20} />} theme={theme} />
                 <MetadataCard label={t("생일")} value={t(char.birthday || '알 수 없음')} icon={<Calendar size={20} />} theme={theme} />
-                <MetadataCard label={t("전투 포지션")} value={t(char.combatRoles || '알 수 없음')} icon={<Swords size={20} />} theme={theme} />
+                <MetadataCard label={t("전투 포지션")} value={char.roles && char.roles.length > 0 ? char.roles.map((r: string) => t(r)).join(', ') : t('알 수 없음')} icon={<Swords size={20} />} theme={theme} />
               </div>
 
               {/* Voice Actors Card */}
@@ -717,17 +894,17 @@ const CharacterDetailNTE: React.FC = () => {
                  </button>
                </div>
                <div className="flex flex-wrap justify-center gap-8 px-4">
-                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} gameId="nte" onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
 
                </div>
             </div>
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                  <Sparkles size={22} className="text-gray-500" />
-                 <span className="text-2xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span>
+                 <span className="text-2xl font-black uppercase tracking-tighter italic">{t("스킬 재료")}</span>
                </div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start justify-center">
-                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} gameId="nte" onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
                   <div className="w-8 shrink-0" />
                </div>
             </div>
@@ -743,6 +920,13 @@ const CharacterDetailNTE: React.FC = () => {
             setTooltip={setTooltip}
         />
         
+        {/* Recommended Team Formations */}
+        <SynergyDeck 
+          characterName={char?.id || charName || ''} 
+          gameId="nte" 
+          theme={theme} 
+        />
+        
 
         {/* E-E-A-T Authorship & Methodology Note */}
         <section className="mt-12 pt-8 border-t border-white/5">
@@ -756,7 +940,7 @@ const CharacterDetailNTE: React.FC = () => {
                 <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
             </div>
           </div>
@@ -769,7 +953,7 @@ const CharacterDetailNTE: React.FC = () => {
                 <MessageSquareWarning size={14} />
                 {t('데이터 오류 제보')}
               </button>
-              <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+              <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
                 {t('최종 업데이트')} : {lastUpdatedDate} (v{char.releaseVersion || '1.0'})
               </p>
             </div>
@@ -782,35 +966,7 @@ const CharacterDetailNTE: React.FC = () => {
             onCommentsLoaded={setCommentsData}
           />
 
-          {/* Internal Linking: Related Characters */}
-          {relatedCharacters.length > 0 && (
-            <section className="mt-12 pt-8 border-t border-white/5">
-              <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2 mb-6">
-                Related Characters
-                <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 not-italic">
-                  {t('추천')}
-                </span>
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                {relatedCharacters.map((rel: any) => (
-                  <Link 
-                    key={rel.id} 
-                    to={`/gallery/${gameId}/character/${rel.id}`}
-                    className="flex flex-col items-center p-4 rounded-[20px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all hover:scale-[1.02] group"
-                  >
-                    <img 
-                      src={`${CDN_URL}/nte images/characters/${rel.id}/portrait.png`}
-                      alt={t(rel.name)}
-                      className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-transparent group-hover:border-brand-primary/50 transition-colors"
-                      onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp' }}
-                    />
-                    <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">{t(rel.name)}</span>
-                    <span className="text-xs font-medium text-gray-500">{t(rel.arc)}</span>
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
+
         </section>
 
         <FeedbackReportModal 
@@ -863,7 +1019,7 @@ const MetadataCard: React.FC<{
 
 const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
   <div className="space-y-4 group">
-    <div className="text-[11px] font-black text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
+    <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
     <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
   </div>
 );

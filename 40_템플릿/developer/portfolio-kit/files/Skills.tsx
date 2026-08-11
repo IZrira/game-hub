@@ -40,7 +40,7 @@ export default function Skills() {
                 <h3 className="font-bold text-lg mb-3">{g.title}</h3>
                 <ul className="space-y-2">
                   {g.items.map(item => (
-                    <li key={item} className="text-sm text-gray-600 flex items-start gap-2">
+                    <li key={item} className="text-sm text-gray-400 flex items-start gap-2">
                       <span className="text-emerald-600 mt-0.5">▸</span>
                       <span>{item}</span>
                     </li>

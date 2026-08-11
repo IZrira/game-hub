@@ -30,7 +30,7 @@ const NoticeDetail: React.FC = () => {
       <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
         <PageHeader category="공지사항" title="로딩 중..." />
         <div className="flex items-center justify-center h-[50vh]">
-          <span className="text-gray-500 font-bold">공지사항을 불러오는 중...</span>
+          <span className="text-gray-400 font-bold">공지사항을 불러오는 중...</span>
         </div>
       </div>
     );
@@ -41,7 +41,7 @@ const NoticeDetail: React.FC = () => {
       <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
         <PageHeader category="공지사항" title="오류" />
         <div className="flex flex-col items-center justify-center h-[50vh] gap-4">
-          <span className="text-gray-500 font-bold text-xl">공지사항을 찾을 수 없습니다.</span>
+          <span className="text-gray-400 font-bold text-xl">공지사항을 찾을 수 없습니다.</span>
           <button 
             onClick={() => navigate('/notices')}
             className="px-6 py-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center gap-2"
@@ -84,7 +84,7 @@ const NoticeDetail: React.FC = () => {
                 {notice.title}
               </h1>
             </div>
-            <div className="flex items-center gap-2 text-sm text-gray-500 font-bold shrink-0">
+            <div className="flex items-center gap-2 text-sm text-gray-400 font-bold shrink-0">
               <Calendar size={16} />
               {notice.createdAt}
             </div>

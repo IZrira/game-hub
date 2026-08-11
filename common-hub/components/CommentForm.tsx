@@ -220,7 +220,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="flex flex-col md:flex-row gap-4">
           <div className="flex-1">
-            <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5">
+            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">
               Posting as
             </label>
             <div className="flex items-center gap-3 w-full bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white text-sm">
@@ -243,7 +243,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
 
           {showRating && (
             <div className="w-full md:w-32">
-              <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5">
+              <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest mb-1.5">
                 Rating
               </label>
               <select
@@ -264,7 +264,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
 
         <div className="relative space-y-2">
           <div className="flex items-center justify-between">
-            <label className="block text-[10px] font-black text-gray-500 uppercase tracking-widest">
+            <label className="block text-[10px] font-black text-gray-400 uppercase tracking-widest">
               Your Comment
             </label>
             {/* Tiptap Toolbar */}
@@ -371,7 +371,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
 
               <div className="flex items-center gap-3">
                 <div className="h-[1px] flex-1 bg-white/5"></div>
-                <span className="text-[10px] text-gray-500 uppercase font-bold">OR</span>
+                <span className="text-[10px] text-gray-400 uppercase font-bold">OR</span>
                 <div className="h-[1px] flex-1 bg-white/5"></div>
               </div>
 
@@ -435,7 +435,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
           <div className="flex justify-between items-center mt-2">
             <span
               className={`text-xs ${
-                commentText.length > 500 ? 'text-red-400' : 'text-gray-500'
+                commentText.length > 500 ? 'text-red-400' : 'text-gray-400'
               }`}
             >
               {commentText.length} / 500

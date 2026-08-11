@@ -38,7 +38,7 @@ const ArchiveEntryCard: React.FC<ArchiveEntryCardProps> = ({ title, description,
           <div className={`p-4 rounded-2xl bg-gray-950 border border-white/5 ${currentTheme.text} transition-all duration-500 group-hover:scale-110 shadow-inner`}>
             {icon}
           </div>
-          <span className="text-[9px] text-gray-600 font-mono tracking-[0.3em] uppercase opacity-50">
+          <span className="text-[9px] text-gray-400 font-mono tracking-[0.3em] uppercase opacity-50">
             SECURED // ACCESS
           </span>
         </div>
@@ -51,13 +51,13 @@ const ArchiveEntryCard: React.FC<ArchiveEntryCardProps> = ({ title, description,
               <span className={`relative inline-flex rounded-full h-2 w-2 ${currentTheme.dot}`}></span>
             </span>
           </h3>
-          <p className="text-gray-500 text-sm leading-relaxed font-bold">
+          <p className="text-gray-400 text-sm leading-relaxed font-bold">
             {description}
           </p>
         </div>
       </div>
 
-      <div className="flex justify-end items-center gap-3 text-[10px] text-gray-600 font-black tracking-widest uppercase">
+      <div className="flex justify-end items-center gap-3 text-[10px] text-gray-400 font-black tracking-widest uppercase">
         <span className="group-hover:text-white transition-colors duration-300">Enter Archive</span>
         <div className={`p-3 rounded-full bg-gray-950 border border-white/5 transition-all duration-500 ${currentTheme.iconBg}`}>
           <ArrowRight className={`transition-colors duration-500 ${currentTheme.iconColor}`} size={16} />

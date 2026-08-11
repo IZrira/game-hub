@@ -90,7 +90,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
     return (
       <div className="w-full py-32 text-center">
         <div className="inline-block w-12 h-12 border-[3px] border-brand-accent border-t-transparent rounded-full animate-spin mb-6"></div>
-        <p className="text-gray-500 font-black uppercase tracking-[0.3em] text-xs italic">Synchronizing Item DB...</p>
+        <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-xs italic">Synchronizing Item DB...</p>
       </div>
     );
   }
@@ -102,19 +102,19 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="space-y-1">
             <h2 className="text-3xl font-black tracking-tight text-white uppercase italic">
-              {t('Archive')} <span className="text-gray-500">Index</span>
+              {t('Archive')} <span className="text-gray-400">Index</span>
             </h2>
-            <p className="text-[10px] text-gray-600 font-bold tracking-[0.2em] uppercase">Status: Core Database Synchronized</p>
+            <p className="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase">Status: Core Database Synchronized</p>
           </div>
         </div>
 
         <div className="flex flex-col xl:flex-row gap-4 items-center">
           <div className="relative w-full xl:w-80">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
             <input 
               type="text" 
               placeholder={t('Search database...')} 
-              className="w-full h-11 bg-white/[0.02] border border-white/10 rounded-xl py-2 pl-11 pr-4 text-sm text-white placeholder:text-gray-800 focus:outline-none focus:border-white/20 transition-all font-bold" 
+              className="w-full h-11 bg-white/[0.02] border border-white/10 rounded-xl py-2 pl-11 pr-4 text-sm text-white placeholder:text-gray-400 focus:outline-none focus:border-white/20 transition-all font-bold" 
               value={search} 
               onChange={(e) => setSearch(e.target.value)} 
             />
@@ -130,7 +130,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
                   className={`px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all border ${
                     isActive 
                       ? "bg-white text-black border-white" 
-                      : "text-gray-600 border-white/5 hover:border-white/10 hover:text-gray-400"
+                      : "text-gray-400 border-white/5 hover:border-white/10 hover:text-gray-400"
                   }`}
                 >
                   {t(cat === '전체' ? 'ALL' : cat)}
@@ -153,14 +153,14 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
         </div>
       ) : (
         <div className="py-32 text-center">
-          <p className="text-gray-700 font-bold uppercase tracking-[0.4em] text-[10px] italic">
+          <p className="text-gray-400 font-bold uppercase tracking-[0.4em] text-[10px] italic">
             {t('Registry empty.')}
           </p>
         </div>
       )}
 
       <div className="p-10 text-center">
-        <p className="text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] italic">* GitHub Asset Registry Synchronization Active.</p>
+        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] italic">* GitHub Asset Registry Synchronization Active.</p>
       </div>
     </div>
   );

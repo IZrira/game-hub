@@ -53,7 +53,7 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
                   </h3>
                   <div className="flex items-center gap-2">
                     <div className="w-1 h-1 rounded-full bg-white/30" />
-                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{t('공명 체인 노드')}</span>
+                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('공명 체인 노드')}</span>
                   </div>
                 </div>
               </div>

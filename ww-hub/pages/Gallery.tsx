@@ -190,7 +190,7 @@ const GalleryWW: React.FC = () => {
                       {stat.icon}
                     </div>
                     <span className="text-xl font-black text-white leading-none">{stat.count}</span>
-                    <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none pt-1">{t(stat.label)}</span>
+                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none pt-1">{t(stat.label)}</span>
                   </div>
                 ))}
               </div>
@@ -243,7 +243,7 @@ const GalleryWW: React.FC = () => {
                 <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("무기 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                     <input type="text" placeholder={t("명칭 필터링...")} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                   </div>
                   <div className="flex flex-wrap gap-3 items-center">
@@ -291,7 +291,7 @@ const GalleryWW: React.FC = () => {
                   ))}
                 {(!WW_CHARACTER_GUIDES || WW_CHARACTER_GUIDES.length === 0) && (
                   <div className="col-span-full py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
-                    <Book className="mx-auto text-gray-700 opacity-20" size={48} />
+                    <Book className="mx-auto text-gray-400 opacity-20" size={48} />
                     <p className="text-gray-500 font-bold italic uppercase tracking-widest">{t('준비 중인 공략입니다.')}</p>
                   </div>
                 )}
@@ -328,7 +328,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption }: any) =>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">
           {value === '전체' ? 'ALL' : (formatOption ? formatOption(value) : value)}
         </span>
-        <ChevronRight size={12} className={`text-gray-600 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />
+        <ChevronRight size={12} className={`text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />
       </button>
 
       {isOpen && (

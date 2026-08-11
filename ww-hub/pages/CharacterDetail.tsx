@@ -34,6 +34,7 @@ import WuwaSkillInput from '../components/WuwaSkillInput';
 import WuwaResonanceChain from '../components/WuwaResonanceChain';
 import SEO, { CommentData } from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
@@ -767,7 +768,7 @@ const CharacterDetail: React.FC = () => {
                  </button>
                </div>
                <div className="flex flex-wrap justify-center gap-8 px-4">
-                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
 
                </div>
             </div>
@@ -777,7 +778,7 @@ const CharacterDetail: React.FC = () => {
                  <span className="text-2xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span>
                </div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start justify-center">
-                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-700 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
                   <div className="w-8 shrink-0" />
                </div>
             </div>
@@ -806,6 +807,13 @@ const CharacterDetail: React.FC = () => {
           setTooltip={setTooltip}
         />
 
+        {/* Team Formations & Synergies */}
+        <SynergyDeck 
+          characterName={char?.id || charName || ''} 
+          gameId="ww" 
+          theme={theme} 
+        />
+
 
         
 
@@ -821,13 +829,13 @@ const CharacterDetail: React.FC = () => {
                 <p className="text-[11px] text-gray-500 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
             </div>
           </div>
           {char && (
             <div className="mt-4 flex justify-end">
-              <p className="text-[11px] font-bold text-gray-600 tracking-wider uppercase">
+              <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
                 {t('최종 업데이트')} : {lastUpdatedDate} (v{char.releaseVersion || '1.0'})
               </p>
             </div>
@@ -841,35 +849,7 @@ const CharacterDetail: React.FC = () => {
           onCommentsLoaded={setCommentsData}
         />
 
-        {/* Internal Linking: Related Characters */}
-        {relatedCharacters.length > 0 && (
-          <section className="mt-12 pt-8 border-t border-white/5">
-            <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2 mb-6">
-              Related Characters
-              <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-white/10 text-gray-300 not-italic">
-                {t('추천')}
-              </span>
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {relatedCharacters.map((rel: any) => (
-                <Link 
-                  key={rel.id} 
-                  to={`/gallery/${gameId}/character/${rel.id}`}
-                  className="flex flex-col items-center p-4 rounded-[20px] bg-white/[0.02] border border-white/5 hover:bg-white/[0.05] transition-all hover:scale-[1.02] group"
-                >
-                  <img 
-                    src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/characters/${rel.id}.webp`}
-                    alt={t(rel.name)}
-                    className="w-16 h-16 rounded-full object-cover mb-3 border-2 border-transparent group-hover:border-brand-primary/50 transition-colors"
-                    onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/common/default_banner.webp' }}
-                  />
-                  <span className="text-sm font-bold text-gray-200 group-hover:text-white transition-colors">{t(rel.name)}</span>
-                  <span className="text-xs font-medium text-gray-500">{t(rel.attribute)}</span>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+
       </div>
     </div>
   );
@@ -910,7 +890,7 @@ const MetadataCard: React.FC<{
 
 const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
   <div className="space-y-4 group">
-    <div className="text-[11px] font-black text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
+    <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
     <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
   </div>
 );

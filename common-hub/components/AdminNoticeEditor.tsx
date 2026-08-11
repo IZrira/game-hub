@@ -256,7 +256,7 @@ export const AdminNoticeEditor: React.FC<AdminNoticeEditorProps> = ({
 
           <div className="flex items-center gap-3">
             <div className="h-[1px] flex-1 bg-white/5"></div>
-            <span className="text-[10px] text-gray-500 uppercase font-bold">또는 파일 업로드</span>
+            <span className="text-[10px] text-gray-400 uppercase font-bold">또는 파일 업로드</span>
             <div className="h-[1px] flex-1 bg-white/5"></div>
           </div>
 

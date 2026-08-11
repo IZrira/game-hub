@@ -51,7 +51,7 @@ export default function Work() {
                   <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-gray-900 transition" />
                 </div>
                 <h3 className="font-bold text-lg mb-1">{w.title}</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">{w.desc}</p>
+                <p className="text-sm text-gray-400 leading-relaxed">{w.desc}</p>
               </div>
             </a>
           ))}

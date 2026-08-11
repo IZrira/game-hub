@@ -47,7 +47,7 @@ export default function Pricing() {
           <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 mb-4">
             요금
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-gray-400">
             {/* TODO: 가격 부담 낮추는 메시지 */}
             무료로 시작. 언제든 업그레이드.
           </p>

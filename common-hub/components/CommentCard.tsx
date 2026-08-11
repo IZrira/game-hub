@@ -202,14 +202,14 @@ export const CommentCard: React.FC<CommentCardProps> = ({
                       className={
                         i < review.rating
                           ? 'text-yellow-500 fill-yellow-500'
-                          : 'text-gray-600'
+                          : 'text-gray-400'
                       }
                     />
                   ))}
                 </div>
               )}
             </div>
-            <div className="text-[11px] text-gray-500 flex items-center gap-2">
+            <div className="text-[11px] text-gray-400 flex items-center gap-2">
               <span>
                 {new Date(review.created_at).toLocaleDateString(undefined, {
                   year: 'numeric',

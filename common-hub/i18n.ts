@@ -39,11 +39,21 @@ const resources = {
   }
 };
 
+const getInitialLang = () => {
+  if (typeof window !== 'undefined') {
+    const params = new URLSearchParams(window.location.search);
+    const lng = params.get('lng');
+    if (lng === 'en' || lng === 'ko') return lng;
+    return localStorage.getItem('rira_lang') || 'ko';
+  }
+  return 'ko';
+};
+
 i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: localStorage.getItem('rira_lang') || 'ko', // 로컬 스토리지에 저장된 언어 불러오기
+    lng: getInitialLang(),
     fallbackLng: 'ko', // 번역이 누락된 경우 기본값
     keySeparator: false, // 전역 설정: 마침표(.)를 하위 객체 탐색으로 오인하지 않음
     nsSeparator: false,  // 전역 설정: 콜론(:)을 네임스페이스 탐색으로 오인하지 않음

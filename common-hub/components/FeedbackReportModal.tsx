@@ -51,7 +51,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({ isOpen, onClo
             <MessageSquareWarning size={18} />
             <h2 className="font-black uppercase tracking-widest text-sm text-white">{t('Data Error Report')}</h2>
           </div>
-          <button onClick={onClose} className="text-gray-500 hover:text-white transition-colors">
+          <button onClick={onClose} className="text-gray-400 hover:text-white transition-colors">
             <X size={20} />
           </button>
         </div>
@@ -85,7 +85,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({ isOpen, onClo
                   onChange={(e) => setContent(e.target.value)}
                   placeholder={t('오류 내용을 상세히 적어주세요. (예: 2돌파 스킬 계수가 120%가 아닌 140% 입니다)')}
                   required
-                  className="w-full h-32 bg-[#121212] border border-white/10 rounded-xl p-4 text-sm text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-brand-primary resize-none transition-colors"
+                  className="w-full h-32 bg-[#121212] border border-white/10 rounded-xl p-4 text-sm text-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-brand-primary resize-none transition-colors"
                 />
               </div>
               
@@ -96,7 +96,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({ isOpen, onClo
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder={t('처리 결과 회신을 원하시면 이메일을 남겨주세요')}
-                  className="w-full h-12 bg-[#121212] border border-white/10 rounded-xl px-4 text-sm text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-brand-primary transition-colors"
+                  className="w-full h-12 bg-[#121212] border border-white/10 rounded-xl px-4 text-sm text-gray-300 placeholder:text-gray-400 focus:outline-none focus:border-brand-primary transition-colors"
                 />
               </div>
             </div>

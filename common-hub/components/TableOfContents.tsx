@@ -75,7 +75,7 @@ export default function TableOfContents({ selector = '.prose' }: { selector?: st
               } ${
                 activeId === heading.id
                   ? 'text-brand-accent translate-x-1' // 활성화 시 색상 변경 및 살짝 우측 이동
-                  : 'text-gray-500 hover:text-white'
+                  : 'text-gray-400 hover:text-white'
               }`}
             >
               {heading.text}

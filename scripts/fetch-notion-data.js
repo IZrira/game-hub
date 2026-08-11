@@ -38,16 +38,31 @@ const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID || '38
 const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
 
+const parseRichTextArray = (richTextArray) => {
+  if (!richTextArray) return '';
+  return richTextArray.map(rt => {
+    let text = rt.plain_text;
+    if (rt.annotations) {
+      if (rt.annotations.bold) text = `**${text}**`;
+      if (rt.annotations.color && rt.annotations.color !== 'default') text = `==${text}==`;
+    }
+    return text;
+  }).join('');
+};
+
 const extractRichText = (prop) => {
+  let res = '';
   if (!prop) return '';
-  if (prop.type === 'rich_text') return prop.rich_text?.map(rt => rt.plain_text).join('') || '';
-  if (prop.type === 'title') return prop.title?.map(rt => rt.plain_text).join('') || '';
-  if (prop.type === 'select') return prop.select?.name || '';
-  if (prop.type === 'multi_select') return prop.multi_select?.map(s => s.name).join(', ') || '';
-  if (prop.type === 'date') return prop.date?.start || '';
-  if (prop.type === 'number') return prop.number?.toString() || '';
-  if (prop.rich_text) return prop.rich_text?.map(rt => rt.plain_text).join('') || '';
-  return '';
+  if (prop.type === 'rich_text') res = parseRichTextArray(prop.rich_text);
+  else if (prop.type === 'title') res = parseRichTextArray(prop.title);
+  else if (prop.type === 'select') res = prop.select?.name || '';
+  else if (prop.type === 'multi_select') res = prop.multi_select?.map(s => s.name).join(', ') || '';
+  else if (prop.type === 'date') res = prop.date?.start || '';
+  else if (prop.type === 'number') res = prop.number?.toString() || '';
+  else if (prop.rich_text) res = parseRichTextArray(prop.rich_text);
+  
+  if (res.trim() === '없음' || res.trim() === '없음.') return '';
+  return res;
 };
 
 async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조') {
@@ -168,7 +183,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const voiceActors = extractRichText(props['성우']);
     const briefInfo = extractRichText(props['캐릭터 간단 정보']);
 
-    const basicAttack = extractRichText(props['기본 공격']);
+    const basicAttack = extractRichText(props['기본 공격']) || extractRichText(props['일반 공격 스킬']) || extractRichText(props['일반 공격']);
     const resonanceSkill = extractRichText(props['공명 스킬']);
     const resonanceCircuit = extractRichText(props['공명 회로']);
     const inherentSkill1 = extractRichText(props['고유 스킬 1']);
@@ -178,7 +193,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const outroSkill = extractRichText(props['반주 스킬']);
     const harmonyBreak = extractRichText(props['조화도 파괴']);
     const resonanceChains = extractRichText(props['공명 체인']);
-    const glossary = extractRichText(props['용어 정리']);
+    const glossary = extractRichText(props['용어 정리']) || extractRichText(props['용어']);
 
     // NTE 전용 필드들 추가
     const abilityAttribute = props['이능력 속성']?.select?.name || '';
@@ -186,6 +201,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const birthday = extractRichText(props['생일']);
     const contract = extractRichText(props['계약']);
     const citySkill = extractRichText(props['도시 스킬']);
+    const citySkill2 = extractRichText(props['도시 스킬2']);
     const virailSkill = extractRichText(props['바이레일 스킬']);
     const ultimateSkill = extractRichText(props['울티메이트']);
     const supportSkill = extractRichText(props['서포트 스킬']);
@@ -193,6 +209,8 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const passiveSkill2 = extractRichText(props['패시브 스킬2']);
     const awakenings = extractRichText(props['각성']);
     const resonance = extractRichText(props['공명']);
+    const skins = extractRichText(props['스킨']) || extractRichText(props['skins']);
+    const trait = extractRichText(props['특성']);
 
     // 선택적 영문 파일명(이미지 매핑용) 추가
     const fileName = props['파일 명']?.rich_text?.[0]?.plain_text || props['파일명']?.rich_text?.[0]?.plain_text || props['영문명']?.rich_text?.[0]?.plain_text || '';
@@ -317,6 +335,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         birthday,
         contract,
         citySkill,
+        citySkill2,
         virailSkill,
         ultimateSkill,
         supportSkill,
@@ -324,6 +343,8 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         passiveSkill2,
         awakenings,
         resonance,
+        skins,
+        trait,
         content: contentMarkdown
       });
     }

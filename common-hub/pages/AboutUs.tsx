@@ -86,7 +86,7 @@ const ValueCard: React.FC<{ icon: React.ReactNode; title: string; desc: string }
     </div>
     <div className="space-y-3">
       <h3 className="text-xl font-black text-white italic tracking-tighter">{title}</h3>
-      <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+      <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>
     </div>
   </div>
 );

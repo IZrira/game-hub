@@ -57,7 +57,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           <section className="space-y-4">
             <div className={`flex items-center gap-3 border-l-4 border-${rarityColor} pl-4`}>
               <h4 className="text-sm font-black text-white uppercase tracking-widest">{weapon.skill.name}</h4>
-              <span className="text-[10px] font-bold text-gray-600">RANK 1</span>
+              <span className="text-[10px] font-bold text-gray-400">RANK 1</span>
             </div>
             <div className={`bg-${rarityColor}/5 p-8 rounded-[32px] border border-${rarityColor}/10`}>
               <p className="text-gray-200 leading-relaxed font-medium text-base whitespace-pre-wrap italic">

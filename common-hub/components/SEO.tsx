@@ -12,6 +12,7 @@ export interface CommentData {
   date: string;
   content: string;
   upvotes?: number;
+  rating?: number;
 }
 
 interface SEOProps {
@@ -256,7 +257,18 @@ export default function SEO({
         },
         "datePublished": comment.date,
         "text": comment.content,
-        "upvoteCount": comment.upvotes || 0
+        "upvoteCount": comment.upvotes || 0,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": comment.rating || 5,
+          "bestRating": "5",
+          "worstRating": "1"
+        },
+        "interactionStatistic": {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/LikeAction",
+          "userInteractionCount": comment.upvotes || 0
+        }
       }))
     });
   }

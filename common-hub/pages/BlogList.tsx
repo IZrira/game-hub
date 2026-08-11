@@ -53,7 +53,7 @@ const BlogList: React.FC = () => {
                 </p>
                 
                 <div className="flex items-center justify-between pt-6 border-t border-white/5 mt-auto">
-                  <div className="flex items-center gap-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest">
+                  <div className="flex items-center gap-4 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
                     <span className="flex items-center gap-1.5"><Clock size={14} /> {post.date}</span>
                     <span className="flex items-center gap-1.5"><User size={14} /> {post.author}</span>
                   </div>

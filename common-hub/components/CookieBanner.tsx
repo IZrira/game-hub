@@ -33,7 +33,7 @@ const CookieBanner: React.FC = () => {
     <div className="fixed bottom-6 left-6 z-[9999] w-[calc(100%-48px)] sm:w-[400px] bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] animate-in fade-in slide-in-from-bottom-8 duration-500 font-sans">
       <button 
         onClick={handleDecline} 
-        className="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors"
+        className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
         aria-label="Close"
       >
         <X size={16} />

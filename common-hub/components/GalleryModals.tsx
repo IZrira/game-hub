@@ -36,7 +36,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={onClose} />
       <div className="relative bg-[#121212] border border-white/10 rounded-[48px] p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
-        <button onClick={onClose} className="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors z-20">
+        <button onClick={onClose} className="absolute top-8 right-8 text-gray-400 hover:text-white transition-colors z-20">
           <X size={28} />
         </button>
         
@@ -65,7 +65,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
             {/* 세부 파츠 */}
             {relic.pieces && relic.pieces.length > 0 && (
               <div className="space-y-4">
-                <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" /> {t('세부 파츠')}
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -93,7 +93,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
 
             {/* 세트 효과 */}
             <div className="space-y-4">
-              <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+              <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" /> {t('세트 효과')}
               </h4>
               <div className="grid grid-cols-1 gap-3">
@@ -136,7 +136,19 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
       case 4: return 'text-purple-500 fill-purple-500';
       case 3: return 'text-blue-500 fill-blue-500';
       case 2: return 'text-green-500 fill-green-500';
-      default: return 'text-gray-500 fill-gray-500';
+      default: return 'text-gray-400 fill-gray-400';
+    }
+  };
+
+  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    if (e.currentTarget.src.endsWith('/assets/unknown.webp')) return;
+    const fallbackGameId = item.gameId || 'hsr';
+    if (fallbackGameId === 'nte') {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
+    } else if (fallbackGameId === 'ww') {
+      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp";
+    } else {
+      e.currentTarget.src = "/assets/unknown.webp";
     }
   };
 
@@ -144,14 +156,14 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={onClose} />
       <div className="relative bg-[#121212] border border-white/10 rounded-[40px] p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95">
-        <button onClick={onClose} className="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-20">
+        <button onClick={onClose} className="absolute top-6 right-6 text-gray-400 hover:text-white transition-colors z-20">
           <X size={24} />
         </button>
         
         <div className="space-y-8">
           <div className="flex items-center gap-6">
             <div className="w-24 h-24 bg-white/5 rounded-2xl p-4 border border-white/10 shrink-0">
-              <img src={imgPath} alt={t(item.name)} className="w-full h-full object-contain" onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/unknown.webp`; }} />
+              <img src={imgPath} alt={t(item.name)} className="w-full h-full object-contain" onError={handleError} />
             </div>
             <div className="space-y-2">
               <div className="flex gap-0.5 items-center">
@@ -165,13 +177,13 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
           </div>
 
           <div className="bg-white/5 rounded-3xl p-6 border border-white/5 space-y-4">
-            <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('아이템 설명')}</div>
+            <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('아이템 설명')}</div>
             <p className="text-gray-300 text-sm leading-relaxed whitespace-pre-line">{t(item.desc || item.description || '설명이 없습니다.')}</p>
           </div>
 
           {item.sources && item.sources.length > 0 && (
             <div className="space-y-3">
-              <div className="text-[9px] font-black text-gray-500 uppercase tracking-widest">{t('획득처')}</div>
+              <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('획득처')}</div>
               <div className="flex flex-wrap gap-2">
                 {item.sources.map((src: string, i: number) => (
                   <span key={i} className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-gray-400">
@@ -215,7 +227,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={onClose} />
       <div className="relative bg-[#121212] border border-white/10 rounded-[48px] p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
-        <button onClick={onClose} className="absolute top-8 right-8 text-gray-500 hover:text-white transition-colors z-20">
+        <button onClick={onClose} className="absolute top-8 right-8 text-gray-400 hover:text-white transition-colors z-20">
           <X size={28} />
         </button>
 
@@ -244,7 +256,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
             {/* 세부 파츠 */}
             {ornament.pieces && ornament.pieces.length > 0 && (
               <div className="space-y-4">
-                <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" /> {t('세부 파츠')}
                 </h4>
                 <div className="grid grid-cols-2 gap-4">
@@ -272,7 +284,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
 
             {/* 세트 효과 */}
             <div className="space-y-4">
-              <h4 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+              <h4 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" /> {t('세트 효과')}
               </h4>
               <div className="grid grid-cols-1 gap-3">

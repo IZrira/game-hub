@@ -27,7 +27,7 @@ export default function Features() {
             {/* TODO: 핵심 가치를 한 문장으로 */}
             진짜로 일하는 AI 1인 기업
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
             {/* TODO: 차별점 한 줄 */}
             구독료 없이 시작, 클라우드 비용 없이 운영
           </p>
@@ -41,7 +41,7 @@ export default function Features() {
                   <Icon className="w-6 h-6" />
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">{f.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{f.body}</p>
+                <p className="text-gray-400 leading-relaxed">{f.body}</p>
               </div>
             )
           })}

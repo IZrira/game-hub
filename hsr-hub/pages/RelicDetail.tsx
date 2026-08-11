@@ -111,7 +111,7 @@ const RelicDetail: React.FC = () => {
             <div className="grid grid-cols-1 gap-12">
               {/* 세부 파츠 */}
               <div className="space-y-6">
-                <h4 className="text-[12px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-[12px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-accent" /> {t('세부 파츠')}
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -139,7 +139,7 @@ const RelicDetail: React.FC = () => {
 
               {/* 세트 효과 */}
               <div className="space-y-6">
-                <h4 className="text-[12px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-[12px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-primary" /> {t('세트 효과')}
                 </h4>
                 <div className="grid grid-cols-1 gap-4">

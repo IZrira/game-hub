@@ -79,7 +79,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
     >
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a]">
-          <Loader2 className="text-gray-700 animate-spin" size={16} />
+          <Loader2 className="text-gray-400 animate-spin" size={16} />
         </div>
       )}
       <img 
@@ -105,7 +105,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
           const parent = e.currentTarget.parentElement;
           if (parent) {
             parent.classList.add('bg-white/5', 'flex', 'items-center', 'justify-center');
-            parent.innerHTML = '<span class="text-[8px] text-gray-700 font-black uppercase">No Image</span>';
+            parent.innerHTML = '<span class="text-[8px] text-gray-400 font-black uppercase">No Image</span>';
           }
         }}
       />
@@ -335,14 +335,14 @@ const TierList: React.FC = () => {
                     <Trophy className="text-brand-primary" size={40} />
                     {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표
                   </h1>
-                  <p className="text-gray-500 font-bold text-lg">
+                  <p className="text-gray-400 font-bold text-lg">
                     {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.description}
                     {isSyncing && <span className="ml-3 text-[10px] text-brand-primary animate-pulse">● SYNCING...</span>}
                   </p>
                 </div>
 
                 <div className="relative group w-full max-w-sm">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-700" size={16} />
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                   <input 
                     type="text" 
                     placeholder="캐릭터 검색..." 
@@ -360,7 +360,7 @@ const TierList: React.FC = () => {
                       key={cat.id}
                       onClick={() => { setActiveCategory(cat.id); setRoleFilter('전체'); }}
                       className={`px-6 py-3 rounded-xl text-xs font-black transition-all border flex items-center gap-3 ${
-                        activeCategory === cat.id ? 'bg-brand-primary border-brand-primary text-white' : 'bg-white/5 border-white/5 text-gray-500'
+                        activeCategory === cat.id ? 'bg-brand-primary border-brand-primary text-white' : 'bg-white/5 border-white/5 text-gray-400'
                       }`}
                     >
                       {CATEGORY_ICONS[cat.id]}
@@ -376,7 +376,7 @@ const TierList: React.FC = () => {
                     key={role}
                     onClick={() => setRoleFilter(role)}
                     className={`px-6 py-2.5 rounded-xl text-xs font-black transition-all border flex items-center gap-2 ${
-                      roleFilter === role ? 'bg-brand-primary border-brand-primary text-white shadow-lg' : 'bg-white/5 border-white/5 text-gray-500'
+                      roleFilter === role ? 'bg-brand-primary border-brand-primary text-white shadow-lg' : 'bg-white/5 border-white/5 text-gray-400'
                     }`}
                   >
                     {role !== '전체' && ROLE_ICONS[role]}
@@ -424,7 +424,7 @@ const TierList: React.FC = () => {
                         </div>
                       ) : (
                         <div className="h-full flex items-center justify-center py-4">
-                          <p className="text-gray-700 font-black uppercase tracking-widest text-[10px] opacity-30">Empty</p>
+                          <p className="text-gray-400 font-black uppercase tracking-widest text-[10px] opacity-30">Empty</p>
                         </div>
                       )}
                     </div>

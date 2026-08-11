@@ -56,12 +56,12 @@ export const NoticeDetailModal: React.FC<{ notice: Notice; onClose: () => void }
             <div>
               <div className="flex items-center gap-2 mb-1">
                 <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest">{t(notice.category)}</span>
-                {notice.version && <span className="text-[10px] font-bold text-gray-500">v{notice.version}</span>}
+                {notice.version && <span className="text-[10px] font-bold text-gray-400">v{notice.version}</span>}
               </div>
               <h3 className="text-xl font-black text-white">{notice.title}</h3>
             </div>
           </div>
-          <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full text-gray-500 transition-colors">
+          <button onClick={onClose} className="p-2 hover:bg-white/5 rounded-full text-gray-400 transition-colors">
             <X size={24} />
           </button>
         </div>
@@ -74,7 +74,7 @@ export const NoticeDetailModal: React.FC<{ notice: Notice; onClose: () => void }
               ))}
             </div>
           )}
-          <div className="mt-12 pt-6 border-t border-white/5 text-center text-xs text-gray-600 font-bold">
+          <div className="mt-12 pt-6 border-t border-white/5 text-center text-xs text-gray-400 font-bold">
             {t('게시일')}: {notice.createdAt}
           </div>
         </div>
@@ -118,7 +118,7 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
 
   if (safeNotices.length === 0) {
     return (
-      <div className="p-8 text-center text-gray-600 font-bold bg-white/[0.02] rounded-[32px] border border-dashed border-white/5">
+      <div className="p-8 text-center text-gray-400 font-bold bg-white/[0.02] rounded-[32px] border border-dashed border-white/5">
         {emptyMessage || t('새로운 소식이 없습니다.')}
       </div>
     );
@@ -141,13 +141,13 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
                 <span className={`text-[9px] font-black uppercase tracking-widest ${notice.isCritical ? 'text-red-400' : 'text-brand-primary'}`}>
                   {t(notice.category)}
                 </span>
-                <span className="text-[9px] font-black text-gray-700 tracking-tighter">{notice.createdAt}</span>
+                <span className="text-[9px] font-black text-gray-400 tracking-tighter">{notice.createdAt}</span>
               </div>
               <h4 className="text-sm font-bold text-gray-200 group-hover:text-brand-accent transition-colors leading-snug">
                 {notice.title}
               </h4>
             </div>
-            <ChevronRight size={16} className="text-gray-700 group-hover:text-brand-accent transition-transform group-hover:translate-x-1 shrink-0 mt-1" />
+            <ChevronRight size={16} className="text-gray-400 group-hover:text-brand-accent transition-transform group-hover:translate-x-1 shrink-0 mt-1" />
           </div>
         </div>
       ))}

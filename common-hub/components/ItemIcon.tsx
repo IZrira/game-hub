@@ -8,6 +8,7 @@ interface ItemIconProps {
   onClick?: () => void;
   rarityOverride?: number;
   size?: 'sm' | 'md';
+  gameId?: string;
 }
 
 const RARITY_THEMES: Record<number, string> = {
@@ -18,18 +19,25 @@ const RARITY_THEMES: Record<number, string> = {
   5: 'from-[#9c7b3c] to-[#5e4a24] border-yellow-500/30 shadow-[0_0_15px_rgba(234,179,8,0.2)]', // 노란색 (운명의 발자취 등)
 };
 
-const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverride, size = 'md' }) => {
+const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverride, size = 'md', gameId }) => {
   const { t, i18n } = useTranslation();
   const itemInfo = getItemMeta(name);
   const rarity = rarityOverride || itemInfo?.rarity || getAutoRarity(name);
-  const [imgSrc, setImgSrc] = useState(getItemUrl(name) || (itemInfo?.enName ? getItemUrl(itemInfo.enName) : null));
+  const [imgSrc, setImgSrc] = useState(getItemUrl(name, gameId) || (itemInfo?.enName ? getItemUrl(itemInfo.enName, gameId) : null));
 
   useEffect(() => {
-    setImgSrc(getItemUrl(name) || (itemInfo?.enName ? getItemUrl(itemInfo.enName) : null));
-  }, [name, itemInfo?.enName]);
+    setImgSrc(getItemUrl(name, gameId) || (itemInfo?.enName ? getItemUrl(itemInfo.enName, gameId) : null));
+  }, [name, itemInfo?.enName, gameId]);
 
   const handleError = () => {
-    setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp");
+    const fallbackGameId = gameId || itemInfo?.gameId || 'hsr';
+    if (fallbackGameId === 'nte') {
+      setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp");
+    } else if (fallbackGameId === 'ww') {
+      setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp");
+    } else {
+      setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp");
+    }
   };
 
   const truncateMiddle = (text: string, maxLength: number) => {
@@ -98,7 +106,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
       </div>
       
       <div className="w-full px-1 text-center">
-        <span className={`${currentSize.text} text-gray-500 font-bold leading-none whitespace-nowrap group-hover:text-brand-accent transition-colors uppercase tracking-tight block truncate w-full`} title={translatedName}>
+        <span className={`${currentSize.text} text-gray-400 font-bold leading-none whitespace-nowrap group-hover:text-brand-accent transition-colors uppercase tracking-tight block truncate w-full`} title={translatedName}>
           {displayName}
         </span>
       </div>

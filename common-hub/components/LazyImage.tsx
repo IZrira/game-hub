@@ -13,7 +13,7 @@ interface LazyImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
 const LazyImage = memo(({ 
   src, 
   alt, 
-  fallbackSrc = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/items/unknown.webp',
+  fallbackSrc = '/assets/unknown.webp',
   containerClassName = '',
   className = '',
   loading = 'lazy',
@@ -39,7 +39,9 @@ const LazyImage = memo(({
         decoding="async" // 비동기 디코딩으로 성능 향상
         onLoad={() => setIsLoaded(true)}
         onError={() => {
-          setHasError(true);
+          if (!hasError) {
+            setHasError(true);
+          }
           setIsLoaded(true); // 에러가 나도 스켈레톤은 꺼줌
         }}
         className={`

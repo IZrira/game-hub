@@ -21,7 +21,7 @@ export default function RecentTable() {
           <h3 className="font-bold">최근 활동</h3>
           <p className="text-xs text-gray-500 mt-0.5">실시간 업데이트</p>
         </div>
-        <button className="text-sm text-gray-600 hover:text-gray-900 transition">
+        <button className="text-sm text-gray-400 hover:text-gray-900 transition">
           모두 보기 →
         </button>
       </div>
@@ -42,10 +42,10 @@ export default function RecentTable() {
               <tr key={r.id} className="hover:bg-gray-50 transition">
                 <td className="px-5 py-4 font-mono text-xs text-gray-500">{r.id}</td>
                 <td className="px-5 py-4 font-medium">{r.name}</td>
-                <td className="px-5 py-4 text-gray-600">{r.plan}</td>
+                <td className="px-5 py-4 text-gray-400">{r.plan}</td>
                 <td className="px-5 py-4 font-medium">{r.amount}</td>
                 <td className="px-5 py-4">
-                  <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ring-1 ${statusStyle[r.status] || 'bg-gray-50 text-gray-600 ring-gray-200'}`}>
+                  <span className={`inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold ring-1 ${statusStyle[r.status] || 'bg-gray-50 text-gray-400 ring-gray-200'}`}>
                     {r.status}
                   </span>
                 </td>
