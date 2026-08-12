@@ -166,7 +166,7 @@ const GalleryNTE: React.FC = () => {
                   </div>
                   <div className="flex flex-wrap gap-3 items-center">
                     <FilterSelect label={t("이능력 속성")} value={attrFilter} onChange={(val: string) => updateFilterParams('attr', val)} options={filterOptions.attr} />
-                    <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
+                    <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4"]} formatOption={(opt: string) => opt === '5' ? 'S' : opt === '4' ? 'A' : opt} />
                   </div>
                 </div>
               </div>

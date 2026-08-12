@@ -65,8 +65,12 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
             <p className="text-white font-bold text-sm leading-none mb-1 drop-shadow-md">{t(char.name || '')}</p>
             <p className="text-[10px] text-gray-400 uppercase tracking-wider">{t(char.attribute || '')}</p>
           </div>
-          {char.rarity === 5 && (
-            <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5" />
+          {gameId === 'nte' ? (
+            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${char.rarity === 5 ? 'bg-yellow-500/20 text-yellow-500' : 'bg-purple-500/20 text-purple-400'}`}>
+              {char.rarity === 5 ? 'S' : char.rarity === 4 ? 'A' : char.rarity}
+            </span>
+          ) : (
+            char.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5" />
           )}
         </div>
       </div>
