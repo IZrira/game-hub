@@ -295,9 +295,9 @@ const AdminDashboard: React.FC = () => {
       if (error) throw error;
       alert('캐릭터 동기화가 완료되었습니다.');
       fetchBaseData();
-    } catch (err) {
+    } catch (err: any) {
       console.error('Sync Error:', err);
-      alert('오류가 발생했습니다.');
+      alert('오류가 발생했습니다: ' + (err.message || JSON.stringify(err)));
     } finally {
       setLoading(false);
     }
