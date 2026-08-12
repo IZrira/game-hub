@@ -22,6 +22,7 @@
 | 2 | M2: R2 Accessibility Color Contrast | `common-hub/`, `hsr-hub/`, `ww-hub/`, `nte-hub/` components & pages | None | PLANNED |
 | 3 | M3: R3 404 Resource Error Resolution | `common-hub/data/games.ts`, `common-hub/components/LazyImage.tsx`, `GameDashboard.tsx`, `GalleryModals.tsx`, `public/assets/unknown.webp` | None | PLANNED |
 | 4 | Final Milestone: E2E Verification & Hardening | Pass 100% E2E test suite (Tiers 1-4) & Adversarial Coverage Hardening (Tier 5) | M1, M2, M3, E2E Track | PLANNED |
+| 5 | NTE UI Enhancement & CDN Fixes | `nte-hub/`, `common-hub/data/dataManager.ts` (Theme text contrast, Skin dropdown toggle, Missing CDN image logic) | None | DONE |
 
 ## Interface Contracts
 ### Banner Assets & LazyImage
