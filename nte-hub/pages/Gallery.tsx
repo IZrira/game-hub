@@ -32,6 +32,21 @@ const GalleryNTE: React.FC = () => {
   useEffect(() => {
     const menuParam = searchParams.get('menu') || '홈';
     if (menuParam !== activeMenu) setActiveMenu(menuParam);
+
+    const searchParam = searchParams.get('search') || '';
+    if (searchParam !== searchQuery) setSearchQuery(searchParam);
+
+    const attrParam = searchParams.get('attr') || '전체';
+    if (attrParam !== attrFilter) setAttrFilter(attrParam);
+
+    const weaponParam = searchParams.get('weapon') || '전체';
+    if (weaponParam !== secondFilter) setSecondFilter(weaponParam);
+
+    const rarityParam = searchParams.get('rarity') || '전체';
+    if (rarityParam !== rarityFilter) setRarityFilter(rarityParam);
+
+    const categoryParam = searchParams.get('category') || '전체';
+    if (categoryParam !== categoryFilter) setCategoryFilter(categoryParam);
   }, [searchParams]);
 
   const updateFilterParams = (key: string, value: string) => {
@@ -45,6 +60,14 @@ const GalleryNTE: React.FC = () => {
     setActiveMenu(menu);
     const newParams: any = { menu };
     if (searchQuery) newParams.search = searchQuery;
+    setSearchParams(newParams);
+  };
+
+  const handleSearchChange = (val: string) => {
+    setSearchQuery(val);
+    const newParams = new URLSearchParams(searchParams);
+    if (val) newParams.set('search', val);
+    else newParams.delete('search');
     setSearchParams(newParams);
   };
 
@@ -136,6 +159,16 @@ const GalleryNTE: React.FC = () => {
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("캐릭터 도감")}</h2>
+                <div className="flex flex-col xl:flex-row gap-4 items-center">
+                  <div className="relative w-full xl:w-72">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+                    <input type="text" placeholder={t("캐릭터 명칭...")} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
+                  </div>
+                  <div className="flex flex-wrap gap-3 items-center">
+                    <FilterSelect label={t("이능력 속성")} value={attrFilter} onChange={(val: string) => updateFilterParams('attr', val)} options={filterOptions.attr} />
+                    <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
+                  </div>
+                </div>
               </div>
               <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
                 {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
@@ -154,6 +187,64 @@ const GalleryNTE: React.FC = () => {
           )}
         </main>
       </div>
+    </div>
+  );
+};
+
+const FilterSelect = ({ label, value, onChange, options, formatOption }: any) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={containerRef}>
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
+      >
+        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
+        <span className="text-xs font-bold text-white min-w-[60px] text-left">
+          {value === '전체' ? 'ALL' : (formatOption ? formatOption(value) : value)}
+        </span>
+        <ChevronRight size={12} className={`text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />
+      </button>
+
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-2 w-full min-w-[160px] bg-[#1a1a1a]/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-fade-in z-[100]">
+          <div className="max-h-[300px] overflow-y-auto py-2 custom-scrollbar">
+            <button
+              onClick={() => {
+                onChange('전체');
+                setIsOpen(false);
+              }}
+              className={`w-full px-4 py-2.5 text-left text-xs font-bold transition-colors ${value === '전체' ? 'bg-brand-primary/20 text-brand-accent' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+            >
+              ALL
+            </button>
+            {options.map((opt: string) => (
+              <button
+                key={opt}
+                onClick={() => {
+                  onChange(opt);
+                  setIsOpen(false);
+                }}
+                className={`w-full px-4 py-2.5 text-left text-xs font-bold transition-colors ${value === opt ? 'bg-brand-primary/20 text-brand-accent' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+              >
+                {formatOption ? formatOption(opt) : opt}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
