@@ -273,8 +273,19 @@ const AdminDashboard: React.FC = () => {
           weapon_type: c.weaponType || '직검',
           version: c.releaseVersion || '1.0'
         }));
+      } else if (activeGame === 'nte') {
+        const { CHARACTER_DB } = getGameData('nte');
+        charTasks = CHARACTER_DB.map((c: any) => ({
+          id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
+          name: c.name,
+          folder_name: c.folderName || c.name,
+          rarity: c.rarity || 5,
+          attribute: c.attribute || '이능',
+          path: c.path || '격파',
+          version: c.releaseVersion || '1.0'
+        }));
       } else {
-        throw new Error('NTE local data sync is not implemented yet.');
+        throw new Error('Unknown active game mode.');
       }
 
       const { error } = await supabase
@@ -585,7 +596,7 @@ const AdminDashboard: React.FC = () => {
                       <tr className="bg-white/[0.02] text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
                         <th className="p-8">캐릭터 프로필</th>
                         <th className="p-8 text-center">속성</th>
-                        <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : '운명의 길'}</th>
+                        <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : '운명의 길'}</th>
                         <th className="p-8 text-center">버전</th>
                         <th className="p-8 text-right">관리</th>
                       </tr>
@@ -672,15 +683,19 @@ const AdminDashboard: React.FC = () => {
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.attribute} onChange={e => setNewChar({...newChar, attribute: e.target.value})}>
                           {activeGame === 'ww'
                             ? ['기류', '전도', '회절', '인멸', '용융', '응결'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
+                            : activeGame === 'nte'
+                            ? ['화염', '얼음', '번개', '바람', '물리', '이능'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
                             : ['물리', '화염', '얼음', '번개', '바람', '양자', '허수'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
                           }
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">{activeGame === 'ww' ? '무기' : '운명'}</label>
+                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : '운명'}</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.path} onChange={e => setNewChar({...newChar, path: e.target.value})}>
                           {activeGame === 'ww'
                             ? ['장검', '대검', '직검', '권갑', '증폭기', '권총'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
+                            : activeGame === 'nte'
+                            ? ['격파', '지원', '딜러', '탱커', '기타'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
                             : ['파멸', '수렵', '지식', '화합', '공허', '보존', '풍요', '기억', '환락'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
                           }
                         </select>
