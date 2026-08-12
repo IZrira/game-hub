@@ -1,0 +1,2980 @@
+{
+  "common-hub\\router.tsx": [
+    {
+      "file": "common-hub\\router.tsx",
+      "line": 79,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-gray-500 font-black uppercase tracking-[0.3em] text-[10px] animate-pulse\">Loading Archive...</span>"
+    }
+  ],
+  "common-hub\\components\\AdminNoticeEditor.tsx": [
+    {
+      "file": "common-hub\\components\\AdminNoticeEditor.tsx",
+      "line": 259,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] text-gray-500 uppercase font-bold\">또는 파일 업로드</span>"
+    }
+  ],
+  "common-hub\\components\\ArchiveEntryCard.tsx": [
+    {
+      "file": "common-hub\\components\\ArchiveEntryCard.tsx",
+      "line": 41,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[9px] text-gray-600 font-mono tracking-[0.3em] uppercase opacity-50\">"
+    },
+    {
+      "file": "common-hub\\components\\ArchiveEntryCard.tsx",
+      "line": 54,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 text-sm leading-relaxed font-bold\">"
+    },
+    {
+      "file": "common-hub\\components\\ArchiveEntryCard.tsx",
+      "line": 60,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex justify-end items-center gap-3 text-[10px] text-gray-600 font-black tracking-widest uppercase\">"
+    }
+  ],
+  "common-hub\\components\\CharacterReviewBoard.tsx": [
+    {
+      "file": "common-hub\\components\\CharacterReviewBoard.tsx",
+      "line": 600,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500 font-medium\">"
+    },
+    {
+      "file": "common-hub\\components\\CharacterReviewBoard.tsx",
+      "line": 649,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-center py-12 text-gray-500 animate-pulse font-medium\">"
+    },
+    {
+      "file": "common-hub\\components\\CharacterReviewBoard.tsx",
+      "line": 653,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-center py-12 text-gray-500 italic bg-white/[0.02] rounded-[30px] border border-white/5\">"
+    }
+  ],
+  "common-hub\\components\\CommentCard.tsx": [
+    {
+      "file": "common-hub\\components\\CommentCard.tsx",
+      "line": 205,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": ": 'text-gray-600'"
+    },
+    {
+      "file": "common-hub\\components\\CommentCard.tsx",
+      "line": 212,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[11px] text-gray-500 flex items-center gap-2\">"
+    }
+  ],
+  "common-hub\\components\\CommentForm.tsx": [
+    {
+      "file": "common-hub\\components\\CommentForm.tsx",
+      "line": 223,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5\">"
+    },
+    {
+      "file": "common-hub\\components\\CommentForm.tsx",
+      "line": 246,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"block text-[10px] font-black text-gray-500 uppercase tracking-widest mb-1.5\">"
+    },
+    {
+      "file": "common-hub\\components\\CommentForm.tsx",
+      "line": 267,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"block text-[10px] font-black text-gray-500 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\components\\CommentForm.tsx",
+      "line": 374,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] text-gray-500 uppercase font-bold\">OR</span>"
+    },
+    {
+      "file": "common-hub\\components\\CommentForm.tsx",
+      "line": 438,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "commentText.length > 500 ? 'text-red-400' : 'text-gray-500'"
+    }
+  ],
+  "common-hub\\components\\CookieBanner.tsx": [
+    {
+      "file": "common-hub\\components\\CookieBanner.tsx",
+      "line": 36,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className=\"absolute top-4 right-4 text-gray-500 hover:text-white transition-colors\""
+    }
+  ],
+  "common-hub\\components\\FeedbackReportModal.tsx": [
+    {
+      "file": "common-hub\\components\\FeedbackReportModal.tsx",
+      "line": 54,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"text-gray-500 hover:text-white transition-colors\">"
+    },
+    {
+      "file": "common-hub\\components\\FeedbackReportModal.tsx",
+      "line": 88,
+      "matches": [
+        "placeholder:text-gray-600"
+      ],
+      "content": "className=\"w-full h-32 bg-[#121212] border border-white/10 rounded-xl p-4 text-sm text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-brand-primary resize-none transition-colors\""
+    },
+    {
+      "file": "common-hub\\components\\FeedbackReportModal.tsx",
+      "line": 99,
+      "matches": [
+        "placeholder:text-gray-600"
+      ],
+      "content": "className=\"w-full h-12 bg-[#121212] border border-white/10 rounded-xl px-4 text-sm text-gray-300 placeholder:text-gray-600 focus:outline-none focus:border-brand-primary transition-colors\""
+    }
+  ],
+  "common-hub\\components\\Footer.tsx": [
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 34,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500 leading-relaxed max-w-xs font-medium\">"
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 47,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<ul className=\"space-y-3 text-xs font-bold text-gray-500\">"
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 61,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<ul className=\"space-y-3 text-xs font-bold text-gray-500\">"
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 71,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<ul className=\"space-y-3 text-xs font-bold text-gray-500\">"
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 85,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<div className=\"flex flex-col md:flex-row justify-between gap-4 text-[10px] font-black text-gray-700 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 91,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[10px] leading-relaxed text-gray-600 font-medium\">"
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 92,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<strong className=\"text-gray-500\">Legal Disclaimer:</strong> RIRA ARCHIVE is a non-profit, unofficial fan-operated project intended for educational and research purposes."
+    },
+    {
+      "file": "common-hub\\components\\Footer.tsx",
+      "line": 97,
+      "matches": [
+        "text-gray-800"
+      ],
+      "content": "<div className=\"flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-black text-gray-800 uppercase tracking-tighter\">"
+    }
+  ],
+  "common-hub\\components\\GalleryModals.tsx": [
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 39,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"absolute top-8 right-8 text-gray-500 hover:text-white transition-colors z-20\">"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 68,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 96,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 139,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "default: return 'text-gray-500 fill-gray-500';"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 158,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-20\">"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 179,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[9px] font-black text-gray-500 uppercase tracking-widest\">{t('아이템 설명')}</div>"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 185,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[9px] font-black text-gray-500 uppercase tracking-widest\">{t('획득처')}</div>"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 229,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"absolute top-8 right-8 text-gray-500 hover:text-white transition-colors z-20\">"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 258,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "common-hub\\components\\GalleryModals.tsx",
+      "line": 286,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    }
+  ],
+  "common-hub\\components\\GallerySidebar.tsx": [
+    {
+      "file": "common-hub\\components\\GallerySidebar.tsx",
+      "line": 72,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<h2 className=\"text-[11px] font-black text-gray-700 uppercase tracking-[0.4em] px-4 mb-4\">MENU</h2>"
+    },
+    {
+      "file": "common-hub\\components\\GallerySidebar.tsx",
+      "line": 112,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": ": 'text-gray-600 hover:bg-white/[0.05] border-transparent'"
+    }
+  ],
+  "common-hub\\components\\GameDashboard.tsx": [
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 173,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h2 className=\"text-xs font-black text-gray-500 uppercase tracking-widest mb-4 flex items-center gap-2\">"
+    },
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 201,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setActiveMenu('캐릭터')} className=\"text-xs font-bold text-gray-500 hover:text-white flex items-center gap-1 transition-colors\">"
+    },
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 236,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setActiveMenu('캐릭터')} className=\"aspect-[3/4] rounded-xl bg-[#1a1a1a] border border-dashed border-white/10 flex flex-col items-center justify-center gap-2 text-gray-500 hover:text-white hover:bg-[#202020] hover:border-white/20 transition-all\">"
+    },
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 251,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5\">"
+    },
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 313,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[9px] font-bold text-gray-600 flex items-center gap-1\">"
+    },
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 320,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[10px] text-gray-500 mt-1 line-clamp-2 leading-relaxed\">"
+    },
+    {
+      "file": "common-hub\\components\\GameDashboard.tsx",
+      "line": 329,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<p className=\"text-[10px] font-bold text-gray-700 uppercase tracking-widest\">{t('No Recent Notices')}</p>"
+    }
+  ],
+  "common-hub\\components\\InventoryGallery.tsx": [
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 93,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-black uppercase tracking-[0.3em] text-xs italic\">Synchronizing Item DB...</p>"
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 105,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "{t('Archive')} <span className=\"text-gray-500\">Index</span>"
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 107,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[10px] text-gray-600 font-bold tracking-[0.2em] uppercase\">Status: Core Database Synchronized</p>"
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 113,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-700\" size={16} />"
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 117,
+      "matches": [
+        "placeholder:text-gray-800"
+      ],
+      "content": "className=\"w-full h-11 bg-white/[0.02] border border-white/10 rounded-xl py-2 pl-11 pr-4 text-sm text-white placeholder:text-gray-800 focus:outline-none focus:border-white/20 transition-all font-bold\""
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 133,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": ": \"text-gray-600 border-white/5 hover:border-white/10 hover:text-gray-400\""
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 156,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<p className=\"text-gray-700 font-bold uppercase tracking-[0.4em] text-[10px] italic\">"
+    },
+    {
+      "file": "common-hub\\components\\InventoryGallery.tsx",
+      "line": 163,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-gray-600 text-[10px] font-black uppercase tracking-[0.2em] italic\">* GitHub Asset Registry Synchronization Active.</p>"
+    }
+  ],
+  "common-hub\\components\\ItemDetailModal.tsx": [
+    {
+      "file": "common-hub\\components\\ItemDetailModal.tsx",
+      "line": 60,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "default: return { color: 'text-gray-500', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };"
+    },
+    {
+      "file": "common-hub\\components\\ItemDetailModal.tsx",
+      "line": 128,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-500 hover:text-white transition-all\">"
+    },
+    {
+      "file": "common-hub\\components\\ItemDetailModal.tsx",
+      "line": 149,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">{t(\"Archive Entry\")}</span>"
+    },
+    {
+      "file": "common-hub\\components\\ItemDetailModal.tsx",
+      "line": 161,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">{t(\"Location Data\")}</span>"
+    },
+    {
+      "file": "common-hub\\components\\ItemDetailModal.tsx",
+      "line": 174,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[9px] font-black text-gray-600 uppercase tracking-[0.3em] italic\">"
+    }
+  ],
+  "common-hub\\components\\ItemIcon.tsx": [
+    {
+      "file": "common-hub\\components\\ItemIcon.tsx",
+      "line": 109,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className={`${currentSize.text} text-gray-500 font-bold leading-none whitespace-nowrap group-hover:text-brand-accent transition-colors uppercase tracking-tight block truncate w-full`} title={translatedName}>"
+    }
+  ],
+  "common-hub\\components\\LoginModal.tsx": [
+    {
+      "file": "common-hub\\components\\LoginModal.tsx",
+      "line": 101,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[10px] text-gray-600 uppercase tracking-widest font-bold\">"
+    }
+  ],
+  "common-hub\\components\\NeonComponents.tsx": [
+    {
+      "file": "common-hub\\components\\NeonComponents.tsx",
+      "line": 51,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 italic\">{stat.count}</span>"
+    }
+  ],
+  "common-hub\\components\\NoticeComponents.tsx": [
+    {
+      "file": "common-hub\\components\\NoticeComponents.tsx",
+      "line": 59,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "{notice.version && <span className=\"text-[10px] font-bold text-gray-500\">v{notice.version}</span>}"
+    },
+    {
+      "file": "common-hub\\components\\NoticeComponents.tsx",
+      "line": 64,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"p-2 hover:bg-white/5 rounded-full text-gray-500 transition-colors\">"
+    },
+    {
+      "file": "common-hub\\components\\NoticeComponents.tsx",
+      "line": 77,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"mt-12 pt-6 border-t border-white/5 text-center text-xs text-gray-600 font-bold\">"
+    },
+    {
+      "file": "common-hub\\components\\NoticeComponents.tsx",
+      "line": 121,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"p-8 text-center text-gray-600 font-bold bg-white/[0.02] rounded-[32px] border border-dashed border-white/5\">"
+    },
+    {
+      "file": "common-hub\\components\\NoticeComponents.tsx",
+      "line": 144,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<span className=\"text-[9px] font-black text-gray-700 tracking-tighter\">{notice.createdAt}</span>"
+    },
+    {
+      "file": "common-hub\\components\\NoticeComponents.tsx",
+      "line": 150,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<ChevronRight size={16} className=\"text-gray-700 group-hover:text-brand-accent transition-transform group-hover:translate-x-1 shrink-0 mt-1\" />"
+    }
+  ],
+  "common-hub\\components\\PageHeader.tsx": [
+    {
+      "file": "common-hub\\components\\PageHeader.tsx",
+      "line": 76,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<nav className=\"flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-black text-gray-500 uppercase tracking-widest truncate\">"
+    },
+    {
+      "file": "common-hub\\components\\PageHeader.tsx",
+      "line": 115,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "isSticky ? 'bg-brand-primary/10 border-brand-primary/30 text-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.2)]' : 'bg-white/5 border-white/5 text-gray-500 hover:text-white hover:bg-white/10'"
+    },
+    {
+      "file": "common-hub\\components\\PageHeader.tsx",
+      "line": 126,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "isFavorite ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.2)]' : 'bg-white/5 border-white/5 text-gray-500 hover:text-yellow-500/50 hover:bg-white/10'"
+    }
+  ],
+  "common-hub\\components\\SearchModal.tsx": [
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 227,
+      "matches": [
+        "placeholder:text-gray-600"
+      ],
+      "content": "className=\"w-full bg-white/5 border border-white/10 rounded-2xl py-4 pl-14 pr-6 text-base focus:outline-none focus:border-brand-primary transition-all text-white font-bold placeholder:text-gray-600\""
+    },
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 256,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => { setFavorites([]); localStorage.removeItem('rira_favorites'); }} className=\"text-[10px] font-bold text-gray-500 hover:text-white transition-colors\">{t('Clear')}</button>"
+    },
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 277,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<h3 className=\"text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]\">{t('Recent Searches')}</h3>"
+    },
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 278,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => { setRecentSearches([]); localStorage.removeItem('recent_searches'); }} className=\"text-[10px] font-bold text-gray-500 hover:text-white transition-colors\">{t('Clear')}</button>"
+    },
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 362,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h3 className=\"flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-500 px-2\">"
+    },
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 381,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-bold text-gray-500 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5 group-hover:border-brand-primary/30 transition-colors\">"
+    },
+    {
+      "file": "common-hub\\components\\SearchModal.tsx",
+      "line": 393,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-600 shrink-0\">&gt;</span>"
+    }
+  ],
+  "common-hub\\components\\TableOfContents.tsx": [
+    {
+      "file": "common-hub\\components\\TableOfContents.tsx",
+      "line": 78,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": ": 'text-gray-500 hover:text-white'"
+    }
+  ],
+  "common-hub\\pages\\AboutUs.tsx": [
+    {
+      "file": "common-hub\\pages\\AboutUs.tsx",
+      "line": 89,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-sm text-gray-500 leading-relaxed\">{desc}</p>"
+    }
+  ],
+  "common-hub\\pages\\AdminDashboard.tsx": [
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 458,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold flex items-center gap-2 mt-4\">"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 473,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'home' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 481,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 487,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 493,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 520,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500 font-bold uppercase tracking-widest\">붕괴: 스타레일 관리</p>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 533,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500 font-bold uppercase tracking-widest\">명조 관리</p>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 546,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500 font-bold uppercase tracking-widest\">NTE 관리</p>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 557,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<Search className=\"absolute left-5 top-1/2 -translate-y-1/2 text-gray-600\" size={20} />"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 567,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"px-5 py-3 bg-white/[0.02] border border-white/5 rounded-2xl text-[11px] font-black text-gray-500 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 585,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<tr className=\"bg-white/[0.02] text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]\">"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 606,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "parent.innerHTML = '<div class=\"w-full h-full bg-white/5 rounded-2xl flex items-center justify-center text-[8px] text-gray-700 font-black uppercase text-center p-2\">No Img</div>';"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 617,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "className=\"text-[10px] font-bold text-gray-600 bg-transparent border-none p-0 focus:ring-0 w-48\""
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 662,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">이름</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 666,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">폴더명 (GitHub)</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 671,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">속성</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 680,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">{activeGame === 'ww' ? '무기' : '운명'}</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 690,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">버전 (Version)</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 699,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">TS 데이터 템플릿</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 758,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<pre className=\"text-[9px] text-gray-500 font-mono leading-relaxed\">"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 771,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[9px] text-gray-600 leading-tight\">"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 791,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">DB Status</p>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 843,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": ": 'bg-white/5 border-white/5 text-gray-500 hover:border-white/20'"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 865,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className={`text-4xl font-black italic tracking-tighter ${tierRank === '?' ? 'text-gray-600' : 'text-amber-500'}`}>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 884,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[9px] text-gray-600 font-bold uppercase\">{bc.path || bc.weapon_type}</p>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 901,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`flex-1 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black p-2 text-center outline-none appearance-none cursor-pointer uppercase ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-500'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 908,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className=\"px-2 py-2 hover:bg-white/5 text-gray-500 transition-colors\""
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 920,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className=\"px-2 py-2 hover:bg-white/5 text-gray-500 transition-colors\""
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 952,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">게임</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 964,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">분류</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 977,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">제목</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 986,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">내용 (Markdown 지원)</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 995,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<label className=\"text-[10px] font-black text-gray-500 uppercase ml-1\">버전 (선택)</label>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 1060,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 border border-white/10 px-2 py-1 rounded-full\">v{notice.version}</span>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 1064,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500 font-mono\">"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 1085,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-600 uppercase tracking-widest\">Notice Content</span>"
+    },
+    {
+      "file": "common-hub\\pages\\AdminDashboard.tsx",
+      "line": 1105,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-center py-12 text-gray-500 text-sm font-bold\">등록된 공지사항이 없습니다.</div>"
+    }
+  ],
+  "common-hub\\pages\\BlogList.tsx": [
+    {
+      "file": "common-hub\\pages\\BlogList.tsx",
+      "line": 56,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"flex items-center gap-4 text-[11px] font-bold text-gray-500 uppercase tracking-widest\">"
+    }
+  ],
+  "common-hub\\pages\\Detail.tsx": [
+    {
+      "file": "common-hub\\pages\\Detail.tsx",
+      "line": 74,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"flex items-center gap-4 text-sm text-gray-500\">"
+    },
+    {
+      "file": "common-hub\\pages\\Detail.tsx",
+      "line": 81,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] text-gray-600 font-bold uppercase tracking-widest\">{post.date}</span>"
+    }
+  ],
+  "common-hub\\pages\\Home.tsx": [
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 89,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"max-w-3xl mx-auto text-gray-500 text-lg md:text-xl font-medium leading-relaxed\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 100,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 103,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex items-center gap-2 text-[10px] font-black text-gray-600 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 135,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 141,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 183,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-gray-600 text-sm font-bold uppercase tracking-widest\">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 185,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"flex items-center gap-4 text-[11px] font-black text-gray-500 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 230,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1\">{t('캐릭터 명단')}</span>"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 235,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-600 uppercase tracking-widest mb-1\">{t('전략 보고서')}</span>"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 252,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Cpu size={40} className=\"text-gray-700\" />"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 254,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<h4 className=\"text-xl font-black text-gray-600 uppercase tracking-[0.2em] mb-4\">{t('새로운 데이터 연결 준비 중')}</h4>"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 255,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<p className=\"text-gray-700 text-base font-medium\">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 268,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-sm text-gray-500 leading-relaxed font-medium\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 277,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-sm text-gray-500 leading-relaxed font-medium\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 286,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-sm text-gray-500 leading-relaxed font-medium\">"
+    },
+    {
+      "file": "common-hub\\pages\\Home.tsx",
+      "line": 327,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] font-black text-gray-600 uppercase tracking-[0.3em]\">{label}</div>"
+    }
+  ],
+  "common-hub\\pages\\ItemDetail.tsx": [
+    {
+      "file": "common-hub\\pages\\ItemDetail.tsx",
+      "line": 14,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "default: return { color: 'text-gray-500', glow: 'bg-gray-500/20', border: 'border-gray-500/40', accent: '' };"
+    },
+    {
+      "file": "common-hub\\pages\\ItemDetail.tsx",
+      "line": 142,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[10px] font-black text-gray-600 uppercase tracking-[0.3em] italic\">"
+    }
+  ],
+  "common-hub\\pages\\List.tsx": [
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 45,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={18} />"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 49,
+      "matches": [
+        "placeholder:text-gray-600"
+      ],
+      "content": "className=\"w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600\""
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 64,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": ": 'text-gray-500 hover:text-white'"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 77,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 83,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 120,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-gray-500\">"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 155,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] font-bold text-gray-600 uppercase tracking-widest\">"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 164,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span key={kw} className=\"text-[10px] text-gray-500\">#{kw}</span>"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 169,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<ChevronRight className=\"text-gray-700 group-hover:text-brand-primary transition-colors\" />"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 179,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Search size={32} className=\"text-gray-700\" />"
+    },
+    {
+      "file": "common-hub\\pages\\List.tsx",
+      "line": 182,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500\">{t('다른 검색어나 카테고리를 선택해보세요.')}</p>"
+    }
+  ],
+  "common-hub\\pages\\NotFound.tsx": [
+    {
+      "file": "common-hub\\pages\\NotFound.tsx",
+      "line": 29,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 max-w-md mx-auto mb-12 font-medium leading-relaxed\">"
+    },
+    {
+      "file": "common-hub\\pages\\NotFound.tsx",
+      "line": 49,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<h3 className=\"text-[10px] font-black text-gray-600 uppercase tracking-[0.3em] mb-6\">{t('Quick Links')}</h3>"
+    }
+  ],
+  "common-hub\\pages\\NoticeDetail.tsx": [
+    {
+      "file": "common-hub\\pages\\NoticeDetail.tsx",
+      "line": 33,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-gray-500 font-bold\">공지사항을 불러오는 중...</span>"
+    },
+    {
+      "file": "common-hub\\pages\\NoticeDetail.tsx",
+      "line": 44,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-gray-500 font-bold text-xl\">공지사항을 찾을 수 없습니다.</span>"
+    },
+    {
+      "file": "common-hub\\pages\\NoticeDetail.tsx",
+      "line": 87,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"flex items-center gap-2 text-sm text-gray-500 font-bold shrink-0\">"
+    }
+  ],
+  "common-hub\\pages\\Notices.tsx": [
+    {
+      "file": "common-hub\\pages\\Notices.tsx",
+      "line": 55,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold text-lg mt-2\">"
+    },
+    {
+      "file": "common-hub\\pages\\Notices.tsx",
+      "line": 63,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-center text-gray-500 py-12\">공지사항을 불러오는 중...</div>"
+    },
+    {
+      "file": "common-hub\\pages\\Notices.tsx",
+      "line": 65,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-center text-gray-500 py-12\">등록된 공지사항이 없습니다.</div>"
+    },
+    {
+      "file": "common-hub\\pages\\Notices.tsx",
+      "line": 97,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Bell size={48} className=\"mx-auto text-gray-700 opacity-20\" />"
+    },
+    {
+      "file": "common-hub\\pages\\Notices.tsx",
+      "line": 98,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-black uppercase tracking-widest\">등록된 공지사항이 없습니다</p>"
+    }
+  ],
+  "common-hub\\pages\\PrivacyPolicy.tsx": [
+    {
+      "file": "common-hub\\pages\\PrivacyPolicy.tsx",
+      "line": 63,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"pt-8 text-sm text-gray-500\">"
+    }
+  ],
+  "common-hub\\pages\\TermsOfService.tsx": [
+    {
+      "file": "common-hub\\pages\\TermsOfService.tsx",
+      "line": 73,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"mt-12 pt-8 border-t border-white/10 text-sm text-gray-500\">"
+    }
+  ],
+  "hsr-hub\\components\\SkillAndEidolonSection.tsx": [
+    {
+      "file": "hsr-hub\\components\\SkillAndEidolonSection.tsx",
+      "line": 178,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>"
+    },
+    {
+      "file": "hsr-hub\\components\\SkillAndEidolonSection.tsx",
+      "line": 201,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "{skill.tag && <span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5\">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}"
+    },
+    {
+      "file": "hsr-hub\\components\\SkillAndEidolonSection.tsx",
+      "line": 268,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeServantCategory === cat.id ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>"
+    },
+    {
+      "file": "hsr-hub\\components\\SkillAndEidolonSection.tsx",
+      "line": 291,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "{skill.tag && <span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5\">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}"
+    },
+    {
+      "file": "hsr-hub\\components\\SkillAndEidolonSection.tsx",
+      "line": 424,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "return part ? <span key={i} className=\"text-[11px] font-black text-gray-500 uppercase tracking-tighter\">{part}</span> : null;"
+    }
+  ],
+  "hsr-hub\\pages\\CharacterDetail.tsx": [
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 499,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 500,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>{t('AS Remake')}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 505,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('남성')}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 506,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('여성')}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 545,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1\">{t(\"속도\")}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 549,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1\">{t(\"도발\")}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 553,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1\">{t(\"에너지\")}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 608,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Globe size={18} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 616,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{['KR', 'EN', 'CN', 'JP'][i]}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 634,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Package size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 643,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className=\"text-gray-700 italic\">{t('데이터가 없습니다.')}</p>}"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 649,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Sparkles size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 653,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className=\"text-gray-700 italic\">{t('데이터가 없습니다.')}</p>}"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 686,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[11px] text-gray-500 font-medium\">Authored by <span className=\"text-brand-accent font-black\">Rira Archive Editorial Team</span></p>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 689,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 702,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[11px] font-bold text-gray-600 tracking-wider uppercase\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 760,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{label}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 768,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[11px] font-black text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors\">{label}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterDetail.tsx",
+      "line": 777,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors\">{label}</span>"
+    }
+  ],
+  "hsr-hub\\pages\\CharacterGuideDetail.tsx": [
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 128,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<span className=\"text-gray-700 font-black text-xl uppercase opacity-20\">{label.slice(0, 1)}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 140,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap\">{t(label, { keySeparator: false, nsSeparator: false })}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 189,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[11px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap\">{t(member.role)}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 373,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Info size={40} className=\"text-gray-700 mb-6\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 375,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 mb-8\">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 516,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Clock size={12} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 517,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">Update: {guide.lastUpdated}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 540,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold text-base md:text-lg border-l-4 border-brand-primary/40 pl-6\">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 581,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{lcUrl ? <img src={lcUrl} alt={lcName} className=\"w-full h-full object-contain drop-shadow-2xl\" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className=\"text-gray-700\" />}"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 602,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button key={idx} onClick={() => setSelectedVariantIndex(idx)} className={`px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-500 hover:text-gray-300'}`}>{v.name}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 611,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Layers size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 624,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{relic ? <img src={getMainImageUrl(relic) || ''} className=\"w-full h-full object-contain\" /> : <Layers className=\"text-gray-700\" />}"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 642,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Box size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 655,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{ornament ? <img src={getMainImageUrl(ornament) || ''} className=\"w-full h-full object-contain\" /> : <Box className=\"text-gray-700\" />}"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 680,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Target size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 711,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-sm font-bold text-gray-300 leading-relaxed\">{t(s.value)} {s.note && <span className=\"text-gray-500\">| {t(s.note)}</span>}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 720,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<ShieldCheck size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 774,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] font-bold text-gray-600 uppercase tracking-widest whitespace-nowrap\">{t(member.role)}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 793,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[11px] text-gray-500 font-medium\">Authored by <span className=\"text-brand-accent font-black\">Rira Archive Editorial Team</span></p>"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 796,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\CharacterGuideDetail.tsx",
+      "line": 802,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[11px] font-bold text-gray-600 tracking-wider uppercase\">"
+    }
+  ],
+  "hsr-hub\\pages\\Gallery.tsx": [
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 189,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none pt-1\">{t(stat.label)}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 204,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h3 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]\">{t('최근 업데이트 캐릭터')}</h3>"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 223,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={16} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 244,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={16} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 262,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setRelicSubTab('유물')} className={`h-11 px-6 rounded-xl font-black ${relicSubTab === '유물' ? 'bg-brand-primary text-white' : 'bg-white/5 text-gray-500'}`}>{t('터널 유물')}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 263,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setRelicSubTab('차원 장신구')} className={`h-11 px-6 rounded-xl font-black ${relicSubTab === '차원 장신구' ? 'bg-brand-accent text-black' : 'bg-white/5 text-gray-500'}`}>{t('차원 장신구')}</button>"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 283,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={16} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 342,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap\">{label}</span>"
+    },
+    {
+      "file": "hsr-hub\\pages\\Gallery.tsx",
+      "line": 346,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<ChevronRight size={12} className={`text-gray-600 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />"
+    }
+  ],
+  "hsr-hub\\pages\\LightConeDetail.tsx": [
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 213,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h2 className=\"text-[11px] font-black uppercase tracking-widest text-gray-500\">{t('레벨')}</h2>"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 234,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 246,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h2 className=\"text-[11px] font-black uppercase tracking-widest text-gray-500\">{t('중첩')}</h2>"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 266,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 277,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[9px] font-black text-gray-500 uppercase tracking-widest\">{t('기초 HP')}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 281,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[9px] font-black text-gray-500 uppercase tracking-widest\">{t('기초 공격력')}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 285,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[9px] font-black text-gray-500 uppercase tracking-widest\">{t('기초 방어력')}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 325,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex items-center gap-3 text-gray-600 italic py-2 text-xs\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 368,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[11px] text-gray-500 font-medium\">Authored by <span className=\"text-brand-accent font-black\">Rira Archive Editorial Team</span></p>"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 371,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\LightConeDetail.tsx",
+      "line": 377,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[11px] font-bold text-gray-600 tracking-wider uppercase\">"
+    }
+  ],
+  "hsr-hub\\pages\\OrnamentDetail.tsx": [
+    {
+      "file": "hsr-hub\\pages\\OrnamentDetail.tsx",
+      "line": 109,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[12px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\OrnamentDetail.tsx",
+      "line": 138,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[12px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    }
+  ],
+  "hsr-hub\\pages\\PartyRecommendations.tsx": [
+    {
+      "file": "hsr-hub\\pages\\PartyRecommendations.tsx",
+      "line": 67,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"text-[10px] font-bold text-gray-500 uppercase tracking-widest whitespace-nowrap\">{t(member.role)}</div>"
+    },
+    {
+      "file": "hsr-hub\\pages\\PartyRecommendations.tsx",
+      "line": 129,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span key={tag} className=\"text-[9px] font-black uppercase tracking-widest text-gray-500 bg-white/5 px-3 py-1 rounded-lg border border-white/5\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\PartyRecommendations.tsx",
+      "line": 228,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": ": 'bg-white/5 text-gray-500 border-white/5 hover:border-white/20'"
+    },
+    {
+      "file": "hsr-hub\\pages\\PartyRecommendations.tsx",
+      "line": 237,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-5 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors\" size={18} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\PartyRecommendations.tsx",
+      "line": 256,
+      "matches": [
+        "text-gray-800"
+      ],
+      "content": "<LayoutGrid size={48} className=\"text-gray-800\" />"
+    }
+  ],
+  "hsr-hub\\pages\\RelicDetail.tsx": [
+    {
+      "file": "hsr-hub\\pages\\RelicDetail.tsx",
+      "line": 114,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[12px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\RelicDetail.tsx",
+      "line": 142,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[12px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    }
+  ],
+  "hsr-hub\\pages\\Terminology.tsx": [
+    {
+      "file": "hsr-hub\\pages\\Terminology.tsx",
+      "line": 49,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 max-w-2xl font-medium leading-relaxed\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\Terminology.tsx",
+      "line": 56,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-accent transition-colors\" size={16} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\Terminology.tsx",
+      "line": 60,
+      "matches": [
+        "placeholder:text-gray-600"
+      ],
+      "content": "className=\"bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full transition-all focus:bg-white/10 text-white placeholder:text-gray-600 font-bold\""
+    },
+    {
+      "file": "hsr-hub\\pages\\Terminology.tsx",
+      "line": 87,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-gray-600 font-black uppercase tracking-[0.3em] text-sm italic\">일치하는 용어를 찾을 수 없습니다.</p>"
+    },
+    {
+      "file": "hsr-hub\\pages\\Terminology.tsx",
+      "line": 96,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<p className=\"text-gray-700 text-[10px] font-black uppercase tracking-[0.5em] italic\">"
+    }
+  ],
+  "hsr-hub\\pages\\TierList.tsx": [
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 82,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Loader2 className=\"text-gray-700 animate-spin\" size={16} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 108,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "parent.innerHTML = '<span class=\"text-[8px] text-gray-700 font-black uppercase\">No Image</span>';"
+    },
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 338,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold text-lg\">"
+    },
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 345,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-700\" size={16} />"
+    },
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 363,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "activeCategory === cat.id ? 'bg-brand-primary border-brand-primary text-white' : 'bg-white/5 border-white/5 text-gray-500'"
+    },
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 379,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "roleFilter === role ? 'bg-brand-primary border-brand-primary text-white shadow-lg' : 'bg-white/5 border-white/5 text-gray-500'"
+    },
+    {
+      "file": "hsr-hub\\pages\\TierList.tsx",
+      "line": 427,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<p className=\"text-gray-700 font-black uppercase tracking-widest text-[10px] opacity-30\">Empty</p>"
+    }
+  ],
+  "nte-hub\\components\\NTESkillAndAwakeningSection.tsx": [
+    {
+      "file": "nte-hub\\components\\NTESkillAndAwakeningSection.tsx",
+      "line": 94,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>"
+    },
+    {
+      "file": "nte-hub\\components\\NTESkillAndAwakeningSection.tsx",
+      "line": 127,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5\">{t(skill.tag || skill.type || '')}</span>"
+    },
+    {
+      "file": "nte-hub\\components\\NTESkillAndAwakeningSection.tsx",
+      "line": 140,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"p-8 text-center text-gray-500 font-medium bg-white/[0.01] rounded-2xl border border-white/5\">"
+    }
+  ],
+  "nte-hub\\pages\\CharacterDetail.tsx": [
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 670,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 671,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`}>{t('AS Remake')}</button>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 676,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('남성')}</button>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 677,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-500'}`}>{t('여성')}</button>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 722,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1\">{t(\"치명 확률\")}</span>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 726,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest mb-1\">{t(\"치명 피해\")}</span>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 736,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<div className=\"p-4 text-center text-gray-500\">데이터 없음</div>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 795,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Globe size={18} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 803,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{['KR', 'EN', 'CN', 'JP'][i]}</span>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 821,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Package size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 830,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} gameId=\"nte\" onClick={() => setSelectedItem(m.name)} />)) || <p className=\"text-gray-700 italic\">{t('데이터가 없습니다.')}</p>}"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 836,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Sparkles size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 840,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} gameId=\"nte\" onClick={() => setSelectedItem(m.name)} />)) || <p className=\"text-gray-700 italic\">{t('데이터가 없습니다.')}</p>}"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 873,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[11px] text-gray-500 font-medium\">Authored by <span className=\"text-brand-accent font-black\">Rira Archive Editorial Team</span></p>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 876,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed\">"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 889,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[11px] font-bold text-gray-600 tracking-wider uppercase\">"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 947,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{label}</span>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 955,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[11px] font-black text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors\">{label}</div>"
+    },
+    {
+      "file": "nte-hub\\pages\\CharacterDetail.tsx",
+      "line": 964,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors\">{label}</span>"
+    }
+  ],
+  "nte-hub\\pages\\Gallery.tsx": [
+    {
+      "file": "nte-hub\\pages\\Gallery.tsx",
+      "line": 119,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none pt-1\">{t(stat.label)}</span>"
+    },
+    {
+      "file": "nte-hub\\pages\\Gallery.tsx",
+      "line": 126,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h3 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]\">{t('최근 업데이트')}</h3>"
+    },
+    {
+      "file": "nte-hub\\pages\\Gallery.tsx",
+      "line": 151,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Book className=\"mx-auto text-gray-700 opacity-20\" size={48} />"
+    },
+    {
+      "file": "nte-hub\\pages\\Gallery.tsx",
+      "line": 152,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold italic uppercase tracking-widest\">{t('준비 중인 페이지입니다.')}</p>"
+    }
+  ],
+  "ww-hub\\components\\WuwaEchoGallery.tsx": [
+    {
+      "file": "ww-hub\\components\\WuwaEchoGallery.tsx",
+      "line": 55,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-gray-600 font-bold text-sm flex items-center gap-2\">"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoGallery.tsx",
+      "line": 65,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={16} />"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoGallery.tsx",
+      "line": 69,
+      "matches": [
+        "placeholder:text-gray-600"
+      ],
+      "content": "className=\"w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-600\""
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoGallery.tsx",
+      "line": 77,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2\">Cost Filter</span>"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoGallery.tsx",
+      "line": 84,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "activeCost === cost ? \"bg-white text-black shadow-lg shadow-white/20\" : \"bg-white/[0.03] text-gray-500 border-white/5 hover:bg-white/10\""
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoGallery.tsx",
+      "line": 96,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-600 uppercase tracking-widest flex items-center gap-2\">Sonata Sets</span>"
+    }
+  ],
+  "ww-hub\\components\\WuwaEchoModal.tsx": [
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 59,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={onClose} className=\"absolute top-8 right-8 text-gray-500 hover:text-white transition-colors z-20\">"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 86,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"px-3 py-1 bg-white/5 text-gray-500 text-[10px] font-black rounded-full uppercase tracking-widest border border-white/10\">"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 100,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`text-[10px] font-black px-3 py-1 rounded-full transition-all border ${showPhantom ? 'bg-brand-primary text-white border-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.4)]' : 'bg-white/5 border-white/10 text-gray-500 hover:text-white'}`}"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 113,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'ability' ? 'text-brand-accent' : 'text-gray-500 hover:text-gray-300'}`}"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 120,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'enemy' ? 'text-brand-accent' : 'text-gray-500 hover:text-gray-300'}`}"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 132,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]\">Sonata Synergy</h4>"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 149,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 161,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[10px] font-black text-gray-500 uppercase tracking-[0.3em] flex items-center gap-2\">"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 204,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]\">Resistance Matrix</h4>"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaEchoModal.tsx",
+      "line": 220,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]\">Drop Materials</h4>"
+    }
+  ],
+  "ww-hub\\components\\WuwaResonanceChain.tsx": [
+    {
+      "file": "ww-hub\\components\\WuwaResonanceChain.tsx",
+      "line": 56,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">{t('공명 체인 노드')}</span>"
+    }
+  ],
+  "ww-hub\\components\\WuwaSkillInput.tsx": [
+    {
+      "file": "ww-hub\\components\\WuwaSkillInput.tsx",
+      "line": 219,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "{title && <h4 className=\"text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3\">{title}</h4>}"
+    },
+    {
+      "file": "ww-hub\\components\\WuwaSkillInput.tsx",
+      "line": 237,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3\">{t('조작 입력')}</h4>"
+    }
+  ],
+  "ww-hub\\components\\WuwaSkillSection.tsx": [
+    {
+      "file": "ww-hub\\components\\WuwaSkillSection.tsx",
+      "line": 114,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>{t(cat.label)}</span>"
+    }
+  ],
+  "ww-hub\\pages\\CharacterDetail.tsx": [
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 583,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`} style={gender === 'm' ? { backgroundColor: theme.primary } : {}}>{t('남성')}</button>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 584,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 680,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Globe size={18} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 688,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 701,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Globe size={18} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 709,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 762,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Package size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 771,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className=\"text-gray-700 italic\">{t('데이터가 없습니다.')}</p>}"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 777,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Sparkles size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 781,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "{char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className=\"text-gray-700 italic\">{t('데이터가 없습니다.')}</p>}"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 829,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[11px] text-gray-500 font-medium\">Authored by <span className=\"text-brand-accent font-black\">Rira Archive Editorial Team</span></p>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 832,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed\">"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 838,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[11px] font-bold text-gray-600 tracking-wider uppercase\">"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 885,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest\">{label}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 893,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[11px] font-black text-gray-600 uppercase tracking-widest group-hover:text-gray-400 transition-colors\">{label}</div>"
+    },
+    {
+      "file": "ww-hub\\pages\\CharacterDetail.tsx",
+      "line": 902,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors\">{label}</span>"
+    }
+  ],
+  "ww-hub\\pages\\Gallery.tsx": [
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 193,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[9px] font-black text-gray-600 uppercase tracking-widest leading-none pt-1\">{t(stat.label)}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 208,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h3 className=\"text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]\">{t('최근 공명자 업데이트')}</h3>"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 225,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={16} />"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 246,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-700\" size={16} />"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 277,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={16} />"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 294,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Book className=\"mx-auto text-gray-700 opacity-20\" size={48} />"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 295,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold italic uppercase tracking-widest\">{t('준비 중인 공략입니다.')}</p>"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 327,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap\">{label}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\Gallery.tsx",
+      "line": 331,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<ChevronRight size={12} className={`text-gray-600 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />"
+    }
+  ],
+  "ww-hub\\pages\\PartyRecommendations.tsx": [
+    {
+      "file": "ww-hub\\pages\\PartyRecommendations.tsx",
+      "line": 47,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-xs text-gray-500\">{party.description}</p>"
+    },
+    {
+      "file": "ww-hub\\pages\\PartyRecommendations.tsx",
+      "line": 93,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">Synergy Optimized</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\PartyRecommendations.tsx",
+      "line": 160,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500\" size={18} />"
+    }
+  ],
+  "ww-hub\\pages\\TierList.tsx": [
+    {
+      "file": "ww-hub\\pages\\TierList.tsx",
+      "line": 81,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Loader2 className=\"text-gray-700 animate-spin\" size={16} />"
+    },
+    {
+      "file": "ww-hub\\pages\\TierList.tsx",
+      "line": 279,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold text-lg\">"
+    },
+    {
+      "file": "ww-hub\\pages\\TierList.tsx",
+      "line": 285,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-700\" size={16} />"
+    },
+    {
+      "file": "ww-hub\\pages\\TierList.tsx",
+      "line": 305,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": ": 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'"
+    },
+    {
+      "file": "ww-hub\\pages\\TierList.tsx",
+      "line": 323,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": ": 'bg-white/5 border-white/5 text-gray-500 hover:bg-white/10'"
+    },
+    {
+      "file": "ww-hub\\pages\\TierList.tsx",
+      "line": 372,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-gray-600 font-black uppercase tracking-widest text-xs opacity-50\">데이터가 없습니다.</p>"
+    }
+  ],
+  "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx": [
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 142,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "{!label.includes('Cost') && <span className=\"text-gray-600 font-black text-xl uppercase opacity-40\">{label.slice(0, 1)}</span>}"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 149,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap\">{t(label, { keySeparator: false, nsSeparator: false })}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 260,
+      "matches": [
+        "text-gray-700"
+      ],
+      "content": "<Info size={40} className=\"text-gray-700 mb-6\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 263,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-sm text-gray-500 mb-8\">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 375,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-gray-500 font-bold text-base md:text-lg border-l-4 border-brand-primary/40 pl-6\">{t('최적의 성능을 위한 무기와 에코 세팅 데이터입니다.')}</p>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 442,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`flex items-center gap-2 px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'}`}"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 457,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Layers size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 518,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Target size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 545,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<ShieldCheck size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 588,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Activity size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 597,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "{idx < guide.skillPriority.length - 1 && <ChevronRight size={20} className=\"text-gray-600\" />}"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 642,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] font-bold text-gray-600 uppercase tracking-widest whitespace-nowrap\">{t(memberChar.roles[0].label)}</div>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 662,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[11px] text-gray-500 font-medium\">Authored by <span className=\"text-brand-accent font-black\">Rira Archive Editorial Team</span></p>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaCharacterGuideDetail.tsx",
+      "line": 665,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"text-[10px] text-gray-600 max-w-md text-center md:text-right font-medium leading-relaxed\">"
+    }
+  ],
+  "ww-hub\\pages\\WuwaEchoDetail.tsx": [
+    {
+      "file": "ww-hub\\pages\\WuwaEchoDetail.tsx",
+      "line": 33,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h2 className=\"text-2xl font-black text-gray-500 uppercase tracking-widest\">Echo Not Found</h2>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaEchoDetail.tsx",
+      "line": 160,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h2 className=\"text-[11px] font-black uppercase tracking-widest text-gray-500\">{t('화음 세트')}</h2>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaEchoDetail.tsx",
+      "line": 175,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] pt-1\">Resonance Synergy</span>"
+    }
+  ],
+  "ww-hub\\pages\\WuwaWeaponCard.tsx": [
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponCard.tsx",
+      "line": 35,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[10px] font-bold text-gray-600 uppercase tracking-widest\">{weapon.type}</p>"
+    }
+  ],
+  "ww-hub\\pages\\WuwaWeaponDetail.tsx": [
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponDetail.tsx",
+      "line": 535,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5\">"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponDetail.tsx",
+      "line": 554,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1\">{t('무기 스킬')}</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponDetail.tsx",
+      "line": 582,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<div className=\"flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-600 px-0.5 mt-1.5\">"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponDetail.tsx",
+      "line": 605,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Package size={22} className=\"text-gray-500\" />"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponDetail.tsx",
+      "line": 666,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<p className=\"text-[11px] font-bold text-gray-600 tracking-wider uppercase\">"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponDetail.tsx",
+      "line": 695,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<span className=\"text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors\">{label}</span>"
+    }
+  ],
+  "ww-hub\\pages\\WuwaWeaponGallery.tsx": [
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponGallery.tsx",
+      "line": 69,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "className={`h-11 px-5 rounded-full text-[11px] font-black transition-all min-w-[44px] flex items-center justify-center ${selectedType === t ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'bg-white/5 text-gray-500 hover:bg-white/10 hover:text-white'}`}"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponGallery.tsx",
+      "line": 78,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<Search className=\"absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-primary transition-colors\" size={18} />"
+    }
+  ],
+  "ww-hub\\pages\\WuwaWeaponModal.tsx": [
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponModal.tsx",
+      "line": 47,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">Base ATK</p>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponModal.tsx",
+      "line": 51,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<p className=\"text-[10px] font-black text-gray-500 uppercase tracking-widest\">{weapon.stats.subStatName}</p>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponModal.tsx",
+      "line": 60,
+      "matches": [
+        "text-gray-600"
+      ],
+      "content": "<span className=\"text-[10px] font-bold text-gray-600\">RANK 1</span>"
+    },
+    {
+      "file": "ww-hub\\pages\\WuwaWeaponModal.tsx",
+      "line": 71,
+      "matches": [
+        "text-gray-500"
+      ],
+      "content": "<h4 className=\"text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]\">Archive Story</h4>"
+    }
+  ]
+}
