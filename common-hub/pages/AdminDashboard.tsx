@@ -684,7 +684,7 @@ const AdminDashboard: React.FC = () => {
                           {activeGame === 'ww'
                             ? ['기류', '전도', '회절', '인멸', '용융', '응결'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
                             : activeGame === 'nte'
-                            ? ['화염', '얼음', '번개', '바람', '물리', '이능'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
+                            ? ['령', '혼', '빛', '상', '암', '주'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
                             : ['물리', '화염', '얼음', '번개', '바람', '양자', '허수'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
                           }
                         </select>
