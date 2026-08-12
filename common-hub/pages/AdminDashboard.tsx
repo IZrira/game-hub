@@ -390,7 +390,7 @@ const AdminDashboard: React.FC = () => {
 
   const exportSQLToCode = async () => {
     try {
-      const { data } = await supabase.from('tier_lists').select('*').eq('game_id', 'hsr');
+      const { data } = await supabase.from('tier_lists').select('*').eq('game_id', activeGame);
       if (!data) return;
 
       const exportData: any = {};
@@ -424,7 +424,7 @@ const AdminDashboard: React.FC = () => {
         exportData[catId].sort((a: any, b: any) => rankOrder.indexOf(a.tier) - rankOrder.indexOf(b.tier));
       });
 
-      const codeString = `export const HSR_TIER_DATA: Record<string, TierGroup[]> = ${JSON.stringify(exportData, null, 2)};`;
+      const codeString = `export const ${activeGame?.toUpperCase()}_TIER_DATA: Record<string, TierGroup[]> = ${JSON.stringify(exportData, null, 2)};`;
       await navigator.clipboard.writeText(codeString);
       alert('SQL 데이터가 티어표 코드 형식으로 복사되었습니다!\n이 내용을 채팅창에 붙여넣어 저에게 전달해 주세요.');
     } catch (err: any) {
@@ -973,6 +973,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                         <option value="common" style={{ backgroundColor: '#111' }}>공통 (전체)</option>
                         <option value="hsr" style={{ backgroundColor: '#111' }}>스타레일</option>
                         <option value="ww" style={{ backgroundColor: '#111' }}>명조</option>
+                        <option value="nte" style={{ backgroundColor: '#111' }}>이환(NTE)</option>
                       </select>
                     </div>
                     <div className="space-y-2">
