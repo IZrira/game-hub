@@ -113,7 +113,8 @@ const CharacterDetailNTE: React.FC = () => {
       const folderName = rawChar.folderName || rawChar.name || '';
       
       const baseImg = new Image();
-      baseImg.src = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(folderName)}.webp`;
+      const fileName = folderName === '감정사' ? '감정사_f' : folderName;
+      baseImg.src = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(fileName)}.webp`;
 
       if (rawChar.skins && rawChar.skins.length > 0) {
         rawChar.skins.forEach((skinName: string) => {

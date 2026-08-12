@@ -281,7 +281,7 @@ const AdminDashboard: React.FC = () => {
           folder_name: c.folderName || c.name,
           rarity: c.rarity || 5,
           attribute: c.attribute || '이능',
-          path: c.path || '격파',
+          path: c.arc || '결합',
           version: c.releaseVersion || '1.0'
         }));
       } else {
@@ -444,7 +444,9 @@ const AdminDashboard: React.FC = () => {
       return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
     if (activeGame === 'nte') {
-      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(folder.trim())}/${safeEncodeURIComponent(folder.trim())}.webp`;
+      const trimmed = folder.trim();
+      const fileName = trimmed === '감정사' ? '감정사_f' : trimmed;
+      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(trimmed)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
     return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
   };
@@ -698,7 +700,7 @@ const AdminDashboard: React.FC = () => {
                           {activeGame === 'ww'
                             ? ['장검', '대검', '직검', '권갑', '증폭기', '권총'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
                             : activeGame === 'nte'
-                            ? ['격파', '지원', '딜러', '탱커', '기타'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
+                            ? ['결합', '액체', '기체', '플라스마', '고체'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
                             : ['파멸', '수렵', '지식', '화합', '공허', '보존', '풍요', '기억', '환락'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
                           }
                         </select>
