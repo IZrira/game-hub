@@ -443,6 +443,9 @@ const AdminDashboard: React.FC = () => {
       const fileName = isRover ? `${mappedFolder}(여)` : mappedFolder;
       return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
+    if (activeGame === 'nte') {
+      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(folder.trim())}/${safeEncodeURIComponent(folder.trim())}.webp`;
+    }
     return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
   };
 
