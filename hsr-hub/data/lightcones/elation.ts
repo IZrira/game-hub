@@ -351,5 +351,40 @@ export const elationLightcones: HsrLightCone[] = [
       { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 2, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 6, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 9, 5), createMaterial("천진난만 크레파스", 12, 2), createMaterial("꿈을 만드는 딥 펜", 10, 3), createMaterial("꿈을 그리는 붓", 8, 4)] }
     ],
     "story": "세월에서 추출한 희박한 힘. 바로 이런 보잘것없는 찰나의 순간들이 모여 장렬한 운명을 엮어낸다.\n\n「웃음의 기원은 공포와 위협을 느꼈을 때 입을 벌리는 행동에서 비롯되었다」"
+  },
+  {
+    "id": "lc_짧은_휴가",
+    "name": "짧은 휴가",
+    "releaseVersion": "3.1",
+    "folderName": "짧은 휴가",
+    "rarity": 4,
+    "path": "환락",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [19, 74, 126, 185, 245, 304, 364, 423],
+      [18, 69, 118, 174, 230, 285, 341, 397]
+    ),
+    "skill": {
+      "name": "비밀 이야기",
+      "description": "장착한 캐릭터의 환락도가 20%/25%/30%/35%/40% 증가한다. 장착한 캐릭터가 환락 스킬을 발동하는 중에는 목표의 방어력을 8%/10%/12%/14%/16% 무시한다",
+      "descriptions": [
+        "장착한 캐릭터의 환락도가 20% 증가한다. 장착한 캐릭터가 환락 스킬을 발동하는 중에는 목표의 방어력을 8% 무시한다",
+        "장착한 캐릭터의 환락도가 25% 증가한다. 장착한 캐릭터가 환락 스킬을 발동하는 중에는 목표의 방어력을 10% 무시한다",
+        "장착한 캐릭터의 환락도가 30% 증가한다. 장착한 캐릭터가 환락 스킬을 발동하는 중에는 목표의 방어력을 12% 무시한다",
+        "장착한 캐릭터의 환락도가 35% 증가한다. 장착한 캐릭터가 환락 스킬을 발동하는 중에는 목표의 방어력을 14% 무시한다",
+        "장착한 캐릭터의 환락도가 40% 증가한다. 장착한 캐릭터가 환락 스킬을 발동하는 중에는 목표의 방어력을 16% 무시한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("천진난만 크레파스", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 3, 2), createMaterial("천진난만 크레파스", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 3, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 3, 3), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 3, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 9, 3), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 3, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 9, 3), createMaterial("≪복슬복슬호≫ 소장판 합본", 4, 4), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3), createMaterial("꿈을 그리는 붓", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 3, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 9, 3), createMaterial("≪복슬복슬호≫ 소장판 합본", 12, 4), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3), createMaterial("꿈을 그리는 붓", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 3, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 9, 3), createMaterial("≪복슬복슬호≫ 소장판 합본", 12, 4), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3), createMaterial("꿈을 그리는 붓", 12, 4)] }
+    ],
+    "story": "추가 예정"
   }
 ];
