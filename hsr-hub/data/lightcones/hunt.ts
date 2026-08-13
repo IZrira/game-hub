@@ -701,5 +701,40 @@ export const huntLightcones: HsrLightCone[] = [
       { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("짐승 사냥용 화살", 2, 2), createMaterial("악마 사냥용 화살", 6, 2), createMaterial("별 쫓는 화살", 9, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 8, 4)] }
     ],
     "story": "세월에서 추출한 희박한 힘. 보잘것없는 찰나의 순간들이 모여 엮어진 장렬한 운명.\n「당겨진 화살과 활을 들고 사슴을 쫓을 때, 사냥꾼의 두 눈이 가장 맑다」"
+  },
+  {
+    "id": "lc_지평선의_끝을_향해",
+    "name": "지평선의 끝을 향해",
+    "releaseVersion": "3.1",
+    "folderName": "지평선의 끝을 향해",
+    "rarity": 4,
+    "path": "수렵",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [18, 69, 118, 174, 230, 285, 341, 397]
+    ),
+    "skill": {
+      "name": "초월",
+      "description": "장착한 캐릭터의 공격력이 12%/15%/18%/21%/24% 증가한다. 장착한 캐릭터가 추가 공격 발동 후 장착한 캐릭터의 치명타 피해가 3%/3.5%/4%/4.5%/5% 증가한다, 지속 시간: 2턴, 해당 효과 최대 중첩수: 10스택",
+      "descriptions": [
+        "장착한 캐릭터의 공격력이 12% 증가한다. 장착한 캐릭터가 추가 공격 발동 후 장착한 캐릭터의 치명타 피해가 3% 증가한다, 지속 시간: 2턴, 해당 효과 최대 중첩수: 10스택",
+        "장착한 캐릭터의 공격력이 15% 증가한다. 장착한 캐릭터가 추가 공격 발동 후 장착한 캐릭터의 치명타 피해가 3.5% 증가한다, 지속 시간: 2턴, 해당 효과 최대 중첩수: 10스택",
+        "장착한 캐릭터의 공격력이 18% 증가한다. 장착한 캐릭터가 추가 공격 발동 후 장착한 캐릭터의 치명타 피해가 4% 증가한다, 지속 시간: 2턴, 해당 효과 최대 중첩수: 10스택",
+        "장착한 캐릭터의 공격력이 21% 증가한다. 장착한 캐릭터가 추가 공격 발동 후 장착한 캐릭터의 치명타 피해가 4.5% 증가한다, 지속 시간: 2턴, 해당 효과 최대 중첩수: 10스택",
+        "장착한 캐릭터의 공격력이 24% 증가한다. 장착한 캐릭터가 추가 공격 발동 후 장착한 캐릭터의 치명타 피해가 5% 증가한다, 지속 시간: 2턴, 해당 효과 최대 중첩수: 10스택"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("천진난만 크레파스", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("천진난만 크레파스", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 3, 3), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 4, 4), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3), createMaterial("꿈을 그리는 붓", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 12, 4), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3), createMaterial("꿈을 그리는 붓", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("운철 탄환", 3, 2), createMaterial("숙명적인 사인", 9, 3), createMaterial("시간을 역행하는 일격", 12, 4), createMaterial("천진난만 크레파스", 15, 2), createMaterial("꿈을 만드는 딥 펜", 15, 3), createMaterial("꿈을 그리는 붓", 12, 4)] }
+    ],
+    "story": "추가 예정"
   }];
 
