@@ -226,7 +226,19 @@ const MANUAL_DATA: Record<string, ConsumableDetail> = {
   "군왕의 수": { enName: "Sovereign's Hand", desc: "사용 후 다음번 전투에서 모든 아군의 속도가 16% 증가하고, 공격력이 10% 증가한다", enDesc: "Upon use, increases SPD by 16% and ATK by 10% for all allies in the next battle.", type: "소모품", rarity: 4, sources: ["「만능 합성기」"] },
   "물고기를 부르는 뼈피리": { enName: "Fish-Calling Bone Flute", desc: "사용 후 다음번 전투에서 모든 아군의 공격력이 15% 증가하고, 가하는 지속 피해가 30% 증가한다", enDesc: "Upon use, increases ATK by 15% and DoT dealt by 30% for all allies in the next battle.", type: "소모품", rarity: 4, sources: ["「만능 합성기」"] },
   "강철 코일": { enName: "Steel Coil", desc: "사용 후 모든 아군이 즉시 각자 HP 최대치의 40%만큼 HP를 소모하고, 다음번 전투에서 환락도가 40% 증가한다", enDesc: "Upon use, all allies instantly consume 40% of their Max HP, and increases Elation by 40% for the next battle.", type: "소모품", rarity: 4, sources: ["「만능 합성기」", "∞ 11 편의점"] },
-  "≪복슬복슬호≫ 다기능 응원봉": { enName: "The Fluffy Multi-Functional Fan Glowstick", desc: "사용 후 다음번 전투에서 모든 아군의 치명타 피해가 25% 증가하고, 아하 타임이 처음으로 행동 시 치명타 피해가 추가로 25% 증가한다", enDesc: "Upon use, increases all allies' CRIT DMG by 25% for the next battle. When an Aha Instant takes its first action, CRIT DMG is additionally increased by 25%.", type: "소모품", rarity: 4, sources: ["∞ 11 편의점"], enSources: ["∞-Eleven"] }
+  "≪복슬복슬호≫ 다기능 응원봉": { enName: "The Fluffy Multi-Functional Fan Glowstick", desc: "사용 후 다음번 전투에서 모든 아군의 치명타 피해가 25% 증가하고, 아하 타임이 처음으로 행동 시 치명타 피해가 추가로 25% 증가한다", enDesc: "Upon use, increases all allies' CRIT DMG by 25% for the next battle. When an Aha Instant takes its first action, CRIT DMG is additionally increased by 25%.", type: "소모품", rarity: 4, sources: ["∞ 11 편의점"], enSources: ["∞-Eleven"] },
+  "통통 오렌지 하트": { desc: "사용 후 다음번 전투에서 모든 아군의 공격력이 60% 증가하고, 적에게 스킬을 발동할 시 낮은 확률로 잘못된 목표를 선택한다", type: "소모품", rarity: 4, sources: ["아이스크림 카트"] },
+  "발효 콩국물 스키야키": { desc: "사용 후 즉시 모든 아군은 각자 HP 최대치 5%만큼의 HP를 소모하고 다음번 전투에서 모든 아군의 공격력이 40% 증가한다", type: "소모품", rarity: 3, sources: ["「만능 합성기」", "괴츠카 맛"] },
+  "앰버 로드 도장": { desc: "사용 후 다음번 전투에서 모든 아군의 공격력이 24% 증가하고, 치명타 피해가 24% 증가한다", type: "소모품", rarity: 4, sources: ["「만능 합성기」", "괴츠카 맛"] },
+  "나트륨 추가 윤활 소시지 구이": { desc: "사용 후 즉시 지정된 단일 아군의 HP를 자신의 HP 최대치의 20%만큼 회복하고, 추가로 HP를 240pt 회복한다", type: "소모품", rarity: 2, sources: ["다혈질 밥"] },
+  "무적 스테이크": { desc: "사용 후 다음번 전투에서 모든 아군의 치명타 피해가 24% 증가한다", type: "소모품", rarity: 2, sources: ["다혈질 밥"] },
+  "「방파제」 세 가지 맛 아이스크림": { desc: "사용 후 다음번 전투에서 모든 아군의 방어력이 8% 증가하고, HP 최대치가 8% 증가하며, 회복량이 8% 증가한다", type: "소모품", rarity: 2, sources: ["이동식 냉각 스테이션"] },
+  "「등대」 액션 피규어": { desc: "사용 후 다음번 전투에서 모든 아군의 방어력이 25% 증가한다", type: "소모품", rarity: 4, sources: ["만가의 히어로 하우스"] },
+  "에이언즈 풍선": { desc: "사용 후 즉시 아군의 비술 포인트를 3pt 회복한다", type: "소모품", rarity: 2, sources: ["만가의 히어로 하우스"] },
+  "「굴착이」 1:1 레플리카": { desc: "사용 후 다음번 전투에서 모든 아군이 가하는 화염 속성 피해가 16% 증가한다", type: "소모품", rarity: 2, sources: ["후크 전선"] },
+  "수영복호": { desc: "사용 후 다음번 전투에서 모든 아군의 환락도가 24% 증가한다", type: "소모품", rarity: 3, sources: ["아쿠아 포스 원"] },
+  "스피딩 제트 서프보드": { desc: "사용 후 다음번 전투에서 모든 아군의 속도가 12% 증가한다", type: "소모품", rarity: 3, sources: ["아쿠아 포스 원"] },
+  "감응 역학 탐지봉": { desc: "무한으로 사용할 수 있는 보물 탐지 도구. 사용 후 「아스트로폴리스」 관련 맵에 일반 전리품 1개의 위치를 표시할 수 있다", type: "소모품", rarity: 5, sources: ["「너구리의 선물」 레벨 보상으로 획득"] }
 };
 
 export const CONSUMABLE_DATA: Record<string, ConsumableDetail> = { ...MANUAL_DATA };
