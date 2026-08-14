@@ -119,7 +119,7 @@ const aventurine_waveflair: Character = {
       toughnessDMG: "약점 격파 단일 10",
       spRecovery: "0",
       description: "모든 적에게 양자 속성 환락 피해를 60% 가하고, 추가로 피해를 10회 가하며, 피해당 랜덤 단일 적에게 양자 속성 환락 피해를 18% 가한다. 발동 시 모든 [열의]를 소모하며, 소모한 [열의] 1pt당 추가로 랜덤 단일 적에게 양자 속성 환락 피해를 21% 1회 가한다",
-      icon: "elation_skill_2"
+      icon: "elation_skill_1"
     }
   ],
   additionalAbilities: [
