@@ -491,5 +491,40 @@ export const remembranceLightcones: HsrLightCone[] = [
       { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] }
     ],
     "story": "우리가 함께 그려갈 내일은 어떤 모습일까? 아마도 핑크빛으로 가득 찬 따뜻한 세상이겠지.\n\n「가자, 우리가 꿈꾸는 그곳으로!」\n\n그녀는 환하게 웃으며 앞장섰다. 비록 먼 미래일지라도, 함께라면 어떤 장애물도 이겨낼 수 있을 것만 같았다. 핑크빛 내일이 우리를 부르고 있으니까."
+  },
+  {
+    "id": "lc_그대는_나아가_노래하리니",
+    "name": "그대는 나아가 노래하리니",
+    "releaseVersion": "4.5",
+    "folderName": "그대는 나아가 노래하리니",
+    "rarity": 5,
+    "path": "기억",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [53, 203, 346, 510, 673, 837, 1001, 1164],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [18, 69, 118, 174, 230, 285, 341, 397]
+    ),
+    "skill": {
+      "name": "즉흥",
+      "description": "장착한 캐릭터의 HP 최대치가 30%/38%/45%/53%/60% 증가하고, 장착한 캐릭터가 필살기를 발동하면 아군의 전투 스킬 포인트를 1pt 회복한다. 전투 진입 시 장착한 캐릭터의 행동 게이지가 30%/33%/35%/38%/40% 증가하며, 장착한 캐릭터는 [새로운 소리]를 획득한다, 지속 시간: 2턴. 장착한 캐릭터가 [새로운 소리] 보유 시 모든 아군의 속도가 20%/25%/30%/35%/40% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 HP 최대치가 30% 증가하고, 장착한 캐릭터가 필살기를 발동하면 아군의 전투 스킬 포인트를 1pt 회복한다. 전투 진입 시 장착한 캐릭터의 행동 게이지가 30% 증가하며, 장착한 캐릭터는 [새로운 소리]를 획득한다, 지속 시간: 2턴. 장착한 캐릭터가 [새로운 소리] 보유 시 모든 아군의 속도가 20% 증가한다",
+        "장착한 캐릭터의 HP 최대치가 38% 증가하고, 장착한 캐릭터가 필살기를 발동하면 아군의 전투 스킬 포인트를 1pt 회복한다. 전투 진입 시 장착한 캐릭터의 행동 게이지가 33% 증가하며, 장착한 캐릭터는 [새로운 소리]를 획득한다, 지속 시간: 2턴. 장착한 캐릭터가 [새로운 소리] 보유 시 모든 아군의 속도가 25% 증가한다",
+        "장착한 캐릭터의 HP 최대치가 45% 증가하고, 장착한 캐릭터가 필살기를 발동하면 아군의 전투 스킬 포인트를 1pt 회복한다. 전투 진입 시 장착한 캐릭터의 행동 게이지가 35% 증가하며, 장착한 캐릭터는 [새로운 소리]를 획득한다, 지속 시간: 2턴. 장착한 캐릭터가 [새로운 소리] 보유 시 모든 아군의 속도가 30% 증가한다",
+        "장착한 캐릭터의 HP 최대치가 53% 증가하고, 장착한 캐릭터가 필살기를 발동하면 아군의 전투 스킬 포인트를 1pt 회복한다. 전투 진입 시 장착한 캐릭터의 행동 게이지가 38% 증가하며, 장착한 캐릭터는 [새로운 소리]를 획득한다, 지속 시간: 2턴. 장착한 캐릭터가 [새로운 소리] 보유 시 모든 아군의 속도가 35% 증가한다",
+        "장착한 캐릭터의 HP 최대치가 60% 증가하고, 장착한 캐릭터가 필살기를 발동하면 아군의 전투 스킬 포인트를 1pt 회복한다. 전투 진입 시 장착한 캐릭터의 행동 게이지가 40% 증가하며, 장착한 캐릭터는 [새로운 소리]를 획득한다, 지속 시간: 2턴. 장착한 캐릭터가 [새로운 소리] 보유 시 모든 아군의 속도가 40% 증가한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("소멸된 코어", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("사량의 씨앗", 4, 2), createMaterial("소멸된 코어", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("사량의 씨앗", 4, 2), createMaterial("말나 새싹", 4, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("사량의 씨앗", 4, 2), createMaterial("말나 새싹", 12, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("사량의 씨앗", 4, 2), createMaterial("말나 새싹", 12, 3), createMaterial("아뢰야 꽃", 5, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("사량의 씨앗", 4, 2), createMaterial("말나 새싹", 12, 3), createMaterial("아뢰야 꽃", 15, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("사량의 씨앗", 4, 2), createMaterial("말나 새싹", 12, 3), createMaterial("아뢰야 꽃", 15, 4), createMaterial("꿈 저장 부품", 20, 2), createMaterial("꿈 흐름 밸브", 20, 3), createMaterial("꿈 제조 모터", 14, 4)] }
+    ],
+    "story": "추가 예정"
   }
 ];

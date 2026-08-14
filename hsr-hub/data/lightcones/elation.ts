@@ -355,7 +355,7 @@ export const elationLightcones: HsrLightCone[] = [
   {
     "id": "lc_짧은_휴가",
     "name": "짧은 휴가",
-    "releaseVersion": "3.1",
+    "releaseVersion": "4.5",
     "folderName": "짧은 휴가",
     "rarity": 4,
     "path": "환락",

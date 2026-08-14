@@ -705,7 +705,7 @@ export const huntLightcones: HsrLightCone[] = [
   {
     "id": "lc_지평선의_끝을_향해",
     "name": "지평선의 끝을 향해",
-    "releaseVersion": "3.1",
+    "releaseVersion": "4.5",
     "folderName": "지평선의 끝을 향해",
     "rarity": 4,
     "path": "수렵",
