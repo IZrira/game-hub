@@ -61,8 +61,8 @@ const evernight: Character = {
     createSkill("evernight.skill.memo_skill_1.name", "기억 정령 스킬 | 단일 공격", "에너지 회복 20", "약점 격파 단일 공격 10", "0", "evernight.skill.memo_skill_1.desc", "memo_skill_1"),
     createSkill("evernight.skill.memo_skill_2.name", "기억 정령 스킬 | 범위 공격", "에너지 회복 10", "약점 격파 단일 30 범위 20", "0", "evernight.skill.memo_skill_2.desc", "memo_skill_2"),
     createSkill("evernight.skill.memo_talent_1.name", "기억 정령 특성 | 서포트", "0", "0", "0", "evernight.skill.memo_talent_1.desc", "memo_talent_1"),
-    createSkill("evernight.skill.memo_talent_2.name", "기억 정령 특성 | 강화", "0", "0", "0", "evernight.skill.memo_talent_2.desc", "memo_talent_2"),
-    createSkill("evernight.skill.memo_talent_3.name", "기억 정령 특성 | 강화", "0", "0", "0", "evernight.skill.memo_talent_3.desc", "memo_talent_3")
+    createSkill("evernight.skill.memo_talent_2.name", "기억 정령 특성 | 강화", "0", "0", "0", "evernight.skill.memo_talent_2.desc", "memo_talent_1"),
+    createSkill("evernight.skill.memo_talent_3.name", "기억 정령 특성 | 강화", "0", "0", "0", "evernight.skill.memo_talent_3.desc", "memo_talent_1")
   ],
   additionalAbilities: [
     { name: "evernight.bonus.1.name", description: "evernight.bonus.1.desc", icon: "bonus_1" },
