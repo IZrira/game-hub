@@ -478,10 +478,16 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const getEncodedUrl = (folder: string) => {
+  const getEncodedUrl = (folderOrChar: any) => {
+    const folder = typeof folderOrChar === 'string' 
+      ? folderOrChar 
+      : (folderOrChar?.folder_name || folderOrChar?.folderName || folderOrChar?.name || '');
     if (!folder) return '';
-    if (activeGame === 'ww') {
-      let mappedFolder = folder.trim();
+    const safeFolder = folder.trim();
+    const game = activeGame || 'hsr';
+
+    if (game === 'ww') {
+      let mappedFolder = safeFolder;
       const isRover = mappedFolder.startsWith('방랑자');
       if (isRover && mappedFolder === '방랑자 · 전도') {
         mappedFolder = '방랑자 · 회절';
@@ -489,12 +495,11 @@ const AdminDashboard: React.FC = () => {
       const fileName = isRover ? `${mappedFolder}(여)` : mappedFolder;
       return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
-    if (activeGame === 'nte') {
-      const trimmed = folder.trim();
-      const fileName = trimmed === '감정사' ? '감정사_f' : trimmed;
-      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(trimmed)}/${safeEncodeURIComponent(fileName)}.webp`;
+    if (game === 'nte') {
+      const fileName = safeFolder === '감정사' ? '감정사_f' : safeFolder;
+      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(safeFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
-    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/${activeGame}%20images/캐릭터/${safeEncodeURIComponent(folder.trim())}/art01.webp`;
+    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/캐릭터/${safeEncodeURIComponent(safeFolder)}/art01.webp`;
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Activity className="animate-spin text-amber-500" size={48} /></div>;
@@ -657,19 +662,25 @@ const AdminDashboard: React.FC = () => {
                         <tr key={bc.id} className="group hover:bg-white/[0.01] transition-colors">
                           <td className="p-8">
                             <div className="flex items-center gap-6">
-                              <div className="relative w-16 h-16 shrink-0 group-hover:scale-110 transition-transform duration-500">
+                              <div className="relative w-16 h-16 shrink-0 group-hover:scale-110 transition-transform duration-500 bg-white/5 rounded-2xl flex items-center justify-center overflow-hidden border border-white/10">
                                 <img 
-                                  src={getEncodedUrl(bc.folder_name)} 
-                                  className="w-full h-full rounded-2xl object-cover border border-white/10 bg-black"
+                                  src={getEncodedUrl(bc)} 
+                                  alt={bc.name}
+                                  className="w-full h-full rounded-2xl object-cover bg-black"
                                   onError={(e) => {
+                                    const originalUrl = e.currentTarget.src;
+                                    if (originalUrl.includes('cdn.jsdelivr.net')) {
+                                      e.currentTarget.src = originalUrl.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net');
+                                      return;
+                                    }
+                                    e.currentTarget.style.display = 'none';
                                     const parent = e.currentTarget.parentElement;
                                     if (parent) {
-                                      e.currentTarget.style.display = 'none';
-                                      parent.innerHTML = '<div class="w-full h-full bg-white/5 rounded-2xl flex items-center justify-center text-[8px] text-gray-400 font-black uppercase text-center p-2">No Img</div>';
+                                      parent.innerHTML = `<span class="text-xs text-amber-500/80 font-black">${bc.name.slice(0, 2)}</span>`;
                                     }
                                   }}
                                 />
-                                <a href={getEncodedUrl(bc.folder_name)} target="_blank" rel="noreferrer" className="absolute -top-1 -right-1 p-1 bg-black rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity text-amber-500"><ExternalLink size={10} /></a>
+                                <a href={getEncodedUrl(bc)} target="_blank" rel="noreferrer" className="absolute -top-1 -right-1 p-1 bg-black rounded-full border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity text-amber-500"><ExternalLink size={10} /></a>
                               </div>
                               <div className="space-y-1">
                                 <p className="text-lg font-black">{bc.name}</p>
@@ -942,8 +953,24 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                           return (
                             <div key={bc.id} className="bg-black/40 rounded-3xl border border-white/5 p-4 space-y-4 hover:border-amber-500/30 transition-all group">
                               <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/10 shrink-0">
-                                  <img src={getEncodedUrl(bc.folder_name)} className="w-full h-full object-cover" />
+                                <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-white/5 flex items-center justify-center">
+                                  <img 
+                                    src={getEncodedUrl(bc)} 
+                                    alt={bc.name}
+                                    className="w-full h-full object-cover" 
+                                    onError={(e) => {
+                                      const originalUrl = e.currentTarget.src;
+                                      if (originalUrl.includes('cdn.jsdelivr.net')) {
+                                        e.currentTarget.src = originalUrl.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net');
+                                        return;
+                                      }
+                                      e.currentTarget.style.display = 'none';
+                                      const parent = e.currentTarget.parentElement;
+                                      if (parent) {
+                                        parent.innerHTML = `<span class="text-[10px] text-amber-500/80 font-black">${bc.name.slice(0, 2)}</span>`;
+                                      }
+                                    }}
+                                  />
                                 </div>
                                 <div className="min-w-0">
                                   <p className="text-sm font-black truncate">{bc.name}</p>
