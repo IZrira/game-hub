@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, TierGroup } from '../data/tiers';
+import { CHARACTER_DATA } from '../data/characters';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';

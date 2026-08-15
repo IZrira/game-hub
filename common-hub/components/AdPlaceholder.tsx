@@ -58,7 +58,8 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
       if (adRef.current.offsetWidth > 0) {
         try {
           const clientId = adRef.current.getAttribute('data-ad-client');
-          if (!clientId || clientId === 'ca-pub-YOUR_CLIENT_ID') {
+          const slotId = adRef.current.getAttribute('data-ad-slot');
+          if (!clientId || clientId.includes('YOUR_CLIENT_ID') || !slotId || slotId === 'YOUR_AD_SLOT_ID') {
             pushedRef.current = true;
             return;
           }
