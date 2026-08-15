@@ -227,12 +227,19 @@ const AdminDashboard: React.FC = () => {
     const targetNameNorm = normalizeName(name);
     const existing = mgmtTiers.find(t => normalizeName(t.character_name) === targetNameNorm && t.category_id === categoryId);
     
-    if (existing) {
-      await supabase.from('tier_lists').update(updates).match({ game_id: activeGame, category_id: categoryId, character_name: existing.character_name });
-    } else {
-      await supabase.from('tier_lists').insert([{ game_id: activeGame, category_id: categoryId, character_name: name, tier: '?', role: '메인 딜러', change: 'stay', display_order: 100, ...updates }]);
+    try {
+      if (existing) {
+        const { error } = await supabase.from('tier_lists').update(updates).match({ game_id: activeGame, category_id: categoryId, character_name: existing.character_name });
+        if (error) throw error;
+      } else {
+        const { error } = await supabase.from('tier_lists').insert([{ game_id: activeGame, category_id: categoryId, character_name: name, tier: '?', role: '메인 딜러', change: 'stay', display_order: 100, ...updates }]);
+        if (error) throw error;
+      }
+      fetchTierData();
+    } catch (err: any) {
+      console.error('Update Tier Error:', err);
+      alert('티어 수정 실패: ' + (err?.message || '알 수 없는 오류'));
     }
-    fetchTierData();
   };
 
   const deleteCharacter = async (id: string, name: string) => {
