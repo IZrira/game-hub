@@ -199,7 +199,13 @@ const MANUAL_ADVANCED_TRACE_DATA: Record<string, MaterialDetail> = {
   "공동의 염원의 유음": { desc: "행적 레벨업의 고급 소재", type: "행적 재료", rarity: 4, sources: ["전쟁의 여운 [페나코니 극장]"] },
   "길광편우": { desc: "행적 레벨업의 고급 소재", type: "행적 재료", rarity: 4, sources: ["전쟁의 여운 [경기 함선]"] },
   "태양과 번개의 회상": { desc: "행적 레벨업의 고급 소재", type: "행적 재료", rarity: 4, sources: ["전쟁의 여운 [「천궁 요새」 조석의 눈]"] },
-  "범람을 끊는 침묵": { desc: "행적 레벨업의 고급 소재", type: "행적 재료", rarity: 4, sources: ["전쟁의 여운 [「기억이 묻힌 저편」 시간의 귀허]"] }
+  "범람을 끊는 침묵": { desc: "행적 레벨업의 고급 소재", type: "행적 재료", rarity: 4, sources: ["전쟁의 여운 [「기억이 묻힌 저편」 시간의 귀허]"] },
+  "거짓 선각자의 기대": {
+    desc: "웃음을 잃은 우인은 문명과 끊임없이 게임을 즐긴다. 타인이든 자신이든, 도전하지 않는 자는 환락을 얻을 수 없다.\n어제는 시들고, 영웅은 죽었다. 사악한 악당은 뭇별을 누비며 온갖 악의를 쏟아붓지만, 그러면서도 누군가 마왕을 물리치고 오랫동안 준비해 둔 보상을 가져가기를 기다리고 있다.",
+    type: "행적 재료",
+    rarity: 4,
+    sources: ["전쟁의 여운 [적멸의 향연 데몬 시티]"]
+  }
 };
 
 export const ADVANCED_TRACE_DATA: Record<string, MaterialDetail> = { ...MANUAL_ADVANCED_TRACE_DATA };
