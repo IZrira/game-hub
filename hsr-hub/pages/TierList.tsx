@@ -145,7 +145,17 @@ const TierList: React.FC = () => {
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState('');
   const [liveData, setLiveData] = useState<Record<string, TierGroup[]>>(HSR_TIER_DATA);
-  const [allCharacters, setAllCharacters] = useState<any[]>([]);
+  const [allCharacters, setAllCharacters] = useState<any[]>(() => {
+    return CHARACTER_DATA.map(c => ({
+      id: c.id,
+      name: c.name,
+      folder_name: (c as any).folderName || c.name,
+      rarity: c.rarity,
+      attribute: c.attribute,
+      path: c.path,
+      version: c.releaseVersion || '1.0'
+    }));
+  });
   const [isSyncing, setIsSyncing] = useState(true);
 
   const TIER_COLORS: Record<string, string> = {
@@ -156,11 +166,32 @@ const TierList: React.FC = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      if (!supabase) return;
+      const localChars = CHARACTER_DATA.map(c => ({
+        id: c.id,
+        name: c.name,
+        folder_name: (c as any).folderName || c.name,
+        rarity: c.rarity,
+        attribute: c.attribute,
+        path: c.path,
+        version: c.releaseVersion || '1.0'
+      }));
+
+      if (!supabase) {
+        setAllCharacters(localChars);
+        setIsSyncing(false);
+        return;
+      }
       setIsSyncing(true);
       
       const { data: charData } = await supabase.from('characters').select('*');
-      if (charData) setAllCharacters(charData);
+      if (charData && charData.length > 0) {
+        const mergedMap = new Map();
+        localChars.forEach(c => mergedMap.set(c.name, c));
+        charData.forEach(c => mergedMap.set(c.name, { ...mergedMap.get(c.name), ...c }));
+        setAllCharacters(Array.from(mergedMap.values()));
+      } else {
+        setAllCharacters(localChars);
+      }
 
       const { data: tierData, error } = await supabase.from('tier_lists').select('*').eq('game_id', 'hsr');
 

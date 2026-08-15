@@ -4,7 +4,7 @@ import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
 import { Navigate } from 'react-router';
 import { safeEncodeURIComponent } from '../utils/assetManager';
-import HSR_CHARACTERS from '../../hsr-hub/data/characters.json';
+import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
 import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
 import SEO from '../components/SEO';
 import { getGameData } from '../data/dataManager';
@@ -108,18 +108,57 @@ const AdminDashboard: React.FC = () => {
   }, [mgmtTiers]);
 
   const fetchBaseData = async () => {
+    let localChars: any[] = [];
+    if (activeGame === 'hsr') {
+      localChars = HSR_CHARACTERS.map(c => ({
+        id: c.id,
+        name: c.name,
+        folder_name: (c as any).folderName || c.name,
+        rarity: c.rarity,
+        attribute: c.attribute,
+        path: c.path,
+        version: c.releaseVersion || '1.0'
+      }));
+    } else if (activeGame === 'ww') {
+      const { CHARACTER_DB } = getGameData('ww');
+      localChars = CHARACTER_DB.map((c: any) => ({
+        id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
+        name: c.name,
+        folder_name: c.folderName || c.name,
+        rarity: c.rarity || 5,
+        attribute: c.attribute || '회절',
+        weapon_type: c.weaponType || '직검',
+        version: c.releaseVersion || '1.0'
+      }));
+    } else if (activeGame === 'nte') {
+      const { CHARACTER_DB } = getGameData('nte');
+      localChars = CHARACTER_DB.map((c: any) => ({
+        id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
+        name: c.name,
+        folder_name: c.folderName || c.name,
+        rarity: c.rarity || 5,
+        attribute: c.attribute || '이능',
+        path: c.arc || '결합',
+        version: c.releaseVersion || '1.0'
+      }));
+    }
+
     const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
     const { data, error } = await supabase
       .from(tableName)
       .select('*')
       .order('name')
       .range(0, 2000);
-    if (error) {
-      console.error('Fetch error:', error);
-      setBaseCharacters([]);
+
+    if (error || !data || data.length === 0) {
+      setBaseCharacters(localChars);
       return;
     }
-    if (data) setBaseCharacters(data);
+
+    const mergedMap = new Map();
+    localChars.forEach(c => mergedMap.set(c.name, c));
+    data.forEach(c => mergedMap.set(c.name, { ...mergedMap.get(c.name), ...c }));
+    setBaseCharacters(Array.from(mergedMap.values()));
   };
 
   const fetchTierData = async () => {
@@ -267,7 +306,7 @@ const AdminDashboard: React.FC = () => {
           rarity: c.rarity,
           attribute: c.attribute,
           path: c.path,
-          version: c.version || '3.1'
+          version: (c as any).releaseVersion || c.version || '1.0'
         }));
       } else if (activeGame === 'ww') {
         const { CHARACTER_DB } = getGameData('ww');
