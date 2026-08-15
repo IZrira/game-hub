@@ -4,7 +4,7 @@ import { createHsrBaseStats, createMaterial, createSkill } from '../../dataFacto
 const serval: Character = {
   id: "serval",
   gameId: "hsr",
-  name: "character.serval.name",
+  name: "서벌",
   folderName: "서벌",
   attribute: "번개",
   path: "지식",

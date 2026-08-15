@@ -3,7 +3,7 @@ import { createHsrBaseStats, createMaterial, createSkill } from '../../dataFacto
 
 const huohuo: Character = {
   id: "huohuo",
-  name: "character.huohuo.name",
+  name: "곽향",
   folderName: "곽향",
   gameId: "hsr",
   attribute: "바람",
@@ -16,7 +16,7 @@ const huohuo: Character = {
   languageNames: "🇰🇷 곽향 / 🇺🇸 Huohuo / 🇨🇳 藿藿 / 🇯🇵 フォフォ",
   voiceActors: "🇰🇷 김채린 / 🇺🇸  메건 시프먼 / 🇨🇳 커즈레이 / 🇯🇵 나가나와 마리아",
   metadata: {
-    name: "character.huohuo.name",
+    name: "곽향",
     language: "🇰🇷 곽향 / 🇺🇸 Huohuo / 🇨🇳 藿藿 / 🇯🇵 フォフォ",
     element: "바람",
     path: "풍요",

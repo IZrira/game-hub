@@ -3,7 +3,7 @@ import { createHsrBaseStats, createMaterial, createSkill } from '../../dataFacto
 
 const danHengPermansorTerrae: Character = {
   id: "dan_heng_permansor_terrae",
-  name: "character.dan_heng_permansor_terrae.name",
+  name: "단항•등황",
   folderName: "단항•등황",
   gameId: "hsr",
   attribute: "물리",
@@ -16,7 +16,7 @@ const danHengPermansorTerrae: Character = {
   languageNames: "🇰🇷 단항•등황 / 🇺🇸 Dan Heng•Permansor Terrae / 🇨🇳 丹恒 • 騰 荒 / 🇯🇵 丹恒 • 騰 荒 ",
   voiceActors: "🇰🇷 김혜성 / 🇺🇸 니콜라스 렁 / 🇨🇳 위둥 / 🇯🇵 이토 켄토",
   metadata: {
-    name: "character.dan_heng_permansor_terrae.metadata.name",
+    name: "단항•등황",
     language: "🇰🇷 단항•등황 / 🇺🇸 Dan Heng•Permansor Terrae / 🇨🇳 丹恒 • 騰 荒 / 🇯🇵 丹恒 • 騰 荒 ",
     element: "물리",
     path: "보존",
