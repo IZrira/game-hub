@@ -2,7 +2,7 @@ import { Character } from '../../../../common-hub/types';
 
 const himekoNova: Character = {
   id: 'himeko_nova',
-  name: '히메코·노바',
+  name: '히메코•노바',
   folderName: '히메코•노바',
   gameId: 'hsr',
   path: '지식',
@@ -10,12 +10,12 @@ const himekoNova: Character = {
   affiliation: '은하열차',
   releaseVersion: '4.4',
   rarity: 5,
-  languageNames: '🇰🇷 히메코·노바 / 🇺🇸 Himeko·Nova / 🇨🇳 姬子啟行 / 🇯🇵 姫子·旅たち',
+  languageNames: '🇰🇷 히메코•노바 / 🇺🇸 Himeko·Nova / 🇨🇳 姬子啟行 / 🇯🇵 姫子·旅たち',
   voiceActors: '🇰🇷 김보나&김태환 / 🇺🇸 치아 코트&닉 올슨 / 🇨🇳 린스&??? / 🇯🇵 타나카 리에&이시이 타카유키',
   briefInfo: '누군가는 어깨를 나란히 하고, 누군가는 지켜보기에, 「개척」은 결코 홀로 떠나는 먼 여정이 아니다.\n그녀는 별을 개척하는 기적을 그리고, 은하 궤도는 끝없이 이어지며, 무명객들은 다시 여정에 올라 은하수의 긴 밤을 밝힌다——종착지에서 그녀가 다시 뒤돌아보니 출발의 꿈은 좌초된 적이 없었다.',
   metadata: {
-    name: '히메코·노바',
-    language: '🇰🇷 히메코·노바 / 🇺🇸 Himeko·Nova / 🇨🇳 姬子啟行 / 🇯🇵 姫子·旅たち',
+    name: '히메코•노바',
+    language: '🇰🇷 히메코•노바 / 🇺🇸 Himeko·Nova / 🇨🇳 姬子啟行 / 🇯🇵 姫子·旅たち',
     element: '화염',
     path: '지식',
     rarity: 5,

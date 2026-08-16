@@ -185,11 +185,13 @@ const TierList: React.FC = () => {
       setIsSyncing(true);
       
       const { data: charData } = await supabase.from('characters').select('*');
+      let currentAllChars = localChars;
       if (charData && charData.length > 0) {
         const mergedMap = new Map();
         localChars.forEach(c => mergedMap.set(c.name, c));
         charData.forEach(c => mergedMap.set(c.name, { ...mergedMap.get(c.name), ...c }));
-        setAllCharacters(Array.from(mergedMap.values()));
+        currentAllChars = Array.from(mergedMap.values());
+        setAllCharacters(currentAllChars);
       } else {
         setAllCharacters(localChars);
       }
@@ -222,12 +224,12 @@ const TierList: React.FC = () => {
             transformed[row.category_id].sort((a, b) => rankOrder.indexOf(a.tier) - rankOrder.indexOf(b.tier));
           }
 
-          const baseChar = charData?.find(c => normalizeName(c.name) === targetName);
+          const baseChar = currentAllChars.find(c => normalizeName(c.name) === targetName);
           
           group.characters.push({
             id: `char_${row.character_name}`,
             name: row.character_name,
-            folderName: baseChar?.folder_name || row.character_name,
+            folderName: baseChar?.folder_name || baseChar?.folderName || row.character_name,
             role: row.role as any,
             change: row.change as any,
             displayOrder: row.display_order ?? 100,
@@ -334,12 +336,10 @@ const TierList: React.FC = () => {
   }, [filteredTierList, gameId]);
 
   const getIconUrl = (char: any) => {
-    const folder = char.folderName || char.name;
+    const folder = char.folderName || char.folder_name || char.name;
     if (!folder) return '';
-    const rawUrl = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/캐릭터/${folder.trim()}/art01.webp`;
-    return encodeURI(rawUrl)
-      .replace(/\(/g, '%28')
-      .replace(/\)/g, '%29');
+    const folderNorm = folder.trim();
+    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/캐릭터/${safeEncodeURIComponent(folderNorm)}/art01.webp`;
   };
 
   return (
