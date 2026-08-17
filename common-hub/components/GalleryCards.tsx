@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, handleImageFallback } from '@/common-hub/utils/assetManager';
 import { getItemUrl } from '@/common-hub/data/items';
 import { slugify } from '@/common-hub/utils/urlUtils';
 
@@ -54,7 +54,9 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
             const baseFolderName = safeEncodeURIComponent('개척자');
             const fileName = e.currentTarget.src.includes('art01-01.webp') ? 'art01-01.webp' : 'art01.webp';
             e.currentTarget.src = `${CDN_URL}/hsr%20images/캐릭터/${baseFolderName}/${fileName}`;
+            return;
           }
+          handleImageFallback(e);
         }}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
@@ -95,6 +97,7 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
         alt={`${t(lc.name || '')} - ${t('상세 데이터 및 효과 정보')}`} 
         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
         loading="lazy" 
+        onError={handleImageFallback}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
       <div className="absolute bottom-0 left-0 p-3 w-full">
@@ -121,7 +124,7 @@ export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick?: () 
   const content = (
     <>
       <div className="w-16 h-16 shrink-0 bg-black/50 rounded-xl p-2 border border-white/5">
-        <img src={imgPath} alt={t(relic.name || '')} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" />
+        <img src={imgPath} alt={t(relic.name || '')} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" onError={handleImageFallback} />
       </div>
       <div className="flex-1 min-w-0">
         <h4 className="text-white font-black text-sm truncate">{t(relic.name || '')}</h4>
@@ -270,6 +273,7 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
         style={{ objectPosition: objectPos }}
         className="absolute inset-0 w-full h-full object-cover opacity-60 transition-transform duration-500 group-hover:scale-110" 
         loading="lazy" 
+        onError={handleImageFallback}
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       <div className="absolute bottom-0 left-0 p-4 w-full">
@@ -289,11 +293,7 @@ export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onCl
   const content = (
     <>
       <div className="w-16 h-16 shrink-0 bg-black/50 rounded-xl p-2 border border-white/5">
-        <img src={imgPath} alt={t(ornament.name)} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" />
-      </div>
-      <div className="flex-1 min-w-0">
-        <h4 className="text-white font-black text-sm truncate">{t(ornament.name)}</h4>
-        <p className="text-gray-400 text-xs truncate mt-1">{t(ornament.setEffect?.['2'] || ornament.description || '')}</p>
+        <img src={imgPath} alt={t(ornament.name)} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" onError={handleImageFallback} />
       </div>
     </>
   );
