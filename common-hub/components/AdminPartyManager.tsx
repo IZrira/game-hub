@@ -791,15 +791,88 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">메인 딜러 (Main DPS)</label>
-                <input
-                  type="text"
-                  value={editingParty.mainDPS || ''}
-                  onChange={(e) => setEditingParty({ ...editingParty, mainDPS: e.target.value })}
-                  placeholder="예: 어벤츄린•웨이브"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none"
-                />
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-amber-500 flex items-center gap-1.5">
+                    <Sword size={12} className="text-rose-400" /> 메인 딜러 (Main DPS) 선택
+                  </label>
+                  {editingParty.mainDPS && (
+                    <span className="text-[10px] text-gray-400">
+                      선택됨: <span className="text-amber-400 font-black">{editingParty.mainDPS}</span>
+                    </span>
+                  )}
+                </div>
+
+                {/* 슬롯 배치된 캐릭터 빠른 토글 칩 */}
+                {editingParty.slots.some(s => s.characterName) && (
+                  <div className="space-y-1.5">
+                    <span className="text-[9px] text-gray-500 font-bold uppercase tracking-wider block">
+                      슬롯 캐릭터에서 빠른 지정 (클릭하여 토글):
+                    </span>
+                    <div className="flex flex-wrap items-center gap-2">
+                      {editingParty.slots
+                        .filter(s => Boolean(s.characterName))
+                        .map((slot, sIdx) => {
+                          const isSelected = editingParty.mainDPS === slot.characterName;
+                          return (
+                            <button
+                              key={sIdx}
+                              type="button"
+                              onClick={() => setEditingParty({ 
+                                ...editingParty, 
+                                mainDPS: isSelected ? '' : slot.characterName 
+                              })}
+                              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-black transition-all ${
+                                isSelected
+                                  ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/25 scale-105 border border-amber-400'
+                                  : 'bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 hover:border-amber-500/30'
+                              }`}
+                            >
+                              <div className="w-5 h-5 rounded-lg overflow-hidden border border-white/10 bg-black/50 shrink-0">
+                                <img
+                                  src={getEncodedUrl(slot.folderName || slot.characterName)}
+                                  alt={slot.characterName}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                                />
+                              </div>
+                              <span>{slot.characterName}</span>
+                              {isSelected && <Check size={12} strokeWidth={3} />}
+                            </button>
+                          );
+                        })}
+                    </div>
+                  </div>
+                )}
+
+                {/* 전체 캐릭터 드롭다운 선택기 */}
+                <div className="pt-1">
+                  <select
+                    value={editingParty.mainDPS || ''}
+                    onChange={(e) => setEditingParty({ ...editingParty, mainDPS: e.target.value })}
+                    className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none cursor-pointer"
+                  >
+                    <option value="">-- 전체 캐릭터 목록에서 선택 --</option>
+                    <optgroup label="5★ 캐릭터">
+                      {availableCharacters
+                        .filter(c => c.rarity === 5)
+                        .map(c => (
+                          <option key={c.id} value={c.name} style={{ backgroundColor: '#111' }}>
+                            ★5 {c.name} ({c.attribute || c.path})
+                          </option>
+                        ))}
+                    </optgroup>
+                    <optgroup label="4★ 캐릭터">
+                      {availableCharacters
+                        .filter(c => c.rarity === 4)
+                        .map(c => (
+                          <option key={c.id} value={c.name} style={{ backgroundColor: '#111' }}>
+                            ★4 {c.name} ({c.attribute || c.path})
+                          </option>
+                        ))}
+                    </optgroup>
+                  </select>
+                </div>
               </div>
 
               <div className="space-y-2">
