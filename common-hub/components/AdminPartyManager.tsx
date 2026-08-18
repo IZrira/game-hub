@@ -1,10 +1,17 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
   Users, Plus, Trash2, Edit3, Copy, Save, RefreshCw, Search, ArrowUp, ArrowDown, 
-  Sparkles, Check, X, Shield, Zap, Sword, ExternalLink, Filter, Code, Download, Upload, AlertCircle 
+  Sparkles, Check, X, Shield, Zap, Sword, ExternalLink, Filter, Code, Download, Upload, AlertCircle, CheckCircle2 
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
-import { safeEncodeURIComponent } from '../utils/assetManager';
+import { 
+  PartySlot, 
+  UnifiedPartyData, 
+  HSRPartyData, 
+  WWPartyData, 
+  NTEPartyData, 
+  exportPartyToTSCode 
+} from '../types/party';
 import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
 import { HSR_PARTIES } from '../../hsr-hub/data/parties/index';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
@@ -12,63 +19,36 @@ import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
 import { NTE_CHARACTERS } from '../../nte-hub/data/index';
 import { NTE_PARTY_COMBINATIONS } from '../../nte-hub/data/parties';
 
-interface PartyMemberData {
-  id: string;
-  name: string;
-  role: string;
-  folderName: string;
-  attribute?: string;
-  isTrailblazer?: boolean;
-  isRover?: boolean;
-  substitutes?: {
-    id?: string;
-    name: string;
-    folderName: string;
-    role?: string;
-    isTrailblazer?: boolean;
-    isRover?: boolean;
-  }[];
-}
-
-interface PartyData {
-  id: string;
-  name: string;
-  description: string;
-  category?: string;
-  mainDPS?: string;
-  tags?: string[];
-  pros?: string[];
-  cons?: string[];
-  members: PartyMemberData[];
-}
-
 interface AdminPartyManagerProps {
   activeGame: 'hsr' | 'ww' | 'nte';
   getEncodedUrl: (folderOrChar: any) => string;
 }
 
 const CATEGORY_PRESETS: Record<string, string[]> = {
-  hsr: ['추가 공격', '환락', '격파', '기억', '지속 피해', '단일', '범위', '하이퍼캐리'],
-  ww: ['하이퍼캐리', '속성 콤보', '변주 연계', '광역 딜링', '보스전'],
-  nte: ['령 속성 시너지', '화 속성 시너지', '빛 속성', '암 속성', '혼 속성', '범용']
+  HSR: ['추가 공격', '환락', '격파', '기억', '지속 피해', '단일', '범위', '하이퍼캐리'],
+  WW: ['하이퍼캐리', '속성 콤보', '변주 연계', '광역 딜링', '보스전'],
+  NTE: ['령 속성 시너지', '화 속성 시너지', '빛 속성', '암 속성', '혼 속성', '범용']
 };
 
 const ROLE_PRESETS: Record<string, string[]> = {
-  hsr: ['메인 딜러', '서브 딜러', '서포터', '탱커/힐러'],
-  ww: ['메인 딜러', '서브 딜러', '서포터', '생존'],
-  nte: ['메인 딜러', '서브 딜러', '서포터', '탱커/힐러']
+  HSR: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러'],
+  WW: ['메인 딜러', '서브 딜러', '서포터', '생존'],
+  NTE: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러']
 };
 
 export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame, getEncodedUrl }) => {
-  // 전체 게임별 파티 목록 상태
-  const [parties, setParties] = useState<PartyData[]>([]);
+  const gameKey: 'HSR' | 'WW' | 'NTE' = (activeGame.toUpperCase()) as 'HSR' | 'WW' | 'NTE';
+
+  // 파티 목록 상태
+  const [parties, setParties] = useState<UnifiedPartyData[]>([]);
   const [loading, setLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
+  const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   // 모달 상태
   const [isEditorOpen, setIsEditorOpen] = useState(false);
-  const [editingParty, setEditingParty] = useState<PartyData | null>(null);
+  const [editingParty, setEditingParty] = useState<UnifiedPartyData | null>(null);
 
   // 캐릭터 선택 팝업 상태 (슬롯 선택 또는 대체 캐릭터 추가용)
   const [pickerState, setPickerState] = useState<{
@@ -84,9 +64,15 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
   const [pickerSearch, setPickerSearch] = useState('');
   const [pickerRarity, setPickerRarity] = useState<number | 'all'>('all');
 
+  // 토스트 알림 함수
+  const showToast = (msg: string) => {
+    setToastMessage(msg);
+    setTimeout(() => setToastMessage(null), 3500);
+  };
+
   // 활성 게임의 전체 캐릭터 목록 조회
   const availableCharacters = useMemo(() => {
-    if (activeGame === 'ww') {
+    if (gameKey === 'WW') {
       return WW_CHARACTERS.map(c => ({
         id: c.id,
         name: c.name,
@@ -96,7 +82,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         path: c.weaponType || '공명자'
       }));
     }
-    if (activeGame === 'nte') {
+    if (gameKey === 'NTE') {
       return NTE_CHARACTERS.map(c => ({
         id: c.id,
         name: c.name,
@@ -114,125 +100,260 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       attribute: c.attribute || '',
       path: c.path || ''
     }));
-  }, [activeGame]);
+  }, [gameKey]);
 
-  // 로컬 기본 데이터 로드
-  const loadLocalParties = () => {
-    let localData: PartyData[] = [];
-    if (activeGame === 'hsr') {
-      localData = JSON.parse(JSON.stringify(HSR_PARTIES));
-    } else if (activeGame === 'ww') {
-      localData = JSON.parse(JSON.stringify(WW_PARTY_COMBINATIONS));
-    } else if (activeGame === 'nte') {
-      localData = JSON.parse(JSON.stringify(NTE_PARTY_COMBINATIONS));
+  // 로컬 기본 내장 상수 데이터 변환 로더
+  const getBuiltinParties = (): UnifiedPartyData[] => {
+    if (gameKey === 'HSR') {
+      return HSR_PARTIES.map((p, idx) => ({
+        id: p.id || `hsr_party_${idx}`,
+        game: 'HSR',
+        name: p.name,
+        description: p.description || '',
+        category: p.category || '범용',
+        mainDPS: p.mainDPS || '',
+        tags: p.tags || [],
+        order: idx + 1,
+        updatedAt: new Date().toISOString(),
+        slots: [
+          p.members[0] ? { characterId: p.members[0].id, characterName: p.members[0].name, folderName: p.members[0].folderName, role: p.members[0].role, substitutes: p.members[0].substitutes?.map(s => ({ characterId: s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '메인 딜러' },
+          p.members[1] ? { characterId: p.members[1].id, characterName: p.members[1].name, folderName: p.members[1].folderName, role: p.members[1].role, substitutes: p.members[1].substitutes?.map(s => ({ characterId: s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '서브 딜러' },
+          p.members[2] ? { characterId: p.members[2].id, characterName: p.members[2].name, folderName: p.members[2].folderName, role: p.members[2].role, substitutes: p.members[2].substitutes?.map(s => ({ characterId: s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '서포터' },
+          p.members[3] ? { characterId: p.members[3].id, characterName: p.members[3].name, folderName: p.members[3].folderName, role: p.members[3].role, substitutes: p.members[3].substitutes?.map(s => ({ characterId: s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '탱커·힐러' },
+        ] as [PartySlot, PartySlot, PartySlot, PartySlot]
+      }));
     }
-    setParties(localData);
+
+    if (gameKey === 'WW') {
+      return WW_PARTY_COMBINATIONS.map((p, idx) => ({
+        id: p.id || `ww_party_${idx}`,
+        game: 'WW',
+        name: p.name,
+        description: p.description || '',
+        tags: [],
+        pros: p.pros || [],
+        cons: p.cons || [],
+        order: idx + 1,
+        updatedAt: new Date().toISOString(),
+        slots: [
+          p.members[0] ? { characterId: p.members[0].id, characterName: p.members[0].name, folderName: p.members[0].folderName, role: p.members[0].role } : { characterId: '', characterName: '', role: '메인 딜러' },
+          p.members[1] ? { characterId: p.members[1].id, characterName: p.members[1].name, folderName: p.members[1].folderName, role: p.members[1].role } : { characterId: '', characterName: '', role: '서브 딜러' },
+          p.members[2] ? { characterId: p.members[2].id, characterName: p.members[2].name, folderName: p.members[2].folderName, role: p.members[2].role } : { characterId: '', characterName: '', role: '서포터' },
+        ] as [PartySlot, PartySlot, PartySlot]
+      }));
+    }
+
+    return NTE_PARTY_COMBINATIONS.map((p, idx) => ({
+      id: p.id || `nte_party_${idx}`,
+      game: 'NTE',
+      name: p.name,
+      description: p.description || '',
+      elementSynergy: p.category || '범용',
+      mainDPS: p.mainDPS || '',
+      tags: p.tags || [],
+      pros: p.pros || [],
+      cons: p.cons || [],
+      order: idx + 1,
+      updatedAt: new Date().toISOString(),
+      slots: [
+        p.members[0] ? { characterId: p.members[0].id, characterName: p.members[0].name, folderName: p.members[0].folderName, role: p.members[0].role, substitutes: p.members[0].substitutes?.map(s => ({ characterId: s.id || s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '메인 딜러' },
+        p.members[1] ? { characterId: p.members[1].id, characterName: p.members[1].name, folderName: p.members[1].folderName, role: p.members[1].role, substitutes: p.members[1].substitutes?.map(s => ({ characterId: s.id || s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '서브 딜러' },
+        p.members[2] ? { characterId: p.members[2].id, characterName: p.members[2].name, folderName: p.members[2].folderName, role: p.members[2].role, substitutes: p.members[2].substitutes?.map(s => ({ characterId: s.id || s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '서포터' },
+        p.members[3] ? { characterId: p.members[3].id, characterName: p.members[3].name, folderName: p.members[3].folderName, role: p.members[3].role, substitutes: p.members[3].substitutes?.map(s => ({ characterId: s.id || s.name, characterName: s.name, folderName: s.folderName, role: s.role })) } : { characterId: '', characterName: '', role: '탱커·힐러' },
+      ] as [PartySlot, PartySlot, PartySlot, PartySlot]
+    }));
   };
 
-  // 초기 데이터 로드 (Supabase 우선, 없으면 로컬)
-  useEffect(() => {
-    const fetchParties = async () => {
-      setLoading(true);
-      try {
-        if (supabase) {
-          const { data, error } = await supabase
-            .from('party_recommendations')
-            .select('*')
-            .eq('game_id', activeGame);
+  // 데이터 로드: 1) Supabase -> 2) localStorage -> 3) Built-in Constants
+  const loadParties = async () => {
+    setLoading(true);
+    let loaded: UnifiedPartyData[] | null = null;
 
-          if (!error && data && data.length > 0) {
-            const parsed = data.map((item: any) => ({
-              id: item.party_id || item.id,
-              name: item.name,
-              description: item.description || '',
-              category: item.category || '',
-              mainDPS: item.main_dps || item.mainDPS || '',
-              tags: item.tags || [],
-              pros: item.pros || [],
-              cons: item.cons || [],
-              members: item.members || []
-            }));
-            setParties(parsed);
-            setLoading(false);
-            return;
-          }
+    if (supabase) {
+      try {
+        const { data, error } = await supabase
+          .from('party_recommendations')
+          .select('*')
+          .eq('game_id', activeGame)
+          .order('display_order', { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          loaded = data.map((item: any) => ({
+            id: item.party_id || item.id,
+            game: gameKey,
+            name: item.name,
+            description: item.description || '',
+            category: item.category || '범용',
+            elementSynergy: item.element_synergy || item.category || '범용',
+            mainDPS: item.main_dps || item.mainDPS || '',
+            tags: item.tags || [],
+            pros: item.pros || [],
+            cons: item.cons || [],
+            order: item.display_order ?? 100,
+            updatedAt: item.updated_at || new Date().toISOString(),
+            slots: item.members || item.slots || []
+          })) as UnifiedPartyData[];
         }
       } catch (err) {
-        console.warn('Supabase party fetch fallback to local:', err);
+        console.warn('Supabase fetch failed, falling back:', err);
       }
-      loadLocalParties();
-      setLoading(false);
-    };
+    }
 
-    fetchParties();
+    if (!loaded) {
+      const cached = localStorage.getItem(`parties_${gameKey}`);
+      if (cached) {
+        try {
+          loaded = JSON.parse(cached);
+        } catch (e) {
+          console.error('Failed to parse cached parties:', e);
+        }
+      }
+    }
+
+    if (!loaded || loaded.length === 0) {
+      loaded = getBuiltinParties();
+    }
+
+    setParties(loaded || []);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    loadParties();
   }, [activeGame]);
+
+  // parties 상태 변경 시 localStorage 자동 캐싱
+  useEffect(() => {
+    if (parties.length > 0) {
+      localStorage.setItem(`parties_${gameKey}`, JSON.stringify(parties));
+    }
+  }, [parties, gameKey]);
 
   // 필터링된 파티 목록
   const filteredParties = useMemo(() => {
     return parties.filter(p => {
-      const matchesCategory = selectedCategory === '전체' || p.category === selectedCategory;
+      const category = (p as any).category || (p as any).elementSynergy || '전체';
+      const matchesCategory = selectedCategory === '전체' || category === selectedCategory;
       const query = searchQuery.trim().toLowerCase();
       if (!query) return matchesCategory;
 
       const matchesName = p.name.toLowerCase().includes(query);
       const matchesDps = (p.mainDPS || '').toLowerCase().includes(query);
       const matchesDesc = (p.description || '').toLowerCase().includes(query);
-      const matchesMember = p.members.some(m => 
-        m.name.toLowerCase().includes(query) || 
-        m.substitutes?.some(s => s.name.toLowerCase().includes(query))
+      const matchesSlot = p.slots.some(slot => 
+        slot.characterName.toLowerCase().includes(query) || 
+        slot.substitutes?.some(sub => sub.characterName.toLowerCase().includes(query))
       );
-      const matchesTag = p.tags?.some(t => t.toLowerCase().includes(query));
+      const matchesTag = p.tags?.some(tag => tag.toLowerCase().includes(query));
 
-      return matchesCategory && (matchesName || matchesDps || matchesDesc || matchesMember || matchesTag);
+      return matchesCategory && (matchesName || matchesDps || matchesDesc || matchesSlot || matchesTag);
     });
   }, [parties, selectedCategory, searchQuery]);
 
-  // 새 파티 생성 모달 열기
+  // ① 새 파티 생성 (슬롯 수 자동 동기화)
   const handleOpenNew = () => {
-    const defaultSlotsCount = activeGame === 'ww' ? 3 : 4;
-    const roles = ROLE_PRESETS[activeGame] || ['메인 딜러', '서브 딜러', '서포터', '탱커/힐러'];
-    const initialMembers: PartyMemberData[] = Array.from({ length: defaultSlotsCount }).map((_, idx) => ({
-      id: '',
-      name: '',
-      role: roles[idx] || '서포터',
-      folderName: '',
-      substitutes: []
-    }));
+    const roles = ROLE_PRESETS[gameKey] || ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러'];
+    const newId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
+      ? crypto.randomUUID() 
+      : `${activeGame}_party_${Date.now()}`;
 
-    setEditingParty({
-      id: `party_${Date.now()}`,
-      name: '',
-      description: '',
-      category: (CATEGORY_PRESETS[activeGame] || [])[0] || '범용',
-      mainDPS: '',
-      tags: [],
-      pros: [],
-      cons: [],
-      members: initialMembers
-    });
+    if (gameKey === 'WW') {
+      const newWWParty: WWPartyData = {
+        id: newId,
+        game: 'WW',
+        name: '',
+        description: '',
+        tags: [],
+        pros: [],
+        cons: [],
+        order: parties.length + 1,
+        updatedAt: new Date().toISOString(),
+        slots: [
+          { characterId: '', characterName: '', role: roles[0] || '메인 딜러' },
+          { characterId: '', characterName: '', role: roles[1] || '서브 딜러' },
+          { characterId: '', characterName: '', role: roles[2] || '서포터' }
+        ]
+      };
+      setEditingParty(newWWParty);
+    } else if (gameKey === 'NTE') {
+      const newNTEParty: NTEPartyData = {
+        id: newId,
+        game: 'NTE',
+        name: '',
+        description: '',
+        elementSynergy: (CATEGORY_PRESETS.NTE || [])[0] || '범용',
+        mainDPS: '',
+        tags: [],
+        pros: [],
+        cons: [],
+        order: parties.length + 1,
+        updatedAt: new Date().toISOString(),
+        slots: [
+          { characterId: '', characterName: '', role: roles[0] || '메인 딜러' },
+          { characterId: '', characterName: '', role: roles[1] || '서브 딜러' },
+          { characterId: '', characterName: '', role: roles[2] || '서포터' },
+          { characterId: '', characterName: '', role: roles[3] || '탱커·힐러' }
+        ]
+      };
+      setEditingParty(newNTEParty);
+    } else {
+      const newHSRParty: HSRPartyData = {
+        id: newId,
+        game: 'HSR',
+        name: '',
+        description: '',
+        category: (CATEGORY_PRESETS.HSR || [])[0] || '추가 공격',
+        mainDPS: '',
+        tags: [],
+        order: parties.length + 1,
+        updatedAt: new Date().toISOString(),
+        slots: [
+          { characterId: '', characterName: '', role: roles[0] || '메인 딜러' },
+          { characterId: '', characterName: '', role: roles[1] || '서브 딜러' },
+          { characterId: '', characterName: '', role: roles[2] || '서포터' },
+          { characterId: '', characterName: '', role: roles[3] || '탱커·힐러' }
+        ]
+      };
+      setEditingParty(newHSRParty);
+    }
+
     setIsEditorOpen(true);
   };
 
   // 파티 수정 모달 열기
-  const handleOpenEdit = (party: PartyData) => {
+  const handleOpenEdit = (party: UnifiedPartyData) => {
     setEditingParty(JSON.parse(JSON.stringify(party)));
     setIsEditorOpen(true);
   };
 
-  // 1-Click 파티 복제
-  const handleDuplicate = (party: PartyData) => {
-    const clone: PartyData = {
+  // ① 1-Click 파티 복제 (Duplicate with crypto.randomUUID() & (복사본))
+  const handleDuplicate = (party: UnifiedPartyData, index: number) => {
+    const newId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
+      ? crypto.randomUUID() 
+      : `${activeGame}_party_${Date.now()}`;
+
+    const clone: UnifiedPartyData = {
       ...JSON.parse(JSON.stringify(party)),
-      id: `party_${Date.now()}`,
-      name: `${party.name} (사본)`
+      id: newId,
+      name: `${party.name} (복사본)`,
+      order: party.order + 0.5,
+      updatedAt: new Date().toISOString()
     };
-    setParties([clone, ...parties]);
+
+    const updated = [...parties];
+    updated.splice(index + 1, 0, clone);
+    // order 재정렬
+    const reordered = updated.map((p, idx) => ({ ...p, order: idx + 1 }));
+    setParties(reordered);
+    showToast(`"${party.name}" 파티가 성공적으로 복제되었습니다!`);
   };
 
   // 파티 삭제
   const handleDelete = (id: string) => {
     if (confirm('이 파티 조합을 삭제하시겠습니까?')) {
-      setParties(parties.filter(p => p.id !== id));
+      const updated = parties.filter(p => p.id !== id).map((p, idx) => ({ ...p, order: idx + 1 }));
+      setParties(updated);
+      showToast('파티가 삭제되었습니다.');
     }
   };
 
@@ -244,7 +365,8 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     const temp = updated[index];
     updated[index] = updated[targetIdx];
     updated[targetIdx] = temp;
-    setParties(updated);
+    const reordered = updated.map((p, idx) => ({ ...p, order: idx + 1 }));
+    setParties(reordered);
   };
 
   // 파티 저장 (모달 내)
@@ -253,14 +375,20 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       alert('파티 이름을 입력해 주세요.');
       return;
     }
-    const exists = parties.some(p => p.id === editingParty.id);
+    const updatedParty = {
+      ...editingParty,
+      updatedAt: new Date().toISOString()
+    };
+
+    const exists = parties.some(p => p.id === updatedParty.id);
     if (exists) {
-      setParties(parties.map(p => p.id === editingParty.id ? editingParty : p));
+      setParties(parties.map(p => p.id === updatedParty.id ? updatedParty : p));
     } else {
-      setParties([editingParty, ...parties]);
+      setParties([updatedParty, ...parties]);
     }
     setIsEditorOpen(false);
     setEditingParty(null);
+    showToast('파티 설정이 저장되었습니다.');
   };
 
   // 캐릭터 선택 모달 열기
@@ -275,40 +403,35 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     setPickerRarity('all');
   };
 
-  // 캐릭터 선택 적용
+  // 캐릭터 선택 적용 (중복 방지 로직 포함)
   const handleSelectCharacter = (char: any) => {
     if (!editingParty || pickerState.targetSlotIndex === null) return;
-    const updated = JSON.parse(JSON.stringify(editingParty)) as PartyData;
+    const updated = JSON.parse(JSON.stringify(editingParty)) as UnifiedPartyData;
     const slotIdx = pickerState.targetSlotIndex;
 
     if (pickerState.isSubstitute) {
-      if (!updated.members[slotIdx].substitutes) {
-        updated.members[slotIdx].substitutes = [];
+      if (!updated.slots[slotIdx].substitutes) {
+        updated.slots[slotIdx].substitutes = [];
       }
       const newSub = {
-        id: char.id,
-        name: char.name,
+        characterId: char.id,
+        characterName: char.name,
         folderName: char.folderName || char.name,
-        role: updated.members[slotIdx].role,
-        isTrailblazer: char.name.includes('개척자'),
-        isRover: char.name.includes('방랑자')
+        role: updated.slots[slotIdx].role
       };
       if (typeof pickerState.substituteIndex === 'number') {
-        updated.members[slotIdx].substitutes![pickerState.substituteIndex] = newSub;
+        updated.slots[slotIdx].substitutes![pickerState.substituteIndex] = newSub;
       } else {
-        updated.members[slotIdx].substitutes!.push(newSub);
+        updated.slots[slotIdx].substitutes!.push(newSub);
       }
     } else {
-      updated.members[slotIdx] = {
-        ...updated.members[slotIdx],
-        id: char.id,
-        name: char.name,
-        folderName: char.folderName || char.name,
-        attribute: char.attribute,
-        isTrailblazer: char.name.includes('개척자'),
-        isRover: char.name.includes('방랑자')
+      updated.slots[slotIdx] = {
+        ...updated.slots[slotIdx],
+        characterId: char.id,
+        characterName: char.name,
+        folderName: char.folderName || char.name
       };
-      // 첫 번째 슬롯인 경우 자동으로 mainDPS 설정
+      // 슬롯 1인 경우 자동으로 mainDPS 설정
       if (slotIdx === 0 && !updated.mainDPS) {
         updated.mainDPS = char.name;
       }
@@ -318,25 +441,21 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     setPickerState({ isOpen: false, targetSlotIndex: null, isSubstitute: false });
   };
 
-  // 코드 내보내기 (TypeScript 형식 복사)
+  // ② TypeScript 코드 내보내기 템플릿 엔진
   const handleExportCode = async () => {
-    let varName = 'HSR_PARTIES';
-    if (activeGame === 'ww') varName = 'WW_PARTY_COMBINATIONS';
-    if (activeGame === 'nte') varName = 'NTE_PARTY_COMBINATIONS';
-
-    const code = `export const ${varName}: PartyCombination[] = ${JSON.stringify(parties, null, 2)};`;
+    const code = exportPartyToTSCode(gameKey, parties);
     try {
       await navigator.clipboard.writeText(code);
-      alert(`[${activeGame.toUpperCase()}] 파티 데이터(${parties.length}개)가 TypeScript 코드로 클립보드에 복사되었습니다!\n파일에 직접 붙여넣거나 저에게 전달해 주시면 됩니다.`);
+      showToast(`[${gameKey}] 파티 데이터(${parties.length}개)가 TypeScript 코드로 복사되었습니다!`);
     } catch (err: any) {
       alert('클립보드 복사 실패: ' + err.message);
     }
   };
 
-  // Supabase 동기화 저장
+  // ③ Supabase 동기화 저장
   const handleSyncToSupabase = async () => {
     if (!supabase) {
-      alert('Supabase 클라이언트가 초기화되지 않았습니다.');
+      alert('Supabase 클라이언트가 설정되지 않았습니다. 로컬 브라우저 캐시에 저장되었습니다.');
       return;
     }
     try {
@@ -348,29 +467,38 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         party_id: p.id,
         name: p.name,
         description: p.description,
-        category: p.category,
+        category: (p as any).category || (p as any).elementSynergy || '범용',
+        element_synergy: (p as any).elementSynergy || (p as any).category || '범용',
         main_dps: p.mainDPS,
         tags: p.tags,
         pros: p.pros,
         cons: p.cons,
-        members: p.members,
-        display_order: idx + 1
+        members: p.slots,
+        display_order: idx + 1,
+        updated_at: new Date().toISOString()
       }));
 
       const { error } = await supabase.from('party_recommendations').insert(payload);
-      if (error) {
-        throw error;
-      }
-      alert(`[${activeGame.toUpperCase()}] ${parties.length}개의 파티 데이터가 Supabase 클라우드에 성공적으로 동기화되었습니다!`);
+      if (error) throw error;
+      showToast(`[${gameKey}] ${parties.length}개의 파티가 Supabase 클라우드에 동기화되었습니다!`);
     } catch (err: any) {
-      alert('Supabase 동기화 알림: ' + err.message + '\n(테이블이 없는 경우 [코드 내보내기]를 이용해 즉시 반영하실 수 있습니다.)');
+      console.warn('Supabase sync error:', err);
+      showToast(`로컬 저장 완료 (클라우드 테이블 부재: [코드 내보내기] 지원)`);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="space-y-8 animate-in fade-in duration-500 relative">
+      {/* 플로팅 토스트 알림 */}
+      {toastMessage && (
+        <div className="fixed bottom-8 right-8 z-[300] bg-black/90 border border-amber-500/40 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 backdrop-blur-xl animate-in slide-in-from-bottom-5">
+          <CheckCircle2 size={20} className="text-amber-500" />
+          <span className="text-xs font-black">{toastMessage}</span>
+        </div>
+      )}
+
       {/* 상단 컨트롤 바 */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-[#111] p-8 rounded-[36px] border border-white/5 shadow-2xl">
         <div className="space-y-2">
@@ -380,10 +508,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             </div>
             <div>
               <h2 className="text-2xl font-black italic tracking-tighter uppercase">
-                {activeGame === 'hsr' ? '붕괴: 스타레일' : activeGame === 'ww' ? '명조' : 'NTE'} 파티 추천 빌더
+                {gameKey === 'HSR' ? '붕괴: 스타레일' : gameKey === 'WW' ? '명조' : 'NTE'} 파티 추천 빌더
               </h2>
               <p className="text-xs text-gray-400 font-bold">
-                총 <span className="text-amber-500">{parties.length}</span>개의 파티 조합 구성됨
+                슬롯 규격: <span className="text-amber-500 font-black">{gameKey === 'WW' ? '3인 고정' : '4인 고정'}</span> | 총 <span className="text-amber-500">{parties.length}</span>개 파티
               </p>
             </div>
           </div>
@@ -412,11 +540,12 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
           <button
             onClick={() => {
               if (confirm('기존 코드 기본 프리셋으로 되돌리시겠습니까?')) {
-                loadLocalParties();
+                setParties(getBuiltinParties());
+                showToast('기본 프리셋으로 복원되었습니다.');
               }
             }}
             className="p-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white rounded-2xl transition-all"
-            title="기본 데이터 다시 불러오기"
+            title="기본 프리셋으로 초기화"
           >
             <RefreshCw size={16} />
           </button>
@@ -426,7 +555,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       {/* 카테고리 탭 & 검색바 */}
       <div className="flex flex-col md:flex-row items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0">
-          {['전체', ...(CATEGORY_PRESETS[activeGame] || [])].map(cat => (
+          {['전체', ...(CATEGORY_PRESETS[gameKey] || [])].map(cat => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
@@ -455,124 +584,127 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
 
       {/* 파티 목록 카드 그리드 */}
       <div className="grid grid-cols-1 gap-6">
-        {filteredParties.map((party, pIdx) => (
-          <div
-            key={party.id || pIdx}
-            className="group bg-[#111] border border-white/5 hover:border-amber-500/30 rounded-[32px] p-6 lg:p-8 transition-all duration-300 shadow-xl space-y-6"
-          >
-            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/5 pb-6">
-              <div className="space-y-2">
-                <div className="flex flex-wrap items-center gap-3">
-                  <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-lg text-amber-500 text-[10px] font-black uppercase tracking-wider">
-                    {party.category || '범용'}
-                  </span>
-                  {party.mainDPS && (
-                    <span className="px-2.5 py-0.5 bg-rose-500/10 border border-rose-500/20 rounded-md text-rose-400 text-[10px] font-bold">
-                      Main DPS: {party.mainDPS}
+        {filteredParties.map((party, pIdx) => {
+          const category = (party as any).category || (party as any).elementSynergy || '범용';
+          return (
+            <div
+              key={party.id || pIdx}
+              className="group bg-[#111] border border-white/5 hover:border-amber-500/30 rounded-[32px] p-6 lg:p-8 transition-all duration-300 shadow-xl space-y-6"
+            >
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/5 pb-6">
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-lg text-amber-500 text-[10px] font-black uppercase tracking-wider">
+                      {category}
                     </span>
-                  )}
-                  <h3 className="text-xl font-black text-white tracking-tight">{party.name}</h3>
-                </div>
-                <p className="text-xs text-gray-400 max-w-3xl leading-relaxed">{party.description}</p>
-                {party.tags && party.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 pt-1">
-                    {party.tags.map((tag, tIdx) => (
-                      <span key={tIdx} className="px-2 py-0.5 bg-white/5 rounded text-[10px] text-gray-400">
-                        #{tag}
+                    {party.mainDPS && (
+                      <span className="px-2.5 py-0.5 bg-rose-500/10 border border-rose-500/20 rounded-md text-rose-400 text-[10px] font-bold">
+                        Main DPS: {party.mainDPS}
                       </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              {/* 액션 버튼 */}
-              <div className="flex items-center gap-2 shrink-0">
-                <button
-                  onClick={() => handleMove(pIdx, 'up')}
-                  disabled={pIdx === 0}
-                  className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
-                  title="위로 이동"
-                >
-                  <ArrowUp size={14} />
-                </button>
-                <button
-                  onClick={() => handleMove(pIdx, 'down')}
-                  disabled={pIdx === parties.length - 1}
-                  className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
-                  title="아래로 이동"
-                >
-                  <ArrowDown size={14} />
-                </button>
-                <button
-                  onClick={() => handleDuplicate(party)}
-                  className="flex items-center gap-1.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:text-white transition-all"
-                  title="1-Click 복제"
-                >
-                  <Copy size={13} /> 복제
-                </button>
-                <button
-                  onClick={() => handleOpenEdit(party)}
-                  className="flex items-center gap-1.5 px-3.5 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-xl text-xs font-bold text-amber-500 transition-all"
-                >
-                  <Edit3 size={13} /> 수정
-                </button>
-                <button
-                  onClick={() => handleDelete(party.id)}
-                  className="p-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 rounded-xl transition-all"
-                  title="삭제"
-                >
-                  <Trash2 size={14} />
-                </button>
-              </div>
-            </div>
-
-            {/* 슬롯별 캐릭터 아바타 카드 열 */}
-            <div className={`grid grid-cols-2 ${party.members.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
-              {party.members.map((member, mIdx) => (
-                <div
-                  key={mIdx}
-                  className="bg-black/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 relative group/slot hover:border-amber-500/20 transition-all"
-                >
-                  <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex items-center justify-center">
-                    {member.name ? (
-                      <img
-                        src={getEncodedUrl(member.folderName || member.name)}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          const p = e.currentTarget.parentElement;
-                          if (p) p.innerHTML = `<span class="text-xs font-black text-amber-500/80">${member.name.slice(0, 2)}</span>`;
-                        }}
-                      />
-                    ) : (
-                      <span className="text-[10px] text-gray-500 font-bold">비어있음</span>
                     )}
+                    <h3 className="text-xl font-black text-white tracking-tight">{party.name}</h3>
                   </div>
-                  <div>
-                    <p className="text-sm font-black text-white truncate max-w-[120px]">{member.name || '미선택'}</p>
-                    <p className="text-[10px] text-amber-500/80 font-bold uppercase tracking-wider">{member.role}</p>
-                  </div>
-
-                  {/* 대체 캐릭터 뱃지들 */}
-                  {member.substitutes && member.substitutes.length > 0 && (
-                    <div className="w-full pt-2 border-t border-white/5 flex flex-wrap items-center justify-center gap-1.5">
-                      <span className="text-[8px] text-gray-500 font-bold uppercase w-full">대체:</span>
-                      {member.substitutes.map((sub, sIdx) => (
-                        <span
-                          key={sIdx}
-                          className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[9px] text-gray-300 font-medium truncate max-w-[90px]"
-                        >
-                          {sub.name}
+                  <p className="text-xs text-gray-400 max-w-3xl leading-relaxed">{party.description}</p>
+                  {party.tags && party.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {party.tags.map((tag, tIdx) => (
+                        <span key={tIdx} className="px-2 py-0.5 bg-white/5 rounded text-[10px] text-gray-400">
+                          #{tag}
                         </span>
                       ))}
                     </div>
                   )}
                 </div>
-              ))}
+
+                {/* 액션 버튼 */}
+                <div className="flex items-center gap-2 shrink-0">
+                  <button
+                    onClick={() => handleMove(pIdx, 'up')}
+                    disabled={pIdx === 0}
+                    className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
+                    title="위로 이동"
+                  >
+                    <ArrowUp size={14} />
+                  </button>
+                  <button
+                    onClick={() => handleMove(pIdx, 'down')}
+                    disabled={pIdx === parties.length - 1}
+                    className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
+                    title="아래로 이동"
+                  >
+                    <ArrowDown size={14} />
+                  </button>
+                  <button
+                    onClick={() => handleDuplicate(party, pIdx)}
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:text-white transition-all"
+                    title="1-Click 복제"
+                  >
+                    <Copy size={13} /> 복제
+                  </button>
+                  <button
+                    onClick={() => handleOpenEdit(party)}
+                    className="flex items-center gap-1.5 px-3.5 py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-xl text-xs font-bold text-amber-500 transition-all"
+                  >
+                    <Edit3 size={13} /> 수정
+                  </button>
+                  <button
+                    onClick={() => handleDelete(party.id)}
+                    className="p-2 bg-rose-500/10 hover:bg-rose-500/20 text-rose-500 rounded-xl transition-all"
+                    title="삭제"
+                  >
+                    <Trash2 size={14} />
+                  </button>
+                </div>
+              </div>
+
+              {/* 슬롯별 캐릭터 아바타 카드 열 (3인 또는 4인 자동 렌더링) */}
+              <div className={`grid grid-cols-2 ${party.slots.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
+                {party.slots.map((slot, sIdx) => (
+                  <div
+                    key={sIdx}
+                    className="bg-black/40 border border-white/5 rounded-2xl p-4 flex flex-col items-center text-center space-y-3 relative group/slot hover:border-amber-500/20 transition-all"
+                  >
+                    <div className="relative w-16 h-16 rounded-2xl overflow-hidden border border-white/10 bg-white/5 flex items-center justify-center">
+                      {slot.characterName ? (
+                        <img
+                          src={getEncodedUrl(slot.folderName || slot.characterName)}
+                          alt={slot.characterName}
+                          className="w-full h-full object-cover"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            const p = e.currentTarget.parentElement;
+                            if (p) p.innerHTML = `<span class="text-xs font-black text-amber-500/80">${slot.characterName.slice(0, 2)}</span>`;
+                          }}
+                        />
+                      ) : (
+                        <span className="text-[10px] text-gray-500 font-bold">비어있음</span>
+                      )}
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-white truncate max-w-[120px]">{slot.characterName || '미선택'}</p>
+                      <p className="text-[10px] text-amber-500/80 font-bold uppercase tracking-wider">{slot.role}</p>
+                    </div>
+
+                    {/* 대체 캐릭터 뱃지들 */}
+                    {slot.substitutes && slot.substitutes.length > 0 && (
+                      <div className="w-full pt-2 border-t border-white/5 flex flex-wrap items-center justify-center gap-1.5">
+                        <span className="text-[8px] text-gray-500 font-bold uppercase w-full">대체:</span>
+                        {slot.substitutes.map((sub, subIdx) => (
+                          <span
+                            key={subIdx}
+                            className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[9px] text-gray-300 font-medium truncate max-w-[90px]"
+                          >
+                            {sub.characterName}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
 
         {filteredParties.length === 0 && (
           <div className="py-20 text-center bg-[#111] rounded-[36px] border border-white/5 space-y-4">
@@ -604,7 +736,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     {editingParty.id ? '파티 조합 편집' : '새 파티 조합 구성'}
                   </h3>
                   <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
-                    {activeGame.toUpperCase()} Party Configuration
+                    {gameKey} Party Configuration ({editingParty.slots.length}인 슬롯)
                   </p>
                 </div>
               </div>
@@ -632,11 +764,17 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">카테고리</label>
                 <select
-                  value={editingParty.category || ''}
-                  onChange={(e) => setEditingParty({ ...editingParty, category: e.target.value })}
+                  value={(editingParty as any).category || (editingParty as any).elementSynergy || ''}
+                  onChange={(e) => {
+                    if (gameKey === 'NTE') {
+                      setEditingParty({ ...editingParty, elementSynergy: e.target.value } as NTEPartyData);
+                    } else if (gameKey === 'HSR') {
+                      setEditingParty({ ...editingParty, category: e.target.value } as HSRPartyData);
+                    }
+                  }}
                   className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none"
                 >
-                  {(CATEGORY_PRESETS[activeGame] || []).map(cat => (
+                  {(CATEGORY_PRESETS[gameKey] || []).map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
                   ))}
                 </select>
@@ -679,32 +817,16 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
             </div>
 
-            {/* 시각적 슬롯 캐릭터 빌더 */}
+            {/* 시각적 슬롯 캐릭터 빌더 (3인 또는 4인 슬롯 규격 자동 스위칭) */}
             <div className="space-y-4 pt-4 border-t border-white/5">
               <div className="flex items-center justify-between">
                 <h4 className="text-base font-black text-white flex items-center gap-2">
-                  <Users size={16} className="text-amber-500" /> 파티 슬롯 멤버 구성 ({editingParty.members.length}인)
+                  <Users size={16} className="text-amber-500" /> 파티 슬롯 멤버 구성 ({editingParty.slots.length}인 고정)
                 </h4>
-                <div className="flex items-center gap-2">
-                  {editingParty.members.length < 4 && (
-                    <button
-                      onClick={() => {
-                        const roles = ROLE_PRESETS[activeGame] || ['서포터'];
-                        setEditingParty({
-                          ...editingParty,
-                          members: [...editingParty.members, { id: '', name: '', role: roles[0], folderName: '', substitutes: [] }]
-                        });
-                      }}
-                      className="px-3 py-1.5 bg-white/5 hover:bg-white/10 text-amber-500 rounded-lg text-xs font-bold transition-all"
-                    >
-                      + 슬롯 추가
-                    </button>
-                  )}
-                </div>
               </div>
 
-              <div className={`grid grid-cols-1 ${editingParty.members.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
-                {editingParty.members.map((slot, sIdx) => (
+              <div className={`grid grid-cols-1 ${editingParty.slots.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
+                {editingParty.slots.map((slot, sIdx) => (
                   <div
                     key={sIdx}
                     className="bg-black/50 border border-white/10 rounded-3xl p-5 space-y-4 relative flex flex-col justify-between group"
@@ -715,19 +837,6 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">
                           Slot {sIdx + 1}
                         </span>
-                        {editingParty.members.length > 3 && (
-                          <button
-                            onClick={() => {
-                              const updated = [...editingParty.members];
-                              updated.splice(sIdx, 1);
-                              setEditingParty({ ...editingParty, members: updated });
-                            }}
-                            className="text-gray-500 hover:text-rose-400 p-1"
-                            title="슬롯 제거"
-                          >
-                            <Trash2 size={12} />
-                          </button>
-                        )}
                       </div>
 
                       {/* 캐릭터 아바타 & 선택 버튼 */}
@@ -736,10 +845,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         className="w-full flex flex-col items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-amber-500/40 rounded-2xl transition-all"
                       >
                         <div className="w-16 h-16 rounded-2xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center relative shadow-inner">
-                          {slot.name ? (
+                          {slot.characterName ? (
                             <img
-                              src={getEncodedUrl(slot.folderName || slot.name)}
-                              alt={slot.name}
+                              src={getEncodedUrl(slot.folderName || slot.characterName)}
+                              alt={slot.characterName}
                               className="w-full h-full object-cover"
                             />
                           ) : (
@@ -748,7 +857,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         </div>
                         <div className="text-center">
                           <p className="text-sm font-black text-white truncate max-w-[120px]">
-                            {slot.name || '캐릭터 선택'}
+                            {slot.characterName || '캐릭터 선택'}
                           </p>
                           <span className="text-[9px] text-amber-500 font-bold uppercase tracking-wider block mt-0.5">
                             클릭하여 변경
@@ -759,15 +868,15 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                       {/* 슬롯 역할 드롭다운 */}
                       <div className="pt-2">
                         <select
-                          value={slot.role}
+                          value={slot.role || ''}
                           onChange={(e) => {
-                            const updated = [...editingParty.members];
-                            updated[sIdx].role = e.target.value;
-                            setEditingParty({ ...editingParty, members: updated });
+                            const updatedSlots = [...editingParty.slots];
+                            updatedSlots[sIdx].role = e.target.value;
+                            setEditingParty({ ...editingParty, slots: updatedSlots as any });
                           }}
                           className="w-full bg-[#181818] border border-white/10 rounded-xl px-2.5 py-1.5 text-xs text-center font-bold text-gray-300 focus:border-amber-500/50 outline-none"
                         >
-                          {(ROLE_PRESETS[activeGame] || []).map(r => (
+                          {(ROLE_PRESETS[gameKey] || []).map(r => (
                             <option key={r} value={r}>{r}</option>
                           ))}
                         </select>
@@ -792,12 +901,12 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                             key={subIdx}
                             className="flex items-center justify-between gap-2 px-2.5 py-1 bg-white/5 rounded-lg text-xs"
                           >
-                            <span className="text-gray-300 font-medium truncate max-w-[90px]">{sub.name}</span>
+                            <span className="text-gray-300 font-medium truncate max-w-[90px]">{sub.characterName}</span>
                             <button
                               onClick={() => {
-                                const updated = [...editingParty.members];
-                                updated[sIdx].substitutes!.splice(subIdx, 1);
-                                setEditingParty({ ...editingParty, members: updated });
+                                const updatedSlots = [...editingParty.slots];
+                                updatedSlots[sIdx].substitutes!.splice(subIdx, 1);
+                                setEditingParty({ ...editingParty, slots: updatedSlots as any });
                               }}
                               className="text-gray-500 hover:text-rose-400"
                             >
@@ -832,7 +941,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       )}
 
       {/* ========================================================================= */}
-      {/* 🎯 고속 캐릭터 선택 모달 (Character Picker Modal) */}
+      {/* 🎯 고속 캐릭터 선택 모달 (중복 선택 방지 필터 탑재) */}
       {/* ========================================================================= */}
       {pickerState.isOpen && (
         <div className="fixed inset-0 z-[250] flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl animate-in fade-in duration-200">
@@ -852,7 +961,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </button>
             </div>
 
-            {/* 실시간 검색 및 필터 */}
+            {/* 실시간 검색 및 등급 필터 */}
             <div className="space-y-3">
               <div className="relative">
                 <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -866,7 +975,6 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                 />
               </div>
 
-              {/* 희귀도 필터 버튼 */}
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setPickerRarity('all')}
@@ -889,12 +997,20 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
             </div>
 
-            {/* 캐릭터 그리드 */}
+            {/* 캐릭터 그리드 (대체 캐릭터 추가 시 본체 캐릭터 및 기존 대체 캐릭터 중복 방지 필터) */}
             <div className="flex-1 overflow-y-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 p-1 custom-scrollbar">
               {availableCharacters
                 .filter(c => {
                   const matchesSearch = c.name.toLowerCase().includes(pickerSearch.toLowerCase().trim());
                   const matchesRarity = pickerRarity === 'all' || c.rarity === pickerRarity;
+                  
+                  // 중복 방지 필터: 대체 캐릭터 선택 시 현재 슬롯 본체 및 이미 추가된 서브 캐릭터 제외
+                  if (pickerState.isSubstitute && editingParty && pickerState.targetSlotIndex !== null) {
+                    const currentSlot = editingParty.slots[pickerState.targetSlotIndex];
+                    if (currentSlot.characterName === c.name) return false;
+                    if (currentSlot.substitutes?.some(s => s.characterName === c.name)) return false;
+                  }
+                  
                   return matchesSearch && matchesRarity;
                 })
                 .map(char => (
