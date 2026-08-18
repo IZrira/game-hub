@@ -116,84 +116,88 @@ const PartyRecommendations: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [partiesList, setPartiesList] = useState<PartyCombination[]>(WW_PARTY_COMBINATIONS);
 
-  // Supabase 실시간 동기화 & localStorage 폴백
+  // Supabase 실시간 동기화 & localStorage 즉시 로드
   useEffect(() => {
-    const fetchLiveParties = async () => {
-      try {
-        if (supabase) {
-          const { data, error } = await supabase
-            .from('party_recommendations')
-            .select('*')
-            .eq('game_id', 'ww')
-            .order('display_order', { ascending: true });
-
-          if (!error && data && data.length > 0) {
-            const parsed: PartyCombination[] = data.map((item: any) => ({
-              id: item.party_id || item.id,
-              name: item.name,
-              description: item.description || '',
-              mainDPS: item.main_dps || item.mainDPS || '',
-              tags: item.tags || [],
-              pros: item.pros || [],
-              cons: item.cons || [],
-              members: (item.members || []).map((m: any) => ({
-                id: m.characterId || m.id,
-                name: m.characterName || m.name,
-                folderName: m.folderName || m.characterName || m.name,
-                role: m.role || '서포터',
-                breakthrough: m.breakthrough,
-                description: m.description,
-                substitutes: m.substitutes?.map((s: any) => ({
-                  name: s.characterName || s.name,
-                  folderName: s.folderName || s.characterName || s.name,
-                  breakthrough: s.breakthrough,
-                  description: s.description,
-                  role: s.role
-                }))
+    // 1단계: localStorage 캐시 즉시 적용 (0ms 지연 없음)
+    try {
+      const local = localStorage.getItem('parties_WW');
+      if (local) {
+        const localParties = JSON.parse(local);
+        if (Array.isArray(localParties) && localParties.length > 0) {
+          const parsed: PartyCombination[] = localParties.map((item: any) => ({
+            id: item.id,
+            name: item.name,
+            description: item.description || '',
+            mainDPS: item.mainDPS || '',
+            tags: item.tags || [],
+            pros: item.pros || [],
+            cons: item.cons || [],
+            members: (item.slots || []).map((m: any) => ({
+              id: m.characterId || m.id,
+              name: m.characterName || m.name,
+              folderName: m.folderName || m.characterName || m.name,
+              role: m.role || '서포터',
+              breakthrough: m.breakthrough,
+              description: m.description,
+              substitutes: m.substitutes?.map((s: any) => ({
+                name: s.characterName || s.name,
+                folderName: s.folderName || s.characterName || s.name,
+                breakthrough: s.breakthrough,
+                description: s.description,
+                role: s.role
               }))
-            }));
-            setPartiesList(parsed);
-            return;
-          }
+            }))
+          }));
+          setPartiesList(parsed);
         }
+      }
+    } catch (e) {
+      console.warn('Local storage party parse error:', e);
+    }
 
-        const local = localStorage.getItem('parties_WW');
-        if (local) {
-          const localParties = JSON.parse(local);
-          if (Array.isArray(localParties) && localParties.length > 0) {
-            const parsed: PartyCombination[] = localParties.map((item: any) => ({
-              id: item.id,
-              name: item.name,
-              description: item.description || '',
-              mainDPS: item.mainDPS || '',
-              tags: item.tags || [],
-              pros: item.pros || [],
-              cons: item.cons || [],
-              members: (item.slots || []).map((m: any) => ({
-                id: m.characterId || m.id,
-                name: m.characterName || m.name,
-                folderName: m.folderName || m.characterName || m.name,
-                role: m.role || '서포터',
-                breakthrough: m.breakthrough,
-                description: m.description,
-                substitutes: m.substitutes?.map((s: any) => ({
-                  name: s.characterName || s.name,
-                  folderName: s.folderName || s.characterName || s.name,
-                  breakthrough: s.breakthrough,
-                  description: s.description,
-                  role: s.role
-                }))
+    // 2단계: Supabase 클라우드 실시간 동기화 확인
+    const fetchCloudParties = async () => {
+      if (!supabase) return;
+      try {
+        const { data, error } = await supabase
+          .from('party_recommendations')
+          .select('*')
+          .eq('game_id', 'ww')
+          .order('display_order', { ascending: true });
+
+        if (!error && data && data.length > 0) {
+          const parsed: PartyCombination[] = data.map((item: any) => ({
+            id: item.party_id || item.id,
+            name: item.name,
+            description: item.description || '',
+            mainDPS: item.main_dps || item.mainDPS || '',
+            tags: item.tags || [],
+            pros: item.pros || [],
+            cons: item.cons || [],
+            members: (item.members || []).map((m: any) => ({
+              id: m.characterId || m.id,
+              name: m.characterName || m.name,
+              folderName: m.folderName || m.characterName || m.name,
+              role: m.role || '서포터',
+              breakthrough: m.breakthrough,
+              description: m.description,
+              substitutes: m.substitutes?.map((s: any) => ({
+                name: s.characterName || s.name,
+                folderName: s.folderName || s.characterName || s.name,
+                breakthrough: s.breakthrough,
+                description: s.description,
+                role: s.role
               }))
-            }));
-            setPartiesList(parsed);
-          }
+            }))
+          }));
+          setPartiesList(parsed);
         }
       } catch (err) {
-        console.warn('Failed to load live WW party recommendations, fallback to presets:', err);
+        console.warn('Supabase cloud fetch failed (using local/fallback data):', err);
       }
     };
 
-    fetchLiveParties();
+    fetchCloudParties();
   }, []);
 
   const filteredParties = useMemo(() => {

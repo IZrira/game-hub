@@ -460,16 +460,20 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
 
   // ③ Supabase 동기화 저장
   const handleSyncToSupabase = async () => {
+    // 1. localStorage 무조건 즉시 강제 갱신
+    localStorage.setItem(`parties_${gameKey}`, JSON.stringify(parties));
+
     if (!supabase) {
-      alert('Supabase 클라이언트가 설정되지 않았습니다. 로컬 브라우저 캐시에 저장되었습니다.');
+      alert(`[로컬 저장 완료]\n브라우저에 ${parties.length}개의 파티가 저장되었습니다.\n추천 파티 페이지에서 즉시 확인하실 수 있습니다.`);
+      showToast(`[${gameKey}] 로컬 브라우저에 저장 완료!`);
       return;
     }
     try {
       setLoading(true);
-      await supabase.from('party_recommendations').delete().eq('game_id', activeGame);
+      await supabase.from('party_recommendations').delete().eq('game_id', activeGame.toLowerCase());
       
       const payload = parties.map((p, idx) => ({
-        game_id: activeGame,
+        game_id: activeGame.toLowerCase(),
         party_id: p.id,
         name: p.name,
         description: p.description,
@@ -487,9 +491,11 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       const { error } = await supabase.from('party_recommendations').insert(payload);
       if (error) throw error;
       showToast(`[${gameKey}] ${parties.length}개의 파티가 Supabase 클라우드에 동기화되었습니다!`);
+      alert(`✅ [동기화 성공]\n${parties.length}개의 파티가 Supabase 클라우드에 실시간 동기화되었습니다!\n모든 유저의 추천 파티 페이지에 즉시 반영됩니다.`);
     } catch (err: any) {
       console.warn('Supabase sync error:', err);
-      showToast(`로컬 저장 완료 (클라우드 테이블 부재: [코드 내보내기] 지원)`);
+      showToast(`[${gameKey}] 로컬 브라우저에 저장 완료!`);
+      alert(`💾 [로컬 저장 완료]\n내 브라우저에 ${parties.length}개의 파티가 저장되었습니다!\n\n※ Supabase 클라우드 테이블(party_recommendations)이 미생성된 상태이므로, 다른 기기/유저들에게 영구 배포하려면 [코드 내보내기] 버튼을 눌러 코드를 복사해주세요.`);
     } finally {
       setLoading(false);
     }
