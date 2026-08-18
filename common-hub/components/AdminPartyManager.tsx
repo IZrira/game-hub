@@ -748,7 +748,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </button>
             </div>
 
-            {/* 기본 메타 입력 폼 */}
+            {/* 기본 메타 입력 폼 (이름 & 카테고리) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 이름 *</label>
@@ -779,123 +779,17 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                   ))}
                 </select>
               </div>
-
-              <div className="space-y-2 md:col-span-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 설명 및 운영법</label>
-                <textarea
-                  value={editingParty.description}
-                  onChange={(e) => setEditingParty({ ...editingParty, description: e.target.value })}
-                  rows={3}
-                  placeholder="파티의 핵심 시너지, 스킬 사이클 및 추천 운영 방식을 간결히 작성해 주세요."
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm text-white focus:border-amber-500/50 outline-none"
-                />
-              </div>
-
-              <div className="space-y-2.5">
-                <div className="flex items-center justify-between">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-amber-500 flex items-center gap-1.5">
-                    <Sword size={12} className="text-rose-400" /> 메인 딜러 (Main DPS) 선택
-                  </label>
-                  {editingParty.mainDPS && (
-                    <span className="text-[10px] text-gray-400">
-                      선택됨: <span className="text-amber-400 font-black">{editingParty.mainDPS}</span>
-                    </span>
-                  )}
-                </div>
-
-                {/* 슬롯 배치된 캐릭터 빠른 토글 칩 */}
-                {editingParty.slots.some(s => s.characterName) && (
-                  <div className="space-y-1.5">
-                    <span className="text-[9px] text-gray-500 font-bold uppercase tracking-wider block">
-                      슬롯 캐릭터에서 빠른 지정 (클릭하여 토글):
-                    </span>
-                    <div className="flex flex-wrap items-center gap-2">
-                      {editingParty.slots
-                        .filter(s => Boolean(s.characterName))
-                        .map((slot, sIdx) => {
-                          const isSelected = editingParty.mainDPS === slot.characterName;
-                          return (
-                            <button
-                              key={sIdx}
-                              type="button"
-                              onClick={() => setEditingParty({ 
-                                ...editingParty, 
-                                mainDPS: isSelected ? '' : slot.characterName 
-                              })}
-                              className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-black transition-all ${
-                                isSelected
-                                  ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/25 scale-105 border border-amber-400'
-                                  : 'bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 hover:border-amber-500/30'
-                              }`}
-                            >
-                              <div className="w-5 h-5 rounded-lg overflow-hidden border border-white/10 bg-black/50 shrink-0">
-                                <img
-                                  src={getEncodedUrl(slot.folderName || slot.characterName)}
-                                  alt={slot.characterName}
-                                  className="w-full h-full object-cover"
-                                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
-                                />
-                              </div>
-                              <span>{slot.characterName}</span>
-                              {isSelected && <Check size={12} strokeWidth={3} />}
-                            </button>
-                          );
-                        })}
-                    </div>
-                  </div>
-                )}
-
-                {/* 전체 캐릭터 드롭다운 선택기 */}
-                <div className="pt-1">
-                  <select
-                    value={editingParty.mainDPS || ''}
-                    onChange={(e) => setEditingParty({ ...editingParty, mainDPS: e.target.value })}
-                    className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none cursor-pointer"
-                  >
-                    <option value="">-- 전체 캐릭터 목록에서 선택 --</option>
-                    <optgroup label="5★ 캐릭터">
-                      {availableCharacters
-                        .filter(c => c.rarity === 5)
-                        .map(c => (
-                          <option key={c.id} value={c.name} style={{ backgroundColor: '#111' }}>
-                            ★5 {c.name} ({c.attribute || c.path})
-                          </option>
-                        ))}
-                    </optgroup>
-                    <optgroup label="4★ 캐릭터">
-                      {availableCharacters
-                        .filter(c => c.rarity === 4)
-                        .map(c => (
-                          <option key={c.id} value={c.name} style={{ backgroundColor: '#111' }}>
-                            ★4 {c.name} ({c.attribute || c.path})
-                          </option>
-                        ))}
-                    </optgroup>
-                  </select>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">태그 (쉼표로 구분)</label>
-                <input
-                  type="text"
-                  value={(editingParty.tags || []).join(', ')}
-                  onChange={(e) => setEditingParty({ 
-                    ...editingParty, 
-                    tags: e.target.value.split(',').map(t => t.trim()).filter(Boolean) 
-                  })}
-                  placeholder="예: 환락, 추가 공격, 속도 버프"
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none"
-                />
-              </div>
             </div>
 
-            {/* 시각적 슬롯 캐릭터 빌더 (3인 또는 4인 슬롯 규격 자동 스위칭) */}
+            {/* 1단계: 시각적 슬롯 캐릭터 빌더 (먼저 슬롯 배치) */}
             <div className="space-y-4 pt-4 border-t border-white/5">
               <div className="flex items-center justify-between">
-                <h4 className="text-base font-black text-white flex items-center gap-2">
-                  <Users size={16} className="text-amber-500" /> 파티 슬롯 멤버 구성 ({editingParty.slots.length}인 고정)
-                </h4>
+                <div>
+                  <h4 className="text-base font-black text-white flex items-center gap-2">
+                    <Users size={18} className="text-amber-500" /> 1단계: 파티 슬롯 멤버 배치 ({editingParty.slots.length}인 고정)
+                  </h4>
+                  <p className="text-xs text-gray-400">각 슬롯을 클릭하여 캐릭터를 배치하세요.</p>
+                </div>
               </div>
 
               <div className={`grid grid-cols-1 ${editingParty.slots.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
@@ -991,6 +885,102 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     </div>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* 2단계: 메인 딜러(Main DPS) 토글 선택 (배치된 캐릭터 중에서만 표시) */}
+            <div className="space-y-3 pt-6 border-t border-white/5">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h4 className="text-base font-black text-white flex items-center gap-2">
+                    <Sword size={18} className="text-rose-400" /> 2단계: 메인 딜러 (Main DPS) 지정
+                  </h4>
+                  <p className="text-xs text-gray-400">위에서 배치한 슬롯 캐릭터 중 메인 딜러를 클릭하여 선택하세요.</p>
+                </div>
+                {editingParty.mainDPS && (
+                  <div className="px-3.5 py-1 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-400 text-xs font-black flex items-center gap-1.5">
+                    <Sparkles size={13} /> 현재 메인 딜러: {editingParty.mainDPS}
+                  </div>
+                )}
+              </div>
+
+              {/* 슬롯에 배치된 캐릭터 목록으로만 토글 렌더링 */}
+              {editingParty.slots.some(s => Boolean(s.characterName)) ? (
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 pt-1">
+                  {editingParty.slots
+                    .filter(s => Boolean(s.characterName))
+                    .map((slot, sIdx) => {
+                      const isSelected = editingParty.mainDPS === slot.characterName;
+                      return (
+                        <button
+                          key={sIdx}
+                          type="button"
+                          onClick={() => setEditingParty({ 
+                            ...editingParty, 
+                            mainDPS: isSelected ? '' : slot.characterName 
+                          })}
+                          className={`flex items-center gap-3 p-3.5 rounded-2xl transition-all text-left ${
+                            isSelected
+                              ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/25 border-2 border-amber-300 scale-[1.02]'
+                              : 'bg-white/5 hover:bg-white/10 text-gray-300 border border-white/10 hover:border-amber-500/30'
+                          }`}
+                        >
+                          <div className="w-10 h-10 rounded-xl overflow-hidden border border-white/10 bg-black/60 shrink-0">
+                            <img
+                              src={getEncodedUrl(slot.folderName || slot.characterName)}
+                              alt={slot.characterName}
+                              className="w-full h-full object-cover"
+                              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                            />
+                          </div>
+                          <div className="truncate flex-1">
+                            <p className="text-xs font-black truncate">{slot.characterName}</p>
+                            <p className={`text-[10px] font-bold uppercase ${isSelected ? 'text-black/70' : 'text-gray-400'}`}>
+                              {slot.role}
+                            </p>
+                          </div>
+                          {isSelected ? (
+                            <Check size={16} strokeWidth={3} className="text-black shrink-0" />
+                          ) : (
+                            <span className="text-[10px] text-gray-500 font-bold">선택</span>
+                          )}
+                        </button>
+                      );
+                    })}
+                </div>
+              ) : (
+                <div className="p-6 bg-white/[0.02] border border-dashed border-white/10 rounded-2xl text-center space-y-1">
+                  <p className="text-xs text-gray-400 font-bold">⚠️ 먼저 위의 1단계 파티 슬롯에서 캐릭터를 선택해 주세요.</p>
+                  <p className="text-[10px] text-gray-500">배치된 캐릭터들이 이곳에 메인 딜러 후보로 자동 노출됩니다.</p>
+                </div>
+              )}
+            </div>
+
+            {/* 3단계: 파티 설명 및 태그 입력 */}
+            <div className="space-y-4 pt-6 border-t border-white/5">
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 설명 및 운영법</label>
+                <textarea
+                  value={editingParty.description}
+                  onChange={(e) => setEditingParty({ ...editingParty, description: e.target.value })}
+                  rows={3}
+                  placeholder="파티의 핵심 시너지, 스킬 사이클 및 추천 운영 방식을 간결히 작성해 주세요."
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-sm text-white focus:border-amber-500/50 outline-none"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">태그 (쉼표로 구분)</label>
+                <input
+                  type="text"
+                  value={(editingParty.tags || []).join(', ')}
+                  onChange={(e) => setEditingParty({ 
+                    ...editingParty, 
+                    tags: e.target.value.split(',').map(t => t.trim()).filter(Boolean) 
+                  })}
+                  placeholder="예: 환락, 추가 공격, 속도 버프"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none"
+                />
               </div>
             </div>
 
