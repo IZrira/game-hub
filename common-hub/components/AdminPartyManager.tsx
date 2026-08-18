@@ -36,6 +36,12 @@ const ROLE_PRESETS: Record<string, string[]> = {
   NTE: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러']
 };
 
+const BREAKTHROUGH_PRESETS: Record<string, string[]> = {
+  HSR: ['명함 (E0)', '1돌+ 권장', '2돌+ 권장', '2돌 필수', '4돌+', '6돌 (풀돌)'],
+  WW: ['명함 (S0)', '1돌+ 권장', '2돌+ 권장', '3돌+', '6돌 (풀돌)'],
+  NTE: ['명함', '1돌+ 권장', '2돌+ 권장', '풀돌']
+};
+
 export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame, getEncodedUrl }) => {
   const gameKey: 'HSR' | 'WW' | 'NTE' = (activeGame.toUpperCase()) as 'HSR' | 'WW' | 'NTE';
 
@@ -657,7 +663,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                 </div>
               </div>
 
-              {/* 슬롯별 캐릭터 아바타 카드 열 (3인 또는 4인 자동 렌더링) */}
+              {/* 슬롯별 캐릭터 아바타 카드 열 (3인 또는 4인 자동 렌더링 + 돌파 추천 뱃지 표시) */}
               <div className={`grid grid-cols-2 ${party.slots.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
                 {party.slots.map((slot, sIdx) => (
                   <div
@@ -679,22 +685,40 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                       ) : (
                         <span className="text-[10px] text-gray-500 font-bold">비어있음</span>
                       )}
+
+                      {/* 돌파 추천 뱃지 (예: 1돌+, 2돌+) */}
+                      {slot.breakthrough && slot.breakthrough !== '명함 (E0)' && slot.breakthrough !== '명함 (S0)' && slot.breakthrough !== '명함' && (
+                        <div className="absolute top-1 right-1 px-1.5 py-0.5 bg-amber-500 text-black text-[9px] font-black rounded-md shadow-md">
+                          {slot.breakthrough}
+                        </div>
+                      )}
                     </div>
                     <div>
                       <p className="text-sm font-black text-white truncate max-w-[120px]">{slot.characterName || '미선택'}</p>
-                      <p className="text-[10px] text-amber-500/80 font-bold uppercase tracking-wider">{slot.role}</p>
+                      <div className="flex items-center justify-center gap-1 mt-0.5">
+                        <span className="text-[10px] text-amber-500/80 font-bold uppercase tracking-wider">{slot.role}</span>
+                        {slot.breakthrough && (
+                          <span className="text-[9px] text-amber-400 font-black px-1 py-0.2 bg-amber-500/10 border border-amber-500/20 rounded">
+                            {slot.breakthrough}
+                          </span>
+                        )}
+                      </div>
                     </div>
 
-                    {/* 대체 캐릭터 뱃지들 */}
+                    {/* 대체 캐릭터 뱃지들 (돌파 추천 포함) */}
                     {slot.substitutes && slot.substitutes.length > 0 && (
                       <div className="w-full pt-2 border-t border-white/5 flex flex-wrap items-center justify-center gap-1.5">
-                        <span className="text-[8px] text-gray-500 font-bold uppercase w-full">대체:</span>
+                        <span className="text-[8px] text-gray-500 font-bold uppercase w-full">대체 캐릭터:</span>
                         {slot.substitutes.map((sub, subIdx) => (
                           <span
                             key={subIdx}
-                            className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[9px] text-gray-300 font-medium truncate max-w-[90px]"
+                            className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[9px] text-gray-300 font-medium truncate max-w-[110px] flex items-center gap-1"
+                            title={sub.description || sub.breakthrough ? `${sub.characterName} (${sub.breakthrough || '명함'}): ${sub.description || ''}` : sub.characterName}
                           >
-                            {sub.characterName}
+                            <span>{sub.characterName}</span>
+                            {sub.breakthrough && (
+                              <span className="text-amber-400 font-bold text-[8px]">({sub.breakthrough})</span>
+                            )}
                           </span>
                         ))}
                       </div>
@@ -900,8 +924,8 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         </div>
                       </button>
 
-                      {/* 슬롯 역할 드롭다운 */}
-                      <div className="pt-2">
+                      {/* 슬롯 역할 및 돌파 추천 드롭다운 */}
+                      <div className="pt-2 space-y-1.5">
                         <select
                           value={slot.role || ''}
                           onChange={(e) => {
@@ -915,6 +939,24 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                             <option key={r} value={r}>{r}</option>
                           ))}
                         </select>
+
+                        {/* 돌파 추천 드롭다운 */}
+                        <div className="flex items-center gap-1">
+                          <select
+                            value={slot.breakthrough || ''}
+                            onChange={(e) => {
+                              const updatedSlots = [...editingParty.slots];
+                              updatedSlots[sIdx].breakthrough = e.target.value;
+                              setEditingParty({ ...editingParty, slots: updatedSlots as any });
+                            }}
+                            className="w-full bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-[10px] font-black text-amber-400 focus:border-amber-500/50 outline-none text-center"
+                          >
+                            <option value="">돌파 권장: 명함</option>
+                            {(BREAKTHROUGH_PRESETS[gameKey] || []).map(b => (
+                              <option key={b} value={b}>{b}</option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </div>
 
@@ -934,19 +976,38 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         {(slot.substitutes || []).map((sub, subIdx) => (
                           <div
                             key={subIdx}
-                            className="flex items-center justify-between gap-2 px-2.5 py-1 bg-white/5 rounded-lg text-xs"
+                            className="p-2 bg-white/5 border border-white/5 rounded-xl space-y-1 text-xs"
                           >
-                            <span className="text-gray-300 font-medium truncate max-w-[90px]">{sub.characterName}</span>
-                            <button
-                              onClick={() => {
+                            <div className="flex items-center justify-between gap-1">
+                              <span className="text-gray-200 font-bold truncate max-w-[95px]">{sub.characterName}</span>
+                              <button
+                                onClick={() => {
+                                  const updatedSlots = [...editingParty.slots];
+                                  updatedSlots[sIdx].substitutes!.splice(subIdx, 1);
+                                  setEditingParty({ ...editingParty, slots: updatedSlots as any });
+                                }}
+                                className="text-gray-500 hover:text-rose-400 p-0.5"
+                              >
+                                <X size={12} />
+                              </button>
+                            </div>
+                            {/* 대체 캐릭터 돌파 추천 셀렉터 */}
+                            <select
+                              value={sub.breakthrough || ''}
+                              onChange={(e) => {
                                 const updatedSlots = [...editingParty.slots];
-                                updatedSlots[sIdx].substitutes!.splice(subIdx, 1);
+                                updatedSlots[sIdx].substitutes![subIdx].breakthrough = e.target.value;
                                 setEditingParty({ ...editingParty, slots: updatedSlots as any });
                               }}
-                              className="text-gray-500 hover:text-rose-400"
+                              className="w-full bg-black/60 border border-white/10 rounded-lg px-2 py-0.5 text-[9px] font-bold text-amber-400 outline-none"
                             >
-                              <X size={12} />
-                            </button>
+                              <option value="">돌파: 명함</option>
+                              <option value="1돌+">1돌+ 권장</option>
+                              <option value="2돌+">2돌+ 권장</option>
+                              <option value="2돌 필수">2돌 필수</option>
+                              <option value="4돌+">4돌+</option>
+                              <option value="풀돌">풀돌(6돌)</option>
+                            </select>
                           </div>
                         ))}
                       </div>

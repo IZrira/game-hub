@@ -1,15 +1,18 @@
-// 공통 슬롯 인터페이스 (서브/대체 캐릭터 포함)
+// 공통 슬롯 인터페이스 (서브/대체 캐릭터 및 돌파 추천 포함)
 export interface PartySlot {
   characterId: string;
   characterName: string;
   folderName?: string;
   role?: string; // HSR: 메인 딜러/서브 딜러/서포터/탱커·힐러, WW: 메인/서브/서포터/생존, NTE: 메인/서브/서포터/탱커·힐러
+  breakthrough?: string; // 추천 돌파 수치 (예: '명함', '1돌+', '2돌+', '6돌', '1돌 이상 권장', '2돌 필수')
+  description?: string; // 세팅 팁 또는 요구 조건 (예: '전용 광추 보유 권장', '속도 134 세팅')
   substitutes?: Array<{
     characterId: string;
     characterName: string;
     folderName?: string;
     description?: string;
     role?: string;
+    breakthrough?: string; // 대체 캐릭터 돌파 추천 (예: '1돌+', '2돌 이상 권장', '풀돌 필수')
   }>;
 }
 
