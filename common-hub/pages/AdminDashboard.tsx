@@ -9,13 +9,14 @@ import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
 import SEO from '../components/SEO';
 import { getGameData } from '../data/dataManager';
 import AdminNoticeEditor from '../components/AdminNoticeEditor';
+import AdminPartyManager from '../components/AdminPartyManager';
 import { stripMarkdown } from '../utils/markdown';
 import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'home' | 'characters' | 'tiers' | 'notices'>('home');
+  const [activeTab, setActiveTab] = useState<'home' | 'characters' | 'tiers' | 'parties' | 'notices'>('home');
   const [activeGame, setActiveGame] = useState<'hsr' | 'ww' | 'nte' | null>(null);
   const [activeCategoryId, setActiveCategoryId] = useState<string>('chaos');
   
@@ -556,6 +557,12 @@ const AdminDashboard: React.FC = () => {
                   <Trophy size={18} /> 티어표 관리
                 </button>
                 <button 
+                  onClick={() => setActiveTab('parties')}
+                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'parties' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
+                >
+                  <Sparkles size={18} /> 파티 추천 관리
+                </button>
+                <button 
                   onClick={() => setActiveTab('notices')}
                   className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
@@ -1026,6 +1033,10 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                 );
               })}
             </div>
+          )}
+
+          {activeTab === 'parties' && activeGame && (
+            <AdminPartyManager activeGame={activeGame} getEncodedUrl={getEncodedUrl} />
           )}
 
           {activeTab === 'notices' && (
