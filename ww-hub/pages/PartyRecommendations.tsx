@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { 
   Users, 
@@ -15,6 +15,7 @@ import { WW_PARTY_COMBINATIONS, PartyCombination } from '../data/parties';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
+import { supabase } from '../../common-hub/lib/supabase';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} className="text-rose-500" />,
@@ -69,6 +70,14 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
                     {member.name}
                   </p>
                 </div>
+                
+                {/* 돌파 추천 뱃지 (1돌+, 2돌+ 등) */}
+                {member.breakthrough && member.breakthrough !== '명함 (S0)' && member.breakthrough !== '명함' && (
+                  <div className="absolute top-1 left-1 px-1.5 py-0.2 bg-amber-500 text-black text-[8px] font-black rounded shadow">
+                    {member.breakthrough}
+                  </div>
+                )}
+
                 <div className="absolute top-1 right-1 p-0.5 bg-black/60 backdrop-blur-sm rounded border border-white/10">
                   {ROLE_ICONS[member.role] || <Users size={14} />}
                 </div>
@@ -79,7 +88,7 @@ const PartyCard: React.FC<{ party: PartyCombination; gameId: string | undefined 
 
         <div className="space-y-2">
           <div className="flex flex-wrap gap-2">
-            {party.pros.map(pro => (
+            {(party.pros || []).map(pro => (
               <span key={pro} className="text-[9px] font-black text-emerald-400 bg-emerald-400/10 px-2 py-0.5 rounded border border-emerald-400/20">
                 + {pro}
               </span>
@@ -105,14 +114,95 @@ const PartyRecommendations: React.FC = () => {
   const { t } = useTranslation();
   const { gameId } = useParams<{ gameId: string }>();
   const [searchQuery, setSearchQuery] = useState('');
+  const [partiesList, setPartiesList] = useState<PartyCombination[]>(WW_PARTY_COMBINATIONS);
+
+  // Supabase 실시간 동기화 & localStorage 폴백
+  useEffect(() => {
+    const fetchLiveParties = async () => {
+      try {
+        if (supabase) {
+          const { data, error } = await supabase
+            .from('party_recommendations')
+            .select('*')
+            .eq('game_id', 'ww')
+            .order('display_order', { ascending: true });
+
+          if (!error && data && data.length > 0) {
+            const parsed: PartyCombination[] = data.map((item: any) => ({
+              id: item.party_id || item.id,
+              name: item.name,
+              description: item.description || '',
+              mainDPS: item.main_dps || item.mainDPS || '',
+              tags: item.tags || [],
+              pros: item.pros || [],
+              cons: item.cons || [],
+              members: (item.members || []).map((m: any) => ({
+                id: m.characterId || m.id,
+                name: m.characterName || m.name,
+                folderName: m.folderName || m.characterName || m.name,
+                role: m.role || '서포터',
+                breakthrough: m.breakthrough,
+                description: m.description,
+                substitutes: m.substitutes?.map((s: any) => ({
+                  name: s.characterName || s.name,
+                  folderName: s.folderName || s.characterName || s.name,
+                  breakthrough: s.breakthrough,
+                  description: s.description,
+                  role: s.role
+                }))
+              }))
+            }));
+            setPartiesList(parsed);
+            return;
+          }
+        }
+
+        const local = localStorage.getItem('parties_WW');
+        if (local) {
+          const localParties = JSON.parse(local);
+          if (Array.isArray(localParties) && localParties.length > 0) {
+            const parsed: PartyCombination[] = localParties.map((item: any) => ({
+              id: item.id,
+              name: item.name,
+              description: item.description || '',
+              mainDPS: item.mainDPS || '',
+              tags: item.tags || [],
+              pros: item.pros || [],
+              cons: item.cons || [],
+              members: (item.slots || []).map((m: any) => ({
+                id: m.characterId || m.id,
+                name: m.characterName || m.name,
+                folderName: m.folderName || m.characterName || m.name,
+                role: m.role || '서포터',
+                breakthrough: m.breakthrough,
+                description: m.description,
+                substitutes: m.substitutes?.map((s: any) => ({
+                  name: s.characterName || s.name,
+                  folderName: s.folderName || s.characterName || s.name,
+                  breakthrough: s.breakthrough,
+                  description: s.description,
+                  role: s.role
+                }))
+              }))
+            }));
+            setPartiesList(parsed);
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to load live WW party recommendations, fallback to presets:', err);
+      }
+    };
+
+    fetchLiveParties();
+  }, []);
 
   const filteredParties = useMemo(() => {
-    return WW_PARTY_COMBINATIONS.filter(p => {
+    return partiesList.filter(p => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                            p.description.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesSearch;
     });
-  }, [searchQuery]);
+  }, [partiesList, searchQuery]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-24">
@@ -183,3 +273,4 @@ const PartyRecommendations: React.FC = () => {
 };
 
 export default PartyRecommendations;
+

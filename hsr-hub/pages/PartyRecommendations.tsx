@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, useMemo, memo, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { 
   Users, 
@@ -8,11 +8,11 @@ import {
   Sword, 
   Zap, 
   Shield, 
-  Info,
-  ArrowRight,
-  LayoutGrid,
-  Filter,
-  ArrowLeft
+  Info, 
+  ArrowRight, 
+  LayoutGrid, 
+  Filter, 
+  ArrowLeft 
 } from 'lucide-react';
 import { HSR_PARTIES, PartyCombination, PartyMember } from '../data/parties';
 import { CHARACTER_DB } from '../../common-hub/data/games';
@@ -21,6 +21,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+import { supabase } from '../../common-hub/lib/supabase';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
@@ -34,7 +35,7 @@ const PartyMemberItem = memo(({
   gameId, 
   charMap 
 }: { 
-  member: PartyMember; 
+  member: PartyMember & { breakthrough?: string }; 
   gameId: string | undefined; 
   charMap: Map<string, any>;
 }) => {
@@ -58,13 +59,28 @@ const PartyMemberItem = memo(({
          >
             <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full scale-110 group-hover/member:scale-125 transition-transform duration-700" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
          </Link>
+         
+         {/* 돌파 추천 뱃지 (1돌+, 2돌+ 등) */}
+         {member.breakthrough && member.breakthrough !== '명함 (E0)' && member.breakthrough !== '명함' && (
+           <div className="absolute top-0 right-0 px-2.5 py-0.5 bg-gradient-to-r from-amber-500 to-amber-400 text-black font-black text-[9px] rounded-full shadow-lg border border-amber-300 z-20">
+             {member.breakthrough}
+           </div>
+         )}
+
          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-[9px] font-black text-brand-accent uppercase tracking-widest opacity-0 group-hover/member:opacity-100 transition-all group-hover/member:-bottom-4 whitespace-nowrap z-10">
            {t(member.role)}
          </div>
       </div>
       <div className="text-center space-y-1">
         <div className="text-base font-black text-white group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-        <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+        <div className="flex items-center justify-center gap-1">
+          <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</span>
+          {member.breakthrough && (
+            <span className="text-[9px] text-amber-400 font-black px-1.5 py-0.2 bg-amber-500/10 border border-amber-500/20 rounded-full">
+              {member.breakthrough}
+            </span>
+          )}
+        </div>
       </div>
 
       {/* Substitutes Overlay */}
@@ -76,15 +92,23 @@ const PartyMemberItem = memo(({
               <span className="text-[9px] font-black text-brand-accent uppercase tracking-widest">Substitutes</span>
             </div>
             <div className="flex gap-4 justify-center">
-              {member.substitutes.map((sub, sIdx) => {
+              {member.substitutes.map((sub: any, sIdx) => {
                 const subChar = charMap.get(normalizeName(t(sub.name)));
                 const subImg = subChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(subChar.folderName.normalize('NFC'))}/${sub.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}` : '';
                 return (
-                  <div key={sIdx} className="flex flex-col items-center gap-2 group/sub">
-                    <div className="w-16 h-16 rounded-full border border-white/10 overflow-hidden bg-black/40 p-1 group-hover/sub:border-brand-accent transition-all">
+                  <div key={sIdx} className="flex flex-col items-center gap-1.5 group/sub">
+                    <div className="w-16 h-16 rounded-full border border-white/10 overflow-hidden bg-black/40 p-1 group-hover/sub:border-brand-accent transition-all relative">
                       <img src={subImg} alt={sub.name} className="w-full h-full object-cover rounded-full group-hover/sub:scale-110 transition-transform" />
+                      {sub.breakthrough && (
+                        <div className="absolute bottom-0 inset-x-0 bg-amber-500/90 text-black text-[8px] font-black text-center py-0.2">
+                          {sub.breakthrough}
+                        </div>
+                      )}
                     </div>
-                    <span className="text-[8px] font-black text-gray-400 uppercase tracking-tighter">{t(sub.name)}</span>
+                    <span className="text-[8px] font-black text-gray-400 uppercase tracking-tighter text-center">
+                      {t(sub.name)}
+                      {sub.breakthrough && <span className="text-amber-400 ml-0.5">({sub.breakthrough})</span>}
+                    </span>
                   </div>
                 );
               })}
@@ -147,13 +171,102 @@ const PartyRecommendations: React.FC = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('전체');
+  const [partiesList, setPartiesList] = useState<PartyCombination[]>(HSR_PARTIES);
+
+  // Supabase 실시간 동기화 & localStorage 폴백
+  useEffect(() => {
+    const fetchLiveParties = async () => {
+      try {
+        // 1순위: Supabase 클라우드 동기화 데이터
+        if (supabase) {
+          const { data, error } = await supabase
+            .from('party_recommendations')
+            .select('*')
+            .eq('game_id', 'hsr')
+            .order('display_order', { ascending: true });
+
+          if (!error && data && data.length > 0) {
+            const parsed: PartyCombination[] = data.map((item: any) => ({
+              id: item.party_id || item.id,
+              name: item.name,
+              description: item.description || '',
+              category: item.category || '기타',
+              mainDPS: item.main_dps || item.mainDPS || '',
+              tags: item.tags || [],
+              pros: item.pros || [],
+              cons: item.cons || [],
+              members: (item.members || []).map((m: any) => ({
+                id: m.characterId || m.id,
+                name: m.characterName || m.name,
+                folderName: m.folderName || m.characterName || m.name,
+                role: m.role || '서포터',
+                breakthrough: m.breakthrough,
+                description: m.description,
+                isTrailblazer: (m.characterName || m.name || '').includes('개척자'),
+                substitutes: m.substitutes?.map((s: any) => ({
+                  name: s.characterName || s.name,
+                  folderName: s.folderName || s.characterName || s.name,
+                  breakthrough: s.breakthrough,
+                  description: s.description,
+                  role: s.role,
+                  isTrailblazer: (s.characterName || s.name || '').includes('개척자')
+                }))
+              }))
+            }));
+            setPartiesList(parsed);
+            return;
+          }
+        }
+
+        // 2순위: localStorage 캐시
+        const local = localStorage.getItem('parties_HSR');
+        if (local) {
+          const localParties = JSON.parse(local);
+          if (Array.isArray(localParties) && localParties.length > 0) {
+            const parsed: PartyCombination[] = localParties.map((item: any) => ({
+              id: item.id,
+              name: item.name,
+              description: item.description || '',
+              category: item.category || '기타',
+              mainDPS: item.mainDPS || '',
+              tags: item.tags || [],
+              pros: item.pros || [],
+              cons: item.cons || [],
+              members: (item.slots || []).map((m: any) => ({
+                id: m.characterId || m.id,
+                name: m.characterName || m.name,
+                folderName: m.folderName || m.characterName || m.name,
+                role: m.role || '서포터',
+                breakthrough: m.breakthrough,
+                description: m.description,
+                isTrailblazer: (m.characterName || m.name || '').includes('개척자'),
+                substitutes: m.substitutes?.map((s: any) => ({
+                  name: s.characterName || s.name,
+                  folderName: s.folderName || s.characterName || s.name,
+                  breakthrough: s.breakthrough,
+                  description: s.description,
+                  role: s.role,
+                  isTrailblazer: (s.characterName || s.name || '').includes('개척자')
+                }))
+              }))
+            }));
+            setPartiesList(parsed);
+          }
+        }
+      } catch (err) {
+        console.warn('Failed to load live party recommendations, fallback to built-in presets:', err);
+      }
+    };
+
+    fetchLiveParties();
+  }, []);
 
   const allCategories = useMemo(() => {
     const FILTER_ORDER = ['범위', '단일', '추가 공격', '지속 피해', '격파', '기억', '환락'];
     const categories = new Set<string>();
-    HSR_PARTIES.forEach(p => categories.add(p.category));
+    partiesList.forEach(p => categories.add(p.category));
     return ['전체', ...FILTER_ORDER.filter(c => categories.has(c))];
-  }, []);
+  }, [partiesList]);
 
   const charMap = useMemo(() => {
     const map = new Map<string, any>();
@@ -165,14 +278,14 @@ const PartyRecommendations: React.FC = () => {
   }, [t]);
 
   const filteredParties = useMemo(() => {
-    return HSR_PARTIES.filter(p => {
+    return partiesList.filter(p => {
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                            p.mainDPS.toLowerCase().includes(searchQuery.toLowerCase()) ||
                            p.tags.some(t => t.toLowerCase().includes(searchQuery.toLowerCase()));
       const matchesCategory = activeCategory === '전체' || p.category === activeCategory;
       return matchesSearch && matchesCategory;
     });
-  }, [searchQuery, activeCategory]);
+  }, [partiesList, searchQuery, activeCategory]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-24 font-sans">
