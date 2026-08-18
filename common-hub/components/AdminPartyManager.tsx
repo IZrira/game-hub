@@ -1004,12 +1004,12 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       )}
 
       {/* ========================================================================= */}
-      {/* 🎯 고속 캐릭터 선택 모달 (중복 선택 방지 필터 탑재) */}
+      {/* 🎯 고속 캐릭터 선택 모달 (높이 고정 & 중복 선택 방지) */}
       {/* ========================================================================= */}
       {pickerState.isOpen && (
         <div className="fixed inset-0 z-[250] flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl animate-in fade-in duration-200">
-          <div className="bg-[#141414] border border-white/10 rounded-[36px] w-full max-w-2xl max-h-[85vh] flex flex-col p-6 md:p-8 space-y-6 shadow-2xl">
-            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+          <div className="bg-[#141414] border border-white/10 rounded-[36px] w-full max-w-2xl h-[650px] max-h-[88vh] flex flex-col p-6 md:p-8 space-y-5 shadow-2xl">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4 shrink-0">
               <div>
                 <h4 className="text-xl font-black text-white">
                   {pickerState.isSubstitute ? '대체 캐릭터 선택' : `슬롯 ${(pickerState.targetSlotIndex ?? 0) + 1} 캐릭터 선택`}
@@ -1024,8 +1024,8 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </button>
             </div>
 
-            {/* 실시간 검색 및 등급 필터 */}
-            <div className="space-y-3">
+            {/* 실시간 검색 및 등급 필터 (고정 영역) */}
+            <div className="space-y-3 shrink-0">
               <div className="relative">
                 <Search size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                 <input
@@ -1060,10 +1060,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
             </div>
 
-            {/* 캐릭터 그리드 (대체 캐릭터 추가 시 본체 캐릭터 및 기존 대체 캐릭터 중복 방지 필터) */}
-            <div className="flex-1 overflow-y-auto grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 p-1 custom-scrollbar">
-              {availableCharacters
-                .filter(c => {
+            {/* 캐릭터 그리드 (높이 고정 스크롤 영역: 검색 시 크기 흔들림 방지) */}
+            <div className="flex-1 min-h-0 overflow-y-auto pr-1 custom-scrollbar">
+              {(() => {
+                const filtered = availableCharacters.filter(c => {
                   const matchesSearch = c.name.toLowerCase().includes(pickerSearch.toLowerCase().trim());
                   const matchesRarity = pickerRarity === 'all' || c.rarity === pickerRarity;
                   
@@ -1075,31 +1075,46 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                   }
                   
                   return matchesSearch && matchesRarity;
-                })
-                .map(char => (
-                  <button
-                    key={char.id}
-                    onClick={() => handleSelectCharacter(char)}
-                    className="group bg-black/40 border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 rounded-2xl p-2.5 flex flex-col items-center gap-2 transition-all hover:scale-105"
-                  >
-                    <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-white/10 bg-black/80 flex items-center justify-center">
-                      <img
-                        src={getEncodedUrl(char.folderName || char.name)}
-                        alt={char.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          e.currentTarget.style.display = 'none';
-                          const p = e.currentTarget.parentElement;
-                          if (p) p.innerHTML = `<span class="text-xs font-black text-amber-500">${char.name.slice(0, 2)}</span>`;
-                        }}
-                      />
+                });
+
+                if (filtered.length === 0) {
+                  return (
+                    <div className="h-full flex flex-col items-center justify-center text-center space-y-2 text-gray-500">
+                      <Search size={32} className="opacity-40" />
+                      <p className="text-xs font-bold">검색 결과와 일치하는 캐릭터가 없습니다.</p>
                     </div>
-                    <div className="text-center w-full">
-                      <p className="text-xs font-black text-white truncate">{char.name}</p>
-                      <p className="text-[8px] text-gray-400 truncate">{char.attribute || char.path}</p>
-                    </div>
-                  </button>
-                ))}
+                  );
+                }
+
+                return (
+                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 p-1">
+                    {filtered.map(char => (
+                      <button
+                        key={char.id}
+                        onClick={() => handleSelectCharacter(char)}
+                        className="group bg-black/40 border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 rounded-2xl p-2.5 flex flex-col items-center gap-2 transition-all hover:scale-105"
+                      >
+                        <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-white/10 bg-black/80 flex items-center justify-center shrink-0">
+                          <img
+                            src={getEncodedUrl(char.folderName || char.name)}
+                            alt={char.name}
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none';
+                              const p = e.currentTarget.parentElement;
+                              if (p) p.innerHTML = `<span class="text-xs font-black text-amber-500">${char.name.slice(0, 2)}</span>`;
+                            }}
+                          />
+                        </div>
+                        <div className="text-center w-full">
+                          <p className="text-xs font-black text-white truncate">{char.name}</p>
+                          <p className="text-[8px] text-gray-400 truncate">{char.attribute || char.path}</p>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                );
+              })()}
             </div>
           </div>
         </div>
