@@ -750,15 +750,83 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
 
             {/* 기본 메타 입력 폼 (이름 & 카테고리) */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 이름 *</label>
+              <div className="space-y-2.5">
+                <div className="flex items-center justify-between">
+                  <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 이름 *</label>
+                  {/* 특수기호 빠른 삽입 버튼 */}
+                  <div className="flex items-center gap-1">
+                    <span className="text-[9px] text-gray-500 font-bold">특수기호:</span>
+                    <button
+                      type="button"
+                      onClick={() => setEditingParty({ ...editingParty, name: (editingParty.name || '') + '•' })}
+                      className="px-2 py-0.5 bg-white/5 hover:bg-amber-500/20 hover:text-amber-400 border border-white/10 rounded-md text-xs font-bold text-gray-300 transition-all"
+                      title="불릿(•) 기호 삽입"
+                    >
+                      •
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setEditingParty({ ...editingParty, name: (editingParty.name || '') + '·' })}
+                      className="px-2 py-0.5 bg-white/5 hover:bg-amber-500/20 hover:text-amber-400 border border-white/10 rounded-md text-xs font-bold text-gray-300 transition-all"
+                      title="가운뎃점(·) 기호 삽입"
+                    >
+                      ·
+                    </button>
+                  </div>
+                </div>
+
                 <input
                   type="text"
                   value={editingParty.name}
                   onChange={(e) => setEditingParty({ ...editingParty, name: e.target.value })}
-                  placeholder="예: 어벤츄린•웨이브 환락 추가타 파티"
+                  placeholder="예: 천야•블레이드 환락 추가타 파티"
                   className="w-full bg-white/5 border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none"
                 />
+
+                {/* 슬롯 배치 캐릭터명 원클릭 삽입 칩 & 자동완성 버튼 */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
+                  {editingParty.slots.some(s => Boolean(s.characterName)) && (
+                    <>
+                      <span className="text-[9px] text-gray-500 font-bold">이름 삽입:</span>
+                      {editingParty.slots
+                        .filter(s => Boolean(s.characterName))
+                        .map((slot, sIdx) => (
+                          <button
+                            key={sIdx}
+                            type="button"
+                            onClick={() => {
+                              const currentName = editingParty.name || '';
+                              const addition = currentName ? `${currentName} ${slot.characterName}` : slot.characterName;
+                              setEditingParty({ ...editingParty, name: addition });
+                              showToast(`"${slot.characterName}" 삽입됨`);
+                            }}
+                            className="flex items-center gap-1 px-2.5 py-1 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-amber-500/40 rounded-lg text-[11px] font-bold text-gray-300 hover:text-amber-400 transition-all active:scale-95"
+                            title="클릭하여 파티명에 삽입"
+                          >
+                            <Plus size={10} className="text-amber-500" />
+                            <span>{slot.characterName}</span>
+                          </button>
+                        ))}
+                    </>
+                  )}
+
+                  {/* 자동 파티명 추천 버튼 */}
+                  {(editingParty.mainDPS || editingParty.slots[0]?.characterName) && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        const targetChar = editingParty.mainDPS || editingParty.slots[0]?.characterName || '';
+                        const cat = (editingParty as any).category || (editingParty as any).elementSynergy || '';
+                        const autoTitle = `${targetChar} ${cat} 파티`.trim();
+                        setEditingParty({ ...editingParty, name: autoTitle });
+                        showToast(`파티명이 "${autoTitle}"(으)로 자동완성되었습니다!`);
+                      }}
+                      className="flex items-center gap-1 px-2.5 py-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-[10px] font-black text-amber-400 transition-all active:scale-95 ml-auto"
+                    >
+                      <Sparkles size={11} /> 파티명 자동완성
+                    </button>
+                  )}
+                </div>
               </div>
 
               <div className="space-y-2">
