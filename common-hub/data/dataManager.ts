@@ -265,6 +265,24 @@ export const getGameData = (targetId: string) => {
         }
       }
 
+      const parsedTerms: any[] = [];
+      const specialTerms: Record<string, string> = {};
+      if (item.glossary) {
+        const blocks = item.glossary.split(/\n\s*\n/);
+        blocks.forEach((block: string) => {
+          const lines = block.split('\n').filter(Boolean);
+          if (lines.length > 0) {
+            const name = lines[0].replace(/[*=「」]/g, '').trim();
+            const description = lines.slice(1).join('\n').trim();
+            if (name && description) {
+              parsedTerms.push({ name, description });
+              specialTerms[name] = description;
+              specialTerms[`「${name}」`] = description;
+            }
+          }
+        });
+      }
+
       return {
         id: item.id,
         name: item.name,
@@ -288,6 +306,8 @@ export const getGameData = (targetId: string) => {
         locales: item.locales,
         voiceActors: item.voiceActors,
         glossary: item.glossary,
+        specialTerms: specialTerms,
+        terms: parsedTerms,
         isNotion: true,
         content: item.content,
         skillInputGuide: item.skillInputGuide,
@@ -684,6 +704,9 @@ export const getGameData = (targetId: string) => {
           },
           obtain: c.obtain !== '노션 연동' ? c.obtain : existing.obtain,
           releaseVersion: c.releaseVersion || existing.releaseVersion,
+          glossary: c.glossary || existing.glossary,
+          specialTerms: c.specialTerms && Object.keys(c.specialTerms).length > 0 ? c.specialTerms : existing.specialTerms,
+          terms: c.terms && c.terms.length > 0 ? c.terms : existing.terms,
         });
       } else {
         // 기존에 없는 신규 캐릭터
@@ -696,7 +719,26 @@ export const getGameData = (targetId: string) => {
       }
     }
   });
-  const mergedCharacters = Array.from(wwCharMap.values());
+
+  const parseReleaseVersion = (v: any) => {
+    if (!v) return 0;
+    const match = String(v).match(/\d+(\.\d+)?/);
+    return match ? parseFloat(match[0]) : 0;
+  };
+
+  const sortCharactersByVersion = (chars: any[]) => {
+    return chars.sort((a, b) => {
+      const vA = parseReleaseVersion(a.releaseVersion);
+      const vB = parseReleaseVersion(b.releaseVersion);
+      if (vA !== vB) return vB - vA;
+      const rA = Number(a.rarity) || 4;
+      const rB = Number(b.rarity) || 4;
+      if (rA !== rB) return rB - rA;
+      return (a.name || '').localeCompare(b.name || '');
+    });
+  };
+
+  const mergedCharacters = sortCharactersByVersion(Array.from(wwCharMap.values()));
 
   const wwWeaponMap = new Map<string, any>();
   WW_DATA_ALL.WEAPON_DATA.forEach(w => {
@@ -718,7 +760,7 @@ export const getGameData = (targetId: string) => {
     const key = (c.folderName || c.originalName || c.name || '').trim();
     if (key) hsrCharMap.set(key, c);
   });
-  const mergedHsrCharacters = Array.from(hsrCharMap.values());
+  const mergedHsrCharacters = sortCharactersByVersion(Array.from(hsrCharMap.values()));
 
   const hsrLcMap = new Map<string, any>();
   HSR_DATA_ALL.LIGHTCONE_DB.forEach(lc => {

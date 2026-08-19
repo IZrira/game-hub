@@ -57,15 +57,31 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
     return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
   };
 
-  // Get latest characters
-  const latestCharacters = CHARACTER_DB
+  const parseReleaseVersion = (v: any) => {
+    if (!v) return 0;
+    const match = String(v).match(/\d+(\.\d+)?/);
+    return match ? parseFloat(match[0]) : 0;
+  };
+
+  const sortedGameCharacters = [...CHARACTER_DB]
     .filter((c: Character) => c.gameId === game.id)
-    .slice(0, 7);
+    .sort((a, b) => {
+      const vA = parseReleaseVersion(a.releaseVersion);
+      const vB = parseReleaseVersion(b.releaseVersion);
+      if (vA !== vB) return vB - vA;
+      const rA = Number(a.rarity) || 4;
+      const rB = Number(b.rarity) || 4;
+      if (rA !== rB) return rB - rA;
+      return (a.name || '').localeCompare(b.name || '');
+    });
+
+  // Get latest characters
+  const latestCharacters = sortedGameCharacters.slice(0, 7);
 
   // Get latest updates (Characters, Light Cones, Relics/Ornaments)
   const latestUpdates = [
     // 1. 캐릭터 매핑 수정 (art01.webp 사용)
-    ...CHARACTER_DB.filter((c: any) => c.gameId === game.id).slice(0, 3).map((c: any) => ({
+    ...sortedGameCharacters.slice(0, 3).map((c: any) => ({
       id: c.id,
       name: c.name,
       type: '캐릭터',

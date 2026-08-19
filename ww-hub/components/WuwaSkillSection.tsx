@@ -85,6 +85,35 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
     return groups;
   }, [char.skills, char.additionalAbilities, concertDissipation, t]);
 
+  const handleSkillImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>, fallbackName?: string) => {
+    const target = e.currentTarget;
+    const currentSrc = target.src;
+    
+    // 1. 고유 스킬 띄어쓰기 변형 시도 (고유 스킬1 <-> 고유 스킬 1 <-> 고유 스킬)
+    if (currentSrc.includes('고유%20스킬1') || currentSrc.includes('%EA%B3%A0%EC%9C%A0%20%EC%8A%A4%ED%82%AC1')) {
+      target.src = currentSrc.replace(/고유%20스킬1|%EA%B3%A0%EC%9C%A0%20%EC%8A%A4%ED%82%AC1/g, safeEncodeURIComponent('고유 스킬 1'));
+      return;
+    }
+    if (currentSrc.includes('고유%20스킬2') || currentSrc.includes('%EA%B3%A0%EC%9C%A0%20%EC%8A%A4%ED%82%AC2')) {
+      target.src = currentSrc.replace(/고유%20스킬2|%EA%B3%A0%EC%9C%A0%20%EC%8A%A4%ED%82%AC2/g, safeEncodeURIComponent('고유 스킬 2'));
+      return;
+    }
+    if (currentSrc.includes('고유%20스킬%201') || currentSrc.includes('%EA%B3%A0%EC%9C%A0%20%EC%8A%A4%ED%82%AC%201') || currentSrc.includes('고유%20스킬%202') || currentSrc.includes('%EA%B3%A0%EC%9C%A0%20%EC%8A%A4%ED%82%AC%202')) {
+      target.src = `${ICON_BASE}${safeEncodeURIComponent('고유 스킬')}.webp`;
+      return;
+    }
+
+    // 2. 최종 공통 아이콘 또는 플레이스홀더 처리
+    target.style.display = 'none';
+    const parent = target.parentElement;
+    if (parent && !parent.querySelector('.fallback-skill-icon')) {
+      const fallbackDiv = document.createElement('div');
+      fallbackDiv.className = 'fallback-skill-icon flex items-center justify-center w-full h-full text-white/40 font-black text-xs';
+      fallbackDiv.innerHTML = '✦';
+      parent.appendChild(fallbackDiv);
+    }
+  };
+
   const activeSkills = groupedSkills[activeCategory] || [];
 
   return (
@@ -108,7 +137,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
                     src={`${ICON_BASE}${safeEncodeURIComponent(cat.id === 'basic_atk' ? '기본 공격' : (cat.id === 'bonus' ? '고유 스킬1' : cat.label))}.webp`} 
                     className={`w-full h-full object-contain transition-all duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`} 
                     alt={t(cat.label)} 
-                    onError={(e) => (e.currentTarget.style.opacity = '0.1')} 
+                    onError={handleSkillImageError} 
                   />
                 </div>
                 <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>{t(cat.label)}</span>
@@ -120,7 +149,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
             {activeSkills.map(({ skill, filename }: any, idx) => (
               <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
                  <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
-                   <img src={`${ICON_BASE}${safeEncodeURIComponent(filename.replace('.webp', ''))}.webp`} className="w-full h-full object-contain rotate-12" alt="" loading="lazy" decoding="async" />
+                   <img src={`${ICON_BASE}${safeEncodeURIComponent(filename.replace('.webp', ''))}.webp`} className="w-full h-full object-contain rotate-12" alt="" loading="lazy" decoding="async" onError={handleSkillImageError} />
                  </div>
                  <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
                    <div className="flex flex-col md:flex-row items-start gap-8">
@@ -130,7 +159,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
                               src={`${ICON_BASE}${safeEncodeURIComponent(filename.replace('.webp', ''))}.webp`} 
                               className="w-full h-full object-contain" 
                               alt={t(skill.name)} 
-                              onError={(e) => (e.currentTarget.style.opacity = '0.3')}
+                              onError={handleSkillImageError}
                             />
                          </div>
                       </div>

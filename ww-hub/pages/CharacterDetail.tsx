@@ -149,7 +149,7 @@ const CharacterDetail: React.FC = () => {
     const terms: Record<string, string> = {};
     if (!char) return terms;
     
-    // Common WW terms (always present)
+    // 1. Common WW terms (always present)
     const commonKeys = [
       'ww.common.terms.dissipation',
       'ww.common.terms.vibration',
@@ -160,29 +160,51 @@ const CharacterDetail: React.FC = () => {
       const name = t(`${key}.name`);
       if (name !== `${key}.name`) {
         terms[name] = t(`${key}.description`);
-        // Also add version without brackets for easier matching if needed
         const cleanName = name.replace(/[「」]/g, '');
-        if (cleanName !== name) {
-          terms[cleanName] = t(`${key}.description`);
-        }
-        const bracketedName = `「${cleanName}」`;
-        terms[bracketedName] = t(`${key}.description`);
+        terms[cleanName] = t(`${key}.description`);
+        terms[`「${cleanName}」`] = t(`${key}.description`);
       }
     });
 
-    // Custom terminology dictionary
-    char.terms?.forEach((termObj: any) => {
-      if (termObj.name) {
-        const name = t(termObj.name);
-        terms[name] = t(termObj.description);
-        const cleanName = name.replace(/[「」]/g, '');
-        if (cleanName !== name) {
-          terms[cleanName] = t(termObj.description);
+    // 2. Character specialTerms dictionary
+    if (char.specialTerms) {
+      Object.entries(char.specialTerms).forEach(([k, v]) => {
+        if (k && v) {
+          terms[k] = v as string;
+          const cleanName = k.replace(/[「」]/g, '');
+          terms[cleanName] = v as string;
+          terms[`「${cleanName}」`] = v as string;
         }
-        const bracketedName = `「${cleanName}」`;
-        terms[bracketedName] = t(termObj.description);
+      });
+    }
+
+    // 3. Custom terminology list
+    char.terms?.forEach((termObj: any) => {
+      if (termObj.name && termObj.description) {
+        const name = t(termObj.name);
+        const desc = t(termObj.description);
+        terms[name] = desc;
+        const cleanName = name.replace(/[「」]/g, '');
+        terms[cleanName] = desc;
+        terms[`「${cleanName}」`] = desc;
       }
     });
+
+    // 4. Fallback: Parse raw glossary from Notion if available
+    if (char.glossary) {
+      const blocks = char.glossary.split(/\n\s*\n/);
+      blocks.forEach((block: string) => {
+        const lines = block.split('\n').filter(Boolean);
+        if (lines.length > 0) {
+          const rawName = lines[0].replace(/[*=「」]/g, '').trim();
+          const desc = lines.slice(1).join('\n').trim();
+          if (rawName && desc) {
+            terms[rawName] = desc;
+            terms[`「${rawName}」`] = desc;
+          }
+        }
+      });
+    }
     
     return terms;
   }, [char, t]);
@@ -308,8 +330,10 @@ const CharacterDetail: React.FC = () => {
 
         // 4. Manual highlight (==keyword==)
         if (part && part.startsWith('==') && part.endsWith('==')) {
-          const keyword = part.slice(2, -2);
-          const hasTooltip = specialTerms[keyword];
+          const keyword = part.slice(2, -2).trim();
+          const cleanKw = keyword.replace(/[*=「」]/g, '').trim();
+          const tooltipText = specialTerms[keyword] || specialTerms[cleanKw] || specialTerms[`「${cleanKw}」`];
+          const hasTooltip = Boolean(tooltipText);
 
           return (
             <span 
@@ -322,7 +346,7 @@ const CharacterDetail: React.FC = () => {
               }}
               onMouseEnter={hasTooltip ? (e) => {
                 const r = e.currentTarget.getBoundingClientRect();
-                setTooltip({ text: specialTerms[keyword], x: r.left + r.width / 2, y: r.bottom });
+                setTooltip({ text: tooltipText!, x: r.left + r.width / 2, y: r.bottom });
               } : undefined}
               onMouseLeave={hasTooltip ? () => setTooltip(null) : undefined}
             >
@@ -332,12 +356,14 @@ const CharacterDetail: React.FC = () => {
         }
 
         // 5. Special terms with tooltip
-        if (part && specialTerms[part]) {
+        const cleanPart = part ? part.replace(/[*=「」]/g, '').trim() : '';
+        const plainTooltipText = part ? (specialTerms[part] || specialTerms[cleanPart] || specialTerms[`「${cleanPart}」`]) : null;
+        if (part && plainTooltipText) {
           return (
             <span key={i} className="inline-flex border-b border-dashed cursor-help px-0.5" style={{ borderColor: 'rgba(255,255,255,0.3)' }}
               onMouseEnter={(e) => { 
                 const r = e.currentTarget.getBoundingClientRect(); 
-                setTooltip({ text: specialTerms[part], x: r.left + r.width / 2, y: r.bottom }); 
+                setTooltip({ text: plainTooltipText, x: r.left + r.width / 2, y: r.bottom }); 
               }}
               onMouseLeave={() => setTooltip(null)}>{part}</span>
           );
