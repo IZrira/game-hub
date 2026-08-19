@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Star, Package, Info, MapPin } from 'lucide-react';
-import { getItemMeta, getAutoRarity, getItemUrl, REVERSE_ITEM_MAP } from '../data/items';
+import { getItemMeta, getAutoRarity, getItemUrl, REVERSE_ITEM_MAP, getCleanItemName } from '../data/items';
 import { useTranslation } from 'react-i18next';
 
 interface ItemDetailModalProps {
@@ -139,7 +139,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
                 {Array.from({ length: rarity }).map((_, i) => (<Star key={i} size={10} className={`${theme.color} fill-current`} />))}
               </div>
             </div>
-            <h2 className="text-3xl font-black tracking-tighter text-white leading-none italic uppercase">{rawDisplayName}</h2>
+            <h2 className="text-3xl font-black tracking-tighter text-white leading-none italic uppercase">{getCleanItemName(rawDisplayName)}</h2>
           </div>
 
           <div className="space-y-6 flex-1 overflow-y-auto custom-scrollbar pr-2">

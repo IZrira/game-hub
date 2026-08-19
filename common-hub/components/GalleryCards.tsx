@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent, handleImageFallback } from '@/common-hub/utils/assetManager';
-import { getItemUrl } from '@/common-hub/data/items';
+import { getItemUrl, getCleanItemName } from '@/common-hub/data/items';
 import { slugify } from '@/common-hub/utils/urlUtils';
 
 export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: number }) => {
@@ -237,7 +237,7 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
       {/* Info Section: Ultra Clean */}
       <div className="relative z-20 p-2 bg-[#0d0d0d] border-t border-white/5">
         <p className="text-gray-200 font-bold text-[10px] leading-tight truncate tracking-tight text-center group-hover:text-white transition-colors">
-          {t(itemName)}
+          {t(getCleanItemName(itemName))}
         </p>
       </div>
     </Link>

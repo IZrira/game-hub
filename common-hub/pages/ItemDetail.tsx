@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, Star, Package, Info, MapPin } from 'lucide-react';
-import { getItemMeta, getAutoRarity, getItemUrl, REVERSE_ITEM_MAP } from '../data/items';
+import { getItemMeta, getAutoRarity, getItemUrl, REVERSE_ITEM_MAP, getCleanItemName } from '../data/items';
 import { getGameData } from '../data/dataManager';
 
 const getRarityTheme = (r: number) => {
@@ -106,7 +106,7 @@ export default function ItemDetail() {
                 </div>
               </div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tighter text-white leading-tight italic uppercase drop-shadow-lg">
-                {rawDisplayName}
+                {getCleanItemName(rawDisplayName)}
               </h1>
             </div>
 

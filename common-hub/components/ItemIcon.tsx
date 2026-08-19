@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getItemMeta, getItemUrl, getAutoRarity, REVERSE_ITEM_MAP } from '../data/items';
+import { getItemMeta, getItemUrl, getAutoRarity, REVERSE_ITEM_MAP, getCleanItemName } from '../data/items';
 import { useTranslation } from 'react-i18next';
 
 interface ItemIconProps {
@@ -65,7 +65,8 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
   const currentSize = sizeClasses[size];
   
   const koName = REVERSE_ITEM_MAP[name] || name;
-  const translatedName = t(koName, { keySeparator: false });
+  const cleanName = getCleanItemName(koName);
+  const translatedName = t(cleanName, { keySeparator: false });
   const displayName = truncateMiddle(translatedName, currentSize.limit);
 
   return (
