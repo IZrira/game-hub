@@ -3240,6 +3240,18 @@
     </image:image>
   </url>
   <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%ED%8C%8C%EA%B4%B4</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>
@@ -3525,6 +3537,18 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%98%88%EB%A6%AC%ED%95%9C%20%EB%82%A0%EA%B0%9C%EA%B9%83"/>
     <image:image>
       <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%88%EB%A6%AC%ED%95%9C%20%EB%82%A0%EA%B0%9C%EA%B9%83.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/weapon/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84.webp</image:loc>
     </image:image>
   </url>
   <url>
