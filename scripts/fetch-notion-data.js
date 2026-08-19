@@ -50,6 +50,15 @@ const parseRichTextArray = (richTextArray) => {
   }).join('');
 };
 
+const sanitizeAwsSecrets = (text) => {
+  if (!text || typeof text !== 'string') return text || '';
+  // Strip S3 presigned query parameters (?X-Amz-Algorithm=... etc) that contain temporary AWS keys
+  return text
+    .replace(/https:\/\/prod-files-secure\.s3\.[a-z0-9-]+\.amazonaws\.com\/([^?\s\)]+)\?[^)\s\n]+/g, 'https://prod-files-secure.s3.amazonaws.com/$1')
+    .replace(/X-Amz-[^=]+=[^&\s\)\n]+/g, '')
+    .replace(/ASIA[A-Z0-9]{16,}/g, '');
+};
+
 const extractRichText = (prop) => {
   let res = '';
   if (!prop) return '';
@@ -62,7 +71,7 @@ const extractRichText = (prop) => {
   else if (prop.rich_text) res = parseRichTextArray(prop.rich_text);
   
   if (res.trim() === '없음' || res.trim() === '없음.') return '';
-  return res;
+  return sanitizeAwsSecrets(res);
 };
 
 async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조') {
@@ -139,7 +148,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
       try {
         const mdblocks = await n2m.pageToMarkdown(page.id);
         const mdString = n2m.toMarkdownString(mdblocks);
-        contentMarkdown = mdString.parent || '';
+        contentMarkdown = sanitizeAwsSecrets(mdString.parent || '');
       } catch (mdErr) {
         console.error(`[Notion Sync] Failed to fetch markdown content for page ${page.id}:`, mdErr);
       }
