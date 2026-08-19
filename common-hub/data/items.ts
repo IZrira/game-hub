@@ -75,10 +75,10 @@ export const REVERSE_ITEM_MAP: Record<string, string> = Object.entries(enTransla
   return acc;
 }, {} as Record<string, string>);
 
-/** 표시용 아이템 이름 정제 함수 (예: '당근 (2성)' -> '당근', '당근 (3성)' -> '당근', '당근 [2성]' -> '당근') */
+/** 표시용 아이템 이름 정제 함수 (예: '당근_3성' -> '당근', '당근 (2성)' -> '당근', '당근 [3성]' -> '당근') */
 export const getCleanItemName = (name: string): string => {
   if (!name) return '';
-  return name.replace(/\s*[\(\[][1-5]성[\)\]]$/, '').trim();
+  return name.replace(/[\s_\-]*[\(\[]?[1-5]성[\)\]]?$/, '').trim();
 };
 
 /** 이름에 따른 등급(희귀도) 자동 판별 */
