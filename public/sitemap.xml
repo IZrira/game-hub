@@ -5040,6 +5040,18 @@
     </image:image>
   </url>
   <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/ww/character/%EC%9E%94%ED%99%8D</loc>
+    <lastmod>2026-08-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/ww/character/%EC%9E%94%ED%99%8D?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/ww/character/%EC%9E%94%ED%99%8D?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/ww/character/%EC%9E%94%ED%99%8D"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/characters/%EC%9E%94%ED%99%8D/art01.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://rira-game-hub.pages.dev/gallery/ww/character/%EC%8B%A0%EC%BF%A0</loc>
     <lastmod>2026-08-19</lastmod>
     <changefreq>daily</changefreq>

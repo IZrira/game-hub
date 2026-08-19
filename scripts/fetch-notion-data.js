@@ -143,8 +143,8 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const type = isCharacterDB ? '캐릭터' : (props['필터']?.select?.name || props['필터']?.rich_text?.[0]?.plain_text || props['필터']?.multi_select?.[0]?.name || props['타입']?.select?.name || props['종류']?.select?.name || props['분류']?.select?.name || props['분류']?.rich_text?.[0]?.plain_text || '');
     
     let contentMarkdown = '';
-    // 무기가 아닌 경우 본문 파싱
-    if (!['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(type) || isCharacterDB) {
+    // 캐릭터 DB인 경우에만 본문 마크다운 파싱 (아이템/무기는 속성 프로퍼티 사용으로 초고속 처리)
+    if (isCharacterDB) {
       try {
         const mdblocks = await n2m.pageToMarkdown(page.id);
         const mdString = n2m.toMarkdownString(mdblocks);
