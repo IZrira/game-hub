@@ -1,5 +1,45 @@
 # 작업 완료 보고서 (Walkthrough)
 
+## [2026-08-19] 멀티 게임 관리자 파티 빌더, 돌파 추천 엔진 및 3단계 실시간 동기화 시스템 구축
+
+### 주요 구현 내용
+* **멀티 게임 비주얼 파티 빌더 (`AdminPartyManager.tsx`)**:
+  * 게임 선택에 따른 슬롯 수 동적 자동 동기화 (붕괴: 스타레일 4인, 명조 3인, 이환 4인 고정).
+  * 1-Click 파티 복제 기능 (`crypto.randomUUID()`, `(복사본)` 명명, `order` 자동 재색인).
+  * 대체 캐릭터(Substitutes) 추가/제거 및 중복 선택 방지 필터.
+* **슬롯 우선 배치 ➡️ 배치 전용 메인 딜러 토글 워크플로우**:
+  * 1단계 파티 슬롯 멤버를 먼저 배치하면, 2단계 메인 딜러 영역에 오직 배치된 캐릭터들만 일러스트와 역할이 포함된 토글 카드로 노출.
+  * 원클릭으로 메인 딜러를 황금 하이라이트(`✓`) 지정.
+* **돌파(Breakthrough) 추천 시스템**:
+  * `types/party.ts` 인터페이스에 `breakthrough` 및 `description` 필드 추가.
+  * 본체 및 대체 캐릭터별 권장 돌파 수치(`명함`, `1돌+`, `2돌+`, `2돌 필수`, `풀돌`) 지정 및 황금빛 뱃지 렌더링.
+* **특수 문자 및 타이핑 단축 편의 도구**:
+  * `[ • ]` (불릿), `[ · ]` (가운뎃점) 원클릭 삽입 버튼.
+  * 슬롯 캐릭터명을 한 번에 파티명에 삽입하는 `[+ 천야•블레이드]` 이름 칩.
+  * `[✨ 파티명 자동완성]` 원클릭 버튼.
+* **고정 높이 검색 UX**:
+  * 캐릭터 선택 모달 높이를 `h-[650px]`로 완전 고정하여 타이핑 검색 시 레이어 출렁임 완벽 방지.
+* **3단계 오프라인 퍼스트 실시간 데이터 동기화**:
+  * 1순위: Supabase 클라우드 실시간 동기화 (`party_recommendations`)
+  * 2순위: localStorage `0ms` 무지연 캐싱 및 즉각 로드
+  * 3순위: TypeScript 직렬화 엔진 (`exportPartyToTSCode`)을 통한 코드 내보내기 영구 병합
+
+### 변경된 파일 목록
+| 파일 위치 | 변경 내용 |
+| :--- | :--- |
+| `common-hub/types/party.ts` | [NEW] 통합 파티 데이터 유니온(`UnifiedPartyData`), 슬롯/대체 캐릭터 돌파 인터페이스 및 TS 직렬화 엔진 추가 |
+| `common-hub/components/AdminPartyManager.tsx` | [NEW] 멀티 게임 파티 빌더, 슬롯 우선 배치 워크플로우, 돌파 셀렉터, 특수문자 칩 및 고정 높이 모달 구현 |
+| `common-hub/pages/AdminDashboard.tsx` | `파티 추천 관리` 탭 추가 및 AdminPartyManager 통합 |
+| `hsr-hub/pages/PartyRecommendations.tsx` | Supabase 클라우드 & localStorage 0ms 즉시 로드 연동 및 돌파 뱃지 표시 |
+| `ww-hub/pages/PartyRecommendations.tsx` | Supabase 클라우드 & localStorage 0ms 즉시 로드 연동 및 돌파 뱃지 표시 |
+| `docs/guides/party_builder_guide.md` | [NEW] 관리자 파티 빌더 및 돌파 시스템 종합 가이드 문서 작성 |
+| `README.md` & `PROJECT.md` | 아키텍처 및 마일스톤 업데이트 |
+| `10_Wiki/⚖️ Decisions/History/work-log.md` | Obsidian 위키 의사결정 로그 갱신 |
+| `10_Wiki/🛠️ Projects/rira-game-hub/developer-guide.md` | 파티 아키텍처 및 돌파 표준 규격 반영 |
+| `10_Wiki/🛠️ Projects/rira-game-hub/development-roadmap.md` | 로드맵 최신화 |
+
+---
+
 ## [2026-06-09] 신규 에코 데이터 추가 및 명조 시스템 고도화
 
 ### 주요 구현 내용

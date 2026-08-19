@@ -1,56 +1,51 @@
 # 🌐 RIRA Game Hub 프로젝트 개요 (Project Overview)
 
-**[ID]** `RIRA-GH-20260416`
-**[Confidence Score]** 0.95 (높음)
-**[Reinforced Date]** 2024-05-16
-**[Source]** `00_Raw/2026-04-16 rira game hub.md`
+**[ID]** `RIRA-GH-20260819`
+**[Confidence Score]** 1.0 (최상)
+**[Reinforced Date]** 2026-08-19
+**[Source]** `00_Raw/` & `common-hub/`, `hsr-hub/`, `ww-hub/`, `nte-hub/`
 
 ---
 
 ### ✨ Karpathy Summary
-rira game hub는 현재 클라우드플레어를 통해 웹 서비스가 운영되고 있으며, 프로젝트의 지식 관리(Wiki), 코딩 백업, 그리고 이미지 자산 관리를 분리된 세 개의 GitHub 저장소를 통해 체계적으로 관리하고 있다.
+rira game hub는 Cloudflare Pages를 통해 글로벌 서비스 중이며, 멀티 게임 위키(HSR, WW, NTE), 관리자 실시간 비주얼 파티 빌더, 돌파(Breakthrough) 추천 엔진, 그리고 3단계 오프라인 퍼스트 동기화 파이프라인(Supabase + localStorage 0ms + TypeScript Code Exporter)을 완비한 차세대 웹 아카이브 플랫폼이다.
 
 ### 📝 구조화된 지식 (Structured Knowledge)
 
 #### 🚀 1. 서비스 개요 및 운영 상태
-*   **프로젝트명:** rira game hub
-*   **운영 플랫폼:** Cloudflare Pages
-*   **현재 접속 링크:** [https://rira-game-hub.pages.dev/](https://rira-game-hub.pages.dev/)
-*   **목표:** (추가 정보 필요 - 서비스의 핵심 목표가 명시되지 않았으나, 게임/콘텐츠 허브 역할 수행)
+* **프로젝트명:** rira game hub
+* **운영 플랫폼:** Cloudflare Pages
+* **현재 접속 링크:** [https://rira-game-hub.pages.dev/](https://rira-game-hub.pages.dev/)
+* **지원 도메인:** 붕괴: 스타레일(HSR), 명조(WW), 이환(NTE)
 
 #### 📂 2. 핵심 리소스 아키텍처 (Resource Architecture)
-본 프로젝트는 기능별로 세 개의 독립적인 저장소(Repository)를 활용하여 관리됩니다.
-
-*   **A. 지식 관리 (Wiki):**
-    *   **목적:** 프로젝트와 관련된 모든 지식, 문서화, 구조화된 내용을 기록합니다.
-    *   **GitHub:** [https://github.com/IZrira/rira-wiki.git](https://github.com/IZrira/rira-wiki.git)
-*   **B. 코딩 백업 (Code Backup):**
-    *   **목적:** rira game hub의 코드를 버전 관리하고 백업하는 저장소입니다.
-    *   **GitHub:** [https://github.com/IZrira/game-hub.git](https://github.com/IZrira/game-hub.git)
-*   **C. 이미지 자산 (Image Assets):**
-    *   **목적:** 웹 서비스에 사용되는 모든 이미지, 매핑 자료 등의 창고 역할을 합니다.
-    *   **GitHub:** [https://github.com/IZrira/riragameinfo.git](https://github.com/IZrira/riragameinfo.git)
+* **A. 지식 관리 (Wiki / Obsidian Vault):**
+  * **목적:** 프로젝트 지식, 의사결정 기록, 캐릭터 메커니즘 위키 보관.
+  * **GitHub:** [https://github.com/IZrira/rira-wiki.git](https://github.com/IZrira/rira-wiki.git)
+* **B. 웹 애플리케이션 (Code Backup):**
+  * **목적:** Rira Game Hub 웹 프론트엔드 및 관리자 시스템 소스코드 버전 관리.
+  * **GitHub:** [https://github.com/IZrira/game-hub.git](https://github.com/IZrira/game-hub.git)
+* **C. 이미지 및 에셋 (Image Assets):**
+  * **목적:** 고화질 캐릭터 일러스트, 광추/무기/에코/유물 이미지 및 스킬 아이콘 CDN 서빙.
+  * **GitHub:** [https://github.com/IZrira/riragameinfo.git](https://github.com/IZrira/riragameinfo.git)
 
 ### 🔗 지식 연결 (Knowledge Graph)
-*   **Parent:** N/A (최상위 프로젝트 개요)
-*   **Related:**
-    *   [[10_Wiki/🛠️ Projects/rira_game_hub_overview.md]] (자기 참조)
-    *   [[20_Meta/Index.md]] (전체 지식 아키텍처와 연결됨)
-*   **Source:** `00_Raw/2026-04-16 rira game hub.md`
+* **Parent:** [[20_Meta/Index.md]]
+* **Related:**
+  * [[10_Wiki/🛠️ Projects/rira-game-hub/developer-guide.md]]
+  * [[10_Wiki/🛠️ Projects/rira-game-hub/development-roadmap.md]]
+  * [[10_Wiki/⚖️ Decisions/History/work-log.md]]
+  * [[docs/guides/party_builder_guide.md]]
+* **Source:** `00_Raw/`
 
 ---
 
 ### ♻️ RL 업데이트 및 최근 변경 이력
-*   **[2026-05-28] 노션 데이터 정렬 로직 고도화:**
-    *   노션의 `출시 버전` 속성이 Select/Number 타입인 경우에도 안정적으로 파싱되도록 `fetch-notion-data.js` 파이프라인을 보완.
-    *   위 데이터를 기반으로 명조(WW) 무기 도감이 게임 최신 버전 출시에 맞춰 정상적으로 자동 내림차순 정렬되도록 데이터 무결성 보장.
-*   **[2026-05-26] 노션 데이터 연동 아키텍처 개편:**
-    *   기존의 노션 페이지 본문(Markdown) 정규식 파싱 방식을 폐기하고, 무기 데이터에 한하여 **노션 데이터베이스 속성(Properties)**(`성장 스텟`, `스킬명`, `스킬 설명`, `돌파 재료`, `무기 스토리`)을 직접 1:1로 매핑하도록 구조를 전면 개편함. 
-    *   이에 따라 마크다운 변환(`notion-to-md`)에 소요되던 오버헤드를 대폭 줄여 데이터 동기화(`fetch:notion`) 속도 향상.
-*   **[2026-05-26] UI/UX 렌더링 고도화:**
-    *   **스킬 수치 강조**: 스킬 설명 내의 변동 수치(예: `12%/15%...`)를 정규식으로 감지하고 렌더러단에서 노란색(Yellow-400)으로 하이라이팅 처리하여 가독성 강화.
-    *   **돌파 재료 동기화**: 무기별 하드코딩 방식 대신, 노션 속성(`돌파 재료`) 텍스트 파싱을 최우선으로 사용하여 웹 UI 아이콘 및 수량이 정확히 매칭되도록 보완.
-    *   **획득 경로 지원**: Select 및 Multi-select 유형의 속성도 정상적으로 텍스트로 변환되도록 파서 보강.
-
-*   **상태:** 지식 및 코드 합성 완료. (안정성 확보)
-*   **권장 사항:** 향후 캐릭터 및 에코 데이터 연동 시에도 본문 파싱이 아닌 속성 기반 매핑으로 전환할 수 있도록 노션 데이터베이스의 점진적 구조화(Refactoring)를 권장함.
+* **[2026-08-19] 멀티 게임 파티 빌더 & 돌파 추천 엔진 완성:**
+  * **슬롯 동기화**: 스타레일/이환(4인) 및 명조(3인) 슬롯 자동 전환 및 1-클릭 파티 복제.
+  * **슬롯 우선 배치 워크플로우**: 1단계 슬롯 멤버 배치 ➡️ 2단계 배치 전용 메인 딜러 토글 카드 원클릭 선택.
+  * **돌파(Breakthrough) 추천 시스템**: 슬롯/대체 캐릭터별 성혼 및 돌파(`명함`, `1돌+`, `2돌+`, `2돌 필수`, `풀돌`) 지정 및 황금 뱃지 렌더링.
+  * **타이핑 도구 & 고정 검색**: `•`, `·` 삽입, 슬롯 캐릭터명 원클릭 칩, 자동완성 버튼, `h-[650px]` 고정 모달.
+  * **3단계 실시간 동기화**: Supabase Realtime + localStorage 0ms 무지연 캐싱 + TypeScript 코드 내보내기.
+* **[2026-06-09] 신규 에코 데이터 추가 및 명조 시스템 고도화**
+* **[2026-05-29] HSR 4.3 신규 캐릭터 및 장비 데이터 통합**

@@ -1,87 +1,43 @@
 # 🌐 RIRA Game Hub 프로젝트 개요 (Project Overview)
 
-**[ID]** `RIRA-GH-20260725`
-**[Confidence Score]** 0.99 (매우 높음)
-**[Reinforced Date]** 2026-07-25
-**[Source]** `00_Raw/2026-07-25 rira game hub.md`
+**[ID]** `RIRA-GH-20260819`
+**[Confidence Score]** 1.0 (최신 상태)
+**[Reinforced Date]** 2026-08-19
+**[Source]** `00_Raw/` & `common-hub/`, `hsr-hub/`, `ww-hub/`, `nte-hub/`
 
 ---
 
-### 📌 원문 내용 보존 (Original Text Preservation)
+## 📌 프로젝트 핵심 아키텍처 및 현황 (Current Architecture & Status)
 
-**[Raw Data Source]**
-아래는 `00_Raw/2026-04-16 rira game hub.md` 파일에서 추출한 원본 텍스트입니다. 이 내용은 지식의 원천으로 그대로 보존됩니다.
+### 1. 멀티 게임 지원 및 허브 모듈화
+* **붕괴: 스타레일 (HSR)**: 턴제 4인 파티, 운명의 길/속성 시너지, 실시간 티어표 및 돌파 뱃지 추천 시스템.
+* **명조: 워더링 웨이브 (WW)**: 3인 고정 파티, 공명 체인 및 에코 시너지 덱.
+* **Neverness to Everness (이환 - NTE)**: 4인 속성 시너지 파티, 어반 오픈월드 특화 데이터베이스.
 
-```markdown
-# 🪐 P-Reinforce: 자율형 지식 정원사 (Autonomous Knowledge Gardener)
+### 2. 멀티 게임 비주얼 파티 빌더 (`AdminPartyManager.tsx`)
+* **슬롯 자동 전환**: 게임 전환 시 슬롯 규격(3인 vs 4인) 즉각 동기화.
+* **슬롯 우선 배치 워크플로우**: 슬롯에 캐릭터를 먼저 배치하면, 2단계에서 오직 배치된 캐릭터들만 메인 딜러 토글 카드로 노출되어 원클릭 선택 가능.
+* **돌파(Breakthrough) 추천 시스템**: 슬롯 본체 및 대체 캐릭터별 성혼/돌파(`명함`, `1돌+`, `2돌+`, `2돌 필수`, `풀돌`) 개별 지정 및 황금빛 뱃지 렌더링.
+* **특수 문자 및 이름 원클릭 도구**: `•` (불릿), `·` (가운뎃점) 삽입 버튼, 슬롯 캐릭터명 원클릭 삽입 칩 (`[+ 천야•블레이드]`), `[✨ 파티명 자동완성]` 기능 탑재.
+* **고정 높이 검색 UX**: `h-[650px]` 고정 모달 컨테이너로 타이핑 시 레이어 출렁임 완전 방지.
 
-> **"파편화된 정보의 중력을 거슬러, 지식의 잎귀를 하나씩 틔웁니다."**
-
-P-Reinforce는 Andre Karpathy의 LLM-Wiki 아키텍처와 강화학습(RL) 이론을 결합한 지식 자동화 엔진입니다. 사용자가 던지는 파편화된 정보를 읽어 의미론적으로 분류하고, 스스로 폴더 트리를 설계하며, 지식 간의 상호 연결을 통해 하나의 거대한 '외부 뇌'를 구축합니다.
-
----
-
-## 📌 주요 기능 요약
-P-Reinforce는 `00_Raw/` 폴더에 입력되는 데이터를 실시간으로 감시하여 다음 작업을 수행합니다:
-1.  **의미론적 분류 (Semantic Classification)**: 최신 LLM을 사용하여 문맥과 의도를 파악합니다.
-2.  **자동 폴더 관리 (Dynamic Folder Management)**: 지식의 위계에 따라 폴더를 생성하고, 파일이 12개를 초과하면 스스로 하위 카테고리로 세분화(Refactoring)합니다.
-3. **지식 합성 (Knowledge Synthesis)**: 파편화된 정보를 Karpathy의 '영속적 위키' 템플릿에 맞춰 정제합니다.
-4. **GitHub 자동화 (Git Sync)**: 모든 변화를 자동으로 커밋하여 지식의 타임라인을 보존합니다.
-5. **보안 및 인증 연동 (Security & Auth)**: Supabase RLS 정책 및 OAuth 로그인을 통해 안전한 데이터 관리를 수행합니다.
+### 3. 3단계 오프라인 퍼스트 실시간 데이터 동기화 파이프라인
+1. **1순위 (Supabase Realtime Cloud)**: `party_recommendations`, `tier_lists` 테이블을 통한 무중단 실시간 동기화.
+2. **2순위 (localStorage 0ms Synchronous Cache)**: 수정 사항이 브라우저에 `0ms`로 즉시 저장 및 로드되어 오프라인에서도 즉시 렌더링.
+3. **3순위 (TypeScript Code Exporter)**: `exportPartyToTSCode()` 직렬화 엔진으로 `[코드 내보내기]` 원클릭 클립보드 복사 ➡️ 소스코드 영구 병합.
 
 ---
 
-## 🧠 강화학습 기반 구조화 로직 (RL Logic)
-엔진은 아래 보상 함수 $R$을 극대화하는 방향으로 동작합니다:
-$$R = w_1(\text{Categorization Accuracy}) + w_2(\text{Graph Connectivity}) + w_3(\text{User Satisfaction})$$
-
-### 운영 사이클:
-- **상태 분석 (State Analysis)**: 현재 `10_Wiki/` 하위의 모든 폴더 트리와 `20_Meta/Graph.json`을 통해 지식 지형도를 파악합니다.
-- **분류 행동 (Action - Categorization)**: 
-    - **유사도 85% 이상**: 기존 폴더에 배치합니다.
-    - **신규 개념**: 즉시 상위 개념을 도출하여 새로운 폴더 브랜치를 생성합니다.
-    - **구조 재설계**: 특정 폴더의 파일이 과도하게 많아지면 세분화를 제안합니다.
-- **지식 합성 (Action - Synthesis)**: 내용을 정제하고 최소 2개 이상의 [[쌍방향 링크]]를 생성하여 그래프를 강화합니다.
-- **보상 및 정책 업데이트**: 사용자의 피드백을 수집하여 `20_Meta/Policy.md` 가중치를 갱신합니다.
-
----
-
-## 📂 표준 폴더 구조 (The Structure)
+## 📂 폴더 구조 (Directory Layout)
 ```plaintext
 root/
+├── common-hub/             # [공용] 메인 라우터, 관리자 대시보드(AdminPartyManager), 전역 컴포넌트, types/party.ts
+├── hsr-hub/                # [붕괴: 스타레일] 추천 파티(PartyRecommendations), 티어표, 상세 가이드
+├── ww-hub/                 # [명조] 추천 파티(PartyRecommendations), 에코/무기 데이터베이스
+├── nte-hub/                # [이환] 신규 허브 컴포넌트 및 가이드
+├── scripts/                # Notion API 동기화, 사이트맵 생성, 메타태그 사전 렌더링(prerender-meta.js)
 ├── 00_Raw/                 # [불변] 사용자로부터 입력된 가공되지 않은 모든 원본 데이터
-├── 10_Wiki/                # [자동 구조화] 에이전트가 RL 정책에 따라 관리하는 지식 층
-│   ├── 🛠️ Projects/        # 프로젝트 중심 요약
-│   ├── 💡 Topics/          # 스스로 생성한 주제별 분류
-│   ├── ⚖️ Decisions/       # 의사결정 기록
-│   └── 🚀 Skills/          # 워크플로우 및 스킬 패턴
-├── 20_Meta/                # [시스템] 엔진의 두뇌 데이터 (Policy, Graph, Index)
-└── .github/                # GitHub Sync 및 자동화 워크플로우
-```
-
----
-
-## 📝 지식 문서 변환 규격 (The Wiki Template)
-모든 강화된 문서는 엄격한 마크다운 표준을 따릅니다:
-- **ID 및 메타데이터**: UUID, 확신도(Confidence Score), 강화된 날짜 기록.
-- **Karpathy Summary**: 지식의 핵심을 꿰뚫는 단 한 줄의 통찰.
-- **구조화된 지식**: 추출된 패턴과 불렛포인트 위주의 간결한 정리.
-- **RL 업데이트**: 과거 데이터와의 충돌 여부 및 정책 변화 기록.
-- **지식 연결 (Graph)**: 상위(Parent), 연관(Related), 원본(Source) 링크 자동 생성.
-
----
-
-## 💻 GitHub 동기화 프로토콜
-모든 구조적 변화는 즉시 커밋되어 반영됩니다:
-`git commit -m "[P-Reinforce] reinforce: 'Topics/Psychology' 폴더 생성 및 문서 연결 최적화"`
-
----
-
-## 💡 에이전트 학습 가이드
-- **칭찬**: *"이 분류가 아주 정확해."* → 해당 주제의 유사도 가중치를 높입니다.
-- **교정**: *"이건 '코딩'이 아니라 '비즈니스' 폴더로 옮겨줘."* → 의미론적 경계선(Boundary Shift)을 재설정합니다.
-- **사용**: 에이전트가 만든 구조를 유지하며 계속 사용하는 것 자체가 임묵적 보상으로 간주됩니다.
-
----
-*P-Reinforce Architect에 의해 생성되었습니다.*
+├── 10_Wiki/                # [Obsidian Vault] 의사결정 기록(work-log), 캐릭터 위키, 프로젝트 가이드
+├── 20_Meta/                # [Obsidian Meta] 인덱스, 대시보드, 시스템 정책
+└── docs/                   # 개발 가이드, 설계 표준, 마일스톤 리포트
 ```
