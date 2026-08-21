@@ -7,8 +7,7 @@ const Footer: React.FC = () => {
   const navLinks = [
     { name: 'Hub Index', path: '/' },
     { name: 'About Us', path: '/about' },
-    { name: 'Data Repositories', path: '/database' },
-    { name: 'Archive API', path: '/api' },
+    { name: 'Archive Notices', path: '/notices' },
     { name: 'Intelligence Blog', path: '/blog' },
   ];
 
@@ -33,7 +32,7 @@ const Footer: React.FC = () => {
             </div>
             <p className="text-xs text-gray-400 leading-relaxed max-w-xs font-medium">
               Comprehensive game data and tactical analysis platform for advanced explorers. 
-              All systems operational via RIRA GAME HUB API.
+              All systems operational via RIRA GAME HUB.
             </p>
             <div className="flex items-center gap-3 text-[10px] font-black text-green-500/60 uppercase tracking-widest">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
@@ -59,9 +58,9 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Supported Sectors</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
-              <li><a href="https://hsr.hoyoverse.com/" target="_blank" rel="noopener noreferrer nofollow" className="hover:text-brand-primary transition-colors">Honkai: Star Rail ↗</a></li>
-              <li><a href="https://wutheringwaves.kurogames.com/" target="_blank" rel="noopener noreferrer nofollow" className="hover:text-brand-primary transition-colors">Wuthering Waves ↗</a></li>
-              <li className="opacity-30 cursor-not-allowed italic">Next Project Encrypted...</li>
+              <li><Link to="/gallery/hsr" className="hover:text-brand-primary transition-colors">Honkai: Star Rail</Link></li>
+              <li><Link to="/gallery/ww" className="hover:text-brand-primary transition-colors">Wuthering Waves</Link></li>
+              <li><Link to="/gallery/nte" className="hover:text-brand-primary transition-colors">Neverness to Everness</Link></li>
             </ul>
           </div>
 
