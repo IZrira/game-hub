@@ -41,8 +41,12 @@ const Navbar: React.FC = () => {
     }
   };
 
+  const languages: ('ko' | 'en' | 'ja')[] = ['ko', 'en', 'ja'];
+
   const toggleLang = () => {
-    const next = i18n.language === 'ko' ? 'en' : 'ko';
+    const current = (i18n.language || 'ko').slice(0, 2) as 'ko' | 'en' | 'ja';
+    const currentIndex = languages.indexOf(current);
+    const next = languages[(currentIndex + 1) % languages.length];
     localStorage.setItem('rira_lang', next);
     i18n.changeLanguage(next);
     

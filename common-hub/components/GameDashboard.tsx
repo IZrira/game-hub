@@ -25,6 +25,7 @@ import { useTranslation } from 'react-i18next';
 import { getGameData } from '../data/dataManager';
 import { safeEncodeURIComponent } from '../utils/assetManager';
 import { stripMarkdown } from '../utils/markdown';
+import { GrowthPlannerWidget } from './GrowthPlannerWidget';
 
 interface GameDashboardProps {
   game: Game;
@@ -204,6 +205,9 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             ))}
           </div>
         </div>
+
+        {/* 나만의 육성 플래너 위젯 (LocalStorage 기반) */}
+        <GrowthPlannerWidget game={game} availableCharacters={sortedGameCharacters} />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content Column */}

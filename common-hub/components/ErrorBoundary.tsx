@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ErrorInfo, ReactNode } from 'react';
 import { AlertOctagon, RefreshCw, Home } from 'lucide-react';
+import { logger } from '../utils/logger';
 
 interface Props {
   children?: ReactNode;
@@ -26,6 +27,10 @@ class ErrorBoundary extends React.Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('Uncaught error:', error, errorInfo);
+    logger.captureException(error, {
+      componentStack: errorInfo.componentStack,
+      type: 'react_error_boundary'
+    });
   }
 
   public render() {

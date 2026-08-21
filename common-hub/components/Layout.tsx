@@ -8,6 +8,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import CookieBanner from './CookieBanner';
 import { useTranslation } from 'react-i18next';
+import { logger } from '../utils/logger';
 import '../i18n';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -16,8 +17,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const { i18n } = useTranslation();
 
-  // 강제 스크롤 최상단 이동 (페이지 전환 시)
+  // Initialize Global Error Logger and Scroll to Top
   useEffect(() => {
+    logger.init();
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [location.pathname]);
 
@@ -35,10 +37,14 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     }
   };
 
+  const languages: ('ko' | 'en' | 'ja')[] = ['ko', 'en', 'ja'];
+
   const toggleLang = () => {
-    const next = i18n.language === 'ko' ? 'en' : 'ko';
+    const current = (i18n.language || 'ko').slice(0, 2) as 'ko' | 'en' | 'ja';
+    const currentIndex = languages.indexOf(current);
+    const next = languages[(currentIndex + 1) % languages.length];
     localStorage.setItem('rira_lang', next);
-    i18n.changeLanguage(next); // 새로고침 없이 즉시 언어 변경
+    i18n.changeLanguage(next);
     
     // URL 업데이트 (React Router 리렌더링 없이 히스토리만 수정)
     const url = new URL(window.location.href);

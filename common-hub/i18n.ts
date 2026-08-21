@@ -7,15 +7,18 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import koTranslation from './ko.json';
 import enTranslation from './en.json';
+import jaTranslation from './ja.json';
 
 /**
- * 파일 경로와 무관하게 모든 폴더 내의 `*_en.json` 및 `*_ko.json` 언어팩 데이터를 가져옵니다.
+ * 파일 경로와 무관하게 모든 폴더 내의 `*_en.json`, `*_ko.json`, `*_ja.json` 언어팩 데이터를 가져옵니다.
  */
 const gameEnModules = import.meta.glob('./**/*_en.json', { eager: true });
 const gameKoModules = import.meta.glob('./**/*_ko.json', { eager: true });
+const gameJaModules = import.meta.glob('./**/*_ja.json', { eager: true });
 
 let combinedEnTranslation = { ...enTranslation };
 let combinedKoTranslation = { ...koTranslation };
+let combinedJaTranslation = { ...jaTranslation };
 
 /**
  * 수집된 모든 언어팩 데이터를 하나의 통합된 객체로 자동 병합합니다.
@@ -30,12 +33,20 @@ for (const path in gameKoModules) {
   combinedKoTranslation = { ...combinedKoTranslation, ...(mod.default || mod) };
 }
 
+for (const path in gameJaModules) {
+  const mod = gameJaModules[path] as any;
+  combinedJaTranslation = { ...combinedJaTranslation, ...(mod.default || mod) };
+}
+
 const resources = {
   ko: {
     translation: combinedKoTranslation
   },
   en: {
     translation: combinedEnTranslation
+  },
+  ja: {
+    translation: combinedJaTranslation
   }
 };
 
@@ -43,7 +54,7 @@ const getInitialLang = () => {
   if (typeof window !== 'undefined') {
     const params = new URLSearchParams(window.location.search);
     const lng = params.get('lng');
-    if (lng === 'en' || lng === 'ko') return lng;
+    if (lng === 'en' || lng === 'ko' || lng === 'ja') return lng;
     return localStorage.getItem('rira_lang') || 'ko';
   }
   return 'ko';
