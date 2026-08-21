@@ -472,7 +472,7 @@ export const getGameData = (targetId: string) => {
 
       const parsedSkills: any[] = [];
       const skillMap = [
-        { key: 'citySkill', name: '도시 스킬', type: '도시 스킬' },
+        { key: 'citySkill', name: '도시 스킬', type: '도시 스킬', icon: '도시 스킬1' },
         { key: 'citySkill2', name: '도시 스킬2', type: '도시 스킬', icon: '도시 스킬2' },
         { key: 'basicAttack', name: '일반 공격', type: '기본 공격', icon: '일반 공격' },
         { key: 'virailSkill', name: '바이레일 스킬', type: '바이레일 스킬' },

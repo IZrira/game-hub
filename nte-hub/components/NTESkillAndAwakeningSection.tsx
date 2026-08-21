@@ -52,6 +52,33 @@ export default function NTESkillAndAwakeningSection({
     return groups;
   }, [char.skills, char.name]);
 
+  const handleNteSkillImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const target = e.currentTarget;
+    const currentSrc = target.src;
+
+    if (currentSrc.includes('도시%20스킬.webp') || currentSrc.includes('%EB%8F%84%EC%8B%9C%20%EC%8A%A4%ED%82%AC.webp')) {
+      target.src = currentSrc.replace(/도시%20스킬\.webp|%EB%8F%84%EC%8B%9C%20%EC%8A%A4%ED%82%AC\.webp/g, safeEncodeURIComponent('도시 스킬1.webp'));
+      return;
+    }
+    if (currentSrc.includes('도시%20스킬1.webp') || currentSrc.includes('%EB%8F%84%EC%8B%9C%20%EC%8A%A4%ED%82%AC1.webp')) {
+      target.src = currentSrc.replace(/도시%20스킬1\.webp|%EB%8F%84%EC%8B%9C%20%EC%8A%A4%ED%82%AC1\.webp/g, safeEncodeURIComponent('도시 스킬.webp'));
+      return;
+    }
+    if (currentSrc.includes('특성.webp') || currentSrc.includes('%ED%8A%B9%EC%84%B1.webp')) {
+      target.src = currentSrc.replace(/특성\.webp|%ED%8A%B9%EC%84%B1\.webp/g, safeEncodeURIComponent('캐릭터 특성.webp'));
+      return;
+    }
+    if (currentSrc.includes('캐릭터%20특성.webp') || currentSrc.includes('%EC%BA%90%EB%A6%AD%ED%84%B0%20%ED%8A%B9%EC%84%B1.webp')) {
+      target.src = currentSrc.replace(/캐릭터%20특성\.webp|%EC%BA%90%EB%A6%AD%ED%84%B0%20%ED%8A%B9%EC%84%B1\.webp/g, safeEncodeURIComponent('특성.webp'));
+      return;
+    }
+    if (currentSrc.endsWith('.webp')) {
+      target.src = currentSrc.replace(/\.webp$/, '.png');
+      return;
+    }
+    target.style.display = 'none';
+  };
+
   const activeSkills = groupedSkills[activeCategory] || [];
 
   return (
@@ -93,13 +120,7 @@ export default function NTESkillAndAwakeningSection({
                       alt={cat.label} 
                       loading="lazy"
                       decoding="async"
-                      onError={(e) => {
-                        if (e.currentTarget.src.endsWith('.webp')) {
-                          e.currentTarget.src = e.currentTarget.src.replace('.webp', '.png');
-                        } else {
-                          e.currentTarget.style.display = 'none';
-                        }
-                      }} 
+                      onError={handleNteSkillImageError} 
                     />
                   </div>
                   <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${isActive ? 'text-white' : 'text-gray-500 group-hover:text-gray-300'}`}>
@@ -120,11 +141,7 @@ export default function NTESkillAndAwakeningSection({
                      alt="" 
                      loading="lazy" 
                      decoding="async"
-                     onError={(e) => {
-                       if (e.currentTarget.src.endsWith('.webp')) {
-                         e.currentTarget.src = e.currentTarget.src.replace('.webp', '.png');
-                       }
-                     }}
+                     onError={handleNteSkillImageError}
                    />
                  </div>
                  <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
@@ -137,13 +154,7 @@ export default function NTESkillAndAwakeningSection({
                              alt={skill.name} 
                              loading="lazy" 
                              decoding="async" 
-                             onError={(e) => { 
-                               if (e.currentTarget.src.endsWith('.webp')) {
-                                 e.currentTarget.src = e.currentTarget.src.replace('.webp', '.png');
-                               } else {
-                                 e.currentTarget.style.display = 'none'; 
-                               }
-                             }}
+                             onError={handleNteSkillImageError}
                            />
                         </div>
                       </div>
