@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const SKILL_THEME = {
   title: "text-[#a89969] font-black italic", 
@@ -17,6 +18,7 @@ import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetMan
 
 const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}, setTooltip, theme }) => {
   const { t } = useTranslation();
+  const [isExpanded, setIsExpanded] = useState(false);
   const ICON_COMMON_BASE = `${CDN_URL}/ww%20images/common/position/`;
   
   const renderDescriptionWithIcons = (text: string) => {
@@ -230,19 +232,24 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
       )}
 
       {/* 3. 입력 리스트 */}
-      {inputList.length > 0 && (
-        <div className="space-y-4">
-          {/* A타입의 경우, overview에서 메커니즘 설명 등을 처리하므로 조작 입력 타이틀을 조건부로 렌더링 */}
-          {!overviewText.includes('메커니즘 설명') && !overviewText.includes('특징') && (
-            <h4 className="text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3">{t('조작 입력')}</h4>
-          )}
-          <div className="grid grid-cols-1 gap-3">
-            {inputList
-              .filter((input: any) => {
-                const text = String(t(typeof input === 'string' ? input : input.description)).trim();
-                return text.length > 0 && !text.startsWith('조작 입력') && !text.startsWith('메커니즘 설명') && !text.startsWith('설명') && !text.startsWith('특수 에너지');
-              })
-              .map((input: any, index: number) => {
+      {(() => {
+        const filteredInputs = inputList
+          .filter((input: any) => {
+            const text = String(t(typeof input === 'string' ? input : input.description)).trim();
+            return text.length > 0 && !text.startsWith('조작 입력') && !text.startsWith('메커니즘 설명') && !text.startsWith('설명') && !text.startsWith('특수 에너지');
+          });
+
+        if (filteredInputs.length === 0) return null;
+
+        const visibleInputs = isExpanded ? filteredInputs : filteredInputs.slice(0, 4);
+
+        return (
+          <div className="space-y-4">
+            {!overviewText.includes('메커니즘 설명') && !overviewText.includes('특징') && (
+              <h4 className="text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3">{t('조작 입력')}</h4>
+            )}
+            <div className="grid grid-cols-1 gap-3">
+              {visibleInputs.map((input: any, index: number) => {
                 const rawText = String(t(typeof input === 'string' ? input : input.description));
                 const processedText = rawText.startsWith('조작 입력\n\n') 
                   ? rawText.replace('조작 입력\n\n', '') 
@@ -255,9 +262,20 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
                   />
                 );
               })}
+            </div>
+
+            {filteredInputs.length > 4 && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="w-full py-3 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 text-xs font-bold text-gray-400 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer"
+              >
+                <span>{isExpanded ? t('접기') : `${t('조작 가이드 더보기')} (+${filteredInputs.length - 4})`}</span>
+                {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
+            )}
           </div>
-        </div>
-      )}
+        );
+      })()}
     </div>
   );
 };

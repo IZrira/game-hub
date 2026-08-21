@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { Link } from 'react-router';
 import LazyImage from './LazyImage';
+import * as htmlToImage from 'html-to-image';
 import { 
   getRecommendedParties, 
   getElementGlowMapping, 
@@ -9,7 +10,7 @@ import {
   UnifiedParty 
 } from '../utils/synergyManager';
 import { getCharacterArtPath } from '../utils/imageHelper';
-import { ChevronDown, ChevronUp, Users, Sparkles, CheckCircle2, AlertCircle } from 'lucide-react';
+import { ChevronDown, ChevronUp, Users, Sparkles, CheckCircle2, AlertCircle, Share2, Camera, Link as LinkIcon, Check } from 'lucide-react';
 
 export interface SynergyDeckProps {
   characterName: string;
@@ -63,12 +64,43 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
 
   const [activePartyIndex, setActivePartyIndex] = useState(0);
   const [expandedSubstitutes, setExpandedSubstitutes] = useState<Record<string, boolean>>({});
+  const [copiedLink, setCopiedLink] = useState(false);
+  const [isExportingImage, setIsExportingImage] = useState(false);
+  const partyCardRef = useRef<HTMLDivElement>(null);
 
   const activeParty = parties[activePartyIndex] || parties[0];
 
   const glow = useMemo(() => {
     return getElementGlowMapping(gameId, activeParty?.category || theme?.primary);
   }, [gameId, activeParty, theme]);
+
+  const handleCopyPartyLink = () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set('party', String(activePartyIndex));
+    navigator.clipboard.writeText(url.toString());
+    setCopiedLink(true);
+    setTimeout(() => setCopiedLink(false), 2000);
+  };
+
+  const handleExportPartyImage = async () => {
+    if (!partyCardRef.current || isExportingImage) return;
+    try {
+      setIsExportingImage(true);
+      const dataUrl = await htmlToImage.toPng(partyCardRef.current, {
+        quality: 0.95,
+        backgroundColor: '#0c0c0e',
+        pixelRatio: 2
+      });
+      const link = document.createElement('a');
+      link.download = `${characterName}_${activeParty.name}_파티조합_RIRA.png`;
+      link.href = dataUrl;
+      link.click();
+    } catch (err) {
+      console.error('파티 이미지 저장 오류:', err);
+    } finally {
+      setIsExportingImage(false);
+    }
+  };
 
   const toggleSubstituteDrawer = (memberId: string) => {
     setExpandedSubstitutes(prev => ({
@@ -120,34 +152,59 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
 
       <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} />
 
-      <div className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[28px] p-5 md:p-6 relative overflow-hidden">
+      <div ref={partyCardRef} className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[28px] p-5 md:p-6 relative overflow-hidden">
         
-        {/* Multi-party selection tabs */}
-        {parties.length > 1 && (
-          <div className="flex flex-wrap gap-2 mb-6 border-b border-white/10 pb-4">
-            {parties.map((party, idx) => {
-              const isActive = idx === activePartyIndex;
-              return (
-                <button
-                  key={party.id || idx}
-                  onClick={() => setActivePartyIndex(idx)}
-                  className={`px-4 py-2 rounded-2xl text-xs md:text-sm font-bold transition-all duration-300 border flex items-center gap-2 ${
-                    isActive 
-                      ? 'bg-white/15 text-white border-white/30 shadow-lg scale-[1.02]' 
-                      : 'bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-gray-200'
-                  }`}
-                  style={{
-                    borderColor: isActive ? (theme?.primary || glow.borderGlow) : undefined,
-                    boxShadow: isActive ? `0 0 15px ${glow.glowColor}` : undefined
-                  }}
-                >
-                  <Sparkles size={14} className={isActive ? 'text-amber-300' : 'text-gray-400'} />
-                  {party.name}
-                </button>
-              );
-            })}
+        {/* Header & Share Actions */}
+        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/10 pb-4">
+          {/* Multi-party selection tabs */}
+          {parties.length > 1 ? (
+            <div className="flex flex-wrap gap-2">
+              {parties.map((party, idx) => {
+                const isActive = idx === activePartyIndex;
+                return (
+                  <button
+                    key={party.id || idx}
+                    onClick={() => setActivePartyIndex(idx)}
+                    className={`px-4 py-2 rounded-2xl text-xs md:text-sm font-bold transition-all duration-300 border flex items-center gap-2 ${
+                      isActive 
+                        ? 'bg-white/15 text-white border-white/30 shadow-lg scale-[1.02]' 
+                        : 'bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-gray-200'
+                    }`}
+                    style={{
+                      borderColor: isActive ? (theme?.primary || glow.borderGlow) : undefined,
+                      boxShadow: isActive ? `0 0 15px ${glow.glowColor}` : undefined
+                    }}
+                  >
+                    <Sparkles size={14} className={isActive ? 'text-amber-300' : 'text-gray-400'} />
+                    {party.name}
+                  </button>
+                );
+              })}
+            </div>
+          ) : <div />}
+
+          {/* Social Share Buttons */}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleCopyPartyLink}
+              title="파티 조합 링크 복사"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+            >
+              {copiedLink ? <Check size={14} className="text-emerald-400" /> : <LinkIcon size={14} />}
+              <span>{copiedLink ? '복사 완료!' : 'URL 공유'}</span>
+            </button>
+
+            <button
+              onClick={handleExportPartyImage}
+              disabled={isExportingImage}
+              title="파티 조합 카드 이미지로 저장"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95 disabled:opacity-50"
+            >
+              <Camera size={14} />
+              <span>{isExportingImage ? '생성 중...' : '이미지 저장'}</span>
+            </button>
           </div>
-        )}
+        </div>
 
         {/* Active Party Description Banner */}
         <div className="mb-6 bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-5">

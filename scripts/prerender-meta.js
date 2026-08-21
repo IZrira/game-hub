@@ -785,8 +785,8 @@ function runPrerender() {
     const routePath = `/gallery/ww/character/${id}`;
     createPrerenderedPage(
       routePath,
-      `${name} 최신 공략 및 티어표 - 명조 데이터베이스`,
-      `명조 ${name} 종결 에코 세팅, 무기, 속성 보너스, 스킬 설명 및 파티 조합 가이드.`,
+      `${name} 종결 세팅 · 추천 파티 조합 & 돌파 재료 계산 | 명조 공략 DB`,
+      `명조 ${name}의 최신 종결 에코 세팅, 추천 무기, 스킬 매커니즘 계수, 추천 파티 시너지 및 돌파·육성 재료 총정리 가이드.`,
       getWwCharacterImageUrl(char),
       baseHtml,
       generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList),
@@ -807,8 +807,8 @@ function runPrerender() {
     const routePath = `/gallery/hsr/character/${id}`;
     createPrerenderedPage(
       routePath,
-      `${name} 최신 공략 및 티어표 - 붕괴: 스타레일 데이터베이스`,
-      `붕괴: 스타레일 ${name} 추천 유물, 광추, 종결 스탯, 속성 보너스 및 육성 재료 가이드.`,
+      `${name} 종결 세팅 · 추천 파티 조합 & 육성 재료 | 붕괴: 스타레일 공략 DB`,
+      `붕괴: 스타레일 ${name}의 최신 추천 유물 및 장신구, 광추 랭킹, 종결 스탯 세팅, 추천 파티 조합 및 행적·돌파 재료 총정리 가이드.`,
       getHsrCharacterImageUrl(char),
       baseHtml,
       generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList),
@@ -822,8 +822,8 @@ function runPrerender() {
   wwWeapons.forEach(wp => {
     createPrerenderedPage(
       `/gallery/ww/weapon/${encodeURIComponent(wp.name)}`,
-      `${wp.name} 무기 최신 공략 - 명조 데이터베이스`,
-      `명조 무기 ${wp.name}의 상세 능력치, 속성 보너스, 스킬, 그리고 추천 캐릭터 정보를 확인하세요.`,
+      `${wp.name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
+      `명조 무기 ${wp.name}의 돌파별 상세 능력치, 스킬 효과, 속성 보너스 및 추천 캐릭터 완벽 분석 가이드.`,
       `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`,
       baseHtml,
       generateWwWeaponHtml(wp.id)
@@ -839,8 +839,8 @@ function runPrerender() {
     if (['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType)) {
       createPrerenderedPage(
         `/gallery/ww/weapon/${encodeURIComponent(item.name)}`,
-        `${item.name} 무기 최신 공략 - 명조 데이터베이스`,
-        `${item.name}의 상세 능력치, 속성 보너스, 추천 캐릭터 정보를 확인하세요.`,
+        `${item.name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
+        `명조 ${item.name}의 돌파별 상세 능력치, 스킬 효과, 속성 보너스 및 추천 캐릭터 완벽 분석 가이드.`,
         `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`,
         baseHtml,
         generateNotionHtml(item)
@@ -849,6 +849,7 @@ function runPrerender() {
     } else if (cleanType === '캐릭터') {
       const isNte = item.gameId === 'nte' || item.dbSource === 'nte_characters';
       const gamePath = isNte ? 'nte' : 'ww';
+      const gameLabel = isNte ? '이환(NTE)' : '명조';
       const imagePath = isNte 
         ? `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`
         : `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
@@ -856,8 +857,8 @@ function runPrerender() {
       
       createPrerenderedPage(
         routePath,
-        `${item.name} 최신 공략 및 티어표 - ${isNte ? 'NTE' : '명조'} 데이터베이스`,
-        `${item.name} 종결 세팅, 티어표 및 상세 가이드.`,
+        `${item.name} 종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | ${gameLabel} 공략 DB`,
+        `${gameLabel} ${item.name}의 최신 종결 세팅, 스킬 매커니즘 계수, 추천 파티 조합 및 돌파 재료 총정리 가이드.`,
         imagePath,
         baseHtml,
         generateNotionHtml(item),

@@ -86,12 +86,20 @@ const CharacterDetailNTE: React.FC = () => {
   const [selectedSkinIndex, setSelectedSkinIndex] = useState<number>(0);
   const [isSkinDropdownOpen, setIsSkinDropdownOpen] = useState(false);
   
-  const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{ title?: string; text: string; x: number; y: number; pinned?: boolean } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = () => {
+      if (tooltip?.pinned) setTooltip(null);
+    };
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [tooltip]);
 
   const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
 
@@ -258,6 +266,22 @@ const CharacterDetailNTE: React.FC = () => {
     if (!char) return GLOBAL_SPECIAL_TERMS;
     const terms = { ...(char.specialTerms || {}), ...GLOBAL_SPECIAL_TERMS };
     
+    // Parse Notion Glossary if available
+    if (char.glossary) {
+      const blocks = char.glossary.split(/\n\s*\n/);
+      blocks.forEach((block: string) => {
+        const lines = block.split('\n').filter(Boolean);
+        if (lines.length > 0) {
+          const rawName = lines[0].replace(/[*=「」]/g, '').trim();
+          const desc = lines.slice(1).join('\n').trim();
+          if (rawName && desc) {
+            terms[rawName] = desc;
+            terms[`「${rawName}」`] = desc;
+          }
+        }
+      });
+    }
+
     const allText = [
       char.briefInfo,
       ...(char.skills?.map((s: any) => s.description) || []),
@@ -315,7 +339,7 @@ const CharacterDetailNTE: React.FC = () => {
     const noHtmlText = text.replace(/<[^>]*>/g, '');
     const processedText = noHtmlText.replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
     
-    // Add protected terms that shouldn't be broken up (e.g., character names with numbers)
+    // Add protected terms that shouldn't be broken up
     const protectedTerms = ["Mar. 7th", "Mar. 7th (수렵)"]; 
     const sortedKeys = [...Object.keys(specialTerms), ...protectedTerms].sort((a, b) => b.length - a.length);
     
@@ -335,12 +359,24 @@ const CharacterDetailNTE: React.FC = () => {
         if (part.startsWith('**') && part.endsWith('**')) {
           const innerText = part.slice(2, -2);
           const cleanText = innerText.trim().replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+          const tooltipText = specialTerms[cleanText] || specialTerms[innerText] || specialTerms[`「${cleanText}」`];
           
-          if (specialTerms[cleanText]) {
+          if (tooltipText) {
             return (
-              <span key={i} className="font-black text-white inline-flex border-b border-dashed cursor-help" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
-                onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[cleanText], x: r.left, y: r.top }); }}
-                onMouseLeave={() => setTooltip(null)}>{innerText}</span>
+              <span key={i} className="font-black text-white inline-flex border-b border-dashed cursor-help active:scale-95 transition-transform" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const r = e.currentTarget.getBoundingClientRect();
+                  setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+                }}
+                onMouseEnter={(e) => { 
+                  if (tooltip?.pinned) return;
+                  const r = e.currentTarget.getBoundingClientRect(); 
+                  setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+                }}
+                onMouseLeave={() => {
+                  if (!tooltip?.pinned) setTooltip(null);
+                }}>{innerText}</span>
             );
           }
           
@@ -348,11 +384,24 @@ const CharacterDetailNTE: React.FC = () => {
           return (
             <span key={i} className="font-black text-white">
               {innerParts.map((innerPart, j) => {
-                if (specialTerms[innerPart]) {
+                const subClean = innerPart.replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+                const subTooltip = specialTerms[innerPart] || specialTerms[subClean] || specialTerms[`「${subClean}」`];
+                if (subTooltip) {
                   return (
-                    <span key={j} className="inline-flex border-b border-dashed cursor-help font-black" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
-                      onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[innerPart], x: r.left, y: r.top }); }}
-                      onMouseLeave={() => setTooltip(null)}>{innerPart}</span>
+                    <span key={j} className="inline-flex border-b border-dashed cursor-help font-black active:scale-95 transition-transform" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const r = e.currentTarget.getBoundingClientRect();
+                        setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+                      }}
+                      onMouseEnter={(e) => { 
+                        if (tooltip?.pinned) return;
+                        const r = e.currentTarget.getBoundingClientRect(); 
+                        setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+                      }}
+                      onMouseLeave={() => {
+                        if (!tooltip?.pinned) setTooltip(null);
+                      }}>{innerPart}</span>
                   );
                 }
                 return innerPart;
@@ -365,12 +414,24 @@ const CharacterDetailNTE: React.FC = () => {
         if (part.startsWith('==') && part.endsWith('==')) {
           const innerText = part.slice(2, -2);
           const cleanText = innerText.trim().replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+          const tooltipText = specialTerms[cleanText] || specialTerms[innerText] || specialTerms[`「${cleanText}」`];
           
-          if (specialTerms[cleanText]) {
+          if (tooltipText) {
             return (
-              <span key={i} className="font-black inline-flex border-b border-dashed cursor-help" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
-                onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[cleanText], x: r.left, y: r.top }); }}
-                onMouseLeave={() => setTooltip(null)}>{innerText}</span>
+              <span key={i} className="font-black inline-flex border-b border-dashed cursor-help active:scale-95 transition-transform" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  const r = e.currentTarget.getBoundingClientRect();
+                  setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+                }}
+                onMouseEnter={(e) => { 
+                  if (tooltip?.pinned) return;
+                  const r = e.currentTarget.getBoundingClientRect(); 
+                  setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+                }}
+                onMouseLeave={() => {
+                  if (!tooltip?.pinned) setTooltip(null);
+                }}>{innerText}</span>
             );
           }
           
@@ -378,11 +439,24 @@ const CharacterDetailNTE: React.FC = () => {
           return (
             <span key={i} className="font-black" style={{ color: '#b892ff' }}>
               {innerParts.map((innerPart, j) => {
-                if (specialTerms[innerPart]) {
+                const subClean = innerPart.replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+                const subTooltip = specialTerms[innerPart] || specialTerms[subClean] || specialTerms[`「${subClean}」`];
+                if (subTooltip) {
                   return (
-                    <span key={j} className="inline-flex border-b border-dashed cursor-help font-black" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
-                      onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[innerPart], x: r.left, y: r.top }); }}
-                      onMouseLeave={() => setTooltip(null)}>{innerPart}</span>
+                    <span key={j} className="inline-flex border-b border-dashed cursor-help font-black active:scale-95 transition-transform" style={{ color: '#b892ff', borderColor: '#b892ff80' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        const r = e.currentTarget.getBoundingClientRect();
+                        setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+                      }}
+                      onMouseEnter={(e) => { 
+                        if (tooltip?.pinned) return;
+                        const r = e.currentTarget.getBoundingClientRect(); 
+                        setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+                      }}
+                      onMouseLeave={() => {
+                        if (!tooltip?.pinned) setTooltip(null);
+                      }}>{innerPart}</span>
                   );
                 }
                 return innerPart;
@@ -590,11 +664,11 @@ const CharacterDetailNTE: React.FC = () => {
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
-        title={`${t(char.name)} ${t('캐릭터 공략 및 세팅 정보')}`} 
+        title={`${t(char.name)} ${t('종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | 이환(NTE) 공략 DB')}`} 
         description={seoDescription}
         image={getIllustrationUrl()}
         url={`/gallery/${gameId}/character/${char.id}`}
-        gameCategory={t('붕괴: 스타레일')}
+        gameCategory={t('이환 (Neverness to Everness)')}
         itemType={t(char.arc)}
         modifiedTime={lastUpdatedDate}
         faqData={faqData}
@@ -602,7 +676,7 @@ const CharacterDetailNTE: React.FC = () => {
         reviewCount={1}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
-          { name: t('붕괴: 스타레일'), url: `/gallery/${gameId}` },
+          { name: t('이환 (Neverness to Everness)'), url: `/gallery/${gameId}` },
           { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
           { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
         ]}
@@ -616,11 +690,31 @@ const CharacterDetailNTE: React.FC = () => {
         gameId={gameId}
       />
 
-      {/* Tooltip */}
+      {/* Tooltip / Popover */}
       {tooltip && (
-        <div className="fixed z-[100] max-w-[260px] bg-[#121212]/95 p-4 rounded-2xl border border-white/20 backdrop-blur-2xl shadow-2xl pointer-events-none"
-          style={{ left: `${tooltip.x}px`, top: `${tooltip.y - 12}px`, transform: 'translateY(-100%)' }}>
-          <p className="font-medium text-gray-200 text-xs leading-relaxed">{tooltip.text}</p>
+        <div 
+          className="fixed z-[1000] max-w-[calc(100vw-32px)] sm:max-w-[480px] w-max bg-[#121216]/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in-95 duration-200"
+          style={{ 
+            left: Math.max(16, Math.min(window.innerWidth - 16, tooltip.x)), 
+            top: tooltip.y + 8,
+            transform: tooltip.x > window.innerWidth * 0.7 ? 'translateX(-85%)' : tooltip.x < window.innerWidth * 0.3 ? 'translateX(-15%)' : 'translateX(-50%)'
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between gap-3 mb-2 pb-2 border-b border-white/10">
+            <span className="font-black text-[#b892ff] text-sm flex items-center gap-1.5">
+              <span>✦</span> {tooltip.title || t('용어 설명')}
+            </span>
+            <button 
+              onClick={() => setTooltip(null)} 
+              className="w-6 h-6 rounded-lg bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white flex items-center justify-center text-xs transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="text-white/90 text-[13px] sm:text-[14px] leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
+            {typeof tooltip.text === 'string' ? renderTextWithHighlights(tooltip.text) : tooltip.text}
+          </div>
         </div>
       )}
 

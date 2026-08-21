@@ -81,11 +81,19 @@ const CharacterDetail: React.FC = () => {
   
   const [gender, setGender] = useState<'m' | 'f'>('f');
   
-  const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{ title?: string; text: string; x: number; y: number; pinned?: boolean } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleOutsideClick = () => {
+      if (tooltip?.pinned) setTooltip(null);
+    };
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
+  }, [tooltip]);
 
   const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
 
@@ -338,17 +346,25 @@ const CharacterDetail: React.FC = () => {
           return (
             <span 
               key={i} 
-              className={`inline-block font-bold transition-all duration-300 ${hasTooltip ? 'cursor-help border-b border-dashed' : ''}`}
+              className={`inline-block font-bold transition-all duration-300 ${hasTooltip ? 'cursor-help border-b border-dashed active:scale-95' : ''}`}
               style={{ 
                 color: '#fbbf24', 
                 textShadow: '0 0 10px rgba(251, 191, 36, 0.4)',
                 borderColor: hasTooltip ? 'rgba(251, 191, 36, 0.5)' : 'transparent'
               }}
-              onMouseEnter={hasTooltip ? (e) => {
+              onClick={hasTooltip ? (e) => {
+                e.stopPropagation();
                 const r = e.currentTarget.getBoundingClientRect();
-                setTooltip({ text: tooltipText!, x: r.left + r.width / 2, y: r.bottom });
+                setTooltip({ title: cleanKw || keyword, text: tooltipText!, x: r.left + r.width / 2, y: r.bottom, pinned: true });
               } : undefined}
-              onMouseLeave={hasTooltip ? () => setTooltip(null) : undefined}
+              onMouseEnter={hasTooltip ? (e) => {
+                if (tooltip?.pinned) return;
+                const r = e.currentTarget.getBoundingClientRect();
+                setTooltip({ title: cleanKw || keyword, text: tooltipText!, x: r.left + r.width / 2, y: r.bottom, pinned: false });
+              } : undefined}
+              onMouseLeave={hasTooltip ? () => {
+                if (!tooltip?.pinned) setTooltip(null);
+              } : undefined}
             >
               {keyword}
             </span>
@@ -360,12 +376,20 @@ const CharacterDetail: React.FC = () => {
         const plainTooltipText = part ? (specialTerms[part] || specialTerms[cleanPart] || specialTerms[`「${cleanPart}」`]) : null;
         if (part && plainTooltipText) {
           return (
-            <span key={i} className="inline-flex border-b border-dashed cursor-help px-0.5" style={{ borderColor: 'rgba(255,255,255,0.3)' }}
-              onMouseEnter={(e) => { 
-                const r = e.currentTarget.getBoundingClientRect(); 
-                setTooltip({ text: plainTooltipText, x: r.left + r.width / 2, y: r.bottom }); 
+            <span key={i} className="inline-flex border-b border-dashed cursor-help px-0.5 active:scale-95 transition-transform" style={{ borderColor: 'rgba(255,255,255,0.3)' }}
+              onClick={(e) => {
+                e.stopPropagation();
+                const r = e.currentTarget.getBoundingClientRect();
+                setTooltip({ title: cleanPart || part, text: plainTooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: true });
               }}
-              onMouseLeave={() => setTooltip(null)}>{part}</span>
+              onMouseEnter={(e) => { 
+                if (tooltip?.pinned) return;
+                const r = e.currentTarget.getBoundingClientRect(); 
+                setTooltip({ title: cleanPart || part, text: plainTooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+              }}
+              onMouseLeave={() => {
+                if (!tooltip?.pinned) setTooltip(null);
+              }}>{part}</span>
           );
         }
 
@@ -525,14 +549,29 @@ const CharacterDetail: React.FC = () => {
         ]}
         commentsData={commentsData}
       />
-      {/* Tooltip */}
+      {/* Tooltip / Popover */}
       {tooltip && (
         <div 
-          className="fixed z-[1000] max-w-[600px] w-max bg-black/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 shadow-2xl pointer-events-none transform -translate-x-1/2 translate-y-4"
-          style={{ left: tooltip.x, top: tooltip.y }}
+          className="fixed z-[1000] max-w-[calc(100vw-32px)] sm:max-w-[480px] w-max bg-[#121216]/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in-95 duration-200"
+          style={{ 
+            left: Math.max(16, Math.min(window.innerWidth - 16, tooltip.x)), 
+            top: tooltip.y + 8,
+            transform: tooltip.x > window.innerWidth * 0.7 ? 'translateX(-85%)' : tooltip.x < window.innerWidth * 0.3 ? 'translateX(-15%)' : 'translateX(-50%)'
+          }}
+          onClick={(e) => e.stopPropagation()}
         >
-          <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-black/90 border-t border-l border-white/10 rotate-45" />
-          <div className="text-white/90 text-[14px] leading-[1.65] whitespace-pre-line relative z-10 font-medium">
+          <div className="flex items-center justify-between gap-3 mb-2 pb-2 border-b border-white/10">
+            <span className="font-black text-amber-400 text-sm flex items-center gap-1.5">
+              <span>✦</span> {tooltip.title || t('용어 설명')}
+            </span>
+            <button 
+              onClick={() => setTooltip(null)} 
+              className="w-6 h-6 rounded-lg bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white flex items-center justify-center text-xs transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="text-white/90 text-[13px] sm:text-[14px] leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
             {typeof tooltip.text === 'string' ? renderTextWithHighlights(tooltip.text) : tooltip.text}
           </div>
         </div>

@@ -592,7 +592,6 @@ export const getGameData = (targetId: string) => {
         skillMaterials: item.skillMaterials || '',
         basicAttack: item.basicAttack || '',
         isNotion: true,
-        fileName: item.fileName || '',
         skins: item.skins || item['스킨'] ? (item.skins || item['스킨']).split('\n').map((s: string) => s.replace(/[*=]/g, '').trim()).filter(Boolean) : [],
       };
     });
