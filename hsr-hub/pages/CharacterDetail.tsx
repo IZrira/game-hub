@@ -80,12 +80,22 @@ const CharacterDetail: React.FC = () => {
   
   const [gender, setGender] = useState<'m' | 'f'>('f');
   
-  const [tooltip, setTooltip] = useState<{ text: string, x: number, y: number } | null>(null);
+  const [tooltip, setTooltip] = useState<{ title?: string; text: string; x: number; y: number; pinned?: boolean } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleGlobalClick = () => {
+      if (tooltip?.pinned) {
+        setTooltip(null);
+      }
+    };
+    window.addEventListener('click', handleGlobalClick);
+    return () => window.removeEventListener('click', handleGlobalClick);
+  }, [tooltip]);
 
   const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
 
@@ -154,6 +164,22 @@ const CharacterDetail: React.FC = () => {
     if (!char) return GLOBAL_SPECIAL_TERMS;
     const terms = { ...(char.specialTerms || {}), ...GLOBAL_SPECIAL_TERMS };
     
+    // Parse Notion Glossary if available
+    if (char.glossary) {
+      const blocks = char.glossary.split(/\n\s*\n/);
+      blocks.forEach((block: string) => {
+        const lines = block.split('\n').filter(Boolean);
+        if (lines.length > 0) {
+          const rawName = lines[0].replace(/[*=「」]/g, '').trim();
+          const desc = lines.slice(1).join('\n').trim();
+          if (rawName && desc) {
+            terms[rawName] = desc;
+            terms[`「${rawName}」`] = desc;
+          }
+        }
+      });
+    }
+
     const allText = [
       char.briefInfo,
       ...(char.skills?.map((s: any) => s.description) || []),
@@ -210,9 +236,11 @@ const CharacterDetail: React.FC = () => {
     const sortedKeys = [...Object.keys(specialTerms), ...protectedTerms].sort((a, b) => b.length - a.length);
     
     // Construct regex
-    const combinedRegex = new RegExp(`({icon:[^}]+}|${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
+    const combinedRegex = new RegExp(`({icon:[^}]+}|\\*\\*[^*]+\\*\\*|==[^=]+==|${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
     
     return processedText.split(combinedRegex).map((part, i) => {
+      if (!part) return null;
+
       // 0. 아이콘 태그 매칭 ({icon:mouse_left})
       const iconMatch = part.match(/\{icon:([^}]+)\}/);
       if (iconMatch) {
@@ -228,15 +256,141 @@ const CharacterDetail: React.FC = () => {
         );
       }
 
+      // Regex for recursively finding special terms
+      const innerRegex = new RegExp(`(${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')})`, 'g');
+
+      // Markdown bold
+      if (part.startsWith('**') && part.endsWith('**')) {
+        const innerText = part.slice(2, -2);
+        const cleanText = innerText.trim().replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+        const tooltipText = specialTerms[cleanText] || specialTerms[innerText] || specialTerms[`「${cleanText}」`];
+        
+        if (tooltipText) {
+          return (
+            <span key={i} className="font-black text-white inline-flex border-b border-dashed cursor-help active:scale-95 transition-transform" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
+              onClick={(e) => {
+                e.stopPropagation();
+                const r = e.currentTarget.getBoundingClientRect();
+                setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+              }}
+              onMouseEnter={(e) => { 
+                if (tooltip?.pinned) return;
+                const r = e.currentTarget.getBoundingClientRect(); 
+                setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+              }}
+              onMouseLeave={() => {
+                if (!tooltip?.pinned) setTooltip(null);
+              }}>{innerText}</span>
+          );
+        }
+        
+        const innerParts = innerText.split(innerRegex);
+        return (
+          <span key={i} className="font-black text-white">
+            {innerParts.map((innerPart, j) => {
+              const subClean = innerPart.replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+              const subTooltip = specialTerms[innerPart] || specialTerms[subClean] || specialTerms[`「${subClean}」`];
+              if (subTooltip) {
+                return (
+                  <span key={j} className="inline-flex border-b border-dashed cursor-help font-black active:scale-95 transition-transform" style={{ borderColor: 'rgba(255,255,255,0.5)' }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const r = e.currentTarget.getBoundingClientRect();
+                      setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+                    }}
+                    onMouseEnter={(e) => { 
+                      if (tooltip?.pinned) return;
+                      const r = e.currentTarget.getBoundingClientRect(); 
+                      setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+                    }}
+                    onMouseLeave={() => {
+                      if (!tooltip?.pinned) setTooltip(null);
+                    }}>{innerPart}</span>
+                );
+              }
+              return innerPart;
+            })}
+          </span>
+        );
+      }
+
+      // Markdown highlight
+      if (part.startsWith('==') && part.endsWith('==')) {
+        const innerText = part.slice(2, -2);
+        const cleanText = innerText.trim().replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+        const tooltipText = specialTerms[cleanText] || specialTerms[innerText] || specialTerms[`「${cleanText}」`];
+        
+        if (tooltipText) {
+          return (
+            <span key={i} className="font-black inline-flex border-b border-dashed cursor-help active:scale-95 transition-transform" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
+              onClick={(e) => {
+                e.stopPropagation();
+                const r = e.currentTarget.getBoundingClientRect();
+                setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+              }}
+              onMouseEnter={(e) => { 
+                if (tooltip?.pinned) return;
+                const r = e.currentTarget.getBoundingClientRect(); 
+                setTooltip({ title: cleanText || innerText, text: tooltipText, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+              }}
+              onMouseLeave={() => {
+                if (!tooltip?.pinned) setTooltip(null);
+              }}>{innerText}</span>
+          );
+        }
+        
+        const innerParts = innerText.split(innerRegex);
+        return (
+          <span key={i} className="font-black" style={{ color: theme.primary }}>
+            {innerParts.map((innerPart, j) => {
+              const subClean = innerPart.replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+              const subTooltip = specialTerms[innerPart] || specialTerms[subClean] || specialTerms[`「${subClean}」`];
+              if (subTooltip) {
+                return (
+                  <span key={j} className="inline-flex border-b border-dashed cursor-help font-black active:scale-95 transition-transform" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      const r = e.currentTarget.getBoundingClientRect();
+                      setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+                    }}
+                    onMouseEnter={(e) => { 
+                      if (tooltip?.pinned) return;
+                      const r = e.currentTarget.getBoundingClientRect(); 
+                      setTooltip({ title: subClean || innerPart, text: subTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+                    }}
+                    onMouseLeave={() => {
+                      if (!tooltip?.pinned) setTooltip(null);
+                    }}>{innerPart}</span>
+                );
+              }
+              return innerPart;
+            })}
+          </span>
+        );
+      }
+
       // 1. If part is in protectedTerms, it just falls through to plain text
       if (protectedTerms.includes(part)) return part;
 
       // Prioritize special terms (with tooltip)
-      if (specialTerms[part]) {
+      const directClean = part.replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
+      const directTooltip = specialTerms[part] || specialTerms[directClean] || specialTerms[`「${directClean}」`];
+      if (directTooltip) {
         return (
-          <span key={i} className="inline-flex border-b border-dashed cursor-help font-bold px-0.5" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
-            onMouseEnter={(e) => { const r = e.currentTarget.getBoundingClientRect(); setTooltip({ text: specialTerms[part], x: r.left, y: r.top }); }}
-            onMouseLeave={() => setTooltip(null)}>{part}</span>
+          <span key={i} className="inline-flex border-b border-dashed cursor-help font-bold px-0.5 active:scale-95 transition-transform" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
+            onClick={(e) => {
+              e.stopPropagation();
+              const r = e.currentTarget.getBoundingClientRect();
+              setTooltip({ title: directClean || part, text: directTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: true });
+            }}
+            onMouseEnter={(e) => { 
+              if (tooltip?.pinned) return;
+              const r = e.currentTarget.getBoundingClientRect(); 
+              setTooltip({ title: directClean || part, text: directTooltip, x: r.left + r.width / 2, y: r.bottom, pinned: false }); 
+            }}
+            onMouseLeave={() => {
+              if (!tooltip?.pinned) setTooltip(null);
+            }}>{part}</span>
         );
       }
 
@@ -418,11 +572,31 @@ const CharacterDetail: React.FC = () => {
         onClose={() => setSelectedItem(null)} 
       />
 
-      {/* Tooltip */}
+      {/* Tooltip / Popover */}
       {tooltip && (
-        <div className="fixed z-[100] max-w-[260px] bg-[#121212]/95 p-4 rounded-2xl border border-white/20 backdrop-blur-2xl shadow-2xl pointer-events-none"
-          style={{ left: `${tooltip.x}px`, top: `${tooltip.y - 12}px`, transform: 'translateY(-100%)' }}>
-          <p className="font-medium text-gray-200 text-xs leading-relaxed">{tooltip.text}</p>
+        <div 
+          className="fixed z-[1000] max-w-[calc(100vw-32px)] sm:max-w-[480px] w-max bg-[#121216]/95 backdrop-blur-2xl border border-white/20 rounded-2xl p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] animate-in fade-in zoom-in-95 duration-200"
+          style={{ 
+            left: Math.max(16, Math.min(window.innerWidth - 16, tooltip.x)), 
+            top: tooltip.y + 8,
+            transform: tooltip.x > window.innerWidth * 0.7 ? 'translateX(-85%)' : tooltip.x < window.innerWidth * 0.3 ? 'translateX(-15%)' : 'translateX(-50%)'
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-center justify-between gap-3 mb-2 pb-2 border-b border-white/10">
+            <span className="font-black text-brand-accent text-sm flex items-center gap-1.5" style={{ color: theme.primary }}>
+              <span>✦</span> {tooltip.title || t('용어 설명')}
+            </span>
+            <button 
+              onClick={() => setTooltip(null)} 
+              className="w-6 h-6 rounded-lg bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white flex items-center justify-center text-xs transition-colors"
+            >
+              ✕
+            </button>
+          </div>
+          <div className="text-white/90 text-[13px] sm:text-[14px] leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
+            {typeof tooltip.text === 'string' ? renderTextWithHighlights(tooltip.text) : tooltip.text}
+          </div>
         </div>
       )}
 
