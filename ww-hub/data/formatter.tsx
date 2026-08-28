@@ -152,3 +152,47 @@ export const formatDescriptionByRank = (description: string, rank: number) => {
     return `{{YELLOW_START}}${val}{{YELLOW_END}}`;
   });
 };
+
+/** 문장 중간에 줄바꿈된 어색한 텍스트를 자연스러운 문단(단락) 배열로 정제하는 함수 */
+export const cleanSkillParagraphs = (text: string): string[] => {
+  if (!text) return [];
+  const normalized = text.replace(/\r\n/g, '\n').trim();
+  const rawParagraphs = normalized.split(/\n\s*\n+/);
+  const paragraphs: string[] = [];
+
+  rawParagraphs.forEach(rawPara => {
+    const lines = rawPara.split('\n').map(l => l.trim()).filter(Boolean);
+    if (lines.length === 0) return;
+
+    let currentPara = '';
+    lines.forEach((line, idx) => {
+      const isBaseStatLine = /^(?:HP|공격력|방어력|치명타|치명 피해|이능력 피해|속성 피해|회복량)\s*[\+\:]/i.test(line);
+
+      if (idx === 0) {
+        currentPara = line;
+        if (isBaseStatLine && lines.length > 1) {
+          paragraphs.push(currentPara);
+          currentPara = '';
+        }
+      } else {
+        if (!currentPara) {
+          currentPara = line;
+        } else {
+          const prevEndsWithSentence = /[.!?](\s*[\)\]」』"'])?$/.test(currentPara);
+          if (prevEndsWithSentence && (isBaseStatLine || line.startsWith('착용자') || line.startsWith('장착자') || line.startsWith('또한') || line.startsWith('전투') || line.startsWith('파티'))) {
+            paragraphs.push(currentPara);
+            currentPara = line;
+          } else {
+            currentPara += ' ' + line;
+          }
+        }
+      }
+    });
+
+    if (currentPara) {
+      paragraphs.push(currentPara);
+    }
+  });
+
+  return paragraphs;
+};

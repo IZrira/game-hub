@@ -5,7 +5,7 @@ import { getGameData } from '../../common-hub/data/dataManager';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
-import { renderRichText, formatDescriptionByRank } from '../data/formatter';
+import { renderRichText, formatDescriptionByRank, cleanSkillParagraphs } from '../data/formatter';
 import { useTranslation } from 'react-i18next';
 import { Compass, Zap, MapPin, History, Globe, Shield } from 'lucide-react';
 import ItemIcon from '../../common-hub/components/ItemIcon';
@@ -586,8 +586,12 @@ const WuwaWeaponDetail = () => {
               </div>
               
               <div className="flex flex-col justify-center text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
-                <div className="w-full">
-                  {renderRichText(formatDescriptionByRank(weapon.skill?.description || '', rankIdx + 1))}
+                <div className="w-full space-y-3">
+                  {cleanSkillParagraphs(weapon.skill?.description || '').map((paragraph: string, pIdx: number) => (
+                    <p key={pIdx} className="leading-relaxed">
+                      {renderRichText(formatDescriptionByRank(paragraph, rankIdx + 1))}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>

@@ -8,7 +8,7 @@ import SEO from '../../common-hub/components/SEO';
 import { useTranslation } from 'react-i18next';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
-import { renderRichText, formatDescriptionByRank } from '../../ww-hub/data/formatter';
+import { renderRichText, formatDescriptionByRank, cleanSkillParagraphs } from '../../ww-hub/data/formatter';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -257,8 +257,12 @@ const NTEArcDetail: React.FC = () => {
               
               {/* 스킬 설명 본문 */}
               <div className="flex flex-col justify-center text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
-                <div className="w-full whitespace-pre-line">
-                  {renderRichText(formatDescriptionByRank(arc.skill?.description || '', rankIdx + 1))}
+                <div className="w-full space-y-3">
+                  {cleanSkillParagraphs(arc.skill?.description || '').map((paragraph: string, pIdx: number) => (
+                    <p key={pIdx} className="leading-relaxed">
+                      {renderRichText(formatDescriptionByRank(paragraph, rankIdx + 1))}
+                    </p>
+                  ))}
                 </div>
               </div>
             </div>
