@@ -169,6 +169,7 @@ export const cleanSkillParagraphs = (text: string): string[] => {
     let currentPara = '';
     lines.forEach((line, idx) => {
       const isBaseStatLine = /^(?:HP|공격력|방어력|치명타|치명 피해|이능력 피해|속성 피해|회복량)\s*[\+\:]/i.test(line);
+      const isNumberedItem = /^(\d+[\.\)]|[①-⑩]|\-|\*)\s*/.test(line);
 
       if (idx === 0) {
         currentPara = line;
@@ -179,9 +180,18 @@ export const cleanSkillParagraphs = (text: string): string[] => {
       } else {
         if (!currentPara) {
           currentPara = line;
+        } else if (isNumberedItem) {
+          paragraphs.push(currentPara);
+          currentPara = line;
+        } else if (isBaseStatLine) {
+          paragraphs.push(currentPara);
+          currentPara = line;
         } else {
           const prevEndsWithSentence = /[.!?](\s*[\)\]」』"'])?$/.test(currentPara);
-          if (prevEndsWithSentence && (isBaseStatLine || line.startsWith('착용자') || line.startsWith('장착자') || line.startsWith('또한') || line.startsWith('전투') || line.startsWith('파티'))) {
+          const isExplicitNewSentence = line.startsWith('착용자') || line.startsWith('장착자') || line.startsWith('또한') || line.startsWith('전투') || line.startsWith('파티');
+          const isParenthesizedNote = /^\s*[\(（]/.test(line);
+
+          if (prevEndsWithSentence && isExplicitNewSentence && !isParenthesizedNote) {
             paragraphs.push(currentPara);
             currentPara = line;
           } else {

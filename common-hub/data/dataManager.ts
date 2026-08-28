@@ -678,8 +678,8 @@ export const getGameData = (targetId: string) => {
           subStatValue: subStatValue
         },
         skill: {
-          name: item.skillName || '아크 스킬',
-          description: item.skillDescription || ''
+          name: (item.skillName || '아크 스킬').replace(/\*\*/g, '').trim(),
+          description: (item.skillDescription || '').replace(/\*\*/g, '')
         },
         ascensionMaterials: item.ascensionMaterials || '',
         materials: parsedMaterials,

@@ -222,7 +222,7 @@ const NTEArcDetail: React.FC = () => {
                 <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
                 <div className="flex flex-col border-l-4 border-white/10 pl-6">
                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">{t('아크 스킬')}</span>
-                  <h2 className="text-2xl font-black tracking-tighter italic uppercase text-white leading-none">{t(arc.skill?.name || '아크 스킬')}</h2>
+                  <h2 className="text-2xl font-black tracking-tighter italic uppercase text-white leading-none">{t((arc.skill?.name || '아크 스킬').replace(/\*\*/g, '').trim())}</h2>
                 </div>
               </div>
 
@@ -310,36 +310,20 @@ const NTEArcDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* 04. 전용 캐릭터 및 획득 경로 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {/* 획득 경로 */}
-          <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
-            <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-              <Compass size={22} style={{ color: theme.primary }} className="opacity-80" />
-              <span className="text-xl font-black uppercase tracking-tighter italic">{t("획득 경로")}</span>
-            </div>
-            <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-gray-300 font-bold text-base">
-              {arc.obtain ? t(arc.obtain) : t("헤테로 시티 아크 소환, 이능력 변환 및 왜곡 보상을 통해 획득 가능합니다.")}
-            </div>
-          </div>
-
-          {/* 전용 / 추천 캐릭터 */}
+        {/* 04. 전용 캐릭터 (있는 경우만 표시) */}
+        {arc.dedicatedChar && (
           <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
               <Sparkles size={22} style={{ color: theme.primary }} className="opacity-80" />
-              <span className="text-xl font-black uppercase tracking-tighter italic">{t("추천 / 전용 조율")}</span>
+              <span className="text-xl font-black uppercase tracking-tighter italic">{t("전용 조율 캐릭터")}</span>
             </div>
             <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-gray-300 font-bold text-base">
-              {arc.dedicatedChar ? (
-                <span className="text-brand-accent font-black">
-                  [[{arc.dedicatedChar}]] 전용 아크로서, 착용 시 최대 효율의 실드 및 속성 시너지를 발휘합니다.
-                </span>
-              ) : (
-                <span>모든 {t(arc.type || '결합')} 계열 이능력자와 폭넓게 호환됩니다.</span>
-              )}
+              <span className="text-brand-accent font-black">
+                {arc.dedicatedChar.replace(/\[\[|\]\]/g, '')} 전용 아크로서, 착용 시 고유 추가 효과 및 속성 시너지를 발휘합니다.
+              </span>
             </div>
           </div>
-        </div>
+        )}
 
         {/* 05. 아크 스토리 섹션 */}
         {arc.description && (
