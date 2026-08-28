@@ -9,7 +9,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
-import { CharacterPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
+import { CharacterPremiumCard, LightConePremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
 import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
