@@ -84,9 +84,9 @@ const GalleryNTE: React.FC = () => {
 
   const game = useMemo(() => ARCHIVE_DATA?.games?.find(g => g.id === gameId) || null, []);
 
-  const { filteredCharacters, filterOptions } = useGalleryFilter(
+  const { filteredCharacters, filteredLightCones, filterOptions } = useGalleryFilter(
     gameId, debouncedSearchQuery, attrFilter, secondFilter, rarityFilter,
-    CHARACTER_DB, [], WEAPON_DB, ECHO_DB, [], INVENTORY_DB, categoryFilter
+    CHARACTER_DB, WEAPON_DB, WEAPON_DB, ECHO_DB, [], INVENTORY_DB, categoryFilter
   );
 
   if (!game) return null;
