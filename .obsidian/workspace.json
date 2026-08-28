@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch.md",
+                "file": "20_Meta/Obsidian_Dashboard.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "undici-vs-builtin-fetch"
+              "title": "Obsidian_Dashboard"
             }
           }
         ]
@@ -41,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical",
-                "autoReveal": false
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
               "title": "파일 탐색기"
@@ -177,11 +179,27 @@
       "daily-notes:오늘의 일일 노트 열기": false,
       "templates:템플릿 삽입": false,
       "command-palette:명령어 팔레트 열기": false,
-      "bases:새 베이스 생성하기": false
+      "bases:새 베이스 생성하기": false,
+      "obsidian-kanban:Create new board": false
     }
   },
   "active": "24d0fb3e420189e4",
   "lastOpenFiles": [
+    "10_Wiki/💡 Topics/Gaming/ww-echo-mechanics.md",
+    "10_Wiki/💡 Topics/Gaming/hsr-combat-glossary.md",
+    "10_Wiki/🚀 Skills/NevernessToEverness/attribute-synergy-guide.md",
+    "10_Wiki/🚀 Skills/NevernessToEverness",
+    "10_Wiki/💡 Topics/Gaming/nte-party-strategies.md",
+    "10_Wiki/👥 Characters/NTE/evaluator.md",
+    "10_Wiki/👥 Characters/NTE/lacrimosa.md",
+    "10_Wiki/👥 Characters/NTE/adler.md",
+    "10_Wiki/👥 Characters/NTE/cheese.md",
+    "10_Wiki/👥 Characters/NTE/hotori.md",
+    "10_Wiki/👥 Characters/NTE/mint.md",
+    "10_Wiki/👥 Characters/NTE/guwon.md",
+    "10_Wiki/👥 Characters/NTE",
+    "무제.canvas",
+    "node_modules/undici/docs/docs/best-practices/undici-vs-builtin-fetch.md",
     "dist/gallery/ww/weapon/21%ED%98%95%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EC%95%84%EC%9D%B4%EC%96%B8%20%ED%8C%AC%ED%85%80/index.html",
     "dist/gallery/ww/weapon/41%ED%98%95%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EB%AC%B4%EA%B1%B0%EC%9A%B4%20%EC%B1%85%EC%9E%84/index.html",
     "dist/gallery/ww/weapon/26%ED%98%95%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EB%A7%B9%EB%A0%AC%ED%95%9C%20%EB%8F%8C%EA%B2%A9/index.html",
@@ -190,9 +208,6 @@
     "dist/gallery/ww/weapon/%ED%9D%AC%EB%B9%84%EA%B7%B9/index.html",
     "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%ED%9D%91%EC%84%B1/index.html",
     "dist/gallery/ww/weapon/%ED%9D%94%EB%93%A4%EB%A6%AC%EC%A7%80%20%EC%95%8A%EB%8A%94%20%EC%9A%A9%EA%B8%B0/index.html",
-    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%ED%98%84%EB%AA%85/index.html",
-    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%ED%9D%91%EB%A2%B0/index.html",
-    "dist/gallery/ww/weapon/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%ED%9D%91%EA%B4%91/index.html",
     "10_Wiki/👥 Characters/WW/luuk.md",
     "10_Wiki/👥 Characters/WW/lumi.md",
     "10_Wiki/👥 Characters/WW/rebecca.md",
@@ -206,17 +221,6 @@
     "node_modules/@types/react/README.md",
     "10_Wiki/👥 Characters/HSR/dahlia.md",
     "10_Wiki/👥 Characters/WW/zhezhi.md",
-    "10_Wiki/👥 Characters/WW/zani.md",
-    "10_Wiki/👥 Characters/WW/yuanwu.md",
-    "10_Wiki/👥 Characters/WW/yinlin.md",
-    "10_Wiki/👥 Characters/WW/yangyang.md",
-    "10_Wiki/👥 Characters/WW/xiangli-yao.md",
-    "10_Wiki/👥 Characters/WW/verina.md",
-    "10_Wiki/👥 Characters/WW/the-shorekeeper.md",
-    "10_Wiki/👥 Characters/WW/taoqi.md",
-    "10_Wiki/👥 Characters/WW/sigrika.md",
-    "10_Wiki/👥 Characters/WW/rover-spectro.md",
-    "10_Wiki/👥 Characters/WW/rover-havoc.md",
-    "10_Wiki/👥 Characters/WW/rover-aero.md"
+    "10_Wiki/👥 Characters/WW/zani.md"
   ]
 }

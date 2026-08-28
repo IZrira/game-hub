@@ -21,6 +21,7 @@ const HSRPartyRecommendations = React.lazy(() => import('../hsr-hub/pages/PartyR
 const WWTierList = React.lazy(() => import('../ww-hub/pages/TierList'));
 const WWPartyRecommendations = React.lazy(() => import('../ww-hub/pages/PartyRecommendations'));
 const WuwaWeaponDetail = React.lazy(() => import('../ww-hub/pages/WuwaWeaponDetail'));
+const NTEArcDetail = React.lazy(() => import('../nte-hub/pages/NTEArcDetail'));
 const Terminology = React.lazy(() => import('../hsr-hub/pages/Terminology'));
 const CharacterGuideDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterGuideDetail'));
 const CharacterGuideDetailWW = React.lazy(() => import('../ww-hub/pages/WuwaCharacterGuideDetail'));
@@ -115,6 +116,8 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },
       { path: "gallery/ww/weapon/:lcName", element: <WuwaWeaponDetail /> },
+      { path: "gallery/nte/weapon/:lcName", element: <NTEArcDetail /> },
+      { path: "gallery/nte/arc/:lcName", element: <NTEArcDetail /> },
       { path: "gallery/:gameId/echo/:echoName", element: <WuwaEchoDetail /> },
       { path: "gallery/:gameId/item/:itemName", element: <ItemDetailDispatcher /> },
       { path: "gallery/:gameId/tierlist", element: <TierListDispatcher /> },

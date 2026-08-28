@@ -34,6 +34,7 @@ const NOTION_WW_ITEM_DB_ID = process.env.NOTION_WW_ITEM_DB_ID; // WW Items DB
 const NOTION_WW_ECHOES_DB_ID = process.env.NOTION_WW_ECHOES_DB_ID; // WW Echoes DB
 const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
 const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID || '38095fae3dc7802aa4abf9ab1977e687'; // NTE Characters DB
+const NOTION_NTE_ARC_DB_ID = process.env.NOTION_NTE_ARC_DB_ID || '38095fae3dc780c3a7c4d901cbe9411c'; // NTE Arcs DB
 
 const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
@@ -154,7 +155,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
       }
     }
 
-    const name = props['캐릭터']?.title?.[0]?.plain_text || props['아이템 명']?.title?.[0]?.plain_text || props['이름']?.title?.[0]?.plain_text || props['이름']?.rich_text?.[0]?.plain_text || '';
+    const name = props['아크명']?.title?.[0]?.plain_text || props['아크명']?.rich_text?.[0]?.plain_text || props['아크 명']?.title?.[0]?.plain_text || props['캐릭터']?.title?.[0]?.plain_text || props['아이템 명']?.title?.[0]?.plain_text || props['이름']?.title?.[0]?.plain_text || props['이름']?.rich_text?.[0]?.plain_text || '';
     const rarity = props['성급']?.select?.name || props['등급']?.select?.name || props['등급']?.number?.toString() || '';
     
     let releaseVersion = '';
@@ -183,7 +184,8 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const skillDescription = extractRichText(props['스킬 설명']) || extractRichText(props['설명']) || extractRichText(props['스킬']);
     const ascensionMaterials = extractRichText(props['승급 재료']) || extractRichText(props['돌파 재료']);
     const skillMaterials = extractRichText(props['스킬 재료']);
-    const weaponStory = extractRichText(props['무기 스토리']);
+    const weaponStory = extractRichText(props['아크 스토리']) || extractRichText(props['무기 스토리']) || extractRichText(props['스토리']);
+    const dedicatedChar = extractRichText(props['전용']);
 
     const weapon = props['무기']?.select?.name || '';
     const affiliation = extractRichText(props['소속']);
@@ -352,6 +354,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         passiveSkill2,
         awakenings,
         resonance,
+        dedicatedChar,
         skins,
         trait,
         content: contentMarkdown
@@ -460,6 +463,21 @@ async function fetchNotionData() {
       
       allItems.push(...formattedNteCharacters);
       console.log(`[Notion Sync] Fetched ${nteCharacters.length} NTE characters.`);
+    }
+
+    // 7. Fetch from NTE Arcs DB
+    if (NOTION_NTE_ARC_DB_ID && NOTION_NTE_ARC_DB_ID !== 'xxxxxxxxxxxx') {
+      console.log(`[Notion Sync] Fetching NTE Arcs from ${NOTION_NTE_ARC_DB_ID}...`);
+      const nteArcs = await fetchFromDB(notion, NOTION_NTE_ARC_DB_ID, n2m, false, 'NTE');
+      
+      const formattedNteArcs = nteArcs.map(item => ({
+        ...item,
+        type: item.type || '결합',
+        dbSource: 'nte_arcs'
+      }));
+      
+      allItems.push(...formattedNteArcs);
+      console.log(`[Notion Sync] Fetched ${nteArcs.length} NTE arcs.`);
     }
 
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');

@@ -174,6 +174,44 @@ const GalleryNTE: React.FC = () => {
                 {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
+          ) : (activeMenu === "아크" || activeMenu === "무기") ? (
+            <div className="space-y-12">
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("아크 도감")}</h2>
+                <div className="flex flex-col xl:flex-row gap-4 items-center">
+                  <div className="relative w-full xl:w-72">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+                    <input 
+                      type="text" 
+                      placeholder={t("아크 명칭...")} 
+                      className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" 
+                      value={searchQuery} 
+                      onChange={(e) => handleSearchChange(e.target.value)} 
+                    />
+                  </div>
+                  <div className="flex flex-wrap gap-3 items-center">
+                    <FilterSelect 
+                      label={t("종류")} 
+                      value={secondFilter} 
+                      onChange={(val: string) => updateFilterParams('second', val)} 
+                      options={filterOptions.second} 
+                    />
+                    <FilterSelect 
+                      label={t("등급")} 
+                      value={rarityFilter} 
+                      onChange={(val: string) => updateFilterParams('rarity', val)} 
+                      options={["5", "4", "3"]} 
+                      formatOption={(opt: string) => opt === '5' ? 'S' : opt === '4' ? 'A' : opt === '3' ? 'B' : opt} 
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+                {filteredLightCones.map((arc: any) => (
+                  <LightConePremiumCard key={arc.id || arc.name} lc={arc} />
+                ))}
+              </div>
+            </div>
           ) : activeMenu === "인벤토리" ? (
             <InventoryGallery 
               gameId="nte" 

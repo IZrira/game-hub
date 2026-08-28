@@ -86,12 +86,23 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
   
   const lcName = lc.name || '';
   const fileName = lc.fileName || lc.folderName || lc.name || '';
-  const imgPath = gameId === 'ww'
-    ? `${CDN_URL}/ww%20images/Weapons/${safeEncodeURIComponent(lcName)}.webp`
-    : `${CDN_URL}/hsr%20images/광추/${safeEncodeURIComponent(lc.path || '')}/${safeEncodeURIComponent(fileName)}.webp`;
+  let imgPath = "";
+  if (gameId === 'ww') {
+    imgPath = `${CDN_URL}/ww%20images/Weapons/${safeEncodeURIComponent(lcName)}.webp`;
+  } else if (gameId === 'nte') {
+    imgPath = `${CDN_URL}/nte%20images/arcs/${safeEncodeURIComponent(lcName)}.webp`;
+  } else {
+    imgPath = `${CDN_URL}/hsr%20images/광추/${safeEncodeURIComponent(lc.path || '')}/${safeEncodeURIComponent(fileName)}.webp`;
+  }
+
+  const targetUrl = gameId === 'ww' 
+    ? `/gallery/ww/weapon/${encodeURIComponent(lc.name || '')}` 
+    : (gameId === 'nte' 
+      ? `/gallery/nte/weapon/${encodeURIComponent(lc.name || '')}` 
+      : `/gallery/hsr/lightcone/${encodeURIComponent(lc.name || '')}`);
 
   return (
-    <Link to={`/gallery/${gameId}/${gameId === 'ww' ? 'weapon' : 'lightcone'}/${encodeURIComponent(lc.name || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
+    <Link to={targetUrl} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
       <img 
         src={imgPath} 
         alt={`${t(lc.name || '')} - ${t('상세 데이터 및 효과 정보')}`} 
@@ -106,7 +117,13 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
             <p className="text-white font-bold text-sm leading-none mb-1 truncate">{t(lc.name || '')}</p>
             <p className="text-[10px] text-yellow-500 uppercase truncate">{t(lc.path || lc.type || lc.weaponType || '')}</p>
           </div>
-          {lc.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5 flex-shrink-0" />}
+          {gameId === 'nte' ? (
+            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${lc.rarity === 5 ? 'bg-yellow-500/20 text-yellow-500' : 'bg-purple-500/20 text-purple-400'}`}>
+              {lc.rarity === 5 ? 'S' : lc.rarity === 4 ? 'A' : 'B'}
+            </span>
+          ) : (
+            lc.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5 flex-shrink-0" />
+          )}
         </div>
       </div>
     </Link>

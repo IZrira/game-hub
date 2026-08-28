@@ -596,6 +596,98 @@ export const getGameData = (targetId: string) => {
       };
     });
 
+  // 노션 이환(NTE) 아크(무기) 추출
+  const notionNteArcs = typedNotionData
+    .filter(item => item.dbSource === 'nte_arcs' || item.dbSource === 'nte_weapons' || (item.type && ['고체', '액체', '기체', '결합', '플라즈마'].includes(item.type)))
+    .map(item => {
+      const parsedBaseStats: Record<number, { atk: number; subStatName: string; subStatValue: string }> = {};
+      let baseAtk = 395;
+      let subStatName = '방어력';
+      let subStatValue = '52.5%';
+
+      if (item.growthStats) {
+        const lines = item.growthStats.split('\n');
+        lines.forEach((line: string) => {
+          const match = line.match(/(\d+)\s*:\s*(?:기초\s*)?공격력\s*([\d,]+)\s*(?:\/|\,)\s*([^\d\n]+?)\s*([\d.]+%?)/i);
+          if (match) {
+            const lv = parseInt(match[1], 10);
+            const atk = parseInt(match[2].replace(/,/g, ''), 10);
+            const subName = match[3].trim();
+            const subVal = match[4].trim();
+            parsedBaseStats[lv] = { atk, subStatName: subName, subStatValue: subVal };
+            if (lv === 80 || lv === Math.max(...Object.keys(parsedBaseStats).map(Number))) {
+              baseAtk = atk;
+              subStatName = subName;
+              subStatValue = subVal;
+            }
+          }
+        });
+      }
+
+      const parsedMaterials: { name: string; count: number }[] = [];
+      if (item.ascensionMaterials) {
+        const lines = item.ascensionMaterials.split('\n');
+        lines.forEach((line: string) => {
+          const trimmed = line.trim();
+          if (trimmed) {
+            const match = trimmed.match(/^([^xX*]+)[xX*]\s*([\d,]+)/);
+            if (match) {
+              parsedMaterials.push({
+                name: match[1].trim(),
+                count: parseInt(match[2].replace(/,/g, ''), 10) || 1
+              });
+            } else {
+              const numMatch = trimmed.match(/[\d,]+$/);
+              const textMatch = trimmed.replace(/[\d,xX*]+$/, '').trim();
+              if (textMatch) {
+                parsedMaterials.push({
+                  name: textMatch,
+                  count: numMatch ? parseInt(numMatch[0].replace(/,/g, ''), 10) : 1
+                });
+              }
+            }
+          }
+        });
+      }
+
+      let rarityNum = 4;
+      if (typeof item.rarity === 'string') {
+        const r = item.rarity.toUpperCase();
+        if (r === 'S' || r === '5') rarityNum = 5;
+        else if (r === 'A' || r === '4') rarityNum = 4;
+        else if (r === 'B' || r === '3') rarityNum = 3;
+      } else if (typeof item.rarity === 'number') {
+        rarityNum = item.rarity;
+      }
+
+      return {
+        id: item.id,
+        name: item.name,
+        gameId: 'nte' as const,
+        rarity: rarityNum,
+        rarityGrade: (rarityNum === 5 ? 'S' : rarityNum === 4 ? 'A' : 'B') as 'S' | 'A' | 'B',
+        type: item.type || '결합',
+        releaseVersion: item.releaseVersion || '1.0',
+        obtain: item.obtain || '노션 연동',
+        dedicatedChar: item.dedicatedChar || item.exclusive || '',
+        growthStats: item.growthStats || '',
+        baseStats: parsedBaseStats,
+        stats: {
+          atk: baseAtk,
+          subStatName: subStatName,
+          subStatValue: subStatValue
+        },
+        skill: {
+          name: item.skillName || '아크 스킬',
+          description: item.skillDescription || ''
+        },
+        ascensionMaterials: item.ascensionMaterials || '',
+        materials: parsedMaterials,
+        description: item.weaponStory || item.description || item.content || '',
+        isNotion: true
+      };
+    });
+
   // 노션 명조 에코 추출 및 매핑
   const notionWwEchoes = typedNotionData
     .filter(item => item.dbSource === 'ww_echoes')
@@ -829,6 +921,17 @@ export const getGameData = (targetId: string) => {
     GUIDES: WW_DATA_ALL.GUIDES
   };
 
+  const nteArcMap = new Map<string, any>();
+  NTE_DATA_ALL.WEAPON_DATA.forEach(w => {
+    const key = (w.name || '').trim();
+    if (key) nteArcMap.set(key, w);
+  });
+  notionNteArcs.forEach(w => {
+    const key = (w.name || '').trim();
+    if (key) nteArcMap.set(key, w);
+  });
+  const mergedNteArcs = Array.from(nteArcMap.values());
+
   // 3. 요청된 ID에 따라 관련 데이터셋을 선택합니다.
   let baseData: any;
   if (gameId === 'hsr') {
@@ -854,8 +957,8 @@ export const getGameData = (targetId: string) => {
   } else if (gameId === 'nte') {
     baseData = {
       CHARACTER_DB: [...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
-      WEAPON_DB: NTE_DATA_ALL.WEAPON_DATA,
-      WEAPON_DATA: NTE_DATA_ALL.WEAPON_DATA,
+      WEAPON_DB: mergedNteArcs,
+      WEAPON_DATA: mergedNteArcs,
       ECHO_DB: NTE_DATA_ALL.ECHO_DATA,
       INVENTORY_DB: [...notionNteItems, ...(NTE_DATA_ALL.ITEM_DATA || [])].reduce((acc: any, item: any) => {
         acc[item.name || item.id] = { ...item, gameId: 'nte' };
@@ -869,8 +972,8 @@ export const getGameData = (targetId: string) => {
     baseData = {
       CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
-      WEAPON_DB: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],
-      WEAPON_DATA: [...wwData.WEAPON_DB, ...NTE_DATA_ALL.WEAPON_DATA],
+      WEAPON_DB: [...wwData.WEAPON_DB, ...mergedNteArcs],
+      WEAPON_DATA: [...wwData.WEAPON_DB, ...mergedNteArcs],
       ECHO_DB: [...wwData.ECHO_DB, ...NTE_DATA_ALL.ECHO_DATA],
       RELIC_DB: hsrData.RELIC_DB,
       ORNAMENT_DB: hsrData.ORNAMENT_DB,
