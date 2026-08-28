@@ -32,15 +32,25 @@ from "10_Wiki/👥 Characters/WW"
 sort file.name asc
 limit 10
 ```
-> *WW 전체 캐릭터: [[10_Wiki/👥 Characters/WW/jinhsi|금희]], [[10_Wiki/👥 Characters/WW/changli|장리]], [[10_Wiki/👥 Characters/WW/camellya|카멜리아]] 등 총 56명*
+> *WW 전체 캐릭터: [[10_Wiki/👥 Characters/WW/jinhsi|금희]], [[10_Wiki/👥 Characters/WW/changli|장리]], [[10_Wiki/👥 Characters/WW/camellya|카멜리아]] 등 총 58명*
 
 ### 🏙️ 이환 (Neverness to Everness)
 ```dataview
-table element as "이능력 속성", role as "역할군", rarity as "성급"
+table element as "이능력 속성", role as "역할군", rarity_grade as "등급"
 from "10_Wiki/👥 Characters/NTE"
-sort file.name asc
+sort rarity desc, file.name asc
 ```
-> *NTE 전체 캐릭터: [[10_Wiki/👥 Characters/NTE/guwon|구원]], [[10_Wiki/👥 Characters/NTE/mint|민트]], [[10_Wiki/👥 Characters/NTE/hotori|호토리]], [[10_Wiki/👥 Characters/NTE/cheese|치즈]], [[10_Wiki/👥 Characters/NTE/adler|아들러]], [[10_Wiki/👥 Characters/NTE/lacrimosa|라크리모사]], [[10_Wiki/👥 Characters/NTE/evaluator|감정사]]*
+> *NTE 전체 캐릭터 (총 21명): [[10_Wiki/👥 Characters/NTE/guwon|구원(S)]], [[10_Wiki/👥 Characters/NTE/lacrimosa|라크리모사(S)]], [[10_Wiki/👥 Characters/NTE/zhanhong|잔홍(S)]], [[10_Wiki/👥 Characters/NTE/shinku|신쿠(S)]], [[10_Wiki/👥 Characters/NTE/eloy|일로이(S)]], [[10_Wiki/👥 Characters/NTE/cheese|치즈(S)]], [[10_Wiki/👥 Characters/NTE/chaos|카오스(S)]], [[10_Wiki/👥 Characters/NTE/daffodil|다포딜(S)]], [[10_Wiki/👥 Characters/NTE/hotori|호토리(S)]], [[10_Wiki/👥 Characters/NTE/evaluator|감정사(S)]], [[10_Wiki/👥 Characters/NTE/fadia|파디아(S)]], [[10_Wiki/👥 Characters/NTE/hathor|하토르(S)]], [[10_Wiki/👥 Characters/NTE/baijiang|백장(S)]], [[10_Wiki/👥 Characters/NTE/nanari|나나리(S)]], [[10_Wiki/👥 Characters/NTE/sakiri|사키리(S)]], [[10_Wiki/👥 Characters/NTE/umitsuki|우미츠키(A)]], [[10_Wiki/👥 Characters/NTE/adler|아들러(A)]], [[10_Wiki/👥 Characters/NTE/edgar|에드가(A)]], [[10_Wiki/👥 Characters/NTE/haniel|하니엘(A)]], [[10_Wiki/👥 Characters/NTE/mint|민트(A)]], [[10_Wiki/👥 Characters/NTE/skia|스키아(A)]]*
+
+---
+
+## 🔮 장비 & 아크 도감 위키 현황 (Equipment & Arcs)
+- **이환 아크 데이터베이스 (총 49종)**: [[nte-arc-database-guide]]
+  - S등급 (5성 - 28종): `「마지막 장미」`, `「세상을 뒤흔든 비」`, `백만불짜리 미소`, `금기의 문` 등
+  - A등급 (4성 - 16종): `물망산`, `뒤틀린 도시의 부름`, `때는 온다` 등
+  - B등급 (3성 - 5종): `「우리.」`, `광란의 「전자음악」`, `미소 천사` 등
+- **붕괴 스타레일 광추 데이터베이스**: [[lightcone-config]]
+- **명조 무기 & 에코 데이터베이스**: [[ww-echo-mechanics]]
 
 ---
 
@@ -73,6 +83,7 @@ sort last_reinforced desc
 ## 🔗 지식 연결 상태 (Quick Access)
 - **통합 메인 인덱스**: [[Index]]
 - **지식 강화 정책**: [[Policy]]
+- **텍스트 포맷팅 가이드**: [[text-formatting-guide]]
+- **이환 아크 가이드**: [[nte-arc-database-guide]]
 - **옵시디언 설정 가이드**: [[obsidian-setup-guide]]
 - **프리미엄 UI/UX 가이드**: [[obsidian-premium-enhancement]]
-
