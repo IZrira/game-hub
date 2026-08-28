@@ -8,19 +8,9 @@ import SEO from '../../common-hub/components/SEO';
 import { useTranslation } from 'react-i18next';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
-import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
+import { renderRichText, formatDescriptionByRank } from '../../ww-hub/data/formatter';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
-
-const formatNteDescriptionByRank = (text: string, rank: number) => {
-  if (!text) return '';
-  // 10%/12%/14%/16%/18% 패턴을 찾아서 현재 rank에 해당하는 값만 강조
-  return text.replace(/([\d.]+(?:%|초|pt)?)\/([\d.]+(?:%|초|pt)?)\/([\d.]+(?:%|초|pt)?)\/([\d.]+(?:%|초|pt)?)\/([\d.]+(?:%|초|pt)?)/g, (match, r1, r2, r3, r4, r5) => {
-    const ranks = [r1, r2, r3, r4, r5];
-    const active = ranks[rank - 1] || r1;
-    return `**<span class="text-brand-accent font-black text-lg underline decoration-brand-accent/50 underline-offset-4">${active}</span>** (${match})`;
-  });
-};
 
 const NTEArcDetail: React.FC = () => {
   const { t } = useTranslation();
@@ -266,9 +256,9 @@ const NTEArcDetail: React.FC = () => {
               </div>
               
               {/* 스킬 설명 본문 */}
-              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner">
-                <div className="whitespace-pre-line">
-                  <MarkdownRenderer content={formatNteDescriptionByRank(arc.skill?.description || '', rankIdx + 1)} />
+              <div className="flex flex-col justify-center text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
+                <div className="w-full whitespace-pre-line">
+                  {renderRichText(formatDescriptionByRank(arc.skill?.description || '', rankIdx + 1))}
                 </div>
               </div>
             </div>
