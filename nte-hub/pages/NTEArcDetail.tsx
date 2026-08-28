@@ -126,12 +126,6 @@ const NTEArcDetail: React.FC = () => {
               <div className="space-y-1">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-black uppercase text-[11px] tracking-widest" style={{ color: theme.primary }}>
                   <span>{t('종류')} : {t(arc.type || '결합')}</span>
-                  {arc.obtain && (
-                    <>
-                      <span className="text-white/20">|</span>
-                      <span className="text-gray-300">{t('획득처')} : {t(arc.obtain)}</span>
-                    </>
-                  )}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg flex items-center gap-4">
                   {t(arc.name)}
@@ -145,7 +139,7 @@ const NTEArcDetail: React.FC = () => {
                   </span>
                   {arc.dedicatedChar && (
                     <span className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-brand-primary/20 text-brand-accent border border-brand-primary/40 flex items-center gap-1">
-                      <User size={12} /> {t(arc.dedicatedChar)} {t('전용')}
+                      <User size={12} /> {arc.dedicatedChar.match(/\[(.*?)\]/)?.[1] || arc.dedicatedChar.replace(/\*\*/g, '').trim()} {t('전용')}
                     </span>
                   )}
                 </div>
@@ -325,8 +319,8 @@ const NTEArcDetail: React.FC = () => {
           </div>
         )}
 
-        {/* 05. 아크 스토리 섹션 */}
-        {arc.description && (
+        {/* 아크 스토리 섹션 */}
+        {(arc.description || arc.story || arc.weaponStory) && (
           <div className="space-y-6">
             <div className="flex items-center gap-6">
               <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
@@ -334,11 +328,9 @@ const NTEArcDetail: React.FC = () => {
             </div>
             <div className="glass-card p-8 rounded-[35px] border border-white/5">
               <div className="text-gray-300 text-base md:text-lg leading-relaxed italic bg-black/20 p-8 rounded-[25px] border border-white/5 shadow-inner">
-                {arc.isNotion ? (
-                  <MarkdownRenderer content={arc.description} />
-                ) : (
-                  <div className="whitespace-pre-line">{t(arc.description)}</div>
-                )}
+                <div className="whitespace-pre-line">
+                  {t((arc.description || arc.story || arc.weaponStory || '').replace(/\*\*/g, '').trim())}
+                </div>
               </div>
             </div>
           </div>

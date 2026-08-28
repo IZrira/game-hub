@@ -607,7 +607,8 @@ export const getGameData = (targetId: string) => {
 
       if (item.growthStats) {
         const lines = item.growthStats.split('\n');
-        lines.forEach((line: string) => {
+        lines.forEach((rawLine: string) => {
+          const line = rawLine.replace(/\*\*/g, '').trim();
           const match = line.match(/(\d+)\s*:\s*(?:기초\s*)?공격력\s*([\d,]+)\s*(?:\/|\,)\s*([^\d\n]+?)\s*([\d.]+%?)/i);
           if (match) {
             const lv = parseInt(match[1], 10);
@@ -660,6 +661,8 @@ export const getGameData = (targetId: string) => {
         rarityNum = item.rarity;
       }
 
+      const arcStory = item.weaponStory || item.description || item.content || '';
+
       return {
         id: item.id,
         name: item.name,
@@ -668,7 +671,7 @@ export const getGameData = (targetId: string) => {
         rarityGrade: (rarityNum === 5 ? 'S' : rarityNum === 4 ? 'A' : 'B') as 'S' | 'A' | 'B',
         type: item.type || '결합',
         releaseVersion: item.releaseVersion || '1.0',
-        obtain: item.obtain || '노션 연동',
+        obtain: item.obtain || '',
         dedicatedChar: item.dedicatedChar || item.exclusive || '',
         growthStats: item.growthStats || '',
         baseStats: parsedBaseStats,
@@ -683,7 +686,9 @@ export const getGameData = (targetId: string) => {
         },
         ascensionMaterials: item.ascensionMaterials || '',
         materials: parsedMaterials,
-        description: item.weaponStory || item.description || item.content || '',
+        description: arcStory,
+        story: arcStory,
+        weaponStory: arcStory,
         isNotion: true
       };
     });
