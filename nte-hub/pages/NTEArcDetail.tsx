@@ -8,6 +8,7 @@ import SEO from '../../common-hub/components/SEO';
 import { useTranslation } from 'react-i18next';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
+import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { renderRichText, formatDescriptionByRank, cleanSkillParagraphs } from '../../ww-hub/data/formatter';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
