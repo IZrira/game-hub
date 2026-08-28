@@ -556,7 +556,7 @@ export const getGameData = (targetId: string) => {
         fileName: item.fileName || item.name,
         isTrailblazer: item.name === '감정사',
         type: '캐릭터',
-        rarity: item.rarity || 5,
+        rarity: (typeof item.rarity === 'string' && (item.rarity.toUpperCase() === 'S' || item.rarity === '5')) ? 5 : (Number(item.rarity) || 4),
         releaseVersion: item.releaseVersion || '1.0',
         itemAttribute: item.itemAttribute || '',
         attribute: item.abilityAttribute || item.itemAttribute || '',

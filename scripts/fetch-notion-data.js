@@ -156,7 +156,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     }
 
     const name = props['아크명']?.title?.[0]?.plain_text || props['아크명']?.rich_text?.[0]?.plain_text || props['아크 명']?.title?.[0]?.plain_text || props['캐릭터']?.title?.[0]?.plain_text || props['아이템 명']?.title?.[0]?.plain_text || props['이름']?.title?.[0]?.plain_text || props['이름']?.rich_text?.[0]?.plain_text || '';
-    const rarity = props['성급']?.select?.name || props['등급']?.select?.name || props['등급']?.number?.toString() || '';
+    const rarity = extractRichText(props['성급']) || extractRichText(props['등급']) || props['성급']?.select?.name || props['등급']?.select?.name || props['등급']?.number?.toString() || '';
     
     let releaseVersion = '';
     if (props['출시 버전']?.type === 'select') {
@@ -296,12 +296,24 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
       if (weaponStory) autoDescription += ` ${weaponStory.substring(0, 100)}...`;
     }
 
+    let parsedRarity = 4;
+    if (rarity) {
+      const upper = String(rarity).trim().toUpperCase();
+      if (upper === 'S' || upper === '5' || upper.startsWith('5')) parsedRarity = 5;
+      else if (upper === 'A' || upper === '4' || upper.startsWith('4')) parsedRarity = 4;
+      else if (upper === 'B' || upper === '3' || upper.startsWith('3')) parsedRarity = 3;
+      else {
+        const num = parseInt(upper.replace(/[^0-9]/g, ''), 10);
+        parsedRarity = !isNaN(num) && num > 0 ? num : 4;
+      }
+    }
+
     if (normalizedName) {
       itemsMap.set(normalizedName, {
         id: page.id,
         name,
         autoDescription,
-        rarity: rarity ? parseInt(rarity.replace(/[^0-9]/g, '')) || 4 : 4,
+        rarity: parsedRarity,
         type,
         releaseVersion,
         obtain,

@@ -13,13 +13,14 @@ export const ELEMENT_COLORS: Record<string, string> = {
 export const renderRichText = (text: string) => {
   if (!text) return "";
 
+  const cleanText = text.replace(/\*\*/g, '');
   const elementKeywords = Object.keys(ELEMENT_COLORS).join('|');
   
   // [핵심 수정] 정규식의 속성명 매칭을 엄격하게 제한 + {icon:xxx} 태그 지원
   // [\d./+%]+ -> 수치 덩어리
   const ICON_COMMON_BASE = `https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/position/`;
   const regex = new RegExp(`({{YELLOW_START}}.*?{{YELLOW_END}}|{{KEY_(?:[eErR]|LSHIFT)}}|{{MOUSE_L}}|\\[[mM]ouse\\s+[lL]eft\\]|\\[[kK]ey\\s+[eErR]\\]|\\[[lL]eft\\s+[sS]hift\\]|\\[[^\\]]+\\.webp\\]|{icon:[^}]+}|(?:${elementKeywords})\\s*(?:피해)(?!\\s*보너스)|[\\d./+%]+)`, 'g');
-  const tokens = text.split(regex);
+  const tokens = cleanText.split(regex);
 
   return tokens.map((part, i) => {
     if (!part) return null;
@@ -128,10 +129,11 @@ export const renderRichText = (text: string) => {
 };
 
 export const formatDescriptionByRank = (description: string, rank: number) => {
+  const cleanDesc = (description || '').replace(/\*\*/g, '');
   // 1. 명시적인 중첩 구분자가 있는 경우 (예: [1중첩], [R1], @중첩1 등)
   // 해당 구분자를 기준으로 텍스트를 쪼갭니다.
   const rankSplitRegex = /(?:\[\s*[1-5]\s*중첩\s*\]|\[\s*R[1-5]\s*\]|@\s*중첩\s*[1-5])/i;
-  const parts = description.split(rankSplitRegex).map(p => p.trim()).filter(p => p.length > 0);
+  const parts = cleanDesc.split(rankSplitRegex).map(p => p.trim()).filter(p => p.length > 0);
   
   if (parts.length >= 5) {
     // 5단계로 명확히 나뉘어진 경우 해당 랭크의 텍스트 반환
@@ -141,7 +143,7 @@ export const formatDescriptionByRank = (description: string, rank: number) => {
   // 2. 구분자가 없는 경우 전체 텍스트를 유지한 채 슬래시(/)로 구분된 5단계 수치 패턴만 치환합니다.
   const rankPattern = /([\d.]+[%pt]*)\/([\d.]+[%pt]*)\/([\d.]+[%pt]*)\/([\d.]+[%pt]*)\/([\d.]+[%pt]*)/g;
 
-  return description.replace(rankPattern, (match, g1, g2, g3, g4, g5) => {
+  return cleanDesc.replace(rankPattern, (match, g1, g2, g3, g4, g5) => {
     const args = [g1, g2, g3, g4, g5];
     let val = args[rank - 1];
     // 단위(%, pt 등)가 마지막 단계에만 적혀 있을 경우를 대비해 단위를 추출하여 붙여줍니다.
@@ -156,7 +158,7 @@ export const formatDescriptionByRank = (description: string, rank: number) => {
 /** 문장 중간에 줄바꿈된 어색한 텍스트를 자연스러운 문단(단락) 배열로 정제하는 함수 */
 export const cleanSkillParagraphs = (text: string): string[] => {
   if (!text) return [];
-  const normalized = text.replace(/\r\n/g, '\n').trim();
+  const normalized = text.replace(/\*\*/g, '').replace(/\r\n/g, '\n').trim();
   const rawParagraphs = normalized.split(/\n\s*\n+/);
   const paragraphs: string[] = [];
 
