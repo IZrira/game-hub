@@ -672,7 +672,7 @@ export const getGameData = (targetId: string) => {
         type: item.type || '결합',
         releaseVersion: item.releaseVersion || '1.0',
         obtain: item.obtain || '',
-        dedicatedChar: item.dedicatedChar || item.exclusive || '',
+        dedicatedChar: (item.dedicatedChar || item.exclusive || '').replace(/\*\*/g, '').trim(),
         growthStats: item.growthStats || '',
         baseStats: parsedBaseStats,
         stats: {

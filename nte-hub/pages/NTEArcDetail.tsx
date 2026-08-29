@@ -304,16 +304,16 @@ const NTEArcDetail: React.FC = () => {
           </div>
         </div>
 
-        {/* 04. 전용 캐릭터 (있는 경우만 표시) */}
+        {/* 04. 전용 효과 (있는 경우만 표시) */}
         {arc.dedicatedChar && (
           <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
               <Sparkles size={22} style={{ color: theme.primary }} className="opacity-80" />
-              <span className="text-xl font-black uppercase tracking-tighter italic">{t("전용 조율 캐릭터")}</span>
+              <span className="text-xl font-black uppercase tracking-tighter italic">{t("전용 효과")}</span>
             </div>
             <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-gray-300 font-bold text-base">
               <span className="text-brand-accent font-black">
-                {arc.dedicatedChar.replace(/\[\[|\]\]/g, '')} 전용 아크로서, 착용 시 고유 추가 효과 및 속성 시너지를 발휘합니다.
+                {arc.dedicatedChar.replace(/\*\*/g, '').trim()}
               </span>
             </div>
           </div>
