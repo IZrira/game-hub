@@ -311,8 +311,8 @@ const NTEArcDetail: React.FC = () => {
               <Sparkles size={22} style={{ color: theme.primary }} className="opacity-80" />
               <span className="text-xl font-black uppercase tracking-tighter italic">{t("전용 효과")}</span>
             </div>
-            <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-gray-300 font-bold text-base">
-              <span className="text-brand-accent font-black">
+            <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-white font-bold text-base md:text-lg leading-relaxed">
+              <span className="text-white">
                 {arc.dedicatedChar.replace(/\*\*/g, '').trim()}
               </span>
             </div>
