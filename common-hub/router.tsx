@@ -19,7 +19,9 @@ const OrnamentDetail = React.lazy(() => import('../hsr-hub/pages/OrnamentDetail'
 const HSRTierList = React.lazy(() => import('../hsr-hub/pages/TierList'));
 const HSRPartyRecommendations = React.lazy(() => import('../hsr-hub/pages/PartyRecommendations'));
 const WWTierList = React.lazy(() => import('../ww-hub/pages/TierList'));
+const NTETierList = React.lazy(() => import('../nte-hub/pages/TierList'));
 const WWPartyRecommendations = React.lazy(() => import('../ww-hub/pages/PartyRecommendations'));
+const NTEPartyRecommendations = React.lazy(() => import('../nte-hub/pages/PartyRecommendations'));
 const WuwaWeaponDetail = React.lazy(() => import('../ww-hub/pages/WuwaWeaponDetail'));
 const NTEArcDetail = React.lazy(() => import('../nte-hub/pages/NTEArcDetail'));
 const Terminology = React.lazy(() => import('../hsr-hub/pages/Terminology'));
@@ -44,12 +46,14 @@ const NoticeDetail = React.lazy(() => import('./pages/NoticeDetail'));
 const TierListDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <WWTierList />;
+  if (gameId === 'nte') return <NTETierList />;
   return <HSRTierList />;
 };
 
 const PartyDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <WWPartyRecommendations />;
+  if (gameId === 'nte') return <NTEPartyRecommendations />;
   return <HSRPartyRecommendations />;
 };
 

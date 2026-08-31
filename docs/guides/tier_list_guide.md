@@ -1,6 +1,6 @@
 # 🏆 티어표 구조 및 업데이트 가이드 (Tier List Guide)
 
-> **문서 용도**: Rira Game Hub의 스타레일(HSR) 및 명조(WW) 티어표 산정 기준, 데이터 구조, 업데이트 템플릿 및 콘텐츠별 티어 정책을 정의하는 통합 문서입니다.
+> **문서 용도**: Rira Game Hub의 스타레일(HSR), 명조(WW), 이환(NTE) 3대 게임 티어표 산정 기준, 데이터 구조, 업데이트 템플릿 및 콘텐츠별 티어 정책을 정의하는 통합 문서입니다.
 
 ---
 
@@ -12,6 +12,9 @@
 * **명조 (WW)**: `ww-hub/data/tiers.ts` 및 Supabase `tier_lists` 테이블.
   * 분류: 역경의 탑 (Tower of Adversity), 홀로그램 전략 (Tactical Hologram), 범용 탐험.
   * 티어 등급: `T0`, `T0.5`, `T1`, `T2`, `T3`
+* **이환 (NTE)**: `nte-hub/data/tiers.ts` 및 `nte-hub/pages/TierList.tsx`.
+  * 분류: 종합 메타 티어 (Overall Meta), 왜곡 토벌전 특화 (Distortion Boss), 도시 탐색 & 필드 (Urban Overworld).
+  * 티어 등급: `S+`, `S`, `A+`, `A`, `B` (6대 속성: 혼, 령, 음, 양, 공, 상)
 
 ---
 
