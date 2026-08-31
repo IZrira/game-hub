@@ -270,7 +270,20 @@ async function generateSitemap() {
     const urlList = [
       `${BASE_URL}/`,
       `${BASE_URL}/gallery/hsr`,
-      `${BASE_URL}/gallery/ww`
+      `${BASE_URL}/gallery/ww`,
+      `${BASE_URL}/gallery/nte`,
+      `${BASE_URL}/gallery/hsr/tierlist`,
+      `${BASE_URL}/gallery/ww/tierlist`,
+      `${BASE_URL}/gallery/hsr/parties`,
+      `${BASE_URL}/gallery/ww/parties`,
+      `${BASE_URL}/gallery/nte/parties`,
+      `${BASE_URL}/gallery/hsr/terminology`,
+      `${BASE_URL}/about`,
+      `${BASE_URL}/privacy`,
+      `${BASE_URL}/tos`,
+      `${BASE_URL}/contact`,
+      `${BASE_URL}/blog`,
+      `${BASE_URL}/notices`
     ];
 
     let xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -282,9 +295,9 @@ async function generateSitemap() {
 
     // 1. Core Static Pages 추가
     const defaultBanner = `${CDN_URL}/hsr%20images/common/default_banner.webp`;
-    xml += buildUrlNode(`${BASE_URL}/`, staticLastmod, '1.0', 'daily');
-    xml += buildUrlNode(`${BASE_URL}/gallery/hsr`, staticLastmod, '0.9', 'daily', [defaultBanner]);
-    xml += buildUrlNode(`${BASE_URL}/gallery/ww`, staticLastmod, '0.9', 'daily', [defaultBanner]);
+    urlList.forEach(u => {
+      xml += buildUrlNode(u, staticLastmod, u === `${BASE_URL}/` ? '1.0' : '0.9', 'daily', [defaultBanner]);
+    });
 
     // 2. Wuthering Waves Characters Detail Pages
     xml += `\n  <!-- Wuthering Waves Characters Detail Pages -->\n`;
@@ -343,7 +356,7 @@ async function generateSitemap() {
       }
     });
 
-    // 5. Notion Imported Items Detail Pages
+    // 5. Notion Imported Items Detail Pages (WW, HSR, NTE)
     xml += `\n  <!-- Notion Imported Items Detail Pages -->\n`;
     const notionData = getNotionData();
     console.log(`Processing ${notionData.length} Notion items for sitemap...`);
@@ -351,12 +364,28 @@ async function generateSitemap() {
       if (!item.name) return;
       const cleanType = item.type || '';
       const isWwWeapon = ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
-      const isWwCharacter = cleanType === '캐릭터';
+      const isWwCharacter = item.dbSource === 'ww_characters' || (cleanType === '캐릭터' && item.dbSource !== 'nte_characters');
+      const isNteCharacter = item.dbSource === 'nte_characters';
+      const isNteArc = item.dbSource === 'nte_arcs' || ['고체', '액체', '기체', '결합', '플라즈마'].includes(cleanType);
       const isHsrLightCone = cleanType === '광추';
       const isHsrRelic = cleanType === '터널 유물';
       const isHsrOrnament = cleanType === '차원 장신구';
 
-      if (isWwWeapon) {
+      if (isNteCharacter) {
+        const url = `${BASE_URL}/gallery/nte/character/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          urlList.push(url);
+        }
+      } else if (isNteArc) {
+        const url = `${BASE_URL}/gallery/nte/weapon/${encodeURIComponent(item.name)}`;
+        const imageUrl = `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          urlList.push(url);
+        }
+      } else if (isWwWeapon) {
         const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`;
         if (!urlList.includes(url)) {
@@ -393,6 +422,22 @@ async function generateSitemap() {
         }
       }
     });
+
+    // 6. Blog Posts
+    xml += `\n  <!-- Blog Articles -->\n`;
+    const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
+    if (fs.existsSync(blogFilePath)) {
+      const blogContent = fs.readFileSync(blogFilePath, 'utf8');
+      const idMatches = [...blogContent.matchAll(/id:\s*["'](.*?)["']/g)];
+      idMatches.forEach(m => {
+        const blogId = m[1];
+        const url = `${BASE_URL}/blog/${encodeURIComponent(blogId)}`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.8', 'weekly');
+          urlList.push(url);
+        }
+      });
+    }
 
     xml += `</urlset>\n`;
 
