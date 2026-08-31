@@ -145,7 +145,7 @@ export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick?: () 
       </div>
       <div className="flex-1 min-w-0">
         <h4 className="text-white font-black text-sm truncate">{t(relic.name || '')}</h4>
-        <p className="text-gray-400 text-xs truncate mt-1">{t(relic.setEffect?.['2'] || relic.description || '')}</p>
+        <p className="text-gray-400 text-xs truncate mt-1">{t(relic['2piece'] || relic.setEffect?.['2piece'] || relic.setEffect?.['2'] || relic.description || '')}</p>
       </div>
     </>
   );
