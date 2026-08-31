@@ -307,10 +307,16 @@ export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onCl
   const ornamentName = ornament.name || '';
   const imgPath = `${CDN_URL}/hsr%20images/차원%20장신구/${safeEncodeURIComponent(ornamentName)}.webp`;
 
+  const effectText = ornament.setEffect?.['2piece'] || ornament.setEffect?.['2'] || ornament['2piece'] || ornament.description || '';
+
   const content = (
     <>
       <div className="w-16 h-16 shrink-0 bg-black/50 rounded-xl p-2 border border-white/5">
         <img src={imgPath} alt={t(ornament.name)} className="w-full h-full object-contain drop-shadow-md group-hover:scale-110 transition-transform" loading="lazy" onError={handleImageFallback} />
+      </div>
+      <div className="flex-1 min-w-0">
+        <h4 className="text-white font-black text-sm truncate">{t(ornament.name || '')}</h4>
+        <p className="text-gray-400 text-xs truncate mt-1">{t(effectText)}</p>
       </div>
     </>
   );
