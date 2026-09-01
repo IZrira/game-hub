@@ -73,6 +73,7 @@ export async function fetchNotices(gameId?: 'hsr' | 'ww'): Promise<Notice[]> {
       title: n.title,
       content: n.content,
       createdAt: n.created_at ? n.created_at.split('T')[0] : '',
+      updatedAt: n.updated_at ? n.updated_at.split('T')[0] : undefined,
       version: n.version,
       isCritical: n.is_critical,
       images: n.images,

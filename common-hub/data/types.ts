@@ -14,6 +14,7 @@ export interface Notice {
   title: string;
   content: string; // Markdown string
   createdAt: string;
+  updatedAt?: string;
   version?: string;
   isCritical?: boolean;
   images?: string[];

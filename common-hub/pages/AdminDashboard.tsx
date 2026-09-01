@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell } from 'lucide-react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
 import { Navigate } from 'react-router';
@@ -27,7 +27,13 @@ const AdminDashboard: React.FC = () => {
   const [mgmtNotices, setMgmtNotices] = useState<any[]>([]);
   const [expandedNoticeId, setExpandedNoticeId] = useState<string | null>(null);
   
-  // 신규 공지사항 양식
+  // 공지사항 편집 및 저장 상태
+  const [editingNoticeId, setEditingNoticeId] = useState<string | null>(null);
+  const [isSavingNotice, setIsSavingNotice] = useState(false);
+  const [initialEditingNotice, setInitialEditingNotice] = useState<any>(null);
+  const noticeFormRef = useRef<HTMLDivElement>(null);
+
+  // 공지사항 입력 양식
   const [newNotice, setNewNotice] = useState({
     title: '',
     category: 'Notice',
@@ -180,36 +186,136 @@ const AdminDashboard: React.FC = () => {
     if (data) setMgmtNotices(data);
   };
 
-  const addNoticeToDB = async () => {
-    if (!newNotice.title || !newNotice.content) {
+  const isNoticeFormDirty = () => {
+    if (editingNoticeId && initialEditingNotice) {
+      return (
+        newNotice.title !== initialEditingNotice.title ||
+        newNotice.category !== initialEditingNotice.category ||
+        newNotice.game_id !== initialEditingNotice.game_id ||
+        newNotice.content !== initialEditingNotice.content ||
+        (newNotice.version || '') !== (initialEditingNotice.version || '') ||
+        Boolean(newNotice.is_critical) !== Boolean(initialEditingNotice.is_critical)
+      );
+    }
+    return (
+      newNotice.title.trim() !== '' ||
+      newNotice.content.trim() !== '' ||
+      newNotice.version.trim() !== '' ||
+      newNotice.is_critical
+    );
+  };
+
+  const startEditNotice = (notice: any) => {
+    if (isNoticeFormDirty()) {
+      const confirmLeave = window.confirm('작성 중인 수정 사항이 저장되지 않았습니다. 다른 공지사항을 수정하시겠습니까?');
+      if (!confirmLeave) return;
+    }
+
+    const formData = {
+      title: notice.title || '',
+      category: notice.category || 'Notice',
+      game_id: notice.game_id || 'common',
+      content: notice.content || '',
+      version: notice.version || '',
+      is_critical: Boolean(notice.is_critical)
+    };
+
+    setEditingNoticeId(notice.id);
+    setInitialEditingNotice(formData);
+    setNewNotice(formData);
+
+    // 스크롤 포커싱 (모바일 / 반응형 UX 대응)
+    setTimeout(() => {
+      noticeFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  };
+
+  const cancelEditNotice = () => {
+    if (isNoticeFormDirty()) {
+      const confirmCancel = window.confirm('작성 중인 수정 사항이 저장되지 않았습니다. 수정을 취소하시겠습니까?');
+      if (!confirmCancel) return;
+    }
+
+    setEditingNoticeId(null);
+    setInitialEditingNotice(null);
+    setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+  };
+
+  const saveNoticeToDB = async () => {
+    if (!newNotice.title.trim() || !newNotice.content.trim()) {
       alert('제목과 내용은 필수입니다.');
       return;
     }
 
-    const id = `notice-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
-    
-    const { error } = await supabase.from('notices').insert([{
-      id,
-      title: newNotice.title,
-      category: newNotice.category,
-      game_id: newNotice.game_id,
-      content: newNotice.content,
-      version: newNotice.version || null,
-      is_critical: newNotice.is_critical
-    }]);
+    setIsSavingNotice(true);
 
-    if (error) {
-      alert('공지사항 생성 실패: ' + error.message);
-      return;
+    try {
+      if (editingNoticeId) {
+        // 수정 모드: update 실행 (updated_at 갱신, created_at 유지)
+        const updatePayload = {
+          title: newNotice.title.trim(),
+          category: newNotice.category,
+          game_id: newNotice.game_id,
+          content: newNotice.content,
+          version: newNotice.version.trim() || null,
+          is_critical: newNotice.is_critical,
+          updated_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase
+          .from('notices')
+          .update(updatePayload)
+          .eq('id', editingNoticeId);
+
+        if (error) throw error;
+
+        const updatedId = editingNoticeId;
+        alert('공지사항이 성공적으로 수정되었습니다!');
+        setEditingNoticeId(null);
+        setInitialEditingNotice(null);
+        setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+
+        await fetchMgmtNotices();
+        // 수정된 공지 카드 자동 확장 (미리보기)
+        setExpandedNoticeId(updatedId);
+      } else {
+        // 신규 등록 모드: insert 실행
+        const id = `notice-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
+        const insertPayload = {
+          id,
+          title: newNotice.title.trim(),
+          category: newNotice.category,
+          game_id: newNotice.game_id,
+          content: newNotice.content,
+          version: newNotice.version.trim() || null,
+          is_critical: newNotice.is_critical,
+          created_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        };
+
+        const { error } = await supabase.from('notices').insert([insertPayload]);
+        if (error) throw error;
+
+        alert('공지사항이 등록되었습니다!');
+        setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+        await fetchMgmtNotices();
+        setExpandedNoticeId(id);
+      }
+    } catch (err: any) {
+      console.error('Notice Save Error:', err);
+      alert((editingNoticeId ? '공지사항 수정 실패: ' : '공지사항 생성 실패: ') + (err?.message || '알 수 없는 오류'));
+    } finally {
+      setIsSavingNotice(false);
     }
-
-    alert('공지사항이 등록되었습니다!');
-    setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
-    fetchMgmtNotices();
   };
 
   const deleteNotice = async (id: string, title: string) => {
     if (!window.confirm(`'${title}' 공지사항을 삭제하시겠습니까?`)) return;
+    if (editingNoticeId === id) {
+      setEditingNoticeId(null);
+      setInitialEditingNotice(null);
+      setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+    }
     await supabase.from('notices').delete().eq('id', id);
     fetchMgmtNotices();
   };
@@ -1065,16 +1171,54 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
 
           {activeTab === 'notices' && (
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 animate-in fade-in duration-500">
-              {/* 공지사항 추가 폼 (작성 부분을 위/왼쪽으로) */}
+              {/* 공지사항 추가/수정 폼 (좌측) */}
               <div className="space-y-8">
-                <div className="bg-amber-500/[0.03] border border-amber-500/20 rounded-[40px] p-10 space-y-8 sticky top-12 shadow-2xl backdrop-blur-xl">
-                  <div className="flex items-center gap-4">
-                    <div className="p-4 bg-amber-500/20 rounded-2xl text-amber-500"><PlusCircle size={28} /></div>
-                    <div>
-                      <h2 className="text-xl font-black italic uppercase">공지사항 작성</h2>
-                      <p className="text-[10px] text-amber-500/40 font-black uppercase tracking-widest mt-1">Publish Notice</p>
+                <div 
+                  ref={noticeFormRef}
+                  className={`border rounded-[40px] p-8 md:p-10 space-y-8 sticky top-12 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
+                    editingNoticeId 
+                      ? 'bg-amber-500/[0.06] border-amber-500/50 ring-2 ring-amber-500/20 shadow-amber-500/10' 
+                      : 'bg-amber-500/[0.03] border-amber-500/20'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex items-center gap-4">
+                      <div className={`p-4 rounded-2xl transition-colors ${editingNoticeId ? 'bg-amber-500 text-black shadow-lg shadow-amber-500/30' : 'bg-amber-500/20 text-amber-500'}`}>
+                        {editingNoticeId ? <Edit3 size={28} /> : <PlusCircle size={28} />}
+                      </div>
+                      <div>
+                        <h2 className="text-xl font-black italic uppercase">
+                          {editingNoticeId ? '공지사항 수정' : '공지사항 작성'}
+                        </h2>
+                        <p className="text-[10px] text-amber-500/60 font-black uppercase tracking-widest mt-1">
+                          {editingNoticeId ? 'Edit Notice' : 'Publish Notice'}
+                        </p>
+                      </div>
                     </div>
+                    {editingNoticeId && (
+                      <span className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px] font-black uppercase">
+                        수정 모드
+                      </span>
+                    )}
                   </div>
+
+                  {editingNoticeId && (
+                    <div className="flex items-center justify-between gap-3 p-4 bg-amber-500/10 border border-amber-500/20 rounded-2xl text-xs font-bold text-amber-400">
+                      <div className="flex items-center gap-2 truncate">
+                        <Edit3 size={14} className="shrink-0" />
+                        <span className="truncate">공지 ID: <span className="font-mono text-white">{editingNoticeId}</span></span>
+                      </div>
+                      <button 
+                        type="button" 
+                        onClick={cancelEditNotice}
+                        disabled={isSavingNotice}
+                        className="text-[10px] font-black underline hover:text-white shrink-0 text-gray-400"
+                      >
+                        수정 취소
+                      </button>
+                    </div>
+                  )}
+
                   <div className="space-y-6">
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-gray-400 uppercase ml-1">게임</label>
@@ -1142,14 +1286,61 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </div>
                     </div>
                     
-                    <button onClick={addNoticeToDB} className="w-full py-5 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3">
-                      <Save size={18} /> 바로 등록하기
-                    </button>
+                    {editingNoticeId ? (
+                      <div className="grid grid-cols-2 gap-4 pt-2">
+                        <button 
+                          type="button"
+                          onClick={saveNoticeToDB} 
+                          disabled={isSavingNotice}
+                          className="w-full py-5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed text-black font-black rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3"
+                        >
+                          {isSavingNotice ? (
+                            <>
+                              <Loader2 size={18} className="animate-spin" />
+                              <span>저장 중...</span>
+                            </>
+                          ) : (
+                            <>
+                              <Save size={18} />
+                              <span>수정 완료</span>
+                            </>
+                          )}
+                        </button>
+                        <button 
+                          type="button"
+                          onClick={cancelEditNotice} 
+                          disabled={isSavingNotice}
+                          className="w-full py-5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-300 hover:text-white font-black rounded-2xl transition-all active:scale-95 flex items-center justify-center gap-2"
+                        >
+                          <X size={18} />
+                          <span>취소</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <button 
+                        type="button"
+                        onClick={saveNoticeToDB} 
+                        disabled={isSavingNotice}
+                        className="w-full py-5 bg-amber-500 hover:bg-amber-400 disabled:opacity-50 disabled:cursor-not-allowed text-black font-black rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3"
+                      >
+                        {isSavingNotice ? (
+                          <>
+                            <Loader2 size={18} className="animate-spin" />
+                            <span>등록 중...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Save size={18} />
+                            <span>바로 등록하기</span>
+                          </>
+                        )}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>
 
-              {/* 공지사항 목록 (관리를 아래/오른쪽으로) */}
+              {/* 공지사항 목록 (우측) */}
               <div className="xl:col-span-3 space-y-8">
                 <div className="bg-[#111] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl p-8">
                   <h2 className="text-xl font-black italic uppercase mb-6 flex items-center justify-between gap-3">
@@ -1168,12 +1359,18 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     {mgmtNotices.map((notice) => (
                       <div 
                         key={notice.id} 
-                        className={`bg-black/40 border rounded-3xl p-6 space-y-4 transition-all group cursor-pointer ${expandedNoticeId === notice.id ? 'border-amber-500/50 ring-1 ring-amber-500/20' : 'border-white/5 hover:border-amber-500/30'}`}
+                        className={`bg-black/40 border rounded-3xl p-6 space-y-4 transition-all group cursor-pointer ${
+                          editingNoticeId === notice.id
+                            ? 'border-amber-500 ring-2 ring-amber-500/30 bg-amber-500/[0.04]'
+                            : expandedNoticeId === notice.id 
+                              ? 'border-amber-500/50 ring-1 ring-amber-500/20' 
+                              : 'border-white/5 hover:border-amber-500/30'
+                        }`}
                         onClick={() => setExpandedNoticeId(expandedNoticeId === notice.id ? null : notice.id)}
                       >
                         <div className="flex items-start justify-between gap-6">
                           <div className="space-y-3 flex-1">
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center gap-3 flex-wrap">
                               <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[10px] font-black uppercase tracking-wider">
                                 {notice.game_id}
                               </span>
@@ -1188,19 +1385,44 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                               {notice.version && (
                                 <span className="text-[10px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{notice.version}</span>
                               )}
+                              {editingNoticeId === notice.id && (
+                                <span className="px-3 py-1 bg-amber-500 text-black font-black text-[10px] rounded-full flex items-center gap-1 animate-pulse">
+                                  <Edit3 size={10} /> 편집 중
+                                </span>
+                              )}
                             </div>
                             <h3 className="text-lg font-bold">{notice.title}</h3>
-                            <p className="text-xs text-gray-400 font-mono">
-                              {new Date(notice.created_at).toLocaleDateString()}
-                            </p>
+                            <div className="flex items-center gap-2 text-xs text-gray-400 font-mono">
+                              <span>{new Date(notice.created_at).toLocaleDateString()}</span>
+                              {notice.updated_at && notice.updated_at.split('T')[0] !== notice.created_at.split('T')[0] && (
+                                <span className="text-[10px] text-amber-500/90 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+                                  수정됨 ({new Date(notice.updated_at).toLocaleDateString()})
+                                </span>
+                              )}
+                            </div>
                           </div>
-                          <div className="flex items-center gap-2">
+                          <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
+                            <button 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                startEditNotice(notice);
+                              }}
+                              className={`p-4 rounded-2xl transition-all active:scale-90 border shrink-0 ${
+                                editingNoticeId === notice.id 
+                                  ? 'bg-amber-500 text-black border-amber-500 shadow-lg shadow-amber-500/30' 
+                                  : 'bg-amber-500/10 hover:bg-amber-500/20 text-amber-500/80 hover:text-amber-500 border-transparent hover:border-amber-500/20'
+                              }`}
+                              title="공지사항 수정"
+                            >
+                              <Edit3 size={18} />
+                            </button>
                             <button 
                               onClick={(e) => {
                                 e.stopPropagation();
                                 deleteNotice(notice.id, notice.title);
                               }}
                               className="p-4 bg-rose-500/10 hover:bg-rose-500/20 rounded-2xl text-rose-500/40 hover:text-rose-500 transition-all active:scale-90 border border-transparent hover:border-rose-500/20 shrink-0"
+                              title="공지사항 삭제"
                             >
                               <Trash2 size={18} />
                             </button>
