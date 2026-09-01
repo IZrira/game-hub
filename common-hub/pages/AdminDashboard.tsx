@@ -251,15 +251,14 @@ const AdminDashboard: React.FC = () => {
 
     try {
       if (editingNoticeId) {
-        // 수정 모드: update 실행 (updated_at 갱신, created_at 유지)
-        const updatePayload = {
+        // 수정 모드: update 실행
+        const updatePayload: Record<string, any> = {
           title: newNotice.title.trim(),
           category: newNotice.category,
           game_id: newNotice.game_id,
           content: newNotice.content,
           version: newNotice.version.trim() || null,
-          is_critical: newNotice.is_critical,
-          updated_at: new Date().toISOString()
+          is_critical: newNotice.is_critical
         };
 
         const { error } = await supabase
@@ -281,16 +280,14 @@ const AdminDashboard: React.FC = () => {
       } else {
         // 신규 등록 모드: insert 실행
         const id = `notice-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
-        const insertPayload = {
+        const insertPayload: Record<string, any> = {
           id,
           title: newNotice.title.trim(),
           category: newNotice.category,
           game_id: newNotice.game_id,
           content: newNotice.content,
           version: newNotice.version.trim() || null,
-          is_critical: newNotice.is_critical,
-          created_at: new Date().toISOString(),
-          updated_at: new Date().toISOString()
+          is_critical: newNotice.is_critical
         };
 
         const { error } = await supabase.from('notices').insert([insertPayload]);
