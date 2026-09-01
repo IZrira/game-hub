@@ -3,39 +3,214 @@ import { createDetailedBaseStats, createMaterial } from '../dataFactory';
 
 export const destructionLightcones: HsrLightCone[] = [
   {
-    "id": "lc_보이는_것이_곧_나",
-    "name": "보이는 것이 곧 나",
+    "id": "lc_두더지파가_환영해",
+    "name": "두더지파가 환영해",
     "gameId": "hsr",
-    "releaseVersion": "4.4",
-    "folderName": "보이는 것이 곧 나",
-    "rarity": 5,
+    "releaseVersion": "1.0",
+    "folderName": "두더지파가 환영해",
+    "rarity": 4,
     "path": "파멸",
     "baseStats": createDetailedBaseStats(
-      [43, 166, 283, 417, 551, 685, 819, 953],
-      [29, 111, 189, 278, 367, 456, 546, 635],
-      [21, 81, 138, 203, 268, 333, 398, 463]
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [12, 46, 79, 116, 153, 190, 227, 265]
     ),
     "skill": {
-      "name": "알 수 없음",
-      "description": "알 수 없음",
+      "name": "기묘한 모험",
+      "description": "장착한 캐릭터가 일반 공격, 전투 스킬 혹은 필살기를 발동하여 적을 공격하면 각 1스택의 「장난기」를 획득하며 스택마다 장착한 캐릭터의 공격력이 12% 증가한다",
       "descriptions": [
-        "알 수 없음",
-        "알 수 없음",
-        "알 수 없음",
-        "알 수 없음",
-        "알 수 없음"
+        "장착한 캐릭터가 일반 공격, 전투 스킬 혹은 필살기를 발동하여 적을 공격하면 각 1스택의 「장난기」를 획득하며 스택마다 장착한 캐릭터의 공격력이 12% 증가한다",
+        "장착한 캐릭터가 일반 공격, 전투 스킬 혹은 필살기를 발동하여 적을 공격하면 각 1스택의 「장난기」를 획득하며 스택마다 장착한 캐릭터의 공격력이 15% 증가한다",
+        "장착한 캐릭터가 일반 공격, 전투 스킬 혹은 필살기를 발동하여 적을 공격하면 각 1스택의 「장난기」를 획득하며 스택마다 장착한 캐릭터의 공격력이 18% 증가한다",
+        "장착한 캐릭터가 일반 공격, 전투 스킬 혹은 필살기를 발동하여 적을 공격하면 각 1스택의 「장난기」를 획득하며 스택마다 장착한 캐릭터의 공격력이 21% 증가한다",
+        "장착한 캐릭터가 일반 공격, 전투 스킬 혹은 필살기를 발동하여 적을 공격하면 각 1스택의 「장난기」를 획득하며 스택마다 장착한 캐릭터의 공격력이 24% 증가한다"
       ]
     },
     "ascensionMaterials": [
-      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("소멸된 코어", 8, 2)] },
-      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("사상, 도하장군", 4, 2), createMaterial("소멸된 코어", 20, 2)] },
-      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 4, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 8, 3)] },
-      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3)] },
-      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("만색, 풀스 메이트", 5, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 6, 4)] },
-      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("만색, 풀스 메이트", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] },
-      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("사상, 도하장군", 4, 2), createMaterial("육합, 왕수비차", 12, 3), createMaterial("만색, 풀스 메이트", 15, 4), createMaterial("소멸된 코어", 20, 2), createMaterial("희미한 빛의 코어", 20, 3), createMaterial("꿈틀대는 코어", 14, 4)] }
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("소멸된 코어", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("부서진 칼날", 3, 2), createMaterial("약탈의 본능", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 3, 3), createMaterial("약탈의 본능", 15, 2), createMaterial("변조된 야망", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("약탈의 본능", 15, 2), createMaterial("변조된 야망", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("정화의 칼날", 4, 4), createMaterial("약탈의 본능", 15, 2), createMaterial("변조된 야망", 15, 3), createMaterial("짓밟힌 의지", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("정화의 칼날", 4, 4), createMaterial("약탈의 본능", 15, 2), createMaterial("변조된 야망", 15, 3), createMaterial("짓밟힌 의지", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("정화의 칼날", 4, 4), createMaterial("약탈의 본능", 15, 2), createMaterial("변조된 야망", 15, 3), createMaterial("짓밟힌 의지", 12, 4)] }
     ],
-    "story": ""
+    "story": "*「두더지파, 두더지파」*\n\n*「우린 지금 출발해」*\n\n*「똑똑한 두더지는 두려워 하지 않아」*\n\n*「두더지파, 두더지파」*\n\n*「두더지파는 모험을 시작한다!」*"
+  },
+  {
+    "id": "lc_인사록·음률_사냥",
+    "name": "인사록·음률 사냥",
+    "gameId": "hsr",
+    "releaseVersion": "2.6",
+    "folderName": "인사록·음률 사냥",
+    "rarity": 4,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats(
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [12, 46, 79, 116, 153, 190, 227, 265]
+    ),
+    "skill": {
+      "name": "공연 시작!",
+      "description": "장착한 캐릭터의 HP 최대치가 12% 증가하고, 자신의 HP를 잃거나 회복하면 치명타 피해가 18% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동한다",
+      "descriptions": [
+        "장착한 캐릭터의 HP 최대치가 12% 증가하고, 자신의 HP를 잃거나 회복하면 치명타 피해가 18% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동한다",
+        "장착한 캐릭터의 HP 최대치가 15% 증가하고, 자신의 HP를 잃거나 회복하면 치명타 피해가 22.5% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동한다",
+        "장착한 캐릭터의 HP 최대치가 18% 증가하고, 자신의 HP를 잃거나 회복하면 치명타 피해가 27% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동한다",
+        "장착한 캐릭터의 HP 최대치가 21% 증가하고, 자신의 HP를 잃거나 회복하면 치명타 피해가 31.5% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동한다",
+        "장착한 캐릭터의 HP 최대치가 24% 증가하고, 자신의 HP를 잃거나 회복하면 치명타 피해가 36% 증가한다, 지속 시간: 2턴, 해당 효과는 턴마다 1회만 발동한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("생각의 가루", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("보리인의 송곳니", 3, 2), createMaterial("생각의 가루", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("보리인의 송곳니", 3, 2), createMaterial("늑대 독 송곳니", 3, 3), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("보리인의 송곳니", 3, 2), createMaterial("늑대 독 송곳니", 9, 3), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("보리인의 송곳니", 3, 2), createMaterial("늑대 독 송곳니", 9, 3), createMaterial("달의 광기 이빨", 4, 4), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3), createMaterial("욕망의 거울 조각", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("보리인의 송곳니", 3, 2), createMaterial("늑대 독 송곳니", 9, 3), createMaterial("달의 광기 이빨", 4, 4), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3), createMaterial("욕망의 거울 조각", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("보리인의 송곳니", 3, 2), createMaterial("늑대 독 송곳니", 9, 3), createMaterial("달의 광기 이빨", 4, 4), createMaterial("생각의 가루", 15, 2), createMaterial("인상의 파편", 15, 3), createMaterial("욕망의 거울 조각", 12, 4)] }
+    ],
+    "story": "은하인법은 천변만화, 음률•사냥은 위풍당당. 들어라——\n\n기타 스트로크 연주, 심장을 울리는 베이스, 전자음의 윤무가 순식간에 공연장을 뜨겁게 달군다!\n땀은 거짓말을 하지 않고 이어질 파란을 기록하며 건반의 음표가 되어 울려퍼지리. 요란하게 노래해라. 적극적으로 나서라. 상처투성이가 된다 해도.\n*「요란!」「요란!」「요란!」*\n헤헤, 귀공, 이 거친 파도 같은 세상에서 노래 정도는 목청껏 불러도 되지 않을까?"
+  },
+  {
+    "id": "lc_멍!_산책_시간!",
+    "name": "멍! 산책 시간!",
+    "gameId": "hsr",
+    "releaseVersion": "1.0",
+    "folderName": "멍! 산책 시간!",
+    "rarity": 4,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [15, 58, 98, 145, 191, 238, 284, 331]
+    ),
+    "skill": {
+      "name": "튀어!",
+      "description": "장착한 캐릭터의 공격력이 10% 증가하고, 연소나 열상 상태의 적에게 가하는 피해가 16% 증가한다. 해당 효과는 지속 피해에도 적용된다",
+      "descriptions": [
+        "장착한 캐릭터의 공격력이 10% 증가하고, 연소나 열상 상태의 적에게 가하는 피해가 16% 증가한다. 해당 효과는 지속 피해에도 적용된다",
+        "장착한 캐릭터의 공격력이 12% 증가하고, 연소나 열상 상태의 적에게 가하는 피해가 20% 증가한다. 해당 효과는 지속 피해에도 적용된다",
+        "장착한 캐릭터의 공격력이 15% 증가하고, 연소나 열상 상태의 적에게 가하는 피해가 24% 증가한다. 해당 효과는 지속 피해에도 적용된다",
+        "장착한 캐릭터의 공격력이 17% 증가하고, 연소나 열상 상태의 적에게 가하는 피해가 28% 증가한다. 해당 효과는 지속 피해에도 적용된다",
+        "장착한 캐릭터의 공격력이 20% 증가하고, 연소나 열상 상태의 적에게 가하는 피해가 32% 증가한다. 해당 효과는 지속 피해에도 적용된다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("소멸된 코어", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("부서진 칼날", 3, 2), createMaterial("소멸된 코어", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 3, 3), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("정화의 칼날", 4, 4), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3), createMaterial("꿈틀대는 코어", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("정화의 칼날", 4, 4), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3), createMaterial("꿈틀대는 코어", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("부서진 칼날", 3, 2), createMaterial("무생의 칼날", 9, 3), createMaterial("정화의 칼날", 4, 4), createMaterial("소멸된 코어", 15, 2), createMaterial("희미한 빛의 코어", 15, 3), createMaterial("꿈틀대는 코어", 12, 4)] }
+    ],
+    "story": "아직 아무도 눈치채지 못한 것이 아쉬울 뿐이다….\n그것이 코를 이리저리 킁킁거리며 인적 없는 골목으로 들어가는 것을.\n\n아직 아무도 눈치채지 못한 것이 아쉬울 뿐이다….\n그것이 발톱을 집어넣은 채 비밀번호를 입력하고는 자유의 품 속으로 뛰어드는 것을.\n\n아직도 눈치챈 사람이 없는가….\n성장한 강아지는 스스로 우주를 산책하는 법을 터득했다!"
+  },
+  {
+    "id": "lc_전멸",
+    "name": "전멸",
+    "gameId": "hsr",
+    "releaseVersion": "1.0",
+    "folderName": "전멸",
+    "rarity": 3,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [17, 65, 110, 162, 214, 266, 318, 370],
+      [9, 35, 59, 87, 115, 143, 171, 198]
+    ),
+    "skill": {
+      "name": "군단",
+      "description": "장착한 캐릭터의 현재 HP 백분율이 80% 미만일 경우 캐릭터의 치명타 확률이 12% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터의 현재 HP 백분율이 80% 미만일 경우 캐릭터의 치명타 확률이 12% 증가한다",
+        "장착한 캐릭터의 현재 HP 백분율이 80% 미만일 경우 캐릭터의 치명타 확률이 15% 증가한다",
+        "장착한 캐릭터의 현재 HP 백분율이 80% 미만일 경우 캐릭터의 치명타 확률이 18% 증가한다",
+        "장착한 캐릭터의 현재 HP 백분율이 80% 미만일 경우 캐릭터의 치명타 확률이 21% 증가한다",
+        "장착한 캐릭터의 현재 HP 백분율이 80% 미만일 경우 캐릭터의 치명타 확률이 24% 증가한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 3000, 3), createMaterial("소멸된 코어", 4, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 9000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("철위대 배지", 12, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 21000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 2, 3), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 4, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 51000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 111000, 4), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 3, 4), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3), createMaterial("철위대 훈장", 3, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 9, 4), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3), createMaterial("철위대 훈장", 8, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 9, 4), createMaterial("철위대 배지", 12, 2), createMaterial("철위대 표식", 10, 3), createMaterial("철위대 훈장", 8, 4)] }
+    ],
+    "story": "세월에서 추출한 희박한 힘. 보잘것없는 찰나의 순간들이 모여 엮어진 장렬한 운명.\n\n「어떻게 해야 행성의 과거를 더 완벽하게 만들 수 있을까? 지금, 바로, 갈기갈기 찢어버리는 거야」"
+  },
+  {
+    "id": "lc_무너진_행복",
+    "name": "무너진 행복",
+    "gameId": "hsr",
+    "releaseVersion": "1.0",
+    "folderName": "무너진 행복",
+    "rarity": 3,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [17, 65, 110, 162, 214, 266, 318, 370],
+      [9, 35, 59, 87, 115, 143, 171, 198]
+    ),
+    "skill": {
+      "name": "토벌",
+      "description": "장착한 캐릭터는 현재 HP 백분율이 50%보다 높은 적을 공격할 경우 가하는 피해가 20% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터는 현재 HP 백분율이 50%보다 높은 적을 공격할 경우 가하는 피해가 20% 증가한다",
+        "장착한 캐릭터는 현재 HP 백분율이 50%보다 높은 적을 공격할 경우 가하는 피해가 25% 증가한다",
+        "장착한 캐릭터는 현재 HP 백분율이 50%보다 높은 적을 공격할 경우 가하는 피해가 30% 증가한다",
+        "장착한 캐릭터는 현재 HP 백분율이 50%보다 높은 적을 공격할 경우 가하는 피해가 35% 증가한다",
+        "장착한 캐릭터는 현재 HP 백분율이 50%보다 높은 적을 공격할 경우 가하는 피해가 40% 증가한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 3000, 3), createMaterial("소멸된 코어", 4, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 9000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("소멸된 코어", 12, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 21000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 2, 3), createMaterial("소멸된 코어", 12, 2), createMaterial("희미한 빛의 코어", 4, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 51000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("소멸된 코어", 12, 2), createMaterial("희미한 빛의 코어", 10, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 111000, 4), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 3, 4), createMaterial("소멸된 코어", 12, 2), createMaterial("희미한 빛의 코어", 10, 3), createMaterial("꿈틀대는 코어", 3, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 9, 4), createMaterial("소멸된 코어", 12, 2), createMaterial("희미한 빛의 코어", 10, 3), createMaterial("꿈틀대는 코어", 8, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 9, 4), createMaterial("소멸된 코어", 12, 2), createMaterial("희미한 빛의 코어", 10, 3), createMaterial("꿈틀대는 코어", 8, 4)] }
+    ],
+    "story": "세월에서 추출한 희박한 힘. 보잘것없는 찰나의 순간들이 모여 엮어진 장렬한 운명.\n\n「어떤 사물을 파괴할 수 있는 능력이 있는 사람만이 진정한 지배자이다」"
+  },
+  {
+    "id": "lc_천경",
+    "name": "천경",
+    "gameId": "hsr",
+    "releaseVersion": "1.0",
+    "folderName": "천경",
+    "rarity": 3,
+    "path": "파멸",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [17, 65, 110, 162, 214, 266, 318, 370],
+      [9, 35, 59, 87, 115, 143, 171, 198]
+    ),
+    "skill": {
+      "name": "파멸",
+      "description": "장착한 캐릭터가 일반 공격과 전투 스킬로 가하는 피해가 20% 증가한다",
+      "descriptions": [
+        "장착한 캐릭터가 일반 공격과 전투 스킬로 가하는 피해가 20% 증가한다",
+        "장착한 캐릭터가 일반 공격과 전투 스킬로 가하는 피해가 25% 증가한다",
+        "장착한 캐릭터가 일반 공격과 전투 스킬로 가하는 피해가 30% 증가한다",
+        "장착한 캐릭터가 일반 공격과 전투 스킬로 가하는 피해가 35% 증가한다",
+        "장착한 캐릭터가 일반 공격과 전투 스킬로 가하는 피해가 40% 증가한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 3000, 3), createMaterial("약탈의 본능", 4, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 9000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("약탈의 본능", 12, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 21000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 2, 3), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 4, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 51000, 3), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 111000, 4), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 3, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 3, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 9, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 8, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 231000, 5), createMaterial("부서진 칼날", 2, 2), createMaterial("무생의 칼날", 6, 3), createMaterial("정화의 칼날", 9, 4), createMaterial("약탈의 본능", 12, 2), createMaterial("변조된 야망", 10, 3), createMaterial("짓밟힌 의지", 8, 4)] }
+    ],
+    "story": "세월에서 추출한 희박한 힘. 바로 이런 보잘것없는 찰나의 순간들이 모여 장렬한 운명을 엮어낸다.\n\n「사람들은 항상 아름답지 않은 과거를 지우려 한다. 이게 바로 기억의 본질이다」"
   },
   {
     "id": "lc_태양보다_밝게_빛나는_것",
