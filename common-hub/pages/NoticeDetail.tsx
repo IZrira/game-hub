@@ -72,7 +72,7 @@ const NoticeDetail: React.FC = () => {
 
         <article className="bg-[#121212] rounded-[48px] border border-white/5 p-12 md:p-20 shadow-2xl relative overflow-hidden min-h-[60vh]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-8">
-            <div className="space-y-4">
+            <div className="space-y-3 flex-1">
               <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${
                 notice.category === 'Update' ? 'bg-brand-accent/20 text-brand-accent border border-brand-accent/30' :
                 notice.category === 'Event' ? 'bg-emerald-400/20 text-emerald-400 border border-emerald-400/30' :
@@ -80,7 +80,7 @@ const NoticeDetail: React.FC = () => {
               }`}>
                 {notice.category}
               </div>
-              <h1 className="text-4xl md:text-5xl font-black tracking-tight leading-tight">
+              <h1 className="text-2xl md:text-3xl font-black tracking-tight leading-snug break-keep text-white">
                 {notice.title}
               </h1>
             </div>
