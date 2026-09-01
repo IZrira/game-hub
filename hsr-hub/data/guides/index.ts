@@ -96,6 +96,7 @@ import { 달리아Guide } from './달리아';
 import { 더헤르타Guide } from './더헤르타';
 import { 라파Guide } from './라파';
 import { 로빈Guide } from './로빈';
+import { 로빈서머레토Guide } from './로빈서머레토';
 import { 루카Guide } from './루카';
 import { 링스Guide } from './링스';
 import { 마이데이Guide } from './마이데이';
@@ -199,6 +200,7 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   더헤르타Guide,
   라파Guide,
   로빈Guide,
+  로빈서머레토Guide,
   루카Guide,
   링스Guide,
   마이데이Guide,
