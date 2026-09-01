@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2 } from 'lucide-react';
+import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2, RotateCcw } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
 import { Navigate } from 'react-router';
@@ -241,6 +241,22 @@ const AdminDashboard: React.FC = () => {
     setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
   };
 
+  const resetAllNoticeUpdatedTimestamps = async () => {
+    if (!window.confirm('기존 모든 공지사항의 수정일시(updated_at)를 초기화하시겠습니까?\n초기화 후에는 실제로 수정한 공지사항에만 수정일이 표시됩니다.')) return;
+    try {
+      const { error } = await supabase
+        .from('notices')
+        .update({ updated_at: null })
+        .neq('id', '');
+      if (error) throw error;
+      alert('모든 공지사항의 수정일시가 초기화되었습니다. 이제 실제로 수정한 공지에만 수정일이 표시됩니다.');
+      fetchMgmtNotices();
+    } catch (err: any) {
+      console.error('Reset updated_at error:', err);
+      alert('수정일시 초기화 실패: ' + (err?.message || '알 수 없는 오류'));
+    }
+  };
+
   const saveNoticeToDB = async () => {
     if (!newNotice.title.trim() || !newNotice.content.trim()) {
       alert('제목과 내용은 필수입니다.');
@@ -251,20 +267,31 @@ const AdminDashboard: React.FC = () => {
 
     try {
       if (editingNoticeId) {
-        // 수정 모드: update 실행
+        // 수정 모드: update 실행 (수정한 공지만 updated_at 갱신)
         const updatePayload: Record<string, any> = {
           title: newNotice.title.trim(),
           category: newNotice.category,
           game_id: newNotice.game_id,
           content: newNotice.content,
           version: newNotice.version.trim() || null,
-          is_critical: newNotice.is_critical
+          is_critical: newNotice.is_critical,
+          updated_at: new Date().toISOString()
         };
 
-        const { error } = await supabase
+        let { error } = await supabase
           .from('notices')
           .update(updatePayload)
           .eq('id', editingNoticeId);
+
+        // 만약 Supabase에 updated_at 컬럼이 아직 없다면 updated_at 제외하고 재시도
+        if (error && error.message && error.message.includes('updated_at')) {
+          delete updatePayload.updated_at;
+          const retryRes = await supabase
+            .from('notices')
+            .update(updatePayload)
+            .eq('id', editingNoticeId);
+          error = retryRes.error;
+        }
 
         if (error) throw error;
 
@@ -278,7 +305,7 @@ const AdminDashboard: React.FC = () => {
         // 수정된 공지 카드 자동 확장 (미리보기)
         setExpandedNoticeId(updatedId);
       } else {
-        // 신규 등록 모드: insert 실행
+        // 신규 등록 모드: insert 실행 (신규 등록 시에는 updated_at을 null로 저장)
         const id = `notice-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
         const insertPayload: Record<string, any> = {
           id,
@@ -287,10 +314,17 @@ const AdminDashboard: React.FC = () => {
           game_id: newNotice.game_id,
           content: newNotice.content,
           version: newNotice.version.trim() || null,
-          is_critical: newNotice.is_critical
+          is_critical: newNotice.is_critical,
+          updated_at: null
         };
 
-        const { error } = await supabase.from('notices').insert([insertPayload]);
+        let { error } = await supabase.from('notices').insert([insertPayload]);
+        if (error && error.message && error.message.includes('updated_at')) {
+          delete insertPayload.updated_at;
+          const retryRes = await supabase.from('notices').insert([insertPayload]);
+          error = retryRes.error;
+        }
+
         if (error) throw error;
 
         alert('공지사항이 등록되었습니다!');
@@ -1344,13 +1378,23 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     <div className="flex items-center gap-3">
                       <Bell className="text-amber-500" size={24} /> 등록된 공지사항 관리
                     </div>
-                    <button 
-                      onClick={syncNoticesFromLocal}
-                      className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-[10px] font-black transition-all active:scale-95 text-gray-400"
-                    >
-                      <RefreshCw size={12} className={loading ? 'animate-spin' : ''} />
-                      로컬 공지 동기화
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button 
+                        onClick={resetAllNoticeUpdatedTimestamps}
+                        className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-rose-500/10 hover:text-rose-400 border border-white/10 hover:border-rose-500/30 rounded-xl text-[10px] font-black transition-all active:scale-95 text-gray-400"
+                        title="기존 공지들의 수정일시를 초기화하여, 이후 실제 수정한 공지에만 수정일이 표시되도록 정리합니다."
+                      >
+                        <RotateCcw size={12} />
+                        기존 수정일시 초기화
+                      </button>
+                      <button 
+                        onClick={syncNoticesFromLocal}
+                        className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-[10px] font-black transition-all active:scale-95 text-gray-400"
+                      >
+                        <RefreshCw size={12} className={loading ? 'animate-spin' : ''} />
+                        로컬 공지 동기화
+                      </button>
+                    </div>
                   </h2>
                   <div className="space-y-4">
                     {mgmtNotices.map((notice) => (
@@ -1389,9 +1433,14 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                               )}
                             </div>
                             <h3 className="text-lg font-bold">{notice.title}</h3>
-                            <p className="text-xs text-gray-400 font-mono">
-                              {new Date(notice.created_at).toLocaleDateString()}
-                            </p>
+                            <div className="flex items-center gap-2 text-xs text-gray-400 font-mono">
+                              <span>{new Date(notice.created_at).toLocaleDateString()}</span>
+                              {notice.updated_at && notice.updated_at.split('T')[0] !== notice.created_at.split('T')[0] && (
+                                <span className="text-[10px] text-amber-500/90 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+                                  수정됨 ({new Date(notice.updated_at).toLocaleDateString()})
+                                </span>
+                              )}
+                            </div>
                           </div>
                           <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
                             <button 
