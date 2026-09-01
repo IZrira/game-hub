@@ -86,12 +86,7 @@ const NoticeDetail: React.FC = () => {
             </div>
             <div className="flex items-center gap-2 text-sm text-gray-400 font-bold shrink-0">
               <Calendar size={16} />
-              <span>{notice.createdAt}</span>
-              {notice.updatedAt && notice.updatedAt !== notice.createdAt && (
-                <span className="text-xs font-semibold text-amber-500/90 bg-amber-500/10 px-2.5 py-1 rounded-full border border-amber-500/20">
-                  최종 수정: {notice.updatedAt}
-                </span>
-              )}
+              {notice.createdAt}
             </div>
           </div>
 

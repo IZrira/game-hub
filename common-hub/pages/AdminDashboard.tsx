@@ -1389,14 +1389,9 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                               )}
                             </div>
                             <h3 className="text-lg font-bold">{notice.title}</h3>
-                            <div className="flex items-center gap-2 text-xs text-gray-400 font-mono">
-                              <span>{new Date(notice.created_at).toLocaleDateString()}</span>
-                              {notice.updated_at && notice.updated_at.split('T')[0] !== notice.created_at.split('T')[0] && (
-                                <span className="text-[10px] text-amber-500/90 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
-                                  수정됨 ({new Date(notice.updated_at).toLocaleDateString()})
-                                </span>
-                              )}
-                            </div>
+                            <p className="text-xs text-gray-400 font-mono">
+                              {new Date(notice.created_at).toLocaleDateString()}
+                            </p>
                           </div>
                           <div className="flex items-center gap-2 shrink-0" onClick={e => e.stopPropagation()}>
                             <button 
