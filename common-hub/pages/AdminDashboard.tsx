@@ -255,7 +255,7 @@ const AdminDashboard: React.FC = () => {
       display_order: 100
     }));
 
-    await supabase.from('tier_lists').insert(tierEntries);
+    await supabase.from('tier_lists').upsert(tierEntries, { onConflict: 'game_id,category_id,character_name' });
 
     alert('캐릭터 및 티어 정보 등록 완료!');
     setNewChar({ name: '', folder_name: '', rarity: 5, attribute: '물리', path: '파멸', version: '3.1' });
@@ -264,21 +264,45 @@ const AdminDashboard: React.FC = () => {
   };
 
   const updateTierInfo = async (name: string, categoryId: string, updates: any) => {
+    if (!activeGame) return;
     const targetNameNorm = normalizeName(name);
     const existing = mgmtTiers.find(t => normalizeName(t.character_name) === targetNameNorm && t.category_id === categoryId);
-    
-    try {
-      if (existing) {
-        const { error } = await supabase.from('tier_lists').update(updates).match({ game_id: activeGame, category_id: categoryId, character_name: existing.character_name });
-        if (error) throw error;
+    const resolvedCharName = existing?.character_name || name;
+
+    const payload = {
+      game_id: activeGame,
+      category_id: categoryId,
+      character_name: resolvedCharName,
+      tier: existing?.tier || '?',
+      role: existing?.role || '메인 딜러',
+      change: existing?.change || 'stay',
+      display_order: existing?.display_order ?? 100,
+      ...updates
+    };
+
+    // 낙관적 UI 업데이트 (지연 없는 즉각 반응)
+    setMgmtTiers(prev => {
+      const idx = prev.findIndex(t => t.game_id === activeGame && t.category_id === categoryId && (t.character_name === resolvedCharName || normalizeName(t.character_name) === targetNameNorm));
+      if (idx >= 0) {
+        const next = [...prev];
+        next[idx] = { ...next[idx], ...updates };
+        return next;
       } else {
-        const { error } = await supabase.from('tier_lists').insert([{ game_id: activeGame, category_id: categoryId, character_name: name, tier: '?', role: '메인 딜러', change: 'stay', display_order: 100, ...updates }]);
-        if (error) throw error;
+        return [...prev, payload];
       }
+    });
+
+    try {
+      const { error } = await supabase
+        .from('tier_lists')
+        .upsert(payload, { onConflict: 'game_id,category_id,character_name' });
+
+      if (error) throw error;
       fetchTierData();
     } catch (err: any) {
       console.error('Update Tier Error:', err);
       alert('티어 수정 실패: ' + (err?.message || '알 수 없는 오류'));
+      fetchTierData();
     }
   };
 
