@@ -56,7 +56,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           {/* 무기 스킬 (지능형 컬러 적용) */}
           <section className="space-y-4">
             <div className={`flex items-center gap-3 border-l-4 border-${rarityColor} pl-4`}>
-              <h4 className="text-sm font-black text-white uppercase tracking-widest">{weapon.skill.name}</h4>
+              <h4 className="text-sm font-black italic text-white uppercase tracking-widest">{weapon.skill?.name ? weapon.skill.name.replace(/\*\*/g, '').trim() : ''}</h4>
               <span className="text-[10px] font-bold text-gray-400">RANK 1</span>
             </div>
             <div className={`bg-${rarityColor}/5 p-8 rounded-[32px] border border-${rarityColor}/10`}>

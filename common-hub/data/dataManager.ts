@@ -106,7 +106,7 @@ export const getGameData = (targetId: string) => {
         }
       }
 
-      if (item.skillName) skillName = item.skillName.trim();
+      if (item.skillName) skillName = item.skillName.replace(/\*\*/g, '').trim();
       if (item.skillDescription) skillDescription = item.skillDescription.trim();
       if (item.weaponStory) description = item.weaponStory.trim();
 
@@ -888,7 +888,10 @@ export const getGameData = (targetId: string) => {
           releaseVersion: w.releaseVersion || existing.releaseVersion,
           obtain: w.obtain && w.obtain !== '노션 연동' ? w.obtain : (existing.obtain || w.obtain),
           stats: w.stats?.atk ? w.stats : existing.stats,
-          skill: (w.skill?.name && w.skill.name !== '노션 연동 스킬') ? w.skill : existing.skill,
+          skill: (w.skill?.name && w.skill.name !== '노션 연동 스킬') ? {
+            ...w.skill,
+            name: (w.skill.name || '').replace(/\*\*/g, '').trim()
+          } : existing.skill,
           description: (w.description && !w.description.includes('노션에서 연동된')) ? w.description : (existing.description || w.description),
           ascensionMaterials: w.ascensionMaterials || existing.ascensionMaterials,
           growthStats: w.growthStats || existing.growthStats,

@@ -552,7 +552,7 @@ const WuwaWeaponDetail = () => {
                 <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
                 <div className="flex flex-col border-l-4 border-white/10 pl-6">
                   <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">{t('무기 스킬')}</span>
-                  <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90 leading-none">{t(weapon.skill?.name || '')}</h2>
+                  <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90 leading-none">{t(weapon.skill?.name || '').replace(/\*\*/g, '').trim()}</h2>
                 </div>
               </div>
 
