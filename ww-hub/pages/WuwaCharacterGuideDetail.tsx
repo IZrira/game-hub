@@ -183,7 +183,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   }, [CHARACTER_DB, charName]);
 
   const guide = useMemo(() => {
-    return GUIDES?.find((g: any) => g.id === charName || g.id === character?.id);
+    return GUIDES?.find((g: any) => 
+      g.id === charName || 
+      g.id === character?.id ||
+      (g.name && character?.name && normalizeName(g.name) === normalizeName(character?.name)) ||
+      (g.name && normalizeName(g.name) === normalizeName(charName || ''))
+    );
   }, [GUIDES, charName, character]);
 
   const currentVariant = useMemo(() => {

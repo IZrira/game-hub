@@ -335,6 +335,24 @@ export const getGameData = (targetId: string) => {
       content: item.content
     }));
 
+  const notionWwGuides = typedNotionData
+    .filter(item => item.dbSource === 'ww_guides')
+    .map(item => ({
+      id: item.id,
+      name: item.name,
+      patchVersion: item.patchVersion || '1.0',
+      weapons: item.weapons || [],
+      echoSets: item.echoSets || [],
+      mainEchoes: item.mainEchoes || [],
+      variants: item.variants,
+      targetStats: item.targetStats || [],
+      mainStats: item.mainStats || [],
+      subStats: item.subStats || [],
+      skillPriority: item.skillPriority || [],
+      isUniversalSynergy: item.isUniversalSynergy,
+      synergyCharacters: item.synergyCharacters || []
+    }));
+
   const notionHsrCharacters = typedNotionData
     .filter(item => item.type === 'HSR 캐릭터')
     .map(item => {
@@ -923,7 +941,7 @@ export const getGameData = (targetId: string) => {
       acc[item.name || item.folderName || item.id] = { ...item, gameId: 'ww' };
       return acc;
     }, {}),
-    GUIDES: WW_DATA_ALL.GUIDES
+    GUIDES: notionWwGuides.length > 0 ? notionWwGuides : WW_DATA_ALL.GUIDES
   };
 
   const nteArcMap = new Map<string, any>();

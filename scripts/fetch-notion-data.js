@@ -32,6 +32,7 @@ const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID; // Weapons DB
 const NOTION_WW_CHARACTER_DB_ID = process.env.NOTION_WW_CHARACTER_DB_ID; // Characters DB
 const NOTION_WW_ITEM_DB_ID = process.env.NOTION_WW_ITEM_DB_ID; // WW Items DB
 const NOTION_WW_ECHOES_DB_ID = process.env.NOTION_WW_ECHOES_DB_ID; // WW Echoes DB
+const NOTION_WW_GUIDES_DB_ID = process.env.NOTION_WW_GUIDES_DB_ID || '37495fae3dc780ce95fffd47cfb611f6'; // WW Guides DB
 const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
 const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID || '38095fae3dc7802aa4abf9ab1977e687'; // NTE Characters DB
 const NOTION_NTE_ARC_DB_ID = process.env.NOTION_NTE_ARC_DB_ID || '38095fae3dc780c3a7c4d901cbe9411c'; // NTE Arcs DB
@@ -492,6 +493,14 @@ async function fetchNotionData() {
       console.log(`[Notion Sync] Fetched ${nteArcs.length} NTE arcs.`);
     }
 
+    // 8. Fetch from WW Character Guides DB
+    if (NOTION_WW_GUIDES_DB_ID && NOTION_WW_GUIDES_DB_ID !== 'xxxxxxxxxxxx') {
+      console.log(`[Notion Sync] Fetching WW Character Guides from ${NOTION_WW_GUIDES_DB_ID}...`);
+      const wwGuides = await fetchWwGuidesFromDB(notion, n2m, NOTION_WW_GUIDES_DB_ID);
+      allItems.push(...wwGuides);
+      console.log(`[Notion Sync] Fetched and parsed ${wwGuides.length} WW character guides.`);
+    }
+
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');
     console.log(`[Notion Sync] Successfully fetched total ${allItems.length} items and updated notion-data.json!`);
   } catch (error) {
@@ -502,4 +511,351 @@ async function fetchNotionData() {
   }
 }
 
+const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
+const WW_GUIDE_CHAR_MAP = {
+  '기염': 'jiyan',
+  '앙코': 'encore',
+  '모르테피': 'mortefi',
+  '치샤': 'chixia',
+  '히유키': 'hiyuki',
+  '카를로타': 'carlotta',
+  '유호': 'youhu',
+  '절지': 'zhezhi',
+  '능양': 'lingyang',
+  '산화': 'sanhua',
+  '설지': 'baizhi',
+  '음림': 'yinlin',
+  '금희': 'jinhsi',
+  '장리': 'changli',
+  '파수인': 'the_shorekeeper',
+  '카멜리아': 'camellya',
+  '벨리나': 'verina',
+  '감심': 'jianxin',
+  '젠신': 'jianxin',
+  '상리요': 'xiangli_yao',
+  '연무': 'yuanwu',
+  '카카루': 'calcharo',
+  '도기': 'taoqi',
+  '단근': 'danjin',
+  '알토': 'aalto',
+  '로코코': 'rococo',
+  '칸타렐라': 'cantarella',
+  '플로로바': 'phrolova',
+  '루미': 'lumi',
+  '페비': 'phoebe',
+  '자니': 'zani',
+  '샤콘': 'chaconne',
+  '오구스타': 'augusta',
+  '유노': 'iuno',
+  '린네': 'linne',
+  '브란트': 'brant',
+  '루파': 'lupa',
+  '갈브레나': 'galbrena',
+  '모르니에': 'mornye',
+  '에메스': 'aemeath',
+  '데니아': 'denia',
+  '레베카': 'rebecca',
+  '수수': 'susu',
+  '루시': 'lucy',
+  '루실라': 'lucilla',
+  '루크': 'luuk',
+  '양양': 'yangyang',
+  '방랑자': 'rover_spectro'
+};
+
+function parseSkillPriority(rawText) {
+  if (!rawText) return [];
+  let cleaned = rawText.replace(/\*\*/g, '').trim();
+  if (cleaned.includes(',') || cleaned.includes('>') || cleaned.includes('→')) {
+    return cleaned
+      .replace(/[>→]|->/g, ',')
+      .split(/[,·\n]+/)
+      .map(s => s.trim())
+      .filter(Boolean);
+  }
+  const knownSkills = [
+    '공명 회로', '공명 해방', '공명 스킬', '기본 공격', '일반 공격',
+    '변주 스킬', '반주 스킬', '고유 스킬'
+  ];
+  const regex = new RegExp(knownSkills.join('|'), 'g');
+  const matches = cleaned.match(regex);
+  if (matches && matches.length > 0) {
+    return matches;
+  }
+  return cleaned.split(/\s{2,}|\n/).map(s => s.trim()).filter(Boolean);
+}
+
+function parseWuwaGuideMarkdown(pageTitle, mdContent) {
+  // 1. 캐릭터 식별
+  let matchedCharName = '';
+  let charId = '';
+  for (const [name, id] of Object.entries(WW_GUIDE_CHAR_MAP)) {
+    if (pageTitle.includes(name)) {
+      matchedCharName = name;
+      charId = id;
+      break;
+    }
+  }
+
+  // 2. 패치 버전
+  const verMatch = mdContent.match(/패치\s*버전\s*([\d.]+)/i);
+  const patchVersion = verMatch ? verMatch[1].trim() : '1.0';
+
+  // 3. 무기 파싱
+  const weapons = [];
+  const weaponSectionMatch = mdContent.match(/무기\s*\n+([\s\S]*?)(?=(?:에코\s*세트|목표\s*육성치|$))/i);
+  if (weaponSectionMatch) {
+    const lines = weaponSectionMatch[1].split('\n');
+    for (const rawLine of lines) {
+      const line = rawLine.trim();
+      if (!line) continue;
+      const rankMatch = line.match(/(\d+)\s*순위/);
+      if (rankMatch) {
+        const rank = parseInt(rankMatch[1], 10);
+        const name = line
+          .replace(/[\(（]?\s*\d+\s*순위\s*[\)）]?/g, '')
+          .replace(/[*#\-–—_]/g, '')
+          .trim();
+        if (name && !isNaN(rank)) {
+          weapons.push({ name, rank });
+        }
+      }
+    }
+  }
+
+  // 4. 에코 세트 및 variants 파싱
+  const hasVariants = /에코\s*세트\s*1/i.test(mdContent) && /에코\s*세트\s*2/i.test(mdContent);
+  const echoSets = [];
+  const mainEchoes = [];
+  const variants = [];
+
+  if (hasVariants) {
+    const variantBlocks = mdContent.split(/(?=에코\s*세트\s*\d+)/i).filter(b => /에코\s*세트\s*\d+/i.test(b));
+    for (const vb of variantBlocks) {
+      const vHeaderMatch = vb.match(/에코\s*세트\s*(\d+)\s*\n+\s*([^\n]+)/i);
+      const variantName = vHeaderMatch ? vHeaderMatch[2].replace(/[*#_]/g, '').trim() : '추천 세팅';
+      
+      const vEchoSets = [];
+      const setNameMatch = vb.match(/([^\n]+(?:5세트|세트))/i);
+      if (setNameMatch) {
+        const sName = setNameMatch[1].replace(/에코\s*세트\s*\d*/i, '').replace(/[*#_]/g, '').trim();
+        const reasonMatch = vb.match(/이유\s*[:：]\s*([^\n]+)/i);
+        vEchoSets.push({
+          name: sName,
+          note: reasonMatch ? reasonMatch[1].replace(/[*#_]/g, '').trim() : undefined
+        });
+      }
+
+      const vMainEchoes = [];
+      const mainEchoRegex = /메인(?:\s*에코)?\s*[:：]\s*([^\n]+?)(?:\n+이유\s*[:：]\s*([^\n]+))?(?=\n|$)/gi;
+      let meMatch;
+      while ((meMatch = mainEchoRegex.exec(vb)) !== null) {
+        const meName = meMatch[1].replace(/[*#_]/g, '').trim();
+        const meReason = meMatch[2] ? meMatch[2].replace(/[*#_]/g, '').trim() : undefined;
+        if (meName) {
+          vMainEchoes.push({ name: meName, reason: meReason });
+        }
+      }
+
+      variants.push({
+        name: variantName,
+        echoSets: vEchoSets,
+        mainEchoes: vMainEchoes
+      });
+    }
+  } else {
+    const setMatch = mdContent.match(/에코\s*세트(?:\s*\d+)?\s*\n+\s*([^\n]+)/i);
+    if (setMatch) {
+      echoSets.push({ name: setMatch[1].replace(/[*#_]/g, '').trim() });
+    }
+
+    const mainEchoRegex = /메인(?:\s*에코)?\s*[:：]\s*([^\n]+?)(?:\n+이유\s*[:：]\s*([^\n]+))?(?=\n|$)/gi;
+    let meMatch;
+    while ((meMatch = mainEchoRegex.exec(mdContent)) !== null) {
+      const meName = meMatch[1].replace(/[*#_]/g, '').trim();
+      const meReason = meMatch[2] ? meMatch[2].replace(/[*#_]/g, '').trim() : undefined;
+      if (meName) {
+        mainEchoes.push({ name: meName, reason: meReason });
+      }
+    }
+  }
+
+  // 5. 목표 육성치 파싱
+  const targetStats = [];
+  const targetSectionMatch = mdContent.match(/목표\s*육성치\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|스킬|파티|$))/i);
+  if (targetSectionMatch) {
+    const lines = targetSectionMatch[1].split('\n');
+    for (const l of lines) {
+      const m = l.match(/[-*]\s*([^\n:：]+)\s*[:：]\s*(.+)/);
+      if (m) {
+        const label = m[1].replace(/[*#_]/g, '').trim();
+        const value = m[2].replace(/[*#_]/g, '').trim();
+        if (label && value && !label.includes('목표 육성치')) {
+          targetStats.push({ label, value });
+        }
+      }
+    }
+  }
+
+  // 6. 에코 주 옵션 파싱 (단일 세팅 및 변형 세팅별 주옵션 완벽 지원)
+  const parseCostStats = (blockText) => {
+    const statsList = [];
+    const lines = blockText.split('\n');
+    let currentCostObj = null;
+
+    for (const rawLine of lines) {
+      if (!rawLine.trim()) continue;
+      const line = rawLine.trim();
+
+      const isDeeplyIndented = /^\s{6,}/.test(rawLine);
+      const isNoteText = /부\s*옵션|경우|대체|맞출\s*수\s*없/i.test(line);
+
+      if ((isDeeplyIndented || isNoteText) && currentCostObj) {
+        const cleanNote = line
+          .replace(/^[-*]\s*/, '')
+          .replace(/^([431]\s*cost|[431]\s*코스트)\s*[:：]\s*/i, '')
+          .replace(/[*#_]/g, '')
+          .trim();
+        currentCostObj.note = cleanNote;
+        continue;
+      }
+
+      const costMatch = line.match(/^[-*]?\s*([431])\s*(?:cost|코스트)\s*[:：]\s*(.+)/i);
+      if (costMatch) {
+        const costNum = parseInt(costMatch[1], 10);
+        const optText = costMatch[2].replace(/[*#_]/g, '').trim();
+        const options = optText.split(/\s+or\s+|\s*\/\s*/i).map(s => s.trim()).filter(Boolean);
+        currentCostObj = {
+          cost: costNum,
+          stats: options
+        };
+        statsList.push(currentCostObj);
+      }
+    }
+    return statsList;
+  };
+
+  let mainStats = [];
+  const mainStatBlocks = mdContent.match(/[-*]?\s*에코\s*주\s*옵션(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|[-*]?\s*에코\s*부\s*옵션|스킬|파티|$))/gi);
+  if (mainStatBlocks && mainStatBlocks.length > 0) {
+    mainStatBlocks.forEach((block, idx) => {
+      const parsedBlockStats = parseCostStats(block);
+      if (idx === 0) {
+        mainStats = parsedBlockStats;
+      }
+
+      const hintMatch = block.match(/에코\s*주\s*옵션\s*[\(（]([^\)）\n]+)[\)）]/i);
+      if (hintMatch && variants.length > 0) {
+        const hint = hintMatch[1].replace(/채용\s*시/g, '').trim();
+        const targetVariant = variants.find(v => v.name.includes(hint) || v.echoSets.some(e => e.name.includes(hint)));
+        if (targetVariant) {
+          targetVariant.mainStats = parsedBlockStats;
+        } else if (variants[idx]) {
+          variants[idx].mainStats = parsedBlockStats;
+        }
+      } else if (variants.length > 0 && variants[idx]) {
+        variants[idx].mainStats = parsedBlockStats;
+      }
+    });
+  }
+
+  // 7. 에코 부 옵션 파싱
+  const subStats = [];
+  const subStatSectionMatch = mdContent.match(/에코\s*부\s*옵션\s*\n+([\s\S]*?)(?=(?:스킬|파티|$))/i);
+  if (subStatSectionMatch) {
+    const lines = subStatSectionMatch[1].split('\n');
+    for (const l of lines) {
+      const clean = l.replace(/^\s*[-*]\s*/, '').replace(/[*#_]/g, '').trim();
+      if (clean && !clean.includes('에코 부 옵션')) {
+        subStats.push(clean);
+      }
+    }
+  }
+
+  // 8. 스킬 레벨 업 우선 순위 파싱
+  let skillPriority = [];
+  const skillSectionMatch = mdContent.match(/스킬\s*(?:레벨\s*업\s*)?우선\s*순위\s*\n+([^\n]+)/i);
+  if (skillSectionMatch) {
+    skillPriority = parseSkillPriority(skillSectionMatch[1]);
+  }
+
+  // 9. 파티 추천 파싱
+  let isUniversalSynergy = false;
+  let synergyCharacters = [];
+  const partySectionMatch = mdContent.match(/파티\s*추천\s*\n+([^\n]+(?:\n+[^\n]+)?)/i);
+  if (partySectionMatch) {
+    const pText = partySectionMatch[1].replace(/[*#_]/g, '').trim();
+    if (pText.includes('유지력') || pText.includes('범용') || pText.includes('필요한 경우') || pText.includes('선택 가능')) {
+      isUniversalSynergy = true;
+      synergyCharacters = [];
+    } else {
+      synergyCharacters = pText.split(/[,·\n]+/).map(s => s.trim()).filter(Boolean);
+    }
+  }
+
+  return {
+    id: charId || pageTitle.replace(/\s+/g, '_'),
+    name: matchedCharName,
+    patchVersion,
+    weapons,
+    echoSets,
+    mainEchoes,
+    variants: variants.length > 0 ? variants : undefined,
+    targetStats,
+    mainStats,
+    subStats,
+    skillPriority,
+    isUniversalSynergy: isUniversalSynergy || undefined,
+    synergyCharacters
+  };
+}
+
+async function fetchWwGuidesFromDB(notion, n2m, dbId) {
+  const guides = [];
+  try {
+    let pages = [];
+    try {
+      const db = await notion.databases.retrieve({ database_id: dbId });
+      if (db.data_sources && db.data_sources.length > 0) {
+        const dataSourceId = db.data_sources[0].id;
+        const res = await notion.dataSources.query({ data_source_id: dataSourceId });
+        pages = res.results || [];
+      }
+    } catch (dsErr) {
+      console.warn(`[Notion Sync] dataSources.query fallback on DB ${dbId}:`, dsErr.message);
+    }
+
+    if (pages.length === 0) {
+      try {
+        const res = await notion.request({ path: `databases/${dbId}/query`, method: 'POST' });
+        pages = res.results || [];
+      } catch (reqErr) {
+        console.warn(`[Notion Sync] databases/query fallback failed on DB ${dbId}:`, reqErr.message);
+      }
+    }
+
+    console.log(`[Notion Sync] Fetched ${pages.length} guide pages from Notion.`);
+
+    for (const page of pages) {
+      await sleep(100); // Rate limit protection (100ms)
+      const pageTitle = page.properties['이름']?.title?.[0]?.plain_text || page.properties['캐릭터']?.title?.[0]?.plain_text || '';
+      try {
+        const mdblocks = await n2m.pageToMarkdown(page.id);
+        const mdString = n2m.toMarkdownString(mdblocks);
+        const guide = parseWuwaGuideMarkdown(pageTitle, mdString.parent || '');
+        guide.dbSource = 'ww_guides';
+        guides.push(guide);
+        console.log(`[Notion Sync] Parsed guide for ${guide.name || pageTitle} (${guide.id})`);
+      } catch (pErr) {
+        console.error(`[Notion Sync] Failed to parse guide page ${page.id}:`, pErr.message);
+      }
+    }
+  } catch (err) {
+    console.error(`[Notion Sync] Error in fetchWwGuidesFromDB:`, err.message);
+  }
+  return guides;
+}
+
 fetchNotionData();
+
