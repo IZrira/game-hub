@@ -362,7 +362,7 @@ const WuwaWeaponDetail = () => {
 
   // 통합 getGameData를 사용해 중복 제거 및 노션 데이터 반영
   const { WEAPON_DATA } = React.useMemo(() => getGameData('ww'), []);
-  const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName || t(w.name).normalize('NFC') === targetName);
+  const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName || t(w.name).normalize('NFC') === targetName || (w as any).i18nKey === targetName);
 
   const lastUpdatedDate = weapon ? (VERSION_UPDATES[weapon.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 

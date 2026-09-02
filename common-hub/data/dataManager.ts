@@ -4,6 +4,7 @@ import { NTE_DATA_ALL } from '../../nte-hub/data/index';
 import { CHARACTER_DB_EN } from './index';
 import i18n from '../i18n';
 import notionData from './notion-data.json';
+import wwWeaponsKo from '../locales/ww/ww_weapons_ko.json';
 
 export interface NotionItem {
   id: string;
@@ -53,7 +54,7 @@ export const getGameData = (targetId: string) => {
   const typedNotionData: any[] = (notionData || []) as any[];
 
   const notionWeapons = typedNotionData
-    .filter(item => item.type && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(item.type) && item.dbSource !== 'nte_weapons' && item.dbSource !== 'nte_characters' && item.dbSource !== 'nte_items')
+    .filter(item => item.type && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(item.type) && item.dbSource !== 'nte_weapons' && item.dbSource !== 'nte_characters' && item.dbSource !== 'nte_items' && item.dbSource !== 'nte_arcs' && item.dbSource !== 'ww_items' && item.dbSource !== 'ww_echoes' && item.dbSource !== 'ww_characters' && item.dbSource !== 'ww_guides')
     .map(item => {
       let atk = 500;
       let subStatName = '공격력';
@@ -856,14 +857,72 @@ export const getGameData = (targetId: string) => {
 
   const wwWeaponMap = new Map<string, any>();
   WW_DATA_ALL.WEAPON_DATA.forEach(w => {
-    const key = ((w as any).folderName || (w as any).originalName || w.name || '').trim();
-    if (key) wwWeaponMap.set(key, w);
+    // w.name이 'weapon.'으로 시작하는 i18n 번역 키인 경우, 실제 한국어 무기명으로 매핑하여 노션 데이터와 식별 키 통일
+    const resolvedName = (wwWeaponsKo as Record<string, string>)[w.name] || w.name;
+    const key = ((w as any).folderName || (w as any).originalName || resolvedName || '').trim();
+    if (key) {
+      wwWeaponMap.set(key, {
+        ...w,
+        name: resolvedName,
+        folderName: resolvedName,
+        i18nKey: w.name
+      });
+    }
   });
+
   notionWeapons.forEach(w => {
     const key = ((w as any).folderName || (w as any).originalName || w.name || '').trim();
-    if (key) wwWeaponMap.set(key, w);
+    if (key) {
+      const existing = wwWeaponMap.get(key);
+      if (existing) {
+        // 기존 로컬 무기와 노션 무기를 병합 (노션의 최신 상세 데이터 우선, 로컬 ID 및 필드 보존)
+        wwWeaponMap.set(key, {
+          ...existing,
+          ...w,
+          id: existing.id || w.id,
+          name: key,
+          folderName: key,
+          i18nKey: existing.i18nKey,
+          rarity: w.rarity || existing.rarity,
+          type: w.type || existing.type,
+          releaseVersion: w.releaseVersion || existing.releaseVersion,
+          obtain: w.obtain && w.obtain !== '노션 연동' ? w.obtain : (existing.obtain || w.obtain),
+          stats: w.stats?.atk ? w.stats : existing.stats,
+          skill: (w.skill?.name && w.skill.name !== '노션 연동 스킬') ? w.skill : existing.skill,
+          description: (w.description && !w.description.includes('노션에서 연동된')) ? w.description : (existing.description || w.description),
+          ascensionMaterials: w.ascensionMaterials || existing.ascensionMaterials,
+          growthStats: w.growthStats || existing.growthStats,
+          weaponStory: w.weaponStory || existing.weaponStory || w.description,
+          isNotion: true
+        });
+      } else {
+        wwWeaponMap.set(key, w);
+      }
+    }
   });
-  const mergedWeapons = Array.from(wwWeaponMap.values());
+
+  const sortWeaponsByVersion = (weapons: any[]) => {
+    return weapons.sort((a, b) => {
+      const vA = parseReleaseVersion(a.releaseVersion);
+      const vB = parseReleaseVersion(b.releaseVersion);
+      if (vA !== vB) return vB - vA;
+      // 3.4 버전 특수 정렬 (프리즈 프레임 -> 스컬 스래셔 -> 스펙트럴 트리거)
+      if (vA === 3.4 && vB === 3.4) {
+        const order = ['프리즈 프레임', '스컬 스래셔', '스펙트럴 트리거'];
+        const idxA = order.indexOf(a.name);
+        const idxB = order.indexOf(b.name);
+        if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+        if (idxA !== -1) return -1;
+        if (idxB !== -1) return 1;
+      }
+      const rA = Number(a.rarity) || 0;
+      const rB = Number(b.rarity) || 0;
+      if (rA !== rB) return rB - rA;
+      return (a.name || '').localeCompare(b.name || '', 'ko-KR');
+    });
+  };
+
+  const mergedWeapons = sortWeaponsByVersion(Array.from(wwWeaponMap.values()));
 
   const hsrCharMap = new Map<string, any>();
   HSR_DATA_ALL.CHARACTER_DB.forEach(c => {

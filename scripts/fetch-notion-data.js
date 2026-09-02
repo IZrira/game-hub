@@ -402,7 +402,11 @@ async function fetchNotionData() {
     if (NOTION_DATABASE_ID && NOTION_DATABASE_ID !== 'xxxxxxxxxxxx') {
       console.log(`[Notion Sync] Fetching Weapons from ${NOTION_DATABASE_ID}...`);
       const weapons = await fetchFromDB(notion, NOTION_DATABASE_ID, n2m, false);
-      allItems.push(...weapons);
+      const formattedWeapons = weapons.map(item => ({
+        ...item,
+        dbSource: 'weapons'
+      }));
+      allItems.push(...formattedWeapons);
       console.log(`[Notion Sync] Fetched ${weapons.length} weapons.`);
     }
 
