@@ -637,15 +637,17 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       const variantName = vHeaderMatch ? vHeaderMatch[2].replace(/[*#_]/g, '').trim() : '추천 세팅';
       
       const vEchoSets = [];
-      const setNameMatch = vb.match(/([^\n]+(?:5세트|세트))/i);
-      if (setNameMatch) {
-        const sName = setNameMatch[1].replace(/에코\s*세트\s*\d*/i, '').replace(/[*#_]/g, '').trim();
-        const reasonMatch = vb.match(/이유\s*[:：]\s*([^\n]+)/i);
-        vEchoSets.push({
-          name: sName,
-          note: reasonMatch ? reasonMatch[1].replace(/[*#_]/g, '').trim() : undefined
-        });
+      const linesAfterHeader = vb.replace(/^[^\n]*에코\s*세트\s*\d*[^\n]*\n+/i, '');
+      const setNameMatch = linesAfterHeader.match(/([^\n]+(?:5세트|세트))/i);
+      let sName = setNameMatch ? setNameMatch[1].replace(/[*#_]/g, '').trim() : '';
+      if (!sName || sName.toLowerCase() === '세트') {
+        sName = variantName;
       }
+      const reasonMatch = vb.match(/이유\s*[:：]\s*([^\n]+)/i);
+      vEchoSets.push({
+        name: sName,
+        note: reasonMatch ? reasonMatch[1].replace(/[*#_]/g, '').trim() : undefined
+      });
 
       const vMainEchoes = [];
       const mainEchoRegex = /메인(?:\s*에코)?\s*[:：]\s*([^\n]+?)(?:\n+이유\s*[:：]\s*([^\n]+))?(?=\n|$)/gi;

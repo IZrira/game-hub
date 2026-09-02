@@ -436,7 +436,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               {guide.variants && guide.variants.length > 1 && (
                 <div className="flex flex-wrap bg-white/5 p-1.5 rounded-2xl border border-white/10 mx-4 shrink-0">
                   {guide.variants.map((v: any, idx: number) => {
-                    const primarySetFullName = v.echoSets && v.echoSets[0] ? (v.echoSets[0].name || v.echoSets[0]) : '';
+                    const primarySetFullName = typeof v.echoSets?.[0] === 'string'
+                      ? v.echoSets[0]
+                      : (v.echoSets?.[0]?.name || v.name || '');
                     const primarySetName = typeof primarySetFullName === 'string' ? primarySetFullName.replace(/\s?\d+세트/g, '').trim() : '';
                     const setImgUrl = primarySetName ? `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(primarySetName.normalize('NFC'))}.webp` : '';
                     
@@ -463,22 +465,24 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('화음 세트')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {currentVariant?.echoSets.map((set: any, i: number) => {
+                  {currentVariant?.echoSets?.map((set: any, i: number) => {
                     const isFirst = i === 0;
-                    const setFullName = set.name || set; // 객체이거나 문자열일 경우 처리
-                    const note = set.note || '';
-                    const setName = setFullName.replace(/\s?\d+세트/g, '').trim();
-                    const setImgUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
+                    const setFullName = typeof set === 'string'
+                      ? set
+                      : (set && typeof set.name === 'string' && set.name.trim() ? set.name : (currentVariant?.name || ''));
+                    const note = typeof set === 'object' && set ? (set.note || '') : '';
+                    const setName = typeof setFullName === 'string' ? setFullName.replace(/\s?\d+세트/g, '').trim() : '';
+                    const setImgUrl = setName ? `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp` : '';
 
                     return (
                       <div key={i} onMouseEnter={(e) => handleMouseEnter(e, setFullName, '에코 세트', note)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
-                          <img src={setImgUrl} alt={setName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                          {setImgUrl && <img src={setImgUrl} alt={setName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
                         </div>
                         <div className="flex flex-col gap-1 w-full z-10">
                           <div className="flex items-center justify-between w-full">
-                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(setFullName)}</span>
+                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(setFullName || '에코 세트')}</span>
                             <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                               {i + 1}순위
                             </span>
