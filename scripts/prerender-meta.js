@@ -777,7 +777,14 @@ function generateWwGuideHtml(id, guide, char) {
   if (guide?.weapons && Array.isArray(guide.weapons) && guide.weapons.length > 0) {
     html += `<h2>${escapeHtml(name)} 추천 무기 순위</h2>\n<ol>\n`;
     guide.weapons.forEach(w => {
-      html += `<li><strong>${w.rank || ''}순위:</strong> ${escapeHtml(w.name)}</li>\n`;
+      let wName = w.name;
+      let wNote = w.note;
+      if (!wNote && (wName.includes(':') || wName.includes('：'))) {
+        const parts = wName.split(/[:：]/);
+        wName = parts[0].trim();
+        wNote = parts.slice(1).join(':').trim();
+      }
+      html += `<li><strong>${w.rank || ''}순위:</strong> ${escapeHtml(wName)}${wNote ? ` (${escapeHtml(wNote)})` : ''}</li>\n`;
     });
     html += `</ol>\n`;
   }
@@ -786,8 +793,14 @@ function generateWwGuideHtml(id, guide, char) {
   if (guide?.echoSets && Array.isArray(guide.echoSets) && guide.echoSets.length > 0) {
     html += `<h2>추천 에코 세트</h2>\n<ul>\n`;
     guide.echoSets.forEach(e => {
-      const eName = typeof e === 'string' ? e : e?.name;
-      html += `<li>${escapeHtml(eName)}</li>\n`;
+      let eName = typeof e === 'string' ? e : e?.name;
+      let eNote = typeof e === 'object' && e ? e.note : '';
+      if (!eNote && (eName.includes(':') || eName.includes('：'))) {
+        const parts = eName.split(/[:：]/);
+        eName = parts[0].trim();
+        eNote = parts.slice(1).join(':').trim();
+      }
+      html += `<li>${escapeHtml(eName)}${eNote ? ` (${escapeHtml(eNote)})` : ''}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -796,7 +809,14 @@ function generateWwGuideHtml(id, guide, char) {
   if (guide?.mainEchoes && Array.isArray(guide.mainEchoes) && guide.mainEchoes.length > 0) {
     html += `<h2>메인 에코 및 채용 이유</h2>\n<ul>\n`;
     guide.mainEchoes.forEach(me => {
-      html += `<li><strong>${escapeHtml(me.name)}</strong>${me.reason ? `: ${escapeHtml(me.reason)}` : ''}</li>\n`;
+      let meName = me.name;
+      let meReason = me.reason;
+      if (!meReason && (meName.includes(':') || meName.includes('：'))) {
+        const parts = meName.split(/[:：]/);
+        meName = parts[0].trim();
+        meReason = parts.slice(1).join(':').trim();
+      }
+      html += `<li><strong>${escapeHtml(meName)}</strong>${meReason ? `: ${escapeHtml(meReason)}` : ''}</li>\n`;
     });
     html += `</ul>\n`;
   }

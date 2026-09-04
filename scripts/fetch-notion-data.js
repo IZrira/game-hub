@@ -617,12 +617,19 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       const rankMatch = line.match(/(\d+)\s*순위/);
       if (rankMatch) {
         const rank = parseInt(rankMatch[1], 10);
-        const name = line
+        const rawText = line
           .replace(/[\(（]?\s*\d+\s*순위\s*[\)）]?/g, '')
           .replace(/[*#\-–—_]/g, '')
           .trim();
+        let name = rawText;
+        let note = undefined;
+        if (rawText.includes(':') || rawText.includes('：')) {
+          const parts = rawText.split(/[:：]/);
+          name = parts[0].trim();
+          note = parts.slice(1).join(':').trim() || undefined;
+        }
         if (name && !isNaN(rank)) {
-          weapons.push({ name, rank });
+          weapons.push({ name, rank, note });
         }
       }
     }
@@ -647,18 +654,34 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       if (!sName || sName.toLowerCase() === '세트') {
         sName = variantName;
       }
+      let sNote = undefined;
+      if (sName.includes(':') || sName.includes('：')) {
+        const parts = sName.split(/[:：]/);
+        sName = parts[0].trim();
+        sNote = parts.slice(1).join(':').trim() || undefined;
+      }
       const reasonMatch = vb.match(/이유\s*[:：]\s*([^\n]+)/i);
+      if (reasonMatch) {
+        const reasonText = reasonMatch[1].replace(/[*#_]/g, '').trim();
+        sNote = sNote ? `${sNote} - ${reasonText}` : reasonText;
+      }
       vEchoSets.push({
         name: sName,
-        note: reasonMatch ? reasonMatch[1].replace(/[*#_]/g, '').trim() : undefined
+        note: sNote
       });
 
       const vMainEchoes = [];
       const mainEchoRegex = /메인(?:\s*에코)?\s*[:：]\s*([^\n]+?)(?:\n+이유\s*[:：]\s*([^\n]+))?(?=\n|$)/gi;
       let meMatch;
       while ((meMatch = mainEchoRegex.exec(vb)) !== null) {
-        const meName = meMatch[1].replace(/[*#_]/g, '').trim();
-        const meReason = meMatch[2] ? meMatch[2].replace(/[*#_]/g, '').trim() : undefined;
+        let meName = meMatch[1].replace(/[*#_]/g, '').trim();
+        let meReason = meMatch[2] ? meMatch[2].replace(/[*#_]/g, '').trim() : undefined;
+        if (meName.includes(':') || meName.includes('：')) {
+          const parts = meName.split(/[:：]/);
+          meName = parts[0].trim();
+          const extra = parts.slice(1).join(':').trim();
+          meReason = meReason ? `${extra} - ${meReason}` : extra;
+        }
         if (meName) {
           vMainEchoes.push({ name: meName, reason: meReason });
         }
@@ -673,14 +696,27 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
   } else {
     const setMatch = mdContent.match(/에코\s*세트(?:\s*\d+)?\s*\n+\s*([^\n]+)/i);
     if (setMatch) {
-      echoSets.push({ name: setMatch[1].replace(/[*#_]/g, '').trim() });
+      let sName = setMatch[1].replace(/[*#_]/g, '').trim();
+      let sNote = undefined;
+      if (sName.includes(':') || sName.includes('：')) {
+        const parts = sName.split(/[:：]/);
+        sName = parts[0].trim();
+        sNote = parts.slice(1).join(':').trim() || undefined;
+      }
+      echoSets.push({ name: sName, note: sNote });
     }
 
     const mainEchoRegex = /메인(?:\s*에코)?\s*[:：]\s*([^\n]+?)(?:\n+이유\s*[:：]\s*([^\n]+))?(?=\n|$)/gi;
     let meMatch;
     while ((meMatch = mainEchoRegex.exec(mdContent)) !== null) {
-      const meName = meMatch[1].replace(/[*#_]/g, '').trim();
-      const meReason = meMatch[2] ? meMatch[2].replace(/[*#_]/g, '').trim() : undefined;
+      let meName = meMatch[1].replace(/[*#_]/g, '').trim();
+      let meReason = meMatch[2] ? meMatch[2].replace(/[*#_]/g, '').trim() : undefined;
+      if (meName.includes(':') || meName.includes('：')) {
+        const parts = meName.split(/[:：]/);
+        meName = parts[0].trim();
+        const extra = parts.slice(1).join(':').trim();
+        meReason = meReason ? `${extra} - ${meReason}` : extra;
+      }
       if (meName) {
         mainEchoes.push({ name: meName, reason: meReason });
       }

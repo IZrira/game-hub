@@ -387,14 +387,21 @@ const WuwaCharacterGuideDetail: React.FC = () => {
             <SectionHeader num="01" title="추천 무기" theme={theme} />
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
               {guide.weapons.map((w: any, i: number) => {
-                const weaponUrl = getWeaponImage(w.name);
+                let weaponName = w.name;
+                let weaponNote = w.note || '';
+                if (!weaponNote && (weaponName.includes(':') || weaponName.includes('：'))) {
+                  const parts = weaponName.split(/[:：]/);
+                  weaponName = parts[0].trim();
+                  weaponNote = parts.slice(1).join(':').trim();
+                }
+                const weaponUrl = getWeaponImage(weaponName);
                 const isBest = w.rank === 1;
 
                 return (
                   <Link 
                     key={i} 
-                    to={`/gallery/ww/weapon/${encodeURIComponent(w.name)}`}
-                    onMouseEnter={(e) => handleMouseEnter(e, w.name, '추천 무기', w.note)}
+                    to={`/gallery/ww/weapon/${encodeURIComponent(weaponName)}`}
+                    onMouseEnter={(e) => handleMouseEnter(e, weaponName, '추천 무기', weaponNote)}
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     className={`group glass-card rounded-[32px] p-4 pt-6 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
@@ -409,16 +416,20 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     <div className={`absolute top-0 left-0 z-20 px-3 py-1.5 rounded-br-[20px] text-[10px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300 backdrop-blur-md'} uppercase tracking-widest`}>
                       {w.rank}순위
                     </div>
-                    {isBest && (
+                    {isBest ? (
                       <div className="absolute top-2 right-2 z-20 bg-black/40 p-1.5 rounded-full backdrop-blur-md border border-brand-accent/30 shadow-lg">
                         <Crown size={12} className="text-brand-accent" />
                       </div>
-                    )}
+                    ) : weaponNote ? (
+                      <div className="absolute top-2 right-2 z-20 bg-white/10 p-1 rounded-full backdrop-blur-md border border-white/10 text-gray-400 group-hover:text-brand-accent transition-colors" title={weaponNote}>
+                        <Info size={12} />
+                      </div>
+                    ) : null}
                     <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
-                      <img src={weaponUrl} alt={w.name} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                      <img src={weaponUrl} alt={weaponName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
                     </div>
                     <div className="flex flex-col items-center gap-1.5 w-full">
-                      <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(w.name)}</h4>
+                      <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(weaponName)}</h4>
                       {isBest && (
                         <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
                       )}
@@ -467,22 +478,39 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {currentVariant?.echoSets?.map((set: any, i: number) => {
                     const isFirst = i === 0;
-                    const setFullName = typeof set === 'string'
+                    const rawFullName = typeof set === 'string'
                       ? set
                       : (set && typeof set.name === 'string' && set.name.trim() ? set.name : (currentVariant?.name || ''));
-                    const note = typeof set === 'object' && set ? (set.note || '') : '';
+                    let setFullName = rawFullName;
+                    let setNote = typeof set === 'object' && set ? (set.note || '') : '';
+                    if (!setNote && (setFullName.includes(':') || setFullName.includes('：'))) {
+                      const parts = setFullName.split(/[:：]/);
+                      setFullName = parts[0].trim();
+                      setNote = parts.slice(1).join(':').trim();
+                    }
                     const setName = typeof setFullName === 'string' ? setFullName.replace(/\s?\d+세트/g, '').trim() : '';
                     const setImgUrl = setName ? `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp` : '';
 
                     return (
-                      <div key={i} onMouseEnter={(e) => handleMouseEnter(e, setFullName, '에코 세트', note)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                      <div 
+                        key={i} 
+                        onMouseEnter={(e) => handleMouseEnter(e, setFullName, '에코 세트', setNote)} 
+                        onMouseMove={handleMouseMove} 
+                        onMouseLeave={handleMouseLeave} 
+                        className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                      >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
                           {setImgUrl && <img src={setImgUrl} alt={setName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
                         </div>
                         <div className="flex flex-col gap-1 w-full z-10">
                           <div className="flex items-center justify-between w-full">
-                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(setFullName || '에코 세트')}</span>
+                            <div className="flex items-center gap-1.5 min-w-0">
+                              <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(setFullName || '에코 세트')}</span>
+                              {setNote && (
+                                <Info size={14} className="text-brand-accent/70 shrink-0" />
+                              )}
+                            </div>
                             <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                               {i + 1}순위
                             </span>
@@ -501,17 +529,39 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('추천 메인 에코')}</span>
                 </div>
                 <div className="flex flex-col gap-8 relative z-10">
-                  {currentVariant?.mainEchoes.map((me: any, idx: number) => (
-                    <div key={idx} className="flex flex-col md:flex-row items-center gap-8 bg-black/20 p-6 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-colors">
-                      <div className="w-24 h-24 rounded-full border border-brand-primary/30 p-2 bg-black/40 shrink-0">
-                        <img src={getEchoImage(me.name)} alt={me.name} className="w-full h-full object-cover rounded-full" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                  {currentVariant?.mainEchoes.map((me: any, idx: number) => {
+                    let echoName = me.name || '';
+                    let echoReason = me.reason || '';
+                    if (!echoReason && (echoName.includes(':') || echoName.includes('：'))) {
+                      const parts = echoName.split(/[:：]/);
+                      echoName = parts[0].trim();
+                      echoReason = parts.slice(1).join(':').trim();
+                    }
+                    const echoUrl = getEchoImage(echoName);
+
+                    return (
+                      <div 
+                        key={idx} 
+                        onMouseEnter={(e) => handleMouseEnter(e, echoName, '추천 메인 에코', echoReason)}
+                        onMouseMove={handleMouseMove}
+                        onMouseLeave={handleMouseLeave}
+                        className="flex flex-col md:flex-row items-center gap-8 bg-black/20 p-6 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all cursor-default group/echo relative overflow-hidden"
+                      >
+                        <div className="w-24 h-24 rounded-full border border-brand-primary/30 p-2 bg-black/40 shrink-0 group-hover/echo:border-brand-accent transition-colors">
+                          <img src={echoUrl} alt={echoName} className="w-full h-full object-cover rounded-full group-hover/echo:scale-105 transition-transform" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                        </div>
+                        <div className="space-y-4 text-center md:text-left flex-1 min-w-0">
+                          <div className="flex items-center justify-center md:justify-start gap-2">
+                            <h4 className="text-xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(echoName)}</h4>
+                            {echoReason && (
+                              <Info size={16} className="text-brand-accent/60 shrink-0" />
+                            )}
+                          </div>
+                          {echoReason && <p className="text-sm text-gray-400 leading-relaxed font-medium line-clamp-2 md:line-clamp-none">{t(echoReason)}</p>}
+                        </div>
                       </div>
-                      <div className="space-y-4 text-center md:text-left">
-                        <h4 className="text-xl font-black text-white">{t(me.name)}</h4>
-                        {me.reason && <p className="text-sm text-gray-400 leading-relaxed font-medium">{t(me.reason)}</p>}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -628,28 +678,92 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               </div>
             ) : guide.synergyCharacters && guide.synergyCharacters.length > 0 ? (
               <div className="glass-card rounded-[45px] p-10 md:p-12 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
-                <div className="flex flex-wrap gap-8">
+                <div className="flex flex-wrap gap-8 items-center">
                   {guide.synergyCharacters.map((member: string, idx: number) => {
-                    const memberChar = CHARACTER_DB.find((c: any) => normalizeName(t(c.name)) === normalizeName(t(member)) || normalizeName(c.folderName) === normalizeName(t(member)));
+                    let memberName = member;
+                    let memberNote = '';
+
+                    // 1. Colon splitting
+                    if (memberName.includes(':') || memberName.includes('：')) {
+                      const parts = memberName.split(/[:：]/);
+                      memberName = parts[0].trim();
+                      memberNote = parts.slice(1).join(':').trim();
+                    }
+
+                    // 2. Direct character match (e.g. '방랑자 (인멸)')
+                    let memberChar = CHARACTER_DB.find((c: any) => 
+                      normalizeName(t(c.name)) === normalizeName(t(memberName)) || 
+                      normalizeName(c.folderName) === normalizeName(t(memberName)) ||
+                      (c.id && normalizeName(c.id) === normalizeName(t(memberName)))
+                    );
+
+                    // 3. Parentheses splitting if not matched directly (e.g. '페비(메인 딜러)')
+                    if (!memberChar) {
+                      const parenMatch = memberName.match(/^([^\(（]+)[\(（]([^\)）]+)[\)）]$/);
+                      if (parenMatch) {
+                        const strippedName = parenMatch[1].trim();
+                        const extractedNote = parenMatch[2].trim();
+                        const charCandidate = CHARACTER_DB.find((c: any) => 
+                          normalizeName(t(c.name)) === normalizeName(t(strippedName)) || 
+                          normalizeName(c.folderName) === normalizeName(t(strippedName))
+                        );
+                        if (charCandidate) {
+                          memberChar = charCandidate;
+                          memberName = strippedName;
+                          memberNote = memberNote ? `${memberNote} (${extractedNote})` : extractedNote;
+                        }
+                      }
+                    }
+
+                    // 4. Typo correction (e.g. 카를롷타 -> 카를로타)
+                    if (!memberChar && memberName === '카를롷타') {
+                      memberChar = CHARACTER_DB.find((c: any) => c.name.includes('카를로타') || c.id === 'Carlotta' || c.folderName === 'Carlotta');
+                      if (memberChar) memberName = '카를로타';
+                    }
+
+                    // 5. Generic description chip if not a character
+                    const isGenericText = !memberChar && memberName.length > 7 && (
+                      memberName.includes('자리') || memberName.includes('사용') || memberName.includes('추천') || memberName.includes('가능')
+                    );
+
+                    if (isGenericText) {
+                      return (
+                        <div key={idx} className="flex items-center gap-2 px-5 py-3 rounded-2xl bg-white/5 border border-white/10 text-xs font-bold text-gray-300">
+                          <Info size={14} className="text-brand-accent shrink-0" />
+                          <span>{t(memberName)}</span>
+                        </div>
+                      );
+                    }
+
                     const memberImg = memberChar ? getCharacterImage(memberChar.folderName, memberChar.isRover) : '';
                     
                     return (
                       <Link 
                         key={idx}
-                        to={`/gallery/ww/character/${memberChar?.id || member}`}
-                        className="flex flex-col items-center gap-4 group/member w-[100px]"
+                        to={`/gallery/ww/character/${memberChar?.id || memberName}`}
+                        onMouseEnter={(e) => memberNote ? handleMouseEnter(e, memberName, '추천 파티', memberNote) : undefined}
+                        onMouseMove={memberNote ? handleMouseMove : undefined}
+                        onMouseLeave={memberNote ? handleMouseLeave : undefined}
+                        className="flex flex-col items-center gap-4 group/member w-[100px] relative"
                       >
                         <div className="relative w-20 h-20 md:w-24 md:h-24">
                            <div className="absolute inset-0 bg-brand-primary/20 rounded-full blur-xl opacity-0 group-hover/member:opacity-100 transition-opacity" />
                            <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-accent transition-all duration-300 p-1 bg-black/40 shadow-xl">
-                              <img src={memberImg} alt={member} className="w-full h-full object-cover rounded-full group-hover/member:scale-110 transition-transform duration-500" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                              <img src={memberImg} alt={memberName} className="w-full h-full object-cover rounded-full group-hover/member:scale-110 transition-transform duration-500" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
                            </div>
+                           {memberNote && (
+                             <div className="absolute -top-1 -right-1 z-20 bg-black/80 p-1 rounded-full border border-brand-accent/40 text-brand-accent shadow-md">
+                               <Info size={12} />
+                             </div>
+                           )}
                         </div>
-                        <div className="text-center space-y-1">
-                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member)}</div>
-                          {memberChar?.roles?.[0] && (
-                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(memberChar.roles[0].label)}</div>
-                          )}
+                        <div className="text-center space-y-1 w-full">
+                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors truncate px-1">{t(memberName)}</div>
+                          {memberChar?.roles?.[0] ? (
+                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest truncate">{t(memberChar.roles[0].label)}</div>
+                          ) : memberNote ? (
+                            <div className="text-[10px] font-bold text-brand-accent uppercase tracking-widest truncate">{t(memberNote)}</div>
+                          ) : null}
                         </div>
                       </Link>
                     );
