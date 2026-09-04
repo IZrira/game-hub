@@ -11,7 +11,8 @@
     "prerender": "node scripts/prerender-meta.js",
     "test": "vitest run",
     "test:e2e": "node tests/e2e/runner.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "seo:analyze": "node scripts/analyze-seo.js"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
@@ -26,6 +27,7 @@
     "axios": "^1.15.0",
     "browser-image-compression": "^2.0.2",
     "cheerio": "^1.2.0",
+    "googleapis": "^178.0.0",
     "html-to-image": "^1.11.13",
     "i18next": "^26.0.3",
     "lucide-react": "^0.564.0",

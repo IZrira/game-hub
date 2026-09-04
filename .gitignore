@@ -13,3 +13,6 @@ Thumbs.db
 .env.*
 dist/
 logs/
+*credentials*.json
+*service-account*.json
+analytics/
