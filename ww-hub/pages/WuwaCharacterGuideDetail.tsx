@@ -291,8 +291,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO 
-        title={`${t(character.name)} 세팅 가이드`}
-        description={`${t(character.name)}의 추천 무기, 에코, 파티 조합 등 종결 세팅 가이드를 확인하세요.`}
+        title={`명조 ${t(character.name)} 공략 | 종결 에코 세팅 · 무기 티어 순위 · 파티 조합 - 리라 아카이브`}
+        description={`명조: 워더링 웨이브 ${t(character.name)}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`}
         image={heroImageUrl}
         url={`/gallery/ww/character/${charName}/guide`}
         gameCategory={t('명조 (Wuthering Waves)')}

@@ -119,6 +119,29 @@ function getRegisteredHsrGuides() {
   return registered;
 }
 
+// WW 가이드 존재 여부 목록 조회
+function getRegisteredWwGuides() {
+  const registered = new Set();
+  try {
+    const notionData = getNotionData();
+    notionData.forEach(item => {
+      if (item.dbSource === 'ww_guides' && item.name) {
+        registered.add(item.name.trim());
+        if (item.id) registered.add(item.id.trim());
+      }
+    });
+    const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
+    if (fs.existsSync(WW_GUIDE_FILE)) {
+      const content = fs.readFileSync(WW_GUIDE_FILE, 'utf8');
+      const idMatches = [...content.matchAll(/id:\s*["'](.*?)["']/g)];
+      idMatches.forEach(m => registered.add(m[1].trim()));
+    }
+  } catch (error) {
+    console.error('Error reading WW guide index:', error);
+  }
+  return registered;
+}
+
 // WW 무기 목록 추출
 function getWwWeapons() {
   const weapons = [];
@@ -260,9 +283,11 @@ async function generateSitemap() {
     const wwIds = getCharacterIds(WW_CHAR_DIR);
     const hsrIds = getCharacterIds(HSR_CHAR_DIR);
     const registeredHsrGuides = getRegisteredHsrGuides();
+    const registeredWwGuides = getRegisteredWwGuides();
     const wwWeapons = getWwWeapons();
 
     console.log(`Found ${wwIds.length} Wuthering Waves characters.`);
+    console.log(`Found ${registeredWwGuides.size} Wuthering Waves guides.`);
     console.log(`Found ${hsrIds.length} Honkai Star Rail characters.`);
     console.log(`Found ${registeredHsrGuides.size} HSR guides in index.`);
     console.log(`Found ${wwWeapons.length} Wuthering Waves weapons.`);
@@ -299,8 +324,8 @@ async function generateSitemap() {
       xml += buildUrlNode(u, staticLastmod, u === `${BASE_URL}/` ? '1.0' : '0.9', 'daily', [defaultBanner]);
     });
 
-    // 2. Wuthering Waves Characters Detail Pages
-    xml += `\n  <!-- Wuthering Waves Characters Detail Pages -->\n`;
+    // 2. Wuthering Waves Characters Detail & Guide Pages
+    xml += `\n  <!-- Wuthering Waves Characters Detail & Guide Pages -->\n`;
     wwIds.forEach(id => {
       const url = `${BASE_URL}/gallery/ww/character/${id}`;
       const charData = parseWwCharacter(id);
@@ -311,6 +336,19 @@ async function generateSitemap() {
       if (!urlList.includes(url)) {
         xml += buildUrlNode(url, charLastmod, '0.8', 'daily', images);
         urlList.push(url);
+      }
+
+      // 캐릭터 가이드 페이지
+      const charName = charData?.name || charData?.folderName || id;
+      const hasWwGuide = registeredWwGuides.has(charName) || 
+                         registeredWwGuides.has(charData?.folderName) || 
+                         registeredWwGuides.has(id);
+      if (hasWwGuide) {
+        const guideUrl = `${BASE_URL}/gallery/ww/character/${id}/guide`;
+        if (!urlList.includes(guideUrl)) {
+          xml += buildUrlNode(guideUrl, charLastmod, '0.9', 'daily', images);
+          urlList.push(guideUrl);
+        }
       }
     });
 
@@ -418,6 +456,14 @@ async function generateSitemap() {
         const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
         if (!urlList.includes(url)) {
           xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
+          urlList.push(url);
+        }
+      } else if (item.dbSource === 'ww_guides') {
+        const charParam = encodeURIComponent(item.id || item.name);
+        const url = `${BASE_URL}/gallery/ww/character/${charParam}/guide`;
+        const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
+        if (!urlList.includes(url)) {
+          xml += buildUrlNode(url, defaultLastmod, '0.9', 'daily', [imageUrl]);
           urlList.push(url);
         }
       }

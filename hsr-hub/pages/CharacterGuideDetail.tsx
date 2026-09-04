@@ -450,8 +450,8 @@ const CharacterGuideDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO 
-        title={`${character?.name || charName} 세팅 가이드`} 
-        description={`${character?.name || charName}의 추천 광추, 유물, 파티 조합 등 종결 세팅 가이드를 확인하세요.`} 
+        title={`스타레일 ${character?.name || charName} 공략 | 종결 유물 세팅 · 추천 광추 순위 · 파티 조합 - 리라 아카이브`} 
+        description={`붕괴: 스타레일 ${character?.name || charName}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`} 
         image={heroImageUrl} 
         url={`/gallery/${gameId}/character/${character.id}/guide`}
         gameCategory={t('붕괴: 스타레일')}

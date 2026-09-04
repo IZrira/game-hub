@@ -217,13 +217,14 @@ function loadHsrGuidesMap() {
         content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
         content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
         content = content.replace(/:\s*CharacterGuide\s*=/g, ' =');
-        content = content.replace(/export\s+const\s+(\w+)\s*=\s*/, 'const $1 = ');
+        content = content.replace(/export\s+const\s+([^\s=:]+)\s*=\s*/, 'const $1 = ');
 
-        const match = content.match(/const\s+(\w+)\s*=\s*([\s\S]+?);?\s*$/);
+        const match = content.match(/const\s+([^\s=:]+)\s*=\s*([\s\S]+?);?\s*$/);
         if (match && match[2]) {
           const obj = new Function('return ' + match[2])();
           if (obj && obj.characterName) {
             map.set(obj.characterName.trim(), obj);
+            map.set(file.replace('.ts', '').trim(), obj);
           }
         }
       } catch (err) {}
@@ -245,7 +246,7 @@ function loadHsrPartiesList() {
         content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
         content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
         content = content.replace(/:\s*PartyCombination\[\]\s*=/g, ' =');
-        content = content.replace(/export\s+const\s+\w+\s*=\s*/, 'const parties = ');
+        content = content.replace(/export\s+const\s+[^\s=:]+\s*=\s*/, 'const parties = ');
 
         const match = content.match(/const\s+parties\s*=\s*([\s\S]+?);?\s*$/);
         if (match && match[1]) {
@@ -263,23 +264,34 @@ function loadHsrPartiesList() {
 function loadWwGuidesMap() {
   const map = new Map();
   try {
-    if (!fs.existsSync(WW_GUIDE_FILE)) return map;
-    let content = fs.readFileSync(WW_GUIDE_FILE, 'utf8');
-    content = content.replace(/import\s+[\s\S]*?;/g, '');
-    content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
-    content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
-    content = content.replace(/:\s*WuwaCharacterGuide\[\]\s*=/g, ' =');
-    content = content.replace(/export\s+const\s+WW_CHARACTER_GUIDES\s*=\s*/, 'const WW_CHARACTER_GUIDES = ');
+    // 1. Notion 연동 가이드 우선 로드
+    const notionData = getNotionData();
+    notionData.forEach(item => {
+      if (item.dbSource === 'ww_guides') {
+        if (item.id) map.set(item.id.trim(), item);
+        if (item.name) map.set(item.name.trim(), item);
+      }
+    });
 
-    const match = content.match(/const\s+WW_CHARACTER_GUIDES\s*=\s*([\s\S]+?);?\s*$/);
-    if (match && match[1]) {
-      const list = new Function('return ' + match[1])();
-      if (Array.isArray(list)) {
-        list.forEach(item => {
-          if (item && item.id) {
-            map.set(item.id.trim(), item);
-          }
-        });
+    // 2. 로컬 파일 보완
+    if (fs.existsSync(WW_GUIDE_FILE)) {
+      let content = fs.readFileSync(WW_GUIDE_FILE, 'utf8');
+      content = content.replace(/import\s+[\s\S]*?;/g, '');
+      content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+      content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
+      content = content.replace(/:\s*WuwaCharacterGuide\[\]\s*=/g, ' =');
+      content = content.replace(/export\s+const\s+WW_CHARACTER_GUIDES\s*=\s*/, 'const WW_CHARACTER_GUIDES = ');
+
+      const match = content.match(/const\s+WW_CHARACTER_GUIDES\s*=\s*([\s\S]+?);?\s*$/);
+      if (match && match[1]) {
+        const list = new Function('return ' + match[1])();
+        if (Array.isArray(list)) {
+          list.forEach(item => {
+            if (item && item.id && !map.has(item.id.trim())) {
+              map.set(item.id.trim(), item);
+            }
+          });
+        }
       }
     }
   } catch (e) {}
@@ -512,6 +524,59 @@ function generateDiscussionForumPostingSchema(charName, routePath) {
   };
 }
 
+function generateGuideSchema(charName, gameName, routePath, imageUrl) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "홈",
+            "item": "https://rira-game-hub.pages.dev"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": gameName,
+            "item": `https://rira-game-hub.pages.dev${routePath.split('/').slice(0, 3).join('/')}`
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": `${charName} 공략`,
+            "item": `https://rira-game-hub.pages.dev${routePath}`
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "headline": `${gameName} ${charName} 종결 육성 공략 가이드`,
+        "image": imageUrl,
+        "author": {
+          "@type": "Organization",
+          "name": "RIRA Game Archive"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "RIRA Game Archive",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://rira-game-hub.pages.dev/assets/logo.png"
+          }
+        },
+        "description": `${gameName} ${charName}의 추천 무기/광추, 에코/유물 세팅, 추천 파티 조합 및 스탯 목표치 완벽 공략.`,
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": `https://rira-game-hub.pages.dev${routePath}`
+        }
+      }
+    ]
+  };
+}
+
 function injectMetaAndContent(html, title, description, imageUrl, urlPath, innerContent = '', jsonLdSchema = null) {
   let injected = html;
   
@@ -697,6 +762,159 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
   return html;
 }
 
+function generateWwGuideHtml(id, guide, char) {
+  let name = wwKoData[`character.${id}.name`] || char?.name || guide?.name || id;
+  if (name && name.startsWith('character.')) {
+    name = char?.folderName || guide?.name || id;
+  }
+  let html = `<article>\n`;
+  html += `<h1>명조: 워더링 웨이브 ${escapeHtml(name)} 종결 육성 공략 가이드</h1>\n`;
+  if (guide?.patchVersion) {
+    html += `<p><strong>적용 패치 버전:</strong> v${escapeHtml(guide.patchVersion)}</p>\n`;
+  }
+
+  // 추천 무기 랭킹
+  if (guide?.weapons && Array.isArray(guide.weapons) && guide.weapons.length > 0) {
+    html += `<h2>${escapeHtml(name)} 추천 무기 순위</h2>\n<ol>\n`;
+    guide.weapons.forEach(w => {
+      html += `<li><strong>${w.rank || ''}순위:</strong> ${escapeHtml(w.name)}</li>\n`;
+    });
+    html += `</ol>\n`;
+  }
+
+  // 추천 에코 세트
+  if (guide?.echoSets && Array.isArray(guide.echoSets) && guide.echoSets.length > 0) {
+    html += `<h2>추천 에코 세트</h2>\n<ul>\n`;
+    guide.echoSets.forEach(e => {
+      const eName = typeof e === 'string' ? e : e?.name;
+      html += `<li>${escapeHtml(eName)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // 메인 에코
+  if (guide?.mainEchoes && Array.isArray(guide.mainEchoes) && guide.mainEchoes.length > 0) {
+    html += `<h2>메인 에코 및 채용 이유</h2>\n<ul>\n`;
+    guide.mainEchoes.forEach(me => {
+      html += `<li><strong>${escapeHtml(me.name)}</strong>${me.reason ? `: ${escapeHtml(me.reason)}` : ''}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // 종결 목표 스탯
+  if (guide?.targetStats && Array.isArray(guide.targetStats) && guide.targetStats.length > 0) {
+    html += `<h2>목표 육성 수치 (종결 스탯)</h2>\n<ul>\n`;
+    guide.targetStats.forEach(ts => {
+      if (ts && ts.label) {
+        html += `<li><strong>${escapeHtml(ts.label)}:</strong> ${escapeHtml(ts.value || '')}</li>\n`;
+      }
+    });
+    html += `</ul>\n`;
+  }
+
+  // 에코 주옵션
+  if (guide?.mainStats && Array.isArray(guide.mainStats) && guide.mainStats.length > 0) {
+    html += `<h2>에코 코스트별 주옵션</h2>\n<ul>\n`;
+    guide.mainStats.forEach(ms => {
+      const statsStr = Array.isArray(ms.stats) ? ms.stats.join(' or ') : (ms.stats || '');
+      html += `<li><strong>${ms.cost} Cost:</strong> ${escapeHtml(statsStr)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // 추천 부옵션
+  if (guide?.subStats && Array.isArray(guide.subStats) && guide.subStats.length > 0) {
+    html += `<h2>에코 추천 부옵션 우선순위</h2>\n<p>${escapeHtml(guide.subStats.join(' > '))}</p>\n`;
+  }
+
+  // 스킬 우선순위
+  if (guide?.skillPriority && Array.isArray(guide.skillPriority) && guide.skillPriority.length > 0) {
+    html += `<h2>스킬 레벨업 우선순위</h2>\n<p>${escapeHtml(guide.skillPriority.join(' > '))}</p>\n`;
+  }
+
+  // 파티 시너지
+  if (guide?.synergyCharacters && Array.isArray(guide.synergyCharacters) && guide.synergyCharacters.length > 0) {
+    html += `<h2>추천 파티 조합 및 시너지 캐릭터</h2>\n<p>${escapeHtml(guide.synergyCharacters.join(', '))}</p>\n`;
+  }
+
+  html += `</article>`;
+  return html;
+}
+
+function generateHsrGuideHtml(id, guide, char) {
+  let name = hsrKoData[`character.${id}.name`] || char?.name || guide?.name || id;
+  if (name && name.startsWith('character.')) {
+    name = char?.folderName || guide?.name || id;
+  }
+  let html = `<article>\n`;
+  html += `<h1>붕괴: 스타레일 ${escapeHtml(name)} 종결 육성 공략 가이드</h1>\n`;
+
+  // 추천 광추
+  const lightCones = guide?.bestLightCones || guide?.variants?.[0]?.bestLightCones;
+  if (lightCones && Array.isArray(lightCones) && lightCones.length > 0) {
+    html += `<h2>${escapeHtml(name)} 추천 광추 랭킹</h2>\n<ol>\n`;
+    lightCones.forEach((lc, idx) => {
+      const lcName = typeof lc === 'string' ? lc : lc?.name;
+      html += `<li><strong>${idx + 1}순위:</strong> ${escapeHtml(lcName)}</li>\n`;
+    });
+    html += `</ol>\n`;
+  }
+
+  // 추천 유물
+  const relics = guide?.bestRelics || guide?.variants?.[0]?.bestRelics;
+  if (relics && Array.isArray(relics) && relics.length > 0) {
+    html += `<h2>추천 터널 유물 세트</h2>\n<ul>\n`;
+    relics.forEach(r => {
+      const rName = typeof r === 'string' ? r : r?.name;
+      html += `<li>${escapeHtml(rName)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // 차원 장신구
+  const ornaments = guide?.bestOrnaments || guide?.variants?.[0]?.bestOrnaments;
+  if (ornaments && Array.isArray(ornaments) && ornaments.length > 0) {
+    html += `<h2>추천 차원 장신구 세트</h2>\n<ul>\n`;
+    ornaments.forEach(o => {
+      const oName = typeof o === 'string' ? o : o?.name;
+      html += `<li>${escapeHtml(oName)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // 목표 스탯
+  const targetStats = guide?.targetStats || guide?.variants?.[0]?.targetStats;
+  if (targetStats && Array.isArray(targetStats) && targetStats.length > 0) {
+    html += `<h2>목표 육성 수치 (종결 스탯)</h2>\n<ul>\n`;
+    targetStats.forEach(ts => {
+      if (ts && ts.label) {
+        html += `<li><strong>${escapeHtml(ts.label)}:</strong> ${escapeHtml(ts.value || '')}</li>\n`;
+      }
+    });
+    html += `</ul>\n`;
+  }
+
+  // 유물 부위별 주옵션
+  const mainStats = guide?.mainStats || guide?.variants?.[0]?.mainStats;
+  if (mainStats && typeof mainStats === 'object') {
+    html += `<h2>유물 부위별 주옵션</h2>\n<ul>\n`;
+    if (mainStats.body) html += `<li><strong>바디:</strong> ${escapeHtml(Array.isArray(mainStats.body) ? mainStats.body.join(' / ') : mainStats.body)}</li>\n`;
+    if (mainStats.feet) html += `<li><strong>신발:</strong> ${escapeHtml(Array.isArray(mainStats.feet) ? mainStats.feet.join(' / ') : mainStats.feet)}</li>\n`;
+    if (mainStats.sphere) html += `<li><strong>차원구:</strong> ${escapeHtml(Array.isArray(mainStats.sphere) ? mainStats.sphere.join(' / ') : mainStats.sphere)}</li>\n`;
+    if (mainStats.rope) html += `<li><strong>연결줄:</strong> ${escapeHtml(Array.isArray(mainStats.rope) ? mainStats.rope.join(' / ') : mainStats.rope)}</li>\n`;
+    html += `</ul>\n`;
+  }
+
+  // 부옵션
+  const subStats = guide?.subStats || guide?.variants?.[0]?.subStats;
+  if (subStats && Array.isArray(subStats) && subStats.length > 0) {
+    html += `<h2>유물 추천 부옵션 우선순위</h2>\n<p>${escapeHtml(subStats.join(' > '))}</p>\n`;
+  }
+
+  html += `</article>`;
+  return html;
+}
+
 function generateWwWeaponHtml(id) {
   let html = `<article>\n`;
   for (const [key, value] of Object.entries(wwWeaponKoData)) {
@@ -793,6 +1011,22 @@ function runPrerender() {
       generateDiscussionForumPostingSchema(name, routePath)
     );
     count++;
+
+    // WW 캐릭터 가이드 전용 페이지 프리렌더링
+    const guide = wwGuidesMap.get(id) || wwGuidesMap.get(name) || (char.folderName ? wwGuidesMap.get(char.folderName) : null);
+    if (guide) {
+      const guideRoute = `/gallery/ww/character/${id}/guide`;
+      createPrerenderedPage(
+        guideRoute,
+        `명조 ${name} 공략 | 종결 에코 세팅 · 추천 무기 순위 · 파티 조합`,
+        `명조: 워더링 웨이브 ${name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
+        getWwCharacterImageUrl(char),
+        baseHtml,
+        generateWwGuideHtml(id, guide, char),
+        generateGuideSchema(name, '명조: 워더링 웨이브', guideRoute, getWwCharacterImageUrl(char))
+      );
+      count++;
+    }
   });
 
   // 2. HSR Characters
@@ -815,6 +1049,22 @@ function runPrerender() {
       generateDiscussionForumPostingSchema(name, routePath)
     );
     count++;
+
+    // HSR 캐릭터 가이드 전용 페이지 프리렌더링
+    const guide = hsrGuidesMap.get(name) || (char.folderName ? hsrGuidesMap.get(char.folderName) : null) || hsrGuidesMap.get(id);
+    if (guide) {
+      const guideRoute = `/gallery/hsr/character/${id}/guide`;
+      createPrerenderedPage(
+        guideRoute,
+        `스타레일 ${name} 공략 | 종결 유물 세팅 · 추천 광추 순위 · 파티 조합`,
+        `붕괴: 스타레일 ${name}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`,
+        getHsrCharacterImageUrl(char),
+        baseHtml,
+        generateHsrGuideHtml(id, guide, char),
+        generateGuideSchema(name, '붕괴: 스타레일', guideRoute, getHsrCharacterImageUrl(char))
+      );
+      count++;
+    }
   });
 
   // 3. WW Weapons
@@ -863,6 +1113,20 @@ function runPrerender() {
         baseHtml,
         generateNotionHtml(item),
         generateDiscussionForumPostingSchema(item.name, routePath)
+      );
+      count++;
+    } else if (item.dbSource === 'ww_guides') {
+      const charParam = encodeURIComponent(item.id || item.name);
+      const guideRoute = `/gallery/ww/character/${charParam}/guide`;
+      const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
+      createPrerenderedPage(
+        guideRoute,
+        `명조 ${item.name} 공략 | 종결 에코 세팅 · 추천 무기 순위 · 파티 조합`,
+        `명조: 워더링 웨이브 ${item.name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
+        imageUrl,
+        baseHtml,
+        generateWwGuideHtml(item.id || item.name, item, item),
+        generateGuideSchema(item.name, '명조: 워더링 웨이브', guideRoute, imageUrl)
       );
       count++;
     }
