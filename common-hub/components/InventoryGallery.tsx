@@ -143,7 +143,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
 
       {/* Compact Content Section */}
       {filteredItems.length > 0 ? (
-        <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-3">
+        <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 xl:grid-cols-12 gap-2 sm:gap-3">
           {filteredItems.map((item) => (
             <ItemPremiumCard 
               key={item.name} 

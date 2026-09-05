@@ -57,18 +57,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans">
+    <div className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative">
       <Navbar />
 
-      <div className="max-w-[1600px] mx-auto w-full px-8 pt-32">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-20 sm:pt-28 md:pt-32">
         <AdPlaceholder type="leaderboard" />
       </div>
 
-      <main className="flex-grow">
+      <main className="flex-grow w-full">
         {children}
       </main>
 
-      <div className="max-w-[1600px] mx-auto w-full px-8 pb-8">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pb-6 sm:pb-8">
         <AdPlaceholder type="leaderboard" />
       </div>
 

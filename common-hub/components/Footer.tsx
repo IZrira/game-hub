@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-[#0d0d0d] border-t border-white/5 pt-16 pb-8 px-8 mt-auto font-sans">
+    <footer className="bg-[#0d0d0d] border-t border-white/5 pt-12 sm:pt-16 pb-8 px-4 sm:px-6 md:px-8 mt-auto font-sans overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           

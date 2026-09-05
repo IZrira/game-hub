@@ -74,15 +74,15 @@ const Navbar: React.FC = () => {
       style={{ backfaceVisibility: 'hidden', transform: 'translateZ(0)' }}
     >
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-        <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white shadow-lg shadow-brand-primary/20 group-hover:scale-110 transition-transform">
-            <Gamepad2 size={24} />
+        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white shadow-lg shadow-brand-primary/20 group-hover:scale-110 transition-transform shrink-0">
+            <Gamepad2 size={22} className="sm:w-6 sm:h-6" />
           </div>
-          <span className="text-xl font-black text-white tracking-tighter uppercase">RIRA GAME HUB</span>
+          <span className="text-base sm:text-lg md:text-xl font-black text-white tracking-tighter uppercase truncate">RIRA GAME HUB</span>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
           <Link to="/" className={`text-xs font-black uppercase tracking-widest transition-colors ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>{t('HOME')}</Link>
           
           {isAdmin(user?.id) && (
@@ -95,13 +95,13 @@ const Navbar: React.FC = () => {
           <div className="h-4 w-px bg-white/10" />
 
           {/* 다국어 전환 */}
-          <button onClick={toggleLang} className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase">
+          <button onClick={toggleLang} className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase py-1 px-2 rounded-lg hover:bg-white/5">
             <Globe size={18} /> {i18n.language}
           </button>
           
           {/* PWA 설치 버튼 (조건부 노출) */}
           {deferredPrompt && (
-            <button onClick={handleInstallPWA} className="flex items-center gap-1 text-gray-400 hover:text-brand-primary transition-colors text-xs font-bold uppercase">
+            <button onClick={handleInstallPWA} className="flex items-center gap-1 text-gray-400 hover:text-brand-primary transition-colors text-xs font-bold uppercase py-1 px-2 rounded-lg hover:bg-white/5">
               <Download size={18} /> App
             </button>
           )}
@@ -132,34 +132,82 @@ const Navbar: React.FC = () => {
           )}
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="md:hidden text-white"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Action Group */}
+        <div className="flex items-center gap-2 md:hidden">
+          <button 
+            onClick={toggleLang} 
+            className="p-2 text-gray-300 hover:text-white rounded-xl bg-white/5 border border-white/10 flex items-center gap-1 text-xs font-bold uppercase active:scale-95"
+            aria-label="Change Language"
+          >
+            <Globe size={16} />
+            <span className="text-[10px] font-black">{i18n.language?.toUpperCase()}</span>
+          </button>
+          
+          <button 
+            className="p-2 text-white rounded-xl bg-white/5 border border-white/10 active:scale-95 transition-transform"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle Navigation Menu"
+          >
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-brand-dark border-b border-white/10 p-6 animate-fade-in">
-          <div className="flex flex-col gap-6">
-            <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="text-lg font-black text-white uppercase tracking-widest">{t('HOME')}</Link>
+        <div className="md:hidden absolute top-full left-0 right-0 bg-[#0d0d10]/98 backdrop-blur-2xl border-b border-white/10 p-5 sm:p-6 shadow-2xl animate-fade-in space-y-5 max-h-[80vh] overflow-y-auto">
+          <div className="flex flex-col gap-4">
+            <Link 
+              to="/" 
+              onClick={() => setIsMobileMenuOpen(false)} 
+              className={`p-3.5 rounded-2xl flex items-center justify-between font-black text-sm uppercase tracking-widest transition-colors ${
+                location.pathname === '/' ? 'bg-brand-primary/10 text-brand-accent border border-brand-primary/20' : 'bg-white/5 text-white'
+              }`}
+            >
+              <span>{t('HOME')}</span>
+              <Gamepad2 size={16} className="text-brand-accent" />
+            </Link>
+
+            {isAdmin(user?.id) && (
+              <Link 
+                to="/admin" 
+                onClick={() => setIsMobileMenuOpen(false)} 
+                className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-amber-500 font-black text-sm uppercase tracking-widest flex items-center justify-between"
+              >
+                <span>ADMIN PANEL</span>
+                <ShieldCheck size={16} />
+              </Link>
+            )}
+
+            {deferredPrompt && (
+              <button 
+                onClick={() => { handleInstallPWA(); setIsMobileMenuOpen(false); }} 
+                className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-gray-300 font-black text-sm uppercase tracking-widest flex items-center justify-between hover:text-white"
+              >
+                <span>{t('앱 설치 (PWA)')}</span>
+                <Download size={16} className="text-brand-primary" />
+              </button>
+            )}
+
+            <div className="h-px bg-white/10 my-1" />
+
             {user ? (
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center gap-3 p-4 bg-white/5 rounded-2xl border border-white/10">
-                  <UserIcon size={20} className="text-brand-primary" />
-                  <span className="text-white font-black">{user.email}</span>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3 p-3.5 bg-white/5 rounded-2xl border border-white/10">
+                  <UserIcon size={18} className="text-brand-primary" />
+                  <span className="text-white text-xs font-black truncate">{user.email}</span>
                 </div>
-                <button onClick={handleLogout} className="btn-secondary w-full flex items-center justify-center gap-2">
-                  <LogOut size={18} /> {t('LOGOUT')}
+                <button 
+                  onClick={() => { handleLogout(); setIsMobileMenuOpen(false); }} 
+                  className="w-full p-3.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/20 text-red-400 font-black text-xs uppercase tracking-widest rounded-2xl flex items-center justify-center gap-2"
+                >
+                  <LogOut size={16} /> {t('LOGOUT')}
                 </button>
               </div>
             ) : (
               <button 
                 onClick={() => { setIsMobileMenuOpen(false); openLoginModal(); }} 
-                className="w-full p-4 bg-brand-primary text-white text-xs font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-brand-primary/20"
+                className="w-full p-4 bg-brand-primary text-white text-xs font-black uppercase tracking-widest rounded-2xl shadow-lg shadow-brand-primary/20 active:scale-95"
               >
                 {t('LOGIN')}
               </button>

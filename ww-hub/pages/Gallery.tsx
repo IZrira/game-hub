@@ -141,13 +141,13 @@ const GalleryWW: React.FC = () => {
       />
       <PageHeader gameId="ww" title={activeMenu === '홈' ? '' : activeMenu} />
 
-      <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
         <main className="min-h-[800px] space-y-16 relative z-10">
           {activeMenu === '홈' ? (
             <div className="space-y-16">
               {/* 정제된 히어로 섹션: 명조 감성의 프리미엄 디자인 */}
-              <section className="relative p-10 md:p-12 rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
+              <section className="relative p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
                 <div 
                   style={{
                     backgroundImage: `url(${getCharacterArtPath('ww', '기염')})`,
@@ -158,20 +158,20 @@ const GalleryWW: React.FC = () => {
                   className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
                 />
                 
-                <div className="relative z-10 space-y-6">
+                <div className="relative z-10 space-y-4 sm:space-y-6">
                   <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-white/5 rounded-full border border-white/10 backdrop-blur-md">
                     <Sparkles size={12} className="text-brand-accent animate-pulse" />
                     <span className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">{t("Resonance Archive v1.0")}</span>
                   </div>
                   
                   <div className="space-y-0.5">
-                    <h1 className="text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-tight">
+                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-tight">
                       <span className="text-white">Resonance </span>
                       <span className="text-brand-accent">Archive</span>
                     </h1>
                   </div>
                   
-                  <p className="text-gray-400 font-bold max-w-lg text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-6">
+                  <p className="text-gray-400 font-bold max-w-lg text-xs sm:text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-4 sm:pl-6">
                     {t("황폐해진 세상에서 피어나는 새로운 희망, 공명자님들의 여정을 돕는 정밀 데이터베이스입니다. 모든 공명 수치를 더욱 정밀하게 확인하십시오.")}
                   </p>
                 </div>
@@ -196,7 +196,7 @@ const GalleryWW: React.FC = () => {
               </div>
 
               {/* 데이터 시각화: 공명자 분석 */}
-              <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
+              <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-5 sm:p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
                 <GlowStatsDistribution data={CHARACTER_DB} type="attribute" title="공명 속성 분포" />
                 <GlowStatsDistribution data={CHARACTER_DB} type="weaponType" title="공명자 무기 분포" />
               </section>
@@ -207,7 +207,7 @@ const GalleryWW: React.FC = () => {
                   <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
                   <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('최근 공명자 업데이트')}</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
                   {filteredCharacters.slice(0, 5).map((char: any, idx: number) => (
                     <CharacterPremiumCard key={char.id} char={char} index={idx} />
                   ))}
@@ -218,41 +218,41 @@ const GalleryWW: React.FC = () => {
             </div>
           ) : activeMenu === "캐릭터" ? (
             <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("캐릭터 도감")}</h2>
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t("캐릭터 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                     <input type="text" placeholder={t("캐릭터 명칭...")} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                   </div>
-                  <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex flex-wrap gap-3 items-center w-full xl:w-auto">
                     <FilterSelect label={t("무기")} value={secondFilter} onChange={(val: string) => updateFilterParams('weapon', val)} options={filterOptions.second} />
                     <FilterSelect label={t("속성")} value={attrFilter} onChange={(val: string) => updateFilterParams('attr', val)} options={filterOptions.attr} />
                     <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
                 {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
 
           ) : activeMenu === "무기" ? (
             <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("무기 도감")}</h2>
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t("무기 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                     <input type="text" placeholder={t("명칭 필터링...")} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                   </div>
-                  <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex flex-wrap gap-3 items-center w-full xl:w-auto">
                     <FilterSelect label={t("무기")} value={secondFilter} onChange={(val: string) => updateFilterParams('weapon', val)} options={filterOptions.second} />
                     <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4", "3", "2", "1"]} formatOption={(opt: string) => `${opt}${t("성")}`} />
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-6">
+              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
                 {filteredLightCones.map((lc: any) => (
                   <WuwaWeaponCard 
                     key={lc.id} 
@@ -271,8 +271,8 @@ const GalleryWW: React.FC = () => {
             <WuwaEchoGallery />
           ) : activeMenu === '공략' ? (
             <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t('공명자 육성 공략')}</h2>
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t('공명자 육성 공략')}</h2>
                 <div className="relative w-full xl:w-72">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                   <input type="text" placeholder={t('공명자 명칭...')} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />

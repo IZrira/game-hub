@@ -494,50 +494,50 @@ const CharacterGuideDetail: React.FC = () => {
 
       <PageHeader gameId={gameId} category={t("공략")} title={`${character?.name || charName} 가이드`} />
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-12 pt-8 flex flex-col lg:flex-row gap-12 justify-between">
-        <div className="flex-1 w-full space-y-16 guide-content">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 pt-8 flex flex-col lg:flex-row gap-8 sm:gap-12 justify-between">
+        <div className="flex-1 w-full space-y-12 sm:space-y-16 guide-content">
           {/* 돌아가기 토글 버튼 */}
           <Link 
             to={`/gallery/${gameId}/character/${character.id}`}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl text-sm font-black text-gray-300 hover:text-white transition-all backdrop-blur-md group w-fit"
+            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl text-xs sm:text-sm font-black text-gray-300 hover:text-white transition-all backdrop-blur-md group w-fit"
           >
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             {t('캐릭터 상세 정보로 돌아가기')}
           </Link>
 
           {/* Hero Section */}
-          <section className="relative p-12 md:p-16 rounded-[60px] bg-[#0c0c0c] border border-white/5 overflow-hidden group">
+          <section className="relative p-6 sm:p-10 md:p-16 rounded-[28px] sm:rounded-[44px] md:rounded-[60px] bg-[#0c0c0c] border border-white/5 overflow-hidden group">
             <div 
               style={{ backgroundImage: `url(${heroImageUrl})`, filter: 'brightness(0.3) blur(20px)', opacity: 0.2 }} 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110" 
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
             />
-            <div className="absolute top-10 right-10 flex flex-col items-end gap-1.5 z-20">
-              <div className="flex items-center gap-2 px-3 py-1 bg-white/5 rounded-lg border border-white/10">
+            <div className="absolute top-6 right-6 sm:top-10 sm:right-10 flex flex-col items-end gap-1.5 z-20">
+              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 bg-white/5 rounded-lg border border-white/10">
                 <Clock size={12} className="text-gray-400" />
-                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Update: {guide.lastUpdated}</span>
+                <span className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">Update: {guide.lastUpdated}</span>
               </div>
-              <div className="flex items-center gap-2 px-3 py-1 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
+              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
                 <Sparkles size={12} className="text-brand-accent" />
-                <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">v{guide.patchVersion}</span>
+                <span className="text-[9px] sm:text-[10px] font-black text-brand-accent uppercase tracking-widest">v{guide.patchVersion}</span>
               </div>
             </div>
 
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-12">
+            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 sm:gap-12">
               <div className="relative shrink-0">
-                <div className="w-40 h-40 rounded-[50px] border-4 border-white/10 overflow-hidden shadow-2xl relative z-10 bg-black/40">
+                <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-[28px] sm:rounded-[40px] md:rounded-[50px] border-4 border-white/10 overflow-hidden shadow-2xl relative z-10 bg-black/40">
                   <img src={heroImageUrl} alt={charName} className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-700" />
                 </div>
                 <div className="absolute -inset-4 bg-brand-primary/20 blur-3xl rounded-full opacity-30 animate-pulse" />
               </div>
-              <div className="text-center md:text-left space-y-6">
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                  <span className="px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-gray-400">{t(character.path)}</span>
-                  <span className="px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em]" style={{ backgroundColor: `${theme.primary}20`, color: theme.secondary, border: `1px solid ${theme.primary}40` }}>{t(character.attribute)}</span>
+              <div className="text-center md:text-left space-y-4 sm:space-y-6">
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3">
+                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-gray-400">{t(character.path)}</span>
+                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em]" style={{ backgroundColor: `${theme.primary}20`, color: theme.secondary, border: `1px solid ${theme.primary}40` }}>{t(character.attribute)}</span>
                 </div>
-                <h1 className="text-4xl md:text-6xl font-black italic tracking-tighter uppercase leading-none whitespace-nowrap">
+                <h1 className="text-2xl sm:text-4xl md:text-6xl font-black italic tracking-tighter uppercase leading-tight">
                   {character?.name || charName} <span className="text-brand-accent">가이드</span>
                 </h1>
-                <p className="text-gray-400 font-bold text-base md:text-lg border-l-4 border-brand-primary/40 pl-6">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>
+                <p className="text-gray-400 font-bold text-xs sm:text-base md:text-lg border-l-4 border-brand-primary/40 pl-4 sm:pl-6">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>
               </div>
             </div>
           </section>

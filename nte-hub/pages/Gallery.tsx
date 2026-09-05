@@ -111,20 +111,20 @@ const GalleryNTE: React.FC = () => {
       />
       <PageHeader gameId="nte" title={activeMenu === '홈' ? '' : activeMenu} />
 
-      <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
         <main className="min-h-[800px] space-y-16 relative z-10">
           {activeMenu === '홈' ? (
             <div className="space-y-16">
-              <section className="relative p-10 md:p-12 rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
-                <div className="relative z-10 space-y-6">
+              <section className="relative p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
+                <div className="relative z-10 space-y-4 sm:space-y-6">
                   <div className="space-y-0.5">
-                    <h1 className="text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-tight">
+                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-tight">
                       <span className="text-white">Neverness to </span>
                       <span className="text-brand-accent">Everness</span>
                     </h1>
                   </div>
-                  <p className="text-gray-400 font-bold max-w-lg text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-6">
+                  <p className="text-gray-400 font-bold max-w-lg text-xs sm:text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-4 sm:pl-6">
                     {t("이환 아카이브에 오신 것을 환영합니다.")}
                   </p>
                 </div>
@@ -148,7 +148,7 @@ const GalleryNTE: React.FC = () => {
                 <div className="flex items-center gap-3 px-2">
                   <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('최근 업데이트')}</h3>
                 </div>
-                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
                   {CHARACTER_DB.slice(0, 5).map((char: any, idx: number) => (
                     <CharacterPremiumCard key={char.id} char={char} index={idx} />
                   ))}
@@ -157,27 +157,27 @@ const GalleryNTE: React.FC = () => {
             </div>
           ) : activeMenu === "캐릭터" ? (
             <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("캐릭터 도감")}</h2>
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t("캐릭터 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                     <input type="text" placeholder={t("캐릭터 명칭...")} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                   </div>
-                  <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex flex-wrap gap-3 items-center w-full xl:w-auto">
                     <FilterSelect label={t("이능력 속성")} value={attrFilter} onChange={(val: string) => updateFilterParams('attr', val)} options={filterOptions.attr} />
                     <FilterSelect label={t("등급")} value={rarityFilter} onChange={(val: string) => updateFilterParams('rarity', val)} options={["5", "4"]} formatOption={(opt: string) => opt === '5' ? 'S' : opt === '4' ? 'A' : opt} />
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
                 {filteredCharacters.map((char: any, idx: number) => <CharacterPremiumCard key={char.id} char={char} index={idx} />)}
               </div>
             </div>
           ) : (activeMenu === "아크" || activeMenu === "무기") ? (
             <div className="space-y-12">
-              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-4xl font-black italic tracking-tighter uppercase mb-8">{t("아크 도감")}</h2>
+              <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t("아크 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
@@ -189,7 +189,7 @@ const GalleryNTE: React.FC = () => {
                       onChange={(e) => handleSearchChange(e.target.value)} 
                     />
                   </div>
-                  <div className="flex flex-wrap gap-3 items-center">
+                  <div className="flex flex-wrap gap-3 items-center w-full xl:w-auto">
                     <FilterSelect 
                       label={t("종류")} 
                       value={secondFilter} 
@@ -206,7 +206,7 @@ const GalleryNTE: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-4">
+              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
                 {filteredLightCones.map((arc: any) => (
                   <LightConePremiumCard key={arc.id || arc.name} lc={arc} />
                 ))}

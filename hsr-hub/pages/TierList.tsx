@@ -352,23 +352,23 @@ const TierList: React.FC = () => {
       />
       <PageHeader gameId={gameId} title="종합 메타 랭킹" />
 
-      <div className="max-w-[1600px] mx-auto w-full px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar />
 
         <div className="space-y-12">
-          <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl relative overflow-hidden">
+          <div className="bg-[#121212] rounded-[28px] sm:rounded-[40px] md:rounded-[48px] border border-white/5 p-5 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
               <Trophy size={200} />
             </div>
             
-            <div className="relative z-10 space-y-8">
-              <div className="flex flex-col md:flex-row justify-between items-center gap-8">
+            <div className="relative z-10 space-y-6 sm:space-y-8">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
                 <div className="space-y-2">
-                  <h1 className="text-5xl font-black italic tracking-tighter uppercase flex items-center gap-4">
-                    <Trophy className="text-brand-primary" size={40} />
-                    {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter uppercase flex items-center gap-3 sm:gap-4">
+                    <Trophy className="text-brand-primary" size={32} />
+                    <span>{HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표</span>
                   </h1>
-                  <p className="text-gray-400 font-bold text-lg">
+                  <p className="text-gray-400 font-bold text-sm sm:text-lg">
                     {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.description}
                     {isSyncing && <span className="ml-3 text-[10px] text-brand-primary animate-pulse">● SYNCING...</span>}
                   </p>
@@ -379,20 +379,20 @@ const TierList: React.FC = () => {
                   <input 
                     type="text" 
                     placeholder="캐릭터 검색..." 
-                    className="bg-white/5 border border-white/10 rounded-2xl py-4 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold transition-all"
+                    className="bg-white/5 border border-white/10 rounded-2xl py-3.5 sm:py-4 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold transition-all"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </div>
               </div>
 
-              <div className="pt-8 border-t border-white/5">
-                <div className="flex flex-wrap gap-3">
+              <div className="pt-6 sm:pt-8 border-t border-white/5">
+                <div className="flex flex-wrap gap-2.5 sm:gap-3">
                   {HSR_TIER_CATEGORIES.map(cat => (
                     <button
                       key={cat.id}
                       onClick={() => { setActiveCategory(cat.id); setRoleFilter('전체'); }}
-                      className={`px-6 py-3 rounded-xl text-xs font-black transition-all border flex items-center gap-3 ${
+                      className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs font-black transition-all border flex items-center gap-2 sm:gap-3 ${
                         activeCategory === cat.id ? 'bg-brand-primary border-brand-primary text-white' : 'bg-white/5 border-white/5 text-gray-400'
                       }`}
                     >
@@ -403,12 +403,12 @@ const TierList: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 pt-8 border-t border-white/5 items-center">
+              <div className="flex flex-wrap gap-2.5 sm:gap-4 pt-6 sm:pt-8 border-t border-white/5 items-center">
                 {['전체', '메인 딜러', '서브 딜러', '서포터', '유지력'].map(role => (
                   <button
                     key={role}
                     onClick={() => setRoleFilter(role)}
-                    className={`px-6 py-2.5 rounded-xl text-xs font-black transition-all border flex items-center gap-2 ${
+                    className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs font-black transition-all border flex items-center gap-2 ${
                       roleFilter === role ? 'bg-brand-primary border-brand-primary text-white shadow-lg' : 'bg-white/5 border-white/5 text-gray-400'
                     }`}
                   >
@@ -441,16 +441,16 @@ const TierList: React.FC = () => {
                 className="space-y-8"
               >
                 {filteredTierList.map((group) => (
-                  <div key={group.tier} className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
-                    <div className="w-full md:w-32 flex flex-col items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5" style={{ backgroundColor: `${group.color}10` }}>
-                      <div className={`${group.tier === '?' ? 'text-xl' : 'text-4xl'} font-black italic tracking-tighter text-center`} style={{ color: group.color }}>
+                  <div key={group.tier} className="bg-[#121212] rounded-[28px] sm:rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
+                    <div className="w-full md:w-32 flex flex-col items-center justify-center p-4 sm:p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5" style={{ backgroundColor: `${group.color}10` }}>
+                      <div className={`${group.tier === '?' ? 'text-xl' : 'text-3xl sm:text-4xl'} font-black italic tracking-tighter text-center`} style={{ color: group.color }}>
                         {group.tier === '?' ? group.label : group.tier}
                       </div>
                     </div>
 
-                    <div className="flex-1 p-8">
+                    <div className="flex-1 p-4 sm:p-6 md:p-8">
                       {group.characters.length > 0 ? (
-                        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-4">
+                        <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-2 sm:gap-3 md:gap-4">
                           {group.characters.map((char) => (
                             <CharacterCard key={char.id} char={char} gameId={gameId} getIconUrl={getIconUrl} />
                           ))}

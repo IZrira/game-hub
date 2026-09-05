@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 const GAME_NAME_KEYS: Record<string, string> = {
   hsr: '스타레일',
   ww: '명조',
+  nte: 'NTE',
 };
 
 interface PageHeaderProps {
@@ -73,31 +74,31 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         <div className="w-px h-4 bg-white/10 mx-1 hidden sm:block" />
 
         {/* 2. 통일된 경로 표시 (Breadcrumbs) */}
-        <nav className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest truncate">
+        <nav className="flex items-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest truncate min-w-0">
           
           {/* 홈 */}
           <Link to="/" className="hover:text-brand-accent transition-colors flex items-center gap-1 shrink-0">
             <Home size={12} className="hidden sm:block" /> {t('메인')}
           </Link>
-          <ChevronRight size={10} className="shrink-0" />
+          <ChevronRight size={10} className="shrink-0 opacity-60" />
 
-          {/* 게임 이름 (스타레일 / 명조) */}
+          {/* 게임 이름 (스타레일 / 명조 / NTE) */}
           {gameId && (
             <>
               <Link to={`/gallery/${gameId}?menu=홈`} className="hover:text-brand-accent transition-colors shrink-0">
                 {t(GAME_NAME_KEYS[gameId] || gameId)}
               </Link>
-              <ChevronRight size={10} className="shrink-0" />
+              <ChevronRight size={10} className="shrink-0 opacity-60" />
             </>
           )}
 
           {/* 카테고리 (캐릭터, 광추, 티어표 등) */}
           {category && (
             <>
-              <Link to={categoryUrl || defaultCategoryUrl} className="hover:text-brand-accent transition-colors shrink-0">
+              <Link to={categoryUrl || defaultCategoryUrl} className="hover:text-brand-accent transition-colors shrink-0 hidden xs:inline-block">
                 {t(category)}
               </Link>
-              <ChevronRight size={10} className="shrink-0" />
+              <ChevronRight size={10} className="shrink-0 opacity-60 hidden xs:inline-block" />
             </>
           )}
 

@@ -109,7 +109,7 @@ const NTETierList: React.FC = () => {
       <div className="flex-1 flex flex-col min-w-0">
         <PageHeader gameId={gameId || 'nte'} title={t("NTE Tier List")} />
 
-        <main className="flex-1 max-w-7xl mx-auto w-full p-6 md:p-12 space-y-10">
+        <main className="flex-1 max-w-7xl mx-auto w-full p-4 sm:p-6 md:p-12 space-y-8 sm:space-y-10">
           {/* Header Description */}
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/5 pb-8">
             <div>
@@ -117,10 +117,10 @@ const NTETierList: React.FC = () => {
                 <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
                 <span className="text-[10px] font-black text-brand-accent tracking-[0.3em] uppercase">Meta Rankings</span>
               </div>
-              <h1 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter mt-1">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white italic tracking-tighter mt-1">
                 ESPER TIER LIST
               </h1>
-              <p className="text-gray-400 text-sm mt-2 font-medium">
+              <p className="text-gray-400 text-xs sm:text-sm mt-2 font-medium">
                 {currentCategory.description}
               </p>
             </div>
@@ -139,12 +139,12 @@ const NTETierList: React.FC = () => {
           </div>
 
           {/* Mode Category Selector Tabs */}
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             {NTE_TIER_CATEGORIES.map(cat => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id as any)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-2xl text-xs font-black transition-all ${
+                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-xs font-black transition-all ${
                   selectedCategory === cat.id
                     ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-black shadow-lg shadow-brand-primary/20 scale-105'
                     : 'bg-[#141414] text-gray-400 hover:text-white hover:bg-white/5 border border-white/5'
@@ -157,14 +157,14 @@ const NTETierList: React.FC = () => {
           </div>
 
           {/* Role & Attribute Filter Pills */}
-          <div className="flex flex-wrap items-center gap-4 bg-[#121212] p-4 rounded-2xl border border-white/5">
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider">포지션:</span>
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 bg-[#121212] p-3 sm:p-4 rounded-2xl border border-white/5">
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider mr-1">포지션:</span>
               {['전체', '메인 딜러', '서브 딜러', '서포터', '탱커/힐러'].map(role => (
                 <button
                   key={role}
                   onClick={() => setRoleFilter(role)}
-                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all ${
                     roleFilter === role ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
                   }`}
                 >
@@ -175,13 +175,13 @@ const NTETierList: React.FC = () => {
 
             <div className="h-4 w-[1px] bg-white/10 hidden md:block" />
 
-            <div className="flex items-center gap-2">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider">속성:</span>
+            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider mr-1">속성:</span>
               {['전체', '혼', '령', '음', '양', '공', '상'].map(attr => (
                 <button
                   key={attr}
                   onClick={() => setAttrFilter(attr)}
-                  className={`px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all ${
                     attrFilter === attr ? 'bg-brand-accent text-white' : 'text-gray-400 hover:text-white'
                   }`}
                 >
@@ -196,27 +196,27 @@ const NTETierList: React.FC = () => {
             {filteredTiers.map(group => (
               <div 
                 key={group.tier}
-                className="bg-[#121212] rounded-[28px] border border-white/5 overflow-hidden shadow-2xl flex flex-col md:flex-row"
+                className="bg-[#121212] rounded-[24px] sm:rounded-[28px] border border-white/5 overflow-hidden shadow-2xl flex flex-col md:flex-row"
               >
                 {/* Tier Badge Left Header */}
                 <div 
-                  className="w-full md:w-36 flex flex-col items-center justify-center p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5 relative"
+                  className="w-full md:w-36 flex flex-col items-center justify-center p-4 sm:p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5 relative"
                   style={{ backgroundColor: `${group.color}10` }}
                 >
                   <span 
-                    className="text-4xl md:text-5xl font-black italic tracking-tighter"
+                    className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter"
                     style={{ color: group.color }}
                   >
                     {group.tier}
                   </span>
-                  <span className="text-[9px] text-gray-400 font-bold text-center mt-2 px-2">
+                  <span className="text-[9px] text-gray-400 font-bold text-center mt-1 sm:mt-2 px-2">
                     {group.description}
                   </span>
                 </div>
 
                 {/* Character Cards Grid */}
-                <div className="flex-1 p-6 md:p-8">
-                  <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                <div className="flex-1 p-4 sm:p-6 md:p-8">
+                  <div className="grid grid-cols-3 xs:grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-2 sm:gap-3">
                     {group.characters.map(char => (
                       <CharacterCard key={char.id} char={char} gameId={gameId} />
                     ))}

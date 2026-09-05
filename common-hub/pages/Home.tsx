@@ -69,38 +69,38 @@ const Home: React.FC = () => {
       <div className="fixed inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #333 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
       {/* 글로벌 헤로 대시보드 */}
-      <section className="relative pt-24 pb-32 px-10 overflow-hidden border-b border-white/5">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-primary/10 rounded-full blur-[150px] -translate-y-1/2 translate-x-1/4 opacity-40" />
-          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px] translate-y-1/2 -translate-x-1/4 opacity-30" />
+      <section className="relative pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-28 md:pb-32 px-4 sm:px-6 md:px-10 overflow-hidden border-b border-white/5">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-0 right-0 w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-brand-primary/10 rounded-full blur-[100px] sm:blur-[150px] -translate-y-1/2 translate-x-1/4 opacity-40" />
+          <div className="absolute bottom-0 left-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand-accent/5 rounded-full blur-[80px] sm:blur-[120px] translate-y-1/2 -translate-x-1/4 opacity-30" />
         </div>
 
-        <div className="max-w-[1600px] mx-auto relative z-10 text-center space-y-10">
-          <div className="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md animate-in fade-in slide-in-from-top-4 duration-700">
-            <Terminal size={14} className="text-brand-accent animate-pulse" />
-          <span className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em]">{t('Initializing Rira Archive Database...')}</span>
+        <div className="max-w-[1600px] mx-auto relative z-10 text-center space-y-8 sm:space-y-10">
+          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md animate-in fade-in slide-in-from-top-4 duration-700">
+            <Terminal size={14} className="text-brand-accent animate-pulse shrink-0" />
+            <span className="text-[9px] sm:text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.4em] truncate">{t('Initializing Rira Archive Database...')}</span>
           </div>
           
-          <div className="space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
-            <h1 className="text-5xl md:text-6xl font-black leading-[0.85] tracking-tighter">
-          {t('완벽한 플레이를 위한')}<br/>
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary italic">{t('데이터의 정점.')}</span>
+          <div className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] sm:leading-[0.95] tracking-tighter">
+              {t('완벽한 플레이를 위한')}<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary italic">{t('데이터의 정점.')}</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-gray-400 text-lg md:text-xl font-medium leading-relaxed">
-          {t('리라 아카이브는 고밀도 데이터와 심층 분석을 통해')}<br/>
-          {t('당신의 성장을 완벽하게 서포트하는 프리미엄 전략 가이드입니다.')}
+            <p className="max-w-3xl mx-auto text-gray-400 text-sm sm:text-base md:text-xl font-medium leading-relaxed px-2">
+              {t('리라 아카이브는 고밀도 데이터와 심층 분석을 통해')}<br className="hidden xs:inline"/>
+              {t('당신의 성장을 완벽하게 서포트하는 프리미엄 전략 가이드입니다.')}
             </p>
           </div>
 
-          <div className="pt-8 flex justify-center items-center gap-4 animate-in fade-in duration-1000 delay-500 flex-wrap">
-            <Link to="/blog" className="flex items-center gap-2 text-xs font-black text-white bg-brand-primary/20 border border-brand-primary/50 hover:bg-brand-primary hover:text-black px-6 py-3 rounded-full uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(var(--brand-primary-rgb),0.3)] hover:shadow-[0_0_30px_rgba(var(--brand-primary-rgb),0.6)] hover:scale-105">
+          <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row justify-center items-center gap-4 animate-in fade-in duration-1000 delay-500">
+            <Link to="/blog" className="w-full sm:w-auto flex items-center justify-center gap-2 text-xs font-black text-white bg-brand-primary/20 border border-brand-primary/50 hover:bg-brand-primary hover:text-black px-6 py-3.5 rounded-full uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(var(--brand-primary-rgb),0.3)] hover:shadow-[0_0_30px_rgba(var(--brand-primary-rgb),0.6)] active:scale-95 hover:scale-105">
               <BookOpen size={16} /> {t('인기 공략/칼럼 모아보기')}
             </Link>
-            <div className="flex gap-4 px-4">
-              <div className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                <Server size={12} className="text-brand-primary" /> Multi-Game Synchronized
+            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 px-2">
+              <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">
+                <Server size={12} className="text-brand-primary" /> Multi-Game Sync
               </div>
-              <div className="flex items-center gap-2 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+              <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">
                 <Zap size={12} className="text-yellow-500" /> Real-time Analytics
               </div>
             </div>
@@ -109,48 +109,48 @@ const Home: React.FC = () => {
       </section>
 
       {/* 글로벌 통계 메트릭 */}
-      <section className="relative z-20 max-w-6xl mx-auto -mt-12 px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 bg-[#121212]/90 backdrop-blur-2xl border border-white/10 rounded-[32px] p-8 shadow-[0_32px_64px_rgba(0,0,0,0.6)] divide-x divide-white/5">
-        <StatMetric label={t('보유 캐릭터')} value={globalStats.characters} icon={<Database size={16}/>} color="text-brand-accent" />
-        <StatMetric label={t('전략 리포트')} value={globalStats.guides} icon={<FileText size={16}/>} color="text-brand-primary" />
-        <StatMetric label={t('분석 데이터')} value={globalStats.items} icon={<Zap size={16}/>} color="text-yellow-500" />
-        <StatMetric label={t('활성 아카이브')} value={globalStats.games} icon={<ShieldCheck size={16}/>} color="text-green-500" />
+      <section className="relative z-20 max-w-6xl mx-auto -mt-8 sm:-mt-12 px-4 sm:px-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 bg-[#121212]/90 backdrop-blur-2xl border border-white/10 rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 shadow-[0_32px_64px_rgba(0,0,0,0.6)] divide-y md:divide-y-0 md:divide-x divide-white/5">
+          <StatMetric label={t('보유 캐릭터')} value={globalStats.characters} icon={<Database size={16}/>} color="text-brand-accent" />
+          <StatMetric label={t('전략 리포트')} value={globalStats.guides} icon={<FileText size={16}/>} color="text-brand-primary" />
+          <StatMetric label={t('분석 데이터')} value={globalStats.items} icon={<Zap size={16}/>} color="text-yellow-500" />
+          <StatMetric label={t('활성 아카이브')} value={globalStats.games} icon={<ShieldCheck size={16}/>} color="text-green-500" />
         </div>
       </section>
 
       {/* Rira Daily Hub (패치 노트 및 공지사항 탭) */}
-      <section className="max-w-6xl mx-auto px-6 mt-24 mb-8 relative z-20">
-        <div className="bg-[#121212] border border-white/5 rounded-[32px] p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-24 mb-8 relative z-20">
+        <div className="bg-[#121212] border border-white/5 rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
           
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-6">
-            <div className="flex items-center gap-6">
-              <div className="flex items-center gap-3">
-                <FileText size={20} className="text-brand-accent" />
-                <h2 className="text-lg font-black text-white uppercase tracking-[0.2em] font-mono">{t('Rira Daily Hub')}</h2>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-5">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-6">
+              <div className="flex items-center gap-2.5">
+                <FileText size={20} className="text-brand-accent shrink-0" />
+                <h2 className="text-base sm:text-lg font-black text-white uppercase tracking-[0.2em] font-mono">{t('Rira Daily Hub')}</h2>
               </div>
-              <div className="flex items-center gap-2 bg-[#121212] p-1 rounded-xl border border-white/5">
+              <div className="flex items-center gap-1.5 bg-[#121212] p-1 rounded-xl border border-white/5">
                 <button
                   onClick={() => setDailyHubTab('patch_notes')}
-                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-400 hover:text-white'}`}
+                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('패치 노트')}
                 </button>
                 <button
                   onClick={() => setDailyHubTab('notices')}
-                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('전체 공지')}
                 </button>
               </div>
             </div>
             
-            <Link to="/notices" className="inline-flex items-center gap-2 text-xs font-black text-gray-400 hover:text-brand-primary uppercase tracking-widest transition-colors">
+            <Link to="/notices" className="inline-flex items-center gap-1.5 text-xs font-black text-gray-400 hover:text-brand-primary uppercase tracking-widest transition-colors self-end sm:self-center">
               {t('+ 더보기')} <ChevronRight size={14} />
             </Link>
           </div>
           
-          <div className="min-h-[200px]">
+          <div className="min-h-[160px]">
             {dailyHubTab === 'patch_notes' ? (
               <NoticeListView 
                 notices={globalNotices.filter(n => n.category === 'Update').slice(0, 3)} 
@@ -174,27 +174,26 @@ const Home: React.FC = () => {
       </section>
 
       {/* 게임 라이브러리 센터 */}
-      <section className="max-w-[1600px] mx-auto px-10 py-16 space-y-16">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-10">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-black tracking-tighter italic flex items-center gap-4">
-          <span className="text-brand-accent">/</span> {t('아카이브 탐색')}
+      <section className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-16 space-y-10 sm:space-y-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-white/5 pb-6 sm:pb-10">
+          <div className="space-y-1 sm:space-y-2">
+            <h2 className="text-2xl sm:text-3xl font-black tracking-tighter italic flex items-center gap-3">
+              <span className="text-brand-accent">/</span> {t('아카이브 탐색')}
             </h2>
-        <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>
+            <p className="text-gray-400 text-xs sm:text-sm font-bold uppercase tracking-widest">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>
           </div>
-          <div className="flex items-center gap-4 text-[11px] font-black text-gray-400 uppercase tracking-widest">
-        <TrendingUp size={14} className="text-brand-accent" /> {t('현재 인기 아카이브')}
+          <div className="flex items-center gap-3 text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest">
+            <TrendingUp size={14} className="text-brand-accent" /> {t('현재 인기 아카이브')}
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {ARCHIVE_DATA.games.map((game, index) => (
             <Link 
               key={game.id}
               to={`/gallery/${game.id}`}
-              className="group relative h-[480px] rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
+              className="group relative h-[380px] sm:h-[440px] md:h-[480px] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
             >
-              {/* Uses game.bannerImage (/assets/banners/hsr_placeholder.webp, /assets/banners/ww_placeholder.webp) */}
               <LazyImage 
                 src={game.bannerImage} 
                 alt={`${game.title} - ${t('리라 아카이브 게임 데이터베이스 탐색')}`}
@@ -208,41 +207,41 @@ const Home: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-transparent" />
               
-              <div className="absolute inset-0 p-14 flex flex-col justify-between">
-                <div className="flex items-center gap-4">
-                  <span className="px-4 py-1.5 rounded-full bg-brand-primary/30 backdrop-blur-md border border-brand-primary/30 text-[10px] font-black uppercase tracking-widest text-brand-accent">
-                {t('시스템 코드:')} {game.id.toUpperCase()}
+              <div className="absolute inset-0 p-6 sm:p-10 md:p-14 flex flex-col justify-between">
+                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-brand-primary/30 backdrop-blur-md border border-brand-primary/30 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-brand-accent">
+                    {t('시스템 코드:')} {game.id.toUpperCase()}
                   </span>
-                  <div className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 text-[10px] font-black uppercase text-gray-400">
-                <ActivityIcon size={12} className="text-green-500" /> {t('데이터 동기화 완료')}
+                  <div className="flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 text-[9px] sm:text-[10px] font-black uppercase text-gray-400">
+                    <ActivityIcon size={12} className="text-green-500" /> {t('데이터 동기화 완료')}
                   </div>
                 </div>
 
-                <div className="space-y-8">
-                  <div className="space-y-3">
-                    <h3 className="text-4xl md:text-5xl font-black leading-none text-white tracking-tighter group-hover:text-brand-accent transition-colors italic">
+                <div className="space-y-4 sm:space-y-6 md:space-y-8">
+                  <div className="space-y-1.5 sm:space-y-3">
+                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-black leading-none text-white tracking-tighter group-hover:text-brand-accent transition-colors italic">
                       {game.title}
                     </h3>
-                    <p className="text-gray-400 text-xl font-medium max-w-sm">
+                    <p className="text-gray-400 text-sm sm:text-base md:text-xl font-medium max-w-sm line-clamp-2">
                       {game.subTitle}
                     </p>
                   </div>
                   
-                  <div className="flex items-center gap-10 pt-4">
+                  <div className="flex items-center gap-6 sm:gap-10 pt-2 sm:pt-4">
                     <div className="flex flex-col">
-                  <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t('캐릭터 명단')}</span>
-                      <span className="text-3xl font-black tabular-nums">{CHARACTER_DB.filter(c => c.gameId === game.id).length}</span>
+                      <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('캐릭터 명단')}</span>
+                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{CHARACTER_DB.filter(c => c.gameId === game.id).length}</span>
                     </div>
-                    <div className="w-px h-10 bg-white/10" />
+                    <div className="w-px h-8 sm:h-10 bg-white/10" />
                     <div className="flex flex-col">
-                  <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-1">{t('전략 보고서')}</span>
-                      <span className="text-3xl font-black tabular-nums">{game.posts.length}</span>
+                      <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('전략 보고서')}</span>
+                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{game.posts.length}</span>
                     </div>
                   </div>
 
-                  <div className="pt-6">
-                    <div className="inline-flex items-center gap-4 px-8 py-4 bg-white text-black rounded-2xl font-black text-xs uppercase tracking-widest transition-all group-hover:bg-brand-accent group-hover:text-white group-hover:scale-105 group-hover:-translate-y-1 shadow-lg shadow-white/5">
-                  {game.title} {t('데이터베이스 탐색')} <ChevronRight size={16} />
+                  <div className="pt-2 sm:pt-4">
+                    <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-widest transition-all group-hover:bg-brand-accent group-hover:text-white group-hover:scale-105 active:scale-95 shadow-lg shadow-white/5">
+                      {game.title} {t('데이터베이스 탐색')} <ChevronRight size={14} className="sm:w-4 sm:h-4" />
                     </div>
                   </div>
                 </div>
@@ -250,43 +249,43 @@ const Home: React.FC = () => {
             </Link>
           ))}
           
-          <div className="h-[480px] rounded-[56px] border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-12 bg-white/[0.02] group transition-all hover:bg-white/[0.04]">
-            <div className="w-24 h-24 rounded-full bg-white/5 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5">
-              <Cpu size={40} className="text-gray-400" />
+          <div className="h-[300px] sm:h-[400px] md:h-[480px] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-6 sm:p-12 bg-white/[0.02] group transition-all hover:bg-white/[0.04]">
+            <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white/5 flex items-center justify-center mb-4 sm:mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5">
+              <Cpu size={32} className="sm:w-10 sm:h-10 text-gray-400" />
             </div>
-        <h4 className="text-xl font-black text-gray-400 uppercase tracking-[0.2em] mb-4">{t('새로운 데이터 연결 준비 중')}</h4>
-        <p className="text-gray-400 text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
+            <h4 className="text-base sm:text-xl font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{t('새로운 데이터 연결 준비 중')}</h4>
+            <p className="text-gray-500 text-xs sm:text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
           </div>
         </div>
       </section>
 
       {/* 데이터 분석 방법론 섹션 (E-E-A-T 강화) */}
-      <section className="max-w-6xl mx-auto px-6 py-32 space-y-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className="space-y-6">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32 space-y-12 sm:space-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
+          <div className="space-y-4 sm:space-y-6">
             <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
               <Users size={20} className="text-brand-primary" />
             </div>
-            <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('Who Created This?')}</h3>
-            <p className="text-sm text-gray-400 leading-relaxed font-medium">
+            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('Who Created This?')}</h3>
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
               {t('리라 아카이브의 모든 데이터는 수년간의 서브컬쳐 게임 플레이 경력을 보유한 전담 데이터 분석팀과 에디터들에 의해 정밀하게 검토되고 작성됩니다.')}
             </p>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
               <Database size={20} className="text-brand-accent" />
             </div>
-            <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('How Is It Built?')}</h3>
-            <p className="text-sm text-gray-400 leading-relaxed font-medium">
+            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('How Is It Built?')}</h3>
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
               {t('수년간의 하드코어 플레이 경험을 가진 전문 에디터 팀의 자체 데이터 시뮬레이션 및 교차 검증을 통해 최상의 전략과 가이드를 도출합니다. 모든 데이터는 철저한 인게임 테스트를 통해 최종 검토되어 가장 높은 신뢰도를 보장합니다.')}
             </p>
           </div>
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <div className="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
               <Globe size={20} className="text-yellow-500" />
             </div>
-            <h3 className="text-xl font-black italic tracking-tighter uppercase">{t('Why Rira Archive?')}</h3>
-            <p className="text-sm text-gray-400 leading-relaxed font-medium">
+            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('Why Rira Archive?')}</h3>
+            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
               {t('단순한 정보 나열을 넘어, 사용자가 가장 직관적이고 빠르게 최적의 플레이를 찾을 수 있도록 고밀도의 전술 지능을 제공하는 것이 리라 아카이브의 유일한 목표입니다.')}
             </p>
           </div>
@@ -294,12 +293,12 @@ const Home: React.FC = () => {
       </section>
 
       {/* SEO & AdSense 봇을 위한 사이트 상세 소개글 (Text-heavy block) */}
-      <section className="max-w-6xl mx-auto px-6 pb-24">
-        <div className="bg-[#111] border border-white/5 rounded-3xl p-10 md:p-14 space-y-8">
-          <h2 className="text-2xl font-black text-white border-b border-white/10 pb-4">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24">
+        <div className="bg-[#111] border border-white/5 rounded-3xl p-6 sm:p-10 md:p-14 space-y-6 sm:space-y-8">
+          <h2 className="text-xl sm:text-2xl font-black text-white border-b border-white/10 pb-4">
             Rira Game Hub: 최고의 서브컬쳐 게임 공략 및 데이터베이스
           </h2>
-          <div className="space-y-6 text-gray-400 text-sm md:text-base leading-loose">
+          <div className="space-y-4 sm:space-y-6 text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed sm:leading-loose">
             <p>
               Rira Game Hub(리라 게임 허브)는 전 세계 수많은 플레이어들이 열광하는 서브컬쳐 모바일 및 PC 게임에 대한 심도 깊은 데이터베이스와 공략을 제공하는 통합 인텔리전스 터미널입니다. 현재 <strong>붕괴: 스타레일(Honkai: Star Rail)</strong>과 <strong>명조: 워더링 웨이브(Wuthering Waves)</strong>의 실시간 메타 분석, 캐릭터 최적화 세팅, 장비 추천 및 파티 시너지 정보를 제공하고 있으며, 유저들이 게임 내에서 마주하는 다양한 난관을 논리적이고 효율적으로 돌파할 수 있도록 돕고 있습니다.
             </p>
@@ -313,10 +312,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-
-
-
-      <div className="max-w-[1600px] mx-auto px-10 pb-24">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 pb-16 sm:pb-24">
         <AdPlaceholder type="leaderboard" />
       </div>
     </div>
@@ -324,10 +320,10 @@ const Home: React.FC = () => {
 };
 
 const StatMetric = React.memo(({ label, value, icon, color }: { label: string; value: number; icon: React.ReactNode; color: string }) => (
-  <div className="flex flex-col items-center justify-center gap-3 px-8 group text-center">
-    <div className={`${color} mb-1 transition-transform group-hover:scale-125 duration-700`}>{icon}</div>
-    <div className="text-3xl font-black tabular-nums tracking-tighter">{value.toLocaleString()}</div>
-    <div className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">{label}</div>
+  <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 px-2 sm:px-4 md:px-8 py-3 md:py-0 group text-center">
+    <div className={`${color} mb-0.5 sm:mb-1 transition-transform group-hover:scale-125 duration-700`}>{icon}</div>
+    <div className="text-xl sm:text-2xl md:text-3xl font-black tabular-nums tracking-tighter">{value.toLocaleString()}</div>
+    <div className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.3em]">{label}</div>
   </div>
 ));
 
