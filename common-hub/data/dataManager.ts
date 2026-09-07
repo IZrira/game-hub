@@ -46,6 +46,77 @@ export interface NotionItem {
   resonance?: string;
 }
 
+
+export function parseNotionResonanceChains(chainText?: string): any[] {
+  if (!chainText || !chainText.trim()) return [];
+
+  const text = chainText.replace(/\r\n/g, '\n').trim();
+  const lines = text.split('\n');
+  const sections: { header: string; body: string }[] = [];
+  let currentHeader: string | null = null;
+  let currentBodyLines: string[] = [];
+
+  const headerRegex = /^\s*(?:\*{2}|#{1,6}\s*)?([1-6]|R[1-6])(?:\.|\))\s*(?:\*{2})?\s*(.*?)(?:\*{2})?\s*$/;
+
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    const match = trimmed.match(headerRegex);
+
+    let isHeader = false;
+    if (match) {
+      const rawTitle = match[2].replace(/\*/g, '').trim();
+      if (rawTitle.length < 80) {
+        isHeader = true;
+      }
+    }
+
+    if (isHeader) {
+      if (currentHeader) {
+        sections.push({
+          header: currentHeader,
+          body: currentBodyLines.join('\n').trim()
+        });
+      }
+      currentHeader = trimmed;
+      currentBodyLines = [];
+    } else {
+      if (currentHeader) {
+        currentBodyLines.push(line);
+      }
+    }
+  });
+
+  if (currentHeader) {
+    sections.push({
+      header: currentHeader,
+      body: currentBodyLines.join('\n').trim()
+    });
+  }
+
+  return sections.map((sec, idx) => {
+    const rankNum = idx + 1;
+    let cleanHeader = sec.header.replace(/\*/g, '').trim();
+    let title = cleanHeader.replace(/^([1-6]|R[1-6])(?:\.|\))\s*/, '').trim();
+    let body = sec.body.replace(/\*{2}/g, '');
+
+    if (!title && body) {
+      const bodyLines = body.split('\n');
+      title = bodyLines[0].replace(/\*/g, '').trim();
+      body = bodyLines.slice(1).join('\n').trim();
+    }
+
+    const finalName = `${rankNum}. ${title.replace(/^\d+\.\s*/, '')}`;
+
+    return {
+      id: `chain_${rankNum}`,
+      rank: `R${rankNum}`,
+      name: finalName,
+      description: body,
+      icon: `eidolon_${rankNum}`
+    };
+  });
+}
+
 export const getGameData = (targetId: string) => {
   const isEn = targetId === 'en';
   const gameId = isEn ? 'hsr' : targetId; // 기본적으로 'en' 요청은 HSR 번역용으로 처리
@@ -227,7 +298,8 @@ export const getGameData = (targetId: string) => {
       skillMap.forEach(s => {
         if (item[s.key]) {
           const lines = item[s.key].split('\n');
-          const skillName = lines[0].trim();
+          const rawSkillName = lines[0].trim();
+          const skillName = rawSkillName.replace(/^#+\s*/, '').replace(/\*/g, '').trim();
           const description = lines.slice(1).join('\n').trim();
 
           parsedSkills.push({
@@ -243,28 +315,14 @@ export const getGameData = (targetId: string) => {
       if (parsedSkills.length === 0 && (item.skillName || item.skillDescription)) {
         parsedSkills.push({
           id: 'notion_skill',
-          name: item.skillName || '공명 스킬',
+          name: (item.skillName || '공명 스킬').replace(/^#+\s*/, '').replace(/\*/g, '').trim(),
           type: '공명 스킬',
           tag: '공명 스킬',
           description: item.skillDescription || '상세 내용 없음'
         });
       }
 
-      const parsedChains: any[] = [];
-      if (item.resonanceChains) {
-        const chainText = item.resonanceChains;
-        // Match "1. Title \n Description" until next number or end of string
-        const regex = /(\d)\.\s*([^\n]+)\n([^]*?)(?=(?:\n\d\.\s)|$)/g;
-        let match;
-        while ((match = regex.exec(chainText)) !== null) {
-          parsedChains.push({
-            id: `chain_${match[1]}`,
-            rank: parseInt(match[1], 10),
-            name: match[2].trim(),
-            description: match[3].trim()
-          });
-        }
-      }
+      const parsedChains: any[] = parseNotionResonanceChains(item.resonanceChains);
 
       const parsedTerms: any[] = [];
       const specialTerms: Record<string, string> = {};
@@ -296,16 +354,16 @@ export const getGameData = (targetId: string) => {
         releaseVersion: releaseVersion,
         obtain: item.obtain || '노션 연동',
         briefInfo: item.briefInfo || item.name + ' - 노션 연동 캐릭터 정보',
-        affiliation: item.affiliation,
+        affiliation: item.affiliation ? item.affiliation.replace(/\*/g, '').trim() : undefined,
         roles: item.combatRoles ? item.combatRoles.split('\n').map((r: string) => {
           const parts = r.includes(':') ? r.split(':') : r.split('：');
           if (parts.length > 1) {
-            return { label: parts[0].trim(), description: parts.slice(1).join(':').trim() };
+            return { label: parts[0].replace(/\*/g, '').trim(), description: parts.slice(1).join(':').replace(/\*/g, '').trim() };
           }
-          return { label: r.trim(), description: '' };
+          return { label: r.replace(/\*/g, '').trim(), description: '' };
         }).filter((r: any) => r.label) : [],
-        locales: item.locales,
-        voiceActors: item.voiceActors,
+        locales: item.locales ? item.locales.replace(/\*/g, '').trim() : undefined,
+        voiceActors: item.voiceActors ? item.voiceActors.replace(/\*/g, '').trim() : undefined,
         glossary: item.glossary,
         specialTerms: specialTerms,
         terms: parsedTerms,
@@ -808,7 +866,25 @@ export const getGameData = (targetId: string) => {
           roles: c.roles && c.roles.length > 0 ? c.roles : existing.roles,
           materials_v2: c.materials_v2 && (c.materials_v2.ascension.length > 0 || c.materials_v2.traces.length > 0) ? c.materials_v2 : existing.materials_v2,
           skills: c.skills && c.skills.length > 0 ? c.skills : existing.skills,
-          eidolons: c.eidolons && c.eidolons.length > 0 ? c.eidolons : existing.eidolons,
+          eidolons: (() => {
+            const list = (c.eidolons && c.eidolons.length === 6)
+              ? c.eidolons
+              : ((existing?.eidolons && existing.eidolons.length === 6)
+                  ? existing.eidolons
+                  : (c.eidolons && c.eidolons.length > 0 ? c.eidolons : (existing?.eidolons || [])));
+            return list.map((e: any, idx: number) => {
+              const rankNum = idx + 1;
+              const rawRank = e.rank ? String(e.rank).trim() : `R${rankNum}`;
+              const cleanRank = rawRank.startsWith('R') ? rawRank : `R${rawRank}`;
+              const cleanName = (e.name ? String(e.name) : '').replace(/\*/g, '').trim();
+              return {
+                ...e,
+                rank: cleanRank,
+                name: cleanName.includes('.') ? cleanName : `${rankNum}. ${cleanName}`,
+                icon: e.icon || `eidolon_${rankNum}`
+              };
+            });
+          })(),
           baseStats: c.baseStats && Object.keys(c.baseStats).length > 0 ? c.baseStats : existing.baseStats,
           metadata: mergedMetadata,
           skillInput: {

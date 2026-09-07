@@ -76,12 +76,12 @@ const rover_havoc: WuwaCharacter = {
     description: "character.rover_havoc.concertDissipation.description"
   },
   eidolons: [
-    { name: "character.rover_havoc.eidolons.0.name", description: "character.rover_havoc.eidolons.0.description" },
-    { name: "character.rover_havoc.eidolons.1.name", description: "character.rover_havoc.eidolons.1.description" },
-    { name: "character.rover_havoc.eidolons.2.name", description: "character.rover_havoc.eidolons.2.description" },
-    { name: "character.rover_havoc.eidolons.3.name", description: "character.rover_havoc.eidolons.3.description" },
-    { name: "character.rover_havoc.eidolons.4.name", description: "character.rover_havoc.eidolons.4.description" },
-    { name: "character.rover_havoc.eidolons.5.name", description: "character.rover_havoc.eidolons.5.description" }
+    { rank: "R1", name: "character.rover_havoc.eidolons.0.name", description: "character.rover_havoc.eidolons.0.description", icon: "eidolon_1" },
+    { rank: "R2", name: "character.rover_havoc.eidolons.1.name", description: "character.rover_havoc.eidolons.1.description", icon: "eidolon_2" },
+    { rank: "R3", name: "character.rover_havoc.eidolons.2.name", description: "character.rover_havoc.eidolons.2.description", icon: "eidolon_3" },
+    { rank: "R4", name: "character.rover_havoc.eidolons.3.name", description: "character.rover_havoc.eidolons.3.description", icon: "eidolon_4" },
+    { rank: "R5", name: "character.rover_havoc.eidolons.4.name", description: "character.rover_havoc.eidolons.4.description", icon: "eidolon_5" },
+    { rank: "R6", name: "character.rover_havoc.eidolons.5.name", description: "character.rover_havoc.eidolons.5.description", icon: "eidolon_6" }
   ],
   terms: [
     { name: "character.rover_havoc.terms.0.name", description: "character.rover_havoc.terms.0.description" }

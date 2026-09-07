@@ -65,12 +65,12 @@ const chaconne: WuwaCharacter = {
     { name: "character.chaconne.additionalAbilities.1.name", description: "character.chaconne.additionalAbilities.1.description" }
   ],
   eidolons: [
-    { rank: "1", name: "character.chaconne.eidolons.0.name", description: "character.chaconne.eidolons.0.description" },
-    { rank: "2", name: "character.chaconne.eidolons.1.name", description: "character.chaconne.eidolons.1.description" },
-    { rank: "3", name: "character.chaconne.eidolons.2.name", description: "character.chaconne.eidolons.2.description" },
-    { rank: "4", name: "character.chaconne.eidolons.3.name", description: "character.chaconne.eidolons.3.description" },
-    { rank: "5", name: "character.chaconne.eidolons.4.name", description: "character.chaconne.eidolons.4.description" },
-    { rank: "6", name: "character.chaconne.eidolons.5.name", description: "character.chaconne.eidolons.5.description" }
+    { rank: "R1", name: "character.chaconne.eidolons.0.name", description: "character.chaconne.eidolons.0.description", icon: "eidolon_1" },
+    { rank: "R2", name: "character.chaconne.eidolons.1.name", description: "character.chaconne.eidolons.1.description", icon: "eidolon_2" },
+    { rank: "R3", name: "character.chaconne.eidolons.2.name", description: "character.chaconne.eidolons.2.description", icon: "eidolon_3" },
+    { rank: "R4", name: "character.chaconne.eidolons.3.name", description: "character.chaconne.eidolons.3.description", icon: "eidolon_4" },
+    { rank: "R5", name: "character.chaconne.eidolons.4.name", description: "character.chaconne.eidolons.4.description", icon: "eidolon_5" },
+    { rank: "R6", name: "character.chaconne.eidolons.5.name", description: "character.chaconne.eidolons.5.description", icon: "eidolon_6" }
   ],
   concertDissipation: {
     name: "조화도 파괴 · 권총",

@@ -158,7 +158,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
                             <img 
                               src={`${ICON_BASE}${safeEncodeURIComponent(filename.replace('.webp', ''))}.webp`} 
                               className="w-full h-full object-contain" 
-                              alt={t(skill.name)} 
+                              alt={t(skill.name).replace(/\*/g, '').trim()} 
                               onError={handleSkillImageError}
                             />
                          </div>
@@ -166,9 +166,9 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
                       <div className="space-y-6 flex-1 min-w-0">
                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div className="space-y-1">
-                               <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name)}</h4>
+                               <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name).replace(/\*/g, '').trim()}</h4>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
-                                  {skill.tag && <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest bg-brand-primary/5 px-2.5 py-1 rounded-lg border border-brand-primary/20">{skill.tag.split('|').map(part => t(part.trim())).join(' | ')}</span>}
+                                  {skill.tag && <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest bg-brand-primary/5 px-2.5 py-1 rounded-lg border border-brand-primary/20">{skill.tag.split('|').map(part => t(part.trim()).replace(/\*/g, '').trim()).join(' | ')}</span>}
                                </div>
                             </div>
                          </div>

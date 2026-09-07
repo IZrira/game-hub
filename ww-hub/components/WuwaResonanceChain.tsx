@@ -24,6 +24,9 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {char.eidolons.map((eidolon: any, index: number) => {
           const iconUrl = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char.folderName)}/공명%20체인${index + 1}.webp`;
+          const rawName = t(eidolon.name);
+          const cleanName = rawName.replace(/\*/g, '').trim();
+          const displayRank = eidolon.rank ? (String(eidolon.rank).startsWith('R') ? eidolon.rank : `R${eidolon.rank}`) : `R${index + 1}`;
           
           return (
             <div 
@@ -38,18 +41,18 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
                   <img 
                     src={iconUrl} 
                     className="w-full h-full object-contain brightness-110" 
-                    alt={t(eidolon.name)} 
+                    alt={cleanName} 
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/skill_placeholder.webp';
                     }}
                   />
                   <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-black/80 border border-white/20 flex items-center justify-center text-[10px] font-black text-white italic shadow-lg">
-                    {eidolon.rank}
+                    {displayRank}
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
                   <h3 className="text-xl font-black text-white tracking-tight group-hover:text-brand-accent transition-colors italic" style={{ color: theme.primary }}>
-                    {t(eidolon.name)}
+                    {cleanName}
                   </h3>
                   <div className="flex items-center gap-2">
                     <div className="w-1 h-1 rounded-full bg-white/30" />

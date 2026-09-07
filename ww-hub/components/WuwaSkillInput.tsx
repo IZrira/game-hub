@@ -151,7 +151,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
         );
       }
       
-      return part;
+      return typeof part === 'string' ? part.replace(/\*/g, '') : part;
     });
   };
 
@@ -187,28 +187,29 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
       {overviewText && (
         <div className="space-y-8 mb-10">
           {(() => {
-            const sections = overviewText.split(/\n\n(?=설명|특징|개요|조작 입력|특수 에너지|메커니즘 설명)/);
+            const sections = overviewText.split(/\n\n(?=(?:\*{2})?(?:설명|특징|개요|조작 입력|특수 에너지|메커니즘 설명))/);
             return sections.map((section, idx) => {
               const lines = section.trim().split('\n\n');
               let title = '';
               let contentLines = lines;
 
-              if (lines[0] === '특징') {
+              const cleanHeader = lines[0].replace(/[*#]/g, '').trim();
+              if (cleanHeader === '특징') {
                 title = t('특징');
                 contentLines = lines.slice(1);
-              } else if (lines[0] === '설명') {
+              } else if (cleanHeader === '설명') {
                 title = t('설명');
                 contentLines = lines.slice(1);
-              } else if (lines[0] === '개요') {
+              } else if (cleanHeader === '개요') {
                 title = t('개요');
                 contentLines = lines.slice(1);
-              } else if (lines[0] === '조작 입력') {
+              } else if (cleanHeader === '조작 입력') {
                 title = t('조작 입력');
                 contentLines = lines.slice(1);
-              } else if (lines[0] === '메커니즘 설명') {
+              } else if (cleanHeader === '메커니즘 설명') {
                 title = t('메커니즘 설명');
                 contentLines = lines.slice(1);
-              } else if (lines[0] === '특수 에너지') {
+              } else if (cleanHeader === '특수 에너지') {
                 title = t('특수 에너지');
                 contentLines = lines.slice(1);
               }

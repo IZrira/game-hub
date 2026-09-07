@@ -273,7 +273,7 @@ const CharacterDetail: React.FC = () => {
       }
 
       // For normal lines, strip leftover asterisks that might overlap with custom highlights
-      const cleanLine = line.replace(/\*/g, '');
+      const cleanLine = line.replace(/[*#]/g, '');
 
       const inlineNodes = cleanLine.split(combinedRegex).map((part, i) => {
         // 1. Icon matches
@@ -707,7 +707,7 @@ const CharacterDetail: React.FC = () => {
               <div className={`transition-all duration-500 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
                 <div className="px-6 border-t border-white/5 pt-6">
                   <div className="text-gray-400 text-base leading-relaxed italic bg-black/20 p-6 rounded-[25px] border border-white/5 shadow-inner whitespace-pre-line">
-                    {t(char.autoDescription || char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.')}
+                    {renderTextWithHighlights(t(char.autoDescription || char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.'))}
                   </div>
                 </div>
               </div>
@@ -731,7 +731,7 @@ const CharacterDetail: React.FC = () => {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <MetadataCard label={t("무기 유형")} value={t((char as any).weaponType) || ''} icon={<Compass size={20} />} theme={theme} />
                 <MetadataCard label={t("전투 속성")} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
-                <MetadataCard label={t("소속 세력")} value={t(char.affiliation || 'Unknown')} icon={<MapPin size={20} />} theme={theme} />
+                <MetadataCard label={t("소속 세력")} value={t(char.affiliation || 'Unknown').replace(/\*/g, '')} icon={<MapPin size={20} />} theme={theme} />
                 <MetadataCard label={t("출시 버전")} value={`v${char.releaseVersion || '1.0'}`} icon={<History size={20} />} theme={theme} />
               </div>
               
@@ -752,7 +752,7 @@ const CharacterDetail: React.FC = () => {
                             <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
                             <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>
                           </div>
-                          <span className="text-sm font-black text-gray-200 group-hover:text-white text-right break-words max-w-[120px]">{t(n.trim())}</span>
+                          <span className="text-sm font-black text-gray-200 group-hover:text-white text-right break-words max-w-[120px]">{t(n.trim()).replace(/\*/g, '')}</span>
                         </div>
                       ))}
                     </div>
@@ -802,13 +802,13 @@ const CharacterDetail: React.FC = () => {
                        <img 
                          src={`${ICON_BASE}${encodeURIComponent(t(role.label))}.webp`} 
                          className="w-full h-full object-contain brightness-110" 
-                         alt={t(role.label)} 
+                         alt={t(role.label).replace(/\*/g, '')} 
                          onError={(e) => (e.currentTarget.style.opacity = '0.3')}
                        />
                     </div>
                     <div className="space-y-1 relative z-10">
-                      <span className="text-brand-primary font-black text-lg italic uppercase tracking-tighter">{t(role.label)}</span>
-                      <p className="text-gray-400 text-sm leading-relaxed font-medium">{t(role.description)}</p>
+                      <span className="text-brand-primary font-black text-lg italic uppercase tracking-tighter">{t(role.label).replace(/\*/g, '')}</span>
+                      <p className="text-gray-400 text-sm leading-relaxed font-medium">{t(role.description).replace(/\*/g, '')}</p>
                     </div>
                   </div>
                 );

@@ -87,7 +87,10 @@ export const WW_CHARACTER_GUIDES: WuwaCharacterGuide[] = [
       "유노",
       "린네",
       "파수인",
-      "모르테피"
+      "모르테피",
+      "샤콘",
+      "레베카",
+      "벨리나"
     ]
   },
   {
