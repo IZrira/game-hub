@@ -17,7 +17,7 @@ export const 마이데이Guide: CharacterGuide = {
       { label: "HP", value: "8000 이상" },
       { label: "치명타 확률", value: "52% 이하" }
     ],
-    bestLightCones: ["피의 불꽃이여, 앞길을 태워라", "닿을 수 없는 저편", "비밀 맹세", "인사록•음률 사냥"],
+    bestLightCones: ["피의 불꽃이여, 앞길을 태워라", "닿을 수 없는 저편", "비밀 맹세", "인사록·음률 사냥"],
     skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E2 / E6",
     eidolonVariants: [
@@ -34,7 +34,7 @@ export const 마이데이Guide: CharacterGuide = {
         ]
       },
       {
-        name: "인사록•음률 사냥",
+        name: "인사록·음률 사냥",
         efficiency: [
           { level: 0, impact: "Low", efficiency1: "100%", efficiency3: "100%", description: "기본 성능" },
           { level: 1, impact: "Low", efficiency1: "105%", efficiency3: "125%", description: "성흔 효과" },

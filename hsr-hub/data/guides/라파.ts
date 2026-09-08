@@ -18,7 +18,7 @@ export const 라파Guide: CharacterGuide = {
       { label: "격파 특수효과", value: "200% 이상" },
       { label: "공격력", value: "3200 이상" }
     ],
-    bestLightCones: ["인법첩·현란한 파마", "인내심만 있으면 돼", "밤의 인사와 잠든 얼굴"],
+    bestLightCones: ["인법첩•요란 파마", "은하철도의 밤", "조화가 침묵한 후"],
     skillPriority: ["필살기", "특성", "전투 스킬", "일반 공격"],
     recommendedEidolon: "E2",
     eidolonEfficiency: [

@@ -18,7 +18,7 @@ export const 연경Guide: CharacterGuide = {
       { label: "치명타 피해", value: "200%" },
       { label: "공격력", value: "3000" }
     ],
-    bestLightCones: ["깊게 든 단잠", "야경 속에서", "별바다 순항", "침묵만이 남을 뿐"],
+    bestLightCones: ["깊게 든 단잠", "야경 속에서", "별바다 순항", "침묵만이"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E6",
     eidolonEfficiency: [

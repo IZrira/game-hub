@@ -4,7 +4,7 @@ export const 서벌Guide: CharacterGuide = {
     characterName: "서벌",
     lastUpdated: "2026-03-16",
     patchVersion: "1.0",
-    bestRelics: ["뇌전을 울리는 밴드", "깊은 감옥에 갇힌 죄수"],
+    bestRelics: ["뇌전을 울리는 밴드", "깊은 감옥에 수감된 죄수"],
     bestOrnaments: ["회전을 멈춘 살소토", "창공 전선 그라모스"],
     mainStats: {
       body: "치명타 확률 or 치명타 피해",

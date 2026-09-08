@@ -4,8 +4,8 @@ export const Mar7thGuide: CharacterGuide = {
     characterName: "Mar. 7th",
     lastUpdated: "2026-03-16",
     patchVersion: "1.0",
-    bestRelics: ["정토 교황의 팔각 모자"],
-    bestOrnaments: ["벨로보그의 건설 공정", "부러진 용골"],
+    bestRelics: ["정토 교황의 팔라딘"],
+    bestOrnaments: ["축성가의 벨로보그", "부러진 용골"],
     mainStats: {
       body: "방어력 or 효과 명중",
       boots: "속도 or 방어력",
@@ -17,7 +17,7 @@ export const Mar7thGuide: CharacterGuide = {
       { label: "방어력", value: "3000 이상" },
       { label: "효과 명중", value: "50% 이상" }
     ],
-    bestLightCones: ["승리의 순간", "기억의 소재", { name: "랜도의 선택", note: "어그로 필요 시" }, "이게 바로 나야!", "엠버"],
+    bestLightCones: ["승리의 순간", "기억의 소재", { name: "랜도의 선택", note: "어그로 필요 시" }, "이게 바로 나야!", "앰버"],
     skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E6",
     eidolonEfficiency: []

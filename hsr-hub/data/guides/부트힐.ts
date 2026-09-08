@@ -17,7 +17,7 @@ export const 부트힐Guide: CharacterGuide = {
       { label: "격파 특수효과", value: "250% 이상" },
       { label: "속도", value: "145 이상" }
     ],
-    bestLightCones: ["두 번째 삶을 향해", "별바다 순항", "논검", "강항의 기약"],
+    bestLightCones: ["두 번째 생명을 향해", "별바다 순항", "논검", "침묵만이"],
     skillPriority: ["특성", "전투 스킬", "필살기", "일반 공격"],
     recommendedEidolon: "E1 / E2 / E6",
     eidolonEfficiency: []

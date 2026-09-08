@@ -17,7 +17,7 @@ export const 아처Guide: CharacterGuide = {
       { label: "치명타 확률", value: "70%" },
       { label: "치명타 피해", value: "180%" }
     ],
-    bestLightCones: ["전용 광추", "순수 사유의 세례"],
+    bestLightCones: ["이상이 불타는 지옥", "순수 사유의 세례", "별바다 순항"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E2 / E6",
     eidolonEfficiency: []

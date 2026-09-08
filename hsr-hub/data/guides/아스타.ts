@@ -16,7 +16,7 @@ export const 아스타Guide: CharacterGuide = {
     targetStats: [
       { label: "속도", value: "145 이상" }
     ],
-    bestLightCones: ["아직 전투는 끝나지 않았어", "누구의 소리인가?", "댄스! 댄스! 댄스!", "기억 속의 모습", "행성과의 만남"],
+    bestLightCones: ["아직 전투는 끝나지 않았다", "누월재운의 뜻", "댄스! 댄스! 댄스!", "기억 속 모습", "행성과의 만남"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E4 / E6",
     eidolonEfficiency: []

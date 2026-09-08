@@ -17,7 +17,7 @@ export const 사이퍼Guide: CharacterGuide = {
       { label: "속도", value: "160 이상" },
       { label: "공격력", value: "3000 이상" }
     ],
-    bestLightCones: ["전용 광추", "거울 속의 나"],
+    bestLightCones: ["바람에 흩날리는 거짓말", "흘러가는 강가를 따라", "밤 인사와 잠든 얼굴"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E2",
     eidolonEfficiency: []

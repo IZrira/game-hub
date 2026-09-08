@@ -4,7 +4,7 @@ export const 계네빈Guide: CharacterGuide = {
     characterName: "계네빈",
     lastUpdated: "2026-03-16",
     patchVersion: "1.4",
-    bestRelics: ["깊은 감옥에 갇힌 죄수", "화염을 누비는 대장장이"],
+    bestRelics: ["깊은 감옥에 수감된 죄수", "용암 단조의 화장(火匠)"],
     bestOrnaments: ["창공 전선 그라모스", "우주 봉인 정거장"],
     mainStats: {
       body: "공격력",
@@ -18,7 +18,7 @@ export const 계네빈Guide: CharacterGuide = {
       { label: "속도", value: "134" },
       { label: "효과 명중", value: "67%" }
     ],
-    bestLightCones: ["인내심만 있으면 돼", "밤의 인사와 잠든 얼굴", "고독하게 치유되는 것", "페르마타"],
+    bestLightCones: ["필요한 건 기다림뿐", "밤 인사와 잠든 얼굴", "고독의 치유", "페르마타"],
     skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E6",
     eidolonEfficiency: []

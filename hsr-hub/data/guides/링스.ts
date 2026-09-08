@@ -17,7 +17,7 @@ export const 링스Guide: CharacterGuide = {
       { label: "HP", value: "5000 이상" },
       { label: "속도", value: "134 이상" }
     ],
-    bestLightCones: ["수술 후의 대화", "알맞은 타이밍", { name: "등가교환", note: "전부 에너지 충전 필요 시" }, "따뜻한 저녁 식사 후"],
+    bestLightCones: ["수술 후의 대화", "알맞은 타이밍", { name: "등가교환", note: "전부 에너지 충전 필요 시" }, "따듯한 밤은 길지 않고"],
     skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E2 / E4 / E6",
     eidolonEfficiency: []

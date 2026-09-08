@@ -4,7 +4,7 @@ export const 로빈Guide: CharacterGuide = {
     characterName: "로빈",
     lastUpdated: "2026-03-16",
     patchVersion: "2.2",
-    bestRelics: ["가상공간을 누비는 메신저", "깊은 감옥에 갇힌 죄수"],
+    bestRelics: ["가상공간을 누비는 메신저", "깊은 감옥에 수감된 죄수"],
     bestOrnaments: ["바다에 잠긴 루샤카", "불로인의 선주", "부러진 용골"],
     mainStats: {
       body: "공격력",
@@ -17,7 +17,7 @@ export const 로빈Guide: CharacterGuide = {
       { label: "공격력", value: "4000 이상" },
       { label: "속도", value: "120 이상" }
     ],
-    bestLightCones: ["찬란하게 빛나는 밤", "거울 속의 나", "내일의 기약", "누구의 소리인가?"],
+    bestLightCones: ["찬란하게 빛나는 밤", "거울 속 지난날의 나", "내일을 위한 여정", "누월재운의 뜻"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E2 / E6",
     eidolonEfficiency: []

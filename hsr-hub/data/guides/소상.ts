@@ -17,7 +17,7 @@ export const 소상Guide: CharacterGuide = {
       { label: "치명타 확률", value: "70%" },
       { label: "속도", value: "134" }
     ],
-    bestLightCones: ["야경 속에서", "별바다 순항", "논검", "침묵만이 남을 뿐"],
+    bestLightCones: ["야경 속에서", "별바다 순항", "논검", "침묵만이"],
     skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E6",
     eidolonEfficiency: []

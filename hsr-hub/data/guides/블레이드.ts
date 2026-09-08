@@ -5,7 +5,7 @@ export const 블레이드Guide: CharacterGuide = {
     lastUpdated: "2026-03-16",
     patchVersion: "1.2",
     bestRelics: ["가상공간을 누비는 메신저", "장수를 원하는 제자"],
-    bestOrnaments: ["회전을 멈춘 살소토", "경기장"],
+    bestOrnaments: ["회전을 멈춘 살소토", "뭇별 경기장"],
     mainStats: {
       body: "치명타 확률 or 치명타 피해",
       boots: "속도 or HP",

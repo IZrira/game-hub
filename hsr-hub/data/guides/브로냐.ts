@@ -18,7 +18,7 @@ export const 브로냐Guide: CharacterGuide = {
       { label: "속도", value: "134 이상" },
       { label: "속도", value: "160 이상" }
     ],
-    bestLightCones: ["아직 전투는 끝나지 않았어", "누구의 소리인가?", "댄스! 댄스! 댄스!", "과거와 미래"],
+    bestLightCones: ["아직 전투는 끝나지 않았다", "누월재운의 뜻", "댄스! 댄스! 댄스!", "과거와 미래"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E2 / E6",
     eidolonEfficiency: []

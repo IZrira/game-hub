@@ -17,7 +17,7 @@ export const 세리드라Guide: CharacterGuide = {
       { label: "속도", value: "160 이상" },
       { label: "공격력", value: "3000 이상" }
     ],
-    bestLightCones: ["전용 광추", "거울 속의 나"],
+    bestLightCones: ["황금 피가 새긴 시대", "거울 속 지난날의 나", "아직 전투는 끝나지 않았다"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E2",
     eidolonEfficiency: []

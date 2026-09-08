@@ -17,7 +17,7 @@ export const 아젠티Guide: CharacterGuide = {
       { label: "치명타 확률", value: "70%" },
       { label: "치명타 피해", value: "140%" }
     ],
-    bestLightCones: ["눈부신 태양보다 밝게", "은하철도의 밤", "오늘도 평화로운 하루", "천재들의 휴식"],
+    bestLightCones: ["눈에 담긴 순간", "은하철도의 밤", "오늘도 평화로운 하루", "천재들의 휴식"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1",
     eidolonEfficiency: []

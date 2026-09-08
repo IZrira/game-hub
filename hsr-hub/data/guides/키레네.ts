@@ -17,7 +17,7 @@ export const 키레네Guide: CharacterGuide = {
       { label: "치명타 확률", value: "80%" },
       { label: "치명타 피해", value: "160%" }
     ],
-    bestLightCones: ["전용 광추", "순수 사유의 세례"],
+    bestLightCones: ["그대는 나아가 노래하리니", "시간을 황금으로 엮어", "꽃은 잊지 않는다"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E2 / E6",
     eidolonEfficiency: []

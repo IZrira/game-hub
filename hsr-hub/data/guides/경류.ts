@@ -18,7 +18,7 @@ export const 경류Guide: CharacterGuide = {
       { label: "치명타 확률", value: "50% 미만" },
       { label: "속도", value: "134 이상" }
     ],
-    bestLightCones: ["피의 불꽃이여, 앞길을 태워라", "이 몸이 검이니", "과거의 핏자국", "비밀 맹세", "인사록•음률 사냥"],
+    bestLightCones: ["피의 불꽃이여, 앞길을 태워라", "이 몸이 검이니", "과거의 핏자국", "비밀 맹세", "인사록·음률 사냥"],
     skillPriority: ["전투 스킬", "특성", "필살기", "일반 공격"],
     recommendedEidolon: "E1 / E6",
     eidolonEfficiency: [

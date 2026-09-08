@@ -52,9 +52,9 @@ export const 망귀인Guide: CharacterGuide = {
       { label: "격파 특수효과", value: "200% 이상" }
     ],
     bestLightCones: [
-      { name: "먼 곳의 소리", note: "1순위" },
-      { name: "거울 속의 나", note: "2순위" },
-      { name: "기억 속의 모습", note: "3순위" }
+      { name: "먼 길 끝의 귀로", note: "1순위" },
+      { name: "시간의 기억에 대한 재구성", note: "2순위" },
+      { name: "사냥감의 시선", note: "3순위" }
     ],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E2 / E6",
