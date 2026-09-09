@@ -66,8 +66,13 @@ const OrnamentDetail: React.FC = () => {
     return encodeURI(url);
   };
 
+  const sanitizeEffect = (text?: string) => {
+    if (!text) return '';
+    return text.replace(/\s*\[용어\s*설명\][\s\S]*$/i, '').trim();
+  };
+
   const displayName = isEn && ornament.enName ? ornament.enName : t(ornament.name);
-  const effect2 = isEn && ornament['en_2piece'] ? ornament['en_2piece'] : (ornament.setEffect?.['2piece'] || (ornament as any)['2piece']);
+  const effect2 = sanitizeEffect(isEn && ornament['en_2piece'] ? ornament['en_2piece'] : (ornament.setEffect?.['2piece'] || (ornament as any)['2piece']));
 
   const handleCopyTitle = () => {
     if (navigator.clipboard) {

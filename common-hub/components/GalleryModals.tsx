@@ -24,9 +24,14 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
 
   // 화면에 표시할 다국어 텍스트 분기
   const displayName = isEn && relic.enName ? relic.enName : t(relic.name);
-  const effect2 = isEn && relic['en_2piece'] ? relic['en_2piece'] : (relic.setEffect?.['2piece'] || relic['2piece']);
-  const effect4 = isEn && relic['en_4piece'] ? relic['en_4piece'] : (relic.setEffect?.['4piece'] || relic['4piece']);
-  const effect5 = isEn && relic['en_5piece'] ? relic['en_5piece'] : (relic.setEffect?.['5piece'] || relic['5piece']);
+  const sanitizeEffect = (text?: string) => {
+    if (!text) return '';
+    return text.replace(/\s*\[용어\s*설명\][\s\S]*$/i, '').trim();
+  };
+
+  const effect2 = sanitizeEffect(isEn && relic['en_2piece'] ? relic['en_2piece'] : (relic.setEffect?.['2piece'] || relic['2piece']));
+  const effect4 = sanitizeEffect(isEn && relic['en_4piece'] ? relic['en_4piece'] : (relic.setEffect?.['4piece'] || relic['4piece']));
+  const effect5 = sanitizeEffect(isEn && relic['en_5piece'] ? relic['en_5piece'] : (relic.setEffect?.['5piece'] || relic['5piece']));
 
   const handleCopyTitle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -297,7 +302,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
   };
 
   const displayName = isEn && ornament.enName ? ornament.enName : t(ornament.name);
-  const effect2 = isEn && ornament['en_2piece'] ? ornament['en_2piece'] : (ornament.setEffect?.['2piece'] || ornament['2piece']);
+  const effect2 = sanitizeEffect(isEn && ornament['en_2piece'] ? ornament['en_2piece'] : (ornament.setEffect?.['2piece'] || ornament['2piece']));
 
   const handleCopyTitle = (e: React.MouseEvent) => {
     e.stopPropagation();

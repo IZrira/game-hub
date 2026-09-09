@@ -387,7 +387,7 @@ export const ORNAMENT_DATA: Ornament[] = [
     folderName: "생명의 바커 공",
     type: "차원 장신구",
     setEffect: {
-      "2piece": "장착한 캐릭터의 에너지 회복효율이 5% 증가한다. 장착한 캐릭터의 속도가 120 이상일 경우 전투 진입 시 즉시 행동 게이지가 40% 증가한다\n\n[용어 설명]\n행동 게이지 증가: 행동 게이지가 증가하면 목표의 다음 행동 대기 시간이 단축된다.",
+      "2piece": "장착한 캐릭터의 에너지 회복효율이 5% 증가한다. 장착한 캐릭터의 속도가 120 이상일 경우 전투 진입 시 즉시 행동 게이지가 40% 증가한다",
       "en_2piece": "Increases the wearer's Energy Regeneration Rate by 5%. When the wearer's SPD reaches 120 or higher, the wearer's action is Advanced Forward by 40% immediately upon entering battle."
     },
     pieces: [
