@@ -55,7 +55,7 @@ export const 초구Guide: CharacterGuide = {
       { label: "속도", value: "167" },
       { label: "효과 명중", value: "178%" }
     ],
-    bestLightCones: ["그 무수한 봄날", "바람에 흩날리는 거짓말", "사냥감의 시선", "두더지파가 환영해"],
+    bestLightCones: ["그 무수한 봄날", "바람에 흩날리는 거짓말", "사냥감의 시선"],
     skillPriority: ["특성", "필살기", "전투 스킬", "일반 공격"],
     eidolonEfficiency: []
   };
