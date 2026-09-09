@@ -283,11 +283,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     });
   }, [currentVariant]);
 
-  const mainEchoesWithNotes = useMemo(() => {
-    return parsedMainEchoes.filter((me: any) => Boolean(me.reason));
-  }, [parsedMainEchoes]);
-
-  const hasEchoNotes = Boolean(currentVariant?.note || echoSetsWithNotes.length > 0 || mainEchoesWithNotes.length > 0);
+  const hasEchoNotes = Boolean(currentVariant?.note || echoSetsWithNotes.length > 0);
 
   if (!character || !guide) {
     return (
@@ -594,27 +590,6 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             </div>
                             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
                               {t(s.note)}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  {mainEchoesWithNotes.length > 0 && (
-                    <div className="space-y-3">
-                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <Target size={14} className="text-brand-accent" />
-                        {t('메인 에코 채용 사유')}
-                      </div>
-                      <div className="space-y-2">
-                        {mainEchoesWithNotes.map((me: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                              <span className="font-bold text-sm text-brand-accent truncate">{t(me.cleanName)}</span>
-                            </div>
-                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
-                              {t(me.reason)}
                             </p>
                           </div>
                         ))}
