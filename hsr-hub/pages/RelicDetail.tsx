@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
-import { ChevronRight, X, Shield, Star, ArrowLeft } from 'lucide-react';
+import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-react';
 import { RELIC_DB } from '../../common-hub/data/games';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
@@ -9,10 +9,20 @@ import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
 
+const handlePlainCopy = (e: React.ClipboardEvent) => {
+  const selection = window.getSelection()?.toString();
+  if (selection) {
+    e.clipboardData.setData('text/plain', selection);
+    e.preventDefault();
+  }
+};
+
 const RelicDetail: React.FC = () => {
   const { gameId, relicName } = useParams<{ gameId: string; relicName: string }>();
   const navigate = useNavigate();
   const { t, i18n } = useTranslation();
+  const [isCopied, setIsCopied] = useState(false);
+
   
   // 다국어 텍스트 출력을 위해 현재 언어에 맞는 DB를 로드합니다.
   const { RELIC_DB } = getGameData(i18n.language || 'ko');
@@ -61,11 +71,18 @@ const RelicDetail: React.FC = () => {
     return encodeURI(url);
   };
 
-  const effect2 = relic.setEffect?.['2piece'] || (relic as any)['2piece'];
-  const effect4 = relic.setEffect?.['4piece'] || (relic as any)['4piece'];
-  const effect5 = relic.setEffect?.['5piece'] || (relic as any)['5piece'];
+  const relicTitle = t(relic.name);
+
+  const handleCopyTitle = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(relicTitle);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1500);
+    }
+  };
 
   const seoDescription = `${relic.name} 세트 상세 가이드: 2세트 및 4세트 효과와 추천 착용 캐릭터 세팅을 완벽 정리했습니다. ${relic.gameId === 'ww' ? '명조' : '붕괴: 스타레일'} 게이머를 위한 최신 데이터 시트.`;
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20">
       <SEO 
@@ -104,7 +121,22 @@ const RelicDetail: React.FC = () => {
                     ))}
                   </div>
                 </div>
-              <h1 className="text-5xl font-black italic tracking-tighter text-white">{t(relic.name)}</h1>
+                <div className="flex items-center justify-center md:justify-start gap-3 group/title">
+                  <h1 
+                    onCopy={handlePlainCopy}
+                    className="text-4xl sm:text-5xl font-black tracking-tighter text-white select-text"
+                  >
+                    {relicTitle}
+                  </h1>
+                  <button
+                    type="button"
+                    onClick={handleCopyTitle}
+                    title="이름 복사 (일반 텍스트)"
+                    className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                  >
+                    {isCopied ? <Check size={22} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={22} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
+                  </button>
+                </div>
               </div>
             </div>
 

@@ -1,9 +1,26 @@
-import React from 'react';
-import { X } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, Copy, Check } from 'lucide-react';
 import { renderRichText } from '../data/formatter';
 
+const handlePlainCopy = (e: React.ClipboardEvent) => {
+  const selection = window.getSelection()?.toString();
+  if (selection) {
+    e.clipboardData.setData('text/plain', selection);
+    e.preventDefault();
+  }
+};
+
 const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
+  const [isCopied, setIsCopied] = useState(false);
   if (!isOpen) return null;
+
+  const handleCopyTitle = () => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(weapon.name);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1500);
+    }
+  };
 
   const RARITY_COLORS: any = {
     5: 'yellow-500',
@@ -16,7 +33,10 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
 
   return (
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl animate-in fade-in duration-300">
-      <div className="relative w-full max-w-2xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-[40px] overflow-hidden flex flex-col">
+      <div 
+        onCopy={handlePlainCopy}
+        className="relative w-full max-w-2xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-[40px] overflow-hidden flex flex-col"
+      >
         {/* 헤더 */}
         <div className="p-8 border-b border-white/5 flex items-center gap-8 bg-white/[0.02]">
           <div className="w-32 h-32 bg-white/5 rounded-3xl p-4 shrink-0 shadow-inner">
@@ -35,7 +55,26 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
                 ))}
               </div>
             </div>
-            <h2 className="text-4xl font-black italic tracking-tighter text-white uppercase leading-none">{weapon.name}</h2>
+            <div className="flex items-center gap-3 group/title">
+              <h2 
+                onCopy={(e) => {
+                  const selection = window.getSelection()?.toString() || weapon.name;
+                  e.clipboardData.setData('text/plain', selection);
+                  e.preventDefault();
+                }}
+                className="text-4xl font-black tracking-tighter text-white uppercase leading-none select-text"
+              >
+                {weapon.name}
+              </h2>
+              <button
+                type="button"
+                onClick={handleCopyTitle}
+                title="이름 복사 (일반 텍스트)"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+              >
+                {isCopied ? <Check size={18} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={18} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
+              </button>
+            </div>
           </div>
         </div>
 

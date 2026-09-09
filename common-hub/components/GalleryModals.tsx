@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Star } from 'lucide-react';
+import { X, Star, Copy, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';
 import { getItemUrl } from '../data/items';
 import { getGameData } from '../data/dataManager';
 
+// 텍스트 복사 시 서식(볼드, 기울임 등 HTML)을 제거하고 순수 일반 텍스트만 클립보드에 담는 헬퍼
+const handlePlainCopy = (e: React.ClipboardEvent) => {
+  const selection = window.getSelection()?.toString();
+  if (selection) {
+    e.clipboardData.setData('text/plain', selection);
+    e.preventDefault();
+  }
+};
+
+
 export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () => void }) => {
   const { t, i18n } = useTranslation();
+  const [isCopied, setIsCopied] = useState(false);
   const isEn = i18n.language === 'en';
   if (!relic) return null;
 
@@ -16,6 +27,15 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
   const effect2 = isEn && relic['en_2piece'] ? relic['en_2piece'] : (relic.setEffect?.['2piece'] || relic['2piece']);
   const effect4 = isEn && relic['en_4piece'] ? relic['en_4piece'] : (relic.setEffect?.['4piece'] || relic['4piece']);
   const effect5 = isEn && relic['en_5piece'] ? relic['en_5piece'] : (relic.setEffect?.['5piece'] || relic['5piece']);
+
+  const handleCopyTitle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(displayName);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1500);
+    }
+  };
 
   // 이미지는 무조건 한국어 기반
   const typeStr = relic.type === '터널 유물' ? '유물' : (relic.type || '유물');
@@ -35,7 +55,10 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="relative bg-[#121212] border border-white/10 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
+      <div 
+        onCopy={handlePlainCopy}
+        className="relative bg-[#121212] border border-white/10 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto"
+      >
         <button onClick={onClose} className="absolute top-5 right-5 sm:top-8 sm:right-8 text-gray-400 hover:text-white transition-colors z-20">
           <X size={24} className="sm:w-7 sm:h-7" />
         </button>
@@ -57,7 +80,26 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
                   ))}
                 </div>
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white italic tracking-tighter">{displayName}</h3>
+              <div className="flex items-center justify-center md:justify-start gap-2.5 group/title">
+                <h3 
+                  onCopy={(e) => {
+                    const selection = window.getSelection()?.toString() || displayName;
+                    e.clipboardData.setData('text/plain', selection);
+                    e.preventDefault();
+                  }}
+                  className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tighter select-text"
+                >
+                  {displayName}
+                </h3>
+                <button
+                  type="button"
+                  onClick={handleCopyTitle}
+                  title="이름 복사 (일반 텍스트)"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                >
+                  {isCopied ? <Check size={18} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={18} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
+                </button>
+              </div>
             </div>
           </div>
 
@@ -126,9 +168,20 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
 
 export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => void }) => {
   const { t } = useTranslation();
+  const [isCopied, setIsCopied] = useState(false);
   if (!item) return null;
 
+  const itemName = t(item.name);
   const imgPath = getItemUrl(item.name, item.gameId);
+
+  const handleCopyTitle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(itemName);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1500);
+    }
+  };
 
   const getRarityColor = (r: number) => {
     switch (r) {
@@ -155,7 +208,10 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="relative bg-[#121212] border border-white/10 rounded-[24px] sm:rounded-[36px] md:rounded-[40px] p-5 sm:p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95">
+      <div 
+        onCopy={handlePlainCopy}
+        className="relative bg-[#121212] border border-white/10 rounded-[24px] sm:rounded-[36px] md:rounded-[40px] p-5 sm:p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95"
+      >
         <button onClick={onClose} className="absolute top-5 right-5 sm:top-6 sm:right-6 text-gray-400 hover:text-white transition-colors z-20">
           <X size={20} className="sm:w-6 sm:h-6" />
         </button>
@@ -163,7 +219,7 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
         <div className="space-y-6 sm:space-y-8">
           <div className="flex items-center gap-4 sm:gap-6">
             <div className="w-16 h-16 sm:w-24 sm:h-24 bg-white/5 rounded-2xl p-2.5 sm:p-4 border border-white/10 shrink-0">
-              <img src={imgPath} alt={t(item.name)} className="w-full h-full object-contain" onError={handleError} />
+              <img src={imgPath} alt={itemName} className="w-full h-full object-contain" onError={handleError} />
             </div>
             <div className="space-y-1.5 sm:space-y-2 min-w-0">
               <div className="flex gap-0.5 items-center">
@@ -171,7 +227,26 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
                   <Star key={i} size={10} className={getRarityColor(item.rarity)} />
                 ))}
               </div>
-              <h3 className="text-xl sm:text-2xl font-black text-white italic tracking-tighter truncate">{t(item.name)}</h3>
+              <div className="flex items-center gap-2 group/title min-w-0">
+                <h3 
+                  onCopy={(e) => {
+                    const selection = window.getSelection()?.toString() || itemName;
+                    e.clipboardData.setData('text/plain', selection);
+                    e.preventDefault();
+                  }}
+                  className="text-xl sm:text-2xl font-black text-white tracking-tighter truncate select-text"
+                >
+                  {itemName}
+                </h3>
+                <button
+                  type="button"
+                  onClick={handleCopyTitle}
+                  title="이름 복사 (일반 텍스트)"
+                  className="p-1 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                >
+                  {isCopied ? <Check size={16} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={16} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
+                </button>
+              </div>
               <p className="text-[9px] sm:text-[10px] text-brand-accent font-bold uppercase tracking-widest">{t(item.type)}</p>
             </div>
           </div>
@@ -201,6 +276,7 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
 
 export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onClose: () => void }) => {
   const { t, i18n } = useTranslation();
+  const [isCopied, setIsCopied] = useState(false);
   const isEn = i18n.language === 'en';
   if (!ornament) return null;
 
@@ -223,10 +299,22 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
   const displayName = isEn && ornament.enName ? ornament.enName : t(ornament.name);
   const effect2 = isEn && ornament['en_2piece'] ? ornament['en_2piece'] : (ornament.setEffect?.['2piece'] || ornament['2piece']);
 
+  const handleCopyTitle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(displayName);
+      setIsCopied(true);
+      setTimeout(() => setIsCopied(false), 1500);
+    }
+  };
+
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
       <div className="absolute inset-0" onClick={onClose} />
-      <div className="relative bg-[#121212] border border-white/10 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto">
+      <div 
+        onCopy={handlePlainCopy}
+        className="relative bg-[#121212] border border-white/10 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto"
+      >
         <button onClick={onClose} className="absolute top-5 right-5 sm:top-8 sm:right-8 text-gray-400 hover:text-white transition-colors z-20">
           <X size={24} className="sm:w-7 sm:h-7" />
         </button>
@@ -248,7 +336,26 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
                   ))}
                 </div>
               </div>
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white italic tracking-tighter">{displayName}</h3>
+              <div className="flex items-center justify-center md:justify-start gap-2.5 group/title">
+                <h3 
+                  onCopy={(e) => {
+                    const selection = window.getSelection()?.toString() || displayName;
+                    e.clipboardData.setData('text/plain', selection);
+                    e.preventDefault();
+                  }}
+                  className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tighter select-text"
+                >
+                  {displayName}
+                </h3>
+                <button
+                  type="button"
+                  onClick={handleCopyTitle}
+                  title="이름 복사 (일반 텍스트)"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                >
+                  {isCopied ? <Check size={18} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={18} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
+                </button>
+              </div>
             </div>
           </div>
 
