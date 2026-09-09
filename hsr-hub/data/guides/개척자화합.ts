@@ -52,8 +52,8 @@ export const 개척자화합Guide: CharacterGuide = {
       { label: "격파 특수효과", value: "200% 이상" }
     ],
     bestLightCones: [
-      { name: "거울 속 지난날의 나", note: "1순위" },
-      { name: "댄스! 댄스! 댄스!", note: "아군 행동게이지 상승 필요 시 2순위" },
+      { name: "댄스! 댄스! 댄스!", note: "1순위" },
+      { name: "거울 속 지난날의 나", note: "2순위" },
       "바람을 쫓을 때, 꽃은 잊지 않는다",
       "기억 속 모습"
     ],
