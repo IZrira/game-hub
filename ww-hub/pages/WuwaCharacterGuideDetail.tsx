@@ -26,7 +26,6 @@ import {
   MessageSquareWarning
 } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
-import TableOfContents from '../../common-hub/components/TableOfContents';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
@@ -112,12 +111,12 @@ const StatBoxPremium: React.FC<{
 
   return (
     <div 
-      className="group glass-card rounded-[32px] p-6 border border-white/5 hover:border-brand-primary/30 transition-all bg-gradient-to-br from-white/[0.05] to-transparent flex flex-col items-center text-center gap-4 h-full relative overflow-hidden"
+      className="group glass-card rounded-[32px] p-4 sm:p-5 xl:p-6 border border-white/5 hover:border-brand-primary/30 transition-all bg-gradient-to-br from-white/[0.05] to-transparent flex flex-col items-center text-center gap-4 h-full relative overflow-hidden"
     >
       <div className="absolute -top-4 -right-4 w-24 h-24 bg-brand-primary/5 blur-3xl rounded-full group-hover:bg-brand-primary/10 transition-colors" />
       
       {imgUrl ? (
-        <div className="w-16 h-16 bg-black/30 rounded-[24px] p-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl border border-white/5 group-hover:border-brand-primary/20 relative z-10">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-black/30 rounded-[20px] sm:rounded-[24px] p-2.5 sm:p-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl border border-white/5 group-hover:border-brand-primary/20 relative z-10">
           <img 
             src={imgUrl} 
             alt={label} 
@@ -126,11 +125,11 @@ const StatBoxPremium: React.FC<{
           />
         </div>
       ) : (
-        <div className="w-16 h-16 bg-black/30 rounded-[24px] flex items-center justify-center border border-white/5 relative z-10 shadow-inner group-hover:border-brand-primary/30 transition-colors">
+        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-black/30 rounded-[20px] sm:rounded-[24px] flex items-center justify-center border border-white/5 relative z-10 shadow-inner group-hover:border-brand-primary/30 transition-colors">
           <div className="flex flex-col items-center justify-center">
-            {label.includes('4 Cost') && <Crown size={24} className="text-[#FFD600] drop-shadow-[0_0_8px_rgba(255,214,0,0.5)]" />}
-            {label.includes('3 Cost') && <Swords size={24} className="text-purple-400 drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]" />}
-            {label.includes('1 Cost') && <Box size={24} className="text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />}
+            {label.includes('4 Cost') && <Crown size={22} className="text-[#FFD600] drop-shadow-[0_0_8px_rgba(255,214,0,0.5)]" />}
+            {label.includes('3 Cost') && <Swords size={22} className="text-purple-400 drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]" />}
+            {label.includes('1 Cost') && <Box size={22} className="text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />}
             {!label.includes('Cost') && <span className="text-gray-400 font-black text-xl uppercase opacity-40">{label.slice(0, 1)}</span>}
           </div>
         </div>
@@ -663,7 +662,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <ShieldCheck size={22} className="text-gray-500" />
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('에코 주옵션 & 부옵션')}</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                   {(currentVariant?.mainStats && currentVariant.mainStats.length > 0 ? currentVariant.mainStats : guide.mainStats).map((ms: any, i: number) => (
                     <StatBoxPremium 
                       key={i} 
@@ -860,9 +859,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           }}
         />
 
-        {/* Sidebar / TOC */}
+        {/* Sidebar */}
         <aside className="hidden lg:block w-[320px] shrink-0 sticky top-32 h-fit space-y-8">
-          <TableOfContents selector=".guide-content" />
           <AdPlaceholder type="rectangle" />
         </aside>
       </div>
