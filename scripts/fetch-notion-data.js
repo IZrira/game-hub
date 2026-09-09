@@ -33,6 +33,7 @@ const NOTION_WW_CHARACTER_DB_ID = process.env.NOTION_WW_CHARACTER_DB_ID; // Char
 const NOTION_WW_ITEM_DB_ID = process.env.NOTION_WW_ITEM_DB_ID; // WW Items DB
 const NOTION_WW_ECHOES_DB_ID = process.env.NOTION_WW_ECHOES_DB_ID; // WW Echoes DB
 const NOTION_WW_GUIDES_DB_ID = process.env.NOTION_WW_GUIDES_DB_ID || '37495fae3dc780ce95fffd47cfb611f6'; // WW Guides DB
+const NOTION_HSR_GUIDES_DB_ID = process.env.NOTION_HSR_GUIDES_DB_ID || '36f95fae3dc780c8abe7dfad2cfebc24'; // HSR Guides DB
 const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
 const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID || '38095fae3dc7802aa4abf9ab1977e687'; // NTE Characters DB
 const NOTION_NTE_ARC_DB_ID = process.env.NOTION_NTE_ARC_DB_ID || '38095fae3dc780c3a7c4d901cbe9411c'; // NTE Arcs DB
@@ -505,6 +506,14 @@ async function fetchNotionData() {
       console.log(`[Notion Sync] Fetched and parsed ${wwGuides.length} WW character guides.`);
     }
 
+    // 9. Fetch from HSR Character Guides DB
+    if (NOTION_HSR_GUIDES_DB_ID && NOTION_HSR_GUIDES_DB_ID !== 'xxxxxxxxxxxx') {
+      console.log(`[Notion Sync] Fetching HSR Character Guides from ${NOTION_HSR_GUIDES_DB_ID}...`);
+      const hsrGuides = await fetchHsrGuidesFromDB(notion, n2m, NOTION_HSR_GUIDES_DB_ID);
+      allItems.push(...hsrGuides);
+      console.log(`[Notion Sync] Fetched and parsed ${hsrGuides.length} HSR character guides.`);
+    }
+
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');
     console.log(`[Notion Sync] Successfully fetched total ${allItems.length} items and updated notion-data.json!`);
   } catch (error) {
@@ -895,6 +904,399 @@ async function fetchWwGuidesFromDB(notion, n2m, dbId) {
     }
   } catch (err) {
     console.error(`[Notion Sync] Error in fetchWwGuidesFromDB:`, err.message);
+  }
+  return guides;
+}
+
+function cleanMd(text) {
+  if (!text) return '';
+  return text.replace(/[*_`]/g, '').trim();
+}
+
+const HSR_CHAR_MAP = {
+  '아글라이아': { charName: '아글라이아', exportName: '아글라이아Guide', fileName: '아글라이아.ts' },
+  '아낙사': { charName: '아낙사', exportName: '아낙사Guide', fileName: '아낙사.ts' },
+  '아처': { charName: '아처', exportName: '아처Guide', fileName: '아처.ts' },
+  '달리아': { charName: '달리아', exportName: '달리아Guide', fileName: '달리아.ts' },
+  '에버나이트': { charName: '에버나이트', exportName: '에버나이트Guide', fileName: '에버나이트.ts' },
+  '키레네': { charName: '키레네', exportName: '키레네Guide', fileName: '키레네.ts' },
+  '세이버': { charName: '세이버', exportName: '세이버Guide', fileName: '세이버.ts' },
+  '로빈 · 서머레토': { charName: '로빈 · 서머레토', exportName: '로빈서머레토Guide', fileName: '로빈서머레토.ts' },
+  '로빈•서머레토': { charName: '로빈 · 서머레토', exportName: '로빈서머레토Guide', fileName: '로빈서머레토.ts' },
+  '길가메시': { charName: '길가메시', exportName: '길가메시Guide', fileName: '길가메시.ts' },
+  '토오사카 린': { charName: '토오사카 린', exportName: '토오사카린Guide', fileName: '토오사카린.ts' },
+  '히메코 · 노바': { charName: '히메코 · 노바', exportName: '히메코노바Guide', fileName: '히메코노바.ts' },
+  '히메코·노바': { charName: '히메코 · 노바', exportName: '히메코노바Guide', fileName: '히메코노바.ts' },
+  '천야 · 블레이드': { charName: '천야 · 블레이드', exportName: '천야블레이드Guide', fileName: '천야블레이드.ts' },
+  '천야•블레이드': { charName: '천야 · 블레이드', exportName: '천야블레이드Guide', fileName: '천야블레이드.ts' },
+  '개척자 (환락)': { charName: '개척자 (환락)', exportName: '개척자환락Guide', fileName: '개척자환락.ts' },
+  '에바네시아': { charName: '에바네시아', exportName: '에바네시아Guide', fileName: '에바네시아.ts' },
+  '은랑 Lv.999': { charName: '은랑 Lv.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' },
+  '은랑 Lv999': { charName: '은랑 Lv.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' },
+  '은랑LV999': { charName: '은랑 Lv.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' }
+};
+
+function parseHsrGuideMarkdown(pageTitle, mdContent) {
+  let rawName = pageTitle.replace(/세팅\s*공략|공략/g, '').replace(/[\[\]]/g, '').trim();
+  let mapped = HSR_CHAR_MAP[rawName];
+  if (!mapped) {
+    for (const [k, v] of Object.entries(HSR_CHAR_MAP)) {
+      if (rawName.includes(k) || k.includes(rawName)) {
+        mapped = v;
+        break;
+      }
+    }
+  }
+
+  const charName = mapped ? mapped.charName : rawName;
+  const exportName = mapped ? mapped.exportName : rawName.replace(/[^a-zA-Z0-9가-힣]/g, '') + 'Guide';
+  const fileName = mapped ? mapped.fileName : rawName.replace(/[^a-zA-Z0-9가-힣]/g, '') + '.ts';
+
+  const patchMatch = mdContent.match(/패치\s*버전\s*([\d.]+)/i);
+  const patchVersion = patchMatch ? patchMatch[1].trim() : '3.6';
+
+  let skillPriority = [];
+  const knownSkills = [
+    '기억 정령 스킬', '기억 정령 특성', '환락 스킬', '전투 스킬', '일반 공격',
+    '필살기', '특성', '비술'
+  ];
+  const skillMatch = mdContent.match(/(?:스킬\s*(?:레벨\s*업\s*)?우선\s*순위|행적\s*우선\s*순위)\s*\n+([^\n#]+)/i);
+  if (skillMatch) {
+    const rawSkills = skillMatch[1].trim();
+    if (rawSkills.includes(',')) {
+      skillPriority = rawSkills.split(',').map(s => s.trim()).filter(Boolean);
+    } else if (rawSkills.includes('>')) {
+      skillPriority = rawSkills.split('>').map(s => s.trim()).filter(Boolean);
+    } else {
+      let remaining = rawSkills;
+      while (remaining.trim()) {
+        let found = false;
+        for (const ks of knownSkills) {
+          if (remaining.trim().startsWith(ks)) {
+            skillPriority.push(ks);
+            remaining = remaining.trim().slice(ks.length).trim();
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          const word = remaining.split(/\s+/)[0];
+          if (word) skillPriority.push(word);
+          remaining = remaining.slice(word.length).trim();
+        }
+      }
+    }
+  } else {
+    const lastLineMatch = mdContent.match(/(?:필살기|전투\s*스킬|특성|일반\s*공격|환락\s*스킬).*(?:일반\s*공격|필살기|특성)/);
+    if (lastLineMatch) {
+      let remaining = lastLineMatch[0].trim();
+      while (remaining.trim()) {
+        let found = false;
+        for (const ks of knownSkills) {
+          if (remaining.trim().startsWith(ks)) {
+            skillPriority.push(ks);
+            remaining = remaining.trim().slice(ks.length).trim();
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          const word = remaining.split(/\s+/)[0];
+          if (word) skillPriority.push(word);
+          remaining = remaining.slice(word.length).trim();
+        }
+      }
+    }
+  }
+  if (skillPriority.length === 0) {
+    skillPriority = ['전투 스킬', '필살기', '특성', '일반 공격'];
+  }
+
+  let partyRecommendation = [];
+  const partyMatch = mdContent.match(/파티\s*추천\s*\n+([^\n#]+(?:\n+[^\n#]+)?)/i);
+  if (partyMatch) {
+    partyRecommendation = partyMatch[1].split(/[,，\n]+/).map(p => cleanMd(p).trim()).filter(p => Boolean(p) && p !== '-');
+  }
+
+  const parseLightConeItem = (line) => {
+    line = cleanMd(line).replace(/^[-*]\s*/, '').trim();
+    if (!line || line.endsWith('세팅') || line.startsWith('유물') || line.startsWith('차원') || line === '-') return null;
+    const rankMatch = line.match(/^(.+?)\s+(\d)순위(?:\s*:\s*(.*))?$/) ||
+                      line.match(/^(.+?)\s*:\s*(\d)순위(?:\s*:\s*(.*))?$/);
+    if (rankMatch) {
+      const name = rankMatch[1].trim();
+      const rank = rankMatch[2];
+      const note = rankMatch[3]?.trim();
+      return { name, note: note ? `${rank}순위 : ${note}` : `${rank}순위` };
+    }
+    const colonMatch = line.match(/^([^:]+):\s*(.+)$/);
+    if (colonMatch) {
+      return { name: colonMatch[1].trim(), note: colonMatch[2].trim() };
+    }
+    return { name: line.trim() };
+  };
+
+  let bestLightCones = [];
+  const lcSection = mdContent.match(/광추\s*\n+([\s\S]*?)(?=(?:유물|(?:\n\s*(?:[1-9]\.|\S+)\s*세팅)|\n\s*[-=]{3,}|$))/i);
+  if (lcSection) {
+    const lines = lcSection[1].split('\n').map(l => cleanMd(l)).filter(Boolean);
+    bestLightCones = lines.map(parseLightConeItem).filter(Boolean);
+  }
+
+  function parseStatsAndRelicsFromChunk(chunk) {
+    const relics = [];
+    const ornaments = [];
+    const targetStats = [];
+    const mainStats = { body: '', boots: '', sphere: '', rope: '' };
+    const subStats = [];
+
+    const relicMatch = chunk.match(/유물(?:\s*:\s*([^\n]+))?\s*\n+([\s\S]*?)(?=(?:차원\s*장신구|목표|주\s*옵션|부\s*옵션|$))/i);
+    if (relicMatch) {
+      const sameLine = relicMatch[1] ? cleanMd(relicMatch[1]).trim() : '';
+      const lines = relicMatch[2].split('\n').map(l => cleanMd(l)).filter(l => Boolean(l) && l !== '-');
+      if (sameLine) lines.unshift(sameLine);
+
+      let currentRelic = null;
+      for (const line of lines) {
+        if (line.startsWith('이유')) {
+          const reason = line.replace(/^이유\s*:\s*/, '').trim();
+          if (currentRelic) {
+            currentRelic.note = currentRelic.note ? `${currentRelic.note} (${reason})` : reason;
+          }
+        } else {
+          const m = line.match(/^(.+?)\s+(\d)순위(?:\s*:\s*(.*))?$/) ||
+                    line.match(/^(.+?)\s*:\s*(\d)순위(?:\s*:\s*(.*))?$/);
+          if (m) {
+            currentRelic = { name: m[1].trim(), note: m[3] ? `${m[2]}순위 : ${m[3].trim()}` : `${m[2]}순위` };
+          } else if (line.includes(':')) {
+            const parts = line.split(':');
+            currentRelic = { name: parts[0].trim(), note: parts.slice(1).join(':').trim() };
+          } else {
+            currentRelic = { name: line.trim() };
+          }
+          if (currentRelic.name.includes('속도 2세트') || currentRelic.name.includes('속도2세트')) {
+            currentRelic.note = currentRelic.note ? currentRelic.note + ' (추천: 가상공간을 누비는 메신저, 천명에 응해 먼 길을 떠난 점술가 등)' : '가상공간을 누비는 메신저, 점술가 등 속도 6% 세트 조합';
+          }
+          relics.push(currentRelic);
+        }
+      }
+    }
+
+    const ornMatch = chunk.match(/차원\s*장신구(?:\s*:\s*([^\n]+))?\s*\n+([\s\S]*?)(?=(?:목표|주\s*옵션|부\s*옵션|$))/i);
+    if (ornMatch) {
+      const sameLine = ornMatch[1] ? cleanMd(ornMatch[1]).trim() : '';
+      const lines = ornMatch[2].split('\n').map(l => cleanMd(l)).filter(l => Boolean(l) && l !== '-');
+      if (sameLine) lines.unshift(sameLine);
+
+      let currentOrn = null;
+      for (const line of lines) {
+        if (line.startsWith('이유')) {
+          const reason = line.replace(/^이유\s*:\s*/, '').trim();
+          if (currentOrn) {
+            currentOrn.note = currentOrn.note ? `${currentOrn.note} (${reason})` : reason;
+          }
+        } else {
+          const m = line.match(/^(.+?)\s+(\d)순위(?:\s*:\s*(.*))?$/) ||
+                    line.match(/^(.+?)\s*:\s*(\d)순위(?:\s*:\s*(.*))?$/);
+          if (m) {
+            currentOrn = { name: m[1].trim(), note: m[3] ? `${m[2]}순위 : ${m[3].trim()}` : `${m[2]}순위` };
+          } else if (line.includes(':')) {
+            const parts = line.split(':');
+            currentOrn = { name: parts[0].trim(), note: parts.slice(1).join(':').trim() };
+          } else {
+            currentOrn = { name: line.trim() };
+          }
+          if (currentOrn.name.includes('속도 증가 장신구')) {
+            currentOrn.note = currentOrn.note ? currentOrn.note + ' (추천: 겁화 연등의 연마궁, 생명의 바커 공 등)' : '겁화 연등의 연마궁, 바커 공 등 속도 증가 장신구';
+          }
+          ornaments.push(currentOrn);
+        }
+      }
+    }
+
+    const targetMatch = chunk.match(/목표\s*(?:육성치|스탯)\s*\n+([\s\S]*?)(?=(?:유물\s*주\s*옵션|주\s*옵션|부\s*옵션|$))/i);
+    if (targetMatch) {
+      const lines = targetMatch[1].split('\n').map(l => cleanMd(l)).filter(Boolean);
+      for (const l of lines) {
+        const m = l.match(/^[-*]\s*([^:]+?)\s*:\s*([^:\n]+?)(?:\s*:\s*(.*))?$/);
+        if (m) {
+          const label = m[1].trim();
+          const value = m[2].trim();
+          const note = m[3]?.trim();
+          targetStats.push({ label, value, note: note || undefined });
+        }
+      }
+    }
+
+    const mainMatch = chunk.match(/(?:유물\s*)?주\s*옵션\s*\n+([\s\S]*?)(?=(?:유물\s*부\s*옵션|부\s*옵션|$))/i);
+    if (mainMatch) {
+      const lines = mainMatch[1].split('\n').map(l => cleanMd(l)).filter(Boolean);
+      for (const l of lines) {
+        const m = l.match(/^[-*]\s*([^:]+?)\s*:\s*(.+)$/);
+        if (m) {
+          const slot = m[1].trim();
+          const val = m[2].trim();
+          if (slot.includes('몸통') || slot.includes('상의')) mainStats.body = val;
+          else if (slot.includes('다리') || slot.includes('신발') || slot.includes('발')) mainStats.boots = val;
+          else if (slot.includes('차원') || slot.includes('구체')) mainStats.sphere = val;
+          else if (slot.includes('연결') || slot.includes('매듭') || slot.includes('줄')) mainStats.rope = val;
+        }
+      }
+    }
+
+    const subMatch = chunk.match(/(?:유물\s*)?부\s*옵션\s*\n+([\s\S]*?)(?=(?:스킬|행적|파티|필살기|특성|일반\s*공격|환락|기억|\n\s*[-=]{3,}|$))/i);
+    if (subMatch) {
+      const lines = subMatch[1].split('\n').map(l => cleanMd(l)).filter(Boolean);
+      for (const l of lines) {
+        const clean = l.replace(/^[-*]\s*/, '').trim();
+        if (clean && !clean.includes('부 옵션')) {
+          if (!clean.includes('스킬') && !clean.includes('필살기') && !clean.includes('일반 공격') && !clean.includes('특성')) {
+            subStats.push(clean);
+          }
+        }
+      }
+    }
+
+    return { relics, ornaments, targetStats, mainStats, subStats };
+  }
+
+  const variants = [];
+  const variantHeaderRegex = /(?:^|\n)(?:(?:[1-9]\.\s*)?([^\n\-*:]{2,}?세팅(?:\s*:\s*[^\n]+)?))(?=\n)/g;
+  const matches = [...mdContent.matchAll(variantHeaderRegex)].filter(m => {
+    const txt = m[1].trim();
+    return !txt.includes('순위') && !txt.includes('이유') && !txt.startsWith('-') && !txt.startsWith('*') && !txt.includes('조합');
+  });
+
+  if (matches.length > 1) {
+    for (let i = 0; i < matches.length; i++) {
+      const vName = cleanMd(matches[i][1]).replace(/^[1-9]\.\s*/, '').trim();
+      const start = matches[i].index + matches[i][0].length;
+      const end = i < matches.length - 1 ? matches[i+1].index : mdContent.length;
+      const chunk = mdContent.slice(start, end);
+      const parsedChunk = parseStatsAndRelicsFromChunk(chunk);
+      
+      const vLcSection = chunk.match(/광추\s*\n+([\s\S]*?)(?=(?:유물|목표|주\s*옵션|$))/i);
+      let vLightCones = undefined;
+      if (vLcSection) {
+        const lines = vLcSection[1].split('\n').map(l => cleanMd(l)).filter(Boolean);
+        vLightCones = lines.map(parseLightConeItem).filter(Boolean);
+      }
+
+      variants.push({
+        name: vName,
+        bestRelics: parsedChunk.relics,
+        bestOrnaments: parsedChunk.ornaments,
+        bestLightCones: vLightCones && vLightCones.length > 0 ? vLightCones : undefined,
+        mainStats: parsedChunk.mainStats,
+        subStats: parsedChunk.subStats,
+        targetStats: parsedChunk.targetStats
+      });
+    }
+  }
+
+  const globalParsed = parseStatsAndRelicsFromChunk(mdContent);
+
+  return {
+    characterName: charName,
+    exportName,
+    fileName,
+    patchVersion,
+    variants: variants.length > 0 ? variants : undefined,
+    bestRelics: variants.length > 0 && variants[0].bestRelics.length > 0 ? variants[0].bestRelics : globalParsed.relics,
+    bestOrnaments: variants.length > 0 && variants[0].bestOrnaments.length > 0 ? variants[0].bestOrnaments : globalParsed.ornaments,
+    bestLightCones: bestLightCones.length > 0 ? bestLightCones : (variants.length > 0 && variants[0].bestLightCones ? variants[0].bestLightCones : []),
+    mainStats: variants.length > 0 && variants[0].mainStats.body ? variants[0].mainStats : globalParsed.mainStats,
+    subStats: variants.length > 0 && variants[0].subStats.length > 0 ? variants[0].subStats : globalParsed.subStats,
+    targetStats: variants.length > 0 && variants[0].targetStats.length > 0 ? variants[0].targetStats : globalParsed.targetStats,
+    skillPriority,
+    partyRecommendation: partyRecommendation.length > 0 ? partyRecommendation : undefined,
+    dbSource: 'hsr_guides'
+  };
+}
+
+function serializeHsrGuideToTypeScript(guide) {
+  const tsObj = {
+    characterName: guide.characterName,
+    lastUpdated: new Date().toISOString().split('T')[0],
+    patchVersion: guide.patchVersion,
+  };
+  if (guide.variants && guide.variants.length > 0) {
+    tsObj.variants = guide.variants.map(v => ({
+      name: v.name,
+      bestRelics: v.bestRelics.map(r => r.note ? { name: r.name, note: r.note } : r.name),
+      bestOrnaments: v.bestOrnaments.map(o => o.note ? { name: o.name, note: o.note } : o.name),
+      ...(v.bestLightCones ? { bestLightCones: v.bestLightCones.map(l => l.note ? { name: l.name, note: l.note } : l.name) } : {}),
+      mainStats: v.mainStats,
+      subStats: v.subStats,
+      targetStats: v.targetStats
+    }));
+  }
+  tsObj.bestRelics = guide.bestRelics.map(r => r.note ? { name: r.name, note: r.note } : r.name);
+  tsObj.bestOrnaments = guide.bestOrnaments.map(o => o.note ? { name: o.name, note: o.note } : o.name);
+  tsObj.mainStats = guide.mainStats;
+  tsObj.subStats = guide.subStats;
+  tsObj.targetStats = guide.targetStats;
+  tsObj.bestLightCones = guide.bestLightCones.map(l => l.note ? { name: l.name, note: l.note } : l.name);
+  tsObj.skillPriority = guide.skillPriority;
+  if (guide.partyRecommendation && guide.partyRecommendation.length > 0) {
+    tsObj.synergyCharacters = guide.partyRecommendation;
+  }
+  tsObj.eidolonEfficiency = [];
+
+  const jsonStr = JSON.stringify(tsObj, null, 2);
+  return `import { CharacterGuide } from './index';\n\nexport const ${guide.exportName}: CharacterGuide = ${jsonStr};\n`;
+}
+
+async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
+  const guides = [];
+  try {
+    let pages = [];
+    try {
+      const db = await notion.databases.retrieve({ database_id: dbId });
+      if (db.data_sources && db.data_sources.length > 0) {
+        const dataSourceId = db.data_sources[0].id;
+        const res = await notion.dataSources.query({ data_source_id: dataSourceId });
+        pages = res.results || [];
+      }
+    } catch (dsErr) {
+      console.warn(`[Notion Sync] dataSources.query fallback on HSR DB ${dbId}:`, dsErr.message);
+    }
+
+    if (pages.length === 0) {
+      try {
+        const res = await notion.request({ path: `databases/${dbId}/query`, method: 'POST' });
+        pages = res.results || [];
+      } catch (reqErr) {
+        console.warn(`[Notion Sync] databases/query fallback failed on HSR DB ${dbId}:`, reqErr.message);
+      }
+    }
+
+    console.log(`[Notion Sync] Fetched ${pages.length} HSR guide pages from Notion.`);
+
+    const guidesDir = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
+
+    for (const page of pages) {
+      await sleep(100);
+      const pageTitle = page.properties['이름']?.title?.[0]?.plain_text || page.properties['캐릭터']?.title?.[0]?.plain_text || '';
+      try {
+        const mdblocks = await n2m.pageToMarkdown(page.id);
+        const mdString = n2m.toMarkdownString(mdblocks);
+        const guide = parseHsrGuideMarkdown(pageTitle, mdString.parent || '');
+        guide.dbSource = 'hsr_guides';
+        guides.push(guide);
+
+        if (guide.fileName) {
+          const filePath = path.join(guidesDir, guide.fileName);
+          const tsCode = serializeHsrGuideToTypeScript(guide);
+          fs.writeFileSync(filePath, tsCode, 'utf8');
+          console.log(`[Notion Sync] Written ${guide.fileName} for ${guide.characterName}`);
+        }
+      } catch (pErr) {
+        console.error(`[Notion Sync] Failed to parse HSR guide page ${page.id}:`, pErr.message);
+      }
+    }
+  } catch (err) {
+    console.error(`[Notion Sync] Error in fetchHsrGuidesFromDB:`, err.message);
   }
   return guides;
 }

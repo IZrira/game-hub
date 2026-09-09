@@ -5598,6 +5598,18 @@
     </image:image>
   </url>
   <url>
+    <loc>https://rira-game-hub.pages.dev/gallery/nte/character/%EB%A6%B0%EC%BD%94</loc>
+    <lastmod>2026-09-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://rira-game-hub.pages.dev/gallery/nte/character/%EB%A6%B0%EC%BD%94?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://rira-game-hub.pages.dev/gallery/nte/character/%EB%A6%B0%EC%BD%94?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rira-game-hub.pages.dev/gallery/nte/character/%EB%A6%B0%EC%BD%94"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/%EB%A6%B0%EC%BD%94/%EB%A6%B0%EC%BD%94.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://rira-game-hub.pages.dev/gallery/nte/character/%EC%9E%94%ED%99%8D</loc>
     <lastmod>2026-09-09</lastmod>
     <changefreq>daily</changefreq>
