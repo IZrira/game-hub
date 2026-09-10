@@ -264,7 +264,7 @@ function loadHsrPartiesList() {
 function loadWwGuidesMap() {
   const map = new Map();
   try {
-    // 1. Notion 연동 가이드 우선 로드
+    // Notion 연동 가이드 로드
     const notionData = getNotionData();
     notionData.forEach(item => {
       if (item.dbSource === 'ww_guides') {
@@ -272,28 +272,6 @@ function loadWwGuidesMap() {
         if (item.name) map.set(item.name.trim(), item);
       }
     });
-
-    // 2. 로컬 파일 보완
-    if (fs.existsSync(WW_GUIDE_FILE)) {
-      let content = fs.readFileSync(WW_GUIDE_FILE, 'utf8');
-      content = content.replace(/import\s+[\s\S]*?;/g, '');
-      content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
-      content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
-      content = content.replace(/:\s*WuwaCharacterGuide\[\]\s*=/g, ' =');
-      content = content.replace(/export\s+const\s+WW_CHARACTER_GUIDES\s*=\s*/, 'const WW_CHARACTER_GUIDES = ');
-
-      const match = content.match(/const\s+WW_CHARACTER_GUIDES\s*=\s*([\s\S]+?);?\s*$/);
-      if (match && match[1]) {
-        const list = new Function('return ' + match[1])();
-        if (Array.isArray(list)) {
-          list.forEach(item => {
-            if (item && item.id && !map.has(item.id.trim())) {
-              map.set(item.id.trim(), item);
-            }
-          });
-        }
-      }
-    }
   } catch (e) {}
   return map;
 }

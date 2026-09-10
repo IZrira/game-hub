@@ -1,7 +1,6 @@
 import { HSR_PARTIES } from '../../hsr-hub/data/parties/index';
 import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
-import { WW_CHARACTER_GUIDES } from '../../ww-hub/data/guides';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { NTE_PARTY_COMBINATIONS, getNTEFallbackParty } from '../../nte-hub/data/parties';
 import { NTE_CHARACTERS } from '../../nte-hub/data/index';
