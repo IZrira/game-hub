@@ -235,15 +235,18 @@ const parseItemWithNote = (item: any, defaultRank: number) => {
   let rank = defaultRank;
   let note = rawNote;
   if (rawNote) {
-    const rankMatch = String(rawNote).match(/^(\d+)순위(?:\s*[:：]\s*(.*))?$/);
+    const rankMatch = String(rawNote).match(/^(\d+)순위(?:\s*[:：]\s*(.*)|\s*\((.*)\)|\s*(.*))?$/);
     if (rankMatch) {
       rank = parseInt(rankMatch[1], 10);
-      note = rankMatch[2]?.trim() || '';
+      note = (rankMatch[2] ?? rankMatch[3] ?? rankMatch[4])?.trim() || '';
     }
   }
+  if (note && note.startsWith('(') && note.endsWith(')')) {
+    note = note.slice(1, -1).trim();
+  }
 
-  // Clean name by removing rank strings if any
-  const cleanName = rawName.replace(/\s*\d+순위.*$/, '').trim();
+  // Clean name by removing rank strings if any and fixing common typos
+  const cleanName = rawName.replace(/\s*\d+순위.*$/, '').replace(/유성을\s*쫒는\s*괴도/g, '유성을 쫓는 괴도').trim();
 
   return {
     raw: item,
@@ -686,12 +689,17 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   {parsedRelics.map((relicItem, i) => {
-                    const relic = RELIC_DB.find(r => r.name === relicItem.cleanName);
+                    const baseRelicName = relicItem.cleanName.replace(/\s*[24]세트/g, '').replace(/쫒/g, '쫓').trim();
+                    const relic = RELIC_DB.find(r => 
+                      r.name === relicItem.cleanName || 
+                      r.name === baseRelicName || 
+                      normalizeName(r.name) === normalizeName(baseRelicName)
+                    );
                     const isFirst = relicItem.rank === 1;
                     return (
                       <Link 
                         key={i} 
-                        to={`/gallery/${gameId}/relic/${encodeURIComponent(relicItem.cleanName)}`} 
+                        to={`/gallery/${gameId}/relic/${encodeURIComponent(relic?.name || baseRelicName)}`} 
                         className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                       >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
@@ -728,12 +736,17 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   {parsedOrnaments.map((ornamentItem, i) => {
-                    const ornament = ORNAMENT_DB.find(o => o.name === ornamentItem.cleanName);
+                    const baseOrnName = ornamentItem.cleanName.replace(/\s*[24]세트/g, '').trim();
+                    const ornament = ORNAMENT_DB.find(o => 
+                      o.name === ornamentItem.cleanName || 
+                      o.name === baseOrnName || 
+                      normalizeName(o.name) === normalizeName(baseOrnName)
+                    );
                     const isFirst = ornamentItem.rank === 1;
                     return (
                       <Link 
                         key={i} 
-                        to={`/gallery/${gameId}/ornament/${encodeURIComponent(ornamentItem.cleanName)}`} 
+                        to={`/gallery/${gameId}/ornament/${encodeURIComponent(ornament?.name || baseOrnName)}`} 
                         className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                       >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}

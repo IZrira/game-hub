@@ -6,7 +6,7 @@ export const 아글라이아Guide: CharacterGuide = {
   "patchVersion": "3.4",
   "bestRelics": [
     {
-      "name": "개선가를 울리는 영웅 4세트",
+      "name": "개선가를 울리는 영웅",
       "note": "1순위 (기억 정령이 필드에 있는 경우 속도와 기억 정령의 치명타 피해가 증가하는 유물)"
     }
   ],

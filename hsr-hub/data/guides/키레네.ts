@@ -9,7 +9,7 @@ export const 키레네Guide: CharacterGuide = {
       "name": "서포터 속도 200 세팅",
       "bestRelics": [
         {
-          "name": "천지를 재창조한 구세주 4세트",
+          "name": "천지를 재창조한 구세주",
           "note": "1순위 (2세트 효과로 치명타 확률과 4세트 효과로 HP 최대치 + 모든 아군 가하는 피해 증가 버프를 제공)"
         },
         {

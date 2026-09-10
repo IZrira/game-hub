@@ -1094,6 +1094,12 @@ function parseHsrGuideMarkdown(pageTitle, mdContent) {
           } else {
             currentRelic = { name: line.trim() };
           }
+          if (currentRelic.name) {
+            currentRelic.name = currentRelic.name.replace(/유성을\s*쫒는\s*괴도/g, '유성을 쫓는 괴도');
+            if (currentRelic.name.includes(' 4세트')) {
+              currentRelic.name = currentRelic.name.replace(/\s*4세트/g, '').trim();
+            }
+          }
           if (currentRelic.name.includes('속도 2세트') || currentRelic.name.includes('속도2세트')) {
             currentRelic.note = currentRelic.note ? currentRelic.note + ' (추천: 가상공간을 누비는 메신저, 천명에 응해 먼 길을 떠난 점술가 등)' : '가상공간을 누비는 메신저, 점술가 등 속도 6% 세트 조합';
           }
