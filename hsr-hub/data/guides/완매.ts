@@ -1,7 +1,7 @@
 import { CharacterGuide } from './index';
 
 export const 완매Guide: CharacterGuide = {
-    characterName: "완·매",
+    characterName: "완•매",
     lastUpdated: "2026-03-16",
     patchVersion: "1.6",
     bestRelics: ["가상공간을 누비는 메신저", "유성을 쫓는 괴도"],

@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 키레네Guide: CharacterGuide = {
   "characterName": "키레네",
-  "lastUpdated": "2026-09-09",
+  "lastUpdated": "2026-09-10",
   "patchVersion": "3.7",
   "variants": [
     {

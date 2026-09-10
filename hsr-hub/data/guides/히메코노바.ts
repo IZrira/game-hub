@@ -1,8 +1,8 @@
 import { CharacterGuide } from './index';
 
 export const 히메코노바Guide: CharacterGuide = {
-  "characterName": "히메코 · 노바",
-  "lastUpdated": "2026-09-09",
+  "characterName": "히메코•노바",
+  "lastUpdated": "2026-09-10",
   "patchVersion": "4.4",
   "bestRelics": [
     {

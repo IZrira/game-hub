@@ -1,8 +1,8 @@
 import { CharacterGuide } from './index';
 
 export const 은랑LV999Guide: CharacterGuide = {
-  "characterName": "은랑 Lv.999",
-  "lastUpdated": "2026-09-09",
+  "characterName": "은랑 LV.999",
+  "lastUpdated": "2026-09-10",
   "patchVersion": "4.2",
   "bestRelics": [
     "빛나는 공훈의 마법 소녀"

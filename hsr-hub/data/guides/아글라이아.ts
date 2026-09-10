@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 아글라이아Guide: CharacterGuide = {
   "characterName": "아글라이아",
-  "lastUpdated": "2026-09-09",
+  "lastUpdated": "2026-09-10",
   "patchVersion": "3.4",
   "bestRelics": [
     {

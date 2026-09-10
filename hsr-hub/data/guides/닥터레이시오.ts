@@ -1,7 +1,7 @@
 import { CharacterGuide } from './index';
 
 export const 닥터레이시오Guide: CharacterGuide = {
-    characterName: "닥터 레이시오",
+    characterName: "Dr. 레이시오",
     lastUpdated: "2026-03-16",
     patchVersion: "1.6",
     bestRelics: ["사수에 잠수한 선구자", "황토와 죽음의 거룻배"],
@@ -22,4 +22,4 @@ export const 닥터레이시오Guide: CharacterGuide = {
     skillPriority: ["특성", "필살기", "전투 스킬", "일반 공격"],
     recommendedEidolon: "E1 / E6",
     eidolonEfficiency: []
-  };
+};

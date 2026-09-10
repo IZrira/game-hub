@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 개척자환락Guide: CharacterGuide = {
   "characterName": "개척자 (환락)",
-  "lastUpdated": "2026-09-09",
+  "lastUpdated": "2026-09-10",
   "patchVersion": "4.2",
   "bestRelics": [
     {

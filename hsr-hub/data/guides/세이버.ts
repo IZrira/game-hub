@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 세이버Guide: CharacterGuide = {
   "characterName": "세이버",
-  "lastUpdated": "2026-09-09",
+  "lastUpdated": "2026-09-10",
   "patchVersion": "4.4",
   "bestRelics": [
     {

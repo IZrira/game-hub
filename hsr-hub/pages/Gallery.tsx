@@ -285,26 +285,45 @@ const GalleryHSR: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {(HSR_CHARACTER_GUIDES || [])
-                  .filter((g: any) => !searchQuery || g.characterName.includes(searchQuery))
-                  .map((guide: any) => {
-                    const char = CHARACTER_DB.find((c: any) => c.name === guide.characterName || c.id === guide.characterName);
-                    return { guide, char };
-                  })
-                  .filter(item => item.char) // 캐릭터 정보가 있는 공략만 표시
-                  .sort((a, b) => {
-                    // 캐릭터 탭의 정렬 로직과 동일하게 적용
-                    const vA = parseFloat(a.char.releaseVersion || '1.0');
-                    const vB = parseFloat(b.char.releaseVersion || '1.0');
-                    if (vA !== vB) return vB - vA;
-                    
-                    const rA = a.char.rarity || 0;
-                    const rB = b.char.rarity || 0;
-                    return rB - rA;
-                  })
-                  .map((item: any, idx: number) => (
-                    <GuidePremiumCard key={`${item.char.id}-${idx}`} char={item.char} guide={item.guide} />
-                  ))}
+                {(() => {
+                  const normalizeGuideName = (name: string) => {
+                    if (!name) return "";
+                    return name.replace(/\s+/g, '').replace(/[•·]/g, '').normalize('NFC');
+                  };
+                  const seenCharIds = new Set<string>();
+                  return (HSR_CHARACTER_GUIDES || [])
+                    .filter((g: any) => !searchQuery || g.characterName.includes(searchQuery))
+                    .map((guide: any) => {
+                      const char = CHARACTER_DB.find((c: any) => 
+                        c.name === guide.characterName || 
+                        c.id === guide.characterName ||
+                        normalizeGuideName(c.name) === normalizeGuideName(guide.characterName) ||
+                        normalizeGuideName(c.folderName) === normalizeGuideName(guide.characterName)
+                      );
+                      return { guide, char };
+                    })
+                    .filter(item => {
+                      if (!item.char) return false;
+                      if (seenCharIds.has(item.char.id)) return false;
+                      seenCharIds.add(item.char.id);
+                      return true;
+                    })
+                    .sort((a, b) => {
+                      // 캐릭터 탭의 정렬 로직과 동일하게 적용
+                      const vA = parseFloat(a.char.releaseVersion || '1.0');
+                      const vB = parseFloat(b.char.releaseVersion || '1.0');
+                      if (vA !== vB) return vB - vA;
+                      
+                      const rA = a.char.rarity || 0;
+                      const rB = b.char.rarity || 0;
+                      if (rA !== rB) return rB - rA;
+
+                      return (a.char.name || '').localeCompare(b.char.name || '', 'ko-KR');
+                    })
+                    .map((item: any, idx: number) => (
+                      <GuidePremiumCard key={`${item.char.id}-${idx}`} char={item.char} guide={item.guide} />
+                    ));
+                })()}
               </div>
             </div>
           ) : activeMenu === '인벤토리' ? (

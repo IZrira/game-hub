@@ -279,9 +279,18 @@ const CharacterGuideDetail: React.FC = () => {
   }, [character]);
 
   const guide = useMemo(() => {
-    const searchName = normalizeName(resolvedKoName || "");
-    return HSR_CHARACTER_GUIDES.find(g => normalizeName(g.characterName) === searchName);
-  }, [resolvedKoName]);
+    if (!character) {
+      const searchName = normalizeName(resolvedKoName || "");
+      return HSR_CHARACTER_GUIDES.find(g => normalizeName(g.characterName) === searchName);
+    }
+    const searchName = normalizeName(character.name || character.folderName || resolvedKoName || "");
+    return HSR_CHARACTER_GUIDES.find(g => 
+      g.characterName === character.name ||
+      g.characterName === character.folderName ||
+      normalizeName(g.characterName) === searchName ||
+      (character.id && normalizeName(g.characterName) === normalizeName(character.id))
+    );
+  }, [character, resolvedKoName]);
 
   const currentVariant = useMemo(() => {
     if (!guide) return null;

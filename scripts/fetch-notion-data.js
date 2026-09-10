@@ -918,22 +918,23 @@ const HSR_CHAR_MAP = {
   '아낙사': { charName: '아낙사', exportName: '아낙사Guide', fileName: '아낙사.ts' },
   '아처': { charName: '아처', exportName: '아처Guide', fileName: '아처.ts' },
   '달리아': { charName: '달리아', exportName: '달리아Guide', fileName: '달리아.ts' },
+  '다리아': { charName: '달리아', exportName: '달리아Guide', fileName: '달리아.ts' },
   '에버나이트': { charName: '에버나이트', exportName: '에버나이트Guide', fileName: '에버나이트.ts' },
   '키레네': { charName: '키레네', exportName: '키레네Guide', fileName: '키레네.ts' },
   '세이버': { charName: '세이버', exportName: '세이버Guide', fileName: '세이버.ts' },
-  '로빈 · 서머레토': { charName: '로빈 · 서머레토', exportName: '로빈서머레토Guide', fileName: '로빈서머레토.ts' },
-  '로빈•서머레토': { charName: '로빈 · 서머레토', exportName: '로빈서머레토Guide', fileName: '로빈서머레토.ts' },
+  '로빈 · 서머레토': { charName: '로빈•서머레토', exportName: '로빈서머레토Guide', fileName: '로빈서머레토.ts' },
+  '로빈•서머레토': { charName: '로빈•서머레토', exportName: '로빈서머레토Guide', fileName: '로빈서머레토.ts' },
   '길가메시': { charName: '길가메시', exportName: '길가메시Guide', fileName: '길가메시.ts' },
   '토오사카 린': { charName: '토오사카 린', exportName: '토오사카린Guide', fileName: '토오사카린.ts' },
-  '히메코 · 노바': { charName: '히메코 · 노바', exportName: '히메코노바Guide', fileName: '히메코노바.ts' },
-  '히메코·노바': { charName: '히메코 · 노바', exportName: '히메코노바Guide', fileName: '히메코노바.ts' },
-  '천야 · 블레이드': { charName: '천야 · 블레이드', exportName: '천야블레이드Guide', fileName: '천야블레이드.ts' },
-  '천야•블레이드': { charName: '천야 · 블레이드', exportName: '천야블레이드Guide', fileName: '천야블레이드.ts' },
+  '히메코 · 노바': { charName: '히메코•노바', exportName: '히메코노바Guide', fileName: '히메코노바.ts' },
+  '히메코·노바': { charName: '히메코•노바', exportName: '히메코노바Guide', fileName: '히메코노바.ts' },
+  '천야 · 블레이드': { charName: '천야•블레이드', exportName: '천야블레이드Guide', fileName: '천야블레이드.ts' },
+  '천야•블레이드': { charName: '천야•블레이드', exportName: '천야블레이드Guide', fileName: '천야블레이드.ts' },
   '개척자 (환락)': { charName: '개척자 (환락)', exportName: '개척자환락Guide', fileName: '개척자환락.ts' },
   '에바네시아': { charName: '에바네시아', exportName: '에바네시아Guide', fileName: '에바네시아.ts' },
-  '은랑 Lv.999': { charName: '은랑 Lv.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' },
-  '은랑 Lv999': { charName: '은랑 Lv.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' },
-  '은랑LV999': { charName: '은랑 Lv.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' }
+  '은랑 Lv.999': { charName: '은랑 LV.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' },
+  '은랑 Lv999': { charName: '은랑 LV.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' },
+  '은랑LV999': { charName: '은랑 LV.999', exportName: '은랑LV999Guide', fileName: '은랑LV999.ts' }
 };
 
 function parseHsrGuideMarkdown(pageTitle, mdContent) {
@@ -1198,6 +1199,7 @@ function parseHsrGuideMarkdown(pageTitle, mdContent) {
 
   return {
     characterName: charName,
+    name: charName,
     exportName,
     fileName,
     patchVersion,
