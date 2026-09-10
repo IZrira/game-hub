@@ -89464,15 +89464,15 @@
     "targetStats": [
       {
         "label": "크리티컬",
-        "value": "70% 이상"
+        "value": "80% 이상"
       },
       {
         "label": "크리티컬 피해",
-        "value": "250% 이상"
+        "value": "260% 이상"
       },
       {
         "label": "공명 효율",
-        "value": "120% 이상"
+        "value": "110% 이상"
       }
     ],
     "mainStats": [
@@ -89517,31 +89517,30 @@
       "공격력"
     ],
     "skillPriority": [
-      "공명 해방",
-      "변주 스킬",
       "공명 회로",
+      "공명 해방",
       "일반 공격",
-      "공명 스킬"
+      "공명 스킬",
+      "변주 스킬"
     ],
     "synergyCharacters": [
-      "경연",
-      "에이메스",
-      "갈브레나",
-      "장리",
-      "앙코",
-      "치샤",
-      "모르테피",
-      "브렌트",
-      "데니아",
+      "루파",
       "모니에",
+      "구원",
+      "루실라",
       "파수인",
-      "벨리나"
+      "벨리나",
+      "브렌트",
+      "모르테피",
+      "플로로",
+      "유노",
+      "레베카"
     ],
     "dbSource": "ww_guides"
   },
   {
-    "id": "구원_세팅_공략",
-    "name": "",
+    "id": "qiuyuan",
+    "name": "구원",
     "patchVersion": "2.7",
     "weapons": [
       {
@@ -89705,8 +89704,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "아우구스타_세팅_공략",
-    "name": "",
+    "id": "augusta",
+    "name": "아우구스타",
     "patchVersion": "3.6",
     "weapons": [
       {
@@ -89938,8 +89937,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "플로로_세팅_공략",
-    "name": "",
+    "id": "phrolova",
+    "name": "플로로",
     "patchVersion": "3.0",
     "weapons": [
       {
@@ -90167,8 +90166,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "카르티시아_공략",
-    "name": "",
+    "id": "cartethyia",
+    "name": "카르티시아",
     "patchVersion": "3.6",
     "weapons": [
       {
@@ -90399,8 +90398,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "젠니_세팅_공략",
-    "name": "",
+    "id": "zani",
+    "name": "젠니",
     "patchVersion": "3.0",
     "weapons": [
       {
@@ -90697,8 +90696,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "브렌트_세팅_공략",
-    "name": "",
+    "id": "brant",
+    "name": "브렌트",
     "patchVersion": "3.0",
     "weapons": [
       {
@@ -92654,8 +92653,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "복링_세팅_공략",
-    "name": "",
+    "id": "buling",
+    "name": "복링",
     "patchVersion": "2.1",
     "weapons": [
       {
