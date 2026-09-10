@@ -205,12 +205,6 @@ const StatBoxPremium: React.FC<{
             </div>
           ))}
         </div>
-
-        {note && (
-          <p className="text-[10px] text-gray-400 font-medium leading-tight px-1 pt-1.5 border-t border-white/5 w-full text-center break-keep">
-            {t(note)}
-          </p>
-        )}
       </div>
     </div>
   );
@@ -401,6 +395,28 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   }, [currentVariant]);
 
   const hasEchoNotes = Boolean(currentVariant?.note || echoSetsWithNotes.length > 0);
+
+  const mainStatsList = useMemo(() => {
+    return currentVariant?.mainStats && currentVariant.mainStats.length > 0
+      ? currentVariant.mainStats
+      : guide?.mainStats || [];
+  }, [currentVariant, guide]);
+
+  const mainStatsWithNotes = useMemo(() => {
+    return mainStatsList
+      .filter((ms: any) => Boolean(ms.note))
+      .map((ms: any) => ({
+        label: `${ms.cost} Cost`,
+        value: ms.stats ? ms.stats.join(' or ') : '',
+        note: ms.note
+      }));
+  }, [mainStatsList]);
+
+  const targetStatsWithNotes = useMemo(() => {
+    return (guide?.targetStats || []).filter((s: any) => Boolean(s.note));
+  }, [guide]);
+
+  const hasStatNotes = mainStatsWithNotes.length > 0 || targetStatsWithNotes.length > 0;
 
   if (!character || !guide) {
     return (
@@ -847,9 +863,6 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       </div>
                       <div className="flex flex-col items-start w-full">
                         <span className="text-lg font-black text-brand-accent italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
-                        {s.note && (
-                          <span className="text-[11px] text-gray-400 mt-1 font-medium break-keep">{t(s.note)}</span>
-                        )}
                       </div>
                     </div>
                   ))}
@@ -869,7 +882,6 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       label={`${ms.cost} Cost`} 
                       value={ms.stats.map((x: string) => t(x)).join(' or ')} 
                       theme={theme} 
-                      note={ms.note}
                     />
                   ))}
                 </div>
@@ -890,6 +902,66 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              {/* 권장 스탯 상세 가이드 */}
+              {hasStatNotes && (
+                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+                  <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                    <BookOpen size={20} className="text-brand-accent" />
+                    <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
+                      {t('권장 스탯 상세 가이드')}
+                    </h4>
+                  </div>
+
+                  {mainStatsWithNotes.length > 0 && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                        <ShieldCheck size={14} className="text-brand-accent" />
+                        {t('에코 주옵션 세부 가이드')}
+                      </div>
+                      <div className="space-y-2">
+                        {mainStatsWithNotes.map((stat: any, idx: number) => (
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-brand-accent text-black">
+                                {t(stat.label)}
+                              </span>
+                              <span className="font-bold text-sm text-white truncate">{t(stat.value)}</span>
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                              {t(stat.note)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {targetStatsWithNotes.length > 0 && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                        <Target size={14} className="text-brand-accent" />
+                        {t('목표 스탯 세부 가이드')}
+                      </div>
+                      <div className="space-y-2">
+                        {targetStatsWithNotes.map((s: any, idx: number) => (
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-white/10 text-gray-300">
+                                {t(s.label)}
+                              </span>
+                              <span className="font-bold text-sm text-white truncate">{t(s.value)}</span>
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                              {t(s.note)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </section>
 

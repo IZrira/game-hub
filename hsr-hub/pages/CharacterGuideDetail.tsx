@@ -140,12 +140,6 @@ const StatBoxPremium: React.FC<{
             </div>
           ))}
         </div>
-
-        {note && (
-          <p className="text-[10px] text-gray-400 font-medium leading-tight px-1 pt-1.5 border-t border-white/5 w-full text-center break-keep">
-            {t(note)}
-          </p>
-        )}
       </div>
     </div>
   );
@@ -416,6 +410,23 @@ const CharacterGuideDetail: React.FC = () => {
       return { label, value, note };
     });
   }, [currentVariant]);
+
+  const mainStatsWithNotes = useMemo(() => {
+    if (!currentVariant?.mainStats) return [];
+    const stats = [
+      { label: '몸통', ...getStatValueAndNote(currentVariant.mainStats.body) },
+      { label: '신발', ...getStatValueAndNote(currentVariant.mainStats.boots) },
+      { label: '차원 구체', ...getStatValueAndNote(currentVariant.mainStats.sphere) },
+      { label: '연결 매듭', ...getStatValueAndNote(currentVariant.mainStats.rope) },
+    ];
+    return stats.filter(s => Boolean(s.note));
+  }, [currentVariant]);
+
+  const targetStatsWithNotes = useMemo(() => {
+    return parsedTargetStats.filter(s => Boolean(s.note) && s.label !== '참고');
+  }, [parsedTargetStats]);
+
+  const hasStatNotes = mainStatsWithNotes.length > 0 || targetStatsWithNotes.length > 0;
 
   if (!guide || !character) {
     return (
@@ -798,7 +809,7 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {parsedTargetStats.filter(s => s.label !== '참고' && (s.note?.length || 0) < 30).map((s, i) => (
+                  {parsedTargetStats.filter(s => s.label !== '참고').map((s, i) => (
                     <div 
                       key={i} 
                       className="flex flex-col justify-between p-5 bg-white/5 rounded-3xl border border-white/5 hover:border-brand-primary/20 transition-all group relative gap-3 h-full overflow-hidden"
@@ -808,26 +819,13 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                       <div className="flex flex-col items-start w-full">
                         <span className="text-lg font-black text-brand-accent italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
-                        {s.note && (
-                          <span className="text-[11px] text-gray-400 mt-1 font-medium break-keep">{t(s.note)}</span>
-                        )}
-                        <div className="w-12 h-1 bg-brand-primary/20 rounded-full mt-1 overflow-hidden">
+                        <div className="w-12 h-1 bg-brand-primary/20 rounded-full mt-2 overflow-hidden">
                            <div className="w-full h-full bg-brand-accent/40 animate-pulse" />
                         </div>
                       </div>
                     </div>
                   ))}
                 </div>
-                {/* Long Notes or '참고' Labels */}
-                {parsedTargetStats.filter(s => s.label === '참고' || (s.note?.length || 0) >= 30).map((s, i) => (
-                  <div key={i} className="mt-4 p-6 bg-brand-primary/5 border border-brand-primary/20 rounded-[30px] flex items-start gap-4">
-                    <AlertCircle className="text-brand-accent shrink-0 mt-1" size={20} />
-                    <div className="space-y-1">
-                      <div className="text-[10px] font-black text-brand-accent uppercase tracking-widest whitespace-nowrap">{t(s.label)}</div>
-                      <div className="text-sm font-bold text-gray-300 leading-relaxed">{t(s.value)} {s.note && <span className="text-gray-400">| {t(s.note)}</span>}</div>
-                    </div>
-                  </div>
-                ))}
               </div>
 
               {/* Main & Sub Stats Section (Bottom) */}
@@ -844,10 +842,10 @@ const CharacterGuideDetail: React.FC = () => {
                     const ropeStat = getStatValueAndNote(currentVariant?.mainStats.rope);
                     return (
                       <>
-                        <StatBoxPremium label="몸통" value={bodyStat.value} note={bodyStat.note} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
-                        <StatBoxPremium label="신발" value={bootsStat.value} note={bootsStat.note} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
-                        <StatBoxPremium label="차원 구체" value={sphereStat.value} note={sphereStat.note} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
-                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} note={ropeStat.note} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
+                        <StatBoxPremium label="몸통" value={bodyStat.value} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
+                        <StatBoxPremium label="신발" value={bootsStat.value} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
+                        <StatBoxPremium label="차원 구체" value={sphereStat.value} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
+                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
                       </>
                     );
                   })()}
@@ -869,6 +867,66 @@ const CharacterGuideDetail: React.FC = () => {
                   </div>
                 </div>
               </div>
+
+              {/* 권장 스탯 상세 가이드 */}
+              {hasStatNotes && (
+                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+                  <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                    <BookOpen size={20} className="text-brand-accent" />
+                    <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
+                      {t('권장 스탯 상세 가이드')}
+                    </h4>
+                  </div>
+
+                  {mainStatsWithNotes.length > 0 && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                        <ShieldCheck size={14} className="text-brand-accent" />
+                        {t('주옵션 세부 가이드')}
+                      </div>
+                      <div className="space-y-2">
+                        {mainStatsWithNotes.map((stat: any, idx: number) => (
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-brand-accent text-black">
+                                {t(stat.label)}
+                              </span>
+                              <span className="font-bold text-sm text-white truncate">{t(stat.value)}</span>
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                              {t(stat.note)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {targetStatsWithNotes.length > 0 && (
+                    <div className="space-y-3">
+                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                        <Target size={14} className="text-brand-accent" />
+                        {t('목표 스탯 세부 가이드')}
+                      </div>
+                      <div className="space-y-2">
+                        {targetStatsWithNotes.map((s: any, idx: number) => (
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-white/10 text-gray-300">
+                                {t(s.label)}
+                              </span>
+                              <span className="font-bold text-sm text-white truncate">{t(s.value)}</span>
+                            </div>
+                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                              {t(s.note)}
+                            </p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </section>
 
