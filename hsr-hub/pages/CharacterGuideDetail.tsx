@@ -1,6 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
-import { motion, AnimatePresence, useMotionValue } from 'motion/react';
 import { 
   ChevronLeft, 
   ChevronRight,
@@ -75,10 +74,7 @@ const StatBoxPremium: React.FC<{
   note?: string; 
   theme: any; 
   iconImage?: string;
-  onMouseEnter?: (e: React.MouseEvent) => void;
-  onMouseMove?: (e: React.MouseEvent) => void;
-  onMouseLeave?: () => void;
-}> = ({ label, value, note, theme, iconImage, onMouseEnter, onMouseMove, onMouseLeave }) => {
+}> = ({ label, value, note, theme, iconImage }) => {
   const { t } = useTranslation();
   const [imgUrl, setImgUrl] = useState(iconImage);
   
@@ -131,15 +127,7 @@ const StatBoxPremium: React.FC<{
       
       <div className="space-y-3 w-full relative z-10">
         <div className="flex flex-col items-center gap-1">
-          <div 
-            className="flex items-center gap-1.5"
-            onMouseEnter={note ? onMouseEnter : undefined}
-            onMouseMove={note ? onMouseMove : undefined}
-            onMouseLeave={note ? onMouseLeave : undefined}
-          >
-            <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
-            {note && <Info size={12} className="text-brand-accent/70 hover:text-brand-accent transition-colors cursor-help" />}
-          </div>
+          <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
         </div>
         
         <div className="flex flex-col gap-2 w-full">
@@ -152,6 +140,12 @@ const StatBoxPremium: React.FC<{
             </div>
           ))}
         </div>
+
+        {note && (
+          <p className="text-[10px] text-gray-400 font-medium leading-tight px-1 pt-1.5 border-t border-white/5 w-full text-center break-keep">
+            {t(note)}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -225,24 +219,61 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
   );
 };
 
-const getStatValue = (stat: string | { value: string; note: string } | undefined): string => {
-  if (!stat) return '';
-  return typeof stat === 'string' ? stat : stat.value;
+const parseItemWithNote = (item: any, defaultRank: number) => {
+  let rawName = typeof item === 'string' ? item : (item?.name || '');
+  let rawNote = typeof item === 'object' ? item?.note : undefined;
+
+  // If item string contains colon, e.g. "Name : Note"
+  if (rawName.includes(':') && !rawNote) {
+    const parts = rawName.split(':');
+    rawName = parts[0].trim();
+    rawNote = parts.slice(1).join(':').trim();
+  }
+
+  let rank = defaultRank;
+  let note = rawNote;
+  if (rawNote) {
+    const rankMatch = String(rawNote).match(/^(\d+)순위(?:\s*:\s*(.*))?$/);
+    if (rankMatch) {
+      rank = parseInt(rankMatch[1], 10);
+      note = rankMatch[2]?.trim() || '';
+    }
+  }
+
+  // Clean name by removing rank strings if any
+  const cleanName = rawName.replace(/\s*\d+순위.*$/, '').trim();
+
+  return {
+    raw: item,
+    cleanName,
+    rank,
+    note: note && note.length > 0 ? note : undefined
+  };
 };
 
-const getStatNote = (stat: string | { value: string; note: string } | undefined): string | undefined => {
-  if (!stat) return undefined;
-  return typeof stat === 'string' ? undefined : stat.note;
+const getStatValueAndNote = (stat: string | { value: string; note: string } | undefined) => {
+  if (!stat) return { value: '', note: undefined };
+  if (typeof stat === 'object') {
+    let val = stat.value || '';
+    let nt = stat.note;
+    if (val.includes(':') && !nt) {
+      const parts = val.split(':');
+      val = parts[0].trim();
+      nt = parts.slice(1).join(':').trim();
+    }
+    return { value: val, note: nt };
+  }
+  if (stat.includes(':')) {
+    const parts = stat.split(':');
+    return { value: parts[0].trim(), note: parts.slice(1).join(':').trim() };
+  }
+  return { value: stat, note: undefined };
 };
 
 const CharacterGuideDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t, i18n } = useTranslation();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
-  const tooltipRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const [hoveredItem, setHoveredItem] = useState<{ name: string; description: string; type: string; } | null>(null);
 
   const resolvedKoName = useMemo(() => {
     if (!charName) return undefined;
@@ -338,43 +369,53 @@ const CharacterGuideDetail: React.FC = () => {
 
   const lastUpdatedDate = guide ? (guide.lastUpdated || '2026-05-23') : '2026-05-23';
 
-  const hoverTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const parsedLightCones = useMemo(() => {
+    const list = (currentVariant?.bestLightCones || guide?.bestLightCones || []).slice(0, 5);
+    return list.map((lc, idx) => parseItemWithNote(lc, idx + 1));
+  }, [currentVariant, guide]);
 
-  const updateTooltipPosition = (x: number, y: number) => {
-    const left = Math.min(x + 20, window.innerWidth - 340);
-    const top = Math.min(y + 20, window.innerHeight - 200);
-    mouseX.set(left);
-    mouseY.set(top);
-  };
+  const lightConesWithNotes = useMemo(() => {
+    return parsedLightCones.filter(lc => Boolean(lc.note));
+  }, [parsedLightCones]);
 
-  const handleMouseEnter = (e: React.MouseEvent, name: string, type: string, note?: string) => {
-    if (!note) return;
+  const parsedRelics = useMemo(() => {
+    return (currentVariant?.bestRelics || []).map((r, idx) => parseItemWithNote(r, idx + 1));
+  }, [currentVariant]);
 
-    // Filter out simple rank notes like "1순위", "2순위", etc.
-    const isJustRank = /^[1-9]순위$/.test(note.trim());
-    if (isJustRank) return;
+  const relicsWithNotes = useMemo(() => {
+    return parsedRelics.filter(r => Boolean(r.note));
+  }, [parsedRelics]);
 
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    
-    const clientX = e.clientX;
-    const clientY = e.clientY;
+  const parsedOrnaments = useMemo(() => {
+    return (currentVariant?.bestOrnaments || []).map((o, idx) => parseItemWithNote(o, idx + 1));
+  }, [currentVariant]);
 
-    hoverTimeoutRef.current = setTimeout(() => {
-      updateTooltipPosition(clientX, clientY);
-      setHoveredItem({ name, description: note, type: t(type) });
-    }, 50);
-  };
+  const ornamentsWithNotes = useMemo(() => {
+    return parsedOrnaments.filter(o => Boolean(o.note));
+  }, [parsedOrnaments]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (hoveredItem) {
-      updateTooltipPosition(e.clientX, e.clientY);
-    }
-  };
+  const hasEquipmentNotes = Boolean(currentVariant?.note || relicsWithNotes.length > 0 || ornamentsWithNotes.length > 0);
 
-  const handleMouseLeave = () => {
-    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
-    setHoveredItem(null);
-  };
+  const parsedTargetStats = useMemo(() => {
+    if (!currentVariant?.targetStats) return [];
+    return currentVariant.targetStats.map((s: any) => {
+      let label = s.label || '';
+      let value = s.value || '';
+      let note = s.note;
+
+      if (value.includes(':') && !note) {
+        const parts = value.split(':');
+        value = parts[0].trim();
+        note = parts.slice(1).join(':').trim();
+      } else if (label.includes(':') && !note) {
+        const parts = label.split(':');
+        label = parts[0].trim();
+        note = parts.slice(1).join(':').trim();
+      }
+
+      return { label, value, note };
+    });
+  }, [currentVariant]);
 
   if (!guide || !character) {
     return (
@@ -427,7 +468,7 @@ const CharacterGuideDetail: React.FC = () => {
 
     // 3. 주요 속성 및 추천 부옵션 FAQ
     if (guide.mainStats || guide.subStats) {
-      let statText = `${charNameKo}의 주요 권장 주옵션은 몸통(${getStatValue(guide.mainStats?.body) || '공격력/치명타'}), 신발(${getStatValue(guide.mainStats?.boots) || '속도'}), 구체(${getStatValue(guide.mainStats?.sphere) || '속성 피해'}), 매듭(${getStatValue(guide.mainStats?.rope) || '에너지 회복/공격력'})입니다.`;
+      let statText = `${charNameKo}의 주요 권장 주옵션은 몸통(${getStatValueAndNote(guide.mainStats?.body).value || '공격력/치명타'}), 신발(${getStatValueAndNote(guide.mainStats?.boots).value || '속도'}), 구체(${getStatValueAndNote(guide.mainStats?.sphere).value || '속성 피해'}), 매듭(${getStatValueAndNote(guide.mainStats?.rope).value || '에너지 회복/공격력'})입니다.`;
       if (guide.subStats && guide.subStats.length > 0) {
         statText += ` 추천하는 핵심 부옵션 우선순위는 ${guide.subStats.slice(0, 4).join(', ')} 순입니다.`;
       }
@@ -475,31 +516,6 @@ const CharacterGuideDetail: React.FC = () => {
           { name: t('세팅 가이드'), url: `/gallery/${gameId}/character/${character.id}/guide` }
         ]}
       />
-      
-      <AnimatePresence>
-        {hoveredItem && (
-            <motion.div
-              ref={tooltipRef}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.1 }}
-              className="fixed z-[100] pointer-events-none w-max max-w-[320px] p-4 bg-[#1a1a1a]/95 border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl top-0 left-0"
-              style={{ 
-                x: mouseX,
-                y: mouseY,
-                willChange: 'transform'
-              }}
-            >
-              <div className="space-y-2">
-                <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest whitespace-nowrap block">{hoveredItem.type}</span>
-                <h4 className="text-sm font-black text-white whitespace-nowrap">{t(hoveredItem.name)}</h4>
-                <div className="h-px bg-white/5" />
-                <p className="text-[11px] text-gray-400 leading-relaxed whitespace-pre-wrap">{t(hoveredItem.description)}</p>
-              </div>
-            </motion.div>
-        )}
-      </AnimatePresence>
 
       <PageHeader gameId={gameId} category={t("공략")} title={`${character?.name || charName} 가이드`} />
 
@@ -552,23 +568,18 @@ const CharacterGuideDetail: React.FC = () => {
           </section>
 
           {/* 01 추천 광추 */}
-          <section id="추천 광추" className="space-y-10">
+          <section id="추천 광추" className="space-y-6">
             <SectionHeader num="01" title="추천 광추" theme={theme} />
             <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {(currentVariant?.bestLightCones || guide.bestLightCones).slice(0, 5).map((lcItem, i) => {
-                const lcName = typeof lcItem === 'string' ? lcItem : (lcItem as any).name;
-                const lcNote = typeof lcItem === 'string' ? undefined : (lcItem as any).note;
-                const lc = LIGHTCONE_DB.find(l => l.name === lcName);
-                const lcUrl = lc ? encodeURI(`${BASE_IMAGE_URL}/광추/${lc.path.normalize('NFC')}/${(lc.fileName || lc.folderName).normalize('NFC')}.webp`) : null;
-                const isBest = i === 0;
+              {parsedLightCones.map((lc, i) => {
+                const lightCone = LIGHTCONE_DB.find(l => l.name === lc.cleanName);
+                const lcUrl = lightCone ? encodeURI(`${BASE_IMAGE_URL}/광추/${lightCone.path.normalize('NFC')}/${(lightCone.fileName || lightCone.folderName).normalize('NFC')}.webp`) : null;
+                const isBest = lc.rank === 1;
 
                 return (
                   <Link 
                     key={i} 
-                    to={`/gallery/${gameId}/lightcone/${encodeURIComponent(lcName)}`}
-                    onMouseEnter={(e) => handleMouseEnter(e, lcName, '추천 광추', lcNote)}
-                    onMouseMove={handleMouseMove}
-                    onMouseLeave={handleMouseLeave}
+                    to={`/gallery/${gameId}/lightcone/${encodeURIComponent(lc.cleanName)}`}
                     className={`group glass-card rounded-[32px] p-4 pt-6 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
                       isBest 
                         ? 'border-2 border-brand-accent shadow-[0_0_50px_rgba(255,214,0,0.15)] hover:shadow-[0_0_80px_rgba(255,214,0,0.3)] scale-[1.02] hover:scale-105 z-10 bg-brand-primary/5' 
@@ -579,7 +590,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20" />
                     )}
                     <div className={`absolute top-0 left-0 z-20 px-3 py-1.5 rounded-br-[20px] text-[10px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300 backdrop-blur-md'} uppercase tracking-widest`}>
-                      {i + 1}순위
+                      {lc.rank}순위
                     </div>
                     {isBest && (
                       <div className="absolute top-2 right-2 z-20 bg-black/40 p-1.5 rounded-full backdrop-blur-md border border-brand-accent/30 shadow-lg">
@@ -587,10 +598,10 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                     )}
                     <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
-                      {lcUrl ? <img src={lcUrl} alt={lcName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-400" />}
+                      {lcUrl ? <img src={lcUrl} alt={lc.cleanName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-400" />}
                     </div>
                     <div className="flex flex-col items-center gap-1.5 w-full">
-                      <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(lcName)}</h4>
+                      <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(lc.cleanName)}</h4>
                       {isBest && (
                         <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
                       )}
@@ -599,6 +610,33 @@ const CharacterGuideDetail: React.FC = () => {
                 );
               })}
             </div>
+
+            {/* 추천 광추 상세 분석 */}
+            {lightConesWithNotes.length > 0 && (
+              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-4">
+                <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                  <BookOpen size={20} className="text-brand-accent" />
+                  <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
+                    {t('추천 광추 상세 분석')}
+                  </h4>
+                </div>
+                <div className="space-y-3">
+                  {lightConesWithNotes.map((lc: any, idx: number) => (
+                    <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                      <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                        <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${lc.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                          {lc.rank}순위
+                        </span>
+                        <span className="font-bold text-sm text-white truncate">{t(lc.cleanName)}</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                        {t(lc.note)}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
 
           {/* 02 추천 장비 */}
@@ -621,22 +659,20 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('터널 유물')}</span>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
-                  {currentVariant?.bestRelics.map((rItem, i) => {
-                    const rName = typeof rItem === 'string' ? rItem : (rItem as any).name;
-                    const rNote = typeof rItem === 'string' ? undefined : (rItem as any).note;
-                    const relic = RELIC_DB.find(r => r.name === rName);
-                    const isFirst = i === 0;
+                  {parsedRelics.map((relicItem, i) => {
+                    const relic = RELIC_DB.find(r => r.name === relicItem.cleanName);
+                    const isFirst = relicItem.rank === 1;
                     return (
-                      <Link key={i} to={`/gallery/${gameId}/relic/${encodeURIComponent(rName)}`} onMouseEnter={(e) => handleMouseEnter(e, rName, '터널 유물', rNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                      <Link key={i} to={`/gallery/${gameId}/relic/${encodeURIComponent(relicItem.cleanName)}`} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
                           {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-400" />}
                         </div>
                         <div className="flex flex-col gap-1 w-full z-10">
                           <div className="flex items-center justify-between w-full">
-                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(rName)}</span>
+                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(relicItem.cleanName)}</span>
                             <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                              {i + 1}순위
+                              {relicItem.rank}순위
                             </span>
                           </div>
                         </div>
@@ -652,22 +688,20 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('차원 장신구')}</span>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
-                  {currentVariant?.bestOrnaments.map((oItem, i) => {
-                    const oName = typeof oItem === 'string' ? oItem : (oItem as any).name;
-                    const oNote = typeof oItem === 'string' ? undefined : (oItem as any).note;
-                    const ornament = ORNAMENT_DB.find(o => o.name === oName);
-                    const isFirst = i === 0;
+                  {parsedOrnaments.map((ornamentItem, i) => {
+                    const ornament = ORNAMENT_DB.find(o => o.name === ornamentItem.cleanName);
+                    const isFirst = ornamentItem.rank === 1;
                     return (
-                      <Link key={i} to={`/gallery/${gameId}/ornament/${encodeURIComponent(oName)}`} onMouseEnter={(e) => handleMouseEnter(e, oName, '차원 장신구', oNote)} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                      <Link key={i} to={`/gallery/${gameId}/ornament/${encodeURIComponent(ornamentItem.cleanName)}`} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
                           {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-400" />}
                         </div>
                         <div className="flex flex-col gap-1 w-full z-10">
                           <div className="flex items-center justify-between w-full">
-                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(oName)}</span>
+                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(ornamentItem.cleanName)}</span>
                             <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                              {i + 1}순위
+                              {ornamentItem.rank}순위
                             </span>
                           </div>
                         </div>
@@ -677,6 +711,80 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {/* 유물 & 차원 장신구 세팅 상세 분석 & 가이드 */}
+            {hasEquipmentNotes && (
+              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+                <div className="flex items-center gap-3 border-b border-white/5 pb-4">
+                  <BookOpen size={20} className="text-brand-accent" />
+                  <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
+                    {t('유물 & 차원 장신구 세팅 상세 분석')}
+                  </h4>
+                </div>
+
+                {currentVariant?.note && (
+                  <div className="p-4 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 flex items-start gap-3">
+                    <Sparkles size={18} className="text-brand-accent shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <span className="text-xs font-black text-brand-accent uppercase tracking-wider">
+                        [{currentVariant.name}] {t('세팅 핵심 포인트')}
+                      </span>
+                      <p className="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed">
+                        {t(currentVariant.note)}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {relicsWithNotes.length > 0 && (
+                  <div className="space-y-3">
+                    <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                      <Layers size={14} className="text-brand-accent" />
+                      {t('터널 유물 세부 가이드')}
+                    </div>
+                    <div className="space-y-2">
+                      {relicsWithNotes.map((r: any, idx: number) => (
+                        <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                          <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                            <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${r.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                              {r.rank}순위
+                            </span>
+                            <span className="font-bold text-sm text-white truncate">{t(r.cleanName)}</span>
+                          </div>
+                          <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            {t(r.note)}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {ornamentsWithNotes.length > 0 && (
+                  <div className="space-y-3">
+                    <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
+                      <Box size={14} className="text-brand-accent" />
+                      {t('차원 장신구 세부 가이드')}
+                    </div>
+                    <div className="space-y-2">
+                      {ornamentsWithNotes.map((o: any, idx: number) => (
+                        <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
+                          <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                            <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${o.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                              {o.rank}순위
+                            </span>
+                            <span className="font-bold text-sm text-white truncate">{t(o.cleanName)}</span>
+                          </div>
+                          <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            {t(o.note)}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </section>
 
           {/* 03 권장 스탯 */}
@@ -690,20 +798,19 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {currentVariant?.targetStats.filter(s => s.label !== '참고' && (s.note?.length || 0) < 30).map((s, i) => (
+                  {parsedTargetStats.filter(s => s.label !== '참고' && (s.note?.length || 0) < 30).map((s, i) => (
                     <div 
                       key={i} 
-                      onMouseEnter={(e) => handleMouseEnter(e, s.label, '목표 스탯', s.note)}
-                      onMouseMove={handleMouseMove}
-                      onMouseLeave={handleMouseLeave}
                       className="flex flex-col justify-between p-5 bg-white/5 rounded-3xl border border-white/5 hover:border-brand-primary/20 transition-all group relative gap-3 h-full overflow-hidden"
                     >
                       <div className="flex items-start justify-between gap-2 w-full">
                         <span className="text-sm font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-200 transition-colors break-keep break-words">{t(s.label)}</span>
-                        {s.note && <Info size={14} className="text-brand-accent/60 shrink-0 mt-0.5" />}
                       </div>
                       <div className="flex flex-col items-start w-full">
                         <span className="text-lg font-black text-brand-accent italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
+                        {s.note && (
+                          <span className="text-[11px] text-gray-400 mt-1 font-medium break-keep">{t(s.note)}</span>
+                        )}
                         <div className="w-12 h-1 bg-brand-primary/20 rounded-full mt-1 overflow-hidden">
                            <div className="w-full h-full bg-brand-accent/40 animate-pulse" />
                         </div>
@@ -712,7 +819,7 @@ const CharacterGuideDetail: React.FC = () => {
                   ))}
                 </div>
                 {/* Long Notes or '참고' Labels */}
-                {currentVariant?.targetStats.filter(s => s.label === '참고' || (s.note?.length || 0) >= 30).map((s, i) => (
+                {parsedTargetStats.filter(s => s.label === '참고' || (s.note?.length || 0) >= 30).map((s, i) => (
                   <div key={i} className="mt-4 p-6 bg-brand-primary/5 border border-brand-primary/20 rounded-[30px] flex items-start gap-4">
                     <AlertCircle className="text-brand-accent shrink-0 mt-1" size={20} />
                     <div className="space-y-1">
@@ -730,10 +837,20 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('주옵션 & 부옵션')}</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                  <StatBoxPremium label="몸통" value={getStatValue(currentVariant?.mainStats.body)} note={getStatNote(currentVariant?.mainStats.body)} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.body) || '', '주옵션 (몸통)', getStatNote(currentVariant?.mainStats.body))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
-                  <StatBoxPremium label="신발" value={getStatValue(currentVariant?.mainStats.boots)} note={getStatNote(currentVariant?.mainStats.boots)} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.boots) || '', '주옵션 (신발)', getStatNote(currentVariant?.mainStats.boots))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
-                  <StatBoxPremium label="차원 구체" value={getStatValue(currentVariant?.mainStats.sphere)} note={getStatNote(currentVariant?.mainStats.sphere)} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.sphere) || '', '주옵션 (구체)', getStatNote(currentVariant?.mainStats.sphere))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
-                  <StatBoxPremium label="연결 매듭" value={getStatValue(currentVariant?.mainStats.rope)} note={getStatNote(currentVariant?.mainStats.rope)} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} onMouseEnter={(e) => handleMouseEnter(e, getStatValue(currentVariant?.mainStats.rope) || '', '주옵션 (매듭)', getStatNote(currentVariant?.mainStats.rope))} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} />
+                  {(() => {
+                    const bodyStat = getStatValueAndNote(currentVariant?.mainStats.body);
+                    const bootsStat = getStatValueAndNote(currentVariant?.mainStats.boots);
+                    const sphereStat = getStatValueAndNote(currentVariant?.mainStats.sphere);
+                    const ropeStat = getStatValueAndNote(currentVariant?.mainStats.rope);
+                    return (
+                      <>
+                        <StatBoxPremium label="몸통" value={bodyStat.value} note={bodyStat.note} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
+                        <StatBoxPremium label="신발" value={bootsStat.value} note={bootsStat.note} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
+                        <StatBoxPremium label="차원 구체" value={sphereStat.value} note={sphereStat.note} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
+                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} note={ropeStat.note} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
+                      </>
+                    );
+                  })()}
                 </div>
                 <div className="p-6 bg-white/[0.03] rounded-[32px] border border-white/5 relative overflow-hidden">
                   <div className="absolute top-0 right-0 p-4 opacity-5">
