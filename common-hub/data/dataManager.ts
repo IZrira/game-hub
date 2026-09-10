@@ -398,7 +398,7 @@ export const getGameData = (targetId: string) => {
     .filter(item => item.dbSource === 'ww_guides')
     .map(item => ({
       id: item.id,
-      name: item.name,
+      name: item.name || item.id.replace(/_세팅_공략|_공략/g, '').trim(),
       patchVersion: item.patchVersion || '1.0',
       weapons: item.weapons || [],
       echoSets: item.echoSets || [],
@@ -1079,7 +1079,23 @@ export const getGameData = (targetId: string) => {
       acc[item.name || item.folderName || item.id] = { ...item, gameId: 'ww' };
       return acc;
     }, {}),
-    GUIDES: notionWwGuides.length > 0 ? notionWwGuides : WW_DATA_ALL.GUIDES
+    GUIDES: (() => {
+      const wwGuideMap = new Map<string, any>();
+      (WW_DATA_ALL.GUIDES || []).forEach((g: any) => {
+        const key = (g.id || g.name || '').trim();
+        if (key) wwGuideMap.set(key, g);
+      });
+      notionWwGuides.forEach((g: any) => {
+        const key = (g.name || g.id || '').trim();
+        const cleanKey = key.replace(/_세팅_공략|_공략/g, '').trim();
+        if (cleanKey) {
+          const existing = wwGuideMap.get(cleanKey) || wwGuideMap.get(g.id);
+          wwGuideMap.set(cleanKey, { ...(existing || {}), ...g, name: g.name || cleanKey });
+        }
+      });
+      const merged = Array.from(wwGuideMap.values());
+      return merged.length > 0 ? merged : (notionWwGuides.length > 0 ? notionWwGuides : WW_DATA_ALL.GUIDES);
+    })()
   };
 
   const nteArcMap = new Map<string, any>();

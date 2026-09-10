@@ -31,8 +31,63 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
+import { SONATA_SETS } from '../types';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
+
+const SONATA_EFFECT_MAP: Record<string, string> = {
+  '전도': '울려퍼지는 뇌음',
+  '전도 피해': '울려퍼지는 뇌음',
+  '기류': '스쳐가는 바람',
+  '기류 피해': '스쳐가는 바람',
+  '인멸': '빛을 삼키는 해',
+  '인멸 피해': '빛을 삼키는 해',
+  '용융': '솟구치는 용암',
+  '용융 피해': '솟구치는 용암',
+  '응결': '야밤의 서리',
+  '응결 피해': '야밤의 서리',
+  '회절': '빛나는 별',
+  '회절 피해': '빛나는 별',
+  '공격력': '끊임없는 잔향',
+  '공명 효율': '떠오르는 구름',
+  '공명효율': '떠오르는 구름',
+  '치료': '찬란한 광휘',
+  '치료 효과': '찬란한 광휘',
+  '회복': '찬란한 광휘',
+};
+
+const resolveSonataInfo = (rawText: string) => {
+  const text = (rawText || '').trim();
+  const pieceMatch = text.match(/(\d+)세트/);
+  const pieces = pieceMatch ? parseInt(pieceMatch[1], 10) : 0;
+
+  let matchedSonata = SONATA_SETS.find(s => text.includes(s)) || '';
+
+  let effectName = '';
+  if (!matchedSonata) {
+    for (const [kw, sonata] of Object.entries(SONATA_EFFECT_MAP)) {
+      if (text.includes(kw)) {
+        matchedSonata = sonata;
+        effectName = text.replace(/\s?\d+세트/g, '').trim();
+        break;
+      }
+    }
+  }
+
+  const baseName = matchedSonata || text.replace(/\s?\d+세트/g, '').trim();
+  const imgUrl = matchedSonata 
+    ? `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(matchedSonata.normalize('NFC'))}.webp` 
+    : '';
+
+  return {
+    raw: text,
+    sonataName: matchedSonata || baseName,
+    effectName,
+    pieces,
+    cleanName: text,
+    imgUrl
+  };
+};
 
 const normalizeName = (name: string) => {
   if (!name) return "";
@@ -176,12 +231,20 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   }, [CHARACTER_DB, charName]);
 
   const guide = useMemo(() => {
-    return GUIDES?.find((g: any) => 
-      g.id === charName || 
-      g.id === character?.id ||
-      (g.name && character?.name && normalizeName(g.name) === normalizeName(character?.name)) ||
-      (g.name && normalizeName(g.name) === normalizeName(charName || ''))
-    );
+    return GUIDES?.find((g: any) => {
+      const cleanGuideId = g.id?.replace(/_세팅_공략|_공략/g, '').trim();
+      const charId = character?.id || charName;
+      const charNameNormalized = normalizeName(character?.name || charName || '');
+      const charFolderNormalized = normalizeName(character?.folderName || '');
+
+      return (
+        g.id === charId ||
+        g.id === charName ||
+        cleanGuideId === charId ||
+        (cleanGuideId && (normalizeName(cleanGuideId) === charNameNormalized || normalizeName(cleanGuideId) === charFolderNormalized)) ||
+        (g.name && (normalizeName(g.name) === charNameNormalized || normalizeName(g.name) === charFolderNormalized))
+      );
+    });
   }, [GUIDES, charName, character]);
 
   const currentVariant = useMemo(() => {
@@ -237,9 +300,14 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     return parsedWeapons.filter((w: any) => Boolean(w.note));
   }, [parsedWeapons]);
 
-  const parsedEchoSets = useMemo(() => {
-    if (!currentVariant?.echoSets) return [];
-    return currentVariant.echoSets.map((set: any, i: number) => {
+  const parsedEchoSetsData = useMemo(() => {
+    if (!currentVariant?.echoSets) return { hasSplitCombo: false, threePieceSets: [], twoPieceSets: [], allSets: [] };
+
+    const threePieceSets: any[] = [];
+    const twoPieceSets: any[] = [];
+    const allSets: any[] = [];
+
+    currentVariant.echoSets.forEach((set: any, i: number) => {
       const rawFullName = typeof set === 'string'
         ? set
         : (set && typeof set.name === 'string' && set.name.trim() ? set.name : (currentVariant?.name || ''));
@@ -250,20 +318,69 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         setFullName = parts[0].trim();
         setNote = parts.slice(1).join(':').trim();
       }
-      const setName = typeof setFullName === 'string' ? setFullName.replace(/\s?\d+세트/g, '').trim() : '';
-      return {
-        raw: set,
-        cleanName: setFullName,
-        setName,
-        note: setNote,
-        rank: i + 1,
-      };
+
+      const rank = i + 1;
+
+      if (setFullName.includes('+')) {
+        const parts = setFullName.split('+').map((p: string) => p.trim()).filter(Boolean);
+        parts.forEach((part: string) => {
+          const info = resolveSonataInfo(part);
+          const item = {
+            raw: set,
+            cleanName: part,
+            sonataName: info.sonataName,
+            effectName: info.effectName,
+            pieces: info.pieces,
+            imgUrl: info.imgUrl,
+            note: setNote,
+            rank,
+          };
+          if (info.pieces === 3) {
+            threePieceSets.push(item);
+          } else if (info.pieces === 2) {
+            twoPieceSets.push(item);
+          } else {
+            allSets.push(item);
+          }
+        });
+      } else {
+        const info = resolveSonataInfo(setFullName);
+        const item = {
+          raw: set,
+          cleanName: setFullName,
+          setName: info.sonataName,
+          sonataName: info.sonataName,
+          effectName: info.effectName,
+          pieces: info.pieces,
+          imgUrl: info.imgUrl,
+          note: setNote,
+          rank,
+        };
+        if (info.pieces === 3) {
+          threePieceSets.push(item);
+        } else if (info.pieces === 2) {
+          twoPieceSets.push(item);
+        }
+        allSets.push(item);
+      }
     });
+
+    const hasSplitCombo = threePieceSets.length > 0 && twoPieceSets.length > 0;
+
+    return {
+      hasSplitCombo,
+      threePieceSets,
+      twoPieceSets,
+      allSets
+    };
   }, [currentVariant]);
 
   const echoSetsWithNotes = useMemo(() => {
-    return parsedEchoSets.filter((s: any) => Boolean(s.note));
-  }, [parsedEchoSets]);
+    const list = parsedEchoSetsData.hasSplitCombo
+      ? [...parsedEchoSetsData.threePieceSets, ...parsedEchoSetsData.twoPieceSets]
+      : parsedEchoSetsData.allSets;
+    return list.filter((s: any) => Boolean(s.note));
+  }, [parsedEchoSetsData]);
 
   const parsedMainEchoes = useMemo(() => {
     if (!currentVariant?.mainEchoes) return [];
@@ -466,8 +583,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     const primarySetFullName = typeof v.echoSets?.[0] === 'string'
                       ? v.echoSets[0]
                       : (v.echoSets?.[0]?.name || v.name || '');
-                    const primarySetName = typeof primarySetFullName === 'string' ? primarySetFullName.replace(/\s?\d+세트/g, '').trim() : '';
-                    const setImgUrl = primarySetName ? `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(primarySetName.normalize('NFC'))}.webp` : '';
+                    const primaryPart = (primarySetFullName || '').split('+')[0].trim();
+                    const sonataInfo = resolveSonataInfo(primaryPart);
+                    const setImgUrl = sonataInfo.imgUrl;
                     
                     return (
                       <button 
@@ -476,7 +594,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                         className={`flex items-center gap-2 px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'}`}
                       >
                         {setImgUrl && (
-                          <img src={setImgUrl} alt={primarySetName} className={`w-4 h-4 object-contain ${selectedVariantIndex !== idx && 'opacity-60 grayscale'}`} onError={(e) => (e.currentTarget.style.display = 'none')} />
+                          <img src={setImgUrl} alt={sonataInfo.sonataName} className={`w-4 h-4 object-contain ${selectedVariantIndex !== idx && 'opacity-60 grayscale'}`} onError={(e) => (e.currentTarget.style.display = 'none')} />
                         )}
                         {v.name}
                       </button>
@@ -486,40 +604,147 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               )}
             </div>
             <div className="flex flex-col gap-8">
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
-                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Layers size={22} className="text-gray-500" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{t('화음 세트')}</span>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {parsedEchoSets.map((set: any, i: number) => {
-                    const isFirst = i === 0;
-                    const setImgUrl = set.setName ? `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(set.setName.normalize('NFC'))}.webp` : '';
-
-                    return (
-                      <div 
-                        key={i} 
-                        className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
-                      >
-                        {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                        <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
-                          {setImgUrl && <img src={setImgUrl} alt={set.setName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
-                        </div>
-                        <div className="flex flex-col gap-1 w-full z-10">
-                          <div className="flex items-center justify-between w-full">
-                            <div className="flex items-center gap-1.5 min-w-0">
-                              <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
+              {parsedEchoSetsData.hasSplitCombo ? (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {/* 3세트 화음 카드 */}
+                  <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                    <div className="flex items-center justify-between border-b border-white/5 pb-6">
+                      <div className="flex items-center gap-4">
+                        <Layers size={22} className="text-brand-accent" />
+                        <span className="text-xl font-black uppercase tracking-tighter italic">{t('3세트 화음')}</span>
+                      </div>
+                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                        3 Pieces
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4">
+                      {parsedEchoSetsData.threePieceSets.map((set: any, i: number) => {
+                        const isFirst = i === 0;
+                        return (
+                          <div 
+                            key={i} 
+                            className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                          >
+                            {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
+                            <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
+                              {set.imgUrl ? (
+                                <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                              ) : (
+                                <Layers size={24} className="text-gray-400" />
+                              )}
                             </div>
-                            <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                              {set.rank}순위
-                            </span>
+                            <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                              <div className="flex items-center justify-between w-full">
+                                <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                  {set.rank}순위
+                                </span>
+                              </div>
+                              {set.sonataName && (
+                                <span className="text-xs text-gray-400 font-medium truncate">
+                                  소나타: {t(set.sonataName)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 2세트 화음 카드 */}
+                  <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                    <div className="flex items-center justify-between border-b border-white/5 pb-6">
+                      <div className="flex items-center gap-4">
+                        <Box size={22} className="text-purple-400" />
+                        <span className="text-xl font-black uppercase tracking-tighter italic">{t('2세트 화음')}</span>
+                      </div>
+                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                        2 Pieces
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-1 gap-4">
+                      {parsedEchoSetsData.twoPieceSets.map((set: any, i: number) => {
+                        const isFirst = i === 0;
+                        return (
+                          <div 
+                            key={i} 
+                            className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                          >
+                            {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
+                            <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
+                              {set.imgUrl ? (
+                                <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                              ) : (
+                                <Box size={24} className="text-gray-400" />
+                              )}
+                            </div>
+                            <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                              <div className="flex items-center justify-between w-full">
+                                <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                  {set.rank}순위
+                                </span>
+                              </div>
+                              {set.sonataName && (
+                                <div className="flex items-center gap-2">
+                                  <span className="text-xs text-gray-400 font-medium truncate">
+                                    소나타: {t(set.sonataName)}
+                                  </span>
+                                  {set.effectName && (
+                                    <span className="text-[11px] text-brand-accent/80 font-semibold shrink-0">
+                                      ({t(set.effectName)})
+                                    </span>
+                                  )}
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                /* 기존 화음 세트 카드 (5세트 등 단일 세팅) */
+                <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-6">
+                    <div className="flex items-center gap-4">
+                      <Layers size={22} className="text-gray-500" />
+                      <span className="text-xl font-black uppercase tracking-tighter italic">{t('화음 세트')}</span>
+                    </div>
+                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                      5 Pieces
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {parsedEchoSetsData.allSets.map((set: any, i: number) => {
+                      const isFirst = i === 0;
+                      return (
+                        <div 
+                          key={i} 
+                          className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                        >
+                          {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
+                          <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
+                            {set.imgUrl && <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
+                          </div>
+                          <div className="flex flex-col gap-1 w-full z-10">
+                            <div className="flex items-center justify-between w-full">
+                              <div className="flex items-center gap-1.5 min-w-0">
+                                <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
+                              </div>
+                              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                {set.rank}순위
+                              </span>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="glass-card rounded-[45px] p-10 border border-brand-primary/20 bg-brand-primary/[0.02] space-y-8 relative overflow-hidden group">
                 <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-colors duration-700" />
