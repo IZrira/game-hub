@@ -356,10 +356,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
       if (setFullName.includes('+')) {
         const parts = setFullName.split('+').map((p: string) => p.trim()).filter(Boolean);
-        parts.forEach((part: string) => {
+        const noteParts = setNote.includes('+') ? setNote.split('+').map((p: string) => p.trim()).filter(Boolean) : [];
+        parts.forEach((part: string, partIdx: number) => {
           const info = resolveSonataInfo(part);
           const isTwoPiece = info.pieces === 2 || /2세트|피해.*증가/.test(part);
           const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(part) : [];
+          const itemNote = (noteParts.length === parts.length) ? noteParts[partIdx] : setNote;
           const item = {
             raw: set,
             cleanName: part,
@@ -368,7 +370,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
             pieces: info.pieces,
             imgUrl: info.imgUrl,
             matchingSets,
-            note: setNote,
+            note: itemNote,
             rank,
           };
           if (info.pieces === 3) {
@@ -695,29 +697,38 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                         return (
                           <div 
                             key={i} 
-                            className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                            className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                           >
                             {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                            <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
-                              {set.imgUrl ? (
-                                <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
-                              ) : (
-                                <Layers size={24} className="text-gray-400" />
-                              )}
-                            </div>
-                            <div className="flex flex-col gap-1 w-full z-10 min-w-0">
-                              <div className="flex items-center justify-between w-full">
-                                <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
-                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                                  {set.rank}순위
-                                </span>
+                            <div className="flex items-center gap-4 w-full">
+                              <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
+                                {set.imgUrl ? (
+                                  <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                                ) : (
+                                  <Layers size={24} className="text-gray-400" />
+                                )}
                               </div>
-                              {set.sonataName && (
-                                <span className="text-xs text-gray-400 font-medium truncate">
-                                  소나타: {t(set.sonataName)}
-                                </span>
-                              )}
+                              <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                                <div className="flex items-center justify-between w-full">
+                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                  <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                    {set.rank}순위
+                                  </span>
+                                </div>
+                                {set.sonataName && (
+                                  <span className="text-xs text-gray-400 font-medium truncate">
+                                    소나타: {t(set.sonataName)}
+                                  </span>
+                                )}
+                              </div>
                             </div>
+                            {set.note && (
+                              <div className="pt-2.5 border-t border-white/5">
+                                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                                  {t(set.note)}
+                                </p>
+                              </div>
+                            )}
                           </div>
                         );
                       })}
@@ -786,6 +797,15 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               </div>
                             </div>
 
+                            {/* 화음 세트 이유/설명 */}
+                            {set.note && (
+                              <div className="pt-2.5 border-t border-white/5">
+                                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                                  {t(set.note)}
+                                </p>
+                              </div>
+                            )}
+
                             {/* 해당 2세트 효과를 제공하는 모든 화음 세트 (아이콘 + 세트 이름) */}
                             {matchingSets.length > 0 && (
                               <div className="pt-3 border-t border-white/5 space-y-2.5">
@@ -850,29 +870,38 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           return (
                             <div 
                               key={i} 
-                              className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                              className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                             >
                               {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                              <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
-                                {set.imgUrl ? (
-                                  <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
-                                ) : (
-                                  <Layers size={24} className="text-gray-400" />
-                                )}
-                              </div>
-                              <div className="flex flex-col gap-1 w-full z-10 min-w-0">
-                                <div className="flex items-center justify-between w-full">
-                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
-                                  <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                                    {set.rank}순위
-                                  </span>
+                              <div className="flex items-center gap-4 w-full">
+                                <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
+                                  {set.imgUrl ? (
+                                    <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                                  ) : (
+                                    <Layers size={24} className="text-gray-400" />
+                                  )}
                                 </div>
-                                {set.sonataName && (
-                                  <span className="text-xs text-gray-400 font-medium truncate">
-                                    소나타: {t(set.sonataName)}
-                                  </span>
-                                )}
+                                <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                                  <div className="flex items-center justify-between w-full">
+                                    <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                    <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                      {set.rank}순위
+                                    </span>
+                                  </div>
+                                  {set.sonataName && (
+                                    <span className="text-xs text-gray-400 font-medium truncate">
+                                      소나타: {t(set.sonataName)}
+                                    </span>
+                                  )}
+                                </div>
                               </div>
+                              {set.note && (
+                                <div className="pt-2.5 border-t border-white/5">
+                                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                                    {t(set.note)}
+                                  </p>
+                                </div>
+                              )}
                             </div>
                           );
                         })}
@@ -942,6 +971,15 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                   </div>
                                 </div>
                               </div>
+
+                              {/* 화음 세트 이유/설명 */}
+                              {set.note && (
+                                <div className="pt-2.5 border-t border-white/5">
+                                  <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                                    {t(set.note)}
+                                  </p>
+                                </div>
+                              )}
 
                               {/* 해당 2세트 효과를 제공하는 모든 화음 세트 (아이콘 + 세트 이름) */}
                               {matchingSets.length > 0 && (
@@ -1016,7 +1054,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
                               {set.imgUrl && <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
                             </div>
-                            <div className="flex flex-col gap-1 w-full z-10">
+                            <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                               <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center gap-1.5 min-w-0">
                                   <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
@@ -1025,8 +1063,22 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                   {set.rank}순위
                                 </span>
                               </div>
+                              {set.sonataName && (
+                                <span className="text-xs text-gray-400 font-medium truncate">
+                                  소나타: {t(set.sonataName)}
+                                </span>
+                              )}
                             </div>
                           </div>
+
+                          {/* 화음 세트 이유/설명 */}
+                          {set.note && (
+                            <div className="pt-2.5 border-t border-white/5">
+                              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                                {t(set.note)}
+                              </p>
+                            </div>
+                          )}
 
                           {matchingSets.length > 0 && (
                             <div className="pt-3 border-t border-white/5 space-y-2">

@@ -396,6 +396,17 @@ async function fetchNotionData() {
   const notion = new Client({ auth: NOTION_TOKEN, notionVersion: '2022-06-28' });
   const n2m = new NotionToMarkdown({ notionClient: notion });
 
+  if (process.argv.includes('--ww-guides-only')) {
+    console.log('[Notion Sync] Running in --ww-guides-only mode...');
+    const existing = fs.existsSync(jsonPath) ? JSON.parse(fs.readFileSync(jsonPath, 'utf8')) : [];
+    const wwGuides = await fetchWwGuidesFromDB(notion, n2m, NOTION_WW_GUIDES_DB_ID);
+    const otherItems = existing.filter(i => i.dbSource !== 'ww_guides');
+    const combined = [...otherItems, ...wwGuides];
+    fs.writeFileSync(jsonPath, JSON.stringify(combined, null, 2), 'utf8');
+    console.log(`[Notion Sync] Successfully updated ${wwGuides.length} WW character guides in notion-data.json.`);
+    return;
+  }
+
   try {
     let allItems = [];
 
@@ -711,6 +722,14 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
         const parts = sName.split(/[:：]/);
         sName = parts[0].trim();
         sNote = parts.slice(1).join(':').trim() || undefined;
+      }
+      const afterSet = mdContent.slice(setMatch.index + setMatch[0].length);
+      const nextStop = afterSet.search(/(?:메인(?:\s*에코)?\s*[:：]|[-*]?\s*목표\s*육성치|---|스킬)/i);
+      const setBlock = nextStop !== -1 ? afterSet.slice(0, nextStop) : afterSet;
+      const reasonMatch = setBlock.match(/이유\s*[:：]\s*([^\n]+)/i);
+      if (reasonMatch) {
+        const reasonText = reasonMatch[1].replace(/[*#_]/g, '').trim();
+        sNote = sNote ? `${sNote} - ${reasonText}` : reasonText;
       }
       echoSets.push({ name: sName, note: sNote });
     }
