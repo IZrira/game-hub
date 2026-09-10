@@ -140,6 +140,14 @@ const StatBoxPremium: React.FC<{
             </div>
           ))}
         </div>
+
+        {note && (
+          <div className="pt-2.5 border-t border-white/5 w-full">
+            <p className="text-xs text-gray-300/90 leading-relaxed font-medium break-keep">
+              {t(note)}
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
@@ -147,11 +155,10 @@ const StatBoxPremium: React.FC<{
 
 const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = ({ party, gameId }) => {
   const { t } = useTranslation();
-  const [hoveredMemberIdx, setHoveredMemberIdx] = useState<number | null>(null);
 
   return (
-    <div className="p-10">
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 relative">
+    <div className="p-6 sm:p-8 md:p-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
         {party.members.map((member: any, idx: number) => {
           const memberChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(member.name)) || normalizeName(c.folderName) === normalizeName(t(member.name)));
           const memberImg = memberChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(memberChar.folderName.normalize('NFC'))}/art01.webp` : '';
@@ -159,49 +166,50 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
           return (
             <div 
               key={idx} 
-              className="flex flex-col items-center gap-6 group/member relative"
-              onMouseEnter={() => setHoveredMemberIdx(idx)}
-              onMouseLeave={() => setHoveredMemberIdx(null)}
+              className="flex flex-col items-center gap-4 group/member relative bg-white/[0.02] border border-white/5 rounded-3xl p-4 sm:p-5 transition-all hover:border-brand-primary/20"
             >
-              <div className="relative w-32 h-32 md:w-36 md:h-36">
+              <div className="relative w-24 h-24 sm:w-28 sm:h-28">
                  <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/20 to-transparent rounded-full blur-2xl opacity-0 group-hover/member:opacity-40 transition-opacity" />
                  <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-primary/50 transition-all duration-500 p-1 bg-black/40 shadow-2xl">
                     <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full scale-110 group-hover/member:scale-125 transition-transform duration-700" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
                  </div>
-                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-[10px] font-black text-brand-accent uppercase tracking-widest opacity-0 group-hover/member:opacity-100 transition-all group-hover/member:-bottom-4 whitespace-nowrap z-10">
+                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-[9px] font-black text-brand-accent uppercase tracking-widest whitespace-nowrap z-10">
                    {t(member.role)}
                  </div>
               </div>
-              <div className="text-center space-y-1">
-                <div className="text-lg font-black text-white group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-                <div className="text-[11px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+              <div className="text-center space-y-0.5">
+                <div className="text-base sm:text-lg font-black text-white group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
+                <div className="text-[10px] sm:text-[11px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
               </div>
 
-              {/* Substitutes Overlay */}
-              {hoveredMemberIdx === idx && member.substitutes && member.substitutes.length > 0 && (
-                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-6 z-[100] animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-300">
-                  <div className="bg-[#121212]/95 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-6 shadow-[0_20px_50px_rgba(0,0,0,0.5)] min-w-[200px]">
-                    <div className="flex items-center gap-2 mb-4 px-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                      <span className="text-[9px] font-black text-brand-accent uppercase tracking-widest">대체 캐릭터</span>
-                    </div>
-                    <div className="flex gap-4 justify-center">
-                      {member.substitutes.map((sub: any, sIdx: number) => {
-                        const subChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(sub.name)) || normalizeName(c.folderName) === normalizeName(t(sub.name)));
-                        const subImg = subChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(subChar.folderName.normalize('NFC'))}/${sub.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}` : '';
-                        return (
-                          <div key={sIdx} className="flex flex-col items-center gap-2 group/sub">
-                            <div className="w-16 h-16 rounded-full border border-white/10 overflow-hidden bg-black/40 p-1 group-hover/sub:border-brand-accent transition-all">
-                              <img src={subImg} alt={sub.name} className="w-full h-full object-cover rounded-full group-hover/sub:scale-110 transition-transform" />
-                            </div>
-                            <span className="text-[8px] font-black text-gray-400 uppercase tracking-tighter">{t(sub.name)}</span>
+              {/* 대체 캐릭터 (호버 없이 하단에 직접 배치) */}
+              {member.substitutes && member.substitutes.length > 0 && (
+                <div className="w-full pt-3 border-t border-white/5 flex flex-col items-center gap-2 mt-auto">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
+                    <span className="text-[10px] font-black text-brand-accent uppercase tracking-wider">
+                      {t('대체 캐릭터')}
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    {member.substitutes.map((sub: any, sIdx: number) => {
+                      const subChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(sub.name)) || normalizeName(c.folderName) === normalizeName(t(sub.name)));
+                      const subImg = subChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(subChar.folderName.normalize('NFC'))}/${sub.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}` : '';
+                      return (
+                        <div key={sIdx} className="flex flex-col items-center gap-1 group/sub">
+                          <div className="w-11 h-11 rounded-2xl border border-white/10 overflow-hidden bg-black/40 p-0.5 group-hover/sub:border-brand-accent/50 transition-all shadow-md">
+                            {subImg ? (
+                              <img src={subImg} alt={sub.name} className="w-full h-full object-cover rounded-xl group-hover/sub:scale-110 transition-transform" onError={(e) => { e.currentTarget.style.opacity = '0.3'; }} />
+                            ) : (
+                              <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-500 font-bold">{sub.name?.[0]}</div>
+                            )}
                           </div>
-                        );
-                      })}
-                    </div>
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-full">
-                      <div className="w-4 h-4 bg-[#121212]/95 border-r border-b border-white/10 rotate-45 -translate-y-2" />
-                    </div>
+                          <span className="text-[9px] font-bold text-gray-400 group-hover/sub:text-brand-accent transition-colors max-w-[56px] truncate text-center">
+                            {t(sub.name)}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -218,8 +226,8 @@ const parseItemWithNote = (item: any, defaultRank: number) => {
   let rawNote = typeof item === 'object' ? item?.note : undefined;
 
   // If item string contains colon, e.g. "Name : Note"
-  if (rawName.includes(':') && !rawNote) {
-    const parts = rawName.split(':');
+  if ((rawName.includes(':') || rawName.includes('：')) && !rawNote) {
+    const parts = rawName.split(/[:：]/);
     rawName = parts[0].trim();
     rawNote = parts.slice(1).join(':').trim();
   }
@@ -227,7 +235,7 @@ const parseItemWithNote = (item: any, defaultRank: number) => {
   let rank = defaultRank;
   let note = rawNote;
   if (rawNote) {
-    const rankMatch = String(rawNote).match(/^(\d+)순위(?:\s*:\s*(.*))?$/);
+    const rankMatch = String(rawNote).match(/^(\d+)순위(?:\s*[:：]\s*(.*))?$/);
     if (rankMatch) {
       rank = parseInt(rankMatch[1], 10);
       note = rankMatch[2]?.trim() || '';
@@ -250,15 +258,15 @@ const getStatValueAndNote = (stat: string | { value: string; note: string } | un
   if (typeof stat === 'object') {
     let val = stat.value || '';
     let nt = stat.note;
-    if (val.includes(':') && !nt) {
-      const parts = val.split(':');
+    if ((val.includes(':') || val.includes('：')) && !nt) {
+      const parts = val.split(/[:：]/);
       val = parts[0].trim();
       nt = parts.slice(1).join(':').trim();
     }
     return { value: val, note: nt };
   }
-  if (stat.includes(':')) {
-    const parts = stat.split(':');
+  if (stat.includes(':') || stat.includes('：')) {
+    const parts = stat.split(/[:：]/);
     return { value: parts[0].trim(), note: parts.slice(1).join(':').trim() };
   }
   return { value: stat, note: undefined };
@@ -397,12 +405,12 @@ const CharacterGuideDetail: React.FC = () => {
       let value = s.value || '';
       let note = s.note;
 
-      if (value.includes(':') && !note) {
-        const parts = value.split(':');
+      if ((value.includes(':') || value.includes('：')) && !note) {
+        const parts = value.split(/[:：]/);
         value = parts[0].trim();
         note = parts.slice(1).join(':').trim();
-      } else if (label.includes(':') && !note) {
-        const parts = label.split(':');
+      } else if ((label.includes(':') || label.includes('：')) && !note) {
+        const parts = label.split(/[:：]/);
         label = parts[0].trim();
         note = parts.slice(1).join(':').trim();
       }
@@ -617,6 +625,13 @@ const CharacterGuideDetail: React.FC = () => {
                         <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
                       )}
                     </div>
+                    {lc.note && (
+                      <div className="pt-2 border-t border-white/5 w-full mt-auto">
+                        <p className="text-[11px] text-gray-300 leading-relaxed font-medium break-keep px-1 text-center">
+                          {t(lc.note)}
+                        </p>
+                      </div>
+                    )}
                   </Link>
                 );
               })}
@@ -674,19 +689,32 @@ const CharacterGuideDetail: React.FC = () => {
                     const relic = RELIC_DB.find(r => r.name === relicItem.cleanName);
                     const isFirst = relicItem.rank === 1;
                     return (
-                      <Link key={i} to={`/gallery/${gameId}/relic/${encodeURIComponent(relicItem.cleanName)}`} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                      <Link 
+                        key={i} 
+                        to={`/gallery/${gameId}/relic/${encodeURIComponent(relicItem.cleanName)}`} 
+                        className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                      >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                        <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
-                          {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-400" />}
-                        </div>
-                        <div className="flex flex-col gap-1 w-full z-10">
-                          <div className="flex items-center justify-between w-full">
-                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(relicItem.cleanName)}</span>
-                            <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                              {relicItem.rank}순위
-                            </span>
+                        <div className="flex items-center gap-4 w-full">
+                          <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
+                            {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-400" />}
+                          </div>
+                          <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                            <div className="flex items-center justify-between w-full">
+                              <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(relicItem.cleanName)}</span>
+                              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                {relicItem.rank}순위
+                              </span>
+                            </div>
                           </div>
                         </div>
+                        {relicItem.note && (
+                          <div className="pt-2.5 border-t border-white/5 w-full">
+                            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                              {t(relicItem.note)}
+                            </p>
+                          </div>
+                        )}
                       </Link>
                     );
                   })}
@@ -703,19 +731,32 @@ const CharacterGuideDetail: React.FC = () => {
                     const ornament = ORNAMENT_DB.find(o => o.name === ornamentItem.cleanName);
                     const isFirst = ornamentItem.rank === 1;
                     return (
-                      <Link key={i} to={`/gallery/${gameId}/ornament/${encodeURIComponent(ornamentItem.cleanName)}`} className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}>
+                      <Link 
+                        key={i} 
+                        to={`/gallery/${gameId}/ornament/${encodeURIComponent(ornamentItem.cleanName)}`} 
+                        className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                      >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                        <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
-                          {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-400" />}
-                        </div>
-                        <div className="flex flex-col gap-1 w-full z-10">
-                          <div className="flex items-center justify-between w-full">
-                            <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors">{t(ornamentItem.cleanName)}</span>
-                            <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                              {ornamentItem.rank}순위
-                            </span>
+                        <div className="flex items-center gap-4 w-full">
+                          <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
+                            {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-400" />}
+                          </div>
+                          <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                            <div className="flex items-center justify-between w-full">
+                              <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(ornamentItem.cleanName)}</span>
+                              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                {ornamentItem.rank}순위
+                              </span>
+                            </div>
                           </div>
                         </div>
+                        {ornamentItem.note && (
+                          <div className="pt-2.5 border-t border-white/5 w-full">
+                            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                              {t(ornamentItem.note)}
+                            </p>
+                          </div>
+                        )}
                       </Link>
                     );
                   })}
@@ -823,9 +864,31 @@ const CharacterGuideDetail: React.FC = () => {
                            <div className="w-full h-full bg-brand-accent/40 animate-pulse" />
                         </div>
                       </div>
+                      {s.note && (
+                        <div className="pt-2.5 border-t border-white/5 w-full mt-1">
+                          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                            {t(s.note)}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   ))}
                 </div>
+
+                {/* 목표 스탯 참고 사항 배너 */}
+                {parsedTargetStats.filter(s => s.label === '참고').map((s, i) => (
+                  <div key={i} className="p-4 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 flex items-start gap-3">
+                    <Sparkles size={18} className="text-brand-accent shrink-0 mt-0.5" />
+                    <div className="space-y-1">
+                      <span className="text-xs font-black text-brand-accent uppercase tracking-wider">
+                        [목표 스탯 참고 사항]
+                      </span>
+                      <p className="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed break-keep">
+                        {t(s.value)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Main & Sub Stats Section (Bottom) */}
@@ -842,10 +905,10 @@ const CharacterGuideDetail: React.FC = () => {
                     const ropeStat = getStatValueAndNote(currentVariant?.mainStats.rope);
                     return (
                       <>
-                        <StatBoxPremium label="몸통" value={bodyStat.value} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
-                        <StatBoxPremium label="신발" value={bootsStat.value} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
-                        <StatBoxPremium label="차원 구체" value={sphereStat.value} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
-                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
+                        <StatBoxPremium label="몸통" value={bodyStat.value} note={bodyStat.note} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
+                        <StatBoxPremium label="신발" value={bootsStat.value} note={bootsStat.note} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
+                        <StatBoxPremium label="차원 구체" value={sphereStat.value} note={sphereStat.note} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
+                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} note={ropeStat.note} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
                       </>
                     );
                   })()}
