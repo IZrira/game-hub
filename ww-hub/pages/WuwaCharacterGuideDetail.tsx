@@ -32,8 +32,42 @@ import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { SONATA_SETS } from '../types';
+import { SONATA_EFFECTS } from '../data/sonataEffects';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
+
+const getMatchingTwoPieceSets = (text: string): string[] => {
+  if (!text) return [];
+  const clean = text.trim();
+
+  const keywords: { keys: string[]; match: (s: (typeof SONATA_EFFECTS)[0]) => boolean }[] = [
+    { keys: ['기류'], match: (s) => Boolean(s.effect?.twoPiece?.includes('기류')) },
+    { keys: ['전도'], match: (s) => Boolean(s.effect?.twoPiece?.includes('전도')) },
+    { keys: ['인멸'], match: (s) => Boolean(s.effect?.twoPiece?.includes('인멸')) },
+    { keys: ['용융'], match: (s) => Boolean(s.effect?.twoPiece?.includes('용융')) },
+    { keys: ['응결'], match: (s) => Boolean(s.effect?.twoPiece?.includes('응결')) },
+    { keys: ['회절'], match: (s) => Boolean(s.effect?.twoPiece?.includes('회절')) },
+    { keys: ['공격력', '공격'], match: (s) => Boolean(s.effect?.twoPiece?.includes('공격력')) },
+    { keys: ['공명 효율', '공명효율'], match: (s) => Boolean(s.effect?.twoPiece?.includes('공명 효율')) },
+    { keys: ['치료', '회복'], match: (s) => Boolean(s.effect?.twoPiece?.includes('치료')) },
+    { keys: ['공명 스킬', '공명스킬'], match: (s) => Boolean(s.effect?.twoPiece?.includes('공명 스킬')) },
+    { keys: ['HP', '체력'], match: (s) => Boolean(s.effect?.twoPiece?.includes('HP')) },
+  ];
+
+  for (const group of keywords) {
+    if (group.keys.some(k => clean.includes(k))) {
+      return SONATA_EFFECTS.filter(group.match).map(s => s.setName);
+    }
+  }
+
+  const direct = SONATA_EFFECTS.find(s => clean.includes(s.setName));
+  if (direct && direct.effect?.twoPiece) {
+    const effectStr = direct.effect.twoPiece;
+    return SONATA_EFFECTS.filter(s => s.effect?.twoPiece === effectStr).map(s => s.setName);
+  }
+
+  return [];
+};
 
 const SONATA_EFFECT_MAP: Record<string, string> = {
   '전도': '울려퍼지는 뇌음',
@@ -319,6 +353,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         const parts = setFullName.split('+').map((p: string) => p.trim()).filter(Boolean);
         parts.forEach((part: string) => {
           const info = resolveSonataInfo(part);
+          const isTwoPiece = info.pieces === 2 || /2세트|피해.*증가/.test(part);
+          const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(part) : [];
           const item = {
             raw: set,
             cleanName: part,
@@ -326,12 +362,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
             effectName: info.effectName,
             pieces: info.pieces,
             imgUrl: info.imgUrl,
+            matchingSets,
             note: setNote,
             rank,
           };
           if (info.pieces === 3) {
             threePieceSets.push(item);
-          } else if (info.pieces === 2) {
+          } else if (info.pieces === 2 || isTwoPiece) {
             twoPieceSets.push(item);
           } else {
             allSets.push(item);
@@ -339,6 +376,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         });
       } else {
         const info = resolveSonataInfo(setFullName);
+        const isTwoPiece = info.pieces === 2 || /2세트|피해.*증가/.test(setFullName);
+        const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(setFullName) : [];
         const item = {
           raw: set,
           cleanName: setFullName,
@@ -347,12 +386,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           effectName: info.effectName,
           pieces: info.pieces,
           imgUrl: info.imgUrl,
+          matchingSets,
           note: setNote,
           rank,
         };
         if (info.pieces === 3) {
           threePieceSets.push(item);
-        } else if (info.pieces === 2) {
+        } else if (info.pieces === 2 || isTwoPiece) {
           twoPieceSets.push(item);
         }
         allSets.push(item);
@@ -682,39 +722,89 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     <div className="grid grid-cols-1 gap-4">
                       {parsedEchoSetsData.twoPieceSets.map((set: any, i: number) => {
                         const isFirst = i === 0;
+                        const matchingSets: string[] = set.matchingSets || getMatchingTwoPieceSets(set.cleanName || set.sonataName);
                         return (
                           <div 
                             key={i} 
-                            className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                            className={`flex flex-col gap-4 p-5 sm:p-6 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                           >
                             {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                            <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-110 transition-transform">
-                              {set.imgUrl ? (
-                                <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
-                              ) : (
-                                <Box size={24} className="text-gray-400" />
-                              )}
-                            </div>
-                            <div className="flex flex-col gap-1 w-full z-10 min-w-0">
-                              <div className="flex items-center justify-between w-full">
-                                <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
-                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                                  {set.rank}순위
-                                </span>
+                            
+                            {/* 대표 세트 / 효과 정보 */}
+                            <div className="flex items-center gap-4 w-full">
+                              <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-105 transition-transform">
+                                {set.imgUrl ? (
+                                  <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                                ) : (
+                                  <Box size={24} className="text-gray-400" />
+                                )}
                               </div>
-                              {set.sonataName && (
-                                <div className="flex items-center gap-2">
-                                  <span className="text-xs text-gray-400 font-medium truncate">
-                                    소나타: {t(set.sonataName)}
+                              <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                                <div className="flex items-center justify-between w-full">
+                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                  <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                    {set.rank}순위
                                   </span>
-                                  {set.effectName && (
+                                </div>
+                                <div className="flex items-center gap-2">
+                                  {matchingSets.length > 1 ? (
+                                    <span className="text-xs text-purple-300/90 font-medium">
+                                      {t('선택 가능한 화음 세트')} {matchingSets.length}종
+                                    </span>
+                                  ) : (
+                                    set.sonataName && (
+                                      <span className="text-xs text-gray-400 font-medium truncate">
+                                        소나타: {t(set.sonataName)}
+                                      </span>
+                                    )
+                                  )}
+                                  {set.effectName && matchingSets.length <= 1 && (
                                     <span className="text-[11px] text-brand-accent/80 font-semibold shrink-0">
                                       ({t(set.effectName)})
                                     </span>
                                   )}
                                 </div>
-                              )}
+                              </div>
                             </div>
+
+                            {/* 해당 2세트 효과를 제공하는 모든 화음 세트 (아이콘 + 세트 이름) */}
+                            {matchingSets.length > 0 && (
+                              <div className="pt-3 border-t border-white/5 space-y-2.5">
+                                <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                                  <span className="flex items-center gap-1.5 text-gray-300">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
+                                    {t('해당 2세트 효과 보유 화음')} ({matchingSets.length}종)
+                                  </span>
+                                  <span className="text-[10px] text-gray-500 font-medium">
+                                    {t('아래 화음 중 2세트 자유 선택')}
+                                  </span>
+                                </div>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  {matchingSets.map((setName: string) => {
+                                    const iconUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
+                                    return (
+                                      <div 
+                                        key={setName}
+                                        className="flex items-center gap-2.5 px-3 py-2 rounded-2xl bg-black/40 border border-white/5 hover:border-brand-accent/40 hover:bg-white/[0.04] transition-all group/sonata"
+                                      >
+                                        <div className="w-6 h-6 rounded-lg bg-white/5 p-0.5 shrink-0 flex items-center justify-center border border-white/10 group-hover/sonata:border-brand-accent/40 transition-colors">
+                                          <img 
+                                            src={iconUrl} 
+                                            alt={setName} 
+                                            className="w-full h-full object-contain" 
+                                            onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                                          />
+                                        </div>
+                                        <span className="text-xs text-gray-200 font-semibold truncate group-hover/sonata:text-brand-accent transition-colors">
+                                          {t(setName)}
+                                        </span>
+                                      </div>
+                                    );
+                                  })}
+                                </div>
+                              </div>
+                            )}
+
                           </div>
                         );
                       })}
@@ -736,25 +826,62 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {parsedEchoSetsData.allSets.map((set: any, i: number) => {
                       const isFirst = i === 0;
+                      const matchingSets: string[] = set.matchingSets || (set.pieces === 2 ? getMatchingTwoPieceSets(set.cleanName || set.sonataName) : []);
                       return (
                         <div 
                           key={i} 
-                          className={`flex items-center gap-4 p-4 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                          className={`flex flex-col gap-4 p-5 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                         >
                           {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
-                          <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
-                            {set.imgUrl && <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
-                          </div>
-                          <div className="flex flex-col gap-1 w-full z-10">
-                            <div className="flex items-center justify-between w-full">
-                              <div className="flex items-center gap-1.5 min-w-0">
-                                <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
+                          <div className="flex items-center gap-4 w-full">
+                            <div className="w-12 h-12 rounded-full border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1">
+                              {set.imgUrl && <img src={set.imgUrl} alt={set.sonataName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />}
+                            </div>
+                            <div className="flex flex-col gap-1 w-full z-10">
+                              <div className="flex items-center justify-between w-full">
+                                <div className="flex items-center gap-1.5 min-w-0">
+                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
+                                </div>
+                                <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                  {set.rank}순위
+                                </span>
                               </div>
-                              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
-                                {set.rank}순위
-                              </span>
                             </div>
                           </div>
+
+                          {matchingSets.length > 0 && (
+                            <div className="pt-3 border-t border-white/5 space-y-2">
+                              <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                                <span className="flex items-center gap-1.5 text-gray-300">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
+                                  {t('해당 2세트 효과 화음 세트')} ({matchingSets.length}종)
+                                </span>
+                              </div>
+                              <div className="grid grid-cols-1 gap-1.5">
+                                {matchingSets.map((setName: string) => {
+                                  const iconUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
+                                  return (
+                                    <div 
+                                      key={setName}
+                                      className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-black/40 border border-white/5"
+                                    >
+                                      <div className="w-5 h-5 rounded-md bg-white/5 p-0.5 shrink-0 flex items-center justify-center">
+                                        <img 
+                                          src={iconUrl} 
+                                          alt={setName} 
+                                          className="w-full h-full object-contain" 
+                                          onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                                        />
+                                      </div>
+                                      <span className="text-xs text-gray-300 font-medium truncate">
+                                        {t(setName)}
+                                      </span>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
                         </div>
                       );
                     })}
