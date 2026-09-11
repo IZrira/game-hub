@@ -232,10 +232,8 @@ const StatBoxPremium: React.FC<{
                     : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
                 }`}
               >
-                {processedValues.length > 1 && (
-                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 ${
-                    isFirstChoice ? 'bg-brand-accent text-black' : 'bg-white/15 text-white'
-                  }`}>
+                {processedValues.length > 1 && !isFirstChoice && (
+                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 bg-white/15 text-white">
                     #{i + 1}
                   </span>
                 )}
@@ -641,23 +639,27 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     return (
                       <div 
                         key={idx} 
-                        className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                        className={`flex flex-col gap-3 p-5 sm:p-6 rounded-2xl transition-all border-l-4 shadow-sm group ${
                           isRank1 
                             ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(74,222,128,0.1)]' 
                             : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 shrink-0 sm:w-[280px] md:w-[320px]">
-                          <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
+                        <div className="flex items-center gap-3 w-full">
+                          <span className={`px-2.5 py-1 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                             isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                           }`}>
                             {w.rank}순위
                           </span>
-                          <span className="font-bold text-sm sm:text-base text-white truncate">{t(w.cleanName)}</span>
+                          <span className="font-black text-base sm:text-lg text-white group-hover:text-brand-accent transition-colors">
+                            {t(w.cleanName)}
+                          </span>
                         </div>
-                        <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
-                          {t(w.note)}
-                        </p>
+                        <div className="pt-2 border-t border-white/5">
+                          <p className="text-sm sm:text-base text-gray-300 font-medium leading-relaxed break-keep">
+                            {t(w.note)}
+                          </p>
+                        </div>
                       </div>
                     );
                   })}
