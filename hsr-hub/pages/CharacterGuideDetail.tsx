@@ -71,10 +71,9 @@ const SectionHeader: React.FC<{ num: string; title: string; theme: any }> = ({ n
 const StatBoxPremium: React.FC<{ 
   label: string; 
   value: string; 
-  note?: string; 
   theme: any; 
   iconImage?: string;
-}> = ({ label, value, note, theme, iconImage }) => {
+}> = ({ label, value, theme, iconImage }) => {
   const { t } = useTranslation();
   const [imgUrl, setImgUrl] = useState(iconImage);
   
@@ -140,14 +139,6 @@ const StatBoxPremium: React.FC<{
             </div>
           ))}
         </div>
-
-        {note && (
-          <div className="pt-2.5 border-t border-white/5 w-full">
-            <p className="text-xs text-gray-300/90 leading-relaxed font-medium break-keep">
-              {t(note)}
-            </p>
-          </div>
-        )}
       </div>
     </div>
   );
@@ -628,13 +619,6 @@ const CharacterGuideDetail: React.FC = () => {
                         <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
                       )}
                     </div>
-                    {lc.note && (
-                      <div className="pt-2 border-t border-white/5 w-full mt-auto">
-                        <p className="text-[11px] text-gray-300 leading-relaxed font-medium break-keep px-1 text-center">
-                          {t(lc.note)}
-                        </p>
-                      </div>
-                    )}
                   </Link>
                 );
               })}
@@ -716,13 +700,6 @@ const CharacterGuideDetail: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        {relicItem.note && (
-                          <div className="pt-2.5 border-t border-white/5 w-full">
-                            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
-                              {t(relicItem.note)}
-                            </p>
-                          </div>
-                        )}
                       </Link>
                     );
                   })}
@@ -763,13 +740,6 @@ const CharacterGuideDetail: React.FC = () => {
                             </div>
                           </div>
                         </div>
-                        {ornamentItem.note && (
-                          <div className="pt-2.5 border-t border-white/5 w-full">
-                            <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
-                              {t(ornamentItem.note)}
-                            </p>
-                          </div>
-                        )}
                       </Link>
                     );
                   })}
@@ -877,13 +847,6 @@ const CharacterGuideDetail: React.FC = () => {
                            <div className="w-full h-full bg-brand-accent/40 animate-pulse" />
                         </div>
                       </div>
-                      {s.note && (
-                        <div className="pt-2.5 border-t border-white/5 w-full mt-1">
-                          <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
-                            {t(s.note)}
-                          </p>
-                        </div>
-                      )}
                     </div>
                   ))}
                 </div>
@@ -918,10 +881,10 @@ const CharacterGuideDetail: React.FC = () => {
                     const ropeStat = getStatValueAndNote(currentVariant?.mainStats.rope);
                     return (
                       <>
-                        <StatBoxPremium label="몸통" value={bodyStat.value} note={bodyStat.note} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
-                        <StatBoxPremium label="신발" value={bootsStat.value} note={bootsStat.note} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
-                        <StatBoxPremium label="차원 구체" value={sphereStat.value} note={sphereStat.note} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
-                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} note={ropeStat.note} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
+                        <StatBoxPremium label="몸통" value={bodyStat.value} theme={theme} iconImage={getStateIconUrl('RelicBody.webp')} />
+                        <StatBoxPremium label="신발" value={bootsStat.value} theme={theme} iconImage={getStateIconUrl('RelicFoot.webp')} />
+                        <StatBoxPremium label="차원 구체" value={sphereStat.value} theme={theme} iconImage={getStateIconUrl('RelicNeck.webp')} />
+                        <StatBoxPremium label="연결 매듭" value={ropeStat.value} theme={theme} iconImage={getStateIconUrl('RelicGoods.webp')} />
                       </>
                     );
                   })()}
