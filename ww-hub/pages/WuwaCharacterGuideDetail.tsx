@@ -743,8 +743,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               </div>
                             </div>
                             {set.note && (
-                              <div className="pt-2.5 border-t border-white/5">
-                                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                              <div className="pt-3 border-t border-white/10">
+                                <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
                                   {t(set.note)}
                                 </p>
                               </div>
@@ -819,8 +819,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
                             {/* 화음 세트 이유/설명 */}
                             {set.note && (
-                              <div className="pt-2.5 border-t border-white/5">
-                                <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                              <div className="pt-3 border-t border-white/10">
+                                <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
                                   {t(set.note)}
                                 </p>
                               </div>
@@ -1093,8 +1093,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
                           {/* 화음 세트 이유/설명 */}
                           {set.note && (
-                            <div className="pt-2.5 border-t border-white/5">
-                              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                            <div className="pt-3 border-t border-white/10">
+                              <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
                                 {t(set.note)}
                               </p>
                             </div>
@@ -1160,7 +1160,11 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                         </div>
                         <div className="space-y-4 text-center md:text-left flex-1 min-w-0">
                           <h4 className="text-xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(me.cleanName)}</h4>
-                          {me.reason && <p className="text-sm text-gray-400 leading-relaxed font-medium">{t(me.reason)}</p>}
+                          {me.reason && (
+                            <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
+                              {t(me.reason)}
+                            </p>
+                          )}
                         </div>
                       </div>
                     );
@@ -1168,65 +1172,18 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 </div>
               </div>
 
-              {/* 에코 세팅 해설 & 가이드 */}
-              {hasEchoNotes && (
-                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
-                  <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                    <BookOpen size={20} className="text-brand-accent" />
-                    <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
-                      {t('에코 세팅 해설 & 가이드')}
-                    </h4>
+              {/* 세팅 핵심 포인트 (변형별 상세 노트가 있을 경우에만 표시) */}
+              {currentVariant?.note && (
+                <div className="p-5 rounded-3xl bg-brand-primary/10 border border-brand-primary/20 flex items-start gap-3.5 shadow-md">
+                  <Sparkles size={20} className="text-brand-accent shrink-0 mt-0.5" />
+                  <div className="space-y-1">
+                    <span className="text-xs sm:text-sm font-black text-brand-accent uppercase tracking-wider">
+                      [{currentVariant.name}] {t('세팅 핵심 포인트')}
+                    </span>
+                    <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed">
+                      {t(currentVariant.note)}
+                    </p>
                   </div>
-
-                  {currentVariant?.note && (
-                    <div className="p-4 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 flex items-start gap-3">
-                      <Sparkles size={18} className="text-brand-accent shrink-0 mt-0.5" />
-                      <div className="space-y-1">
-                        <span className="text-xs font-black text-brand-accent uppercase tracking-wider">
-                          [{currentVariant.name}] {t('세팅 핵심 포인트')}
-                        </span>
-                        <p className="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed">
-                          {t(currentVariant.note)}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-
-                  {echoSetsWithNotes.length > 0 && (
-                    <div className="space-y-3">
-                      <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
-                        <Layers size={16} className="text-white" />
-                        {t('화음 세트별 세부 가이드')}
-                      </div>
-                      <div className="grid grid-cols-1 gap-3">
-                        {echoSetsWithNotes.map((s: any, idx: number) => {
-                          const isRank1 = s.rank === 1;
-                          return (
-                            <div 
-                              key={idx} 
-                              className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
-                                isRank1 
-                                  ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(74,222,128,0.1)]' 
-                                  : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
-                              }`}
-                            >
-                              <div className="flex items-center gap-2.5 shrink-0 sm:w-[380px] md:w-[420px] lg:w-[450px]">
-                                <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
-                                  isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
-                                }`}>
-                                  {s.rank}순위
-                                </span>
-                                <span className="font-bold text-sm sm:text-base text-white truncate">{t(s.cleanName)}</span>
-                              </div>
-                              <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
-                                {t(s.note)}
-                              </p>
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
                 </div>
               )}
             </div>
