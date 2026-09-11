@@ -189,28 +189,12 @@ const StatBoxPremium: React.FC<{
     return value.split(/\s+or\s+|\s*\/\s*/i).map(v => v.trim());
   }, [value]);
 
-  const renderValue = (val: string) => {
-    const parts = val.split(/(\d+(?:\.\d+)?%?)/g);
-    return (
-      <div className="flex items-center gap-1.5 justify-center">
-        {parts.map((part, i) => {
-          if (/^\d+(?:\.\d+)?%?$/.test(part)) {
-            return <span key={i} className="text-xl font-black text-[#FFD600] tabular-nums leading-none">{part}</span>;
-          }
-          return part ? <span key={i} className="text-[11px] font-black text-gray-400 uppercase tracking-tight mt-1 whitespace-nowrap">{part}</span> : null;
-        })}
-      </div>
-    );
-  };
-
   return (
     <div 
-      className="group glass-card rounded-[32px] p-4 sm:p-5 xl:p-6 border border-white/5 hover:border-brand-primary/30 transition-all bg-gradient-to-br from-white/[0.05] to-transparent flex flex-col items-center text-center gap-4 h-full relative overflow-hidden"
+      className="group glass-card rounded-[28px] p-5 sm:p-6 border border-white/10 hover:border-white/25 transition-all bg-gradient-to-b from-white/[0.05] to-white/[0.02] flex flex-col items-center text-center gap-4 h-full relative overflow-hidden shadow-lg"
     >
-      <div className="absolute -top-4 -right-4 w-24 h-24 bg-brand-primary/5 blur-3xl rounded-full group-hover:bg-brand-primary/10 transition-colors" />
-      
       {imgUrl ? (
-        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-black/30 rounded-[20px] sm:rounded-[24px] p-2.5 sm:p-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-2xl border border-white/5 group-hover:border-brand-primary/20 relative z-10">
+        <div className="w-14 h-14 bg-black/40 rounded-2xl p-2.5 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-md border border-white/10 relative z-10">
           <img 
             src={imgUrl} 
             alt={label} 
@@ -219,28 +203,37 @@ const StatBoxPremium: React.FC<{
           />
         </div>
       ) : (
-        <div className="w-14 h-14 sm:w-16 sm:h-16 bg-black/30 rounded-[20px] sm:rounded-[24px] flex items-center justify-center border border-white/5 relative z-10 shadow-inner group-hover:border-brand-primary/30 transition-colors">
+        <div className="w-14 h-14 bg-black/40 rounded-2xl flex items-center justify-center border border-white/10 relative z-10 shadow-inner">
           <div className="flex flex-col items-center justify-center">
-            {label.includes('4 Cost') && <Crown size={22} className="text-[#FFD600] drop-shadow-[0_0_8px_rgba(255,214,0,0.5)]" />}
-            {label.includes('3 Cost') && <Swords size={22} className="text-purple-400 drop-shadow-[0_0_8px_rgba(192,132,252,0.5)]" />}
-            {label.includes('1 Cost') && <Box size={22} className="text-blue-400 drop-shadow-[0_0_8px_rgba(96,165,250,0.5)]" />}
-            {!label.includes('Cost') && <span className="text-gray-400 font-black text-xl uppercase opacity-40">{label.slice(0, 1)}</span>}
+            {label.includes('4 Cost') && <Crown size={22} className="text-white" />}
+            {label.includes('3 Cost') && <Swords size={22} className="text-white" />}
+            {label.includes('1 Cost') && <Box size={22} className="text-white" />}
+            {!label.includes('Cost') && <span className="text-white font-black text-lg uppercase opacity-40">{label.slice(0, 1)}</span>}
           </div>
         </div>
       )}
       
-      <div className="space-y-3 w-full relative z-10">
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{t(label, { keySeparator: false, nsSeparator: false })}</span>
-        </div>
+      <div className="space-y-3 w-full relative z-10 flex flex-col items-center">
+        {/* 파츠 라벨 (4 Cost, 3 Cost, 1 Cost) 가시성 대폭 강화 */}
+        <span className="px-3.5 py-1 rounded-full bg-white/10 border border-white/15 text-xs sm:text-sm font-black text-white uppercase tracking-wider whitespace-nowrap shadow-sm">
+          {t(label, { keySeparator: false, nsSeparator: false })}
+        </span>
         
+        {/* 추천 주옵션 값 가시성 강화 */}
         <div className="flex flex-col gap-2 w-full">
           {processedValues.map((v, i) => (
-            <div key={i} className="relative w-full py-2.5 px-3 bg-white/[0.03] rounded-2xl border border-white/5 group-hover:bg-white/[0.08] transition-colors overflow-hidden">
+            <div 
+              key={i} 
+              className="relative w-full py-2.5 px-3 bg-white/[0.05] hover:bg-white/[0.08] rounded-xl border border-white/10 transition-colors flex items-center justify-center gap-2"
+            >
               {processedValues.length > 1 && (
-                <div className={`absolute top-0 left-0 w-1 h-full ${i === 0 ? 'bg-brand-primary' : 'bg-gray-700'}`} />
+                <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-white/15 text-white shrink-0">
+                  #{i + 1}
+                </span>
               )}
-              {renderValue(v)}
+              <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
+                {t(v)}
+              </span>
             </div>
           ))}
         </div>
@@ -1175,19 +1168,19 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   {echoSetsWithNotes.length > 0 && (
                     <div className="space-y-3">
                       <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
-                        <Layers size={16} className="text-brand-accent" />
+                        <Layers size={16} className="text-white" />
                         {t('화음 세트별 세부 가이드')}
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {echoSetsWithNotes.map((s: any, idx: number) => (
-                          <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 ${s.rank === 1 ? 'border-l-brand-accent' : 'border-l-white/20'} shadow-sm group`}>
+                          <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 ${s.rank === 1 ? 'border-l-white' : 'border-l-white/20'} shadow-sm group`}>
                             <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                              <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${s.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
+                              <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${s.rank === 1 ? 'bg-white text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
                                 {s.rank}순위
                               </span>
                               <span className="font-bold text-sm sm:text-base text-white truncate">{t(s.cleanName)}</span>
                             </div>
-                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
                               {t(s.note)}
                             </p>
                           </div>
@@ -1214,13 +1207,16 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   {guide.targetStats.map((s: any, i: number) => (
                     <div 
                       key={i} 
-                      className="flex flex-col justify-between p-5 bg-white/5 rounded-3xl border border-white/5 hover:border-brand-primary/20 transition-all group relative gap-3 h-full overflow-hidden"
+                      className="flex flex-col justify-between p-5 bg-white/[0.04] hover:bg-white/[0.08] rounded-2xl border border-white/10 hover:border-white/20 transition-all group relative gap-3 h-full overflow-hidden"
                     >
                       <div className="flex items-start justify-between gap-2 w-full">
-                        <span className="text-sm font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-200 transition-colors break-keep break-words">{t(s.label)}</span>
+                        <span className="text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider group-hover:text-white transition-colors break-keep break-words">{t(s.label)}</span>
                       </div>
                       <div className="flex flex-col items-start w-full">
-                        <span className="text-lg font-black text-brand-accent italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
+                        <span className="text-xl sm:text-2xl font-black text-white italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
+                        <div className="w-12 h-1 bg-white/20 rounded-full mt-2 overflow-hidden">
+                          <div className="w-full h-full bg-white/60" />
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1230,8 +1226,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               {/* Main & Sub Stats Section (Bottom) */}
               <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <ShieldCheck size={22} className="text-gray-500" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{t('에코 주옵션 & 부옵션')}</span>
+                  <ShieldCheck size={22} className="text-white" />
+                  <span className="text-xl font-black uppercase tracking-tighter italic text-white">{t('에코 주옵션 & 부옵션')}</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                   {(currentVariant?.mainStats && currentVariant.mainStats.length > 0 ? currentVariant.mainStats : guide.mainStats).map((ms: any, i: number) => (
@@ -1243,19 +1239,24 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     />
                   ))}
                 </div>
-                <div className="p-6 bg-white/[0.03] rounded-[32px] border border-white/5 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-4 opacity-5">
-                    <TrendingUp size={48} />
+                <div className="p-6 sm:p-7 bg-white/[0.03] rounded-[28px] border border-white/10 relative overflow-hidden space-y-4">
+                  <div className="text-xs sm:text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
+                    <TrendingUp size={16} className="text-white" />
+                    <span>{t('부옵션 우선순위')}</span>
                   </div>
-                  <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-                    <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
-                    {t('부옵션 우선순위')}
-                  </div>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2.5">
                     {guide.subStats.map((s: string, i: number) => (
-                      <span key={i} className="px-5 py-2.5 bg-white/5 rounded-xl border border-white/10 text-base font-bold text-gray-200 italic group hover:text-brand-accent transition-all hover:translate-y-[-2px] hover:shadow-lg whitespace-nowrap">
-                        <span className="text-brand-accent mr-2 font-black"># {i + 1}</span>{t(s)}
-                      </span>
+                      <div 
+                        key={i} 
+                        className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.06] hover:bg-white/[0.1] rounded-xl border border-white/15 transition-all shadow-sm"
+                      >
+                        <span className={`px-2 py-0.5 rounded-md text-xs font-black ${i === 0 ? 'bg-white text-black' : 'bg-white/15 text-white'}`}>
+                          #{i + 1}
+                        </span>
+                        <span className="text-sm sm:text-base font-bold text-white whitespace-nowrap">
+                          {t(s)}
+                        </span>
+                      </div>
                     ))}
                   </div>
                 </div>
@@ -1266,8 +1267,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30 shrink-0">
-                        <BookOpen size={20} className="text-brand-accent" />
+                      <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
+                        <BookOpen size={20} className="text-white" />
                       </div>
                       <div>
                         <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
@@ -1281,19 +1282,19 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   {mainStatsWithNotes.length > 0 && (
                     <div className="space-y-3">
                       <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
-                        <ShieldCheck size={16} className="text-brand-accent" />
+                        <ShieldCheck size={16} className="text-white" />
                         {t('에코 주옵션 세부 가이드')}
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 border-l-brand-primary shadow-sm group">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 border-l-white/40 shadow-sm group">
                             <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-white text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
                               <span className="font-bold text-sm sm:text-base text-white tracking-tight">{t(stat.value)}</span>
                             </div>
-                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
                               {t(stat.note)}
                             </p>
                           </div>
@@ -1305,19 +1306,19 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   {targetStatsWithNotes.length > 0 && (
                     <div className="space-y-3">
                       <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
-                        <Target size={16} className="text-brand-accent" />
+                        <Target size={16} className="text-white" />
                         {t('목표 스탯 세부 가이드')}
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {targetStatsWithNotes.map((s: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 border-l-brand-accent shadow-sm group">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 border-l-white/40 shadow-sm group">
                             <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/25 text-brand-accent border border-brand-accent/40 shrink-0 shadow-sm">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-white/15 text-white border border-white/20 shrink-0 shadow-sm">
                                 {t(s.label)}
                               </span>
                               <span className="font-bold text-sm sm:text-base text-white tracking-tight tabular-nums">{t(s.value)}</span>
                             </div>
-                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
                               {t(s.note)}
                             </p>
                           </div>
