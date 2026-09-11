@@ -668,23 +668,30 @@ const CharacterGuideDetail: React.FC = () => {
 
             {/* 추천 광추 상세 분석 */}
             {lightConesWithNotes.length > 0 && (
-              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-4">
-                <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                  <BookOpen size={20} className="text-brand-accent" />
-                  <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
-                    {t('추천 광추 상세 분석')}
-                  </h4>
+              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30 shrink-0">
+                      <BookOpen size={20} className="text-brand-accent" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
+                        {t('추천 광추 상세 분석')}
+                      </h4>
+                      <span className="text-xs text-gray-400 font-medium">광추별 추천 이유 및 운용 팁</span>
+                    </div>
+                  </div>
                 </div>
-                <div className="space-y-3">
+                <div className="grid grid-cols-1 gap-3">
                   {lightConesWithNotes.map((lc: any, idx: number) => (
-                    <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                      <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                        <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${lc.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                    <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 ${lc.rank === 1 ? 'border-l-brand-accent' : 'border-l-white/20'} shadow-sm group`}>
+                      <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                        <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${lc.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
                           {lc.rank}순위
                         </span>
-                        <span className="font-bold text-sm text-white truncate">{t(lc.cleanName)}</span>
+                        <span className="font-bold text-sm sm:text-base text-white truncate">{t(lc.cleanName)}</span>
                       </div>
-                      <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                      <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                         {t(lc.note)}
                       </p>
                     </div>
@@ -791,22 +798,29 @@ const CharacterGuideDetail: React.FC = () => {
 
             {/* 유물 & 차원 장신구 세팅 상세 분석 & 가이드 */}
             {hasEquipmentNotes && (
-              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
-                <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                  <BookOpen size={20} className="text-brand-accent" />
-                  <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
-                    {t('유물 & 차원 장신구 세팅 상세 분석')}
-                  </h4>
+              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+                <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30 shrink-0">
+                      <BookOpen size={20} className="text-brand-accent" />
+                    </div>
+                    <div>
+                      <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
+                        {t('유물 & 차원 장신구 세팅 상세 분석')}
+                      </h4>
+                      <span className="text-xs text-gray-400 font-medium">추천 장비 순위별 상세 효과 및 운용 팁</span>
+                    </div>
+                  </div>
                 </div>
 
                 {currentVariant?.note && (
-                  <div className="p-4 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 flex items-start gap-3">
-                    <Sparkles size={18} className="text-brand-accent shrink-0 mt-0.5" />
+                  <div className="p-5 rounded-2xl bg-brand-primary/15 border border-brand-primary/30 flex items-start gap-3.5 border-l-4 border-l-brand-accent shadow-sm">
+                    <Sparkles size={20} className="text-brand-accent shrink-0 mt-0.5" />
                     <div className="space-y-1">
-                      <span className="text-xs font-black text-brand-accent uppercase tracking-wider">
+                      <span className="text-xs sm:text-sm font-black text-brand-accent uppercase tracking-wider">
                         [{currentVariant.name}] {t('세팅 핵심 포인트')}
                       </span>
-                      <p className="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed">
+                      <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed">
                         {t(currentVariant.note)}
                       </p>
                     </div>
@@ -815,20 +829,20 @@ const CharacterGuideDetail: React.FC = () => {
 
                 {relicsWithNotes.length > 0 && (
                   <div className="space-y-3">
-                    <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                      <Layers size={14} className="text-brand-accent" />
+                    <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                      <Layers size={16} className="text-brand-accent" />
                       {t('터널 유물 세부 가이드')}
                     </div>
-                    <div className="space-y-2">
+                    <div className="grid grid-cols-1 gap-3">
                       {relicsWithNotes.map((r: any, idx: number) => (
-                        <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                          <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                            <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${r.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                        <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 ${r.rank === 1 ? 'border-l-brand-accent' : 'border-l-white/20'} shadow-sm group`}>
+                          <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${r.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
                               {r.rank}순위
                             </span>
-                            <span className="font-bold text-sm text-white truncate">{t(r.cleanName)}</span>
+                            <span className="font-bold text-sm sm:text-base text-white truncate">{t(r.cleanName)}</span>
                           </div>
-                          <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                          <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                             {t(r.note)}
                           </p>
                         </div>
@@ -839,20 +853,20 @@ const CharacterGuideDetail: React.FC = () => {
 
                 {ornamentsWithNotes.length > 0 && (
                   <div className="space-y-3">
-                    <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                      <Box size={14} className="text-brand-accent" />
+                    <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                      <Box size={16} className="text-brand-accent" />
                       {t('차원 장신구 세부 가이드')}
                     </div>
-                    <div className="space-y-2">
+                    <div className="grid grid-cols-1 gap-3">
                       {ornamentsWithNotes.map((o: any, idx: number) => (
-                        <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                          <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                            <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${o.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                        <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 ${o.rank === 1 ? 'border-l-brand-accent' : 'border-l-white/20'} shadow-sm group`}>
+                          <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${o.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
                               {o.rank}순위
                             </span>
-                            <span className="font-bold text-sm text-white truncate">{t(o.cleanName)}</span>
+                            <span className="font-bold text-sm sm:text-base text-white truncate">{t(o.cleanName)}</span>
                           </div>
-                          <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                          <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                             {t(o.note)}
                           </p>
                         </div>
@@ -936,30 +950,37 @@ const CharacterGuideDetail: React.FC = () => {
 
               {/* 권장 스탯 상세 가이드 */}
               {hasStatNotes && (
-                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
-                  <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                    <BookOpen size={20} className="text-brand-accent" />
-                    <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
-                      {t('권장 스탯 상세 가이드')}
-                    </h4>
+                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30 shrink-0">
+                        <BookOpen size={20} className="text-brand-accent" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
+                          {t('권장 스탯 상세 가이드')}
+                        </h4>
+                        <span className="text-xs text-gray-400 font-medium">세팅 추천 수치 및 조건별 가이드</span>
+                      </div>
+                    </div>
                   </div>
 
                   {mainStatsWithNotes.length > 0 && (
                     <div className="space-y-3">
-                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <ShieldCheck size={14} className="text-brand-accent" />
+                      <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                        <ShieldCheck size={16} className="text-brand-accent" />
                         {t('주옵션 세부 가이드')}
                       </div>
-                      <div className="space-y-2">
+                      <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-brand-accent text-black">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 border-l-brand-primary shadow-sm group">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
-                              <span className="font-bold text-sm text-white truncate">{t(stat.value)}</span>
+                              <span className="font-bold text-sm sm:text-base text-white tracking-tight">{t(stat.value)}</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                               {t(stat.note)}
                             </p>
                           </div>
@@ -970,22 +991,22 @@ const CharacterGuideDetail: React.FC = () => {
 
                   {targetStatDetails.length > 0 && (
                     <div className="space-y-3">
-                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <Target size={14} className="text-brand-accent" />
+                      <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                        <Target size={16} className="text-brand-accent" />
                         {t('목표 스탯 세부 가이드')}
                       </div>
-                      <div className="space-y-2">
+                      <div className="grid grid-cols-1 gap-3">
                         {targetStatDetails.map((item: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:min-w-48 sm:max-w-xs">
-                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-white/10 text-gray-300">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 border-l-brand-accent shadow-sm group">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/25 text-brand-accent border border-brand-accent/40 shrink-0 shadow-sm">
                                 {t(item.label)}
                               </span>
                               {item.valueBadge && (
-                                <span className="font-bold text-sm text-white truncate">{t(item.valueBadge)}</span>
+                                <span className="font-bold text-sm sm:text-base text-white tracking-tight tabular-nums">{t(item.valueBadge)}</span>
                               )}
                             </div>
-                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                               {t(item.description)}
                             </p>
                           </div>

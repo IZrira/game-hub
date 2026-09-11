@@ -1174,20 +1174,20 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
                   {echoSetsWithNotes.length > 0 && (
                     <div className="space-y-3">
-                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <Layers size={14} className="text-brand-accent" />
+                      <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                        <Layers size={16} className="text-brand-accent" />
                         {t('화음 세트별 세부 가이드')}
                       </div>
-                      <div className="space-y-2">
+                      <div className="grid grid-cols-1 gap-3">
                         {echoSetsWithNotes.map((s: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                              <span className={`px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 ${s.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-300'}`}>
+                          <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 ${s.rank === 1 ? 'border-l-brand-accent' : 'border-l-white/20'} shadow-sm group`}>
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${s.rank === 1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
                                 {s.rank}순위
                               </span>
-                              <span className="font-bold text-sm text-white truncate">{t(s.cleanName)}</span>
+                              <span className="font-bold text-sm sm:text-base text-white truncate">{t(s.cleanName)}</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                               {t(s.note)}
                             </p>
                           </div>
@@ -1263,30 +1263,37 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
               {/* 권장 스탯 상세 가이드 */}
               {hasStatNotes && (
-                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
-                  <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                    <BookOpen size={20} className="text-brand-accent" />
-                    <h4 className="text-base sm:text-lg font-black tracking-tight text-white flex items-center gap-2">
-                      {t('권장 스탯 상세 가이드')}
-                    </h4>
+                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30 shrink-0">
+                        <BookOpen size={20} className="text-brand-accent" />
+                      </div>
+                      <div>
+                        <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
+                          {t('권장 스탯 상세 가이드')}
+                        </h4>
+                        <span className="text-xs text-gray-400 font-medium">에코 주옵션 및 목표 스탯 세부 운용 팁</span>
+                      </div>
+                    </div>
                   </div>
 
                   {mainStatsWithNotes.length > 0 && (
                     <div className="space-y-3">
-                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <ShieldCheck size={14} className="text-brand-accent" />
+                      <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                        <ShieldCheck size={16} className="text-brand-accent" />
                         {t('에코 주옵션 세부 가이드')}
                       </div>
-                      <div className="space-y-2">
+                      <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-brand-accent text-black">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 border-l-brand-primary shadow-sm group">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
-                              <span className="font-bold text-sm text-white truncate">{t(stat.value)}</span>
+                              <span className="font-bold text-sm sm:text-base text-white tracking-tight">{t(stat.value)}</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                               {t(stat.note)}
                             </p>
                           </div>
@@ -1297,20 +1304,20 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
                   {targetStatsWithNotes.length > 0 && (
                     <div className="space-y-3">
-                      <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
-                        <Target size={14} className="text-brand-accent" />
+                      <div className="text-xs sm:text-sm font-black text-gray-300 uppercase tracking-wider flex items-center gap-2">
+                        <Target size={16} className="text-brand-accent" />
                         {t('목표 스탯 세부 가이드')}
                       </div>
-                      <div className="space-y-2">
+                      <div className="grid grid-cols-1 gap-3">
                         {targetStatsWithNotes.map((s: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
-                              <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-white/10 text-gray-300">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/40 transition-all border-l-4 border-l-brand-accent shadow-sm group">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/25 text-brand-accent border border-brand-accent/40 shrink-0 shadow-sm">
                                 {t(s.label)}
                               </span>
-                              <span className="font-bold text-sm text-white truncate">{t(s.value)}</span>
+                              <span className="font-bold text-sm sm:text-base text-white tracking-tight tabular-nums">{t(s.value)}</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
+                            <p className="text-sm sm:text-base text-gray-100 font-medium leading-relaxed flex-1 break-keep">
                               {t(s.note)}
                             </p>
                           </div>
