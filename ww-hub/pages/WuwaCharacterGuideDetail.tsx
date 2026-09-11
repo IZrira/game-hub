@@ -232,11 +232,6 @@ const StatBoxPremium: React.FC<{
                     : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
                 }`}
               >
-                {processedValues.length > 1 && !isFirstChoice && (
-                  <span className="text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 bg-white/15 text-white">
-                    #{i + 1}
-                  </span>
-                )}
                 <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
                   {t(v)}
                 </span>
