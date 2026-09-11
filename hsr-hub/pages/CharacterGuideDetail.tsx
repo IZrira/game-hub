@@ -424,11 +424,53 @@ const CharacterGuideDetail: React.FC = () => {
     return stats.filter(s => Boolean(s.note));
   }, [currentVariant]);
 
-  const targetStatsWithNotes = useMemo(() => {
-    return parsedTargetStats.filter(s => Boolean(s.note) && s.label !== '참고');
+  const isStandardStatLabel = (label: string) => {
+    if (!label) return false;
+    const clean = label.trim();
+    if (/사용\s*시|버프\s*시|참고|세팅|조합|한정|필수|주의|추천|기준|파티/.test(clean)) return false;
+
+    const validStatKeywords = [
+      '공격력', '속도', 'HP', '생명력', '방어력', 
+      '치명타 확률', '치명타 피해', '격파 특수효과', '효과 명중', '효과 저항', 
+      '에너지 충전 효율', '에너지 회복 효율', '치유량 보너스', '치유량',
+      '물리', '화염', '얼음', '번개', '바람', '양자', '허수', '속성 피해', '피해 증가'
+    ];
+
+    return validStatKeywords.some(k => clean.includes(k));
+  };
+
+  const targetStatCards = useMemo(() => {
+    return parsedTargetStats.filter((s: any) => isStandardStatLabel(s.label));
   }, [parsedTargetStats]);
 
-  const hasStatNotes = mainStatsWithNotes.length > 0 || targetStatsWithNotes.length > 0;
+  const targetStatDetails = useMemo(() => {
+    const details: { label: string; valueBadge?: string; description: string }[] = [];
+
+    parsedTargetStats.forEach((s: any) => {
+      const isStandard = isStandardStatLabel(s.label);
+
+      if (isStandard) {
+        if (s.note) {
+          details.push({
+            label: s.label,
+            valueBadge: s.value,
+            description: s.note,
+          });
+        }
+      } else {
+        const labelText = s.label === '참고' ? '참고 사항' : s.label;
+        const desc = s.note ? `${s.value} (${s.note})` : s.value;
+        details.push({
+          label: labelText,
+          description: desc,
+        });
+      }
+    });
+
+    return details;
+  }, [parsedTargetStats]);
+
+  const hasStatNotes = mainStatsWithNotes.length > 0 || targetStatDetails.length > 0;
 
   if (!guide || !character) {
     return (
@@ -833,7 +875,7 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {parsedTargetStats.filter(s => s.label !== '참고').map((s, i) => (
+                  {targetStatCards.map((s, i) => (
                     <div 
                       key={i} 
                       className="flex flex-col justify-between p-5 bg-white/5 rounded-3xl border border-white/5 hover:border-brand-primary/20 transition-all group relative gap-3 h-full overflow-hidden"
@@ -850,21 +892,6 @@ const CharacterGuideDetail: React.FC = () => {
                     </div>
                   ))}
                 </div>
-
-                {/* 목표 스탯 참고 사항 배너 */}
-                {parsedTargetStats.filter(s => s.label === '참고').map((s, i) => (
-                  <div key={i} className="p-4 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 flex items-start gap-3">
-                    <Sparkles size={18} className="text-brand-accent shrink-0 mt-0.5" />
-                    <div className="space-y-1">
-                      <span className="text-xs font-black text-brand-accent uppercase tracking-wider">
-                        [목표 스탯 참고 사항]
-                      </span>
-                      <p className="text-xs sm:text-sm text-gray-300 font-medium leading-relaxed break-keep">
-                        {t(s.value)}
-                      </p>
-                    </div>
-                  </div>
-                ))}
               </div>
 
               {/* Main & Sub Stats Section (Bottom) */}
@@ -941,23 +968,25 @@ const CharacterGuideDetail: React.FC = () => {
                     </div>
                   )}
 
-                  {targetStatsWithNotes.length > 0 && (
+                  {targetStatDetails.length > 0 && (
                     <div className="space-y-3">
                       <div className="text-xs font-black text-gray-400 uppercase tracking-wider flex items-center gap-2">
                         <Target size={14} className="text-brand-accent" />
                         {t('목표 스탯 세부 가이드')}
                       </div>
                       <div className="space-y-2">
-                        {targetStatsWithNotes.map((s: any, idx: number) => (
+                        {targetStatDetails.map((item: any, idx: number) => (
                           <div key={idx} className="flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors">
-                            <div className="flex items-center gap-2 shrink-0 sm:w-48">
+                            <div className="flex items-center gap-2 shrink-0 sm:min-w-48 sm:max-w-xs">
                               <span className="px-2.5 py-1 rounded-lg text-[10px] font-black uppercase tracking-wider shrink-0 bg-white/10 text-gray-300">
-                                {t(s.label)}
+                                {t(item.label)}
                               </span>
-                              <span className="font-bold text-sm text-white truncate">{t(s.value)}</span>
+                              {item.valueBadge && (
+                                <span className="font-bold text-sm text-white truncate">{t(item.valueBadge)}</span>
+                              )}
                             </div>
                             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium flex-1 break-keep">
-                              {t(s.note)}
+                              {t(item.description)}
                             </p>
                           </div>
                         ))}
