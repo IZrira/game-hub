@@ -647,7 +647,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                        <div className="flex items-center gap-2.5 shrink-0 sm:w-[280px] md:w-[320px]">
                           <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                             isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                           }`}>
@@ -697,9 +697,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               )}
             </div>
             <div className="flex flex-col gap-8">
-              {/* 3세트 + 2세트 스플릿 조합인 경우 나란히 2열 그리드로 배치 */}
+              {/* 3세트 + 2세트 스플릿 조합인 경우 2줄 배치 (세로 정렬) */}
               {parsedEchoSetsData.threePieceSets.length > 0 && parsedEchoSetsData.twoPieceSets.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 gap-8">
                   {/* 3세트 화음 카드 */}
                   <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                     <div className="flex items-center justify-between border-b border-white/5 pb-6">
@@ -838,7 +838,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                     {matchingSets.length > 1 ? t('아래 화음 중 2세트 자유 선택') : t('해당 화음 2세트 장착 시 적용')}
                                   </span>
                                 </div>
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                                   {matchingSets.map((setName: string) => {
                                     const iconUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
                                     return (
@@ -1210,7 +1210,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                   : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                               }`}
                             >
-                              <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <div className="flex items-center gap-2.5 shrink-0 sm:w-[380px] md:w-[420px] lg:w-[450px]">
                                 <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                                   isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                                 }`}>
@@ -1336,7 +1336,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
                           <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
-                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[200px] md:w-[240px]">
                               <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
@@ -1360,7 +1360,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       <div className="grid grid-cols-1 gap-3">
                         {targetStatsWithNotes.map((s: any, idx: number) => (
                           <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
-                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[200px] md:w-[240px]">
                               <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/20 text-white border border-brand-accent/30 shrink-0 shadow-sm whitespace-nowrap">
                                 {t(s.label)}
                               </span>

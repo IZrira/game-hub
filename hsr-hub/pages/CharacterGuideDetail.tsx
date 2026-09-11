@@ -696,7 +696,7 @@ const CharacterGuideDetail: React.FC = () => {
                             : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                        <div className="flex items-center gap-2.5 shrink-0 sm:w-[280px] md:w-[320px]">
                           <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                             isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                           }`}>
@@ -859,7 +859,7 @@ const CharacterGuideDetail: React.FC = () => {
                                 : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                             }`}
                           >
-                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[380px] md:w-[420px] lg:w-[450px]">
                               <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                                 isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                               }`}>
@@ -895,7 +895,7 @@ const CharacterGuideDetail: React.FC = () => {
                                 : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                             }`}
                           >
-                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[380px] md:w-[420px] lg:w-[450px]">
                               <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                                 isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                               }`}>
@@ -1026,7 +1026,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
                           <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
-                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[200px] md:w-[240px]">
                               <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
@@ -1050,7 +1050,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <div className="grid grid-cols-1 gap-3">
                         {targetStatDetails.map((item: any, idx: number) => (
                           <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
-                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[200px] md:w-[240px]">
                               <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/20 text-white border border-brand-accent/30 shrink-0 shadow-sm whitespace-nowrap">
                                 {t(item.label)}
                               </span>
