@@ -116,21 +116,30 @@ const StatBoxPremium: React.FC<{
         
         {/* 추천 주옵션 값 가시성 강화 */}
         <div className="flex flex-col gap-2 w-full">
-          {processedValues.map((v, i) => (
-            <div 
-              key={i} 
-              className="relative w-full py-2.5 px-3 bg-white/[0.05] hover:bg-white/[0.08] rounded-xl border border-white/10 transition-colors flex items-center justify-center gap-2"
-            >
-              {processedValues.length > 1 && (
-                <span className="text-[10px] font-black px-1.5 py-0.5 rounded bg-white/15 text-white shrink-0">
-                  #{i + 1}
+          {processedValues.map((v, i) => {
+            const isFirstChoice = i === 0;
+            return (
+              <div 
+                key={i} 
+                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-2 ${
+                  isFirstChoice 
+                    ? 'bg-brand-primary/15 border border-brand-accent/35 shadow-[0_0_12px_rgba(126,48,225,0.08)]' 
+                    : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
+                }`}
+              >
+                {processedValues.length > 1 && (
+                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 ${
+                    isFirstChoice ? 'bg-brand-accent text-black' : 'bg-white/15 text-white'
+                  }`}>
+                    #{i + 1}
+                  </span>
+                )}
+                <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
+                  {t(v)}
                 </span>
-              )}
-              <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
-                {t(v)}
-              </span>
-            </div>
-          ))}
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -649,7 +658,7 @@ const CharacterGuideDetail: React.FC = () => {
                       {lcUrl ? <img src={lcUrl} alt={lc.cleanName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-400" />}
                     </div>
                     <div className="flex flex-col items-center gap-1.5 w-full">
-                      <h4 className={`text-[11px] md:text-[12px] font-black ${isBest ? 'text-brand-accent' : 'text-white'} group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1`}>{t(lc.cleanName)}</h4>
+                      <h4 className="text-[11px] md:text-[12px] font-black text-white group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1">{t(lc.cleanName)}</h4>
                       {isBest && (
                         <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
                       )}
@@ -676,19 +685,31 @@ const CharacterGuideDetail: React.FC = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-1 gap-3">
-                  {lightConesWithNotes.map((lc: any, idx: number) => (
-                    <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 ${lc.rank === 1 ? 'border-l-white' : 'border-l-white/20'} shadow-sm group`}>
-                      <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                        <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${lc.rank === 1 ? 'bg-white text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
-                          {lc.rank}순위
-                        </span>
-                        <span className="font-bold text-sm sm:text-base text-white truncate">{t(lc.cleanName)}</span>
+                  {lightConesWithNotes.map((lc: any, idx: number) => {
+                    const isRank1 = lc.rank === 1;
+                    return (
+                      <div 
+                        key={idx} 
+                        className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                          isRank1 
+                            ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(126,48,225,0.1)]' 
+                            : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
+                        }`}
+                      >
+                        <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                          <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
+                            isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
+                          }`}>
+                            {lc.rank}순위
+                          </span>
+                          <span className="font-bold text-sm sm:text-base text-white truncate">{t(lc.cleanName)}</span>
+                        </div>
+                        <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
+                          {t(lc.note)}
+                        </p>
                       </div>
-                      <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
-                        {t(lc.note)}
-                      </p>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -807,8 +828,8 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
 
                 {currentVariant?.note && (
-                  <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/15 flex items-start gap-3.5 border-l-4 border-l-white/60 shadow-sm">
-                    <Sparkles size={20} className="text-white shrink-0 mt-0.5" />
+                  <div className="p-5 rounded-2xl bg-brand-primary/10 border border-brand-primary/25 flex items-start gap-3.5 border-l-4 border-l-brand-accent shadow-sm">
+                    <Sparkles size={20} className="text-brand-accent shrink-0 mt-0.5" />
                     <div className="space-y-1">
                       <span className="text-xs sm:text-sm font-black text-white uppercase tracking-wider">
                         [{currentVariant.name}] {t('세팅 핵심 포인트')}
@@ -827,19 +848,31 @@ const CharacterGuideDetail: React.FC = () => {
                       {t('터널 유물 세부 가이드')}
                     </div>
                     <div className="grid grid-cols-1 gap-3">
-                      {relicsWithNotes.map((r: any, idx: number) => (
-                        <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 ${r.rank === 1 ? 'border-l-white' : 'border-l-white/20'} shadow-sm group`}>
-                          <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                            <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${r.rank === 1 ? 'bg-white text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
-                              {r.rank}순위
-                            </span>
-                            <span className="font-bold text-sm sm:text-base text-white truncate">{t(r.cleanName)}</span>
+                      {relicsWithNotes.map((r: any, idx: number) => {
+                        const isRank1 = r.rank === 1;
+                        return (
+                          <div 
+                            key={idx} 
+                            className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                              isRank1 
+                                ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(126,48,225,0.1)]' 
+                                : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
+                                isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
+                              }`}>
+                                {r.rank}순위
+                              </span>
+                              <span className="font-bold text-sm sm:text-base text-white truncate">{t(r.cleanName)}</span>
+                            </div>
+                            <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
+                              {t(r.note)}
+                            </p>
                           </div>
-                          <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
-                            {t(r.note)}
-                          </p>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -851,19 +884,31 @@ const CharacterGuideDetail: React.FC = () => {
                       {t('차원 장신구 세부 가이드')}
                     </div>
                     <div className="grid grid-cols-1 gap-3">
-                      {ornamentsWithNotes.map((o: any, idx: number) => (
-                        <div key={idx} className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 ${o.rank === 1 ? 'border-l-white' : 'border-l-white/20'} shadow-sm group`}>
-                          <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                            <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${o.rank === 1 ? 'bg-white text-black' : 'bg-white/10 text-gray-200 border border-white/10'}`}>
-                              {o.rank}순위
-                            </span>
-                            <span className="font-bold text-sm sm:text-base text-white truncate">{t(o.cleanName)}</span>
+                      {ornamentsWithNotes.map((o: any, idx: number) => {
+                        const isRank1 = o.rank === 1;
+                        return (
+                          <div 
+                            key={idx} 
+                            className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                              isRank1 
+                                ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(126,48,225,0.1)]' 
+                                : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
+                            }`}
+                          >
+                            <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
+                              <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
+                                isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
+                              }`}>
+                                {o.rank}순위
+                              </span>
+                              <span className="font-bold text-sm sm:text-base text-white truncate">{t(o.cleanName)}</span>
+                            </div>
+                            <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
+                              {t(o.note)}
+                            </p>
                           </div>
-                          <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
-                            {t(o.note)}
-                          </p>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </div>
                 )}
@@ -929,19 +974,28 @@ const CharacterGuideDetail: React.FC = () => {
                     <span>{t('부옵션 우선순위')}</span>
                   </div>
                   <div className="flex flex-wrap gap-2.5">
-                    {currentVariant?.subStats.map((s, i) => (
-                      <div 
-                        key={i} 
-                        className="flex items-center gap-2 px-4 py-2.5 bg-white/[0.06] hover:bg-white/[0.1] rounded-xl border border-white/15 transition-all shadow-sm"
-                      >
-                        <span className={`px-2 py-0.5 rounded-md text-xs font-black ${i === 0 ? 'bg-white text-black' : 'bg-white/15 text-white'}`}>
-                          #{i + 1}
-                        </span>
-                        <span className="text-sm sm:text-base font-bold text-white whitespace-nowrap">
-                          {t(s)}
-                        </span>
-                      </div>
-                    ))}
+                    {currentVariant?.subStats.map((s, i) => {
+                      const isFirst = i === 0;
+                      return (
+                        <div 
+                          key={i} 
+                          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl transition-all shadow-sm ${
+                            isFirst 
+                              ? 'bg-brand-primary/15 border border-brand-accent/40 shadow-[0_0_15px_rgba(126,48,225,0.15)]' 
+                              : 'bg-white/[0.06] hover:bg-white/[0.1] border border-white/15'
+                          }`}
+                        >
+                          <span className={`px-2 py-0.5 rounded-md text-xs font-black ${
+                            isFirst ? 'bg-brand-accent text-black' : 'bg-white/15 text-white'
+                          }`}>
+                            #{i + 1}
+                          </span>
+                          <span className="text-sm sm:text-base font-bold text-white whitespace-nowrap">
+                            {t(s)}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -971,9 +1025,9 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 border-l-white/40 shadow-sm group">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
                             <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-white text-black shrink-0 shadow-sm">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
                               <span className="font-bold text-sm sm:text-base text-white tracking-tight">{t(stat.value)}</span>
@@ -995,9 +1049,9 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {targetStatDetails.map((item: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 transition-all border-l-4 border-l-white/40 shadow-sm group">
+                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
                             <div className="flex items-center gap-2.5 shrink-0 sm:min-w-44">
-                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-white/15 text-white border border-white/20 shrink-0 shadow-sm whitespace-nowrap">
+                              <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/20 text-white border border-brand-accent/30 shrink-0 shadow-sm whitespace-nowrap">
                                 {t(item.label)}
                               </span>
                               {item.valueBadge && (
