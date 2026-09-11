@@ -438,13 +438,20 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         echoName = parts[0].trim();
         echoReason = parts.slice(1).join(':').trim();
       }
+      const echoObj = ECHO_DB?.find((e: any) => 
+        e.name === echoName || 
+        normalizeName(e.name) === normalizeName(echoName) ||
+        (e.folderName && normalizeName(e.folderName) === normalizeName(echoName))
+      );
+
       return {
         ...me,
         cleanName: echoName,
         reason: echoReason,
+        cost: echoObj?.cost ? Number(echoObj.cost) : undefined,
       };
     });
-  }, [currentVariant]);
+  }, [currentVariant, ECHO_DB]);
 
   const hasEchoNotes = Boolean(currentVariant?.note || echoSetsWithNotes.length > 0);
 
@@ -1133,7 +1140,14 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           <img src={echoUrl} alt={me.cleanName} className="w-full h-full object-cover rounded-full group-hover/echo:scale-105 transition-transform" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
                         </div>
                         <div className="space-y-4 text-center md:text-left flex-1 min-w-0">
-                          <h4 className="text-xl sm:text-2xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(me.cleanName)}</h4>
+                          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
+                            <h4 className="text-xl sm:text-2xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(me.cleanName)}</h4>
+                            {me.cost === 3 && (
+                              <span className="px-2.5 py-0.5 rounded-full text-xs font-black tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_12px_rgba(168,85,247,0.2)] whitespace-nowrap">
+                                3 COST
+                              </span>
+                            )}
+                          </div>
                           {me.reason && (
                             <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-medium break-keep">
                               {t(me.reason)}
