@@ -730,21 +730,16 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               </div>
                               <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                 <div className="flex items-center justify-between w-full">
-                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
                                   <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                     {set.rank}순위
                                   </span>
                                 </div>
-                                {set.sonataName && (
-                                  <span className="text-xs text-gray-400 font-medium truncate">
-                                    소나타: {t(set.sonataName)}
-                                  </span>
-                                )}
                               </div>
                             </div>
                             {set.note && (
                               <div className="pt-3 border-t border-white/10">
-                                <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
+                                <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-medium break-keep">
                                   {t(set.note)}
                                 </p>
                               </div>
@@ -791,36 +786,23 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               </div>
                               <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                 <div className="flex items-center justify-between w-full">
-                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
                                   <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                     {set.rank}순위
                                   </span>
                                 </div>
-                                <div className="flex items-center gap-2">
-                                  {matchingSets.length > 1 ? (
-                                    <span className="text-xs text-purple-300/90 font-medium">
-                                      {t('선택 가능한 화음 세트')} {matchingSets.length}종
-                                    </span>
-                                  ) : (
-                                    set.sonataName && (
-                                      <span className="text-xs text-gray-400 font-medium truncate">
-                                        소나타: {t(set.sonataName)}
-                                      </span>
-                                    )
-                                  )}
-                                  {set.effectName && matchingSets.length <= 1 && (
-                                    <span className="text-[11px] text-brand-accent/80 font-semibold shrink-0">
-                                      ({t(set.effectName)})
-                                    </span>
-                                  )}
-                                </div>
+                                {matchingSets.length > 1 && (
+                                  <span className="text-xs text-purple-300/90 font-medium">
+                                    {t('선택 가능한 화음 세트')} {matchingSets.length}종
+                                  </span>
+                                )}
                               </div>
                             </div>
 
                             {/* 화음 세트 이유/설명 */}
                             {set.note && (
                               <div className="pt-3 border-t border-white/10">
-                                <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
+                                <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-medium break-keep">
                                   {t(set.note)}
                                 </p>
                               </div>
@@ -1077,24 +1059,19 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                               <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center gap-1.5 min-w-0">
-                                  <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
+                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
                                 </div>
                                 <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                   {set.rank}순위
                                 </span>
                               </div>
-                              {set.sonataName && (
-                                <span className="text-xs text-gray-400 font-medium truncate">
-                                  소나타: {t(set.sonataName)}
-                                </span>
-                              )}
                             </div>
                           </div>
 
                           {/* 화음 세트 이유/설명 */}
                           {set.note && (
                             <div className="pt-3 border-t border-white/10">
-                              <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
+                              <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-medium break-keep">
                                 {t(set.note)}
                               </p>
                             </div>
@@ -1159,9 +1136,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           <img src={echoUrl} alt={me.cleanName} className="w-full h-full object-cover rounded-full group-hover/echo:scale-105 transition-transform" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
                         </div>
                         <div className="space-y-4 text-center md:text-left flex-1 min-w-0">
-                          <h4 className="text-xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(me.cleanName)}</h4>
+                          <h4 className="text-xl sm:text-2xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(me.cleanName)}</h4>
                           {me.reason && (
-                            <p className="text-base sm:text-lg text-gray-200 leading-relaxed font-medium break-keep">
+                            <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-medium break-keep">
                               {t(me.reason)}
                             </p>
                           )}
@@ -1336,26 +1313,28 @@ const WuwaCharacterGuideDetail: React.FC = () => {
             </div>
           </section>
 
-          {/* 04 스킬 및 시너지 */}
-          <section id="스킬 및 시너지" className="space-y-10">
-            <SectionHeader num="04" title="스킬 및 시너지 캐릭터" theme={theme} />
+          {/* 04 스킬 육성 우선순위 */}
+          <section id="스킬 육성 우선순위" className="space-y-6">
+            <SectionHeader num="04" title="스킬 육성 우선순위" theme={theme} />
             
-            <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent mb-8">
-              <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                <Activity size={22} className="text-gray-500" />
-                <span className="text-xl font-black uppercase tracking-tighter italic">{t('스킬 레벨업 우선순위')}</span>
-              </div>
-              <div className="flex flex-wrap gap-4 items-center">
+            <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-6 bg-gradient-to-br from-white/[0.03] to-transparent">
+              <div className="flex flex-wrap gap-3 sm:gap-4 items-center">
                 {guide.skillPriority.map((skill: string, idx: number) => (
                   <React.Fragment key={idx}>
-                    <div className="px-6 py-3 bg-brand-primary/10 border border-brand-primary/30 rounded-2xl text-sm font-black text-brand-accent">
+                    <div className="px-5 sm:px-6 py-2.5 sm:py-3 bg-white/[0.06] hover:bg-white/[0.1] border border-white/15 rounded-2xl text-sm sm:text-base font-bold text-white shadow-sm transition-all">
                       {t(skill)}
                     </div>
-                    {idx < guide.skillPriority.length - 1 && <ChevronRight size={20} className="text-gray-400" />}
+                    {idx < guide.skillPriority.length - 1 && <ChevronRight size={18} className="text-gray-400" />}
                   </React.Fragment>
                 ))}
               </div>
             </div>
+          </section>
+
+          {/* 05 시너지 캐릭터 */}
+          {(guide.isUniversalSynergy || (guide.synergyCharacters && guide.synergyCharacters.length > 0)) && (
+            <section id="시너지 캐릭터" className="space-y-6">
+              <SectionHeader num="05" title="시너지 캐릭터" theme={theme} />
 
             {guide.isUniversalSynergy ? (
               <div className="glass-card rounded-[45px] p-10 md:p-12 border border-brand-primary/20 bg-brand-primary/[0.02] shadow-2xl flex flex-col md:flex-row items-center gap-8 group overflow-hidden relative">
@@ -1462,6 +1441,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               </div>
             ) : null}
           </section>
+        )}
 
           {/* E-E-A-T Authorship & Methodology Note */}
           <section className="mt-12 pt-8 border-t border-white/5">
