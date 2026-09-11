@@ -755,7 +755,7 @@ const CharacterDetailNTE: React.FC = () => {
                   {t('아크')} : {t(char.arc)} | {t(char.attribute)}
                 </div>
                 <div className="flex items-end justify-between gap-4">
-                  <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
+                  <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight drop-shadow-lg">
                     {t(char.name)}
                   </h1>
                   <Link 

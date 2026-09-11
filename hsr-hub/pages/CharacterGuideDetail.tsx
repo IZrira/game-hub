@@ -616,7 +616,7 @@ const CharacterGuideDetail: React.FC = () => {
                   <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-gray-400">{t(character.path)}</span>
                   <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em]" style={{ backgroundColor: `${theme.primary}20`, color: theme.secondary, border: `1px solid ${theme.primary}40` }}>{t(character.attribute)}</span>
                 </div>
-                <h1 className="text-2xl sm:text-4xl md:text-6xl font-black italic tracking-tighter uppercase leading-tight">
+                <h1 className="text-2xl sm:text-4xl md:text-6xl font-black tracking-tighter uppercase leading-tight">
                   {character?.name || charName} <span className="text-brand-accent">가이드</span>
                 </h1>
                 <p className="text-gray-400 font-bold text-xs sm:text-base md:text-lg border-l-4 border-brand-primary/40 pl-4 sm:pl-6">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>
