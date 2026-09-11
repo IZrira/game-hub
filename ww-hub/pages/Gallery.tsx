@@ -279,22 +279,69 @@ const GalleryWW: React.FC = () => {
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {(WW_CHARACTER_GUIDES || [])
-                  .filter((g: any) => !searchQuery || g.id.includes(searchQuery))
-                  .map((guide: any) => {
-                    const char = CHARACTER_DB.find((c: any) => c.name === guide.id || c.id === guide.id);
-                    return { guide, char };
-                  })
-                  .filter(item => item.char)
-                  .map((item: any, idx: number) => (
+                {(() => {
+                  const seenCharIds = new Set<string>();
+                  const normalizeGuideName = (name: string) => {
+                    if (!name) return '';
+                    return name.replace(/\s+/g, '').replace(/[•·]/g, '').toLowerCase().normalize('NFC');
+                  };
+
+                  const list = (WW_CHARACTER_GUIDES || [])
+                    .map((guide: any) => {
+                      const char = CHARACTER_DB.find((c: any) => 
+                        c.id === guide.id || 
+                        c.name === guide.id || 
+                        c.name === guide.name ||
+                        c.name === guide.characterName ||
+                        (c.folderName && (c.folderName === guide.name || c.folderName === guide.id)) ||
+                        normalizeGuideName(c.name) === normalizeGuideName(guide.id) ||
+                        normalizeGuideName(c.name) === normalizeGuideName(guide.name) ||
+                        normalizeGuideName(c.folderName) === normalizeGuideName(guide.name) ||
+                        normalizeGuideName(c.folderName) === normalizeGuideName(guide.id)
+                      );
+                      return { guide, char };
+                    })
+                    .filter(item => {
+                      if (!item.char) return false;
+                      if (searchQuery) {
+                        const q = searchQuery.toLowerCase();
+                        const matchChar = (item.char.name && item.char.name.toLowerCase().includes(q)) ||
+                                          (item.char.id && item.char.id.toLowerCase().includes(q)) ||
+                                          (item.char.folderName && item.char.folderName.toLowerCase().includes(q));
+                        const matchGuide = (item.guide.id && item.guide.id.toLowerCase().includes(q)) ||
+                                           (item.guide.name && item.guide.name.toLowerCase().includes(q));
+                        if (!matchChar && !matchGuide) return false;
+                      }
+                      if (seenCharIds.has(item.char.id)) return false;
+                      seenCharIds.add(item.char.id);
+                      return true;
+                    })
+                    .sort((a, b) => {
+                      // 캐릭터 탭과 동일하게 희귀도(5성 -> 4성) 우선, 그 후 최신 버전순 배치
+                      const rA = a.char.rarity || 0;
+                      const rB = b.char.rarity || 0;
+                      if (rA !== rB) return rB - rA;
+
+                      const vA = parseFloat(a.char.releaseVersion || a.guide.patchVersion || '1.0');
+                      const vB = parseFloat(b.char.releaseVersion || b.guide.patchVersion || '1.0');
+                      if (vA !== vB) return vB - vA;
+
+                      return (a.char.name || '').localeCompare(b.char.name || '', 'ko-KR');
+                    });
+
+                  if (list.length === 0) {
+                    return (
+                      <div className="col-span-full py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
+                        <Book className="mx-auto text-gray-400 opacity-20" size={48} />
+                        <p className="text-gray-500 font-bold italic uppercase tracking-widest">{t('준비 중인 공략입니다.')}</p>
+                      </div>
+                    );
+                  }
+
+                  return list.map((item: any, idx: number) => (
                     <GuidePremiumCard key={`${item.char.id}-${idx}`} char={item.char} guide={item.guide} />
-                  ))}
-                {(!WW_CHARACTER_GUIDES || WW_CHARACTER_GUIDES.length === 0) && (
-                  <div className="col-span-full py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
-                    <Book className="mx-auto text-gray-400 opacity-20" size={48} />
-                    <p className="text-gray-500 font-bold italic uppercase tracking-widest">{t('준비 중인 공략입니다.')}</p>
-                  </div>
-                )}
+                  ));
+                })()}
               </div>
             </div>
           ) : null}
