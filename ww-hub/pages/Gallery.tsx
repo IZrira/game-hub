@@ -283,7 +283,12 @@ const GalleryWW: React.FC = () => {
                   const seenCharIds = new Set<string>();
                   const normalizeGuideName = (name: string) => {
                     if (!name) return '';
-                    return name.replace(/\s+/g, '').replace(/[•·]/g, '').toLowerCase().normalize('NFC');
+                    return name
+                      .replace(/_?세팅_?공략|_?공략|_?세팅/g, '')
+                      .replace(/\s+/g, '')
+                      .replace(/[•·]/g, '')
+                      .toLowerCase()
+                      .normalize('NFC');
                   };
 
                   const list = (WW_CHARACTER_GUIDES || [])

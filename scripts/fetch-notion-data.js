@@ -597,6 +597,10 @@ const WW_GUIDE_CHAR_MAP = {
   '복링': 'buling',
   '치사': 'chisa',
   '시그리카': 'sigrika',
+  '경연': 'jingran',
+  '청초': 'qingcao',
+  '모니에': 'mornye',
+  '에이메스': 'aemeath',
   '방랑자': 'rover_spectro'
 };
 
@@ -631,6 +635,14 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       matchedCharName = name;
       charId = id;
       break;
+    }
+  }
+  // 폴백: 매핑 테이블에 없는 캐릭터일 경우 페이지 제목에서 이름 추출
+  if (!matchedCharName) {
+    const cleanTitle = pageTitle.replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
+    if (cleanTitle) {
+      matchedCharName = cleanTitle;
+      charId = cleanTitle;
     }
   }
 

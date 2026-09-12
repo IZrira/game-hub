@@ -2,12 +2,12 @@ import { CharacterGuide } from './index';
 
 export const 달리아Guide: CharacterGuide = {
   "characterName": "달리아",
-  "lastUpdated": "2026-09-10",
+  "lastUpdated": "2026-09-12",
   "patchVersion": "3.8",
   "bestRelics": [
     {
       "name": "곤충 재앙을 잠재우는 철기군",
-      "note": "1순위 (격파 특수효과가 150% 이상인 경우 가하는 격파 피해가 방어력 무시하며 250%인 경우 슈퍼 격파 피해가 방어력을 추가로 무시하는 격파 전용 세트)"
+      "note": "1순위 (격파 특수효과가 150% 이상인 경우 가하는 격파 피해가 방어력 무시하며 250%인 경우 슈퍼 격파 피해가 방어력를 추가로 무시하는 격파 전용 세트)"
     },
     {
       "name": "유성을 쫓는 괴도",

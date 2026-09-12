@@ -40,7 +40,7 @@ import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import { WuwaCharacter } from '../types';
 import { ELEMENT_COLORS } from '../data/formatter';
-import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, withAssetVersion } from '../../common-hub/utils/assetManager';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80, 90];
 
@@ -411,13 +411,13 @@ const CharacterDetail: React.FC = () => {
       if (folderName === '방랑자 · 전도') folderName = '방랑자 · 회절';
       const genderSuffix = gender === 'f' ? '(여)' : '(남)';
       const fileName = `${folderName}${genderSuffix}.webp`;
-      return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(fileName)}`;
+      return withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(fileName)}`);
     }
     
     const base = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/`;
     const fileName = `${safeEncodeURIComponent(folder)}.webp`;
     
-    return char.fixedUrl || `${base}${fileName}`;
+    return char.fixedUrl || withAssetVersion(`${base}${fileName}`);
   };
 
   // 1. 웹 공유 API (Native Share)

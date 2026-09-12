@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { CDN_URL, safeEncodeURIComponent, handleImageFallback } from '@/common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, handleImageFallback, withAssetVersion } from '@/common-hub/utils/assetManager';
 import { getItemUrl, getCleanItemName } from '@/common-hub/data/items';
 import { slugify } from '@/common-hub/utils/urlUtils';
 
@@ -30,10 +30,10 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
       if (baseFolderName === '방랑자 · 전도') baseFolderName = '방랑자 · 회절';
       const genderSuffix = index % 2 === 0 ? '(여)' : '(남)';
       const fileName = `${baseFolderName}${genderSuffix}.webp`;
-      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolderName)}/${safeEncodeURIComponent(fileName)}`;
+      imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolderName)}/${safeEncodeURIComponent(fileName)}`);
     } else {
       const targetName = char.folderName || t(char.name);
-      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(targetName)}.webp`;
+      imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(targetName)}.webp`);
     }
   }
 
@@ -273,9 +273,9 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
     const folder = char.folderName || char.name || '';
     if (char.isRover) {
       const baseFolder = folder === '방랑자 · 전도' ? '방랑자 · 회절' : folder;
-      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolder)}/${safeEncodeURIComponent(baseFolder + '(여)')}.webp`;
+      imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolder)}/${safeEncodeURIComponent(baseFolder + '(여)')}.webp`);
     } else {
-      imgPath = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder)}.webp`;
+      imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder)}.webp`);
     }
   }
 

@@ -1,6 +1,18 @@
 /** 중앙화된 에셋 매니저 유틸리티 */
 export const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
+/** 에셋 버전 (이미지 변경 시 브라우저 캐시 무효화를 위한 버전 태그) */
+export const ASSET_VERSION = '20260912_2';
+
+/**
+ * URL에 에셋 버전을 쿼리스트링으로 추가하여 브라우저 로컬 캐시를 갱신
+ */
+export const withAssetVersion = (url: string): string => {
+  if (!url) return '';
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}v=${ASSET_VERSION}`;
+};
+
 /**
  * jsDelivr/GitHub CDN에서 괄호() 문자를 포함하거나 유니코드 불일치(NFC/NFD), 
  * 그리고 공백 문자가 URL에서 문제를 일으키는 경우를 해결하기 위한 인코딩 유틸리티

@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 키레네Guide: CharacterGuide = {
   "characterName": "키레네",
-  "lastUpdated": "2026-09-10",
+  "lastUpdated": "2026-09-12",
   "patchVersion": "3.7",
   "variants": [
     {
@@ -67,7 +67,7 @@ export const 키레네Guide: CharacterGuide = {
       "name": "메인 딜러 세팅 : 6돌파 이상 권장",
       "bestRelics": [
         {
-          "name": "천지를 재창조한 구세주 4세트",
+          "name": "천지를 재창조한 구세주",
           "note": "2세트 효과로 치명타 확률과 4세트 효과로 HP 최대치 + 모든 아군 가하는 피해 증가 버프를 제공"
         }
       ],
@@ -116,7 +116,7 @@ export const 키레네Guide: CharacterGuide = {
   ],
   "bestRelics": [
     {
-      "name": "천지를 재창조한 구세주 4세트",
+      "name": "천지를 재창조한 구세주",
       "note": "1순위 (2세트 효과로 치명타 확률과 4세트 효과로 HP 최대치 + 모든 아군 가하는 피해 증가 버프를 제공)"
     },
     {

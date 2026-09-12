@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 에버나이트Guide: CharacterGuide = {
   "characterName": "에버나이트",
-  "lastUpdated": "2026-09-10",
+  "lastUpdated": "2026-09-12",
   "patchVersion": "3.6",
   "variants": [
     {
@@ -54,7 +54,7 @@ export const 에버나이트Guide: CharacterGuide = {
       "name": "메인 딜러 세팅 : 2돌파 이상 권장",
       "bestRelics": [
         {
-          "name": "천지를 재창조한 구세주 4세트",
+          "name": "천지를 재창조한 구세주",
           "note": "2세트 효과로 치명타 확률과 4세트 효과로 HP 최대치 + 모든 아군 가하는 피해 증가 버프를 제공"
         }
       ],
@@ -90,7 +90,7 @@ export const 에버나이트Guide: CharacterGuide = {
   ],
   "bestRelics": [
     {
-      "name": "천지를 재창조한 구세주 4세트",
+      "name": "천지를 재창조한 구세주",
       "note": "2세트 효과로 치명타 확률과 4세트 효과로 HP 최대치 + 모든 아군 가하는 피해 증가 버프를 제공"
     }
   ],

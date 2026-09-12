@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 아낙사Guide: CharacterGuide = {
   "characterName": "아낙사",
-  "lastUpdated": "2026-09-10",
+  "lastUpdated": "2026-09-12",
   "patchVersion": "4.3",
   "variants": [
     {
@@ -63,7 +63,7 @@ export const 아낙사Guide: CharacterGuide = {
       "name": "서브 딜러 세팅",
       "bestRelics": [
         {
-          "name": "밤낮의 경계를 나는 매 4세트",
+          "name": "밤낮의 경계를 나는 매",
           "note": "1순위 (필살기 사이클이 빠른 아낙사에게 궁합이 좋은 유물. 필살기 사용 후 행동 게이지 증가로 많은 행동을 한다.)"
         }
       ],
@@ -99,15 +99,15 @@ export const 아낙사Guide: CharacterGuide = {
   ],
   "bestRelics": [
     {
-      "name": "별을 갈망하는 항법사 아집 4세트",
+      "name": "별을 갈망하는 항법사 아집",
       "note": "1순위 (전투 스킬이 핵심인 아낙사에게 가하는 전투 스킬과 필살기 피해가 증가하는 유물)"
     },
     {
-      "name": "지식의 바다에 빠진 학자 4세트",
+      "name": "지식의 바다에 빠진 학자",
       "note": "2순위 (치명타 확률과 전투 스킬이 핵심이 아낙사에게 궁합이 좋은 유물)"
     },
     {
-      "name": "거친 파도를 헤치는 선장 4세트",
+      "name": "거친 파도를 헤치는 선장",
       "note": "3순위 (치명타 피해를 제공하며 아군의 스킬)"
     }
   ],

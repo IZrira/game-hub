@@ -13,6 +13,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
+import { withAssetVersion } from '../../common-hub/utils/assetManager';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -252,7 +253,7 @@ const TierList: React.FC = () => {
       folder = '방랑자 · 회절';
     }
     const fileName = isRover ? `${folder}(여)` : folder;
-    return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${fileName.normalize('NFC')}.webp`);
+    return withAssetVersion(encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${fileName.normalize('NFC')}.webp`));
   };
 
   return (

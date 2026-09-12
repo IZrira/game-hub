@@ -31,6 +31,7 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
+import { withAssetVersion } from '../../common-hub/utils/assetManager';
 import { SONATA_SETS } from '../types';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 
@@ -140,9 +141,9 @@ const getCharacterImage = (folderName: string, isRover?: boolean) => {
   }
   const safeFolder = encodeURIComponent(mappedFolderName.normalize('NFC'));
   if (isRover) {
-    return `${BASE_IMAGE_URL}/skills/${safeFolder}/${encodeURIComponent(mappedFolderName.normalize('NFC') + '(여)')}.webp`;
+    return withAssetVersion(`${BASE_IMAGE_URL}/skills/${safeFolder}/${encodeURIComponent(mappedFolderName.normalize('NFC') + '(여)')}.webp`);
   }
-  return `${BASE_IMAGE_URL}/skills/${safeFolder}/${safeFolder}.webp`;
+  return withAssetVersion(`${BASE_IMAGE_URL}/skills/${safeFolder}/${safeFolder}.webp`);
 };
 
 const getWeaponImage = (weaponName: string) => {
@@ -262,7 +263,15 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   const { CHARACTER_DB, WEAPON_DB, ECHO_DB, GUIDES } = useMemo(() => getGameData('ww'), []);
 
   const character = useMemo(() => {
-    return CHARACTER_DB.find((c: any) => c.id === charName || normalizeName(c.name) === normalizeName(charName || ''));
+    const cleanParam = (charName || '').replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
+    return CHARACTER_DB.find((c: any) => 
+      c.id === charName || 
+      c.id === cleanParam ||
+      c.name === charName ||
+      c.name === cleanParam ||
+      normalizeName(c.name) === normalizeName(charName || '') ||
+      normalizeName(c.name) === normalizeName(cleanParam)
+    );
   }, [CHARACTER_DB, charName]);
 
   const guide = useMemo(() => {

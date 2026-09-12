@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 에바네시아Guide: CharacterGuide = {
   "characterName": "에바네시아",
-  "lastUpdated": "2026-09-10",
+  "lastUpdated": "2026-09-12",
   "patchVersion": "4.2",
   "bestRelics": [
     "빛나는 공훈의 마법 소녀"
