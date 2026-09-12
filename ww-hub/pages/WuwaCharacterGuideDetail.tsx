@@ -223,22 +223,17 @@ const StatBoxPremium: React.FC<{
           {t(label, { keySeparator: false, nsSeparator: false })}
         </span>
         
-        {/* 추천 주옵션 값 가시성 강화 및 콜론(:) 뒤 도움말 분리 표시 */}
+        {/* 추천 주옵션 값 가시성 강화 */}
         <div className="flex flex-col gap-2 w-full">
           {processedValues.map((v, i) => {
             const isFirstChoice = i === 0;
             const colonIdx = v.indexOf(':') !== -1 ? v.indexOf(':') : v.indexOf('：');
-            let statName = v;
-            let noteText = '';
-            if (colonIdx !== -1) {
-              statName = v.substring(0, colonIdx).trim();
-              noteText = v.substring(colonIdx + 1).trim();
-            }
+            const statName = colonIdx !== -1 ? v.substring(0, colonIdx).trim() : v;
 
             return (
               <div 
                 key={i} 
-                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex flex-col items-center justify-center gap-1 ${
+                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-2 ${
                   isFirstChoice 
                     ? 'bg-brand-primary/15 border border-brand-accent/35 shadow-[0_0_12px_rgba(74,222,128,0.1)]' 
                     : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
@@ -247,13 +242,6 @@ const StatBoxPremium: React.FC<{
                 <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
                   {t(statName)}
                 </span>
-                {noteText && (
-                  <div className="w-full pt-1.5 mt-0.5 border-t border-white/10 flex flex-col items-center">
-                    <span className="text-[11px] sm:text-xs text-gray-400 font-normal leading-relaxed text-center break-keep">
-                      {t(noteText)}
-                    </span>
-                  </div>
-                )}
               </div>
             );
           })}
@@ -305,6 +293,37 @@ const WuwaCharacterGuideDetail: React.FC = () => {
       mainEchoes: guide.mainEchoes || (guide.mainEcho ? [guide.mainEcho] : []),
     };
   }, [guide, selectedVariantIndex]);
+
+  const mainStatsToDisplay = useMemo(() => {
+    return currentVariant?.mainStats && currentVariant.mainStats.length > 0
+      ? currentVariant.mainStats
+      : guide?.mainStats || [];
+  }, [currentVariant, guide]);
+
+  const mainStatsNotes = useMemo(() => {
+    const notes: { cost: number | string; statName: string; noteText: string }[] = [];
+    if (!mainStatsToDisplay || !Array.isArray(mainStatsToDisplay)) return notes;
+
+    mainStatsToDisplay.forEach((ms: any) => {
+      if (!ms.stats || !Array.isArray(ms.stats)) return;
+      ms.stats.forEach((s: string) => {
+        const colonIdx = s.indexOf(':') !== -1 ? s.indexOf(':') : s.indexOf('：');
+        if (colonIdx !== -1) {
+          const statName = s.substring(0, colonIdx).trim();
+          const noteText = s.substring(colonIdx + 1).trim();
+          if (statName && noteText) {
+            notes.push({
+              cost: ms.cost,
+              statName,
+              noteText
+            });
+          }
+        }
+      });
+    });
+
+    return notes;
+  }, [mainStatsToDisplay]);
 
   const theme = useMemo(() => {
     if (!character) return { primary: '#4ADE80', secondary: '#22C55E', shadow: 'rgba(74, 222, 128, 0.4)' };
@@ -1233,7 +1252,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic text-white">{t('에코 주옵션 & 부옵션')}</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-                  {(currentVariant?.mainStats && currentVariant.mainStats.length > 0 ? currentVariant.mainStats : guide.mainStats).map((ms: any, i: number) => (
+                  {mainStatsToDisplay.map((ms: any, i: number) => (
                     <StatBoxPremium 
                       key={i} 
                       label={`${ms.cost} Cost`} 
@@ -1242,6 +1261,25 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     />
                   ))}
                 </div>
+
+                {/* 주옵션 세부 조건 / 도움말: 아예 아래로 빼서 별도 배치 */}
+                {mainStatsNotes.length > 0 && (
+                  <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex flex-col gap-2.5">
+                    {mainStatsNotes.map((note, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm">
+                        <Info size={16} className="text-brand-accent shrink-0 mt-0.5" />
+                        <div className="leading-relaxed">
+                          <span className="font-bold text-white mr-1.5">
+                            [{note.cost} Cost {t(note.statName)}]
+                          </span>
+                          <span className="text-gray-300 font-medium">
+                            {t(note.noteText)}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <div className="p-6 sm:p-7 bg-white/[0.03] rounded-[28px] border border-white/10 relative overflow-hidden space-y-4">
                   <div className="text-xs sm:text-sm font-black text-white uppercase tracking-wider flex items-center gap-2">
                     <TrendingUp size={16} className="text-white" />
