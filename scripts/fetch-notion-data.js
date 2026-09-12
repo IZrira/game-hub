@@ -8,6 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
+// TLS 인증서 검증 우회 (로컬 개발 및 사설 CA 환경 호환)
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
 // 1. .env 및 .env.local 파서
 function loadEnv() {
   const envFiles = ['.env', '.env.local'];
