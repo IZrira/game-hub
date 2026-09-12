@@ -118,25 +118,42 @@ const StatBoxPremium: React.FC<{
         <div className="flex flex-col gap-2 w-full">
           {processedValues.map((v, i) => {
             const isFirstChoice = i === 0;
+            const colonIdx = v.indexOf(':') !== -1 ? v.indexOf(':') : v.indexOf('：');
+            let statName = v;
+            let noteText = '';
+            if (colonIdx !== -1) {
+              statName = v.substring(0, colonIdx).trim();
+              noteText = v.substring(colonIdx + 1).trim();
+            }
+
             return (
               <div 
                 key={i} 
-                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-2 ${
+                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex flex-col items-center justify-center gap-1 ${
                   isFirstChoice 
                     ? 'bg-brand-primary/15 border border-brand-accent/35 shadow-[0_0_12px_rgba(126,48,225,0.08)]' 
                     : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
                 }`}
               >
-                {processedValues.length > 1 && (
-                  <span className={`text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 ${
-                    isFirstChoice ? 'bg-brand-accent text-black' : 'bg-white/15 text-white'
-                  }`}>
-                    #{i + 1}
+                <div className="flex items-center justify-center gap-2">
+                  {processedValues.length > 1 && (
+                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 ${
+                      isFirstChoice ? 'bg-brand-accent text-black' : 'bg-white/15 text-white'
+                    }`}>
+                      #{i + 1}
+                    </span>
+                  )}
+                  <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
+                    {t(statName)}
                   </span>
+                </div>
+                {noteText && (
+                  <div className="w-full pt-1.5 mt-0.5 border-t border-white/10 flex flex-col items-center">
+                    <span className="text-[11px] sm:text-xs text-gray-400 font-normal leading-relaxed text-center break-keep">
+                      {t(noteText)}
+                    </span>
+                  </div>
                 )}
-                <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
-                  {t(v)}
-                </span>
               </div>
             );
           })}

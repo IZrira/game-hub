@@ -172,11 +172,12 @@ const SectionHeader: React.FC<{ num: string; title: string; theme: any }> = ({ n
 
 const StatBoxPremium: React.FC<{ 
   label: string; 
-  value: string; 
+  value?: string; 
+  stats?: string[];
   note?: string; 
   theme: any; 
   iconImage?: string;
-}> = ({ label, value, note, theme, iconImage }) => {
+}> = ({ label, value, stats, note, theme, iconImage }) => {
   const { t } = useTranslation();
   const [imgUrl, setImgUrl] = useState(iconImage);
   
@@ -185,9 +186,12 @@ const StatBoxPremium: React.FC<{
   }, [iconImage]);
 
   const processedValues = useMemo(() => {
+    if (stats && Array.isArray(stats) && stats.length > 0) {
+      return stats;
+    }
     if (!value) return [];
     return value.split(/\s+or\s+|\s*\/\s*/i).map(v => v.trim());
-  }, [value]);
+  }, [stats, value]);
 
   return (
     <div 
@@ -219,22 +223,37 @@ const StatBoxPremium: React.FC<{
           {t(label, { keySeparator: false, nsSeparator: false })}
         </span>
         
-        {/* 추천 주옵션 값 가시성 강화 */}
+        {/* 추천 주옵션 값 가시성 강화 및 콜론(:) 뒤 도움말 분리 표시 */}
         <div className="flex flex-col gap-2 w-full">
           {processedValues.map((v, i) => {
             const isFirstChoice = i === 0;
+            const colonIdx = v.indexOf(':') !== -1 ? v.indexOf(':') : v.indexOf('：');
+            let statName = v;
+            let noteText = '';
+            if (colonIdx !== -1) {
+              statName = v.substring(0, colonIdx).trim();
+              noteText = v.substring(colonIdx + 1).trim();
+            }
+
             return (
               <div 
                 key={i} 
-                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex items-center justify-center gap-2 ${
+                className={`relative w-full py-2.5 px-3 rounded-xl transition-all flex flex-col items-center justify-center gap-1 ${
                   isFirstChoice 
                     ? 'bg-brand-primary/15 border border-brand-accent/35 shadow-[0_0_12px_rgba(74,222,128,0.1)]' 
                     : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
                 }`}
               >
                 <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
-                  {t(v)}
+                  {t(statName)}
                 </span>
+                {noteText && (
+                  <div className="w-full pt-1.5 mt-0.5 border-t border-white/10 flex flex-col items-center">
+                    <span className="text-[11px] sm:text-xs text-gray-400 font-normal leading-relaxed text-center break-keep">
+                      {t(noteText)}
+                    </span>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -1218,7 +1237,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     <StatBoxPremium 
                       key={i} 
                       label={`${ms.cost} Cost`} 
-                      value={ms.stats.map((x: string) => t(x)).join(' or ')} 
+                      stats={ms.stats}
                       theme={theme} 
                     />
                   ))}
