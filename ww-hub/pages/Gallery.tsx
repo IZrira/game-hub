@@ -285,7 +285,7 @@ const GalleryWW: React.FC = () => {
                     if (!name) return '';
                     return name
                       .replace(/_?세팅_?공략|_?공략|_?세팅/g, '')
-                      .replace(/\s+/g, '')
+                      .replace(/[()（）\s]/g, '')
                       .replace(/[•·]/g, '')
                       .toLowerCase()
                       .normalize('NFC');

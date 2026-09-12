@@ -601,6 +601,22 @@ const WW_GUIDE_CHAR_MAP = {
   '청초': 'qingcao',
   '모니에': 'mornye',
   '에이메스': 'aemeath',
+  '방랑자 (기류)': 'rover_aero',
+  '방랑자(기류)': 'rover_aero',
+  '방랑자 · 기류': 'rover_aero',
+  '방랑자 기류': 'rover_aero',
+  '방랑자 (인멸)': 'rover_havoc',
+  '방랑자(인멸)': 'rover_havoc',
+  '방랑자 · 인멸': 'rover_havoc',
+  '방랑자 인멸': 'rover_havoc',
+  '방랑자 (전도)': 'rover_electro',
+  '방랑자(전도)': 'rover_electro',
+  '방랑자 · 전도': 'rover_electro',
+  '방랑자 전도': 'rover_electro',
+  '방랑자 (회절)': 'rover_spectro',
+  '방랑자(회절)': 'rover_spectro',
+  '방랑자 · 회절': 'rover_spectro',
+  '방랑자 회절': 'rover_spectro',
   '방랑자': 'rover_spectro'
 };
 
@@ -637,8 +653,23 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       break;
     }
   }
-  // 폴백: 매핑 테이블에 없는 캐릭터일 경우 페이지 제목에서 이름 추출
-  if (!matchedCharName) {
+
+  // 방랑자 속성별 명시적 정규화
+  if (pageTitle.includes('방랑자')) {
+    if (pageTitle.includes('기류')) {
+      matchedCharName = '방랑자 · 기류';
+      charId = 'rover_aero';
+    } else if (pageTitle.includes('인멸')) {
+      matchedCharName = '방랑자 · 인멸';
+      charId = 'rover_havoc';
+    } else if (pageTitle.includes('전도')) {
+      matchedCharName = '방랑자 · 전도';
+      charId = 'rover_electro';
+    } else {
+      matchedCharName = '방랑자 · 회절';
+      charId = 'rover_spectro';
+    }
+  } else if (!matchedCharName) {
     const cleanTitle = pageTitle.replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
     if (cleanTitle) {
       matchedCharName = cleanTitle;

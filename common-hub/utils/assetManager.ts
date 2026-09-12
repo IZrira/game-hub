@@ -26,6 +26,40 @@ export const safeEncodeURIComponent = (str: string): string => {
 };
 
 /**
+ * 방랑자(Rover) 이름 및 속성 표준화 및 이미지 경로 생성 유틸리티
+ * '방랑자 (회절)', '방랑자 (기류)', '방랑자 (인멸)', '방랑자 (전도)' 등 다양한 형태 지원
+ */
+export const resolveRoverImageInfo = (nameOrFolder: string = '', attribute?: string, gender: 'f' | 'm' = 'f') => {
+  const str = (nameOrFolder || '').trim();
+  const isRover = str.includes('방랑자');
+  if (!isRover) {
+    return null;
+  }
+
+  let element = '';
+  if (str.includes('회절') || attribute === '회절') element = '회절';
+  else if (str.includes('기류') || attribute === '기류') element = '기류';
+  else if (str.includes('인멸') || attribute === '인멸') element = '인멸';
+  else if (str.includes('전도') || attribute === '전도') element = '전도';
+  else element = '회절'; // 기본값
+
+  let canonicalFolder = `방랑자 · ${element}`;
+  if (canonicalFolder === '방랑자 · 전도') {
+    canonicalFolder = '방랑자 · 회절';
+  }
+  const genderSuffix = gender === 'm' ? '(남)' : '(여)';
+  const fileName = `${canonicalFolder}${genderSuffix}.webp`;
+
+  return {
+    isRover: true,
+    element,
+    canonicalFolder,
+    fileName,
+    url: withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(canonicalFolder)}/${safeEncodeURIComponent(fileName)}`)
+  };
+};
+
+/**
  * 다중 CDN 자동 폴백 핸들러 (cdn.jsdelivr.net -> fastly.jsdelivr.net -> raw.githubusercontent.com)
  */
 export const handleImageFallback = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {

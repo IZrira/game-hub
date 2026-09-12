@@ -40,7 +40,7 @@ import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import { WuwaCharacter } from '../types';
 import { ELEMENT_COLORS } from '../data/formatter';
-import { CDN_URL, safeEncodeURIComponent, withAssetVersion } from '../../common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80, 90];
 
@@ -405,13 +405,9 @@ const CharacterDetail: React.FC = () => {
 
   const getIllustrationUrl = () => {
     const folder = char.folderName || t(char.name);
-    
-    if (char.isRover) {
-      let folderName = char.folderName || `방랑자 · ${char.attribute}`;
-      if (folderName === '방랑자 · 전도') folderName = '방랑자 · 회절';
-      const genderSuffix = gender === 'f' ? '(여)' : '(남)';
-      const fileName = `${folderName}${genderSuffix}.webp`;
-      return withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(fileName)}`);
+    const roverInfo = resolveRoverImageInfo(folder, char.attribute, gender);
+    if (roverInfo) {
+      return char.fixedUrl || roverInfo.url;
     }
     
     const base = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/`;

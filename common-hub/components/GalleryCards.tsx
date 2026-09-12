@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { CDN_URL, safeEncodeURIComponent, handleImageFallback, withAssetVersion } from '@/common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, handleImageFallback, withAssetVersion, resolveRoverImageInfo } from '@/common-hub/utils/assetManager';
 import { getItemUrl, getCleanItemName } from '@/common-hub/data/items';
 import { slugify } from '@/common-hub/utils/urlUtils';
 
@@ -25,12 +25,9 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
       imgPath = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
   } else {
-    if (char.isRover) {
-      let baseFolderName = char.folderName || `방랑자 · ${char.attribute}`;
-      if (baseFolderName === '방랑자 · 전도') baseFolderName = '방랑자 · 회절';
-      const genderSuffix = index % 2 === 0 ? '(여)' : '(남)';
-      const fileName = `${baseFolderName}${genderSuffix}.webp`;
-      imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolderName)}/${safeEncodeURIComponent(fileName)}`);
+    const roverInfo = resolveRoverImageInfo(char.folderName || char.name, char.attribute, index % 2 === 0 ? 'f' : 'm');
+    if (roverInfo) {
+      imgPath = roverInfo.url;
     } else {
       const targetName = char.folderName || t(char.name);
       imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(targetName)}/${safeEncodeURIComponent(targetName)}.webp`);
@@ -271,9 +268,9 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
   } else {
     // 명조 캐릭터 이미지 매핑
     const folder = char.folderName || char.name || '';
-    if (char.isRover) {
-      const baseFolder = folder === '방랑자 · 전도' ? '방랑자 · 회절' : folder;
-      imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(baseFolder)}/${safeEncodeURIComponent(baseFolder + '(여)')}.webp`);
+    const roverInfo = resolveRoverImageInfo(folder, char.attribute, 'f');
+    if (roverInfo) {
+      imgPath = roverInfo.url;
     } else {
       imgPath = withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder)}.webp`);
     }

@@ -16,7 +16,7 @@ import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
-import { withAssetVersion } from '../../common-hub/utils/assetManager';
+import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} className="text-rose-500" />,
@@ -34,11 +34,11 @@ const normalizeName = (name: string) => {
 
 const getIconUrl = (member: { folderName?: string; name: string }) => {
   let folder = member.folderName || member.name;
-  const isRover = folder.startsWith('방랑자');
-  if (isRover && folder === '방랑자 · 전도') {
-    folder = '방랑자 · 회절';
+  const roverInfo = resolveRoverImageInfo(folder);
+  if (roverInfo) {
+    return roverInfo.url;
   }
-  const fileName = isRover ? `${folder}(여)` : folder;
+  const fileName = folder;
   return withAssetVersion(encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${fileName.normalize('NFC')}.webp`));
 };
 

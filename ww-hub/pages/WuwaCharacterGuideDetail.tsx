@@ -31,7 +31,7 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
-import { withAssetVersion } from '../../common-hub/utils/assetManager';
+import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 import { SONATA_SETS } from '../types';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 
@@ -131,18 +131,20 @@ const resolveSonataInfo = (rawText: string) => {
 
 const normalizeName = (name: string) => {
   if (!name) return "";
-  return name.replace(/\s+/g, '').replace(/[•·]/g, '').normalize('NFC');
+  return name
+    .replace(/_?세팅_?공략|_?공략|_?세팅/g, '')
+    .replace(/[()（）\s]/g, '')
+    .replace(/[•·]/g, '')
+    .toLowerCase()
+    .normalize('NFC');
 };
 
 const getCharacterImage = (folderName: string, isRover?: boolean) => {
-  let mappedFolderName = folderName;
-  if (isRover && mappedFolderName === '방랑자 · 전도') {
-    mappedFolderName = '방랑자 · 회절';
+  const roverInfo = resolveRoverImageInfo(folderName, undefined, 'f');
+  if (roverInfo) {
+    return roverInfo.url;
   }
-  const safeFolder = encodeURIComponent(mappedFolderName.normalize('NFC'));
-  if (isRover) {
-    return withAssetVersion(`${BASE_IMAGE_URL}/skills/${safeFolder}/${encodeURIComponent(mappedFolderName.normalize('NFC') + '(여)')}.webp`);
-  }
+  const safeFolder = encodeURIComponent((folderName || '').normalize('NFC'));
   return withAssetVersion(`${BASE_IMAGE_URL}/skills/${safeFolder}/${safeFolder}.webp`);
 };
 
@@ -1489,7 +1491,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       );
                     }
 
-                    const memberImg = memberChar ? getCharacterImage(memberChar.folderName, memberChar.isRover) : '';
+                    const memberImg = memberChar 
+                      ? getCharacterImage(memberChar.folderName, memberChar.isRover) 
+                      : getCharacterImage(memberName, memberName.includes('방랑자'));
                     
                     return (
                       <Link 

@@ -91273,8 +91273,8 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "rover_spectro",
-    "name": "방랑자",
+    "id": "rover_aero",
+    "name": "방랑자 · 기류",
     "patchVersion": "2.6",
     "weapons": [
       {
@@ -92089,7 +92089,7 @@
   },
   {
     "id": "rover_spectro",
-    "name": "방랑자",
+    "name": "방랑자 · 회절",
     "patchVersion": "2.3",
     "weapons": [
       {

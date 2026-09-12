@@ -348,6 +348,7 @@ export const getGameData = (targetId: string) => {
         originalName: item.name,
         gameId: 'ww' as const,
         folderName: item.name,
+        isRover: Boolean(item.name?.includes('방랑자') || item.id?.startsWith('rover_')),
         attribute: attribute,
         weaponType: item.weapon || weaponType as any,
         rarity: Number(item.rarity) || 5,
@@ -1090,7 +1091,23 @@ export const getGameData = (targetId: string) => {
         const cleanKey = key.replace(/_세팅_공략|_공략/g, '').trim();
         if (cleanKey) {
           const existing = wwGuideMap.get(cleanKey) || wwGuideMap.get(g.id);
-          wwGuideMap.set(cleanKey, { ...(existing || {}), ...g, name: g.name || cleanKey });
+          const guideObj = { ...(existing || {}), ...g, name: g.name || cleanKey };
+          wwGuideMap.set(cleanKey, guideObj);
+          if (cleanKey.includes('방랑자')) {
+            if (cleanKey.includes('기류')) {
+              wwGuideMap.set('방랑자 · 기류', { ...guideObj, name: '방랑자 · 기류', id: g.id || 'rover_aero' });
+              wwGuideMap.set('rover_aero', { ...guideObj, name: '방랑자 · 기류', id: g.id || 'rover_aero' });
+            } else if (cleanKey.includes('인멸')) {
+              wwGuideMap.set('방랑자 · 인멸', { ...guideObj, name: '방랑자 · 인멸', id: g.id || 'rover_havoc' });
+              wwGuideMap.set('rover_havoc', { ...guideObj, name: '방랑자 · 인멸', id: g.id || 'rover_havoc' });
+            } else if (cleanKey.includes('전도')) {
+              wwGuideMap.set('방랑자 · 전도', { ...guideObj, name: '방랑자 · 전도', id: g.id || 'rover_electro' });
+              wwGuideMap.set('rover_electro', { ...guideObj, name: '방랑자 · 전도', id: g.id || 'rover_electro' });
+            } else {
+              wwGuideMap.set('방랑자 · 회절', { ...guideObj, name: '방랑자 · 회절', id: g.id || 'rover_spectro' });
+              wwGuideMap.set('rover_spectro', { ...guideObj, name: '방랑자 · 회절', id: g.id || 'rover_spectro' });
+            }
+          }
         }
       });
       const merged = Array.from(wwGuideMap.values());
