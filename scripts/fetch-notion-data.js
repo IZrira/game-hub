@@ -819,12 +819,13 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
   if (targetSectionMatch) {
     const lines = targetSectionMatch[1].split('\n');
     for (const l of lines) {
-      const m = l.match(/[-*]\s*([^\n:：]+)\s*[:：]\s*(.+)/);
+      const m = l.match(/[-*]\s*([^:：\n]+?)\s*[:：]\s*([^:：\n]+?)(?:\s*[:：]\s*(.*))?$/);
       if (m) {
         const label = m[1].replace(/[*#_]/g, '').trim();
         const value = m[2].replace(/[*#_]/g, '').trim();
+        const note = m[3] ? m[3].replace(/[*#_]/g, '').trim() : undefined;
         if (label && value && !label.includes('목표 육성치')) {
-          targetStats.push({ label, value });
+          targetStats.push({ label, value, note: note || undefined });
         }
       }
     }

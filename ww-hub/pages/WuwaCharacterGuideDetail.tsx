@@ -1442,22 +1442,38 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                  {guide.targetStats.map((s: any, i: number) => (
-                    <div 
-                      key={i} 
-                      className="flex flex-col justify-between p-5 bg-white/[0.04] hover:bg-white/[0.08] rounded-2xl border border-white/10 hover:border-white/20 transition-all group relative gap-3 h-full overflow-hidden"
-                    >
-                      <div className="flex items-start justify-between gap-2 w-full">
-                        <span className="text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider group-hover:text-white transition-colors break-keep break-words">{t(s.label)}</span>
-                      </div>
-                      <div className="flex flex-col items-start w-full">
-                        <span className="text-xl sm:text-2xl font-black text-white italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
-                        <div className="w-12 h-1 bg-white/20 rounded-full mt-2 overflow-hidden">
-                          <div className="w-full h-full bg-white/60" />
+                  {guide.targetStats.map((s: any, i: number) => {
+                    let displayValue = s.value;
+                    let noteText = s.note;
+                    if (displayValue && (displayValue.includes(':') || displayValue.includes('：'))) {
+                      const parts = displayValue.split(/[:：]/);
+                      displayValue = parts[0].trim();
+                      const extra = parts.slice(1).join(':').trim();
+                      noteText = noteText ? `${noteText} (${extra})` : extra;
+                    }
+
+                    return (
+                      <div 
+                        key={i} 
+                        className="flex flex-col justify-between p-5 bg-white/[0.04] hover:bg-white/[0.08] rounded-2xl border border-white/10 hover:border-white/20 transition-all group relative gap-3 h-full overflow-hidden"
+                      >
+                        <div className="flex items-start justify-between gap-2 w-full">
+                          <span className="text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider group-hover:text-white transition-colors break-keep break-words">{t(s.label)}</span>
+                        </div>
+                        <div className="flex flex-col items-start w-full">
+                          <span className="text-xl sm:text-2xl font-black text-white italic tabular-nums break-keep break-words text-left">{t(displayValue)}</span>
+                          {noteText && (
+                            <span className="text-xs font-medium text-gray-400 mt-1.5 leading-relaxed break-keep break-words text-left">
+                              {t(noteText)}
+                            </span>
+                          )}
+                          <div className="w-12 h-1 bg-white/20 rounded-full mt-2.5 overflow-hidden">
+                            <div className="w-full h-full bg-white/60" />
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
 
