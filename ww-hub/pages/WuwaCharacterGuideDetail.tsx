@@ -1676,10 +1676,18 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       }
                     }
 
-                    // 4. Typo correction (e.g. 카를롷타 -> 카를로타)
-                    if (!memberChar && memberName === '카를롷타') {
-                      memberChar = CHARACTER_DB.find((c: any) => c.name.includes('카를로타') || c.id === 'Carlotta' || c.folderName === 'Carlotta');
-                      if (memberChar) memberName = '카를로타';
+                    // 4. Typo & Alias correction (e.g. 카를롷타, 루크, 현령 등)
+                    if (!memberChar) {
+                      if (memberName === '카를롷타') {
+                        memberChar = CHARACTER_DB.find((c: any) => c.name?.includes('카를로타') || c.id === 'Carlotta' || c.folderName === 'Carlotta');
+                        if (memberChar) memberName = '카를로타';
+                      } else if (memberName === '루크' || memberName.includes('헤르센')) {
+                        memberChar = CHARACTER_DB.find((c: any) => c.id === 'luuk' || c.folderName?.includes('헤르센') || c.name?.includes('헤르센'));
+                        if (memberChar) memberName = '루크 · 헤르센';
+                      } else if (memberName === '현령' || memberName.includes('현령')) {
+                        memberChar = CHARACTER_DB.find((c: any) => c.id === 'yangyang_magistrate' || c.folderName?.includes('현령') || c.name?.includes('현령'));
+                        if (memberChar) memberName = '양양 · 현령';
+                      }
                     }
 
                     // 5. Generic description chip if not a character
