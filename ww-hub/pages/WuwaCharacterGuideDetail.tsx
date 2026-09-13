@@ -783,7 +783,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               </div>
                               <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                 <div className="flex items-center justify-between w-full">
-                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
                                   <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                     {set.rank}순위
                                   </span>
@@ -839,7 +839,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               </div>
                               <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                 <div className="flex items-center justify-between w-full">
-                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
                                   <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                     {set.rank}순위
                                   </span>
@@ -919,7 +919,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           3 Pieces
                         </span>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className={`grid gap-4 ${parsedEchoSetsData.threePieceSets.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
                         {parsedEchoSetsData.threePieceSets.map((set: any, i: number) => {
                           const isFirst = i === 0;
                           return (
@@ -938,7 +938,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                 </div>
                                 <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                   <div className="flex items-center justify-between w-full">
-                                    <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                    <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
                                     <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                       {set.rank}순위
                                     </span>
@@ -976,7 +976,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           2 Pieces
                         </span>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className={`grid gap-4 ${parsedEchoSetsData.twoPieceSets.length === 1 ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-2'}`}>
                         {parsedEchoSetsData.twoPieceSets.map((set: any, i: number) => {
                           const isFirst = i === 0;
                           const matchingSets: string[] = set.matchingSets && set.matchingSets.length > 0 
@@ -1001,7 +1001,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                 </div>
                                 <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                   <div className="flex items-center justify-between w-full">
-                                    <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName)}</span>
+                                    <span className="text-base sm:text-lg font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
                                     <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                       {set.rank}순위
                                     </span>
@@ -1048,7 +1048,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                       {matchingSets.length > 1 ? t('아래 화음 중 2세트 자유 선택') : t('해당 화음 2세트 장착 시 적용')}
                                     </span>
                                   </div>
-                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                  <div className={`grid gap-2 ${parsedEchoSetsData.twoPieceSets.length === 1 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2'}`}>
                                     {matchingSets.map((setName: string) => {
                                       const iconUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
                                       return (
@@ -1095,14 +1095,20 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                       5 Pieces
                     </span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className={`grid gap-4 ${
+                    parsedEchoSetsData.allSets.length === 1 
+                      ? 'grid-cols-1' 
+                      : parsedEchoSetsData.allSets.length === 2 
+                        ? 'grid-cols-1 md:grid-cols-2' 
+                        : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                  }`}>
                     {parsedEchoSetsData.allSets.map((set: any, i: number) => {
                       const isFirst = i === 0;
                       const matchingSets: string[] = set.matchingSets || (set.pieces === 2 ? getMatchingTwoPieceSets(set.cleanName || set.sonataName) : []);
                       return (
                         <div 
                           key={i} 
-                          className={`flex flex-col gap-4 p-5 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                          className={`flex flex-col gap-4 p-5 sm:p-6 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
                         >
                           {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                           <div className="flex items-center gap-4 w-full">
@@ -1112,9 +1118,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                               <div className="flex items-center justify-between w-full">
                                 <div className="flex items-center gap-1.5 min-w-0">
-                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors truncate">{t(set.cleanName || '에코 세트')}</span>
+                                  <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName || '에코 세트')}</span>
                                 </div>
-                                <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                   {set.rank}순위
                                 </span>
                               </div>
@@ -1131,22 +1137,22 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           )}
 
                           {matchingSets.length > 0 && (
-                            <div className="pt-3 border-t border-white/5 space-y-2">
+                            <div className="pt-3 border-t border-white/5 space-y-2.5">
                               <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
                                 <span className="flex items-center gap-1.5 text-gray-300">
                                   <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
                                   {t('해당 2세트 효과 화음 세트')} ({matchingSets.length}종)
                                 </span>
                               </div>
-                              <div className="grid grid-cols-1 gap-1.5">
+                              <div className={`grid gap-2 ${parsedEchoSetsData.allSets.length === 1 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4' : 'grid-cols-1'}`}>
                                 {matchingSets.map((setName: string) => {
                                   const iconUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
                                   return (
                                     <div 
                                       key={setName}
-                                      className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-black/40 border border-white/5"
+                                      className="flex items-center gap-2.5 px-3 py-2 rounded-2xl bg-black/40 border border-white/5 hover:border-brand-accent/40 hover:bg-white/[0.04] transition-all group/sonata"
                                     >
-                                      <div className="w-5 h-5 rounded-md bg-white/5 p-0.5 shrink-0 flex items-center justify-center">
+                                      <div className="w-6 h-6 rounded-lg bg-white/5 p-0.5 shrink-0 flex items-center justify-center border border-white/10 group-hover/sonata:border-brand-accent/40 transition-colors">
                                         <img 
                                           src={iconUrl} 
                                           alt={setName} 
@@ -1154,7 +1160,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                           onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                                         />
                                       </div>
-                                      <span className="text-xs text-gray-300 font-medium truncate">
+                                      <span className="text-xs text-gray-200 font-semibold truncate group-hover/sonata:text-brand-accent transition-colors">
                                         {t(setName)}
                                       </span>
                                     </div>
