@@ -870,7 +870,7 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
   };
 
   let mainStats = [];
-  const mainStatBlocks = mdContent.match(/[-*]?\s*에코\s*주\s*옵션(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|[-*]?\s*에코\s*부\s*옵션|스킬|파티|$))/gi);
+  const mainStatBlocks = mdContent.match(/[-*]?\s*에코\s*주\s*옵션(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|[-*]?\s*에코\s*부\s*옵션|\n\s*[-*]?\s*스킬\s*(?:레벨|우선)|\n\s*[-*]?\s*파티|$))/gi);
   if (mainStatBlocks && mainStatBlocks.length > 0) {
     mainStatBlocks.forEach((block, idx) => {
       const parsedBlockStats = parseCostStats(block);
@@ -895,7 +895,7 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
 
   // 7. 에코 부 옵션 파싱
   const subStats = [];
-  const subStatSectionMatch = mdContent.match(/에코\s*부\s*옵션\s*\n+([\s\S]*?)(?=(?:스킬|파티|$))/i);
+  const subStatSectionMatch = mdContent.match(/에코\s*부\s*옵션\s*\n+([\s\S]*?)(?=(?:\n\s*[-*]?\s*스킬\s*(?:레벨|우선)|\n\s*[-*]?\s*파티|$))/i);
   if (subStatSectionMatch) {
     const lines = subStatSectionMatch[1].split('\n');
     for (const l of lines) {
