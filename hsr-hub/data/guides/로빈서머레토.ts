@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 로빈서머레토Guide: CharacterGuide = {
   "characterName": "로빈•서머레토",
-  "lastUpdated": "2026-09-12",
+  "lastUpdated": "2026-09-13",
   "patchVersion": "4.5",
   "variants": [
     {
