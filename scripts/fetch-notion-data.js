@@ -797,7 +797,7 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
         sNote = parts.slice(1).join(':').trim() || undefined;
       }
       const afterSet = mdContent.slice(setMatch.index + setMatch[0].length);
-      const nextStop = afterSet.search(/(?:메인(?:\s*에코)?\s*[:：]|[-*]?\s*목표\s*육성치|---|스킬)/i);
+      const nextStop = afterSet.search(/(?:\n\s*[-*]?\s*메인(?:\s*에코)?\s*[:：]|\n\s*[-*]?\s*목표\s*육성치|\n\s*[-=]{3,}|\n\s*[-*]?\s*스킬\s*(?:레벨|우선)|\n\s*[-*]?\s*파티)/i);
       const setBlock = nextStop !== -1 ? afterSet.slice(0, nextStop) : afterSet;
       const reasonMatch = setBlock.match(/이유\s*[:：]\s*([^\n]+)/i);
       if (reasonMatch) {
@@ -826,7 +826,7 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
 
   // 5. 목표 육성치 파싱
   const targetStats = [];
-  const targetSectionMatch = mdContent.match(/[-*]?\s*목표\s*육성치(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|스킬|파티|$))/i);
+  const targetSectionMatch = mdContent.match(/[-*]?\s*목표\s*육성치(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|\n\s*[-*]?\s*스킬\s*(?:레벨|우선)|\n\s*[-*]?\s*파티|$))/i);
   if (targetSectionMatch) {
     const lines = targetSectionMatch[1].split('\n');
     for (const l of lines) {
