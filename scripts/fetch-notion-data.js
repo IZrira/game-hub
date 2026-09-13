@@ -623,17 +623,28 @@ const WW_GUIDE_CHAR_MAP = {
 function parseSkillPriority(rawText) {
   if (!rawText) return [];
   let cleaned = rawText.replace(/\*\*/g, '').trim();
-  if (cleaned.includes(',') || cleaned.includes('>') || cleaned.includes('→')) {
-    return cleaned
-      .replace(/[>→]|->/g, ',')
-      .split(/[,·\n]+/)
-      .map(s => s.trim())
-      .filter(Boolean);
-  }
   const knownSkills = [
     '공명 회로', '공명 해방', '공명 스킬', '기본 공격', '일반 공격',
     '변주 스킬', '반주 스킬', '고유 스킬'
   ];
+  if (cleaned.includes(',') || cleaned.includes('>') || cleaned.includes('→')) {
+    const rawParts = cleaned
+      .replace(/[>→]|->/g, ',')
+      .split(/[,·\n]+/)
+      .map(s => s.trim())
+      .filter(Boolean);
+    const result = [];
+    for (const part of rawParts) {
+      const regex = new RegExp(knownSkills.join('|'), 'g');
+      const matches = part.match(regex);
+      if (matches && matches.length > 1) {
+        result.push(...matches);
+      } else {
+        result.push(part);
+      }
+    }
+    return result;
+  }
   const regex = new RegExp(knownSkills.join('|'), 'g');
   const matches = cleaned.match(regex);
   if (matches && matches.length > 0) {
@@ -815,7 +826,7 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
 
   // 5. 목표 육성치 파싱
   const targetStats = [];
-  const targetSectionMatch = mdContent.match(/목표\s*육성치\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|스킬|파티|$))/i);
+  const targetSectionMatch = mdContent.match(/[-*]?\s*목표\s*육성치(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|스킬|파티|$))/i);
   if (targetSectionMatch) {
     const lines = targetSectionMatch[1].split('\n');
     for (const l of lines) {
