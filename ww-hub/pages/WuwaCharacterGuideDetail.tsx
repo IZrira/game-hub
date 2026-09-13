@@ -129,6 +129,41 @@ const resolveSonataInfo = (rawText: string) => {
   };
 };
 
+const formatVariantTabName = (name: string) => {
+  if (!name || !name.includes('+')) return name;
+  const parts = name.split('+').map(p => p.trim()).filter(Boolean);
+  const simplified = parts.map(part => {
+    if (part.includes('꿈을 깨뜨리는 망령의 악몽')) {
+      const m = part.match(/(\d+)세트/);
+      return `망령의 악몽 (${m ? m[1] : '1'})`;
+    }
+    const statMatch = part.match(/(기류|전도|인멸|용융|응결|회절|공격력|공명\s*효율|체력|HP|치료).*?(\d+)세트/);
+    if (statMatch) {
+      return `${statMatch[1].trim()} (${statMatch[2]})`;
+    }
+    const sonata = part.match(/(.+?)\s*(\d+)세트/);
+    if (sonata) {
+      return `${sonata[1].trim()} (${sonata[2]})`;
+    }
+    return part;
+  });
+
+  const grouped: { base: string; text: string }[] = [];
+  simplified.forEach(cur => {
+    const prev = grouped[grouped.length - 1];
+    const curBase = cur.replace(/\s*\(\d+.*?\)/, '');
+    if (prev && prev.base === curBase) {
+      const pNum = prev.text.match(/\((.*?)\)/)?.[1] || '2';
+      const cNum = cur.match(/\((.*?)\)/)?.[1] || '2';
+      prev.text = `${prev.base} (${pNum}+${cNum})`;
+    } else {
+      grouped.push({ base: curBase, text: cur });
+    }
+  });
+
+  return grouped.map(g => g.text).join(' + ');
+};
+
 const normalizeName = (name: string) => {
   if (!name) return "";
   return name
@@ -378,8 +413,82 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   }, [parsedWeapons]);
 
   const parsedEchoSetsData = useMemo(() => {
-    if (!currentVariant?.echoSets) return { hasSplitCombo: false, threePieceSets: [], twoPieceSets: [], allSets: [] };
+    if (!currentVariant?.echoSets) {
+      return { isCombo: false, comboBadge: '', comboNote: '', comboParts: [], hasSplitCombo: false, threePieceSets: [], twoPieceSets: [], allSets: [] };
+    }
 
+    // 1. Check if current variant is a combo set (contains '+')
+    const comboRaw = currentVariant.echoSets.find((s: any) => {
+      const name = typeof s === 'string' ? s : (s?.name || '');
+      return name.includes('+');
+    }) || (currentVariant.name?.includes('+') ? currentVariant : null);
+
+    if (comboRaw) {
+      const rawFullName = typeof comboRaw === 'string' ? comboRaw : (comboRaw.name || currentVariant?.name || '');
+      let setFullName = rawFullName;
+      let setNote = typeof comboRaw === 'object' && comboRaw ? (comboRaw.note || '') : '';
+      if (!setNote && (setFullName.includes(':') || setFullName.includes('：'))) {
+        const parts = setFullName.split(/[:：]/);
+        setFullName = parts[0].trim();
+        setNote = parts.slice(1).join(':').trim();
+      }
+
+      const rawParts = setFullName.split('+').map((p: string) => p.trim()).filter(Boolean);
+      const piecesList: number[] = [];
+      const comboParts: any[] = [];
+
+      rawParts.forEach((rawPart: string) => {
+        const info = resolveSonataInfo(rawPart);
+        const pieces = info.pieces || 2;
+        piecesList.push(pieces);
+
+        const isTwoPiece = pieces === 2 || /2세트|피해.*증가/.test(rawPart);
+        const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(rawPart) : [];
+
+        // Check onePiece effect if present in SONATA_EFFECTS
+        let effectDesc = '';
+        if (pieces === 1 || info.sonataName.includes('망령의 악몽')) {
+          const sEffect = SONATA_EFFECTS.find(s => s.setName === info.sonataName || s.setName.includes('망령의 악몽'));
+          if (sEffect?.effect?.onePiece) {
+            effectDesc = sEffect.effect.onePiece;
+          }
+        }
+
+        // Merge duplicate pieces (e.g. "전도 피해 10% 증가 2세트" appearing twice)
+        const existing = comboParts.find(p => p.cleanName === info.cleanName && p.sonataName === info.sonataName);
+        if (existing) {
+          existing.count = (existing.count || 1) + 1;
+          existing.badgeText = `${existing.pieces} Pieces × ${existing.count}`;
+        } else {
+          comboParts.push({
+            cleanName: info.cleanName,
+            sonataName: info.sonataName,
+            effectName: info.effectName,
+            pieces: pieces,
+            imgUrl: info.imgUrl,
+            matchingSets,
+            effectDesc,
+            count: 1,
+            badgeText: `${pieces} Piece${pieces > 1 ? 's' : ''}`,
+          });
+        }
+      });
+
+      const comboBadge = piecesList.join(' + ') + ' Pieces';
+
+      return {
+        isCombo: true,
+        comboBadge,
+        comboNote: setNote,
+        comboParts,
+        hasSplitCombo: false,
+        threePieceSets: [],
+        twoPieceSets: [],
+        allSets: []
+      };
+    }
+
+    // 2. Non-combo (standard 5-piece or isolated 3-piece/2-piece)
     const threePieceSets: any[] = [];
     const twoPieceSets: any[] = [];
     const allSets: any[] = [];
@@ -397,63 +506,37 @@ const WuwaCharacterGuideDetail: React.FC = () => {
       }
 
       const rank = i + 1;
-
-      if (setFullName.includes('+')) {
-        const parts = setFullName.split('+').map((p: string) => p.trim()).filter(Boolean);
-        const noteParts = setNote.includes('+') ? setNote.split('+').map((p: string) => p.trim()).filter(Boolean) : [];
-        parts.forEach((part: string, partIdx: number) => {
-          const info = resolveSonataInfo(part);
-          const isTwoPiece = info.pieces === 2 || /2세트|피해.*증가/.test(part);
-          const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(part) : [];
-          const itemNote = (noteParts.length === parts.length) ? noteParts[partIdx] : setNote;
-          const item = {
-            raw: set,
-            cleanName: part,
-            sonataName: info.sonataName,
-            effectName: info.effectName,
-            pieces: info.pieces,
-            imgUrl: info.imgUrl,
-            matchingSets,
-            note: itemNote,
-            rank,
-          };
-          if (info.pieces === 3) {
-            threePieceSets.push(item);
-          } else if (info.pieces === 2 || isTwoPiece) {
-            twoPieceSets.push(item);
-          } else {
-            allSets.push(item);
-          }
-        });
+      const info = resolveSonataInfo(setFullName);
+      const isTwoPiece = info.pieces === 2 || /2세트|피해.*증가/.test(setFullName);
+      const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(setFullName) : [];
+      const item = {
+        raw: set,
+        cleanName: setFullName,
+        setName: info.sonataName,
+        sonataName: info.sonataName,
+        effectName: info.effectName,
+        pieces: info.pieces,
+        imgUrl: info.imgUrl,
+        matchingSets,
+        note: setNote,
+        rank,
+      };
+      if (info.pieces === 3) {
+        threePieceSets.push(item);
+      } else if (info.pieces === 2 || isTwoPiece) {
+        twoPieceSets.push(item);
       } else {
-        const info = resolveSonataInfo(setFullName);
-        const isTwoPiece = info.pieces === 2 || /2세트|피해.*증가/.test(setFullName);
-        const matchingSets = isTwoPiece ? getMatchingTwoPieceSets(setFullName) : [];
-        const item = {
-          raw: set,
-          cleanName: setFullName,
-          setName: info.sonataName,
-          sonataName: info.sonataName,
-          effectName: info.effectName,
-          pieces: info.pieces,
-          imgUrl: info.imgUrl,
-          matchingSets,
-          note: setNote,
-          rank,
-        };
-        if (info.pieces === 3) {
-          threePieceSets.push(item);
-        } else if (info.pieces === 2 || isTwoPiece) {
-          twoPieceSets.push(item);
-        } else {
-          allSets.push(item);
-        }
+        allSets.push(item);
       }
     });
 
     const hasSplitCombo = threePieceSets.length > 0 && twoPieceSets.length > 0;
 
     return {
+      isCombo: false,
+      comboBadge: '',
+      comboNote: '',
+      comboParts: [],
       hasSplitCombo,
       threePieceSets,
       twoPieceSets,
@@ -462,6 +545,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   }, [currentVariant]);
 
   const echoSetsWithNotes = useMemo(() => {
+    if (parsedEchoSetsData.isCombo) {
+      return parsedEchoSetsData.comboNote ? [{ cleanName: '화음 세트 조합', note: parsedEchoSetsData.comboNote }] : [];
+    }
     const list = [
       ...parsedEchoSetsData.threePieceSets,
       ...parsedEchoSetsData.twoPieceSets,
@@ -742,7 +828,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                         {setImgUrl && (
                           <img src={setImgUrl} alt={sonataInfo.sonataName} className={`w-4 h-4 object-contain ${selectedVariantIndex !== idx && 'opacity-60 grayscale'}`} onError={(e) => (e.currentTarget.style.display = 'none')} />
                         )}
-                        {v.name}
+                        {t(formatVariantTabName(v.name))}
                       </button>
                     );
                   })}
@@ -750,8 +836,119 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               )}
             </div>
             <div className="flex flex-col gap-8">
-              {/* 3세트 + 2세트 스플릿 조합인 경우 2줄 배치 (세로 정렬) */}
-              {parsedEchoSetsData.threePieceSets.length > 0 && parsedEchoSetsData.twoPieceSets.length > 0 ? (
+              {parsedEchoSetsData.isCombo ? (
+                <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent shadow-xl">
+                  <div className="flex items-center justify-between border-b border-white/5 pb-6">
+                    <div className="flex items-center gap-4">
+                      <Layers size={22} className="text-brand-accent" />
+                      <span className="text-xl font-black uppercase tracking-tighter italic">{t('화음 세트 조합')}</span>
+                    </div>
+                    <span className="px-3.5 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                      {parsedEchoSetsData.comboBadge}
+                    </span>
+                  </div>
+
+                  {/* 세팅 전체 설명/노트가 있으면 1회만 깔끔하게 표시 */}
+                  {parsedEchoSetsData.comboNote && (
+                    <div className="p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start gap-3.5">
+                      <Sparkles size={18} className="text-brand-accent shrink-0 mt-0.5" />
+                      <p className="text-sm sm:text-base text-gray-200 leading-relaxed font-medium break-keep">
+                        {t(parsedEchoSetsData.comboNote)}
+                      </p>
+                    </div>
+                  )}
+
+                  {/* 조합 세트 파츠 그리드 */}
+                  <div className={`grid gap-4 ${
+                    parsedEchoSetsData.comboParts.length === 1 
+                      ? 'grid-cols-1' 
+                      : parsedEchoSetsData.comboParts.length === 2 
+                        ? 'grid-cols-1 md:grid-cols-2' 
+                        : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                  }`}>
+                    {parsedEchoSetsData.comboParts.map((part: any, i: number) => {
+                      const isFirst = i === 0;
+                      return (
+                        <div 
+                          key={i} 
+                          className={`flex flex-col gap-4 p-5 sm:p-6 rounded-3xl transition-all group overflow-hidden relative cursor-default ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(74,222,128,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                        >
+                          {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
+                          <div className="flex items-center gap-4 w-full">
+                            <div className="w-14 h-14 rounded-2xl border border-white/10 bg-black/40 flex items-center justify-center shrink-0 p-1.5 group-hover:scale-105 transition-transform">
+                              {part.imgUrl ? (
+                                <img src={part.imgUrl} alt={part.sonataName || part.cleanName} className="w-full h-full object-contain" onError={(e) => (e.currentTarget.style.display = 'none')} />
+                              ) : (
+                                <Box size={24} className="text-gray-400" />
+                              )}
+                            </div>
+                            <div className="flex flex-col gap-1 w-full z-10 min-w-0">
+                              <div className="flex items-center justify-between w-full">
+                                <span className="text-base sm:text-lg font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-keep">{t(part.cleanName)}</span>
+                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-brand-primary/20 text-brand-accent border border-brand-accent/30'}`}>
+                                  {part.badgeText}
+                                </span>
+                              </div>
+                              {part.sonataName && (
+                                <span className="text-xs text-gray-400 font-medium truncate">
+                                  소나타: {t(part.sonataName)}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+
+                          {/* 고유 효과 설명 (예: 1세트 효과 등) */}
+                          {part.effectDesc && (
+                            <div className="pt-2.5 border-t border-white/5">
+                              <p className="text-xs sm:text-sm text-gray-300 leading-relaxed font-medium break-keep">
+                                {t(part.effectDesc)}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* 해당 2세트 효과를 제공하는 소나타 리스트 */}
+                          {part.matchingSets && part.matchingSets.length > 0 && (
+                            <div className="pt-3 border-t border-white/5 space-y-2">
+                              <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                                <span className="flex items-center gap-1.5 text-gray-300">
+                                  <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
+                                  {t('해당 2세트 효과 보유 화음')} ({part.matchingSets.length}종)
+                                </span>
+                              </div>
+                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                {part.matchingSets.map((setName: string) => {
+                                  const iconUrl = `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(setName.normalize('NFC'))}.webp`;
+                                  return (
+                                    <div 
+                                      key={setName}
+                                      className="flex items-center gap-2 px-2.5 py-1.5 rounded-xl bg-black/40 border border-white/5 hover:border-brand-accent/40 transition-all group/sonata"
+                                    >
+                                      <div className="w-5 h-5 rounded-md bg-white/5 p-0.5 shrink-0 flex items-center justify-center">
+                                        <img 
+                                          src={iconUrl} 
+                                          alt={setName} 
+                                          className="w-full h-full object-contain" 
+                                          onError={(e) => { e.currentTarget.style.display = 'none'; }} 
+                                        />
+                                      </div>
+                                      <span className="text-xs text-gray-300 font-medium truncate group-hover/sonata:text-brand-accent transition-colors">
+                                        {t(setName)}
+                                      </span>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ) : (
+                <>
+                  {/* 3세트 + 2세트 스플릿 조합인 경우 2줄 배치 (세로 정렬) */}
+                  {parsedEchoSetsData.threePieceSets.length > 0 && parsedEchoSetsData.twoPieceSets.length > 0 ? (
                 <div className="grid grid-cols-1 gap-8">
                   {/* 3세트 화음 카드 */}
                   <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
@@ -1175,6 +1372,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   </div>
                 </div>
               )}
+            </>
+          )}
 
               <div className="glass-card rounded-[45px] p-10 border border-brand-primary/20 bg-brand-primary/[0.02] space-y-8 relative overflow-hidden group">
                 <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-colors duration-700" />
