@@ -719,16 +719,14 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
   if (hasVariants) {
     const variantBlocks = mdContent.split(/(?=에코\s*세트\s*\d+)/i).filter(b => /에코\s*세트\s*\d+/i.test(b));
     for (const vb of variantBlocks) {
-      const vHeaderMatch = vb.match(/에코\s*세트\s*(\d+)\s*\n+\s*([^\n]+)/i);
-      const variantName = vHeaderMatch ? vHeaderMatch[2].replace(/[*#_]/g, '').trim() : '추천 세팅';
+      const headerLineMatch = vb.match(/^[^\n]*에코\s*세트\s*(\d+)\s*[:：]?\s*([^\n]*)/i);
+      const sameLineTitle = headerLineMatch ? headerLineMatch[2].replace(/[*#_]/g, '').trim() : '';
       
       const vEchoSets = [];
       const linesAfterHeader = vb.replace(/^[^\n]*에코\s*세트\s*\d*[^\n]*\n+/i, '');
       const setNameMatch = linesAfterHeader.match(/([^\n]+(?:5세트|세트))/i);
       let sName = setNameMatch ? setNameMatch[1].replace(/[*#_]/g, '').trim() : '';
-      if (!sName || sName.toLowerCase() === '세트') {
-        sName = variantName;
-      }
+
       let sNote = undefined;
       if (sName.includes(':') || sName.includes('：')) {
         const parts = sName.split(/[:：]/);
@@ -740,6 +738,15 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
         const reasonText = reasonMatch[1].replace(/[*#_]/g, '').trim();
         sNote = sNote ? `${sNote} - ${reasonText}` : reasonText;
       }
+
+      let variantName = sameLineTitle || sName || '추천 세팅';
+      if (variantName === '세트' || variantName === '추천 세팅') {
+        if (sName && sName !== '세트') variantName = sName;
+      }
+      if (!sName || sName.toLowerCase() === '세트') {
+        sName = variantName;
+      }
+
       vEchoSets.push({
         name: sName,
         note: sNote
@@ -915,7 +922,8 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       isUniversalSynergy = true;
       synergyCharacters = [];
     } else {
-      synergyCharacters = pText.split(/[,·\n]+/).map(s => s.trim()).filter(Boolean);
+      const delimiterRegex = pText.includes(',') ? /[,,\n]+/ : /\s+[·/]\s+|\n+/;
+      synergyCharacters = pText.split(delimiterRegex).map(s => s.trim()).filter(Boolean);
     }
   }
 
