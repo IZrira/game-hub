@@ -19,7 +19,7 @@ const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
 const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
 
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
-const BASE_URL = 'https://rira-game-hub.pages.dev';
+const BASE_URL = 'https://riragamehub.com';
 const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
 // ---------------------------------------------------------------------
