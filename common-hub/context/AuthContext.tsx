@@ -32,17 +32,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     const initializeAuth = async () => {
       try {
+        // If the URL has corrupted double hashes like ##access_token, normalize it
+        if (window.location.hash.startsWith('##')) {
+          const cleanHash = window.location.hash.replace(/^#+/, '#');
+          window.history.replaceState(null, '', window.location.pathname + window.location.search + cleanHash);
+        }
+
         const { data: { session: currentSession } } = await supabase.auth.getSession();
 
-        // Handle OAuth hash token recovery
-        if (!currentSession && window.location.hash.includes('access_token')) {
-          const hash = window.location.hash.substring(1);
-          const params = new URLSearchParams(hash);
-          const accessToken = params.get('access_token');
-          const refreshToken = params.get('refresh_token');
+        // Handle OAuth hash token recovery (handles single '#' or '##' or query/hash mixes)
+        const fullUrl = window.location.href;
+        if (!currentSession && fullUrl.includes('access_token')) {
+          const accessTokenMatch = fullUrl.match(/[#&]access_token=([^&#]+)/);
+          const refreshTokenMatch = fullUrl.match(/[#&]refresh_token=([^&#]+)/);
+          const accessToken = accessTokenMatch ? decodeURIComponent(accessTokenMatch[1]) : null;
+          const refreshToken = refreshTokenMatch ? decodeURIComponent(refreshTokenMatch[1]) : null;
 
           if (accessToken && refreshToken) {
-            const { data: { session: setSess } } = await supabase.auth.setSession({
+            const { data: { session: setSess }, error: setSessionErr } = await supabase.auth.setSession({
               access_token: accessToken,
               refresh_token: refreshToken,
             });
@@ -50,9 +57,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             if (setSess) {
               setSession(setSess);
               setUser(setSess.user);
-              window.history.replaceState(null, '', window.location.pathname);
+              window.history.replaceState(null, '', window.location.pathname + window.location.search);
               setLoading(false);
               return;
+            }
+            if (setSessionErr) {
+              console.warn('Error setting session from OAuth hash:', setSessionErr.message);
             }
           }
 
@@ -60,7 +70,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           if (refreshedSession) {
             setSession(refreshedSession);
             setUser(refreshedSession.user);
-            window.history.replaceState(null, '', window.location.pathname);
+            window.history.replaceState(null, '', window.location.pathname + window.location.search);
           }
         } else {
           setSession(currentSession);
@@ -81,7 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
       if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
         if (window.location.hash) {
-          window.history.replaceState(null, '', window.location.pathname);
+          window.history.replaceState(null, '', window.location.pathname + window.location.search);
         }
       }
     });
@@ -96,10 +106,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.warn('Supabase is not initialized. Social login disabled in mock mode.');
       return;
     }
+    // Clean redirect URL: exclude any hash fragments to prevent ##access_token
+    const cleanRedirectUrl = window.location.origin + window.location.pathname;
     const { error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
-        redirectTo: window.location.href,
+        redirectTo: cleanRedirectUrl,
       },
     });
     if (error) {
