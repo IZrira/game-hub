@@ -27,7 +27,7 @@ function getNotionData() {
   }
 }
 
-const BASE_URL = 'https://rira-game-hub.pages.dev';
+const BASE_URL = 'https://riragamehub.com';
 const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
 // URL 인코딩 헬퍼 (공백을 %20으로 변환하고 괄호 등을 처리)
@@ -237,9 +237,9 @@ async function submitToIndexNow(urlList) {
   console.log(`Submitting ${urlList.length} URLs to IndexNow...`);
   
   const payload = {
-    host: 'rira-game-hub.pages.dev',
+    host: 'riragamehub.com',
     key: 'b6be7d1e8c7c4b2ca559a4bc5ef4d89a',
-    keyLocation: 'https://rira-game-hub.pages.dev/b6be7d1e8c7c4b2ca559a4bc5ef4d89a.txt',
+    keyLocation: 'https://riragamehub.com/b6be7d1e8c7c4b2ca559a4bc5ef4d89a.txt',
     urlList: urlList
   };
 

@@ -29,7 +29,7 @@ const TermsOfService: React.FC = () => {
 
           <h3 className="text-2xl font-bold text-white mt-8 mb-4 border-b border-white/10 pb-2">제 2 조 (용어의 정의)</h3>
           <ul className="list-disc pl-6 space-y-2">
-            <li><strong>본 사이트:</strong> Rira Game Hub (rira-game-hub.pages.dev) 및 관련 서브도메인 일체</li>
+            <li><strong>본 사이트:</strong> Rira Game Hub (riragamehub.com) 및 관련 서브도메인 일체</li>
             <li><strong>이용자:</strong> 본 사이트에 접속하여 이 약관에 따라 본 사이트가 제공하는 서비스를 받는 자</li>
             <li><strong>콘텐츠:</strong> 본 사이트가 제공하는 텍스트, 이미지, 동영상, 데이터베이스 등 일체의 정보</li>
           </ul>

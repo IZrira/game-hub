@@ -29,7 +29,7 @@ loadEnvFile(path.join(ROOT_DIR, '.env'));
 const CREDENTIALS_PATH = process.env.GOOGLE_APPLICATION_CREDENTIALS || 
   (fs.existsSync(path.join(ROOT_DIR, 'google-credentials.json')) ? path.join(ROOT_DIR, 'google-credentials.json') : null);
 
-const SITE_URL = process.env.SEARCH_CONSOLE_SITE_URL || 'https://rira-game-hub.pages.dev/';
+const SITE_URL = process.env.SEARCH_CONSOLE_SITE_URL || 'https://riragamehub.com/';
 
 /**
  * 날짜 포맷 (YYYY-MM-DD)

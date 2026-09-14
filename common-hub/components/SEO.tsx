@@ -66,7 +66,7 @@ export default function SEO({
   
   const siteName = "RIRA ARCHIVE";
   const siteTitle = `${title} | ${siteName}`;
-  const baseUrl = "https://rira-game-hub.pages.dev";
+  const baseUrl = "https://riragamehub.com";
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
   // 쿼리 매개변수를 사전순으로 정렬하고 lng 파라미터를 강제/정제하는 헬퍼 함수
@@ -140,15 +140,15 @@ export default function SEO({
       "author": {
         "@type": "Organization",
         "name": "RIRA ARCHIVE",
-        "url": "https://rira-game-hub.pages.dev"
+        "url": "https://riragamehub.com"
       },
       "publisher": {
         "@type": "Organization",
         "name": "RIRA ARCHIVE",
-        "url": "https://rira-game-hub.pages.dev",
+        "url": "https://riragamehub.com",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://rira-game-hub.pages.dev/logo192.png"
+          "url": "https://riragamehub.com/logo192.png"
         },
         "sameAs": [
           "https://github.com/IZrira/game-hub"
