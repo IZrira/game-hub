@@ -84,27 +84,23 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
     return () => clearTimeout(timer);
   }, []);
 
+  // When no valid approved AdSense slot ID is configured, do not render dummy placeholders.
+  // This prevents AdSense rejection for "Valuable Inventory: Template / Scaffolding / Under Construction".
+  if (!slot || slot === 'YOUR_AD_SLOT_ID') {
+    return null;
+  }
+
   return (
-    <div className={`relative flex items-center justify-center bg-white/5 border border-dashed border-white/10 rounded-lg overflow-hidden my-8 mx-auto ${getStyles()} ${className}`}>
+    <div className={`relative flex items-center justify-center overflow-hidden my-6 mx-auto ${getStyles()} ${className}`}>
       <ins 
         ref={adRef}
         className="adsbygoogle"
         style={{ display: 'block', width: '100%', height: '100%' }}
         data-ad-client="ca-pub-7014148671633305"
-        data-ad-slot={slot || "YOUR_AD_SLOT_ID"}
+        data-ad-slot={slot}
         data-ad-format={getAdFormat()}
         data-full-width-responsive="true"
       ></ins>
-      
-      {/* Visual placeholder for development */}
-      <div className="absolute inset-0 pointer-events-none flex items-center justify-center bg-black/40 backdrop-blur-[2px]">
-        <div className="text-center p-4">
-          <span className="text-[10px] font-black text-brand-accent uppercase tracking-[0.3em] block mb-2">Advertisement</span>
-          <div className="text-[11px] font-bold text-gray-400 uppercase tracking-widest animate-pulse">
-            AdSense Slot: {type}
-          </div>
-        </div>
-      </div>
     </div>
   );
 };
