@@ -1,9 +1,9 @@
 
 import React, { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { ARCHIVE_DATA, CHARACTER_DB } from '../data/games';
+import { ARCHIVE_DATA } from '../data/games';
 import { ITEM_META } from '../data/items';
-import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';
+import { getGameData } from '../data/dataManager';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import LazyImage from '../components/LazyImage';
@@ -42,16 +42,40 @@ const Home: React.FC = () => {
   }, []);
 
   /**
-   * @description 프로젝트 전체의 메트릭(게임, 캐릭터, 가이드, 아이템 수)을 연산하여 반환합니다.
-   * @returns {{ games: number, characters: number, guides: number, items: number }} 글로벌 통계 객체
+   * @description 프로젝트 전체 메트릭 및 개별 게임별 통계(캐릭터 수, 가이드 수 등)를 연산하여 반환합니다.
    */
-  const globalStats = useMemo(() => {
-    const guideCount = HSR_CHARACTER_GUIDES ? HSR_CHARACTER_GUIDES.length : 0;
+  const { globalStats, gameStats } = useMemo(() => {
+    const hsrData = getGameData('hsr');
+    const wwData = getGameData('ww');
+    const nteData = getGameData('nte');
+
+    const statsByGame: Record<string, { characters: number; guides: number }> = {
+      hsr: {
+        characters: hsrData.CHARACTER_DB?.length || 0,
+        guides: hsrData.GUIDES?.length || 0,
+      },
+      ww: {
+        characters: wwData.CHARACTER_DB?.length || 0,
+        guides: wwData.GUIDES?.length || 0,
+      },
+      nte: {
+        characters: nteData.CHARACTER_DB?.length || 0,
+        guides: nteData.GUIDES?.length || 0,
+      },
+    };
+
+    const totalCharacters = statsByGame.hsr.characters + statsByGame.ww.characters + statsByGame.nte.characters;
+    const totalGuides = statsByGame.hsr.guides + statsByGame.ww.guides + statsByGame.nte.guides;
+    const totalItems = Object.keys(ITEM_META).length;
+
     return {
-      games: ARCHIVE_DATA.games.length,
-      characters: CHARACTER_DB.length,
-      guides: ARCHIVE_DATA.games.reduce((acc, game) => acc + game.posts.length, 0) + guideCount,
-      items: Object.keys(ITEM_META).length
+      gameStats: statsByGame,
+      globalStats: {
+        games: ARCHIVE_DATA.games.length,
+        characters: totalCharacters,
+        guides: totalGuides,
+        items: totalItems
+      }
     };
   }, []);
 
@@ -230,12 +254,12 @@ const Home: React.FC = () => {
                   <div className="flex items-center gap-6 sm:gap-10 pt-2 sm:pt-4">
                     <div className="flex flex-col">
                       <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('캐릭터 명단')}</span>
-                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{CHARACTER_DB.filter(c => c.gameId === game.id).length}</span>
+                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{gameStats[game.id]?.characters ?? 0}</span>
                     </div>
                     <div className="w-px h-8 sm:h-10 bg-white/10" />
                     <div className="flex flex-col">
                       <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('전략 보고서')}</span>
-                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{game.posts.length}</span>
+                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{gameStats[game.id]?.guides ?? 0}</span>
                     </div>
                   </div>
 

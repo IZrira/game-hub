@@ -2,10 +2,9 @@ import { HSR_DATA_ALL } from '../../hsr-hub/data/index';
 import { WW_DATA_ALL } from '../../ww-hub/data/index';
 import { ArchiveData, Character, LightCone, Relic, Ornament } from '../types';
 
-export const CHARACTER_DB: Character[] = [
-  ...HSR_DATA_ALL.CHARACTER_DB,
-  ...WW_DATA_ALL.CHARACTER_DB
-];
+import { getGameData } from './dataManager';
+
+export const CHARACTER_DB: Character[] = getGameData('all').CHARACTER_DB;
 
 export const LIGHTCONE_DB: LightCone[] = [
   ...HSR_DATA_ALL.LIGHTCONE_DB
