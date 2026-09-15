@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 달리아Guide: CharacterGuide = {
   "characterName": "달리아",
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-09-15",
   "patchVersion": "3.8",
   "bestRelics": [
     {

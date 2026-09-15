@@ -85,43 +85,59 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
   let hasMore = true;
   let nextCursor = undefined;
 
-  // 캐릭터 DB의 기본 정렬 기준 (캐릭터 DB는 '캐릭터', 무기 DB는 '이름'이 타이틀)
-  const sortProperty = isCharacterDB ? '캐릭터' : '이름';
+  let dataSourceId = null;
+  try {
+    const db = await notion.databases.retrieve({ database_id: dbId });
+    if (db.data_sources && db.data_sources.length > 0) {
+      dataSourceId = db.data_sources[0].id;
+    }
+  } catch (err) {
+    console.warn(`[Notion Sync] databases.retrieve on ${dbId}:`, err.message);
+  }
 
-  while (hasMore) {
-    try {
-      const response = await notion.request({
+  // 캐릭터 DB의 기본 정렬 기준 (캐릭터 DB는 '캐릭터' 또는 '이름', 무기/아이템 DB는 '이름'이 타이틀)
+  const sortProperty = (gameName === 'NTE' || !isCharacterDB) ? '이름' : '캐릭터';
+
+  const queryPage = async (cursor, withSort = true) => {
+    if (dataSourceId) {
+      const opts = { data_source_id: dataSourceId, start_cursor: cursor };
+      if (withSort) opts.sorts = [{ property: sortProperty, direction: 'ascending' }];
+      if (notion.dataSources && notion.dataSources.query) {
+        return await notion.dataSources.query(opts);
+      }
+      return await notion.request({
+        path: `data_sources/${dataSourceId}/query`,
+        method: 'POST',
+        body: opts
+      });
+    } else {
+      const body = { start_cursor: cursor };
+      if (withSort) body.sorts = [{ property: sortProperty, direction: 'ascending' }];
+      return await notion.request({
         path: `databases/${dbId}/query`,
         method: 'POST',
-        body: {
-          sorts: [{ property: sortProperty, direction: 'ascending' }],
-          start_cursor: nextCursor
-        }
+        body
       });
+    }
+  };
+
+  let useSort = true;
+  while (hasMore) {
+    try {
+      const response = await queryPage(nextCursor, useSort);
       console.log(`[Notion Sync] Fetched page ${results.length + response.results.length} from ${dbId}`);
       results.push(...response.results);
       hasMore = response.has_more;
       nextCursor = response.next_cursor;
     } catch (e) {
       console.warn(`[Notion Sync] Failed to fetch from DB ${dbId} (sort fallback):`, e.message);
-      // fallback without sort if property missing
-      hasMore = false;
-      if (e.status === 400) {
-        let hasMoreFallback = true;
-        let nextCursorFallback = undefined;
-        while(hasMoreFallback) {
-           const fallbackResp = await notion.request({
-            path: `databases/${dbId}/query`,
-            method: 'POST',
-            body: { start_cursor: nextCursorFallback }
-          });
-          console.log(`[Notion Sync] Fallback fetched page ${results.length + fallbackResp.results.length} from ${dbId}`);
-          results.push(...fallbackResp.results);
-          hasMoreFallback = fallbackResp.has_more;
-          nextCursorFallback = fallbackResp.next_cursor;
-        }
+      if (useSort) {
+        // Retry current without sort
+        useSort = false;
+        continue;
       } else {
-        throw e;
+        console.error(`[Notion Sync] Query also failed without sort on ${dbId}:`, e.message);
+        break;
       }
     }
   }
@@ -382,6 +398,45 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
   return Array.from(itemsMap.values());
 }
 
+function syncNteCharactersFile(nteCharacters) {
+  try {
+    const charactersFilePath = path.join(ROOT_DIR, 'nte-hub', 'data', 'characters.ts');
+    const summaries = nteCharacters.map(c => ({
+      id: c.id || `nte-${c.name}`,
+      name: c.name,
+      folderName: c.name,
+      attribute: c.abilityAttribute || c.itemAttribute || '이능',
+      arc: c.arc || '결합',
+      role: c.combatRoles ? c.combatRoles.split('\n')[0].trim() : '딜러',
+      rarity: typeof c.rarity === 'number' ? c.rarity : (c.rarity === '5' || c.rarity === 'S' ? 5 : 4),
+      releaseVersion: c.releaseVersion || '1.0',
+      birthday: c.birthday || '',
+      affiliation: c.affiliation || ''
+    }));
+
+    const content = `export interface NTECharacterSummary {
+  id: string;
+  name: string;
+  folderName: string;
+  attribute: string;
+  arc: string;
+  role: string;
+  rarity: number;
+  releaseVersion: string;
+  birthday?: string;
+  affiliation?: string;
+}
+
+export const NTE_CHARACTERS_DATA: NTECharacterSummary[] = ${JSON.stringify(summaries, null, 2)};
+`;
+
+    fs.writeFileSync(charactersFilePath, content, 'utf8');
+    console.log(`[Notion Sync] Generated nte-hub/data/characters.ts with ${summaries.length} characters.`);
+  } catch (err) {
+    console.error('[Notion Sync] Failed to generate characters.ts:', err.message);
+  }
+}
+
 async function fetchNotionData() {
   if (!fs.existsSync(destDir)) {
     fs.mkdirSync(destDir, { recursive: true });
@@ -398,6 +453,46 @@ async function fetchNotionData() {
   console.log('[Notion Sync] Connecting to Notion API...');
   const notion = new Client({ auth: NOTION_TOKEN, notionVersion: '2022-06-28' });
   const n2m = new NotionToMarkdown({ notionClient: notion });
+
+  if (process.argv.includes('--nte-only') || process.argv.includes('--nte-characters-only')) {
+    console.log('[Notion Sync] Running in NTE sync mode...');
+    const existing = fs.existsSync(jsonPath) ? JSON.parse(fs.readFileSync(jsonPath, 'utf8')) : [];
+
+    console.log(`[Notion Sync] Fetching NTE Characters from ${NOTION_NTE_CHARACTER_DB_ID}...`);
+    const nteCharacters = await fetchFromDB(notion, NOTION_NTE_CHARACTER_DB_ID, n2m, true, 'NTE');
+    const formattedNteCharacters = nteCharacters.map(item => ({
+      ...item,
+      type: '캐릭터',
+      dbSource: 'nte_characters'
+    }));
+    console.log(`[Notion Sync] Fetched ${nteCharacters.length} NTE characters.`);
+    syncNteCharactersFile(formattedNteCharacters);
+
+    let nteItemsList = [];
+    let nteArcsList = [];
+    if (!process.argv.includes('--nte-characters-only')) {
+      if (NOTION_NTE_ITEM_DB_ID) {
+        console.log(`[Notion Sync] Fetching NTE Items from ${NOTION_NTE_ITEM_DB_ID}...`);
+        const nteItems = await fetchFromDB(notion, NOTION_NTE_ITEM_DB_ID, n2m, false, 'NTE');
+        nteItemsList = nteItems.map(item => ({ ...item, type: item.type || '아이템', dbSource: 'nte_items' }));
+      }
+      if (NOTION_NTE_ARC_DB_ID) {
+        console.log(`[Notion Sync] Fetching NTE Arcs from ${NOTION_NTE_ARC_DB_ID}...`);
+        const nteArcs = await fetchFromDB(notion, NOTION_NTE_ARC_DB_ID, n2m, false, 'NTE');
+        nteArcsList = nteArcs.map(item => ({ ...item, type: item.type || '결합', dbSource: 'nte_arcs' }));
+      }
+    }
+
+    const filtered = existing.filter(i => {
+      if (process.argv.includes('--nte-characters-only')) return i.dbSource !== 'nte_characters';
+      return i.dbSource !== 'nte_characters' && i.dbSource !== 'nte_items' && i.dbSource !== 'nte_arcs';
+    });
+
+    const combined = [...filtered, ...formattedNteCharacters, ...nteItemsList, ...nteArcsList];
+    fs.writeFileSync(jsonPath, JSON.stringify(combined, null, 2), 'utf8');
+    console.log(`[Notion Sync] Successfully synced NTE data (${formattedNteCharacters.length} chars) in notion-data.json.`);
+    return;
+  }
 
   if (process.argv.includes('--ww-guides-only')) {
     console.log('[Notion Sync] Running in --ww-guides-only mode...');
@@ -495,6 +590,7 @@ async function fetchNotionData() {
       
       allItems.push(...formattedNteCharacters);
       console.log(`[Notion Sync] Fetched ${nteCharacters.length} NTE characters.`);
+      syncNteCharactersFile(formattedNteCharacters);
     }
 
     // 7. Fetch from NTE Arcs DB

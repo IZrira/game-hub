@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 천야블레이드Guide: CharacterGuide = {
   "characterName": "천야•블레이드",
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-09-15",
   "patchVersion": "4.3",
   "variants": [
     {

@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 토오사카린Guide: CharacterGuide = {
   "characterName": "토오사카 린",
-  "lastUpdated": "2026-09-13",
+  "lastUpdated": "2026-09-15",
   "patchVersion": "4.4",
   "variants": [
     {

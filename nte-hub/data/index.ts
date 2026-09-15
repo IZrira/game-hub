@@ -1,8 +1,9 @@
 import { Character } from '../../common-hub/types';
 import { NTE_ARCS } from './arcs';
 import { NTE_ITEM_META } from './items';
+import { NTE_CHARACTERS_DATA } from './characters';
 
-export const NTE_CHARACTERS: any[] = [];
+export const NTE_CHARACTERS: any[] = NTE_CHARACTERS_DATA;
 
 export const NTE_WEAPON_DB = NTE_ARCS;
 export const NTE_ECHO_DB: any[] = [];
@@ -23,3 +24,4 @@ export * from './arcs';
 export * from './items';
 export * from './parties';
 export * from './terms';
+export * from './characters';
