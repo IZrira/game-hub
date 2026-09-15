@@ -42,8 +42,25 @@ const SEARCH_CONFIG = {
     getCharacterPath: (c: any) => c.weaponType || c.weapon,
     getWeaponPath: (w: any) => w.type || w.weaponType || w.weapon,
     getWeapons: (data: any) => data.WEAPON_DATA || [],
-    getGuides: (data: any) => [],
-    getGuideName: (g: any) => ''
+    getGuides: (data: any) => data.GUIDES || [],
+    getGuideName: (g: any) => g.name || g.characterName || ''
+  },
+  nte: {
+    gameName: '이환',
+    popularSearches: ['린네', '코로모', '시그리카', '아크'],
+    weaponType: '아크',
+    relicType: '에코',
+    relicName: '에코',
+    paths: ['고체', '액체', '기체', '결합', '플라즈마'],
+    attrs: ['물리', '전도', '용융', '응결', '기류', '에테르'],
+    placeholders: '이환 캐릭터, 아크, 아이템을 검색하세요...',
+    guideHero: '린네',
+    weaponRouteBase: 'arc',
+    getCharacterPath: (c: any) => c.arc || c.weapon,
+    getWeaponPath: (w: any) => w.type,
+    getWeapons: (data: any) => data.WEAPON_DATA || [],
+    getGuides: (data: any) => data.GUIDES || [],
+    getGuideName: (g: any) => g.characterName || g.name || ''
   }
 };
 

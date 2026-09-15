@@ -42,30 +42,23 @@ const Home: React.FC = () => {
   }, []);
 
   /**
-   * @description 프로젝트 전체 메트릭 및 개별 게임별 통계(캐릭터 수, 가이드 수 등)를 연산하여 반환합니다.
+   * @description 프로젝트 전체 메트릭 및 개별 게임별 통계(캐릭터 수, 가이드 수 등)를 자동으로 연산하여 반환합니다.
+   * ARCHIVE_DATA에 등록된 모든 게임을 순회하여 노션 동기화 및 신규 게임/캐릭터/가이드가 즉각 자동 카운트됩니다.
    */
   const { globalStats, gameStats } = useMemo(() => {
-    const hsrData = getGameData('hsr');
-    const wwData = getGameData('ww');
-    const nteData = getGameData('nte');
+    const statsByGame: Record<string, { characters: number; guides: number }> = {};
+    let totalCharacters = 0;
+    let totalGuides = 0;
 
-    const statsByGame: Record<string, { characters: number; guides: number }> = {
-      hsr: {
-        characters: hsrData.CHARACTER_DB?.length || 0,
-        guides: hsrData.GUIDES?.length || 0,
-      },
-      ww: {
-        characters: wwData.CHARACTER_DB?.length || 0,
-        guides: wwData.GUIDES?.length || 0,
-      },
-      nte: {
-        characters: nteData.CHARACTER_DB?.length || 0,
-        guides: nteData.GUIDES?.length || 0,
-      },
-    };
+    ARCHIVE_DATA.games.forEach(game => {
+      const data = getGameData(game.id);
+      const characters = data?.CHARACTER_DB?.length || 0;
+      const guides = (data?.GUIDES?.length || 0) + (game.posts?.length || 0);
+      statsByGame[game.id] = { characters, guides };
+      totalCharacters += characters;
+      totalGuides += guides;
+    });
 
-    const totalCharacters = statsByGame.hsr.characters + statsByGame.ww.characters + statsByGame.nte.characters;
-    const totalGuides = statsByGame.hsr.guides + statsByGame.ww.guides + statsByGame.nte.guides;
     const totalItems = Object.keys(ITEM_META).length;
 
     return {
