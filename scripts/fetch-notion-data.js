@@ -44,13 +44,28 @@ const NOTION_NTE_ARC_DB_ID = process.env.NOTION_NTE_ARC_DB_ID || '38095fae3dc780
 const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
 
+const formatAnnotatedText = (text, prefix, suffix) => {
+  if (!text) return text;
+  if (text.includes('\n')) {
+    return text.split('\n').map(line => {
+      const match = line.match(/^(\s*)([\s\S]*?)(\s*)$/);
+      if (!match || !match[2]) return line;
+      return `${match[1]}${prefix}${match[2]}${suffix}${match[3]}`;
+    }).join('\n');
+  }
+  const match = text.match(/^(\s*)([\s\S]*?)(\s*)$/);
+  if (!match || !match[2]) return text;
+  return `${match[1]}${prefix}${match[2]}${suffix}${match[3]}`;
+};
+
 const parseRichTextArray = (richTextArray) => {
   if (!richTextArray) return '';
   return richTextArray.map(rt => {
     let text = rt.plain_text;
+    if (!text) return '';
     if (rt.annotations) {
-      if (rt.annotations.bold) text = `**${text}**`;
-      if (rt.annotations.color && rt.annotations.color !== 'default') text = `==${text}==`;
+      if (rt.annotations.bold) text = formatAnnotatedText(text, '**', '**');
+      if (rt.annotations.color && rt.annotations.color !== 'default') text = formatAnnotatedText(text, '==', '==');
     }
     return text;
   }).join('');

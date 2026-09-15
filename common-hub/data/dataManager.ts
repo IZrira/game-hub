@@ -565,11 +565,15 @@ export const getGameData = (targetId: string) => {
       skillMap.forEach(s => {
         if (item[s.key as keyof typeof item]) {
           if (s.key === 'resonance') {
-             const blocks = (item[s.key as keyof typeof item] as string).split(/\n\n+/).filter(p => p.trim());
+             const cleanResonance = (item[s.key as keyof typeof item] as string)
+               .replace(/\*\*\s*\n+\s*\*\*/g, '\n')
+               .replace(/(^|\n)\*\*\s*-\s*/g, '$1- ');
+             const blocks = cleanResonance.split(/\n\n+/).filter(p => p.trim());
              blocks.forEach((block, idx) => {
                const lines = block.split('\n');
-               const skillName = lines[0].replace(/\*\*/g, '').trim();
-               const description = lines.slice(1).join('\n').trim();
+               const skillName = lines[0].replace(/\*\*/g, '').replace(/==/g, '').trim();
+               let description = lines.slice(1).join('\n').trim();
+               description = description.replace(/(^|\n)\*\*\s*-\s*/g, '$1- ');
                parsedSkills.push({
                  id: `notion_nte_${s.key}_${idx + 1}`,
                  name: skillName || `${s.name} ${idx + 1}`,
@@ -580,9 +584,13 @@ export const getGameData = (targetId: string) => {
                });
              });
           } else {
-             const lines = (item[s.key as keyof typeof item] as string).split('\n');
-             const skillName = lines[0].replace(/\*\*/g, '').trim();
-             const description = lines.slice(1).join('\n').trim();
+             const cleanSkill = (item[s.key as keyof typeof item] as string)
+               .replace(/\*\*\s*\n+\s*\*\*/g, '\n')
+               .replace(/(^|\n)\*\*\s*-\s*/g, '$1- ');
+             const lines = cleanSkill.split('\n');
+             const skillName = lines[0].replace(/\*\*/g, '').replace(/==/g, '').trim();
+             let description = lines.slice(1).join('\n').trim();
+             description = description.replace(/(^|\n)\*\*\s*-\s*/g, '$1- ');
 
              parsedSkills.push({
                id: `notion_nte_${s.key}`,

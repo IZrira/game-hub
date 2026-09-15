@@ -347,7 +347,14 @@ const CharacterDetailNTE: React.FC = () => {
     const combinedRegex = new RegExp(`({icon:[^}]+}|\\*\\*[^*]+\\*\\*|==[^=]+==|${sortedKeys.map(k => k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')}|(?:[가-힣a-zA-Z]+속성\\s*)?(?:이능력\\s*)?피해(?!\\s*보너스)|[+-]?\\d+(?:\\.\\d+)?%?)`, 'g');
     
     return text.split('\n').map((line, lineIdx, linesArray) => {
-      const processedLine = line.replace(/<[^>]*>/g, '').replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
+      let processedLine = line.replace(/<[^>]*>/g, '').replace(/\{F#([^}]*)\}=\{M#([^}]*)\}/g, (_, f, m) => gender === 'f' ? f : m);
+      // Clean stray unmatched ** (e.g. "**- 각성 6회 시 추가 획득" or leading/trailing lone **)
+      if (processedLine.startsWith('**- ') && (processedLine.match(/\*\*/g) || []).length % 2 !== 0) {
+        processedLine = processedLine.replace(/^\*\*\s*-\s*/, '- ');
+      }
+      if ((processedLine.match(/\*\*/g) || []).length % 2 !== 0) {
+        processedLine = processedLine.replace(/(^|\s)\*\*(?!\*)/g, '$1').replace(/(?<!\*)\*\*(\s|$)/g, '$1');
+      }
       
       const parts = processedLine.split(combinedRegex).map((part, i) => {
         if (!part) return null;
