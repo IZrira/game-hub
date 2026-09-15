@@ -1126,6 +1126,20 @@ export const getGameData = (targetId: string) => {
   });
   const mergedNteArcs = Array.from(nteArcMap.values());
 
+  const nteCharMap = new Map<string, any>();
+  NTE_DATA_ALL.CHARACTER_DB.forEach(c => {
+    const key = (c.name || c.folderName || c.id || '').trim();
+    if (key) nteCharMap.set(key, c);
+  });
+  notionNteCharacters.forEach(c => {
+    const key = (c.name || c.folderName || c.id || '').trim();
+    if (key) {
+      const existing = nteCharMap.get(key);
+      nteCharMap.set(key, { ...existing, ...c });
+    }
+  });
+  const mergedNteCharacters = Array.from(nteCharMap.values());
+
   // 3. 요청된 ID에 따라 관련 데이터셋을 선택합니다.
   let baseData: any;
   if (gameId === 'hsr') {
@@ -1150,7 +1164,7 @@ export const getGameData = (targetId: string) => {
     };
   } else if (gameId === 'nte') {
     baseData = {
-      CHARACTER_DB: [...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
+      CHARACTER_DB: mergedNteCharacters,
       WEAPON_DB: mergedNteArcs,
       WEAPON_DATA: mergedNteArcs,
       ECHO_DB: NTE_DATA_ALL.ECHO_DATA,
@@ -1164,7 +1178,7 @@ export const getGameData = (targetId: string) => {
   } else {
     // 폴백: 전체 병합 (언어 코드 'ko' 등이 들어왔을 때 데이터 유실 방지)
     baseData = {
-      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...NTE_DATA_ALL.CHARACTER_DB, ...notionNteCharacters],
+      CHARACTER_DB: [...hsrData.CHARACTER_DB, ...wwData.CHARACTER_DB, ...mergedNteCharacters],
       LIGHTCONE_DB: hsrData.LIGHTCONE_DB,
       WEAPON_DB: [...wwData.WEAPON_DB, ...mergedNteArcs],
       WEAPON_DATA: [...wwData.WEAPON_DB, ...mergedNteArcs],

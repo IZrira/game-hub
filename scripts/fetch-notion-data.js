@@ -398,44 +398,6 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
   return Array.from(itemsMap.values());
 }
 
-function syncNteCharactersFile(nteCharacters) {
-  try {
-    const charactersFilePath = path.join(ROOT_DIR, 'nte-hub', 'data', 'characters.ts');
-    const summaries = nteCharacters.map(c => ({
-      id: c.id || `nte-${c.name}`,
-      name: c.name,
-      folderName: c.name,
-      attribute: c.abilityAttribute || c.itemAttribute || '이능',
-      arc: c.arc || '결합',
-      role: c.combatRoles ? c.combatRoles.split('\n')[0].trim() : '딜러',
-      rarity: typeof c.rarity === 'number' ? c.rarity : (c.rarity === '5' || c.rarity === 'S' ? 5 : 4),
-      releaseVersion: c.releaseVersion || '1.0',
-      birthday: c.birthday || '',
-      affiliation: c.affiliation || ''
-    }));
-
-    const content = `export interface NTECharacterSummary {
-  id: string;
-  name: string;
-  folderName: string;
-  attribute: string;
-  arc: string;
-  role: string;
-  rarity: number;
-  releaseVersion: string;
-  birthday?: string;
-  affiliation?: string;
-}
-
-export const NTE_CHARACTERS_DATA: NTECharacterSummary[] = ${JSON.stringify(summaries, null, 2)};
-`;
-
-    fs.writeFileSync(charactersFilePath, content, 'utf8');
-    console.log(`[Notion Sync] Generated nte-hub/data/characters.ts with ${summaries.length} characters.`);
-  } catch (err) {
-    console.error('[Notion Sync] Failed to generate characters.ts:', err.message);
-  }
-}
 
 async function fetchNotionData() {
   if (!fs.existsSync(destDir)) {
@@ -466,7 +428,6 @@ async function fetchNotionData() {
       dbSource: 'nte_characters'
     }));
     console.log(`[Notion Sync] Fetched ${nteCharacters.length} NTE characters.`);
-    syncNteCharactersFile(formattedNteCharacters);
 
     let nteItemsList = [];
     let nteArcsList = [];
@@ -590,7 +551,6 @@ async function fetchNotionData() {
       
       allItems.push(...formattedNteCharacters);
       console.log(`[Notion Sync] Fetched ${nteCharacters.length} NTE characters.`);
-      syncNteCharactersFile(formattedNteCharacters);
     }
 
     // 7. Fetch from NTE Arcs DB
