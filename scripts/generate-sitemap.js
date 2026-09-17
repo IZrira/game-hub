@@ -13,6 +13,9 @@ const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const WW_CHAR_DIR = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
 const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr');
 const HSR_GUIDE_INDEX = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides', 'index.ts');
+const HSR_LIGHTCONE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'lightcones');
+const HSR_RELICS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
+const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts');
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 
@@ -163,6 +166,65 @@ function getWwWeapons() {
   return weapons;
 }
 
+function getTopLevelStringValues(filePath, fieldName) {
+  if (!fs.existsSync(filePath)) return [];
+
+  const content = fs.readFileSync(filePath, 'utf8');
+  const fieldPattern = new RegExp(`^\\s{4}["']?${fieldName}["']?\\s*:\\s*["'](.*?)["']`, 'gm');
+  return [...content.matchAll(fieldPattern)].map(match => match[1]);
+}
+
+function getHsrLightConeNames() {
+  if (!fs.existsSync(HSR_LIGHTCONE_DIR)) return [];
+
+  return fs.readdirSync(HSR_LIGHTCONE_DIR)
+    .filter(file => file.endsWith('.ts') && !['index.ts', 'dataFactory.ts'].includes(file))
+    .flatMap(file => getTopLevelStringValues(path.join(HSR_LIGHTCONE_DIR, file), 'name'));
+}
+
+function validateGeneratedUrls(urlList, wwCharacterIds) {
+  const duplicateUrls = urlList.filter((url, index) => urlList.indexOf(url) !== index);
+  if (duplicateUrls.length > 0) {
+    throw new Error(`Duplicate sitemap URLs detected: ${[...new Set(duplicateUrls)].join(', ')}`);
+  }
+
+  const invalidWwCharacterUrls = urlList.filter(url => {
+    const match = new URL(url).pathname.match(/^\/gallery\/ww\/character\/([^/]+)(?:\/guide)?$/);
+    return match && !wwCharacterIds.has(decodeURIComponent(match[1]));
+  });
+
+  if (invalidWwCharacterUrls.length > 0) {
+    throw new Error(`Invalid WW character sitemap URLs detected: ${invalidWwCharacterUrls.join(', ')}`);
+  }
+
+  const allowedPathPatterns = [
+    /^\/$/,
+    /^\/(?:about|privacy|tos|contact|blog|notices)$/,
+    /^\/blog\/[^/]+$/,
+    /^\/gallery\/hsr(?:\/(?:tierlist|parties|terminology))?$/,
+    /^\/gallery\/hsr\/character\/[^/]+(?:\/guide)?$/,
+    /^\/gallery\/hsr\/(?:lightcone|relic|ornament)\/[^/]+$/,
+    /^\/gallery\/ww(?:\/(?:tierlist|parties))?$/,
+    /^\/gallery\/ww\/character\/[^/]+(?:\/guide)?$/,
+    /^\/gallery\/ww\/(?:weapon|echo)\/[^/]+$/,
+    /^\/gallery\/nte(?:\/parties)?$/,
+    /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/
+  ];
+  const invalidRouteUrls = urlList.filter(url => {
+    const pathname = new URL(url).pathname;
+    return !allowedPathPatterns.some(pattern => pattern.test(pathname));
+  });
+
+  if (invalidRouteUrls.length > 0) {
+    throw new Error(`Unsupported sitemap routes detected: ${invalidRouteUrls.join(', ')}`);
+  }
+
+  const uuidEntityUrls = urlList.filter(url => /\/gallery\/(?:hsr|ww|nte)\/character\/[0-9a-f]{8}-[0-9a-f-]{27}(?:\/|$)/i.test(new URL(url).pathname));
+  if (uuidEntityUrls.length > 0) {
+    throw new Error(`UUID-based character sitemap URLs detected: ${uuidEntityUrls.join(', ')}`);
+  }
+}
+
 // HSR 캐릭터 이미지 목록 빌드
 function getHsrCharacterImages(charData) {
   if (!charData) return [];
@@ -271,12 +333,18 @@ async function generateSitemap() {
     const registeredHsrGuides = getRegisteredHsrGuides();
     const registeredWwGuides = getRegisteredWwGuides();
     const wwWeapons = getWwWeapons();
+    const hsrLightConeNames = getHsrLightConeNames();
+    const hsrRelicNames = getTopLevelStringValues(HSR_RELICS_FILE, 'name');
+    const hsrOrnamentNames = getTopLevelStringValues(HSR_ORNAMENTS_FILE, 'name');
 
     console.log(`Found ${wwIds.length} Wuthering Waves characters.`);
     console.log(`Found ${registeredWwGuides.size} Wuthering Waves guides.`);
     console.log(`Found ${hsrIds.length} Honkai Star Rail characters.`);
     console.log(`Found ${registeredHsrGuides.size} HSR guides in index.`);
     console.log(`Found ${wwWeapons.length} Wuthering Waves weapons.`);
+    console.log(`Found ${hsrLightConeNames.length} HSR light cones.`);
+    console.log(`Found ${hsrRelicNames.length} HSR relic sets.`);
+    console.log(`Found ${hsrOrnamentNames.length} HSR ornament sets.`);
 
     const urlList = [
       `${BASE_URL}/`,
@@ -378,20 +446,17 @@ async function generateSitemap() {
       }
     });
 
-    // 5. Notion Imported Items Detail Pages (WW, HSR, NTE)
-    xml += `\n  <!-- Notion Imported Items Detail Pages -->\n`;
+    // 5. Notion Imported Detail Pages with explicit source ownership
+    xml += `\n  <!-- Notion Imported Detail Pages -->\n`;
     const notionData = getNotionData();
     console.log(`Processing ${notionData.length} Notion items for sitemap...`);
     notionData.forEach(item => {
       if (!item.name) return;
       const cleanType = item.type || '';
-      const isWwWeapon = ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
-      const isWwCharacter = item.dbSource === 'ww_characters' || (cleanType === '캐릭터' && item.dbSource !== 'nte_characters');
+      const isWwWeapon = item.dbSource === 'weapons' && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
       const isNteCharacter = item.dbSource === 'nte_characters';
-      const isNteArc = item.dbSource === 'nte_arcs' || ['고체', '액체', '기체', '결합', '플라즈마'].includes(cleanType);
-      const isHsrLightCone = cleanType === '광추';
-      const isHsrRelic = cleanType === '터널 유물';
-      const isHsrOrnament = cleanType === '차원 장신구';
+      const isNteArc = item.dbSource === 'nte_arcs';
+      const isWwEcho = item.dbSource === 'ww_echoes';
 
       if (isNteCharacter) {
         const url = `${BASE_URL}/gallery/nte/character/${encodeURIComponent(item.name)}`;
@@ -414,46 +479,42 @@ async function generateSitemap() {
           xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
           urlList.push(url);
         }
-      } else if (isWwCharacter) {
-        const url = `${BASE_URL}/gallery/ww/character/${encodeURIComponent(item.name)}`;
-        const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
+      } else if (isWwEcho) {
+        const url = `${BASE_URL}/gallery/ww/echo/${encodeURIComponent(item.name)}`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
-          urlList.push(url);
-        }
-      } else if (isHsrLightCone) {
-        const url = `${BASE_URL}/gallery/hsr/lightcone/${encodeURIComponent(item.name)}`;
-        const imageUrl = `${CDN_URL}/hsr%20images/light%20cones/${encodeAssetPath(item.name)}.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.7', 'weekly', [imageUrl]);
-          urlList.push(url);
-        }
-      } else if (isHsrRelic) {
-        const url = `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(item.name)}`;
-        const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.7', 'weekly', [imageUrl]);
-          urlList.push(url);
-        }
-      } else if (isHsrOrnament) {
-        const url = `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(item.name)}`;
-        const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.7', 'weekly', [imageUrl]);
-          urlList.push(url);
-        }
-      } else if (item.dbSource === 'ww_guides') {
-        const charParam = encodeURIComponent(item.id || item.name);
-        const url = `${BASE_URL}/gallery/ww/character/${charParam}/guide`;
-        const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.9', 'daily', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.7', 'weekly');
           urlList.push(url);
         }
       }
     });
 
-    // 6. Blog Posts
+    // 6. HSR equipment detail pages from the canonical local databases
+    xml += `\n  <!-- Honkai Star Rail Equipment Detail Pages -->\n`;
+    hsrLightConeNames.forEach(name => {
+      const url = `${BASE_URL}/gallery/hsr/lightcone/${encodeURIComponent(name)}`;
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        urlList.push(url);
+      }
+    });
+
+    hsrRelicNames.forEach(name => {
+      const url = `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(name)}`;
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        urlList.push(url);
+      }
+    });
+
+    hsrOrnamentNames.forEach(name => {
+      const url = `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(name)}`;
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        urlList.push(url);
+      }
+    });
+
+    // 7. Blog Posts
     xml += `\n  <!-- Blog Articles -->\n`;
     const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
     if (fs.existsSync(blogFilePath)) {
@@ -470,6 +531,7 @@ async function generateSitemap() {
       });
     }
 
+    validateGeneratedUrls(urlList, new Set(wwIds));
     xml += `</urlset>\n`;
 
     const sitemapPath = path.join(PUBLIC_DIR, 'sitemap.xml');
@@ -481,6 +543,7 @@ async function generateSitemap() {
 
   } catch (error) {
     console.error('Fatal error during sitemap generation:', error);
+    process.exitCode = 1;
   }
 }
 
