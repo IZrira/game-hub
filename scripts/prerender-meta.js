@@ -601,7 +601,11 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
 }
 
 function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml, innerContent = '', jsonLdSchema = null) {
-  const targetDir = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean));
+  // Static hosts resolve percent-encoded URLs to decoded filesystem names.
+  // decodeURI preserves reserved characters such as %2F and %3A while decoding
+  // Korean names and spaces, which also keeps the path safe on Windows builds.
+  const routeSegments = routePath.split('/').filter(Boolean).map(segment => decodeURI(segment));
+  const targetDir = path.join(DIST_DIR, ...routeSegments);
   fs.mkdirSync(targetDir, { recursive: true });
   
   const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
