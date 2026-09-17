@@ -12,6 +12,7 @@ const WW_CHAR_DIR = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
 const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr');
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
+const SITEMAP_FILE = path.join(PUBLIC_DIR, 'sitemap.xml');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
@@ -21,6 +22,7 @@ const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://riragamehub.com';
 const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+const prerenderedRoutes = new Set();
 
 // ---------------------------------------------------------------------
 // Helper Functions (Adopted from generate-sitemap.js)
@@ -570,8 +572,12 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
   // Replace og:description
   injected = injected.replace(/<meta property="og:description" content=".*?"\s*\/>/, `<meta property="og:description" content="${escapeHtml(description)}" />`);
   
-  // Inject missing og/twitter tags and optional JSON-LD schema into <head>
+  // The SPA shell has no stable canonical, so make every prerendered route explicit.
+  injected = injected.replace(/\s*<link\s+rel=["']canonical["'][^>]*>\s*/gi, '\n');
+
+  // Inject missing canonical/og/twitter tags and optional JSON-LD schema into <head>
   let extraTags = `
+    <link rel="canonical" href="${escapeHtml(BASE_URL)}${escapeHtml(urlPath)}" />
     <meta property="og:image" content="${escapeHtml(imageUrl)}" />
     <meta property="og:url" content="${escapeHtml(BASE_URL)}${escapeHtml(urlPath)}" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -600,6 +606,40 @@ function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml
   
   const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
   fs.writeFileSync(path.join(targetDir, 'index.html'), finalHtml, 'utf8');
+  prerenderedRoutes.add(routePath);
+}
+
+function getSitemapRoutes() {
+  if (!fs.existsSync(SITEMAP_FILE)) {
+    throw new Error('public/sitemap.xml not found. Generate the sitemap before prerendering.');
+  }
+
+  const xml = fs.readFileSync(SITEMAP_FILE, 'utf8');
+  return [...xml.matchAll(/<loc>(.*?)<\/loc>/g)]
+    .map(match => match[1].replace(/&amp;/g, '&'))
+    .filter(url => url.startsWith(BASE_URL))
+    .map(url => new URL(url).pathname);
+}
+
+function getFallbackMeta(routePath) {
+  const parts = routePath.split('/').filter(Boolean).map(part => decodeURIComponent(part));
+  const entityName = parts.at(-1) || 'Rira Archive';
+  const game = parts[1];
+  const type = parts[2];
+  const gameLabel = game === 'hsr' ? '붕괴: 스타레일' : game === 'ww' ? '명조' : game === 'nte' ? '이환(NTE)' : 'Rira Archive';
+  const typeLabels = {
+    lightcone: '광추', relic: '유물', ornament: '차원 장신구', echo: '에코',
+    weapon: '무기', character: '캐릭터', guide: '공략'
+  };
+  const typeLabel = typeLabels[type] || '게임 정보';
+  const title = parts.length >= 4
+    ? `${entityName} 상세 정보 | ${gameLabel} ${typeLabel} DB`
+    : `${gameLabel} ${typeLabel} | Rira Archive`;
+  const description = parts.length >= 4
+    ? `${gameLabel} ${entityName}의 최신 상세 정보, 능력치와 활용 정보를 확인하세요.`
+    : `${gameLabel}의 최신 데이터, 공략과 추천 정보를 확인하세요.`;
+  const content = `<article><h1>${escapeHtml(entityName)}</h1><p>${escapeHtml(description)}</p></article>`;
+  return { title, description, content };
 }
 
 // ---------------------------------------------------------------------
@@ -984,6 +1024,15 @@ function runPrerender() {
 
   console.log('🚀 Starting Static Meta Injection for Prerendering...');
 
+  createPrerenderedPage(
+    '/',
+    'Rira Archive | 게임 공략·캐릭터·장비 데이터베이스',
+    '붕괴: 스타레일, 명조, 이환(NTE)의 캐릭터, 장비, 파티와 최신 공략을 한곳에서 확인하세요.',
+    `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+    baseHtml
+  );
+  count++;
+
   const hsrGuidesMap = loadHsrGuidesMap();
   const hsrPartiesList = loadHsrPartiesList();
   const wwGuidesMap = loadWwGuidesMap();
@@ -1079,12 +1128,14 @@ function runPrerender() {
     count++;
   });
 
-  // 4. Notion Data (Future items/characters)
+  // 4. Notion Data (only routes owned by an explicit database source)
   const notionData = getNotionData();
   notionData.forEach(item => {
     if (!item.name) return;
     const cleanType = item.type || '';
-    if (['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType)) {
+    const isWwWeapon = item.dbSource === 'weapons' && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
+
+    if (isWwWeapon) {
       createPrerenderedPage(
         `/gallery/ww/weapon/${encodeURIComponent(item.name)}`,
         `${item.name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
@@ -1094,14 +1145,10 @@ function runPrerender() {
         generateNotionHtml(item)
       );
       count++;
-    } else if (cleanType === '캐릭터') {
-      const isNte = item.gameId === 'nte' || item.dbSource === 'nte_characters';
-      const gamePath = isNte ? 'nte' : 'ww';
-      const gameLabel = isNte ? '이환(NTE)' : '명조';
-      const imagePath = isNte 
-        ? `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`
-        : `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
-      const routePath = `/gallery/${gamePath}/character/${encodeURIComponent(item.name)}`;
+    } else if (item.dbSource === 'nte_characters') {
+      const gameLabel = '이환(NTE)';
+      const imagePath = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
+      const routePath = `/gallery/nte/character/${encodeURIComponent(item.name)}`;
       
       createPrerenderedPage(
         routePath,
@@ -1111,6 +1158,28 @@ function runPrerender() {
         baseHtml,
         generateNotionHtml(item),
         generateDiscussionForumPostingSchema(item.name, routePath)
+      );
+      count++;
+    } else if (item.dbSource === 'nte_arcs') {
+      const routePath = `/gallery/nte/weapon/${encodeURIComponent(item.name)}`;
+      createPrerenderedPage(
+        routePath,
+        `${item.name} 상세 옵션 및 추천 캐릭터 | 이환(NTE) 무기 DB`,
+        `이환(NTE) ${item.name}의 상세 능력치, 스킬 효과와 추천 캐릭터 정보를 확인하세요.`,
+        `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`,
+        baseHtml,
+        generateNotionHtml(item)
+      );
+      count++;
+    } else if (item.dbSource === 'ww_echoes') {
+      const routePath = `/gallery/ww/echo/${encodeURIComponent(item.name)}`;
+      createPrerenderedPage(
+        routePath,
+        `${item.name} 에코 상세 정보 | 명조 에코 DB`,
+        `명조 ${item.name} 에코의 코스트, 메인 어빌리티와 활용 정보를 확인하세요.`,
+        `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+        baseHtml,
+        generateNotionHtml(item)
       );
       count++;
     } else if (item.dbSource === 'ww_guides') {
@@ -1199,7 +1268,30 @@ function runPrerender() {
     count++;
   });
 
-  // 7. No-Index Utility Pages (Search, Login, Profile, Admin)
+  // 7. Ensure every indexable sitemap route has distinct initial HTML.
+  // Rich pages above take precedence; this closes coverage gaps for database
+  // routes such as HSR equipment and for top-level gallery pages.
+  const sitemapRoutes = getSitemapRoutes();
+  sitemapRoutes.forEach(routePath => {
+    if (prerenderedRoutes.has(routePath)) return;
+    const meta = getFallbackMeta(routePath);
+    createPrerenderedPage(
+      routePath,
+      meta.title,
+      meta.description,
+      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      meta.content
+    );
+    count++;
+  });
+
+  const missingRoutes = sitemapRoutes.filter(routePath => !prerenderedRoutes.has(routePath));
+  if (missingRoutes.length > 0) {
+    throw new Error(`Missing prerendered sitemap routes: ${missingRoutes.join(', ')}`);
+  }
+
+  // 8. No-Index Utility Pages (Search, Login, Profile, Admin)
   const noIndexPages = ['/search', '/login', '/profile', '/admin'];
   noIndexPages.forEach(routePath => {
     const targetDir = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean));
@@ -1214,7 +1306,7 @@ function runPrerender() {
     count++;
   });
 
-  console.log(`✅ Successfully injected static meta and DOM tags for ${count} dynamic routes!`);
+  console.log(`✅ Successfully injected static meta and DOM tags for ${count} routes (${sitemapRoutes.length} sitemap routes covered)!`);
 }
 
 runPrerender();
