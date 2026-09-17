@@ -205,7 +205,9 @@ function buildUrlNode(locUrl, lastmod, priority, changefreq = 'daily', imageUrls
 
   let node = `  <url>\n`;
   node += `    <loc>${escapedLocUrl}</loc>\n`;
-  node += `    <lastmod>${lastmod}</lastmod>\n`;
+  if (lastmod) {
+    node += `    <lastmod>${lastmod}</lastmod>\n`;
+  }
   node += `    <changefreq>${changefreq}</changefreq>\n`;
   node += `    <priority>${priority}</priority>\n`;
   node += `    <xhtml:link rel="alternate" hreflang="ko" href="${koUrl}"/>\n`;
@@ -262,24 +264,8 @@ async function submitToIndexNow(urlList) {
   }
 }
 
-function getFileLastmod(filePath, defaultLastmod) {
-  try {
-    if (fs.existsSync(filePath)) {
-      const stats = fs.statSync(filePath);
-      return stats.mtime.toISOString().split('T')[0];
-    }
-  } catch (e) {
-    console.error(`Error getting mtime for ${filePath}:`, e);
-  }
-  return defaultLastmod;
-}
-
 async function generateSitemap() {
   try {
-    const defaultLastmod = new Date().toISOString().split('T')[0];
-    const indexHtmlPath = path.join(ROOT_DIR, 'index.html');
-    const staticLastmod = getFileLastmod(indexHtmlPath, defaultLastmod);
-
     const wwIds = getCharacterIds(WW_CHAR_DIR);
     const hsrIds = getCharacterIds(HSR_CHAR_DIR);
     const registeredHsrGuides = getRegisteredHsrGuides();
@@ -321,7 +307,7 @@ async function generateSitemap() {
     // 1. Core Static Pages 추가
     const defaultBanner = `${CDN_URL}/hsr%20images/common/default_banner.webp`;
     urlList.forEach(u => {
-      xml += buildUrlNode(u, staticLastmod, u === `${BASE_URL}/` ? '1.0' : '0.9', 'daily', [defaultBanner]);
+      xml += buildUrlNode(u, null, u === `${BASE_URL}/` ? '1.0' : '0.9', 'daily', [defaultBanner]);
     });
 
     // 2. Wuthering Waves Characters Detail & Guide Pages
@@ -330,8 +316,7 @@ async function generateSitemap() {
       const url = `${BASE_URL}/gallery/ww/character/${id}`;
       const charData = parseWwCharacter(id);
       const images = getWwCharacterImages(charData);
-      const charFilePath = path.join(WW_CHAR_DIR, `${id}.ts`);
-      const charLastmod = getFileLastmod(charFilePath, defaultLastmod);
+      const charLastmod = null;
       
       if (!urlList.includes(url)) {
         xml += buildUrlNode(url, charLastmod, '0.8', 'daily', images);
@@ -357,8 +342,7 @@ async function generateSitemap() {
     hsrIds.forEach(id => {
       const charData = parseHsrCharacter(id);
       const images = getHsrCharacterImages(charData);
-      const charFilePath = path.join(HSR_CHAR_DIR, `${id}.ts`);
-      const charLastmod = getFileLastmod(charFilePath, defaultLastmod);
+      const charLastmod = null;
 
       // 캐릭터 상세 페이지
       const detailUrl = `${BASE_URL}/gallery/hsr/character/${id}`;
@@ -383,7 +367,7 @@ async function generateSitemap() {
 
     // 4. Wuthering Waves Weapons Detail Pages
     xml += `\n  <!-- Wuthering Waves Weapons Detail Pages -->\n`;
-    const weaponsLastmod = getFileLastmod(WEAPONS_FILE, defaultLastmod);
+    const weaponsLastmod = null;
     wwWeapons.forEach(wp => {
       const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(wp.name)}`;
       const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`;
@@ -413,49 +397,49 @@ async function generateSitemap() {
         const url = `${BASE_URL}/gallery/nte/character/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
           urlList.push(url);
         }
       } else if (isNteArc) {
         const url = `${BASE_URL}/gallery/nte/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
           urlList.push(url);
         }
       } else if (isWwWeapon) {
         const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
           urlList.push(url);
         }
       } else if (isWwCharacter) {
         const url = `${BASE_URL}/gallery/ww/character/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.8', 'daily', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
           urlList.push(url);
         }
       } else if (isHsrLightCone) {
         const url = `${BASE_URL}/gallery/hsr/lightcone/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/hsr%20images/light%20cones/${encodeAssetPath(item.name)}.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.7', 'weekly', [imageUrl]);
           urlList.push(url);
         }
       } else if (isHsrRelic) {
         const url = `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.7', 'weekly', [imageUrl]);
           urlList.push(url);
         }
       } else if (isHsrOrnament) {
         const url = `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/hsr%20images/relics/${encodeAssetPath(item.name)}_1.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.7', 'weekly', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.7', 'weekly', [imageUrl]);
           urlList.push(url);
         }
       } else if (item.dbSource === 'ww_guides') {
@@ -463,7 +447,7 @@ async function generateSitemap() {
         const url = `${BASE_URL}/gallery/ww/character/${charParam}/guide`;
         const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.9', 'daily', [imageUrl]);
+          xml += buildUrlNode(url, null, '0.9', 'daily', [imageUrl]);
           urlList.push(url);
         }
       }
@@ -474,12 +458,13 @@ async function generateSitemap() {
     const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
     if (fs.existsSync(blogFilePath)) {
       const blogContent = fs.readFileSync(blogFilePath, 'utf8');
-      const idMatches = [...blogContent.matchAll(/id:\s*["'](.*?)["']/g)];
-      idMatches.forEach(m => {
+      const blogMatches = [...blogContent.matchAll(/id:\s*["'](.*?)["'][\s\S]*?date:\s*["'](\d{4}-\d{2}-\d{2})["']/g)];
+      blogMatches.forEach(m => {
         const blogId = m[1];
+        const publishedDate = m[2];
         const url = `${BASE_URL}/blog/${encodeURIComponent(blogId)}`;
         if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, defaultLastmod, '0.8', 'weekly');
+          xml += buildUrlNode(url, publishedDate, '0.8', 'weekly');
           urlList.push(url);
         }
       });
