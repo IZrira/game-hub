@@ -61,6 +61,7 @@ const Footer: React.FC = () => {
               <li><Link to="/gallery/hsr" className="hover:text-brand-primary transition-colors">Honkai: Star Rail</Link></li>
               <li><Link to="/gallery/ww" className="hover:text-brand-primary transition-colors">Wuthering Waves</Link></li>
               <li><Link to="/gallery/nte" className="hover:text-brand-primary transition-colors">Neverness to Everness</Link></li>
+              <li><Link to="/gallery/aniimo" className="hover:text-brand-primary transition-colors">Aniimo</Link></li>
             </ul>
           </div>
 

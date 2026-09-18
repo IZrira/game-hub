@@ -1042,8 +1042,8 @@ function runPrerender() {
 
   createPrerenderedPage(
     '/',
-    'Rira Archive | 게임 공략·캐릭터·장비 데이터베이스',
-    '붕괴: 스타레일, 명조, 이환(NTE)의 캐릭터, 장비, 파티와 최신 공략을 한곳에서 확인하세요.',
+    'Rira Archive | 애니모·명조·스타레일 게임 DB',
+    '애니모(Aniimo), 명조, 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 한곳에서 확인하세요.',
     `${CDN_URL}/hsr%20images/common/default_banner.webp`,
     baseHtml
   );

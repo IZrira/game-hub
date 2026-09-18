@@ -75,9 +75,9 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">
       <SEO 
-        title={t('리라 아카이브 | 명조, 스타레일 등 서브컬쳐 게임 데이터베이스 DB')} 
-        description="리라 아카이브는 명조(Wuthering Waves), 붕괴: 스타레일(Honkai: Star Rail) 등 최신 서브컬쳐 게임의 캐릭터 공략, 티어표, 육성 가이드를 제공하는 프리미엄 서브컬쳐 데이터베이스(DB, gg)입니다."
-        keywords="리라 아카이브, 서브컬쳐 데이터베이스, 서브컬쳐 db, 서브컬쳐 gg, 명조, Wuthering Waves, 붕괴 스타레일, Honkai Star Rail, 게임 공략, 티어표, 위키, DB, gg"
+        title={t('리라 아카이브 | 애니모·명조·스타레일 게임 DB')}
+        description="리라 아카이브는 애니모(Aniimo), 명조(Wuthering Waves), 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 제공하는 통합 게임 데이터베이스입니다."
+        keywords="리라 아카이브, 서브컬쳐 데이터베이스, 애니모, Aniimo, 애니모 도감, 애니모 능력치 비교, 명조, Wuthering Waves, 붕괴 스타레일, Honkai Star Rail, 이환, Neverness to Everness, 게임 공략, 티어표, 위키, DB"
         isHomepage={true}
         name="RIRA ARCHIVE"
         googleVerification={import.meta.env.VITE_GOOGLE_VERIFICATION}
@@ -317,7 +317,7 @@ const Home: React.FC = () => {
           </h2>
           <div className="space-y-4 sm:space-y-6 text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed sm:leading-loose">
             <p>
-              Rira Game Hub(리라 게임 허브)는 전 세계 수많은 플레이어들이 열광하는 서브컬쳐 모바일 및 PC 게임에 대한 심도 깊은 데이터베이스와 공략을 제공하는 통합 인텔리전스 터미널입니다. 현재 <strong>붕괴: 스타레일(Honkai: Star Rail)</strong>과 <strong>명조: 워더링 웨이브(Wuthering Waves)</strong>의 실시간 메타 분석, 캐릭터 최적화 세팅, 장비 추천 및 파티 시너지 정보를 제공하고 있으며, 유저들이 게임 내에서 마주하는 다양한 난관을 논리적이고 효율적으로 돌파할 수 있도록 돕고 있습니다.
+              Rira Game Hub(리라 게임 허브)는 전 세계 수많은 플레이어들이 열광하는 서브컬쳐 모바일 및 PC 게임에 대한 심도 깊은 데이터베이스와 공략을 제공하는 통합 인텔리전스 터미널입니다. 현재 <strong>붕괴: 스타레일(Honkai: Star Rail)</strong>, <strong>명조: 워더링 웨이브(Wuthering Waves)</strong>, <strong>이환(Neverness to Everness)</strong>과 <strong>애니모(Aniimo)</strong>의 데이터를 제공하고 있습니다. 애니모 허브에서는 86종의 원소·포지션·능력치 비교와 형태별 진화 계보, 특성, 스킬, 출현 지역 정보를 함께 확인할 수 있습니다.
             </p>
             <p>
               단순히 게임 데이터를 스크래핑하여 나열하는 일반적인 위키나 도감 사이트와는 다릅니다. 당사의 분석팀은 매 업데이트마다 변동되는 몬스터의 스탯, 신규 기믹, 그리고 장비 세트 효과를 자체적으로 시뮬레이션 및 검증합니다. 이를 바탕으로 도출된 <strong>오리지널 칼럼과 가이드</strong>는 초보자부터 최상위 랭커까지 모두가 참고할 수 있는 귀중한 지표가 됩니다. 각 캐릭터의 세팅 페이지에는 최우선으로 투자해야 할 스탯의 목표치와, 타협 가능한 부옵션의 우선순위가 명확히 기재되어 있어 재화 낭비를 최소화할 수 있습니다.

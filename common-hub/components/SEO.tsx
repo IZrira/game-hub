@@ -40,11 +40,11 @@ interface SEOProps {
 
 export default function SEO({ 
   title, 
-  description = "완벽한 플레이를 위한 데이터의 정점. 리라 아카이브에서 최신 메타와 공략을 확인하세요.", 
+  description = "붕괴: 스타레일, 명조, 이환, 애니모의 도감·능력치·티어표·공략을 확인하는 통합 게임 데이터베이스입니다.",
   name,
   image = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/default_banner.webp",
   url = "",
-  keywords = "리라 아카이브, 붕괴 스타레일, 명조, 게임 공략, 티어표, 위키",
+  keywords = "리라 아카이브, 붕괴 스타레일, 명조, 이환, 애니모, Aniimo, 애니모 도감, 게임 공략, 티어표, 위키",
   type = 'website',
   gameCategory,
   itemType,
