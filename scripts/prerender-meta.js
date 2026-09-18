@@ -1177,7 +1177,7 @@ function runPrerender() {
         `${gameLabel} ${item.name}의 최신 종결 세팅, 스킬 매커니즘 계수, 추천 파티 조합 및 돌파 재료 총정리 가이드.`,
         imagePath,
         baseHtml,
-        generateNotionHtml(item),
+        generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>',
         generateDiscussionForumPostingSchema(item.name, routePath)
       );
       count++;
@@ -1189,7 +1189,7 @@ function runPrerender() {
         `이환(NTE) ${item.name}의 상세 능력치, 스킬 효과와 추천 캐릭터 정보를 확인하세요.`,
         `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`,
         baseHtml,
-        generateNotionHtml(item)
+        generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 아크 도감으로 돌아가기</a></p>'
       );
       count++;
     } else if (item.dbSource === 'ww_echoes') {
@@ -1308,6 +1308,11 @@ function runPrerender() {
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(candidate));
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 공략', guideRoutes);
+    } else if (routePath === '/gallery/nte') {
+      const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate));
+      const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/'));
+      meta.content += generateInternalLinkList('이환 캐릭터 상세 페이지', characterRoutes);
+      meta.content += generateInternalLinkList('이환 아크 상세 페이지', weaponRoutes);
     }
     createPrerenderedPage(
       routePath,

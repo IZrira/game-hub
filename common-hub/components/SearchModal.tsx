@@ -160,7 +160,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
       name: c.name,
       type: t('캐릭터'),
       routePath: [t(gameName), t('도감'), t(c.attribute), t(config.getCharacterPath(c))].filter(Boolean),
-      url: `/gallery/${gameId}/character/${c.id}`
+      url: `/gallery/${gameId}/character/${encodeURIComponent(gameId === 'nte' ? c.name : c.id)}`
     }));
     
     const weaponsData = config.getWeapons({ LIGHTCONE_DB, WEAPON_DATA });

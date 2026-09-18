@@ -10,6 +10,7 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
   const { t } = useTranslation();
   const { gameId } = useParams();
   const folderName = char.folderName || char.name || '';
+  const characterSlug = gameId === 'nte' ? char.name : char.id;
   
   let imgPath = "";
   if (gameId === 'hsr') {
@@ -35,7 +36,7 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
   }
 
   return (
-    <Link to={`/gallery/${gameId}/character/${char.id}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all duration-500">
+    <Link to={`/gallery/${gameId}/character/${encodeURIComponent(characterSlug || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all duration-500">
       <img 
         src={imgPath} 
         alt={`${t(char.name || '')} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
