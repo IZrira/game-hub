@@ -211,7 +211,8 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
     /^\/gallery\/nte(?:\/parties)?$/,
     /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/,
     /^\/gallery\/aniimo$/,
-    /^\/gallery\/aniimo\/character\/[^/]+$/
+    /^\/gallery\/aniimo\/character\/[^/]+$/,
+    /^\/gallery\/aniimo\/location\/[^/]+$/
   ];
   const invalidRouteUrls = urlList.filter(url => {
     const pathname = new URL(url).pathname;
@@ -529,7 +530,21 @@ async function generateSitemap() {
       }
     });
 
-    // 8. Blog Posts
+    // 8. Aniimo location pages derived from every form's verified locations
+    xml += `\n  <!-- Aniimo Location Pages -->\n`;
+    const aniimoLocations = [...new Set(aniimoEntries.flatMap(item =>
+      (item.forms || []).flatMap(form => form.locations || item.locations || [])
+    ))].sort((a, b) => a.localeCompare(b, 'ko'));
+    aniimoLocations.forEach(location => {
+      const slug = location.trim().replace(/\s+/g, '-');
+      const url = `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`;
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        urlList.push(url);
+      }
+    });
+
+    // 9. Blog Posts
     xml += `\n  <!-- Blog Articles -->\n`;
     const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
     if (fs.existsSync(blogFilePath)) {

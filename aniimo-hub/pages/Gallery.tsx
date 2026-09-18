@@ -5,6 +5,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoStats } from '../types';
+import { getAniimoLocationPath } from '../utils/location';
 
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
@@ -23,6 +24,7 @@ const GalleryAniimo: React.FC = () => {
 
   const elements = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.elements))], []);
   const positions = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.positions))], []);
+  const locations = useMemo(() => [...new Set(entries.flatMap(item => item.forms.flatMap(form => form.locations)))].sort((a, b) => a.localeCompare(b, 'ko')), []);
   const filtered = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase('ko');
     return entries.filter(item =>
@@ -50,6 +52,8 @@ const GalleryAniimo: React.FC = () => {
             <a href="https://wiki.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white">공식 애니모 위키에서 원본 정보 확인 <ExternalLink size={13} /></a>
           </div>
         </section>
+
+        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7"><div className="flex items-center gap-2"><span className="text-violet-300">/</span><h2 className="font-black">지역별 애니모</h2></div><p className="mt-2 text-xs text-gray-500">출현 지역을 선택해 해당 지역에서 만날 수 있는 애니모와 형태를 확인하세요.</p><div className="mt-5 flex flex-wrap gap-2">{locations.map(location => <Link key={location} to={getAniimoLocationPath(location)} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-gray-300 transition hover:border-violet-400/40 hover:text-violet-300">{location}</Link>)}</div></section>
 
         <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7 space-y-5">
           <div className="flex flex-col lg:flex-row gap-4">

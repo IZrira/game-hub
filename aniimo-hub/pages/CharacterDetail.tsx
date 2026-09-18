@@ -5,6 +5,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoEvolutionNode, AniimoForm, AniimoSkill, AniimoStats } from '../types';
+import { getAniimoLocationPath } from '../utils/location';
 
 const entries = aniimoData as AniimoEntry[];
 const STAT_LABELS: Record<keyof AniimoStats, string> = {
@@ -68,7 +69,7 @@ const CharacterDetailAniimo: React.FC = () => {
       {evolutionStages.length > 0 && <Section title="진화 계보"><div className="md:hidden">{evolutionStages.map((group, groupIndex) => <React.Fragment key={group.stage}><EvolutionStage stage={group.stage} nodes={group.nodes} currentName={item.name} currentFormKey={activeForm?.key} />{groupIndex < evolutionStages.length - 1 && <div className="flex flex-col items-center py-3 text-violet-300"><ArrowDown size={22} />{evolutionStages[groupIndex + 1].nodes.length > 1 && <span className="mt-1 text-[10px] font-black">{evolutionStages[groupIndex + 1].nodes.length}가지로 분기</span>}</div>}</React.Fragment>)}</div><div className="hidden items-center justify-center overflow-x-auto py-4 md:flex">{evolutionStages.map((group, groupIndex) => <React.Fragment key={group.stage}><EvolutionStage stage={group.stage} nodes={group.nodes} currentName={item.name} currentFormKey={activeForm?.key} />{groupIndex < evolutionStages.length - 1 && <div className="flex w-20 shrink-0 flex-col items-center"><div className="flex w-full items-center"><span className="h-px flex-1 bg-gradient-to-r from-violet-400/30 to-violet-400" /><ChevronRight size={22} className="-ml-1 text-violet-300" /></div>{evolutionStages[groupIndex + 1].nodes.length > 1 && <span className="mt-2 text-[10px] font-black text-violet-300">{evolutionStages[groupIndex + 1].nodes.length}가지 분기</span>}</div>}</React.Fragment>)}</div></Section>}
 
       <div className="grid gap-6 md:grid-cols-2">
-        {displayLocations.length > 0 && <Section title="출현 지역" icon={<MapPin size={18} />}><div className="flex flex-wrap gap-2">{displayLocations.map(location => <Badge key={location} value={location} />)}</div></Section>}
+        {displayLocations.length > 0 && <Section title="출현 지역" icon={<MapPin size={18} />}><div className="flex flex-wrap gap-2">{displayLocations.map(location => <Link key={location} to={getAniimoLocationPath(location)} className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-black text-gray-300 transition hover:bg-violet-400/15 hover:text-violet-300">{location}</Link>)}</div></Section>}
         {displayHomeAbilities.length > 0 && <Section title="홈 능력" icon={<Home size={18} />}><div className="grid gap-3 sm:grid-cols-2">{displayHomeAbilities.map((ability, abilityIndex) => <article key={`${ability.type}-${abilityIndex}`} className="rounded-2xl border border-white/10 bg-white/5 p-4"><div className="flex items-center justify-between gap-3"><h3 className="font-black text-white">{ability.name}</h3><span className="rounded-lg bg-violet-400/15 px-2.5 py-1 text-sm font-black text-violet-300">Lv.{ability.value ?? '-'}</span></div><p className="mt-2 text-xs leading-5 text-gray-400">{ability.description}</p></article>)}</div></Section>}
       </div>
 

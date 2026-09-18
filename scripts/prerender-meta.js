@@ -1325,9 +1325,29 @@ function runPrerender() {
     } else if (routePath === '/gallery/aniimo') {
       const aniimoFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
       const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];
+      const locations = [...new Set(aniimoEntries.flatMap(item => (item.forms || []).flatMap(form => form.locations || item.locations || [])))].sort((a, b) => a.localeCompare(b, 'ko'));
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
       meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
-      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><h2>지역별 애니모</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+    } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
+      const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
+      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+      const locations = [...new Set(aniimoEntries.flatMap(item => (item.forms || []).flatMap(form => form.locations || item.locations || [])))].sort((a, b) => a.localeCompare(b, 'ko'));
+      const location = locations.find(candidate => candidate.trim().replace(/\s+/g, '-') === locationSlug);
+      if (location) {
+        const appearances = aniimoEntries.map(item => ({
+          item,
+          forms: (item.forms || []).filter(form => (form.locations || item.locations || []).includes(location))
+        })).filter(appearance => appearance.forms.length > 0);
+        meta.title = `${location} 출현 애니모 ${appearances.length}종 | 애니모 지역 도감`;
+        meta.description = `${location}에서 출현하는 애니모 ${appearances.length}종과 각 지역 형태를 확인하세요.`;
+        const appearanceLinks = appearances.map(({ item, forms }) => forms.map(form => {
+          const query = form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : '';
+          return `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}${query}">${escapeHtml(`NO.${item.number} ${item.name} · ${form.label}`)}</a></li>`;
+        }).join('')).join('');
+        const otherLocations = locations.filter(candidate => candidate !== location).map(candidate => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(candidate.trim().replace(/\s+/g, '-'))}">${escapeHtml(candidate)}</a></li>`).join('');
+        meta.content = `<article><h1>${escapeHtml(location)} 출현 애니모</h1><p>${escapeHtml(meta.description)}</p><ul>${appearanceLinks}</ul><h2>다른 출현 지역</h2><ul>${otherLocations}</ul><p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+      }
     } else if (/^\/gallery\/aniimo\/character\//.test(routePath)) {
       const name = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
@@ -1336,7 +1356,8 @@ function runPrerender() {
         meta.title = `${item.name} 능력치·스킬·진화 | 애니모 도감`;
         meta.description = `애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화, 출현 지역, 특성, 스킬과 공명 육성 정보를 확인하세요.`;
         const skillHtml = [...(item.combatSkills || []), ...(item.uniqueSkills || [])].map(skill => `<section><h3>${escapeHtml(skill.name)}</h3><p>${escapeHtml(skill.description)}</p><p>${escapeHtml(skill.skillType)} · 에너지 ${escapeHtml(skill.energyCost)} · 위력 ${escapeHtml(skill.power)}</p></section>`).join('');
-        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>소개</h2><p>${escapeHtml(item.description)}</p><h2>기본 능력치</h2><dl>${Object.entries(item.stats).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>${item.locations?.length ? `<h2>출현 지역</h2><p>${escapeHtml(item.locations.join(', '))}</p>` : ''}${item.traits?.length ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}` : ''}<h2>스킬 소개</h2>${skillHtml}<p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+        const locationHtml = item.locations?.length ? `<h2>출현 지역</h2><ul>${item.locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul>` : '';
+        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>소개</h2><p>${escapeHtml(item.description)}</p><h2>기본 능력치</h2><dl>${Object.entries(item.stats).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>${locationHtml}${item.traits?.length ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}` : ''}<h2>스킬 소개</h2>${skillHtml}<p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
       }
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
