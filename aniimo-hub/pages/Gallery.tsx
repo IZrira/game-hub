@@ -5,7 +5,6 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoStats } from '../types';
-import { getAniimoLocationPath } from '../utils/location';
 
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
@@ -20,19 +19,24 @@ const GalleryAniimo: React.FC = () => {
   const [query, setQuery] = useState('');
   const [element, setElement] = useState(ALL);
   const [position, setPosition] = useState(ALL);
+  const [location, setLocation] = useState(ALL);
   const [selected, setSelected] = useState<string[]>([]);
 
   const elements = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.elements))], []);
   const positions = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.positions))], []);
-  const locations = useMemo(() => [...new Set(entries.flatMap(item => item.forms.flatMap(form => form.locations)))].sort((a, b) => a.localeCompare(b, 'ko')), []);
+  const locations = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.forms.flatMap(form => form.locations)).sort((a, b) => a.localeCompare(b, 'ko')))], []);
   const filtered = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase('ko');
-    return entries.filter(item =>
-      (!keyword || item.name.toLocaleLowerCase('ko').includes(keyword) || item.number.includes(keyword)) &&
-      (element === ALL || item.elements.includes(element)) &&
-      (position === ALL || item.positions.includes(position))
-    );
-  }, [query, element, position]);
+    return entries.filter(item => {
+      const locationForms = location === ALL ? item.forms : item.forms.filter(form => form.locations.includes(location));
+      const availableElements = location === ALL ? item.elements : locationForms.flatMap(form => form.elements);
+      const availablePositions = location === ALL ? item.positions : locationForms.flatMap(form => form.positions);
+      return (!keyword || item.name.toLocaleLowerCase('ko').includes(keyword) || item.number.includes(keyword)) &&
+        (location === ALL || locationForms.length > 0) &&
+        (element === ALL || availableElements.includes(element)) &&
+        (position === ALL || availablePositions.includes(position));
+    });
+  }, [query, element, position, location]);
   const compared = selected.map(number => entries.find(item => item.number === number)).filter(Boolean) as AniimoEntry[];
   const toggleCompare = (number: string) => setSelected(current => current.includes(number)
     ? current.filter(value => value !== number)
@@ -53,7 +57,7 @@ const GalleryAniimo: React.FC = () => {
           </div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7"><div className="flex items-center gap-2"><span className="text-violet-300">/</span><h2 className="font-black">지역별 애니모</h2></div><p className="mt-2 text-xs text-gray-500">출현 지역을 선택해 해당 지역에서 만날 수 있는 애니모와 형태를 확인하세요.</p><div className="mt-5 flex flex-wrap gap-2">{locations.map(location => <Link key={location} to={getAniimoLocationPath(location)} className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-gray-300 transition hover:border-violet-400/40 hover:text-violet-300">{location}</Link>)}</div></section>
+        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7"><div className="flex items-center gap-2"><span className="text-violet-300">/</span><h2 className="font-black">지역별 애니모</h2></div><p className="mt-2 text-xs text-gray-500">페이지를 이동하지 않고 출현 지역에 맞는 애니모와 형태를 바로 확인하세요.</p><div className="mt-5 flex flex-wrap gap-2">{locations.map(value => <button key={value} type="button" aria-pressed={location === value} onClick={() => setLocation(value)} className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${location === value ? 'border-violet-300 bg-violet-400 text-black' : 'border-white/10 bg-white/5 text-gray-300 hover:border-violet-400/40 hover:text-violet-300'}`}>{value}</button>)}</div></section>
 
         <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7 space-y-5">
           <div className="flex flex-col lg:flex-row gap-4">
@@ -72,9 +76,9 @@ const GalleryAniimo: React.FC = () => {
         </section>}
 
         <section aria-label="애니모 전체 도감" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">
-          {filtered.map(item => { const isSelected = selected.includes(item.number); const compareFull = selected.length >= 3 && !isSelected; return <article key={item.number} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#121212] hover:border-violet-400/40 transition-colors">
-            <Link to={`/gallery/aniimo/character/${encodeURIComponent(item.name)}`} className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">{item.imageUrl && <img src={item.imageUrl} alt={`${item.name} 이미지`} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />}</Link>
-            <div className="p-3 space-y-3"><div><p className="text-[9px] font-black tracking-widest text-gray-500">NO.{item.number}</p><h2 className="truncate font-black">{item.name}</h2></div><div className="flex min-h-10 flex-wrap content-start gap-1">{item.elements.map(value => <Badge key={value} value={value} accent />)}{item.positions.map(value => <Badge key={value} value={value} />)}</div><button disabled={compareFull} onClick={() => toggleCompare(item.number)} className={`flex h-9 w-full items-center justify-center gap-1.5 rounded-xl text-[11px] font-black transition-colors ${isSelected ? 'bg-violet-400 text-black' : compareFull ? 'cursor-not-allowed bg-white/5 text-gray-600' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}>{isSelected ? <Check size={13} /> : <BarChart3 size={13} />} {isSelected ? '비교 선택됨' : '비교하기'}</button></div>
+          {filtered.map(item => { const displayForm = location === ALL ? item.forms.find(form => form.key === 'basic-form') : item.forms.find(form => form.locations.includes(location)); const detailQuery = displayForm && displayForm.key !== 'basic-form' ? `?form=${encodeURIComponent(displayForm.key)}` : ''; const displayImage = displayForm?.imageUrl || item.imageUrl; const displayElements = displayForm?.elements.length ? displayForm.elements : item.elements; const displayPositions = displayForm?.positions.length ? displayForm.positions : item.positions; const isSelected = selected.includes(item.number); const compareFull = selected.length >= 3 && !isSelected; return <article key={item.number} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#121212] hover:border-violet-400/40 transition-colors">
+            <Link to={`/gallery/aniimo/character/${encodeURIComponent(item.name)}${detailQuery}`} className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">{displayImage && <img src={displayImage} alt={`${item.name}${displayForm ? ` ${displayForm.label}` : ''} 이미지`} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />}</Link>
+            <div className="p-3 space-y-3"><div><p className="text-[9px] font-black tracking-widest text-gray-500">NO.{item.number}</p><h2 className="truncate font-black">{item.name}</h2>{location !== ALL && displayForm && <p className="mt-1 text-[10px] font-bold text-violet-300">{displayForm.label}</p>}</div><div className="flex min-h-10 flex-wrap content-start gap-1">{displayElements.map(value => <Badge key={value} value={value} accent />)}{displayPositions.map(value => <Badge key={value} value={value} />)}</div><button disabled={compareFull} onClick={() => toggleCompare(item.number)} className={`flex h-9 w-full items-center justify-center gap-1.5 rounded-xl text-[11px] font-black transition-colors ${isSelected ? 'bg-violet-400 text-black' : compareFull ? 'cursor-not-allowed bg-white/5 text-gray-600' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}>{isSelected ? <Check size={13} /> : <BarChart3 size={13} />} {isSelected ? '비교 선택됨' : '비교하기'}</button></div>
           </article>; })}
         </section>
 

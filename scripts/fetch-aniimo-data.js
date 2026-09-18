@@ -29,6 +29,11 @@ const HOME_ABILITY_LABELS = {
   1102: { name: '여가', description: '놀이와 여가 시설 작업' },
   1103: { name: '조향', description: '향·향수 제작' }
 };
+const LOCATION_LABELS = {
+  '新月海湾': '초승달 만',
+  '夕阳海原': '석양 해원'
+};
+const normalizeLocation = location => LOCATION_LABELS[location] || location;
 
 const fetchHtml = async (url) => {
   const response = await fetch(url, { headers: { 'user-agent': 'RiraGameHub/1.0 (+https://riragamehub.com)' } });
@@ -125,7 +130,7 @@ const parseDetail = (html) => {
       energyRecovery: parseNumber(text, '에너지 회복', '일러스트 보기')
     },
     description: getSection('기본 정보').find('.wiki-detail-container-content').text().replace(/\s+/g, ' ').trim(),
-    locations: getSection('출현 지역').find('.capsule-item').map((_, element) => $(element).text().trim()).get().filter(Boolean),
+    locations: getSection('출현 지역').find('.capsule-item').map((_, element) => normalizeLocation($(element).text().trim())).get().filter(Boolean),
     homeAbilities: getSection('홈 능력').find('.capsule-item').map((_, element) => {
       const capsule = $(element); const className = capsule.find('[class*="icon-home-"]').attr('class') || '';
       const type = className.match(/icon-home-(\d+)/)?.[1] || 'unknown';
