@@ -1333,9 +1333,10 @@ function runPrerender() {
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
       const item = aniimoEntries.find(candidate => candidate.name === name);
       if (item) {
-        meta.title = `${item.name} 능력치·원소·포지션 | 애니모 도감`;
-        meta.description = `애니모 ${item.name}(NO.${item.number})의 ${item.elements.join('/')} 원소, ${item.positions.join('/')} 포지션과 HP, 공격, 방어, 무력화, 에너지 회복 능력치를 확인하세요.`;
-        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>기본 능력치</h2><dl>${Object.entries(item.stats).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl><p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+        meta.title = `${item.name} 능력치·스킬·진화 | 애니모 도감`;
+        meta.description = `애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화, 출현 지역, 특성, 스킬과 공명 육성 정보를 확인하세요.`;
+        const skillHtml = [...(item.combatSkills || []), ...(item.uniqueSkills || [])].map(skill => `<section><h3>${escapeHtml(skill.name)}</h3><p>${escapeHtml(skill.description)}</p><p>${escapeHtml(skill.skillType)} · 에너지 ${escapeHtml(skill.energyCost)} · 위력 ${escapeHtml(skill.power)}</p></section>`).join('');
+        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>소개</h2><p>${escapeHtml(item.description)}</p><h2>기본 능력치</h2><dl>${Object.entries(item.stats).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>${item.locations?.length ? `<h2>출현 지역</h2><p>${escapeHtml(item.locations.join(', '))}</p>` : ''}${item.traits?.length ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}` : ''}<h2>스킬 소개</h2>${skillHtml}<p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
       }
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';

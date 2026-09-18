@@ -17,5 +17,23 @@ export interface AniimoEntry {
   sourceUrl: string;
   imageUrl: string | null;
   stats: AniimoStats;
+  description: string;
+  locations: string[];
+  homeAbilities: Array<{ type: string; value: number | null }>;
+  explorationSkills: AniimoSkill[];
+  traits: AniimoSkill[];
+  combatSkills: AniimoSkill[];
+  uniqueSkills: AniimoSkill[];
+  evolution: Array<{ stage: string; imageUrl: string | null }>;
+  resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   checkedAt: string;
+}
+
+export interface AniimoSkill {
+  name: string;
+  description: string;
+  imageUrl: string | null;
+  skillType?: string;
+  energyCost?: number | null;
+  power?: number | null;
 }

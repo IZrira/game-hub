@@ -36,6 +36,63 @@ const parseDetail = (html) => {
   const imageUrl = [...html.matchAll(/https:\/\/worldx-website-cdn\.aniimo\.com\/[^"'\\ ]+Wiki_Aniimo_[^"'\\ ]+\.png/g)]
     .map(match => match[0])[0] || null;
 
+  const getSection = label => $('.wiki-detail-container').filter((_, element) =>
+    $(element).find('.wiki-detail-container-header-title').first().text().trim() === label
+  ).first();
+  const parseCircleItems = (label, includeMetadata = false) => {
+    const section = getSection(label);
+    return section.find('.circle-component').map((_, element) => {
+      const circle = $(element);
+      const body = circle.children().last();
+      const blocks = body.children('div');
+      const metadata = body.find('.content-list').text().replace(/\s+/g, ' ').trim();
+      const name = blocks.eq(0).text().replace(/\s+/g, ' ').trim();
+      const description = blocks.eq(1).text().replace(/\s+/g, ' ').trim();
+      return {
+        name,
+        description,
+        imageUrl: circle.find('img').first().attr('src') || null,
+        ...(includeMetadata ? {
+          skillType: metadata.match(/유형:\s*([^\d]+?)(?=소모 에너지|위력|$)/)?.[1]?.trim() || '',
+          energyCost: Number(metadata.match(/소모 에너지:\s*(\d+)/)?.[1] ?? NaN) || 0,
+          power: Number(metadata.match(/위력:\s*(\d+)/)?.[1] ?? NaN) || 0
+        } : {})
+      };
+    }).get().filter(item => item.name);
+  };
+
+  const skillSection = getSection('스킬 소개');
+  const skillGroups = skillSection.find('.wiki-detail-container-content-tab-content').toArray().map(group =>
+    $(group).find('.circle-component').map((__, element) => {
+      const circle = $(element);
+      const body = circle.children().last();
+      const blocks = body.children('div');
+      const metadata = body.find('.content-list').text().replace(/\s+/g, ' ').trim();
+      return {
+        name: blocks.eq(0).text().replace(/\s+/g, ' ').trim(),
+        description: blocks.eq(1).text().replace(/\s+/g, ' ').trim(),
+        imageUrl: circle.find('img').first().attr('src') || null,
+        skillType: metadata.match(/유형:\s*([^\d]+?)(?=소모 에너지|위력|$)/)?.[1]?.trim() || '',
+        energyCost: Number(metadata.match(/소모 에너지:\s*(\d+)/)?.[1] ?? NaN) || 0,
+        power: Number(metadata.match(/위력:\s*(\d+)/)?.[1] ?? NaN) || 0
+      };
+    }).get().filter(item => item.name)
+  );
+
+  const evolution = getSection('진화 루트').find('.aniimo-avatar-container').map((_, element) => {
+    const avatar = $(element);
+    const node = avatar.closest('[is-active]');
+    return { stage: node.find('.stage-tag').text().replace(/\s+/g, ' ').trim(), imageUrl: avatar.find('img').attr('src') || null };
+  }).get().filter((item, index, array) => item.imageUrl && array.findIndex(candidate => candidate.imageUrl === item.imageUrl) === index);
+
+  const resonanceLevels = getSection('공명 단계 육성').find('tr').map((_, row) => {
+    const cells = $(row).find('td');
+    return {
+      level: cells.eq(0).text().trim(), requirement: cells.eq(1).text().trim(),
+      material: cells.eq(2).text().replace(/\s+/g, ' ').trim(), materialImageUrl: cells.eq(2).find('img').attr('src') || null
+    };
+  }).get().filter(item => item.level);
+
   return {
     imageUrl,
     stats: {
@@ -46,7 +103,19 @@ const parseDetail = (html) => {
       magicDefense: parseNumber(text, '마법 방어', '물리 방어'),
       physicalDefense: parseNumber(text, '물리 방어', '에너지 회복'),
       energyRecovery: parseNumber(text, '에너지 회복', '일러스트 보기')
-    }
+    },
+    description: getSection('기본 정보').find('.wiki-detail-container-content').text().replace(/\s+/g, ' ').trim(),
+    locations: getSection('출현 지역').find('.capsule-item').map((_, element) => $(element).text().trim()).get().filter(Boolean),
+    homeAbilities: getSection('홈 능력').find('.capsule-item').map((_, element) => {
+      const capsule = $(element); const className = capsule.find('[class*="icon-home-"]').attr('class') || '';
+      return { type: className.match(/icon-home-(\d+)/)?.[1] || 'unknown', value: Number(capsule.text().trim()) || null };
+    }).get(),
+    explorationSkills: parseCircleItems('탐사 스킬'),
+    traits: parseCircleItems('애니모 특성'),
+    combatSkills: skillGroups[0] || [],
+    uniqueSkills: skillGroups[1] || [],
+    evolution,
+    resonanceLevels
   };
 };
 
