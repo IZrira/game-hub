@@ -171,13 +171,18 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
     const guidesData = config.getGuides({ HSR_CHARACTER_GUIDES });
     const guides = guidesData.filter((g: any) => config.getGuideName(g)?.replace(/\s+/g, '').toLowerCase().includes(q)).slice(0, 3).map((g: any) => {
       const charName = config.getGuideName(g);
+      const normalizedName = charName?.replace(/\s+/g, '').toLowerCase();
+      const character = CHARACTER_DB.find((c: Character) =>
+        c.gameId === gameId && c.name?.replace(/\s+/g, '').toLowerCase() === normalizedName
+      );
+      if (!character) return null;
       return {
         name: t('GuideTitle', { name: charName, defaultValue: `${charName} 세팅 공략` }),
         type: t('공략'),
         routePath: [t(gameName), t('공략 모음'), t(charName)],
-        url: `/gallery/${gameId}/guide/${charName}`
+        url: `/gallery/${gameId}/character/${character.id}/guide`
       };
-    });
+    }).filter(Boolean);
 
     // 1.5 데이터 경로 (Route) 검색
     const staticRoutes = [
@@ -352,7 +357,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
                 </div>
               ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left pt-6 border-t border-white/5">
-                  <button onClick={() => handleNavigate(`/gallery/${gameId}/guide/${config.guideHero}`)} className="p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition-all cursor-pointer group">
+                  <button onClick={() => {
+                    const hero = CHARACTER_DB.find((c: Character) => c.gameId === gameId && c.name === config.guideHero);
+                    handleNavigate(hero ? `/gallery/${gameId}/character/${hero.id}/guide` : `/gallery/${gameId}?menu=공략`);
+                  }} className="p-6 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition-all cursor-pointer group">
                     <p className="text-[10px] font-black text-brand-primary mb-1 uppercase tracking-widest">{t('Recommended Route')}</p>
                     <p className="text-sm font-bold text-gray-300 group-hover:text-white transition-colors">{t('NewCharacterGuide', { defaultValue: '신규 캐릭터 공략 보기' })}</p>
                   </button>

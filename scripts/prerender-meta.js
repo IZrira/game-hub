@@ -1033,6 +1033,8 @@ function runPrerender() {
   }
 
   const baseHtml = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
+  const sitemapRoutes = getSitemapRoutes();
+  const sitemapRouteSet = new Set(sitemapRoutes);
   let count = 0;
 
   console.log('🚀 Starting Static Meta Injection for Prerendering...');
@@ -1099,28 +1101,31 @@ function runPrerender() {
       name = char.folderName || id;
     }
     const routePath = `/gallery/hsr/character/${id}`;
+    const guide = hsrGuidesMap.get(name) || (char.folderName ? hsrGuidesMap.get(char.folderName) : null) || hsrGuidesMap.get(id);
+    const guideRoute = `/gallery/hsr/character/${id}/guide`;
+    const guideLink = guide && sitemapRouteSet.has(guideRoute)
+      ? `<p><a href="${guideRoute}">${escapeHtml(name)} 종결 세팅 공략 보기</a></p>`
+      : '';
     createPrerenderedPage(
       routePath,
       `${name} 종결 세팅 · 추천 파티 조합 & 육성 재료 | 붕괴: 스타레일 공략 DB`,
       `붕괴: 스타레일 ${name}의 최신 추천 유물 및 장신구, 광추 랭킹, 종결 스탯 세팅, 추천 파티 조합 및 행적·돌파 재료 총정리 가이드.`,
       getHsrCharacterImageUrl(char),
       baseHtml,
-      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList),
+      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) + guideLink,
       generateDiscussionForumPostingSchema(name, routePath)
     );
     count++;
 
     // HSR 캐릭터 가이드 전용 페이지 프리렌더링
-    const guide = hsrGuidesMap.get(name) || (char.folderName ? hsrGuidesMap.get(char.folderName) : null) || hsrGuidesMap.get(id);
     if (guide) {
-      const guideRoute = `/gallery/hsr/character/${id}/guide`;
       createPrerenderedPage(
         guideRoute,
         `스타레일 ${name} 공략 | 종결 유물 세팅 · 추천 광추 순위 · 파티 조합`,
         `붕괴: 스타레일 ${name}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`,
         getHsrCharacterImageUrl(char),
         baseHtml,
-        generateHsrGuideHtml(id, guide, char),
+        generateHsrGuideHtml(id, guide, char) + `<p><a href="${routePath}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>`,
         generateGuideSchema(name, '붕괴: 스타레일', guideRoute, getHsrCharacterImageUrl(char))
       );
       count++;
@@ -1284,13 +1289,17 @@ function runPrerender() {
   // 7. Ensure every indexable sitemap route has distinct initial HTML.
   // Rich pages above take precedence; this closes coverage gaps for database
   // routes such as HSR equipment and for top-level gallery pages.
-  const sitemapRoutes = getSitemapRoutes();
   sitemapRoutes.forEach(routePath => {
     if (prerenderedRoutes.has(routePath)) return;
     const meta = getFallbackMeta(routePath);
     if (routePath === '/gallery/ww') {
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/'));
       meta.content += generateInternalLinkList('명조 무기 상세 페이지', weaponRoutes);
+    } else if (routePath === '/gallery/hsr') {
+      const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+$/.test(candidate));
+      const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(candidate));
+      meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 페이지', characterRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 공략', guideRoutes);
     }
     createPrerenderedPage(
       routePath,
