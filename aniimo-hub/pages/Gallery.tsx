@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router';
 import { BarChart3, Check, ExternalLink, Search, X } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -68,7 +69,7 @@ const GalleryAniimo: React.FC = () => {
 
         <section aria-label="애니모 전체 도감" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">
           {filtered.map(item => { const isSelected = selected.includes(item.number); const compareFull = selected.length >= 3 && !isSelected; return <article key={item.number} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#121212] hover:border-violet-400/40 transition-colors">
-            <a href={item.sourceUrl} target="_blank" rel="noreferrer" className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">{item.imageUrl && <img src={item.imageUrl} alt={`${item.name} 공식 이미지`} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />}</a>
+            <Link to={`/gallery/aniimo/character/${encodeURIComponent(item.name)}`} className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">{item.imageUrl && <img src={item.imageUrl} alt={`${item.name} 이미지`} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />}</Link>
             <div className="p-3 space-y-3"><div><p className="text-[9px] font-black tracking-widest text-gray-500">NO.{item.number}</p><h2 className="truncate font-black">{item.name}</h2></div><div className="flex min-h-10 flex-wrap content-start gap-1">{item.elements.map(value => <Badge key={value} value={value} accent />)}{item.positions.map(value => <Badge key={value} value={value} />)}</div><button disabled={compareFull} onClick={() => toggleCompare(item.number)} className={`flex h-9 w-full items-center justify-center gap-1.5 rounded-xl text-[11px] font-black transition-colors ${isSelected ? 'bg-violet-400 text-black' : compareFull ? 'cursor-not-allowed bg-white/5 text-gray-600' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}>{isSelected ? <Check size={13} /> : <BarChart3 size={13} />} {isSelected ? '비교 선택됨' : '비교하기'}</button></div>
           </article>; })}
         </section>

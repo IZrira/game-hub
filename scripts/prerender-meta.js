@@ -13,6 +13,7 @@ const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr')
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 const SITEMAP_FILE = path.join(PUBLIC_DIR, 'sitemap.xml');
+const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
@@ -1326,7 +1327,16 @@ function runPrerender() {
       const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
       meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
-      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li>${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+    } else if (/^\/gallery\/aniimo\/character\//.test(routePath)) {
+      const name = decodeURIComponent(routePath.split('/').at(-1));
+      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+      const item = aniimoEntries.find(candidate => candidate.name === name);
+      if (item) {
+        meta.title = `${item.name} 능력치·원소·포지션 | 애니모 도감`;
+        meta.description = `애니모 ${item.name}(NO.${item.number})의 ${item.elements.join('/')} 원소, ${item.positions.join('/')} 포지션과 HP, 공격, 방어, 무력화, 에너지 회복 능력치를 확인하세요.`;
+        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>기본 능력치</h2><dl>${Object.entries(item.stats).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl><p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+      }
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
     }

@@ -14,6 +14,7 @@ const Detail = React.lazy(() => import('./pages/Detail'));
 const CharacterDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterDetail'));
 const CharacterDetailWW = React.lazy(() => import('../ww-hub/pages/CharacterDetail'));
 const CharacterDetailNTE = React.lazy(() => import('../nte-hub/pages/CharacterDetail'));
+const CharacterDetailAniimo = React.lazy(() => import('../aniimo-hub/pages/CharacterDetail'));
 const LightConeDetail = React.lazy(() => import('../hsr-hub/pages/LightConeDetail'));
 const RelicDetail = React.lazy(() => import('../hsr-hub/pages/RelicDetail'));
 const OrnamentDetail = React.lazy(() => import('../hsr-hub/pages/OrnamentDetail'));
@@ -70,6 +71,7 @@ const CharacterDetailDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <CharacterDetailWW />;
   if (gameId === 'nte') return <CharacterDetailNTE />;
+  if (gameId === 'aniimo') return <CharacterDetailAniimo />;
   return <CharacterDetailHSR />;
 };
 

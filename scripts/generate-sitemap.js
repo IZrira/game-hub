@@ -18,6 +18,7 @@ const HSR_RELICS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
 const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts');
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
+const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
 
 function getNotionData() {
   try {
@@ -209,7 +210,8 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
     /^\/gallery\/ww\/(?:weapon|echo)\/[^/]+$/,
     /^\/gallery\/nte(?:\/parties)?$/,
     /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/,
-    /^\/gallery\/aniimo$/
+    /^\/gallery\/aniimo$/,
+    /^\/gallery\/aniimo\/character\/[^/]+$/
   ];
   const invalidRouteUrls = urlList.filter(url => {
     const pathname = new URL(url).pathname;
@@ -516,7 +518,18 @@ async function generateSitemap() {
       }
     });
 
-    // 7. Blog Posts
+    // 7. Aniimo detail pages from the verified official roster snapshot
+    xml += `\n  <!-- Aniimo Detail Pages -->\n`;
+    const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+    aniimoEntries.forEach(item => {
+      const url = `${BASE_URL}/gallery/aniimo/character/${encodeURIComponent(item.name)}`;
+      if (!urlList.includes(url)) {
+        xml += buildUrlNode(url, item.checkedAt || null, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
+        urlList.push(url);
+      }
+    });
+
+    // 8. Blog Posts
     xml += `\n  <!-- Blog Articles -->\n`;
     const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
     if (fs.existsSync(blogFilePath)) {
