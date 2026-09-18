@@ -593,9 +593,16 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
   
   injected = injected.replace('</head>', `${extraTags}\n  </head>`);
   
-  // Inject DOM Content for AdSense Bot using safe function-based replacer
+  // Keep prerendered content inside #root so React replaces it completely on mount.
   if (innerContent) {
-    injected = injected.replace(/<div\s+id=["']root["'][^>]*>([\s\S]*?)<\/div>/i, () => `<div id="root">${innerContent}</div>`);
+    const startMarker = '<!-- PRERENDER_CONTENT_START -->';
+    const endMarker = '<!-- PRERENDER_CONTENT_END -->';
+    const startIndex = injected.indexOf(startMarker);
+    const endIndex = injected.indexOf(endMarker);
+    if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+      throw new Error('Prerender content markers are missing or malformed in index.html.');
+    }
+    injected = `${injected.slice(0, startIndex + startMarker.length)}\n${innerContent}\n    ${injected.slice(endIndex)}`;
   }
   
   return injected;
