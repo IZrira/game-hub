@@ -1063,28 +1063,31 @@ function runPrerender() {
       name = char.folderName || id;
     }
     const routePath = `/gallery/ww/character/${id}`;
+    const guide = wwGuidesMap.get(id) || wwGuidesMap.get(name) || (char.folderName ? wwGuidesMap.get(char.folderName) : null);
+    const guideRoute = `/gallery/ww/character/${id}/guide`;
+    const guideLink = guide && sitemapRouteSet.has(guideRoute)
+      ? `<p><a href="${guideRoute}">${escapeHtml(name)} 종결 세팅 공략 보기</a></p>`
+      : '';
     createPrerenderedPage(
       routePath,
       `${name} 종결 세팅 · 추천 파티 조합 & 돌파 재료 계산 | 명조 공략 DB`,
       `명조 ${name}의 최신 종결 에코 세팅, 추천 무기, 스킬 매커니즘 계수, 추천 파티 시너지 및 돌파·육성 재료 총정리 가이드.`,
       getWwCharacterImageUrl(char),
       baseHtml,
-      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList),
+      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) + guideLink,
       generateDiscussionForumPostingSchema(name, routePath)
     );
     count++;
 
     // WW 캐릭터 가이드 전용 페이지 프리렌더링
-    const guide = wwGuidesMap.get(id) || wwGuidesMap.get(name) || (char.folderName ? wwGuidesMap.get(char.folderName) : null);
     if (guide) {
-      const guideRoute = `/gallery/ww/character/${id}/guide`;
       createPrerenderedPage(
         guideRoute,
         `명조 ${name} 공략 | 종결 에코 세팅 · 추천 무기 순위 · 파티 조합`,
         `명조: 워더링 웨이브 ${name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
         getWwCharacterImageUrl(char),
         baseHtml,
-        generateWwGuideHtml(id, guide, char),
+        generateWwGuideHtml(id, guide, char) + `<p><a href="${routePath}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>`,
         generateGuideSchema(name, '명조: 워더링 웨이브', guideRoute, getWwCharacterImageUrl(char))
       );
       count++;
@@ -1203,6 +1206,7 @@ function runPrerender() {
     } else if (item.dbSource === 'ww_guides') {
       const charParam = encodeURIComponent(item.id || item.name);
       const guideRoute = `/gallery/ww/character/${charParam}/guide`;
+      const characterRoute = `/gallery/ww/character/${charParam}`;
       const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
       createPrerenderedPage(
         guideRoute,
@@ -1210,7 +1214,7 @@ function runPrerender() {
         `명조: 워더링 웨이브 ${item.name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
         imageUrl,
         baseHtml,
-        generateWwGuideHtml(item.id || item.name, item, item),
+        generateWwGuideHtml(item.id || item.name, item, item) + `<p><a href="${characterRoute}">${escapeHtml(item.name)} 캐릭터 상세 정보 보기</a></p>`,
         generateGuideSchema(item.name, '명조: 워더링 웨이브', guideRoute, imageUrl)
       );
       count++;
@@ -1294,7 +1298,11 @@ function runPrerender() {
     const meta = getFallbackMeta(routePath);
     if (routePath === '/gallery/ww') {
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/'));
+      const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
+      const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
       meta.content += generateInternalLinkList('명조 무기 상세 페이지', weaponRoutes);
+      meta.content += generateInternalLinkList('명조 캐릭터 상세 페이지', characterRoutes);
+      meta.content += generateInternalLinkList('명조 캐릭터 공략', guideRoutes);
     } else if (routePath === '/gallery/hsr') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(candidate));

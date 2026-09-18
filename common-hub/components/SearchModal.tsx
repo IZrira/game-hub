@@ -144,7 +144,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
 
   // 현재 설정된 언어에 맞는 데이터 동적 로드
   const currentLang = i18n.language || 'ko';
-  const { CHARACTER_DB, LIGHTCONE_DB, WEAPON_DATA, HSR_CHARACTER_GUIDES } = useMemo(() => getGameData(currentLang), [currentLang]);
+  const { CHARACTER_DB, LIGHTCONE_DB, WEAPON_DATA, GUIDES } = useMemo(
+    () => getGameData(currentLang === 'en' && gameId === 'hsr' ? 'en' : gameId),
+    [currentLang, gameId]
+  );
 
   // 1. 데이터 카테고리별 필터링 (시각적 위계 로직)
   const results = useMemo(() => {
@@ -168,7 +171,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'hs
       url: `/gallery/${gameId}/${config.weaponRouteBase}/${w.name}`
     }));
 
-    const guidesData = config.getGuides({ HSR_CHARACTER_GUIDES });
+    const guidesData = config.getGuides({ HSR_CHARACTER_GUIDES: GUIDES, GUIDES });
     const guides = guidesData.filter((g: any) => config.getGuideName(g)?.replace(/\s+/g, '').toLowerCase().includes(q)).slice(0, 3).map((g: any) => {
       const charName = config.getGuideName(g);
       const normalizedName = charName?.replace(/\s+/g, '').toLowerCase();
