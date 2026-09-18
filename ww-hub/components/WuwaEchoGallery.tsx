@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Layers, Activity as ActivityIcon } from 'lucide-react';
-import { useNavigate } from 'react-router';
+import { Link } from 'react-router';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { SONATA_SETS, WuwaEcho, SonataType } from '../types';
 import { ItemDetail } from '../../common-hub/types';
@@ -19,7 +19,6 @@ const WuwaEchoGallery: React.FC = () => {
   const [activeSonata, setActiveSonata] = useState<string>('전체');
   const [activeCost, setActiveCost] = useState<number | '전체'>('전체');
   const [search, setSearch] = useState('');
-  const navigate = useNavigate();
   const [selectedItem, setSelectedItem] = useState<ItemDetail | null>(null);
 
   const { ECHO_DB } = useMemo(() => getGameData('ww'), []);
@@ -133,7 +132,7 @@ const WuwaEchoGallery: React.FC = () => {
           <EchoPremiumCard 
             key={echo.id} 
             echo={echo} 
-            onClick={() => navigate(`/gallery/ww/echo/${echo.name}`)} 
+            to={`/gallery/ww/echo/${encodeURIComponent(echo.name)}`}
           />
         ))}
       </div>
@@ -148,7 +147,7 @@ const WuwaEchoGallery: React.FC = () => {
   );
 };
 
-const EchoPremiumCard = ({ echo, onClick }: { echo: WuwaEcho, onClick: () => void }) => {
+const EchoPremiumCard = ({ echo, to }: { echo: WuwaEcho, to: string }) => {
   const { t } = useTranslation();
   const imgUrl = `${CDN_URL}/ww%20images/Echo/${safeEncodeURIComponent(echo.name)}.webp`;
 
@@ -164,8 +163,8 @@ const EchoPremiumCard = ({ echo, onClick }: { echo: WuwaEcho, onClick: () => voi
   const styles = getRarityStyles(echo.cost);
 
   return (
-    <button 
-      onClick={onClick} 
+    <Link
+      to={to}
       className={`group relative aspect-[1/1.2] rounded-xl overflow-hidden border ${styles.border} bg-[#121212] transition-all duration-300 hover:bg-[#1a1a1a] hover:border-white/20 active:scale-95 flex flex-col`}
     >
       {/* Subtle Rarity Glow (Top) */}
@@ -201,7 +200,7 @@ const EchoPremiumCard = ({ echo, onClick }: { echo: WuwaEcho, onClick: () => voi
           {echo.name}
         </p>
       </div>
-    </button>
+    </Link>
   );
 };
 

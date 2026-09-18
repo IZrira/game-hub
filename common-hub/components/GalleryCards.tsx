@@ -4,7 +4,6 @@ import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent, handleImageFallback, withAssetVersion, resolveRoverImageInfo } from '@/common-hub/utils/assetManager';
 import { getItemUrl, getCleanItemName } from '@/common-hub/data/items';
-import { slugify } from '@/common-hub/utils/urlUtils';
 
 export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: number }) => {
   const { t } = useTranslation();
@@ -149,17 +148,18 @@ export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick?: () 
   );
 
   const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left";
+  const targetUrl = `/gallery/${gameId}/relic/${encodeURIComponent(targetName)}`;
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={className}>
+      <Link to={targetUrl} onClick={(event) => { event.preventDefault(); onClick(); }} className={className}>
         {content}
-      </button>
+      </Link>
     );
   }
 
   return (
-    <Link to={`/gallery/${gameId}/relic/${slugify(targetName)}`} className={className}>
+    <Link to={targetUrl} className={className}>
       {content}
     </Link>
   );
@@ -320,17 +320,18 @@ export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onCl
   );
 
   const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left";
+  const targetUrl = `/gallery/${gameId}/ornament/${encodeURIComponent(ornamentName)}`;
 
   if (onClick) {
     return (
-      <button onClick={onClick} className={className}>
+      <Link to={targetUrl} onClick={(event) => { event.preventDefault(); onClick(); }} className={className}>
         {content}
-      </button>
+      </Link>
     );
   }
 
   return (
-    <Link to={`/gallery/${gameId}/ornament/${slugify(ornamentName)}`} className={className}>
+    <Link to={targetUrl} className={className}>
       {content}
     </Link>
   );

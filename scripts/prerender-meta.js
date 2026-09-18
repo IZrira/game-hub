@@ -1200,7 +1200,7 @@ function runPrerender() {
         `명조 ${item.name} 에코의 코스트, 메인 어빌리티와 활용 정보를 확인하세요.`,
         `${CDN_URL}/hsr%20images/common/default_banner.webp`,
         baseHtml,
-        generateNotionHtml(item)
+        generateNotionHtml(item) + '<p><a href="/gallery/ww">명조 에코 도감으로 돌아가기</a></p>'
       );
       count++;
     } else if (item.dbSource === 'ww_guides') {
@@ -1298,21 +1298,31 @@ function runPrerender() {
     const meta = getFallbackMeta(routePath);
     if (routePath === '/gallery/ww') {
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/'));
+      const echoRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/'));
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
       meta.content += generateInternalLinkList('명조 무기 상세 페이지', weaponRoutes);
+      meta.content += generateInternalLinkList('명조 에코 상세 페이지', echoRoutes);
       meta.content += generateInternalLinkList('명조 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('명조 캐릭터 공략', guideRoutes);
     } else if (routePath === '/gallery/hsr') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(candidate));
+      const lightConeRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/'));
+      const relicRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/relic/'));
+      const ornamentRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/'));
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 공략', guideRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 광추 상세 페이지', lightConeRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 유물 상세 페이지', relicRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 차원 장신구 상세 페이지', ornamentRoutes);
     } else if (routePath === '/gallery/nte') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate));
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/'));
       meta.content += generateInternalLinkList('이환 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('이환 아크 상세 페이지', weaponRoutes);
+    } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
+      meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
     }
     createPrerenderedPage(
       routePath,
