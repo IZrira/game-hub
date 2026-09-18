@@ -39,6 +39,8 @@ const fetchHtml = async (url) => {
 const classValues = (className, prefix) => [...className.matchAll(new RegExp(`${prefix}([a-z]+)`, 'g'))]
   .map(match => match[1]);
 
+const getAniimoAssetId = imageUrl => imageUrl?.match(/Wiki_(?:Aniimo|PetHead)_(\d+)\.png/i)?.[1] || null;
+
 const parseNumber = (text, label, nextLabel) => {
   const expression = new RegExp(`${label}\\s*[：:]?\\s*(\\d+)(?=\\s*${nextLabel})`);
   const match = text.match(expression);
@@ -180,6 +182,22 @@ for (let index = 0; index < roster.length; index += 1) {
   }
   results.push({ ...item, ...detail, forms, sourceUrl, checkedAt });
   process.stdout.write(`\r[Aniimo] ${index + 1}/${roster.length} ${item.name}`);
+}
+
+const evolutionTargets = new Map();
+for (const entry of results) {
+  for (const form of entry.forms) {
+    const assetId = getAniimoAssetId(form.imageUrl);
+    if (assetId) evolutionTargets.set(assetId, { name: entry.name, number: entry.number, formKey: form.key, formLabel: form.label });
+  }
+}
+const enrichEvolution = evolution => evolution.map(node => ({
+  ...node,
+  ...(evolutionTargets.get(getAniimoAssetId(node.imageUrl)) || { name: null, number: null, formKey: null, formLabel: null })
+}));
+for (const entry of results) {
+  entry.evolution = enrichEvolution(entry.evolution);
+  entry.forms = entry.forms.map(form => ({ ...form, evolution: enrichEvolution(form.evolution) }));
 }
 
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });

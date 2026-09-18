@@ -25,7 +25,7 @@ export interface AniimoEntry {
   traits: AniimoSkill[];
   combatSkills: AniimoSkill[];
   uniqueSkills: AniimoSkill[];
-  evolution: Array<{ stage: string; imageUrl: string | null }>;
+  evolution: AniimoEvolutionNode[];
   resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   checkedAt: string;
 }
@@ -44,7 +44,7 @@ export interface AniimoForm {
   traits: AniimoSkill[];
   combatSkills: AniimoSkill[];
   uniqueSkills: AniimoSkill[];
-  evolution: Array<{ stage: string; imageUrl: string | null }>;
+  evolution: AniimoEvolutionNode[];
   resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   sourceUrl: string;
 }
@@ -54,6 +54,15 @@ export interface AniimoHomeAbility {
   name: string;
   description: string;
   value: number | null;
+}
+
+export interface AniimoEvolutionNode {
+  stage: string;
+  imageUrl: string | null;
+  name: string | null;
+  number: string | null;
+  formKey: string | null;
+  formLabel: string | null;
 }
 
 export interface AniimoSkill {
