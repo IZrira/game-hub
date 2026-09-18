@@ -39,6 +39,13 @@ export const ARCHIVE_DATA: ArchiveData = {
       subTitle: 'Neverness to Everness Archive',
       bannerImage: '/assets/banners/ww_placeholder.webp',
       posts: []
+    },
+    {
+      id: 'aniimo',
+      title: '애니모',
+      subTitle: 'Aniimo Archive',
+      bannerImage: '/assets/unknown.webp',
+      posts: []
     }
   ]
 };

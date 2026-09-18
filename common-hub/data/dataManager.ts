@@ -1183,6 +1183,19 @@ export const getGameData = (targetId: string) => {
       NOTICES: NTE_DATA_ALL.NOTICES,
       GUIDES: NTE_DATA_ALL.GUIDES
     };
+  } else if (gameId === 'aniimo') {
+    // 공식 원본을 확인한 데이터만 이후 이 전용 계층에 연결한다.
+    // 다른 게임 데이터가 폴백으로 섞이지 않도록 초기 허브는 빈 컬렉션을 반환한다.
+    baseData = {
+      CHARACTER_DB: [],
+      WEAPON_DB: [],
+      WEAPON_DATA: [],
+      ECHO_DB: [],
+      RELIC_DB: [],
+      ORNAMENT_DB: [],
+      INVENTORY_DB: {},
+      GUIDES: []
+    };
   } else {
     // 폴백: 전체 병합 (언어 코드 'ko' 등이 들어왔을 때 데이터 유실 방지)
     baseData = {

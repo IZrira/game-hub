@@ -9,6 +9,7 @@ const Home = React.lazy(() => import('./pages/Home'));
 const GalleryHSR = React.lazy(() => import('../hsr-hub/pages/Gallery'));
 const GalleryWW = React.lazy(() => import('../ww-hub/pages/Gallery'));
 const GalleryNTE = React.lazy(() => import('../nte-hub/pages/Gallery'));
+const GalleryAniimo = React.lazy(() => import('../aniimo-hub/pages/Gallery'));
 const Detail = React.lazy(() => import('./pages/Detail'));
 const CharacterDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterDetail'));
 const CharacterDetailWW = React.lazy(() => import('../ww-hub/pages/CharacterDetail'));
@@ -61,6 +62,7 @@ const GalleryDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <GalleryWW />;
   if (gameId === 'nte') return <GalleryNTE />;
+  if (gameId === 'aniimo') return <GalleryAniimo />;
   return <GalleryHSR />;
 };
 

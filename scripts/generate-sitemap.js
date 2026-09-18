@@ -208,7 +208,8 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
     /^\/gallery\/ww\/character\/[^/]+(?:\/guide)?$/,
     /^\/gallery\/ww\/(?:weapon|echo)\/[^/]+$/,
     /^\/gallery\/nte(?:\/parties)?$/,
-    /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/
+    /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/,
+    /^\/gallery\/aniimo$/
   ];
   const invalidRouteUrls = urlList.filter(url => {
     const pathname = new URL(url).pathname;
@@ -219,7 +220,7 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
     throw new Error(`Unsupported sitemap routes detected: ${invalidRouteUrls.join(', ')}`);
   }
 
-  const uuidEntityUrls = urlList.filter(url => /\/gallery\/(?:hsr|ww|nte)\/character\/[0-9a-f]{8}-[0-9a-f-]{27}(?:\/|$)/i.test(new URL(url).pathname));
+  const uuidEntityUrls = urlList.filter(url => /\/gallery\/(?:hsr|ww|nte|aniimo)\/character\/[0-9a-f]{8}-[0-9a-f-]{27}(?:\/|$)/i.test(new URL(url).pathname));
   if (uuidEntityUrls.length > 0) {
     throw new Error(`UUID-based character sitemap URLs detected: ${uuidEntityUrls.join(', ')}`);
   }
@@ -351,6 +352,7 @@ async function generateSitemap() {
       `${BASE_URL}/gallery/hsr`,
       `${BASE_URL}/gallery/ww`,
       `${BASE_URL}/gallery/nte`,
+      `${BASE_URL}/gallery/aniimo`,
       `${BASE_URL}/gallery/hsr/tierlist`,
       `${BASE_URL}/gallery/ww/tierlist`,
       `${BASE_URL}/gallery/hsr/parties`,

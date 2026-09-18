@@ -630,7 +630,7 @@ function getFallbackMeta(routePath) {
   const entityName = parts.at(-1) || 'Rira Archive';
   const game = parts[1];
   const type = parts[2];
-  const gameLabel = game === 'hsr' ? '붕괴: 스타레일' : game === 'ww' ? '명조' : game === 'nte' ? '이환(NTE)' : 'Rira Archive';
+  const gameLabel = game === 'hsr' ? '붕괴: 스타레일' : game === 'ww' ? '명조' : game === 'nte' ? '이환(NTE)' : game === 'aniimo' ? '애니모(Aniimo)' : 'Rira Archive';
   const typeLabels = {
     lightcone: '광추', relic: '유물', ornament: '차원 장신구', echo: '에코',
     weapon: '무기', character: '캐릭터', guide: '공략'

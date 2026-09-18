@@ -8,6 +8,7 @@ const GAME_NAME_KEYS: Record<string, string> = {
   hsr: '스타레일',
   ww: '명조',
   nte: 'NTE',
+  aniimo: '애니모',
 };
 
 interface PageHeaderProps {
