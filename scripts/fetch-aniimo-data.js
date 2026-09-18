@@ -14,6 +14,21 @@ const ELEMENT_LABELS = {
 const POSITION_LABELS = {
   dps: '딜', heal: '치유', sup: '서포터', break: '격파', energy: '에너지 재생'
 };
+const HOME_ABILITY_LABELS = {
+  1000: { name: '불', description: '가열과 조리 작업' },
+  1001: { name: '풀', description: '파종과 채집 작업' },
+  1002: { name: '물', description: '급수와 양조 작업' },
+  1003: { name: '바위', description: '채광과 토지 작업' },
+  1004: { name: '전기', description: '발전과 전력 작업' },
+  1005: { name: '얼음', description: '냉각 작업' },
+  1006: { name: '바람', description: '밀링·방적 등 가공 작업' },
+  1007: { name: '어둠', description: '수확·벌목·건조 작업' },
+  1008: { name: '빛', description: '조명 작업' },
+  1100: { name: '운반', description: '완성품을 보관소로 운반' },
+  1101: { name: '공예', description: '가구·외형·생활 용품 제작' },
+  1102: { name: '여가', description: '놀이와 여가 시설 작업' },
+  1103: { name: '조향', description: '향·향수 제작' }
+};
 
 const fetchHtml = async (url) => {
   const response = await fetch(url, { headers: { 'user-agent': 'RiraGameHub/1.0 (+https://riragamehub.com)' } });
@@ -33,6 +48,7 @@ const parseNumber = (text, label, nextLabel) => {
 const parseDetail = (html) => {
   const $ = cheerio.load(html);
   const text = $('body').text().replace(/\s+/g, ' ').trim();
+  const infoClasses = $('.aniimo-info-content-layer').first().html() || '';
   const imageUrl = [...html.matchAll(/https:\/\/worldx-website-cdn\.aniimo\.com\/[^"'\\ ]+Wiki_Aniimo_[^"'\\ ]+\.png/g)]
     .map(match => match[0])[0] || null;
 
@@ -95,6 +111,8 @@ const parseDetail = (html) => {
 
   return {
     imageUrl,
+    elements: [...new Set(classValues(infoClasses, 'aniimo-info-content-layer-attribute-').map(value => ELEMENT_LABELS[value] || value))],
+    positions: [...new Set(classValues(infoClasses, 'aniimo-info-content-layer-position-').map(value => POSITION_LABELS[value] || value))],
     stats: {
       total: parseNumber(text, '속성', 'HP'),
       hp: parseNumber(text, 'HP', '무력화'),
@@ -108,7 +126,9 @@ const parseDetail = (html) => {
     locations: getSection('출현 지역').find('.capsule-item').map((_, element) => $(element).text().trim()).get().filter(Boolean),
     homeAbilities: getSection('홈 능력').find('.capsule-item').map((_, element) => {
       const capsule = $(element); const className = capsule.find('[class*="icon-home-"]').attr('class') || '';
-      return { type: className.match(/icon-home-(\d+)/)?.[1] || 'unknown', value: Number(capsule.text().trim()) || null };
+      const type = className.match(/icon-home-(\d+)/)?.[1] || 'unknown';
+      const ability = HOME_ABILITY_LABELS[type] || { name: '기타 능력', description: '홈 생산 능력' };
+      return { type, name: ability.name, description: ability.description, value: Number(capsule.text().trim()) || null };
     }).get(),
     explorationSkills: parseCircleItems('탐사 스킬'),
     traits: parseCircleItems('애니모 특성'),
@@ -155,8 +175,7 @@ for (let index = 0; index < roster.length; index += 1) {
     const formDetail = form.href === item.sourcePath ? detail : parseDetail(await fetchHtml(formUrl));
     forms.push({
       key: form.href.split('/').filter(Boolean).at(-1), label: form.label,
-      imageUrl: formDetail.imageUrl, description: formDetail.description,
-      stats: formDetail.stats, sourceUrl: formUrl
+      ...formDetail, sourceUrl: formUrl
     });
   }
   results.push({ ...item, ...detail, forms, sourceUrl, checkedAt });

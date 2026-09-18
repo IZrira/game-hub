@@ -20,7 +20,7 @@ export interface AniimoEntry {
   stats: AniimoStats;
   description: string;
   locations: string[];
-  homeAbilities: Array<{ type: string; value: number | null }>;
+  homeAbilities: AniimoHomeAbility[];
   explorationSkills: AniimoSkill[];
   traits: AniimoSkill[];
   combatSkills: AniimoSkill[];
@@ -34,9 +34,26 @@ export interface AniimoForm {
   key: string;
   label: string;
   imageUrl: string | null;
+  elements: string[];
+  positions: string[];
   description: string;
   stats: AniimoStats;
+  locations: string[];
+  homeAbilities: AniimoHomeAbility[];
+  explorationSkills: AniimoSkill[];
+  traits: AniimoSkill[];
+  combatSkills: AniimoSkill[];
+  uniqueSkills: AniimoSkill[];
+  evolution: Array<{ stage: string; imageUrl: string | null }>;
+  resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   sourceUrl: string;
+}
+
+export interface AniimoHomeAbility {
+  type: string;
+  name: string;
+  description: string;
+  value: number | null;
 }
 
 export interface AniimoSkill {
