@@ -257,7 +257,7 @@ const GalleryWW: React.FC = () => {
                   <WuwaWeaponCard 
                     key={lc.id} 
                     weapon={lc} 
-                    onClick={() => navigate(`/gallery/ww/weapon/${encodeURIComponent(lc.name)}`)} 
+                    to={`/gallery/ww/weapon/${encodeURIComponent(lc.name)}`}
                   />
                 ))}
               </div>

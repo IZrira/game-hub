@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
-const WuwaWeaponCard = ({ weapon, onClick }: any) => {
+const WuwaWeaponCard = ({ weapon, to }: any) => {
   const { t } = useTranslation();
   const IMG_BASE = `${CDN_URL}/ww%20images/Weapons/`;
   
@@ -15,7 +16,7 @@ const WuwaWeaponCard = ({ weapon, onClick }: any) => {
   };
 
   return (
-    <div onClick={onClick} className="group cursor-pointer space-y-3">
+    <Link to={to} className="group block cursor-pointer space-y-3">
       <div className={`aspect-square rounded-[32px] border bg-gradient-to-br ${RARITY_GRADIENTS[weapon.rarity]} overflow-hidden relative transition-all group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]`}>
         <img 
           src={`${IMG_BASE}${safeEncodeURIComponent(t(weapon.name))}.webp`}
@@ -36,7 +37,7 @@ const WuwaWeaponCard = ({ weapon, onClick }: any) => {
         <h4 className="text-white font-black text-sm truncate uppercase tracking-tighter">{t(weapon.name)}</h4>
         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t(weapon.type)}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

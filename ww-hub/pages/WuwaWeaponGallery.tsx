@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter } from 'lucide-react';
-import { useNavigate } from 'react-router';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { WuwaWeapon } from './weapon';
 import WuwaWeaponCard from './WuwaWeaponCard';
@@ -11,7 +10,6 @@ import { useTranslation } from 'react-i18next';
 
 const WuwaWeaponGallery = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
   const [search, setSearch] = useState('');
   const [selectedType, setSelectedType] = useState<string>('전체');
   const [selectedRarity, setSelectedRarity] = useState<number | '전체'>('전체');
@@ -90,7 +88,7 @@ const WuwaWeaponGallery = () => {
       <main className="max-w-[1440px] mx-auto px-6 md:px-12 py-12">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
         {filteredWeapons.map(weapon => (
-          <WuwaWeaponCard key={weapon.id} weapon={weapon} onClick={() => navigate(`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`)} />
+          <WuwaWeaponCard key={weapon.id} weapon={weapon} to={`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`} />
         ))}
       </div>
       </main>

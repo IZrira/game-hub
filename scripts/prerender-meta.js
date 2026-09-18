@@ -646,6 +646,15 @@ function getFallbackMeta(routePath) {
   return { title, description, content };
 }
 
+function generateInternalLinkList(title, routes) {
+  if (routes.length === 0) return '';
+  const links = routes.map(route => {
+    const label = decodeURIComponent(route.split('/').filter(Boolean).at(-1) || route);
+    return `<li><a href="${escapeHtml(route)}">${escapeHtml(label)}</a></li>`;
+  }).join('\n');
+  return `<nav aria-label="${escapeHtml(title)}"><h2>${escapeHtml(title)}</h2><ul>${links}</ul></nav>`;
+}
+
 // ---------------------------------------------------------------------
 // SEO HTML Generators
 // ---------------------------------------------------------------------
@@ -1279,6 +1288,10 @@ function runPrerender() {
   sitemapRoutes.forEach(routePath => {
     if (prerenderedRoutes.has(routePath)) return;
     const meta = getFallbackMeta(routePath);
+    if (routePath === '/gallery/ww') {
+      const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/'));
+      meta.content += generateInternalLinkList('명조 무기 상세 페이지', weaponRoutes);
+    }
     createPrerenderedPage(
       routePath,
       meta.title,
