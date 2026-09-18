@@ -5,6 +5,7 @@ import { CHARACTER_DB_EN } from './index';
 import i18n from '../i18n';
 import notionData from './notion-data.json';
 import wwWeaponsKo from '../locales/ww/ww_weapons_ko.json';
+import aniimoData from '../../aniimo-hub/data/aniimo.json';
 
 export interface NotionItem {
   id: string;
@@ -1187,7 +1188,7 @@ export const getGameData = (targetId: string) => {
     // 공식 원본을 확인한 데이터만 이후 이 전용 계층에 연결한다.
     // 다른 게임 데이터가 폴백으로 섞이지 않도록 초기 허브는 빈 컬렉션을 반환한다.
     baseData = {
-      CHARACTER_DB: [],
+      CHARACTER_DB: aniimoData.map(item => ({ ...item, id: item.number, gameId: 'aniimo' as const })),
       WEAPON_DB: [],
       WEAPON_DATA: [],
       ECHO_DB: [],

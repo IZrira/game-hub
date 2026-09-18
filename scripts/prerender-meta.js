@@ -1321,6 +1321,12 @@ function runPrerender() {
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/'));
       meta.content += generateInternalLinkList('이환 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('이환 아크 상세 페이지', weaponRoutes);
+    } else if (routePath === '/gallery/aniimo') {
+      const aniimoFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
+      const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];
+      meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
+      meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
+      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li>${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
     }

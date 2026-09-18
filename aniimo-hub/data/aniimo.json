@@ -1,0 +1,1988 @@
+[
+  {
+    "number": "001",
+    "name": "탄멍멍",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/001/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10051.png",
+    "stats": {
+      "total": 382,
+      "hp": 67,
+      "break": 40,
+      "attack": 90,
+      "magicDefense": 57,
+      "physicalDefense": 60,
+      "energyRecovery": 68
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/001/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "002",
+    "name": "화르랑",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/002/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10052.png",
+    "stats": {
+      "total": 456,
+      "hp": 85,
+      "break": 45,
+      "attack": 111,
+      "magicDefense": 63,
+      "physicalDefense": 72,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/002/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "003",
+    "name": "이글랑",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/003/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10053.png",
+    "stats": {
+      "total": 511,
+      "hp": 95,
+      "break": 52,
+      "attack": 119,
+      "magicDefense": 75,
+      "physicalDefense": 80,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/003/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "004",
+    "name": "헬울프",
+    "elements": [
+      "불",
+      "어둠"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/004/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10055.png",
+    "stats": {
+      "total": 541,
+      "hp": 95,
+      "break": 108,
+      "attack": 89,
+      "magicDefense": 80,
+      "physicalDefense": 70,
+      "energyRecovery": 99
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/004/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "005",
+    "name": "스타라미",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/005/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10011.png",
+    "stats": {
+      "total": 429,
+      "hp": 81,
+      "break": 46,
+      "attack": 106,
+      "magicDefense": 58,
+      "physicalDefense": 58,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/005/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "006",
+    "name": "스타저드",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/006/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10012.png",
+    "stats": {
+      "total": 505,
+      "hp": 95,
+      "break": 54,
+      "attack": 125,
+      "magicDefense": 69,
+      "physicalDefense": 68,
+      "energyRecovery": 94
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/006/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "007",
+    "name": "호루매기",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/007/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10181.png",
+    "stats": {
+      "total": 452,
+      "hp": 97,
+      "break": 43,
+      "attack": 83,
+      "magicDefense": 69,
+      "physicalDefense": 67,
+      "energyRecovery": 93
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/007/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "008",
+    "name": "롬본이",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/008/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10184.png",
+    "stats": {
+      "total": 531,
+      "hp": 113,
+      "break": 51,
+      "attack": 119,
+      "magicDefense": 81,
+      "physicalDefense": 79,
+      "energyRecovery": 88
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/008/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "009",
+    "name": "럼펫이",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/009/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10185.png",
+    "stats": {
+      "total": 509,
+      "hp": 96,
+      "break": 54,
+      "attack": 121,
+      "magicDefense": 70,
+      "physicalDefense": 74,
+      "energyRecovery": 94
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/009/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "010",
+    "name": "튜바얌",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/010/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10187.png",
+    "stats": {
+      "total": 550,
+      "hp": 108,
+      "break": 107,
+      "attack": 80,
+      "magicDefense": 109,
+      "physicalDefense": 66,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/010/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "011",
+    "name": "플러터",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/011/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10211.png",
+    "stats": {
+      "total": 397,
+      "hp": 69,
+      "break": 50,
+      "attack": 101,
+      "magicDefense": 53,
+      "physicalDefense": 53,
+      "energyRecovery": 71
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/011/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "012",
+    "name": "왈츠페탈",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/012/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10212.png",
+    "stats": {
+      "total": 504,
+      "hp": 100,
+      "break": 52,
+      "attack": 118,
+      "magicDefense": 70,
+      "physicalDefense": 70,
+      "energyRecovery": 94
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/012/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "013",
+    "name": "연댕모리",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "sourcePath": "/ko/item/013/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10041.png",
+    "stats": {
+      "total": 402,
+      "hp": 80,
+      "break": 50,
+      "attack": 70,
+      "magicDefense": 76,
+      "physicalDefense": 66,
+      "energyRecovery": 60
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/013/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "014",
+    "name": "장꾸모리",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "sourcePath": "/ko/item/014/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10042.png",
+    "stats": {
+      "total": 482,
+      "hp": 109,
+      "break": 50,
+      "attack": 85,
+      "magicDefense": 98,
+      "physicalDefense": 66,
+      "energyRecovery": 74
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/014/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "015",
+    "name": "아이시우스",
+    "elements": [
+      "물",
+      "얼음"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "sourcePath": "/ko/item/015/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10043.png",
+    "stats": {
+      "total": 535,
+      "hp": 120,
+      "break": 50,
+      "attack": 95,
+      "magicDefense": 110,
+      "physicalDefense": 72,
+      "energyRecovery": 88
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/015/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "016",
+    "name": "연잎룡",
+    "elements": [
+      "풀",
+      "물"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/016/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10045.png",
+    "stats": {
+      "total": 535,
+      "hp": 120,
+      "break": 50,
+      "attack": 95,
+      "magicDefense": 82,
+      "physicalDefense": 82,
+      "energyRecovery": 106
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/016/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "017",
+    "name": "뭉게양",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/017/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10261.png",
+    "stats": {
+      "total": 451,
+      "hp": 80,
+      "break": 43,
+      "attack": 84,
+      "magicDefense": 82,
+      "physicalDefense": 69,
+      "energyRecovery": 93
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/017/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "018",
+    "name": "몽실양",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/018/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10262.png",
+    "stats": {
+      "total": 518,
+      "hp": 95,
+      "break": 50,
+      "attack": 110,
+      "magicDefense": 96,
+      "physicalDefense": 80,
+      "energyRecovery": 87
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/018/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "019",
+    "name": "쿨쿨양",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/019/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10263.png",
+    "stats": {
+      "total": 520,
+      "hp": 100,
+      "break": 50,
+      "attack": 110,
+      "magicDefense": 103,
+      "physicalDefense": 77,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/019/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "020",
+    "name": "삑삑초",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/020/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10201.png",
+    "stats": {
+      "total": 467,
+      "hp": 94,
+      "break": 80,
+      "attack": 68,
+      "magicDefense": 94,
+      "physicalDefense": 71,
+      "energyRecovery": 60
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/020/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "021",
+    "name": "위치햇그라스",
+    "elements": [
+      "어둠",
+      "풀"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/021/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10203.png",
+    "stats": {
+      "total": 542,
+      "hp": 115,
+      "break": 50,
+      "attack": 88,
+      "magicDefense": 90,
+      "physicalDefense": 84,
+      "energyRecovery": 115
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/021/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "022",
+    "name": "굴파미",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/022/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10207.png",
+    "stats": {
+      "total": 550,
+      "hp": 106,
+      "break": 100,
+      "attack": 80,
+      "magicDefense": 110,
+      "physicalDefense": 83,
+      "energyRecovery": 71
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/022/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "023",
+    "name": "싹크랩",
+    "elements": [
+      "rock",
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/023/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10161.png",
+    "stats": {
+      "total": 454,
+      "hp": 76,
+      "break": 84,
+      "attack": 64,
+      "magicDefense": 65,
+      "physicalDefense": 93,
+      "energyRecovery": 72
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/023/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "024",
+    "name": "풀크랩",
+    "elements": [
+      "rock",
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/024/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10162.png",
+    "stats": {
+      "total": 550,
+      "hp": 95,
+      "break": 104,
+      "attack": 80,
+      "magicDefense": 77,
+      "physicalDefense": 109,
+      "energyRecovery": 85
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/024/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "025",
+    "name": "스탈크랩",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/025/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10163.png",
+    "stats": {
+      "total": 550,
+      "hp": 93,
+      "break": 103,
+      "attack": 80,
+      "magicDefense": 79,
+      "physicalDefense": 113,
+      "energyRecovery": 82
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/025/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "026",
+    "name": "도깨불",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/026/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10331.png",
+    "stats": {
+      "total": 435,
+      "hp": 69,
+      "break": 41,
+      "attack": 100,
+      "magicDefense": 67,
+      "physicalDefense": 60,
+      "energyRecovery": 98
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/026/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "027",
+    "name": "일렁깨비",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/027/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10333.png",
+    "stats": {
+      "total": 517,
+      "hp": 80,
+      "break": 50,
+      "attack": 113,
+      "magicDefense": 89,
+      "physicalDefense": 70,
+      "energyRecovery": 115
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/027/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "028",
+    "name": "반짝쵸",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "sourcePath": "/ko/item/028/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10231.png",
+    "stats": {
+      "total": 437,
+      "hp": 94,
+      "break": 41,
+      "attack": 81,
+      "magicDefense": 68,
+      "physicalDefense": 68,
+      "energyRecovery": 85
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/028/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "029",
+    "name": "판타쵸",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "sourcePath": "/ko/item/029/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10232.png",
+    "stats": {
+      "total": 532,
+      "hp": 110,
+      "break": 50,
+      "attack": 98,
+      "magicDefense": 85,
+      "physicalDefense": 85,
+      "energyRecovery": 104
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/029/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "031",
+    "name": "래빗배트",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/031/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10441.png",
+    "stats": {
+      "total": 427,
+      "hp": 70,
+      "break": 42,
+      "attack": 108,
+      "magicDefense": 57,
+      "physicalDefense": 70,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/031/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "032",
+    "name": "디텍배트",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/032/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10443.png",
+    "stats": {
+      "total": 510,
+      "hp": 100,
+      "break": 49,
+      "attack": 120,
+      "magicDefense": 67,
+      "physicalDefense": 83,
+      "energyRecovery": 91
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/032/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "033",
+    "name": "울먹팡",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/033/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10321.png",
+    "stats": {
+      "total": 428,
+      "hp": 82,
+      "break": 43,
+      "attack": 107,
+      "magicDefense": 59,
+      "physicalDefense": 59,
+      "energyRecovery": 78
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/033/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "034",
+    "name": "콕콕바라",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/034/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10323.png",
+    "stats": {
+      "total": 509,
+      "hp": 96,
+      "break": 53,
+      "attack": 121,
+      "magicDefense": 73,
+      "physicalDefense": 74,
+      "energyRecovery": 92
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/034/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "035",
+    "name": "플로리안",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/035/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10324.png",
+    "stats": {
+      "total": 517,
+      "hp": 95,
+      "break": 91,
+      "attack": 113,
+      "magicDefense": 70,
+      "physicalDefense": 70,
+      "energyRecovery": 78
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/035/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "036",
+    "name": "라라에그",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/036/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10471.png",
+    "stats": {
+      "total": 455,
+      "hp": 74,
+      "break": 91,
+      "attack": 72,
+      "magicDefense": 65,
+      "physicalDefense": 68,
+      "energyRecovery": 85
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/036/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "037",
+    "name": "붐테일자드",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/037/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10475.png",
+    "stats": {
+      "total": 540,
+      "hp": 87,
+      "break": 107,
+      "attack": 90,
+      "magicDefense": 76,
+      "physicalDefense": 80,
+      "energyRecovery": 100
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/037/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "038",
+    "name": "허니버드",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/038/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10351.png",
+    "stats": {
+      "total": 441,
+      "hp": 71,
+      "break": 69,
+      "attack": 94,
+      "magicDefense": 55,
+      "physicalDefense": 58,
+      "energyRecovery": 94
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/038/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "039",
+    "name": "플로라버드",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/039/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10352.png",
+    "stats": {
+      "total": 519,
+      "hp": 84,
+      "break": 81,
+      "attack": 111,
+      "magicDefense": 65,
+      "physicalDefense": 68,
+      "energyRecovery": 110
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/039/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "040",
+    "name": "싹뚜기",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/040/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10031.png",
+    "stats": {
+      "total": 423,
+      "hp": 77,
+      "break": 43,
+      "attack": 112,
+      "magicDefense": 54,
+      "physicalDefense": 60,
+      "energyRecovery": 77
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/040/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "041",
+    "name": "서걱리퍼",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/041/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10032.png",
+    "stats": {
+      "total": 505,
+      "hp": 90,
+      "break": 52,
+      "attack": 125,
+      "magicDefense": 70,
+      "physicalDefense": 77,
+      "energyRecovery": 91
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/041/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "042",
+    "name": "서린댕",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/042/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10131.png",
+    "stats": {
+      "total": 377,
+      "hp": 71,
+      "break": 38,
+      "attack": 88,
+      "magicDefense": 57,
+      "physicalDefense": 56,
+      "energyRecovery": 67
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/042/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "043",
+    "name": "빙참랑",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/043/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10132.png",
+    "stats": {
+      "total": 453,
+      "hp": 86,
+      "break": 45,
+      "attack": 105,
+      "magicDefense": 68,
+      "physicalDefense": 68,
+      "energyRecovery": 81
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/043/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "044",
+    "name": "설휘랑",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/044/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10133.png",
+    "stats": {
+      "total": 512,
+      "hp": 95,
+      "break": 53,
+      "attack": 118,
+      "magicDefense": 76,
+      "physicalDefense": 72,
+      "energyRecovery": 98
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/044/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "045",
+    "name": "라이트밍",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/045/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10221.png",
+    "stats": {
+      "total": 450,
+      "hp": 85,
+      "break": 87,
+      "attack": 85,
+      "magicDefense": 60,
+      "physicalDefense": 60,
+      "energyRecovery": 73
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/045/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "046",
+    "name": "볼트밍",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/046/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10222.png",
+    "stats": {
+      "total": 530,
+      "hp": 100,
+      "break": 104,
+      "attack": 100,
+      "magicDefense": 70,
+      "physicalDefense": 70,
+      "energyRecovery": 86
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/046/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "047",
+    "name": "펀치테일",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/047/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10511.png",
+    "stats": {
+      "total": 455,
+      "hp": 53,
+      "break": 94,
+      "attack": 80,
+      "magicDefense": 72,
+      "physicalDefense": 79,
+      "energyRecovery": 77
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/047/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "048",
+    "name": "버스트테일",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/048/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10512.png",
+    "stats": {
+      "total": 548,
+      "hp": 110,
+      "break": 108,
+      "attack": 82,
+      "magicDefense": 80,
+      "physicalDefense": 80,
+      "energyRecovery": 88
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/048/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "049",
+    "name": "수줍달",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/049/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10171.png",
+    "stats": {
+      "total": 411,
+      "hp": 81,
+      "break": 72,
+      "attack": 61,
+      "magicDefense": 80,
+      "physicalDefense": 53,
+      "energyRecovery": 64
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/049/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "050",
+    "name": "보글달",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/050/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10172.png",
+    "stats": {
+      "total": 471,
+      "hp": 92,
+      "break": 80,
+      "attack": 96,
+      "magicDefense": 68,
+      "physicalDefense": 68,
+      "energyRecovery": 67
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/050/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "051",
+    "name": "둥실달",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/051/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10173.png",
+    "stats": {
+      "total": 522,
+      "hp": 102,
+      "break": 50,
+      "attack": 108,
+      "magicDefense": 75,
+      "physicalDefense": 99,
+      "energyRecovery": 88
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/051/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "052",
+    "name": "둔둔달",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/052/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10174.png",
+    "stats": {
+      "total": 545,
+      "hp": 104,
+      "break": 100,
+      "attack": 85,
+      "magicDefense": 106,
+      "physicalDefense": 70,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/052/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "053",
+    "name": "클램스타",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/053/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10191.png",
+    "stats": {
+      "total": 382,
+      "hp": 75,
+      "break": 39,
+      "attack": 90,
+      "magicDefense": 56,
+      "physicalDefense": 56,
+      "energyRecovery": 66
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/053/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "054",
+    "name": "위즈스타",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/054/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10192.png",
+    "stats": {
+      "total": 458,
+      "hp": 90,
+      "break": 44,
+      "attack": 109,
+      "magicDefense": 68,
+      "physicalDefense": 68,
+      "energyRecovery": 79
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/054/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "055",
+    "name": "나이트스타",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/055/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10194.png",
+    "stats": {
+      "total": 509,
+      "hp": 100,
+      "break": 50,
+      "attack": 121,
+      "magicDefense": 75,
+      "physicalDefense": 75,
+      "energyRecovery": 88
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/055/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "056",
+    "name": "데굴굴",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/056/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10451.png",
+    "stats": {
+      "total": 437,
+      "hp": 76,
+      "break": 42,
+      "attack": 98,
+      "magicDefense": 68,
+      "physicalDefense": 68,
+      "energyRecovery": 85
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/056/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "057",
+    "name": "모터터",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/057/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10453.png",
+    "stats": {
+      "total": 516,
+      "hp": 90,
+      "break": 52,
+      "attack": 114,
+      "magicDefense": 80,
+      "physicalDefense": 80,
+      "energyRecovery": 100
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/057/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "058",
+    "name": "록볼볼",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/058/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10454.png",
+    "stats": {
+      "total": 516,
+      "hp": 91,
+      "break": 52,
+      "attack": 114,
+      "magicDefense": 54,
+      "physicalDefense": 101,
+      "energyRecovery": 104
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/058/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "059",
+    "name": "엔젤멍",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/059/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10291.png",
+    "stats": {
+      "total": 429,
+      "hp": 85,
+      "break": 41,
+      "attack": 106,
+      "magicDefense": 60,
+      "physicalDefense": 60,
+      "energyRecovery": 77
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/059/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "060",
+    "name": "우스멍",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/060/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10293.png",
+    "stats": {
+      "total": 505,
+      "hp": 100,
+      "break": 50,
+      "attack": 125,
+      "magicDefense": 70,
+      "physicalDefense": 70,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/060/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "061",
+    "name": "투구누니",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/061/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10021.png",
+    "stats": {
+      "total": 339,
+      "hp": 60,
+      "break": 60,
+      "attack": 52,
+      "magicDefense": 48,
+      "physicalDefense": 68,
+      "energyRecovery": 51
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/061/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "062",
+    "name": "누니용사",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/062/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10026.png",
+    "stats": {
+      "total": 505,
+      "hp": 90,
+      "break": 55,
+      "attack": 125,
+      "magicDefense": 70,
+      "physicalDefense": 84,
+      "energyRecovery": 81
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/062/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "063",
+    "name": "아머누니",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/063/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10027.png",
+    "stats": {
+      "total": 540,
+      "hp": 100,
+      "break": 105,
+      "attack": 90,
+      "magicDefense": 70,
+      "physicalDefense": 100,
+      "energyRecovery": 75
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/063/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "064",
+    "name": "바이티",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/064/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10024.png",
+    "stats": {
+      "total": 407,
+      "hp": 78,
+      "break": 76,
+      "attack": 65,
+      "magicDefense": 51,
+      "physicalDefense": 74,
+      "energyRecovery": 63
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/064/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "065",
+    "name": "갸면뇽",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/065/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10022.png",
+    "stats": {
+      "total": 489,
+      "hp": 94,
+      "break": 92,
+      "attack": 78,
+      "magicDefense": 61,
+      "physicalDefense": 88,
+      "energyRecovery": 76
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/065/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "066",
+    "name": "갸고일",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/066/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10023.png",
+    "stats": {
+      "total": 543,
+      "hp": 104,
+      "break": 102,
+      "attack": 87,
+      "magicDefense": 68,
+      "physicalDefense": 98,
+      "energyRecovery": 84
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/066/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "067",
+    "name": "갸갑파이어",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/067/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10025.png",
+    "stats": {
+      "total": 505,
+      "hp": 95,
+      "break": 50,
+      "attack": 125,
+      "magicDefense": 85,
+      "physicalDefense": 70,
+      "energyRecovery": 80
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/067/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "068",
+    "name": "드리미",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/068/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10501.png",
+    "stats": {
+      "total": 435,
+      "hp": 92,
+      "break": 42,
+      "attack": 100,
+      "magicDefense": 61,
+      "physicalDefense": 70,
+      "energyRecovery": 70
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/068/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "069",
+    "name": "푹자곰",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/069/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10503.png",
+    "stats": {
+      "total": 506,
+      "hp": 104,
+      "break": 50,
+      "attack": 124,
+      "magicDefense": 70,
+      "physicalDefense": 83,
+      "energyRecovery": 75
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/069/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "070",
+    "name": "록키",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/070/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10281.png",
+    "stats": {
+      "total": 412,
+      "hp": 83,
+      "break": 79,
+      "attack": 68,
+      "magicDefense": 74,
+      "physicalDefense": 52,
+      "energyRecovery": 56
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/070/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "071",
+    "name": "라바크",
+    "elements": [
+      "불",
+      "rock"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/071/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10282.png",
+    "stats": {
+      "total": 485,
+      "hp": 99,
+      "break": 93,
+      "attack": 82,
+      "magicDefense": 80,
+      "physicalDefense": 63,
+      "energyRecovery": 68
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/071/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "072",
+    "name": "마그라곤",
+    "elements": [
+      "불",
+      "rock"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/072/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10283.png",
+    "stats": {
+      "total": 539,
+      "hp": 110,
+      "break": 104,
+      "attack": 91,
+      "magicDefense": 89,
+      "physicalDefense": 70,
+      "energyRecovery": 75
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/072/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "073",
+    "name": "크리스톤",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/073/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10284.png",
+    "stats": {
+      "total": 486,
+      "hp": 99,
+      "break": 102,
+      "attack": 81,
+      "magicDefense": 54,
+      "physicalDefense": 80,
+      "energyRecovery": 70
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/073/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "074",
+    "name": "크리스바인",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "sourcePath": "/ko/item/074/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10285.png",
+    "stats": {
+      "total": 540,
+      "hp": 110,
+      "break": 105,
+      "attack": 90,
+      "magicDefense": 60,
+      "physicalDefense": 97,
+      "energyRecovery": 78
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/074/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "075",
+    "name": "침니앤트",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/075/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10431.png",
+    "stats": {
+      "total": 448,
+      "hp": 77,
+      "break": 50,
+      "attack": 87,
+      "magicDefense": 67,
+      "physicalDefense": 67,
+      "energyRecovery": 100
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/075/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "076",
+    "name": "캐슬앤트",
+    "elements": [
+      "rock"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/076/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10433.png",
+    "stats": {
+      "total": 514,
+      "hp": 90,
+      "break": 50,
+      "attack": 116,
+      "magicDefense": 83,
+      "physicalDefense": 100,
+      "energyRecovery": 75
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/076/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "077",
+    "name": "램프젤리",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/077/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10141.png",
+    "stats": {
+      "total": 404,
+      "hp": 83,
+      "break": 37,
+      "attack": 68,
+      "magicDefense": 63,
+      "physicalDefense": 63,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/077/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "078",
+    "name": "루미젤리",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/078/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10142.png",
+    "stats": {
+      "total": 473,
+      "hp": 99,
+      "break": 45,
+      "attack": 93,
+      "magicDefense": 74,
+      "physicalDefense": 72,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/078/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "079",
+    "name": "샹들라젤리",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/079/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10143.png",
+    "stats": {
+      "total": 515,
+      "hp": 110,
+      "break": 50,
+      "attack": 115,
+      "magicDefense": 75,
+      "physicalDefense": 75,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/079/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "080",
+    "name": "버블버드",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/080/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10481.png",
+    "stats": {
+      "total": 459,
+      "hp": 102,
+      "break": 44,
+      "attack": 76,
+      "magicDefense": 76,
+      "physicalDefense": 68,
+      "energyRecovery": 93
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/080/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "081",
+    "name": "폼폼버드",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/081/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10483.png",
+    "stats": {
+      "total": 540,
+      "hp": 120,
+      "break": 50,
+      "attack": 90,
+      "magicDefense": 90,
+      "physicalDefense": 80,
+      "energyRecovery": 110
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/081/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "082",
+    "name": "베서스",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/082/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10122.png",
+    "stats": {
+      "total": 538,
+      "hp": 88,
+      "break": 90,
+      "attack": 92,
+      "magicDefense": 75,
+      "physicalDefense": 75,
+      "energyRecovery": 118
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/082/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "10002",
+    "name": "썬더자드",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/10002/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10474.png",
+    "stats": {
+      "total": 522,
+      "hp": 100,
+      "break": 55,
+      "attack": 108,
+      "magicDefense": 90,
+      "physicalDefense": 81,
+      "energyRecovery": 88
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/10002/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "10003",
+    "name": "썬더스퀵",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/10003/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10033.png",
+    "stats": {
+      "total": 520,
+      "hp": 99,
+      "break": 50,
+      "attack": 130,
+      "magicDefense": 70,
+      "physicalDefense": 66,
+      "energyRecovery": 105
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/10003/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "11001",
+    "name": "꼬마 불꽃",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "sourcePath": "/ko/item/11001/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_69993.png",
+    "stats": {
+      "total": 517,
+      "hp": 107,
+      "break": 50,
+      "attack": 113,
+      "magicDefense": 88,
+      "physicalDefense": 60,
+      "energyRecovery": 99
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/11001/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "99996",
+    "name": "루나센",
+    "elements": [
+      "빛"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/99996/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10371.png",
+    "stats": {
+      "total": 514,
+      "hp": 100,
+      "break": 64,
+      "attack": 116,
+      "magicDefense": 72,
+      "physicalDefense": 72,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/99996/basic-form",
+    "checkedAt": "2026-09-18"
+  },
+  {
+    "number": "99998",
+    "name": "헬리온",
+    "elements": [
+      "빛"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "sourcePath": "/ko/item/99998/basic-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10361.png",
+    "stats": {
+      "total": 514,
+      "hp": 100,
+      "break": 64,
+      "attack": 116,
+      "magicDefense": 72,
+      "physicalDefense": 72,
+      "energyRecovery": 90
+    },
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/99998/basic-form",
+    "checkedAt": "2026-09-18"
+  }
+]

@@ -1,71 +1,86 @@
-import React from 'react';
-import { Database, Search, ShieldCheck, Users } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { BarChart3, Check, ExternalLink, Search, X } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import aniimoData from '../data/aniimo.json';
+import type { AniimoEntry, AniimoStats } from '../types';
+
+const entries = aniimoData as AniimoEntry[];
+const ALL = '전체';
+const STAT_ROWS: Array<{ key: keyof AniimoStats; label: string }> = [
+  { key: 'total', label: '종합 속성' }, { key: 'hp', label: 'HP' },
+  { key: 'break', label: '무력화' }, { key: 'attack', label: '공격' },
+  { key: 'magicDefense', label: '마법 방어' }, { key: 'physicalDefense', label: '물리 방어' },
+  { key: 'energyRecovery', label: '에너지 회복' }
+];
 
 const GalleryAniimo: React.FC = () => {
+  const [query, setQuery] = useState('');
+  const [element, setElement] = useState(ALL);
+  const [position, setPosition] = useState(ALL);
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const elements = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.elements))], []);
+  const positions = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.positions))], []);
+  const filtered = useMemo(() => {
+    const keyword = query.trim().toLocaleLowerCase('ko');
+    return entries.filter(item =>
+      (!keyword || item.name.toLocaleLowerCase('ko').includes(keyword) || item.number.includes(keyword)) &&
+      (element === ALL || item.elements.includes(element)) &&
+      (position === ALL || item.positions.includes(position))
+    );
+  }, [query, element, position]);
+  const compared = selected.map(number => entries.find(item => item.number === number)).filter(Boolean) as AniimoEntry[];
+  const toggleCompare = (number: string) => setSelected(current => current.includes(number)
+    ? current.filter(value => value !== number)
+    : current.length < 3 ? [...current, number] : current);
+
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-      <SEO
-        title="애니모 아카이브 | Aniimo 캐릭터·공략 데이터베이스"
-        description="애니모(Aniimo)의 캐릭터, 육성 정보와 공략을 정확한 출처를 바탕으로 정리하는 리라 아카이브입니다."
-        url="/gallery/aniimo"
-        gameCategory="애니모"
-        breadcrumbData={[
-          { name: '홈', url: '/' },
-          { name: '애니모', url: '/gallery/aniimo' }
-        ]}
-      />
-      <PageHeader gameId="aniimo" title="애니모 아카이브" />
+      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`애니모 공식 위키에서 확인한 ${entries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`} url="/gallery/aniimo" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }]} />
+      <PageHeader gameId="aniimo" title="애니모 도감" />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 py-12 sm:py-20 space-y-12">
-        <section className="relative overflow-hidden rounded-[32px] sm:rounded-[48px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-12 md:p-16">
-          <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-violet-500/15 blur-3xl" />
-          <div className="relative max-w-3xl space-y-5">
-            <span className="inline-flex rounded-full border border-violet-300/20 bg-violet-400/10 px-4 py-2 text-[10px] font-black uppercase tracking-[0.3em] text-violet-200">
-              Archive Preview
-            </span>
-            <h1 className="text-4xl sm:text-6xl md:text-7xl font-black italic tracking-tighter">
-              ANIIMO <span className="text-violet-300">ARCHIVE</span>
-            </h1>
-            <p className="max-w-2xl text-sm sm:text-base leading-7 text-gray-300">
-              애니모 캐릭터와 육성 정보를 한곳에서 탐색할 수 있는 전용 데이터베이스를 준비하고 있습니다.
-              공식적으로 확인된 정보만 순차적으로 공개합니다.
-            </p>
+      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-10">
+        <section className="relative overflow-hidden rounded-[32px] sm:rounded-[48px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-12">
+          <div className="relative max-w-3xl space-y-4">
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-300">Rira Analysis Database</p>
+            <h1 className="text-4xl sm:text-6xl font-black italic tracking-tighter">ANIIMO <span className="text-violet-300">ARCHIVE</span></h1>
+            <p className="text-sm sm:text-base leading-7 text-gray-300">전체 {entries.length}종을 원소와 포지션으로 탐색하고, 최대 3종의 핵심 능력치를 한 화면에서 비교할 수 있습니다.</p>
+            <a href="https://wiki.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white">공식 애니모 위키에서 원본 정보 확인 <ExternalLink size={13} /></a>
           </div>
         </section>
 
-        <section aria-labelledby="aniimo-roadmap" className="space-y-6">
-          <div>
-            <p className="text-xs font-black uppercase tracking-[0.25em] text-violet-300">Opening roadmap</p>
-            <h2 id="aniimo-roadmap" className="mt-2 text-2xl sm:text-3xl font-black tracking-tight">개설 준비 항목</h2>
+        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7 space-y-5">
+          <div className="flex flex-col lg:flex-row gap-4">
+            <label className="relative flex-1"><Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={17} /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="이름 또는 도감 번호 검색" className="w-full h-12 rounded-xl border border-white/10 bg-black/30 pl-11 pr-4 text-sm outline-none focus:border-violet-400/60" /></label>
+            <Filter value={element} setValue={setElement} options={elements} label="원소" />
+            <Filter value={position} setValue={setPosition} options={positions} label="포지션" />
           </div>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { icon: Users, title: '캐릭터 도감', text: '이름과 역할, 공개 상태를 기준으로 정리합니다.' },
-              { icon: Search, title: '검색과 필터', text: '원하는 캐릭터를 빠르게 찾도록 구성합니다.' },
-              { icon: Database, title: '상세 데이터', text: '검증된 능력과 육성 정보를 연결합니다.' },
-              { icon: ShieldCheck, title: '출처 검증', text: '확인되지 않은 수치와 추정 정보는 게시하지 않습니다.' }
-            ].map(({ icon: Icon, title, text }) => (
-              <article key={title} className="rounded-3xl border border-white/10 bg-white/[0.03] p-6">
-                <Icon className="mb-5 text-violet-300" size={24} aria-hidden="true" />
-                <h3 className="font-black">{title}</h3>
-                <p className="mt-3 text-sm leading-6 text-gray-400">{text}</p>
-              </article>
-            ))}
-          </div>
+          <div className="flex items-center justify-between text-xs text-gray-400"><span>{filtered.length}종 표시</span><span>비교 선택 {selected.length}/3</span></div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-[#121212] p-7 sm:p-10">
-          <h2 className="text-xl font-black">현재 상태</h2>
-          <p className="mt-3 text-sm leading-7 text-gray-400">
-            허브 기본 구조와 검색엔진용 고유 페이지를 먼저 개설했습니다. 캐릭터 상세 URL은 공식 데이터가 준비된 뒤
-            실제 콘텐츠와 함께 공개하며, 빈 상세 페이지나 임시 식별자 URL은 만들지 않습니다.
-          </p>
+        {compared.length > 0 && <section className="overflow-hidden rounded-3xl border border-violet-400/20 bg-violet-400/[0.04]">
+          <div className="flex items-center justify-between border-b border-white/10 px-5 py-4"><h2 className="flex items-center gap-2 font-black"><BarChart3 size={18} className="text-violet-300" /> 능력치 비교</h2><button onClick={() => setSelected([])} className="text-xs font-bold text-gray-400 hover:text-white">전체 해제</button></div>
+          <div className="overflow-x-auto"><table className="w-full min-w-[560px] text-sm"><thead><tr><th className="p-4 text-left text-gray-500">항목</th>{compared.map(item => <th key={item.number} className="p-4 text-center">{item.name}</th>)}</tr></thead><tbody>
+            {STAT_ROWS.map(row => { const best = Math.max(...compared.map(item => item.stats[row.key] ?? -1)); return <tr key={row.key} className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">{row.label}</th>{compared.map(item => <td key={item.number} className={`p-4 text-center font-black ${item.stats[row.key] === best ? 'text-violet-300' : 'text-white'}`}>{item.stats[row.key] ?? '-'}</td>)}</tr>; })}
+          </tbody></table></div>
+        </section>}
+
+        <section aria-label="애니모 전체 도감" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">
+          {filtered.map(item => { const isSelected = selected.includes(item.number); const compareFull = selected.length >= 3 && !isSelected; return <article key={item.number} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#121212] hover:border-violet-400/40 transition-colors">
+            <a href={item.sourceUrl} target="_blank" rel="noreferrer" className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">{item.imageUrl && <img src={item.imageUrl} alt={`${item.name} 공식 이미지`} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />}</a>
+            <div className="p-3 space-y-3"><div><p className="text-[9px] font-black tracking-widest text-gray-500">NO.{item.number}</p><h2 className="truncate font-black">{item.name}</h2></div><div className="flex min-h-10 flex-wrap content-start gap-1">{item.elements.map(value => <Badge key={value} value={value} accent />)}{item.positions.map(value => <Badge key={value} value={value} />)}</div><button disabled={compareFull} onClick={() => toggleCompare(item.number)} className={`flex h-9 w-full items-center justify-center gap-1.5 rounded-xl text-[11px] font-black transition-colors ${isSelected ? 'bg-violet-400 text-black' : compareFull ? 'cursor-not-allowed bg-white/5 text-gray-600' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}>{isSelected ? <Check size={13} /> : <BarChart3 size={13} />} {isSelected ? '비교 선택됨' : '비교하기'}</button></div>
+          </article>; })}
         </section>
+
+        {filtered.length === 0 && <div className="rounded-3xl border border-white/10 py-20 text-center text-gray-500"><X className="mx-auto mb-3" />조건에 맞는 애니모가 없습니다.</div>}
+        <p className="text-center text-xs leading-6 text-gray-500">데이터 출처: 애니모 공식 위키 · 마지막 확인일 {entries[0]?.checkedAt} · 공식 업데이트에 따라 수치가 변경될 수 있습니다.</p>
       </main>
     </div>
   );
 };
+
+const Filter = ({ value, setValue, options, label }: { value: string; setValue: (value: string) => void; options: string[]; label: string }) => <label className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/30 px-4"><span className="text-[10px] font-black text-gray-500">{label}</span><select value={value} onChange={event => setValue(event.target.value)} className="h-12 min-w-28 bg-transparent text-sm font-bold outline-none">{options.map(option => <option key={option} value={option} className="bg-[#121212]">{option}</option>)}</select></label>;
+const Badge = ({ value, accent = false }: { value: string; accent?: boolean }) => <span className={`rounded-md px-2 py-1 text-[9px] font-black ${accent ? 'bg-violet-400/15 text-violet-300' : 'bg-white/5 text-gray-400'}`}>{value}</span>;
 
 export default GalleryAniimo;
