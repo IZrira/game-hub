@@ -9,7 +9,7 @@ const INDEX_URL = 'https://wiki.aniimo.com/ko';
 const SOURCE_BASE = 'https://wiki.aniimo.com';
 const ELEMENT_LABELS = {
   holy: '빛', fire: '불', ice: '얼음', dark: '어둠', electric: '전기',
-  grass: '풀', water: '물', ground: '땅', wind: '바람'
+  grass: '풀', water: '물', ground: '땅', rock: '바위', wind: '바람'
 };
 const POSITION_LABELS = {
   dps: '딜', heal: '치유', sup: '서포터', break: '격파', energy: '에너지 재생'
@@ -140,8 +140,26 @@ const results = [];
 for (let index = 0; index < roster.length; index += 1) {
   const item = roster[index];
   const sourceUrl = `${SOURCE_BASE}${item.sourcePath}`;
-  const detail = parseDetail(await fetchHtml(sourceUrl));
-  results.push({ ...item, ...detail, sourceUrl, checkedAt });
+  const detailHtml = await fetchHtml(sourceUrl);
+  const detail = parseDetail(detailHtml);
+  const detailDocument = cheerio.load(detailHtml);
+  const formLinks = [];
+  detailDocument('.morphology-tab').each((_, element) => {
+    const href = detailDocument(element).attr('href');
+    const label = detailDocument(element).text().replace(/\s+/g, ' ').trim();
+    if (href && label && !formLinks.some(form => form.href === href)) formLinks.push({ href, label });
+  });
+  const forms = [];
+  for (const form of formLinks) {
+    const formUrl = `${SOURCE_BASE}${form.href}`;
+    const formDetail = form.href === item.sourcePath ? detail : parseDetail(await fetchHtml(formUrl));
+    forms.push({
+      key: form.href.split('/').filter(Boolean).at(-1), label: form.label,
+      imageUrl: formDetail.imageUrl, description: formDetail.description,
+      stats: formDetail.stats, sourceUrl: formUrl
+    });
+  }
+  results.push({ ...item, ...detail, forms, sourceUrl, checkedAt });
   process.stdout.write(`\r[Aniimo] ${index + 1}/${roster.length} ${item.name}`);
 }
 

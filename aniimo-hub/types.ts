@@ -16,6 +16,7 @@ export interface AniimoEntry {
   sourcePath: string;
   sourceUrl: string;
   imageUrl: string | null;
+  forms: AniimoForm[];
   stats: AniimoStats;
   description: string;
   locations: string[];
@@ -27,6 +28,15 @@ export interface AniimoEntry {
   evolution: Array<{ stage: string; imageUrl: string | null }>;
   resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   checkedAt: string;
+}
+
+export interface AniimoForm {
+  key: string;
+  label: string;
+  imageUrl: string | null;
+  description: string;
+  stats: AniimoStats;
+  sourceUrl: string;
 }
 
 export interface AniimoSkill {

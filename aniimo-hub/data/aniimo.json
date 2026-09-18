@@ -119,6 +119,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10051.png",
+        "description": "활발하고 장난기가 많아 늘 화르랑의 뒤를 따라다닌다. 복슬복슬한 잿빛 털 사이에는 꺼지지 않는 불씨가 숨겨져 있으며, 그 불씨가 타오를수록 더욱 강해진다.",
+        "stats": {
+          "total": 382,
+          "hp": 67,
+          "break": 40,
+          "attack": 90,
+          "magicDefense": 57,
+          "physicalDefense": 60,
+          "energyRecovery": 68
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/001/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005101.png",
+        "description": "산지에 사는 작은 탄멍멍은 털빛이 바위처럼 변해 있으며, 거센 바람에 털이 다소 헝클어져 있다.",
+        "stats": {
+          "total": 382,
+          "hp": 67,
+          "break": 40,
+          "attack": 90,
+          "magicDefense": 57,
+          "physicalDefense": 60,
+          "energyRecovery": 68
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/001/highland-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005104.png",
+        "description": "햇볕이 잘 드는 산림에 사는 탄멍멍은 털끝이 따뜻한 금빛을 띤다. 달릴 때 남기는 잔상은 마치 햇살과도 같다.",
+        "stats": {
+          "total": 382,
+          "hp": 67,
+          "break": 40,
+          "attack": 90,
+          "magicDefense": 57,
+          "physicalDefense": 60,
+          "energyRecovery": 68
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/001/mountain-woods-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/001/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -239,6 +289,56 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10052.png",
+        "description": "항상 무리를 지어 다니며, 충성과 결속을 무엇보다 중시한다. 차분하고 집중된 눈빛 속에는 불꽃처럼 뜨거운 마음을 품고 있다.",
+        "stats": {
+          "total": 456,
+          "hp": 85,
+          "break": 45,
+          "attack": 111,
+          "magicDefense": 63,
+          "physicalDefense": 72,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/002/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005201.png",
+        "description": "산지에 사는 늑대 무리는 털빛이 주변 환경에 잘 어우러지도록 변했다. 고열 지대를 누비는 다리에는 용암 껍질이 덮여 있다.",
+        "stats": {
+          "total": 456,
+          "hp": 85,
+          "break": 45,
+          "attack": 111,
+          "magicDefense": 63,
+          "physicalDefense": 72,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/002/highland-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005204.png",
+        "description": "산림에서 살며, 짙은 털끝에 스민 금빛이 특히 눈에 띈다. 이는 무리의 강자로서 드러나는 자신감과 자부심이다.",
+        "stats": {
+          "total": 456,
+          "hp": 85,
+          "break": 45,
+          "attack": 111,
+          "magicDefense": 63,
+          "physicalDefense": 72,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/002/mountain-woods-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/002/basic-form",
@@ -384,6 +484,88 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10053.png",
+        "description": "승부욕이 강해 강한 상대를 만날수록 더욱 뜨겁게 타오른다. 불꽃과 재는 자신이 강해졌다는 증거다.",
+        "stats": {
+          "total": 511,
+          "hp": 95,
+          "break": 52,
+          "attack": 119,
+          "magicDefense": 75,
+          "physicalDefense": 80,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/003/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005301.png",
+        "description": "용암이 흐르는 산에서 바위를 상대로 싸움을 익힌 탓에, 앞다리에는 용암층이 굳어 있다. 상대를 타격할 때 더 큰 위력을 낼 수 있다.",
+        "stats": {
+          "total": 511,
+          "hp": 95,
+          "break": 52,
+          "attack": 119,
+          "magicDefense": 75,
+          "physicalDefense": 80,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/003/highland-form"
+      },
+      {
+        "key": "thunderstorm-form",
+        "label": "뇌우 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005302.png",
+        "description": "벼락을 맞으며 단련할수록 전류의 자극으로 근육이 더욱 발달한다. 온몸을 감싼 불꽃 또한 완전히 타올라 선명한 푸른빛을 띤다.",
+        "stats": {
+          "total": 511,
+          "hp": 95,
+          "break": 52,
+          "attack": 119,
+          "magicDefense": 75,
+          "physicalDefense": 80,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/003/thunderstorm-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005303.png",
+        "description": "천휘의 에너지가 불꽃의 힘을 이끌어 가슴의 상처에서 분출시킨다. 눈부신 불꽃이 온몸을 휘감고 있으며, 가까이 다가갈수록 뜨거운 열기를 느낄 수 있다.",
+        "stats": {
+          "total": 511,
+          "hp": 95,
+          "break": 52,
+          "attack": 119,
+          "magicDefense": 75,
+          "physicalDefense": 80,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/003/prismana-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005304.png",
+        "description": "산림에 서식하는 이글랑은 마치 햇빛을 모두 털에 머금은 듯 눈부신 금빛을 내뿜는다.",
+        "stats": {
+          "total": 511,
+          "hp": 95,
+          "break": 52,
+          "attack": 119,
+          "magicDefense": 75,
+          "physicalDefense": 80,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/003/mountain-woods-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/003/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -522,6 +704,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10055.png",
+        "description": "강자에게 도전했다가 패배한 화르랑은 같은 억울함을 품은 채 쓰러진 동료들의 영혼을 흡수하고, 그 복수심에 이끌려 움직인다.",
+        "stats": {
+          "total": 541,
+          "hp": 95,
+          "break": 108,
+          "attack": 89,
+          "magicDefense": 80,
+          "physicalDefense": 70,
+          "energyRecovery": 99
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/004/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005503.png",
+        "description": "복수의 불꽃은 천휘의 힘에 이끌려 더욱 사납게 타오르며, 헬울프의 몸을 휘감아 태운다. 곁을 떠도는 혼령의 머리는 광기 어린 울부짖음을 내지르고, 주변에는 영혼마저 떨게 하는 서늘한 위압감을 내뿜는다.",
+        "stats": {
+          "total": 541,
+          "hp": 95,
+          "break": 108,
+          "attack": 89,
+          "magicDefense": 80,
+          "physicalDefense": 70,
+          "energyRecovery": 99
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/004/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/004/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -620,6 +836,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10011.png",
+        "description": "먹는 것을 매우 좋아한다. 숲속을 비행하며 먹이를 찾는 동안 머리 위의 빛나는 별이 종종 유성으로 오해받는다. 먹이를 모아두는 습성이 있으며, 음식으로 둥지를 꾸미기도 한다.",
+        "stats": {
+          "total": 429,
+          "hp": 81,
+          "break": 46,
+          "attack": 106,
+          "magicDefense": 58,
+          "physicalDefense": 58,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/005/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/005/basic-form",
@@ -751,6 +985,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10012.png",
+        "description": "혼자 다니는 것을 좋아하며, 주로 밤에 모습을 드러낸다. 외형은 마치 별빛 망토를 두른 신비한 마법사와 같으며, 정신 에너지를 이용해 순간이동할 수 있다.",
+        "stats": {
+          "total": 505,
+          "hp": 95,
+          "break": 54,
+          "attack": 125,
+          "magicDefense": 69,
+          "physicalDefense": 68,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/006/basic-form"
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1001201.png",
+        "description": "우기에 태어난 스타저드 중에는 얇고 투명한 피부막을 지닌 경우도 있다. 수분이 부족하면 쉽게 건조해지기 때문에 비가 오는 날에 자주 모습을 드러낸다.",
+        "stats": {
+          "total": 505,
+          "hp": 95,
+          "break": 54,
+          "attack": 125,
+          "magicDefense": 69,
+          "physicalDefense": 68,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/006/rainstorm-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1001202.png",
+        "description": "천휘의 에너지가 스타저드의 마법을 강화해, 망토 안쪽에 찬란한 무지갯빛이 드러났다. 하늘을 가르는 그 모습은 마치 몽환적인 빛의 스펙트럼처럼 펼쳐진다.",
+        "stats": {
+          "total": 505,
+          "hp": 95,
+          "break": 54,
+          "attack": 125,
+          "magicDefense": 69,
+          "physicalDefense": 68,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/006/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/006/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -877,6 +1161,56 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10181.png",
+        "description": "낮은 고도를 맴돌며 해변의 움직임을 늘 살핀다. 무리를 지어 어울리기를 좋아하고, 휘파람을 불며 분위기를 띄운다.",
+        "stats": {
+          "total": 452,
+          "hp": 97,
+          "break": 43,
+          "attack": 83,
+          "magicDefense": 69,
+          "physicalDefense": 67,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/007/basic-form"
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018101.png",
+        "description": "해변에서 먹이를 찾는 호루매기들은 먹이와 함께 섭취한 해조류의 영향으로 깃털에 점차 바다빛이 스며든다.",
+        "stats": {
+          "total": 452,
+          "hp": 97,
+          "break": 43,
+          "attack": 83,
+          "magicDefense": 69,
+          "physicalDefense": 67,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/007/beach-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018103.png",
+        "description": "고지대에 서식하는 호루매기는 깃털이 마른 잎처럼 변하고, 부스스한 깃털이 눈을 가려 한층 더 자유분방한 분위기를 풍긴다.",
+        "stats": {
+          "total": 452,
+          "hp": 97,
+          "break": 43,
+          "attack": 83,
+          "magicDefense": 69,
+          "physicalDefense": 67,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/007/highland-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/007/basic-form",
@@ -1016,6 +1350,56 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10184.png",
+        "description": "흥겨운 분위기를 좋아하며 리듬감 있는 소리를 낸다. 흥을 참지 못해 동료들의 합주에 자연스럽게 끼어들 때도 많다.",
+        "stats": {
+          "total": 531,
+          "hp": 113,
+          "break": 51,
+          "attack": 119,
+          "magicDefense": 81,
+          "physicalDefense": 79,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/008/basic-form"
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018401.png",
+        "description": "바닷바람을 맞으며 걷는 것을 좋아하고, 늘 기분이 좋아 보인다. 흥이 오르면 자신도 모르게 연주를 하며 춤을 춘다.",
+        "stats": {
+          "total": 531,
+          "hp": 113,
+          "break": 51,
+          "attack": 119,
+          "magicDefense": 81,
+          "physicalDefense": 79,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/008/beach-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018403.png",
+        "description": "고지대에 서식하는 롬본이는 햇살 아래를 거닐며, 산들바람과 함께 꽃 모양의 나팔로 부드러운 선율을 연주한다.",
+        "stats": {
+          "total": 531,
+          "hp": 113,
+          "break": 51,
+          "attack": 119,
+          "magicDefense": 81,
+          "physicalDefense": 79,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/008/highland-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/008/basic-form",
@@ -1165,6 +1549,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10185.png",
+        "description": "해변 전체에 울려 퍼질 만큼 날카롭고 우렁찬 소리를 내곤 한다. 주목받는 것을 좋아해 소음을 내는 것도 신경 쓰지 않는다. 귀 건강을 생각한다면 괜히 자극하지 않는 것이 좋다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 54,
+          "attack": 121,
+          "magicDefense": 70,
+          "physicalDefense": 74,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/009/basic-form"
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018501.png",
+        "description": "높은 암초 위에 서서 더 먼 바다까지 소리가 닿도록 부지런히 연습한다. 바다 저편에서도 언젠가 메아리가 돌아오리라 믿는 듯하다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 54,
+          "attack": 121,
+          "magicDefense": 70,
+          "physicalDefense": 74,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/009/beach-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018502.png",
+        "description": "천휘의 에너지가 발성 기관을 강화해 다른 악기의 음색을 흉내 내며 스스로 반주를 할 수 있다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 54,
+          "attack": 121,
+          "magicDefense": 70,
+          "physicalDefense": 74,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/009/prismana-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018503.png",
+        "description": "고지대에 서식하는 럼펫이는 이른 아침이면 높은 곳으로 날아올라 우렁찬 소리로 만물을 깨우고, 주변의 불평에도 전혀 신경 쓰지 않는다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 54,
+          "attack": 121,
+          "magicDefense": 70,
+          "physicalDefense": 74,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/009/highland-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/009/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -1298,6 +1748,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10187.png",
+        "description": "깊고 낮은 튜바 같은 음색을 낸다. 음색처럼 성격도 차분하고 듬직하며, 주변을 잘 살핀다. 폭풍이 해안을 덮칠 때도 그 곁에 있으면 안전하다.",
+        "stats": {
+          "total": 550,
+          "hp": 108,
+          "break": 107,
+          "attack": 80,
+          "magicDefense": 109,
+          "physicalDefense": 66,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/010/basic-form"
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018701.png",
+        "description": "파도 위를 거닐며 연주한다. 리듬은 파도처럼 몸을 타고 흐르고, 그 속에서 마치 바다와 공명하는 울림이 느껴지는 듯하다.",
+        "stats": {
+          "total": 550,
+          "hp": 108,
+          "break": 107,
+          "attack": 80,
+          "magicDefense": 109,
+          "physicalDefense": 66,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/010/beach-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018703.png",
+        "description": "고지대에 서식하는 튜바얌은 풀잎을 말아 무대를 꾸민다. 그의 나팔 소리가 울려 퍼지기만 하면 어떤 공연도 절대 분위기가 식지 않는다.",
+        "stats": {
+          "total": 550,
+          "hp": 108,
+          "break": 107,
+          "attack": 80,
+          "magicDefense": 109,
+          "physicalDefense": 66,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/010/highland-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/010/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -1399,6 +1899,120 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10211.png",
+        "description": "플러터는 몸이 매우 가벼워 바람을 타고 자주 떠오른다. 꽃잎 치마가 만드는 저항으로 천천히 빙글 돌며 내려오거나 바람에 몸을 맡기고 여행을 떠나기도 한다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021101.png",
+        "description": "고지대에 서식하는 플러터는 흙 속의 풍부한 광물을 흡수해 몸이 단풍빛을 띤다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/highland-form"
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021102.png",
+        "description": "스타풀 숲에 서식하는 플러터는 나무 그늘 아래에서 조용히 쉬는 것을 좋아하며, 밤이 되면 꽃술에서 은은한 빛을 낸다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/forest-form"
+      },
+      {
+        "key": "grassland-form",
+        "label": "초원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021103.png",
+        "description": "구름 초원에 서식하는 플러터는 탁 트인 들판에서 햇볕을 쬐는 것을 좋아하며, 어느새 꽃잎에 작은 양털이 붙어 있기도 한다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/grassland-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021104.png",
+        "description": "천휘는 다양한 색을 조화롭게 어우러진 생명력으로 전환해, 각기 다른 화려한 꽃을 피워 내며 꽃바다의 아름다운 이야기를 써 내려간다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/prismana-form"
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021105.png",
+        "description": "고원에 서식하는 플러터는 짙은 푸른 꽃잎 위에 고운 눈이 내려앉은 듯한 모습을 하며, 차가운 환경에서도 피어나 자유롭게 흔들린다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/plateau-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021106.png",
+        "description": "산림에 서식하는 플러터는 푸른 수풀 사이를 가볍게 떠다니며, 꽃잎에는 맑고 은은한 초록빛이 돈다.",
+        "stats": {
+          "total": 397,
+          "hp": 69,
+          "break": 50,
+          "attack": 101,
+          "magicDefense": 53,
+          "physicalDefense": 53,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/011/mountain-woods-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/011/basic-form",
@@ -1520,6 +2134,120 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10212.png",
+        "description": "공연에 몰두하고 있다. 끊임없이 춤 실력을 갈고닦아, 언젠가는 모든 생물이 춤에 담긴 생명의 힘을 느끼게 하는 것을 가장 큰 목표로 삼고 있다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021201.png",
+        "description": "고지대에 서식하는 플러터에서 진화했다. 고지대 토양의 풍부한 광물을 흡수해 몸이 단풍빛을 띤다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/highland-form"
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021202.png",
+        "description": "스타폴 숲에 서식하는 플러터에서 진화했다. 춤을 출 때 은은하게 빛나는 꽃가루를 흩뿌려 달빛 아래의 우아한 무용수처럼 보인다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/forest-form"
+      },
+      {
+        "key": "grassland-form",
+        "label": "초원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021203.png",
+        "description": "구름 초원에 서식하는 플러터에서 진화했다. 햇볕을 충분히 받은 뒤 추는 춤은 보는 이에게 활력을 전해준다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/grassland-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021204.png",
+        "description": "온몸의 잎맥마다 천휘의 색이 스며들어 눈부신 빛을 뿜어내고, 시들지 않는 꽃잎 치마가 대지를 스치듯 흩날리며 세상을 한층 더 밝게 물들인다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/prismana-form"
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021205.png",
+        "description": "고원에 서식하는 플러터에서 진화했다. 짙은 푸른 꽃잎 가장자리에는 이슬이 서리처럼 맺혀 춤출 때마다 고운 눈이 흩날리는 듯하다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/plateau-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021206.png",
+        "description": "산림에 서식하는 플러터에서 진화했다. 산야의 기운에 길러진 초록빛을 띠고 춤출 때마다 풀과 나무의 향기가 은은하게 퍼지는 듯하다.",
+        "stats": {
+          "total": 504,
+          "hp": 100,
+          "break": 52,
+          "attack": 118,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/012/mountain-woods-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/012/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -1635,6 +2363,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10041.png",
+        "description": "물속에 몸을 숨긴 채 고개만 내밀고 주변을 살피는 것을 좋아한다. 연잎 모자를 훌륭한 위장이라고 생각하지만, 계속 떠올랐다 가라앉기를 반복해 오히려 더 눈에 띈다.",
+        "stats": {
+          "total": 402,
+          "hp": 80,
+          "break": 50,
+          "attack": 70,
+          "magicDefense": 76,
+          "physicalDefense": 66,
+          "energyRecovery": 60
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/013/basic-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004101.png",
+        "description": "꽃바다에 서식하는 연댕모리는 꽃잎을 먹는다. 색소가 몸에 서서히 쌓여 머리 위 잎과 피부가 연한 분홍빛으로 물든다.",
+        "stats": {
+          "total": 402,
+          "hp": 80,
+          "break": 50,
+          "attack": 70,
+          "magicDefense": 76,
+          "physicalDefense": 66,
+          "energyRecovery": 60
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/013/sea-of-flowers-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004102.png",
+        "description": "추운 지역에 서식하는 연댕모리는 눈밭의 추위도 전혀 개의치 않는다. 오히려 얼어붙은 연잎 모자를 머리에 올렸을 때의 차가운 느낌을 즐긴다.",
+        "stats": {
+          "total": 402,
+          "hp": 80,
+          "break": 50,
+          "attack": 70,
+          "magicDefense": 76,
+          "physicalDefense": 66,
+          "energyRecovery": 60
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/013/snowfield-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/013/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -1748,6 +2526,56 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10042.png",
+        "description": "고온에 약해 서늘하고 습한 곳에 머무는 것을 좋아한다. 몸 표면은 온도를 낮추고 수분을 유지하는 막으로 덮여 있어, 만지면 매우 차갑고 매끈하다. 물을 오래 벗어나 있으면 피부가 갈라진다.",
+        "stats": {
+          "total": 482,
+          "hp": 109,
+          "break": 50,
+          "attack": 85,
+          "magicDefense": 98,
+          "physicalDefense": 66,
+          "energyRecovery": 74
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/014/basic-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004201.png",
+        "description": "분홍빛 몸은 꽃바다과 자연스럽게 어우러진다. 머리의 아가미 잎이 흔들릴 때면, 바람에 흔들리는 꽃가지처럼 보인다.",
+        "stats": {
+          "total": 482,
+          "hp": 109,
+          "break": 50,
+          "attack": 85,
+          "magicDefense": 98,
+          "physicalDefense": 66,
+          "energyRecovery": 74
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/014/sea-of-flowers-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004202.png",
+        "description": "추운 지역에 서식하는 장꾸모리는 아가미 잎과 꼬리지느러미에 서리가 맺혀 있다. 피부막에는 눈이 쌓여 한층 더 두툼해 보인다.",
+        "stats": {
+          "total": 482,
+          "hp": 109,
+          "break": 50,
+          "attack": 85,
+          "magicDefense": 98,
+          "physicalDefense": 66,
+          "energyRecovery": 74
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/014/snowfield-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/014/basic-form",
@@ -1890,6 +2718,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10043.png",
+        "description": "우아한 외형과 기품을 지닌 생물이다. 천성이 온화해 약한 존재를 먼저 돌보지만, 이를 악용해 해치려 하는 상대는 그대로 얼려 버린다.",
+        "stats": {
+          "total": 535,
+          "hp": 120,
+          "break": 50,
+          "attack": 95,
+          "magicDefense": 110,
+          "physicalDefense": 72,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/015/basic-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004301.png",
+        "description": "꽃바다에 서식하는 장꾸모리에서 진화했다. 몸은 몽환적인 분홍빛을 띠며, 달릴 때 등의 피부막이 마치 분홍빛 파도가 끊임없이 일렁이듯 움직인다.",
+        "stats": {
+          "total": 535,
+          "hp": 120,
+          "break": 50,
+          "attack": 95,
+          "magicDefense": 110,
+          "physicalDefense": 72,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/015/sea-of-flowers-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004302.png",
+        "description": "추운 지역에 서식하는 아이시우스는 아가미 잎과 꼬리지느러미가 단단한 얼음 껍질로 덮여 있다. 매서운 한기는 빙설의 주인이라는 위엄을 드러낸다.",
+        "stats": {
+          "total": 535,
+          "hp": 120,
+          "break": 50,
+          "attack": 95,
+          "magicDefense": 110,
+          "physicalDefense": 72,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/015/snowfield-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004303.png",
+        "description": "천휘의 힘이 아이시우스의 몸속을 부드럽게 흐르면, 그 빛은 마치 햇빛이 몸을 비추듯 비늘 사이로 굴절되어 눈부신 광채를 피워낸다.",
+        "stats": {
+          "total": 535,
+          "hp": 120,
+          "break": 50,
+          "attack": 95,
+          "magicDefense": 110,
+          "physicalDefense": 72,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/015/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/015/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2016,6 +2910,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10045.png",
+        "description": "연꽃과 함께 살아가며 연잎 사이에 몸을 숨긴다. 연잎 같은 꼬리로 얼굴을 가리며, 우아한 자태를 드러낸다.",
+        "stats": {
+          "total": 535,
+          "hp": 120,
+          "break": 50,
+          "attack": 95,
+          "magicDefense": 82,
+          "physicalDefense": 82,
+          "energyRecovery": 106
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/016/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/016/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2130,6 +3042,72 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10261.png",
+        "description": "맑은 초원에서 무리를 지어 활동하며, 가벼운 몸으로 구름 사이에 떠올라 옹기종기 모여 떠다닌다.",
+        "stats": {
+          "total": 451,
+          "hp": 80,
+          "break": 43,
+          "attack": 84,
+          "magicDefense": 82,
+          "physicalDefense": 69,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/017/basic-form"
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026101.png",
+        "description": "털이 수분을 머금으면 색이 변하고 전기가 잘 흐르게 되며, 그 성질로 번개의 일부를 끌어들여 몸에 저장해 자신을 보호한다.",
+        "stats": {
+          "total": 451,
+          "hp": 80,
+          "break": 43,
+          "attack": 84,
+          "magicDefense": 82,
+          "physicalDefense": 69,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/017/rainstorm-form"
+      },
+      {
+        "key": "cloudmist-form",
+        "label": "구름 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026102.png",
+        "description": "풀보다 밀빛 메리골드의 향을 더 좋아해 털에 옅은 금빛이 돌며, 순백의 양털보다 열을 더 잘 흡수한다.",
+        "stats": {
+          "total": 451,
+          "hp": 80,
+          "break": 43,
+          "attack": 84,
+          "magicDefense": 82,
+          "physicalDefense": 69,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/017/cloudmist-form"
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026105.png",
+        "description": "소심하고 방해받는 것을 싫어해 늘 구석에 웅크린 채 조용히 생각에 잠기며, 우울한 기운을 띤 구름으로 몸을 겹겹이 감싼다.",
+        "stats": {
+          "total": 451,
+          "hp": 80,
+          "break": 43,
+          "attack": 84,
+          "magicDefense": 82,
+          "physicalDefense": 69,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/017/plateau-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/017/basic-form",
@@ -2271,6 +3249,88 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10262.png",
+        "description": "구름 속에 숨어 잠드는 것을 좋아하며, 기압과 정전기의 영향으로 복슬한 양털에는 바람에 날려 온 것들이 쉽게 달라붙는다.",
+        "stats": {
+          "total": 518,
+          "hp": 95,
+          "break": 50,
+          "attack": 110,
+          "magicDefense": 96,
+          "physicalDefense": 80,
+          "energyRecovery": 87
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/018/basic-form"
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026201.png",
+        "description": "털은 먹구름처럼 보이며, 그 안에서 전류가 번쩍이는 모습이 비친다.기분이 좋지 않을 때는 별다른 이유 없이 방전을 일으켜 주변을 공격하기도 한다.",
+        "stats": {
+          "total": 518,
+          "hp": 95,
+          "break": 50,
+          "attack": 110,
+          "magicDefense": 96,
+          "physicalDefense": 80,
+          "energyRecovery": 87
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/018/rainstorm-form"
+      },
+      {
+        "key": "cloudmist-form",
+        "label": "구름 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026202.png",
+        "description": "구름층 가장 위에 떠 잠드는 것을 좋아해, 늘 가장 먼저 아침 햇살을 맞이하며 구름과 함께 황금빛으로 물든다.",
+        "stats": {
+          "total": 518,
+          "hp": 95,
+          "break": 50,
+          "attack": 110,
+          "magicDefense": 96,
+          "physicalDefense": 80,
+          "energyRecovery": 87
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/018/cloudmist-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026204.png",
+        "description": "천휘의 에너지를 흡수한 몽실양의 털은 별이 빛나는 밤하늘의 색으로 물들었고, 몸을 감싼 구름까지 찬란한 빛을 발하게 되었다.",
+        "stats": {
+          "total": 518,
+          "hp": 95,
+          "break": 50,
+          "attack": 110,
+          "magicDefense": 96,
+          "physicalDefense": 80,
+          "energyRecovery": 87
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/018/prismana-form"
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026205.png",
+        "description": "털은 차가운 기운과 함께 가라앉은 감정까지 감싸고 있다. 내면에서 퍼져 나오는 한기는 양뿔마저 얼어붙게 한다.",
+        "stats": {
+          "total": 518,
+          "hp": 95,
+          "break": 50,
+          "attack": 110,
+          "magicDefense": 96,
+          "physicalDefense": 80,
+          "energyRecovery": 87
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/018/plateau-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/018/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2386,6 +3446,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10263.png",
+        "description": "꿈의 에너지를 머금은 털은 몽환적인 색을 띠며, 그 털을 베개로 삼아 잠들면 깊고 달콤한 꿈을 꾼다.",
+        "stats": {
+          "total": 520,
+          "hp": 100,
+          "break": 50,
+          "attack": 110,
+          "magicDefense": 103,
+          "physicalDefense": 77,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/019/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/019/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2499,6 +3577,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10201.png",
+        "description": "초원에서 무리를 이루어 서식하며, 평소에는 땅속으로 들어가 영양분을 흡수한다. 모여서 노래하는 걸 좋아하지만, 본인의 음정이 어긋나도 전혀 모른다.",
+        "stats": {
+          "total": 467,
+          "hp": 94,
+          "break": 80,
+          "attack": 68,
+          "magicDefense": 94,
+          "physicalDefense": 71,
+          "energyRecovery": 60
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/020/basic-form"
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020101.png",
+        "description": "토질의 변화로 피부가 주황빛을 띠며 더욱 두꺼워져, 몸속 수분이 쉽게 빠져나가지 않도록 보호한다.",
+        "stats": {
+          "total": 467,
+          "hp": 94,
+          "break": 80,
+          "attack": 68,
+          "magicDefense": 94,
+          "physicalDefense": 71,
+          "energyRecovery": 60
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/020/mountain-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/020/basic-form",
@@ -2645,6 +3757,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10203.png",
+        "description": "자신의 영역에 침입한 존재를 몹시 싫어해, 기묘한 음파로 상대의 정신을 흐트러뜨리고 방어력을 떨어뜨리며, 심하면 기절시키기도 한다.",
+        "stats": {
+          "total": 542,
+          "hp": 115,
+          "break": 50,
+          "attack": 88,
+          "magicDefense": 90,
+          "physicalDefense": 84,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/021/basic-form"
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020301.png",
+        "description": "토질이 바뀌고 햇빛이 풍부해져, 피부는 주황빛을 띠고 모자 위의 꽃도 한층 더 선명해졌다.",
+        "stats": {
+          "total": 542,
+          "hp": 115,
+          "break": 50,
+          "attack": 88,
+          "magicDefense": 90,
+          "physicalDefense": 84,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/021/mountain-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020302.png",
+        "description": "천휘 에너지가 잎맥을 따라 모여들자 위치햇그라스의 몸과 잎 모자 안쪽에 몽환적인 빛이 피어나고, 정신을 교란하는 능력도 한층 더 강해졌다.",
+        "stats": {
+          "total": 542,
+          "hp": 115,
+          "break": 50,
+          "attack": 88,
+          "magicDefense": 90,
+          "physicalDefense": 84,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/021/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/021/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2768,6 +3930,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10207.png",
+        "description": "오랜 시간 땅속에 묻혀 있다가 다시 모습을 드러냈을 때는 이미 몸집이 거대해져 있었다. 뿌리로 흙 속 영양분을 흡수해야만 활력을 유지할 수 있어, 땅을 떠나는 것을 몹시 싫어한다.",
+        "stats": {
+          "total": 550,
+          "hp": 106,
+          "break": 100,
+          "attack": 80,
+          "magicDefense": 110,
+          "physicalDefense": 83,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/022/basic-form"
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020701.png",
+        "description": "토질이 바뀌면서 흙 속 광물을 흡수해 피부가 주황빛을 띠고, 이전보다 한층 더 두꺼워졌다.",
+        "stats": {
+          "total": 550,
+          "hp": 106,
+          "break": 100,
+          "attack": 80,
+          "magicDefense": 110,
+          "physicalDefense": 83,
+          "energyRecovery": 71
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/022/mountain-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/022/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2775,7 +3971,7 @@
     "number": "023",
     "name": "싹크랩",
     "elements": [
-      "rock",
+      "바위",
       "풀"
     ],
     "positions": [
@@ -2891,6 +4087,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10161.png",
+        "description": "평생 단 한 짝만을 선택하는 종으로, 사랑에 매우 충실하다. 늘 짝을 이루어 다니며, 머리 위의 게심초는 행복의 정도를 드러낸다.",
+        "stats": {
+          "total": 454,
+          "hp": 76,
+          "break": 84,
+          "attack": 64,
+          "magicDefense": 65,
+          "physicalDefense": 93,
+          "energyRecovery": 72
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/023/basic-form"
+      },
+      {
+        "key": "mudflat-form",
+        "label": "습지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016101.png",
+        "description": "꾸미기를 무척 좋아해 모래로 가발 모양을 만들고, 예쁜 조약돌로 장식하는 것을 즐긴다. 짝과는 서로 가장 아끼는 돌을 주고받기도 한다.",
+        "stats": {
+          "total": 454,
+          "hp": 76,
+          "break": 84,
+          "attack": 64,
+          "magicDefense": 65,
+          "physicalDefense": 93,
+          "energyRecovery": 72
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/023/mudflat-form"
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016102.png",
+        "description": "해변에 서식하는 싹크랩은 코코넛 껍질을 쓰는 것을 가장 선호한다. 방어에 도움이 될 뿐만 아니라 몸을 숨기기에도 유리하기 때문이다.",
+        "stats": {
+          "total": 454,
+          "hp": 76,
+          "break": 84,
+          "attack": 64,
+          "magicDefense": 65,
+          "physicalDefense": 93,
+          "energyRecovery": 72
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/023/beach-form"
+      },
+      {
+        "key": "bay-form",
+        "label": "바다만 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016103.png",
+        "description": "해안가에 서식하는 싹크랩은 햇볕을 쬐어 껍질을 붉게 물들이는 것을 즐기며, 그 선명한 체색으로 이성을 끌어당긴다.",
+        "stats": {
+          "total": 454,
+          "hp": 76,
+          "break": 84,
+          "attack": 64,
+          "magicDefense": 65,
+          "physicalDefense": 93,
+          "energyRecovery": 72
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/023/bay-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/023/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -2898,7 +4160,7 @@
     "number": "024",
     "name": "풀크랩",
     "elements": [
-      "rock",
+      "바위",
       "풀"
     ],
     "positions": [
@@ -3027,6 +4289,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10162.png",
+        "description": "등껍질을 뒤덮은 식물은 햇빛을 받아 영양을 공급하며, 햇빛이 충분하면 따로 먹이를 먹지 않아도 살아갈 수 있다.",
+        "stats": {
+          "total": 550,
+          "hp": 95,
+          "break": 104,
+          "attack": 80,
+          "magicDefense": 77,
+          "physicalDefense": 109,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/024/basic-form"
+      },
+      {
+        "key": "mudflat-form",
+        "label": "습지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016201.png",
+        "description": "땅을 팔 때 머리 위에 쌓인 모래 더미가 지면 위로 드러나, 짝이 서로를 알아보기 쉽다. 하지만 애써 모은 조약돌을 다른 생물이 주워 가는 일도 있어 곤란해한다.",
+        "stats": {
+          "total": 550,
+          "hp": 95,
+          "break": 104,
+          "attack": 80,
+          "magicDefense": 77,
+          "physicalDefense": 109,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/024/mudflat-form"
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016202.png",
+        "description": "풀크랩 등에 맺힌 열매는 익으면 모래 위로 떨어지고, 얼마 지나지 않아 다시 뿌리를 내려 싹을 틔운다. 그렇게 자라난 식물은 싹크랩들에게 새로운 먹이이자 은신처가 된다.",
+        "stats": {
+          "total": 550,
+          "hp": 95,
+          "break": 104,
+          "attack": 80,
+          "magicDefense": 77,
+          "physicalDefense": 109,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/024/beach-form"
+      },
+      {
+        "key": "bay-form",
+        "label": "바다만 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016203.png",
+        "description": "해안가에 서식하는 싹크랩에서 진화했다. 햇볕을 쬐는 습관은 그대로지만 과도한 햇빛으로 머리의 식물이 말라 색이 바랬다.",
+        "stats": {
+          "total": 550,
+          "hp": 95,
+          "break": 104,
+          "attack": 80,
+          "magicDefense": 77,
+          "physicalDefense": 109,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/024/bay-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/024/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -3148,6 +4476,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10163.png",
+        "description": "동굴에 숨어 지내며, 먹이에 포함된 광물 성분의 영향으로 등껍질이 점차 결정으로 뒤덮였다. 평소에는 땅속에 숨어 있다가 아름다운 등껍질로 먹잇감을 유인한다.",
+        "stats": {
+          "total": 550,
+          "hp": 93,
+          "break": 103,
+          "attack": 80,
+          "magicDefense": 79,
+          "physicalDefense": 113,
+          "energyRecovery": 82
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/025/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/025/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -3241,6 +4587,72 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10331.png",
+        "description": "겉모습은 불꽃 같지만, 사실은 에너지의 흐름이 만들어 낸 모습일 뿐이다. 열을 내기는커녕 오히려 주변의 열을 빨아들이고, 가끔은 이를 이용해 모닥불인 척 장난을 치기도 한다.",
+        "stats": {
+          "total": 435,
+          "hp": 69,
+          "break": 41,
+          "attack": 100,
+          "magicDefense": 67,
+          "physicalDefense": 60,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/026/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033101.png",
+        "description": "장난을 좋아해 밤마다 다른 생물 뒤를 몰래 따라다니며 놀라게 한다. 끝내 들키지 않으면 아쉬워하며 다른 목표를 찾아 나선다.",
+        "stats": {
+          "total": 435,
+          "hp": 69,
+          "break": 41,
+          "attack": 100,
+          "magicDefense": 67,
+          "physicalDefense": 60,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/026/highland-form"
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033102.png",
+        "description": "안개를 흡수해 색이 변한 도깨불은 안개 속에서 나타났다 사라지기를 반복한다. 무심코 따라가다 보면 길을 잃기 쉽다.",
+        "stats": {
+          "total": 435,
+          "hp": 69,
+          "break": 41,
+          "attack": 100,
+          "magicDefense": 67,
+          "physicalDefense": 60,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/026/forest-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033103.png",
+        "description": "꽃가루를 흡수해 색이 변한 도깨불은 달빛 아래 꽃바다에 넋을 빼앗기고 있다 보면, 갑자기 튀어나와 깜짝 놀라게 한다.",
+        "stats": {
+          "total": 435,
+          "hp": 69,
+          "break": 41,
+          "attack": 100,
+          "magicDefense": 67,
+          "physicalDefense": 60,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/026/sea-of-flowers-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/026/basic-form",
@@ -3350,6 +4762,72 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10333.png",
+        "description": "밤에만 나타나고, 몸이 기체 에너지로 이루어져 있어 자유롭게 분열하는 것은 물론 분신까지 만들어 낼 수 있다.",
+        "stats": {
+          "total": 517,
+          "hp": 80,
+          "break": 50,
+          "attack": 113,
+          "magicDefense": 89,
+          "physicalDefense": 70,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/027/basic-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033301.png",
+        "description": "기체 성분이 변해 색이 달라진 일렁깨비는 밤마다 나타났다 사라지기를 반복하고, 아무나 한 사람을 골라 뒤를 따라다니며 놀라게 한다.",
+        "stats": {
+          "total": 517,
+          "hp": 80,
+          "break": 50,
+          "attack": 113,
+          "magicDefense": 89,
+          "physicalDefense": 70,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/027/highland-form"
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033302.png",
+        "description": "안개를 흡수해 색이 변한 일렁깨비는 빛나는 식물로 위장해 생물을 유인한 뒤, 갑자기 본모습을 드러낸다.",
+        "stats": {
+          "total": 517,
+          "hp": 80,
+          "break": 50,
+          "attack": 113,
+          "magicDefense": 89,
+          "physicalDefense": 70,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/027/forest-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033303.png",
+        "description": "꽃가루를 흡수해 색이 변한 일렁깨비는 꽃바다를 떠돌며, 꽃밭이 불타오르는 듯한 장난을 친다.",
+        "stats": {
+          "total": 517,
+          "hp": 80,
+          "break": 50,
+          "attack": 113,
+          "magicDefense": 89,
+          "physicalDefense": 70,
+          "energyRecovery": 115
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/027/sea-of-flowers-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/027/basic-form",
@@ -3480,6 +4958,72 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10231.png",
+        "description": "겁이 많고 경계심이 강하다. 위험을 느끼면 곧바로 몸을 숨기지만, 떨어진 형광 비늘가루 때문에 오히려 행적이 드러난다.",
+        "stats": {
+          "total": 437,
+          "hp": 94,
+          "break": 41,
+          "attack": 81,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/028/basic-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023101.png",
+        "description": "꽃바다에 서식하며 색소가 쌓여 날개는 보랏빛을 띠고, 더듬이도 꽃이삭 모양으로 변해 꽃바다에 자연스럽게 섞인다.",
+        "stats": {
+          "total": 437,
+          "hp": 94,
+          "break": 41,
+          "attack": 81,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/028/sea-of-flowers-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023102.png",
+        "description": "밤에 피는 꽃을 특히 좋아하며, 더 잘 숨기 위해 날개도 밤빛으로 물들었다.",
+        "stats": {
+          "total": 437,
+          "hp": 94,
+          "break": 41,
+          "attack": 81,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/028/nighttime-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023103.png",
+        "description": "본래 겁이 많은지라 날개 모양과 색이 모두 마른 잎을 본떴으며, 낙엽 더미 속에 숨으면 순식간에 모습을 감출 수 있다.",
+        "stats": {
+          "total": 437,
+          "hp": 94,
+          "break": 41,
+          "attack": 81,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/028/mountain-woods-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/028/basic-form",
@@ -3623,6 +5167,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10232.png",
+        "description": "차갑고 무심한 성격으로 혼자 지내는 것을 좋아하며, 위험이 다가오면 날개를 퍼덕이고 비늘가루를 흩뿌려 환각으로 상대를 혼란시키고 그 틈에 유유히 떠난다.",
+        "stats": {
+          "total": 532,
+          "hp": 110,
+          "break": 50,
+          "attack": 98,
+          "magicDefense": 85,
+          "physicalDefense": 85,
+          "energyRecovery": 104
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/029/basic-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023201.png",
+        "description": "꽃바다를 누비며 날개를 움직일 때마다 꽃가루를 묻히고 퍼뜨려 꽃의 수분을 돕고, 비늘가루에도 은은한 꽃향기가 스며 있다.",
+        "stats": {
+          "total": 532,
+          "hp": 110,
+          "break": 50,
+          "attack": 98,
+          "magicDefense": 85,
+          "physicalDefense": 85,
+          "energyRecovery": 104
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/029/sea-of-flowers-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023202.png",
+        "description": "밤에 주로 활동하며, 날개를 펼치면 어둠 속에 자연스럽게 녹아든다. 반짝이는 비늘가루는 적을 혼란시키는 한편, 동료를 식별하는 신호로도 사용된다.",
+        "stats": {
+          "total": 532,
+          "hp": 110,
+          "break": 50,
+          "attack": 98,
+          "magicDefense": 85,
+          "physicalDefense": 85,
+          "energyRecovery": 104
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/029/nighttime-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023203.png",
+        "description": "낙엽 숲에 서식하며, 겹겹이 겹친 날개는 마른 잎처럼 보인다. 낙엽 더미 위에 앉아 가을 햇살을 느긋하게 즐기며 늘 졸린 듯한 모습이다.",
+        "stats": {
+          "total": 532,
+          "hp": 110,
+          "break": 50,
+          "attack": 98,
+          "magicDefense": 85,
+          "physicalDefense": 85,
+          "energyRecovery": 104
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/029/mountain-woods-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/029/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -3738,6 +5348,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10441.png",
+        "description": "커다란 귀를 쫑긋 세우고 있다. 소리에 매우 민감해, 한 번 포착한 움직임은 거리와 관계없이 놓치지 않는다.",
+        "stats": {
+          "total": 427,
+          "hp": 70,
+          "break": 42,
+          "attack": 108,
+          "magicDefense": 57,
+          "physicalDefense": 70,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/031/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/031/basic-form",
@@ -3873,6 +5501,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10443.png",
+        "description": "호기심이 많아 흔적을 쫓아 대상을 추적하는 걸 즐긴다. 꼬리 끝의 고리는 초음파를 증폭시켜, 숨어 있는 상대도 단번에 찾아낸다.",
+        "stats": {
+          "total": 510,
+          "hp": 100,
+          "break": 49,
+          "attack": 120,
+          "magicDefense": 67,
+          "physicalDefense": 83,
+          "energyRecovery": 91
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/032/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/032/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -3973,6 +5619,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10321.png",
+        "description": "겁이 많고 아픈 것도 싫어해 툭하면 울지만, 궁지에 몰리면 가시를 휘두르며 맞서기도 한다. 진심으로 용기를 내면 머리 위의 꽃봉오리가 활짝 피어난다.",
+        "stats": {
+          "total": 428,
+          "hp": 82,
+          "break": 43,
+          "attack": 107,
+          "magicDefense": 59,
+          "physicalDefense": 59,
+          "energyRecovery": 78
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/033/basic-form"
+      },
+      {
+        "key": "towerwood-form",
+        "label": "타워 숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032103.png",
+        "description": "손에 쥔 가시는 부드럽고 부러지기 쉽지만, 마음속의 아름다움을 지키기 위해 울먹팡은 용기를 짜내어 콕콕바라의 뒷모습을 굳건히 쫓아간다!",
+        "stats": {
+          "total": 428,
+          "hp": 82,
+          "break": 43,
+          "attack": 107,
+          "magicDefense": 59,
+          "physicalDefense": 59,
+          "energyRecovery": 78
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/033/towerwood-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/033/basic-form",
@@ -4108,6 +5788,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10323.png",
+        "description": "가시 줄기로 만든 검은 평소 팔의 잎 안에 접어 두었다가, 전투가 시작되면 꺼내 든다. 두려움을 모르는 성격으로 도전을 마다하지 않고, 무리를 지키기 위해 힘을 다한다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 53,
+          "attack": 121,
+          "magicDefense": 73,
+          "physicalDefense": 74,
+          "energyRecovery": 92
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/034/basic-form"
+      },
+      {
+        "key": "thunderstorm-form",
+        "label": "뇌우 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032301.png",
+        "description": "비 오는 밤마다 스스로를 단련하는 냉혹한 암살자다. 번개처럼 날카로운 눈빛을 지녔으며, 눈이 마주치는 순간 이미 표적을 정했다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 53,
+          "attack": 121,
+          "magicDefense": 73,
+          "physicalDefense": 74,
+          "energyRecovery": 92
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/034/thunderstorm-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032302.png",
+        "description": "천휘의 힘이 깃든 가시 검은 어떤 충격에도 결코 부러지지 않는다. 그 덕분에 앞으로 나아가는 기사는 모든 어둠을 꿰뚫는 힘을 얻게 되었다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 53,
+          "attack": 121,
+          "magicDefense": 73,
+          "physicalDefense": 74,
+          "energyRecovery": 92
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/034/prismana-form"
+      },
+      {
+        "key": "towerwood-form",
+        "label": "타워 숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032303.png",
+        "description": "흔들리지 않는 마음은 그를 당당한 기사로 성장시켰다. 콕콕바라는 수호의 맹세를 관철하며 모든 침입자를 몰아낼 것이다.",
+        "stats": {
+          "total": 509,
+          "hp": 96,
+          "break": 53,
+          "attack": 121,
+          "magicDefense": 73,
+          "physicalDefense": 74,
+          "energyRecovery": 92
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/034/towerwood-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/034/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -4233,6 +5979,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10324.png",
+        "description": "분쟁을 가라앉히기 위해 향기로운 꽃잎을 흩뿌리며, 꽃잎에 닿은 대상은 행복한 기분에 휩싸여 전의를 잃는다.",
+        "stats": {
+          "total": 517,
+          "hp": 95,
+          "break": 91,
+          "attack": 113,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 78
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/035/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032402.png",
+        "description": "천휘는 새하얀 꽃옷을 수정 같은 치맛자락으로 바꾸어, 살랑일 때마다 찬란한 빛을 굴절시킨다. 장미를 둘러싼 가시는 왕관을 이루고, 날카로운 가시 하나하나가 부드러운 수호의 힘으로 변한다.",
+        "stats": {
+          "total": 517,
+          "hp": 95,
+          "break": 91,
+          "attack": 113,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 78
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/035/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/035/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -4340,6 +6120,72 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10471.png",
+        "description": "쉴 때는 껍데기 속에 몸을 숨겨 종종 애니모 알로 착각되곤 한다. 싸움은 무서워하면서도 북적이는 건 좋아해, 풀공을 흔들며 춤으로 응원한다.",
+        "stats": {
+          "total": 455,
+          "hp": 74,
+          "break": 91,
+          "attack": 72,
+          "magicDefense": 65,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/036/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047101.png",
+        "description": "혹한의 눈밭에서 콧물을 흘리고 다니는 라라에그는 머리에 눈덩이를 얹어 위장한다. 껍데기 안으로 들어가면 작은 눈사람처럼 보인다.",
+        "stats": {
+          "total": 455,
+          "hp": 74,
+          "break": 91,
+          "attack": 72,
+          "magicDefense": 65,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/036/snowfield-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047102.png",
+        "description": "고지대에 서식하는 라라에그는 마른 잎을 머리에 얹어 위장한다. 하지만 시야가 가려져 가끔 발을 헛디뎌 언덕 아래로 굴러 떨어지기도 한다.",
+        "stats": {
+          "total": 455,
+          "hp": 74,
+          "break": 91,
+          "attack": 72,
+          "magicDefense": 65,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/036/highland-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047103.png",
+        "description": "꽃바다에 서식하는 라라에그는 꽃을 머리에 얹어 위장한다. 꽃의 색소를 흡수해 몸도 옅은 분홍빛으로 물들었다.",
+        "stats": {
+          "total": 455,
+          "hp": 74,
+          "break": 91,
+          "attack": 72,
+          "magicDefense": 65,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/036/sea-of-flowers-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/036/basic-form",
@@ -4467,6 +6313,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10475.png",
+        "description": "치솟은 갈기만 봐도 거칠고 자유분방한 성격이 느껴지며, 포효에는 짙은 야성이 담겨 있다. 꼬리는 음파를 모아 두었다가 부딪히는 순간 폭발시키는 구조다.",
+        "stats": {
+          "total": 540,
+          "hp": 87,
+          "break": 107,
+          "attack": 90,
+          "magicDefense": 76,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/037/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047501.png",
+        "description": "혹독한 한기에 갈기가 얼어붙어 날카로운 얼음 가시로 변해 있어, 반항적인 기질이 느껴진다. 벗어낸 가죽은 몸에 꼭 맞는 옷처럼 변해 추위 속에서도 멋과 보온을 모두 갖춘다.",
+        "stats": {
+          "total": 540,
+          "hp": 87,
+          "break": 107,
+          "attack": 90,
+          "magicDefense": 76,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/037/snowfield-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047502.png",
+        "description": "고지대 들판을 거닐 때, 단단한 갈기가 오동잎처럼 바람에 흔들리고 거친 숨소리와 함께 사각거리는 소리를 낸다.",
+        "stats": {
+          "total": 540,
+          "hp": 87,
+          "break": 107,
+          "attack": 90,
+          "magicDefense": 76,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/037/highland-form"
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047503.png",
+        "description": "꽃바다에 서식하는 라라에그에서 진화했다. 허물을 벗은 뒤에도 피부는 여전히 선명한 색을 띠지만, 머리의 가시만큼이나 성격도 만만치 않다.",
+        "stats": {
+          "total": 540,
+          "hp": 87,
+          "break": 107,
+          "attack": 90,
+          "magicDefense": 76,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/037/sea-of-flowers-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/037/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -4567,6 +6479,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10351.png",
+        "description": "모은 꽃꿀을 몸속에 저장해 발효시킨 뒤 향수 원료로 만들어 낸다. 조향사들에게 꼭 필요한 존재다.",
+        "stats": {
+          "total": 441,
+          "hp": 71,
+          "break": 69,
+          "attack": 94,
+          "magicDefense": 55,
+          "physicalDefense": 58,
+          "energyRecovery": 94
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/038/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/038/basic-form",
@@ -4692,6 +6622,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10352.png",
+        "description": "향에 예민해 다양한 꽃꿀을 모아 몸속에 저장하고, 자신만의 향수 원료를 만들어 낸다. 온몸의 깃털에서는 독특한 향기가 퍼진다.",
+        "stats": {
+          "total": 519,
+          "hp": 84,
+          "break": 81,
+          "attack": 111,
+          "magicDefense": 65,
+          "physicalDefense": 68,
+          "energyRecovery": 110
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/039/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/039/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -4805,6 +6753,56 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10031.png",
+        "description": "동료를 이겨야만 진화할 수 있다. 언제 마주칠지 모를 상대에 대비해, 틈만 나면 알맞은 돌로 발톱을 갈아 날을 유지한다.",
+        "stats": {
+          "total": 423,
+          "hp": 77,
+          "break": 43,
+          "attack": 112,
+          "magicDefense": 54,
+          "physicalDefense": 60,
+          "energyRecovery": 77
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/040/basic-form"
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003101.png",
+        "description": "안개 속 균류에 감염되어 갑각이 주변과 잘 어우러지는 회녹색으로 변했다. 머리 위 더듬이로 빛나는 식물을 흉내 내며, 날개를 퍼덕일 때마다 포자를 흩뿌린다.",
+        "stats": {
+          "total": 423,
+          "hp": 77,
+          "break": 43,
+          "attack": 112,
+          "magicDefense": 54,
+          "physicalDefense": 60,
+          "energyRecovery": 77
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/040/forest-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003103.png",
+        "description": "발톱을 붉게 달아오를 때까지 갈아, 베어낼 때마다 불꽃이 스친다. 숲 사이를 날며 기량을 갈고 닦을 때 마치 불꽃이 흩날리는 듯하다.",
+        "stats": {
+          "total": 423,
+          "hp": 77,
+          "break": 43,
+          "attack": 112,
+          "magicDefense": 54,
+          "physicalDefense": 60,
+          "energyRecovery": 77
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/040/highland-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/040/basic-form",
@@ -4946,6 +6944,72 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10032.png",
+        "description": "날을 갈아 두고 때를 노린다. 어둠 속에 몸을 숨긴 채 상대를 농락하며, 단 한 번의 일격으로 끝내려는 냉혹한 암살자다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 52,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 77,
+          "energyRecovery": 91
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/041/basic-form"
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003201.png",
+        "description": "몸 일부가 균류에 침식되어 갑각이 뒤틀리고, 날개에는 포자가 가득 달라붙어 퍼덕일 때마다 연기처럼 흩날린다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 52,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 77,
+          "energyRecovery": 91
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/041/forest-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003202.png",
+        "description": "천휘의 에너지가 낫을 불길한 선홍빛으로 물들인다. 검은 몸은 어둠 속에 완전히 녹아들어, 마치 떠도는 사신처럼 보인다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 52,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 77,
+          "energyRecovery": 91
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/041/prismana-form"
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003203.png",
+        "description": "양날을 갈아 열을 축적한다. 베어내는 순간 그 열기를 한꺼번에 터뜨려 상처와 화상이 동시에 남는다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 52,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 77,
+          "energyRecovery": 91
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/041/highland-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/041/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -5062,6 +7126,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10131.png",
+        "description": "커다란 귀를 가진 활기찬 어린 늑대다. 가슴에 달린 얼음뼈 나비넥타이를 가장 좋아하며, 선 지킬 줄 모르는 탄멍멍을 싫어한다.",
+        "stats": {
+          "total": 377,
+          "hp": 71,
+          "break": 38,
+          "attack": 88,
+          "magicDefense": 57,
+          "physicalDefense": 56,
+          "energyRecovery": 67
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/042/basic-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013102.png",
+        "description": "야행성 생활에 적응한 어린 늑대다. 밤에 쉽게 몸을 숨길 수 있도록 털빛이 어두워졌으며, 붉은 눈은 어둠을 꿰뚫어 보는 예리한 시력을 지녔다.",
+        "stats": {
+          "total": 377,
+          "hp": 71,
+          "break": 38,
+          "attack": 88,
+          "magicDefense": 57,
+          "physicalDefense": 56,
+          "energyRecovery": 67
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/042/nighttime-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/042/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -5176,6 +7274,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10132.png",
+        "description": "투지를 잃는 것을 두려워해 쓰다듬어지는 걸 좋아하지 않는다. 무리 사냥에 나설 때면 얼음 칼날을 물고 앞장서며, 언젠가 홀로 설 수 있는 전사를 꿈꾼다.",
+        "stats": {
+          "total": 453,
+          "hp": 86,
+          "break": 45,
+          "attack": 105,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 81
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/043/basic-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013202.png",
+        "description": "짙은 회색 털은 밤빛과 뒤섞여 거의 구분이 가지 않는다. 꼬리 뿌리의 핏빛 털만이 붉은 눈동자와 함께 강렬한 위험 신호를 발산한다.",
+        "stats": {
+          "total": 453,
+          "hp": 86,
+          "break": 45,
+          "attack": 105,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 81
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/043/nighttime-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/043/basic-form",
@@ -5317,6 +7449,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10133.png",
+        "description": "자신의 힘에 절대적인 확신을 가진 오만한 전사다. 입에 문 얼음 칼날에서는 매서운 냉기가 흘러나오며, 강한 적과 마주할 때만 흥분한다.",
+        "stats": {
+          "total": 512,
+          "hp": 95,
+          "break": 53,
+          "attack": 118,
+          "magicDefense": 76,
+          "physicalDefense": 72,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/044/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013301.png",
+        "description": "천휘의 에너지가 털끝과 입에 문 얼음 칼날을 선명한 붉은빛으로 물들여, 영역 내 다른 생물들을 강하게 위압한다.",
+        "stats": {
+          "total": 512,
+          "hp": 95,
+          "break": 53,
+          "attack": 118,
+          "magicDefense": 76,
+          "physicalDefense": 72,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/044/prismana-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013302.png",
+        "description": "오만한 달빛 사냥꾼이다. 이빨 사이의 얼음 칼날은 밤 속에서 차가운 빛을 띠며, 마치 서리가 맺힌 칼날처럼 날카롭게 번뜩인다.",
+        "stats": {
+          "total": 512,
+          "hp": 95,
+          "break": 53,
+          "attack": 118,
+          "magicDefense": 76,
+          "physicalDefense": 72,
+          "energyRecovery": 98
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/044/nighttime-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/044/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -5422,6 +7604,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10221.png",
+        "description": "숲속에 서식하며, 공격할 때는 꼬리에서 금빛 번개가 튀고 전류가 타닥거리는 소리가 난다. 동작이 민첩해 붙잡기 어렵다.",
+        "stats": {
+          "total": 450,
+          "hp": 85,
+          "break": 87,
+          "attack": 85,
+          "magicDefense": 60,
+          "physicalDefense": 60,
+          "energyRecovery": 73
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/045/basic-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1022102.png",
+        "description": "햇볕이 잘 드는 산림에 서식하며, 과도한 열을 흡수하지 않도록 몸빛이 옅고, 특이한 털은 금갈색을 띠어 주변 환경에 잘 어우러진다.",
+        "stats": {
+          "total": 450,
+          "hp": 85,
+          "break": 87,
+          "attack": 85,
+          "magicDefense": 60,
+          "physicalDefense": 60,
+          "energyRecovery": 73
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/045/mountain-woods-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/045/basic-form",
@@ -5555,6 +7771,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10222.png",
+        "description": "특수한 털에서 생기는 정전기로 공기 중의 전하 입자를 끌어 모아 전기를 저장한다. 물에 젖으면 축전 능력이 떨어져 비 오는 날에는 좀처럼 모습을 드러내지 않는다.",
+        "stats": {
+          "total": 530,
+          "hp": 100,
+          "break": 104,
+          "attack": 100,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 86
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/046/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1022201.png",
+        "description": "천휘의 에너지가 털에 축적되어 눈부신 전류를 뿜어낸다. 눈빛조차 읽을 수 없어 생각을 짐작하기 어려워 괜히 건드리지 않는 편이 현명하다.",
+        "stats": {
+          "total": 530,
+          "hp": 100,
+          "break": 104,
+          "attack": 100,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 86
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/046/prismana-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1022202.png",
+        "description": "산림 지대에 서식하는 라이트밍에서 진화했다. 몸빛이 한층 옅고 금갈색이 뒤섞인 특수 털이 겹겹이 겹쳐 상대의 시야를 흐린다.",
+        "stats": {
+          "total": 530,
+          "hp": 100,
+          "break": 104,
+          "attack": 100,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 86
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/046/mountain-woods-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/046/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -5666,6 +7932,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10511.png",
+        "description": "펀치테일은 주먹 모양의 커다란 꼬리를 지녔으며, 기름기가 밴 꼬리털은 조금만 마찰해도 불꽃을 일으킨다. 만약 자신이 모아 둔 솔방울을 노리는 자가 있다면, 뜨겁게 달아오른 불주먹의 위력을 직접 맛보게 될 것이다.",
+        "stats": {
+          "total": 455,
+          "hp": 53,
+          "break": 94,
+          "attack": 80,
+          "magicDefense": 72,
+          "physicalDefense": 79,
+          "energyRecovery": 77
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/047/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/047/basic-form",
@@ -5797,6 +8081,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10512.png",
+        "description": "버스트테일은 두 주먹을 닮은 꼬리를 지니고 있어 그 위력도 두 배로 강력하다. 이 힘으로 던진 솔방울은 마치 포탄처럼 엄청난 충격력을 자랑해 결코 얕볼 수 없다.",
+        "stats": {
+          "total": 548,
+          "hp": 110,
+          "break": 108,
+          "attack": 82,
+          "magicDefense": 80,
+          "physicalDefense": 80,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/048/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/048/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -5902,6 +8204,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10171.png",
+        "description": "여기저기 파헤치며 구애 선물로 쓸 것을 찾지만, 쉽게 부끄러워해 번번이 고백에 실패하고 만다. 작은 집게로 볼을 비비는 것이 특징이다.",
+        "stats": {
+          "total": 411,
+          "hp": 81,
+          "break": 72,
+          "attack": 61,
+          "magicDefense": 80,
+          "physicalDefense": 53,
+          "energyRecovery": 64
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/049/basic-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017101.png",
+        "description": "밤새 보물을 파는 데 푹 빠진 수줍달들은 눈가에 다크서클이 생겼고, 털빛도 밤에 숨기 좋은 어두운 색으로 바뀌었다.",
+        "stats": {
+          "total": 411,
+          "hp": 81,
+          "break": 72,
+          "attack": 61,
+          "magicDefense": 80,
+          "physicalDefense": 53,
+          "energyRecovery": 64
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/049/nighttime-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/049/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -6005,6 +8341,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10172.png",
+        "description": "자신에게 맞는 삽을 만들기 위해 조개껍데기를 신중하게 고른다. 마음에 드는 상대를 만나면 분홍빛 거품을 뿜어낸다고 한다.",
+        "stats": {
+          "total": 471,
+          "hp": 92,
+          "break": 80,
+          "attack": 96,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 67
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/050/basic-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017201.png",
+        "description": "짝사랑에 빠진 보글달은 밤마다 뒤척이며 잠들지 못한다. 씁쓸한 마음에 털빛마저도 점점 옅어졌다.",
+        "stats": {
+          "total": 471,
+          "hp": 92,
+          "break": 80,
+          "attack": 96,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 67
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/050/nighttime-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/050/basic-form",
@@ -6132,6 +8502,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10173.png",
+        "description": "자기애가 다소 강해 매일 오랜 시간을 들여 털을 손질하고, 물 밖으로 나오는 자세까지 계산할 만큼 시선을 받는 것을 즐긴다. 하지만 발달한 근육은 풍성한 털에 가려 자랑할 수 없다.",
+        "stats": {
+          "total": 522,
+          "hp": 102,
+          "break": 50,
+          "attack": 108,
+          "magicDefense": 75,
+          "physicalDefense": 99,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/051/basic-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017301.png",
+        "description": "늘 밤에 데이트를 즐겨 햇빛을 충분히 받지 못해 털빛이 색을 잃어갔다. 하지만 오히려 독특한 매력을 더하게 되었다.",
+        "stats": {
+          "total": 522,
+          "hp": 102,
+          "break": 50,
+          "attack": 108,
+          "magicDefense": 75,
+          "physicalDefense": 99,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/051/nighttime-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/051/basic-form",
@@ -6263,6 +8667,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10174.png",
+        "description": "튼튼한 몸에서 강한 힘을 발휘할 수 있지만, 이를 과시하기보다는 둥지에 머물며 장식품을 모아 꾸미는 것을 더 좋아한다.",
+        "stats": {
+          "total": 545,
+          "hp": 104,
+          "break": 100,
+          "attack": 85,
+          "magicDefense": 106,
+          "physicalDefense": 70,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/052/basic-form"
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017401.png",
+        "description": "장식에 대한 독특한 취향을 지닌 둔둔달은 밤마다 해변을 돌아다니며 빛나는 조개껍데기를 찾아다닌다. 그러다 보니 눈가에 짙은 다크서클이 자리 잡았다.",
+        "stats": {
+          "total": 545,
+          "hp": 104,
+          "break": 100,
+          "attack": 85,
+          "magicDefense": 106,
+          "physicalDefense": 70,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/052/nighttime-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017402.png",
+        "description": "소중히 간직해 온 조개껍질은 천휘의 힘으로 권능의 상징으로 다시 태어났고, 샘솟는 힘은 둔둔달의 털을 한층 풍성하게 부풀렸다. 두툼한 앞발로 배를 탁 두드리면, 거대한 파도가 명령을 받은 듯 솟구쳐 올라 곁을 지킨다!",
+        "stats": {
+          "total": 545,
+          "hp": 104,
+          "break": 100,
+          "attack": 85,
+          "magicDefense": 106,
+          "physicalDefense": 70,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/052/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/052/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -6366,6 +8820,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10191.png",
+        "description": "부드러운 촉수로 조개껍데기를 감싸 몸을 숨기고, 해변의 평범한 조개 무리 속에 섞여 지낸다. 평소에는 껍데기를 꼭 닫고 있다가, 밤이 되면 열어 달빛을 쬔다.",
+        "stats": {
+          "total": 382,
+          "hp": 75,
+          "break": 39,
+          "attack": 90,
+          "magicDefense": 56,
+          "physicalDefense": 56,
+          "energyRecovery": 66
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/053/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/053/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -6465,6 +8937,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10192.png",
+        "description": "밤하늘을 동경해 자주 등껍질 위에 누워 몸을 흔들며, 눈을 감은 채 별이 빚어낸 꿈에 잠긴다.",
+        "stats": {
+          "total": 458,
+          "hp": 90,
+          "break": 44,
+          "attack": 109,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 79
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/054/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/054/basic-form",
@@ -6598,6 +9088,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10194.png",
+        "description": "한때 자신을 감싸던 껍데기를 검과 방패로 삼는다. 연약한 클램스타가 위험에 처하면 가장 먼저 나서고, 해안선을 따라 파도에 몸을 맡긴 채 흘러가듯 움직이는 것을 좋아한다.",
+        "stats": {
+          "total": 509,
+          "hp": 100,
+          "break": 50,
+          "attack": 121,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/055/basic-form"
+      },
+      {
+        "key": "thunderstorm-form",
+        "label": "뇌우 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1019401.png",
+        "description": "폭풍 속에서 태어난 나이트스타다. 더듬이로 번개를 흡수하며, 바다를 지킨다기보다 그 바다 위에 군림하는 존재에 가깝다.",
+        "stats": {
+          "total": 509,
+          "hp": 100,
+          "break": 50,
+          "attack": 121,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/055/thunderstorm-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1019402.png",
+        "description": "천휘의 에너지에 이끌려 정의를 지키려는 나이트스타의 의지가 빛으로 터져 나오며, 조개 갑옷을 황금빛으로 물들인다.",
+        "stats": {
+          "total": 509,
+          "hp": 100,
+          "break": 50,
+          "attack": 121,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/055/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/055/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -6605,7 +9145,7 @@
     "number": "056",
     "name": "데굴굴",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "딜"
@@ -6713,6 +9253,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10451.png",
+        "description": "태어날 때부터 돌공과 한순간도 떨어져 본 적이 없다. 쉴 새 없이 굴려 점점 더 둥글게 다듬어 가지만, 이 돌공은 외형만큼 단순해 보이지는 않는다.",
+        "stats": {
+          "total": 437,
+          "hp": 76,
+          "break": 42,
+          "attack": 98,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/056/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045101.png",
+        "description": "눈밭을 누비는 데굴굴은 태어날 때부터 함께한 돌공을 굴리며 다닌다. 두툼한 서리와 눈을 두른 채, 얼음과 눈 위에서 다양한 고난도 동작을 펼친다.",
+        "stats": {
+          "total": 437,
+          "hp": 76,
+          "break": 42,
+          "attack": 98,
+          "magicDefense": 68,
+          "physicalDefense": 68,
+          "energyRecovery": 85
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/056/snowfield-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/056/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -6720,7 +9294,7 @@
     "number": "057",
     "name": "모터터",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "딜"
@@ -6852,6 +9426,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10453.png",
+        "description": "예전처럼 뒤로 이동하지만, 이제는 구르기를 완전히 익혀 다양한 고난도 기술로 상대를 공격한다.",
+        "stats": {
+          "total": 516,
+          "hp": 90,
+          "break": 52,
+          "attack": 114,
+          "magicDefense": 80,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/057/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045301.png",
+        "description": "눈밭을 질주하는 모터터는 얼어붙은 가시를 눈덩이에 감아 미끄럼 방지용 체인처럼 사용한다. 매끄러운 빙판 위에서도 미끄러짐 없이 거침없이 달린다.",
+        "stats": {
+          "total": 516,
+          "hp": 90,
+          "break": 52,
+          "attack": 114,
+          "magicDefense": 80,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/057/snowfield-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045302.png",
+        "description": "천휘 에너지를 흡수한 모터터는 극한의 속도를 향한 본능을 불꽃으로 바꾸어, 돌공을 뜨거운 용암으로 달군다. 대시할 때는 굉음과 함께 불꽃이 거세게 일렁이며, 마치 앞을 가로막는 모든 것을 짓뭉게 버릴 듯하다.",
+        "stats": {
+          "total": 516,
+          "hp": 90,
+          "break": 52,
+          "attack": 114,
+          "magicDefense": 80,
+          "physicalDefense": 80,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/057/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/057/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -6859,7 +9483,7 @@
     "number": "058",
     "name": "록볼볼",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "서포터"
@@ -6977,6 +9601,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10454.png",
+        "description": "데굴굴과 늘 함께해 온 돌공은 끊임없는 흔들림 끝에 깨어났다. 더 이상 제 뜻대로 움직일 수 없는 삶에 질려, 벌레의 몸을 삼킨 뒤 스스로 움직이기 시작했다.",
+        "stats": {
+          "total": 516,
+          "hp": 91,
+          "break": 52,
+          "attack": 114,
+          "magicDefense": 54,
+          "physicalDefense": 101,
+          "energyRecovery": 104
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/058/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045401.png",
+        "description": "눈밭에 사는 록볼볼은 오랫동안 굴러다닌 탓에 몸을 덮은 서리와 눈이 단단한 얼음 결정으로 굳어 있다. 어디서 붙은 건지 모를 당근까지 꽁꽁 얼어붙어 있다.",
+        "stats": {
+          "total": 516,
+          "hp": 91,
+          "break": 52,
+          "attack": 114,
+          "magicDefense": 54,
+          "physicalDefense": 101,
+          "energyRecovery": 104
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/058/snowfield-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/058/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -7078,6 +9736,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10291.png",
+        "description": "항상 특유의 밝은 미소로 다른 애니모를 불러 함께 놀자고 한다. 장난기와 식탐 때문에 가끔 말썽을 부리기도 하지만, 늘 모두에게 용서받는다.",
+        "stats": {
+          "total": 429,
+          "hp": 85,
+          "break": 41,
+          "attack": 106,
+          "magicDefense": 60,
+          "physicalDefense": 60,
+          "energyRecovery": 77
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/059/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/059/basic-form",
@@ -7207,6 +9883,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10293.png",
+        "description": "털의 뛰어난 전도성으로 번개의 힘을 모아 날개를 펼치고, 번개처럼 돌진해서 먹구름을 몰아내 기분까지 함께 맑아지게 한다.",
+        "stats": {
+          "total": 505,
+          "hp": 100,
+          "break": 50,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/060/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1029301.png",
+        "description": "천휘의 영향으로 털이 달콤한 사탕처럼 밝은 색으로 물들고, 미소만으로도 행복한 기분을 느끼게 한다.",
+        "stats": {
+          "total": 505,
+          "hp": 100,
+          "break": 50,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 70,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/060/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/060/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -7320,6 +10030,56 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10021.png",
+        "description": "단단한 투구로 부드러운 몸을 보호한다. 입에서 갈고리처럼 휘어진 발톱을 뻗어 먹이를 사냥하며, 탄력 있는 몸 덕분에 자기 몸집의 10배에 달하는 먹이도 담아 둘 수 있다.",
+        "stats": {
+          "total": 339,
+          "hp": 60,
+          "break": 60,
+          "attack": 52,
+          "magicDefense": 48,
+          "physicalDefense": 68,
+          "energyRecovery": 51
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/061/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002101.png",
+        "description": "추위를 견딜 줄 아는 투구누니는 다른 애니모의 털을 모아 투구 안에 채워 넣는다. 덕분에 눈이 오는 날에도 얼어붙지 않고 활동할 수 있다.",
+        "stats": {
+          "total": 339,
+          "hp": 60,
+          "break": 60,
+          "attack": 52,
+          "magicDefense": 48,
+          "physicalDefense": 68,
+          "energyRecovery": 51
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/061/snowfield-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002102.png",
+        "description": "전투를 즐기는 투구누니는 반복된 돌진으로 투구를 갈아 반짝이게 만들어, 세월의 녹이 스며들기 전의 모습을 드러낸다.",
+        "stats": {
+          "total": 339,
+          "hp": 60,
+          "break": 60,
+          "attack": 52,
+          "magicDefense": 48,
+          "physicalDefense": 68,
+          "energyRecovery": 51
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/061/mountain-woods-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/061/basic-form",
@@ -7449,6 +10209,72 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10026.png",
+        "description": "부러진 검과 갑옷을 얻고, 용기와 힘을 이어받아 마침내 동료를 지키고 강적에 맞서 싸우는 진정한 용사가 되었다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 55,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 84,
+          "energyRecovery": 81
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/062/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002601.png",
+        "description": "눈이 오는 날에도 편하게 활동할 수 있도록 검날을 도끼 형태로 개조하고, 주요 관절에는 다른 애니모의 털을 채워 넣어 체온을 유지한다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 55,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 84,
+          "energyRecovery": 81
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/062/snowfield-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002602.png",
+        "description": "강적에 맞서는 데 집착한다. 공격을 막아낼수록 갑옷은 더욱 빛나게 다듬어지고, 마침내 황금빛 전투 갑옷을 완성했다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 55,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 84,
+          "energyRecovery": 81
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/062/mountain-woods-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002603.png",
+        "description": "천휘의 에너지가 이 검에 쓰러진 용의 잔념을 일깨웠다. 그 힘에 반응해 갑옷과 무기에는 용의 발톱과 뿔이 자라났다.",
+        "stats": {
+          "total": 505,
+          "hp": 90,
+          "break": 55,
+          "attack": 125,
+          "magicDefense": 70,
+          "physicalDefense": 84,
+          "energyRecovery": 81
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/062/prismana-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/062/basic-form",
@@ -7582,6 +10408,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10027.png",
+        "description": "덩치는 크지만 온순하고 겁이 많아 싸움을 피하려 한다. 위험에 처하면 몸을 둥글게 말지만, 동료를 지키기 위해서라면 용기를 내어 맞서 싸운다.",
+        "stats": {
+          "total": 540,
+          "hp": 100,
+          "break": 105,
+          "attack": 90,
+          "magicDefense": 70,
+          "physicalDefense": 100,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/063/basic-form"
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002701.png",
+        "description": "눈밭에서 움직이기 쉽도록 갑옷 안에 다른 애니모의 털을 채워 넣는다. 몸을 둥글게 말았을 때 보온은 물론, 눈 위에서 미끄러지지도 않는다.",
+        "stats": {
+          "total": 540,
+          "hp": 100,
+          "break": 105,
+          "attack": 90,
+          "magicDefense": 70,
+          "physicalDefense": 100,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/063/snowfield-form"
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002702.png",
+        "description": "무리를 지키는 사명을 짊어지고 있다. 수없이 공격을 막아낸 갑옷은 점점 금빛으로 다듬어지며, 용기가 깃든 빛을 띤다.",
+        "stats": {
+          "total": 540,
+          "hp": 100,
+          "break": 105,
+          "attack": 90,
+          "magicDefense": 70,
+          "physicalDefense": 100,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/063/mountain-woods-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/063/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -7679,6 +10555,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10024.png",
+        "description": "지나는 것은 무엇이든 한 번씩 깨무는 버릇이 있다. 턱의 가동성이 좋아 크게 벌릴 수 있으며, 가볍게 깨무는 행동으로 애정과 기쁨을 표현한다. 특히 금속을 좋아하는 이유는 쉽게 망가지지 않기 때문이다.",
+        "stats": {
+          "total": 407,
+          "hp": 78,
+          "break": 76,
+          "attack": 65,
+          "magicDefense": 51,
+          "physicalDefense": 74,
+          "energyRecovery": 63
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/064/basic-form"
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002401.png",
+        "description": "금속 광석으로 이빨을 가는 것을 좋아한다. 몸속에 축적된 금속 성분은 피부를 더욱 단단하게 만들었고, 턱은 완전히 금속으로 변했다.",
+        "stats": {
+          "total": 407,
+          "hp": 78,
+          "break": 76,
+          "attack": 65,
+          "magicDefense": 51,
+          "physicalDefense": 74,
+          "energyRecovery": 63
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/064/mountain-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/064/basic-form",
@@ -7786,6 +10696,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10022.png",
+        "description": "연약함을 투구 아래에 숨긴 어린 용이다. 더 강해져 자유롭게 하늘을 날며, 세상 곳곳의 숨겨진 보물을 찾기를 꿈꾼다.",
+        "stats": {
+          "total": 489,
+          "hp": 94,
+          "break": 92,
+          "attack": 78,
+          "magicDefense": 61,
+          "physicalDefense": 88,
+          "energyRecovery": 76
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/065/basic-form"
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002201.png",
+        "description": "산지에 서식하는 바이티에서 진화했다.피부보다 몇 배나 단단한 투구 덕분에 금속 광물을 찾는 중에도 날카로운 바위로부터 몸을 보호한다.",
+        "stats": {
+          "total": 489,
+          "hp": 94,
+          "break": 92,
+          "attack": 78,
+          "magicDefense": 61,
+          "physicalDefense": 88,
+          "energyRecovery": 76
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/065/mountain-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/065/basic-form",
@@ -7909,6 +10853,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10023.png",
+        "description": "온몸이 단단한 갑옷으로 뒤덮여 있다. 움직이지 않고 바위 위에 서 있으면 거대한 석상처럼 보이며, 전설에 따르면 유적 입구를 지키며 고대 보물을 수호한다고 한다.",
+        "stats": {
+          "total": 543,
+          "hp": 104,
+          "break": 102,
+          "attack": 87,
+          "magicDefense": 68,
+          "physicalDefense": 98,
+          "energyRecovery": 84
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/066/basic-form"
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002301.png",
+        "description": "산지에 서식하는 갸면뇽에서 진화했다. 금빛 물건을 집요하게 모으며, 언젠가 온몸을 찬란한 황금빛으로 물들이길 꿈꾼다.",
+        "stats": {
+          "total": 543,
+          "hp": 104,
+          "break": 102,
+          "attack": 87,
+          "magicDefense": 68,
+          "physicalDefense": 98,
+          "energyRecovery": 84
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/066/mountain-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/066/basic-form",
@@ -8040,6 +11018,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10025.png",
+        "description": "불꽃으로 단련된 금속 중갑을 두르고 있다. 분노할 때 내뿜는 불길은 주변을 녹여버릴 만큼 강력하다. 재가 되고 싶지 않다면 가까이 가지 않는 편이 좋다.",
+        "stats": {
+          "total": 505,
+          "hp": 95,
+          "break": 50,
+          "attack": 125,
+          "magicDefense": 85,
+          "physicalDefense": 70,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/067/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002503.png",
+        "description": "천휘의 영향으로 갸갑파이어 불꽃은 더욱 맹렬해지고, 이글거리는 보랏빛 불꽃이 되어 갑옷에서 세차게 뿜어져 나온다. 금방이라도 주변의 모든 것을 잿더미로 만들어 버릴 듯하다.",
+        "stats": {
+          "total": 505,
+          "hp": 95,
+          "break": 50,
+          "attack": 125,
+          "magicDefense": 85,
+          "physicalDefense": 70,
+          "energyRecovery": 80
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/067/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/067/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8047,7 +11059,7 @@
     "number": "068",
     "name": "드리미",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "딜"
@@ -8143,6 +11155,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10501.png",
+        "description": "낮에는 몽유 상태로 돌아다닌다. 깨우는 순간 난폭해지지만, 기운이 다하면 다시 깊은 잠에 빠져든다.",
+        "stats": {
+          "total": 435,
+          "hp": 92,
+          "break": 42,
+          "attack": 100,
+          "magicDefense": 61,
+          "physicalDefense": 70,
+          "energyRecovery": 70
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/068/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/068/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8150,7 +11180,7 @@
     "number": "069",
     "name": "푹자곰",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "딜"
@@ -8270,6 +11300,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10503.png",
+        "description": "평소에는 온순하지만, 그 안에는 늘 억눌린 감정이 쌓여 있다. 자극을 받거나 배가 고프면 이를 참지 못하고 광폭해진다.",
+        "stats": {
+          "total": 506,
+          "hp": 104,
+          "break": 50,
+          "attack": 124,
+          "magicDefense": 70,
+          "physicalDefense": 83,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/069/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1050301.png",
+        "description": "천휘의 에너지가 난폭한 영혼을 잠재워 깊은 잠으로 이끈다. 하지만 그 평온한 잠을 방해하면, 억눌려 있던 분노가 악몽처럼 되살아난다.",
+        "stats": {
+          "total": 506,
+          "hp": 104,
+          "break": 50,
+          "attack": 124,
+          "magicDefense": 70,
+          "physicalDefense": 83,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/069/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/069/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8277,7 +11341,7 @@
     "number": "070",
     "name": "록키",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "격파"
@@ -8385,6 +11449,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10281.png",
+        "description": "태어날 때부터 광물을 찾아내는 능력을 지니고 있으며, 다양한 광물을 먹는 것을 좋아하고 먹는 광물에 따라 성장 방식도 달라진다.",
+        "stats": {
+          "total": 412,
+          "hp": 83,
+          "break": 79,
+          "attack": 68,
+          "magicDefense": 74,
+          "physicalDefense": 52,
+          "energyRecovery": 56
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/070/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/070/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8393,7 +11475,7 @@
     "name": "라바크",
     "elements": [
       "불",
-      "rock"
+      "바위"
     ],
     "positions": [
       "격파"
@@ -8499,6 +11581,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10282.png",
+        "description": "단단한 발톱으로 결정석을 부수어 먹고 열을 축적해, 몸에는 붉은빛 무늬가 드러난다. 작은 체구지만 입에서 고온의 불길을 계속해서 뿜어낼 수 있다.",
+        "stats": {
+          "total": 485,
+          "hp": 99,
+          "break": 93,
+          "attack": 82,
+          "magicDefense": 80,
+          "physicalDefense": 63,
+          "energyRecovery": 68
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/071/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/071/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8507,7 +11607,7 @@
     "name": "마그라곤",
     "elements": [
       "불",
-      "rock"
+      "바위"
     ],
     "positions": [
       "격파"
@@ -8643,6 +11743,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10283.png",
+        "description": "타오르는 결정이 굳은 용암처럼 몸에 자리 잡고 있으며, 그 안에 쌓인 열이 한꺼번에 폭발하면 앞을 가로막는 모든 것을 녹여버릴 수 있다.",
+        "stats": {
+          "total": 539,
+          "hp": 110,
+          "break": 104,
+          "attack": 91,
+          "magicDefense": 89,
+          "physicalDefense": 70,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/072/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1028301.png",
+        "description": "등의 결정은 천휘의 에너지를 흡수해 화려한 에너지 분출과 함께 강렬한 열기를 내뿜는다.",
+        "stats": {
+          "total": 539,
+          "hp": 110,
+          "break": 104,
+          "attack": 91,
+          "magicDefense": 89,
+          "physicalDefense": 70,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/072/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/072/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8650,7 +11784,7 @@
     "number": "073",
     "name": "크리스톤",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "격파"
@@ -8756,6 +11890,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10284.png",
+        "description": "섭취한 광물은 체내에서 정제되어, 순수한 에너지를 담은 결정 척추로 자라난다.",
+        "stats": {
+          "total": 486,
+          "hp": 99,
+          "break": 102,
+          "attack": 81,
+          "magicDefense": 54,
+          "physicalDefense": 80,
+          "energyRecovery": 70
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/073/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/073/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8763,7 +11915,7 @@
     "number": "074",
     "name": "크리스바인",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "격파"
@@ -8885,6 +12037,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10285.png",
+        "description": "수정 광맥이 풍부한 곳에 서식하며, 등에 난 단단한 수정 척추는 몸을 보호하고 에너지를 저장하는 역할을 한다.",
+        "stats": {
+          "total": 540,
+          "hp": 110,
+          "break": 105,
+          "attack": 90,
+          "magicDefense": 60,
+          "physicalDefense": 97,
+          "energyRecovery": 78
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/074/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/074/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8892,7 +12062,7 @@
     "number": "075",
     "name": "침니앤트",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "서포터"
@@ -8982,6 +12152,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10431.png",
+        "description": "침니앤트는 흙을 차곡차곡 쌓아 올려 외피를 만든다. 위험을 느끼면 위쪽 구멍에서 연기를 뿜어내 주변을 뒤덮고 모습을 숨긴다.",
+        "stats": {
+          "total": 448,
+          "hp": 77,
+          "break": 50,
+          "attack": 87,
+          "magicDefense": 67,
+          "physicalDefense": 67,
+          "energyRecovery": 100
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/075/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/075/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -8989,7 +12177,7 @@
     "number": "076",
     "name": "캐슬앤트",
     "elements": [
-      "rock"
+      "바위"
     ],
     "positions": [
       "서포터"
@@ -9093,6 +12281,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10433.png",
+        "description": "상하체가 따로 회전하는 구조 덕분에 캐슬앤트는 주변을 유연하게 살필 수 있다. 상황에 따라 형태를 바꿔 포탑처럼 변해 적을 물리친다.",
+        "stats": {
+          "total": 514,
+          "hp": 90,
+          "break": 50,
+          "attack": 116,
+          "magicDefense": 83,
+          "physicalDefense": 100,
+          "energyRecovery": 75
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/076/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/076/basic-form",
@@ -9202,6 +12408,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10141.png",
+        "description": "겁이 많아 작은 인기척에도 바로 달아난다. 머리 위의 전구처럼 생긴 기관은 건강 상태에 따라 변한다.",
+        "stats": {
+          "total": 404,
+          "hp": 83,
+          "break": 37,
+          "attack": 68,
+          "magicDefense": 63,
+          "physicalDefense": 63,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/077/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/077/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -9307,6 +12531,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10142.png",
+        "description": "어둠을 무서워하는 해파리다. 밤이 되면 스스로 빛을 내며, 잠이 들어도 그 빛은 꺼지지 않아 마치 밤을 지키는 등불처럼 보인다.",
+        "stats": {
+          "total": 473,
+          "hp": 99,
+          "break": 45,
+          "attack": 93,
+          "magicDefense": 74,
+          "physicalDefense": 72,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/078/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/078/basic-form",
@@ -9448,6 +12690,56 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10143.png",
+        "description": "기분에 따라 빛의 밝기와 깜박임의 빈도를 자유롭게 조절한다. 촉수는 화려한 빛무늬를 만들어낼 뿐만 아니라, 전류를 흘려 상대를 공격하기도 한다.",
+        "stats": {
+          "total": 515,
+          "hp": 110,
+          "break": 50,
+          "attack": 115,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/079/basic-form"
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1014301.png",
+        "description": "피부가 매우 얇아 수분에 강하게 의존한다. 수분이 지나치게 많은 탓에 작은 충격에도 눈물이 흘러나와, 늘 울고 있는 것처럼 보인다.",
+        "stats": {
+          "total": 515,
+          "hp": 110,
+          "break": 50,
+          "attack": 115,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/079/rainstorm-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1014302.png",
+        "description": "천휘의 에너지로 머리의 축전 기관이 한층 강화되어, 축적된 전기를 온화한 치유의 빛으로 바꾸어 상처 입은 동료를 보듬고 치유한다.",
+        "stats": {
+          "total": 515,
+          "hp": 110,
+          "break": 50,
+          "attack": 115,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/079/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/079/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -9545,6 +12837,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10481.png",
+        "description": "몸의 기름기를 문질러 거품을 만들어 낸다. 이 거품은 몸을 깨끗하게 하고 보호해 주지만, 가끔은 거품을 밟고 미끄러지기도 한다.",
+        "stats": {
+          "total": 459,
+          "hp": 102,
+          "break": 44,
+          "attack": 76,
+          "magicDefense": 76,
+          "physicalDefense": 68,
+          "energyRecovery": 93
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/080/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/080/basic-form",
@@ -9662,6 +12972,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10483.png",
+        "description": "깃털에서 기름이 계속 분비되어 조금만 문질러도 다양한 거품이 만들어진다. 등에 업은 새끼를 보호할 때는 그중에서도 가장 부드럽고 촘촘한 거품을 쓴다.",
+        "stats": {
+          "total": 540,
+          "hp": 120,
+          "break": 50,
+          "attack": 90,
+          "magicDefense": 90,
+          "physicalDefense": 80,
+          "energyRecovery": 110
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/081/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/081/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -9767,6 +13095,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10122.png",
+        "description": "심장 박동의 리듬에 시달리는 베서스는 그 박동을 덮을 비트를 끊임없이 찾는다. 음악에 맞춰 몸을 흔드는 것을 좋아하며, 특히 개성 강한 음악을 즐긴다.",
+        "stats": {
+          "total": 538,
+          "hp": 88,
+          "break": 90,
+          "attack": 92,
+          "magicDefense": 75,
+          "physicalDefense": 75,
+          "energyRecovery": 118
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/082/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/082/basic-form",
@@ -9882,6 +13228,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10474.png",
+        "description": "팔다리가 유연해 누구를 만나든 화려한 발차기를 뽐내려 한다. 벗어낸 허물을 후드처럼 머리에 쓰는 것도 좋아한다.",
+        "stats": {
+          "total": 522,
+          "hp": 100,
+          "break": 55,
+          "attack": 108,
+          "magicDefense": 90,
+          "physicalDefense": 81,
+          "energyRecovery": 88
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/10002/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/10002/basic-form",
@@ -10013,6 +13377,40 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10033.png",
+        "description": "앞다리가 부러진 싹뚜기가 번개의 힘을 흡수해 진화한다. 새롭게 형성된 역날은 극도로 날카로우며, 눈부신 전류를 내뿜는다.",
+        "stats": {
+          "total": 520,
+          "hp": 99,
+          "break": 50,
+          "attack": 130,
+          "magicDefense": 70,
+          "physicalDefense": 66,
+          "energyRecovery": 105
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/10003/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003305.png",
+        "description": "천휘의 힘이 썬더스퀵에게 새로운 에너지를 불어넣어, 무적의 붉은 섬광으로 거듭나게 했다. 이번에는 패배조차 그를 따라잡지 못할 것이다!",
+        "stats": {
+          "total": 520,
+          "hp": 99,
+          "break": 50,
+          "attack": 130,
+          "magicDefense": 70,
+          "physicalDefense": 66,
+          "energyRecovery": 105
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/10003/prismana-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/10003/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -10122,6 +13520,40 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_69993.png",
+        "description": "이세계에서 온 꼬마 불꽃은 다른 생명체와의 상호작용을 통해 에너지를 얻을 수 있다. 북적이는 만남의 장소에서 그들은 더욱 활발해진다.",
+        "stats": {
+          "total": 517,
+          "hp": 107,
+          "break": 50,
+          "attack": 113,
+          "magicDefense": 88,
+          "physicalDefense": 60,
+          "energyRecovery": 99
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/11001/basic-form"
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_6999301.png",
+        "description": "천휘 에너지를 받은 꼬마 불꽃의 불씨는 반짝이는 빛을 흩뿌리며, 눈부신 자태를 자신 있게 뽐낸다. 통통 튀는 움직임도 한층 더 발랄하고 장난스러워진다.",
+        "stats": {
+          "total": 517,
+          "hp": 107,
+          "break": 50,
+          "attack": 113,
+          "magicDefense": 88,
+          "physicalDefense": 60,
+          "energyRecovery": 99
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/11001/prismana-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/11001/basic-form",
@@ -10240,6 +13672,24 @@
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
       }
     ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10371.png",
+        "description": "눈에는 깊은 푸른 달빛이 비치며, 힘을 쓸 때는 신비로운 문양이 떠오른다. 언제나 이성적으로 판단하고 신중하게 행동한다.",
+        "stats": {
+          "total": 514,
+          "hp": 100,
+          "break": 64,
+          "attack": 116,
+          "magicDefense": 72,
+          "physicalDefense": 72,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/99996/basic-form"
+      }
+    ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/99996/basic-form",
     "checkedAt": "2026-09-18"
   },
@@ -10354,6 +13804,24 @@
         "requirement": "65레벨 달성",
         "material": "만상의 결정 x2",
         "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10361.png",
+        "description": "열정적이고 활발하며 자신감이 넘친다. 동료를 지키는 데 망설임이 없고, 위기의 순간에는 강한 힘이 각성되어 폭발적인 전투력을 보여 준다.",
+        "stats": {
+          "total": 514,
+          "hp": 100,
+          "break": 64,
+          "attack": 116,
+          "magicDefense": 72,
+          "physicalDefense": 72,
+          "energyRecovery": 90
+        },
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/99998/basic-form"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/99998/basic-form",
