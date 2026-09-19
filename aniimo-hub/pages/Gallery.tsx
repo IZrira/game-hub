@@ -8,6 +8,7 @@ import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoForm, AniimoStats } from '../types';
 import { ANIIMO_ENGLISH_NAMES, EVOLUTION_STAGES, getAniimoEvolutionStage } from '../utils/evolutionStage';
 import { ELEMENT_META, getElementMatchups } from '../data/elementChart';
+import { getRecommendedPersonality } from '../data/personality';
 
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
@@ -93,6 +94,7 @@ const GalleryAniimo: React.FC = () => {
           <div className="overflow-x-auto"><table className="w-full min-w-[560px] text-sm"><thead><tr><th className="p-4 text-left text-gray-500">항목</th>{compared.map(({ id, item, form }) => <th key={id} className="p-4 text-center"><span className="block">{item.name}</span><span className="mt-1 block text-[10px] font-bold text-violet-300">{form.label}</span></th>)}</tr></thead><tbody>
             <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">원소</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-violet-300">{form.elements.join(' · ') || '-'}</td>)}</tr>
             <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">포지션</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-gray-300">{form.positions.join(' · ') || '-'}</td>)}</tr>
+            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">추천 성격</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-black tracking-widest text-violet-300">{getRecommendedPersonality(form).code}</td>)}</tr>
             <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">공격 우위</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-emerald-300">{formatMatchupElements(form.elements, 'strongAgainst')}</td>)}</tr>
             <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">받는 약점</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-rose-300">{formatMatchupElements(form.elements, 'weakTo')}</td>)}</tr>
             {STAT_ROWS.map(row => { const best = Math.max(...compared.map(({ stats }) => stats[row.key] ?? -1)); return <tr key={row.key} className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">{row.label}</th>{compared.map(({ id, stats }) => <td key={id} className={`p-4 text-center font-black ${stats[row.key] === best ? 'text-violet-300' : 'text-white'}`}>{stats[row.key] ?? '-'}</td>)}</tr>; })}
