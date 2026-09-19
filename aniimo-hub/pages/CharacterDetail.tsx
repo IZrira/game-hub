@@ -46,7 +46,7 @@ const CharacterDetailAniimo: React.FC = () => {
   const displayResonanceLevels = activeForm?.resonanceLevels || item.resonanceLevels;
   const activeSkills = skillTab === 'combat' ? displayCombatSkills : displayUniqueSkills;
   const evolutionStages = ['유년기', '성장기', '성숙기'].map(stage => ({ stage, nodes: displayEvolution.filter(node => node.stage === stage) })).filter(group => group.nodes.length > 0);
-  const evolutionRequirements = displayEvolution.map(node => ({ node, condition: getEvolutionCondition(node.number) })).filter((value): value is { node: AniimoEvolutionNode; condition: string } => Boolean(value.condition));
+  const evolutionRequirements = displayEvolution.map(node => ({ node, condition: getEvolutionCondition(node.number, node.formKey) })).filter((value): value is { node: AniimoEvolutionNode; condition: string } => Boolean(value.condition));
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
     <SEO title={`${item.name} 능력치·스킬·진화 | 애니모 도감`} description={`애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화, 출현 지역, 특성, 스킬과 공명 육성 정보를 확인하세요.`} url={`/gallery/aniimo/character/${encodeURIComponent(item.name)}`} gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 도감', url: '/gallery/aniimo' }, { name: item.name, url: `/gallery/aniimo/character/${encodeURIComponent(item.name)}` }]} />
