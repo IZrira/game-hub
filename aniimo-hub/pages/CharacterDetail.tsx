@@ -7,6 +7,7 @@ import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoEvolutionNode, AniimoForm, AniimoSkill, AniimoStats } from '../types';
 import { getAniimoLocationPath } from '../utils/location';
 import { getEvolutionCondition } from '../data/evolutionConditions';
+import { ANIIMO_ENGLISH_NAMES, getAniimoEvolutionStage } from '../utils/evolutionStage';
 
 const entries = aniimoData as AniimoEntry[];
 const STAT_LABELS: Record<keyof AniimoStats, string> = {
@@ -44,6 +45,8 @@ const CharacterDetailAniimo: React.FC = () => {
   const displayUniqueSkills = activeForm?.uniqueSkills || item.uniqueSkills;
   const displayEvolution = activeForm?.evolution || item.evolution;
   const displayResonanceLevels = activeForm?.resonanceLevels || item.resonanceLevels;
+  const evolutionStage = getAniimoEvolutionStage(item, activeForm);
+  const englishName = ANIIMO_ENGLISH_NAMES[item.number];
   const activeSkills = skillTab === 'combat' ? displayCombatSkills : displayUniqueSkills;
   const evolutionStages = ['유년기', '성장기', '성숙기'].map(stage => ({ stage, nodes: displayEvolution.filter(node => node.stage === stage) })).filter(group => group.nodes.length > 0);
   const evolutionRequirements = displayEvolution.map(node => ({ node, condition: getEvolutionCondition(node.number, node.formKey) })).filter((value): value is { node: AniimoEvolutionNode; condition: string } => Boolean(value.condition));
@@ -61,7 +64,7 @@ const CharacterDetailAniimo: React.FC = () => {
       <section className="grid overflow-hidden rounded-[32px] border border-white/10 bg-[#121212] lg:grid-cols-[minmax(0,430px)_1fr]">
         <div className="relative min-h-[360px] bg-gradient-to-br from-violet-500/20 via-cyan-400/5 to-transparent p-8"><span className="absolute left-5 top-5 text-xs font-black italic tracking-[0.25em] text-white/30">NO.{item.number}</span>{displayImage && <img src={displayImage} alt={`${item.name} ${activeForm?.label || ''} 이미지`} referrerPolicy="no-referrer" className="h-full max-h-[460px] w-full object-contain" />}</div>
         <div className="p-7 sm:p-10">
-          <div className="flex flex-wrap items-center gap-3"><h1 className="text-4xl sm:text-5xl font-black tracking-tighter">{item.name}</h1>{displayElements.map(value => <Badge key={value} value={value} accent />)}{displayPositions.map(value => <Badge key={value} value={value} />)}</div>
+          <div className="flex flex-wrap items-center gap-3"><div className="mr-1"><h1 className="text-4xl sm:text-5xl font-black tracking-tighter">{item.name}</h1><p className="mt-1 text-sm font-bold text-gray-500">{englishName}</p><p className="mt-2 text-xs font-black tracking-[0.16em] text-violet-300">{evolutionStage}</p></div>{displayElements.map(value => <Badge key={value} value={value} accent />)}{displayPositions.map(value => <Badge key={value} value={value} />)}</div>
           {item.forms?.length > 1 && <div className="mt-6 flex flex-wrap gap-2">{item.forms.map(form => <button key={form.key} onClick={() => { setFormKey(form.key); setSearchParams(form.key === item.forms[0]?.key ? {} : { form: form.key }, { replace: true }); }} className={`rounded-xl px-4 py-2 text-xs font-black ${activeForm?.key === form.key ? 'bg-violet-400 text-black' : 'bg-white/5 text-gray-400 hover:text-white'}`}>{form.label}</button>)}</div>}
           <div className="mt-7"><h2 className="text-sm font-black text-violet-300">소개</h2><p className="mt-2 text-sm leading-7 text-gray-300">{displayDescription}</p></div>
           <div className="mt-8 space-y-3">{Object.entries(displayStats).map(([key, value]) => { const statKey = key as keyof AniimoStats; const numeric = value ?? 0; return <div key={key} className="grid grid-cols-[90px_1fr_36px] items-center gap-3 text-xs"><span className="font-bold text-gray-400">{STAT_LABELS[statKey]}</span><div className="h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-400" style={{ width: `${Math.min(100, numeric / STAT_MAX[statKey] * 100)}%` }} /></div><span className="text-right font-black">{value ?? '-'}</span></div>; })}</div>

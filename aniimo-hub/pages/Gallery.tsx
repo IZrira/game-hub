@@ -6,6 +6,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoForm, AniimoStats } from '../types';
+import { ANIIMO_ENGLISH_NAMES, EVOLUTION_STAGES, getAniimoEvolutionStage } from '../utils/evolutionStage';
 
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
@@ -23,6 +24,7 @@ const GalleryAniimo: React.FC = () => {
   const [element, setElement] = useState(ALL);
   const [position, setPosition] = useState(ALL);
   const [location, setLocation] = useState(ALL);
+  const [stage, setStage] = useState(ALL);
   const [selected, setSelected] = useState<CompareSelection[]>([]);
 
   const elements = useMemo(() => [ALL, ...new Set(entries.flatMap(item => item.elements))], []);
@@ -34,12 +36,15 @@ const GalleryAniimo: React.FC = () => {
       const locationForms = location === ALL ? item.forms : item.forms.filter(form => form.locations.includes(location));
       const availableElements = location === ALL ? item.elements : locationForms.flatMap(form => form.elements);
       const availablePositions = location === ALL ? item.positions : locationForms.flatMap(form => form.positions);
-      return (!keyword || item.name.toLocaleLowerCase('ko').includes(keyword) || item.number.includes(keyword)) &&
+      const itemStage = getAniimoEvolutionStage(item, locationForms[0] || item.forms[0]);
+      const englishName = ANIIMO_ENGLISH_NAMES[item.number]?.toLocaleLowerCase('en') || '';
+      return (!keyword || item.name.toLocaleLowerCase('ko').includes(keyword) || englishName.includes(keyword) || item.number.includes(keyword)) &&
         (location === ALL || locationForms.length > 0) &&
         (element === ALL || availableElements.includes(element)) &&
-        (position === ALL || availablePositions.includes(position));
+        (position === ALL || availablePositions.includes(position)) &&
+        (stage === ALL || itemStage === stage);
     });
-  }, [query, element, position, location]);
+  }, [query, element, position, location, stage]);
   const compared = selected.map(selection => {
     const item = entries.find(candidate => candidate.number === selection.number);
     const form = item?.forms.find(candidate => candidate.key === selection.formKey);
@@ -77,6 +82,7 @@ const GalleryAniimo: React.FC = () => {
             <label className="relative flex-1"><Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={17} /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="이름 또는 도감 번호 검색" className="w-full h-12 rounded-xl border border-white/10 bg-black/30 pl-11 pr-4 text-sm outline-none focus:border-violet-400/60" /></label>
             <Filter value={element} setValue={setElement} options={elements} label="원소" />
             <Filter value={position} setValue={setPosition} options={positions} label="포지션" />
+            <Filter value={stage} setValue={setStage} options={[ALL, ...EVOLUTION_STAGES, '특수 개체']} label="성장 단계" />
           </div>
           <div className="flex items-center justify-between text-xs text-gray-400"><span>{filtered.length}종 표시</span><span>비교 선택 {selected.length}/3</span></div>
         </section>
@@ -93,7 +99,7 @@ const GalleryAniimo: React.FC = () => {
         <section aria-label="애니모 전체 도감" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">
           {filtered.map(item => { const displayForm = (location === ALL ? item.forms.find(form => form.key === 'basic-form') : item.forms.find(form => form.locations.includes(location))) || item.forms[0]; const detailQuery = displayForm && displayForm.key !== 'basic-form' ? `?form=${encodeURIComponent(displayForm.key)}` : ''; const displayImage = displayForm?.imageUrl || item.imageUrl; const displayElements = displayForm?.elements.length ? displayForm.elements : item.elements; const displayPositions = displayForm?.positions.length ? displayForm.positions : item.positions; const isSelected = selected.some(value => value.number === item.number && value.formKey === displayForm.key); const compareFull = selected.length >= 3 && !isSelected; return <article key={item.number} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#121212] hover:border-violet-400/40 transition-colors">
             <Link to={`/gallery/aniimo/character/${encodeURIComponent(item.name)}${detailQuery}`} className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">{displayImage && <img src={displayImage} alt={`${item.name}${displayForm ? ` ${displayForm.label}` : ''} 이미지`} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain transition-transform duration-300 group-hover:scale-105" />}</Link>
-            <div className="p-3 space-y-3"><div><p className="text-[9px] font-black tracking-widest text-gray-500">NO.{item.number}</p><h2 className="truncate font-black">{item.name}</h2>{location !== ALL && <p className="mt-1 text-[10px] font-bold text-violet-300">{displayForm.label}</p>}</div><div className="flex min-h-10 flex-wrap content-start gap-1">{displayElements.map(value => <Badge key={value} value={value} accent />)}{displayPositions.map(value => <Badge key={value} value={value} />)}</div><button disabled={compareFull} onClick={() => toggleCompare({ number: item.number, formKey: displayForm.key })} className={`flex h-9 w-full items-center justify-center gap-1.5 rounded-xl text-[11px] font-black transition-colors ${isSelected ? 'bg-violet-400 text-black' : compareFull ? 'cursor-not-allowed bg-white/5 text-gray-600' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}>{isSelected ? <Check size={13} /> : <BarChart3 size={13} />} {isSelected ? '비교 선택됨' : '비교하기'}</button></div>
+            <div className="p-3 space-y-3"><div><p className="text-[9px] font-black tracking-widest text-gray-500">NO.{item.number} · {getAniimoEvolutionStage(item, displayForm)}</p><h2 className="truncate font-black">{item.name}</h2><p className="truncate text-[10px] font-bold text-gray-600">{ANIIMO_ENGLISH_NAMES[item.number]}</p>{location !== ALL && <p className="mt-1 text-[10px] font-bold text-violet-300">{displayForm.label}</p>}</div><div className="flex min-h-10 flex-wrap content-start gap-1">{displayElements.map(value => <Badge key={value} value={value} accent />)}{displayPositions.map(value => <Badge key={value} value={value} />)}</div><button disabled={compareFull} onClick={() => toggleCompare({ number: item.number, formKey: displayForm.key })} className={`flex h-9 w-full items-center justify-center gap-1.5 rounded-xl text-[11px] font-black transition-colors ${isSelected ? 'bg-violet-400 text-black' : compareFull ? 'cursor-not-allowed bg-white/5 text-gray-600' : 'bg-white/5 text-gray-300 hover:bg-white/10'}`}>{isSelected ? <Check size={13} /> : <BarChart3 size={13} />} {isSelected ? '비교 선택됨' : '비교하기'}</button></div>
           </article>; })}
         </section>
 
