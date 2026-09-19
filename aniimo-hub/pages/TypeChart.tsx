@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link } from 'react-router';
-import { ExternalLink, Shield, Swords } from 'lucide-react';
+import { Shield, Swords } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
@@ -65,7 +64,6 @@ const TypeChartAniimo: React.FC = () => {
           <div className="overflow-x-auto"><table className="w-full min-w-[880px] border-collapse text-center text-xs"><thead><tr><th className="sticky left-0 z-10 bg-[#121212] p-3 text-left text-gray-500">공격 ↓ / 방어 →</th>{ANIIMO_ELEMENTS.map(element => <th key={element} className="p-3"><span className="block text-base">{ELEMENT_META[element].icon}</span>{element}</th>)}</tr></thead><tbody>{ANIIMO_ELEMENTS.map(attacker => <tr key={attacker} className="border-t border-white/5"><th className="sticky left-0 z-10 bg-[#121212] p-3 text-left font-black"><span className="mr-2">{ELEMENT_META[attacker].icon}</span>{attacker}</th>{ANIIMO_ELEMENTS.map(defender => { const value = ELEMENT_CHART[attacker][defender]; return <td key={defender} className="p-1.5"><span title={`${attacker} 공격 → ${defender} 방어: ${effectivenessLabel(value)} ${value}배`} className={`block rounded-lg border px-2 py-2.5 font-black ${cellStyle[value]}`}>{value}×</span></td>; })}</tr>)}</tbody></table></div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 text-xs leading-6 text-gray-500 sm:p-7"><p>표기는 Rira Game Hub의 기존 도감과 맞춰 Earth를 ‘바위’로 통일했습니다. 게임 업데이트로 수치가 바뀔 수 있으므로 아래 출처도 함께 확인해 주세요.</p><div className="mt-3 flex flex-wrap gap-4"><a href="https://wiki.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-bold text-violet-300 hover:text-white">애니모 공식 위키 <ExternalLink size={12} /></a><a href="https://aniimotools.dev/type-chart/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 font-bold text-violet-300 hover:text-white">상성 수치 참고 <ExternalLink size={12} /></a><Link to="/gallery/aniimo" className="font-bold text-violet-300 hover:text-white">애니모 도감으로 돌아가기</Link></div><p className="mt-2">마지막 확인일: 2026-09-19</p></section>
         </div>
       </main>
     </div>
