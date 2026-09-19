@@ -12,12 +12,13 @@ import AdminNoticeEditor from '../components/AdminNoticeEditor';
 import AdminPartyManager from '../components/AdminPartyManager';
 import { stripMarkdown } from '../utils/markdown';
 import MarkdownRenderer from '../components/MarkdownRenderer';
+import AdminAniimoManager from '../components/AdminAniimoManager';
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'home' | 'characters' | 'tiers' | 'parties' | 'notices'>('home');
-  const [activeGame, setActiveGame] = useState<'hsr' | 'ww' | 'nte' | null>(null);
+  const [activeTab, setActiveTab] = useState<'home' | 'characters' | 'aniimo' | 'tiers' | 'parties' | 'notices'>('home');
+  const [activeGame, setActiveGame] = useState<'hsr' | 'ww' | 'nte' | 'aniimo' | null>(null);
   const [activeCategoryId, setActiveCategoryId] = useState<string>('chaos');
   
   // 데이터 상태
@@ -45,6 +46,7 @@ const AdminDashboard: React.FC = () => {
 
   // 컨텐츠 카테고리 동적 구성
   const getCategories = () => {
+    if (activeGame === 'aniimo') return [];
     if (activeGame === 'ww') {
       return [
         { id: 'tower', name: '역경의 탑' },
@@ -71,7 +73,8 @@ const AdminDashboard: React.FC = () => {
   // 게임 변경 시 카테고리 초기화
   useEffect(() => {
     if (activeGame) {
-      setActiveCategoryId(getCategories()[0].id);
+      const categories = getCategories();
+      if (categories[0]) setActiveCategoryId(categories[0].id);
     }
   }, [activeGame]);
 
@@ -116,6 +119,10 @@ const AdminDashboard: React.FC = () => {
 
   const fetchBaseData = async () => {
     let localChars: any[] = [];
+    if (activeGame === 'aniimo') {
+      setBaseCharacters([]);
+      return;
+    }
     if (activeGame === 'hsr') {
       localChars = HSR_CHARACTERS.map(c => ({
         id: c.id,
@@ -169,6 +176,10 @@ const AdminDashboard: React.FC = () => {
   };
 
   const fetchTierData = async () => {
+    if (activeGame === 'aniimo') {
+      setMgmtTiers([]);
+      return;
+    }
     const { data } = await supabase
       .from('tier_lists')
       .select('*')
@@ -690,7 +701,7 @@ const AdminDashboard: React.FC = () => {
             </p>
             {activeGame && (
               <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-500 text-xs font-black tracking-widest mt-2 uppercase">
-                현재 관리 중인 게임: {activeGame === 'hsr' ? '스타레일' : activeGame === 'ww' ? '명조' : 'NTE'}
+                현재 관리 중인 게임: {activeGame === 'hsr' ? '스타레일' : activeGame === 'ww' ? '명조' : activeGame === 'nte' ? 'NTE' : '애니모'}
               </div>
             )}
           </div>
@@ -705,24 +716,25 @@ const AdminDashboard: React.FC = () => {
             </button>
             {activeGame && (
               <>
-                <button 
+                {activeGame !== 'aniimo' && <button
                   onClick={() => setActiveTab('characters')}
                   className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
                   <Users size={18} /> 캐릭터 관리
-                </button>
-                <button 
+                </button>}
+                {activeGame === 'aniimo' && <button onClick={() => setActiveTab('aniimo')} className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'aniimo' ? 'bg-violet-400 text-black shadow-xl shadow-violet-500/20' : 'text-gray-400 hover:text-white'}`}><Sparkles size={18} /> 애니모 도감 관리</button>}
+                {activeGame !== 'aniimo' && <button
                   onClick={() => setActiveTab('tiers')}
                   className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
                   <Trophy size={18} /> 티어표 관리
-                </button>
-                <button 
+                </button>}
+                {activeGame !== 'aniimo' && <button
                   onClick={() => setActiveTab('parties')}
                   className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'parties' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
                 >
                   <Sparkles size={18} /> 파티 추천 관리
-                </button>
+                </button>}
                 <button 
                   onClick={() => setActiveTab('notices')}
                   className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
@@ -742,7 +754,7 @@ const AdminDashboard: React.FC = () => {
         <main className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
           
           {activeTab === 'home' && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6 py-8">
               <button 
                 onClick={() => { setActiveGame('hsr'); setActiveTab('characters'); }}
                 className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
@@ -781,10 +793,14 @@ const AdminDashboard: React.FC = () => {
                   <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">NTE 관리</p>
                 </div>
               </button>
+
+              <button onClick={() => { setActiveGame('aniimo'); setActiveTab('aniimo'); }} className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-violet-400/50 hover:bg-violet-400/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/20 hover:-translate-y-2"><div className="w-24 h-24 rounded-full bg-violet-400/10 flex items-center justify-center text-violet-300 group-hover:scale-110 transition-transform"><Sparkles size={48} /></div><div className="text-center"><h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Aniimo</h3><p className="text-xs text-gray-400 font-bold uppercase tracking-widest">애니모 도감 검수</p></div></button>
             </div>
           )}
 
-          {activeTab !== 'home' && (
+          {activeTab === 'aniimo' && activeGame === 'aniimo' && <AdminAniimoManager />}
+
+          {activeTab !== 'home' && activeTab !== 'aniimo' && (
             <>
               {/* 공통 검색바 */}
           <div className="flex flex-col md:flex-row items-center gap-6 bg-[#111] p-6 rounded-[32px] border border-white/5 shadow-xl">
@@ -1196,7 +1212,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
             </div>
           )}
 
-          {activeTab === 'parties' && activeGame && (
+          {activeTab === 'parties' && activeGame && activeGame !== 'aniimo' && (
             <AdminPartyManager activeGame={activeGame} getEncodedUrl={getEncodedUrl} />
           )}
 
@@ -1262,6 +1278,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                         <option value="hsr" style={{ backgroundColor: '#111' }}>스타레일</option>
                         <option value="ww" style={{ backgroundColor: '#111' }}>명조</option>
                         <option value="nte" style={{ backgroundColor: '#111' }}>이환(NTE)</option>
+                        <option value="aniimo" style={{ backgroundColor: '#111' }}>애니모</option>
                       </select>
                     </div>
                     <div className="space-y-2">
