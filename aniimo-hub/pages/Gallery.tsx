@@ -7,6 +7,7 @@ import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoForm, AniimoStats } from '../types';
 import { ANIIMO_ENGLISH_NAMES, EVOLUTION_STAGES, getAniimoEvolutionStage } from '../utils/evolutionStage';
+import { ELEMENT_META, getElementMatchups } from '../data/elementChart';
 
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
@@ -92,6 +93,8 @@ const GalleryAniimo: React.FC = () => {
           <div className="overflow-x-auto"><table className="w-full min-w-[560px] text-sm"><thead><tr><th className="p-4 text-left text-gray-500">항목</th>{compared.map(({ id, item, form }) => <th key={id} className="p-4 text-center"><span className="block">{item.name}</span><span className="mt-1 block text-[10px] font-bold text-violet-300">{form.label}</span></th>)}</tr></thead><tbody>
             <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">원소</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-violet-300">{form.elements.join(' · ') || '-'}</td>)}</tr>
             <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">포지션</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-gray-300">{form.positions.join(' · ') || '-'}</td>)}</tr>
+            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">공격 우위</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-emerald-300">{formatMatchupElements(form.elements, 'strongAgainst')}</td>)}</tr>
+            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">받는 약점</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-rose-300">{formatMatchupElements(form.elements, 'weakTo')}</td>)}</tr>
             {STAT_ROWS.map(row => { const best = Math.max(...compared.map(({ stats }) => stats[row.key] ?? -1)); return <tr key={row.key} className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">{row.label}</th>{compared.map(({ id, stats }) => <td key={id} className={`p-4 text-center font-black ${stats[row.key] === best ? 'text-violet-300' : 'text-white'}`}>{stats[row.key] ?? '-'}</td>)}</tr>; })}
           </tbody></table></div>
         </section>}
@@ -113,5 +116,9 @@ const GalleryAniimo: React.FC = () => {
 
 const Filter = ({ value, setValue, options, label }: { value: string; setValue: (value: string) => void; options: string[]; label: string }) => <label className="flex items-center gap-3 rounded-xl border border-white/10 bg-black/30 px-4"><span className="text-[10px] font-black text-gray-500">{label}</span><select value={value} onChange={event => setValue(event.target.value)} className="h-12 min-w-28 bg-transparent text-sm font-bold outline-none">{options.map(option => <option key={option} value={option} className="bg-[#121212]">{option}</option>)}</select></label>;
 const Badge = ({ value, accent = false }: { value: string; accent?: boolean }) => <span className={`rounded-md px-2 py-1 text-[9px] font-black ${accent ? 'bg-violet-400/15 text-violet-300' : 'bg-white/5 text-gray-400'}`}>{value}</span>;
+const formatMatchupElements = (elements: string[], key: 'strongAgainst' | 'weakTo') => {
+  const values = [...new Set(getElementMatchups(elements).flatMap(matchup => matchup[key]))];
+  return values.length ? values.map(value => `${ELEMENT_META[value].icon} ${value}`).join(' · ') : '-';
+};
 
 export default GalleryAniimo;

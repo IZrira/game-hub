@@ -36,3 +36,23 @@ export const ELEMENT_CHART = Object.fromEntries(
 
 export const effectivenessLabel = (value: ElementEffectiveness) =>
   value === 1.6 ? '효과적' : value === 0.625 ? '저항' : '보통';
+
+export interface AniimoElementMatchup {
+  element: AniimoElement;
+  strongAgainst: AniimoElement[];
+  weakTo: AniimoElement[];
+  resists: AniimoElement[];
+}
+
+export const isAniimoElement = (value: string): value is AniimoElement =>
+  ANIIMO_ELEMENTS.includes(value as AniimoElement);
+
+export const getElementMatchup = (element: AniimoElement): AniimoElementMatchup => ({
+  element,
+  strongAgainst: ANIIMO_ELEMENTS.filter(defender => ELEMENT_CHART[element][defender] === 1.6),
+  weakTo: ANIIMO_ELEMENTS.filter(attacker => ELEMENT_CHART[attacker][element] === 1.6),
+  resists: ANIIMO_ELEMENTS.filter(attacker => ELEMENT_CHART[attacker][element] === 0.625),
+});
+
+export const getElementMatchups = (elements: string[]) =>
+  elements.filter(isAniimoElement).map(getElementMatchup);
