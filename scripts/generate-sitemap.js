@@ -210,7 +210,7 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
     /^\/gallery\/ww\/(?:weapon|echo)\/[^/]+$/,
     /^\/gallery\/nte(?:\/parties)?$/,
     /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/,
-    /^\/gallery\/aniimo(?:\/(?:characters|locations|type-chart))?$/,
+    /^\/gallery\/aniimo(?:\/(?:characters|locations|type-chart|personality))?$/,
     /^\/gallery\/aniimo\/character\/[^/]+$/,
     /^\/gallery\/aniimo\/location\/[^/]+$/
   ];
@@ -359,6 +359,7 @@ async function generateSitemap() {
       `${BASE_URL}/gallery/aniimo/characters`,
       `${BASE_URL}/gallery/aniimo/locations`,
       `${BASE_URL}/gallery/aniimo/type-chart`,
+      `${BASE_URL}/gallery/aniimo/personality`,
       `${BASE_URL}/gallery/hsr/tierlist`,
       `${BASE_URL}/gallery/ww/tierlist`,
       `${BASE_URL}/gallery/hsr/parties`,

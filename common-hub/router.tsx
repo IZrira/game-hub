@@ -19,6 +19,7 @@ const CharacterDetailNTE = React.lazy(() => import('../nte-hub/pages/CharacterDe
 const CharacterDetailAniimo = React.lazy(() => import('../aniimo-hub/pages/CharacterDetail'));
 const LocationDetailAniimo = React.lazy(() => import('../aniimo-hub/pages/LocationDetail'));
 const TypeChartAniimo = React.lazy(() => import('../aniimo-hub/pages/TypeChart'));
+const PersonalityGuideAniimo = React.lazy(() => import('../aniimo-hub/pages/PersonalityGuide'));
 const LightConeDetail = React.lazy(() => import('../hsr-hub/pages/LightConeDetail'));
 const RelicDetail = React.lazy(() => import('../hsr-hub/pages/RelicDetail'));
 const OrnamentDetail = React.lazy(() => import('../hsr-hub/pages/OrnamentDetail'));
@@ -128,6 +129,7 @@ export const router = createBrowserRouter([
       { path: "gallery/aniimo/characters", element: <GalleryAniimo /> },
       { path: "gallery/aniimo/locations", element: <LocationsAniimo /> },
       { path: "gallery/aniimo/type-chart", element: <TypeChartAniimo /> },
+      { path: "gallery/aniimo/personality", element: <PersonalityGuideAniimo /> },
       { path: "gallery/:gameId/lightcone/:lcName", element: <LightConeDetail /> },
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },

@@ -1,11 +1,12 @@
 import React from 'react';
-import { Home, MapPin, PawPrint, Swords } from 'lucide-react';
+import { Brain, Home, MapPin, PawPrint, Swords } from 'lucide-react';
 import { NavLink } from 'react-router';
 
 const items = [
   { label: '허브 홈', path: '/gallery/aniimo', icon: Home, end: true },
   { label: '애니모 도감', path: '/gallery/aniimo/characters', icon: PawPrint },
   { label: '원소 상성표', path: '/gallery/aniimo/type-chart', icon: Swords },
+  { label: '성격 공략', path: '/gallery/aniimo/personality', icon: Brain },
   { label: '지역별 도감', path: '/gallery/aniimo/locations', icon: MapPin },
 ];
 

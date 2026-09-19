@@ -1336,7 +1336,7 @@ function runPrerender() {
       const formCount = aniimoEntries.reduce((total, item) => total + (item.forms || []).length, 0);
       meta.title = '애니모 허브 | 도감·원소 상성·지역 데이터베이스';
       meta.description = `애니모 ${aniimoEntries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locations.length}개 지역별 출현 정보를 한곳에서 확인하세요.`;
-      meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>출현 지역</dt><dd>${locations.length}곳</dd></dl><nav><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a></li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></li><li><a href="/gallery/aniimo/locations">애니모 지역별 도감</a></li></ul></nav><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
+      meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>출현 지역</dt><dd>${locations.length}곳</dd></dl><nav><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a></li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></li><li><a href="/gallery/aniimo/personality">애니모 성격 추천·MBTI 효과</a></li><li><a href="/gallery/aniimo/locations">애니모 지역별 도감</a></li></ul></nav><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/characters') {
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
@@ -1359,6 +1359,11 @@ function runPrerender() {
       meta.title = '애니모 원소 상성표·약점 계산 | 9원소 공략';
       meta.description = '애니모의 불, 물, 풀, 전기, 얼음, 바위, 바람, 빛, 어둠 상성과 1.6배·1배·0.625배 피해 배율을 확인하고 상대 원소별 추천 공격 원소를 찾으세요.';
       meta.content = `<article><h1>애니모 원소 상성표</h1><p>${escapeHtml(meta.description)}</p><p>효과적 1.6배 · 보통 1배 · 저항 0.625배이며 면역은 없습니다.</p><table><thead><tr><th>공격 원소</th><th>효과적</th><th>저항</th></tr></thead><tbody>${rows.map(([element, strong, resisted]) => `<tr><th>${element}</th><td>${strong}</td><td>${resisted}</td></tr>`).join('')}</tbody></table><p>복합 원소는 두 배율을 곱하지 않고 각 방어 원소에 대한 결과를 따로 확인합니다.</p><p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+    } else if (routePath === '/gallery/aniimo/personality') {
+      const traits = [['E 애착', '공격 2%·무력화 2%'], ['I 낯가림', '에너지 회복 4%'], ['S 현실', '피해 4%'], ['N 영감', '치명타율 5%'], ['T 냉정', '물리 방어 6%'], ['F 배려', '마법 방어 6%'], ['J 순종', 'HP 4%'], ['P 배려', '피해 감소 4%']];
+      meta.title = '애니모 성격 추천·MBTI 효과 | 전투·홈 공략';
+      meta.description = '애니모 성격 8종의 전투 보너스와 E/I·S/N·T/F·J/P 선택법, 딜러·치명타·무력화·지원 역할별 추천 성격을 확인하세요.';
+      meta.content = `<article><h1>애니모 성격 선택 가이드</h1><p>${escapeHtml(meta.description)}</p><table><thead><tr><th>성격</th><th>전투 보너스</th></tr></thead><tbody>${traits.map(([trait, effect]) => `<tr><th>${trait}</th><td>${effect}</td></tr>`).join('')}</tbody></table><h2>선택 기준</h2><p>치명타 연계가 없다면 S, 치명타 관련 스킬이나 특성이 있다면 N을 고려합니다. T와 F는 상대의 물리·마법 피해에 따라 선택하고, 전투용과 홈 운영용 개체를 구분합니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
