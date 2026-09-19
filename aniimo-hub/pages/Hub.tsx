@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Brain, ExternalLink, Layers3, MapPin, PawPrint, Sparkles, Swords } from 'lucide-react';
+import { ArrowRight, Brain, ExternalLink, Layers3, MapPin, PawPrint, Sparkles, Swords, Users } from 'lucide-react';
 import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -15,6 +15,7 @@ const tools = [
   { title: '애니모 도감', description: '전체 애니모를 원소·포지션·지역으로 검색하고 형태별 능력치를 비교합니다.', path: '/gallery/aniimo/characters', icon: PawPrint, stat: `${entries.length}종` },
   { title: '원소 상성표', description: '9개 원소의 공격 배율과 복합 원소 상대 추천 공격 원소를 확인합니다.', path: '/gallery/aniimo/type-chart', icon: Swords, stat: '9원소' },
   { title: '성격 공략', description: '성격 8종의 전투·홈 효과와 역할별 추천 MBTI 조합을 확인합니다.', path: '/gallery/aniimo/personality', icon: Brain, stat: '8성격' },
+  { title: '파티 조합 도우미', description: '4마리의 역할 균형과 적 원소 약점 대응을 분석하고 부족한 자리를 추천합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '4인 편성' },
   { title: '지역별 도감', description: '출현 지역을 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}지역` },
 ];
 
@@ -37,7 +38,7 @@ const HubAniimo: React.FC = () => <div className="min-h-[100dvh] bg-[#0a0a0a] te
         { value: locationCount, label: '출현 지역', icon: MapPin, color: 'text-emerald-300' },
       ].map(({ value, label, icon: Icon, color }) => <div key={label} className="group flex flex-col items-center justify-center gap-1 rounded-[28px] border border-white/5 bg-white/[0.02] p-4 transition-all hover:bg-white/[0.04]"><div className={`rounded-xl bg-white/5 p-2.5 transition-transform group-hover:scale-110 ${color}`}><Icon size={14} /></div><strong className="text-xl font-black leading-none text-white">{value}</strong><span className="pt-1 text-[9px] font-black uppercase tracking-widest text-gray-400">{label}</span></div>)}</section>
 
-      <section className="space-y-6"><div className="flex items-center gap-3 px-2"><div className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-300" /><h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400">데이터베이스 메뉴</h2></div><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">{tools.map(({ title, description, path, icon: Icon, stat }) => <Link key={path} to={path} className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-violet-400/30 hover:bg-white/[0.04]"><div className="flex items-center justify-between"><span className="rounded-xl bg-white/5 p-2.5 text-violet-300"><Icon size={18} /></span><span className="text-[9px] font-black uppercase tracking-widest text-gray-600">{stat}</span></div><h3 className="mt-5 text-lg font-black group-hover:text-violet-300">{title}</h3><p className="mt-2 min-h-16 text-xs leading-6 text-gray-400">{description}</p><span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-violet-300">탐색하기 <ArrowRight size={13} /></span></Link>)}</div></section>
+      <section className="space-y-6"><div className="flex items-center gap-3 px-2"><div className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-300" /><h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400">데이터베이스 메뉴</h2></div><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{tools.map(({ title, description, path, icon: Icon, stat }) => <Link key={path} to={path} className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-violet-400/30 hover:bg-white/[0.04]"><div className="flex items-center justify-between"><span className="rounded-xl bg-white/5 p-2.5 text-violet-300"><Icon size={18} /></span><span className="text-[9px] font-black uppercase tracking-widest text-gray-600">{stat}</span></div><h3 className="mt-5 text-lg font-black group-hover:text-violet-300">{title}</h3><p className="mt-2 min-h-16 text-xs leading-6 text-gray-400">{description}</p><span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-violet-300">탐색하기 <ArrowRight size={13} /></span></Link>)}</div></section>
 
     </div>
   </main>

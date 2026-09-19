@@ -1336,7 +1336,7 @@ function runPrerender() {
       const formCount = aniimoEntries.reduce((total, item) => total + (item.forms || []).length, 0);
       meta.title = '애니모 허브 | 도감·원소 상성·지역 데이터베이스';
       meta.description = `애니모 ${aniimoEntries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locations.length}개 지역별 출현 정보를 한곳에서 확인하세요.`;
-      meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>출현 지역</dt><dd>${locations.length}곳</dd></dl><nav><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a></li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></li><li><a href="/gallery/aniimo/personality">애니모 성격 추천·MBTI 효과</a></li><li><a href="/gallery/aniimo/locations">애니모 지역별 도감</a></li></ul></nav><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
+      meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>출현 지역</dt><dd>${locations.length}곳</dd></dl><nav><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a></li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></li><li><a href="/gallery/aniimo/personality">애니모 성격 추천·MBTI 효과</a></li><li><a href="/gallery/aniimo/party-builder">애니모 파티 조합 도우미</a></li><li><a href="/gallery/aniimo/locations">애니모 지역별 도감</a></li></ul></nav><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/characters') {
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
@@ -1364,6 +1364,10 @@ function runPrerender() {
       meta.title = '애니모 성격 추천·MBTI 효과 | 전투·홈 공략';
       meta.description = '애니모 성격 8종의 전투 보너스와 E/I·S/N·T/F·J/P 선택법, 딜러·치명타·무력화·지원 역할별 추천 성격을 확인하세요.';
       meta.content = `<article><h1>애니모 성격 선택 가이드</h1><p>${escapeHtml(meta.description)}</p><table><thead><tr><th>성격</th><th>전투 보너스</th></tr></thead><tbody>${traits.map(([trait, effect]) => `<tr><th>${trait}</th><td>${effect}</td></tr>`).join('')}</tbody></table><h2>선택 기준</h2><p>치명타 연계가 없다면 S, 치명타 관련 스킬이나 특성이 있다면 N을 고려합니다. T와 F는 상대의 물리·마법 피해에 따라 선택하고, 전투용과 홈 운영용 개체를 구분합니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
+    } else if (routePath === '/gallery/aniimo/party-builder') {
+      meta.title = '애니모 파티 조합 도우미 | 역할·원소 상성 분석';
+      meta.description = '애니모 4마리를 선택해 어태커, 격파, 지원·생존, 에너지 역할과 적 원소 약점 1.6배 대응을 점검하고 부족한 자리를 추천받으세요.';
+      meta.content = `<article><h1>애니모 파티 조합 도우미</h1><p>${escapeHtml(meta.description)}</p><h2>기본 편성 기준</h2><ol><li>유리한 원소의 어태커</li><li>격파 수단</li><li>지원 또는 생존</li><li>에너지 회복</li></ol><p>파티는 4마리 편성이며 적의 약점 원소를 공격하면 1.6배 피해를 줍니다. 실제 편성에서는 형태별 스킬 시너지와 에너지 소모량도 함께 확인하세요.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
