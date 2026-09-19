@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { BarChart3, Check, ExternalLink, Search, Swords, X } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry, AniimoForm, AniimoStats } from '../types';
 
@@ -53,10 +54,13 @@ const GalleryAniimo: React.FC = () => {
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`애니모 공식 위키에서 확인한 ${entries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`} url="/gallery/aniimo" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }]} />
-      <PageHeader gameId="aniimo" title="애니모 도감" />
+      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`애니모 공식 위키에서 확인한 ${entries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`} url="/gallery/aniimo/characters" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '애니모 도감', url: '/gallery/aniimo/characters' }]} />
+      <PageHeader gameId="aniimo" category="허브" categoryUrl="/gallery/aniimo" title="애니모 도감" />
+      <AniimoMobileNav />
 
-      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-10">
+      <main className="max-w-[1500px] mx-auto grid gap-8 px-4 sm:px-6 py-10 sm:py-16 lg:grid-cols-[230px_minmax(0,1fr)]">
+        <AniimoSidebar />
+        <div className="min-w-0 space-y-10">
         <section className="relative overflow-hidden rounded-[32px] sm:rounded-[48px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-12">
           <div className="relative max-w-3xl space-y-4">
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-300">Rira Analysis Database</p>
@@ -95,6 +99,7 @@ const GalleryAniimo: React.FC = () => {
 
         {filtered.length === 0 && <div className="rounded-3xl border border-white/10 py-20 text-center text-gray-500"><X className="mx-auto mb-3" />조건에 맞는 애니모가 없습니다.</div>}
         <p className="text-center text-xs leading-6 text-gray-500">데이터 출처: 애니모 공식 위키 · 마지막 확인일 {entries[0]?.checkedAt} · 공식 업데이트에 따라 수치가 변경될 수 있습니다.</p>
+        </div>
       </main>
     </div>
   );

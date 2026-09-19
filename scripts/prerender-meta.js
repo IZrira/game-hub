@@ -1333,9 +1333,21 @@ function runPrerender() {
       const aniimoFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
       const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];
       const locations = [...new Set(aniimoEntries.flatMap(item => (item.forms || []).flatMap(form => form.locations || item.locations || [])))].sort((a, b) => a.localeCompare(b, 'ko'));
+      const formCount = aniimoEntries.reduce((total, item) => total + (item.forms || []).length, 0);
+      meta.title = '애니모 허브 | 도감·원소 상성·지역 데이터베이스';
+      meta.description = `애니모 ${aniimoEntries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locations.length}개 지역별 출현 정보를 한곳에서 확인하세요.`;
+      meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>출현 지역</dt><dd>${locations.length}곳</dd></dl><nav><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a></li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></li><li><a href="/gallery/aniimo/locations">애니모 지역별 도감</a></li></ul></nav><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
+    } else if (routePath === '/gallery/aniimo/characters') {
+      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
       meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
-      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><p><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><h2>지역별 애니모</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
+    } else if (routePath === '/gallery/aniimo/locations') {
+      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+      const locations = [...new Set(aniimoEntries.flatMap(item => (item.forms || []).flatMap(form => form.locations || item.locations || [])))].sort((a, b) => a.localeCompare(b, 'ko'));
+      meta.title = `애니모 출현 지역 ${locations.length}곳 | 지역별 도감`;
+      meta.description = `애니모의 출현 지역 ${locations.length}곳과 지역별 애니모·형태 정보를 확인하세요.`;
+      meta.content = `<article><h1>지역별 애니모 도감</h1><p>${escapeHtml(meta.description)}</p><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/type-chart') {
       const rows = [
         ['불', '풀·얼음', '불·물·바위·빛'], ['물', '불·바위', '물·풀·얼음·빛'],

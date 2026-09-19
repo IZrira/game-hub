@@ -10,6 +10,8 @@ const GalleryHSR = React.lazy(() => import('../hsr-hub/pages/Gallery'));
 const GalleryWW = React.lazy(() => import('../ww-hub/pages/Gallery'));
 const GalleryNTE = React.lazy(() => import('../nte-hub/pages/Gallery'));
 const GalleryAniimo = React.lazy(() => import('../aniimo-hub/pages/Gallery'));
+const HubAniimo = React.lazy(() => import('../aniimo-hub/pages/Hub'));
+const LocationsAniimo = React.lazy(() => import('../aniimo-hub/pages/Locations'));
 const Detail = React.lazy(() => import('./pages/Detail'));
 const CharacterDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterDetail'));
 const CharacterDetailWW = React.lazy(() => import('../ww-hub/pages/CharacterDetail'));
@@ -65,7 +67,7 @@ const GalleryDispatcher = () => {
   const { gameId } = useParams<{ gameId: string }>();
   if (gameId === 'ww') return <GalleryWW />;
   if (gameId === 'nte') return <GalleryNTE />;
-  if (gameId === 'aniimo') return <GalleryAniimo />;
+  if (gameId === 'aniimo') return <HubAniimo />;
   return <GalleryHSR />;
 };
 
@@ -123,6 +125,8 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/post/:postId", element: <Detail /> },
       { path: "gallery/:gameId/character/:charName", element: <CharacterDetailDispatcher /> },
       { path: "gallery/aniimo/location/:locationSlug", element: <LocationDetailAniimo /> },
+      { path: "gallery/aniimo/characters", element: <GalleryAniimo /> },
+      { path: "gallery/aniimo/locations", element: <LocationsAniimo /> },
       { path: "gallery/aniimo/type-chart", element: <TypeChartAniimo /> },
       { path: "gallery/:gameId/lightcone/:lcName", element: <LightConeDetail /> },
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
