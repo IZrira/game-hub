@@ -1335,7 +1335,18 @@ function runPrerender() {
       const locations = [...new Set(aniimoEntries.flatMap(item => (item.forms || []).flatMap(form => form.locations || item.locations || [])))].sort((a, b) => a.localeCompare(b, 'ko'));
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
       meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
-      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><h2>지역별 애니모</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+      meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><p><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a></p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><h2>지역별 애니모</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="https://wiki.aniimo.com/ko">애니모 공식 위키에서 원본 정보 확인</a></p></article>`;
+    } else if (routePath === '/gallery/aniimo/type-chart') {
+      const rows = [
+        ['불', '풀·얼음', '불·물·바위·빛'], ['물', '불·바위', '물·풀·얼음·빛'],
+        ['풀', '물·바위', '불·풀·빛'], ['전기', '물·바람', '전기·얼음·바위'],
+        ['얼음', '물·전기', '불·얼음·바위'], ['바위', '불·얼음', '물·풀·바위·어둠'],
+        ['바람', '풀·어둠', '전기·바람'], ['빛', '바람·어둠', '전기·빛'],
+        ['어둠', '풀·전기·빛', '물·바람']
+      ];
+      meta.title = '애니모 원소 상성표·약점 계산 | 9원소 공략';
+      meta.description = '애니모의 불, 물, 풀, 전기, 얼음, 바위, 바람, 빛, 어둠 상성과 1.6배·1배·0.625배 피해 배율을 확인하고 상대 원소별 추천 공격 원소를 찾으세요.';
+      meta.content = `<article><h1>애니모 원소 상성표</h1><p>${escapeHtml(meta.description)}</p><p>효과적 1.6배 · 보통 1배 · 저항 0.625배이며 면역은 없습니다.</p><table><thead><tr><th>공격 원소</th><th>효과적</th><th>저항</th></tr></thead><tbody>${rows.map(([element, strong, resisted]) => `<tr><th>${element}</th><td>${strong}</td><td>${resisted}</td></tr>`).join('')}</tbody></table><p>복합 원소는 두 배율을 곱하지 않고 각 방어 원소에 대한 결과를 따로 확인합니다.</p><p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];

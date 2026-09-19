@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { BarChart3, Check, ExternalLink, Search, X } from 'lucide-react';
+import { BarChart3, Check, ExternalLink, Search, Swords, X } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import aniimoData from '../data/aniimo.json';
@@ -62,7 +62,7 @@ const GalleryAniimo: React.FC = () => {
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-300">Rira Analysis Database</p>
             <h1 className="text-4xl sm:text-6xl font-black italic tracking-tighter">ANIIMO <span className="text-violet-300">ARCHIVE</span></h1>
             <p className="text-sm sm:text-base leading-7 text-gray-300">전체 {entries.length}종을 원소와 포지션으로 탐색하고, 최대 3종의 핵심 능력치를 한 화면에서 비교할 수 있습니다.</p>
-            <a href="https://wiki.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white">공식 애니모 위키에서 원본 정보 확인 <ExternalLink size={13} /></a>
+            <div className="flex flex-wrap gap-4"><Link to="/gallery/aniimo/type-chart" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white"><Swords size={13} /> 원소 상성표 보기</Link><a href="https://wiki.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white">공식 애니모 위키에서 원본 정보 확인 <ExternalLink size={13} /></a></div>
           </div>
         </section>
 
