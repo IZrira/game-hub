@@ -1,6 +1,1 @@
-/:one/ /:one 301
-/:one/:two/ /:one/:two 301
-/:one/:two/:three/ /:one/:two/:three 301
-/:one/:two/:three/:four/ /:one/:two/:three/:four 301
-/:one/:two/:three/:four/:five/ /:one/:two/:three/:four/:five 301
 /* /index.html 200
