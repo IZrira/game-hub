@@ -145,8 +145,6 @@ const LightConeDetail: React.FC = () => {
         gameCategory={t('붕괴: 스타레일')}
         itemType={t(lc.path)}
         modifiedTime={lastUpdatedDate}
-        ratingValue={lc.rarity}
-        reviewCount={1}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('붕괴: 스타레일'), url: `/gallery/${gameId}` },

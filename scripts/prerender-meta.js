@@ -446,65 +446,6 @@ function getBlogPosts() {
 // Injection Logic
 // ---------------------------------------------------------------------
 
-function generateDiscussionForumPostingSchema(charName, routePath) {
-  const canonicalUrl = `${BASE_URL}${routePath}`;
-  return {
-    "@context": "https://schema.org",
-    "@type": "DiscussionForumPosting",
-    "headline": `${charName} 유저 평가 및 리뷰`,
-    "url": canonicalUrl,
-    "datePublished": "2024-05-01T00:00:00Z",
-    "author": {
-      "@type": "Organization",
-      "name": "RIRA ARCHIVE Community"
-    },
-    "comment": [
-      {
-        "@type": "Comment",
-        "author": {
-          "@type": "Person",
-          "name": "Archive Explorer"
-        },
-        "datePublished": "2024-05-01T00:00:00Z",
-        "text": "Outstanding character design and synergy! Highly recommended for end-game content.",
-        "upvoteCount": 5,
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5,
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "interactionStatistic": {
-          "@type": "InteractionCounter",
-          "interactionType": "https://schema.org/LikeAction",
-          "userInteractionCount": 5
-        }
-      },
-      {
-        "@type": "Comment",
-        "author": {
-          "@type": "Person",
-          "name": "Tactical Analyst"
-        },
-        "datePublished": "2024-05-01T12:00:00Z",
-        "text": "Totally agree! Pairing with top-tier supports yields massive damage output.",
-        "upvoteCount": 2,
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": 5,
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "interactionStatistic": {
-          "@type": "InteractionCounter",
-          "interactionType": "https://schema.org/LikeAction",
-          "userInteractionCount": 2
-        }
-      }
-    ]
-  };
-}
-
 function generateGuideSchema(charName, gameName, routePath, imageUrl) {
   return {
     "@context": "https://schema.org",
@@ -1082,8 +1023,7 @@ function runPrerender() {
       `명조 ${name}의 최신 종결 에코 세팅, 추천 무기, 스킬 매커니즘 계수, 추천 파티 시너지 및 돌파·육성 재료 총정리 가이드.`,
       getWwCharacterImageUrl(char),
       baseHtml,
-      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) + guideLink,
-      generateDiscussionForumPostingSchema(name, routePath)
+      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) + guideLink
     );
     count++;
 
@@ -1123,8 +1063,7 @@ function runPrerender() {
       `붕괴: 스타레일 ${name}의 최신 추천 유물 및 장신구, 광추 랭킹, 종결 스탯 세팅, 추천 파티 조합 및 행적·돌파 재료 총정리 가이드.`,
       getHsrCharacterImageUrl(char),
       baseHtml,
-      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) + guideLink,
-      generateDiscussionForumPostingSchema(name, routePath)
+      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) + guideLink
     );
     count++;
 
@@ -1185,8 +1124,7 @@ function runPrerender() {
         `${gameLabel} ${item.name}의 최신 종결 세팅, 스킬 매커니즘 계수, 추천 파티 조합 및 돌파 재료 총정리 가이드.`,
         imagePath,
         baseHtml,
-        generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>',
-        generateDiscussionForumPostingSchema(item.name, routePath)
+        generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>'
       );
       count++;
     } else if (item.dbSource === 'nte_arcs') {

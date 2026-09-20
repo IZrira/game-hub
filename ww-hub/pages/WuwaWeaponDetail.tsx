@@ -441,8 +441,6 @@ const WuwaWeaponDetail = () => {
         image={getIllustrationUrl()}
         url={`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`}
         modifiedTime={lastUpdatedDate}
-        ratingValue={weapon.rarity}
-        reviewCount={1}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: '/gallery/ww' },

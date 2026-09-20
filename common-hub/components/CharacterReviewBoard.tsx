@@ -5,15 +5,13 @@ import { useAuth } from '../context/AuthContext';
 import { isAdmin as checkIsAdmin } from '../lib/admin';
 import CommentForm from './CommentForm';
 import CommentCard, { Review } from './CommentCard';
-import { CommentData } from './SEO';
 
 interface Props {
   characterId: string;
   gameId: string;
-  onCommentsLoaded?: (comments: CommentData[]) => void;
 }
 
-export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId, onCommentsLoaded }) => {
+export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) => {
   const { user, openLoginModal } = useAuth();
   const [reviews, setReviews] = useState<Review[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,27 +31,6 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId, onC
   useEffect(() => {
     fetchReviews();
   }, [characterId, gameId, user?.id]);
-
-  useEffect(() => {
-    if (onCommentsLoaded) {
-      const mappedComments: CommentData[] = reviews.map((r) => ({
-        author: r.nickname?.trim() || 'Anonymous',
-        date: r.created_at || new Date().toISOString(),
-        content: r.comment_text || '',
-        upvotes:
-          typeof r.upvotes_count === 'number'
-            ? r.upvotes_count
-            : typeof r.like_count === 'number'
-            ? r.like_count
-            : 0,
-        rating:
-          typeof r.rating === 'number' && !isNaN(r.rating) && r.rating >= 1 && r.rating <= 5
-            ? r.rating
-            : 5,
-      }));
-      onCommentsLoaded(mappedComments);
-    }
-  }, [reviews, onCommentsLoaded]);
 
   const fetchReviews = async () => {
     setIsLoading(true);
@@ -116,42 +93,7 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId, onC
         const localData = localStorage.getItem(storageKey);
         if (localData) {
           rawReviews = JSON.parse(localData);
-        } else {
-          // Default sample reviews for smooth local dev / preview
-          rawReviews = [
-            {
-              id: 'sample-1',
-              created_at: new Date(Date.now() - 3600000 * 24).toISOString(),
-              game_id: gameId,
-              character_id: characterId,
-              nickname: 'Archive Explorer',
-              rating: 5,
-              comment_text: 'Outstanding character design and synergy! Highly recommended for end-game content.',
-              user_id: 'sample-user-1',
-              parent_id: null,
-              media_urls: [],
-              is_pinned: true,
-              upvotes_count: 5,
-              report_count: 0,
-            },
-            {
-              id: 'sample-2',
-              created_at: new Date(Date.now() - 3600000 * 12).toISOString(),
-              game_id: gameId,
-              character_id: characterId,
-              nickname: 'Tactical Analyst',
-              rating: 5,
-              comment_text: 'Totally agree! Pairing with top-tier supports yields massive damage output.',
-              user_id: 'sample-user-2',
-              parent_id: 'sample-1',
-              media_urls: [],
-              is_pinned: false,
-              upvotes_count: 2,
-              report_count: 0,
-            },
-          ];
-          localStorage.setItem(storageKey, JSON.stringify(rawReviews));
-        }
+        } else rawReviews = [];
 
         const localUpvotes = localStorage.getItem(upvotesKey);
         if (localUpvotes) {
@@ -542,48 +484,8 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId, onC
     );
   }
 
-  // --- SEO: DiscussionForumPosting Schema ---
-  const schemaData = useMemo(() => {
-    if (rootReviews.length === 0) return null;
-    
-    return {
-      "@context": "https://schema.org",
-      "@type": "DiscussionForumPosting",
-      "headline": `${gameId.toUpperCase()} Character/Weapon Discussion and Reviews`,
-      "articleSection": "Community Reviews",
-      "interactionStatistic": {
-        "@type": "InteractionCounter",
-        "interactionType": "https://schema.org/CommentAction",
-        "userInteractionCount": reviews.length
-      },
-      "comment": rootReviews.map(r => ({
-        "@type": "Comment",
-        "text": r.comment_text || "",
-        "dateCreated": r.created_at || new Date().toISOString(),
-        "author": {
-          "@type": "Person",
-          "name": r.nickname?.trim() || "Anonymous"
-        },
-        ...(r.rating ? {
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": r.rating,
-            "bestRating": 5,
-            "worstRating": 1
-          }
-        } : {})
-      }))
-    };
-  }, [rootReviews, reviews.length, gameId]);
-
   return (
     <section className="mt-12 pt-8 border-t border-white/5">
-      {schemaData && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
-        />
-      )}
       {/* Header and Sorting Toolbar */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 px-2">
         <div className="flex items-center gap-4">
@@ -679,4 +581,3 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId, onC
 };
 
 export default CharacterReviewBoard;
-

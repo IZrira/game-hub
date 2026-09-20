@@ -7,14 +7,6 @@ interface BreadcrumbItem {
   url: string;
 }
 
-export interface CommentData {
-  author: string;
-  date: string;
-  content: string;
-  upvotes?: number;
-  rating?: number;
-}
-
 interface SEOProps {
   title: string;
   description?: string;
@@ -31,11 +23,8 @@ interface SEOProps {
   publishedTime?: string; // 콘텐츠 발행일 (ISO 포맷 또는 YYYY-MM-DD)
   modifiedTime?: string;  // 콘텐츠 최종 수정일 (ISO 포맷 또는 YYYY-MM-DD)
   isHomepage?: boolean;   // 홈페이지 여부
-  ratingValue?: number;   // 평점 별점 노출용 값 (예: 4.0, 5.0 등)
-  reviewCount?: number;   // 평점 리뷰 수
   carouselData?: Array<{ name: string; url: string; position: number }>; // 캐러셀 목록 데이터
   googleVerification?: string; // 구글 서치콘솔 인증 토큰
-  commentsData?: CommentData[]; // 리뷰/댓글 구조화 데이터
 }
 
 export default function SEO({ 
@@ -54,11 +43,8 @@ export default function SEO({
   publishedTime,
   modifiedTime,
   isHomepage = false,
-  ratingValue,
-  reviewCount,
   carouselData,
-  googleVerification,
-  commentsData
+  googleVerification
 }: SEOProps) {
   const { i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
@@ -163,50 +149,6 @@ export default function SEO({
     schemas.push(baseSchema);
   }
 
-  // 3. 평점 별점 노출을 위한 Product 구조화 데이터 주입
-  if (ratingValue !== undefined) {
-    const cleanRating = ratingValue.toFixed(1);
-    const count = reviewCount || 1;
-    schemas.push({
-      "@context": "https://schema.org",
-      "@type": "Product",
-      "name": name || title,
-      "image": image,
-      "description": description,
-      "brand": {
-        "@type": "Brand",
-        "name": "RIRA ARCHIVE"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": cleanRating,
-        "bestRating": "5.0",
-        "worstRating": "1.0",
-        "ratingCount": count
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "KRW",
-        "availability": "https://schema.org/InStock",
-        "url": canonicalUrl
-      },
-      "review": {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": cleanRating,
-          "bestRating": "5.0"
-        },
-        "author": {
-          "@type": "Organization",
-          "name": "RIRA ARCHIVE"
-        },
-        "reviewBody": `${name || title} - ${description}`
-      }
-    });
-  }
-
   // 4. 리스트 캐러셀 노출을 위한 ItemList 구조화 데이터 주입
   if (carouselData && carouselData.length > 0) {
     schemas.push({
@@ -232,42 +174,6 @@ export default function SEO({
         "acceptedAnswer": {
           "@type": "Answer",
           "text": faq.answer
-        }
-      }))
-    });
-  }
-
-  // 커뮤니티 및 리뷰 댓글을 위한 DiscussionForumPosting 스키마 주입
-  if (commentsData && commentsData.length > 0) {
-    schemas.push({
-      "@context": "https://schema.org",
-      "@type": "DiscussionForumPosting",
-      "headline": `${name || title} 유저 평가 및 리뷰`,
-      "url": canonicalUrl,
-      "datePublished": publishedTime || "2024-05-01T00:00:00Z",
-      "author": {
-        "@type": "Organization",
-        "name": "RIRA ARCHIVE Community"
-      },
-      "comment": commentsData.map(comment => ({
-        "@type": "Comment",
-        "author": {
-          "@type": "Person",
-          "name": comment.author
-        },
-        "datePublished": comment.date,
-        "text": comment.content,
-        "upvoteCount": comment.upvotes || 0,
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": comment.rating || 5,
-          "bestRating": "5",
-          "worstRating": "1"
-        },
-        "interactionStatistic": {
-          "@type": "InteractionCounter",
-          "interactionType": "https://schema.org/LikeAction",
-          "userInteractionCount": comment.upvotes || 0
         }
       }))
     });

@@ -34,7 +34,7 @@ import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import NTESkillAndAwakeningSection from '../components/NTESkillAndAwakeningSection';
-import SEO, { CommentData } from '../../common-hub/components/SEO';
+import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -90,7 +90,6 @@ const CharacterDetailNTE: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
-  const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -679,15 +678,12 @@ const CharacterDetailNTE: React.FC = () => {
         itemType={t(char.arc)}
         modifiedTime={lastUpdatedDate}
         faqData={faqData}
-        ratingValue={char.rarity}
-        reviewCount={1}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('이환 (Neverness to Everness)'), url: `/gallery/${gameId}` },
           { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
           { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
         ]}
-        commentsData={commentsData}
       />
       {/* Item Modal */}
       <ItemDetailModal 
@@ -1065,7 +1061,6 @@ const CharacterDetailNTE: React.FC = () => {
           <CharacterReviewBoard 
             characterId={char?.id || charName || ''} 
             gameId={gameId || 'hsr'} 
-            onCommentsLoaded={setCommentsData}
           />
 
 

@@ -32,7 +32,7 @@ import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal
 import WuwaSkillSection from '../components/WuwaSkillSection';
 import WuwaSkillInput from '../components/WuwaSkillInput';
 import WuwaResonanceChain from '../components/WuwaResonanceChain';
-import SEO, { CommentData } from '../../common-hub/components/SEO';
+import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -84,7 +84,6 @@ const CharacterDetail: React.FC = () => {
   const [tooltip, setTooltip] = useState<{ title?: string; text: string; x: number; y: number; pinned?: boolean } | null>(null);
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
-  const [commentsData, setCommentsData] = useState<CommentData[]>([]);
   const characterCardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -535,15 +534,12 @@ const CharacterDetail: React.FC = () => {
         itemType={t((char as any).weaponType)}
         modifiedTime={lastUpdatedDate}
         faqData={faqData}
-        ratingValue={char.rarity}
-        reviewCount={1}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: `/gallery/${gameId}` },
           { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
           { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
         ]}
-        commentsData={commentsData}
       />
       {/* Tooltip / Popover */}
       {tooltip && (
@@ -907,7 +903,6 @@ const CharacterDetail: React.FC = () => {
         <CharacterReviewBoard 
           characterId={char?.id || charName || ''} 
           gameId={gameId || 'ww'} 
-          onCommentsLoaded={setCommentsData}
         />
 
 
