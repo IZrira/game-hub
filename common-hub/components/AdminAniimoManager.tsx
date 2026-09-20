@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import aniimoData from '../../aniimo-hub/data/aniimo.json';
 import type { AniimoEntry } from '../../aniimo-hub/types';
 import { ANIIMO_ENGLISH_NAMES, getAniimoEvolutionStage } from '../../aniimo-hub/utils/evolutionStage';
+import AdminAniimoPartyManager from './AdminAniimoPartyManager';
 
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
@@ -11,6 +12,7 @@ const ALL = '전체';
 const AdminAniimoManager: React.FC = () => {
   const [query, setQuery] = useState('');
   const [status, setStatus] = useState(ALL);
+  const [view, setView] = useState<'dex' | 'parties'>('dex');
   const forms = entries.flatMap(entry => entry.forms.map(form => ({ entry, form })));
   const locations = new Set(forms.flatMap(({ form }) => form.locations));
   const incompleteEntries = entries.filter(entry => !ANIIMO_ENGLISH_NAMES[entry.number] || !entry.imageUrl || !entry.description || entry.forms.length === 0);
@@ -27,6 +29,8 @@ const AdminAniimoManager: React.FC = () => {
   }, [query, status, incompleteEntries, incompleteForms]);
 
   return <div className="space-y-8">
+    <nav className="flex gap-2 rounded-2xl border border-white/5 bg-[#111] p-2"><button onClick={() => setView('dex')} className={`rounded-xl px-5 py-3 text-xs font-black ${view === 'dex' ? 'bg-violet-400 text-black' : 'text-gray-400 hover:text-white'}`}>애니모 도감 관리</button><button onClick={() => setView('parties')} className={`rounded-xl px-5 py-3 text-xs font-black ${view === 'parties' ? 'bg-violet-400 text-black' : 'text-gray-400 hover:text-white'}`}>파티 추천 관리</button></nav>
+    {view === 'parties' ? <AdminAniimoPartyManager /> : <>
     <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
       <Metric icon={<Sparkles size={18} />} label="애니모" value={`${entries.length}종`} />
       <Metric icon={<Shapes size={18} />} label="형태 데이터" value={`${forms.length}개`} />
@@ -50,6 +54,7 @@ const AdminAniimoManager: React.FC = () => {
       })}</tbody></table></div>
       {filtered.length === 0 && <div className="p-16 text-center text-sm font-bold text-gray-500">조건에 맞는 애니모가 없습니다.</div>}
     </section>
+    </>}
   </div>;
 };
 

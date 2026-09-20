@@ -15,7 +15,7 @@ const tools = [
   { title: '애니모 도감', description: '전체 애니모를 원소·포지션·지역으로 검색하고 형태별 능력치를 비교합니다.', path: '/gallery/aniimo/characters', icon: PawPrint, stat: `${entries.length}종` },
   { title: '원소 상성표', description: '9개 원소의 공격 배율과 복합 원소 상대 추천 공격 원소를 확인합니다.', path: '/gallery/aniimo/type-chart', icon: Swords, stat: '9원소' },
   { title: '성격 공략', description: '성격 8종의 전투·홈 효과와 역할별 추천 MBTI 조합을 확인합니다.', path: '/gallery/aniimo/personality', icon: Brain, stat: '8성격' },
-  { title: '파티 조합 도우미', description: '4마리의 역할 균형과 적 원소 약점 대응을 분석하고 부족한 자리를 추천합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '4인 편성' },
+  { title: '파티 추천', description: '역할과 형태별 특성을 반영해 관리자가 엄선한 4인 추천 조합을 확인합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '추천 조합' },
   { title: '지역별 도감', description: '출현 지역을 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}지역` },
 ];
 

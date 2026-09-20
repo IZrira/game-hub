@@ -7,7 +7,7 @@ const items = [
   { label: '애니모 도감', path: '/gallery/aniimo/characters', icon: PawPrint },
   { label: '원소 상성표', path: '/gallery/aniimo/type-chart', icon: Swords },
   { label: '성격 공략', path: '/gallery/aniimo/personality', icon: Brain },
-  { label: '파티 조합', path: '/gallery/aniimo/party-builder', icon: Users },
+  { label: '파티 추천', path: '/gallery/aniimo/party-builder', icon: Users },
   { label: '지역별 도감', path: '/gallery/aniimo/locations', icon: MapPin },
 ];
 
