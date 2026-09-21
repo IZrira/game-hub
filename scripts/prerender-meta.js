@@ -107,15 +107,35 @@ function parseHsrCharacter(id) {
     const briefInfoMatch = content.match(/briefInfo:\s*["']([\s\S]*?)["']\s*,/);
     const isTrailblazer = content.includes('isTrailblazer: true') || id.startsWith('trailblazer_');
 
+    let fullChar = null;
+    try {
+      let code = content.replace(/import\s+[\s\S]*?;/g, '');
+      code = code.replace(/const\s+\w+:\s*Character\s*=\s*/, 'return ');
+      code = code.replace(/export\s+default\s+\w+;?/, '');
+      const mockBaseStats = (hp, atk, def, speed = 100, taunt = 100, energy = 100) => ({
+        lv1: { '기초 HP': hp[0], '기초 공격력': atk[0], '기초 방어력': def[0] },
+        lv80: { '기초 HP': hp[hp.length - 1], '기초 공격력': atk[atk.length - 1], '기초 방어력': def[def.length - 1] },
+        speed, taunt, energy
+      });
+      const mockMaterial = (name, count, rarity) => ({ name, count, rarity });
+      const mockSkill = (name, tag, description, icon) => ({ name, tag, description, icon });
+      fullChar = new Function('createHsrBaseStats', 'createMaterial', 'createSkill', code)(mockBaseStats, mockMaterial, mockSkill);
+    } catch (e) {}
+
     return {
       id,
-      folderName: folderNameMatch ? folderNameMatch[1] : null,
-      name: nameMatch ? nameMatch[1] : null,
-      attribute: attributeMatch ? attributeMatch[1] : null,
-      path: pathMatch ? pathMatch[1] : null,
-      rarity: rarityMatch ? parseInt(rarityMatch[1], 10) : 5,
-      briefInfo: briefInfoMatch ? briefInfoMatch[1] : null,
-      isTrailblazer
+      folderName: folderNameMatch ? folderNameMatch[1] : fullChar?.folderName || null,
+      name: nameMatch ? nameMatch[1] : fullChar?.name || null,
+      attribute: attributeMatch ? attributeMatch[1] : fullChar?.attribute || null,
+      path: pathMatch ? pathMatch[1] : fullChar?.path || null,
+      rarity: rarityMatch ? parseInt(rarityMatch[1], 10) : fullChar?.rarity || 5,
+      briefInfo: briefInfoMatch ? briefInfoMatch[1] : fullChar?.briefInfo || null,
+      isTrailblazer,
+      baseStats: fullChar?.baseStats,
+      skills: fullChar?.skills || [],
+      additionalAbilities: fullChar?.additionalAbilities || [],
+      eidolons: fullChar?.eidolons || [],
+      materials_v2: fullChar?.materials_v2
     };
   } catch (error) {
     return null;
@@ -126,7 +146,7 @@ function parseWwCharacter(id) {
   try {
     const filePath = path.join(WW_CHAR_DIR, `${id}.ts`);
     if (!fs.existsSync(filePath)) return null;
-    const content = fs.readFileSync(filePath, 'utf8');
+    let content = fs.readFileSync(filePath, 'utf8');
     const folderNameMatch = content.match(/folderName:\s*["'](.*?)["']/);
     const nameMatch = content.match(/name:\s*["'](.*?)["']/);
     const isRover = content.includes('isRover: true') || id.startsWith('rover_');
@@ -135,15 +155,34 @@ function parseWwCharacter(id) {
     const rarityMatch = content.match(/rarity:\s*(\d+)/);
     const briefInfoMatch = content.match(/briefInfo:\s*["']([\s\S]*?)["']\s*,/);
 
+    let fullChar = null;
+    try {
+      let code = content.replace(/import\s+[\s\S]*?;/g, '');
+      code = code.replace(/const\s+\w+:\s*WuwaCharacter\s*=\s*/, 'return ');
+      code = code.replace(/export\s+default\s+\w+;?/, '');
+      const mockBaseStats = (hp, atk, def) => ({
+        lv1: { '기초 HP': hp[0], '기초 공격력': atk[0], '기초 방어력': def[0] },
+        lv90: { '기초 HP': hp[hp.length - 1], '기초 공격력': atk[atk.length - 1], '기초 방어력': def[def.length - 1] }
+      });
+      const mockMaterial = (name, count, rarity) => ({ name, count, rarity });
+      const mockSkill = (name, tag, description, icon) => ({ name, tag, description, icon });
+      fullChar = new Function('createWwBaseStats', 'createMaterial', 'createWwSkill', code)(mockBaseStats, mockMaterial, mockSkill);
+    } catch (e) {}
+
     return {
       id,
-      folderName: folderNameMatch ? folderNameMatch[1] : null,
-      name: nameMatch ? nameMatch[1] : null,
+      folderName: folderNameMatch ? folderNameMatch[1] : fullChar?.folderName || null,
+      name: nameMatch ? nameMatch[1] : fullChar?.name || null,
       isRover,
-      attribute: attributeMatch ? attributeMatch[1] : '기류',
-      weaponType: weaponTypeMatch ? weaponTypeMatch[1] : null,
-      rarity: rarityMatch ? parseInt(rarityMatch[1], 10) : 5,
-      briefInfo: briefInfoMatch ? briefInfoMatch[1] : null
+      attribute: attributeMatch ? attributeMatch[1] : fullChar?.attribute || '기류',
+      weaponType: weaponTypeMatch ? weaponTypeMatch[1] : fullChar?.weaponType || null,
+      rarity: rarityMatch ? parseInt(rarityMatch[1], 10) : fullChar?.rarity || 5,
+      briefInfo: briefInfoMatch ? briefInfoMatch[1] : fullChar?.briefInfo || null,
+      baseStats: fullChar?.baseStats,
+      skills: fullChar?.skills || [],
+      additionalAbilities: fullChar?.additionalAbilities || [],
+      eidolons: fullChar?.eidolons || [],
+      materials_v2: fullChar?.materials_v2
     };
   } catch (error) {
     return null;
@@ -1072,16 +1111,16 @@ function generateInternalLinkList(title, routes) {
 }
 
 function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
-  const charMeta = parseWwCharacter(id);
-  let name = wwKoData[`character.${id}.name`] || (charMeta ? charMeta.name : null) || id;
+  const char = parseWwCharacter(id);
+  let name = wwKoData[`character.${id}.name`] || (char ? char.name : null) || id;
   if (name && name.startsWith('character.')) {
-    name = charMeta?.folderName || id;
+    name = char?.folderName || id;
   }
-  let briefInfo = wwKoData[`character.${id}.briefInfo`] || charMeta?.briefInfo || '';
+  let briefInfo = wwKoData[`character.${id}.briefInfo`] || char?.briefInfo || '';
   if (briefInfo && briefInfo.startsWith('character.')) {
     briefInfo = '';
   }
-  const guide = wwGuidesMap.get(id);
+  const guide = wwGuidesMap.get(id) || wwGuidesMap.get(name);
   const matchedParties = getWwPartiesForCharacter(id, name, wwPartiesList);
 
   let bestGear = extractNameArray(guide?.echoSets);
@@ -1093,7 +1132,11 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
 
   const bestWeapons = (guide?.weapons || [])
     .sort((a, b) => (a.rank || 0) - (b.rank || 0))
-    .map(w => w.name);
+    .map(w => ({
+      name: w.name,
+      rank: w.rank,
+      note: w.note
+    }));
 
   const targetStats = formatTargetStats(guide?.targetStats);
   const mainStatsStr = formatWwMainStats(guide?.mainStats || (guide?.variants?.[0]?.mainStats));
@@ -1103,13 +1146,13 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   const normData = {
     name,
     gameName: '명조: 워더링 웨이브',
-    rarityStr: charMeta?.rarity ? `${charMeta.rarity}성 ` : '5성 ',
-    attributeStr: charMeta?.attribute ? `${charMeta.attribute} 속성 ` : '',
-    typeStr: charMeta?.weaponType ? `${charMeta.weaponType} 무기 ` : '',
+    rarityStr: char?.rarity ? `${char.rarity}성 ` : '5성 ',
+    attributeStr: char?.attribute ? `${char.attribute} 속성 ` : '',
+    typeStr: char?.weaponType ? `${char.weaponType} 무기 ` : '',
     briefInfo,
     bestGear,
     subGear,
-    bestWeapons,
+    bestWeapons: bestWeapons.map(w => w.name),
     targetStats,
     mainStatsStr,
     subStats,
@@ -1120,41 +1163,134 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   const narrativeSummaryHtml = generateNarrativeSummaryHtml(normData);
 
   let html = `<article>\n`;
-  html += `<h1>${escapeHtml(name)} 상세 가이드</h1>\n`;
+  html += `<h1>명조 ${escapeHtml(name)} 상세 정보 &amp; 종결 육성 가이드</h1>\n`;
+  html += `<p><strong>분류:</strong> ${escapeHtml(normData.rarityStr)}${escapeHtml(normData.attributeStr)}${escapeHtml(normData.typeStr)} | <strong>게임:</strong> 명조: 워더링 웨이브</p>\n`;
+  if (briefInfo) {
+    html += `<p>${escapeHtml(briefInfo).replace(/\n/g, '<br/>')}</p>\n`;
+  }
   html += narrativeSummaryHtml;
-  html += `<h2>해당 캐릭터의 전투 스타일과 주요 스킬 정보입니다.</h2>\n`;
 
-  for (const [key, value] of Object.entries(wwKoData)) {
-    if (key.startsWith(`character.${id}.`) && key !== `character.${id}.name` && key !== `character.${id}.briefInfo`) {
-       if (typeof value === 'string' && value.length > 0) {
-         if (key.endsWith('.name')) {
-           html += `<h3>${escapeHtml(value)}</h3>\n`;
-         } else {
-           html += `<p>${escapeHtml(value).replace(/\n/g, '<br/>')}</p>\n`;
-         }
-       }
+  // 1. Base Stats
+  if (char?.baseStats) {
+    const lv90 = char.baseStats.lv90 || {};
+    html += `<h2>기본 능력치 (Lv.90 기준)</h2>\n<ul>\n`;
+    if (lv90['기초 HP']) html += `<li><strong>기초 HP:</strong> ${escapeHtml(lv90['기초 HP'])}</li>\n`;
+    if (lv90['기초 공격력']) html += `<li><strong>기초 공격력:</strong> ${escapeHtml(lv90['기초 공격력'])}</li>\n`;
+    if (lv90['기초 방어력']) html += `<li><strong>기초 방어력:</strong> ${escapeHtml(lv90['기초 방어력'])}</li>\n`;
+    html += `</ul>\n`;
+  }
+
+  // 2. Recommended Weapons & Echoes with clickable links
+  if (bestWeapons.length > 0) {
+    html += `<h2>추천 무기 순위</h2>\n<ol>\n`;
+    bestWeapons.forEach(w => {
+      const noteStr = w.note ? ` (${escapeHtml(w.note)})` : '';
+      html += `<li><strong>[${w.rank || ''}순위]</strong> <a href="/gallery/ww/weapon/${encodeURIComponent(w.name)}">${escapeHtml(w.name)}</a>${noteStr}</li>\n`;
+    });
+    html += `</ol>\n`;
+  }
+
+  if (bestGear.length > 0) {
+    html += `<h2>추천 에코 세트</h2>\n<ul>\n`;
+    bestGear.forEach(e => {
+      html += `<li><a href="/gallery/ww/echo/${encodeURIComponent(e)}">${escapeHtml(e)}</a></li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // 3. Recommended Parties
+  if (matchedParties.length > 0) {
+    html += `<h2>추천 파티 조합</h2>\n`;
+    matchedParties.forEach(p => {
+      const memberLinks = (p.members || []).map(m => `<a href="/gallery/ww/character/${encodeURIComponent(m)}">${escapeHtml(m)}</a>`).join(', ');
+      html += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
+    });
+  }
+
+  // 4. Guide Link
+  html += `<p><a href="/gallery/ww/character/${encodeURIComponent(id)}/guide"><strong>${escapeHtml(name)} 종결 세팅 및 무기·에코 공략 가이드 전문 보기</strong></a></p>\n`;
+
+  // 5. Skills
+  const skills = char?.skills || [];
+  if (skills.length > 0) {
+    html += `<h2>스킬 및 공명 회로 정보</h2>\n`;
+    skills.forEach(s => {
+      let sName = wwKoData[s.name] || s.name;
+      let sDesc = wwKoData[s.description] || s.description;
+      const tagStr = s.tag ? ` (${escapeHtml(s.tag)})` : '';
+      html += `<h3>${escapeHtml(sName)}${tagStr}</h3>\n<p>${escapeHtml(sDesc || '').replace(/\n/g, '<br/>')}</p>\n`;
+    });
+  }
+
+  // 6. Resonance Chain (Eidolons)
+  const eidolons = char?.eidolons || [];
+  if (eidolons.length > 0) {
+    html += `<h2>공명 체인 돌파 효과</h2>\n`;
+    eidolons.forEach(e => {
+      let eName = wwKoData[e.name] || e.name;
+      let eDesc = wwKoData[e.description] || e.description;
+      html += `<h3>${escapeHtml(e.rank || '')}: ${escapeHtml(eName || '')}</h3>\n<p>${escapeHtml(eDesc || '').replace(/\n/g, '<br/>')}</p>\n`;
+    });
+  }
+
+  // 7. Materials
+  if (char?.materials_v2) {
+    html += `<h2>돌파 및 스킬 육성 재료</h2>\n`;
+    if (char.materials_v2.ascension?.length > 0) {
+      html += `<h3>공명자 돌파 재료</h3>\n<ul>\n`;
+      char.materials_v2.ascension.forEach(m => {
+        html += `<li>${escapeHtml(m.name)} x${escapeHtml(m.count)}</li>\n`;
+      });
+      html += `</ul>\n`;
     }
   }
+
+  html += `<p><a href="/gallery/ww">명조 공명자 목록으로 돌아가기</a></p>\n`;
   html += `</article>`;
   return html;
 }
 
 function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
-  const charMeta = parseHsrCharacter(id);
-  let name = hsrKoData[`character.${id}.name`] || (charMeta ? charMeta.name : null) || id;
+  const char = parseHsrCharacter(id);
+  let name = hsrKoData[`character.${id}.name`] || (char ? char.name : null) || id;
   if (name && name.startsWith('character.')) {
-    name = charMeta?.folderName || id;
+    name = char?.folderName || id;
   }
-  let briefInfo = charMeta?.briefInfo || hsrKoData[`character.${id}.briefInfo`] || '';
+  let briefInfo = char?.briefInfo || hsrKoData[`character.${id}.briefInfo`] || '';
   if (briefInfo && briefInfo.startsWith('character.')) {
     briefInfo = '';
   }
-  const guide = hsrGuidesMap.get(name);
+  const guide = hsrGuidesMap.get(name) || (char?.folderName ? hsrGuidesMap.get(char.folderName) : null) || hsrGuidesMap.get(id);
   const matchedParties = getHsrPartiesForCharacter(name, id, hsrPartiesList);
 
-  const bestGear = extractNameArray(guide?.bestRelics || (guide?.variants?.[0]?.bestRelics));
-  const subGear = extractNameArray(guide?.bestOrnaments || (guide?.variants?.[0]?.bestOrnaments));
-  const bestWeapons = extractNameArray(guide?.bestLightCones || (guide?.variants?.[0]?.bestLightCones));
+  const bestLcsRaw = [
+    ...(Array.isArray(guide?.bestLightCones) ? guide.bestLightCones : []),
+    ...(Array.isArray(guide?.variants?.[0]?.bestLightCones) ? guide.variants[0].bestLightCones : [])
+  ];
+  const bestLightCones = bestLcsRaw.map((lc, idx) => ({
+    name: typeof lc === 'string' ? lc.trim() : lc?.name?.trim(),
+    note: typeof lc === 'object' ? lc?.note : '',
+    rank: idx + 1
+  })).filter(l => l.name);
+
+  const bestRelicsRaw = [
+    ...(Array.isArray(guide?.bestRelics) ? guide.bestRelics : []),
+    ...(Array.isArray(guide?.variants?.[0]?.bestRelics) ? guide.variants[0].bestRelics : [])
+  ];
+  const bestRelics = bestRelicsRaw.map(r => ({
+    name: typeof r === 'string' ? r.trim() : r?.name?.trim(),
+    note: typeof r === 'object' ? r?.note : ''
+  })).filter(r => r.name);
+
+  const bestOrnamentsRaw = [
+    ...(Array.isArray(guide?.bestOrnaments) ? guide.bestOrnaments : []),
+    ...(Array.isArray(guide?.variants?.[0]?.bestOrnaments) ? guide.variants[0].bestOrnaments : [])
+  ];
+  const bestOrnaments = bestOrnamentsRaw.map(o => ({
+    name: typeof o === 'string' ? o.trim() : o?.name?.trim(),
+    note: typeof o === 'object' ? o?.note : ''
+  })).filter(o => o.name);
+
   const targetStats = formatTargetStats(guide?.targetStats || (guide?.variants?.[0]?.targetStats));
   const mainStatsStr = formatHsrMainStats(guide?.mainStats || (guide?.variants?.[0]?.mainStats));
   const subStats = guide?.subStats || guide?.variants?.[0]?.subStats || [];
@@ -1162,13 +1298,13 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
   const normData = {
     name,
     gameName: '붕괴: 스타레일',
-    rarityStr: charMeta?.rarity ? `${charMeta.rarity}성 ` : '5성 ',
-    attributeStr: charMeta?.attribute ? `${charMeta.attribute} 속성 ` : '',
-    typeStr: charMeta?.path ? `${charMeta.path} 운명의 길 ` : '',
-    briefInfo: charMeta?.briefInfo || (hsrKoData[`character.${id}.briefInfo`] || ''),
-    bestGear,
-    subGear,
-    bestWeapons,
+    rarityStr: char?.rarity ? `${char.rarity}성 ` : '5성 ',
+    attributeStr: char?.attribute ? `${char.attribute} 속성 ` : '',
+    typeStr: char?.path ? `${char.path} 운명의 길 ` : '',
+    briefInfo,
+    bestGear: bestRelics.map(r => r.name),
+    subGear: bestOrnaments.map(o => o.name),
+    bestWeapons: bestLightCones.map(l => l.name),
     targetStats,
     mainStatsStr,
     subStats,
@@ -1179,21 +1315,106 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
   const narrativeSummaryHtml = generateNarrativeSummaryHtml(normData);
 
   let html = `<article>\n`;
-  html += `<h1>${escapeHtml(name)} 상세 가이드</h1>\n`;
+  html += `<h1>${escapeHtml(name)} 상세 정보 &amp; 종결 육성 가이드</h1>\n`;
+  html += `<p><strong>분류:</strong> ${escapeHtml(normData.rarityStr)}${escapeHtml(normData.attributeStr)}${escapeHtml(normData.typeStr)} | <strong>게임:</strong> 붕괴: 스타레일</p>\n`;
+  if (briefInfo) {
+    html += `<p>${escapeHtml(briefInfo).replace(/\n/g, '<br/>')}</p>\n`;
+  }
   html += narrativeSummaryHtml;
-  html += `<h2>해당 캐릭터의 전투 스타일과 주요 스킬 정보입니다.</h2>\n`;
 
-  for (const [key, value] of Object.entries(hsrKoData)) {
-    if (key.startsWith(`character.${id}.`) && key !== `character.${id}.name`) {
-       if (typeof value === 'string' && value.length > 0) {
-         if (key.endsWith('.name')) {
-           html += `<h3>${escapeHtml(value)}</h3>\n`;
-         } else {
-           html += `<p>${escapeHtml(value).replace(/\n/g, '<br/>')}</p>\n`;
-         }
-       }
+  // 1. Base Stats
+  if (char?.baseStats) {
+    const lv80 = char.baseStats.lv80 || {};
+    html += `<h2>기본 능력치 (Lv.80 기준)</h2>\n<ul>\n`;
+    if (lv80['기초 HP']) html += `<li><strong>기초 HP:</strong> ${escapeHtml(lv80['기초 HP'])}</li>\n`;
+    if (lv80['기초 공격력']) html += `<li><strong>기초 공격력:</strong> ${escapeHtml(lv80['기초 공격력'])}</li>\n`;
+    if (lv80['기초 방어력']) html += `<li><strong>기초 방어력:</strong> ${escapeHtml(lv80['기초 방어력'])}</li>\n`;
+    if (char.baseStats.speed) html += `<li><strong>기본 속도:</strong> ${escapeHtml(char.baseStats.speed)}</li>\n`;
+    if (char.baseStats.energy) html += `<li><strong>에너지 최대치:</strong> ${escapeHtml(char.baseStats.energy)}</li>\n`;
+    html += `</ul>\n`;
+  }
+
+  // 2. Recommended Equipment (Light Cones, Relics, Ornaments) with clickable links
+  if (bestLightCones.length > 0) {
+    html += `<h2>추천 광추 순위</h2>\n<ol>\n`;
+    bestLightCones.forEach(lc => {
+      const noteStr = lc.note ? ` (${escapeHtml(lc.note)})` : '';
+      html += `<li><strong>[${lc.rank}순위]</strong> <a href="/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}">${escapeHtml(lc.name)}</a>${noteStr}</li>\n`;
+    });
+    html += `</ol>\n`;
+  }
+
+  if (bestRelics.length > 0 || bestOrnaments.length > 0) {
+    html += `<h2>추천 유물 및 차원 장신구 세팅</h2>\n`;
+    if (bestRelics.length > 0) {
+      html += `<h3>추천 터널 유물</h3>\n<ul>\n`;
+      bestRelics.forEach(r => {
+        const noteStr = r.note ? ` (${escapeHtml(r.note)})` : '';
+        html += `<li><a href="/gallery/hsr/relic/${encodeURIComponent(r.name)}">${escapeHtml(r.name)}</a>${noteStr}</li>\n`;
+      });
+      html += `</ul>\n`;
+    }
+    if (bestOrnaments.length > 0) {
+      html += `<h3>추천 차원 장신구</h3>\n<ul>\n`;
+      bestOrnaments.forEach(o => {
+        const noteStr = o.note ? ` (${escapeHtml(o.note)})` : '';
+        html += `<li><a href="/gallery/hsr/ornament/${encodeURIComponent(o.name)}">${escapeHtml(o.name)}</a>${noteStr}</li>\n`;
+      });
+      html += `</ul>\n`;
     }
   }
+
+  // 3. Recommended Parties
+  if (matchedParties.length > 0) {
+    html += `<h2>추천 파티 조합</h2>\n`;
+    matchedParties.forEach(p => {
+      const memberLinks = (p.members || []).map(m => `<a href="/gallery/hsr/character/${encodeURIComponent(m)}">${escapeHtml(m)}</a>`).join(', ');
+      html += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
+    });
+  }
+
+  // 4. Dedicated Guide Link
+  html += `<p><a href="/gallery/hsr/character/${encodeURIComponent(id)}/guide"><strong>${escapeHtml(name)} 종결 세팅 및 육성 공략 가이드 전문 보기</strong></a></p>\n`;
+
+  // 5. Skills
+  const skills = char?.skills || [];
+  if (skills.length > 0) {
+    html += `<h2>스킬 및 행적 정보</h2>\n`;
+    skills.forEach(s => {
+      const tagStr = s.tag ? ` (${escapeHtml(s.tag)})` : '';
+      html += `<h3>${escapeHtml(s.name)}${tagStr}</h3>\n<p>${escapeHtml(s.description || '').replace(/\n/g, '<br/>')}</p>\n`;
+    });
+  }
+
+  // 6. Eidolons
+  const eidolons = char?.eidolons || [];
+  if (eidolons.length > 0) {
+    html += `<h2>성혼 돌파 효과</h2>\n`;
+    eidolons.forEach(e => {
+      html += `<h3>${escapeHtml(e.rank || '')}: ${escapeHtml(e.name || '')}</h3>\n<p>${escapeHtml(e.description || '').replace(/\n/g, '<br/>')}</p>\n`;
+    });
+  }
+
+  // 7. Materials
+  if (char?.materials_v2) {
+    html += `<h2>승급 및 행적 육성 재료</h2>\n`;
+    if (char.materials_v2.ascension?.length > 0) {
+      html += `<h3>승급 필요 재료</h3>\n<ul>\n`;
+      char.materials_v2.ascension.forEach(m => {
+        html += `<li>${escapeHtml(m.name)} x${escapeHtml(m.count)}</li>\n`;
+      });
+      html += `</ul>\n`;
+    }
+    if (char.materials_v2.traces?.length > 0) {
+      html += `<h3>행적 레벨업 필요 재료</h3>\n<ul>\n`;
+      char.materials_v2.traces.forEach(m => {
+        html += `<li>${escapeHtml(m.name)} x${escapeHtml(m.count)}</li>\n`;
+      });
+      html += `</ul>\n`;
+    }
+  }
+
+  html += `<p><a href="/gallery/hsr">붕괴: 스타레일 캐릭터 목록으로 돌아가기</a></p>\n`;
   html += `</article>`;
   return html;
 }
@@ -1582,6 +1803,11 @@ function generateNotionHtml(item) {
       html += `<p>${escapeHtml(item[field]).replace(/\n/g, '<br/>')}</p>\n`;
     }
   });
+
+  const isNte = item.gameId === 'nte' || item.dbSource === 'nte_characters' || item.dbSource === 'nte_arcs';
+  if (isNte) {
+    html += `<p><a href="/gallery/nte">이환 (NTE) 데이터베이스 허브로 돌아가기</a></p>\n`;
+  }
 
   html += `</article>`;
   return html;

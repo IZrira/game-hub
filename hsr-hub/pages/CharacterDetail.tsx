@@ -31,6 +31,7 @@ import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
+import HsrEntityGraphSection from '../components/HsrEntityGraphSection';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SynergyDeck from '../../common-hub/components/SynergyDeck';
@@ -834,6 +835,12 @@ const CharacterDetail: React.FC = () => {
           theme={theme} 
           renderContent={renderTextWithHighlights} 
           setTooltip={setTooltip}
+        />
+
+        {/* Entity Graph: Recommended Equipment & Synergies */}
+        <HsrEntityGraphSection
+          character={char}
+          theme={theme}
         />
         
         {/* Recommended Synergy / Team Formations */}

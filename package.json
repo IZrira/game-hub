@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/fetch-notion-data.js",
-    "build": "node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js",
+    "build": "npm run typecheck && node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js",
     "preview": "vite preview",
     "prerender": "node scripts/prerender-meta.js",
     "test": "vitest run",
+    "validate:data": "node scripts/validate-data.js",
     "test:e2e": "node tests/e2e/runner.js",
     "lint": "tsc --noEmit",
+    "typecheck": "tsc --noEmit",
     "seo:analyze": "node scripts/analyze-seo.js"
   },
   "dependencies": {

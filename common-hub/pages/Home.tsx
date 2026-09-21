@@ -33,6 +33,12 @@ import {
   BarChart3
 } from 'lucide-react';
 
+// WebP banner asset fallbacks for game hubs
+export const DEFAULT_GAME_BANNERS = {
+  hsr: '/assets/banners/hsr_placeholder.webp',
+  ww: '/assets/banners/ww_placeholder.webp',
+};
+
 const Home: React.FC = () => {
   const { t } = useTranslation();
   const [globalNotices, setGlobalNotices] = React.useState<Notice[]>([]);

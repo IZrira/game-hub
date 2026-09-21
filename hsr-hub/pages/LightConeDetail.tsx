@@ -10,6 +10,7 @@ import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
 import { HsrLightCone } from '../types';
+import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -329,6 +330,13 @@ const LightConeDetail: React.FC = () => {
             </div>
           </div>
         </div>
+
+        {/* Recommended Characters Section (Entity Graph) */}
+        <HsrRecommendedCharactersSection
+          itemType="lightcone"
+          itemName={lc.name}
+          theme={theme}
+        />
 
         {/* 04. Story Section (Toggle) - BOTTOM FULL WIDTH */}
         <div className="glass-card overflow-hidden rounded-[35px] border border-white/5 transition-all duration-300">

@@ -1,1 +1,14 @@
+# Cloudflare Pages 301 Permanent Redirects for Legacy Aniimo Locations
+/gallery/aniimo/location/스타폴-숲 /gallery/aniimo/location/스테플-숲 301
+/gallery/aniimo/location/%EC%8A%A4%ED%83%80%ED%8F%B4-%EC%88%B2 /gallery/aniimo/location/%EC%8A%A4%ED%85%8C%ED%84%B0-%EC%88%B2 301
+/gallery/aniimo/location/눈기슭-초원 /gallery/aniimo/location/설산기슭-초원 301
+/gallery/aniimo/location/%EB%88%88%EA%B8%B0%EC%88%B9-%EC%B4%88%EC%9B%90 /gallery/aniimo/location/%EC%84%A4%EC%82%B0%EA%B8%B0%EC%88%B9-%EC%B4%88%EC%9B%90 301
+/gallery/aniimo/location/바다끝-구릉 /gallery/aniimo/location/바다끝-구름 301
+/gallery/aniimo/location/%EB%B0%94%EB%8B%A4%EB%81%9D-%EA%B5%AC%EB%A6%89 /gallery/aniimo/location/%EB%B0%94%EB%8B%A4%EB%81%9D-%EA%B5%AC%EB%A6%84 301
+/gallery/aniimo/location/초승달-만 /gallery/aniimo/location/고래첨벙-해안 301
+/gallery/aniimo/location/%EC%B4%88%EC%8A%B9%EB%8B%AC-%EB%A7%8C /gallery/aniimo/location/%EA%B3%A0%EB%9E%98%EC%B2%A8%EB%82%91-%ED%95%B4%EC%95%88 301
+/gallery/aniimo/location/석양-해원 /gallery/aniimo/location/고래첨벙-해안 301
+/gallery/aniimo/location/%EC%84%9D%EC%96%91-%ED%95%B4%EC%9B%90 /gallery/aniimo/location/%EA%B3%A0%EB%9E%98%EC%B2%A8%EB%82%91-%ED%95%B4%EC%95%88 301
+
+# SPA Wildcard Fallback
 /* /index.html 200

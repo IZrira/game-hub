@@ -8,6 +8,7 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
+import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';
 
 const handlePlainCopy = (e: React.ClipboardEvent) => {
   const selection = window.getSelection()?.toString();
@@ -186,6 +187,15 @@ const OrnamentDetail: React.FC = () => {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Recommended Characters Section (Entity Graph) */}
+        <div className="mt-8">
+          <HsrRecommendedCharactersSection
+            itemType="ornament"
+            itemName={koOrnament.name}
+            theme={{ primary: '#EAB308' }}
+          />
         </div>
 
 

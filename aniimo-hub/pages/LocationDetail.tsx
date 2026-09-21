@@ -1,19 +1,23 @@
-import React, { useMemo } from 'react';
-import { ArrowLeft, MapPin } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ArrowLeft, MapPin, Sparkles, Filter, Check } from 'lucide-react';
 import { Link, useParams, Navigate } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo.json';
-import type { AniimoEntry } from '../types';
+import type { AniimoEntry, AniimoForm } from '../types';
 import { getAniimoLocationPath, toAniimoLocationSlug } from '../utils/location';
 import { OFFICIAL_ANIIMO_HABITATS, normalizeHabitat } from '../data/habitats';
 
 const entries = aniimoData as AniimoEntry[];
 const habitats = OFFICIAL_ANIIMO_HABITATS;
 
+type FormFilter = 'all' | 'basic' | 'special' | 'exclusive';
+
 const LocationDetailAniimo: React.FC = () => {
   const { locationSlug = '' } = useParams<{ locationSlug: string }>();
+  const [activeFilter, setActiveFilter] = useState<FormFilter>('all');
+
   const decodedSlug = decodeURIComponent(locationSlug);
   const normalizedCandidate = normalizeHabitat(decodedSlug.replace(/-/g, ' '));
   const habitat = habitats.find(h => toAniimoLocationSlug(h) === toAniimoLocationSlug(normalizedCandidate)) || normalizedCandidate;
@@ -38,6 +42,57 @@ const LocationDetailAniimo: React.FC = () => {
         };
       });
   }, [habitat, isValidHabitat]);
+
+  // Determine if a form is exclusive to this habitat
+  const isFormExclusive = useMemo(() => {
+    return (form: AniimoForm) => {
+      const locs = form.locations || [];
+      if (locs.length === 0) return false;
+      return locs.every(loc => normalizeHabitat(loc) === habitat);
+    };
+  }, [habitat]);
+
+  // Counts for filters
+  const filterCounts = useMemo(() => {
+    let basicCount = 0;
+    let specialCount = 0;
+    let exclusiveCount = 0;
+
+    appearances.forEach(({ forms }) => {
+      const hasBasic = forms.some(f => f.key === 'basic-form');
+      const hasSpecial = forms.some(f => f.key !== 'basic-form');
+      const hasExclusive = forms.some(f => isFormExclusive(f));
+
+      if (hasBasic) basicCount++;
+      if (hasSpecial) specialCount++;
+      if (hasExclusive) exclusiveCount++;
+    });
+
+    return {
+      all: appearances.length,
+      basic: basicCount,
+      special: specialCount,
+      exclusive: exclusiveCount
+    };
+  }, [appearances, isFormExclusive]);
+
+  // Filtered appearances
+  const filteredAppearances = useMemo(() => {
+    if (activeFilter === 'all') return appearances;
+
+    return appearances.filter(({ forms }) => {
+      if (activeFilter === 'basic') {
+        return forms.some(f => f.key === 'basic-form');
+      }
+      if (activeFilter === 'special') {
+        return forms.some(f => f.key !== 'basic-form');
+      }
+      if (activeFilter === 'exclusive') {
+        return forms.some(f => isFormExclusive(f));
+      }
+      return true;
+    });
+  }, [appearances, activeFilter, isFormExclusive]);
 
   if (!isValidHabitat) {
     return (
@@ -70,6 +125,7 @@ const LocationDetailAniimo: React.FC = () => {
       <main className="mx-auto grid max-w-[1500px] gap-8 px-4 py-10 sm:px-6 sm:py-14 lg:grid-cols-[230px_minmax(0,1fr)]">
         <AniimoSidebar />
         <div className="min-w-0 space-y-8">
+          {/* Header Card */}
           <section className="overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
             <div className="flex items-center gap-3 text-violet-300">
               <MapPin size={20} />
@@ -77,17 +133,81 @@ const LocationDetailAniimo: React.FC = () => {
             </div>
             <h1 className="mt-4 text-4xl font-black tracking-tighter sm:text-5xl">{habitat}</h1>
             <p className="mt-3 text-sm leading-7 text-gray-300">
-              이 서식지에서 확인되는 공식 서식 애니모는 총 <strong className="text-white">{appearances.length}종</strong>입니다. 형태 및 세부 출현 스팟에 따라 다양한 특성을 가집니다.
+              이 서식지에서 확인되는 공식 서식 애니모는 총 <strong className="text-white">{appearances.length}종</strong>입니다.
+              {filterCounts.exclusive > 0 && (
+                <> 이 지역에서만 독점 출현하는 <strong className="text-amber-400">지역 고유 형태 {filterCounts.exclusive}종</strong>이 포함되어 있습니다.</>
+              )}
             </p>
+
+            {/* Filter Tabs */}
+            <div className="mt-6 flex flex-wrap gap-2 pt-6 border-t border-white/10">
+              <button
+                onClick={() => setActiveFilter('all')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                  activeFilter === 'all'
+                    ? 'bg-violet-400 text-black shadow-lg shadow-violet-500/20'
+                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                전체 ({filterCounts.all})
+              </button>
+              <button
+                onClick={() => setActiveFilter('basic')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                  activeFilter === 'basic'
+                    ? 'bg-violet-400 text-black shadow-lg shadow-violet-500/20'
+                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                기본 형태 ({filterCounts.basic})
+              </button>
+              <button
+                onClick={() => setActiveFilter('special')}
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                  activeFilter === 'special'
+                    ? 'bg-cyan-400 text-black shadow-lg shadow-cyan-500/20'
+                    : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                }`}
+              >
+                특수 형태 ({filterCounts.special})
+              </button>
+              {filterCounts.exclusive > 0 && (
+                <button
+                  onClick={() => setActiveFilter('exclusive')}
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                    activeFilter === 'exclusive'
+                      ? 'bg-amber-400 text-black shadow-lg shadow-amber-500/20'
+                      : 'bg-amber-400/10 text-amber-300 border border-amber-400/20 hover:bg-amber-400/20'
+                  }`}
+                >
+                  <Sparkles size={13} />
+                  <span>지역 고유 형태 ({filterCounts.exclusive})</span>
+                </button>
+              )}
+            </div>
           </section>
 
+          {/* Appearances Grid */}
           <section aria-label={`${habitat} 서식 애니모`} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {appearances.map(({ entry, forms }) => {
+            {filteredAppearances.map(({ entry, forms }) => {
               const primaryForm = forms[0];
               const detailPath = `/gallery/aniimo/character/${encodeURIComponent(entry.name)}${primaryForm.key !== 'basic-form' ? `?form=${encodeURIComponent(primaryForm.key)}` : ''}`;
+              const hasExclusive = forms.some(f => isFormExclusive(f));
+
               return (
-                <article key={entry.number} className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212] transition hover:border-violet-400/40">
-                  <Link to={detailPath} className="block aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">
+                <article
+                  key={entry.number}
+                  className={`overflow-hidden rounded-2xl border transition hover:border-violet-400/40 bg-[#121212] ${
+                    hasExclusive ? 'border-amber-400/30' : 'border-white/10'
+                  }`}
+                >
+                  <Link to={detailPath} className="block relative aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">
+                    {hasExclusive && (
+                      <span className="absolute top-2 left-2 z-10 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-amber-400 text-black text-[9px] font-black shadow">
+                        <Sparkles size={9} />
+                        <span>고유</span>
+                      </span>
+                    )}
                     {primaryForm.imageUrl && (
                       <img
                         src={primaryForm.imageUrl}
@@ -101,23 +221,34 @@ const LocationDetailAniimo: React.FC = () => {
                   <div className="space-y-3 p-3">
                     <div>
                       <p className="text-[9px] font-black tracking-widest text-gray-500">NO.{entry.number}</p>
-                      <h2 className="font-black">{entry.name}</h2>
+                      <h2 className="font-black text-sm">{entry.name}</h2>
                       {entry.detailLocations && entry.detailLocations.length > 0 && (
                         <p className="mt-1 text-[9px] text-cyan-400 font-bold">
-                          세부 위치: {entry.detailLocations.join(', ')}
+                          세부: {entry.detailLocations.join(', ')}
                         </p>
                       )}
                     </div>
                     <div className="flex flex-wrap gap-1">
-                      {forms.map(form => (
-                        <Link
-                          key={form.key}
-                          to={`/gallery/aniimo/character/${encodeURIComponent(entry.name)}${form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''}`}
-                          className="rounded-md bg-violet-400/10 px-2 py-1 text-[9px] font-black text-violet-300 hover:bg-violet-400/20"
-                        >
-                          {form.label}
-                        </Link>
-                      ))}
+                      {forms.map(form => {
+                        const exclusive = isFormExclusive(form);
+                        const isSpecial = form.key !== 'basic-form';
+                        return (
+                          <Link
+                            key={form.key}
+                            to={`/gallery/aniimo/character/${encodeURIComponent(entry.name)}${form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''}`}
+                            className={`rounded-md px-1.5 py-0.5 text-[9px] font-black transition ${
+                              exclusive
+                                ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30 hover:bg-amber-400/30'
+                                : isSpecial
+                                ? 'bg-cyan-400/10 text-cyan-300 hover:bg-cyan-400/20'
+                                : 'bg-violet-400/10 text-violet-300 hover:bg-violet-400/20'
+                            }`}
+                          >
+                            {form.label.replace(' 형태', '')}
+                            {exclusive && ' · 고유'}
+                          </Link>
+                        );
+                      })}
                     </div>
                   </div>
                 </article>
@@ -125,6 +256,13 @@ const LocationDetailAniimo: React.FC = () => {
             })}
           </section>
 
+          {filteredAppearances.length === 0 && (
+            <div className="p-12 text-center rounded-3xl border border-white/5 bg-[#121212] text-gray-400">
+              선택하신 조건에 해당하는 형태의 애니모가 없습니다.
+            </div>
+          )}
+
+          {/* Other Official Habitats */}
           <section className="rounded-3xl border border-white/10 bg-[#121212] p-6">
             <h2 className="font-black">다른 공식 서식지 (14개)</h2>
             <div className="mt-4 flex flex-wrap gap-2">
