@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://riragamehub.com/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/about?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/about?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/about"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/privacy</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/privacy?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/privacy?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/privacy"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/tos</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/tos?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/tos?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/tos"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/contact?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/contact?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/contact"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/hsr</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/hsr?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/hsr?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/hsr"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/ww</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/ww?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/ww?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/ww"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/nte</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/nte?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/nte?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/nte"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/aniimo</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/aniimo?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/aniimo?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/aniimo"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+</urlset>

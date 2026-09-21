@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router';
-import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2 } from 'lucide-react';
+import { useParams, Link } from 'react-router';
+import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2, Users } from 'lucide-react';
 import { getGameData } from '../../common-hub/data/dataManager';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -11,6 +11,7 @@ import { Compass, Zap, MapPin, History, Globe, Shield } from 'lucide-react';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
+import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 
 const LEVEL_STEPS = [1, 20, 40, 50, 60, 70, 80, 90];
 
@@ -361,8 +362,44 @@ const WuwaWeaponDetail = () => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   // 통합 getGameData를 사용해 중복 제거 및 노션 데이터 반영
-  const { WEAPON_DATA } = React.useMemo(() => getGameData('ww'), []);
+  const { WEAPON_DATA, GUIDES, CHARACTER_DB } = React.useMemo(() => getGameData('ww'), []);
   const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName || t(w.name).normalize('NFC') === targetName || (w as any).i18nKey === targetName);
+
+  const recommendedResonators = React.useMemo(() => {
+    if (!weapon) return [];
+    const weaponName = t(weapon.name).normalize('NFC');
+    const rawWeaponName = (weapon.name || '').normalize('NFC');
+    const matches: { char: any; rank?: number; note?: string }[] = [];
+    const guideEntries = Array.isArray(GUIDES) ? GUIDES : Array.from((GUIDES as any)?.values?.() || Object.values(GUIDES || {}));
+    const seenChars = new Set<string>();
+
+    guideEntries.forEach((g: any) => {
+      if (!g || !g.weapons) return;
+      const match = g.weapons.find((w: any) => {
+        const wName = (typeof w === 'string' ? w : w?.name || '').replace(/[:：].*$/, '').trim().normalize('NFC');
+        return wName === weaponName || wName === rawWeaponName || (weapon.id && wName === weapon.id);
+      });
+      if (match) {
+        const char = (CHARACTER_DB || []).find((c: any) =>
+          c.id === g.id ||
+          c.name === g.name ||
+          c.folderName === g.name ||
+          (g.name && c.name && c.name.includes(g.name))
+        );
+        const charId = char?.id || g.id;
+        if (charId && !seenChars.has(charId)) {
+          seenChars.add(charId);
+          matches.push({
+            char: char || { id: charId, name: g.name, rarity: 5 },
+            rank: typeof match === 'object' ? match.rank : undefined,
+            note: typeof match === 'object' ? match.note : undefined
+          });
+        }
+      }
+    });
+
+    return matches.sort((a, b) => (a.rank || 99) - (b.rank || 99));
+  }, [weapon, GUIDES, CHARACTER_DB, t]);
 
   const lastUpdatedDate = weapon ? (VERSION_UPDATES[weapon.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 
@@ -598,9 +635,83 @@ const WuwaWeaponDetail = () => {
           </div>
         </div>
 
-        {/* 03. Materials Section */}
+        {/* 03. Recommended Resonators Section */}
+        {recommendedResonators.length > 0 && (
+          <div className="space-y-8">
+            <SectionHeader num="03" title={t("추천 착용 공명자")} theme={theme} />
+            <div className="glass-card p-6 md:p-10 rounded-[45px] border border-white/5 space-y-6">
+              <div className="flex items-center gap-4 border-b border-white/5 pb-4">
+                <Users size={22} style={{ color: theme.primary }} className="opacity-80" />
+                <span className="text-xl font-black uppercase tracking-tighter italic">{t("추천 공명자")}</span>
+                <span className="text-xs text-gray-400 font-bold">({recommendedResonators.length}{t("명")})</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {recommendedResonators.map(({ char, rank, note }, idx) => {
+                  const charName = t(char.name || char.folderName || char.id);
+                  const charFolder = char.folderName || char.name || char.id;
+                  const charImg = getCharacterArtPath('ww', charFolder);
+                  return (
+                    <div 
+                      key={char.id || idx}
+                      className="group relative flex items-center gap-4 p-4 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/20 hover:bg-white/[0.05] transition-all"
+                    >
+                      <div className="relative w-16 h-16 rounded-xl overflow-hidden bg-black/40 border border-white/10 shrink-0">
+                        <img 
+                          src={charImg} 
+                          alt={charName} 
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          loading="lazy"
+                          onError={(e) => {
+                            (e.target as HTMLElement).style.display = 'none';
+                          }}
+                        />
+                        {rank !== undefined && (
+                          <span 
+                            className="absolute top-1 left-1 px-1.5 py-0.5 text-[9px] font-black italic rounded"
+                            style={{ backgroundColor: `${theme.primary}E6`, color: '#000' }}
+                          >
+                            {rank}{t('순위')}
+                          </span>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2">
+                          <span className="text-base font-black text-white truncate group-hover:text-amber-400 transition-colors">
+                            {charName}
+                          </span>
+                          {char.rarity && (
+                            <span className="text-[10px] text-yellow-500 font-bold">★{char.rarity}</span>
+                          )}
+                        </div>
+                        {note && (
+                          <p className="text-xs text-gray-400 truncate mt-0.5" title={note}>{note}</p>
+                        )}
+                        <div className="flex gap-2 mt-2">
+                          <Link 
+                            to={`/gallery/ww/character/${encodeURIComponent(char.id)}/guide`}
+                            className="text-[10px] font-bold px-2 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+                          >
+                            {t('세팅 공략')} →
+                          </Link>
+                          <Link 
+                            to={`/gallery/ww/character/${encodeURIComponent(char.id)}`}
+                            className="text-[10px] font-bold px-2 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
+                          >
+                            {t('정보')}
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Materials Section */}
         <div className="space-y-8">
-          <SectionHeader num="03" title={t("돌파 재료")} theme={theme} />
+          <SectionHeader num={recommendedResonators.length > 0 ? "04" : "03"} title={t("돌파 재료")} theme={theme} />
           <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
                <div className="flex items-center gap-4">
@@ -628,9 +739,9 @@ const WuwaWeaponDetail = () => {
           </div>
         </div>
 
-        {/* 04. Obtain Path Section */}
+        {/* Obtain Path Section */}
         <div className="space-y-8">
-          <SectionHeader num="04" title={t("획득 경로")} theme={theme} />
+          <SectionHeader num={recommendedResonators.length > 0 ? "05" : "04"} title={t("획득 경로")} theme={theme} />
           <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-6">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
               <Compass size={22} style={{ color: theme.primary }} className="opacity-80" />
@@ -644,10 +755,10 @@ const WuwaWeaponDetail = () => {
           </div>
         </div>
 
-        {/* 05. Story Section (Toggle) - BOTTOM FULL WIDTH */}
+        {/* Story Section (Toggle) - BOTTOM FULL WIDTH */}
         {weapon.description && (
           <div className="space-y-8">
-            <SectionHeader num="05" title={t('무기 스토리')} theme={theme} expanded={isStoryOpen} onToggle={() => setIsStoryOpen(!isStoryOpen)} />
+            <SectionHeader num={recommendedResonators.length > 0 ? "06" : "05"} title={t('무기 스토리')} theme={theme} expanded={isStoryOpen} onToggle={() => setIsStoryOpen(!isStoryOpen)} />
             <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
               <div className="glass-card p-8 rounded-[35px] border border-white/5">
                 <div className="text-gray-400 text-base md:text-lg leading-relaxed italic custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">

@@ -55,17 +55,22 @@ export default function SEO({
   const baseUrl = "https://riragamehub.com";
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
-  // 쿼리 매개변수를 사전순으로 정렬하고 lng 파라미터를 강제/정제하는 헬퍼 함수
+  // 쿼리 매개변수를 사전순으로 정렬하고 lng 파라미터를 정제하며 후행 슬래시를 정규화하는 헬퍼 함수
   const getSortedUrl = (rawUrl: string, targetLang?: string) => {
     try {
       const isAbsolute = rawUrl.startsWith('http');
       const dummyBase = "https://dummy-url-for-parsing.com";
       const urlObj = new URL(rawUrl, isAbsolute ? undefined : dummyBase);
       
+      // 트레일링 슬래시 정규화 (루트 / 제외하고 끝의 슬래시 제거하여 중복 URL 방지)
+      if (urlObj.pathname.length > 1 && urlObj.pathname.endsWith('/')) {
+        urlObj.pathname = urlObj.pathname.slice(0, -1);
+      }
+
       // lng는 canonical/alternate를 위해 동적으로 제어하므로 일단 제거
       urlObj.searchParams.delete('lng');
       
-      // 한국어(기본값)일 경우 파라미터를 추가하지 않고 클린 URL을 사용하도록 수정
+      // 다국어 버전의 경우에만 lng 파라미터 부여
       if (targetLang && targetLang !== 'ko') {
         urlObj.searchParams.set('lng', targetLang);
       }
@@ -76,15 +81,16 @@ export default function SEO({
       if (isAbsolute) {
         return urlObj.toString();
       } else {
-        // 상대 경로일 경우 파싱용 더미 베이스 제거하여 원본 양식 보존
-        return urlObj.pathname + urlObj.search + urlObj.hash;
+        const searchStr = urlObj.searchParams.toString();
+        return urlObj.pathname + (searchStr ? `?${searchStr}` : '') + urlObj.hash;
       }
     } catch (e) {
       return rawUrl;
     }
   };
 
-  const canonicalUrl = getSortedUrl(fullUrl, currentLang);
+  // 표준(Canonical) URL은 언어 쿼리나 후행 슬래시 없는 단일 정규 URL을 가리켜 색인 분산/중복을 차단합니다.
+  const canonicalUrl = getSortedUrl(fullUrl);
   const alternateKo = getSortedUrl(fullUrl, 'ko');
   const alternateEn = getSortedUrl(fullUrl, 'en');
   const alternateDefault = getSortedUrl(fullUrl);
@@ -117,8 +123,8 @@ export default function SEO({
       "headline": name || title,
       "description": description,
       "image": image,
-      "datePublished": publishedTime || "2024-05-01T00:00:00Z", // 사이트 개편 기준일
-      "dateModified": modifiedTime || publishedTime || "2024-05-01T00:00:00Z", // 실제 수정일이 없으면 매번 바뀌는 현재 시간 대신 안정된 기준일 사용
+      "datePublished": publishedTime || "2024-05-01T00:00:00Z",
+      "dateModified": modifiedTime || publishedTime || "2024-05-01T00:00:00Z",
       "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": canonicalUrl
@@ -212,7 +218,7 @@ export default function SEO({
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonicalUrl} />
 
-      {/* 다국어 SEO (hreflang) 설정: 실제 언어 파라미터를 포함하여 개별 색인 유도 */}
+      {/* 다국어 SEO (hreflang) 설정 */}
       <link rel="alternate" hrefLang="ko" href={alternateKo} />
       <link rel="alternate" hrefLang="en" href={alternateEn} />
       <link rel="alternate" hrefLang="x-default" href={alternateDefault} />
@@ -224,16 +230,15 @@ export default function SEO({
       <meta property="og:image" content={image} />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content={siteName} />
-      {/* 가이드 권장 사이즈 및 포맷 명시 */}
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
       <meta property="og:image:type" content="image/webp" />
 
-      {/* 로봇 및 언어 설정: 대형 이미지 미리보기 및 충분한 스니펫 허용 */}
+      {/* 로봇 및 언어 설정 */}
       <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
       <meta property="og:locale" content={locale} />
       
-      {/* 업데이트 일자 표기 (구글/네이버 최신성 가산점용) */}
+      {/* 업데이트 일자 표기 */}
       {publishedTime && <meta property="article:published_time" content={publishedTime} />}
       {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
 

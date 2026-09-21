@@ -17,6 +17,9 @@ const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json'
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
+const HSR_LIGHTCONE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'lightcones');
+const HSR_RELICS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
+const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts');
 const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
 const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
 
@@ -298,6 +301,162 @@ function loadWwPartiesList() {
   return [];
 }
 
+function loadHsrRelics() {
+  try {
+    if (!fs.existsSync(HSR_RELICS_FILE)) return [];
+    let content = fs.readFileSync(HSR_RELICS_FILE, 'utf8');
+    content = content.replace(/export\s+const\s+RELIC_DATA\s*=\s*/, 'return ');
+    content = content.replace(/export\s+default\s+RELIC_DATA;?/, '');
+    return new Function(content)() || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function loadHsrOrnaments() {
+  try {
+    if (!fs.existsSync(HSR_ORNAMENTS_FILE)) return [];
+    let content = fs.readFileSync(HSR_ORNAMENTS_FILE, 'utf8');
+    content = content.replace(/export\s+type\s+[\s\S]*?;/g, '');
+    content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+    content = content.replace(/export\s+const\s+ORNAMENT_DATA:\s*Ornament\[\]\s*=\s*/, 'return ');
+    return new Function(content)() || [];
+  } catch (e) {
+    return [];
+  }
+}
+
+function loadHsrLightcones() {
+  try {
+    if (!fs.existsSync(HSR_LIGHTCONE_DIR)) return [];
+    const files = fs.readdirSync(HSR_LIGHTCONE_DIR).filter(f => f.endsWith('.ts') && !['index.ts', 'dataFactory.ts'].includes(f));
+    const allLcs = [];
+    files.forEach(file => {
+      try {
+        let content = fs.readFileSync(path.join(HSR_LIGHTCONE_DIR, file), 'utf8');
+        content = content.replace(/import\s+[\s\S]*?;/g, '');
+        content = content.replace(/export\s+const\s+\w+:\s*HsrLightCone\[\]\s*=\s*/, 'return ');
+        const fn = new Function('createDetailedBaseStats', 'createMaterial', content);
+        const mockDetailedStats = (hp, atk, def) => ({
+          hp: Array.isArray(hp) ? hp[hp.length - 1] : hp,
+          atk: Array.isArray(atk) ? atk[atk.length - 1] : atk,
+          def: Array.isArray(def) ? def[def.length - 1] : def
+        });
+        const mockMaterial = (name, count, rarity) => ({ name, count, rarity });
+        const list = fn(mockDetailedStats, mockMaterial);
+        if (Array.isArray(list)) allLcs.push(...list);
+      } catch (err) {}
+    });
+    return allLcs;
+  } catch (e) {
+    return [];
+  }
+}
+
+function buildHsrEquipmentToCharactersMap(hsrGuidesMap) {
+  const lightConeToChars = new Map();
+  const relicToChars = new Map();
+  const ornamentToChars = new Map();
+
+  const charNameToIdMap = new Map();
+  const hsrIds = getCharacterIds(HSR_CHAR_DIR);
+  hsrIds.forEach(id => {
+    const meta = parseHsrCharacter(id);
+    if (meta) {
+      if (meta.name) charNameToIdMap.set(meta.name.trim(), id);
+      if (meta.folderName) charNameToIdMap.set(meta.folderName.trim(), id);
+    }
+    charNameToIdMap.set(id, id);
+  });
+
+  hsrGuidesMap.forEach((g) => {
+    const charName = g.characterName || '';
+    const charId = charNameToIdMap.get(charName) || charNameToIdMap.get(g.name) || charName;
+    if (!charId) return;
+
+    // Lightcones
+    const lightCones = [
+      ...(Array.isArray(g.bestLightCones) ? g.bestLightCones : []),
+      ...(Array.isArray(g.variants?.[0]?.bestLightCones) ? g.variants[0].bestLightCones : [])
+    ];
+    lightCones.forEach((lc, idx) => {
+      const lcName = typeof lc === 'string' ? lc.trim() : lc?.name?.trim();
+      const lcNote = typeof lc === 'object' ? lc?.note : '';
+      if (lcName) {
+        if (!lightConeToChars.has(lcName)) lightConeToChars.set(lcName, []);
+        const list = lightConeToChars.get(lcName);
+        if (!list.some(item => item.charId === charId)) {
+          list.push({ charId, charName: charName || charId, rank: idx + 1, note: lcNote });
+        }
+      }
+    });
+
+    // Relics
+    const relics = [
+      ...(Array.isArray(g.bestRelics) ? g.bestRelics : []),
+      ...(Array.isArray(g.variants?.[0]?.bestRelics) ? g.variants[0].bestRelics : [])
+    ];
+    relics.forEach(r => {
+      const rName = typeof r === 'string' ? r.trim() : r?.name?.trim();
+      const rNote = typeof r === 'object' ? r?.note : '';
+      if (rName) {
+        if (!relicToChars.has(rName)) relicToChars.set(rName, []);
+        const list = relicToChars.get(rName);
+        if (!list.some(item => item.charId === charId)) {
+          list.push({ charId, charName: charName || charId, note: rNote });
+        }
+      }
+    });
+
+    // Ornaments
+    const ornaments = [
+      ...(Array.isArray(g.bestOrnaments) ? g.bestOrnaments : []),
+      ...(Array.isArray(g.variants?.[0]?.bestOrnaments) ? g.variants[0].bestOrnaments : [])
+    ];
+    ornaments.forEach(o => {
+      const oName = typeof o === 'string' ? o.trim() : o?.name?.trim();
+      const oNote = typeof o === 'object' ? o?.note : '';
+      if (oName) {
+        if (!ornamentToChars.has(oName)) ornamentToChars.set(oName, []);
+        const list = ornamentToChars.get(oName);
+        if (!list.some(item => item.charId === charId)) {
+          list.push({ charId, charName: charName || charId, note: oNote });
+        }
+      }
+    });
+  });
+
+  return { lightConeToChars, relicToChars, ornamentToChars };
+}
+
+function buildWwWeaponToCharactersMap() {
+  const weaponToChars = new Map();
+  const notionData = getNotionData();
+  notionData.forEach(item => {
+    if (item.dbSource === 'ww_guides' && Array.isArray(item.weapons)) {
+      const charId = item.id || item.name;
+      const charName = item.name || item.id;
+      item.weapons.forEach(w => {
+        let wName = (typeof w === 'string' ? w : w?.name || '').trim();
+        let wNote = typeof w === 'object' ? w?.note : '';
+        if (!wNote && (wName.includes(':') || wName.includes('：'))) {
+          const parts = wName.split(/[:：]/);
+          wName = parts[0].trim();
+          wNote = parts.slice(1).join(':').trim();
+        }
+        if (wName) {
+          if (!weaponToChars.has(wName)) weaponToChars.set(wName, []);
+          const list = weaponToChars.get(wName);
+          if (!list.some(c => c.charId === charId)) {
+            list.push({ charId, charName, rank: typeof w === 'object' ? w.rank : undefined, note: wNote });
+          }
+        }
+      });
+    }
+  });
+  return weaponToChars;
+}
+
 function getHsrPartiesForCharacter(charName, id, allParties) {
   const matched = [];
   if (!allParties || !Array.isArray(allParties)) return matched;
@@ -457,19 +616,19 @@ function generateGuideSchema(charName, gameName, routePath, imageUrl) {
             "@type": "ListItem",
             "position": 1,
             "name": "홈",
-            "item": "https://rira-game-hub.pages.dev"
+            "item": BASE_URL
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": gameName,
-            "item": `https://rira-game-hub.pages.dev${routePath.split('/').slice(0, 3).join('/')}`
+            "item": `${BASE_URL}${routePath.split('/').slice(0, 3).join('/')}`
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": `${charName} 공략`,
-            "item": `https://rira-game-hub.pages.dev${routePath}`
+            "item": `${BASE_URL}${routePath}`
           }
         ]
       },
@@ -486,13 +645,13 @@ function generateGuideSchema(charName, gameName, routePath, imageUrl) {
           "name": "RIRA Game Archive",
           "logo": {
             "@type": "ImageObject",
-            "url": "https://rira-game-hub.pages.dev/assets/logo.png"
+            "url": `${BASE_URL}/assets/logo.png`
           }
         },
         "description": `${gameName} ${charName}의 추천 무기/광추, 에코/유물 세팅, 추천 파티 조합 및 스탯 목표치 완벽 공략.`,
         "mainEntityOfPage": {
           "@type": "WebPage",
-          "@id": `https://rira-game-hub.pages.dev${routePath}`
+          "@id": `${BASE_URL}${routePath}`
         }
       }
     ]
@@ -563,15 +722,42 @@ function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml
 }
 
 function getSitemapRoutes() {
-  if (!fs.existsSync(SITEMAP_FILE)) {
-    throw new Error('public/sitemap.xml not found. Generate the sitemap before prerendering.');
+  const routes = new Set();
+  const subSitemaps = [
+    'sitemap-main.xml',
+    'sitemap-hsr.xml',
+    'sitemap-ww.xml',
+    'sitemap-nte.xml',
+    'sitemap-aniimo.xml',
+    'sitemap-blog.xml'
+  ];
+
+  let foundAny = false;
+  for (const file of subSitemaps) {
+    const filePath = path.join(PUBLIC_DIR, file);
+    if (fs.existsSync(filePath)) {
+      foundAny = true;
+      const xml = fs.readFileSync(filePath, 'utf8');
+      for (const match of xml.matchAll(/<loc>(.*?)<\/loc>/g)) {
+        const url = match[1].replace(/&amp;/g, '&');
+        if (url.startsWith(BASE_URL)) {
+          routes.add(new URL(url).pathname);
+        }
+      }
+    }
   }
 
-  const xml = fs.readFileSync(SITEMAP_FILE, 'utf8');
-  return [...xml.matchAll(/<loc>(.*?)<\/loc>/g)]
-    .map(match => match[1].replace(/&amp;/g, '&'))
-    .filter(url => url.startsWith(BASE_URL))
-    .map(url => new URL(url).pathname);
+  if (!foundAny && fs.existsSync(SITEMAP_FILE)) {
+    const xml = fs.readFileSync(SITEMAP_FILE, 'utf8');
+    for (const match of xml.matchAll(/<loc>(.*?)<\/loc>/g)) {
+      const url = match[1].replace(/&amp;/g, '&');
+      if (url.startsWith(BASE_URL) && !url.endsWith('.xml')) {
+        routes.add(new URL(url).pathname);
+      }
+    }
+  }
+
+  return [...routes];
 }
 
 function getFallbackMeta(routePath) {
@@ -915,17 +1101,165 @@ function generateHsrGuideHtml(id, guide, char) {
   return html;
 }
 
-function generateWwWeaponHtml(id) {
+function generateRichWwWeaponHtml(weaponName, wpId, wpNotion, recommendedChars = []) {
   let html = `<article>\n`;
-  for (const [key, value] of Object.entries(wwWeaponKoData)) {
-    if (key.includes(`.${id}.`)) {
-       if (key.endsWith('.name') || key.endsWith('.skillName')) {
-         html += `<h3>${escapeHtml(value)}</h3>\n`;
-       } else {
-         html += `<p>${escapeHtml(value).replace(/\n/g, '<br/>')}</p>\n`;
-       }
-    }
+  html += `<h1>명조 ${escapeHtml(weaponName)} 상세 정보 및 추천 캐릭터</h1>\n`;
+
+  const rarity = wpNotion?.rarity || (wpId?.includes('wp-5') ? 5 : wpId?.includes('wp-4') ? 4 : wpId?.includes('wp-3') ? 3 : '');
+  const type = wpNotion?.type || (wpId?.includes('-bb-') ? '대검' : wpId?.includes('-sw-') ? '직검' : wpId?.includes('-ps-') ? '권총' : wpId?.includes('-ga-') ? '권갑' : wpId?.includes('-rc-') ? '증폭기' : '무기');
+  html += `<p><strong>분류:</strong> ${rarity ? rarity + '성 ' : ''}${escapeHtml(type)} | <strong>게임:</strong> 명조: 워더링 웨이브</p>\n`;
+
+  // Skill Name & Description
+  const skillName = wpNotion?.skillName || (wpId ? wwWeaponKoData[`weapon.${wpId}.skillName`] : '') || '';
+  const skillDesc = wpNotion?.skillDescription || (wpId ? wwWeaponKoData[`weapon.${wpId}.skillDescription`] : '') || '';
+  if (skillName || skillDesc) {
+    html += `<h2>무기 스킬: ${escapeHtml(skillName)}</h2>\n`;
+    if (skillDesc) html += `<p>${escapeHtml(skillDesc).replace(/\n/g, '<br/>')}</p>\n`;
   }
+
+  // Recommended Resonators
+  if (recommendedChars.length > 0) {
+    html += `<h2>${escapeHtml(weaponName)} 추천 착용 공명자</h2>\n<ul>\n`;
+    recommendedChars.forEach(rc => {
+      const rankStr = rc.rank ? `<strong>[${rc.rank}순위]</strong> ` : '';
+      const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
+      html += `<li>${rankStr}<a href="/gallery/ww/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 공략</a>${noteStr}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  // Growth Stats
+  if (wpNotion?.growthStats) {
+    html += `<h2>레벨별 성장 스탯 (1~90Lv)</h2>\n<pre>${escapeHtml(wpNotion.growthStats)}</pre>\n`;
+  }
+
+  // Ascension Materials
+  if (wpNotion?.ascensionMaterials) {
+    html += `<h2>돌파 및 육성 재료</h2>\n<p>${escapeHtml(wpNotion.ascensionMaterials).replace(/\n/g, '<br/>')}</p>\n`;
+  }
+
+  // Obtain
+  if (wpNotion?.obtain) {
+    html += `<h2>획득 방법</h2>\n<p>${escapeHtml(wpNotion.obtain)}</p>\n`;
+  }
+
+  // Story
+  const story = wpNotion?.weaponStory || (wpId ? wwWeaponKoData[`weapon.${wpId}.description`] : '') || '';
+  if (story) {
+    html += `<h2>무기 스토리</h2>\n<p>${escapeHtml(story).replace(/\n/g, '<br/>')}</p>\n`;
+  }
+
+  html += `<p><a href="/gallery/ww">명조 무기 도감 목록으로 이동</a></p>\n`;
+  html += `</article>`;
+  return html;
+}
+
+function generateHsrLightconeHtml(lc, recommendedChars = []) {
+  let html = `<article>\n`;
+  html += `<h1>붕괴: 스타레일 ${escapeHtml(lc.name)} 상세 스탯 및 추천 캐릭터</h1>\n`;
+  html += `<p><strong>운명의 길:</strong> ${escapeHtml(lc.path || '')} | <strong>희귀도:</strong> ${escapeHtml(lc.rarity || 5)}성 | <strong>출시 버전:</strong> v${escapeHtml(lc.releaseVersion || '1.0')}</p>\n`;
+
+  if (lc.baseStats) {
+    html += `<h2>Lv.80 기초 스탯</h2>\n<ul>\n`;
+    if (lc.baseStats.hp) html += `<li><strong>기초 HP:</strong> ${escapeHtml(lc.baseStats.hp)}</li>\n`;
+    if (lc.baseStats.atk) html += `<li><strong>기초 공격력:</strong> ${escapeHtml(lc.baseStats.atk)}</li>\n`;
+    if (lc.baseStats.def) html += `<li><strong>기초 방어력:</strong> ${escapeHtml(lc.baseStats.def)}</li>\n`;
+    html += `</ul>\n`;
+  }
+
+  if (lc.skill) {
+    html += `<h2>광추 스킬: ${escapeHtml(lc.skill.name || '')}</h2>\n`;
+    html += `<p>${escapeHtml(lc.skill.description || '').replace(/\n/g, '<br/>')}</p>\n`;
+  }
+
+  if (recommendedChars.length > 0) {
+    html += `<h2>${escapeHtml(lc.name)} 추천 장착 캐릭터</h2>\n<ul>\n`;
+    recommendedChars.forEach(rc => {
+      const rankStr = rc.rank ? `<strong>[${rc.rank}순위]</strong> ` : '';
+      const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
+      html += `<li>${rankStr}<a href="/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 공략</a>${noteStr}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  if (lc.ascensionMaterials && Array.isArray(lc.ascensionMaterials) && lc.ascensionMaterials.length > 0) {
+    html += `<h2>승급 단계별 필요 재료</h2>\n<ul>\n`;
+    lc.ascensionMaterials.forEach(m => {
+      const itemsStr = (m.items || []).map(it => `${it.name} x${it.count}`).join(', ');
+      html += `<li><strong>Lv.${m.level} 돌파:</strong> ${escapeHtml(itemsStr)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  if (lc.story) {
+    html += `<h2>광추 스토리</h2>\n<p>${escapeHtml(lc.story).replace(/\n/g, '<br/>')}</p>\n`;
+  }
+
+  html += `<p><a href="/gallery/hsr">붕괴: 스타레일 광추 도감으로 돌아가기</a></p>\n`;
+  html += `</article>`;
+  return html;
+}
+
+function generateHsrRelicHtml(relic, recommendedChars = []) {
+  let html = `<article>\n`;
+  html += `<h1>붕괴: 스타레일 ${escapeHtml(relic.name)} 유물 세트 효과 및 추천 캐릭터</h1>\n`;
+  html += `<p><strong>유형:</strong> 터널 유물 | <strong>게임:</strong> 붕괴: 스타레일</p>\n`;
+
+  if (relic['2piece']) {
+    html += `<h2>2세트 효과</h2>\n<p>${escapeHtml(relic['2piece'])}</p>\n`;
+  }
+  if (relic['4piece']) {
+    html += `<h2>4세트 효과</h2>\n<p>${escapeHtml(relic['4piece'])}</p>\n`;
+  }
+  if (Array.isArray(relic.pieces) && relic.pieces.length > 0) {
+    html += `<h2>세트 구성 부위</h2>\n<ul>\n`;
+    relic.pieces.forEach(p => {
+      html += `<li><strong>${escapeHtml(p.type)}:</strong> ${escapeHtml(p.name)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  if (recommendedChars.length > 0) {
+    html += `<h2>${escapeHtml(relic.name)} 추천 착용 캐릭터</h2>\n<ul>\n`;
+    recommendedChars.forEach(rc => {
+      const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
+      html += `<li><a href="/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 세팅 공략</a>${noteStr}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  html += `<p><a href="/gallery/hsr">붕괴: 스타레일 유물 도감으로 돌아가기</a></p>\n`;
+  html += `</article>`;
+  return html;
+}
+
+function generateHsrOrnamentHtml(ornament, recommendedChars = []) {
+  let html = `<article>\n`;
+  html += `<h1>붕괴: 스타레일 ${escapeHtml(ornament.name)} 차원 장신구 세트 효과 및 추천 캐릭터</h1>\n`;
+  html += `<p><strong>유형:</strong> 차원 장신구 | <strong>게임:</strong> 붕괴: 스타레일</p>\n`;
+
+  const setEffect = ornament.setEffect?.['2piece'] || ornament['2piece'];
+  if (setEffect) {
+    html += `<h2>2세트 효과</h2>\n<p>${escapeHtml(setEffect)}</p>\n`;
+  }
+  if (Array.isArray(ornament.pieces) && ornament.pieces.length > 0) {
+    html += `<h2>장신구 구성 부위</h2>\n<ul>\n`;
+    ornament.pieces.forEach(p => {
+      html += `<li><strong>${escapeHtml(p.type)}:</strong> ${escapeHtml(p.name)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  if (recommendedChars.length > 0) {
+    html += `<h2>${escapeHtml(ornament.name)} 추천 착용 캐릭터</h2>\n<ul>\n`;
+    recommendedChars.forEach(rc => {
+      const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
+      html += `<li><a href="/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 세팅 공략</a>${noteStr}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  html += `<p><a href="/gallery/hsr">붕괴: 스타레일 차원 장신구 도감으로 돌아가기</a></p>\n`;
   html += `</article>`;
   return html;
 }
@@ -959,7 +1293,19 @@ function generateNotionHtml(item) {
 
   html += `<h2>해당 항목의 세부 정보 및 가이드입니다.</h2>\n`;
 
-  const textFields = ['briefInfo', 'content', 'citySkill', 'virailSkill', 'basicAttack', 'ultimateSkill', 'supportSkill', 'passiveSkill1', 'passiveSkill2', 'awakenings', 'resonance', 'glossary'];
+  if (item.cost) {
+    html += `<p><strong>코스트:</strong> ${escapeHtml(item.cost)}</p>\n`;
+  }
+  if (item.sonataSets && Array.isArray(item.sonataSets) && item.sonataSets.length > 0) {
+    html += `<p><strong>소나타 이펙트:</strong> ${escapeHtml(item.sonataSets.join(', '))}</p>\n`;
+  }
+
+  const textFields = [
+    'briefInfo', 'content', 'growthStats', 'skillName', 'skillDescription',
+    'ascensionMaterials', 'weaponStory', 'obtain', 'citySkill', 'virailSkill',
+    'basicAttack', 'ultimateSkill', 'supportSkill', 'passiveSkill1', 'passiveSkill2',
+    'awakenings', 'resonance', 'glossary', 'description'
+  ];
 
   textFields.forEach(field => {
     if (item[field] && typeof item[field] === 'string') {
@@ -1082,38 +1428,109 @@ function runPrerender() {
     }
   });
 
-  // 3. WW Weapons
+  // 3. WW Weapons (Unified local and Notion weapons)
   const wwWeapons = getWwWeapons();
+  const wwWeaponToChars = buildWwWeaponToCharactersMap();
+  const notionData = getNotionData();
+  const notionWeaponsMap = new Map();
+  notionData.forEach(item => {
+    if (item.name && item.dbSource === 'weapons') {
+      notionWeaponsMap.set(item.name.trim(), item);
+    }
+  });
+
+  const allWwWeapons = new Map();
   wwWeapons.forEach(wp => {
+    allWwWeapons.set(wp.name.trim(), {
+      name: wp.name.trim(),
+      id: wp.id,
+      wpNotion: notionWeaponsMap.get(wp.name.trim()) || null
+    });
+  });
+  notionData.forEach(item => {
+    if (item.name && item.dbSource === 'weapons') {
+      const cleanType = item.type || '';
+      if (['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType)) {
+        if (!allWwWeapons.has(item.name.trim())) {
+          allWwWeapons.set(item.name.trim(), {
+            name: item.name.trim(),
+            id: null,
+            wpNotion: item
+          });
+        }
+      }
+    }
+  });
+
+  allWwWeapons.forEach(({ name, id, wpNotion }) => {
+    const routePath = `/gallery/ww/weapon/${encodeURIComponent(name)}`;
+    const recommendedChars = wwWeaponToChars.get(name) || [];
     createPrerenderedPage(
-      `/gallery/ww/weapon/${encodeURIComponent(wp.name)}`,
-      `${wp.name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
-      `명조 무기 ${wp.name}의 돌파별 상세 능력치, 스킬 효과, 속성 보너스 및 추천 캐릭터 완벽 분석 가이드.`,
-      `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`,
+      routePath,
+      `${name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
+      `명조 무기 ${name}의 돌파별 상세 능력치, 스킬 효과, 속성 보너스 및 추천 착용 공명자 완벽 분석 가이드.`,
+      `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(name)}.webp`,
       baseHtml,
-      generateWwWeaponHtml(wp.id)
+      generateRichWwWeaponHtml(name, id, wpNotion, recommendedChars)
     );
     count++;
   });
 
-  // 4. Notion Data (only routes owned by an explicit database source)
-  const notionData = getNotionData();
+  // 4. HSR Equipment (Lightcones, Relics, Ornaments)
+  const { lightConeToChars, relicToChars, ornamentToChars } = buildHsrEquipmentToCharactersMap(hsrGuidesMap);
+
+  const hsrLightcones = loadHsrLightcones();
+  hsrLightcones.forEach(lc => {
+    if (!lc.name) return;
+    const routePath = `/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}`;
+    const recommendedChars = lightConeToChars.get(lc.name) || [];
+    createPrerenderedPage(
+      routePath,
+      `${lc.name} 상세 스탯 및 추천 캐릭터 | 붕괴: 스타레일 광추 DB`,
+      `붕괴: 스타레일 ${lc.name}(${lc.rarity || 5}성 ${lc.path || ''})의 80레벨 기초 스탯, 광추 스킬 효과, 승급 재료 및 추천 장착 캐릭터 가이드.`,
+      `${CDN_URL}/hsr%20images/%EA%B4%91%EC%B6%94/${encodeAssetPath(lc.name)}.webp`,
+      baseHtml,
+      generateHsrLightconeHtml(lc, recommendedChars)
+    );
+    count++;
+  });
+
+  const hsrRelics = loadHsrRelics();
+  hsrRelics.forEach(relic => {
+    if (!relic.name) return;
+    const routePath = `/gallery/hsr/relic/${encodeURIComponent(relic.name)}`;
+    const recommendedChars = relicToChars.get(relic.name) || [];
+    createPrerenderedPage(
+      routePath,
+      `${relic.name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 유물 DB`,
+      `붕괴: 스타레일 ${relic.name} 유물의 2세트/4세트 효과, 구성 부위 및 최적 추천 착용 캐릭터 총정리.`,
+      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      generateHsrRelicHtml(relic, recommendedChars)
+    );
+    count++;
+  });
+
+  const hsrOrnaments = loadHsrOrnaments();
+  hsrOrnaments.forEach(ornament => {
+    if (!ornament.name) return;
+    const routePath = `/gallery/hsr/ornament/${encodeURIComponent(ornament.name)}`;
+    const recommendedChars = ornamentToChars.get(ornament.name) || [];
+    createPrerenderedPage(
+      routePath,
+      `${ornament.name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 차원 장신구 DB`,
+      `붕괴: 스타레일 ${ornament.name} 차원 장신구의 2세트 효과, 구성 부위 및 추천 장착 캐릭터 완벽 분석.`,
+      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      generateHsrOrnamentHtml(ornament, recommendedChars)
+    );
+    count++;
+  });
+
+  // 5. Notion Data (NTE characters, NTE arcs, WW echoes, WW guides)
   notionData.forEach(item => {
     if (!item.name) return;
-    const cleanType = item.type || '';
-    const isWwWeapon = item.dbSource === 'weapons' && ['대검', '직검', '권총', '권갑', '증폭기', '무기'].includes(cleanType);
-
-    if (isWwWeapon) {
-      createPrerenderedPage(
-        `/gallery/ww/weapon/${encodeURIComponent(item.name)}`,
-        `${item.name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
-        `명조 ${item.name}의 돌파별 상세 능력치, 스킬 효과, 속성 보너스 및 추천 캐릭터 완벽 분석 가이드.`,
-        `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`,
-        baseHtml,
-        generateNotionHtml(item)
-      );
-      count++;
-    } else if (item.dbSource === 'nte_characters') {
+    if (item.dbSource === 'nte_characters') {
       const gameLabel = '이환(NTE)';
       const imagePath = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
       const routePath = `/gallery/nte/character/${encodeURIComponent(item.name)}`;

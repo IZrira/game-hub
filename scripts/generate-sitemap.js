@@ -363,118 +363,102 @@ async function generateSitemap() {
     console.log(`Found ${hsrRelicNames.length} HSR relic sets.`);
     console.log(`Found ${hsrOrnamentNames.length} HSR ornament sets.`);
 
-    const urlList = [
-      `${BASE_URL}/`,
-      `${BASE_URL}/gallery/hsr`,
-      `${BASE_URL}/gallery/ww`,
-      `${BASE_URL}/gallery/nte`,
-      `${BASE_URL}/gallery/aniimo`,
-      `${BASE_URL}/gallery/aniimo/characters`,
-      `${BASE_URL}/gallery/aniimo/locations`,
-      `${BASE_URL}/gallery/aniimo/type-chart`,
-      `${BASE_URL}/gallery/aniimo/personality`,
-      `${BASE_URL}/gallery/aniimo/party-builder`,
-      `${BASE_URL}/gallery/hsr/tierlist`,
-      `${BASE_URL}/gallery/ww/tierlist`,
-      `${BASE_URL}/gallery/hsr/parties`,
-      `${BASE_URL}/gallery/ww/parties`,
-      `${BASE_URL}/gallery/nte/parties`,
-      `${BASE_URL}/gallery/hsr/terminology`,
-      `${BASE_URL}/about`,
-      `${BASE_URL}/privacy`,
-      `${BASE_URL}/tos`,
-      `${BASE_URL}/contact`,
-      `${BASE_URL}/blog`,
-      `${BASE_URL}/notices`
-    ];
+    const allUrls = [];
+    const allUrlSet = new Set();
 
-    let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <!-- Core Static Pages -->
-`;
+    const mainEntries = [];
+    const hsrEntries = [];
+    const wwEntries = [];
+    const nteEntries = [];
+    const aniimoEntries = [];
+    const blogEntries = [];
 
-    // 1. Core Static Pages 추가
     const defaultBanner = `${CDN_URL}/hsr%20images/common/default_banner.webp`;
-    urlList.forEach(u => {
-      xml += buildUrlNode(u, null, u === `${BASE_URL}/` ? '1.0' : '0.9', 'daily', [defaultBanner]);
+
+    function addEntry(targetArray, url, lastmod, priority, changefreq, images = []) {
+      if (allUrlSet.has(url)) return;
+      allUrlSet.add(url);
+      allUrls.push(url);
+      const xmlNode = buildUrlNode(url, lastmod, priority, changefreq, images);
+      targetArray.push({ url, lastmod, xmlNode });
+    }
+
+    // 1. Core Static & Hub Pages -> sitemap-main.xml
+    addEntry(mainEntries, `${BASE_URL}/`, null, '1.0', 'daily', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/about`, null, '0.8', 'monthly', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/privacy`, null, '0.5', 'monthly', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/tos`, null, '0.5', 'monthly', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/contact`, null, '0.5', 'monthly', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/gallery/hsr`, null, '0.9', 'daily', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/gallery/ww`, null, '0.9', 'daily', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/gallery/nte`, null, '0.9', 'daily', [defaultBanner]);
+    addEntry(mainEntries, `${BASE_URL}/gallery/aniimo`, null, '0.9', 'daily', [defaultBanner]);
+
+    // 2. Honkai: Star Rail -> sitemap-hsr.xml
+    addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/tierlist`, null, '0.9', 'daily', [defaultBanner]);
+    addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/parties`, null, '0.8', 'weekly', [defaultBanner]);
+    addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/terminology`, null, '0.7', 'monthly', [defaultBanner]);
+
+    hsrIds.forEach(id => {
+      const charData = parseHsrCharacter(id);
+      const images = getHsrCharacterImages(charData);
+      const charLastmod = charData?.filePath ? getFileLastmod(charData.filePath) : null;
+      addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/character/${id}`, charLastmod, '0.8', 'daily', images);
+
+      if (charData) {
+        const hasGuide = (charData.folderName && registeredHsrGuides.has(charData.folderName)) ||
+                         (charData.name && registeredHsrGuides.has(charData.name));
+        if (hasGuide) {
+          const guideFilePath = path.join(HSR_GUIDE_DIR, `${id}.ts`);
+          const guideLastmod = getFileLastmod(guideFilePath) || charLastmod;
+          addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/character/${id}/guide`, guideLastmod, '0.8', 'daily', images);
+        }
+      }
     });
 
-    // 2. Wuthering Waves Characters Detail & Guide Pages
-    xml += `\n  <!-- Wuthering Waves Characters Detail & Guide Pages -->\n`;
+    hsrLightConeNames.forEach(name => {
+      addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/lightcone/${encodeURIComponent(name)}`, null, '0.7', 'weekly');
+    });
+
+    const relicLastmod = getFileLastmod(HSR_RELICS_FILE);
+    const ornamentLastmod = getFileLastmod(HSR_ORNAMENTS_FILE);
+
+    hsrRelicNames.forEach(name => {
+      addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(name)}`, relicLastmod, '0.7', 'weekly');
+    });
+
+    hsrOrnamentNames.forEach(name => {
+      addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(name)}`, ornamentLastmod, '0.7', 'weekly');
+    });
+
+    // 3. Wuthering Waves -> sitemap-ww.xml
+    addEntry(wwEntries, `${BASE_URL}/gallery/ww/tierlist`, null, '0.9', 'daily', [defaultBanner]);
+    addEntry(wwEntries, `${BASE_URL}/gallery/ww/parties`, null, '0.8', 'weekly', [defaultBanner]);
+
     const wwGuideFileLastmod = getFileLastmod(path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts'));
     wwIds.forEach(id => {
-      const url = `${BASE_URL}/gallery/ww/character/${id}`;
       const charData = parseWwCharacter(id);
       const images = getWwCharacterImages(charData);
       const charLastmod = charData?.filePath ? getFileLastmod(charData.filePath) : null;
+      addEntry(wwEntries, `${BASE_URL}/gallery/ww/character/${id}`, charLastmod, '0.8', 'daily', images);
 
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, charLastmod, '0.8', 'daily', images);
-        urlList.push(url);
-      }
-
-      // 캐릭터 가이드 페이지
       const charName = charData?.name || charData?.folderName || id;
       const hasWwGuide = registeredWwGuides.has(charName) ||
                          registeredWwGuides.has(charData?.folderName) ||
                          registeredWwGuides.has(id);
       if (hasWwGuide) {
-        const guideUrl = `${BASE_URL}/gallery/ww/character/${id}/guide`;
         const guideLastmod = wwGuideFileLastmod || charLastmod;
-        if (!urlList.includes(guideUrl)) {
-          xml += buildUrlNode(guideUrl, guideLastmod, '0.9', 'daily', images);
-          urlList.push(guideUrl);
-        }
+        addEntry(wwEntries, `${BASE_URL}/gallery/ww/character/${id}/guide`, guideLastmod, '0.9', 'daily', images);
       }
     });
 
-    // 3. Honkai Star Rail Characters Detail & Guide Pages
-    xml += `\n  <!-- Honkai Star Rail Characters Detail & Guide Pages -->\n`;
-    hsrIds.forEach(id => {
-      const charData = parseHsrCharacter(id);
-      const images = getHsrCharacterImages(charData);
-      const charLastmod = charData?.filePath ? getFileLastmod(charData.filePath) : null;
-
-      // 캐릭터 상세 페이지
-      const detailUrl = `${BASE_URL}/gallery/hsr/character/${id}`;
-      if (!urlList.includes(detailUrl)) {
-        xml += buildUrlNode(detailUrl, charLastmod, '0.8', 'daily', images);
-        urlList.push(detailUrl);
-      }
-
-      // 캐릭터 가이드 페이지
-      if (charData) {
-        const hasGuide = (charData.folderName && registeredHsrGuides.has(charData.folderName)) ||
-                         (charData.name && registeredHsrGuides.has(charData.name));
-        if (hasGuide) {
-          const guideUrl = `${BASE_URL}/gallery/hsr/character/${id}/guide`;
-          const guideFilePath = path.join(HSR_GUIDE_DIR, `${id}.ts`);
-          const guideLastmod = getFileLastmod(guideFilePath) || charLastmod;
-          if (!urlList.includes(guideUrl)) {
-            xml += buildUrlNode(guideUrl, guideLastmod, '0.8', 'daily', images);
-            urlList.push(guideUrl);
-          }
-        }
-      }
-    });
-
-    // 4. Wuthering Waves Weapons Detail Pages
-    xml += `\n  <!-- Wuthering Waves Weapons Detail Pages -->\n`;
     const weaponsLastmod = getFileLastmod(WEAPONS_FILE);
     wwWeapons.forEach(wp => {
-      const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(wp.name)}`;
       const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`;
-
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, weaponsLastmod, '0.8', 'daily', [imageUrl]);
-        urlList.push(url);
-      }
+      addEntry(wwEntries, `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(wp.name)}`, weaponsLastmod, '0.8', 'daily', [imageUrl]);
     });
 
-    // 5. Notion Imported Detail Pages with explicit source ownership
-    xml += `\n  <!-- Notion Imported Detail Pages -->\n`;
+    // Notion WW and NTE items
     const notionData = getNotionData();
     console.log(`Processing ${notionData.length} Notion items for sitemap...`);
     notionData.forEach(item => {
@@ -486,92 +470,47 @@ async function generateSitemap() {
       const isWwEcho = item.dbSource === 'ww_echoes';
 
       if (isNteCharacter) {
-        const url = `${BASE_URL}/gallery/nte/character/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
-          urlList.push(url);
-        }
+        addEntry(nteEntries, `${BASE_URL}/gallery/nte/character/${encodeURIComponent(item.name)}`, null, '0.8', 'daily', [imageUrl]);
       } else if (isNteArc) {
-        const url = `${BASE_URL}/gallery/nte/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
-          urlList.push(url);
-        }
+        addEntry(nteEntries, `${BASE_URL}/gallery/nte/weapon/${encodeURIComponent(item.name)}`, null, '0.8', 'daily', [imageUrl]);
       } else if (isWwWeapon) {
-        const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`;
         const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(item.name)}.webp`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.8', 'daily', [imageUrl]);
-          urlList.push(url);
-        }
+        addEntry(wwEntries, `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(item.name)}`, null, '0.8', 'daily', [imageUrl]);
       } else if (isWwEcho) {
-        const url = `${BASE_URL}/gallery/ww/echo/${encodeURIComponent(item.name)}`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, null, '0.7', 'weekly');
-          urlList.push(url);
-        }
+        addEntry(wwEntries, `${BASE_URL}/gallery/ww/echo/${encodeURIComponent(item.name)}`, null, '0.7', 'weekly');
       }
     });
 
-    // 6. HSR equipment detail pages from the canonical local databases
-    xml += `\n  <!-- Honkai Star Rail Equipment Detail Pages -->\n`;
-    hsrLightConeNames.forEach(name => {
-      const url = `${BASE_URL}/gallery/hsr/lightcone/${encodeURIComponent(name)}`;
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, null, '0.7', 'weekly');
-        urlList.push(url);
-      }
-    });
+    // 4. Neverness to Everness (NTE) -> sitemap-nte.xml
+    addEntry(nteEntries, `${BASE_URL}/gallery/nte/parties`, null, '0.8', 'weekly', [defaultBanner]);
 
-    const relicLastmod = getFileLastmod(HSR_RELICS_FILE);
-    const ornamentLastmod = getFileLastmod(HSR_ORNAMENTS_FILE);
+    // 5. Aniimo -> sitemap-aniimo.xml
+    addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/characters`, null, '0.8', 'weekly', [defaultBanner]);
+    addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/locations`, null, '0.8', 'weekly', [defaultBanner]);
+    addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/type-chart`, null, '0.8', 'weekly', [defaultBanner]);
+    addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/personality`, null, '0.8', 'weekly', [defaultBanner]);
+    addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/party-builder`, null, '0.8', 'weekly', [defaultBanner]);
+
     const aniimoFileLastmod = getFileLastmod(ANIIMO_DATA_FILE);
-
-    hsrRelicNames.forEach(name => {
-      const url = `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(name)}`;
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, relicLastmod, '0.7', 'weekly');
-        urlList.push(url);
-      }
+    const aniimoItems = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+    aniimoItems.forEach(item => {
+      addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/character/${encodeURIComponent(item.name)}`, item.checkedAt || aniimoFileLastmod, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
     });
 
-    hsrOrnamentNames.forEach(name => {
-      const url = `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(name)}`;
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, ornamentLastmod, '0.7', 'weekly');
-        urlList.push(url);
-      }
-    });
-
-    // 7. Aniimo detail pages from the verified official roster snapshot
-    xml += `\n  <!-- Aniimo Detail Pages -->\n`;
-    const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
-    aniimoEntries.forEach(item => {
-      const url = `${BASE_URL}/gallery/aniimo/character/${encodeURIComponent(item.name)}`;
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, item.checkedAt || aniimoFileLastmod, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
-        urlList.push(url);
-      }
-    });
-
-    // 8. Aniimo location pages derived from every form's verified locations
-    xml += `\n  <!-- Aniimo Location Pages -->\n`;
-    const aniimoLocations = [...new Set(aniimoEntries.flatMap(item =>
+    const aniimoLocations = [...new Set(aniimoItems.flatMap(item =>
       (item.forms || []).flatMap(form => form.locations || item.locations || [])
     ))].sort((a, b) => a.localeCompare(b, 'ko'));
     aniimoLocations.forEach(location => {
       const slug = location.trim().replace(/\s+/g, '-');
-      const url = `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`;
-      if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, aniimoFileLastmod, '0.7', 'weekly');
-        urlList.push(url);
-      }
+      addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`, aniimoFileLastmod, '0.7', 'weekly');
     });
 
-    // 9. Blog Posts
-    xml += `\n  <!-- Blog Articles -->\n`;
+    // 6. Blog & Notices -> sitemap-blog.xml
+    addEntry(blogEntries, `${BASE_URL}/blog`, null, '0.8', 'weekly', [defaultBanner]);
+    addEntry(blogEntries, `${BASE_URL}/notices`, null, '0.8', 'weekly', [defaultBanner]);
+
     const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
     if (fs.existsSync(blogFilePath)) {
       const blogContent = fs.readFileSync(blogFilePath, 'utf8');
@@ -579,23 +518,74 @@ async function generateSitemap() {
       blogMatches.forEach(m => {
         const blogId = m[1];
         const publishedDate = m[2];
-        const url = `${BASE_URL}/blog/${encodeURIComponent(blogId)}`;
-        if (!urlList.includes(url)) {
-          xml += buildUrlNode(url, publishedDate, '0.8', 'weekly');
-          urlList.push(url);
-        }
+        addEntry(blogEntries, `${BASE_URL}/blog/${encodeURIComponent(blogId)}`, publishedDate, '0.8', 'weekly');
       });
     }
 
-    validateGeneratedUrls(urlList, new Set(wwIds));
-    xml += `</urlset>\n`;
+    // Validation
+    validateGeneratedUrls(allUrls, new Set(wwIds));
 
-    const sitemapPath = path.join(PUBLIC_DIR, 'sitemap.xml');
-    fs.writeFileSync(sitemapPath, xml, 'utf8');
-    console.log(`Successfully generated sitemap.xml at ${sitemapPath} with ${urlList.length} URLs!`);
+    // File writing helper
+    const today = new Date().toISOString().split('T')[0];
+    function getMaxLastmod(entries) {
+      let max = null;
+      for (const e of entries) {
+        if (e.lastmod && (!max || e.lastmod > max)) {
+          max = e.lastmod;
+        }
+      }
+      return max || today;
+    }
 
-    // Submit to IndexNow
-    await submitToIndexNow(urlList);
+    function writeSubSitemap(filename, entries) {
+      const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${entries.map(e => e.xmlNode).join('')}</urlset>
+`;
+      const filePath = path.join(PUBLIC_DIR, filename);
+      fs.writeFileSync(filePath, xml, 'utf8');
+      console.log(`Successfully generated ${filename} with ${entries.length} URLs.`);
+    }
+
+    // Write 6 sub-sitemaps
+    writeSubSitemap('sitemap-main.xml', mainEntries);
+    writeSubSitemap('sitemap-hsr.xml', hsrEntries);
+    writeSubSitemap('sitemap-ww.xml', wwEntries);
+    writeSubSitemap('sitemap-nte.xml', nteEntries);
+    writeSubSitemap('sitemap-aniimo.xml', aniimoEntries);
+    writeSubSitemap('sitemap-blog.xml', blogEntries);
+
+    // Build & Write master sitemap index (sitemap.xml)
+    const subSitemaps = [
+      { name: 'sitemap-main.xml', entries: mainEntries },
+      { name: 'sitemap-hsr.xml', entries: hsrEntries },
+      { name: 'sitemap-ww.xml', entries: wwEntries },
+      { name: 'sitemap-nte.xml', entries: nteEntries },
+      { name: 'sitemap-aniimo.xml', entries: aniimoEntries },
+      { name: 'sitemap-blog.xml', entries: blogEntries },
+    ];
+
+    let indexXml = `<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
+    subSitemaps.forEach(s => {
+      const lastmod = getMaxLastmod(s.entries);
+      indexXml += `  <sitemap>
+    <loc>${BASE_URL}/${s.name}</loc>
+    <lastmod>${lastmod}</lastmod>
+  </sitemap>
+`;
+    });
+    indexXml += `</sitemapindex>\n`;
+
+    const masterSitemapPath = path.join(PUBLIC_DIR, 'sitemap.xml');
+    fs.writeFileSync(masterSitemapPath, indexXml, 'utf8');
+    console.log(`Successfully generated sitemap index at ${masterSitemapPath} (${allUrls.length} total indexed URLs across ${subSitemaps.length} sub-sitemaps).`);
+
+    // Submit all URLs to IndexNow
+    await submitToIndexNow(allUrls);
 
   } catch (error) {
     console.error('Fatal error during sitemap generation:', error);
