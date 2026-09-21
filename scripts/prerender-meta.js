@@ -702,7 +702,36 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
     if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
       throw new Error('Prerender content markers are missing or malformed in index.html.');
     }
-    injected = `${injected.slice(0, startIndex + startMarker.length)}\n${innerContent}\n    ${injected.slice(endIndex)}`;
+
+    const alreadyWrapped = innerContent.includes('prerender-shell');
+    const wrappedContent = alreadyWrapped ? innerContent : `
+    <div class="prerender-shell" id="prerender-root">
+      <div class="prerender-top-shimmer" aria-hidden="true"></div>
+      <header class="prerender-header-bar">
+        <div class="prerender-brand">
+          <span class="prerender-logo-dot"></span>
+          <a href="/" class="prerender-brand-name">RIRA GAME HUB</a>
+        </div>
+        <div class="prerender-status-pill" aria-hidden="true">
+          <span class="prerender-status-dot"></span>
+          <span>동기화 중...</span>
+        </div>
+      </header>
+      <main class="prerender-main">
+        ${innerContent}
+      </main>
+      <footer class="prerender-footer">
+        <p>© 2026 Rira Game Hub. All rights reserved.</p>
+        <p>
+          <a href="/about">About Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/tos">Terms of Service</a>
+          <a href="/contact">Contact</a>
+        </p>
+      </footer>
+    </div>`;
+
+    injected = `${injected.slice(0, startIndex + startMarker.length)}\n${wrappedContent}\n    ${injected.slice(endIndex)}`;
   }
 
   return injected;

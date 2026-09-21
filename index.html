@@ -15,10 +15,17 @@
   <link rel="manifest" href="/manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7014148671633305" crossorigin="anonymous"></script>
-  <style>
+  <style id="prerender-critical-css">
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
     body {
+      margin: 0;
+      padding: 0;
       background-color: #0a0a0a;
       color: #F3F8FF;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+      -webkit-font-smoothing: antialiased;
       scrollbar-width: thin;
       scrollbar-color: #7E30E1 #121212;
     }
@@ -35,6 +42,7 @@
     .glass-card {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       border: 1px solid rgba(255, 255, 255, 0.1);
     }
     .scrollbar-hide::-webkit-scrollbar {
@@ -44,81 +52,337 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* Prerender Shell & Skeleton Shimmer */
+    .prerender-top-shimmer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #7E30E1 0%, #E26EE5 50%, #7E30E1 100%);
+      background-size: 200% 100%;
+      animation: prerender-shimmer 1.5s infinite linear;
+      z-index: 99999;
+    }
+    @keyframes prerender-shimmer {
+      0% { background-position: 100% 0; }
+      100% { background-position: -100% 0; }
+    }
+
+    .prerender-shell {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px 80px;
+      min-height: 100vh;
+      box-sizing: border-box;
+    }
+
+    .prerender-header-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      margin-bottom: 28px;
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+    }
+    .prerender-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .prerender-logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #7E30E1;
+      box-shadow: 0 0 12px #7E30E1;
+      display: inline-block;
+    }
+    .prerender-brand-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .prerender-status-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      background: rgba(126, 48, 225, 0.12);
+      border: 1px solid rgba(126, 48, 225, 0.25);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      color: #d8b4fe;
+    }
+    .prerender-status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #a855f7;
+      box-shadow: 0 0 8px #a855f7;
+      animation: prerender-pulse 1.8s infinite ease-in-out;
+    }
+    @keyframes prerender-pulse {
+      0%, 100% { opacity: 0.4; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    .prerender-main {
+      animation: prerender-fadein 0.2s ease-out;
+    }
+    @keyframes prerender-fadein {
+      from { opacity: 0.85; }
+      to { opacity: 1; }
+    }
+
+    .prerender-shell h1 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.35;
+      margin: 0 0 16px 0;
+      letter-spacing: -0.02em;
+    }
+    .prerender-shell h2 {
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+      font-weight: 700;
+      color: #c084fc;
+      line-height: 1.4;
+      margin: 32px 0 14px 0;
+    }
+    .prerender-shell h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.4;
+      margin: 20px 0 8px 0;
+    }
+    .prerender-shell p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #94a3b8;
+      margin: 0 0 16px 0;
+    }
+    .prerender-shell a {
+      color: #a855f7;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .prerender-shell a:hover {
+      color: #c084fc;
+      text-decoration: underline;
+    }
+
+    .prerender-shell nav ul,
+    .prerender-shell ul {
+      list-style: none;
+      padding: 0;
+      margin: 12px 0 24px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .prerender-shell li {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+    }
+    .prerender-shell li a {
+      color: #f1f5f9;
+      font-weight: 600;
+      display: block;
+      margin-bottom: 4px;
+    }
+    .prerender-shell li a:hover {
+      color: #c084fc;
+    }
+    .prerender-shell li p {
+      margin: 0;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      line-height: 1.5;
+    }
+
+    .prerender-shell dl {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 16px 0 24px 0;
+      padding: 0;
+    }
+    .prerender-shell dt {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: #94a3b8;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+    }
+    .prerender-shell dd {
+      margin: 4px 0 0 0;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #f1f5f9;
+    }
+
+    .prerender-shell table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 0.9rem;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .prerender-shell th {
+      background: rgba(126, 48, 225, 0.18);
+      color: #f3f8ff;
+      text-align: left;
+      padding: 12px 16px;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .prerender-shell td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+    }
+    .prerender-shell tr:last-child td {
+      border-bottom: none;
+    }
+
+    .prerender-shell pre {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .prerender-footer {
+      margin-top: 48px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .prerender-footer a {
+      color: #94a3b8;
+      margin-right: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .prerender-shell {
+        padding: 12px 14px 60px;
+      }
+      .prerender-header-bar {
+        padding: 10px 14px;
+        margin-bottom: 20px;
+      }
+      .prerender-shell nav ul,
+      .prerender-shell ul {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .prerender-shell dl {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+      }
+    }
   </style>
 </head>
 <body>
   <div id="root">
     <!-- PRERENDER_CONTENT_START -->
-    <noscript>
-      <div style="max-width: 1000px; margin: 40px auto; padding: 24px; font-family: 'Noto Sans KR', sans-serif; line-height: 1.7;">
-        <h1>Rira Game Hub (RIRA ARCHIVE) - 토탈 게임 데이터베이스 &amp; 공략 플랫폼</h1>
-        <p>Rira Game Hub는 붕괴: 스타레일(Honkai: Star Rail), 명조: 워더링 웨이브(Wuthering Waves), 이환: 네버네스 투 에버네스(Neverness to Everness), 애니모(Aniimo) 등 최신 인기 서브컬처 및 오픈월드 액션 게임의 종합 공략, 캐릭터 육성 가이드, 티어표, 파티 조합 추천 및 무기/장비/도감 데이터베이스를 체계적으로 집대성한 전문 아카이브입니다.</p>
-        
-        <h2>주요 허브 및 서비스 안내</h2>
-        <ul>
-          <li><strong>붕괴: 스타레일 허브 (HSR)</strong>: 93명 캐릭터의 운명의 길 및 속성별 육성 가이드, 추천 광추 및 유물 세팅 가이드, 혼돈의 기억/허구 이야기/종말의 환영 최신 메타 티어표 및 4인 최적화 파티 조합 데이터.</li>
-          <li><strong>명조: 워더링 웨이브 허브 (WW)</strong>: 58명 공명자의 공명 스킬, 공명 회로, 변주/반주 스킬 메커니즘 분석, 에코 세트 효과(소나타) 및 메인 에코 추천, 스킬 사이클 입력 가이드 및 역경의 탑 티어리스트.</li>
-          <li><strong>이환: 네버네스 투 에버네스 허브 (NTE)</strong>: 21명 캐릭터별 이능력 속성 및 바이레일/얼티메이트 스킬 공략, 아크 도감 및 인벤토리 아이템 획득처 정보.</li>
-          <li><strong>애니모 허브 (Aniimo)</strong>: 86종 애니모 도감, 형태별 능력치 비교, 진화 계보 및 조건, 9원소 상성표, 성격 가이드, 추천 파티 및 지역별 출현 데이터.</li>
-          <li><strong>전문 메타 분석 칼럼 (Blog)</strong>: 버전별 신규 캐릭터 메타 분석, 유물 및 에코 세팅 심층 연구, 고난이도 엔드 콘텐츠 공략 칼럼.</li>
-        </ul>
-
-        <h2>법적 고지 및 사이트 정책</h2>
-        <p>
-          <a href="/about">회사 소개 (About Us)</a> | 
-          <a href="/privacy">개인정보처리방침 (Privacy Policy)</a> | 
-          <a href="/tos">이용약관 (Terms of Service)</a> | 
-          <a href="/contact">문의하기 (Contact Us)</a>
-        </p>
-      </div>
-    </noscript>
-    <div id="ssr-fallback" style="max-width: 1000px; margin: 40px auto; padding: 24px; font-family: 'Noto Sans KR', sans-serif; line-height: 1.7; opacity: 0.95;">
-      <header style="margin-bottom: 32px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px;">
-        <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 8px;">Rira Game Hub (RIRA ARCHIVE) | 토탈 게임 공략 &amp; 메타 데이터베이스</h1>
-        <p style="color: #bbb; font-size: 1.05rem;">최신 게임 공략 및 데이터베이스 아카이브. 붕괴: 스타레일, 명조: 워더링 웨이브, 이환, 애니모 등 캐릭터 빌드, 파티 조합, 에코/유물 세팅, 최신 메타 티어표를 한곳에서 확인하세요.</p>
+    <div class="prerender-shell" id="prerender-root">
+      <div class="prerender-top-shimmer" aria-hidden="true"></div>
+      <header class="prerender-header-bar">
+        <div class="prerender-brand">
+          <span class="prerender-logo-dot"></span>
+          <a href="/" class="prerender-brand-name">RIRA GAME HUB</a>
+        </div>
+        <div class="prerender-status-pill" aria-hidden="true">
+          <span class="prerender-status-dot"></span>
+          <span>동기화 중...</span>
+        </div>
       </header>
+      <noscript>
+        <div style="background: rgba(126, 48, 225, 0.12); border: 1px solid rgba(126, 48, 225, 0.3); border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 0.9rem; color: #d8b4fe;">
+          자바스크립트가 비활성화되어 정적 아카이브 모드로 표시됩니다. 인터랙티브 기능과 상세 필터를 사용하려면 자바스크립트를 활성화해 주세요.
+        </div>
+      </noscript>
+      <main class="prerender-main">
+        <article>
+          <h1>Rira Game Hub (RIRA ARCHIVE) | 토탈 게임 공략 &amp; 메타 데이터베이스</h1>
+          <p>Rira Game Hub는 붕괴: 스타레일(Honkai: Star Rail), 명조: 워더링 웨이브(Wuthering Waves), 이환: 네버네스 투 에버네스(Neverness to Everness), 애니모(Aniimo) 등 최신 인기 서브컬처 및 액션 게임의 종합 공략, 캐릭터 육성 가이드, 티어표, 파티 조합 추천 및 장비 데이터베이스를 체계적으로 집대성한 전문 아카이브입니다.</p>
 
-      <main>
-        <section style="margin-bottom: 28px;">
-          <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #b785f6;">🎮 게임별 공략 및 데이터베이스</h2>
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;">
-            <article style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-              <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 8px;"><a href="/gallery/hsr" style="color: #fff; text-decoration: none;">붕괴: 스타레일 허브</a></h3>
-              <p style="font-size: 0.95rem; color: #aaa;">전체 93명 캐릭터 도감, 추천 광추 및 터널 유물/차원 장신구 세팅, 혼돈의 기억 및 허구 이야기 메타 티어표, 4인 시너지 파티 추천 가이드.</p>
-            </article>
-            <article style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-              <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 8px;"><a href="/gallery/ww" style="color: #fff; text-decoration: none;">명조: 워더링 웨이브 허브</a></h3>
-              <p style="font-size: 0.95rem; color: #aaa;">58명 공명자 상세 스킬 가이드, 28종 소나타 세트 효과 및 메인 에코 추천, 역경의 탑/홀로그램 공략 및 최적화 파티 빌더.</p>
-            </article>
-            <article style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-              <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 8px;"><a href="/gallery/nte" style="color: #fff; text-decoration: none;">이환: 네버네스 투 에버네스 허브</a></h3>
-              <p style="font-size: 0.95rem; color: #aaa;">21명 캐릭터별 이능력 속성/바이레일 스킬 분석, 49종 아크 도감 및 1,000여 종 인벤토리 아이템 획득처 정보.</p>
-            </article>
-            <article style="background: rgba(255,255,255,0.03); padding: 16px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-              <h3 style="font-size: 1.15rem; font-weight: 600; margin-bottom: 8px;"><a href="/gallery/aniimo" style="color: #fff; text-decoration: none;">애니모 허브</a></h3>
-              <p style="font-size: 0.95rem; color: #aaa;">86종 애니모 형태별 도감, 능력치 비교기, 진화 계보 및 조건, 9원소 상성 계산표, 성격 공략 및 출현 지역 정보.</p>
-            </article>
-          </div>
-        </section>
+          <h2>🎮 게임별 공략 및 데이터베이스</h2>
+          <nav aria-label="주요 게임 데이터베이스">
+            <ul>
+              <li>
+                <a href="/gallery/hsr">붕괴: 스타레일 허브 (HSR)</a>
+                <p>전체 93명 캐릭터 도감, 추천 광추 및 터널 유물/차원 장신구 세팅, 메타 티어표, 4인 시너지 파티 추천 가이드.</p>
+              </li>
+              <li>
+                <a href="/gallery/ww">명조: 워더링 웨이브 허브 (WW)</a>
+                <p>58명 공명자 상세 스킬 가이드, 28종 소나타 세트 효과 및 메인 에코 추천, 심경의 탑 공략 및 최적화 파티 빌더.</p>
+              </li>
+              <li>
+                <a href="/gallery/nte">이환: 네버네스 투 에버네스 허브 (NTE)</a>
+                <p>21명 캐릭터별 이능력 속성/바이레일 스킬 분석, 49종 아크 도감 및 1,000여 종 인벤토리 아이템 획득처 정보.</p>
+              </li>
+              <li>
+                <a href="/gallery/aniimo">애니모 허브 (Aniimo)</a>
+                <p>86종 애니모 형태별 도감, 능력치 비교기, 진화 계보 및 조건, 9원소 상성 계산표, 성격 공략 및 출현 지역 정보.</p>
+              </li>
+            </ul>
+          </nav>
 
-        <section style="margin-bottom: 28px;">
-          <h2 style="font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #b785f6;">📝 전문 메타 분석 칼럼 &amp; 가이드 (Blog)</h2>
-          <p style="font-size: 0.95rem; color: #aaa; margin-bottom: 8px;">버전별 패치 분석, 캐릭터별 심층 육성 빌드, 돌파 효율 및 파티 메커니즘을 다루는 공식 에디터 칼럼을 제공합니다.</p>
-          <ul style="padding-left: 20px; color: #bbb; font-size: 0.95rem;">
-            <li><a href="/blog/hsr-4-3-meta-analysis" style="color: #8ab4f8;">붕괴: 스타레일 4.3 업데이트 및 앰버 로드 메타 심층 분석</a></li>
-            <li><a href="/blog/hsr-firefly-build-guide" style="color: #8ab4f8;">붕괴: 스타레일 반디(Firefly) 완벽 가이드: 격파 특수효과의 새로운 패러다임</a></li>
-            <li><a href="/blog/ww-shorekeeper-guide" style="color: #8ab4f8;">명조: 워더링 웨이브 파수인(The Shorekeeper) 심층 공략 가이드</a></li>
+          <h2>📝 전문 메타 분석 칼럼 &amp; 가이드 (Blog)</h2>
+          <p>버전별 패치 분석, 캐릭터별 심층 육성 빌드, 돌파 효율 및 파티 메커니즘을 다루는 공식 에디터 칼럼을 제공합니다.</p>
+          <ul>
+            <li>
+              <a href="/blog/hsr-4-3-meta-analysis">붕괴: 스타레일 4.3 업데이트 및 앰버 로드 메타 심층 분석</a>
+              <p>신규 캐릭터 운용 및 혼돈의 기억 환경 분석</p>
+            </li>
+            <li>
+              <a href="/blog/hsr-firefly-build-guide">붕괴: 스타레일 반디(Firefly) 완벽 가이드: 격파 특수효과의 새로운 패러다임</a>
+              <p>반디의 세팅, 추천 광추 및 화합 개척자 연계 파티</p>
+            </li>
+            <li>
+              <a href="/blog/ww-shorekeeper-guide">명조: 워더링 웨이브 파수인(The Shorekeeper) 심층 공략 가이드</a>
+              <p>별의 영역 변주 메커니즘 및 힐러/버퍼 최적화 세팅</p>
+            </li>
           </ul>
-        </section>
+        </article>
       </main>
 
-      <footer style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; font-size: 0.9rem; color: #777;">
+      <footer class="prerender-footer">
         <p style="margin-bottom: 8px;">© 2026 Rira Game Hub. All rights reserved.</p>
         <p>
-          <a href="/about" style="color: #8ab4f8; margin-right: 12px;">About Us</a>
-          <a href="/privacy" style="color: #8ab4f8; margin-right: 12px;">Privacy Policy</a>
-          <a href="/tos" style="color: #8ab4f8; margin-right: 12px;">Terms of Service</a>
-          <a href="/contact" style="color: #8ab4f8;">Contact Us</a>
+          <a href="/about">About Us</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/tos">Terms of Service</a>
+          <a href="/contact">Contact Us</a>
         </p>
       </footer>
     </div>
