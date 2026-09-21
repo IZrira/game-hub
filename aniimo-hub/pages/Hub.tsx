@@ -7,8 +7,10 @@ import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo.json';
 import type { AniimoEntry } from '../types';
 
+import { OFFICIAL_ANIIMO_HABITATS } from '../data/habitats';
+
 const entries = aniimoData as AniimoEntry[];
-const locationCount = new Set(entries.flatMap(entry => entry.forms.flatMap(form => form.locations))).size;
+const locationCount = OFFICIAL_ANIIMO_HABITATS.length;
 const formCount = entries.reduce((total, entry) => total + entry.forms.length, 0);
 
 const tools = [
@@ -16,12 +18,12 @@ const tools = [
   { title: '비교 매트릭스', description: '선택한 아니모 간의 스탯 델타와 역할군별 능력치 차이를 정밀 비교합니다.', path: '/gallery/aniimo/characters', icon: Layers3, stat: '스탯 비교' },
   { title: '파티 추천', description: '역할과 형태별 특성을 반영해 엄선한 4인 추천 조합과 서포터를 확인합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '추천 조합' },
   { title: '원소 상성표', description: '9개 원소의 공격 배율과 복합 원소 상대 추천 공격 원소를 확인합니다.', path: '/gallery/aniimo/type-chart', icon: Swords, stat: '9원소' },
-  { title: '지역별 도감', description: '출현 지역을 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}지역` },
+  { title: '서식지 도감', description: '공식 14대 서식지를 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}개 서식지` },
   { title: '성격 가이드', description: '성격 8종의 전투·홈 효과와 역할별 추천 MBTI 조합을 확인합니다.', path: '/gallery/aniimo/personality', icon: Brain, stat: '8성격' },
 ];
 
 const HubAniimo: React.FC = () => <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-  <SEO title="애니모 허브 | 도감·원소 상성·지역 데이터베이스" description={`애니모 ${entries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locationCount}개 지역별 출현 정보를 한곳에서 확인하세요.`} url="/gallery/aniimo" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 허브', url: '/gallery/aniimo' }]} />
+  <SEO title="애니모 허브 | 도감·원소 상성·서식지 데이터베이스" description={`애니모 ${entries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locationCount}개 공식 서식지 정보를 한곳에서 확인하세요.`} url="/gallery/aniimo" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 허브', url: '/gallery/aniimo' }]} />
   <PageHeader gameId="aniimo" title="애니모 허브" />
   <AniimoMobileNav />
   <main className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-12 px-4 pb-24 pt-10 sm:px-6 md:px-8 lg:grid-cols-[240px_minmax(0,1fr)]">

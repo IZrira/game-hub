@@ -20,6 +20,8 @@ export interface AniimoEntry {
   stats: AniimoStats;
   description: string;
   locations: string[];
+  habitats?: string[];
+  detailLocations?: string[];
   homeAbilities: AniimoHomeAbility[];
   explorationSkills: AniimoSkill[];
   traits: AniimoSkill[];
@@ -39,6 +41,8 @@ export interface AniimoForm {
   description: string;
   stats: AniimoStats;
   locations: string[];
+  habitats?: string[];
+  detailLocations?: string[];
   homeAbilities: AniimoHomeAbility[];
   explorationSkills: AniimoSkill[];
   traits: AniimoSkill[];

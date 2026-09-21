@@ -499,11 +499,25 @@ async function generateSitemap() {
       addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/character/${encodeURIComponent(item.name)}`, item.checkedAt || aniimoFileLastmod, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
     });
 
-    const aniimoLocations = [...new Set(aniimoItems.flatMap(item =>
-      (item.forms || []).flatMap(form => form.locations || item.locations || [])
-    ))].sort((a, b) => a.localeCompare(b, 'ko'));
-    aniimoLocations.forEach(location => {
-      const slug = location.trim().replace(/\s+/g, '-');
+    const OFFICIAL_ANIIMO_HABITATS = [
+      '붓꽃 바다',
+      '구름 초원',
+      '스테플 숲',
+      '로즈타워 숲',
+      '늑대이빨 능선',
+      '청석 대지',
+      '뇌전의 숲',
+      '설산기슭 초원',
+      '고래첨벙 해안',
+      '붉은바위 고지',
+      '안개숲',
+      '갈매기 만',
+      '조화의 언덕',
+      '바다끝 구름'
+    ];
+
+    OFFICIAL_ANIIMO_HABITATS.forEach(habitat => {
+      const slug = habitat.trim().replace(/\s+/g, '-');
       addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`, aniimoFileLastmod, '0.7', 'weekly');
     });
 

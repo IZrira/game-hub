@@ -303,7 +303,7 @@
         },
         "description": "산지에 사는 작은 탄멍멍은 털빛이 바위처럼 변해 있으며, 거센 바람에 털이 다소 헝클어져 있다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "붉은바위 고지"
         ],
         "homeAbilities": [
@@ -549,7 +549,15 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/001/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "구름 초원",
+      "늑대이빨 능선",
+      "바다끝 구름",
+      "붉은바위 고지",
+      "안개숲"
+    ]
   },
   {
     "number": "002",
@@ -853,7 +861,7 @@
         },
         "description": "산지에 사는 늑대 무리는 털빛이 주변 환경에 잘 어우러지도록 변했다. 고열 지대를 누비는 다리에는 용암 껍질이 덮여 있다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "붉은바위 고지"
         ],
         "homeAbilities": [
@@ -1099,7 +1107,14 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/002/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "구름 초원",
+      "늑대이빨 능선",
+      "바다끝 구름",
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "003",
@@ -1997,7 +2012,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/003/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "004",
@@ -2442,7 +2461,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/004/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "005",
@@ -2469,7 +2492,7 @@
       "구름 초원",
       "갈매기 만",
       "고래첨벙 해안",
-      "스타폴 숲"
+      "스테플 숲"
     ],
     "homeAbilities": [
       {
@@ -2578,7 +2601,7 @@
           "구름 초원",
           "갈매기 만",
           "고래첨벙 해안",
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -2666,7 +2689,13 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/005/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "구름 초원",
+      "스테플 숲"
+    ]
   },
   {
     "number": "006",
@@ -2690,7 +2719,7 @@
     },
     "description": "혼자 다니는 것을 좋아하며, 주로 밤에 모습을 드러낸다. 외형은 마치 별빛 망토를 두른 신비한 마법사와 같으며, 정신 에너지를 이용해 순간이동할 수 있다.",
     "locations": [
-      "스타폴 숲"
+      "스테플 숲"
     ],
     "homeAbilities": [
       {
@@ -2828,7 +2857,7 @@
         },
         "description": "혼자 다니는 것을 좋아하며, 주로 밤에 모습을 드러낸다. 외형은 마치 별빛 망토를 두른 신비한 마법사와 같으며, 정신 에너지를 이용해 순간이동할 수 있다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -2968,7 +2997,7 @@
         },
         "description": "우기에 태어난 스타저드 중에는 얇고 투명한 피부막을 지닌 경우도 있다. 수분이 부족하면 쉽게 건조해지기 때문에 비가 오는 날에 자주 모습을 드러낸다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -3097,7 +3126,7 @@
         },
         "description": "천휘의 에너지가 스타저드의 마법을 강화해, 망토 안쪽에 찬란한 무지갯빛이 드러났다. 하늘을 가르는 그 모습은 마치 몽환적인 빛의 스펙트럼처럼 펼쳐진다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -3206,7 +3235,13 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/006/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "구름 초원",
+      "스테플 숲"
+    ]
   },
   {
     "number": "007",
@@ -3519,7 +3554,7 @@
         "description": "해변에서 먹이를 찾는 호루매기들은 먹이와 함께 섭취한 해조류의 영향으로 깃털에 점차 바다빛이 스며든다.",
         "locations": [
           "고래첨벙 해안",
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -3667,7 +3702,7 @@
         },
         "description": "고지대에 서식하는 호루매기는 깃털이 마른 잎처럼 변하고, 부스스한 깃털이 눈을 가려 한층 더 자유분방한 분위기를 풍긴다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "붉은바위 고지"
         ],
         "homeAbilities": [
@@ -3796,7 +3831,17 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/007/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "구름 초원",
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "바다끝 구름",
+      "붉은바위 고지",
+      "스테플 숲"
+    ]
   },
   {
     "number": "008",
@@ -4130,7 +4175,7 @@
         },
         "description": "바닷바람을 맞으며 걷는 것을 좋아하고, 늘 기분이 좋아 보인다. 흥이 오르면 자신도 모르게 연주를 하며 춤을 춘다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -4292,7 +4337,7 @@
         },
         "description": "고지대에 서식하는 롬본이는 햇살 아래를 거닐며, 산들바람과 함께 꽃 모양의 나팔로 부드러운 선율을 연주한다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -4434,7 +4479,17 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/008/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "구름 초원",
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "바다끝 구름",
+      "붉은바위 고지",
+      "스테플 숲"
+    ]
   },
   {
     "number": "009",
@@ -4785,7 +4840,7 @@
         "description": "높은 암초 위에 서서 더 먼 바다까지 소리가 닿도록 부지런히 연습한다. 바다 저편에서도 언젠가 메아리가 돌아오리라 믿는 듯하다.",
         "locations": [
           "고래첨벙 해안",
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -5092,7 +5147,7 @@
         },
         "description": "고지대에 서식하는 럼펫이는 이른 아침이면 높은 곳으로 날아올라 우렁찬 소리로 만물을 깨우고, 주변의 불평에도 전혀 신경 쓰지 않는다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -5242,7 +5297,16 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/009/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "바다끝 구름",
+      "붉은바위 고지",
+      "스테플 숲"
+    ]
   },
   {
     "number": "010",
@@ -5720,7 +5784,7 @@
         },
         "description": "고지대에 서식하는 튜바얌은 풀잎을 말아 무대를 꾸민다. 그의 나팔 소리가 울려 퍼지기만 하면 어떤 공연도 절대 분위기가 식지 않는다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "붉은바위 고지"
         ],
         "homeAbilities": [
@@ -5857,7 +5921,13 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/010/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "바다끝 구름",
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "011",
@@ -6219,7 +6289,7 @@
         },
         "description": "스타풀 숲에 서식하는 플러터는 나무 그늘 아래에서 조용히 쉬는 것을 좋아하며, 밤이 되면 꽃술에서 은은한 빛을 낸다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -6559,7 +6629,7 @@
         },
         "description": "고원에 서식하는 플러터는 짙은 푸른 꽃잎 위에 고운 눈이 내려앉은 듯한 모습을 하며, 차가운 환경에서도 피어나 자유롭게 흔들린다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -6767,7 +6837,19 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/011/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "구름 초원",
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "붉은바위 고지",
+      "붓꽃 바다",
+      "설산기슭 초원",
+      "스테플 숲",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "012",
@@ -7177,7 +7259,7 @@
         },
         "description": "스타폴 숲에 서식하는 플러터에서 진화했다. 춤을 출 때 은은하게 빛나는 꽃가루를 흩뿌려 달빛 아래의 우아한 무용수처럼 보인다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -7562,7 +7644,7 @@
         },
         "description": "고원에 서식하는 플러터에서 진화했다. 짙은 푸른 꽃잎 가장자리에는 이슬이 서리처럼 맺혀 춤출 때마다 고운 눈이 흩날리는 듯하다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -7801,7 +7883,15 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/012/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲",
+      "붉은바위 고지",
+      "붓꽃 바다",
+      "설산기슭 초원",
+      "스테플 숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "013",
@@ -7827,7 +7917,7 @@
     "locations": [
       "구름 초원",
       "안개숲",
-      "스타폴 숲"
+      "스테플 숲"
     ],
     "homeAbilities": [
       {
@@ -7959,7 +8049,7 @@
         "locations": [
           "구름 초원",
           "안개숲",
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -8214,7 +8304,7 @@
         },
         "description": "추운 지역에 서식하는 연댕모리는 눈밭의 추위도 전혀 개의치 않는다. 오히려 얼어붙은 연잎 모자를 머리에 올렸을 때의 차가운 느낌을 즐긴다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -8324,7 +8414,14 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/013/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원",
+      "붓꽃 바다",
+      "설산기슭 초원",
+      "스테플 숲",
+      "안개숲"
+    ]
   },
   {
     "number": "014",
@@ -8350,7 +8447,7 @@
     "locations": [
       "구름 초원",
       "안개숲",
-      "스타폴 숲"
+      "스테플 숲"
     ],
     "homeAbilities": [
       {
@@ -8482,7 +8579,7 @@
         "locations": [
           "구름 초원",
           "안개숲",
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -8737,7 +8834,7 @@
         },
         "description": "추운 지역에 서식하는 장꾸모리는 아가미 잎과 꼬리지느러미에 서리가 맺혀 있다. 피부막에는 눈이 쌓여 한층 더 두툼해 보인다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -8847,7 +8944,14 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/014/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원",
+      "붓꽃 바다",
+      "설산기슭 초원",
+      "스테플 숲",
+      "안개숲"
+    ]
   },
   {
     "number": "015",
@@ -9345,7 +9449,7 @@
         },
         "description": "추운 지역에 서식하는 아이시우스는 아가미 잎과 꼬리지느러미가 단단한 얼음 껍질로 덮여 있다. 매서운 한기는 빙설의 주인이라는 위엄을 드러낸다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -9499,7 +9603,7 @@
         },
         "description": "천휘의 힘이 아이시우스의 몸속을 부드럽게 흐르면, 그 빛은 마치 햇빛이 몸을 비추듯 비늘 사이로 굴절되어 눈부신 광채를 피워낸다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -9608,7 +9712,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/015/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붓꽃 바다",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "016",
@@ -9904,7 +10012,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/016/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "안개숲"
+    ]
   },
   {
     "number": "017",
@@ -10437,7 +10548,7 @@
         },
         "description": "소심하고 방해받는 것을 싫어해 늘 구석에 웅크린 채 조용히 생각에 잠기며, 우울한 기운을 띤 구름으로 몸을 겹겹이 감싼다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -10545,7 +10656,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/017/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "구름 초원",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "018",
@@ -11305,7 +11421,7 @@
         },
         "description": "털은 차가운 기운과 함께 가라앉은 감정까지 감싸고 있다. 내면에서 퍼져 나오는 한기는 양뿔마저 얼어붙게 한다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -11437,7 +11553,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/018/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "019",
@@ -11699,7 +11819,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/019/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "020",
@@ -11726,7 +11850,7 @@
       "구름 초원",
       "안개숲",
       "갈매기 만",
-      "스타폴 숲",
+      "스테플 숲",
       "뇌전의 숲"
     ],
     "homeAbilities": [
@@ -11852,7 +11976,7 @@
           "구름 초원",
           "안개숲",
           "갈매기 만",
-          "스타폴 숲",
+          "스테플 숲",
           "뇌전의 숲"
         ],
         "homeAbilities": [
@@ -12081,7 +12205,16 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/020/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "구름 초원",
+      "뇌전의 숲",
+      "붓꽃 바다",
+      "스테플 숲",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "021",
@@ -12701,7 +12834,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/021/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붓꽃 바다",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "022",
@@ -13123,7 +13261,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/022/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붓꽃 바다",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "023",
@@ -13148,7 +13291,7 @@
     },
     "description": "평생 단 한 짝만을 선택하는 종으로, 사랑에 매우 충실하다. 늘 짝을 이루어 다니며, 머리 위의 게심초는 행복의 정도를 드러낸다.",
     "locations": [
-      "바다끝 구릉",
+      "바다끝 구름",
       "구름 초원",
       "청석 대지",
       "늑대이빨 능선"
@@ -13286,7 +13429,7 @@
         },
         "description": "평생 단 한 짝만을 선택하는 종으로, 사랑에 매우 충실하다. 늘 짝을 이루어 다니며, 머리 위의 게심초는 행복의 정도를 드러낸다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "구름 초원",
           "청석 대지",
           "늑대이빨 능선"
@@ -13768,7 +13911,16 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/023/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "구름 초원",
+      "늑대이빨 능선",
+      "바다끝 구름",
+      "조화의 언덕",
+      "청석 대지"
+    ]
   },
   {
     "number": "024",
@@ -14487,7 +14639,13 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/024/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "갈매기 만",
+      "고래첨벙 해안",
+      "조화의 언덕",
+      "청석 대지"
+    ]
   },
   {
     "number": "025",
@@ -14761,7 +14919,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/025/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안",
+      "조화의 언덕",
+      "청석 대지"
+    ]
   },
   {
     "number": "026",
@@ -15094,7 +15257,7 @@
         "locations": [
           "안개숲",
           "청석 대지",
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -15277,7 +15440,16 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/026/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원",
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "붉은바위 고지",
+      "붓꽃 바다",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "027",
@@ -15653,7 +15825,7 @@
         "locations": [
           "안개숲",
           "청석 대지",
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -15866,7 +16038,15 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/027/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "붉은바위 고지",
+      "붓꽃 바다",
+      "설산기슭 초원",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "028",
@@ -16583,7 +16763,14 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/028/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원",
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "붓꽃 바다",
+      "안개숲"
+    ]
   },
   {
     "number": "029",
@@ -17366,7 +17553,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/029/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲",
+      "늑대이빨 능선",
+      "붓꽃 바다"
+    ]
   },
   {
     "number": "031",
@@ -17390,7 +17582,7 @@
     },
     "description": "커다란 귀를 쫑긋 세우고 있다. 소리에 매우 민감해, 한 번 포착한 움직임은 거리와 관계없이 놓치지 않는다.",
     "locations": [
-      "스타폴 숲"
+      "스테플 숲"
     ],
     "homeAbilities": [
       {
@@ -17520,7 +17712,7 @@
         },
         "description": "커다란 귀를 쫑긋 세우고 있다. 소리에 매우 민감해, 한 번 포착한 움직임은 거리와 관계없이 놓치지 않는다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -17632,7 +17824,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/031/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "스테플 숲"
+    ]
   },
   {
     "number": "032",
@@ -17656,7 +17851,7 @@
     },
     "description": "호기심이 많아 흔적을 쫓아 대상을 추적하는 걸 즐긴다. 꼬리 끝의 고리는 초음파를 증폭시켜, 숨어 있는 상대도 단번에 찾아낸다.",
     "locations": [
-      "스타폴 숲"
+      "스테플 숲"
     ],
     "homeAbilities": [
       {
@@ -17802,7 +17997,7 @@
         },
         "description": "호기심이 많아 흔적을 쫓아 대상을 추적하는 걸 즐긴다. 꼬리 끝의 고리는 초음파를 증폭시켜, 숨어 있는 상대도 단번에 찾아낸다.",
         "locations": [
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -17930,7 +18125,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/032/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "스테플 숲"
+    ]
   },
   {
     "number": "033",
@@ -18273,7 +18471,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/033/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲",
+      "붓꽃 바다"
+    ]
   },
   {
     "number": "034",
@@ -18968,7 +19170,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/034/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲",
+      "붓꽃 바다"
+    ]
   },
   {
     "number": "035",
@@ -19369,7 +19575,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/035/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲",
+      "붓꽃 바다"
+    ]
   },
   {
     "number": "036",
@@ -19640,7 +19850,7 @@
         "description": "혹한의 눈밭에서 콧물을 흘리고 다니는 라라에그는 머리에 눈덩이를 얹어 위장한다. 껍데기 안으로 들어가면 작은 눈사람처럼 보인다.",
         "locations": [
           "로즈타워 숲",
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -19761,7 +19971,7 @@
         },
         "description": "고지대에 서식하는 라라에그는 마른 잎을 머리에 얹어 위장한다. 하지만 시야가 가려져 가끔 발을 헛디뎌 언덕 아래로 굴러 떨어지기도 한다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "늑대이빨 능선"
         ],
         "homeAbilities": [
@@ -19878,7 +20088,7 @@
         "description": "꽃바다에 서식하는 라라에그는 꽃을 머리에 얹어 위장한다. 꽃의 색소를 흡수해 몸도 옅은 분홍빛으로 물들었다.",
         "locations": [
           "조화의 언덕",
-          "스타폴 숲"
+          "스테플 숲"
         ],
         "homeAbilities": [
           {
@@ -19974,7 +20184,15 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/036/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "로즈타워 숲",
+      "바다끝 구름",
+      "설산기슭 초원",
+      "스테플 숲",
+      "조화의 언덕"
+    ]
   },
   {
     "number": "037",
@@ -20650,7 +20868,14 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/037/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "로즈타워 숲",
+      "바다끝 구름",
+      "스테플 숲",
+      "조화의 언덕"
+    ]
   },
   {
     "number": "038",
@@ -20882,7 +21107,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/038/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲",
+      "붓꽃 바다"
+    ]
   },
   {
     "number": "039",
@@ -21156,7 +21385,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/039/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲",
+      "붓꽃 바다"
+    ]
   },
   {
     "number": "040",
@@ -21566,7 +21799,7 @@
         },
         "description": "발톱을 붉게 달아오를 때까지 갈아, 베어낼 때마다 불꽃이 스친다. 숲 사이를 날며 기량을 갈고 닦을 때 마치 불꽃이 흩날리는 듯하다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "뇌전의 숲"
         ],
         "homeAbilities": [
@@ -21675,7 +21908,13 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/040/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲",
+      "바다끝 구름",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "041",
@@ -22292,7 +22531,7 @@
         },
         "description": "양날을 갈아 열을 축적한다. 베어내는 순간 그 열기를 한꺼번에 터뜨려 상처와 화상이 동시에 남는다.",
         "locations": [
-          "바다끝 구릉",
+          "바다끝 구름",
           "뇌전의 숲"
         ],
         "homeAbilities": [
@@ -22425,7 +22664,13 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/041/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲",
+      "바다끝 구름",
+      "안개숲",
+      "청석 대지"
+    ]
   },
   {
     "number": "042",
@@ -22450,7 +22695,7 @@
     "description": "커다란 귀를 가진 활기찬 어린 늑대다. 가슴에 달린 얼음뼈 나비넥타이를 가장 좋아하며, 선 지킬 줄 모르는 탄멍멍을 싫어한다.",
     "locations": [
       "늑대이빨 능선",
-      "눈기슭 초원"
+      "설산기슭 초원"
     ],
     "homeAbilities": [
       {
@@ -22579,7 +22824,7 @@
         "description": "커다란 귀를 가진 활기찬 어린 늑대다. 가슴에 달린 얼음뼈 나비넥타이를 가장 좋아하며, 선 지킬 줄 모르는 탄멍멍을 싫어한다.",
         "locations": [
           "늑대이빨 능선",
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -22825,7 +23070,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/042/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "로즈타워 숲",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "043",
@@ -22850,7 +23100,7 @@
     "description": "투지를 잃는 것을 두려워해 쓰다듬어지는 걸 좋아하지 않는다. 무리 사냥에 나설 때면 얼음 칼날을 물고 앞장서며, 언젠가 홀로 설 수 있는 전사를 꿈꾼다.",
     "locations": [
       "늑대이빨 능선",
-      "눈기슭 초원"
+      "설산기슭 초원"
     ],
     "homeAbilities": [
       {
@@ -22979,7 +23229,7 @@
         "description": "투지를 잃는 것을 두려워해 쓰다듬어지는 걸 좋아하지 않는다. 무리 사냥에 나설 때면 얼음 칼날을 물고 앞장서며, 언젠가 홀로 설 수 있는 전사를 꿈꾼다.",
         "locations": [
           "늑대이빨 능선",
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -23225,7 +23475,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/043/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "로즈타워 숲",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "044",
@@ -23828,7 +24083,12 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/044/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "늑대이빨 능선",
+      "로즈타워 숲",
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "045",
@@ -24187,7 +24447,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/045/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲"
+    ]
   },
   {
     "number": "046",
@@ -24743,7 +25006,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/046/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲"
+    ]
   },
   {
     "number": "047",
@@ -24993,7 +25259,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/047/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲"
+    ]
   },
   {
     "number": "048",
@@ -25275,7 +25544,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/048/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲"
+    ]
   },
   {
     "number": "049",
@@ -25648,7 +25920,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/049/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ]
   },
   {
     "number": "050",
@@ -26019,7 +26294,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/050/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ]
   },
   {
     "number": "051",
@@ -26465,7 +26743,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/051/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ]
   },
   {
     "number": "052",
@@ -27022,7 +27303,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/052/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ]
   },
   {
     "number": "053",
@@ -27046,9 +27330,7 @@
     },
     "description": "부드러운 촉수로 조개껍데기를 감싸 몸을 숨기고, 해변의 평범한 조개 무리 속에 섞여 지낸다. 평소에는 껍데기를 꼭 닫고 있다가, 밤이 되면 열어 달빛을 쬔다.",
     "locations": [
-      "초승달 만",
-      "고래첨벙 해안",
-      "석양 해원"
+      "고래첨벙 해안"
     ],
     "homeAbilities": [
       {
@@ -27162,9 +27444,7 @@
         },
         "description": "부드러운 촉수로 조개껍데기를 감싸 몸을 숨기고, 해변의 평범한 조개 무리 속에 섞여 지낸다. 평소에는 껍데기를 꼭 닫고 있다가, 밤이 되면 열어 달빛을 쬔다.",
         "locations": [
-          "초승달 만",
-          "고래첨벙 해안",
-          "석양 해원"
+          "고래첨벙 해안"
         ],
         "homeAbilities": [
           {
@@ -27256,11 +27536,22 @@
             "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
           }
         ],
-        "sourceUrl": "https://wiki.aniimo.com/ko/item/053/basic-form"
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/053/basic-form",
+        "detailLocations": [
+          "초승달 만",
+          "석양 해원"
+        ]
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/053/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ],
+    "detailLocations": [
+      "초승달 만",
+      "석양 해원"
+    ]
   },
   {
     "number": "054",
@@ -27494,7 +27785,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/054/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ]
   },
   {
     "number": "055",
@@ -28044,7 +28338,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/055/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "고래첨벙 해안"
+    ]
   },
   {
     "number": "056",
@@ -28442,7 +28739,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/056/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지",
+      "청석 대지"
+    ]
   },
   {
     "number": "057",
@@ -29045,7 +29346,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/057/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지",
+      "청석 대지"
+    ]
   },
   {
     "number": "058",
@@ -29471,7 +29776,11 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/058/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지",
+      "청석 대지"
+    ]
   },
   {
     "number": "059",
@@ -29495,7 +29804,7 @@
     },
     "description": "항상 특유의 밝은 미소로 다른 애니모를 불러 함께 놀자고 한다. 장난기와 식탐 때문에 가끔 말썽을 부리기도 하지만, 늘 모두에게 용서받는다.",
     "locations": [
-      "눈기슭 초원"
+      "설산기슭 초원"
     ],
     "homeAbilities": [
       {
@@ -29607,7 +29916,7 @@
         },
         "description": "항상 특유의 밝은 미소로 다른 애니모를 불러 함께 놀자고 한다. 장난기와 식탐 때문에 가끔 말썽을 부리기도 하지만, 늘 모두에게 용서받는다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -29701,7 +30010,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/059/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "060",
@@ -29725,7 +30037,7 @@
     },
     "description": "털의 뛰어난 전도성으로 번개의 힘을 모아 날개를 펼치고, 번개처럼 돌진해서 먹구름을 몰아내 기분까지 함께 맑아지게 한다.",
     "locations": [
-      "눈기슭 초원"
+      "설산기슭 초원"
     ],
     "homeAbilities": [
       {
@@ -29861,7 +30173,7 @@
         },
         "description": "털의 뛰어난 전도성으로 번개의 힘을 모아 날개를 펼치고, 번개처럼 돌진해서 먹구름을 몰아내 기분까지 함께 맑아지게 한다.",
         "locations": [
-          "눈기슭 초원"
+          "설산기슭 초원"
         ],
         "homeAbilities": [
           {
@@ -30110,7 +30422,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/060/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "설산기슭 초원"
+    ]
   },
   {
     "number": "061",
@@ -30637,7 +30952,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/061/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "062",
@@ -31340,7 +31658,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/062/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "063",
@@ -31931,7 +32252,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/063/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "064",
@@ -32250,7 +32574,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/064/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "065",
@@ -32609,7 +32936,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/065/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "066",
@@ -33016,7 +33346,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/066/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "067",
@@ -33431,7 +33764,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/067/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "붉은바위 고지"
+    ]
   },
   {
     "number": "068",
@@ -33661,7 +33997,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/068/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲"
+    ]
   },
   {
     "number": "069",
@@ -34066,7 +34405,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/069/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲"
+    ]
   },
   {
     "number": "070",
@@ -34090,7 +34432,7 @@
     },
     "description": "태어날 때부터 광물을 찾아내는 능력을 지니고 있으며, 다양한 광물을 먹는 것을 좋아하고 먹는 광물에 따라 성장 방식도 달라진다.",
     "locations": [
-      "바다끝 구릉"
+      "바다끝 구름"
     ],
     "homeAbilities": [
       {
@@ -34226,7 +34568,7 @@
         },
         "description": "태어날 때부터 광물을 찾아내는 능력을 지니고 있으며, 다양한 광물을 먹는 것을 좋아하고 먹는 광물에 따라 성장 방식도 달라진다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -34344,7 +34686,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/070/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "바다끝 구름"
+    ]
   },
   {
     "number": "071",
@@ -34369,7 +34714,7 @@
     },
     "description": "단단한 발톱으로 결정석을 부수어 먹고 열을 축적해, 몸에는 붉은빛 무늬가 드러난다. 작은 체구지만 입에서 고온의 불길을 계속해서 뿜어낼 수 있다.",
     "locations": [
-      "바다끝 구릉"
+      "바다끝 구름"
     ],
     "homeAbilities": [
       {
@@ -34506,7 +34851,7 @@
         },
         "description": "단단한 발톱으로 결정석을 부수어 먹고 열을 축적해, 몸에는 붉은빛 무늬가 드러난다. 작은 체구지만 입에서 고온의 불길을 계속해서 뿜어낼 수 있다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -34624,7 +34969,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/071/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "바다끝 구름"
+    ]
   },
   {
     "number": "072",
@@ -34649,7 +34997,7 @@
     },
     "description": "타오르는 결정이 굳은 용암처럼 몸에 자리 잡고 있으며, 그 안에 쌓인 열이 한꺼번에 폭발하면 앞을 가로막는 모든 것을 녹여버릴 수 있다.",
     "locations": [
-      "바다끝 구릉"
+      "바다끝 구름"
     ],
     "homeAbilities": [
       {
@@ -34816,7 +35164,7 @@
         },
         "description": "타오르는 결정이 굳은 용암처럼 몸에 자리 잡고 있으며, 그 안에 쌓인 열이 한꺼번에 폭발하면 앞을 가로막는 모든 것을 녹여버릴 수 있다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -34984,7 +35332,7 @@
         },
         "description": "등의 결정은 천휘의 에너지를 흡수해 화려한 에너지 분출과 함께 강렬한 열기를 내뿜는다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -35091,7 +35439,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/072/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "바다끝 구름"
+    ]
   },
   {
     "number": "073",
@@ -35365,7 +35716,8 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/073/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": []
   },
   {
     "number": "074",
@@ -35671,7 +36023,8 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/074/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": []
   },
   {
     "number": "075",
@@ -35695,7 +36048,7 @@
     },
     "description": "침니앤트는 흙을 차곡차곡 쌓아 올려 외피를 만든다. 위험을 느끼면 위쪽 구멍에서 연기를 뿜어내 주변을 뒤덮고 모습을 숨긴다.",
     "locations": [
-      "바다끝 구릉"
+      "바다끝 구름"
     ],
     "homeAbilities": [
       {
@@ -35801,7 +36154,7 @@
         },
         "description": "침니앤트는 흙을 차곡차곡 쌓아 올려 외피를 만든다. 위험을 느끼면 위쪽 구멍에서 연기를 뿜어내 주변을 뒤덮고 모습을 숨긴다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -35889,7 +36242,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/075/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "바다끝 구름"
+    ]
   },
   {
     "number": "076",
@@ -35913,7 +36269,7 @@
     },
     "description": "상하체가 따로 회전하는 구조 덕분에 캐슬앤트는 주변을 유연하게 살필 수 있다. 상황에 따라 형태를 바꿔 포탑처럼 변해 적을 물리친다.",
     "locations": [
-      "바다끝 구릉"
+      "바다끝 구름"
     ],
     "homeAbilities": [
       {
@@ -36035,7 +36391,7 @@
         },
         "description": "상하체가 따로 회전하는 구조 덕분에 캐슬앤트는 주변을 유연하게 살필 수 있다. 상황에 따라 형태를 바꿔 포탑처럼 변해 적을 물리친다.",
         "locations": [
-          "바다끝 구릉"
+          "바다끝 구름"
         ],
         "homeAbilities": [
           {
@@ -36139,7 +36495,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/076/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "바다끝 구름"
+    ]
   },
   {
     "number": "077",
@@ -36385,7 +36744,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/077/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "조화의 언덕"
+    ]
   },
   {
     "number": "078",
@@ -36631,7 +36993,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/078/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "조화의 언덕"
+    ]
   },
   {
     "number": "079",
@@ -37211,7 +37576,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/079/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "조화의 언덕"
+    ]
   },
   {
     "number": "080",
@@ -37429,7 +37797,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/080/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "조화의 언덕"
+    ]
   },
   {
     "number": "081",
@@ -37679,7 +38050,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/081/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "조화의 언덕"
+    ]
   },
   {
     "number": "082",
@@ -37909,7 +38283,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/082/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "뇌전의 숲"
+    ]
   },
   {
     "number": "10002",
@@ -38171,7 +38548,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/10002/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲"
+    ]
   },
   {
     "number": "10003",
@@ -38586,7 +38966,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/10003/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "청석 대지"
+    ]
   },
   {
     "number": "11001",
@@ -38926,7 +39309,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/11001/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "구름 초원"
+    ]
   },
   {
     "number": "99996",
@@ -39166,7 +39552,10 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/99996/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "로즈타워 숲"
+    ]
   },
   {
     "number": "99998",
@@ -39406,6 +39795,9 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/99998/basic-form",
-    "checkedAt": "2026-09-18"
+    "checkedAt": "2026-09-18",
+    "habitats": [
+      "스테플 숲"
+    ]
   }
 ]
