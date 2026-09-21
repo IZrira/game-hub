@@ -760,6 +760,141 @@ function getSitemapRoutes() {
   return [...routes];
 }
 
+function loadAniimoEvolutionConditions() {
+  const filePath = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'evolutionConditions.ts');
+  if (!fs.existsSync(filePath)) return { conditions: {}, formConditions: {} };
+  const text = fs.readFileSync(filePath, 'utf8');
+  const conditions = {};
+  const formConditions = {};
+  const condMatches = text.matchAll(/['"]([^'"]+)['"]\s*:\s*['"]([^'"]+)['"]/g);
+  for (const match of condMatches) {
+    const key = match[1];
+    const val = match[2];
+    if (key.includes(':')) {
+      formConditions[key] = val;
+    } else {
+      conditions[key] = val;
+    }
+  }
+  return { conditions, formConditions };
+}
+
+function generateRichAniimoCharacterHtml(item, evolutionData) {
+  const STAT_LABEL_MAP = {
+    total: '종합 능력치',
+    hp: 'HP',
+    break: '무력화',
+    attack: '공격력',
+    magicDefense: '마법 방어',
+    physicalDefense: '물리 방어',
+    energyRecovery: '에너지 회복'
+  };
+
+  const statsList = Object.entries(item.stats || {}).map(([key, value]) => {
+    return `<dt>${escapeHtml(STAT_LABEL_MAP[key] || key)}</dt><dd>${escapeHtml(value)}</dd>`;
+  }).join('');
+
+  // Evolution Condition info
+  const evoCond = (evolutionData && evolutionData.conditions) ? (evolutionData.conditions[item.number] || '') : '';
+  let evoCondHtml = '';
+  if (evoCond) {
+    const parts = evoCond.split('|').map(p => p.trim()).filter(Boolean);
+    const criteria = [];
+    const unlocks = [];
+    const costs = [];
+    parts.forEach(part => {
+      if (part.startsWith('소모:') || part.includes('소모:')) {
+        costs.push(part.replace(/^소모:\s*/, '').trim());
+      } else if (
+        part.includes('레벨 달성') ||
+        part.includes('포인트 이상') ||
+        part.includes('성격에') ||
+        part.includes('습득') ||
+        part.includes('보유') ||
+        part.includes('평가')
+      ) {
+        criteria.push(part);
+      } else {
+        unlocks.push(part);
+      }
+    });
+
+    evoCondHtml = `
+      <section>
+        <h3>진화 조건 및 해제</h3>
+        ${criteria.length ? `<p><strong>진화 기준:</strong> ${escapeHtml(criteria.join(', '))}</p>` : ''}
+        ${unlocks.length ? `<p><strong>진화 해제:</strong> ${escapeHtml(unlocks.join(', '))}</p>` : ''}
+        ${costs.length ? `<p><strong>소모 재료:</strong> ${escapeHtml(costs.join(', '))}</p>` : ''}
+      </section>
+    `;
+  }
+
+  // Evolution tree links
+  let evoTreeHtml = '';
+  if (item.evolution && item.evolution.length > 0) {
+    const treeLinks = item.evolution.map(node => {
+      const isCurrent = node.name === item.name;
+      const nodeLabel = `[${node.stage}] NO.${node.number} ${node.name}`;
+      return isCurrent
+        ? `<li><strong>${escapeHtml(nodeLabel)} (현재)</strong></li>`
+        : `<li><a href="/gallery/aniimo/character/${encodeURIComponent(node.name)}">${escapeHtml(nodeLabel)}</a></li>`;
+    }).join('');
+    evoTreeHtml = `<h2>진화 계보</h2><ul>${treeLinks}</ul>${evoCondHtml}`;
+  }
+
+  // Forms data
+  let formsHtml = '';
+  if (item.forms && item.forms.length > 0) {
+    const formItems = item.forms.map(form => {
+      const formStats = Object.entries(form.stats || {}).map(([k, v]) => `${STAT_LABEL_MAP[k] || k}: ${v}`).join(' · ');
+      const formLocs = (form.locations || []).join(', ') || '정보 없음';
+      return `<div>
+        <h3>${escapeHtml(form.label || form.key)}</h3>
+        <p>원소: ${escapeHtml((form.elements || []).join('/'))} | 역할: ${escapeHtml((form.positions || []).join('/'))}</p>
+        <p>능력치: ${escapeHtml(formStats)}</p>
+        <p>출현 위치: ${escapeHtml(formLocs)}</p>
+      </div>`;
+    }).join('');
+    formsHtml = `<h2>형태별 정보</h2>${formItems}`;
+  }
+
+  // Skills
+  const skills = [...(item.combatSkills || []), ...(item.uniqueSkills || [])];
+  const skillHtml = skills.map(skill => `
+    <section>
+      <h3>${escapeHtml(skill.name)}</h3>
+      <p>${escapeHtml(skill.description)}</p>
+      <p>${escapeHtml(skill.skillType)} · 에너지 ${escapeHtml(skill.energyCost)} · 위력 ${escapeHtml(skill.power)}</p>
+    </section>
+  `).join('');
+
+  // Locations
+  const locationHtml = item.locations?.length
+    ? `<h2>출현 지역</h2><ul>${item.locations.map(loc => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(loc.trim().replace(/\s+/g, '-'))}">${escapeHtml(loc)}</a></li>`).join('')}</ul>`
+    : '';
+
+  // Traits
+  const traitsHtml = item.traits?.length
+    ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}`
+    : '';
+
+  return `<article>
+    <h1>${escapeHtml(item.name)}</h1>
+    <p>NO.${escapeHtml(item.number)} · 원소: ${escapeHtml(item.elements.join('/'))} · 포지션: ${escapeHtml(item.positions.join('/'))}</p>
+    <h2>소개</h2>
+    <p>${escapeHtml(item.description)}</p>
+    <h2>기본 능력치</h2>
+    <dl>${statsList}</dl>
+    ${evoTreeHtml}
+    ${formsHtml}
+    ${locationHtml}
+    ${traitsHtml}
+    <h2>스킬 소개</h2>
+    ${skillHtml}
+    <p><a href="/gallery/aniimo">애니모 허브</a> &gt; <a href="/gallery/aniimo/characters">애니모 도감</a></p>
+  </article>`;
+}
+
 function getFallbackMeta(routePath) {
   const parts = routePath.split('/').filter(Boolean).map(part => decodeURIComponent(part));
   const entityName = parts.at(-1) || 'Rira Archive';
@@ -1334,15 +1469,33 @@ function runPrerender() {
 
   console.log('🚀 Starting Static Meta Injection for Prerendering...');
 
+  const homeArticleHtml = `<article>
+    <h1>Rira Game Hub - 서브컬쳐 게임 종합 아카이브</h1>
+    <p>애니모(Aniimo), 명조(Wuthering Waves), 붕괴: 스타레일(Honkai: Star Rail), 이환(Neverness to Everness)의 정밀 캐릭터 도감, 장비 스탯, 티어표와 실전 육성 가이드를 제공합니다.</p>
+    <nav aria-label="빠른 접근 및 핵심 기능">
+      <h2>빠른 접근 및 핵심 기능</h2>
+      <ul>
+        <li><a href="/search">통합 검색 (전체 게임 DB ⌘K)</a></li>
+        <li><a href="/gallery/hsr">스타레일 DB (붕괴: 스타레일 캐릭터·광추·유물)</a></li>
+        <li><a href="/gallery/ww">명조 DB (명조 공명자·무기·에코)</a></li>
+        <li><a href="/gallery/nte">이환 DB (이환 캐릭터·아크)</a></li>
+        <li><a href="/gallery/aniimo">애니모 도감 (애니모 진화·형태·스탯·상성)</a></li>
+        <li><a href="/gallery/aniimo/characters">데이터 비교 (애니모 스탯 델타 비교기)</a></li>
+      </ul>
+    </nav>
+  </article>`;
+
   createPrerenderedPage(
     '/',
     'Rira Archive | 애니모·명조·스타레일 게임 DB',
     '애니모(Aniimo), 명조, 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 한곳에서 확인하세요.',
     `${CDN_URL}/hsr%20images/common/default_banner.webp`,
-    baseHtml
+    baseHtml,
+    homeArticleHtml
   );
   count++;
 
+  const aniimoEvolutionData = loadAniimoEvolutionConditions();
   const hsrGuidesMap = loadHsrGuidesMap();
   const hsrPartiesList = loadHsrPartiesList();
   const wwGuidesMap = loadWwGuidesMap();
@@ -1664,6 +1817,21 @@ function runPrerender() {
       const echoRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/'));
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
+      meta.content = `<article>
+        <h1>명조: 워더링 웨이브 아카이브</h1>
+        <p>명조(Wuthering Waves)의 모든 공명자, 무기, 에코 도감과 종결 세팅 가이드, 심경의 탑 티어표를 제공합니다.</p>
+        <nav aria-label="명조 데이터베이스 카테고리">
+          <h2>데이터베이스 카테고리</h2>
+          <ul>
+            <li><a href="/gallery/ww?menu=캐릭터">공명자 도감 (${characterRoutes.length}명)</a></li>
+            <li><a href="/gallery/ww?menu=무기">무기 도감 (${weaponRoutes.length}개)</a></li>
+            <li><a href="/gallery/ww?menu=에코">에코 도감 (${echoRoutes.length}종)</a></li>
+            <li><a href="/gallery/ww?menu=공략">공명자 육성 공략</a></li>
+            <li><a href="/gallery/ww/tierlist">심경의 탑 티어표</a></li>
+            <li><a href="/gallery/ww/parties">추천 파티 조합</a></li>
+          </ul>
+        </nav>
+      </article>`;
       meta.content += generateInternalLinkList('명조 무기 상세 페이지', weaponRoutes);
       meta.content += generateInternalLinkList('명조 에코 상세 페이지', echoRoutes);
       meta.content += generateInternalLinkList('명조 캐릭터 상세 페이지', characterRoutes);
@@ -1674,6 +1842,21 @@ function runPrerender() {
       const lightConeRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/'));
       const relicRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/relic/'));
       const ornamentRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/'));
+      meta.content = `<article>
+        <h1>붕괴: 스타레일 아카이브</h1>
+        <p>붕괴: 스타레일(Honkai: Star Rail)의 전체 캐릭터, 광추, 유물, 차원 장신구 도감과 실전 육성 공략, 혼돈의 기억 티어표를 제공합니다.</p>
+        <nav aria-label="스타레일 데이터베이스 카테고리">
+          <h2>데이터베이스 카테고리</h2>
+          <ul>
+            <li><a href="/gallery/hsr?menu=캐릭터">캐릭터 도감 (${characterRoutes.length}명)</a></li>
+            <li><a href="/gallery/hsr?menu=광추">광추 도감 (${lightConeRoutes.length}개)</a></li>
+            <li><a href="/gallery/hsr?menu=유물%20%26%20장신구">유물 & 차원 장신구 도감 (${relicRoutes.length + ornamentRoutes.length}세트)</a></li>
+            <li><a href="/gallery/hsr?menu=공략">캐릭터 육성 공략</a></li>
+            <li><a href="/gallery/hsr/tierlist">혼돈·허구 티어표</a></li>
+            <li><a href="/gallery/hsr/parties">추천 파티 조합</a></li>
+          </ul>
+        </nav>
+      </article>`;
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 공략', guideRoutes);
       meta.content += generateInternalLinkList('붕괴: 스타레일 광추 상세 페이지', lightConeRoutes);
@@ -1682,6 +1865,20 @@ function runPrerender() {
     } else if (routePath === '/gallery/nte') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate));
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/'));
+      meta.content = `<article>
+        <h1>이환 (Neverness to Everness) 아카이브</h1>
+        <p>이환(NTE)의 최신 캐릭터 도감, 아크 도감 및 육성 세팅, 메타 티어표를 제공합니다.</p>
+        <nav aria-label="이환 데이터베이스 카테고리">
+          <h2>데이터베이스 카테고리</h2>
+          <ul>
+            <li><a href="/gallery/nte?menu=캐릭터">캐릭터 도감 (${characterRoutes.length}명)</a></li>
+            <li><a href="/gallery/nte?menu=무기">아크 도감 (${weaponRoutes.length}개)</a></li>
+            <li><a href="/gallery/nte?menu=공략">캐릭터 육성 공략</a></li>
+            <li><a href="/gallery/nte/tierlist">최신 티어표</a></li>
+            <li><a href="/gallery/nte/parties">추천 파티 조합</a></li>
+          </ul>
+        </nav>
+      </article>`;
       meta.content += generateInternalLinkList('이환 캐릭터 상세 페이지', characterRoutes);
       meta.content += generateInternalLinkList('이환 아크 상세 페이지', weaponRoutes);
     } else if (routePath === '/gallery/aniimo') {
@@ -1759,21 +1956,9 @@ function runPrerender() {
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
       const item = aniimoEntries.find(candidate => candidate.name === name);
       if (item) {
-        const STAT_LABEL_MAP = {
-          total: '종합 능력치',
-          hp: '체력(HP)',
-          break: '무력화',
-          attack: '공격력',
-          magicDefense: '마법 방어력',
-          physicalDefense: '물리 방어력',
-          energyRecovery: '에너지 회복'
-        };
         meta.title = `${item.name} 능력치·스킬·진화 | 애니모 도감`;
-        meta.description = `애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화, 출현 지역, 특성, 스킬과 공명 육성 정보를 확인하세요.`;
-        const skillHtml = [...(item.combatSkills || []), ...(item.uniqueSkills || [])].map(skill => `<section><h3>${escapeHtml(skill.name)}</h3><p>${escapeHtml(skill.description)}</p><p>${escapeHtml(skill.skillType)} · 에너지 ${escapeHtml(skill.energyCost)} · 위력 ${escapeHtml(skill.power)}</p></section>`).join('');
-        const locationHtml = item.locations?.length ? `<h2>출현 지역</h2><ul>${item.locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul>` : '';
-        const statsHtml = Object.entries(item.stats || {}).map(([key, value]) => `<dt>${escapeHtml(STAT_LABEL_MAP[key] || key)}</dt><dd>${escapeHtml(value)}</dd>`).join('');
-        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>소개</h2><p>${escapeHtml(item.description)}</p><h2>기본 능력치</h2><dl>${statsHtml}</dl>${locationHtml}${item.traits?.length ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}` : ''}<h2>스킬 소개</h2>${skillHtml}<p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+        meta.description = `애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화 조건, 형태별 데이터, 출현 지역, 특성과 스킬 정보를 확인하세요.`;
+        meta.content = generateRichAniimoCharacterHtml(item, aniimoEvolutionData);
       }
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';

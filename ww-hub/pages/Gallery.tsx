@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useParams, Link, useSearchParams } from 'react-router';
 import { 
   Search, Home as HomeIcon, ChevronRight, Filter, Book, Activity as ActivityIcon, ArrowLeft,
-  LayoutGrid, Users, Zap, Shield, Backpack, Sparkles, Bell, Star
+  LayoutGrid, Users, Zap, Shield, Backpack, Sparkles, Bell, Star, ArrowRight
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
@@ -199,6 +199,97 @@ const GalleryWW: React.FC = () => {
               <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-5 sm:p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
                 <GlowStatsDistribution data={CHARACTER_DB} type="attribute" title="공명 속성 분포" />
                 <GlowStatsDistribution data={CHARACTER_DB} type="weaponType" title="공명자 무기 분포" />
+              </section>
+
+              {/* 데이터베이스 카테고리 허브 (Category Hub) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-3 px-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('데이터베이스 카테고리')}</h3>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {[
+                    {
+                      title: t('공명자 도감'),
+                      description: t('속성·무기군별 공명자의 돌파 수치, 공명 스킬, 공명 체인 및 육성 재료를 확인합니다.'),
+                      path: '/gallery/ww?menu=캐릭터',
+                      action: () => handleSetActiveMenu('캐릭터'),
+                      icon: Users,
+                      stat: `${CHARACTER_DB?.length || 0}${t('명')}`,
+                      color: 'text-blue-400'
+                    },
+                    {
+                      title: t('무기 도감'),
+                      description: t('Lv.1~90 능력치, 랭크별 스킬 효과, 돌파 재료 및 추천 공명자를 확인합니다.'),
+                      path: '/gallery/ww?menu=무기',
+                      action: () => handleSetActiveMenu('무기'),
+                      icon: Zap,
+                      stat: `${WEAPON_DB?.length || 0}${t('개')}`,
+                      color: 'text-yellow-400'
+                    },
+                    {
+                      title: t('에코 도감'),
+                      description: t('소나타 효과, 코스트별 에코 스킬 및 추천 장착 공명자를 확인합니다.'),
+                      path: '/gallery/ww?menu=에코',
+                      action: () => handleSetActiveMenu('에코'),
+                      icon: Shield,
+                      stat: `${ECHO_DB?.length || 0}${t('종')}`,
+                      color: 'text-emerald-400'
+                    },
+                    {
+                      title: t('공명자 육성 공략'),
+                      description: t('공명자별 종결 에코 세팅, 추천 무기 순위, 파티 조합 운용법을 확인합니다.'),
+                      path: '/gallery/ww?menu=공략',
+                      action: () => handleSetActiveMenu('공략'),
+                      icon: Book,
+                      stat: t('실전 세팅'),
+                      color: 'text-cyan-400'
+                    },
+                    {
+                      title: t('엔드콘텐츠 티어표'),
+                      description: t('심경의 탑 최신 메타 기준 공명자 티어리스트를 확인합니다.'),
+                      path: '/gallery/ww/tierlist',
+                      icon: Star,
+                      stat: t('메타 분석'),
+                      color: 'text-amber-400'
+                    },
+                    {
+                      title: t('추천 파티 조합'),
+                      description: t('반주 스킬과 공명 시너지를 고려한 추천 파티 조합을 확인합니다.'),
+                      path: '/gallery/ww/parties',
+                      icon: Sparkles,
+                      stat: t('시너지 조합'),
+                      color: 'text-rose-400'
+                    }
+                  ].map((cat) => {
+                    const Icon = cat.icon;
+                    return (
+                      <Link
+                        key={cat.path}
+                        to={cat.path}
+                        onClick={(e) => {
+                          if (cat.action) {
+                            e.preventDefault();
+                            cat.action();
+                          }
+                        }}
+                        className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-emerald-500/40 hover:bg-white/[0.05]"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`rounded-xl bg-white/5 p-2.5 ${cat.color} group-hover:scale-110 transition-transform`}>
+                            <Icon size={18} />
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">{cat.stat}</span>
+                        </div>
+                        <h4 className="mt-5 text-lg font-black text-white group-hover:text-emerald-400 transition-colors">{cat.title}</h4>
+                        <p className="mt-2 min-h-[40px] text-xs leading-5 text-gray-400">{cat.description}</p>
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-emerald-400 group-hover:translate-x-1 transition-transform">
+                          {t('탐색하기')} <ArrowRight size={13} />
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
               </section>
 
               {/* 최근 업데이트 캐릭터 행: 반응형 가로 스크롤 적용 */}

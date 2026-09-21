@@ -13,8 +13,8 @@ import { getRecommendedPersonality } from '../data/personality';
 
 const entries = aniimoData as AniimoEntry[];
 const STAT_LABELS: Record<keyof AniimoStats, string> = {
-  total: '종합 능력치', hp: '체력(HP)', break: '무력화', attack: '공격력',
-  magicDefense: '마법 방어력', physicalDefense: '물리 방어력', energyRecovery: '에너지 회복'
+  total: '종합 능력치', hp: 'HP', break: '무력화', attack: '공격력',
+  magicDefense: '마법 방어', physicalDefense: '물리 방어', energyRecovery: '에너지 회복'
 };
 const STAT_MAX: Record<keyof AniimoStats, number> = { total: 600, hp: 150, break: 150, attack: 150, magicDefense: 150, physicalDefense: 150, energyRecovery: 150 };
 

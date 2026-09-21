@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router';
 import { 
   Search, Home as HomeIcon, ChevronRight, Filter, Book, Activity as ActivityIcon, ArrowLeft,
-  BookOpen, Users, Zap, Shield, Backpack, Bell, Sparkles, LayoutGrid, Star
+  BookOpen, Users, Zap, Shield, Backpack, Bell, Sparkles, LayoutGrid, Star, ArrowRight
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
@@ -195,6 +195,97 @@ const GalleryHSR: React.FC = () => {
               <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-5 sm:p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
                 <GlowStatsDistribution data={CHARACTER_DB} type="path" title="캐릭터 운명의 길 분포" />
                 <GlowStatsDistribution data={LIGHTCONE_DB} type="path" title="광추 운명의 길 분포" />
+              </section>
+
+              {/* 데이터베이스 카테고리 허브 (Category Hub) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-3 px-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse" />
+                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('데이터베이스 카테고리')}</h3>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {[
+                    {
+                      title: t('캐릭터 도감'),
+                      description: t('속성·운명의 길별 전체 캐릭터와 기본 능력치, 행적 및 성혼을 확인합니다.'),
+                      path: '/gallery/hsr?menu=캐릭터',
+                      action: () => handleSetActiveMenu('캐릭터'),
+                      icon: Users,
+                      stat: `${CHARACTER_DB?.length || 0}${t('명')}`,
+                      color: 'text-blue-400'
+                    },
+                    {
+                      title: t('광추 도감'),
+                      description: t('운명의 길별 광추 수치, 중첩 효과 및 추천 캐릭터를 확인합니다.'),
+                      path: '/gallery/hsr?menu=광추',
+                      action: () => handleSetActiveMenu('광추'),
+                      icon: Zap,
+                      stat: `${LIGHTCONE_DB?.length || 0}${t('개')}`,
+                      color: 'text-yellow-400'
+                    },
+                    {
+                      title: t('유물 & 차원 장신구'),
+                      description: t('터널 유물 및 차원 장신구의 세트 효과와 부위별 옵션을 확인합니다.'),
+                      path: '/gallery/hsr?menu=유물%20%26%20장신구',
+                      action: () => handleSetActiveMenu('유물 & 장신구'),
+                      icon: LayoutGrid,
+                      stat: `${(RELIC_DB?.length || 0) + (ORNAMENT_DB?.length || 0)}${t('세트')}`,
+                      color: 'text-purple-400'
+                    },
+                    {
+                      title: t('캐릭터 육성 공략'),
+                      description: t('실전 종결 세팅, 유물 및 광추 우선순위, 파티 조합 운용법을 탐색합니다.'),
+                      path: '/gallery/hsr?menu=공략',
+                      action: () => handleSetActiveMenu('공략'),
+                      icon: BookOpen,
+                      stat: t('실전 세팅'),
+                      color: 'text-emerald-400'
+                    },
+                    {
+                      title: t('엔드콘텐츠 티어표'),
+                      description: t('혼돈의 기억 및 허구 이야기 엔드콘텐츠 최신 메타 티어를 확인합니다.'),
+                      path: '/gallery/hsr/tierlist',
+                      icon: Star,
+                      stat: t('메타 분석'),
+                      color: 'text-amber-400'
+                    },
+                    {
+                      title: t('추천 파티 조합'),
+                      description: t('시너지와 운명의 길을 고려한 정밀 4인 파티 추천 조합을 확인합니다.'),
+                      path: '/gallery/hsr/parties',
+                      icon: Sparkles,
+                      stat: t('조합 가이드'),
+                      color: 'text-brand-accent'
+                    }
+                  ].map((cat) => {
+                    const Icon = cat.icon;
+                    return (
+                      <Link
+                        key={cat.path}
+                        to={cat.path}
+                        onClick={(e) => {
+                          if (cat.action) {
+                            e.preventDefault();
+                            cat.action();
+                          }
+                        }}
+                        className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-brand-primary/40 hover:bg-white/[0.05]"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`rounded-xl bg-white/5 p-2.5 ${cat.color} group-hover:scale-110 transition-transform`}>
+                            <Icon size={18} />
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">{cat.stat}</span>
+                        </div>
+                        <h4 className="mt-5 text-lg font-black text-white group-hover:text-brand-primary transition-colors">{cat.title}</h4>
+                        <p className="mt-2 min-h-[40px] text-xs leading-5 text-gray-400">{cat.description}</p>
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-brand-primary group-hover:translate-x-1 transition-transform">
+                          {t('탐색하기')} <ArrowRight size={13} />
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
               </section>
 
               {/* 최근 업데이트 캐릭터 행: 반응형 가로 스크롤 적용 */}

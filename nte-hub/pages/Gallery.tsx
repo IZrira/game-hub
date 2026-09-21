@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
-import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter } from 'lucide-react';
+import { useNavigate, useSearchParams, Link } from 'react-router';
+import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter, Star, Sparkles, ArrowRight } from 'lucide-react';
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
@@ -99,10 +99,9 @@ const GalleryNTE: React.FC = () => {
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO 
         title={seoTitle} 
-        description={`${game.title} ${t('데이터베이스입니다.')}`}
+        description={`${game.title} ${t('데이터베이스입니다. 최신 캐릭터, 아크, 공략 및 티어표를 확인하세요.')}`}
         url={`/gallery/${gameId}?menu=${activeMenu}`}
         gameCategory={game.title}
-        noindex={true}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: game.title, url: `/gallery/${gameId}` },
@@ -125,7 +124,7 @@ const GalleryNTE: React.FC = () => {
                     </h1>
                   </div>
                   <p className="text-gray-400 font-bold max-w-lg text-xs sm:text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-4 sm:pl-6">
-                    {t("이환 아카이브에 오신 것을 환영합니다.")}
+                    {t("이환 아카이브에 오신 것을 환영합니다. 모든 캐릭터와 아크, 실전 조합 정보를 탐색하세요.")}
                   </p>
                 </div>
               </section>
@@ -143,6 +142,88 @@ const GalleryNTE: React.FC = () => {
                   </div>
                 ))}
               </div>
+
+              {/* 데이터베이스 카테고리 허브 (Category Hub) */}
+              <section className="space-y-6">
+                <div className="flex items-center gap-3 px-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
+                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('데이터베이스 카테고리')}</h3>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                  {[
+                    {
+                      title: t('캐릭터 도감'),
+                      description: t('이환 세계관 내 캐릭터들의 프로필, 스킬 메커니즘 및 상세 능력치를 확인합니다.'),
+                      path: '/gallery/nte?menu=캐릭터',
+                      action: () => handleSetActiveMenu('캐릭터'),
+                      icon: Users,
+                      stat: `${CHARACTER_DB?.length || 0}${t('명')}`,
+                      color: 'text-blue-400'
+                    },
+                    {
+                      title: t('아크 도감'),
+                      description: t('캐릭터가 장착하는 아크 및 무기의 고유 스킬과 돌파 효과를 확인합니다.'),
+                      path: '/gallery/nte?menu=무기',
+                      action: () => handleSetActiveMenu('무기'),
+                      icon: Zap,
+                      stat: `${WEAPON_DB?.length || 0}${t('개')}`,
+                      color: 'text-yellow-400'
+                    },
+                    {
+                      title: t('캐릭터 육성 공략'),
+                      description: t('캐릭터별 최적 세팅 및 운용 가이드를 확인합니다.'),
+                      path: '/gallery/nte?menu=공략',
+                      action: () => handleSetActiveMenu('공략'),
+                      icon: Book,
+                      stat: t('실전 세팅'),
+                      color: 'text-sky-400'
+                    },
+                    {
+                      title: t('엔드콘텐츠 티어표'),
+                      description: t('최신 메타 캐릭터 티어리스트를 확인합니다.'),
+                      path: '/gallery/nte/tierlist',
+                      icon: Star,
+                      stat: t('메타 분석'),
+                      color: 'text-amber-400'
+                    },
+                    {
+                      title: t('추천 파티 조합'),
+                      description: t('추천 파티 조합과 파티 시너지를 확인합니다.'),
+                      path: '/gallery/nte/parties',
+                      icon: Sparkles,
+                      stat: t('파티 구성'),
+                      color: 'text-rose-400'
+                    }
+                  ].map((cat) => {
+                    const Icon = cat.icon;
+                    return (
+                      <Link
+                        key={cat.path}
+                        to={cat.path}
+                        onClick={(e) => {
+                          if (cat.action) {
+                            e.preventDefault();
+                            cat.action();
+                          }
+                        }}
+                        className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-sky-500/40 hover:bg-white/[0.05]"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className={`rounded-xl bg-white/5 p-2.5 ${cat.color} group-hover:scale-110 transition-transform`}>
+                            <Icon size={18} />
+                          </span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">{cat.stat}</span>
+                        </div>
+                        <h4 className="mt-5 text-lg font-black text-white group-hover:text-sky-400 transition-colors">{cat.title}</h4>
+                        <p className="mt-2 min-h-[40px] text-xs leading-5 text-gray-400">{cat.description}</p>
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-sky-400 group-hover:translate-x-1 transition-transform">
+                          {t('탐색하기')} <ArrowRight size={13} />
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
 
               <section className="space-y-6">
                 <div className="flex items-center gap-3 px-2">

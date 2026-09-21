@@ -170,9 +170,12 @@ const Home: React.FC = () => {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
           {/* 1. 통합 검색 (전체 게임 DB) */}
-          <button
-            type="button"
-            onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
+          <Link
+            to="/search"
+            onClick={(e) => {
+              e.preventDefault();
+              window.dispatchEvent(new CustomEvent('open-global-search'));
+            }}
             className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-brand-primary/40 hover:bg-brand-primary/5 transition-all group text-center cursor-pointer"
           >
             <div className="w-10 h-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
@@ -180,7 +183,7 @@ const Home: React.FC = () => {
             </div>
             <span className="text-xs font-black text-white group-hover:text-brand-primary transition-colors">{t('통합 검색')}</span>
             <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('전체 게임 DB')}</span>
-          </button>
+          </Link>
 
           {/* 2. 스타레일 DB (HSR) */}
           <Link
@@ -191,7 +194,7 @@ const Home: React.FC = () => {
               <Sparkles size={18} className="text-purple-400" />
             </div>
             <span className="text-xs font-black text-white group-hover:text-purple-400 transition-colors">{t('스타레일 DB')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('캐릭터·광추')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('캐릭터·광추·유물')}</span>
           </Link>
 
           {/* 3. 명조 DB (WW) */}
@@ -203,7 +206,7 @@ const Home: React.FC = () => {
               <Swords size={18} className="text-emerald-400" />
             </div>
             <span className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors">{t('명조 DB')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('공명자·무기')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('공명자·무기·에코')}</span>
           </Link>
 
           {/* 4. 이환 DB (NTE) */}
@@ -220,7 +223,7 @@ const Home: React.FC = () => {
 
           {/* 5. 애니모 도감 (Aniimo) */}
           <Link
-            to="/gallery/aniimo/characters"
+            to="/gallery/aniimo"
             className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all group text-center"
           >
             <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
@@ -239,7 +242,7 @@ const Home: React.FC = () => {
               <BarChart3 size={18} className="text-rose-400" />
             </div>
             <span className="text-xs font-black text-white group-hover:text-rose-400 transition-colors">{t('데이터 비교')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('능력치 비교')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('게임 데이터 비교')}</span>
           </Link>
         </div>
       </section>

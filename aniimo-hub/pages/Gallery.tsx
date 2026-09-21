@@ -13,9 +13,9 @@ import { getRecommendedPersonality, PERSONALITY_PRESETS } from '../data/personal
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
 const STAT_ROWS: Array<{ key: keyof AniimoStats; label: string }> = [
-  { key: 'total', label: '종합 능력치' }, { key: 'hp', label: '체력(HP)' },
+  { key: 'total', label: '종합 능력치' }, { key: 'hp', label: 'HP' },
   { key: 'break', label: '무력화' }, { key: 'attack', label: '공격력' },
-  { key: 'magicDefense', label: '마법 방어력' }, { key: 'physicalDefense', label: '물리 방어력' },
+  { key: 'magicDefense', label: '마법 방어' }, { key: 'physicalDefense', label: '물리 방어' },
   { key: 'energyRecovery', label: '에너지 회복' }
 ];
 type CompareSelection = { number: string; formKey: string };
