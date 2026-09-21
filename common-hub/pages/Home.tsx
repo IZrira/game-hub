@@ -27,7 +27,10 @@ import {
   TerminalSquare,
   BookOpen,
   Search,
-  Sparkles
+  Sparkles,
+  Swords,
+  PawPrint,
+  BarChart3
 } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -165,8 +168,8 @@ const Home: React.FC = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-          {/* 1. 통합 아카이브 검색 */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          {/* 1. 통합 검색 (전체 게임 DB) */}
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
@@ -175,68 +178,68 @@ const Home: React.FC = () => {
             <div className="w-10 h-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
               <Search size={18} className="text-brand-primary" />
             </div>
-            <span className="text-xs font-black text-white group-hover:text-brand-primary transition-colors">통합 검색</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">전체 게임 DB</span>
+            <span className="text-xs font-black text-white group-hover:text-brand-primary transition-colors">{t('통합 검색')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('전체 게임 DB')}</span>
           </button>
 
-          {/* 2. 캐릭터 & 아니모 도감 */}
+          {/* 2. 스타레일 DB (HSR) */}
+          <Link
+            to="/gallery/hsr"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-purple-500/40 hover:bg-purple-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Sparkles size={18} className="text-purple-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-purple-400 transition-colors">{t('스타레일 DB')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('캐릭터·광추')}</span>
+          </Link>
+
+          {/* 3. 명조 DB (WW) */}
+          <Link
+            to="/gallery/ww"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Swords size={18} className="text-emerald-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors">{t('명조 DB')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('공명자·무기')}</span>
+          </Link>
+
+          {/* 4. 이환 DB (NTE) */}
+          <Link
+            to="/gallery/nte"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Zap size={18} className="text-sky-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-sky-400 transition-colors">{t('이환 DB')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('캐릭터·아크')}</span>
+          </Link>
+
+          {/* 5. 애니모 도감 (Aniimo) */}
           <Link
             to="/gallery/aniimo/characters"
             className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all group text-center"
           >
             <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Users size={18} className="text-amber-400" />
+              <PawPrint size={18} className="text-amber-400" />
             </div>
-            <span className="text-xs font-black text-white group-hover:text-amber-400 transition-colors">아니모 도감</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">진화 & 스탯</span>
+            <span className="text-xs font-black text-white group-hover:text-amber-400 transition-colors">{t('애니모 도감')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('진화·형태·스탯')}</span>
           </Link>
 
-          {/* 3. 능력치 비교 분석 */}
+          {/* 6. 데이터 비교 (전체/대표 기능) */}
           <Link
             to="/gallery/aniimo/characters"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-purple-500/40 hover:bg-purple-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <ActivityIcon size={18} className="text-purple-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-purple-400 transition-colors">비교 매트릭스</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">스탯 델타 분석</span>
-          </Link>
-
-          {/* 4. 추천 파티 조합 */}
-          <Link
-            to="/gallery/aniimo/party-builder"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Zap size={18} className="text-emerald-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors">파티 빌더</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">시너지 조합</span>
-          </Link>
-
-          {/* 5. 속성 상성표 */}
-          <Link
-            to="/gallery/aniimo/type-chart"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <TrendingUp size={18} className="text-sky-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-sky-400 transition-colors">속성 상성표</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">배율 & 카운터</span>
-          </Link>
-
-          {/* 6. 전역 서식지 도감 */}
-          <Link
-            to="/gallery/aniimo/locations"
             className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-rose-500/40 hover:bg-rose-500/5 transition-all group text-center"
           >
             <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Database size={18} className="text-rose-400" />
+              <BarChart3 size={18} className="text-rose-400" />
             </div>
-            <span className="text-xs font-black text-white group-hover:text-rose-400 transition-colors">서식지 도감</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">스폰 위치 탐색</span>
+            <span className="text-xs font-black text-white group-hover:text-rose-400 transition-colors">{t('데이터 비교')}</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('능력치 비교')}</span>
           </Link>
         </div>
       </section>

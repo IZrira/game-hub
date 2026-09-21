@@ -12,11 +12,12 @@ const locationCount = new Set(entries.flatMap(entry => entry.forms.flatMap(form 
 const formCount = entries.reduce((total, entry) => total + entry.forms.length, 0);
 
 const tools = [
-  { title: '애니모 도감', description: '전체 애니모를 원소·포지션·지역으로 검색하고 형태별 능력치를 비교합니다.', path: '/gallery/aniimo/characters', icon: PawPrint, stat: `${entries.length}종` },
+  { title: '애니모 도감', description: '전체 애니모를 원소·포지션·지역으로 검색하고 기본 상세 정보를 확인합니다.', path: '/gallery/aniimo/characters', icon: PawPrint, stat: `${entries.length}종` },
+  { title: '비교 매트릭스', description: '선택한 아니모 간의 스탯 델타와 역할군별 능력치 차이를 정밀 비교합니다.', path: '/gallery/aniimo/characters', icon: Layers3, stat: '스탯 비교' },
+  { title: '파티 추천', description: '역할과 형태별 특성을 반영해 엄선한 4인 추천 조합과 서포터를 확인합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '추천 조합' },
   { title: '원소 상성표', description: '9개 원소의 공격 배율과 복합 원소 상대 추천 공격 원소를 확인합니다.', path: '/gallery/aniimo/type-chart', icon: Swords, stat: '9원소' },
-  { title: '성격 공략', description: '성격 8종의 전투·홈 효과와 역할별 추천 MBTI 조합을 확인합니다.', path: '/gallery/aniimo/personality', icon: Brain, stat: '8성격' },
-  { title: '파티 추천', description: '역할과 형태별 특성을 반영해 관리자가 엄선한 4인 추천 조합을 확인합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '추천 조합' },
   { title: '지역별 도감', description: '출현 지역을 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}지역` },
+  { title: '성격 가이드', description: '성격 8종의 전투·홈 효과와 역할별 추천 MBTI 조합을 확인합니다.', path: '/gallery/aniimo/personality', icon: Brain, stat: '8성격' },
 ];
 
 const HubAniimo: React.FC = () => <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
