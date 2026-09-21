@@ -13,9 +13,9 @@ import { getRecommendedPersonality, PERSONALITY_PRESETS } from '../data/personal
 const entries = aniimoData as AniimoEntry[];
 const ALL = '전체';
 const STAT_ROWS: Array<{ key: keyof AniimoStats; label: string }> = [
-  { key: 'total', label: '종합 속성' }, { key: 'hp', label: 'HP' },
-  { key: 'break', label: '무력화' }, { key: 'attack', label: '공격' },
-  { key: 'magicDefense', label: '마법 방어' }, { key: 'physicalDefense', label: '물리 방어' },
+  { key: 'total', label: '종합 능력치' }, { key: 'hp', label: '체력(HP)' },
+  { key: 'break', label: '무력화' }, { key: 'attack', label: '공격력' },
+  { key: 'magicDefense', label: '마법 방어력' }, { key: 'physicalDefense', label: '물리 방어력' },
   { key: 'energyRecovery', label: '에너지 회복' }
 ];
 type CompareSelection = { number: string; formKey: string };
@@ -92,19 +92,78 @@ const GalleryAniimo: React.FC = () => {
             <Filter value={stage} setValue={setStage} options={[ALL, ...EVOLUTION_STAGES, '특수 개체']} label="성장 단계" />
             <Filter value={personality} setValue={setPersonality} options={personalities} label="추천 성격" />
           </div>
-          <div className="flex items-center justify-between text-xs text-gray-400"><span>{filtered.length}종 표시</span><span>비교 선택 {selected.length}/3</span></div>
+          <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-gray-400">
+            <span>{filtered.length}종 표시</span>
+            <div className="flex items-center gap-3">
+              <span>비교 선택 <strong className="text-violet-300">{selected.length}</strong>/3</span>
+              {selected.length === 0 && <span className="hidden sm:inline text-[11px] text-gray-500">아래 카드의 [비교하기]를 눌러 스탯을 비교하세요</span>}
+            </div>
+          </div>
         </section>
 
         {compared.length > 0 && <section className="overflow-hidden rounded-3xl border border-violet-400/20 bg-violet-400/[0.04]">
-          <div className="flex items-center justify-between border-b border-white/10 px-5 py-4"><h2 className="flex items-center gap-2 font-black"><BarChart3 size={18} className="text-violet-300" /> 능력치 비교</h2><button onClick={() => setSelected([])} className="text-xs font-bold text-gray-400 hover:text-white">전체 해제</button></div>
-          <div className="overflow-x-auto"><table className="w-full min-w-[560px] text-sm"><thead><tr><th className="p-4 text-left text-gray-500">항목</th>{compared.map(({ id, item, form }) => <th key={id} className="p-4 text-center"><span className="block">{item.name}</span><span className="mt-1 block text-[10px] font-bold text-violet-300">{form.label}</span></th>)}</tr></thead><tbody>
-            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">원소</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-violet-300">{form.elements.join(' · ') || '-'}</td>)}</tr>
-            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">포지션</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-gray-300">{form.positions.join(' · ') || '-'}</td>)}</tr>
-            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">추천 성격</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-black tracking-widest text-violet-300">{getRecommendedPersonality(form).code}</td>)}</tr>
-            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">공격 우위</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-emerald-300">{formatMatchupElements(form.elements, 'strongAgainst')}</td>)}</tr>
-            <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">받는 약점</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-rose-300">{formatMatchupElements(form.elements, 'weakTo')}</td>)}</tr>
-            {STAT_ROWS.map(row => { const best = Math.max(...compared.map(({ stats }) => stats[row.key] ?? -1)); return <tr key={row.key} className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">{row.label}</th>{compared.map(({ id, stats }) => <td key={id} className={`p-4 text-center font-black ${stats[row.key] === best ? 'text-violet-300' : 'text-white'}`}>{stats[row.key] ?? '-'}</td>)}</tr>; })}
-          </tbody></table></div>
+          <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+            <div className="flex items-center gap-2">
+              <BarChart3 size={18} className="text-violet-300" />
+              <h2 className="font-black text-sm sm:text-base">능력치 실시간 비교</h2>
+              <span className="rounded-full bg-violet-400/20 px-2.5 py-0.5 text-[10px] font-black text-violet-300">{compared.length}/3</span>
+            </div>
+            <button onClick={() => setSelected([])} className="text-xs font-bold text-gray-400 hover:text-white transition">전체 해제</button>
+          </div>
+          <div className="overflow-x-auto"><table className="w-full min-w-[560px] text-sm">
+            <thead>
+              <tr className="border-b border-white/10">
+                <th className="p-4 text-left text-gray-500 w-28">항목</th>
+                {compared.map(({ id, item, form }) => (
+                  <th key={id} className="p-4 text-center">
+                    <div className="flex flex-col items-center gap-1">
+                      <span className="font-black text-white">{item.name}</span>
+                      <span className="rounded-md bg-violet-400/10 px-2 py-0.5 text-[10px] font-bold text-violet-300">{form.label}</span>
+                      <button
+                        onClick={() => toggleCompare({ number: item.number, formKey: form.key })}
+                        className="mt-1 inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] font-bold text-gray-400 hover:bg-rose-500/20 hover:text-rose-300 transition"
+                        title="비교에서 제거"
+                      >
+                        <X size={12} /> 제거
+                      </button>
+                    </div>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">원소</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-violet-300">{form.elements.join(' · ') || '-'}</td>)}</tr>
+              <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">포지션</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-bold text-gray-300">{form.positions.join(' · ') || '-'}</td>)}</tr>
+              <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">추천 성격</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center font-black tracking-widest text-violet-300">{getRecommendedPersonality(form).code}</td>)}</tr>
+              <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">공격 우위</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-emerald-300">{formatMatchupElements(form.elements, 'strongAgainst')}</td>)}</tr>
+              <tr className="border-t border-white/5"><th className="p-4 text-left font-bold text-gray-400">받는 약점</th>{compared.map(({ id, form }) => <td key={id} className="p-4 text-center text-xs font-bold text-rose-300">{formatMatchupElements(form.elements, 'weakTo')}</td>)}</tr>
+              {STAT_ROWS.map(row => {
+                const values = compared.map(({ stats }) => stats[row.key]);
+                const validValues = values.filter((v): v is number => v !== null && v !== undefined);
+                const best = validValues.length > 0 ? Math.max(...validValues) : -1;
+                return (
+                  <tr key={row.key} className="border-t border-white/5">
+                    <th className="p-4 text-left font-bold text-gray-400">{row.label}</th>
+                    {compared.map(({ id, stats }) => {
+                      const val = stats[row.key];
+                      const isBest = val !== null && val !== undefined && val === best && validValues.length > 1;
+                      const diff = (val !== null && val !== undefined && best > -1 && compared.length > 1) ? val - best : null;
+                      return (
+                        <td key={id} className={`p-4 text-center font-black ${isBest ? 'text-violet-300' : 'text-white'}`}>
+                          <div>{val ?? '-'}</div>
+                          {diff !== null && (
+                            <span className={`text-[10px] font-bold ${diff === 0 ? 'text-violet-400/80' : 'text-gray-500'}`}>
+                              {diff === 0 ? '최고값' : `${diff}`}
+                            </span>
+                          )}
+                        </td>
+                      );
+                    })}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table></div>
         </section>}
 
         <section aria-label="애니모 전체 도감" className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-7 gap-3 sm:gap-4">

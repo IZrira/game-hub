@@ -12,6 +12,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const WW_CHAR_DIR = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
 const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr');
+const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_GUIDE_INDEX = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides', 'index.ts');
 const HSR_LIGHTCONE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'lightcones');
 const HSR_RELICS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
@@ -54,6 +55,16 @@ function getCharacterIds(directory) {
   }
 }
 
+function getFileLastmod(filePath) {
+  try {
+    if (!fs.existsSync(filePath)) return null;
+    const stats = fs.statSync(filePath);
+    return stats.mtime.toISOString().split('T')[0];
+  } catch {
+    return null;
+  }
+}
+
 // HSR 캐릭터 정보 파싱
 function parseHsrCharacter(id) {
   try {
@@ -66,6 +77,7 @@ function parseHsrCharacter(id) {
     const isTrailblazer = content.includes('isTrailblazer: true') || id.startsWith('trailblazer_');
     return {
       id,
+      filePath,
       folderName: folderNameMatch ? folderNameMatch[1] : null,
       name: nameMatch ? nameMatch[1] : null,
       fixedUrl: fixedUrlMatch ? fixedUrlMatch[1] : null,
@@ -92,6 +104,7 @@ function parseWwCharacter(id) {
 
     return {
       id,
+      filePath,
       folderName: folderNameMatch ? folderNameMatch[1] : null,
       name: nameMatch ? nameMatch[1] : null,
       fixedUrl: fixedUrlMatch ? fixedUrlMatch[1] : null,
@@ -233,14 +246,14 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
 function getHsrCharacterImages(charData) {
   if (!charData) return [];
   if (charData.fixedUrl) return [charData.fixedUrl];
-  
+
   if (charData.isTrailblazer) {
     return [
       `${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EA%B0%9C%EC%B2%99%EC%9E%90/art01.webp`,
       `${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EA%B0%9C%EC%B2%99%EC%9E%90/art01-01.webp`
     ];
   }
-  
+
   const folder = charData.folderName || charData.name || charData.id;
   return [`${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/${encodeAssetPath(folder)}/art01.webp`];
 }
@@ -292,18 +305,18 @@ function buildUrlNode(locUrl, lastmod, priority, changefreq = 'daily', imageUrls
 }
 
 async function submitToIndexNow(urlList) {
-  const isProduction = process.env.NODE_ENV === 'production' || 
-                        process.env.GITHUB_ACTIONS === 'true' || 
+  const isProduction = process.env.NODE_ENV === 'production' ||
+                        process.env.GITHUB_ACTIONS === 'true' ||
                         process.env.CF_PAGES === '1' ||
                         process.env.INDEXNOW_FORCE === 'true';
-  
+
   if (!isProduction) {
     console.log('Skipping IndexNow submission: Not in a production deployment environment (use INDEXNOW_FORCE=true to force).');
     return;
   }
 
   console.log(`Submitting ${urlList.length} URLs to IndexNow...`);
-  
+
   const payload = {
     host: 'riragamehub.com',
     key: 'b6be7d1e8c7c4b2ca559a4bc5ef4d89a',
@@ -390,12 +403,13 @@ async function generateSitemap() {
 
     // 2. Wuthering Waves Characters Detail & Guide Pages
     xml += `\n  <!-- Wuthering Waves Characters Detail & Guide Pages -->\n`;
+    const wwGuideFileLastmod = getFileLastmod(path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts'));
     wwIds.forEach(id => {
       const url = `${BASE_URL}/gallery/ww/character/${id}`;
       const charData = parseWwCharacter(id);
       const images = getWwCharacterImages(charData);
-      const charLastmod = null;
-      
+      const charLastmod = charData?.filePath ? getFileLastmod(charData.filePath) : null;
+
       if (!urlList.includes(url)) {
         xml += buildUrlNode(url, charLastmod, '0.8', 'daily', images);
         urlList.push(url);
@@ -403,13 +417,14 @@ async function generateSitemap() {
 
       // 캐릭터 가이드 페이지
       const charName = charData?.name || charData?.folderName || id;
-      const hasWwGuide = registeredWwGuides.has(charName) || 
-                         registeredWwGuides.has(charData?.folderName) || 
+      const hasWwGuide = registeredWwGuides.has(charName) ||
+                         registeredWwGuides.has(charData?.folderName) ||
                          registeredWwGuides.has(id);
       if (hasWwGuide) {
         const guideUrl = `${BASE_URL}/gallery/ww/character/${id}/guide`;
+        const guideLastmod = wwGuideFileLastmod || charLastmod;
         if (!urlList.includes(guideUrl)) {
-          xml += buildUrlNode(guideUrl, charLastmod, '0.9', 'daily', images);
+          xml += buildUrlNode(guideUrl, guideLastmod, '0.9', 'daily', images);
           urlList.push(guideUrl);
         }
       }
@@ -420,7 +435,7 @@ async function generateSitemap() {
     hsrIds.forEach(id => {
       const charData = parseHsrCharacter(id);
       const images = getHsrCharacterImages(charData);
-      const charLastmod = null;
+      const charLastmod = charData?.filePath ? getFileLastmod(charData.filePath) : null;
 
       // 캐릭터 상세 페이지
       const detailUrl = `${BASE_URL}/gallery/hsr/character/${id}`;
@@ -435,8 +450,10 @@ async function generateSitemap() {
                          (charData.name && registeredHsrGuides.has(charData.name));
         if (hasGuide) {
           const guideUrl = `${BASE_URL}/gallery/hsr/character/${id}/guide`;
+          const guideFilePath = path.join(HSR_GUIDE_DIR, `${id}.ts`);
+          const guideLastmod = getFileLastmod(guideFilePath) || charLastmod;
           if (!urlList.includes(guideUrl)) {
-            xml += buildUrlNode(guideUrl, charLastmod, '0.8', 'daily', images);
+            xml += buildUrlNode(guideUrl, guideLastmod, '0.8', 'daily', images);
             urlList.push(guideUrl);
           }
         }
@@ -445,11 +462,11 @@ async function generateSitemap() {
 
     // 4. Wuthering Waves Weapons Detail Pages
     xml += `\n  <!-- Wuthering Waves Weapons Detail Pages -->\n`;
-    const weaponsLastmod = null;
+    const weaponsLastmod = getFileLastmod(WEAPONS_FILE);
     wwWeapons.forEach(wp => {
       const url = `${BASE_URL}/gallery/ww/weapon/${encodeURIComponent(wp.name)}`;
       const imageUrl = `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(wp.name)}.webp`;
-      
+
       if (!urlList.includes(url)) {
         xml += buildUrlNode(url, weaponsLastmod, '0.8', 'daily', [imageUrl]);
         urlList.push(url);
@@ -508,10 +525,14 @@ async function generateSitemap() {
       }
     });
 
+    const relicLastmod = getFileLastmod(HSR_RELICS_FILE);
+    const ornamentLastmod = getFileLastmod(HSR_ORNAMENTS_FILE);
+    const aniimoFileLastmod = getFileLastmod(ANIIMO_DATA_FILE);
+
     hsrRelicNames.forEach(name => {
       const url = `${BASE_URL}/gallery/hsr/relic/${encodeURIComponent(name)}`;
       if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        xml += buildUrlNode(url, relicLastmod, '0.7', 'weekly');
         urlList.push(url);
       }
     });
@@ -519,7 +540,7 @@ async function generateSitemap() {
     hsrOrnamentNames.forEach(name => {
       const url = `${BASE_URL}/gallery/hsr/ornament/${encodeURIComponent(name)}`;
       if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        xml += buildUrlNode(url, ornamentLastmod, '0.7', 'weekly');
         urlList.push(url);
       }
     });
@@ -530,7 +551,7 @@ async function generateSitemap() {
     aniimoEntries.forEach(item => {
       const url = `${BASE_URL}/gallery/aniimo/character/${encodeURIComponent(item.name)}`;
       if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, item.checkedAt || null, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
+        xml += buildUrlNode(url, item.checkedAt || aniimoFileLastmod, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
         urlList.push(url);
       }
     });
@@ -544,7 +565,7 @@ async function generateSitemap() {
       const slug = location.trim().replace(/\s+/g, '-');
       const url = `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`;
       if (!urlList.includes(url)) {
-        xml += buildUrlNode(url, null, '0.7', 'weekly');
+        xml += buildUrlNode(url, aniimoFileLastmod, '0.7', 'weekly');
         urlList.push(url);
       }
     });

@@ -501,19 +501,19 @@ function generateGuideSchema(charName, gameName, routePath, imageUrl) {
 
 function injectMetaAndContent(html, title, description, imageUrl, urlPath, innerContent = '', jsonLdSchema = null) {
   let injected = html;
-  
+
   // Replace Title
   injected = injected.replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(title)} | RIRA ARCHIVE</title>`);
-  
+
   // Replace og:title
   injected = injected.replace(/<meta property="og:title" content=".*?"\s*\/>/, `<meta property="og:title" content="${escapeHtml(title)} | RIRA ARCHIVE" />`);
-  
+
   // Replace description
   injected = injected.replace(/<meta name="description" content=".*?"\s*\/>/, `<meta name="description" content="${escapeHtml(description)}" />`);
-  
+
   // Replace og:description
   injected = injected.replace(/<meta property="og:description" content=".*?"\s*\/>/, `<meta property="og:description" content="${escapeHtml(description)}" />`);
-  
+
   // The SPA shell has no stable canonical, so make every prerendered route explicit.
   injected = injected.replace(/\s*<link\s+rel=["']canonical["'][^>]*>\s*/gi, '\n');
 
@@ -531,9 +531,9 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
   if (jsonLdSchema) {
     extraTags += `\n    <script type="application/ld+json">\n${JSON.stringify(jsonLdSchema, null, 2)}\n    </script>`;
   }
-  
+
   injected = injected.replace('</head>', `${extraTags}\n  </head>`);
-  
+
   // Keep prerendered content inside #root so React replaces it completely on mount.
   if (innerContent) {
     const startMarker = '<!-- PRERENDER_CONTENT_START -->';
@@ -545,7 +545,7 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
     }
     injected = `${injected.slice(0, startIndex + startMarker.length)}\n${innerContent}\n    ${injected.slice(endIndex)}`;
   }
-  
+
   return injected;
 }
 
@@ -556,7 +556,7 @@ function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml
   const routeSegments = routePath.split('/').filter(Boolean).map(segment => decodeURI(segment));
   const targetDir = path.join(DIST_DIR, ...routeSegments);
   fs.mkdirSync(targetDir, { recursive: true });
-  
+
   const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
   fs.writeFileSync(path.join(targetDir, 'index.html'), finalHtml, 'utf8');
   prerenderedRoutes.add(routePath);
@@ -667,7 +667,7 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   html += `<h1>${escapeHtml(name)} 상세 가이드</h1>\n`;
   html += narrativeSummaryHtml;
   html += `<h2>해당 캐릭터의 전투 스타일과 주요 스킬 정보입니다.</h2>\n`;
-  
+
   for (const [key, value] of Object.entries(wwKoData)) {
     if (key.startsWith(`character.${id}.`) && key !== `character.${id}.name` && key !== `character.${id}.briefInfo`) {
        if (typeof value === 'string' && value.length > 0) {
@@ -726,7 +726,7 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
   html += `<h1>${escapeHtml(name)} 상세 가이드</h1>\n`;
   html += narrativeSummaryHtml;
   html += `<h2>해당 캐릭터의 전투 스타일과 주요 스킬 정보입니다.</h2>\n`;
-  
+
   for (const [key, value] of Object.entries(hsrKoData)) {
     if (key.startsWith(`character.${id}.`) && key !== `character.${id}.name`) {
        if (typeof value === 'string' && value.length > 0) {
@@ -958,15 +958,15 @@ function generateNotionHtml(item) {
   }
 
   html += `<h2>해당 항목의 세부 정보 및 가이드입니다.</h2>\n`;
-  
+
   const textFields = ['briefInfo', 'content', 'citySkill', 'virailSkill', 'basicAttack', 'ultimateSkill', 'supportSkill', 'passiveSkill1', 'passiveSkill2', 'awakenings', 'resonance', 'glossary'];
-  
+
   textFields.forEach(field => {
     if (item[field] && typeof item[field] === 'string') {
       html += `<p>${escapeHtml(item[field]).replace(/\n/g, '<br/>')}</p>\n`;
     }
   });
-  
+
   html += `</article>`;
   return html;
 }
@@ -1117,7 +1117,7 @@ function runPrerender() {
       const gameLabel = '이환(NTE)';
       const imagePath = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
       const routePath = `/gallery/nte/character/${encodeURIComponent(item.name)}`;
-      
+
       createPrerenderedPage(
         routePath,
         `${item.name} 종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | ${gameLabel} 공략 DB`,
@@ -1303,9 +1303,21 @@ function runPrerender() {
       meta.description = '애니모 성격 8종의 전투 보너스와 E/I·S/N·T/F·J/P 선택법, 딜러·치명타·무력화·지원 역할별 추천 성격을 확인하세요.';
       meta.content = `<article><h1>애니모 성격 선택 가이드</h1><p>${escapeHtml(meta.description)}</p><table><thead><tr><th>성격</th><th>전투 보너스</th></tr></thead><tbody>${traits.map(([trait, effect]) => `<tr><th>${trait}</th><td>${effect}</td></tr>`).join('')}</tbody></table><h2>선택 기준</h2><p>치명타 연계가 없다면 S, 치명타 관련 스킬이나 특성이 있다면 N을 고려합니다. T와 F는 상대의 물리·마법 피해에 따라 선택하고, 전투용과 홈 운영용 개체를 구분합니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/party-builder') {
+      let partyListHtml = '';
+      try {
+        const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+        const partiesFilePath = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'parties.ts');
+        if (fs.existsSync(partiesFilePath)) {
+          const content = fs.readFileSync(partiesFilePath, 'utf8');
+          const partyMatch = content.match(/name:\s*['"](.*?)['"][\s\S]*?description:\s*['"](.*?)['"][\s\S]*?category:\s*['"](.*?)['"]/);
+          if (partyMatch) {
+            partyListHtml = `<h2>추천 파티 목록</h2><section><h3>${escapeHtml(partyMatch[1])} (${escapeHtml(partyMatch[3])})</h3><p>${escapeHtml(partyMatch[2])}</p></section>`;
+          }
+        }
+      } catch (e) {}
       meta.title = '애니모 파티 추천 | 역할별 추천 조합';
       meta.description = '애니모의 역할과 형태를 반영한 추천 파티, 운용 특징과 대체 조합을 확인하세요.';
-      meta.content = `<article><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p><h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a></p></article>`;
+      meta.content = `<article><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p>${partyListHtml || '<h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p>'}<p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
@@ -1314,7 +1326,7 @@ function runPrerender() {
       if (location) {
         const appearances = aniimoEntries.map(item => ({
           item,
-          forms: (item.forms || []).filter(form => (form.locations || item.locations || []).includes(location))
+          forms: (item.forms || []).filter(form => (form.locations || item.locations || [])).includes(location)
         })).filter(appearance => appearance.forms.length > 0);
         meta.title = `${location} 출현 애니모 ${appearances.length}종 | 애니모 지역 도감`;
         meta.description = `${location}에서 출현하는 애니모 ${appearances.length}종과 각 지역 형태를 확인하세요.`;
@@ -1330,11 +1342,21 @@ function runPrerender() {
       const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
       const item = aniimoEntries.find(candidate => candidate.name === name);
       if (item) {
+        const STAT_LABEL_MAP = {
+          total: '종합 능력치',
+          hp: '체력(HP)',
+          break: '무력화',
+          attack: '공격력',
+          magicDefense: '마법 방어력',
+          physicalDefense: '물리 방어력',
+          energyRecovery: '에너지 회복'
+        };
         meta.title = `${item.name} 능력치·스킬·진화 | 애니모 도감`;
         meta.description = `애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화, 출현 지역, 특성, 스킬과 공명 육성 정보를 확인하세요.`;
         const skillHtml = [...(item.combatSkills || []), ...(item.uniqueSkills || [])].map(skill => `<section><h3>${escapeHtml(skill.name)}</h3><p>${escapeHtml(skill.description)}</p><p>${escapeHtml(skill.skillType)} · 에너지 ${escapeHtml(skill.energyCost)} · 위력 ${escapeHtml(skill.power)}</p></section>`).join('');
         const locationHtml = item.locations?.length ? `<h2>출현 지역</h2><ul>${item.locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul>` : '';
-        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>소개</h2><p>${escapeHtml(item.description)}</p><h2>기본 능력치</h2><dl>${Object.entries(item.stats).map(([key, value]) => `<dt>${escapeHtml(key)}</dt><dd>${escapeHtml(value)}</dd>`).join('')}</dl>${locationHtml}${item.traits?.length ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}` : ''}<h2>스킬 소개</h2>${skillHtml}<p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
+        const statsHtml = Object.entries(item.stats || {}).map(([key, value]) => `<dt>${escapeHtml(STAT_LABEL_MAP[key] || key)}</dt><dd>${escapeHtml(value)}</dd>`).join('');
+        meta.content = `<article><h1>${escapeHtml(item.name)}</h1><p>NO.${escapeHtml(item.number)} · ${escapeHtml(item.elements.join('/'))} · ${escapeHtml(item.positions.join('/'))}</p><h2>소개</h2><p>${escapeHtml(item.description)}</p><h2>기본 능력치</h2><dl>${statsHtml}</dl>${locationHtml}${item.traits?.length ? `<h2>애니모 특성</h2>${item.traits.map(trait => `<h3>${escapeHtml(trait.name)}</h3><p>${escapeHtml(trait.description)}</p>`).join('')}` : ''}<h2>스킬 소개</h2>${skillHtml}<p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
       }
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
@@ -1360,12 +1382,12 @@ function runPrerender() {
   noIndexPages.forEach(routePath => {
     const targetDir = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean));
     fs.mkdirSync(targetDir, { recursive: true });
-    
+
     let noIndexHtml = baseHtml.replace('</head>', `
       <meta name="robots" content="noindex, nofollow" />
       <title>Rira Archive - Restricted</title>
     </head>`);
-    
+
     fs.writeFileSync(path.join(targetDir, 'index.html'), noIndexHtml, 'utf8');
     count++;
   });

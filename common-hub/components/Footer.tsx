@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
     <footer className="bg-[#0d0d0d] border-t border-white/5 pt-12 sm:pt-16 pb-8 px-4 sm:px-6 md:px-8 mt-auto font-sans overflow-hidden">
       <div className="max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
+
           {/* 컬럼 1: 브랜드 슬로건 */}
           <div className="space-y-6">
             <div className="space-y-2">
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               </p>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed max-w-xs font-medium">
-              Comprehensive game data and tactical analysis platform for advanced explorers. 
+              Comprehensive game data and tactical analysis platform for advanced explorers.
               All systems operational via RIRA GAME HUB.
             </p>
             <div className="flex items-center gap-3 text-[10px] font-black text-green-500/60 uppercase tracking-widest">
@@ -86,17 +86,19 @@ const Footer: React.FC = () => {
             <span>Copyright © {currentYear} RIRA ARCHIVE. All rights reserved.</span>
             <span>Archive Identity & Intellectual Property / Ver 1.0.4_Stable</span>
           </div>
-          
+
           <div className="space-y-4">
             <p className="text-[10px] leading-relaxed text-gray-400 font-medium">
-              <strong className="text-gray-400">Legal Disclaimer:</strong> RIRA ARCHIVE is a non-profit, unofficial fan-operated project intended for educational and research purposes. 
-              This terminal is not affiliated with, endorsed by, or representative of HoYoverse, Kuro Games, or any other game developers. 
-              All game-related imagery, characters, and assets are the exclusive intellectual property and registered trademarks of their respective owners. 
+              <strong className="text-gray-400">Legal Disclaimer:</strong> RIRA ARCHIVE is a non-profit, unofficial fan-operated project intended for educational and research purposes.
+              This terminal is not affiliated with, endorsed by, or representative of HoYoverse, Kuro Games, Hotta Studio, or Aniimo developers.
+              All game-related imagery, characters, and assets are the exclusive intellectual property and registered trademarks of their respective owners.
               RIRA ARCHIVE operates under Fair Use principles for informational analysis.
             </p>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-black text-gray-300 uppercase tracking-tighter">
               <span>Source Entities: © HoYoverse</span>
               <span>© Kuro Games</span>
+              <span>© Hotta Studio / Perfect World</span>
+              <span>© Aniimo Official</span>
               <span>© RIRA ARCHIVE Game Database</span>
             </div>
           </div>

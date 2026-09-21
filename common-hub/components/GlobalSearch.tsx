@@ -3,42 +3,74 @@ import { Search } from 'lucide-react';
 import { useLocation } from 'react-router';
 import SearchModal from './SearchModal';
 
-export default function GlobalSearch() {
+interface GlobalSearchProps {
+  className?: string;
+  showText?: boolean;
+}
+
+export default function GlobalSearch({ className = '', showText = true }: GlobalSearchProps) {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
-  // 단축키 (Cmd+K 또는 Ctrl+K) 감지
+  // 단축키 (Cmd+K 또는 Ctrl+K) 및 커스텀 이벤트 감지
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      // 1. Mac(metaKey)과 Windows(ctrlKey) 모두 대응
-      // 2. K 키인지 확인 (대소문자 구분 없이 안전하게 처리)
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        // 3. 브라우저 기본 검색창 열기 방지 (매우 중요)
         e.preventDefault();
         setIsOpen(true);
       }
       if (e.key === 'Escape') setIsOpen(false);
     };
+
+    const handleCustomOpen = () => {
+      setIsOpen(true);
+    };
+
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('open-global-search', handleCustomOpen);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('open-global-search', handleCustomOpen);
+    };
   }, []);
 
-  // URL을 바탕으로 gameId 유추 (메인 화면일 시 기본값 hsr 사용)
-  const gameId = location.pathname.includes('/ww') ? 'ww' : 'hsr';
+  // URL을 바탕으로 active gameId 유추
+  const getGameIdFromPath = (pathname: string): 'all' | 'hsr' | 'ww' | 'nte' | 'aniimo' => {
+    if (pathname.includes('/aniimo')) return 'aniimo';
+    if (pathname.includes('/ww')) return 'ww';
+    if (pathname.includes('/nte')) return 'nte';
+    if (pathname.includes('/hsr')) return 'hsr';
+    return 'all';
+  };
+
+  const activeGameId = getGameIdFromPath(location.pathname);
 
   return (
     <>
-      {/* 헤더 등에 들어갈 검색 버튼 (선택 사항) */}
-      <button 
+      <button
+        type="button"
         onClick={() => setIsOpen(true)}
-        className="flex items-center justify-center w-10 h-10 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-white transition-all group"
-        title="통합 검색 (⌘K)"
+        className={`flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-all text-xs font-bold group cursor-pointer ${className}`}
+        title="통합 아카이브 검색 (⌘K / Ctrl+K)"
+        aria-label="통합 아카이브 검색"
       >
-        <Search size={18} className="group-hover:scale-110 transition-transform" />
+        <Search size={15} className="text-brand-primary group-hover:scale-110 transition-transform shrink-0" />
+        {showText && (
+          <span className="hidden lg:inline text-[11px] font-bold text-gray-400 group-hover:text-gray-200">
+            통합 검색
+          </span>
+        )}
+        <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono text-gray-400 bg-white/10 rounded border border-white/5">
+          ⌘K
+        </kbd>
       </button>
 
-      {/* 실제 작동하는 인텔리전스 검색 모달 호출 */}
-      <SearchModal isOpen={isOpen} onClose={() => setIsOpen(false)} gameId={gameId} />
+      {/* 인텔리전스 검색 모달 */}
+      <SearchModal
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        gameId={activeGameId}
+      />
     </>
   );
 }

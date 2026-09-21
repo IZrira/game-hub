@@ -1,4 +1,3 @@
-
 import React, { useMemo } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { ARCHIVE_DATA } from '../data/games';
@@ -10,13 +9,14 @@ import LazyImage from '../components/LazyImage';
 import { NoticeListView, useNoticeBadge } from '../components/NoticeComponents';
 import { Notice } from '../data/types';
 import AdPlaceholder from '../components/AdPlaceholder';
-import { 
-  ChevronRight, 
-  Zap, 
+import aniimoData from '../../aniimo-hub/data/aniimo.json';
+import {
+  ChevronRight,
+  Zap,
   Bell,
-  Activity as ActivityIcon, 
-  Database, 
-  FileText, 
+  Activity as ActivityIcon,
+  Database,
+  FileText,
   Users,
   ShieldCheck,
   TrendingUp,
@@ -25,7 +25,9 @@ import {
   Terminal,
   Server,
   TerminalSquare,
-  BookOpen
+  BookOpen,
+  Search,
+  Sparkles
 } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -43,7 +45,7 @@ const Home: React.FC = () => {
 
   /**
    * @description 프로젝트 전체 메트릭 및 개별 게임별 통계(캐릭터 수, 가이드 수 등)를 자동으로 연산하여 반환합니다.
-   * ARCHIVE_DATA에 등록된 모든 게임을 순회하여 노션 동기화 및 신규 게임/캐릭터/가이드가 즉각 자동 카운트됩니다.
+   * HSR, WW, NTE는 데이터 레이어 및 가이드 카운트를 반영하며, Aniimo는 실제 JSON 데이터셋 길이를 정확히 반영합니다.
    */
   const { globalStats, gameStats } = useMemo(() => {
     const statsByGame: Record<string, { characters: number; guides: number }> = {};
@@ -51,12 +53,21 @@ const Home: React.FC = () => {
     let totalGuides = 0;
 
     ARCHIVE_DATA.games.forEach(game => {
-      const data = getGameData(game.id);
-      const characters = data?.CHARACTER_DB?.length || 0;
-      const guides = (data?.GUIDES?.length || 0) + (game.posts?.length || 0);
-      statsByGame[game.id] = { characters, guides };
-      totalCharacters += characters;
-      totalGuides += guides;
+      if (game.id === 'aniimo') {
+        const characters = (aniimoData as any[]).length;
+        // 아니모 핵심 전략 도구: 속성 상성표, 성격 도감, 파티 빌더, 전역 서식지 도감, 진화/스탯 가이드
+        const guides = 5;
+        statsByGame[game.id] = { characters, guides };
+        totalCharacters += characters;
+        totalGuides += guides;
+      } else {
+        const data = getGameData(game.id);
+        const characters = data?.CHARACTER_DB?.length || 0;
+        const guides = (data?.GUIDES?.length || 0) + (game.posts?.length || 0);
+        statsByGame[game.id] = { characters, guides };
+        totalCharacters += characters;
+        totalGuides += guides;
+      }
     });
 
     const totalItems = Object.keys(ITEM_META).length;
@@ -74,7 +85,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">
-      <SEO 
+      <SEO
         title={t('리라 아카이브 | 애니모·명조·스타레일 게임 DB')}
         description="리라 아카이브는 애니모(Aniimo), 명조(Wuthering Waves), 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 제공하는 통합 게임 데이터베이스입니다."
         keywords="리라 아카이브, 서브컬쳐 데이터베이스, 애니모, Aniimo, 애니모 도감, 애니모 능력치 비교, 명조, Wuthering Waves, 붕괴 스타레일, Honkai Star Rail, 이환, Neverness to Everness, 게임 공략, 티어표, 위키, DB"
@@ -97,7 +108,7 @@ const Home: React.FC = () => {
             <Terminal size={14} className="text-brand-accent animate-pulse shrink-0" />
             <span className="text-[9px] sm:text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.4em] truncate">{t('Initializing Rira Archive Database...')}</span>
           </div>
-          
+
           <div className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] sm:leading-[0.95] tracking-tighter">
               {t('완벽한 플레이를 위한')}<br/>
@@ -135,11 +146,106 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* 빠른 접근 센터 (Quick Access Portal) */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16 relative z-20">
+        <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <div className="flex items-center gap-2.5">
+            <Sparkles size={18} className="text-brand-accent" />
+            <h2 className="text-sm sm:text-base font-black text-white uppercase tracking-[0.2em]">
+              {t('빠른 접근 & 핵심 기능')}
+            </h2>
+          </div>
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
+            className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer"
+          >
+            <span>{t('통합 검색')}</span>
+            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-white/10 rounded">⌘K</kbd>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+          {/* 1. 통합 아카이브 검색 */}
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-brand-primary/40 hover:bg-brand-primary/5 transition-all group text-center cursor-pointer"
+          >
+            <div className="w-10 h-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Search size={18} className="text-brand-primary" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-brand-primary transition-colors">통합 검색</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">전체 게임 DB</span>
+          </button>
+
+          {/* 2. 캐릭터 & 아니모 도감 */}
+          <Link
+            to="/gallery/aniimo/characters"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Users size={18} className="text-amber-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-amber-400 transition-colors">아니모 도감</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">진화 & 스탯</span>
+          </Link>
+
+          {/* 3. 능력치 비교 분석 */}
+          <Link
+            to="/gallery/aniimo/characters"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-purple-500/40 hover:bg-purple-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <ActivityIcon size={18} className="text-purple-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-purple-400 transition-colors">비교 매트릭스</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">스탯 델타 분석</span>
+          </Link>
+
+          {/* 4. 추천 파티 조합 */}
+          <Link
+            to="/gallery/aniimo/party-builder"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Zap size={18} className="text-emerald-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors">파티 빌더</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">시너지 조합</span>
+          </Link>
+
+          {/* 5. 속성 상성표 */}
+          <Link
+            to="/gallery/aniimo/type-chart"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <TrendingUp size={18} className="text-sky-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-sky-400 transition-colors">속성 상성표</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">배율 & 카운터</span>
+          </Link>
+
+          {/* 6. 전역 서식지 도감 */}
+          <Link
+            to="/gallery/aniimo/locations"
+            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-rose-500/40 hover:bg-rose-500/5 transition-all group text-center"
+          >
+            <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
+              <Database size={18} className="text-rose-400" />
+            </div>
+            <span className="text-xs font-black text-white group-hover:text-rose-400 transition-colors">서식지 도감</span>
+            <span className="text-[10px] font-bold text-gray-500 mt-0.5">스폰 위치 탐색</span>
+          </Link>
+        </div>
+      </section>
+
       {/* Rira Daily Hub (패치 노트 및 공지사항 탭) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-24 mb-8 relative z-20">
         <div className="bg-[#121212] border border-white/5 rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
-          
+
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-5">
             <div className="flex flex-wrap items-center gap-3 sm:gap-6">
               <div className="flex items-center gap-2.5">
@@ -161,16 +267,16 @@ const Home: React.FC = () => {
                 </button>
               </div>
             </div>
-            
+
             <Link to="/notices" className="inline-flex items-center gap-1.5 text-xs font-black text-gray-400 hover:text-brand-primary uppercase tracking-widest transition-colors self-end sm:self-center">
               {t('+ 더보기')} <ChevronRight size={14} />
             </Link>
           </div>
-          
+
           <div className="min-h-[160px]">
             {dailyHubTab === 'patch_notes' ? (
-              <NoticeListView 
-                notices={globalNotices.filter(n => n.category === 'Update').slice(0, 3)} 
+              <NoticeListView
+                notices={globalNotices.filter(n => n.category === 'Update').slice(0, 3)}
                 onNoticeClick={(n) => {
                   markAsRead(n.id);
                   navigate(`/notices/${n.id}`);
@@ -178,12 +284,12 @@ const Home: React.FC = () => {
                 emptyMessage={t('새로운 패치 노트가 없습니다.')}
               />
             ) : (
-              <NoticeListView 
-                notices={globalNotices.slice(0, 3)} 
+              <NoticeListView
+                notices={globalNotices.slice(0, 3)}
                 onNoticeClick={(n) => {
                   markAsRead(n.id);
                   navigate(`/notices/${n.id}`);
-                }} 
+                }}
               />
             )}
           </div>
@@ -206,13 +312,13 @@ const Home: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
           {ARCHIVE_DATA.games.map((game, index) => (
-            <Link 
+            <Link
               key={game.id}
               to={`/gallery/${game.id}`}
               className="group relative h-[380px] sm:h-[440px] md:h-[480px] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
             >
-              <LazyImage 
-                src={game.bannerImage} 
+              <LazyImage
+                src={game.bannerImage}
                 alt={`${game.title} - ${t('리라 아카이브 게임 데이터베이스 탐색')}`}
                 width={1024}
                 height={1024}
@@ -223,7 +329,7 @@ const Home: React.FC = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-transparent" />
-              
+
               <div className="absolute inset-0 p-6 sm:p-10 md:p-14 flex flex-col justify-between">
                 <div className="flex flex-wrap items-center gap-2 sm:gap-4">
                   <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-brand-primary/30 backdrop-blur-md border border-brand-primary/30 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-brand-accent">
@@ -243,7 +349,7 @@ const Home: React.FC = () => {
                       {game.subTitle}
                     </p>
                   </div>
-                  
+
                   <div className="flex items-center gap-6 sm:gap-10 pt-2 sm:pt-4">
                     <div className="flex flex-col">
                       <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('캐릭터 명단')}</span>
@@ -265,7 +371,7 @@ const Home: React.FC = () => {
               </div>
             </Link>
           ))}
-          
+
           <div className="h-[300px] sm:h-[400px] md:h-[480px] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-6 sm:p-12 bg-white/[0.02] group transition-all hover:bg-white/[0.04]">
             <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white/5 flex items-center justify-center mb-4 sm:mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5">
               <Cpu size={32} className="sm:w-10 sm:h-10 text-gray-400" />
