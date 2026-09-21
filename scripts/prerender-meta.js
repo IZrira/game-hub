@@ -746,10 +746,6 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
           <span class="prerender-logo-dot"></span>
           <a href="/" class="prerender-brand-name">RIRA GAME HUB</a>
         </div>
-        <div class="prerender-status-pill" aria-hidden="true">
-          <span class="prerender-status-dot"></span>
-          <span>동기화 중...</span>
-        </div>
       </header>
       <main class="prerender-main">
         ${innerContent}
@@ -979,17 +975,8 @@ function getFallbackMeta(routePath) {
   return { title, description, content };
 }
 
-function generateInternalLinkList(title, routes) {
-  if (routes.length === 0) return '';
-  const links = routes.map(route => {
-    const label = decodeURIComponent(route.split('/').filter(Boolean).at(-1) || route);
-    return `<li><a href="${escapeHtml(route)}">${escapeHtml(label)}</a></li>`;
-  }).join('\n');
-  return `<nav aria-label="${escapeHtml(title)}"><h2>${escapeHtml(title)}</h2><ul>${links}</ul></nav>`;
-}
-
 // ---------------------------------------------------------------------
-// SEO HTML Generators
+// SEO HTML Generators & Localization
 // ---------------------------------------------------------------------
 const WW_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'ww', 'ww_characters_ko.json');
 const WW_WEAPON_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'ww', 'ww_weapons_ko.json');
@@ -998,6 +985,91 @@ const HSR_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'hsr', 'hsr_cha
 const wwKoData = fs.existsSync(WW_KO_FILE) ? JSON.parse(fs.readFileSync(WW_KO_FILE, 'utf8')) : {};
 const wwWeaponKoData = fs.existsSync(WW_WEAPON_KO_FILE) ? JSON.parse(fs.readFileSync(WW_WEAPON_KO_FILE, 'utf8')) : {};
 const hsrKoData = fs.existsSync(HSR_KO_FILE) ? JSON.parse(fs.readFileSync(HSR_KO_FILE, 'utf8')) : {};
+
+function getRouteDisplayLabel(route) {
+  const decoded = decodeURI(route);
+  const segments = decoded.split('/').filter(Boolean);
+
+  // HSR character: /gallery/hsr/character/:id
+  if (segments[1] === 'hsr' && segments[2] === 'character') {
+    const id = segments[3];
+    const isGuide = segments[4] === 'guide';
+    const char = parseHsrCharacter(id);
+    let name = hsrKoData[`character.${id}.name`] || char?.name || id;
+    if (name.startsWith('character.')) name = char?.folderName || id;
+
+    if (isGuide) {
+      return `${name} 종결 육성 공략 (광추·유물 세팅 & 파티 조합)`;
+    }
+    const rarity = char?.rarity ? `${char.rarity}성` : '5성';
+    const attribute = char?.attribute ? ` · ${char.attribute}` : '';
+    const path = char?.path ? ` · ${char.path}` : '';
+    return `${name} (${rarity}${attribute}${path})`;
+  }
+
+  // HSR equipment
+  if (segments[1] === 'hsr' && segments[2] === 'lightcone') {
+    return `광추 · ${decodeURIComponent(segments[3])}`;
+  }
+  if (segments[1] === 'hsr' && segments[2] === 'relic') {
+    return `유물 · ${decodeURIComponent(segments[3])} (2/4세트 효과)`;
+  }
+  if (segments[1] === 'hsr' && segments[2] === 'ornament') {
+    return `차원 장신구 · ${decodeURIComponent(segments[3])} (2세트 효과)`;
+  }
+
+  // WW character: /gallery/ww/character/:id
+  if (segments[1] === 'ww' && segments[2] === 'character') {
+    const id = segments[3];
+    const isGuide = segments[4] === 'guide';
+    const char = parseWwCharacter(id);
+    let name = wwKoData[`character.${id}.name`] || char?.name || id;
+    if (name.startsWith('character.')) name = char?.folderName || id;
+
+    if (isGuide) {
+      return `${name} 종결 세팅 공략 (무기·에코 랭킹 & 파티 시너지)`;
+    }
+    const attribute = char?.attribute ? `${char.attribute}` : '';
+    const weapon = char?.weaponType ? ` · ${char.weaponType}` : '';
+    const desc = attribute || weapon ? ` (${attribute}${weapon})` : '';
+    return `${name}${desc}`;
+  }
+
+  // WW equipment
+  if (segments[1] === 'ww' && segments[2] === 'weapon') {
+    return `무기 · ${decodeURIComponent(segments[3])}`;
+  }
+  if (segments[1] === 'ww' && segments[2] === 'echo') {
+    return `에코 · ${decodeURIComponent(segments[3])}`;
+  }
+
+  // NTE character: /gallery/nte/character/:name
+  if (segments[1] === 'nte' && segments[2] === 'character') {
+    return `${decodeURIComponent(segments[3])} (이환 캐릭터 정보 & 추천 아크)`;
+  }
+  if (segments[1] === 'nte' && segments[2] === 'weapon') {
+    return `아크 · ${decodeURIComponent(segments[3])}`;
+  }
+
+  // Aniimo: /gallery/aniimo/character/:name
+  if (segments[1] === 'aniimo' && segments[2] === 'character') {
+    return `애니모 · ${decodeURIComponent(segments[3])}`;
+  }
+  if (segments[1] === 'aniimo' && segments[2] === 'location') {
+    return `서식지 · ${decodeURIComponent(segments[3]).replace(/-/g, ' ')}`;
+  }
+
+  return decodeURIComponent(segments.at(-1) || route);
+}
+
+function generateInternalLinkList(title, routes) {
+  if (routes.length === 0) return '';
+  const links = routes.map(route => {
+    const label = getRouteDisplayLabel(route);
+    return `<li><a href="${escapeHtml(route)}">${escapeHtml(label)}</a></li>`;
+  }).join('\n');
+  return `<nav aria-label="${escapeHtml(title)}"><h2>${escapeHtml(title)}</h2><ul>${links}</ul></nav>`;
+}
 
 function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   const charMeta = parseWwCharacter(id);
@@ -1516,6 +1588,36 @@ function generateNotionHtml(item) {
 }
 
 // ---------------------------------------------------------------------
+// Habitat Validation
+// ---------------------------------------------------------------------
+
+function validateAniimoHabitats(aniimoEntries) {
+  console.log('\n🌿 [Habitat Validation] Validating official 14 Aniimo habitats against official species targets...');
+  let hasError = false;
+
+  OFFICIAL_ANIIMO_HABITATS.forEach(habitat => {
+    const target = OFFICIAL_HABITAT_TARGETS[habitat];
+    const matchingEntries = aniimoEntries.filter(entry =>
+      (entry.habitats || []).includes(habitat) ||
+      (entry.forms || []).some(form => (form.locations || []).includes(habitat))
+    );
+    const count = matchingEntries.length;
+
+    if (count === target) {
+      console.log(`  ✓ ${habitat.padEnd(14)}: ${count} / ${target} 종 (일치)`);
+    } else {
+      hasError = true;
+      console.error(`  ✕ ${habitat.padEnd(14)}: ${count} / ${target} 종 (불일치: ${count > target ? count - target + '종 초과' : target - count + '종 누락'})`);
+    }
+  });
+
+  if (hasError) {
+    throw new Error('❌ Aniimo habitat validation failed! Check aniimo.json habitat mappings against official targets.');
+  }
+  console.log('✅ All 14 official habitats verified with 100% exact species counts!\n');
+}
+
+// ---------------------------------------------------------------------
 // Main Execution
 // ---------------------------------------------------------------------
 
@@ -1524,6 +1626,9 @@ function runPrerender() {
     console.error('❌ dist/index.html not found! Run `vite build` first.');
     process.exit(1);
   }
+
+  const aniimoValidationEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+  validateAniimoHabitats(aniimoValidationEntries);
 
   const baseHtml = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
   const sitemapRoutes = getSitemapRoutes();
@@ -1880,57 +1985,79 @@ function runPrerender() {
       const echoRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/'));
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
+      meta.title = '명조 허브 | 공명자·무기·에코 도감 & 심경의 탑 티어표';
+      meta.description = `명조: 워더링 웨이브(Wuthering Waves)의 전체 ${characterRoutes.length}명 공명자, ${weaponRoutes.length}개 무기, ${echoRoutes.length}종 에코 도감과 종결 세팅 가이드, 심경의 탑 티어표 및 파티 조합을 확인하세요.`;
       meta.content = `<article>
         <h1>명조: 워더링 웨이브 아카이브</h1>
-        <p>명조(Wuthering Waves)의 모든 공명자, 무기, 에코 도감과 종결 세팅 가이드, 심경의 탑 티어표를 제공합니다.</p>
+        <p>${escapeHtml(meta.description)}</p>
+        <dl>
+          <dt>등록 공명자</dt><dd>${characterRoutes.length}명</dd>
+          <dt>등록 무기</dt><dd>${weaponRoutes.length}개</dd>
+          <dt>등록 에코</dt><dd>${echoRoutes.length}종</dd>
+          <dt>공명자 공략</dt><dd>${guideRoutes.length}편</dd>
+        </dl>
         <nav aria-label="명조 데이터베이스 카테고리">
           <h2>데이터베이스 카테고리</h2>
           <ul>
             <li><a href="/gallery/ww?menu=캐릭터">공명자 도감 (${characterRoutes.length}명)</a></li>
             <li><a href="/gallery/ww?menu=무기">무기 도감 (${weaponRoutes.length}개)</a></li>
             <li><a href="/gallery/ww?menu=에코">에코 도감 (${echoRoutes.length}종)</a></li>
-            <li><a href="/gallery/ww?menu=공략">공명자 육성 공략</a></li>
+            <li><a href="/gallery/ww?menu=공략">공명자 육성 공략 (${guideRoutes.length}편)</a></li>
             <li><a href="/gallery/ww/tierlist">심경의 탑 티어표</a></li>
             <li><a href="/gallery/ww/parties">추천 파티 조합</a></li>
           </ul>
         </nav>
       </article>`;
-      meta.content += generateInternalLinkList('명조 무기 상세 페이지', weaponRoutes);
-      meta.content += generateInternalLinkList('명조 에코 상세 페이지', echoRoutes);
-      meta.content += generateInternalLinkList('명조 캐릭터 상세 페이지', characterRoutes);
-      meta.content += generateInternalLinkList('명조 캐릭터 공략', guideRoutes);
+      meta.content += generateInternalLinkList('명조 공명자 상세 도감', characterRoutes);
+      meta.content += generateInternalLinkList('명조 공명자 종결 공략 가이드', guideRoutes);
+      meta.content += generateInternalLinkList('명조 무기 데이터베이스', weaponRoutes);
+      meta.content += generateInternalLinkList('명조 에코 도감 및 어빌리티', echoRoutes);
     } else if (routePath === '/gallery/hsr') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(candidate));
       const lightConeRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/'));
       const relicRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/relic/'));
       const ornamentRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/'));
+      meta.title = '붕괴: 스타레일 허브 | 전체 캐릭터·광추·유물 도감 & 티어표';
+      meta.description = `붕괴: 스타레일(Honkai: Star Rail)의 전체 ${characterRoutes.length}명 캐릭터, ${lightConeRoutes.length}개 광추, ${relicRoutes.length + ornamentRoutes.length}개 유물·차원 장신구 도감과 실전 육성 가이드, 혼돈의 기억 티어표를 확인하세요.`;
       meta.content = `<article>
         <h1>붕괴: 스타레일 아카이브</h1>
-        <p>붕괴: 스타레일(Honkai: Star Rail)의 전체 캐릭터, 광추, 유물, 차원 장신구 도감과 실전 육성 공략, 혼돈의 기억 티어표를 제공합니다.</p>
+        <p>${escapeHtml(meta.description)}</p>
+        <dl>
+          <dt>등록 캐릭터</dt><dd>${characterRoutes.length}명</dd>
+          <dt>등록 광추</dt><dd>${lightConeRoutes.length}개</dd>
+          <dt>유물 &amp; 장신구</dt><dd>${relicRoutes.length + ornamentRoutes.length}세트</dd>
+          <dt>육성 공략</dt><dd>${guideRoutes.length}편</dd>
+        </dl>
         <nav aria-label="스타레일 데이터베이스 카테고리">
           <h2>데이터베이스 카테고리</h2>
           <ul>
             <li><a href="/gallery/hsr?menu=캐릭터">캐릭터 도감 (${characterRoutes.length}명)</a></li>
             <li><a href="/gallery/hsr?menu=광추">광추 도감 (${lightConeRoutes.length}개)</a></li>
             <li><a href="/gallery/hsr?menu=유물%20%26%20장신구">유물 & 차원 장신구 도감 (${relicRoutes.length + ornamentRoutes.length}세트)</a></li>
-            <li><a href="/gallery/hsr?menu=공략">캐릭터 육성 공략</a></li>
+            <li><a href="/gallery/hsr?menu=공략">캐릭터 육성 공략 (${guideRoutes.length}편)</a></li>
             <li><a href="/gallery/hsr/tierlist">혼돈·허구 티어표</a></li>
             <li><a href="/gallery/hsr/parties">추천 파티 조합</a></li>
           </ul>
         </nav>
       </article>`;
-      meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 페이지', characterRoutes);
-      meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 공략', guideRoutes);
-      meta.content += generateInternalLinkList('붕괴: 스타레일 광추 상세 페이지', lightConeRoutes);
-      meta.content += generateInternalLinkList('붕괴: 스타레일 유물 상세 페이지', relicRoutes);
-      meta.content += generateInternalLinkList('붕괴: 스타레일 차원 장신구 상세 페이지', ornamentRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 도감', characterRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 종결 공략 가이드', guideRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 광추 데이터베이스', lightConeRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 유물 도감 (세트 효과)', relicRoutes);
+      meta.content += generateInternalLinkList('붕괴: 스타레일 차원 장신구 도감 (세트 효과)', ornamentRoutes);
     } else if (routePath === '/gallery/nte') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate));
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/'));
+      meta.title = '이환 허브 | 캐릭터·아크 도감 & 추천 세팅';
+      meta.description = `이환: 네버네스 투 에버네스(Neverness to Everness)의 최신 ${characterRoutes.length}명 캐릭터 도감, ${weaponRoutes.length}개 아크 장비 데이터, 추천 파티 조합 및 육성 가이드를 확인하세요.`;
       meta.content = `<article>
         <h1>이환 (Neverness to Everness) 아카이브</h1>
-        <p>이환(NTE)의 최신 캐릭터 도감, 아크 도감 및 육성 세팅, 메타 티어표를 제공합니다.</p>
+        <p>${escapeHtml(meta.description)}</p>
+        <dl>
+          <dt>등록 캐릭터</dt><dd>${characterRoutes.length}명</dd>
+          <dt>등록 아크</dt><dd>${weaponRoutes.length}개</dd>
+        </dl>
         <nav aria-label="이환 데이터베이스 카테고리">
           <h2>데이터베이스 카테고리</h2>
           <ul>
@@ -1942,8 +2069,8 @@ function runPrerender() {
           </ul>
         </nav>
       </article>`;
-      meta.content += generateInternalLinkList('이환 캐릭터 상세 페이지', characterRoutes);
-      meta.content += generateInternalLinkList('이환 아크 상세 페이지', weaponRoutes);
+      meta.content += generateInternalLinkList('이환 캐릭터 상세 도감', characterRoutes);
+      meta.content += generateInternalLinkList('이환 아크 무기 데이터베이스', weaponRoutes);
     } else if (routePath === '/gallery/aniimo') {
       const aniimoFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
       const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];
