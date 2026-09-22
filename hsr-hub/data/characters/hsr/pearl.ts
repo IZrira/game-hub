@@ -74,7 +74,7 @@ const pearl: Character = {
       toughnessDMG: "약점 격파 범위 30",
       spRecovery: "전투 스킬 포인트 +1",
       description: "모든 적에게 펄 방어력의 100%만큼 얼음 속성 피해를 가하고, 모든 아군의 HP를 펄 방어력의 8%+160만큼 회복하며, 추가로 현재 HP 백분율이 가장 낮은 아군의 HP를 펄 방어력의 8%+160만큼 회복한다. [훌륭한 솜씨에는 보상을] 보유 시, 추가로 얼음 속성 환락 피해를 15% 가한다",
-      icon: "basic_atk_2"
+      icon: "basic_atk_1"
     },
     {
       name: "붓으로 그려낸 마지막 물결",
@@ -83,7 +83,7 @@ const pearl: Character = {
       toughnessDMG: "약점 격파 범위 30",
       spRecovery: "전투 스킬 포인트 +1",
       description: "모든 적에게 펄 방어력의 100%만큼 얼음 속성 피해를 가하고, 모든 아군의 HP를 펄 방어력의 8%+160만큼 회복하며, 추가로 현재 HP 백분율이 가장 낮은 아군의 HP를 펄 방어력의 8%+160만큼 회복한다",
-      icon: "basic_atk_3"
+      icon: "basic_atk_1"
     },
     {
       name: "생명을 보완하는 부드러운 빛",

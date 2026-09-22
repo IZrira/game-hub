@@ -78,6 +78,17 @@ export default function SkillAndEidolonSection({
       intro: 0, outro: 0
     };
 
+    const basicAtkSkills = char.skills?.filter((s) => {
+      const tag = s.tag || "";
+      return tag.includes('일반 공격') || tag.toLowerCase().includes('basic atk');
+    }) || [];
+
+    // 일반 공격이 여러 개인데 고유 아이콘이 1개 이하로 지정된 경우 basic_atk_1(또는 지정된 1개 아이콘)으로 통일
+    const basicIconSet = new Set(basicAtkSkills.map((s) => s.icon).filter(Boolean));
+    const unifiedBasicIcon = basicIconSet.size <= 1
+      ? (Array.from(basicIconSet)[0] || 'basic_atk_1')
+      : null;
+
     char.skills?.forEach((skill) => {
       const tag = skill.tag || "";
       let type = 'talent';
@@ -94,7 +105,9 @@ export default function SkillAndEidolonSection({
       else if (tag.includes('특성') || tag.toLowerCase().includes('talent')) type = 'talent';
 
       let filename;
-      if (skill.icon) {
+      if (type === 'basic_atk' && unifiedBasicIcon && basicAtkSkills.length > 1) {
+        filename = `${unifiedBasicIcon}.webp`;
+      } else if (skill.icon) {
         filename = `${skill.icon}.webp`;
       } else {
         if (!skill.name.includes('(강화)') || counters[type] === 0) {
@@ -166,13 +179,21 @@ export default function SkillAndEidolonSection({
                 className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-500 ${activeCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
               >
                 <div className="w-10 h-10 flex items-center justify-center relative z-10">
-                  <img 
-                    src={`${CDN_BASE}${groupedSkills[cat.id][0].filename}`} 
-                    className={`w-full h-full object-contain transition-all duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`} 
-                    alt={cat.label} 
+                  <img
+                    src={`${CDN_BASE}${groupedSkills[cat.id][0].filename}`}
+                    className={`w-full h-full object-contain transition-all duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
+                    alt={cat.label}
                     loading="lazy"
                     decoding="async"
-                    onError={(e) => (e.currentTarget.style.opacity = '0.3')} 
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      const firstFile = groupedSkills[cat.id]?.[0]?.filename;
+                      if (firstFile?.startsWith('basic_atk_') && firstFile !== 'basic_atk_1.webp') {
+                        target.src = `${CDN_BASE}basic_atk_1.webp`;
+                      } else {
+                        target.style.opacity = '0.3';
+                      }
+                    }}
                   />
                 </div>
                 <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>
@@ -184,13 +205,41 @@ export default function SkillAndEidolonSection({
             {activeSkills.map(({ skill, filename }, idx) => (
               <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
                  <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
-                   <img src={`${CDN_BASE}${filename}`} className="w-full h-full object-contain rotate-12" alt="" loading="lazy" decoding="async" />
+                   <img
+                     src={`${CDN_BASE}${filename}`}
+                     className="w-full h-full object-contain rotate-12"
+                     alt=""
+                     loading="lazy"
+                     decoding="async"
+                     onError={(e) => {
+                       const target = e.currentTarget;
+                       if (filename.startsWith('basic_atk_') && filename !== 'basic_atk_1.webp') {
+                         target.src = `${CDN_BASE}basic_atk_1.webp`;
+                       } else {
+                         target.style.display = 'none';
+                       }
+                     }}
+                   />
                  </div>
                  <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
                    <div className="flex flex-col md:flex-row items-start gap-8">
                       <div className="relative shrink-0">
                         <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
-                           <img src={`${CDN_BASE}${filename}`} className="w-full h-full object-contain brightness-110" alt={skill.name} loading="lazy" decoding="async" />
+                           <img
+                             src={`${CDN_BASE}${filename}`}
+                             className="w-full h-full object-contain brightness-110"
+                             alt={skill.name}
+                             loading="lazy"
+                             decoding="async"
+                             onError={(e) => {
+                               const target = e.currentTarget;
+                               if (filename.startsWith('basic_atk_') && filename !== 'basic_atk_1.webp') {
+                                 target.src = `${CDN_BASE}basic_atk_1.webp`;
+                               } else {
+                                 target.style.opacity = '0.3';
+                               }
+                             }}
+                           />
                         </div>
                       </div>
                       <div className="space-y-6 flex-1 min-w-0">
