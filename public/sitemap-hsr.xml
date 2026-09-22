@@ -2439,6 +2439,14 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/hsr/lightcone/%ED%8C%8C%EB%8F%84%EC%97%90%20%EB%82%B4%EB%8D%98%EC%A7%84%20%ED%95%9C%EC%97%AC%EB%A6%84"/>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/hsr/lightcone/%EB%82%B4%EC%9D%BC%EC%97%90%20%EB%B0%94%EC%B9%98%EB%8A%94%20%EC%83%89%EC%B1%84</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/hsr/lightcone/%EB%82%B4%EC%9D%BC%EC%97%90%20%EB%B0%94%EC%B9%98%EB%8A%94%20%EC%83%89%EC%B1%84?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/hsr/lightcone/%EB%82%B4%EC%9D%BC%EC%97%90%20%EB%B0%94%EC%B9%98%EB%8A%94%20%EC%83%89%EC%B1%84?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/hsr/lightcone/%EB%82%B4%EC%9D%BC%EC%97%90%20%EB%B0%94%EC%B9%98%EB%8A%94%20%EC%83%89%EC%B1%84"/>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/hsr/lightcone/%EB%B3%84%EC%9D%B4%20%EB%B0%A4%ED%95%98%EB%8A%98%EC%9D%84%20%EB%B0%9D%ED%9E%90%20%EB%95%8C</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

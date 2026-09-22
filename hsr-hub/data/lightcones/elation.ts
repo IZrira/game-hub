@@ -412,14 +412,49 @@ export const elationLightcones: HsrLightCone[] = [
       ]
     },
     "ascensionMaterials": [
-      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("천진난만 크레파스", 8, 2)] },
-      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 2), createMaterial("천진난만 크레파스", 20, 2)] },
-      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 4, 3), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 8, 3)] },
-      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 3), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3)] },
-      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 3), createMaterial("≪복슬복슬호≫ 소장판 합본", 5, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 6, 4)] },
-      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 3), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 14, 4)] },
-      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 2), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 3), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 14, 4)] }
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("생각의 가루", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("생각의 가루", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 4, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 5, 5), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("생각의 가루", 20, 2), createMaterial("인상의 파편", 20, 3), createMaterial("욕망의 거울 조각", 14, 4)] }
     ],
-    "story": "추가 예정"
+    "story": "바닷물이 보드 위로 솟구치고, 파도 끝이 일렁이는 틈을 갈라내자 햇빛이 수많은 조각의 금박으로 부서진다. 그는 서핑보드에 올라타 파도마루에 몸을 싣고 높이 날아오른다.\n\n*「거센 파도는 숱한 위험을 의미하고, 위험은 곧 두둑한 보상을 뜻하지」*\n\n그는 물결과 도박을 하듯, 몇 번이고 거센 바람과 파도의 정점에 몸을 내던진다. 한여름, 햇빛, 시원한 바닷바람, 그리고 수많은 이름과 손익의 숫자, 사람들의 눈에 서린 거짓과 속셈은 모두 흐릿한 색채로 번져 더는 구분할 필요가 없다.\n\n*「파도가 밀려온 이상, 뭘 몰고 올지 한번 지켜볼까?」*\n\n바다는 무한하고, 아스트로폴리스의 번영 역시 무한하다. 다음 칩을 던지기 전, 그는 파도마루에 올라 자신의 몸을 판돈으로 삼아, 파도를 내려다보는 그 순간으로 시선을 고정한다"
+  },
+  {
+    "id": "lc_내일에_바치는_색채",
+    "name": "내일에 바치는 색채",
+    "releaseVersion": "4.6",
+    "folderName": "내일에 바치는 색채",
+    "rarity": 5,
+    "path": "환락",
+    "gameId": "hsr",
+    "baseStats": createDetailedBaseStats(
+      [48, 185, 314, 463, 612, 761, 910, 1058],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [27, 104, 177, 261, 344, 428, 512, 595]
+    ),
+    "skill": {
+      "name": "휘묵",
+      "description": "장착한 캐릭터의 방어력이 48%/60%/72%/84%/96% 증가한다. 장착한 캐릭터가 모든 아군에게 환락 스킬 발동 시 모든 적이 받는 피해가 3턴 동안 22%/28%/33%/39%/44% 증가하고, 장착한 캐릭터의 에너지를 고정으로 10pt 회복하며, 모든 아군의 HP를 장착한 캐릭터 방어력의 10%/13%/15%/18%/20%만큼 회복한다",
+      "descriptions": [
+        "장착한 캐릭터의 방어력이 48% 증가한다. 장착한 캐릭터가 모든 아군에게 환락 스킬 발동 시 모든 적이 받는 피해가 3턴 동안 22% 증가하고, 장착한 캐릭터의 에너지를 고정으로 10pt 회복하며, 모든 아군의 HP를 장착한 캐릭터 방어력의 10%만큼 회복한다",
+        "장착한 캐릭터의 방어력이 60% 증가한다. 장착한 캐릭터가 모든 아군에게 환락 스킬 발동 시 모든 적이 받는 피해가 3턴 동안 28% 증가하고, 장착한 캐릭터의 에너지를 고정으로 10pt 회복하며, 모든 아군의 HP를 장착한 캐릭터 방어력의 13%만큼 회복한다",
+        "장착한 캐릭터의 방어력이 72% 증가한다. 장착한 캐릭터가 모든 아군에게 환락 스킬 발동 시 모든 적이 받는 피해가 3턴 동안 33% 증가하고, 장착한 캐릭터의 에너지를 고정으로 10pt 회복하며, 모든 아군의 HP를 장착한 캐릭터 방어력의 15%만큼 회복한다",
+        "장착한 캐릭터의 방어력이 84% 증가한다. 장착한 캐릭터가 모든 아군에게 환락 스킬 발동 시 모든 적이 받는 피해가 3턴 동안 39% 증가하고, 장착한 캐릭터의 에너지를 고정으로 10pt 회복하며, 모든 아군의 HP를 장착한 캐릭터 방어력의 18%만큼 회복한다",
+        "장착한 캐릭터의 방어력이 96% 증가한다. 장착한 캐릭터가 모든 아군에게 환락 스킬 발동 시 모든 적이 받는 피해가 3턴 동안 44% 증가하고, 장착한 캐릭터의 에너지를 고정으로 10pt 회복하며, 모든 아군의 HP를 장착한 캐릭터 방어력의 20%만큼 회복한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("천진난만 크레파스", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("천진난만 크레파스", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 4, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 5, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("욕망의 거울 조각", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] }
+    ],
+    "story": "*「잘못된 획 수정 완료, 파라미터 조정 완료」*\n\n그녀는 일찍이 작품 속 바다의 곡선 적합을 시도하고, 물의 형태와 의미를 추출하며, 점점이 흩어진 물거품을 해석하려 했다.\n\n몇 번이고 붓끝에서 수많은 파도가 일었지만, 그 어떤 것도 그녀가 상상하던 파도는 아니었다.\n\n*「저는 사람들을 위해 그림을 그리고 싶습니다. 그들의 발자취를 따라 그리는 것이 아닌, 그들의 앞길을 그려내기 위해서 말이죠」*\n\n붓을 휘두르자, 그녀는 굶주린 아이들에게 안식처를 가져다주었다.\n\n먹빛이 번지자, 그녀는 붓끝으로 천지의 균열을 메웠다.\n\n그리고 그녀의 가장 아득한 한 획은 이 세상의 캔버스를 관통해 광활한 은하로 뻗어나갔다.\n\n수많은 어제에서, 그녀는 타인을 위해 미래를 그리며——\n\n창백하고 암담했던 풍경을 희망의 색채로 물들인다.\n\n문득 고개를 돌려보니, 그녀가 남긴 모든 획이 그녀 마음속의「진주」를 아로새기고 있었다."
   }
 ];
