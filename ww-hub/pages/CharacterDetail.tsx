@@ -35,6 +35,8 @@ import WuwaResonanceChain from '../components/WuwaResonanceChain';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SynergyDeck from '../../common-hub/components/SynergyDeck';
+import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
+import WwEntityGraphSection from '../components/WwEntityGraphSection';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
@@ -580,9 +582,22 @@ const CharacterDetail: React.FC = () => {
       {/* Page Header */}
       <PageHeader gameId={gameId} category={t("캐릭터")} title={t(char.name)} />
 
+      <DetailStickyNav
+        tabs={[
+          { id: 'overview', label: t('개요') },
+          { id: 'stats', label: t('기본 스탯') },
+          { id: 'materials', label: t('육성 재료') },
+          { id: 'skills', label: t('스킬') },
+          { id: 'resonance-chain', label: t('공명 체인') },
+          { id: 'equipment', label: t('종결 장비') },
+          { id: 'synergy', label: t('추천 파티') }
+        ]}
+        activeColor={theme.primary}
+      />
+
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-4 space-y-6">
         {/* Profile Header: Image & Consolidated Info */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start border-b border-white/5 pb-8">
+        <div id="overview" className="relative grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start border-b border-white/5 pb-8 scroll-mt-28">
           
           {/* Left: Image with Integrated Info Overlay */}
           <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.5]">
@@ -649,7 +664,7 @@ const CharacterDetail: React.FC = () => {
             </div>
 
             {/* 02. Level Slider & Visual Stats Card */}
-            <div className="glass-card p-6 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+            <div id="stats" className="glass-card p-6 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6 scroll-mt-28">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
@@ -810,13 +825,13 @@ const CharacterDetail: React.FC = () => {
         )}
 
         {/* 05 Materials */}
-        <section className="space-y-8">
+        <section id="materials" className="space-y-8 scroll-mt-28">
           <SectionHeader num="05" title={t("육성 재료")} theme={theme} />
           <div className="flex flex-col gap-10">
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
                  <div className="flex items-center gap-4">
-                   <Package size={22} className="text-gray-500" />
+                   <Package size={22} className="text-gray-400" />
                    <span className="text-xl font-black uppercase tracking-tighter italic">{t("돌파 재료")}</span>
                  </div>
                  <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">
@@ -831,7 +846,7 @@ const CharacterDetail: React.FC = () => {
             </div>
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                 <Sparkles size={22} className="text-gray-500" />
+                 <Sparkles size={22} className="text-gray-400" />
                  <span className="text-2xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span>
                </div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start justify-center">
@@ -842,34 +857,46 @@ const CharacterDetail: React.FC = () => {
           </div>
         </section>
 
-        <WuwaSkillInput 
-          char={char} 
-          specialTerms={specialTerms} 
-          setTooltip={setTooltip} 
-          theme={theme}
-        />
+        <div id="skills" className="space-y-8 scroll-mt-28">
+          <WuwaSkillInput 
+            char={char} 
+            specialTerms={specialTerms} 
+            setTooltip={setTooltip} 
+            theme={theme}
+          />
 
-        <WuwaSkillSection 
-          char={char} 
-          theme={theme} 
-          renderContent={renderTextWithHighlights} 
-          setTooltip={setTooltip}
-          concertDissipation={char.concertDissipation}
-        />
+          <WuwaSkillSection 
+            char={char} 
+            theme={theme} 
+            renderContent={renderTextWithHighlights} 
+            setTooltip={setTooltip}
+            concertDissipation={char.concertDissipation}
+          />
+        </div>
 
-        <WuwaResonanceChain
-          char={char}
+        <div id="resonance-chain" className="scroll-mt-28">
+          <WuwaResonanceChain
+            char={char}
+            theme={theme}
+            renderContent={renderTextWithHighlights}
+            setTooltip={setTooltip}
+          />
+        </div>
+
+        {/* 06 Endgame Equipment Entity Graph */}
+        <WwEntityGraphSection
+          character={char}
           theme={theme}
-          renderContent={renderTextWithHighlights}
-          setTooltip={setTooltip}
         />
 
         {/* Team Formations & Synergies */}
-        <SynergyDeck 
-          characterName={char?.id || charName || ''} 
-          gameId="ww" 
-          theme={theme} 
-        />
+        <div id="synergy" className="scroll-mt-28">
+          <SynergyDeck 
+            characterName={char?.id || charName || ''} 
+            gameId="ww" 
+            theme={theme} 
+          />
+        </div>
 
 
         

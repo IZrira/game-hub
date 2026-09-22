@@ -337,6 +337,52 @@ function validateSeo() {
     logPass('Cloudflare Pages 301 permanent redirects for legacy habitats verified');
   }
 
+  // Parse all 301 rules
+  const redirectRules = [];
+  lines.forEach(line => {
+    const parts = line.split(/\s+/);
+    if (parts.length >= 3 && parts[2] === '301') {
+      redirectRules.push({ from: parts[0], to: parts[1] });
+    }
+  });
+
+  // Check for circular redirects / self-redirects
+  let loopDetected = false;
+  redirectRules.forEach(r => {
+    if (r.from === r.to) {
+      loopDetected = true;
+      logFail(`Self redirect detected: ${r.from} -> ${r.to}`);
+    }
+    const reverse = redirectRules.find(other => other.from === r.to && other.to === r.from);
+    if (reverse) {
+      loopDetected = true;
+      logFail(`Circular redirect loop detected: ${r.from} <-> ${r.to}`);
+    }
+  });
+
+  if (!loopDetected) {
+    logPass(`Redirect loop safety verified across ${redirectRules.length} rules`);
+  }
+
+  // Check that 301 source URLs are omitted from sitemap
+  const sitemapFile = path.join(ROOT_DIR, 'public', 'sitemap.xml');
+  if (fs.existsSync(sitemapFile)) {
+    const sitemapContent = fs.readFileSync(sitemapFile, 'utf8');
+    let sitemapCollision = false;
+    redirectRules.forEach(r => {
+      const cleanPath = r.from.replace(/^\//, '');
+      if (sitemapContent.includes(`<loc>https://riragamehub.com/${cleanPath}</loc>`) ||
+          sitemapContent.includes(`<loc>https://riragamehub.com${r.from}</loc>`)) {
+        sitemapCollision = true;
+        logFail(`Sitemap contains 301 redirected source URL: ${r.from}`);
+      }
+    });
+
+    if (!sitemapCollision) {
+      logPass('Sitemap integrity verified: zero redirected legacy source URLs present');
+    }
+  }
+
   // Check SPA wildcard fallback
   if (lines.some(l => l.startsWith('/*') && l.includes('200'))) {
     logPass('SPA wildcard fallback (/* /index.html 200) verified');

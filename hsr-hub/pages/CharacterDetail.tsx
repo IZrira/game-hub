@@ -35,6 +35,7 @@ import HsrEntityGraphSection from '../components/HsrEntityGraphSection';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SynergyDeck from '../../common-hub/components/SynergyDeck';
+import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
@@ -600,9 +601,21 @@ const CharacterDetail: React.FC = () => {
       {/* Page Header */}
       <PageHeader gameId={gameId} category={t("캐릭터")} title={t(char.name)} />
 
+      <DetailStickyNav
+        tabs={[
+          { id: 'overview', label: t('개요') },
+          { id: 'stats', label: t('기본 스탯') },
+          { id: 'materials', label: t('육성 재료') },
+          { id: 'skills', label: t('행적 & 스킬') },
+          { id: 'equipment', label: t('종결 장비') },
+          { id: 'synergy', label: t('추천 파티') }
+        ]}
+        activeColor={theme.primary}
+      />
+
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-4 space-y-6">
         {/* Profile Header: Image & Consolidated Info */}
-        <div className="relative grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start border-b border-white/5 pb-8">
+        <div id="overview" className="relative grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start border-b border-white/5 pb-8 scroll-mt-28">
           
           {/* Left: Image with Integrated Info Overlay */}
           <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.5]">
@@ -680,7 +693,7 @@ const CharacterDetail: React.FC = () => {
             </div>
 
             {/* 02. Level Slider & Visual Stats Card */}
-            <div className="glass-card p-6 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+            <div id="stats" className="glass-card p-6 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6 scroll-mt-28">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
@@ -796,7 +809,7 @@ const CharacterDetail: React.FC = () => {
         </section>
 
         {/* 04 Materials */}
-        <section className="space-y-8">
+        <section id="materials" className="space-y-8 scroll-mt-28">
           <SectionHeader num="04" title={t("육성 재료")} theme={theme} />
           <div className="flex flex-col gap-10">
             <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
@@ -828,14 +841,16 @@ const CharacterDetail: React.FC = () => {
           </div>
         </section>
         
-        <SkillAndEidolonSection 
-          char={char} 
-          gender={gender} 
-          setGender={setGender}
-          theme={theme} 
-          renderContent={renderTextWithHighlights} 
-          setTooltip={setTooltip}
-        />
+        <div id="skills" className="scroll-mt-28">
+          <SkillAndEidolonSection 
+            char={char} 
+            gender={gender} 
+            setGender={setGender}
+            theme={theme} 
+            renderContent={renderTextWithHighlights} 
+            setTooltip={setTooltip}
+          />
+        </div>
 
         {/* Entity Graph: Recommended Equipment & Synergies */}
         <HsrEntityGraphSection
@@ -844,11 +859,13 @@ const CharacterDetail: React.FC = () => {
         />
         
         {/* Recommended Synergy / Team Formations */}
-        <SynergyDeck 
-          characterName={char?.id || charName || ''} 
-          gameId="hsr" 
-          theme={theme} 
-        />
+        <div id="synergy" className="scroll-mt-28">
+          <SynergyDeck 
+            characterName={char?.id || charName || ''} 
+            gameId="hsr" 
+            theme={theme} 
+          />
+        </div>
         
 
         {/* E-E-A-T Authorship & Methodology Note */}

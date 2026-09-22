@@ -12,6 +12,7 @@ import { getItemUrl, getItemMetaDB } from '../../common-hub/data/items';
 import { ItemDetailModal } from '../../common-hub/components/GalleryModals';
 import { ItemDetail } from '../../common-hub/types';
 import { useTranslation } from 'react-i18next';
+import WwRecommendedResonatorsSection from '../components/WwRecommendedResonatorsSection';
 
 export const WuwaEchoDetail = () => {
   const { t } = useTranslation();
@@ -30,7 +31,7 @@ export const WuwaEchoDetail = () => {
   if (!echo) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center space-y-6 text-white">
-        <h2 className="text-2xl font-black text-gray-500 uppercase tracking-widest">Echo Not Found</h2>
+        <h2 className="text-2xl font-black text-gray-400 uppercase tracking-widest">Echo Not Found</h2>
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-brand-primary font-bold hover:underline">
           <Zap size={18} /> Go Back to Gallery
         </button>
@@ -203,6 +204,13 @@ export const WuwaEchoDetail = () => {
             </div>
           </div>
         </div>
+
+        {/* Recommended Resonators Section */}
+        <WwRecommendedResonatorsSection 
+          itemType="echo" 
+          itemName={echo.name} 
+          theme={theme} 
+        />
 
         {/* 03. Acquisition Section (Full Width) */}
         <section className="glass-card p-10 rounded-[40px] border border-white/5">

@@ -93,7 +93,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
   }
 
   return (
-    <section className="space-y-8">
+    <section id="equipment" className="space-y-8 scroll-mt-28">
       <div className="flex items-center justify-between w-full group">
         <div className="flex items-center gap-6">
           <div

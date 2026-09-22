@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { useParams } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { Star, Package, Copy, CheckCircle2, Compass, Shield, Zap, Sparkles, User } from 'lucide-react';
 import { getGameData } from '../../common-hub/data/dataManager';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -137,11 +137,17 @@ const NTEArcDetail: React.FC = () => {
                   <span className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider border" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>
                     {theme.label} {t('등급')}
                   </span>
-                  {arc.dedicatedChar && (
-                    <span className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-brand-primary/20 text-brand-accent border border-brand-primary/40 flex items-center gap-1">
-                      <User size={12} /> {arc.dedicatedChar.match(/\[(.*?)\]/)?.[1] || arc.dedicatedChar.replace(/\*\*/g, '').trim()} {t('전용')}
-                    </span>
-                  )}
+                  {arc.dedicatedChar && (() => {
+                    const charName = arc.dedicatedChar.match(/\[(.*?)\]/)?.[1] || arc.dedicatedChar.replace(/\*\*/g, '').trim();
+                    return (
+                      <Link 
+                        to={`/gallery/nte/character/${encodeURIComponent(charName)}`}
+                        className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-brand-primary/20 text-brand-accent hover:text-white border border-brand-primary/40 flex items-center gap-1 transition-all hover:scale-105"
+                      >
+                        <User size={12} /> {charName} {t('전용')}
+                      </Link>
+                    );
+                  })()}
                 </div>
               </div>
             </div>
