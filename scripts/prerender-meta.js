@@ -849,6 +849,14 @@ function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml
 
   const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
   fs.writeFileSync(path.join(targetDir, 'index.html'), finalHtml, 'utf8');
+
+  // Also write [route].html so static clean-url engines can serve the file directly without directory 308 redirect
+  if (routeSegments.length > 0) {
+    const parentDir = path.join(DIST_DIR, ...routeSegments.slice(0, -1));
+    const htmlFileName = `${routeSegments[routeSegments.length - 1]}.html`;
+    fs.writeFileSync(path.join(parentDir, htmlFileName), finalHtml, 'utf8');
+  }
+
   prerenderedRoutes.add(routePath);
 }
 

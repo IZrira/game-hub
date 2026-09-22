@@ -19,6 +19,10 @@
     *, *::before, *::after {
       box-sizing: border-box;
     }
+    html {
+      background-color: #0a0a0a;
+      color-scheme: dark;
+    }
     body {
       margin: 0;
       padding: 0;
@@ -28,6 +32,11 @@
       -webkit-font-smoothing: antialiased;
       scrollbar-width: thin;
       scrollbar-color: #7E30E1 #121212;
+      min-height: 100vh;
+    }
+    #root {
+      min-height: 100vh;
+      background-color: #0a0a0a;
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -181,7 +190,8 @@
     }
 
     .prerender-shell nav ul,
-    .prerender-shell ul {
+    .prerender-shell ul,
+    .prerender-shell ol {
       list-style: none;
       padding: 0;
       margin: 12px 0 24px 0;
@@ -189,7 +199,8 @@
       grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 12px;
     }
-    .prerender-shell li {
+    .prerender-shell li,
+    .prerender-shell ol > li {
       background: rgba(255, 255, 255, 0.03);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -199,6 +210,34 @@
       font-size: 0.9rem;
       line-height: 1.5;
       color: #cbd5e1;
+    }
+    .prerender-shell strong,
+    .prerender-shell b {
+      color: #f1f5f9;
+      font-weight: 600;
+    }
+    .prerender-shell blockquote {
+      margin: 16px 0;
+      padding: 12px 16px;
+      border-left: 3px solid #7E30E1;
+      background: rgba(126, 48, 225, 0.08);
+      border-radius: 0 8px 8px 0;
+      color: #cbd5e1;
+    }
+    .prerender-shell code {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.85em;
+      color: #e2e8f0;
+    }
+    .narrative-analysis-summary {
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 28px;
     }
     .prerender-shell li a {
       color: #f1f5f9;

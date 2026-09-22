@@ -364,6 +364,7 @@ function validateSeo() {
       redirectRules.push({ from: parts[0], to: parts[1] });
     }
   });
+  globalMetrics.redirectRoutes = redirectRules.length;
 
   // Check for circular redirects / self-redirects
   let loopDetected = false;
@@ -383,27 +384,25 @@ function validateSeo() {
     logPass(`Redirect loop safety verified across ${redirectRules.length} rules`);
   }
 
-  // Trailing slash 301 rules check
-  const sampleTrailingSlashPaths = ['/about/', '/privacy/', '/blog/', '/gallery/hsr/'];
-  sampleTrailingSlashPaths.forEach(p => {
-    const hasRule = redirectRules.some(r => r.from === p && r.to === p.slice(0, -1));
-    if (!hasRule) {
-      logFail(`Missing static 301 redirect rule for trailing slash: ${p} -> ${p.slice(0, -1)}`);
-    }
-  });
-  logPass('Static 301 trailing slash redirect rules verified in _redirects');
-
-  // Check functions/_middleware.ts exists and enforces trailing slash redirect
+  // URL normalization: Trailing slash redirects are consolidated in Cloudflare Pages edge middleware (_middleware.ts)
   const middlewareFile = path.join(ROOT_DIR, 'functions', '_middleware.ts');
   if (fs.existsSync(middlewareFile)) {
     const mwContent = fs.readFileSync(middlewareFile, 'utf8');
     if (mwContent.includes("endsWith('/')") && mwContent.includes('301')) {
-      logPass('Cloudflare Pages edge middleware (_middleware.ts) verified for 301 trailing slash redirection');
+      logPass('Cloudflare Pages edge middleware (_middleware.ts) verified for single-source 301 trailing slash normalization');
     } else {
       logFail('Cloudflare Pages edge middleware does not properly enforce 301 trailing slash redirection');
     }
   } else {
     logFail('Cloudflare Pages edge middleware file (functions/_middleware.ts) not found');
+  }
+
+  // Ensure public/_redirects does NOT contain duplicate trailing slash redirects, keeping only legacy redirects and SPA fallback
+  const trailingSlashRedirectInFile = redirectRules.some(r => r.from.length > 1 && r.from.endsWith('/'));
+  if (trailingSlashRedirectInFile) {
+    logFail('public/_redirects contains duplicate trailing-slash redirect rules (should be handled exclusively by edge middleware)');
+  } else {
+    logPass('public/_redirects is clean of redundant trailing-slash rules (consolidated into edge middleware)');
   }
 
   // Check all sitemaps in public/ for trailing slashes & redirect collisions

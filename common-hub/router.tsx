@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect } from 'react';
-import { createBrowserRouter, Outlet, ScrollRestoration, useParams, useLocation, useNavigate } from 'react-router';
+import React, { Suspense } from 'react';
+import { createBrowserRouter, Outlet, ScrollRestoration, useParams } from 'react-router';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';
@@ -98,17 +98,6 @@ const PageFallback = () => (
 
 // 2. 공통 레이아웃 래퍼 컴포넌트
 const RootLayout = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  // Client-side trailing slash normalization: URL ends with / (except root /) -> replace state
-  useEffect(() => {
-    if (location.pathname.length > 1 && location.pathname.endsWith('/')) {
-      const cleanPath = location.pathname.replace(/\/+$/, '');
-      navigate(`${cleanPath}${location.search}${location.hash}`, { replace: true });
-    }
-  }, [location, navigate]);
-
   return (
     <ErrorBoundary>
       {/* 💡 React Router v7 최신 기능: 페이지 이동 시 스크롤을 자동으로 맨 위로 올려줍니다.
