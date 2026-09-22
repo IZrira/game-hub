@@ -27,6 +27,33 @@ const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://riragamehub.com';
 const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 const prerenderedRoutes = new Set();
+const globalHsrNameToIdMap = new Map();
+const globalWwNameToIdMap = new Map();
+let globalSitemapRouteSet = new Set();
+
+function initGlobalCharacterMaps() {
+  const hsrIds = getCharacterIds(HSR_CHAR_DIR);
+  hsrIds.forEach(id => {
+    const meta = parseHsrCharacter(id);
+    let name = hsrKoData[`character.${id}.name`] || meta?.name || id;
+    if (name.startsWith('character.')) name = meta?.folderName || id;
+    globalHsrNameToIdMap.set(id, id);
+    if (meta?.name) globalHsrNameToIdMap.set(meta.name.trim(), id);
+    if (meta?.folderName) globalHsrNameToIdMap.set(meta.folderName.trim(), id);
+    if (name) globalHsrNameToIdMap.set(name.trim(), id);
+  });
+
+  const wwIds = getCharacterIds(WW_CHAR_DIR);
+  wwIds.forEach(id => {
+    const meta = parseWwCharacter(id);
+    let name = wwKoData[`character.${id}.name`] || meta?.name || id;
+    if (name.startsWith('character.')) name = meta?.folderName || id;
+    globalWwNameToIdMap.set(id, id);
+    if (meta?.name) globalWwNameToIdMap.set(meta.name.trim(), id);
+    if (meta?.folderName) globalWwNameToIdMap.set(meta.folderName.trim(), id);
+    if (name) globalWwNameToIdMap.set(name.trim(), id);
+  });
+}
 
 const OFFICIAL_ANIIMO_HABITATS = [
   '붓꽃 바다',
@@ -938,7 +965,10 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
   if (item.evolution && item.evolution.length > 0) {
     const treeLinks = item.evolution.map(node => {
       const isCurrent = node.name === item.name;
-      const nodeLabel = `[${node.stage}] NO.${node.number} ${node.name}`;
+      const nodeLabel = `[${node.stage}] NO.${node.number} ${node.name || '미공개'}`;
+      if (!node.name) {
+        return `<li>${escapeHtml(nodeLabel)}</li>`;
+      }
       return isCurrent
         ? `<li><strong>${escapeHtml(nodeLabel)} (현재)</strong></li>`
         : `<li><a href="/gallery/aniimo/character/${encodeURIComponent(node.name)}">${escapeHtml(nodeLabel)}</a></li>`;
@@ -1191,7 +1221,11 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
     html += `<h2>추천 무기 순위</h2>\n<ol>\n`;
     bestWeapons.forEach(w => {
       const noteStr = w.note ? ` (${escapeHtml(w.note)})` : '';
-      html += `<li><strong>[${w.rank || ''}순위]</strong> <a href="/gallery/ww/weapon/${encodeURIComponent(w.name)}">${escapeHtml(w.name)}</a>${noteStr}</li>\n`;
+      const weaponRoute = `/gallery/ww/weapon/${encodeURIComponent(w.name)}`;
+      const link = globalSitemapRouteSet.has(weaponRoute)
+        ? `<a href="${weaponRoute}">${escapeHtml(w.name)}</a>`
+        : escapeHtml(w.name);
+      html += `<li><strong>[${w.rank || ''}순위]</strong> ${link}${noteStr}</li>\n`;
     });
     html += `</ol>\n`;
   }
@@ -1199,7 +1233,11 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   if (bestGear.length > 0) {
     html += `<h2>추천 에코 세트</h2>\n<ul>\n`;
     bestGear.forEach(e => {
-      html += `<li><a href="/gallery/ww/echo/${encodeURIComponent(e)}">${escapeHtml(e)}</a></li>\n`;
+      const echoRoute = `/gallery/ww/echo/${encodeURIComponent(e)}`;
+      const link = globalSitemapRouteSet.has(echoRoute)
+        ? `<a href="${echoRoute}">${escapeHtml(e)}</a>`
+        : escapeHtml(e);
+      html += `<li>${link}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1208,13 +1246,23 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   if (matchedParties.length > 0) {
     html += `<h2>추천 파티 조합</h2>\n`;
     matchedParties.forEach(p => {
-      const memberLinks = (p.members || []).map(m => `<a href="/gallery/ww/character/${encodeURIComponent(m)}">${escapeHtml(m)}</a>`).join(', ');
+      const memberLinks = (p.members || []).map(m => {
+        const memberId = globalWwNameToIdMap.get(m.trim()) || globalWwNameToIdMap.get(m);
+        const memberRoute = memberId ? `/gallery/ww/character/${encodeURIComponent(memberId)}` : null;
+        if (memberRoute && globalSitemapRouteSet.has(memberRoute)) {
+          return `<a href="${memberRoute}">${escapeHtml(m)}</a>`;
+        }
+        return escapeHtml(m);
+      }).join(', ');
       html += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
     });
   }
 
   // 4. Guide Link
-  html += `<p><a href="/gallery/ww/character/${encodeURIComponent(id)}/guide"><strong>${escapeHtml(name)} 종결 세팅 및 무기·에코 공략 가이드 전문 보기</strong></a></p>\n`;
+  const guideRoute = `/gallery/ww/character/${encodeURIComponent(id)}/guide`;
+  if (guide && globalSitemapRouteSet.has(guideRoute)) {
+    html += `<p><a href="${guideRoute}"><strong>${escapeHtml(name)} 종결 세팅 및 무기·에코 공략 가이드 전문 보기</strong></a></p>\n`;
+  }
 
   // 5. Skills
   const skills = char?.skills || [];
@@ -1345,7 +1393,11 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
     html += `<h2>추천 광추 순위</h2>\n<ol>\n`;
     bestLightCones.forEach(lc => {
       const noteStr = lc.note ? ` (${escapeHtml(lc.note)})` : '';
-      html += `<li><strong>[${lc.rank}순위]</strong> <a href="/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}">${escapeHtml(lc.name)}</a>${noteStr}</li>\n`;
+      const lcRoute = `/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}`;
+      const link = globalSitemapRouteSet.has(lcRoute)
+        ? `<a href="${lcRoute}">${escapeHtml(lc.name)}</a>`
+        : escapeHtml(lc.name);
+      html += `<li><strong>[${lc.rank}순위]</strong> ${link}${noteStr}</li>\n`;
     });
     html += `</ol>\n`;
   }
@@ -1356,7 +1408,11 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
       html += `<h3>추천 터널 유물</h3>\n<ul>\n`;
       bestRelics.forEach(r => {
         const noteStr = r.note ? ` (${escapeHtml(r.note)})` : '';
-        html += `<li><a href="/gallery/hsr/relic/${encodeURIComponent(r.name)}">${escapeHtml(r.name)}</a>${noteStr}</li>\n`;
+        const relicRoute = `/gallery/hsr/relic/${encodeURIComponent(r.name)}`;
+        const link = globalSitemapRouteSet.has(relicRoute)
+          ? `<a href="${relicRoute}">${escapeHtml(r.name)}</a>`
+          : escapeHtml(r.name);
+        html += `<li>${link}${noteStr}</li>\n`;
       });
       html += `</ul>\n`;
     }
@@ -1364,7 +1420,11 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
       html += `<h3>추천 차원 장신구</h3>\n<ul>\n`;
       bestOrnaments.forEach(o => {
         const noteStr = o.note ? ` (${escapeHtml(o.note)})` : '';
-        html += `<li><a href="/gallery/hsr/ornament/${encodeURIComponent(o.name)}">${escapeHtml(o.name)}</a>${noteStr}</li>\n`;
+        const ornamentRoute = `/gallery/hsr/ornament/${encodeURIComponent(o.name)}`;
+        const link = globalSitemapRouteSet.has(ornamentRoute)
+          ? `<a href="${ornamentRoute}">${escapeHtml(o.name)}</a>`
+          : escapeHtml(o.name);
+        html += `<li>${link}${noteStr}</li>\n`;
       });
       html += `</ul>\n`;
     }
@@ -1374,13 +1434,23 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
   if (matchedParties.length > 0) {
     html += `<h2>추천 파티 조합</h2>\n`;
     matchedParties.forEach(p => {
-      const memberLinks = (p.members || []).map(m => `<a href="/gallery/hsr/character/${encodeURIComponent(m)}">${escapeHtml(m)}</a>`).join(', ');
+      const memberLinks = (p.members || []).map(m => {
+        const memberId = globalHsrNameToIdMap.get(m.trim()) || globalHsrNameToIdMap.get(m);
+        const memberRoute = memberId ? `/gallery/hsr/character/${encodeURIComponent(memberId)}` : null;
+        if (memberRoute && globalSitemapRouteSet.has(memberRoute)) {
+          return `<a href="${memberRoute}">${escapeHtml(m)}</a>`;
+        }
+        return escapeHtml(m);
+      }).join(', ');
       html += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
     });
   }
 
   // 4. Dedicated Guide Link
-  html += `<p><a href="/gallery/hsr/character/${encodeURIComponent(id)}/guide"><strong>${escapeHtml(name)} 종결 세팅 및 육성 공략 가이드 전문 보기</strong></a></p>\n`;
+  const guideRoute = `/gallery/hsr/character/${encodeURIComponent(id)}/guide`;
+  if (guide && globalSitemapRouteSet.has(guideRoute)) {
+    html += `<p><a href="${guideRoute}"><strong>${escapeHtml(name)} 종결 세팅 및 육성 공략 가이드 전문 보기</strong></a></p>\n`;
+  }
 
   // 5. Skills
   const skills = char?.skills || [];
@@ -1620,7 +1690,15 @@ function generateRichWwWeaponHtml(weaponName, wpId, wpNotion, recommendedChars =
     recommendedChars.forEach(rc => {
       const rankStr = rc.rank ? `<strong>[${rc.rank}순위]</strong> ` : '';
       const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
-      html += `<li>${rankStr}<a href="/gallery/ww/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 공략</a>${noteStr}</li>\n`;
+      const guideRoute = `/gallery/ww/character/${encodeURIComponent(rc.charId)}/guide`;
+      const charRoute = `/gallery/ww/character/${encodeURIComponent(rc.charId)}`;
+      let linkHtml = escapeHtml(rc.charName);
+      if (globalSitemapRouteSet.has(guideRoute)) {
+        linkHtml = `<a href="${guideRoute}">${escapeHtml(rc.charName)} 종결 공략</a>`;
+      } else if (globalSitemapRouteSet.has(charRoute)) {
+        linkHtml = `<a href="${charRoute}">${escapeHtml(rc.charName)} 캐릭터 정보</a>`;
+      }
+      html += `<li>${rankStr}${linkHtml}${noteStr}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1674,7 +1752,15 @@ function generateHsrLightconeHtml(lc, recommendedChars = []) {
     recommendedChars.forEach(rc => {
       const rankStr = rc.rank ? `<strong>[${rc.rank}순위]</strong> ` : '';
       const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
-      html += `<li>${rankStr}<a href="/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 공략</a>${noteStr}</li>\n`;
+      const guideRoute = `/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide`;
+      const charRoute = `/gallery/hsr/character/${encodeURIComponent(rc.charId)}`;
+      let linkHtml = escapeHtml(rc.charName);
+      if (globalSitemapRouteSet.has(guideRoute)) {
+        linkHtml = `<a href="${guideRoute}">${escapeHtml(rc.charName)} 종결 공략</a>`;
+      } else if (globalSitemapRouteSet.has(charRoute)) {
+        linkHtml = `<a href="${charRoute}">${escapeHtml(rc.charName)} 캐릭터 정보</a>`;
+      }
+      html += `<li>${rankStr}${linkHtml}${noteStr}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1720,7 +1806,15 @@ function generateHsrRelicHtml(relic, recommendedChars = []) {
     html += `<h2>${escapeHtml(relic.name)} 추천 착용 캐릭터</h2>\n<ul>\n`;
     recommendedChars.forEach(rc => {
       const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
-      html += `<li><a href="/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 세팅 공략</a>${noteStr}</li>\n`;
+      const guideRoute = `/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide`;
+      const charRoute = `/gallery/hsr/character/${encodeURIComponent(rc.charId)}`;
+      let linkHtml = escapeHtml(rc.charName);
+      if (globalSitemapRouteSet.has(guideRoute)) {
+        linkHtml = `<a href="${guideRoute}">${escapeHtml(rc.charName)} 종결 세팅 공략</a>`;
+      } else if (globalSitemapRouteSet.has(charRoute)) {
+        linkHtml = `<a href="${charRoute}">${escapeHtml(rc.charName)} 캐릭터 정보</a>`;
+      }
+      html += `<li>${linkHtml}${noteStr}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1751,7 +1845,15 @@ function generateHsrOrnamentHtml(ornament, recommendedChars = []) {
     html += `<h2>${escapeHtml(ornament.name)} 추천 착용 캐릭터</h2>\n<ul>\n`;
     recommendedChars.forEach(rc => {
       const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
-      html += `<li><a href="/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide">${escapeHtml(rc.charName)} 종결 세팅 공략</a>${noteStr}</li>\n`;
+      const guideRoute = `/gallery/hsr/character/${encodeURIComponent(rc.charId)}/guide`;
+      const charRoute = `/gallery/hsr/character/${encodeURIComponent(rc.charId)}`;
+      let linkHtml = escapeHtml(rc.charName);
+      if (globalSitemapRouteSet.has(guideRoute)) {
+        linkHtml = `<a href="${guideRoute}">${escapeHtml(rc.charName)} 종결 세팅 공략</a>`;
+      } else if (globalSitemapRouteSet.has(charRoute)) {
+        linkHtml = `<a href="${charRoute}">${escapeHtml(rc.charName)} 캐릭터 정보</a>`;
+      }
+      html += `<li>${linkHtml}${noteStr}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1865,6 +1967,8 @@ function runPrerender() {
   const baseHtml = fs.readFileSync(INDEX_HTML_PATH, 'utf8');
   const sitemapRoutes = getSitemapRoutes();
   const sitemapRouteSet = new Set(sitemapRoutes);
+  globalSitemapRouteSet = sitemapRouteSet;
+  initGlobalCharacterMaps();
   let count = 0;
 
   console.log('🚀 Starting Static Meta Injection for Prerendering...');
@@ -2124,13 +2228,16 @@ function runPrerender() {
       const guideRoute = `/gallery/ww/character/${charParam}/guide`;
       const characterRoute = `/gallery/ww/character/${charParam}`;
       const imageUrl = `${CDN_URL}/ww%20images/characters/${encodeAssetPath(item.name)}/art01.webp`;
+      const charLink = sitemapRouteSet.has(characterRoute)
+        ? `<p><a href="${characterRoute}">${escapeHtml(item.name)} 캐릭터 상세 정보 보기</a></p>`
+        : '';
       createPrerenderedPage(
         guideRoute,
         `명조 ${item.name} 공략 | 종결 에코 세팅 · 추천 무기 순위 · 파티 조합`,
         `명조: 워더링 웨이브 ${item.name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
         imageUrl,
         baseHtml,
-        generateWwGuideHtml(item.id || item.name, item, item) + `<p><a href="${characterRoute}">${escapeHtml(item.name)} 캐릭터 상세 정보 보기</a></p>`,
+        generateWwGuideHtml(item.id || item.name, item, item) + charLink,
         generateGuideSchema(item.name, '명조: 워더링 웨이브', guideRoute, imageUrl)
       );
       count++;
@@ -2296,7 +2403,7 @@ function runPrerender() {
             <li><a href="/gallery/nte?menu=캐릭터">캐릭터 도감 (${characterRoutes.length}명)</a></li>
             <li><a href="/gallery/nte?menu=무기">아크 도감 (${weaponRoutes.length}개)</a></li>
             <li><a href="/gallery/nte?menu=공략">캐릭터 육성 공략</a></li>
-            <li><a href="/gallery/nte/tierlist">최신 티어표</a></li>
+            <li><a href="/gallery/nte?menu=티어표">최신 티어표</a></li>
             <li><a href="/gallery/nte/parties">추천 파티 조합</a></li>
           </ul>
         </nav>
@@ -2438,11 +2545,13 @@ function runPrerender() {
 <head>
   <meta charset="UTF-8">
   <title>이동 중... - ${targetName} | Rira Game Hub</title>
+  <meta name="description" content="${targetName} 공식 서식지로 이동합니다." />
   <link rel="canonical" href="${canonicalUrl}" />
   <meta http-equiv="refresh" content="0;url=${encodeURI(to)}" />
   <meta name="robots" content="noindex, follow" />
 </head>
 <body>
+  <h1>${targetName} 공식 서식지로 이동</h1>
   <p>공식 서식지 <a href="${encodeURI(to)}">${targetName}</a>(으)로 이동합니다.</p>
 </body>
 </html>`;
