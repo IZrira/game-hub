@@ -10,7 +10,7 @@ const pearl: Character = {
   rarity: 5,
   affiliation: "스타피스 컴퍼니",
   briefInfo: "별과 달을 물들이고 만물을 모사하니, 문명의 잃어버린 진주가 다시금 빛을 발한다.\n예술에 대한 해석을 통해 탄생한 그녀는 아름다움의 극치를 추구하면서도 결코 「보존」의 바탕색을 잃지 않았다.\n세례를 거친 후, 그녀는 어떤 「진주」를 얻게 될까?",
-  releaseVersion: "4.5",
+  releaseVersion: "4.6",
   languageNames: "🇰🇷 펄 / 🇺🇸 Pearl / 🇨🇳 真珠 / 🇯🇵 パール",
   voiceActors: "🇰🇷 여윤미 / 🇺🇸 캣 프로타노 / 🇨🇳 苏婉 / 🇯🇵 야스노 키요노",
   metadata: {
@@ -21,7 +21,7 @@ const pearl: Character = {
     rarity: 5,
     affiliation: "스타피스 컴퍼니",
     cv: "🇰🇷 여윤미 / 🇺🇸 캣 프로타노 / 🇨🇳 苏婉 / 🇯🇵 야스노 키요노",
-    releaseVersion: "4.5",
+    releaseVersion: "4.6",
     brief: "별과 달을 물들이고 만물을 모사하니, 문명의 잃어버린 진주가 다시금 빛을 발한다.\n예술에 대한 해석을 통해 탄생한 그녀는 아름다움의 극치를 추구하면서도 결코 「보존」의 바탕색을 잃지 않았다.\n세례를 거친 후, 그녀는 어떤 「진주」를 얻게 될까?"
   },
   baseStats: {

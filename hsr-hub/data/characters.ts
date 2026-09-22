@@ -96,10 +96,11 @@ import aventurineWaveflair from './characters/hsr/aventurine_waveflair';
 import pearl from './characters/hsr/pearl';
 
 export const CHARACTER_DATA: Character[] = [
+  // 4.6
+  pearl,
   // 4.5
   robinSummeretto,
   aventurineWaveflair,
-  pearl,
   // 4.4
   himekoNova,
   // 4.3
