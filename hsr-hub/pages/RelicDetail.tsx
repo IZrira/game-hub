@@ -1,3 +1,4 @@
+import { sanitizeEffect } from '../../common-hub/utils/relicEffects';
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-react';
@@ -70,6 +71,11 @@ const RelicDetail: React.FC = () => {
       : `${CDN_URL}/hsr images/${safeType}/${safePieceName}.webp`;
     return encodeURI(url);
   };
+
+  const isEn = i18n.language === 'en';
+  const effect2 = sanitizeEffect(isEn && relic.en_2piece ? relic.en_2piece : (relic.setEffect?.['2piece'] || relic['2piece']));
+  const effect4 = sanitizeEffect(isEn && relic.en_4piece ? relic.en_4piece : (relic.setEffect?.['4piece'] || relic['4piece']));
+  const effect5 = sanitizeEffect(isEn && relic.en_5piece ? relic.en_5piece : (relic.setEffect?.['5piece'] || relic['5piece']));
 
   const relicTitle = t(relic.name);
 

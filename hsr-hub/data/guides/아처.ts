@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 아처Guide: CharacterGuide = {
   "characterName": "아처",
-  "lastUpdated": "2026-09-15",
+  "lastUpdated": "2026-09-22",
   "patchVersion": "4.4",
   "bestRelics": [
     {

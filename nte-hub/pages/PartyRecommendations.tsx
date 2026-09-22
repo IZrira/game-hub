@@ -1,3 +1,4 @@
+import { toPublicParty } from '../data/adminData';
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { 
@@ -170,35 +171,27 @@ const NTEPartyRecommendations: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedTag, setSelectedTag] = useState('전체');
 
-  // Supabase 클라우드 실시간 동기화 + localStorage 0ms 캐시 로딩
   useEffect(() => {
+    let active = true;
+    try {
+      const cached = JSON.parse(localStorage.getItem('parties_NTE') || 'null');
+      if (Array.isArray(cached)) setParties(cached.map(toPublicParty));
+    } catch (error) {
+      console.warn('Could not load cached NTE parties:', error);
+    }
     const loadParties = async () => {
+      if (!supabase) return;
       try {
-        const localData = localStorage.getItem('rira_nte_parties');
-        if (localData) {
-          try {
-            setParties(JSON.parse(localData));
-          } catch (e) {}
-        }
-
-        if (supabase) {
-          const { data, error } = await supabase
-            .from('hub_parties')
-            .select('*')
-            .eq('game_id', 'nte')
-            .single();
-
-          if (data && data.party_data && Array.isArray(data.party_data) && data.party_data.length > 0) {
-            setParties(data.party_data);
-            localStorage.setItem('rira_nte_parties', JSON.stringify(data.party_data));
-          }
-        }
-      } catch (err) {
-        console.warn('Could not load remote NTE parties, falling back to static config:', err);
+        const { data, error } = await supabase.from('party_recommendations')
+          .select('*').eq('game_id', 'nte').order('display_order', { ascending: true });
+        if (error) throw error;
+        if (active && data?.length) setParties(data.map(toPublicParty));
+      } catch (error) {
+        console.warn('Could not load remote NTE parties:', error);
       }
     };
-
     loadParties();
+    return () => { active = false; };
   }, []);
 
   const allTags = useMemo(() => {
@@ -234,7 +227,7 @@ const NTEPartyRecommendations: React.FC = () => {
         description={t("헤테로 시티 최고의 4인 파티 추천. 령, 혼, 음, 양, 공, 상 6대 이능력 속성 연계 및 바이레일 스킬 시너지 덱.")}
         keywords="이환, Neverness to Everness, 파티 추천, 추천 조합, 구원 파티, 민트 파티, 6대 속성 시너지, 리라 아카이브"
       />
-      <GallerySidebar gameId={gameId || 'nte'} />
+      <GallerySidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <PageHeader gameId={gameId || 'nte'} title={t("NTE Party Synergy Deck")} />
 

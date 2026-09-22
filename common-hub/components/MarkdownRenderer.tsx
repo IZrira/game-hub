@@ -98,19 +98,19 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
           ),
           ul: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <div className="!m-0" {...props}>{children}</div>;
+              return <ul className="!m-0 list-none !p-0" {...props}>{children}</ul>;
             }
             return <ul className="list-disc pl-6 my-4 space-y-2" {...props}>{children}</ul>;
           },
           ol: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <div className="!m-0" {...props}>{children}</div>;
+              return <ol className="!m-0 list-none !p-0" {...props}>{children}</ol>;
             }
             return <ol className="list-decimal pl-6 my-4 space-y-2" {...props}>{children}</ol>;
           },
           li: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <div className="leading-relaxed text-sm md:text-base !m-0" {...props}>{children}</div>;
+              return <li className="leading-relaxed text-sm md:text-base !m-0 list-none" {...props}>{children}</li>;
             }
             return <li className="leading-relaxed text-sm md:text-base" {...props}>{children}</li>;
           },

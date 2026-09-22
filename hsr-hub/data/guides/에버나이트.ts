@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 에버나이트Guide: CharacterGuide = {
   "characterName": "에버나이트",
-  "lastUpdated": "2026-09-15",
+  "lastUpdated": "2026-09-22",
   "patchVersion": "3.6",
   "variants": [
     {

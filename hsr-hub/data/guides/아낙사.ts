@@ -2,7 +2,7 @@ import { CharacterGuide } from './index';
 
 export const 아낙사Guide: CharacterGuide = {
   "characterName": "아낙사",
-  "lastUpdated": "2026-09-15",
+  "lastUpdated": "2026-09-22",
   "patchVersion": "4.3",
   "variants": [
     {

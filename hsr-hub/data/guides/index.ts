@@ -1,5 +1,6 @@
 export interface SettingVariant {
   name: string;
+  note?: string;
   bestRelics: (string | { name: string; note: string })[];
   bestOrnaments: (string | { name: string; note: string })[];
   bestLightCones?: (string | { name: string; note: string })[];
@@ -68,6 +69,8 @@ export interface CharacterGuide {
     efficiency3: string; // 3인 개체
     description: string;
   }[];
+  // 8. 시너지 캐릭터
+  synergyCharacters?: (string | { name: string; role?: string; description?: string })[];
 }
 
 import { 개척자기억Guide } from './개척자기억';

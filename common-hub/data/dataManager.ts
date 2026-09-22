@@ -200,6 +200,8 @@ export const getGameData = (targetId: string) => {
           description: skillDescription
         },
         ascensionMaterials: item.ascensionMaterials || '',
+        growthStats: item.growthStats || '',
+        weaponStory: item.weaponStory || '',
         description: description,
         isNotion: true,
         content: item.content

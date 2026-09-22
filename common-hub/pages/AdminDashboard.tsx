@@ -1,3 +1,5 @@
+import { normalizeAdminTierRows } from '../../nte-hub/data/adminData';
+import { NTE_TIER_CATEGORIES } from '../../nte-hub/data/tiers';
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2, RotateCcw } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -55,10 +57,7 @@ const AdminDashboard: React.FC = () => {
       ];
     }
     if (activeGame === 'nte') {
-      return [
-        { id: 'endgame1', name: '엔드 컨텐츠 1' },
-        { id: 'endgame2', name: '엔드 컨텐츠 2' }
-      ];
+      return NTE_TIER_CATEGORIES.map(({ id, name }) => ({ id, name }));
     }
     return [
       { id: 'chaos', name: '혼돈' },
@@ -185,7 +184,7 @@ const AdminDashboard: React.FC = () => {
       .select('*')
       .eq('game_id', activeGame)
       .range(0, 4000);
-    if (data) setMgmtTiers(data);
+    if (data) setMgmtTiers(activeGame === 'nte' ? normalizeAdminTierRows(data) : data);
   };
 
   const fetchMgmtNotices = async () => {

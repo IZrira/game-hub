@@ -1,4 +1,6 @@
-import React, { useState, useMemo, memo } from 'react';
+import { supabase } from '../../common-hub/lib/supabase';
+import { mergeAdminTiers } from '../data/adminData';
+import React, { useState, useMemo, useEffect, memo } from 'react';
 import { useParams, Link } from 'react-router';
 import { 
   Filter, Trophy, Search, Users, Shield, Zap, Sword,
@@ -82,9 +84,26 @@ const NTETierList: React.FC = () => {
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [attrFilter, setAttrFilter] = useState<string>('전체');
 
+  const [categories, setCategories] = useState(NTE_TIER_CATEGORIES);
+  useEffect(() => {
+    let active = true;
+    const loadTiers = async () => {
+      if (!supabase) return;
+      try {
+        const { data, error } = await supabase.from('tier_lists').select('*').eq('game_id', 'nte');
+        if (error) throw error;
+        if (active && data) setCategories(mergeAdminTiers(data));
+      } catch (error) {
+        console.warn('Could not load remote NTE tiers:', error);
+      }
+    };
+    loadTiers();
+    return () => { active = false; };
+  }, []);
+
   const currentCategory = useMemo(() => {
-    return NTE_TIER_CATEGORIES.find(c => c.id === selectedCategory) || NTE_TIER_CATEGORIES[0];
-  }, [selectedCategory]);
+    return categories.find(c => c.id === selectedCategory) || categories[0];
+  }, [selectedCategory, categories]);
 
   const filteredTiers = useMemo(() => {
     return currentCategory.tiers.map(group => {
@@ -105,7 +124,7 @@ const NTETierList: React.FC = () => {
         description={t("헤테로 시티 최고의 에스퍼 티어표. 종합 메타, 왜곡 토벌 보스전, 도시 탐색 필드 3대 모드별 S+ ~ B 등급 완벽 정리.")}
         keywords="이환, Neverness to Everness, 티어표, 등급표, 잔홍 티어, 구원 티어, 라크리모사, 리라 아카이브"
       />
-      <GallerySidebar gameId={gameId || 'nte'} />
+      <GallerySidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <PageHeader gameId={gameId || 'nte'} title={t("NTE Tier List")} />
 

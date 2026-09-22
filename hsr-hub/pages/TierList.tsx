@@ -230,7 +230,7 @@ const TierList: React.FC = () => {
           group.characters.push({
             id: `char_${row.character_name}`,
             name: row.character_name,
-            folderName: baseChar?.folder_name || baseChar?.folderName || row.character_name,
+            folderName: baseChar?.folder_name || row.character_name,
             role: row.role as any,
             change: row.change as any,
             displayOrder: row.display_order ?? 100,

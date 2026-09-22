@@ -28,7 +28,7 @@ export const 어벤츄린웨이브Guide: CharacterGuide = {
   bestLightCones: [
     { name: "운명의 벤처 게임", note: "1순위" },
     { name: "승리의 순간", note: "2순위" },
-    { name: "이것이 바로 나다!", note: "3순위" }
+    { name: "이것이 바로 나다", note: "3순위" }
   ],
   skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
   recommendedEidolon: "E1 / E2",

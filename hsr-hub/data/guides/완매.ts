@@ -20,7 +20,7 @@ export const 완매Guide: CharacterGuide = {
       { label: "속도", value: "145 이상" },
       { label: "속도", value: "160 이상" }
     ],
-    bestLightCones: ["거울 속의 나", "기억 속의 모습", "댄스! 댄스! 댄스!", "아직 전투는 끝나지 않았어"],
+    bestLightCones: ["거울 속의 나", "기억 속의 모습", "댄스! 댄스! 댄스!", "아직 전투는 끝나지 않았다"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E6",
     eidolonEfficiency: []
