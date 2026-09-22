@@ -749,11 +749,17 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
   // The SPA shell has no stable canonical, so make every prerendered route explicit.
   injected = injected.replace(/\s*<link\s+rel=["']canonical["'][^>]*>\s*/gi, '\n');
 
+  // Enforce non-trailing slash policy: root remains '/', all other routes strip trailing slash
+  const cleanUrlPath = (urlPath.length > 1 && urlPath.endsWith('/'))
+    ? urlPath.replace(/\/+$/, '')
+    : urlPath;
+  const canonicalUrl = cleanUrlPath === '/' ? `${BASE_URL}/` : `${BASE_URL}${cleanUrlPath}`;
+
   // Inject missing canonical/og/twitter tags and optional JSON-LD schema into <head>
   let extraTags = `
-    <link rel="canonical" href="${escapeHtml(BASE_URL)}${escapeHtml(urlPath)}" />
+    <link rel="canonical" href="${escapeHtml(canonicalUrl)}" />
     <meta property="og:image" content="${escapeHtml(imageUrl)}" />
-    <meta property="og:url" content="${escapeHtml(BASE_URL)}${escapeHtml(urlPath)}" />
+    <meta property="og:url" content="${escapeHtml(canonicalUrl)}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${escapeHtml(title)} | RIRA ARCHIVE" />
     <meta name="twitter:description" content="${escapeHtml(description)}" />

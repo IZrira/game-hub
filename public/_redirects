@@ -10,5 +10,18 @@
 /gallery/aniimo/location/석양-해원 /gallery/aniimo/location/고래첨벙-해안 301
 /gallery/aniimo/location/%EC%84%9D%EC%96%91-%ED%95%B4%EC%9B%90 /gallery/aniimo/location/%EA%B3%A0%EB%9E%98%EC%B2%A8%EB%82%91-%ED%95%B4%EC%95%88 301
 
+# Trailing Slash 301 Permanent Redirects (Non-trailing slash canonical policy)
+/about/ /about 301
+/privacy/ /privacy 301
+/tos/ /tos 301
+/contact/ /contact 301
+/blog/ /blog 301
+/notices/ /notices 301
+/gallery/hsr/ /gallery/hsr 301
+/gallery/ww/ /gallery/ww 301
+/gallery/nte/ /gallery/nte 301
+/gallery/aniimo/ /gallery/aniimo 301
+/blog/hsr-4-3-meta-analysis/ /blog/hsr-4-3-meta-analysis 301
+
 # SPA Wildcard Fallback
 /* /index.html 200

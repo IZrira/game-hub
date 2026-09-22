@@ -364,22 +364,91 @@ function validateSeo() {
     logPass(`Redirect loop safety verified across ${redirectRules.length} rules`);
   }
 
-  // Check that 301 source URLs are omitted from sitemap
-  const sitemapFile = path.join(ROOT_DIR, 'public', 'sitemap.xml');
-  if (fs.existsSync(sitemapFile)) {
-    const sitemapContent = fs.readFileSync(sitemapFile, 'utf8');
-    let sitemapCollision = false;
-    redirectRules.forEach(r => {
-      const cleanPath = r.from.replace(/^\//, '');
-      if (sitemapContent.includes(`<loc>https://riragamehub.com/${cleanPath}</loc>`) ||
-          sitemapContent.includes(`<loc>https://riragamehub.com${r.from}</loc>`)) {
-        sitemapCollision = true;
-        logFail(`Sitemap contains 301 redirected source URL: ${r.from}`);
+  // Trailing slash 301 rules check
+  const sampleTrailingSlashPaths = ['/about/', '/privacy/', '/blog/', '/gallery/hsr/'];
+  sampleTrailingSlashPaths.forEach(p => {
+    const hasRule = redirectRules.some(r => r.from === p && r.to === p.slice(0, -1));
+    if (!hasRule) {
+      logFail(`Missing static 301 redirect rule for trailing slash: ${p} -> ${p.slice(0, -1)}`);
+    }
+  });
+  logPass('Static 301 trailing slash redirect rules verified in _redirects');
+
+  // Check functions/_middleware.ts exists and enforces trailing slash redirect
+  const middlewareFile = path.join(ROOT_DIR, 'functions', '_middleware.ts');
+  if (fs.existsSync(middlewareFile)) {
+    const mwContent = fs.readFileSync(middlewareFile, 'utf8');
+    if (mwContent.includes("endsWith('/')") && mwContent.includes('301')) {
+      logPass('Cloudflare Pages edge middleware (_middleware.ts) verified for 301 trailing slash redirection');
+    } else {
+      logFail('Cloudflare Pages edge middleware does not properly enforce 301 trailing slash redirection');
+    }
+  } else {
+    logFail('Cloudflare Pages edge middleware file (functions/_middleware.ts) not found');
+  }
+
+  // Check all sitemaps in public/ for trailing slashes & redirect collisions
+  const publicDir = path.join(ROOT_DIR, 'public');
+  const sitemapFiles = fs.readdirSync(publicDir).filter(f => f.startsWith('sitemap') && f.endsWith('.xml'));
+  let trailingSlashErrors = 0;
+  let sitemapCollision = false;
+  let totalDiscoveredSitemapUrls = 0;
+
+  sitemapFiles.forEach(smFile => {
+    const smPath = path.join(publicDir, smFile);
+    const smContent = fs.readFileSync(smPath, 'utf8');
+    const locMatches = [...smContent.matchAll(/<loc>(.*?)<\/loc>/g)];
+    
+    locMatches.forEach(match => {
+      const locUrl = match[1].trim();
+      totalDiscoveredSitemapUrls++;
+      
+      // If URL ends with slash, it must ONLY be the root domain URL
+      if (locUrl.endsWith('/') && locUrl !== 'https://riragamehub.com/') {
+        trailingSlashErrors++;
+        logFail(`Sitemap [${smFile}] contains trailing-slash URL: ${locUrl}`);
+      }
+
+      // Check collision with 301 redirect sources
+      redirectRules.forEach(r => {
+        const cleanPath = r.from.replace(/^\//, '');
+        if (locUrl === `https://riragamehub.com/${cleanPath}` || locUrl === `https://riragamehub.com${r.from}`) {
+          sitemapCollision = true;
+          logFail(`Sitemap [${smFile}] contains 301 redirected source URL: ${locUrl} (redirects to ${r.to})`);
+        }
+      });
+    });
+  });
+
+  if (trailingSlashErrors === 0) {
+    logPass(`Zero trailing-slash violations across all ${sitemapFiles.length} sitemaps (${totalDiscoveredSitemapUrls} URLs checked)`);
+  }
+
+  if (!sitemapCollision) {
+    logPass('Sitemap integrity verified: zero redirected 301 source URLs present');
+  }
+
+  // Check prerendered canonical tags in dist/ (if dist exists)
+  const distDir = path.join(ROOT_DIR, 'dist');
+  if (fs.existsSync(distDir)) {
+    const testPaths = ['about', 'privacy', 'blog'];
+    let canonicalTrailingSlashErrors = 0;
+    testPaths.forEach(tp => {
+      const htmlPath = path.join(distDir, tp, 'index.html');
+      if (fs.existsSync(htmlPath)) {
+        const html = fs.readFileSync(htmlPath, 'utf8');
+        const canonicalMatch = html.match(/<link\s+rel=["']canonical["']\s+href=["'](.*?)["']/i);
+        if (canonicalMatch && canonicalMatch[1]) {
+          const cUrl = canonicalMatch[1];
+          if (cUrl.endsWith('/') && cUrl !== 'https://riragamehub.com/') {
+            canonicalTrailingSlashErrors++;
+            logFail(`Prerendered HTML (${tp}) canonical has illegal trailing slash: ${cUrl}`);
+          }
+        }
       }
     });
-
-    if (!sitemapCollision) {
-      logPass('Sitemap integrity verified: zero redirected legacy source URLs present');
+    if (canonicalTrailingSlashErrors === 0) {
+      logPass('Prerendered HTML canonical tags verified (non-trailing slash strictly enforced)');
     }
   }
 
