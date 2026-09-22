@@ -93,12 +93,13 @@ import mortenaxBlade from './characters/hsr/mortenax_blade';
 import himekoNova from './characters/hsr/himeko_nova';
 import robinSummeretto from './characters/hsr/robin_summeretto';
 import aventurineWaveflair from './characters/hsr/aventurine_waveflair';
+import pearl from './characters/hsr/pearl';
 
 export const CHARACTER_DATA: Character[] = [
   // 4.5
   robinSummeretto,
   aventurineWaveflair,
-  aglaea,
+  pearl,
   // 4.4
   himekoNova,
   // 4.3

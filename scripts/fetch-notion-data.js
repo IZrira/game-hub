@@ -37,6 +37,7 @@ const NOTION_WW_ITEM_DB_ID = process.env.NOTION_WW_ITEM_DB_ID; // WW Items DB
 const NOTION_WW_ECHOES_DB_ID = process.env.NOTION_WW_ECHOES_DB_ID; // WW Echoes DB
 const NOTION_WW_GUIDES_DB_ID = process.env.NOTION_WW_GUIDES_DB_ID || '37495fae3dc780ce95fffd47cfb611f6'; // WW Guides DB
 const NOTION_HSR_GUIDES_DB_ID = process.env.NOTION_HSR_GUIDES_DB_ID || '36f95fae3dc780c8abe7dfad2cfebc24'; // HSR Guides DB
+const NOTION_HSR_CHARACTER_DB_ID = process.env.NOTION_HSR_CHARACTER_DB_ID || '34f95fae3dc780608431d4624c086df7'; // HSR Characters DB
 const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
 const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID || '38095fae3dc7802aa4abf9ab1977e687'; // NTE Characters DB
 const NOTION_NTE_ARC_DB_ID = process.env.NOTION_NTE_ARC_DB_ID || '38095fae3dc780c3a7c4d901cbe9411c'; // NTE Arcs DB
@@ -111,7 +112,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
   }
 
   // 캐릭터 DB의 기본 정렬 기준 (캐릭터 DB는 '캐릭터' 또는 '이름', 무기/아이템 DB는 '이름'이 타이틀)
-  const sortProperty = (gameName === 'NTE' || !isCharacterDB) ? '이름' : '캐릭터';
+  const sortProperty = (gameName === 'NTE' || gameName === 'HSR' || !isCharacterDB) ? '이름' : '캐릭터';
 
   const queryPage = async (cursor, withSort = true) => {
     if (dataSourceId) {
@@ -597,6 +598,19 @@ async function fetchNotionData() {
       const hsrGuides = await fetchHsrGuidesFromDB(notion, n2m, NOTION_HSR_GUIDES_DB_ID);
       allItems.push(...hsrGuides);
       console.log(`[Notion Sync] Fetched and parsed ${hsrGuides.length} HSR character guides.`);
+    }
+
+    // 10. Fetch from HSR Characters DB
+    if (NOTION_HSR_CHARACTER_DB_ID && NOTION_HSR_CHARACTER_DB_ID !== 'xxxxxxxxxxxx') {
+      console.log(`[Notion Sync] Fetching HSR Characters from ${NOTION_HSR_CHARACTER_DB_ID}...`);
+      const hsrCharacters = await fetchFromDB(notion, NOTION_HSR_CHARACTER_DB_ID, n2m, true, 'HSR');
+      const formattedHsrCharacters = hsrCharacters.map(item => ({
+        ...item,
+        type: 'HSR 캐릭터',
+        dbSource: 'hsr_characters'
+      }));
+      allItems.push(...formattedHsrCharacters);
+      console.log(`[Notion Sync] Fetched ${hsrCharacters.length} HSR characters.`);
     }
 
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');
