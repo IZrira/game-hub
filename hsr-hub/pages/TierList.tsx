@@ -188,9 +188,29 @@ const TierList: React.FC = () => {
       const { data: charData } = await supabase.from('characters').select('*');
       let currentAllChars = localChars;
       if (charData && charData.length > 0) {
-        const mergedMap = new Map();
-        localChars.forEach(c => mergedMap.set(c.name, c));
-        charData.forEach(c => mergedMap.set(c.name, { ...mergedMap.get(c.name), ...c }));
+        const mergedMap = new Map<string, any>();
+        localChars.forEach(c => {
+          if (c.id) mergedMap.set(c.id, c);
+        });
+        const localNormMap = new Map<string, any>();
+        localChars.forEach(c => {
+          localNormMap.set(normalizeName(c.name), c);
+        });
+
+        charData.forEach((c: any) => {
+          const matchedLocal = (c.id && mergedMap.get(c.id)) || localNormMap.get(normalizeName(c.name));
+          const charId = matchedLocal?.id || c.id || normalizeName(c.name);
+          const canonicalFolder = matchedLocal?.folder_name || c.folder_name || c.name;
+          const canonicalName = matchedLocal?.name || c.name;
+
+          mergedMap.set(charId, {
+            ...matchedLocal,
+            ...c,
+            id: charId,
+            name: canonicalName,
+            folder_name: canonicalFolder,
+          });
+        });
         currentAllChars = Array.from(mergedMap.values());
         setAllCharacters(currentAllChars);
       } else {
@@ -226,10 +246,13 @@ const TierList: React.FC = () => {
           }
 
           const baseChar = currentAllChars.find(c => normalizeName(c.name) === targetName);
+          if (process.env.NODE_ENV !== 'production' && !baseChar) {
+            console.warn(`[TierList] Character lookup failed for "${row.character_name}" in category "${row.category_id}". No fallback used.`);
+          }
           
           group.characters.push({
-            id: `char_${row.character_name}`,
-            name: row.character_name,
+            id: baseChar?.id || `char_${row.character_name}`,
+            name: baseChar?.name || row.character_name,
             folderName: baseChar?.folder_name || row.character_name,
             role: row.role as any,
             change: row.change as any,

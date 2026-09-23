@@ -116,6 +116,33 @@ const AdminDashboard: React.FC = () => {
     return map;
   }, [mgmtTiers]);
 
+  // 개발 환경 무결성 검증 (character lookup 실패, 중복 ID/캐릭터, 빈 ID 감지)
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production' || !baseCharacters.length || !mgmtTiers.length) return;
+    
+    const seenPerCategory = new Map<string, Set<string>>();
+    mgmtTiers.forEach(t => {
+      if (t.game_id !== activeGame) return;
+      if (!t.character_name || t.character_name.trim() === '') {
+        console.error(`[Admin Tier Integrity Error] 빈 character_name 발견 (category: "${t.category_id}")`, t);
+      }
+      
+      const catKey = t.category_id;
+      if (!seenPerCategory.has(catKey)) seenPerCategory.set(catKey, new Set());
+      const set = seenPerCategory.get(catKey)!;
+      const norm = normalizeName(t.character_name);
+      if (set.has(norm)) {
+        console.warn(`[Admin Tier Integrity Warning] 중복 캐릭터 "${t.character_name}" 발견 (category: "${catKey}")`, t);
+      }
+      set.add(norm);
+
+      const matched = baseCharacters.find(bc => normalizeName(bc.name) === norm);
+      if (!matched) {
+        console.warn(`[Admin Tier Integrity Warning] 티어 데이터 "${t.character_name}" (category: "${catKey}")에 대응하는 마스터 캐릭터가 없습니다. fallback 캐릭터를 사용하지 않습니다.`, t);
+      }
+    });
+  }, [baseCharacters, mgmtTiers, activeGame]);
+
   const fetchBaseData = async () => {
     let localChars: any[] = [];
     if (activeGame === 'aniimo') {
@@ -168,9 +195,31 @@ const AdminDashboard: React.FC = () => {
       return;
     }
 
-    const mergedMap = new Map();
-    localChars.forEach(c => mergedMap.set(c.name, c));
-    data.forEach(c => mergedMap.set(c.name, { ...mergedMap.get(c.name), ...c }));
+    const mergedMap = new Map<string, any>();
+    localChars.forEach(c => {
+      if (c.id) mergedMap.set(c.id, c);
+    });
+
+    const localNormMap = new Map<string, any>();
+    localChars.forEach(c => {
+      localNormMap.set(normalizeName(c.name), c);
+    });
+
+    data.forEach((c: any) => {
+      const matchedLocal = (c.id && mergedMap.get(c.id)) || localNormMap.get(normalizeName(c.name));
+      const charId = matchedLocal?.id || c.id || normalizeName(c.name);
+      const canonicalFolder = matchedLocal?.folder_name || c.folder_name || c.name;
+      const canonicalName = matchedLocal?.name || c.name;
+
+      mergedMap.set(charId, {
+        ...matchedLocal,
+        ...c,
+        id: charId,
+        name: canonicalName,
+        folder_name: canonicalFolder,
+      });
+    });
+
     setBaseCharacters(Array.from(mergedMap.values()));
   };
 
@@ -414,7 +463,8 @@ const AdminDashboard: React.FC = () => {
     if (!activeGame) return;
     const targetNameNorm = normalizeName(name);
     const existing = mgmtTiers.find(t => normalizeName(t.character_name) === targetNameNorm && t.category_id === categoryId);
-    const resolvedCharName = existing?.character_name || name;
+    const baseChar = baseCharacters.find(c => normalizeName(c.name) === targetNameNorm || c.name === name);
+    const resolvedCharName = baseChar?.name || existing?.character_name || name;
 
     const payload = {
       game_id: activeGame,
@@ -432,7 +482,7 @@ const AdminDashboard: React.FC = () => {
       const idx = prev.findIndex(t => t.game_id === activeGame && t.category_id === categoryId && (t.character_name === resolvedCharName || normalizeName(t.character_name) === targetNameNorm));
       if (idx >= 0) {
         const next = [...prev];
-        next[idx] = { ...next[idx], ...updates };
+        next[idx] = { ...next[idx], ...updates, character_name: resolvedCharName };
         return next;
       } else {
         return [...prev, payload];
@@ -440,6 +490,16 @@ const AdminDashboard: React.FC = () => {
     });
 
     try {
+      if (existing && existing.character_name !== resolvedCharName) {
+        // Clean up legacy symbol mismatch row if character_name has changed
+        await supabase
+          .from('tier_lists')
+          .delete()
+          .eq('game_id', activeGame)
+          .eq('category_id', categoryId)
+          .eq('character_name', existing.character_name);
+      }
+
       const { error } = await supabase
         .from('tier_lists')
         .upsert(payload, { onConflict: 'game_id,category_id,character_name' });
@@ -626,10 +686,11 @@ const AdminDashboard: React.FC = () => {
           group = { tier: row.tier, label: row.tier, color: TIER_COLORS[row.tier] || '#ffffff', characters: [] };
           exportData[row.category_id].push(group);
         }
+        const baseChar = baseCharacters.find(c => normalizeName(c.name) === normalizeName(row.character_name));
         group.characters.push({
-          id: `char_${row.character_name}`,
-          name: row.character_name,
-          folderName: baseCharacters.find(c => c.name === row.character_name)?.folder_name || row.character_name,
+          id: baseChar?.id || `char_${row.character_name}`,
+          name: baseChar?.name || row.character_name,
+          folderName: baseChar?.folder_name || row.character_name,
           role: row.role,
           change: row.change,
           displayOrder: row.display_order
