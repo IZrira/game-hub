@@ -544,6 +544,42 @@ export const RELIC_DATA = [
     "en_2piece": "Increases Max HP by 12%.",
     "4piece": "장착한 캐릭터가 방어력 감소 상태의 적에게 가하는 치명타 피해가 28% 증가한다. 장착한 캐릭터가 적에게 방어력 감소 상태를 부여하면 모든 아군은 [연소 촉진]을 획득한다, 지속 시간: 2턴, 해당 효과는 중첩되지 않으며, [연소 촉진]을 보유한 아군은 가하는 피해가 15% 증가한다. 해당 효과는 장착한 캐릭터가 공격을 발동하면 다시 발동할 수 있다",
     "en_4piece": "Increases CRIT DMG dealt by the wearer to enemies with DEF reduction by 28%. When the wearer inflicts DEF reduction on an enemy, all allies gain [Combustion Boost] for 2 turn(s). This effect cannot stack. Allies with [Combustion Boost] deal 15% more DMG. This effect can be triggered again when the wearer attacks."
+  },
+  {
+    id: "dreamlit_actor",
+    gameId: "hsr",
+    type: "터널 유물",
+    name: "꿈같은 유희 속 별을 밝히는 연극인",
+    enName: "Dreamlit Actor",
+    releaseVersion: "4.6",
+    pieces: [
+      { type: "Head", name: "연극인의 슬피 우는 가면", enName: "Actor's Weeping Masque" },
+      { type: "Hand", name: "연극인의 알록달록 접부채", enName: "Actor's Vibrant Handfan" },
+      { type: "Body", name: "연극인의 우스꽝스러운 무대 의상", enName: "Actor's Jester Garb" },
+      { type: "Feet", name: "연극인의 조각달 무용화", enName: "Actor's Crescent Dance Boots" }
+    ],
+    "2piece": "속도 6% 증가",
+    "en_2piece": "Increases SPD by 6%.",
+    "4piece": "장착한 캐릭터가 다른 단일 아군에게 전투 스킬 또는 필살기 발동 시, 스킬 목표의 환락도가 16% 증가한다, 지속 시간: 3턴, 장착한 캐릭터가 보유한 [훌륭한 솜씨에는 보상을]이 10pt 이상일 시 추가로 모든 아군의 치명타 피해를 12% 증가시킨다, 지속 시간: 3턴",
+    "en_4piece": "When the wearer uses Skill or Ultimate on one other ally target, increases the ability target's Elation by 16% for 3 turn(s). If the wearer has 10 or more points of \"Certified Banger,\" additionally increases all allies' CRIT DMG by 12% for 3 turn(s)."
+  },
+  {
+    id: "the_edacious_heretic",
+    gameId: "hsr",
+    type: "터널 유물",
+    name: "금단의 열매를 삼킨 이단",
+    enName: "The Edacious Heretic",
+    releaseVersion: "4.6",
+    pieces: [
+      { type: "Head", name: "이단의 두부 장치", enName: "Heretic's Cranial Apparatus" },
+      { type: "Hand", name: "이단의 주사 장갑", enName: "Heretic's Injection Gloves" },
+      { type: "Body", name: "이단의 이성 구속복", enName: "Heretic's Straitjacket of Reason" },
+      { type: "Feet", name: "이단의 허기 부츠", enName: "Heretic's Ravenous Ankle-Boots" }
+    ],
+    "2piece": "치명타 피해 16% 증가",
+    "en_2piece": "Increases CRIT DMG by 16%.",
+    "4piece": "장착한 캐릭터가 일반 공격으로 가하는 피해가 36% 증가한다. 장착한 캐릭터가 일반 공격 발동 시 장착한 캐릭터의 공격력이 20% 증가한다, 지속 시간: 2턴",
+    "en_4piece": "Increases the DMG dealt by the wearer's Basic ATK by 36%. When the wearer uses Basic ATK, increases the wearer's ATK by 20% for 2 turn(s)."
   }
 ];
 
