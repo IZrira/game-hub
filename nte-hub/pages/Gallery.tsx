@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router';
-import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter, Star, Sparkles, ArrowRight } from 'lucide-react';
+import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter, Star, Sparkles, ArrowRight, Boxes } from 'lucide-react';
 import { ARCHIVE_DATA } from '../../common-hub/data/games';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
@@ -13,6 +13,7 @@ import { CharacterPremiumCard, LightConePremiumCard, GuidePremiumCard } from '@/
 import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
+import { NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
 
 const GalleryNTE: React.FC = () => {
   const gameId = 'nte';
@@ -89,6 +90,20 @@ const GalleryNTE: React.FC = () => {
     CHARACTER_DB, WEAPON_DB, WEAPON_DB, ECHO_DB, [], INVENTORY_DB, categoryFilter
   );
 
+  const filteredCartridges = useMemo(() => {
+    const normalizedQuery = debouncedSearchQuery.trim().toLocaleLowerCase('ko-KR');
+    return NTE_CARTRIDGES.filter((cartridge) => {
+      const matchesSearch = !normalizedQuery || [
+        cartridge.name,
+        cartridge.twoPieceEffect,
+        cartridge.fourPieceEffect,
+        ...cartridge.blocks,
+      ].some((value) => value.toLocaleLowerCase('ko-KR').includes(normalizedQuery));
+      const matchesType = attrFilter === '전체' || cartridge.effectType === attrFilter;
+      return matchesSearch && matchesType;
+    });
+  }, [debouncedSearchQuery, attrFilter]);
+
   if (!game) return null;
 
   const seoTitle = activeMenu === '홈' 
@@ -133,6 +148,7 @@ const GalleryNTE: React.FC = () => {
                 {[
                   { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
                   { label: "아크", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" },
+                  { label: "콘솔", count: NTE_CARTRIDGES.length, icon: <Boxes size={14} />, color: "text-violet-400" },
                   { label: "인벤토리", count: Object.keys(INVENTORY_DB || {}).length, icon: <Backpack size={14} />, color: "text-brand-accent" }
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1">
@@ -168,6 +184,15 @@ const GalleryNTE: React.FC = () => {
                       icon: Zap,
                       stat: `${WEAPON_DB?.length || 0}${t('개')}`,
                       color: 'text-yellow-400'
+                    },
+                    {
+                      title: t('콘솔 카트리지'),
+                      description: t('카트리지별 2세트·4세트 효과와 장착에 필요한 블록 구성을 비교합니다.'),
+                      path: '/gallery/nte?menu=콘솔',
+                      action: () => handleSetActiveMenu('콘솔'),
+                      icon: Boxes,
+                      stat: `${NTE_CARTRIDGES.length}${t('종')}`,
+                      color: 'text-violet-400'
                     },
                     {
                       title: t('캐릭터 육성 공략'),
@@ -293,6 +318,75 @@ const GalleryNTE: React.FC = () => {
                 ))}
               </div>
             </div>
+          ) : activeMenu === "콘솔" ? (
+            <div className="space-y-8">
+              <section className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-10 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
+                <div className="flex flex-col gap-2 mb-6">
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-violet-400">NTE CONSOLE DATABASE</span>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">콘솔 카트리지</h1>
+                  <p className="max-w-2xl text-sm leading-6 text-gray-400">카트리지 이름, 세트 효과와 콘솔 배치에 필요한 블록 구성을 한 화면에서 비교할 수 있습니다.</p>
+                </div>
+                <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center">
+                  <div className="relative w-full xl:w-80">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
+                    <input
+                      type="search"
+                      placeholder="이름·효과·블록 검색"
+                      aria-label="콘솔 카트리지 검색"
+                      className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-violet-400"
+                      value={searchQuery}
+                      onChange={(event) => handleSearchChange(event.target.value)}
+                    />
+                  </div>
+                  <FilterSelect
+                    label="효과 유형"
+                    value={attrFilter}
+                    onChange={(value: string) => updateFilterParams('attr', value)}
+                    options={NTE_CARTRIDGE_EFFECT_TYPES}
+                    allLabel="전체"
+                  />
+                  <span className="text-xs font-bold text-gray-500">{filteredCartridges.length} / {NTE_CARTRIDGES.length}종</span>
+                </div>
+              </section>
+
+              <div className="grid gap-5 xl:grid-cols-2">
+                {filteredCartridges.map((cartridge) => (
+                  <article key={cartridge.id} className="rounded-[28px] border border-white/10 bg-white/[0.025] p-5 sm:p-7 transition hover:border-violet-400/35 hover:bg-white/[0.04]">
+                    <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/5 pb-5">
+                      <div>
+                        <span className="text-[9px] font-black uppercase tracking-[0.22em] text-violet-400">CARTRIDGE</span>
+                        <h2 className="mt-1 text-xl font-black text-white">{cartridge.name}</h2>
+                      </div>
+                      <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-[10px] font-black text-violet-300">{cartridge.effectType}</span>
+                    </div>
+                    <dl className="mt-5 space-y-5">
+                      <div className="grid gap-2 sm:grid-cols-[88px_1fr]">
+                        <dt className="text-xs font-black text-sky-400">2세트 효과</dt>
+                        <dd className="text-sm font-bold leading-6 text-gray-200">{cartridge.twoPieceEffect}</dd>
+                      </div>
+                      <div className="grid gap-2 sm:grid-cols-[88px_1fr]">
+                        <dt className="text-xs font-black text-amber-400">4세트 효과</dt>
+                        <dd className="text-sm leading-6 text-gray-300">{cartridge.fourPieceEffect}</dd>
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-[88px_1fr]">
+                        <dt className="text-xs font-black text-gray-400">필요 블록</dt>
+                        <dd className="flex flex-wrap gap-2">
+                          {cartridge.blocks.map((block, index) => (
+                            <span key={`${block}-${index}`} className="rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-xs font-black text-gray-200">{block}</span>
+                          ))}
+                        </dd>
+                      </div>
+                    </dl>
+                  </article>
+                ))}
+              </div>
+
+              {filteredCartridges.length === 0 && (
+                <div className="rounded-[28px] border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 카트리지가 없습니다.</div>
+              )}
+
+              <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭과 수치가 달라질 수 있습니다.</p>
+            </div>
           ) : activeMenu === "인벤토리" ? (
             <InventoryGallery 
               gameId="nte" 
@@ -310,7 +404,7 @@ const GalleryNTE: React.FC = () => {
   );
 };
 
-const FilterSelect = ({ label, value, onChange, options, formatOption }: any) => {
+const FilterSelect = ({ label, value, onChange, options, formatOption, allLabel = 'ALL' }: any) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
 
@@ -332,7 +426,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption }: any) =>
       >
         <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">
-          {value === '전체' ? 'ALL' : (formatOption ? formatOption(value) : value)}
+          {value === '전체' ? allLabel : (formatOption ? formatOption(value) : value)}
         </span>
         <ChevronRight size={12} className={`text-gray-400 transition-transform duration-300 ${isOpen ? 'rotate-[-90deg]' : 'rotate-90'}`} />
       </button>
@@ -347,7 +441,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption }: any) =>
               }}
               className={`w-full px-4 py-2.5 text-left text-xs font-bold transition-colors ${value === '전체' ? 'bg-brand-primary/20 text-brand-accent' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
             >
-              ALL
+              {allLabel}
             </button>
             {options.map((opt: string) => (
               <button
