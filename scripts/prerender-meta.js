@@ -2272,12 +2272,6 @@ function runPrerender() {
       desc: 'Rira Archive 서비스 이용약관을 확인하세요.',
       content: `<h1>이용약관 (Terms of Service)</h1><p>본 사이트의 모든 정보와 공략글은 참고용으로 제공되며, 게임사의 공식적인 입장을 대변하지 않습니다. 무단 전재 및 재배포를 금지합니다.</p>`
     },
-    {
-      path: '/blog',
-      title: '인텔리전스 블로그',
-      desc: 'Rira Game Hub의 심층 분석 게임 칼럼과 가이드를 만나보세요.',
-      content: `<h1>인텔리전스 블로그</h1><p>Rira Archive에서 제공하는 게임 심층 분석, 최신 메타 리뷰, 그리고 패치 노트 해석을 만나보실 수 있습니다.</p>`
-    }
   ];
 
   policyPages.forEach(page => {

@@ -3,7 +3,7 @@ import { Link, useSearchParams } from 'react-router';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
 import { BLOG_POSTS } from '../data/blogData';
-import { Clock, User, ChevronRight } from 'lucide-react';
+import { Clock, User, ChevronRight, ShieldCheck } from 'lucide-react';
 
 const BlogList: React.FC = () => {
   const [searchParams] = useSearchParams();
@@ -13,13 +13,27 @@ const BlogList: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO 
-        title="인텔리전스 블로그" 
-        description="Rira Game Hub의 심층 분석 게임 칼럼과 가이드를 만나보세요." 
-        url="/blog" 
+        title="공략 검수 중"
+        description="Rira Game Hub의 공략 콘텐츠를 공식 자료와 대조해 다시 검수하고 있습니다."
+        url="/blog"
+        noindex={BLOG_POSTS.length === 0}
       />
       <PageHeader title="리라 아카이브 칼럼" category="블로그" categoryUrl={`/blog${gameQuery}`} gameId={game} />
       
       <main className="max-w-[1200px] mx-auto px-6 md:px-12 pt-12">
+        {BLOG_POSTS.length === 0 && (
+          <section className="mx-auto max-w-2xl rounded-[32px] border border-amber-300/15 bg-amber-300/[0.04] p-8 text-center md:p-12">
+            <ShieldCheck className="mx-auto text-amber-200" size={36} />
+            <h1 className="mt-5 text-2xl font-black">공략 콘텐츠를 다시 검수하고 있습니다</h1>
+            <p className="mt-4 text-sm leading-7 text-gray-400">
+              정확하지 않은 정보가 노출되지 않도록 기존 글을 내리고, 게임 내 정보와 공식 자료를 기준으로
+              명칭·수치·적용 버전을 확인하고 있습니다. 검수를 마친 공략부터 다시 공개하겠습니다.
+            </p>
+            <Link to="/" className="mt-7 inline-flex rounded-xl bg-white/10 px-5 py-3 text-xs font-black text-white hover:bg-white/15">
+              게임 허브로 돌아가기
+            </Link>
+          </section>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {BLOG_POSTS.map(post => (
             <Link 

@@ -20,6 +20,7 @@ const BlogPost: React.FC = () => {
   if (!post) {
     return (
       <div className="min-h-[100dvh] bg-[#0a0a0a] text-white flex flex-col items-center justify-center p-8">
+        <SEO title="검수 중인 공략" description="현재 검수 중이거나 공개가 종료된 공략입니다." noindex={true} />
         <h2 className="text-2xl font-black mb-4 tracking-tight">Post Not Found</h2>
         <button onClick={() => navigate(`/blog${gameQuery}`)} className="text-brand-primary hover:text-brand-accent transition-colors font-bold flex items-center gap-2">
           <ChevronLeft size={16} /> Return to Blog

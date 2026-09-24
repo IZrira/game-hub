@@ -3,17 +3,6 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://riragamehub.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog"/>
-    <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
     <loc>https://riragamehub.com/notices</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -23,77 +12,5 @@
     <image:image>
       <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/hsr-4-3-meta-analysis</loc>
-    <lastmod>2026-06-16</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/hsr-4-3-meta-analysis?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/hsr-4-3-meta-analysis?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/hsr-4-3-meta-analysis"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/hsr-firefly-build-guide</loc>
-    <lastmod>2026-06-12</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/hsr-firefly-build-guide?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/hsr-firefly-build-guide?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/hsr-firefly-build-guide"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/ww-jiyan-combat-guide</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/ww-jiyan-combat-guide?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/ww-jiyan-combat-guide?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/ww-jiyan-combat-guide"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/hsr-acheron-analysis</loc>
-    <lastmod>2026-06-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/hsr-acheron-analysis?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/hsr-acheron-analysis?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/hsr-acheron-analysis"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/nte-starter-guide</loc>
-    <lastmod>2026-08-29</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/nte-starter-guide?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/nte-starter-guide?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/nte-starter-guide"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/ww-changli-build-guide</loc>
-    <lastmod>2026-08-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/ww-changli-build-guide?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/ww-changli-build-guide?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/ww-changli-build-guide"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/hsr-feixiao-fua-meta</loc>
-    <lastmod>2026-08-20</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/hsr-feixiao-fua-meta?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/hsr-feixiao-fua-meta?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/hsr-feixiao-fua-meta"/>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/blog/nte-party-building-synergy</loc>
-    <lastmod>2026-08-15</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/blog/nte-party-building-synergy?lng=ko"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/blog/nte-party-building-synergy?lng=en"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/blog/nte-party-building-synergy"/>
   </url>
 </urlset>

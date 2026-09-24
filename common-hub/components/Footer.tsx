@@ -8,7 +8,6 @@ const Footer: React.FC = () => {
     { name: 'Hub Index', path: '/' },
     { name: 'About Us', path: '/about' },
     { name: 'Archive Notices', path: '/notices' },
-    { name: 'Intelligence Blog', path: '/blog' },
   ];
 
   const policyLinks = [

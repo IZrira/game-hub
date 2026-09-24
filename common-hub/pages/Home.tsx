@@ -130,9 +130,6 @@ const Home: React.FC = () => {
           </div>
 
           <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row justify-center items-center gap-4 animate-in fade-in duration-1000 delay-500">
-            <Link to="/blog" className="w-full sm:w-auto flex items-center justify-center gap-2 text-xs font-black text-white bg-brand-primary/20 border border-brand-primary/50 hover:bg-brand-primary hover:text-black px-6 py-3.5 rounded-full uppercase tracking-widest transition-all shadow-[0_0_20px_rgba(var(--brand-primary-rgb),0.3)] hover:shadow-[0_0_30px_rgba(var(--brand-primary-rgb),0.6)] active:scale-95 hover:scale-105">
-              <BookOpen size={16} /> {t('인기 공략/칼럼 모아보기')}
-            </Link>
             <div className="flex flex-wrap justify-center gap-3 sm:gap-4 px-2">
               <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">
                 <Server size={12} className="text-brand-primary" /> Multi-Game Sync

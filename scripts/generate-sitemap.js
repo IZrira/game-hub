@@ -522,7 +522,6 @@ async function generateSitemap() {
     });
 
     // 6. Blog & Notices -> sitemap-blog.xml
-    addEntry(blogEntries, `${BASE_URL}/blog`, null, '0.8', 'weekly', [defaultBanner]);
     addEntry(blogEntries, `${BASE_URL}/notices`, null, '0.8', 'weekly', [defaultBanner]);
 
     const blogFilePath = path.join(ROOT_DIR, 'common-hub', 'data', 'blogData.ts');
