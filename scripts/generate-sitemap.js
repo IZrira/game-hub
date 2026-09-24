@@ -20,6 +20,7 @@ const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts'
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
+const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
 
 function getNotionData() {
   try {
@@ -215,6 +216,7 @@ function validateGeneratedUrls(urlList, wwCharacterIds) {
     /^\/$/,
     /^\/(?:about|privacy|tos|contact|blog|notices)$/,
     /^\/blog\/[^/]+$/,
+    /^\/gallery\/(?:hsr|ww|nte|aniimo)\/guides(?:\/[^/]+)?$/,
     /^\/gallery\/hsr(?:\/(?:tierlist|parties|terminology))?$/,
     /^\/gallery\/hsr\/character\/[^/]+(?:\/guide)?$/,
     /^\/gallery\/hsr\/(?:lightcone|relic|ornament)\/[^/]+$/,
@@ -492,6 +494,21 @@ async function generateSitemap() {
     addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/type-chart`, null, '0.8', 'weekly', [defaultBanner]);
     addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/personality`, null, '0.8', 'weekly', [defaultBanner]);
     addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/party-builder`, null, '0.8', 'weekly', [defaultBanner]);
+
+    if (fs.existsSync(GUIDE_ARTICLES_FILE)) {
+      const publishedGuides = JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8'))
+        .filter(article => article.status === 'published');
+      const guideTargets = { hsr: hsrEntries, ww: wwEntries, nte: nteEntries, aniimo: aniimoEntries };
+      const gamesWithGuides = new Set(publishedGuides.map(article => article.gameId));
+      gamesWithGuides.forEach(gameId => {
+        const target = guideTargets[gameId];
+        if (target) addEntry(target, `${BASE_URL}/gallery/${gameId}/guides`, null, '0.8', 'weekly', [defaultBanner]);
+      });
+      publishedGuides.forEach(article => {
+        const target = guideTargets[article.gameId];
+        if (target) addEntry(target, `${BASE_URL}/gallery/${article.gameId}/guides/${encodeURIComponent(article.slug)}`, article.reviewedAt || article.publishedAt, '0.8', 'monthly', [defaultBanner]);
+      });
+    }
 
     const aniimoFileLastmod = getFileLastmod(ANIIMO_DATA_FILE);
     const aniimoItems = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];

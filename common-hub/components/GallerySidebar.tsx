@@ -18,6 +18,7 @@ import { useTranslation } from 'react-i18next';
 import { useNoticeBadge } from './NoticeComponents';
 import { GLOBAL_NOTICES } from '../data/notices';
 import { Notice } from '../data/types';
+import { getPublishedGuides } from '../data/guideArticles';
 
 interface SidebarItem {
   label: string;
@@ -47,7 +48,9 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
     { label: '광추', icon: <Zap size={14} />, menuKey: '광추' },
     { label: '유물 & 장신구', icon: <Shield size={14} />, menuKey: '유물 & 장신구' },
     { label: '공략', icon: <BookOpen size={14} />, menuKey: '공략' },
-    { label: '블로그 / 칼럼', icon: <FileText size={14} />, path: gameId ? `/blog?game=${gameId}` : '/blog' },
+    ...(gameId && getPublishedGuides(gameId).length > 0
+      ? [{ label: '분석 가이드', icon: <FileText size={14} />, path: `/gallery/${gameId}/guides` }]
+      : []),
     { label: '티어표', icon: <Trophy size={14} />, path: `/gallery/${gameId}/tierlist` },
     { label: '추천 파티 조합', icon: <LayoutGrid size={14} />, path: `/gallery/${gameId}/parties` },
     { label: '인벤토리', icon: <Backpack size={14} />, menuKey: '인벤토리' },

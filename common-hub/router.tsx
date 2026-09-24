@@ -47,6 +47,8 @@ const TermsOfService = React.lazy(() => import('./pages/TermsOfService'));
 const ContactUs = React.lazy(() => import('./pages/ContactUs'));
 const BlogList = React.lazy(() => import('./pages/BlogList'));
 const BlogPost = React.lazy(() => import('./pages/BlogPost'));
+const GuideList = React.lazy(() => import('./pages/GuideList'));
+const GuideArticle = React.lazy(() => import('./pages/GuideArticle'));
 const Notices = React.lazy(() => import('./pages/Notices'));
 const NoticeDetail = React.lazy(() => import('./pages/NoticeDetail'));
 
@@ -144,6 +146,8 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/tierlist", element: <TierListDispatcher /> },
       { path: "gallery/:gameId/parties", element: <PartyDispatcher /> },
       { path: "gallery/:gameId/terminology", element: <Terminology /> },
+      { path: "gallery/:gameId/guides", element: <GuideList /> },
+      { path: "gallery/:gameId/guides/:slug", element: <GuideArticle /> },
       { path: "gallery/:gameId/character/:charName/guide", element: <CharacterGuideDispatcher /> },
       { path: "admin", element: <AdminDashboard /> },
       

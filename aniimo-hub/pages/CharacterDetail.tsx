@@ -121,6 +121,7 @@ const CharacterDetailAniimo: React.FC = () => {
 
       {(item.evolution?.length || 0) > 0 && <Section title="진화 계보 및 조건">
         <p className="mb-4 text-xs text-gray-400">단계별 진화(유년기 → 성장기 → 성숙기) 흐름입니다. 지역에 따른 형태 변환과 구별되며, 조건 충족 시 진화가 해제됩니다.</p>
+        <Link to="/gallery/aniimo/guides/evolution-and-forms-guide" className="mb-5 inline-flex items-center gap-2 rounded-xl bg-violet-400/10 px-4 py-2 text-xs font-black text-violet-300 hover:bg-violet-400/15 hover:text-white">진화와 형태 선택 기준 보기 <ChevronRight size={14} /></Link>
         <AniimoEvolutionTree currentName={item.name} currentFormKey={activeForm?.key} nodes={item.evolution || []} />
         {evolutionRequirements.length > 0 && <div className="mt-6 border-t border-white/10 pt-6"><h3 className="flex items-center gap-2 text-sm font-black"><Target size={16} className="text-violet-300" /> 진화 해제 &amp; 기준 상세</h3><div className="mt-4 grid gap-3 lg:grid-cols-2">{evolutionRequirements.map(({ node, condition }) => {
           const parsed = parseEvolutionCondition(condition);

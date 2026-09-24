@@ -58,6 +58,29 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/aniimo/guides</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/aniimo/guides?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/aniimo/guides?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/aniimo/guides"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/aniimo/guides/evolution-and-forms-guide</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/aniimo/guides/evolution-and-forms-guide?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/aniimo/guides/evolution-and-forms-guide?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/aniimo/guides/evolution-and-forms-guide"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/aniimo/character/%ED%83%84%EB%A9%8D%EB%A9%8D</loc>
     <lastmod>2026-09-18</lastmod>
     <changefreq>weekly</changefreq>

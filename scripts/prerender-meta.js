@@ -14,6 +14,7 @@ const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 const SITEMAP_FILE = path.join(PUBLIC_DIR, 'sitemap.xml');
 const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
+const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
@@ -2311,6 +2312,51 @@ function runPrerender() {
       post.imageUrl || `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
       postHtmlContent
+    );
+    count++;
+  });
+
+  // 6-1. Hub-specific reviewed guides
+  const guideArticles = fs.existsSync(GUIDE_ARTICLES_FILE)
+    ? JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8')).filter(article => article.status === 'published')
+    : [];
+  const guideGameLabels = { hsr: '붕괴: 스타레일', ww: '명조', nte: '이환', aniimo: '애니모' };
+  [...new Set(guideArticles.map(article => article.gameId))].forEach(gameId => {
+    const gameGuides = guideArticles.filter(article => article.gameId === gameId);
+    const gameLabel = guideGameLabels[gameId] || gameId;
+    const listHtml = gameGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a><p>${escapeHtml(article.excerpt)}</p></li>`).join('');
+    createPrerenderedPage(
+      `/gallery/${gameId}/guides`,
+      `${gameLabel} 공략 모음`,
+      `${gameLabel}의 공식 정보와 Rira 분석을 구분해 검수한 공략을 확인하세요.`,
+      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      `<article><h1>${escapeHtml(gameLabel)} 공략</h1><p>적용 기준일과 출처를 확인한 글만 공개합니다.</p><ul>${listHtml}</ul></article>`
+    );
+    count++;
+  });
+
+  guideArticles.forEach(article => {
+    const gameLabel = guideGameLabels[article.gameId] || article.gameId;
+    const renderGuideInline = value => escapeHtml(value.replace(/\*\*/g, '').replace(/`/g, ''))
+      .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, '<a href="$2">$1</a>');
+    const contentHtml = article.content.split('\n').map(line => {
+      const text = line.trim();
+      if (text.startsWith('### ')) return `<h3>${renderGuideInline(text.slice(4))}</h3>`;
+      if (text.startsWith('## ')) return `<h2>${renderGuideInline(text.slice(3))}</h2>`;
+      if (/^\d+\.\s/.test(text)) return `<p>${renderGuideInline(text)}</p>`;
+      if (text.startsWith('- ')) return `<p>${renderGuideInline(text.slice(2))}</p>`;
+      if (!text) return '';
+      return `<p>${renderGuideInline(text)}</p>`;
+    }).join('');
+    const sourcesHtml = article.sources.map(source => `<li><a href="${escapeHtml(source.url)}">${escapeHtml(source.label)}</a></li>`).join('');
+    createPrerenderedPage(
+      `/gallery/${article.gameId}/guides/${encodeURIComponent(article.slug)}`,
+      article.title,
+      article.excerpt,
+      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      baseHtml,
+      `<article><p><a href="/gallery/${article.gameId}">${escapeHtml(gameLabel)} 허브</a> &gt; <a href="/gallery/${article.gameId}/guides">공략</a></p><h1>${escapeHtml(article.title)}</h1><p><strong>적용 기준:</strong> ${escapeHtml(article.applicableVersion)} · <strong>최종 검수:</strong> ${escapeHtml(article.reviewedAt)}</p>${contentHtml}<h2>검증 출처</h2><ul>${sourcesHtml}</ul></article>`
     );
     count++;
   });
