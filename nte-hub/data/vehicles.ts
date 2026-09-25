@@ -261,7 +261,7 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     topSpeed: 30,
     acceleration: 3,
     durability: null,
-    acquisition: 'Ver. 1.3 후반부부터 폰즈로 구매',
+    acquisition: '랜드리코에서 구매 (800,000 폰즈)',
   },
   {
     id: 'sirocco',
@@ -275,7 +275,7 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     topSpeed: 95,
     acceleration: 7,
     durability: null,
-    acquisition: 'TerraX에서 폰즈로 구매',
+    acquisition: 'TerraX에서 구매 (4,000,000 폰즈)',
   },
   {
     id: 'tide',
