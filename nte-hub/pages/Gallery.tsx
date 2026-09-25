@@ -14,7 +14,7 @@ import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
-import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_TYPES } from '../data/vehicles';
+import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
 
 const GalleryNTE: React.FC = () => {
   const gameId = 'nte';
@@ -108,9 +108,11 @@ const GalleryNTE: React.FC = () => {
   const filteredVehicles = useMemo(() => {
     const normalizedQuery = debouncedSearchQuery.trim().toLocaleLowerCase('ko-KR');
     const vehicles = NTE_VEHICLES.filter((vehicle) => {
-      const matchesType = attrFilter === '전체' || vehicle.type === attrFilter;
+      const matchesType = attrFilter === '전체' || vehicle.category === attrFilter;
       const matchesSearch = !normalizedQuery || [
         vehicle.name,
+        vehicle.category,
+        vehicle.manufacturer ?? '',
         vehicle.type,
         vehicle.description,
         vehicle.acquisition,
@@ -119,12 +121,33 @@ const GalleryNTE: React.FC = () => {
     });
 
     return [...vehicles].sort((a, b) => {
-      if (secondFilter === '최고 속도순') return b.topSpeed - a.topSpeed;
-      if (secondFilter === '가속순') return b.acceleration - a.acceleration;
+      if (secondFilter === '최고 속도순') return (b.topSpeed ?? -1) - (a.topSpeed ?? -1);
+      if (secondFilter === '가속순') return (b.acceleration ?? -1) - (a.acceleration ?? -1);
       if (secondFilter === '내구도순') return (b.durability ?? -1) - (a.durability ?? -1);
-      return 0;
+      return NTE_VEHICLE_DISPLAY_ORDER.indexOf(a.id as typeof NTE_VEHICLE_DISPLAY_ORDER[number])
+        - NTE_VEHICLE_DISPLAY_ORDER.indexOf(b.id as typeof NTE_VEHICLE_DISPLAY_ORDER[number]);
     });
   }, [debouncedSearchQuery, secondFilter, attrFilter]);
+
+  const groupedVehicles = useMemo(() => NTE_VEHICLE_CATEGORIES.flatMap((category) => {
+    const categoryVehicles = filteredVehicles.filter((vehicle) => vehicle.category === category);
+    if (categoryVehicles.length === 0) return [];
+
+    const manufacturerOrder: Array<(typeof categoryVehicles)[number]['manufacturer']> = category === '2륜 이동 수단'
+      ? [null, 'TerraX', '레갈리아']
+      : category === '4륜 이동 수단'
+        ? ['노버스', '레갈리아', 'TerraX']
+        : ["Hikari's", null];
+    const manufacturers = manufacturerOrder.filter((manufacturer) =>
+      categoryVehicles.some((vehicle) => vehicle.manufacturer === manufacturer));
+    return [{
+      category,
+      groups: manufacturers.map((manufacturer) => ({
+        manufacturer,
+        vehicles: categoryVehicles.filter((vehicle) => vehicle.manufacturer === manufacturer),
+      })),
+    }];
+  }), [filteredVehicles]);
 
   if (!game) return null;
 
@@ -469,10 +492,10 @@ const GalleryNTE: React.FC = () => {
                     />
                   </div>
                   <FilterSelect
-                    label="종류"
+                    label="분류"
                     value={attrFilter}
                     onChange={(value: string) => updateFilterParams('attr', value)}
-                    options={NTE_VEHICLE_TYPES}
+                    options={NTE_VEHICLE_CATEGORIES}
                     allLabel="전체"
                   />
                   <FilterSelect
@@ -486,22 +509,46 @@ const GalleryNTE: React.FC = () => {
                 </div>
               </section>
 
-              <div className="grid gap-5 xl:grid-cols-2">
-                {filteredVehicles.map((vehicle) => (
+              {groupedVehicles.map(({ category, groups }) => (
+                <section key={category} className="space-y-5">
+                  <div className="flex items-center gap-3 border-b border-white/10 pb-3">
+                    <h2 className="text-xl font-black text-white">{category}</h2>
+                    <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-300">
+                      {groups.reduce((count, group) => count + group.vehicles.length, 0)}종
+                    </span>
+                  </div>
+                  {groups.map((group) => (
+                    <div key={group.manufacturer ?? `${category}-other`} className="space-y-4">
+                      {group.manufacturer && (
+                        <h3 className="flex items-center gap-2 text-sm font-black text-gray-300">
+                          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                          {group.manufacturer}
+                        </h3>
+                      )}
+                      <div className="grid gap-5 xl:grid-cols-2">
+                {group.vehicles.map((vehicle) => (
                   <article key={vehicle.id} className="overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] transition hover:border-emerald-400/35 hover:bg-white/[0.04]">
                     <div className="grid sm:grid-cols-[210px_1fr]">
                       <div className="relative min-h-[190px] overflow-hidden border-b border-white/5 bg-gradient-to-br from-emerald-400/10 via-black/20 to-sky-500/10 sm:border-b-0 sm:border-r">
-                        <img
-                          src={getNTEVehicleImageUrl(vehicle.imageFileName)}
-                          alt={`${vehicle.name} ${vehicle.type}`}
-                          className="absolute inset-0 h-full w-full object-contain p-5 transition duration-500 hover:scale-105"
-                          loading="lazy"
-                        />
+                        {vehicle.imageFileName ? (
+                          <img
+                            src={getNTEVehicleImageUrl(vehicle.imageFileName)}
+                            alt={`${vehicle.name} ${vehicle.type}`}
+                            className="absolute inset-0 h-full w-full object-contain p-5 transition duration-500 hover:scale-105"
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-gray-500">
+                            <CarFront size={36} strokeWidth={1.5} />
+                            <span className="text-[10px] font-black tracking-wider">이미지 준비 중</span>
+                          </div>
+                        )}
                       </div>
                       <div className="p-5 sm:p-6">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="text-[9px] font-black uppercase tracking-[0.22em] text-emerald-400">MOBILITY</span>
                           <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[9px] font-black text-emerald-300">{vehicle.type}</span>
+                          {vehicle.availability && <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-2.5 py-1 text-[9px] font-black text-amber-300">{vehicle.availability}</span>}
                         </div>
                         <h2 className="mt-2 text-2xl font-black text-white">{vehicle.name}</h2>
                         <p className="mt-3 text-sm leading-6 text-gray-400">{vehicle.description}</p>
@@ -512,17 +559,17 @@ const GalleryNTE: React.FC = () => {
                       <div className="flex flex-col items-center gap-1 border-r border-white/5 px-2 py-4 text-center">
                         <Gauge size={16} className="text-sky-400" />
                         <dt className="text-[9px] font-black uppercase tracking-wider text-gray-500">최고 속도</dt>
-                        <dd className="text-sm font-black text-white">{vehicle.topSpeed} km/h</dd>
+                        <dd className="text-sm font-black text-white">{vehicle.topSpeed === null ? '미공개' : `${vehicle.topSpeed} km/h`}</dd>
                       </div>
                       <div className="flex flex-col items-center gap-1 border-r border-white/5 px-2 py-4 text-center">
                         <Timer size={16} className="text-amber-400" />
                         <dt className="text-[9px] font-black uppercase tracking-wider text-gray-500">가속</dt>
-                        <dd className="text-sm font-black text-white">{vehicle.acceleration}</dd>
+                        <dd className="text-sm font-black text-white">{vehicle.acceleration ?? '미공개'}</dd>
                       </div>
                       <div className="flex flex-col items-center gap-1 px-2 py-4 text-center">
                         <Wrench size={16} className="text-violet-400" />
                         <dt className="text-[9px] font-black uppercase tracking-wider text-gray-500">내구도</dt>
-                        <dd className="text-sm font-black text-white">{vehicle.durability?.toLocaleString('ko-KR') ?? '정보 없음'}</dd>
+                        <dd className="text-sm font-black text-white">{vehicle.durability?.toLocaleString('ko-KR') ?? '미공개'}</dd>
                       </div>
                     </dl>
 
@@ -535,7 +582,11 @@ const GalleryNTE: React.FC = () => {
                     </div>
                   </article>
                 ))}
-              </div>
+                      </div>
+                    </div>
+                  ))}
+                </section>
+              ))}
 
               {filteredVehicles.length === 0 && (
                 <div className="rounded-[28px] border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 이동 수단이 없습니다.</div>

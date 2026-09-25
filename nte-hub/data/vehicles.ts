@@ -1,13 +1,16 @@
 export interface NTEVehicle {
   id: string;
   name: string;
-  imageFileName: string;
-  type: '자동차' | '오토바이' | '모페드' | '휠체어' | '카트';
+  imageFileName: string | null;
+  category: '2륜 이동 수단' | '4륜 이동 수단' | '수상 이동 수단' | '기타';
+  manufacturer: '노버스' | '레갈리아' | 'TerraX' | "Hikari's" | null;
+  type: '자동차' | '오토바이' | '모페드' | '자전거' | '듄 버기' | '수상 바이크' | '휠체어' | '카트';
   description: string;
-  topSpeed: number;
-  acceleration: number;
+  topSpeed: number | null;
+  acceleration: number | null;
   durability: number | null;
   acquisition: string;
+  availability?: '출시 예정';
 }
 
 export const NTE_VEHICLES: NTEVehicle[] = [
@@ -15,6 +18,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'c2000',
     name: 'C2000',
     imageFileName: 'C2000',
+    category: '4륜 이동 수단',
+    manufacturer: '노버스',
     type: '자동차',
     description: '우수한 경제성과 뛰어난 성능을 조화시킨 노버스 차량. 넓고 쾌적한 승차감과 효율적인 동력 시스템으로 안정적인 주행 경험을 제공한다.',
     topSpeed: 130,
@@ -26,6 +31,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'm1000',
     name: 'M1000',
     imageFileName: 'M1000',
+    category: '4륜 이동 수단',
+    manufacturer: '노버스',
     type: '자동차',
     description: '컴팩트한 차체와 유연한 조작감을 갖춰 혼잡한 도심에서도 여유롭게 주행할 수 있는 노버스 차량.',
     topSpeed: 146,
@@ -37,6 +44,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'st79',
     name: 'ST79',
     imageFileName: 'ST79',
+    category: '4륜 이동 수단',
+    manufacturer: '노버스',
     type: '자동차',
     description: '단순하고 실용적인 기계 구조에 레트로 외관과 메카닉 감성의 트랜스미션을 결합한 차량.',
     topSpeed: 155,
@@ -48,6 +57,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'enforcer',
     name: 'Enforcer',
     imageFileName: 'Enforcer',
+    category: '4륜 이동 수단',
+    manufacturer: '노버스',
     type: '자동차',
     description: '강렬한 차체 라인과 강력한 성능, 견고한 내구성을 앞세운 고성능 차량.',
     topSpeed: 172,
@@ -59,6 +70,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'griffin',
     name: 'Griffin',
     imageFileName: 'Griffin',
+    category: '4륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '자동차',
     description: '레갈리아의 장인정신과 첨단 기술을 집약한 차량. 최신 주행 보조·인포테인먼트 시스템과 유선형 차체, 팝업 헤드라이트가 특징이다.',
     topSpeed: 170,
@@ -70,6 +83,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'griffin-volante',
     name: 'Griffin Volante',
     imageFileName: 'Griffin Volante',
+    category: '4륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '자동차',
     description: '공기역학과 미학을 함께 살린 레갈리아의 최신 오픈카. 개방형 차체로 도심 주행의 자유로움을 강조한다.',
     topSpeed: 170,
@@ -81,6 +96,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'lavelox',
     name: 'LaVelox',
     imageFileName: 'LaVelox',
+    category: '4륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '자동차',
     description: '하이브리드 시스템과 첨단 엔진, 최신 소재를 결합해 슈퍼카의 기준을 새롭게 제시한 차량.',
     topSpeed: 191,
@@ -92,6 +109,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'pursuit-v8',
     name: 'Pursuit V8',
     imageFileName: 'Pursuit V8',
+    category: '4륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '자동차',
     description: '정교한 사륜구동 시스템과 묵직한 엔진음으로 기계 장치 특유의 주행 감각을 살린 차량.',
     topSpeed: 180,
@@ -103,6 +122,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'pendragon',
     name: 'Pendragon',
     imageFileName: 'Pendragon',
+    category: '4륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '자동차',
     description: '혁신적인 기술을 바탕으로 슈퍼카의 새로운 영역에 도전하는 레갈리아의 미래 지향형 차량.',
     topSpeed: 202,
@@ -114,6 +135,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'novis-st-x-950',
     name: 'Novis ST-X 950',
     imageFileName: 'Novis ST-X 950',
+    category: '2륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '오토바이',
     description: '슈퍼카의 혈통을 계승하고 고성능 엔진을 탑재해 가속할 때마다 새로운 한계에 도전하는 차량.',
     topSpeed: 140,
@@ -125,6 +148,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'blizzard-v4',
     name: 'Blizzard-V4',
     imageFileName: 'Blizzard-V4',
+    category: '2륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '오토바이',
     description: '독보적인 공기역학 디자인과 고성능 동력 시스템을 갖춘 레갈리아의 신형 오토바이. 전문 레이서를 위해 제작되었다.',
     topSpeed: 180,
@@ -136,6 +161,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'g3',
     name: 'G3',
     imageFileName: 'G3',
+    category: '4륜 이동 수단',
+    manufacturer: 'TerraX',
     type: '자동차',
     description: '강인한 외관과 최첨단 사륜구동 시스템, 고급스러운 실내를 갖춰 비즈니스와 여가 모두에 대응하는 차량.',
     topSpeed: 138,
@@ -147,6 +174,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'rover-a1',
     name: 'Rover A1',
     imageFileName: 'Rover A1',
+    category: '2륜 이동 수단',
+    manufacturer: null,
     type: '모페드',
     description: '가벼운 차체와 높은 에너지 효율을 갖춘 친환경 차량으로 단거리 통근에 적합하다.',
     topSpeed: 40,
@@ -158,6 +187,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'tomorrow-rush',
     name: '미래로 질주!',
     imageFileName: 'Tomorrow Rush',
+    category: '기타',
+    manufacturer: null,
     type: '휠체어',
     description: '「집사」 Mr.데이비드의 차세대 신개념 탈것. 향후 내연기관, 밀폐형 캐빈과 통일된 타이어 규격을 적용할 계획인 실험적 모델이다.',
     topSpeed: 50,
@@ -169,6 +200,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'b100',
     name: 'B100',
     imageFileName: 'B100',
+    category: '4륜 이동 수단',
+    manufacturer: '노버스',
     type: '자동차',
     description: '경량 차체와 낮은 무게중심 설계를 통해 안정적이면서 날카로운 핸들링을 구현한 Novus의 신형 차량.',
     topSpeed: 132,
@@ -180,6 +213,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'k01',
     name: 'K01',
     imageFileName: 'K01',
+    category: '기타',
+    manufacturer: null,
     type: '카트',
     description: '유연한 조작감과 질소 가속 시스템이 적용된 강력한 엔진을 갖춘 캐주얼 카트.',
     topSpeed: 140,
@@ -191,6 +226,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'porsche-918-spyder',
     name: 'Porsche 918 Spyder',
     imageFileName: 'Porsche 918 Spyder',
+    category: '기타',
+    manufacturer: null,
     type: '자동차',
     description: '시대를 앞서가는 미래 지향적 외관과 독보적인 주행 성능을 갖춘 Porsche 컬래버 한정 슈퍼카.',
     topSpeed: 212,
@@ -202,6 +239,8 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     id: 'draco',
     name: 'Draco',
     imageFileName: 'Draco',
+    category: '2륜 이동 수단',
+    manufacturer: '레갈리아',
     type: '오토바이',
     description: '도로의 한계를 벗어난 독특한 디자인의 컬래버 오토바이. 점프와 좌우 이동이 가능해 높은 기동성을 발휘한다.',
     topSpeed: 180,
@@ -209,9 +248,84 @@ export const NTE_VEHICLES: NTEVehicle[] = [
     durability: null,
     acquisition: '컬래버 미스터리 박스에서 획득',
   },
+  {
+    id: 'yesteryear',
+    name: '「옛 시절」',
+    imageFileName: null,
+    category: '2륜 이동 수단',
+    manufacturer: null,
+    type: '자전거',
+    description: '두 사람이 함께 탑승할 수 있는 2인용 자전거형 이동 수단.',
+    topSpeed: null,
+    acceleration: null,
+    durability: null,
+    acquisition: 'Ver. 1.3 후반부부터 폰즈로 구매',
+  },
+  {
+    id: 'sirocco',
+    name: '「열풍」',
+    imageFileName: null,
+    category: '2륜 이동 수단',
+    manufacturer: 'TerraX',
+    type: '듄 버기',
+    description: '비포장 지형 주행에 어울리는 TerraX 계열의 듄 버기.',
+    topSpeed: null,
+    acceleration: null,
+    durability: null,
+    acquisition: 'TerraX에서 폰즈로 구매',
+  },
+  {
+    id: 'tide',
+    name: 'Tide',
+    imageFileName: null,
+    category: '수상 이동 수단',
+    manufacturer: "Hikari's",
+    type: '수상 바이크',
+    description: '수면 위를 빠르게 이동할 수 있는 최초의 수상 이동 수단.',
+    topSpeed: null,
+    acceleration: null,
+    durability: null,
+    acquisition: '「Lucent Tides」 미스터리 박스에서 획득',
+  },
+  {
+    id: 'porsche-taycan-turbo-gt',
+    name: 'Porsche Taycan Turbo GT',
+    imageFileName: null,
+    category: '기타',
+    manufacturer: null,
+    type: '자동차',
+    description: 'Porsche 컬래버로 공개된 고성능 전기 스포츠카.',
+    topSpeed: null,
+    acceleration: null,
+    durability: null,
+    acquisition: '출시 및 세부 획득 방법 미공개',
+    availability: '출시 예정',
+  },
+  {
+    id: 'porsche-911-turbo-930',
+    name: 'Porsche 911 Turbo (930)',
+    imageFileName: null,
+    category: '기타',
+    manufacturer: null,
+    type: '자동차',
+    description: 'Porsche 컬래버로 공개된 클래식 스포츠카.',
+    topSpeed: null,
+    acceleration: null,
+    durability: null,
+    acquisition: '출시 및 세부 획득 방법 미공개',
+    availability: '출시 예정',
+  },
 ];
 
 export const NTE_VEHICLE_TYPES = Array.from(new Set(NTE_VEHICLES.map((vehicle) => vehicle.type)));
+export const NTE_VEHICLE_CATEGORIES: NTEVehicle['category'][] = ['2륜 이동 수단', '4륜 이동 수단', '수상 이동 수단', '기타'];
+export const NTE_VEHICLE_DISPLAY_ORDER = [
+  'rover-a1', 'yesteryear', 'sirocco', 'novis-st-x-950', 'blizzard-v4', 'draco',
+  'c2000', 'm1000', 'enforcer', 'st79', 'b100',
+  'griffin', 'griffin-volante', 'pursuit-v8', 'lavelox', 'pendragon', 'g3',
+  'tide',
+  'tomorrow-rush', 'k01', 'porsche-918-spyder', 'porsche-taycan-turbo-gt', 'porsche-911-turbo-930',
+] as const;
 
 const VEHICLE_IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/Vehicles';
 
