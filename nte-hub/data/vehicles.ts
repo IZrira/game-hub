@@ -1,0 +1,178 @@
+export interface NTEVehicle {
+  id: string;
+  name: string;
+  imageFileName: string;
+  description: string;
+  topSpeed: number;
+  acceleration: number;
+  durability: number | null;
+  acquisition: string;
+}
+
+export const NTE_VEHICLES: NTEVehicle[] = [
+  {
+    id: 'c2000',
+    name: 'C2000',
+    imageFileName: 'C2000',
+    description: '우수한 경제성과 뛰어난 성능을 조화시킨 노버스 차량. 넓고 쾌적한 승차감과 효율적인 동력 시스템으로 안정적인 주행 경험을 제공한다.',
+    topSpeed: 130,
+    acceleration: 3,
+    durability: 17000,
+    acquisition: '노버스에서 구매 (50,000 폰즈)',
+  },
+  {
+    id: 'm1000',
+    name: 'M1000',
+    imageFileName: 'M1000',
+    description: '컴팩트한 차체와 유연한 조작감을 갖춰 혼잡한 도심에서도 여유롭게 주행할 수 있는 노버스 차량.',
+    topSpeed: 146,
+    acceleration: 5,
+    durability: 18000,
+    acquisition: '노버스에서 구매 (350,000 폰즈)',
+  },
+  {
+    id: 'st79',
+    name: 'ST79',
+    imageFileName: 'ST79',
+    description: '단순하고 실용적인 기계 구조에 레트로 외관과 메카닉 감성의 트랜스미션을 결합한 차량.',
+    topSpeed: 155,
+    acceleration: 5,
+    durability: 19000,
+    acquisition: '노버스에서 구매 (600,000 폰즈)',
+  },
+  {
+    id: 'enforcer',
+    name: 'Enforcer',
+    imageFileName: 'Enforcer',
+    description: '강렬한 차체 라인과 강력한 성능, 견고한 내구성을 앞세운 고성능 차량.',
+    topSpeed: 172,
+    acceleration: 6,
+    durability: 18700,
+    acquisition: '노버스에서 구매 (1,720,000 폰즈)',
+  },
+  {
+    id: 'griffin',
+    name: 'Griffin',
+    imageFileName: 'Griffin',
+    description: '레갈리아의 장인정신과 첨단 기술을 집약한 차량. 최신 주행 보조·인포테인먼트 시스템과 유선형 차체, 팝업 헤드라이트가 특징이다.',
+    topSpeed: 170,
+    acceleration: 6,
+    durability: 16000,
+    acquisition: '레갈리아에서 구매 (1,500,000 폰즈)',
+  },
+  {
+    id: 'griffin-volante',
+    name: 'Griffin Volante',
+    imageFileName: 'Griffin Volante',
+    description: '공기역학과 미학을 함께 살린 레갈리아의 최신 오픈카. 개방형 차체로 도심 주행의 자유로움을 강조한다.',
+    topSpeed: 170,
+    acceleration: 6,
+    durability: 16000,
+    acquisition: '레갈리아에서 구매 (1,800,000 폰즈)',
+  },
+  {
+    id: 'lavelox',
+    name: 'LaVelox',
+    imageFileName: 'LaVelox',
+    description: '하이브리드 시스템과 첨단 엔진, 최신 소재를 결합해 슈퍼카의 기준을 새롭게 제시한 차량.',
+    topSpeed: 191,
+    acceleration: 8,
+    durability: 15000,
+    acquisition: '레갈리아에서 구매 (10,800,000 폰즈)',
+  },
+  {
+    id: 'pursuit-v8',
+    name: 'Pursuit V8',
+    imageFileName: 'Pursuit V8',
+    description: '정교한 사륜구동 시스템과 묵직한 엔진음으로 기계 장치 특유의 주행 감각을 살린 차량.',
+    topSpeed: 180,
+    acceleration: 7,
+    durability: 16000,
+    acquisition: '레갈리아에서 구매 (4,000,000 폰즈)',
+  },
+  {
+    id: 'pendragon',
+    name: 'Pendragon',
+    imageFileName: 'Pendragon',
+    description: '혁신적인 기술을 바탕으로 슈퍼카의 새로운 영역에 도전하는 레갈리아의 미래 지향형 차량.',
+    topSpeed: 202,
+    acceleration: 9,
+    durability: 13850,
+    acquisition: '레갈리아에서 구매 (12,000,000 폰즈)',
+  },
+  {
+    id: 'novis-st-x-950',
+    name: 'Novis ST-X 950',
+    imageFileName: 'Novis ST-X 950',
+    description: '슈퍼카의 혈통을 계승하고 고성능 엔진을 탑재해 가속할 때마다 새로운 한계에 도전하는 차량.',
+    topSpeed: 140,
+    acceleration: 6,
+    durability: 4400,
+    acquisition: '레갈리아에서 구매 (250,000 폰즈)',
+  },
+  {
+    id: 'blizzard-v4',
+    name: 'Blizzard-V4',
+    imageFileName: 'Blizzard-V4',
+    description: '독보적인 공기역학 디자인과 고성능 동력 시스템을 갖춘 레갈리아의 신형 오토바이. 전문 레이서를 위해 제작되었다.',
+    topSpeed: 180,
+    acceleration: 7,
+    durability: 5400,
+    acquisition: '레갈리아에서 구매 (2,450,000 폰즈)',
+  },
+  {
+    id: 'g3',
+    name: 'G3',
+    imageFileName: 'G3',
+    description: '강인한 외관과 최첨단 사륜구동 시스템, 고급스러운 실내를 갖춰 비즈니스와 여가 모두에 대응하는 차량.',
+    topSpeed: 138,
+    acceleration: 4,
+    durability: 36650,
+    acquisition: 'TerraX에서 구매 (200,000 폰즈)',
+  },
+  {
+    id: 'rover-a1',
+    name: 'Rover A1',
+    imageFileName: 'Rover A1',
+    description: '가벼운 차체와 높은 에너지 효율을 갖춘 친환경 차량으로 단거리 통근에 적합하다.',
+    topSpeed: 40,
+    acceleration: 2,
+    durability: null,
+    acquisition: '본편 「서장-하 장사꾼과 복덩이-귀가」 시작 후 획득',
+  },
+  {
+    id: 'tomorrow-rush',
+    name: '미래로 질주!',
+    imageFileName: 'Tomorrow Rush',
+    description: '「집사」 Mr.데이비드의 차세대 신개념 탈것. 향후 내연기관, 밀폐형 캐빈과 통일된 타이어 규격을 적용할 계획인 실험적 모델이다.',
+    topSpeed: 50,
+    acceleration: 2,
+    durability: null,
+    acquisition: '핑크퍼스 본점에서 교환 (30,000 발바닥 코인)',
+  },
+  {
+    id: 'b100',
+    name: 'B100',
+    imageFileName: 'B100',
+    description: '경량 차체와 낮은 무게중심 설계를 통해 안정적이면서 날카로운 핸들링을 구현한 Novus의 신형 차량.',
+    topSpeed: 132,
+    acceleration: 4,
+    durability: 17000,
+    acquisition: 'Sienz에서 교환 (육구 코인 20,000개)',
+  },
+  {
+    id: 'k01',
+    name: 'K01',
+    imageFileName: 'K01',
+    description: '유연한 조작감과 질소 가속 시스템이 적용된 강력한 엔진을 갖춘 캐주얼 카트.',
+    topSpeed: 140,
+    acceleration: 9,
+    durability: null,
+    acquisition: 'Gift Center에서 구매 (3,180엔 또는 6,800,000 폰즈)',
+  },
+];
+
+const VEHICLE_IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/Vehicles';
+
+export const getNTEVehicleImageUrl = (imageFileName: string) =>
+  `${VEHICLE_IMAGE_BASE_URL}/${encodeURIComponent(`${imageFileName}.webp`)}`;

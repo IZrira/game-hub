@@ -24,3 +24,4 @@ export * from './cartridges';
 export * from './items';
 export * from './parties';
 export * from './terms';
+export * from './vehicles';
