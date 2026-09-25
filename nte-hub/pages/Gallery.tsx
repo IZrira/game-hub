@@ -13,7 +13,7 @@ import { CharacterPremiumCard, LightConePremiumCard, GuidePremiumCard } from '@/
 import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
-import { NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
+import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
 
 const GalleryNTE: React.FC = () => {
   const gameId = 'nte';
@@ -353,9 +353,20 @@ const GalleryNTE: React.FC = () => {
                 {filteredCartridges.map((cartridge) => (
                   <article key={cartridge.id} className="rounded-[28px] border border-white/10 bg-white/[0.025] p-5 sm:p-7 transition hover:border-violet-400/35 hover:bg-white/[0.04]">
                     <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/5 pb-5">
-                      <div>
-                        <span className="text-[9px] font-black uppercase tracking-[0.22em] text-violet-400">CARTRIDGE</span>
-                        <h2 className="mt-1 text-xl font-black text-white">{cartridge.name}</h2>
+                      <div className="flex min-w-0 items-center gap-4">
+                        <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-amber-400/30 bg-gradient-to-br from-amber-400/15 to-orange-500/5">
+                          <img
+                            src={getNTECartridgeImageUrl(cartridge.imageFileName, 5)}
+                            alt={`${cartridge.name} 5성 카트리지`}
+                            className="h-full w-full object-contain p-1"
+                            loading="lazy"
+                          />
+                          <span className="absolute bottom-1 right-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[9px] font-black text-amber-300">5성</span>
+                        </div>
+                        <div className="min-w-0">
+                          <span className="text-[9px] font-black uppercase tracking-[0.22em] text-violet-400">CARTRIDGE</span>
+                          <h2 className="mt-1 text-xl font-black text-white">{cartridge.name}</h2>
+                        </div>
                       </div>
                       <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-[10px] font-black text-violet-300">{cartridge.effectType}</span>
                     </div>
@@ -373,6 +384,24 @@ const GalleryNTE: React.FC = () => {
                         <dd className="flex flex-wrap gap-2">
                           {cartridge.blocks.map((block, index) => (
                             <span key={`${block}-${index}`} className="rounded-xl border border-white/10 bg-black/30 px-3 py-2 text-xs font-black text-gray-200">{block}</span>
+                          ))}
+                        </dd>
+                      </div>
+                      <div className="grid gap-3 border-t border-white/5 pt-5 sm:grid-cols-[88px_1fr]">
+                        <dt className="text-xs font-black text-gray-400">등급별 외형</dt>
+                        <dd className="flex flex-wrap gap-3">
+                          {([5, 4, 3] as const).map((rarity) => (
+                            <figure key={rarity} className="w-[72px]">
+                              <div className={`aspect-square overflow-hidden rounded-xl border bg-black/25 ${rarity === 5 ? 'border-amber-400/35' : rarity === 4 ? 'border-violet-400/35' : 'border-blue-400/35'}`}>
+                                <img
+                                  src={getNTECartridgeImageUrl(cartridge.imageFileName, rarity)}
+                                  alt={`${cartridge.name} ${rarity}성 카트리지`}
+                                  className="h-full w-full object-contain p-1"
+                                  loading="lazy"
+                                />
+                              </div>
+                              <figcaption className={`mt-1 text-center text-[10px] font-black ${rarity === 5 ? 'text-amber-300' : rarity === 4 ? 'text-violet-300' : 'text-blue-300'}`}>{rarity}성</figcaption>
+                            </figure>
                           ))}
                         </dd>
                       </div>
