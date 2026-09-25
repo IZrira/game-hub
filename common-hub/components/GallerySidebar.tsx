@@ -48,7 +48,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
     { label: '캐릭터', icon: <Users size={14} />, menuKey: '캐릭터' },
     { label: '광추', icon: <Zap size={14} />, menuKey: '광추' },
     { label: '유물 & 장신구', icon: <Shield size={14} />, menuKey: '유물 & 장신구' },
-    ...(gameId === 'nte' ? [{ label: '차량', icon: <CarFront size={14} />, menuKey: '차량' }] : []),
+    ...(gameId === 'nte' ? [{ label: '이동 수단', icon: <CarFront size={14} />, menuKey: '이동 수단' }] : []),
     { label: '공략', icon: <BookOpen size={14} />, menuKey: '공략' },
     ...(gameId && getPublishedGuides(gameId).length > 0
       ? [{ label: '분석 가이드', icon: <FileText size={14} />, path: `/gallery/${gameId}/guides` }]

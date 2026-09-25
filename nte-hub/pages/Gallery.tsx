@@ -14,7 +14,7 @@ import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
-import { getNTEVehicleImageUrl, NTE_VEHICLES } from '../data/vehicles';
+import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_TYPES } from '../data/vehicles';
 
 const GalleryNTE: React.FC = () => {
   const gameId = 'nte';
@@ -107,11 +107,16 @@ const GalleryNTE: React.FC = () => {
 
   const filteredVehicles = useMemo(() => {
     const normalizedQuery = debouncedSearchQuery.trim().toLocaleLowerCase('ko-KR');
-    const vehicles = NTE_VEHICLES.filter((vehicle) => !normalizedQuery || [
-      vehicle.name,
-      vehicle.description,
-      vehicle.acquisition,
-    ].some((value) => value.toLocaleLowerCase('ko-KR').includes(normalizedQuery)));
+    const vehicles = NTE_VEHICLES.filter((vehicle) => {
+      const matchesType = attrFilter === '전체' || vehicle.type === attrFilter;
+      const matchesSearch = !normalizedQuery || [
+        vehicle.name,
+        vehicle.type,
+        vehicle.description,
+        vehicle.acquisition,
+      ].some((value) => value.toLocaleLowerCase('ko-KR').includes(normalizedQuery));
+      return matchesType && matchesSearch;
+    });
 
     return [...vehicles].sort((a, b) => {
       if (secondFilter === '최고 속도순') return b.topSpeed - a.topSpeed;
@@ -119,7 +124,7 @@ const GalleryNTE: React.FC = () => {
       if (secondFilter === '내구도순') return (b.durability ?? -1) - (a.durability ?? -1);
       return 0;
     });
-  }, [debouncedSearchQuery, secondFilter]);
+  }, [debouncedSearchQuery, secondFilter, attrFilter]);
 
   if (!game) return null;
 
@@ -166,7 +171,7 @@ const GalleryNTE: React.FC = () => {
                   { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
                   { label: "아크", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" },
                   { label: "콘솔", count: NTE_CARTRIDGES.length, icon: <Boxes size={14} />, color: "text-violet-400" },
-                  { label: "차량", count: NTE_VEHICLES.length, icon: <CarFront size={14} />, color: "text-emerald-400" },
+                  { label: "이동 수단", count: NTE_VEHICLES.length, icon: <CarFront size={14} />, color: "text-emerald-400" },
                   { label: "인벤토리", count: Object.keys(INVENTORY_DB || {}).length, icon: <Backpack size={14} />, color: "text-brand-accent" }
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1">
@@ -213,10 +218,10 @@ const GalleryNTE: React.FC = () => {
                       color: 'text-violet-400'
                     },
                     {
-                      title: t('차량 도감'),
-                      description: t('차량별 최고 속도, 가속, 내구도와 획득 방법을 한눈에 비교합니다.'),
-                      path: '/gallery/nte?menu=차량',
-                      action: () => handleSetActiveMenu('차량'),
+                      title: t('이동 수단 도감'),
+                      description: t('자동차, 오토바이 등 이동 수단별 성능과 획득 방법을 한눈에 비교합니다.'),
+                      path: '/gallery/nte?menu=이동 수단',
+                      action: () => handleSetActiveMenu('이동 수단'),
                       icon: CarFront,
                       stat: `${NTE_VEHICLES.length}${t('종')}`,
                       color: 'text-emerald-400'
@@ -443,26 +448,33 @@ const GalleryNTE: React.FC = () => {
 
               <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭과 수치가 달라질 수 있습니다.</p>
             </div>
-          ) : activeMenu === "차량" ? (
+          ) : (activeMenu === "이동 수단" || activeMenu === "차량") ? (
             <div className="space-y-8">
               <section className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-10 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col gap-2 mb-6">
                   <span className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-400">NTE VEHICLE DATABASE</span>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">차량 도감</h1>
-                  <p className="max-w-2xl text-sm leading-6 text-gray-400">차량별 설명과 최고 속도, 가속, 내구도, 획득 방법을 비교할 수 있습니다.</p>
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">이동 수단 도감</h1>
+                  <p className="max-w-2xl text-sm leading-6 text-gray-400">종류별 설명과 최고 속도, 가속, 내구도, 획득 방법을 비교할 수 있습니다.</p>
                 </div>
                 <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center">
                   <div className="relative w-full xl:w-80">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
                     <input
                       type="search"
-                      placeholder="차량명·설명·획득처 검색"
-                      aria-label="NTE 차량 검색"
+                      placeholder="이름·종류·설명·획득처 검색"
+                      aria-label="NTE 이동 수단 검색"
                       className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-emerald-400"
                       value={searchQuery}
                       onChange={(event) => handleSearchChange(event.target.value)}
                     />
                   </div>
+                  <FilterSelect
+                    label="종류"
+                    value={attrFilter}
+                    onChange={(value: string) => updateFilterParams('attr', value)}
+                    options={NTE_VEHICLE_TYPES}
+                    allLabel="전체"
+                  />
                   <FilterSelect
                     label="정렬"
                     value={secondFilter}
@@ -481,14 +493,17 @@ const GalleryNTE: React.FC = () => {
                       <div className="relative min-h-[190px] overflow-hidden border-b border-white/5 bg-gradient-to-br from-emerald-400/10 via-black/20 to-sky-500/10 sm:border-b-0 sm:border-r">
                         <img
                           src={getNTEVehicleImageUrl(vehicle.imageFileName)}
-                          alt={`${vehicle.name} 차량`}
+                          alt={`${vehicle.name} ${vehicle.type}`}
                           className="absolute inset-0 h-full w-full object-contain p-5 transition duration-500 hover:scale-105"
                           loading="lazy"
                         />
                       </div>
                       <div className="p-5 sm:p-6">
-                        <span className="text-[9px] font-black uppercase tracking-[0.22em] text-emerald-400">VEHICLE</span>
-                        <h2 className="mt-1 text-2xl font-black text-white">{vehicle.name}</h2>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-[9px] font-black uppercase tracking-[0.22em] text-emerald-400">MOBILITY</span>
+                          <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[9px] font-black text-emerald-300">{vehicle.type}</span>
+                        </div>
+                        <h2 className="mt-2 text-2xl font-black text-white">{vehicle.name}</h2>
                         <p className="mt-3 text-sm leading-6 text-gray-400">{vehicle.description}</p>
                       </div>
                     </div>
@@ -523,7 +538,7 @@ const GalleryNTE: React.FC = () => {
               </div>
 
               {filteredVehicles.length === 0 && (
-                <div className="rounded-[28px] border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 차량이 없습니다.</div>
+                <div className="rounded-[28px] border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 이동 수단이 없습니다.</div>
               )}
 
               <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭·수치·획득 방법이 달라질 수 있습니다.</p>
