@@ -530,9 +530,9 @@ const GalleryNTE: React.FC = () => {
                   <article key={vehicle.id} className="overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] transition hover:border-emerald-400/35 hover:bg-white/[0.04]">
                     <div className="grid sm:grid-cols-[210px_1fr]">
                       <div className="relative min-h-[190px] overflow-hidden border-b border-white/5 bg-gradient-to-br from-emerald-400/10 via-black/20 to-sky-500/10 sm:border-b-0 sm:border-r">
-                        {vehicle.imageFileName ? (
+                        {vehicle.imageUrl || vehicle.imageFileName ? (
                           <img
-                            src={getNTEVehicleImageUrl(vehicle.imageFileName)}
+                            src={vehicle.imageUrl ?? getNTEVehicleImageUrl(vehicle.imageFileName!)}
                             alt={`${vehicle.name} ${vehicle.type}`}
                             className="absolute inset-0 h-full w-full object-contain p-5 transition duration-500 hover:scale-105"
                             loading="lazy"
