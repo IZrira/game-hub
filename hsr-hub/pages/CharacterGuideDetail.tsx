@@ -362,6 +362,16 @@ const CharacterGuideDetail: React.FC = () => {
   const synergyCharacters = useMemo(() => {
     const searchName = normalizeName(resolvedKoName || "");
     const chars = new Map<string, any>();
+
+    guide?.synergyCharacters?.forEach(member => {
+      const normalizedMemberName = normalizeName(typeof member === 'string' ? member : member.name);
+      const memberData = typeof member === 'string'
+        ? { name: member, role: '추천 캐릭터' }
+        : member;
+      if (normalizedMemberName && normalizedMemberName !== searchName) {
+        chars.set(normalizedMemberName, memberData);
+      }
+    });
     
     HSR_PARTIES.forEach(p => {
       if (p.members.some(m => normalizeName(m.name) === searchName)) {
@@ -380,7 +390,7 @@ const CharacterGuideDetail: React.FC = () => {
       }
     });
     return Array.from(chars.values());
-  }, [resolvedKoName]);
+  }, [guide, resolvedKoName]);
 
   const lastUpdatedDate = guide ? (guide.lastUpdated || '2026-05-23') : '2026-05-23';
 

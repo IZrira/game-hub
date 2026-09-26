@@ -1730,6 +1730,22 @@ function generateHsrGuideHtml(id, guide, char, hsrPartiesList) {
     });
   }
 
+  if (Array.isArray(guide?.synergyCharacters) && guide.synergyCharacters.length > 0) {
+    html += `<h2>추천 파티 캐릭터</h2>\n<ul>\n`;
+    guide.synergyCharacters.forEach(member => {
+      const memberName = typeof member === 'string' ? member : member?.name;
+      if (!memberName) return;
+      const memberRole = typeof member === 'object' ? member?.role : '';
+      const memberId = globalHsrNameToIdMap.get(memberName.trim()) || globalHsrNameToIdMap.get(memberName);
+      const route = memberId ? `/gallery/hsr/character/${encodeURIComponent(memberId)}` : '';
+      const label = route && globalSitemapRouteSet.has(route)
+        ? `<a href="${route}">${escapeHtml(memberName)}</a>`
+        : escapeHtml(memberName);
+      html += `<li>${label}${memberRole ? ` — ${escapeHtml(memberRole)}` : ''}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
   html += `<p><a href="/gallery/hsr/character/${encodeURIComponent(id)}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>\n`;
   html += `<p><a href="/gallery/hsr?menu=${encodeURIComponent('공략')}">붕괴: 스타레일 전체 육성 공략 보기</a></p>\n`;
 
