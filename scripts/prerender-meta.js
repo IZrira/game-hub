@@ -1603,13 +1603,20 @@ function generateWwGuideHtml(id, guide, char) {
   return html;
 }
 
-function generateHsrGuideHtml(id, guide, char) {
+function generateHsrGuideHtml(id, guide, char, hsrPartiesList) {
   let name = hsrKoData[`character.${id}.name`] || char?.name || guide?.name || id;
   if (name && name.startsWith('character.')) {
     name = char?.folderName || guide?.name || id;
   }
   let html = `<article>\n`;
   html += `<h1>붕괴: 스타레일 ${escapeHtml(name)} 종결 육성 공략 가이드</h1>\n`;
+  html += `<p>${escapeHtml(name)}의 광추·유물·차원 장신구 조합과 목표 능력치, 스킬 및 성혼 투자 순서를 한 페이지에서 비교할 수 있도록 정리했습니다.</p>\n`;
+  if (guide?.patchVersion || guide?.lastUpdated) {
+    html += `<p>`;
+    if (guide.patchVersion) html += `<strong>적용 버전:</strong> ${escapeHtml(guide.patchVersion)} `;
+    if (guide.lastUpdated) html += `<strong>최종 갱신:</strong> ${escapeHtml(guide.lastUpdated)}`;
+    html += `</p>\n`;
+  }
 
   // 추천 광추
   const lightCones = guide?.bestLightCones || guide?.variants?.[0]?.bestLightCones;
@@ -1617,7 +1624,12 @@ function generateHsrGuideHtml(id, guide, char) {
     html += `<h2>${escapeHtml(name)} 추천 광추 랭킹</h2>\n<ol>\n`;
     lightCones.forEach((lc, idx) => {
       const lcName = typeof lc === 'string' ? lc : lc?.name;
-      html += `<li><strong>${idx + 1}순위:</strong> ${escapeHtml(lcName)}</li>\n`;
+      const lcNote = typeof lc === 'object' ? lc?.note : '';
+      const lcRoute = `/gallery/hsr/lightcone/${encodeURIComponent(lcName)}`;
+      const lcLabel = globalSitemapRouteSet.has(lcRoute)
+        ? `<a href="${lcRoute}">${escapeHtml(lcName)}</a>`
+        : escapeHtml(lcName);
+      html += `<li><strong>${idx + 1}순위:</strong> ${lcLabel}${lcNote ? ` — ${escapeHtml(lcNote)}` : ''}</li>\n`;
     });
     html += `</ol>\n`;
   }
@@ -1628,7 +1640,12 @@ function generateHsrGuideHtml(id, guide, char) {
     html += `<h2>추천 터널 유물 세트</h2>\n<ul>\n`;
     relics.forEach(r => {
       const rName = typeof r === 'string' ? r : r?.name;
-      html += `<li>${escapeHtml(rName)}</li>\n`;
+      const rNote = typeof r === 'object' ? r?.note : '';
+      const relicRoute = `/gallery/hsr/relic/${encodeURIComponent(rName)}`;
+      const relicLabel = globalSitemapRouteSet.has(relicRoute)
+        ? `<a href="${relicRoute}">${escapeHtml(rName)}</a>`
+        : escapeHtml(rName);
+      html += `<li>${relicLabel}${rNote ? ` — ${escapeHtml(rNote)}` : ''}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1639,7 +1656,12 @@ function generateHsrGuideHtml(id, guide, char) {
     html += `<h2>추천 차원 장신구 세트</h2>\n<ul>\n`;
     ornaments.forEach(o => {
       const oName = typeof o === 'string' ? o : o?.name;
-      html += `<li>${escapeHtml(oName)}</li>\n`;
+      const oNote = typeof o === 'object' ? o?.note : '';
+      const ornamentRoute = `/gallery/hsr/ornament/${encodeURIComponent(oName)}`;
+      const ornamentLabel = globalSitemapRouteSet.has(ornamentRoute)
+        ? `<a href="${ornamentRoute}">${escapeHtml(oName)}</a>`
+        : escapeHtml(oName);
+      html += `<li>${ornamentLabel}${oNote ? ` — ${escapeHtml(oNote)}` : ''}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1650,7 +1672,7 @@ function generateHsrGuideHtml(id, guide, char) {
     html += `<h2>목표 육성 수치 (종결 스탯)</h2>\n<ul>\n`;
     targetStats.forEach(ts => {
       if (ts && ts.label) {
-        html += `<li><strong>${escapeHtml(ts.label)}:</strong> ${escapeHtml(ts.value || '')}</li>\n`;
+        html += `<li><strong>${escapeHtml(ts.label)}:</strong> ${escapeHtml(ts.value || '')}${ts.note ? ` — ${escapeHtml(ts.note)}` : ''}</li>\n`;
       }
     });
     html += `</ul>\n`;
@@ -1661,7 +1683,8 @@ function generateHsrGuideHtml(id, guide, char) {
   if (mainStats && typeof mainStats === 'object') {
     html += `<h2>유물 부위별 주옵션</h2>\n<ul>\n`;
     if (mainStats.body) html += `<li><strong>바디:</strong> ${escapeHtml(Array.isArray(mainStats.body) ? mainStats.body.join(' / ') : mainStats.body)}</li>\n`;
-    if (mainStats.feet) html += `<li><strong>신발:</strong> ${escapeHtml(Array.isArray(mainStats.feet) ? mainStats.feet.join(' / ') : mainStats.feet)}</li>\n`;
+    const boots = mainStats.feet || mainStats.boots;
+    if (boots) html += `<li><strong>신발:</strong> ${escapeHtml(Array.isArray(boots) ? boots.join(' / ') : boots)}</li>\n`;
     if (mainStats.sphere) html += `<li><strong>차원구:</strong> ${escapeHtml(Array.isArray(mainStats.sphere) ? mainStats.sphere.join(' / ') : mainStats.sphere)}</li>\n`;
     if (mainStats.rope) html += `<li><strong>연결줄:</strong> ${escapeHtml(Array.isArray(mainStats.rope) ? mainStats.rope.join(' / ') : mainStats.rope)}</li>\n`;
     html += `</ul>\n`;
@@ -1672,6 +1695,41 @@ function generateHsrGuideHtml(id, guide, char) {
   if (subStats && Array.isArray(subStats) && subStats.length > 0) {
     html += `<h2>유물 추천 부옵션 우선순위</h2>\n<p>${escapeHtml(subStats.join(' > '))}</p>\n`;
   }
+
+  const skillPriority = guide?.skillPriority || guide?.variants?.[0]?.skillPriority;
+  if (Array.isArray(skillPriority) && skillPriority.length > 0) {
+    html += `<h2>스킬 레벨업 우선순위</h2>\n<p>${escapeHtml(skillPriority.join(' > '))}</p>\n`;
+  }
+
+  if (guide?.recommendedEidolon) {
+    html += `<h2>추천 성혼 돌파</h2>\n<p><strong>효율 구간:</strong> ${escapeHtml(guide.recommendedEidolon)}</p>\n`;
+  }
+  if (Array.isArray(guide?.eidolonEfficiency) && guide.eidolonEfficiency.length > 0) {
+    html += `<table><thead><tr><th>성혼</th><th>영향도</th><th>효율</th><th>핵심 효과</th></tr></thead><tbody>\n`;
+    guide.eidolonEfficiency.forEach(e => {
+      const efficiency = e.efficiency3 || e.efficiency1 || '';
+      html += `<tr><th>E${escapeHtml(e.level)}</th><td>${escapeHtml(e.impact || '')}</td><td>${escapeHtml(efficiency)}</td><td>${escapeHtml(e.description || '')}</td></tr>\n`;
+    });
+    html += `</tbody></table>\n`;
+  }
+
+  const matchedParties = getHsrPartiesForCharacter(name, id, hsrPartiesList || []);
+  if (matchedParties.length > 0) {
+    html += `<h2>추천 파티 조합</h2>\n`;
+    matchedParties.forEach(party => {
+      const members = (party.members || []).map(member => {
+        const memberId = globalHsrNameToIdMap.get(member.trim()) || globalHsrNameToIdMap.get(member);
+        const route = memberId ? `/gallery/hsr/character/${encodeURIComponent(memberId)}` : '';
+        return route && globalSitemapRouteSet.has(route)
+          ? `<a href="${route}">${escapeHtml(member)}</a>`
+          : escapeHtml(member);
+      }).join(', ');
+      html += `<section><h3>${escapeHtml(party.name)}</h3><p>${members}</p>${party.description ? `<p>${escapeHtml(party.description)}</p>` : ''}</section>\n`;
+    });
+  }
+
+  html += `<p><a href="/gallery/hsr/character/${encodeURIComponent(id)}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>\n`;
+  html += `<p><a href="/gallery/hsr?menu=${encodeURIComponent('공략')}">붕괴: 스타레일 전체 육성 공략 보기</a></p>\n`;
 
   html += `</article>`;
   return html;
@@ -2087,7 +2145,7 @@ function runPrerender() {
         `붕괴: 스타레일 ${name}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`,
         getHsrCharacterImageUrl(char),
         baseHtml,
-        generateHsrGuideHtml(id, guide, char) + `<p><a href="${routePath}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>`,
+        generateHsrGuideHtml(id, guide, char, hsrPartiesList),
         generateGuideSchema(name, '붕괴: 스타레일', guideRoute, getHsrCharacterImageUrl(char))
       );
       count++;

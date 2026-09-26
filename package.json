@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "prebuild": "node scripts/fetch-notion-data.js",
-    "build": "npm run typecheck && node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js",
+    "build": "npm run typecheck && node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js && node scripts/audit-prerender-seo.js",
     "preview": "vite preview",
     "prerender": "node scripts/prerender-meta.js",
     "test": "vitest run",
@@ -14,7 +14,8 @@
     "test:e2e": "node tests/e2e/runner.js",
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
-    "seo:analyze": "node scripts/analyze-seo.js"
+    "seo:analyze": "node scripts/analyze-seo.js",
+    "seo:audit": "node scripts/audit-prerender-seo.js"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",
