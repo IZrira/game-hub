@@ -1046,15 +1046,17 @@ function getFallbackMeta(routePath) {
   const gameLabel = game === 'hsr' ? '붕괴: 스타레일' : game === 'ww' ? '명조' : game === 'nte' ? '이환(NTE)' : game === 'aniimo' ? '애니모(Aniimo)' : 'Rira Archive';
   const typeLabels = {
     lightcone: '광추', relic: '유물', ornament: '차원 장신구', echo: '에코',
-    weapon: '무기', character: '캐릭터', guide: '공략'
+    weapon: '무기', character: '캐릭터', guide: '공략', guides: '공략 모음',
+    tierlist: '티어표', parties: '추천 파티', terminology: '용어집',
+    locations: '서식지 도감', 'party-builder': '파티 추천', notices: '공지사항'
   };
-  const typeLabel = typeLabels[type] || '게임 정보';
+  const typeLabel = typeLabels[type] || typeLabels[entityName] || '게임 정보';
   const title = parts.length >= 4
     ? `${entityName} 상세 정보 | ${gameLabel} ${typeLabel} DB`
-    : `${gameLabel} ${typeLabel} | Rira Archive`;
+    : `${gameLabel} ${typeLabel} | Rira Archive 공략 DB`;
   const description = parts.length >= 4
-    ? `${gameLabel} ${entityName}의 최신 상세 정보, 능력치와 활용 정보를 확인하세요.`
-    : `${gameLabel}의 최신 데이터, 공략과 추천 정보를 확인하세요.`;
+    ? `${gameLabel} ${entityName}의 최신 상세 능력치, 핵심 효과, 획득 정보와 추천 활용법을 Rira Archive 데이터베이스에서 확인하세요.`
+    : `${gameLabel} ${typeLabel}의 최신 데이터와 실전 공략, 추천 세팅 및 관련 상세 페이지를 Rira Archive에서 한눈에 확인하세요.`;
   const content = `<article><h1>${escapeHtml(entityName)}</h1><p>${escapeHtml(description)}</p></article>`;
   return { title, description, content };
 }
@@ -2273,7 +2275,7 @@ function runPrerender() {
       createPrerenderedPage(
         routePath,
         `${item.name} 상세 옵션 및 추천 캐릭터 | 이환(NTE) 무기 DB`,
-        `이환(NTE) ${item.name}의 상세 능력치, 스킬 효과와 추천 캐릭터 정보를 확인하세요.`,
+        `이환(NTE) ${item.name} 아크의 등급별 능력치, 블록 구성, 고유 스킬 효과와 추천 캐릭터 및 활용 정보를 확인하세요.`,
         `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`,
         baseHtml,
         generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 아크 도감으로 돌아가기</a></p>'
@@ -2284,7 +2286,7 @@ function runPrerender() {
       createPrerenderedPage(
         routePath,
         `${item.name} 에코 상세 정보 | 명조 에코 DB`,
-        `명조 ${item.name} 에코의 코스트, 메인 어빌리티와 활용 정보를 확인하세요.`,
+        `명조 ${item.name} 에코의 코스트, 메인 어빌리티 효과, 전투 활용 방식과 관련 에코 도감 정보를 한 페이지에서 확인하세요.`,
         `${CDN_URL}/hsr%20images/common/default_banner.webp`,
         baseHtml,
         generateNotionHtml(item) + '<p><a href="/gallery/ww">명조 에코 도감으로 돌아가기</a></p>'
@@ -2316,20 +2318,26 @@ function runPrerender() {
     {
       path: '/about',
       title: 'About Us',
-      desc: 'Rira Archive 소개 및 운영 원칙에 대해 안내합니다.',
+      desc: 'Rira Archive가 제공하는 게임 데이터베이스와 공략의 제작 기준, 정보 검수 방식 및 사이트 운영 원칙을 안내합니다.',
       content: `<h1>About Us - RIRA ARCHIVE</h1><p>Rira Archive는 붕괴: 스타레일, 명조 등 최신 트렌디한 게임들의 데이터를 분석하고 최고의 공략과 티어표를 제공하는 게임 허브입니다. 유저들에게 가장 신속하고 정확한 정보를 전달하는 것을 목표로 합니다.</p>`
     },
     {
       path: '/privacy',
       title: '개인정보 처리방침 (Privacy Policy)',
-      desc: 'Rira Archive의 개인정보 처리방침을 확인하세요.',
+      desc: 'Rira Archive의 쿠키, 분석 도구, 광고 서비스 이용과 개인정보 수집·처리·보관 및 사용자 권리에 관한 정책을 확인하세요.',
       content: `<h1>개인정보 처리방침 (Privacy Policy)</h1><p>본 사이트는 Google AdSense를 포함한 서드파티 쿠키를 사용하여 사용자 맞춤형 광고를 제공할 수 있습니다. 수집된 데이터는 오직 더 나은 서비스 제공과 사이트 분석을 위해서만 사용되며, 철저하게 보호됩니다.</p>`
     },
     {
       path: '/tos',
       title: '이용약관 (Terms of Service)',
-      desc: 'Rira Archive 서비스 이용약관을 확인하세요.',
+      desc: 'Rira Archive가 제공하는 게임 데이터와 공략 정보의 이용 범위, 저작권, 면책 사항 및 서비스 이용 조건을 확인하세요.',
       content: `<h1>이용약관 (Terms of Service)</h1><p>본 사이트의 모든 정보와 공략글은 참고용으로 제공되며, 게임사의 공식적인 입장을 대변하지 않습니다. 무단 전재 및 재배포를 금지합니다.</p>`
+    },
+    {
+      path: '/contact',
+      title: '문의하기 (Contact Us)',
+      desc: 'Rira Archive의 게임 데이터 오류 제보, 공략 내용 수정 요청, 저작권 및 사이트 이용 관련 문의 방법을 확인하세요.',
+      content: `<h1>문의하기 (Contact Us)</h1><p>게임 데이터 오류, 공략 내용 수정, 저작권 및 사이트 이용과 관련된 문의를 접수합니다. 제보 시 대상 게임과 페이지 주소, 확인이 필요한 내용을 함께 알려주세요.</p>`
     },
   ];
 
@@ -2386,7 +2394,7 @@ function runPrerender() {
     createPrerenderedPage(
       `/gallery/${gameId}/guides`,
       `${gameLabel} 공략 모음`,
-      `${gameLabel}의 공식 정보와 Rira 분석을 구분해 검수한 공략을 확인하세요.`,
+      `${gameLabel}의 공식 정보와 Rira 분석을 구분하고 적용 버전과 검수일을 표시한 캐릭터 육성, 전투 및 시스템 공략을 확인하세요.`,
       `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
       `<article><h1>${escapeHtml(gameLabel)} 공략</h1><p>적용 기준일과 출처를 확인한 글만 공개합니다.</p><ul>${listHtml}</ul></article>`
@@ -2532,7 +2540,7 @@ function runPrerender() {
     } else if (routePath === '/gallery/aniimo/locations') {
       const locations = OFFICIAL_ANIIMO_HABITATS;
       meta.title = `애니모 공식 서식지 ${locations.length}곳 | 서식지별 도감`;
-      meta.description = `애니모의 공식 서식지 ${locations.length}곳과 서식지별 애니모·형태 정보를 확인하세요.`;
+      meta.description = `애니모의 공식 서식지 ${locations.length}곳을 지역별로 탐색하고 각 서식지에서 만날 수 있는 애니모 종류와 형태 정보를 확인하세요.`;
       meta.content = `<article><h1>서식지별 애니모 도감</h1><p>${escapeHtml(meta.description)}</p><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/type-chart') {
       const rows = [
@@ -2564,7 +2572,7 @@ function runPrerender() {
         }
       } catch (e) {}
       meta.title = '애니모 파티 추천 | 역할별 추천 조합';
-      meta.description = '애니모의 역할과 형태를 반영한 추천 파티, 운용 특징과 대체 조합을 확인하세요.';
+      meta.description = '애니모의 역할과 형태별 능력, 원소 구성을 반영한 추천 파티와 운용 특징, 핵심 조합 및 대체 애니모를 확인하세요.';
       meta.content = `<article><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p>${partyListHtml || '<h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p>'}<p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
@@ -2583,7 +2591,7 @@ function runPrerender() {
       });
       const officialCount = OFFICIAL_HABITAT_TARGETS[location] || appearances.length;
       meta.title = `${location} 공식 서식지 · 서식 애니모 ${officialCount}종 | 애니모 서식지 도감`;
-      meta.description = `${location}에서 서식하는 애니모 ${officialCount}종과 각 지역 형태를 확인하세요.`;
+      meta.description = `${location}에서 서식하는 애니모 ${officialCount}종의 이름과 지역별 형태, 원소·포지션 정보를 확인하고 각 애니모 상세 도감으로 이동하세요.`;
       const appearanceLinks = appearances.map(({ entry, forms }) => forms.map(form => {
         const query = form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : '';
         return `<li><a href="/gallery/aniimo/character/${encodeURIComponent(entry.name)}${query}">${escapeHtml(`NO.${entry.number} ${entry.name} · ${form.label}`)}</a></li>`;
