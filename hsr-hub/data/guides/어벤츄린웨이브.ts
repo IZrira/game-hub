@@ -47,6 +47,9 @@ export const 어벤츄린웨이브Guide: CharacterGuide = {
     { name: "히아킨", role: "힐러" },
     { name: "곽향", role: "힐러" },
     { name: "단항•등황", role: "탱커/힐러" },
-    { name: "영사", role: "힐러" }
+    { name: "영사", role: "힐러" },
+    { name: "개척자 (환락)", role: "서포터" },
+    { name: "효광", role: "서포터" },
+    { name: "펄", role: "메인 딜러" }
   ]
 };
