@@ -289,6 +289,7 @@ const CharacterGuideDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t, i18n } = useTranslation();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
+  const [activeGuideView, setActiveGuideView] = useState<'setup' | 'analysis'>('setup');
 
   const resolvedKoName = useMemo(() => {
     if (!charName) return undefined;
@@ -653,16 +654,28 @@ const CharacterGuideDetail: React.FC = () => {
           </section>
 
           {publishedAnalysis && (
-            <nav aria-label="공략 페이지 빠른 이동" className="sticky top-20 z-30 flex flex-wrap gap-2 p-2.5 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl">
-              <a href="#추천 광추" className="flex-1 min-w-[140px] text-center px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-sm font-black text-white transition-all">
-                세팅 공략
-              </a>
-              <a href="#rira-analysis" className="flex-1 min-w-[140px] text-center px-5 py-3 rounded-xl bg-brand-primary/20 hover:bg-brand-primary/30 border border-brand-accent/30 text-sm font-black text-brand-accent transition-all">
-                RIRA 분석
-              </a>
+            <nav aria-label="공략 종류 선택" className="sticky top-20 z-30 grid grid-cols-2 gap-2 p-2.5 rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 shadow-2xl">
+              <button
+                type="button"
+                aria-pressed={activeGuideView === 'setup'}
+                onClick={() => setActiveGuideView('setup')}
+                className={`px-4 sm:px-5 py-3 rounded-xl border text-sm font-black transition-all ${activeGuideView === 'setup' ? 'bg-brand-primary/25 border-brand-accent/40 text-brand-accent shadow-[0_0_20px_rgba(126,48,225,0.15)]' : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 text-gray-400 hover:text-white'}`}
+              >
+                세팅 가이드
+              </button>
+              <button
+                type="button"
+                aria-pressed={activeGuideView === 'analysis'}
+                onClick={() => setActiveGuideView('analysis')}
+                className={`px-4 sm:px-5 py-3 rounded-xl border text-sm font-black transition-all ${activeGuideView === 'analysis' ? 'bg-brand-primary/25 border-brand-accent/40 text-brand-accent shadow-[0_0_20px_rgba(126,48,225,0.15)]' : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 text-gray-400 hover:text-white'}`}
+              >
+                RIRA 분석 가이드
+              </button>
             </nav>
           )}
 
+          {(!publishedAnalysis || activeGuideView === 'setup') && (
+            <>
           {/* 01 추천 광추 */}
           <section id="추천 광추" className="space-y-6">
             <SectionHeader num="01" title="추천 광추" theme={theme} />
@@ -1144,10 +1157,12 @@ const CharacterGuideDetail: React.FC = () => {
               </div>
             </section>
           )}
+            </>
+          )}
 
-          {publishedAnalysis && (
+          {publishedAnalysis && activeGuideView === 'analysis' && (
             <section id="rira-analysis" className="space-y-8 scroll-mt-32">
-              <SectionHeader num="05" title="RIRA 분석" theme={theme} />
+              <SectionHeader num="R" title="RIRA 분석" theme={theme} />
 
               <div className="glass-card rounded-[40px] p-6 sm:p-9 border border-brand-primary/25 bg-gradient-to-br from-brand-primary/10 via-white/[0.03] to-transparent space-y-6 shadow-2xl">
                 <div className="flex flex-wrap gap-2 text-[11px] font-black tracking-wider">
