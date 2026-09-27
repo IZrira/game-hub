@@ -31,6 +31,23 @@ export interface EidolonVariant {
   }[];
 }
 
+export interface CharacterAnalysis {
+  status: "draft" | "review" | "published";
+  summary: string;
+  role: string;
+  standard: string;
+  reviewedAt: string;
+  reviewer: string;
+  strengths: string[];
+  weaknesses: string[];
+  teamPrinciple?: string;
+  gameplay: {
+    overview: string;
+    rotation?: string[];
+    tips: string[];
+  };
+}
+
 export interface CharacterGuide {
   characterName: string;
   lastUpdated: string;
@@ -71,6 +88,8 @@ export interface CharacterGuide {
   }[];
   // 8. 시너지 캐릭터
   synergyCharacters?: (string | { name: string; role?: string; description?: string })[];
+  // 9. RIRA 자체 분석 (검수 완료된 캐릭터만 공개)
+  analysis?: CharacterAnalysis;
 }
 
 import { 개척자기억Guide } from './개척자기억';

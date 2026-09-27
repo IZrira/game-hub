@@ -1746,6 +1746,32 @@ function generateHsrGuideHtml(id, guide, char, hsrPartiesList) {
     html += `</ul>\n`;
   }
 
+  const analysis = guide?.analysis?.status === 'published' ? guide.analysis : null;
+  if (analysis) {
+    html += `<section id="rira-analysis"><h2>RIRA 캐릭터 분석</h2>\n`;
+    html += `<p><strong>역할:</strong> ${escapeHtml(analysis.role || '')} | <strong>분석 기준:</strong> ${escapeHtml(analysis.standard || '')} | <strong>최근 검토:</strong> ${escapeHtml(analysis.reviewedAt || '')}</p>\n`;
+    html += `<h3>RIRA 한줄평</h3><p>${escapeHtml(analysis.summary || '')}</p>\n`;
+    if (Array.isArray(analysis.strengths) && analysis.strengths.length > 0) {
+      html += `<h3>장점</h3><ul>${analysis.strengths.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>\n`;
+    }
+    if (Array.isArray(analysis.weaknesses) && analysis.weaknesses.length > 0) {
+      html += `<h3>주의점</h3><ul>${analysis.weaknesses.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>\n`;
+    }
+    if (analysis.teamPrinciple) {
+      html += `<h3>파티 구성 원리</h3><p>${escapeHtml(analysis.teamPrinciple)}</p>\n`;
+    }
+    if (analysis.gameplay?.overview) {
+      html += `<h3>기본 운용법</h3><p>${escapeHtml(analysis.gameplay.overview)}</p>\n`;
+    }
+    if (Array.isArray(analysis.gameplay?.rotation) && analysis.gameplay.rotation.length > 0) {
+      html += `<ol>${analysis.gameplay.rotation.map(step => `<li>${escapeHtml(step)}</li>`).join('')}</ol>\n`;
+    }
+    if (Array.isArray(analysis.gameplay?.tips) && analysis.gameplay.tips.length > 0) {
+      html += `<h3>운용 핵심</h3><ul>${analysis.gameplay.tips.map(tip => `<li>${escapeHtml(tip)}</li>`).join('')}</ul>\n`;
+    }
+    html += `</section>\n`;
+  }
+
   html += `<p><a href="/gallery/hsr/character/${encodeURIComponent(id)}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>\n`;
   html += `<p><a href="/gallery/hsr?menu=${encodeURIComponent('공략')}">붕괴: 스타레일 전체 육성 공략 보기</a></p>\n`;
 

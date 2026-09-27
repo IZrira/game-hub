@@ -393,6 +393,7 @@ const CharacterGuideDetail: React.FC = () => {
   }, [guide, resolvedKoName]);
 
   const lastUpdatedDate = guide ? (guide.lastUpdated || '2026-05-23') : '2026-05-23';
+  const publishedAnalysis = guide?.analysis?.status === 'published' ? guide.analysis : undefined;
 
   const parsedLightCones = useMemo(() => {
     const list = (currentVariant?.bestLightCones || guide?.bestLightCones || []).slice(0, 5);
@@ -650,6 +651,17 @@ const CharacterGuideDetail: React.FC = () => {
               </div>
             </div>
           </section>
+
+          {publishedAnalysis && (
+            <nav aria-label="공략 페이지 빠른 이동" className="sticky top-20 z-30 flex flex-wrap gap-2 p-2.5 rounded-2xl bg-black/80 backdrop-blur-xl border border-white/10 shadow-2xl">
+              <a href="#추천 광추" className="flex-1 min-w-[140px] text-center px-5 py-3 rounded-xl bg-white/[0.05] hover:bg-white/[0.1] border border-white/10 text-sm font-black text-white transition-all">
+                세팅 공략
+              </a>
+              <a href="#rira-analysis" className="flex-1 min-w-[140px] text-center px-5 py-3 rounded-xl bg-brand-primary/20 hover:bg-brand-primary/30 border border-brand-accent/30 text-sm font-black text-brand-accent transition-all">
+                RIRA 분석
+              </a>
+            </nav>
+          )}
 
           {/* 01 추천 광추 */}
           <section id="추천 광추" className="space-y-6">
@@ -1128,6 +1140,74 @@ const CharacterGuideDetail: React.FC = () => {
                       </Link>
                     );
                   })}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {publishedAnalysis && (
+            <section id="rira-analysis" className="space-y-8 scroll-mt-32">
+              <SectionHeader num="05" title="RIRA 분석" theme={theme} />
+
+              <div className="glass-card rounded-[40px] p-6 sm:p-9 border border-brand-primary/25 bg-gradient-to-br from-brand-primary/10 via-white/[0.03] to-transparent space-y-6 shadow-2xl">
+                <div className="flex flex-wrap gap-2 text-[11px] font-black tracking-wider">
+                  <span className="px-3 py-1.5 rounded-full bg-brand-primary/20 text-brand-accent border border-brand-accent/25">{publishedAnalysis.role}</span>
+                  <span className="px-3 py-1.5 rounded-full bg-white/[0.06] text-gray-300 border border-white/10">분석 기준 {publishedAnalysis.standard}</span>
+                  <span className="px-3 py-1.5 rounded-full bg-white/[0.06] text-gray-300 border border-white/10">검토 {publishedAnalysis.reviewedAt}</span>
+                </div>
+                <div>
+                  <p className="text-xs font-black text-brand-accent uppercase tracking-[0.2em] mb-3">RIRA 한줄평</p>
+                  <p className="text-lg sm:text-xl font-bold text-white leading-relaxed break-keep">{publishedAnalysis.summary}</p>
+                </div>
+                <p className="text-xs text-gray-400">작성·검수: {publishedAnalysis.reviewer}</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="glass-card rounded-[32px] p-6 sm:p-8 border border-emerald-400/20 bg-emerald-400/[0.04] space-y-5">
+                  <h3 className="flex items-center gap-3 text-xl font-black text-white"><CheckCircle2 size={21} className="text-emerald-400" /> 장점</h3>
+                  <ul className="space-y-3">
+                    {publishedAnalysis.strengths.map((item, index) => (
+                      <li key={index} className="flex gap-3 text-sm sm:text-base text-gray-200 leading-relaxed"><span className="text-emerald-400 font-black">+</span><span>{item}</span></li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="glass-card rounded-[32px] p-6 sm:p-8 border border-amber-400/20 bg-amber-400/[0.04] space-y-5">
+                  <h3 className="flex items-center gap-3 text-xl font-black text-white"><AlertCircle size={21} className="text-amber-400" /> 주의점</h3>
+                  <ul className="space-y-3">
+                    {publishedAnalysis.weaknesses.map((item, index) => (
+                      <li key={index} className="flex gap-3 text-sm sm:text-base text-gray-200 leading-relaxed"><span className="text-amber-400 font-black">-</span><span>{item}</span></li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {publishedAnalysis.teamPrinciple && (
+                <div className="glass-card rounded-[32px] p-6 sm:p-8 border border-white/10 bg-white/[0.03] space-y-3">
+                  <h3 className="flex items-center gap-3 text-xl font-black text-white"><Users size={21} className="text-brand-accent" /> 파티 구성 원리</h3>
+                  <p className="text-sm sm:text-base text-gray-200 leading-relaxed break-keep">{publishedAnalysis.teamPrinciple}</p>
+                </div>
+              )}
+
+              <div className="glass-card rounded-[36px] p-6 sm:p-9 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-7">
+                <div>
+                  <h3 className="flex items-center gap-3 text-xl font-black text-white mb-3"><Zap size={21} className="text-brand-accent" /> 기본 운용법</h3>
+                  <p className="text-sm sm:text-base text-gray-200 leading-relaxed break-keep">{publishedAnalysis.gameplay.overview}</p>
+                </div>
+                {publishedAnalysis.gameplay.rotation && publishedAnalysis.gameplay.rotation.length > 0 && (
+                  <ol className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {publishedAnalysis.gameplay.rotation.map((step, index) => (
+                      <li key={index} className="flex gap-4 p-4 rounded-2xl bg-black/25 border border-white/10 text-sm text-gray-200 leading-relaxed">
+                        <span className="shrink-0 w-7 h-7 rounded-full bg-brand-primary/20 border border-brand-accent/30 text-brand-accent font-black flex items-center justify-center">{index + 1}</span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
+                )}
+                <div className="space-y-3 pt-2">
+                  <h4 className="text-sm font-black text-white uppercase tracking-wider">운용 핵심</h4>
+                  {publishedAnalysis.gameplay.tips.map((tip, index) => (
+                    <p key={index} className="flex gap-3 text-sm sm:text-base text-gray-300 leading-relaxed"><span className="text-brand-accent">•</span><span>{tip}</span></p>
+                  ))}
                 </div>
               </div>
             </section>
