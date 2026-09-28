@@ -2857,6 +2857,28 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/ww/echo/%ED%95%98%EB%8A%98%EC%9D%98%20%EA%B8%B0%EA%B4%80%20%EC%9D%B8%ED%98%95%20%C2%B7%20%EA%B2%81%EC%82%B4"/>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/ww/weapon/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/ww/weapon/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/ww/weapon/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/ww/weapon/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/ww/weapon/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/ww/weapon/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/ww/weapon/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/ww/weapon/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/ww/guides</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
