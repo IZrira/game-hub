@@ -69,7 +69,7 @@ export const 히메코노바Guide: CharacterGuide = {
       "note": "2순위"
     },
     {
-      "name": "천재들의 휴식 :",
+      "name": "천재들의 휴식",
       "note": "3순위"
     }
   ],
