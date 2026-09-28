@@ -15,6 +15,7 @@
   <link rel="manifest" href="/manifest.json" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7014148671633305" crossorigin="anonymous"></script>
+  <script>document.documentElement.classList.add('js-enabled');</script>
   <style id="prerender-critical-css">
     *, *::before, *::after {
       box-sizing: border-box;
@@ -60,6 +61,36 @@
     .scrollbar-hide {
       -ms-overflow-style: none;
       scrollbar-width: none;
+    }
+
+    .app-boot-loader {
+      display: none;
+    }
+    .js-enabled .app-boot-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 100000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+    }
+    .app-boot-loader__brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #c084fc;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+    .app-boot-loader__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #a855f7;
+      box-shadow: 0 0 14px #7e30e1;
+      animation: prerender-pulse 1.2s infinite ease-in-out;
     }
 
     /* Prerender Shell & Skeleton Shimmer */
@@ -351,6 +382,12 @@
 </head>
 <body>
   <div id="root">
+    <div class="app-boot-loader" role="status" aria-label="Rira Game Hub 불러오는 중">
+      <div class="app-boot-loader__brand">
+        <span class="app-boot-loader__dot" aria-hidden="true"></span>
+        <span>RIRA GAME HUB</span>
+      </div>
+    </div>
     <!-- PRERENDER_CONTENT_START -->
     <div class="prerender-shell" id="prerender-root">
       <div class="prerender-top-shimmer" aria-hidden="true"></div>
