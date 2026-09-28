@@ -24,7 +24,8 @@ export const 은랑LV999Guide: CharacterGuide = {
   "targetStats": [
     {
       "label": "속도",
-      "value": "160 or 200 이상 -> 곽향 1돌파 시 188 이상"
+      "value": "160 이상 / 200 이상",
+      "note": "곽향 1돌파 편성 시 200 구간은 188 이상"
     }
   ],
   "bestLightCones": [
