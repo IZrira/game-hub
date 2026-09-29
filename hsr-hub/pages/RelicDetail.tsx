@@ -2,12 +2,11 @@ import { sanitizeEffect } from '../../common-hub/utils/relicEffects';
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-react';
-import { RELIC_DB } from '../../common-hub/data/games';
+import { HSR_RELIC_DB } from '../data';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
-import { getGameData } from '../../common-hub/data/dataManager';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
 
 const handlePlainCopy = (e: React.ClipboardEvent) => {
@@ -26,8 +25,7 @@ const RelicDetail: React.FC = () => {
 
   
   // 다국어 텍스트 출력을 위해 현재 언어에 맞는 DB를 로드합니다.
-  const { RELIC_DB } = getGameData(i18n.language || 'ko');
-  const relic: any = RELIC_DB.find((r: any) => 
+  const relic: any = HSR_RELIC_DB.find((r: any) =>
     r.id === relicName || 
     r.name === relicName || 
     matchesSlug(r.name, relicName || '')
@@ -45,8 +43,7 @@ const RelicDetail: React.FC = () => {
   const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
 
   // 이미지 로드를 위해 명시적으로 KO 데이터베이스를 참조합니다.
-  const { RELIC_DB: KO_RELIC_DB } = getGameData('ko');
-  const koRelic = KO_RELIC_DB.find((r: any) => r.id === relic?.id) || relic;
+  const koRelic = HSR_RELIC_DB.find((r: any) => r.id === relic?.id) || relic;
 
   const getMainImageUrl = () => {
     const typeStr = koRelic.type === '터널 유물' ? '유물' : (koRelic.type || '유물');

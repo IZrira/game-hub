@@ -5,7 +5,7 @@ import { X, Star, Copy, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';
 import { getItemUrl } from '../data/items';
-import { getGameData } from '../data/dataManager';
+import { HSR_ORNAMENT_DB } from '../../hsr-hub/data';
 
 // 텍스트 복사 시 서식(볼드, 기울임 등 HTML)을 제거하고 순수 일반 텍스트만 클립보드에 담는 헬퍼
 const handlePlainCopy = (e: React.ClipboardEvent) => {
@@ -283,8 +283,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
   if (!ornament) return null;
 
   // 이미지 로드를 위해 명시적으로 KO 데이터베이스를 참조합니다.
-  const { ORNAMENT_DB: KO_ORNAMENT_DB } = getGameData('ko');
-  const koOrnament = KO_ORNAMENT_DB.find((o: any) => o.id === ornament.id) || ornament;
+  const koOrnament = HSR_ORNAMENT_DB.find((o: any) => o.id === ornament.id) || ornament;
 
   const typeStr = koOrnament.type || '차원 장신구';
   const imgPath = `${CDN_URL}/hsr%20images/${safeEncodeURIComponent(typeStr)}/${safeEncodeURIComponent(koOrnament.name)}.webp`;

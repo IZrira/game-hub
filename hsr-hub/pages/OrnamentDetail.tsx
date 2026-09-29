@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-react';
-import { ORNAMENT_DB } from '../../common-hub/data/games';
+import { HSR_ORNAMENT_DB } from '../data';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
-import { getGameData } from '../../common-hub/data/dataManager';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
 import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';
 
@@ -27,8 +26,7 @@ const OrnamentDetail: React.FC = () => {
 
   
   // 다국어 텍스트 출력을 위해 현재 언어에 맞는 DB를 로드합니다.
-  const { ORNAMENT_DB } = getGameData(i18n.language || 'ko');
-  const ornament: any = ORNAMENT_DB.find((o: any) => 
+  const ornament: any = HSR_ORNAMENT_DB.find((o: any) =>
     o.id === ornamentName || 
     o.name === ornamentName || 
     matchesSlug(o.name, ornamentName || '')
@@ -46,8 +44,7 @@ const OrnamentDetail: React.FC = () => {
   const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
   
   // 이미지 로드를 위해 명시적으로 KO 데이터베이스를 참조합니다.
-  const { ORNAMENT_DB: KO_ORNAMENT_DB } = getGameData('ko');
-  const koOrnament = KO_ORNAMENT_DB.find((o: any) => o.id === ornament?.id) || ornament;
+  const koOrnament = HSR_ORNAMENT_DB.find((o: any) => o.id === ornament?.id) || ornament;
 
   const getMainImageUrl = () => {
     const safeType = (koOrnament.type || '차원 장신구').normalize('NFC');

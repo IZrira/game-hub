@@ -37,7 +37,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { getHsrGameData } from '../data/gameData';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
@@ -75,7 +75,7 @@ const CharacterDetail: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   
-  const { CHARACTER_DB } = useMemo(() => getGameData(currentLang), [currentLang]);
+  const { CHARACTER_DB } = useMemo(() => getHsrGameData(currentLang), [currentLang]);
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(true); // Default expanded
   const [isProfileExpanded, setIsProfileExpanded] = useState(true);   // Default expanded
   const [levelIdx, setLevelIdx] = useState(7);

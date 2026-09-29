@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useMemo, useEffect } from 'react';
 import { useParams, Link, useSearchParams } from 'react-router';
 import { 
   Search, Home as HomeIcon, ChevronRight, Filter, Book, Activity as ActivityIcon, ArrowLeft,
@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/archive';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { getHsrGameData } from '../data/gameData';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
@@ -17,10 +17,11 @@ import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentPremiumCard, ItemPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
 import { RelicDetailModal, OrnamentDetailModal, ItemDetailModal } from '@/common-hub/components/GalleryModals';
-import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { GlowStatsDistribution } from '../../common-hub/components/NeonComponents';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+
+const InventoryGallery = lazy(() => import('../../common-hub/components/InventoryGallery'));
 
 const GalleryHSR: React.FC = () => {
   const gameId = 'hsr';
@@ -102,9 +103,7 @@ const GalleryHSR: React.FC = () => {
   };
 
   const { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, HSR_INVENTORY, GUIDES: HSR_CHARACTER_GUIDES } = useMemo(() => {
-    // If it's English, we use 'en' (which defaults to HSR in dataManager), 
-    // otherwise we pass the explicit gameId to get the correct dataset
-    return getGameData(currentLang === 'en' ? 'en' : gameId);
+    return getHsrGameData(currentLang);
   }, [currentLang, gameId]);
   
 
@@ -418,10 +417,12 @@ const GalleryHSR: React.FC = () => {
               </div>
             </div>
           ) : activeMenu === '인벤토리' ? (
-            <InventoryGallery 
-              gameId="hsr" 
-              customCategories={["전체", "캐릭터 경험치 재료", "광추 경험치 재료", "유물 경험치 재료", "캐릭터 승급 재료", "행적 재료&광추 승급 재료", "행적 재료", "행적 재료&캐릭터 승급 재료", "합성 소재", "워프 아이템", "소모품", "통용 화폐", "시뮬레이션 우주"]} 
-            />
+            <Suspense fallback={<div className="py-32 text-center text-sm font-bold text-gray-400">인벤토리를 불러오는 중입니다.</div>}>
+              <InventoryGallery
+                gameId="hsr"
+                customCategories={["전체", "캐릭터 경험치 재료", "광추 경험치 재료", "유물 경험치 재료", "캐릭터 승급 재료", "행적 재료&광추 승급 재료", "행적 재료", "행적 재료&캐릭터 승급 재료", "합성 소재", "워프 아이템", "소모품", "통용 화폐", "시뮬레이션 우주"]}
+              />
+            </Suspense>
           ) : null}
         </main>
       </div>
