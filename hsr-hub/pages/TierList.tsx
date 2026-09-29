@@ -141,6 +141,8 @@ const ROLE_PRIORITY: Record<string, number> = {
   '유지력': 4,
 };
 
+const normalizeName = (name: string) => name.normalize('NFC').replace(/[•·\s()]/g, '').trim();
+
 const TierList: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
   const [activeCategory, setActiveCategory] = useState<string>('chaos');
@@ -184,49 +186,46 @@ const TierList: React.FC = () => {
         return;
       }
       setIsSyncing(true);
-      
-      const { data: charData } = await supabase.from('characters').select('*');
-      let currentAllChars = localChars;
-      if (charData && charData.length > 0) {
-        const mergedMap = new Map<string, any>();
-        localChars.forEach(c => {
-          if (c.id) mergedMap.set(c.id, c);
-        });
-        const localNormMap = new Map<string, any>();
-        localChars.forEach(c => {
-          localNormMap.set(normalizeName(c.name), c);
-        });
 
-        charData.forEach((c: any) => {
-          const matchedLocal = (c.id && mergedMap.get(c.id)) || localNormMap.get(normalizeName(c.name));
-          const charId = matchedLocal?.id || c.id || normalizeName(c.name);
-          const canonicalFolder = matchedLocal?.folder_name || c.folder_name || c.name;
-          const canonicalName = matchedLocal?.name || c.name;
+      try {
+        const { data: charData, error: characterError } = await supabase.from('characters').select('*');
+        if (characterError) throw characterError;
 
-          mergedMap.set(charId, {
-            ...matchedLocal,
-            ...c,
-            id: charId,
-            name: canonicalName,
-            folder_name: canonicalFolder,
+        let currentAllChars = localChars;
+        if (charData && charData.length > 0) {
+          const mergedMap = new Map<string, any>();
+          localChars.forEach(c => {
+            if (c.id) mergedMap.set(c.id, c);
           });
-        });
-        currentAllChars = Array.from(mergedMap.values());
-        setAllCharacters(currentAllChars);
-      } else {
-        setAllCharacters(localChars);
-      }
+          const localNormMap = new Map<string, any>();
+          localChars.forEach(c => {
+            localNormMap.set(normalizeName(c.name), c);
+          });
 
-      const { data: tierData, error } = await supabase.from('tier_lists').select('*').eq('game_id', 'hsr');
+          charData.forEach((c: any) => {
+            const matchedLocal = (c.id && mergedMap.get(c.id)) || localNormMap.get(normalizeName(c.name));
+            const charId = matchedLocal?.id || c.id || normalizeName(c.name);
+            const canonicalFolder = matchedLocal?.folder_name || c.folder_name || c.name;
+            const canonicalName = matchedLocal?.name || c.name;
 
-      if (error) {
-        setIsSyncing(false);
-        return;
-      }
+            mergedMap.set(charId, {
+              ...matchedLocal,
+              ...c,
+              id: charId,
+              name: canonicalName,
+              folder_name: canonicalFolder,
+            });
+          });
+          currentAllChars = Array.from(mergedMap.values());
+          setAllCharacters(currentAllChars);
+        } else {
+          setAllCharacters(localChars);
+        }
 
-      const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·\s()]/g, '').trim();
+        const { data: tierData, error: tierError } = await supabase.from('tier_lists').select('*').eq('game_id', 'hsr');
+        if (tierError) throw tierError;
 
-      if (tierData) {
+        if (tierData) {
         const transformed: Record<string, TierGroup[]> = JSON.parse(JSON.stringify(HSR_TIER_DATA));
         
         tierData.forEach(row => {
@@ -261,9 +260,15 @@ const TierList: React.FC = () => {
           });
         });
 
-        setLiveData(transformed);
+          setLiveData(transformed);
+        }
+      } catch (error) {
+        console.warn('[TierList] Supabase sync failed. Using bundled tier data.', error);
+        setAllCharacters(localChars);
+        setLiveData(HSR_TIER_DATA);
+      } finally {
+        setIsSyncing(false);
       }
-      setIsSyncing(false);
     };
 
     fetchData();
@@ -272,7 +277,6 @@ const TierList: React.FC = () => {
   const filteredTierList = useMemo(() => {
     const data = liveData[activeCategory] || [];
     const query = searchQuery.toLowerCase().trim();
-    const normalizeName = (n: string) => n.normalize('NFC').replace(/[•·\s()]/g, '').trim();
     const charMap = new Map(allCharacters.map(c => [normalizeName(c.name), c]));
     const ratedNames = new Set(data.flatMap(group => group.characters.map(char => normalizeName(char.name))));
 
