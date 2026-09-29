@@ -20,7 +20,7 @@ const STAT_ICON_MAP: Record<string, string> = {
   '효과 저항': 'effect_res.webp', '치명타 확률': 'crit_rate.webp',
   '치명타 피해': 'crit_dmg.webp', '효과 적중': 'effect_hit_rate.webp', '효과 명중': 'effect_hit_rate.webp',
   '격파 특수 효과': 'break_effect.webp', '격파 특수효과': 'break_effect.webp', '속도': 'spd.webp',
-  '환락 수치': 'elation.webp',
+  '환락 수치': 'elation.webp', '환락도': 'elation.webp',
   '번개 속성 피해 증가': 'lightning_dmg.webp', '화염 속성 피해 증가': 'fire_dmg.webp',
   '얼음 속성 피해 증가': 'ice_dmg.webp', '바람 속성 피해 증가': 'wind_dmg.webp',
   '양자 속성 피해 증가': 'quantum_dmg.webp', '허수 속성 피해 증가': 'imaginary_dmg.webp',
