@@ -1,15 +1,13 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router';
-import { ARCHIVE_DATA } from '../data/games';
-import { ITEM_META } from '../data/items';
-import { getGameData } from '../data/dataManager';
+import { ARCHIVE_DATA } from '../data/archive';
+import homeStatsData from '../data/search/home-stats.json';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import LazyImage from '../components/LazyImage';
 import { NoticeListView, useNoticeBadge } from '../components/NoticeComponents';
 import { Notice } from '../data/types';
 import AdPlaceholder from '../components/AdPlaceholder';
-import aniimoData from '../../aniimo-hub/data/aniimo.json';
 import {
   ChevronRight,
   Zap,
@@ -52,45 +50,8 @@ const Home: React.FC = () => {
     });
   }, []);
 
-  /**
-   * @description 프로젝트 전체 메트릭 및 개별 게임별 통계(캐릭터 수, 가이드 수 등)를 자동으로 연산하여 반환합니다.
-   * HSR, WW, NTE는 데이터 레이어 및 가이드 카운트를 반영하며, Aniimo는 실제 JSON 데이터셋 길이를 정확히 반영합니다.
-   */
-  const { globalStats, gameStats } = useMemo(() => {
-    const statsByGame: Record<string, { characters: number; guides: number }> = {};
-    let totalCharacters = 0;
-    let totalGuides = 0;
-
-    ARCHIVE_DATA.games.forEach(game => {
-      if (game.id === 'aniimo') {
-        const characters = (aniimoData as any[]).length;
-        // 아니모 핵심 전략 도구: 속성 상성표, 성격 도감, 파티 빌더, 전역 서식지 도감, 진화/스탯 가이드
-        const guides = 5;
-        statsByGame[game.id] = { characters, guides };
-        totalCharacters += characters;
-        totalGuides += guides;
-      } else {
-        const data = getGameData(game.id);
-        const characters = data?.CHARACTER_DB?.length || 0;
-        const guides = (data?.GUIDES?.length || 0) + (game.posts?.length || 0);
-        statsByGame[game.id] = { characters, guides };
-        totalCharacters += characters;
-        totalGuides += guides;
-      }
-    });
-
-    const totalItems = Object.keys(ITEM_META).length;
-
-    return {
-      gameStats: statsByGame,
-      globalStats: {
-        games: ARCHIVE_DATA.games.length,
-        characters: totalCharacters,
-        guides: totalGuides,
-        items: totalItems
-      }
-    };
-  }, []);
+  const globalStats = homeStatsData.global;
+  const gameStats = homeStatsData.games as Record<string, { characters: number; guides: number }>;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">

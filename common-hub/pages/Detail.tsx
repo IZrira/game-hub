@@ -3,7 +3,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ChevronLeft, Copy, Check, Share2, Bookmark, ChevronRight, ArrowLeft } from 'lucide-react';
-import { ARCHIVE_DATA } from '../data/games';
+import { ARCHIVE_DATA } from '../data/archive';
 import PageHeader from '../components/PageHeader';
 import AdPlaceholder from '../components/AdPlaceholder';
 import TableOfContents from '../components/TableOfContents';

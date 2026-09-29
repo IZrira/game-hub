@@ -5,7 +5,7 @@ import {
   LayoutGrid, Users, Zap, Shield, Backpack, Sparkles, Bell, Star, ArrowRight
 } from 'lucide-react';
 
-import { ARCHIVE_DATA } from '../../common-hub/data/games';
+import { ARCHIVE_DATA } from '../../common-hub/data/archive';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';

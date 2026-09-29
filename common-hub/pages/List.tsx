@@ -10,7 +10,7 @@ import {
   LayoutGrid,
   LayoutList
 } from 'lucide-react';
-import { ARCHIVE_DATA } from '../data/games';
+import { ARCHIVE_DATA } from '../data/archive';
 import PageHeader from '../components/PageHeader';
 import AdPlaceholder from '../components/AdPlaceholder';
 

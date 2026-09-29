@@ -1,0 +1,26 @@
+{
+  "global": {
+    "games": 4,
+    "characters": 261,
+    "guides": 155,
+    "items": 2098
+  },
+  "games": {
+    "hsr": {
+      "characters": 93,
+      "guides": 92
+    },
+    "ww": {
+      "characters": 60,
+      "guides": 58
+    },
+    "nte": {
+      "characters": 22,
+      "guides": 0
+    },
+    "aniimo": {
+      "characters": 86,
+      "guides": 5
+    }
+  }
+}

@@ -6,7 +6,9 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');
 const notionPath = path.join(projectRoot, 'common-hub', 'data', 'notion-data.json');
 const outputPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'notion-search.json');
+const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'home-stats.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
+const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
 const readSourceFiles = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
   const target = path.join(directory, entry.name);
@@ -98,10 +100,29 @@ const searchData = {
     .filter(item => item.dbSource === 'nte_arcs' || item.dbSource === 'nte_weapons' || nteArcTypes.has(item.type || ''))
     .map(item => ({ id: item.id, name: item.name, type: item.type || '' }))
 };
+const wwGuideDisplayCount = searchData.wwGuides.length
+  + searchData.wwGuides.filter(guide => guide.name.includes('방랑자')).length;
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true });
 fs.writeFileSync(outputPath, `${JSON.stringify(searchData, null, 2)}\n`, 'utf8');
 
+const homeStats = {
+  global: {
+    games: 4,
+    characters: hsrCharacters.length + searchData.wwCharacters.length + searchData.nteCharacters.length + aniimoData.length,
+    guides: hsrGuides.length + wwGuideDisplayCount + 5,
+    items: 2098
+  },
+  games: {
+    hsr: { characters: hsrCharacters.length, guides: hsrGuides.length },
+    ww: { characters: searchData.wwCharacters.length, guides: wwGuideDisplayCount },
+    nte: { characters: searchData.nteCharacters.length, guides: 0 },
+    aniimo: { characters: aniimoData.length, guides: 5 }
+  }
+};
+fs.writeFileSync(homeStatsPath, `${JSON.stringify(homeStats, null, 2)}\n`, 'utf8');
+
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);
 console.log(`[Search] HSR: ${hsrCharacters.length} characters, ${hsrLightcones.length} light cones, ${hsrGuides.length} guides.`);
+console.log(`[Home] Generated lightweight stats for ${homeStats.global.characters} characters and ${homeStats.global.guides} guides.`);

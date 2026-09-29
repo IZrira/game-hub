@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router';
 import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter, Star, Sparkles, ArrowRight, Boxes, CarFront, Gauge, Timer, Wrench, MapPin } from 'lucide-react';
-import { ARCHIVE_DATA } from '../../common-hub/data/games';
+import { ARCHIVE_DATA } from '../../common-hub/data/archive';
 import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';

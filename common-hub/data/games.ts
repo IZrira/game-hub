@@ -1,6 +1,7 @@
 import { HSR_DATA_ALL } from '../../hsr-hub/data/index';
 import { WW_DATA_ALL } from '../../ww-hub/data/index';
-import { ArchiveData, Character, LightCone, Relic, Ornament } from '../types';
+import { Character, LightCone, Ornament } from '../types';
+export { ARCHIVE_DATA } from './archive';
 
 import { getGameData } from './dataManager';
 
@@ -16,36 +17,3 @@ export const RELIC_DB: any[] = [
 ];
 
 export const ORNAMENT_DB: Ornament[] = HSR_DATA_ALL.ORNAMENT_DB;
-
-export const ARCHIVE_DATA: ArchiveData = {
-  games: [
-    {
-      id: 'hsr',
-      title: '붕괴: 스타레일',
-      subTitle: 'Honkai: Star Rail Archive',
-      bannerImage: '/assets/banners/hsr_placeholder.webp',
-      posts: [] // 데이터 레이어 분리에 따라 각 도메인에서 관리
-    },
-    {
-      id: 'ww',
-      title: '명조: 워더링 웨이브',
-      subTitle: 'Wuthering Waves Archive',
-      bannerImage: '/assets/banners/ww_placeholder.webp',
-      posts: []
-    },
-    {
-      id: 'nte',
-      title: '이환',
-      subTitle: 'Neverness to Everness Archive',
-      bannerImage: '/assets/banners/ww_placeholder.webp',
-      posts: []
-    },
-    {
-      id: 'aniimo',
-      title: '애니모',
-      subTitle: 'Aniimo Archive',
-      bannerImage: '/assets/unknown.webp',
-      posts: []
-    }
-  ]
-};
