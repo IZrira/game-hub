@@ -1,0 +1,3546 @@
+{
+  "hsrCharacters": [
+    {
+      "id": "acheron",
+      "name": "아케론",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "공허"
+    },
+    {
+      "id": "aglaea",
+      "name": "아글라이아",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "기억"
+    },
+    {
+      "id": "anaxa",
+      "name": "아낙사",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "지식"
+    },
+    {
+      "id": "archer",
+      "name": "아처",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "수렵"
+    },
+    {
+      "id": "argenti",
+      "name": "아젠티",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "지식"
+    },
+    {
+      "id": "arlan",
+      "name": "아를란",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "파멸"
+    },
+    {
+      "id": "ashveil",
+      "name": "애쉬베일",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "수렵"
+    },
+    {
+      "id": "asta",
+      "name": "아스타",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "화합"
+    },
+    {
+      "id": "aventurine",
+      "name": "어벤츄린",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "보존"
+    },
+    {
+      "id": "aventurine_waveflair",
+      "name": "어벤츄린•웨이브",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "환락"
+    },
+    {
+      "id": "bailu",
+      "name": "백로",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "풍요"
+    },
+    {
+      "id": "black_swan",
+      "name": "블랙 스완",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "공허"
+    },
+    {
+      "id": "blade",
+      "name": "블레이드",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "파멸"
+    },
+    {
+      "id": "boothill",
+      "name": "부트힐",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "수렵"
+    },
+    {
+      "id": "bronya",
+      "name": "브로냐",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "화합"
+    },
+    {
+      "id": "castorice",
+      "name": "카스토리스",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "기억"
+    },
+    {
+      "id": "cerydra",
+      "name": "케리드라",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "화합"
+    },
+    {
+      "id": "clara",
+      "name": "클라라",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "파멸"
+    },
+    {
+      "id": "cypher",
+      "name": "사이퍼",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "공허"
+    },
+    {
+      "id": "cyrene",
+      "name": "키레네",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "기억"
+    },
+    {
+      "id": "dahlia",
+      "name": "달리아",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "공허"
+    },
+    {
+      "id": "dan_heng",
+      "name": "단항",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "수렵"
+    },
+    {
+      "id": "dan_heng_il",
+      "name": "단항•음월",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "파멸"
+    },
+    {
+      "id": "dan_heng_permansor_terrae",
+      "name": "단항•등황",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "보존"
+    },
+    {
+      "id": "dr_ratio",
+      "name": "Dr. 레이시오",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "수렵"
+    },
+    {
+      "id": "evanescia",
+      "name": "에바네시아",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "환락"
+    },
+    {
+      "id": "evernight",
+      "name": "에버나이트",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "기억"
+    },
+    {
+      "id": "feixiao",
+      "name": "비소",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "수렵"
+    },
+    {
+      "id": "firefly",
+      "name": "반디",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "파멸"
+    },
+    {
+      "id": "fugue",
+      "name": "망귀인",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "공허"
+    },
+    {
+      "id": "fu_xuan",
+      "name": "부현",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "보존"
+    },
+    {
+      "id": "gallagher",
+      "name": "갤러거",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "풍요"
+    },
+    {
+      "id": "gepard",
+      "name": "게파드",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "보존"
+    },
+    {
+      "id": "gilgamesh",
+      "name": "길가메시",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "파멸"
+    },
+    {
+      "id": "guinaifen",
+      "name": "계네빈",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "공허"
+    },
+    {
+      "id": "hanya",
+      "name": "한아",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "화합"
+    },
+    {
+      "id": "herta",
+      "name": "헤르타",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "지식"
+    },
+    {
+      "id": "himeko",
+      "name": "히메코",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "지식"
+    },
+    {
+      "id": "himeko_nova",
+      "name": "히메코•노바",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "지식"
+    },
+    {
+      "id": "hook",
+      "name": "후크",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "파멸"
+    },
+    {
+      "id": "huohuo",
+      "name": "곽향",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "풍요"
+    },
+    {
+      "id": "hyacine",
+      "name": "히아킨",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "기억"
+    },
+    {
+      "id": "hysilens",
+      "name": "히실렌스",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "공허"
+    },
+    {
+      "id": "jade",
+      "name": "제이드",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "지식"
+    },
+    {
+      "id": "jiaoqiu",
+      "name": "초구",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "공허"
+    },
+    {
+      "id": "jingliu",
+      "name": "경류",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "파멸"
+    },
+    {
+      "id": "jing_yuan",
+      "name": "경원",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "지식"
+    },
+    {
+      "id": "kafka",
+      "name": "카프카",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "공허"
+    },
+    {
+      "id": "lingsha",
+      "name": "영사",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "풍요"
+    },
+    {
+      "id": "luka",
+      "name": "루카",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "공허"
+    },
+    {
+      "id": "luocha",
+      "name": "나찰",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "풍요"
+    },
+    {
+      "id": "lynx",
+      "name": "링스",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "풍요"
+    },
+    {
+      "id": "march_7th",
+      "name": "Mar. 7th",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "보존"
+    },
+    {
+      "id": "march_7th_hunt",
+      "name": "Mar. 7th (수렵)",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "수렵"
+    },
+    {
+      "id": "misha",
+      "name": "미샤",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "파멸"
+    },
+    {
+      "id": "mortenax_blade",
+      "name": "천야•블레이드",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "공허"
+    },
+    {
+      "id": "moze",
+      "name": "맥택",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "수렵"
+    },
+    {
+      "id": "mydei",
+      "name": "마이데이",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "파멸"
+    },
+    {
+      "id": "natasha",
+      "name": "나타샤",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "풍요"
+    },
+    {
+      "id": "pearl",
+      "name": "펄",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "환락"
+    },
+    {
+      "id": "pela",
+      "name": "페라",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "공허"
+    },
+    {
+      "id": "phainon",
+      "name": "파이논",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "파멸"
+    },
+    {
+      "id": "qingque",
+      "name": "청작",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "지식"
+    },
+    {
+      "id": "rappa",
+      "name": "라파",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "지식"
+    },
+    {
+      "id": "rin_tohsaka",
+      "name": "토오사카 린",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "지식"
+    },
+    {
+      "id": "robin",
+      "name": "로빈",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "화합"
+    },
+    {
+      "id": "robin_summeretto",
+      "name": "로빈•서머레토",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "기억"
+    },
+    {
+      "id": "ruan_mei",
+      "name": "완•매",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "화합"
+    },
+    {
+      "id": "saber",
+      "name": "세이버",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "파멸"
+    },
+    {
+      "id": "sampo",
+      "name": "삼포",
+      "gameId": "hsr",
+      "attribute": "바람",
+      "path": "공허"
+    },
+    {
+      "id": "seele",
+      "name": "제레",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "수렵"
+    },
+    {
+      "id": "serval",
+      "name": "서벌",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "지식"
+    },
+    {
+      "id": "silver_wolf",
+      "name": "은랑",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "공허"
+    },
+    {
+      "id": "silver_wolf_999",
+      "name": "은랑 LV.999",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "환락"
+    },
+    {
+      "id": "sparkle",
+      "name": "스파클",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "화합"
+    },
+    {
+      "id": "sparxie",
+      "name": "스파키",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "환락"
+    },
+    {
+      "id": "sunday",
+      "name": "선데이",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "화합"
+    },
+    {
+      "id": "sushang",
+      "name": "소상",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "수렵"
+    },
+    {
+      "id": "the_herta",
+      "name": "더 헤르타",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "지식"
+    },
+    {
+      "id": "tingyun",
+      "name": "정운",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "화합"
+    },
+    {
+      "id": "topaz",
+      "name": "토파즈 & 복순이",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "수렵"
+    },
+    {
+      "id": "trailblazer_physical",
+      "name": "개척자 (파멸)",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "파멸"
+    },
+    {
+      "id": "trailblazer_elation",
+      "name": "개척자 (환락)",
+      "gameId": "hsr",
+      "attribute": "번개",
+      "path": "환락"
+    },
+    {
+      "id": "trailblazer_harmony",
+      "name": "개척자 (화합)",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "화합"
+    },
+    {
+      "id": "trailblazer_fire",
+      "name": "개척자 (보존)",
+      "gameId": "hsr",
+      "attribute": "화염",
+      "path": "보존"
+    },
+    {
+      "id": "trailblazer_remembrance",
+      "name": "개척자 (기억)",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "기억"
+    },
+    {
+      "id": "tribbie",
+      "name": "트리비",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "화합"
+    },
+    {
+      "id": "welt",
+      "name": "웰트",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "공허"
+    },
+    {
+      "id": "xueyi",
+      "name": "설의",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "파멸"
+    },
+    {
+      "id": "yanqing",
+      "name": "연경",
+      "gameId": "hsr",
+      "attribute": "얼음",
+      "path": "수렵"
+    },
+    {
+      "id": "yaoguang",
+      "name": "효광",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "환락"
+    },
+    {
+      "id": "yukong",
+      "name": "어공",
+      "gameId": "hsr",
+      "attribute": "허수",
+      "path": "화합"
+    },
+    {
+      "id": "yunli",
+      "name": "운리",
+      "gameId": "hsr",
+      "attribute": "물리",
+      "path": "파멸"
+    }
+  ],
+  "hsrGuides": [
+    {
+      "characterName": "Mar. 7th"
+    },
+    {
+      "characterName": "Mar. 7th (수렵)"
+    },
+    {
+      "characterName": "개척자 (기억)"
+    },
+    {
+      "characterName": "개척자 (보존)"
+    },
+    {
+      "characterName": "개척자 (파멸)"
+    },
+    {
+      "characterName": "개척자 (화합)"
+    },
+    {
+      "characterName": "개척자 (환락)"
+    },
+    {
+      "characterName": "갤러거"
+    },
+    {
+      "characterName": "게파드"
+    },
+    {
+      "characterName": "경류"
+    },
+    {
+      "characterName": "경원"
+    },
+    {
+      "characterName": "계네빈"
+    },
+    {
+      "characterName": "곽향"
+    },
+    {
+      "characterName": "길가메시"
+    },
+    {
+      "characterName": "나찰"
+    },
+    {
+      "characterName": "나타샤"
+    },
+    {
+      "characterName": "Dr. 레이시오"
+    },
+    {
+      "characterName": "단항"
+    },
+    {
+      "characterName": "단항•등황"
+    },
+    {
+      "characterName": "단항•음월"
+    },
+    {
+      "characterName": "달리아"
+    },
+    {
+      "characterName": "더 헤르타"
+    },
+    {
+      "characterName": "라파"
+    },
+    {
+      "characterName": "로빈"
+    },
+    {
+      "characterName": "로빈•서머레토"
+    },
+    {
+      "characterName": "루카"
+    },
+    {
+      "characterName": "링스"
+    },
+    {
+      "characterName": "마이데이"
+    },
+    {
+      "characterName": "망귀인"
+    },
+    {
+      "characterName": "맥택"
+    },
+    {
+      "characterName": "미샤"
+    },
+    {
+      "characterName": "반디"
+    },
+    {
+      "characterName": "백로"
+    },
+    {
+      "characterName": "부트힐"
+    },
+    {
+      "characterName": "부현"
+    },
+    {
+      "characterName": "브로냐"
+    },
+    {
+      "characterName": "블랙 스완"
+    },
+    {
+      "characterName": "블레이드"
+    },
+    {
+      "characterName": "비소"
+    },
+    {
+      "characterName": "사이퍼"
+    },
+    {
+      "characterName": "삼포"
+    },
+    {
+      "characterName": "서벌"
+    },
+    {
+      "characterName": "선데이"
+    },
+    {
+      "characterName": "설의"
+    },
+    {
+      "characterName": "세이버"
+    },
+    {
+      "characterName": "소상"
+    },
+    {
+      "characterName": "스파클"
+    },
+    {
+      "characterName": "스파키"
+    },
+    {
+      "characterName": "아글라이아"
+    },
+    {
+      "characterName": "아낙사"
+    },
+    {
+      "characterName": "아를란"
+    },
+    {
+      "characterName": "아스타"
+    },
+    {
+      "characterName": "아젠티"
+    },
+    {
+      "characterName": "아처"
+    },
+    {
+      "characterName": "아케론"
+    },
+    {
+      "characterName": "애쉬베일"
+    },
+    {
+      "characterName": "어공"
+    },
+    {
+      "characterName": "어벤츄린"
+    },
+    {
+      "characterName": "어벤츄린•웨이브"
+    },
+    {
+      "characterName": "에바네시아"
+    },
+    {
+      "characterName": "에버나이트"
+    },
+    {
+      "characterName": "연경"
+    },
+    {
+      "characterName": "영사"
+    },
+    {
+      "characterName": "완•매"
+    },
+    {
+      "characterName": "운리"
+    },
+    {
+      "characterName": "웰트"
+    },
+    {
+      "characterName": "은랑"
+    },
+    {
+      "characterName": "은랑 LV.999"
+    },
+    {
+      "characterName": "정운"
+    },
+    {
+      "characterName": "제레"
+    },
+    {
+      "characterName": "제이드"
+    },
+    {
+      "characterName": "천야•블레이드"
+    },
+    {
+      "characterName": "청작"
+    },
+    {
+      "characterName": "초구"
+    },
+    {
+      "characterName": "카스토리스"
+    },
+    {
+      "characterName": "카프카"
+    },
+    {
+      "characterName": "케리드라"
+    },
+    {
+      "characterName": "클라라"
+    },
+    {
+      "characterName": "키레네"
+    },
+    {
+      "characterName": "토오사카 린"
+    },
+    {
+      "characterName": "토파즈 & 복순이"
+    },
+    {
+      "characterName": "트리비"
+    },
+    {
+      "characterName": "파이논"
+    },
+    {
+      "characterName": "페라"
+    },
+    {
+      "characterName": "한아"
+    },
+    {
+      "characterName": "헤르타"
+    },
+    {
+      "characterName": "효광"
+    },
+    {
+      "characterName": "후크"
+    },
+    {
+      "characterName": "히메코"
+    },
+    {
+      "characterName": "히메코•노바"
+    },
+    {
+      "characterName": "히실렌스"
+    },
+    {
+      "characterName": "히아킨"
+    }
+  ],
+  "hsrStaticLightcones": [
+    {
+      "id": "lc_오직_향만이_변함없이",
+      "name": "오직 향만이 변함없이",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_섬뜩한_밤",
+      "name": "섬뜩한 밤",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_관의_울림",
+      "name": "관의 울림",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_세월은_흐를_뿐",
+      "name": "세월은 흐를 뿐",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_수술_후의_대화",
+      "name": "수술 후의 대화",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_알맞은_타이밍",
+      "name": "알맞은 타이밍",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_같은_심정",
+      "name": "같은 심정",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_등가교환",
+      "name": "등가교환",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_따듯한_밤은_길지_않고",
+      "name": "따듯한 밤은 길지 않고",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_무엇이_진실인가",
+      "name": "무엇이 진실인가",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_꿈의_몽타주",
+      "name": "꿈의 몽타주",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_내일의_내일이_올_때까지",
+      "name": "내일의 내일이 올 때까지",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_저기_나_여기_있어",
+      "name": "저기, 나 여기 있어",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_증식",
+      "name": "증식",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_알찬_열매",
+      "name": "알찬 열매",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_풍작",
+      "name": "풍작",
+      "path": "풍요"
+    },
+    {
+      "id": "lc_두더지파가_환영해",
+      "name": "두더지파가 환영해",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_인사록·음률_사냥",
+      "name": "인사록·음률 사냥",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_멍!_산책_시간!",
+      "name": "멍! 산책 시간!",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_전멸",
+      "name": "전멸",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_무너진_행복",
+      "name": "무너진 행복",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_천경",
+      "name": "천경",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_태양보다_밝게_빛나는_것",
+      "name": "태양보다 밝게 빛나는 것",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_닿을_수_없는_저편",
+      "name": "닿을 수 없는 저편",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_어떤_에이언즈의_몰락",
+      "name": "어떤 에이언즈의 몰락",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_대체할_수_없는_것",
+      "name": "대체할 수 없는 것",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_이_몸이_검이니",
+      "name": "이 몸이 검이니",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_꿈은_어디로_돌아가야_하는가",
+      "name": "꿈은 어디로 돌아가야 하는가",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_해_질_무렵_시작되는_춤",
+      "name": "해 질 무렵 시작되는 춤",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_이와_같이_타오르는_여명",
+      "name": "이와 같이 타오르는 여명",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_보답_없는_왕관",
+      "name": "보답 없는 왕관",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_피의_불꽃이여_앞길을_태워라",
+      "name": "피의 불꽃이여, 앞길을 태워라",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_과거의_핏자국",
+      "name": "과거의 핏자국",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_도망칠_곳은_없다",
+      "name": "도망칠 곳은 없다",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_비밀_맹세",
+      "name": "비밀 맹세",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_푸른_하늘_아래",
+      "name": "푸른 하늘 아래",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_불의_먼_곳에서",
+      "name": "불의 먼 곳에서",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_마음에_새긴_약속",
+      "name": "마음에 새긴 약속",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_보이는_것이_곧_나",
+      "name": "보이는 것이 곧 나",
+      "path": "파멸"
+    },
+    {
+      "id": "lc_다음_꽃피는_계절의_만남",
+      "name": "다음 꽃피는 계절의 만남",
+      "path": "환락"
+    },
+    {
+      "id": "lc_눈부신_파키의_세상",
+      "name": "눈부신 파키의 세상",
+      "path": "환락"
+    },
+    {
+      "id": "lc_그녀가_보기로_결심했을_때",
+      "name": "그녀가 보기로 결심했을 때",
+      "path": "환락"
+    },
+    {
+      "id": "lc_갤럭시_시티에_오신_것을_환영합니다",
+      "name": "갤럭시 시티에 오신 것을 환영합니다",
+      "path": "환락"
+    },
+    {
+      "id": "lc_넘치는_환락의_축복",
+      "name": "넘치는 환락의 축복",
+      "path": "환락"
+    },
+    {
+      "id": "lc_미래엔_우리가_함께할_거야",
+      "name": "미래엔 우리가 함께할 거야",
+      "path": "환락"
+    },
+    {
+      "id": "lc_오늘의_행운",
+      "name": "오늘의 행운",
+      "path": "환락"
+    },
+    {
+      "id": "lc_슈룸_모험기",
+      "name": "슈룸 모험기",
+      "path": "환락"
+    },
+    {
+      "id": "lc_눈물의_흔적",
+      "name": "눈물의 흔적",
+      "path": "환락"
+    },
+    {
+      "id": "lc_비웃음",
+      "name": "비웃음",
+      "path": "환락"
+    },
+    {
+      "id": "lc_짧은_휴가",
+      "name": "짧은 휴가",
+      "path": "환락"
+    },
+    {
+      "id": "lc_파도에_내던진_한여름",
+      "name": "파도에 내던진 한여름",
+      "path": "환락"
+    },
+    {
+      "id": "lc_내일에_바치는_색채",
+      "name": "내일에 바치는 색채",
+      "path": "환락"
+    },
+    {
+      "id": "lc_별이_밤하늘을_밝힐_때",
+      "name": "별이 밤하늘을 밝힐 때",
+      "path": "지식"
+    },
+    {
+      "id": "lc_값을_매길_수_없는_건_희망뿐",
+      "name": "값을 매길 수 없는 건 희망뿐",
+      "path": "지식"
+    },
+    {
+      "id": "lc_눈에_담긴_순간",
+      "name": "눈에 담긴 순간",
+      "path": "지식"
+    },
+    {
+      "id": "lc_동트기_전",
+      "name": "동트기 전",
+      "path": "지식"
+    },
+    {
+      "id": "lc_멈추지_않는_연산",
+      "name": "멈추지 않는 연산",
+      "path": "지식"
+    },
+    {
+      "id": "lc_생명은_불태워야_하는_것",
+      "name": "생명은 불태워야 하는 것",
+      "path": "지식"
+    },
+    {
+      "id": "lc_은하철도의_밤",
+      "name": "은하철도의 밤",
+      "path": "지식"
+    },
+    {
+      "id": "lc_인법첩•요란_파마",
+      "name": "인법첩•요란 파마",
+      "path": "지식"
+    },
+    {
+      "id": "lc_추궁할_수_없는_곳을_향해",
+      "name": "추궁할 수 없는 곳을 향해",
+      "path": "지식"
+    },
+    {
+      "id": "lc_밀_내음이_가득한_꿈",
+      "name": "밀 내음이 가득한 꿈",
+      "path": "지식"
+    },
+    {
+      "id": "lc_우주_대사업",
+      "name": "우주 대사업",
+      "path": "지식"
+    },
+    {
+      "id": "lc_나의_탄생",
+      "name": "「나」의 탄생",
+      "path": "지식"
+    },
+    {
+      "id": "lc_아침_식사_루틴",
+      "name": "느낌 있는 아침 식사 루틴",
+      "path": "지식"
+    },
+    {
+      "id": "lc_세상을_진동시키다",
+      "name": "세상을 진정시키지 마",
+      "path": "지식"
+    },
+    {
+      "id": "lc_오늘도_평화로운_하루",
+      "name": "오늘도 평화로운 하루",
+      "path": "지식"
+    },
+    {
+      "id": "lc_은하_함락의_날",
+      "name": "은하 함락의 날",
+      "path": "지식"
+    },
+    {
+      "id": "lc_조화가_침묵한_후",
+      "name": "조화가 침묵한 후",
+      "path": "지식"
+    },
+    {
+      "id": "lc_천재들의_휴식",
+      "name": "천재들의 휴식",
+      "path": "지식"
+    },
+    {
+      "id": "lc_식견",
+      "name": "식견",
+      "path": "지식"
+    },
+    {
+      "id": "lc_영험한_열쇠",
+      "name": "영험한 열쇠",
+      "path": "지식"
+    },
+    {
+      "id": "lc_아카이브",
+      "name": "아카이브",
+      "path": "지식"
+    },
+    {
+      "id": "lc_별이_밤하늘을_밝힐_때",
+      "name": "별이 밤하늘을 밝힐 때",
+      "path": "지식"
+    },
+    {
+      "id": "lc_고요히_빛나는_불티",
+      "name": "고요히 빛나는 불티",
+      "path": "지식"
+    },
+    {
+      "id": "lc_아직_전투는_끝나지_않았다",
+      "name": "아직 전투는 끝나지 않았다",
+      "path": "화합"
+    },
+    {
+      "id": "lc_거울_속_지난날의_나",
+      "name": "거울 속 지난날의 나",
+      "path": "화합"
+    },
+    {
+      "id": "lc_속세에서의_유희",
+      "name": "속세에서의 유희",
+      "path": "화합"
+    },
+    {
+      "id": "lc_찬란하게_빛나는_밤",
+      "name": "찬란하게 빛나는 밤",
+      "path": "화합"
+    },
+    {
+      "id": "lc_대지로_돌아온_비행",
+      "name": "대지로 돌아온 비행",
+      "path": "화합"
+    },
+    {
+      "id": "lc_시간이_한_송이_꽃이라면",
+      "name": "시간이 한 송이 꽃이라면",
+      "path": "화합"
+    },
+    {
+      "id": "lc_황금_피가_새긴_시대",
+      "name": "황금 피가 새긴 시대",
+      "path": "화합"
+    },
+    {
+      "id": "lc_기억_속_모습",
+      "name": "기억 속 모습",
+      "path": "화합"
+    },
+    {
+      "id": "lc_행성과의_만남",
+      "name": "행성과의 만남",
+      "path": "화합"
+    },
+    {
+      "id": "lc_댄스_댄스_댄스",
+      "name": "댄스! 댄스! 댄스!",
+      "path": "화합"
+    },
+    {
+      "id": "lc_과거와_미래",
+      "name": "과거와 미래",
+      "path": "화합"
+    },
+    {
+      "id": "lc_누월재운의_뜻",
+      "name": "누월재운의 뜻",
+      "path": "화합"
+    },
+    {
+      "id": "lc_좋은꿈_마을_대모험",
+      "name": "좋은꿈 마을 대모험",
+      "path": "화합"
+    },
+    {
+      "id": "lc_피어나길_기다리는_꽃",
+      "name": "피어나길 기다리는 꽃",
+      "path": "화합"
+    },
+    {
+      "id": "lc_바람을_쫓을_때",
+      "name": "바람을 쫓을 때, 꽃은 잊지 않는다",
+      "path": "화합"
+    },
+    {
+      "id": "lc_내일을_위한_여정",
+      "name": "내일을 위한 여정",
+      "path": "화합"
+    },
+    {
+      "id": "lc_영원한_미궁의_식사",
+      "name": "영원한 미궁의 식사",
+      "path": "화합"
+    },
+    {
+      "id": "lc_합창",
+      "name": "합창",
+      "path": "화합"
+    },
+    {
+      "id": "lc_맞물린_톱니",
+      "name": "맞물린 톱니",
+      "path": "화합"
+    },
+    {
+      "id": "lc_어울림",
+      "name": "어울림",
+      "path": "화합"
+    },
+    {
+      "id": "lc_야경_속에서",
+      "name": "야경 속에서",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_깊게_든_단잠",
+      "name": "깊게 든 단잠",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_고민_그리고_행복",
+      "name": "고민, 그리고 행복",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_순수_사유의_세례",
+      "name": "순수 사유의 세례",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_두_번째_생명을_향해",
+      "name": "두 번째 생명을 향해",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_정복하고_사냥하리",
+      "name": "정복하고 사냥하리",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_이상이_불타는_지옥",
+      "name": "이상이 불타는 지옥",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_거짓말의_종막",
+      "name": "거짓말의 종막",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_별바다_순항",
+      "name": "별바다 순항",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_침묵만이",
+      "name": "침묵만이",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_논검",
+      "name": "논검",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_팔로우를_부탁해",
+      "name": "팔로우를 부탁해!",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_움트는_봄물",
+      "name": "움트는 봄물",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_또다시_저승으로",
+      "name": "또다시 저승으로",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_최후의_승자",
+      "name": "최후의 승자",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_그림자처럼_뒤따르는_밤",
+      "name": "그림자처럼 뒤따르는 밤",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_그_종착지에서_다시_만나자",
+      "name": "그 종착지에서 다시 만나자",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_대립",
+      "name": "대립",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_시위를_떠난_화살",
+      "name": "시위를 떠난 화살",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_화살촉",
+      "name": "화살촉",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_지평선의_끝을_향해",
+      "name": "지평선의 끝을 향해",
+      "path": "수렵"
+    },
+    {
+      "id": "lc_그윽",
+      "name": "그윽",
+      "path": "공허"
+    },
+    {
+      "id": "lc_심연의_고리",
+      "name": "심연의 고리",
+      "path": "공허"
+    },
+    {
+      "id": "lc_숨은_그림자",
+      "name": "숨은 그림자",
+      "path": "공허"
+    },
+    {
+      "id": "lc_밤_인사와_잠든_얼굴",
+      "name": "밤 인사와 잠든 얼굴",
+      "path": "공허"
+    },
+    {
+      "id": "lc_사냥감의_시선",
+      "name": "사냥감의 시선",
+      "path": "공허"
+    },
+    {
+      "id": "lc_땀방울처럼_빛나는_결심",
+      "name": "땀방울처럼 빛나는 결심",
+      "path": "공허"
+    },
+    {
+      "id": "lc_페르마타",
+      "name": "페르마타",
+      "path": "공허"
+    },
+    {
+      "id": "lc_훗날_기약",
+      "name": "훗날 기약",
+      "path": "공허"
+    },
+    {
+      "id": "lc_초보자_임무_시작_전",
+      "name": "초보자 임무 시작 전",
+      "path": "공허"
+    },
+    {
+      "id": "lc_쇼타임",
+      "name": "쇼타임",
+      "path": "공허"
+    },
+    {
+      "id": "lc_끝없는_춤",
+      "name": "끝없는 춤",
+      "path": "공허"
+    },
+    {
+      "id": "lc_휴일의_목욕탕_대모험",
+      "name": "휴일의 목욕탕 대모험",
+      "path": "공허"
+    },
+    {
+      "id": "lc_세계의_이름으로",
+      "name": "세계의 이름으로",
+      "path": "공허"
+    },
+    {
+      "id": "lc_계속_내리는_비",
+      "name": "계속 내리는 비",
+      "path": "공허"
+    },
+    {
+      "id": "lc_필요한_건_기다림뿐",
+      "name": "필요한 건 기다림뿐",
+      "path": "공허"
+    },
+    {
+      "id": "lc_고독의_치유",
+      "name": "고독의 치유",
+      "path": "공허"
+    },
+    {
+      "id": "lc_시간의_기억에_대한_재구성",
+      "name": "시간의 기억에 대한 재구성",
+      "path": "공허"
+    },
+    {
+      "id": "lc_흘러가는_강가를_따라",
+      "name": "흘러가는 강가를 따라",
+      "path": "공허"
+    },
+    {
+      "id": "lc_그_무수한_봄날",
+      "name": "그 무수한 봄날",
+      "path": "공허"
+    },
+    {
+      "id": "lc_먼_길_끝의_귀로",
+      "name": "먼 길 끝의 귀로",
+      "path": "공허"
+    },
+    {
+      "id": "lc_바람에_흩날리는_거짓말",
+      "name": "바람에 흩날리는 거짓말",
+      "path": "공허"
+    },
+    {
+      "id": "lc_바다는_왜_노래하는가",
+      "name": "바다는 왜 노래하는가",
+      "path": "공허"
+    },
+    {
+      "id": "lc_그녀의_불꽃을_잊지_말라",
+      "name": "그녀의 불꽃을 잊지 말라",
+      "path": "공허"
+    },
+    {
+      "id": "lc_연옥을_불사른_새로운_몸",
+      "name": "연옥을 불사른 새로운 몸",
+      "path": "공허"
+    },
+    {
+      "id": "lc_앰버",
+      "name": "앰버",
+      "path": "보존"
+    },
+    {
+      "id": "lc_수비",
+      "name": "수비",
+      "path": "보존"
+    },
+    {
+      "id": "lc_강토_개척",
+      "name": "강토 개척",
+      "path": "보존"
+    },
+    {
+      "id": "lc_여생의_첫날",
+      "name": "여생의 첫날",
+      "path": "보존"
+    },
+    {
+      "id": "lc_랜도의_선택",
+      "name": "랜도의 선택",
+      "path": "보존"
+    },
+    {
+      "id": "lc_우주_시장_동향",
+      "name": "우주 시장 동향",
+      "path": "보존"
+    },
+    {
+      "id": "lc_우리는_와일드_파이어",
+      "name": "우리는 와일드 파이어",
+      "path": "보존"
+    },
+    {
+      "id": "lc_이게_바로_나야",
+      "name": "이게 바로 나야!",
+      "path": "보존"
+    },
+    {
+      "id": "lc_운명의_실을_엮다",
+      "name": "운명의 실을 엮다",
+      "path": "보존"
+    },
+    {
+      "id": "lc_두_사람의_콘서트",
+      "name": "두 사람의 콘서트",
+      "path": "보존"
+    },
+    {
+      "id": "lc_언제나_여정이_평탄하기를",
+      "name": "언제나 여정이 평탄하기를",
+      "path": "보존"
+    },
+    {
+      "id": "lc_승리의_순간",
+      "name": "승리의 순간",
+      "path": "보존"
+    },
+    {
+      "id": "lc_그녀는_두_눈을_감았네",
+      "name": "그녀는 두 눈을 감았네",
+      "path": "보존"
+    },
+    {
+      "id": "lc_언제나_불공평한_운명",
+      "name": "언제나 불공평한 운명",
+      "path": "보존"
+    },
+    {
+      "id": "lc_끝없는_산과_강을_거치더라도",
+      "name": "끝없는 산과 강을 거치더라도",
+      "path": "보존"
+    },
+    {
+      "id": "lc_기억의_소재",
+      "name": "기억의 소재",
+      "path": "보존"
+    },
+    {
+      "id": "lc_이_순간처럼_영원한_사랑",
+      "name": "이 순간처럼 영원한 사랑",
+      "path": "기억"
+    },
+    {
+      "id": "lc_기억은_영원히_막을_내리지_않는다",
+      "name": "기억은 영원히 막을 내리지 않는다",
+      "path": "기억"
+    },
+    {
+      "id": "lc_시간을_황금으로_엮어",
+      "name": "시간을 황금으로 엮어",
+      "path": "기억"
+    },
+    {
+      "id": "lc_이별이_더_아름답도록",
+      "name": "이별이 더 아름답도록",
+      "path": "기억"
+    },
+    {
+      "id": "lc_무지개가_영원히_하늘에_머물길",
+      "name": "무지개가 영원히 하늘에 머물길",
+      "path": "기억"
+    },
+    {
+      "id": "lc_긴_밤의_별빛에게",
+      "name": "긴 밤의 별빛에게",
+      "path": "기억"
+    },
+    {
+      "id": "lc_천재들의_안부_인사",
+      "name": "천재들의 안부 인사",
+      "path": "기억"
+    },
+    {
+      "id": "lc_땀은_많이_눈물은_적게",
+      "name": "땀은 많이, 눈물은 적게",
+      "path": "기억"
+    },
+    {
+      "id": "lc_찰나에_결정되는_승리",
+      "name": "찰나에 결정되는 승리",
+      "path": "기억"
+    },
+    {
+      "id": "lc_불타는_그림자",
+      "name": "불타는 그림자",
+      "path": "기억"
+    },
+    {
+      "id": "lc_추억_회상",
+      "name": "추억 회상",
+      "path": "기억"
+    },
+    {
+      "id": "lc_이야기의_다음_페이지",
+      "name": "이야기의 다음 페이지",
+      "path": "기억"
+    },
+    {
+      "id": "lc_꽃은_잊지_않는다",
+      "name": "꽃은 잊지 않는다",
+      "path": "기억"
+    },
+    {
+      "id": "lc_핑크빛_내일을_향해",
+      "name": "핑크빛 내일을 향해",
+      "path": "기억"
+    },
+    {
+      "id": "lc_그대는_나아가_노래하리니",
+      "name": "그대는 나아가 노래하리니",
+      "path": "기억"
+    }
+  ],
+  "hsrLightcones": [],
+  "wwCharacters": [
+    {
+      "id": "36395fae-3dc7-80b5-a488-c0d33cfb73df",
+      "name": "갈브레나",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "권총",
+      "summary": "공포스러운 ｢악마들｣은 갈브레나의 불꽃에 휩싸여 모조리 불타 삼켜져 버린다.\n불꽃에 집어삼킨 ｢악마들｣에겐 단 두 가지 선택만이 존재할 뿐.\n정화되어 그녀의 힘이 되거나... 혹은, 재가 되어 완전히 소멸되거나."
+    },
+    {
+      "id": "35b95fae-3dc7-8057-bbc4-d49d5fb0e1c1",
+      "name": "감심",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권갑",
+      "summary": "만물의 기운을 자신의 힘으로 응축하여 맥박 속에 자유롭게 흐르게 한다. 그뿐만 아니라 '기'를 이용해 주변을 정화한다. 움직임이 바뀌고, 긴장과 이완을 반복하기도 하며, 부드러운 모습에 아무것도 없어 보이지만, 실제로는 엄청난 힘이 있다."
+    },
+    {
+      "id": "3be95fae-3dc7-809a-848d-cf54b30c697b",
+      "name": "경연",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "대검",
+      "summary": "경연의 오른쪽 눈은 특수한 능력을 지니고 있어 통상적인 감지 영역을 벗어난 분리된 주파수를 포착할 수 있으며, 공명의 힘 출력이 임계치에 도달하면 현실 공간에 격리 결계를 구축하여 숨어있는 모든 주파수를 강제로 드러낼 수 있다.또한 왼쪽 눈에 깃든 고위 울림 생물 덕분에 주파수 연결, 감각 공유 및 명령 전달 등 다양한 능력을 구사할 수 있다."
+    },
+    {
+      "id": "35a95fae-3dc7-8059-98be-c859fcb8b352",
+      "name": "구원",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "summary": "돌연 비바람이 몰아치고 댓잎이 마구 흩날린다.숨을 죽이고 정신을 집중한 그는, 서늘하게 빛나는 검을 단단히 움켜쥔다.\n찰나에 적의 마음과 빈틈을 꿰뚫고, 바람처럼 검을 움직인다. 한 점의 흔적도 남기지 않고..."
+    },
+    {
+      "id": "35e95fae-3dc7-8012-a62d-fef7c4edf10e",
+      "name": "금희",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "대검",
+      "summary": "금희는 수호신 공명자로서, 수호신 「각」과 같은 주파수의 힘을 다룰 수 있다. 그녀는 경칩의 햇빛을 모아 봄기운으로 눈을 녹이고, 만물을 흐르게 할 수 있다"
+    },
+    {
+      "id": "35595fae-3dc7-802b-bc16-fc93764fd817",
+      "name": "기염",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "대검",
+      "summary": "정의를 품은 황룡 야귀의 리더. 번개처럼 맹렬하며, 바람처럼 신속하다.\n바람으로 청룡을 창조하는 어빌리티를 가지고 있으며, 만부부당의 무력을 가지고 있다"
+    },
+    {
+      "id": "36795fae-3dc7-8096-a858-fd8a9c3bf21d",
+      "name": "능양",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "권갑",
+      "summary": "능양은 건장한 체격으로 주위 일정 범위 내에 냉혹한 투기와 저온 자기장을 생성하여 적에게 위압을 준다. 또한 사자춤의 북소리에 맞춰 권법을 사용하는데, 한 수 한 수가 역동적이고 힘이 있어 위풍당당하다."
+    },
+    {
+      "id": "35895fae-3dc7-800c-bbd8-eb8bb35227e2",
+      "name": "단근",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "summary": "자신의 혈액을 조종하여 붉은 빛 칼날을 응집시킨다. 손에 든 붉은 칼날로 눈에 닿는 어둠을 헤치고, 모든 사람에게 밝은 빛을 되찾아 준다."
+    },
+    {
+      "id": "36095fae-3dc7-80f6-b1cb-fc2a357967de",
+      "name": "데니아",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "증폭기",
+      "summary": "데니아가 화려한 장식의 지팡이를 휘두르면 분홍빛 거품들이 뿜어져 나온다.\n이 거품들은 보이드매터에 대해 어느 정도의 방호 작용을 하며, 부드럽고 가벼워 보이지만 실은 살짝 흔들리는 것만으로도 적을 환상의 별무리 속에 가둘 수 있다."
+    },
+    {
+      "id": "35895fae-3dc7-80cd-b053-dca32ecb0037",
+      "name": "도기",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "대검",
+      "summary": "공격 시, 적의 에너지를 흡수하고 이를 자신의 치유력으로 전환한다. 대검이 주는 압박감은 적에게 주는 경고일 뿐만 아니라 대중의 의지와 믿음이 담겨있다."
+    },
+    {
+      "id": "37995fae-3dc7-807a-8e0e-cba40a2adb10",
+      "name": "레베카",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "권총",
+      "summary": "루시와 같은 엣지러너이지만, 하는 행동은 전혀 다르다.\n당신의 고민쯤은 손에 든 샷건으로 시원하게 날려버릴 준비가 된, 예측 불가의 불꽃같은 존재"
+    },
+    {
+      "id": "35795fae-3dc7-8011-812e-f98c621655b3",
+      "name": "로코코",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "권갑",
+      "summary": "그녀가 항상 지니고 다니는 신비한 상자에는 마치 온 세상이 들어 있는 것 같다──\n오색찬란한 리본, 반짝이는 바다반디석, 그리고 흥겨운 불꽃놀이까지……\n온갖 물건들이 상자에서 날아와, 자유롭게 노래하는 연극 무대를 자아낸다."
+    },
+    {
+      "id": "35995fae-3dc7-80f3-ad73-e164ef0ddba6",
+      "name": "루미",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "대검",
+      "summary": "만물의 일곱 빛깔을 소중한 수첩에 기록해 두었다. 반짝이는 별들은 모두 다 빛의 기억이다."
+    },
+    {
+      "id": "37995fae-3dc7-80e1-85f2-c013122340b5",
+      "name": "루시",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권총",
+      "summary": "나이트 시티에서 온 엣지러너. 크루에서 넷러너를 맡고 있다."
+    },
+    {
+      "id": "37895fae-3dc7-80b5-a01c-dd19f5c97f43",
+      "name": "루실라",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "summary": "루실라는 기억을 되살리는 방법에 정통할 뿐만 아니라, 기억의 조각을 떼어내어 이를 한층 더 실체화하는 능력도 지니고 있다.\n그녀는 지난날의 윤곽을 재구성할 수 있으며, 나아가 자신이 직접 겪었던 과거의 어느 순간을 투영하여 현실 세계에 그대로 재현해 낼 수도 있다."
+    },
+    {
+      "id": "35895fae-3dc7-80f7-bc8b-fb6ad634b8d4",
+      "name": "루크 · 헤르센",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권갑",
+      "summary": "작열통, 그리고 순간적인 체온 상승과 함께 이질적인 에너지의 흐름이 루크 · 헤르센의 의지에 따라 상을 변화시킨다.\n그의 손바닥에 흐르는 혈액은 날카로운 칼날이 되어, 눈앞의 적을 예리하게 공격한다."
+    },
+    {
+      "id": "36395fae-3dc7-80ea-b4a9-fa66592df03f",
+      "name": "루파",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "대검",
+      "summary": "은은하게 타오르기 시작한 불꽃이 몸에서 분출되며, 손에 쥔 대검에는 열기가 모여든다.\n그녀는 이 격렬한 전투에 기꺼이 몸을 던져, 늑대처럼 예리하게 적을 추적하여 악인을 물어뜯을 것이다."
+    },
+    {
+      "id": "35895fae-3dc7-804a-a32b-c2fd208f91fa",
+      "name": "린네",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권총",
+      "summary": "린네는 페인트 통을 들고, 자신의 「스페셜 페인트」를 배합하여 허공으로 거침없이 뿌려낸다.\n찬란한 스펙트럼의 그림이 공중에 수놓아지고, 눈부신 색채와 선이 활기차게, 자유로이 움직인다."
+    },
+    {
+      "id": "36195fae-3dc7-8018-9295-e487837f428a",
+      "name": "모니에",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "대검",
+      "summary": "모니에는 정밀한 컨트롤 패널들을 하나하나 불러내어, 치밀한 계산과 추론, 수정을 진행한다.\n정교한 부품들을 세밀하게 조종하는 모습은, 마치 올려다봐야 할 별하늘이 그대로 그녀의 손에 담긴 듯한 인상을 준다."
+    },
+    {
+      "id": "36395fae-3dc7-8099-9781-d3666239ff54",
+      "name": "모르테피",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "권갑",
+      "summary": "열을 모아 불꽃을 만들며, 타오르는 불꽃은 마치 폭주하는 레드 드래곤처럼 팔을 휘감듯 감싼다. 자욱한 초연 가운데 적을 격퇴하는 귀족의 우아한 모습을 볼 수 있다."
+    },
+    {
+      "id": "35b95fae-3dc7-8061-b3a4-e298eddef115",
+      "name": "방랑자 · 기류",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "summary": "정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다"
+    },
+    {
+      "id": "35795fae-3dc7-80ec-82ee-ea72d22597c5",
+      "name": "방랑자 · 인멸",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "summary": "정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다"
+    },
+    {
+      "id": "3a195fae-3dc7-80eb-9f34-fd6775a3704d",
+      "name": "방랑자 · 전도",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "직검",
+      "summary": "정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다"
+    },
+    {
+      "id": "35995fae-3dc7-80eb-bd6c-e91a846ee106",
+      "name": "방랑자 · 회절",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "직검",
+      "summary": "정체불명의 공명자, 모든 소리를 흡수할 수 있는 힘을 가지고 있다.\n기억을 되찾기 위해 여행을 떠난다"
+    },
+    {
+      "id": "35995fae-3dc7-809a-a4c1-c8adb9ad40f7",
+      "name": "벨리나",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "증폭기",
+      "summary": "식물의 말을 들을 수 있는 벨리나가 피어나는 꽃들 하나하나의 목소리를 듣는 건 생명의 기적을 보호하기 위해서다. 그리고 식물들도 자신들의 생기로 그녀의 보살핌에 응답한다. 덩굴이 자라 퍼지고... 그녀가 뛰어다니는 자리에는 별과 같은 꽃들이 피어난다."
+    },
+    {
+      "id": "35d95fae-3dc7-80a0-896c-e530a891a081",
+      "name": "복링",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "증폭기",
+      "summary": "그녀는 공명 어빌리티를 통해 특별한 소리를 들을 수 있으며, 잔향의 주파수에 대한 감지력이 극도로 예민하다.\n헤드셋을 벗고 숨을 죽인 채 귀를 기울인 그녀가 손가락을 꼽으며 수를 세면, 천둥이 천지를 울리며 모든 사악한 기운이 흩어진다."
+    },
+    {
+      "id": "36395fae-3dc7-8027-b026-fc2628b1a8c0",
+      "name": "브렌트",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "직검",
+      "summary": "로프를 풀고, 닻을 올린 다음 커다란 불꽃을 피워 올린다.\n출항의 시간이 다가옵니다, 폭풍과도 같은 도전을 맞이하세요!"
+    },
+    {
+      "id": "36695fae-3dc7-805a-8c75-cdc070994252",
+      "name": "산화",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "직검",
+      "summary": "눈꽃을 소환하여 직검을 덮고 뒤틀린 세상의 중심을 향해 휘두릅니다. 순수한 눈꽃은 잿빛을 가릴 수 없지만, 적어도 뒤틀린 세상에 하얗게 빛나는 눈꽃의 잔영을 남길 수 있습니다."
+    },
+    {
+      "id": "35e95fae-3dc7-806e-85d1-d3dd5a158c22",
+      "name": "상리요",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "권갑",
+      "summary": "만물은 손에서 끊임없이 분열하고, 변화하며, 재구성한다.\n개조는 새로운 생명을 부여하며, 이러한 창조물은 마치 별들에게서 따온 것처럼 기묘하면서도 아름답다."
+    },
+    {
+      "id": "35b95fae-3dc7-8060-a8d9-fe3851fb1cb9",
+      "name": "샤콘",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권총",
+      "summary": "그녀는 세상 만물로부터 흘러나오는 다채로운 멜로디를 찾고, 느끼며 듣는다.\n그렇게 멜로디를 시로 그리고, 이야기로 써내고, 만물로 자아내어 멜로디에 새로운 의미를 심는다."
+    },
+    {
+      "id": "36795fae-3dc7-8099-a028-e8cbba01a587",
+      "name": "설지",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "summary": "간절한 신념에서 탄생한 「우담」은, 설지의 내면과 연결되어 그녀의 갈망이 있을 때마다 그 모습을 드러낸다. 상처를 치유하고 죽어 가는 사람을 회복시키려는 그녀의 갈망이 차가운 빙하를 건너 그의 응답을 받았다."
+    },
+    {
+      "id": "3a295fae-3dc7-8087-99ff-c7df503277be",
+      "name": "수수",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "summary": "수수는 자연의 물결을 ｢조화｣하고 ｢부릴｣ 수 있다. 강과 바다의 파도, 비와 안개의 물방울, 심지어는 사람 옷소매의 습기까지 모두 그녀의 뜻에 따라 자유자재로 움직인다. 공명 어빌리티를 펼치는 순간, 천지는 마치 보이지 않는 한 폭의 그림이 서서히 펼쳐지듯 강산은 찬연히 빛나고 물안개는 서로 어우러진다. 전장에서의 그녀는 부드러움 속에 예리한 칼날을 감추고 있어, 물의 부채를 휘둘러 영작의 공격을 인도하거나, 소매를 휘둘러 구름을 부릴 수도 있다."
+    },
+    {
+      "id": "35a95fae-3dc7-80fe-bdf8-d2cacb35ceff",
+      "name": "시그리카",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권갑",
+      "summary": "별처럼 반짝이는 룬이 시그리카의 눈 앞에 펼쳐진다. 서로 이어지고 겹쳐지는 그것들은 마치 먼 옛날 복잡한 수수께끼와도 같다.\n그녀는 룬에 담긴 주파수를 해석하여 자신의 힘으로 삼고, 그 아름다우면서도 눈부신 의미 그 자체를 느낀다."
+    },
+    {
+      "id": "35e95fae-3dc7-8021-9f9c-f6008eafa491",
+      "name": "아우구스타",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "대검",
+      "summary": "아우구스타가 검을 휘두르는 순간, 타오르는 금빛 전류가 전신에서 솟구쳐 무기를 진동시킨다.\n그 찰나의 섬광은 마치 깊은 암야를 뚫고 떠오른 태양처럼 눈부시게 타올라, 모든 두려움과 망설임을 불태운다."
+    },
+    {
+      "id": "35c95fae-3dc7-80b0-b805-f5dd16c4d378",
+      "name": "알토",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권총",
+      "summary": "알토는 안개를 만들 수 있을 뿐만 아니라, 안개 그 자체가 될 수도 있다. 안개의 미로 속에서 그는 모두를 놀라게 할 마술을 선보일 수 있다."
+    },
+    {
+      "id": "36395fae-3dc7-8050-9e7f-da65568d7669",
+      "name": "앙코",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "증폭기",
+      "summary": "앙코는 환상속의 친구 그늘이와 구름이를 소환하여 함께 작전한다. 앙코의 상상속에 전쟁은 재밌는 모험과도 같다."
+    },
+    {
+      "id": "35d95fae-3dc7-80e3-9749-e9e8e0644d40",
+      "name": "양양",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "summary": "기류가 주변을 맴돌며, 감지 가능한 메시지를 전달하며 독특한 영역으로 모여든다. 강한 바람이 온 하늘에 가득 차며, 유연하면서도 날카로움을 잃지 않는다."
+    },
+    {
+      "id": "3a195fae-3dc7-8059-88d7-eb79d0e3bc7d",
+      "name": "양양 · 현령",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "summary": "양양은 자연의 기류를 감지하고 모아 기의 영역을 자아낼 수 있다. 그녀는 공명의 힘으로 ｢푸른 날갯짓｣을 응집하여, 만물의 주파수를 통찰하고 중화시킴으로써 맹렬한 에너지를 부드러운 바람으로 녹여내거나, 생물 혹은 무생물에 가해진 공명 어빌리티와 그로 인한 영향을 제거할 수도 있다."
+    },
+    {
+      "id": "36095fae-3dc7-80b6-9c8c-c02dd95b89d4",
+      "name": "에이메스",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "직검",
+      "summary": "에이메스가 공명 어빌리티를 사용하면 ｢엑소스트라이더 무장｣을 구현하고 이와 융합하여 메카스카우트의 형태로 변신할 수 있다.\n그녀는 부드러운 별빛이 되어, 노래를 흥얼거리며 끝없는 밤하늘을 날아올라 어둠 속의 뭇별을 밝힌다."
+    },
+    {
+      "id": "35f95fae-3dc7-8095-b3da-f410525c6d75",
+      "name": "연무",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "권갑",
+      "summary": "연무는 뇌전의 힘을 모아 온 힘을 다해 적에게 공격을 가한다. 뛰어난 권법은 마치 천둥과 같았고, 눈부신 천둥은 삽시간에 하늘을 가른다."
+    },
+    {
+      "id": "35b95fae-3dc7-80a2-9590-c4584dd02c12",
+      "name": "유노",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권갑",
+      "summary": "그녀는 눈동자에 담긴 이슬을 대가로 달의 화살을 띄운다.\n세상을 떠도는 달은 모든 계절에 스며든다. 멈추고, 흐르고, 되풀이되며...... 끝내, 무한을 뛰어넘은 이에게 붙들려 그녀에게 끊임없는 변화를 선사할 때까지."
+    },
+    {
+      "id": "36695fae-3dc7-80ac-b8ca-e2ceaf42bb35",
+      "name": "유호",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "권갑",
+      "summary": "유호가 손을 한 차례 움직이면, 얼음으로 된 작은 골동품의 복제품이 상자 속에서 쏟아져 나온다.\n다채로운 아름다움을 자랑하는 이 진귀한 보물들은, 그녀가 골동품을 찾아다니며 쌓은 이야기들을 품고 있다."
+    },
+    {
+      "id": "35f95fae-3dc7-80a1-9dfa-ff8d9ad698eb",
+      "name": "음림",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "증폭기",
+      "summary": "인형을 소환하고, 번개의 실로 이를 조종하여 전기 공격을 가한다. 자색의 번개가 무수히 많은 사슬이 되어, 적을 단번에 묶어서 쓰러뜨린다"
+    },
+    {
+      "id": "36395fae-3dc7-8052-83fd-d433c30447ef",
+      "name": "장리",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "직검",
+      "summary": "장리는 극도로 뜨거우면서도 광범위한 파괴를 유발하는 화염을 일으킬 수 있다. 깃털 형상의 화염을 부리는 그녀는 적을 새장 속의 새처럼 도망칠 곳 없이 가두기도 한다."
+    },
+    {
+      "id": "36695fae-3dc7-807a-99f2-c76206882c3e",
+      "name": "절지",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "summary": "붓으로 그려 낸 풍경은 실체가 되어 현실에 나타난다\n살아 있는 듯한 그림은 짧은 시간이지만 쉬이 잊기 힘든 인상을 남긴다."
+    },
+    {
+      "id": "35995fae-3dc7-8074-8718-cd76010c505b",
+      "name": "젠니",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권갑",
+      "summary": "젠니는 거대한 무기를 이용해, 힘을 모아 강력한 일격을 가한다.\n넘쳐나는 에너지는 그녀의 흉터와 머리카락에서 거칠게 흐르기 때문에, 닿으면 미약한 작열감이 느껴진다."
+    },
+    {
+      "id": "3bf95fae-3dc7-80c1-8d1e-faa7793ca6a4",
+      "name": "청초",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "summary": "청초가 구사하는 심검(心劍)은 즉 마음을 검의(劍意)로 승화시켜, 수만 자루의 비검(飛劍)을 벼려내어 뜻하는 바대로 자유롭게 부리는 능력이다. 검광이 떨어지는 곳에는 흉살(凶煞)이 흩어지고 모든 삿된 것들이 물러난다.그녀의 검술은 후천적으로 터득한 것이나 이미 무검(無劍)의 경지에 이르렀으니, 칠현금을 타거나 흩날리는 꽃잎을 꺾는 것만으로도, 그 모든 것을 검으로 삼아 적을 베어낼 수 있다."
+    },
+    {
+      "id": "35995fae-3dc7-800d-8ffb-c8f0ed5b128c",
+      "name": "치사",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "대검",
+      "summary": "치사의 눈에는 세상 만물의 약점이 ｢현｣의 형태로 드러난다.\n그녀가 사물의 ｢구조｣를 꿰뚫어 분석하면, 어느샌가 적의 ｢현｣은 그녀의 가위에 의해 잘려있다."
+    },
+    {
+      "id": "36495fae-3dc7-8019-8d04-da704ef9f982",
+      "name": "치샤",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "권총",
+      "summary": "치샤의 대표 무기는, 그녀의 끝없이 샘솟는 열정이다. 그녀는 이 열정을 손끝으로 끌어내어 총알로 변환하며, 적에게 끝없는 총알을 쏘아낸다."
+    },
+    {
+      "id": "35b95fae-3dc7-807a-9575-f629deafad31",
+      "name": "카르티시아",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "summary": "만물을 녹여내는 바다와 세상을 가르는 폭풍을 서로 분리하고 또 융합시킨다.\n하늘까지 닿는 파도를 일으키고, 소용돌이와 조수를 휘몰아치게 하는 이 힘 속에서 기사의 적은 무너지고 사라진다."
+    },
+    {
+      "id": "36595fae-3dc7-80ec-b4d4-c19dd7082fef",
+      "name": "카를로타",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "권총",
+      "summary": "그녀는 예술적 미학을 전투 기술에 녹여내어, 찬란한 결정체를 통해 죽음의 인사를 건넨다.\n피어나고 또 시드는 화려한 춤사위가 균형을 찾는다. 종막이 내리고, 모든 것이 다시 고요함 속에 잠긴다."
+    },
+    {
+      "id": "35795fae-3dc7-807c-a95f-d944d5255c86",
+      "name": "카멜리아",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "summary": "머리카락 끝에서 붉은 빛이 층층히 피어오르고, 넝쿨이 주변을 휘감으며 사방을 향해 뻗어나간다.\n그렇게 물 흐르듯 굽이굽이 자라난 넝쿨은 살아 있는 듯이 움직이며, 주위의 혼란스러운 파장을 천천히 씹어삼킨다..."
+    },
+    {
+      "id": "35f95fae-3dc7-807f-b61f-e21ea8bcbc09",
+      "name": "카카루",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "대검",
+      "summary": "전도 속성을 제어하여 팬텀을 만들어, 협동 공격을 가할 수 있다. 전기와 자기장이 상생하듯, 사람과 팬텀이 교차하며, 검을 휘두르는 것이 마치 빠르고 맹렬한 뇌전처럼 종잡을 수가 없다."
+    },
+    {
+      "id": "35695fae-3dc7-804a-bb71-ccce821045b8",
+      "name": "칸타렐라",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "증폭기",
+      "summary": "해파리들이 춤추듯 몰려들어, 부드러운 촉수로 기묘한 환상의 바다를 엮어낸다.\n바다에 빠진 이가 끝없이 펼쳐진 파도 속에서 보는 것은 기괴하면서도 찬란한 꿈이니, 이는 곧 내면의 갈망이자 나지막이 속삭이는 환상이다.\n잠들려무나, 몽롱한 꿈결 속에서 깊은 곳까지 가라앉도록."
+    },
+    {
+      "id": "35995fae-3dc7-8079-9c6f-f75255bcf64d",
+      "name": "파수인",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "증폭기",
+      "summary": "교차하는 울림, 마치 베틀 위의 실 같은 그것들을 그녀는 새로운 경지로 창조해 낸다.\n해석, 형태, 연역... \"나비\"의 모든 날갯짓은 생명의 연장을 바라는 갈망이자, 그녀의 수호에 대한 증명이다."
+    },
+    {
+      "id": "35995fae-3dc7-80da-960a-f73787566eba",
+      "name": "페비",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "증폭기",
+      "summary": "성스러운 광채가 반짝이며 떠오르고, 조각난 빛살이 한데 모여 아름다운 형상을 빚어낸다.\n그녀의 모든 동작은 희망의 빛을 모아 광명의 형태를 그려내어, 온기와 평온을 전달한다."
+    },
+    {
+      "id": "35695fae-3dc7-8094-9f1f-d862fb5f918d",
+      "name": "플로로",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "증폭기",
+      "summary": "그녀는 지휘자로서 손 안의 피안화를 가볍게, 마음 가는 대로 휘두르며 연주를 지휘한다.\n그 선율 하나하나가 곧 그녀의 무기이니, 주파수는 그녀의 손 안에서 다시 배열되고 조율되어, 때로는 침묵 속에 가라앉거나, 때로는 광기에 집어삼켜진다."
+    },
+    {
+      "id": "36595fae-3dc7-8057-8983-ca5518047efd",
+      "name": "히유키",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "직검",
+      "summary": "히유키는 ｢방울｣을 매개체로 삼아, 스스로가 지닌 미래의 가능성을 엿보고 그 힘을 미리 빌려와 사용할 수 있다.\n허공에 얼음이 맺히고 꽃잎과 눈송이가 흩날리면, 그녀는 칼을 춤추듯 휘두르며 적을 매섭게 베어낸다."
+    },
+    {
+      "id": "3e995fae-3dc7-80af-9829-c4be7196c7ce",
+      "name": "쇄명",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "직검",
+      "summary": "이 주파수 봉인술은 타인의 주파수 한 가닥을 자물쇠 안에 봉해 넣을 수 있다. 오직 상대가 진심으로 승복하고 받아들여야만 계약이 성립하며, 혹은 목숨이 다해 가고 의식이 흩어질 때라면 그 의지가 쇠약해진 틈을 타 봉인할 수도 있다.주파수가 깃들면 그 어빌리티를 빌려 쓸 수 있다. 다만 이어받는 것은 근원의 잔재에 불과하므로 위력은 온전하지 않다. 또한 몸에 품을 수 있는 주파수는 많아야 열 갈래이니, 다룰 수 있는 어빌리티 역시 열 가지를 넘지 못한다."
+    },
+    {
+      "id": "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
+      "name": "여우의 별자리",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "증폭기",
+      "summary": "수호신 심월 여우는 하나를 여럿으로 나누어 여러 형상으로 펼쳐내는 권능을 지녔다. 손에 쥔 실체는 물론, 자신의 의식과 감각, 정보까지도 본래의 모습을 바탕으로 분화하고 확장할 수 있다. 그렇게 나뉜 각각의 분신은 저마다 독립된 형태를 이루면서도 여전히 그 근원과 이어져 있어 서로의 감각을 공유하며, 필요에 따라 다시 하나로 합쳐질 수도 있다.심월 여우는 특히 기관 구조에 정통하다. 장치가 맞물리고 변화하는 원리를 터득한 수준은 현재의 기술을 아득히 뛰어넘으며, 여기에 분형의 권능을 더해 그 구조를 추론하고 재현하는 것은 물론, 나아가 재구축하는 것까지 가능하다. 몽주성 곳곳의 수많은 정교한 장치에는 그녀의 손길이 깃들어 있다."
+    }
+  ],
+  "wwWeapons": [
+    {
+      "id": "36e95fae-3dc7-8046-b5df-de05239af3de",
+      "name": "18형 직검 · 순간의 칼빛",
+      "type": "직검"
+    },
+    {
+      "id": "36b95fae-3dc7-8047-bff7-cfe69ac8b81a",
+      "name": "21형 권갑 · 아이언 팬텀",
+      "type": "권갑"
+    },
+    {
+      "id": "36a95fae-3dc7-8062-a0c4-e8426530e700",
+      "name": "25형 증폭기 · 울림의 멜로디",
+      "type": "증폭기"
+    },
+    {
+      "id": "36c95fae-3dc7-8087-8416-e52f43ac1494",
+      "name": "26형 권총 · 맹렬한 돌격",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8015-af73-e8d1bd222553",
+      "name": "41형 대검 · 무거운 책임",
+      "type": "대검"
+    },
+    {
+      "id": "36e95fae-3dc7-806f-ab83-ca18cc36f69a",
+      "name": "가을의 무늬",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-806e-b345-f79712875502",
+      "name": "거침없는 비상",
+      "type": "권갑"
+    },
+    {
+      "id": "36b95fae-3dc7-803b-ab61-e75e0a74cc97",
+      "name": "격동의 조력",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-8007-808b-e56a0d7a3dfe",
+      "name": "견습용 권갑",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-8012-a124-c06ce0451a1f",
+      "name": "견습용 권총",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-809b-bf9b-c531ecc549bf",
+      "name": "견습용 대검",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-8033-956a-decaad4750d0",
+      "name": "견습용 증폭기",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-80de-a114-dc0e45a3e2e3",
+      "name": "견습용 직검",
+      "type": "직검"
+    },
+    {
+      "id": "36995fae-3dc7-8007-808c-f921b7f441e9",
+      "name": "광휘의 찬송가",
+      "type": "증폭기"
+    },
+    {
+      "id": "36995fae-3dc7-80a2-bbd5-c65c57d92cce",
+      "name": "굉음",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-8042-9197-f31d25426060",
+      "name": "금빛 하늘",
+      "type": "대검"
+    },
+    {
+      "id": "36995fae-3dc7-806e-9e98-ed3b90511a1a",
+      "name": "금주의 수호",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-8077-bb47-c5f3ccc00107",
+      "name": "기묘한 울림",
+      "type": "대검"
+    },
+    {
+      "id": "36a95fae-3dc7-80bb-b76f-f2b62e62a88d",
+      "name": "꼭두각시의 손",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-80bd-9946-d7ed0be86a01",
+      "name": "날카로운 봄",
+      "type": "직검"
+    },
+    {
+      "id": "3a495fae-3dc7-800c-9987-e569cd164fcd",
+      "name": "노을에 깃든 이슬",
+      "type": "증폭기"
+    },
+    {
+      "id": "36c95fae-3dc7-802d-84f8-e7ae72e49204",
+      "name": "뇌전",
+      "type": "권총"
+    },
+    {
+      "id": "36895fae-3dc7-8061-aeb1-d870a858027c",
+      "name": "눈부신 빛",
+      "type": "증폭기"
+    },
+    {
+      "id": "36d95fae-3dc7-808b-8591-e02f83ac4bfe",
+      "name": "레이저 변형",
+      "type": "직검"
+    },
+    {
+      "id": "36e95fae-3dc7-80eb-b38b-e994d51254a3",
+      "name": "마음의 닻",
+      "type": "직검"
+    },
+    {
+      "id": "36b95fae-3dc7-80f3-af37-ca652e88614f",
+      "name": "만취의 영웅지",
+      "type": "권갑"
+    },
+    {
+      "id": "36e95fae-3dc7-8090-bd07-cf2abcc3a50c",
+      "name": "멸망의 주파수",
+      "type": "대검"
+    },
+    {
+      "id": "36c95fae-3dc7-804d-9c40-e915a6c24b29",
+      "name": "물결의 파동",
+      "type": "권갑"
+    },
+    {
+      "id": "36995fae-3dc7-804c-9990-ef449dfe5bce",
+      "name": "뭇별의 교향곡",
+      "type": "증폭기"
+    },
+    {
+      "id": "36a95fae-3dc7-80c6-9dee-ff680ad5c4e5",
+      "name": "바다의 선물",
+      "type": "증폭기"
+    },
+    {
+      "id": "36995fae-3dc7-8074-9f17-f86ff8134042",
+      "name": "바다의 속삭임",
+      "type": "증폭기"
+    },
+    {
+      "id": "36c95fae-3dc7-8082-941c-edd4504e19fb",
+      "name": "바람의 악센트",
+      "type": "권갑"
+    },
+    {
+      "id": "36895fae-3dc7-806c-8354-e616a333fd04",
+      "name": "별하늘 연산 측정기",
+      "type": "대검"
+    },
+    {
+      "id": "36995fae-3dc7-802c-8ab1-c251135de0fe",
+      "name": "보손 관측기",
+      "type": "증폭기"
+    },
+    {
+      "id": "36c95fae-3dc7-80a8-8163-de4cf1cd3453",
+      "name": "부동의 안개",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8027-911c-f075d932598e",
+      "name": "불길",
+      "type": "대검"
+    },
+    {
+      "id": "36c95fae-3dc7-8010-8b34-dabeaa0a295a",
+      "name": "불멸의 성화",
+      "type": "권총"
+    },
+    {
+      "id": "36b95fae-3dc7-8002-b16e-f6f086e0ff39",
+      "name": "불빛의 심판",
+      "type": "권갑"
+    },
+    {
+      "id": "36d95fae-3dc7-80e6-8a31-fc71bf39aa3a",
+      "name": "상승의 서녘",
+      "type": "직검"
+    },
+    {
+      "id": "36895fae-3dc7-8096-b16c-e718ada2d197",
+      "name": "서린 불꽃",
+      "type": "직검"
+    },
+    {
+      "id": "36b95fae-3dc7-80d6-b9ca-fefcb9626134",
+      "name": "세상 만물의 진리",
+      "type": "권갑"
+    },
+    {
+      "id": "36b95fae-3dc7-803b-8e63-f1ca75ae17fb",
+      "name": "솔스원의 해석",
+      "type": "권갑"
+    },
+    {
+      "id": "36e95fae-3dc7-80fb-b96f-fdc787d9b49b",
+      "name": "솟아오르는 화염",
+      "type": "직검"
+    },
+    {
+      "id": "3c195fae-3dc7-80dc-8a17-e5715428c29a",
+      "name": "수많은 인도",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-8068-b3d8-ff5af480c42d",
+      "name": "수행자의 권갑 · 파괴",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-80ee-a0f0-f221f74c163b",
+      "name": "수행자의 권총 · 통찰",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8034-bba0-f2f0be996d1f",
+      "name": "수행자의 대검 · 벽로",
+      "type": "대검"
+    },
+    {
+      "id": "36995fae-3dc7-8051-8676-e7875e5f599d",
+      "name": "수행자의 증폭기 · 탐색",
+      "type": "증폭기"
+    },
+    {
+      "id": "36d95fae-3dc7-80bb-b98c-e8edb8982c83",
+      "name": "수행자의 직검 · 행적",
+      "type": "직검"
+    },
+    {
+      "id": "36b95fae-3dc7-808c-97fb-c6fa1dc77fdd",
+      "name": "수호자의 권갑 · 강력",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-8032-b170-d005f40a69a0",
+      "name": "수호자의 권총 · 용맹",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8032-b9c1-c0be9f52fcf0",
+      "name": "수호자의 대검 · 근성",
+      "type": "대검"
+    },
+    {
+      "id": "36995fae-3dc7-8098-8e55-f8b0c660d4b2",
+      "name": "수호자의 증폭기 · 모략",
+      "type": "증폭기"
+    },
+    {
+      "id": "36d95fae-3dc7-805a-b224-d82bd13e0196",
+      "name": "수호자의 직검 · 기민",
+      "type": "직검"
+    },
+    {
+      "id": "36d95fae-3dc7-8028-98d4-e2e380efbaaa",
+      "name": "숙명에 맞서는 관",
+      "type": "직검"
+    },
+    {
+      "id": "36c95fae-3dc7-80db-bf2c-f42fc2bae439",
+      "name": "숲속의 아리아",
+      "type": "권총"
+    },
+    {
+      "id": "37995fae-3dc7-8022-ad6d-c943c052e794",
+      "name": "스컬 스래셔",
+      "type": "권총"
+    },
+    {
+      "id": "37995fae-3dc7-8083-a92a-ef58ce995814",
+      "name": "스펙트럴 트리거",
+      "type": "권총"
+    },
+    {
+      "id": "36c95fae-3dc7-806c-8856-e1e5ac10cf72",
+      "name": "스펙트럼 블래스터",
+      "type": "권총"
+    },
+    {
+      "id": "36a95fae-3dc7-80a0-98a4-e70f2dc1dbc3",
+      "name": "심해의 메아리",
+      "type": "증폭기"
+    },
+    {
+      "id": "3a495fae-3dc7-808e-8a07-fda5fc7181a8",
+      "name": "아득히 푸른 하늘",
+      "type": "직검"
+    },
+    {
+      "id": "36d95fae-3dc7-8024-8e6f-fd6019f2d295",
+      "name": "야귀의 신념",
+      "type": "직검"
+    },
+    {
+      "id": "36c95fae-3dc7-80f5-bb1a-e2e74a4867f8",
+      "name": "얽혀진 빛과 그림자",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8013-96e3-faabd42e63ac",
+      "name": "에너지 절단",
+      "type": "대검"
+    },
+    {
+      "id": "36c95fae-3dc7-8092-b2d7-ca6fdce90c42",
+      "name": "역설의 격류",
+      "type": "권총"
+    },
+    {
+      "id": "36d95fae-3dc7-8005-b4d3-dac132e649d9",
+      "name": "영원의 붕괴",
+      "type": "직검"
+    },
+    {
+      "id": "36d95fae-3dc7-806f-8095-d1aa03595cc4",
+      "name": "영원한 샛별",
+      "type": "직검"
+    },
+    {
+      "id": "36d95fae-3dc7-80fa-8815-c64fd78f9d02",
+      "name": "예리한 날개깃",
+      "type": "직검"
+    },
+    {
+      "id": "3c195fae-3dc7-807d-ad7a-db3073f47e71",
+      "name": "옥빛 구름",
+      "type": "직검"
+    },
+    {
+      "id": "36a95fae-3dc7-804a-9069-c4cbcbe708e5",
+      "name": "옥수 비단",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-8019-8bb1-d2af4476b302",
+      "name": "용서의 명상록",
+      "type": "대검"
+    },
+    {
+      "id": "36c95fae-3dc7-8073-b95c-f6c9909629b5",
+      "name": "원능의 권갑 · 견습IV",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-808d-bc2b-e69ea7cbf804",
+      "name": "원능의 권총 · 견습III",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-808f-9463-d25d897aa638",
+      "name": "원능의 대검 · 견습I",
+      "type": "대검"
+    },
+    {
+      "id": "36a95fae-3dc7-8075-bce2-ec069b66a8ae",
+      "name": "원능의 증폭기 · 견습V",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-8084-993e-ddb2335917a7",
+      "name": "원능의 직검 · 견습II",
+      "type": "직검"
+    },
+    {
+      "id": "36c95fae-3dc7-80ca-9127-c51e79d4b21c",
+      "name": "위상의 파동",
+      "type": "권총"
+    },
+    {
+      "id": "36895fae-3dc7-8087-9125-ff1a5c6febfa",
+      "name": "위조된 작은별",
+      "type": "증폭기"
+    },
+    {
+      "id": "36995fae-3dc7-8053-bf6b-e234da80d183",
+      "name": "융합의 원반",
+      "type": "증폭기"
+    },
+    {
+      "id": "36995fae-3dc7-80a8-bd8e-cb24e27bbfa0",
+      "name": "잊혀진 피안의 슬픈 악장",
+      "type": "증폭기"
+    },
+    {
+      "id": "36c95fae-3dc7-80c1-9c24-e422271deb90",
+      "name": "작별의 로맨스",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8064-a035-ffb34f88db2c",
+      "name": "장야의 불빛",
+      "type": "대검"
+    },
+    {
+      "id": "36e95fae-3dc7-80fa-8e3e-f0de03a2c802",
+      "name": "저무는 동녘",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-805e-9200-f6a9fd514881",
+      "name": "전우의 의리",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-80b1-9e5b-d473788c5996",
+      "name": "죽음과 춤",
+      "type": "권총"
+    },
+    {
+      "id": "36d95fae-3dc7-8034-bd38-ca93bd186bb9",
+      "name": "천공의 광경",
+      "type": "직검"
+    },
+    {
+      "id": "36c95fae-3dc7-80ad-923b-eff4fda96ee3",
+      "name": "천공의 순간",
+      "type": "권총"
+    },
+    {
+      "id": "36b95fae-3dc7-80cf-a678-cf12f19c3ce2",
+      "name": "천공의 역행",
+      "type": "권갑"
+    },
+    {
+      "id": "36e95fae-3dc7-8091-9792-cd64ddeeb256",
+      "name": "천년의 회류",
+      "type": "직검"
+    },
+    {
+      "id": "36e95fae-3dc7-807b-8da5-e43cdc95195e",
+      "name": "천둥벼락을 다스리는 권능",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-8007-a081-dacbd8bf7d06",
+      "name": "천상의 나선",
+      "type": "권갑"
+    },
+    {
+      "id": "36e95fae-3dc7-8093-8f2a-f87b0d29de25",
+      "name": "천상의 음률",
+      "type": "대검"
+    },
+    {
+      "id": "36e95fae-3dc7-80b1-9ca9-c26923ada4c5",
+      "name": "청룡의 천장",
+      "type": "대검"
+    },
+    {
+      "id": "36995fae-3dc7-800b-803a-db2d9b12d537",
+      "name": "청음",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-8073-8bf2-ea2afbfbc257",
+      "name": "쿠모키리(曇斬)",
+      "type": "대검"
+    },
+    {
+      "id": "36c95fae-3dc7-805d-9da1-f1411a5ab4ac",
+      "name": "태양 불꽃",
+      "type": "권총"
+    },
+    {
+      "id": "36c95fae-3dc7-8082-9958-e63d9029bc3a",
+      "name": "태초의 권갑",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-80fc-ac58-c03700557585",
+      "name": "태초의 권총",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-80a1-92a6-ed37269c16ba",
+      "name": "태초의 대검",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-8066-b911-d719ddda32bb",
+      "name": "태초의 증폭기",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-80d5-9397-c79b5978f455",
+      "name": "태초의 직검",
+      "type": "직검"
+    },
+    {
+      "id": "36e95fae-3dc7-80bc-9e3e-f154b7bd5ea4",
+      "name": "태평성대",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-8002-814f-f965536b649f",
+      "name": "파도의 기록",
+      "type": "증폭기"
+    },
+    {
+      "id": "36a95fae-3dc7-80aa-944d-fc39774c9f5d",
+      "name": "판타지 변주",
+      "type": "증폭기"
+    },
+    {
+      "id": "36c95fae-3dc7-8098-964c-ddeb20d412c4",
+      "name": "팔방의 천추",
+      "type": "권갑"
+    },
+    {
+      "id": "36d95fae-3dc7-80bb-85e5-db0d3fe0dd4b",
+      "name": "푸른 의지",
+      "type": "직검"
+    },
+    {
+      "id": "36e95fae-3dc7-804b-8f0d-de59860dbb9b",
+      "name": "푸른물결의 빛",
+      "type": "대검"
+    },
+    {
+      "id": "36d95fae-3dc7-809d-aa21-d578d7d3cec9",
+      "name": "풍류의 우화시",
+      "type": "직검"
+    },
+    {
+      "id": "37995fae-3dc7-8044-a4ea-f959789829f7",
+      "name": "프리즈 프레임",
+      "type": "증폭기"
+    },
+    {
+      "id": "36b95fae-3dc7-80d0-9e9d-cf76282b247a",
+      "name": "한낮의 의지",
+      "type": "권갑"
+    },
+    {
+      "id": "36e95fae-3dc7-80d2-bb8b-dbfcc40dd575",
+      "name": "행진의 서곡",
+      "type": "직검"
+    },
+    {
+      "id": "36895fae-3dc7-805d-841f-f00fbb9a5fb1",
+      "name": "허위의 왈츠",
+      "type": "증폭기"
+    },
+    {
+      "id": "36d95fae-3dc7-8099-9587-c08edf760d0a",
+      "name": "혈맹의 약속",
+      "type": "직검"
+    },
+    {
+      "id": "36c95fae-3dc7-80e2-8367-c20dc6117f5b",
+      "name": "화려한 악곡",
+      "type": "권총"
+    },
+    {
+      "id": "36b95fae-3dc7-801f-8983-c21385142fa5",
+      "name": "황금 권갑",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-80fd-9dd9-c845f38f18d4",
+      "name": "흑야의 권갑 · 흑빛",
+      "type": "권갑"
+    },
+    {
+      "id": "36c95fae-3dc7-807a-bc7d-d4250b9f72ed",
+      "name": "흑야의 권총 · 흑성",
+      "type": "권총"
+    },
+    {
+      "id": "36e95fae-3dc7-8050-9294-ef461610881e",
+      "name": "흑야의 대검 · 현명",
+      "type": "대검"
+    },
+    {
+      "id": "36b95fae-3dc7-8048-8117-ef81ca62b5c6",
+      "name": "흑야의 증폭기 · 흑광",
+      "type": "증폭기"
+    },
+    {
+      "id": "36e95fae-3dc7-8093-a1db-c689d5694fab",
+      "name": "흑야의 직검 · 흑뢰",
+      "type": "직검"
+    },
+    {
+      "id": "36e95fae-3dc7-8078-a3dd-c29637e556f8",
+      "name": "흔들리지 않는 용기",
+      "type": "직검"
+    },
+    {
+      "id": "36b95fae-3dc7-80ad-bfb1-d19b0528e026",
+      "name": "희비극",
+      "type": "권갑"
+    },
+    {
+      "id": "3e995fae-3dc7-80ac-8c1b-c1aa2325024f",
+      "name": "옥궐에 피는 꽃",
+      "type": "증폭기"
+    },
+    {
+      "id": "3e995fae-3dc7-801b-889c-eb7057b0ddfd",
+      "name": "적막한 어둠",
+      "type": "직검"
+    }
+  ],
+  "wwGuides": [
+    {
+      "id": "jingran",
+      "name": "경연"
+    },
+    {
+      "id": "qingcao",
+      "name": "청초"
+    },
+    {
+      "id": "susu",
+      "name": "수수"
+    },
+    {
+      "id": "yangyang",
+      "name": "양양"
+    },
+    {
+      "id": "rebecca",
+      "name": "레베카"
+    },
+    {
+      "id": "lucy",
+      "name": "루시"
+    },
+    {
+      "id": "lucilla",
+      "name": "루실라"
+    },
+    {
+      "id": "denia",
+      "name": "데니아"
+    },
+    {
+      "id": "sigrika",
+      "name": "시그리카"
+    },
+    {
+      "id": "aemeath",
+      "name": "에이메스"
+    },
+    {
+      "id": "luuk",
+      "name": "루크"
+    },
+    {
+      "id": "mornye",
+      "name": "모니에"
+    },
+    {
+      "id": "linne",
+      "name": "린네"
+    },
+    {
+      "id": "chisa",
+      "name": "치사"
+    },
+    {
+      "id": "galbrena",
+      "name": "갈브레나"
+    },
+    {
+      "id": "qiuyuan",
+      "name": "구원"
+    },
+    {
+      "id": "augusta",
+      "name": "아우구스타"
+    },
+    {
+      "id": "iuno",
+      "name": "유노"
+    },
+    {
+      "id": "phrolova",
+      "name": "플로로"
+    },
+    {
+      "id": "lupa",
+      "name": "루파"
+    },
+    {
+      "id": "cartethyia",
+      "name": "카르티시아"
+    },
+    {
+      "id": "chaconne",
+      "name": "샤콘"
+    },
+    {
+      "id": "zani",
+      "name": "젠니"
+    },
+    {
+      "id": "cantarella",
+      "name": "칸타렐라"
+    },
+    {
+      "id": "brant",
+      "name": "브렌트"
+    },
+    {
+      "id": "phoebe",
+      "name": "페비"
+    },
+    {
+      "id": "rococo",
+      "name": "로코코"
+    },
+    {
+      "id": "rover_aero",
+      "name": "방랑자 · 기류"
+    },
+    {
+      "id": "camellya",
+      "name": "카멜리아"
+    },
+    {
+      "id": "the_shorekeeper",
+      "name": "파수인"
+    },
+    {
+      "id": "xiangli_yao",
+      "name": "상리요"
+    },
+    {
+      "id": "jinhsi",
+      "name": "금희"
+    },
+    {
+      "id": "changli",
+      "name": "장리"
+    },
+    {
+      "id": "jianxin",
+      "name": "감심"
+    },
+    {
+      "id": "rover_spectro",
+      "name": "방랑자 · 회절"
+    },
+    {
+      "id": "verina",
+      "name": "벨리나"
+    },
+    {
+      "id": "yinlin",
+      "name": "음림"
+    },
+    {
+      "id": "calcharo",
+      "name": "카카루"
+    },
+    {
+      "id": "buling",
+      "name": "복링"
+    },
+    {
+      "id": "lumi",
+      "name": "루미"
+    },
+    {
+      "id": "danjin",
+      "name": "단근"
+    },
+    {
+      "id": "taoqi",
+      "name": "도기"
+    },
+    {
+      "id": "aalto",
+      "name": "알토"
+    },
+    {
+      "id": "yangyang",
+      "name": "양양"
+    },
+    {
+      "id": "yuanwu",
+      "name": "연무"
+    },
+    {
+      "id": "encore",
+      "name": "앙코"
+    },
+    {
+      "id": "mortefi",
+      "name": "모르테피"
+    },
+    {
+      "id": "chixia",
+      "name": "치샤"
+    },
+    {
+      "id": "hiyuki",
+      "name": "히유키"
+    },
+    {
+      "id": "carlotta",
+      "name": "카를로타"
+    },
+    {
+      "id": "youhu",
+      "name": "유호"
+    },
+    {
+      "id": "zhezhi",
+      "name": "절지"
+    },
+    {
+      "id": "lingyang",
+      "name": "능양"
+    },
+    {
+      "id": "sanhua",
+      "name": "산화"
+    },
+    {
+      "id": "baizhi",
+      "name": "설지"
+    },
+    {
+      "id": "jiyan",
+      "name": "기염"
+    }
+  ],
+  "nteCharacters": [
+    {
+      "id": "3b895fae-3dc7-8079-b2b2-f06408a2e0c5",
+      "name": "감정사",
+      "gameId": "nte",
+      "attribute": "빛",
+      "arc": "고체",
+      "summary": "베르트하이머 수치가 측정되지 않는 유일한 이능력자"
+    },
+    {
+      "id": "3b895fae-3dc7-80bb-b792-e14dad21aa53",
+      "name": "구원",
+      "gameId": "nte",
+      "attribute": "령",
+      "arc": "고체",
+      "summary": "다재다능하고 예측 불가한 스테리 엘리트 배송원 겸 「점장 대리」"
+    },
+    {
+      "id": "3b695fae-3dc7-8049-a2d0-c0cd166b3c08",
+      "name": "나나리",
+      "gameId": "nte",
+      "attribute": "령",
+      "arc": "플라스마",
+      "summary": "가문 멤버를 모집 중인 「콜린스 가문」의 초대 가주"
+    },
+    {
+      "id": "3b895fae-3dc7-8041-af38-f369972e3f5f",
+      "name": "다포딜",
+      "gameId": "nte",
+      "attribute": "암",
+      "arc": "액체",
+      "summary": "말수 적고 무뚝뚝한 「에이본」 전속 보디가드"
+    },
+    {
+      "id": "3b395fae-3dc7-8068-b0ae-c15097e8d028",
+      "name": "라크리모사",
+      "gameId": "nte",
+      "attribute": "암",
+      "arc": "액체",
+      "summary": "이상 관리국 직원 중 시설 보수 요청 최다 기록 보유자"
+    },
+    {
+      "id": "3d695fae-3dc7-80c6-9b30-c0be561ee825",
+      "name": "링코",
+      "gameId": "nte",
+      "attribute": "령",
+      "arc": "플라스마",
+      "summary": "만물의 「전파」를 들을 수 있는 소녀, 줄여서 전파계 소녀다."
+    },
+    {
+      "id": "3b695fae-3dc7-801b-b814-ca36641fbb5d",
+      "name": "민트",
+      "gameId": "nte",
+      "attribute": "령",
+      "arc": "액체",
+      "summary": "평가를 매길 수 있다면,수용팀 내에서 「이상에게 가장 많이 속은」 사람"
+    },
+    {
+      "id": "3b795fae-3dc7-80c7-9323-eb0552ede851",
+      "name": "백장",
+      "gameId": "nte",
+      "attribute": "주",
+      "arc": "결합",
+      "summary": "「가장 대장 같지 않은 대장」 순위 상위권에 있는 E.T.D 4팀 대장"
+    },
+    {
+      "id": "3ae95fae-3dc7-8067-8ee3-f843de7fddd9",
+      "name": "사키리",
+      "gameId": "nte",
+      "attribute": "주",
+      "arc": "기체",
+      "summary": "겉보기에도 실제로도 만만치 않은 에이본의 독보적 존재"
+    },
+    {
+      "id": "3b395fae-3dc7-8022-8d73-fd0ecebbacb9",
+      "name": "스키아",
+      "gameId": "nte",
+      "attribute": "상",
+      "arc": "기체",
+      "summary": "항상 E.T.D 4팀의 대장으로 오해받는 부대장"
+    },
+    {
+      "id": "3b995fae-3dc7-8032-90e5-ca6515e9dc86",
+      "name": "신쿠",
+      "gameId": "nte",
+      "attribute": "빛",
+      "arc": "결합",
+      "summary": "남들과 거리를 두는 무뚝뚝한 행동파"
+    },
+    {
+      "id": "3b895fae-3dc7-809a-8f54-c0fcebb92d6d",
+      "name": "아들러",
+      "gameId": "nte",
+      "attribute": "주",
+      "arc": "결합",
+      "summary": "에이본 사람들과 이웃의 신뢰를 한 몸에 받는 완벽한 집사"
+    },
+    {
+      "id": "3b795fae-3dc7-805c-9a95-e4814aeb8b2f",
+      "name": "에드가",
+      "gameId": "nte",
+      "attribute": "빛",
+      "arc": "액체",
+      "summary": "머리가 비상하며 어린아이처럼 보인다. 실제로도 아직 어리다."
+    },
+    {
+      "id": "3b895fae-3dc7-80ae-8b6b-dfe4b56ca15b",
+      "name": "우미츠키",
+      "gameId": "nte",
+      "attribute": "혼",
+      "arc": "플라스마",
+      "summary": "우미츠키를 만난 뒤 알게 된 헤테로 시티의 흥미로운 사실: 도로에서 해파리를 타고 다니는 건 교통 위반이 아니다."
+    },
+    {
+      "id": "3b995fae-3dc7-808f-9687-e2b8ac759cfa",
+      "name": "일로이",
+      "gameId": "nte",
+      "attribute": "령",
+      "arc": "액체",
+      "summary": "오그네스 일로이는 모범적인 아이예요."
+    },
+    {
+      "id": "3c195fae-3dc7-80bd-b92a-c06833788d81",
+      "name": "잔홍",
+      "gameId": "nte",
+      "attribute": "주",
+      "arc": "기체",
+      "summary": "비밀조직 「주홍글씨」의 전 조직원, 코드네임 「붉은 접시꽃」, 현재 게흐로스 섬 수감자."
+    },
+    {
+      "id": "3b995fae-3dc7-80df-a091-e255127f962c",
+      "name": "치즈",
+      "gameId": "nte",
+      "attribute": "빛",
+      "arc": "기체",
+      "summary": "살짝 소심해 보이지만, 핑크퍼스 은행의 믿음직한 매니저다."
+    },
+    {
+      "id": "3b895fae-3dc7-80f6-857e-dc121fcfe913",
+      "name": "카오스",
+      "gameId": "nte",
+      "attribute": "상",
+      "arc": "결합",
+      "summary": "E.T.D 6팀 현직 대원이자 가장 정직하고 믿음직한 친구"
+    },
+    {
+      "id": "3b895fae-3dc7-8086-b9d5-cc6b6ce07714",
+      "name": "파디아",
+      "gameId": "nte",
+      "attribute": "혼",
+      "arc": "결합",
+      "summary": "위험하면서도 매력적인 E.T.D 멤버, 국장의 알 수 없는 인선 기준을 보여주는 대표적 인물"
+    },
+    {
+      "id": "3b695fae-3dc7-802f-96e5-c840bfd420ae",
+      "name": "하니엘",
+      "gameId": "nte",
+      "attribute": "혼",
+      "arc": "고체",
+      "summary": "세상을 구하는 미소녀가 되고 싶은 고등학생"
+    },
+    {
+      "id": "3b895fae-3dc7-80a0-bb0f-e37347b697a7",
+      "name": "하토르",
+      "gameId": "nte",
+      "attribute": "상",
+      "arc": "플라스마",
+      "summary": "임무 일정표를 작성하고 철저하게 실행에 옮기는 높은 효율성의 배송원"
+    },
+    {
+      "id": "3b895fae-3dc7-805d-bccd-ef15766973d1",
+      "name": "호토리",
+      "gameId": "nte",
+      "attribute": "빛",
+      "arc": "고체",
+      "summary": "안목이 그리 뛰어나진 않은 것 같은, 하루 종일 술에 젖어 있는 에이본 점주"
+    }
+  ],
+  "nteArcs": [
+    {
+      "id": "3ca95fae-3dc7-80ff-98b7-fcb7a51ca6f2",
+      "name": "「마지막 장미」",
+      "type": "액체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8019-aee8-c8875d237b47",
+      "name": "「세상을 뒤흔든 비」",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8088-885b-f23cb1cb443a",
+      "name": "「우리.」",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3ca95fae-3dc7-804a-9808-c094c02892b6",
+      "name": "「은하의 찰나」",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3c695fae-3dc7-8068-bf37-ce32ffb1d1b7",
+      "name": "가면 뒤의 눈물",
+      "type": "기체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8060-b4b3-f7f14356c767",
+      "name": "고래의 노래",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3ca95fae-3dc7-8091-b9e1-d558ecaea0f7",
+      "name": "광란의 「전자음악」",
+      "type": "액체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8096-bc6f-fd9816b7f5f8",
+      "name": "광속의 솜뭉치",
+      "type": "액체"
+    },
+    {
+      "id": "3c695fae-3dc7-8030-b9d5-d58d4f40e795",
+      "name": "광폭의 솜뭉치",
+      "type": "결합"
+    },
+    {
+      "id": "3ca95fae-3dc7-802c-afa3-d34ea1fb5ed9",
+      "name": "금기의 문",
+      "type": "액체"
+    },
+    {
+      "id": "3c695fae-3dc7-803e-bf56-ea4b1290d6bf",
+      "name": "기민의 솜뭉치",
+      "type": "기체"
+    },
+    {
+      "id": "3c695fae-3dc7-80e2-907d-d116bec506e8",
+      "name": "동백꽃 모임",
+      "type": "결합"
+    },
+    {
+      "id": "3ca95fae-3dc7-80de-8624-c726575d1c9a",
+      "name": "뒤틀린 도시의 부름",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3c695fae-3dc7-806a-80cc-f8e532bb07d9",
+      "name": "때는 온다",
+      "type": "결합"
+    },
+    {
+      "id": "3c695fae-3dc7-80fd-a22f-e0187d22a97c",
+      "name": "만인의 갈망",
+      "type": "결합"
+    },
+    {
+      "id": "3c695fae-3dc7-80d3-816e-f1196af209cc",
+      "name": "말하기 어려운 마음",
+      "type": "기체"
+    },
+    {
+      "id": "3c695fae-3dc7-808e-b47f-cadc85d8b5c1",
+      "name": "망할 인연",
+      "type": "결합"
+    },
+    {
+      "id": "3c895fae-3dc7-80b3-9a59-c153a48a82bb",
+      "name": "머리 조심",
+      "type": "기체"
+    },
+    {
+      "id": "3c495fae-3dc7-80f4-987c-fc4ec94e87e6",
+      "name": "물망산",
+      "type": "결합"
+    },
+    {
+      "id": "3c695fae-3dc7-80aa-9d6e-f32ad1331a57",
+      "name": "미소 천사",
+      "type": "기체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80b8-8a0f-fcfcd661bc7f",
+      "name": "발도",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3ca95fae-3dc7-8035-bb57-d1d7329a6479",
+      "name": "백만불짜리 미소",
+      "type": "고체"
+    },
+    {
+      "id": "3c695fae-3dc7-80ca-a859-e7873cabc270",
+      "name": "봄을 심는 바보",
+      "type": "결합"
+    },
+    {
+      "id": "3ca95fae-3dc7-8063-8684-d66c8904adb8",
+      "name": "불굴의 솜뭉치",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3ca95fae-3dc7-807c-a37c-d8f693298e2c",
+      "name": "빛나는 나날",
+      "type": "액체"
+    },
+    {
+      "id": "3c895fae-3dc7-8022-ab9b-db53081ec1db",
+      "name": "생각하는 고양이",
+      "type": "기체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80f9-9d40-d727435a23e2",
+      "name": "성공을 향한 첫 걸음",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80ef-a6b1-d75e30172526",
+      "name": "시간 도둑",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8078-a146-df2819cc50bd",
+      "name": "시간 밖으로의 행진",
+      "type": "고체"
+    },
+    {
+      "id": "3c895fae-3dc7-80ce-9e43-ccf6e1050085",
+      "name": "심장을 좀먹는 칼",
+      "type": "기체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80b2-97d0-df252893abfd",
+      "name": "암흑 청춘의 망상",
+      "type": "액체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80a8-bb0e-d5ca8bfe0606",
+      "name": "염혼의 질주",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3ca95fae-3dc7-80af-aede-d17d5f1064b7",
+      "name": "영감 배틀로얄",
+      "type": "액체"
+    },
+    {
+      "id": "3c695fae-3dc7-802d-b328-ecef8c99a7e1",
+      "name": "영원한 왈츠",
+      "type": "결합"
+    },
+    {
+      "id": "3ca95fae-3dc7-80f3-a934-ea51dc0be66c",
+      "name": "오라오라!",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3ca95fae-3dc7-80cd-a703-dfbd4b6b7873",
+      "name": "용맹의 솜뭉치",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-800a-aade-ddc9f6db06cd",
+      "name": "원행자의 목소리",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3c695fae-3dc7-8075-9092-da2ca9750f5c",
+      "name": "위험한 게임",
+      "type": "결합"
+    },
+    {
+      "id": "3c695fae-3dc7-80e3-86e9-c1452b1d6da6",
+      "name": "입에 쓴 약이 몸에 좋다",
+      "type": "결합"
+    },
+    {
+      "id": "3ca95fae-3dc7-80ea-af06-cee599dd48ce",
+      "name": "잊힌 자",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80fe-a6e5-f58bd9e714b2",
+      "name": "정화 개시",
+      "type": "액체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80d5-948d-cd52bd4f044f",
+      "name": "준비, 준비",
+      "type": "플라즈마"
+    },
+    {
+      "id": "3c695fae-3dc7-80d7-b8ea-d8059a94e6dc",
+      "name": "착한 강아지의 여행",
+      "type": "기체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8004-9cbe-d36775bf9e3c",
+      "name": "폭발 현장",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-8069-bacd-e10fcfd56224",
+      "name": "헤테로의 안녕",
+      "type": "고체"
+    },
+    {
+      "id": "3ca95fae-3dc7-803a-93f3-f0f65b57b461",
+      "name": "현실 도피처",
+      "type": "고체"
+    },
+    {
+      "id": "3c695fae-3dc7-8060-b153-c34e7fc27cf0",
+      "name": "홍염의 신기루",
+      "type": "결합"
+    },
+    {
+      "id": "3c895fae-3dc7-804f-8c79-d61fdaa3c437",
+      "name": "화려한 조명 속 광란의 파티",
+      "type": "기체"
+    },
+    {
+      "id": "3ca95fae-3dc7-80d3-a32f-c007dc349748",
+      "name": "휴일",
+      "type": "고체"
+    }
+  ]
+}

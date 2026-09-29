@@ -6,7 +6,12 @@ import { useTranslation } from 'react-i18next';
 import { Character } from '../types';
 
 type SearchGameId = 'hsr' | 'ww' | 'nte';
-type SearchGameData = ReturnType<typeof import('../data/dataManager').getGameData>;
+interface SearchGameData {
+  CHARACTER_DB: any[];
+  LIGHTCONE_DB?: any[];
+  WEAPON_DATA?: any[];
+  GUIDES: any[];
+}
 
 const EMPTY_GAME_DATA = {
   CHARACTER_DB: [],
@@ -233,19 +238,29 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
 
     const loadRequestedData = async () => {
       try {
-        const [dataManagerModule, aniimoModule] = await Promise.all([
-          missingGames.length > 0 ? import('../data/dataManager') : Promise.resolve(null),
+        const [loadedGames, aniimoModule] = await Promise.all([
+          Promise.all(missingGames.map(async game => {
+            if (game === 'hsr') {
+              const module = await import('../data/search/hsr');
+              return [game, module.loadHsrSearchData(currentLang)] as const;
+            }
+            if (game === 'ww') {
+              const module = await import('../data/search/ww');
+              return [game, module.loadWwSearchData()] as const;
+            }
+            const module = await import('../data/search/nte');
+            return [game, module.loadNteSearchData()] as const;
+          })),
           needsAniimo ? import('../../aniimo-hub/data/aniimo.json') : Promise.resolve(null)
         ]);
 
         if (cancelled) return;
 
-        if (dataManagerModule) {
+        if (loadedGames.length > 0) {
           setGameData(previous => {
             const next = { ...previous };
-            missingGames.forEach(game => {
-              const targetId = game === 'hsr' && currentLang === 'en' ? 'en' : game;
-              next[getDataKey(game)] = dataManagerModule.getGameData(targetId);
+            loadedGames.forEach(([game, data]) => {
+              next[getDataKey(game)] = data;
             });
             return next;
           });
