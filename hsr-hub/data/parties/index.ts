@@ -26,7 +26,17 @@ import { breakParties } from './break';
 import { dotParties } from './dot';
 
 // 캐릭터 도감 최신순 기반 버전 매핑
-const CHAR_VERSION_MAP: Record<string, number> = {
+export const HSR_CHARACTER_VERSION_MAP: Record<string, number> = {
+  // v4.5
+  '로빈•서머레토': 4.5,
+  '어벤츄린•웨이브': 4.5,
+  // v4.4
+  '길가메시': 4.4,
+  '토오사카 린': 4.4,
+  '히메코•노바': 4.4,
+  '아처': 4.4,
+  // v4.3
+  '천야•블레이드': 4.3,
   // v4.2
   '에바네시아': 4.2,
   '은랑 LV.999': 4.2,
@@ -35,8 +45,6 @@ const CHAR_VERSION_MAP: Record<string, number> = {
   '애쉬베일': 4.1,
   '스파키': 4.1,
   '효광': 4.1,
-  // v4.0
-  '아처': 4.0,
   // v3.x
   '마이데이': 3.5,
   '카스토리스': 3.5,
@@ -103,7 +111,7 @@ const allParties: PartyCombination[] = [
  * 파티원 중 도감에서 가장 최신(가장 높은 버전) 캐릭터의 버전을 반환
  */
 const getPartyMaxVersion = (party: PartyCombination): number => {
-  const versions = party.members.map(member => CHAR_VERSION_MAP[member.name] || 1.0);
+  const versions = party.members.map(member => HSR_CHARACTER_VERSION_MAP[member.name] || 1.0);
   return Math.max(...versions);
 };
 

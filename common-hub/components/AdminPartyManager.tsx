@@ -13,7 +13,7 @@ import {
   exportPartyToTSCode 
 } from '../types/party';
 import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
-import { HSR_PARTIES } from '../../hsr-hub/data/parties/index';
+import { HSR_CHARACTER_VERSION_MAP, HSR_PARTIES } from '../../hsr-hub/data/parties/index';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
 import { NTE_CHARACTERS } from '../../nte-hub/data/index';
@@ -42,6 +42,11 @@ const BREAKTHROUGH_PRESETS: Record<string, string[]> = {
   NTE: ['명함', '1돌+ 권장', '2돌+ 권장', '풀돌']
 };
 
+const normalizeCharacterName = (value: string) => value.replace(/\s+/g, '').replace(/[·•]/g, '');
+const HSR_VERSION_BY_NORMALIZED_NAME = new Map(
+  Object.entries(HSR_CHARACTER_VERSION_MAP).map(([name, version]) => [normalizeCharacterName(name), version])
+);
+
 export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame, getEncodedUrl }) => {
   const gameKey: 'HSR' | 'WW' | 'NTE' = (activeGame.toUpperCase()) as 'HSR' | 'WW' | 'NTE';
 
@@ -69,6 +74,66 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
   });
   const [pickerSearch, setPickerSearch] = useState('');
   const [pickerRarity, setPickerRarity] = useState<number | 'all'>('all');
+
+  const sortPartiesForDisplay = (items: UnifiedPartyData[]): UnifiedPartyData[] => {
+    const sorted = [...items];
+    if (gameKey === 'HSR') {
+      sorted.sort((a, b) => {
+        const newestVersion = (party: UnifiedPartyData) => Math.max(
+          1,
+          ...party.slots.map(slot => HSR_VERSION_BY_NORMALIZED_NAME.get(normalizeCharacterName(slot.characterName)) || 1)
+        );
+        return newestVersion(b) - newestVersion(a) || a.order - b.order;
+      });
+    } else {
+      sorted.sort((a, b) => a.order - b.order);
+    }
+    return sorted.map((party, index) => ({ ...party, order: index + 1 }));
+  };
+
+  const persistParties = async (items: UnifiedPartyData[], successMessage?: string) => {
+    const sorted = sortPartiesForDisplay(items);
+    setParties(sorted);
+    localStorage.setItem(`parties_${gameKey}`, JSON.stringify(sorted));
+
+    if (!supabase) {
+      showToast(successMessage || '브라우저에 자동 저장되었습니다.');
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const { error: deleteError } = await supabase
+        .from('party_recommendations')
+        .delete()
+        .eq('game_id', activeGame.toLowerCase());
+      if (deleteError) throw deleteError;
+
+      const payload = sorted.map((party, index) => ({
+        game_id: activeGame.toLowerCase(),
+        party_id: party.id,
+        name: party.name,
+        description: party.description,
+        category: (party as any).category || (party as any).elementSynergy || '범용',
+        element_synergy: (party as any).elementSynergy || (party as any).category || '범용',
+        main_dps: party.mainDPS,
+        tags: party.tags,
+        pros: party.pros,
+        cons: party.cons,
+        members: party.slots,
+        display_order: index + 1,
+        updated_at: party.updatedAt || new Date().toISOString()
+      }));
+      const { error: insertError } = await supabase.from('party_recommendations').insert(payload);
+      if (insertError) throw insertError;
+      showToast(successMessage || '변경 사항이 자동 저장되었습니다.');
+    } catch (error) {
+      console.warn('Party auto-save failed:', error);
+      showToast('로컬 저장 완료 · 클라우드 자동 저장 실패');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // 토스트 알림 함수
   const showToast = (msg: string) => {
@@ -220,7 +285,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       loaded = getBuiltinParties();
     }
 
-    setParties(loaded || []);
+    setParties(sortPartiesForDisplay(loaded || []));
     setLoading(false);
   };
 
@@ -333,7 +398,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
   };
 
   // ① 1-Click 파티 복제 (Duplicate with crypto.randomUUID() & (복사본))
-  const handleDuplicate = (party: UnifiedPartyData, index: number) => {
+  const handleDuplicate = async (party: UnifiedPartyData, index: number) => {
     const newId = (typeof crypto !== 'undefined' && crypto.randomUUID) 
       ? crypto.randomUUID() 
       : `${activeGame}_party_${Date.now()}`;
@@ -350,21 +415,19 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     updated.splice(index + 1, 0, clone);
     // order 재정렬
     const reordered = updated.map((p, idx) => ({ ...p, order: idx + 1 }));
-    setParties(reordered);
-    showToast(`"${party.name}" 파티가 성공적으로 복제되었습니다!`);
+    await persistParties(reordered, `"${party.name}" 파티가 복제·자동 저장되었습니다.`);
   };
 
   // 파티 삭제
-  const handleDelete = (id: string) => {
+  const handleDelete = async (id: string) => {
     if (confirm('이 파티 조합을 삭제하시겠습니까?')) {
       const updated = parties.filter(p => p.id !== id).map((p, idx) => ({ ...p, order: idx + 1 }));
-      setParties(updated);
-      showToast('파티가 삭제되었습니다.');
+      await persistParties(updated, '파티가 삭제·자동 저장되었습니다.');
     }
   };
 
   // 파티 순서 변경
-  const handleMove = (index: number, direction: 'up' | 'down') => {
+  const handleMove = async (index: number, direction: 'up' | 'down') => {
     const targetIdx = direction === 'up' ? index - 1 : index + 1;
     if (targetIdx < 0 || targetIdx >= parties.length) return;
     const updated = [...parties];
@@ -372,11 +435,11 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     updated[index] = updated[targetIdx];
     updated[targetIdx] = temp;
     const reordered = updated.map((p, idx) => ({ ...p, order: idx + 1 }));
-    setParties(reordered);
+    await persistParties(reordered, '파티 순서가 자동 저장되었습니다.');
   };
 
   // 파티 저장 (모달 내)
-  const handleSaveParty = () => {
+  const handleSaveParty = async () => {
     if (!editingParty || !editingParty.name.trim()) {
       alert('파티 이름을 입력해 주세요.');
       return;
@@ -387,14 +450,12 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     };
 
     const exists = parties.some(p => p.id === updatedParty.id);
-    if (exists) {
-      setParties(parties.map(p => p.id === updatedParty.id ? updatedParty : p));
-    } else {
-      setParties([updatedParty, ...parties]);
-    }
+    const nextParties = exists
+      ? parties.map(p => p.id === updatedParty.id ? updatedParty : p)
+      : [updatedParty, ...parties];
     setIsEditorOpen(false);
     setEditingParty(null);
-    showToast('파티 설정이 저장되었습니다.');
+    await persistParties(nextParties, '파티가 자동 저장되었습니다.');
   };
 
   // 캐릭터 선택 모달 열기
@@ -525,6 +586,9 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               <p className="text-xs text-gray-400 font-bold">
                 슬롯 규격: <span className="text-amber-500 font-black">{gameKey === 'WW' ? '3인 고정' : '4인 고정'}</span> | 총 <span className="text-amber-500">{parties.length}</span>개 파티
               </p>
+              {gameKey === 'HSR' && (
+                <p className="text-[10px] font-bold text-emerald-400">자동 저장 · 파티 내 최신 캐릭터 버전순 정렬</p>
+              )}
             </div>
           </div>
         </div>
@@ -630,22 +694,26 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
 
                 {/* 액션 버튼 */}
                 <div className="flex items-center gap-2 shrink-0">
-                  <button
-                    onClick={() => handleMove(pIdx, 'up')}
-                    disabled={pIdx === 0}
-                    className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
-                    title="위로 이동"
-                  >
-                    <ArrowUp size={14} />
-                  </button>
-                  <button
-                    onClick={() => handleMove(pIdx, 'down')}
-                    disabled={pIdx === parties.length - 1}
-                    className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
-                    title="아래로 이동"
-                  >
-                    <ArrowDown size={14} />
-                  </button>
+                  {gameKey !== 'HSR' && (
+                    <>
+                      <button
+                        onClick={() => handleMove(pIdx, 'up')}
+                        disabled={pIdx === 0}
+                        className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
+                        title="위로 이동"
+                      >
+                        <ArrowUp size={14} />
+                      </button>
+                      <button
+                        onClick={() => handleMove(pIdx, 'down')}
+                        disabled={pIdx === parties.length - 1}
+                        className="p-2.5 bg-white/5 hover:bg-white/10 rounded-xl text-gray-400 hover:text-white disabled:opacity-20 transition-all"
+                        title="아래로 이동"
+                      >
+                        <ArrowDown size={14} />
+                      </button>
+                    </>
+                  )}
                   <button
                     onClick={() => handleDuplicate(party, pIdx)}
                     className="flex items-center gap-1.5 px-3.5 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:text-white transition-all"
@@ -1129,9 +1197,11 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </button>
               <button
                 onClick={handleSaveParty}
-                className="flex items-center gap-2 px-8 py-3 bg-amber-500 hover:bg-amber-400 text-black font-black text-xs uppercase tracking-widest rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95"
+                disabled={loading}
+                className="flex items-center gap-2 px-8 py-3 bg-amber-500 hover:bg-amber-400 text-black font-black text-xs uppercase tracking-widest rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 disabled:cursor-wait disabled:opacity-50"
               >
-                <Check size={16} strokeWidth={3} /> 파티 저장 완료
+                {loading ? <RefreshCw size={16} className="animate-spin" /> : <Check size={16} strokeWidth={3} />}
+                {loading ? '자동 저장 중' : '저장 및 즉시 반영'}
               </button>
             </div>
           </div>
