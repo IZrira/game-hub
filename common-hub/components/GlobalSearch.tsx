@@ -1,7 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect } from 'react';
 import { Search } from 'lucide-react';
 import { useLocation } from 'react-router';
-import SearchModal from './SearchModal';
+
+const SearchModal = lazy(() => import('./SearchModal'));
+
+const SearchLoadingFallback = () => (
+  <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md" role="status" aria-label="통합 검색 불러오는 중">
+    <div className="flex flex-col items-center gap-4">
+      <div className="h-9 w-9 animate-spin rounded-full border-2 border-white/15 border-t-brand-primary" />
+      <span className="text-[10px] font-black uppercase tracking-[0.28em] text-gray-400">검색 데이터 불러오는 중</span>
+    </div>
+  </div>
+);
 
 interface GlobalSearchProps {
   className?: string;
@@ -66,11 +76,15 @@ export default function GlobalSearch({ className = '', showText = true }: Global
       </button>
 
       {/* 인텔리전스 검색 모달 */}
-      <SearchModal
-        isOpen={isOpen}
-        onClose={() => setIsOpen(false)}
-        gameId={activeGameId}
-      />
+      {isOpen && (
+        <Suspense fallback={<SearchLoadingFallback />}>
+          <SearchModal
+            isOpen
+            onClose={() => setIsOpen(false)}
+            gameId={activeGameId}
+          />
+        </Suspense>
+      )}
     </>
   );
 }
