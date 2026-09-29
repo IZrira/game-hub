@@ -82,4 +82,5 @@ export const 히메코Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "123.71%", efficiency3: "129.31%", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "143.89%", efficiency3: "136.44%", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"적 약점 격파 횟수를 충전해 광역 추가 공격을 발동하는 화염 지식 딜러다.", role:"격파 연계 광역 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["다수 적의 약점을 연속 격파하면 추가 공격을 반복한다.","조건을 충족하면 파티 내 역할이 분명하다."], weaknesses:["단일 적이나 약점 잠금 구간에서는 충전이 느리다.","적 구성과 행동 순서에 따라 실전 편차가 생긴다."], teamPrinciple:"광역 강인성 감소 캐릭터와 여러 적을 차례로 격파한다.", gameplay:{overview:"광역 강인성 감소 캐릭터와 여러 적을 차례로 격파한다.", rotation:["핵심 표식·버프 또는 디버프를 먼저 적용한다.","조건이 완성되면 필살기와 주력 공격을 집중한다."], tips:["핵심 효과가 끊기기 전에 갱신한다.","다음 웨이브의 적 구성까지 고려해 자원을 남긴다."]}}
   };

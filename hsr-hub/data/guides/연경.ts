@@ -30,4 +30,5 @@ export const 연경Guide: CharacterGuide = {
       { level: 5, impact: "Low", efficiency1: "114.20%", efficiency3: "-", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "125.60%", efficiency3: "-", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"신검합일로 치명타 능력을 높이고 추가 공격과 빙결을 노리는 얼음 수렵 딜러다.", role:"무피격 단일 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["신검합일 중 높은 치명타 보정과 단일 화력을 얻는다.","조건을 충족하면 파티 내 역할이 분명하다."], weaknesses:["피해를 받으면 신검합일이 해제돼 화력이 급감한다.","적 구성과 행동 순서에 따라 실전 편차가 생긴다."], teamPrinciple:"강한 실드로 피격을 차단하고 신검합일을 유지한다.", gameplay:{overview:"강한 실드로 피격을 차단하고 신검합일을 유지한다.", rotation:["핵심 표식·버프 또는 디버프를 먼저 적용한다.","조건이 완성되면 필살기와 주력 공격을 집중한다."], tips:["핵심 효과가 끊기기 전에 갱신한다.","다음 웨이브의 적 구성까지 고려해 자원을 남긴다."]}}
   };

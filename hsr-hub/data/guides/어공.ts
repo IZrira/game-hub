@@ -26,4 +26,5 @@ export const 어공Guide: CharacterGuide = {
     eidolonEfficiency: [
       { level: 0, impact: "Low", efficiency1: "100.00%", efficiency3: "-", description: "계산 중..." }
     ]
+    ,analysis: { status:"published", summary:"활시위 호령 스택 동안 공격력과 치명타 능력치를 크게 높이는 허수 화합 서포터다.", role:"행동 순서형 버퍼", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["짧은 구간에 매우 높은 공격·치명타 버프를 제공한다.","고유 자원을 파티 행동과 연계하면 안정적인 기여를 한다."], weaknesses:["아군 행동 순서가 바뀌면 호령 스택을 엉뚱한 행동이 소비한다.","핵심 상태가 비는 구간에는 성능이 크게 낮아진다."], teamPrinciple:"속도를 정밀 조정해 두 핵심 딜러 행동만 호령 안에 넣는다.", gameplay:{overview:"속도를 정밀 조정해 두 핵심 딜러 행동만 호령 안에 넣는다.", rotation:["전투 초반 핵심 자원과 상태를 준비한다.","지원 효과가 겹친 구간에 강화 행동을 사용한다."], tips:["자원 상한에 도달해 낭비되지 않게 확인한다.","적 수와 약점에 따라 주 공격 대상을 조정한다."]}}
   };

@@ -30,4 +30,5 @@ export const 반디Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "160.10%", efficiency3: "157.13%", description: "필살기/특성 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "246.33%", efficiency3: "239.82%", description: "종결 돌파 (-4.4 SP)" }
     ]
+    ,analysis: { status:"published", summary:"완전 연소 상태에서 화염 약점을 부여하고 높은 격파·슈퍼 격파 피해를 내는 파멸 딜러다.", role:"슈퍼 격파 메인 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["약점 부여와 높은 속도·격파 효율을 자체 확보한다.","고유 자원을 파티 행동과 연계하면 안정적인 기여를 한다."], weaknesses:["필살기 밖에서는 화력과 행동 속도가 크게 낮아진다.","핵심 상태가 비는 구간에는 성능이 크게 낮아진다."], teamPrinciple:"에너지와 격파 지원으로 완전 연소 공백을 최소화한다.", gameplay:{overview:"에너지와 격파 지원으로 완전 연소 공백을 최소화한다.", rotation:["전투 초반 핵심 자원과 상태를 준비한다.","지원 효과가 겹친 구간에 강화 행동을 사용한다."], tips:["자원 상한에 도달해 낭비되지 않게 확인한다.","적 수와 약점에 따라 주 공격 대상을 조정한다."]}}
   };

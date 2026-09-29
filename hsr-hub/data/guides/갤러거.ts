@@ -41,4 +41,5 @@ export const 갤러거Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "105.17%", efficiency3: "105.20%", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "132.13%", efficiency3: "132.02%", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"격파 특수효과 기반 회복과 취객 디버프로 공격형 격파 파티를 지원하는 화염 힐러다.", role:"격파 힐러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["적 공격을 통해 아군이 스스로 회복하고 격파 피해도 높인다.","핵심 메커니즘이 명확해 파티 역할을 구분하기 쉽다."], weaknesses:["긴급 광역 회복은 필살기 회전에 의존한다.","행동 순서와 자원 관리가 어긋나면 효율이 감소한다."], teamPrinciple:"필살기로 취객을 적용하고 강화 일반 공격으로 적 공격력을 낮춘다.", gameplay:{overview:"필살기로 취객을 적용하고 강화 일반 공격으로 적 공격력을 낮춘다.", rotation:["핵심 버프·표식 또는 자원을 먼저 준비한다.","주요 공격 구간에 필살기와 강화 행동을 집중한다."], tips:["핵심 상태의 지속 시간과 남은 자원을 매 턴 확인한다.","파티 버프가 적용된 구간에 가장 강한 행동을 배치한다."]}}
   };

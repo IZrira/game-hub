@@ -30,4 +30,5 @@ export const 아케론Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "142.16%", efficiency3: "149.18%", description: "전투 스킬/특성 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "169.81%", efficiency3: "178.11%", description: "모든 공격이 필살기 피해로 간주" }
     ]
+    ,analysis: { status:"published", summary:"공허 동료가 부여한 디버프로 꿈 조각을 쌓아 에너지 없는 광역 필살기를 사용하는 번개 딜러다.", role:"디버프 연계 필살기 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["약점을 무시하는 강인성 감소와 강력한 광역 필살기를 보유한다.","고유 자원을 파티 행동과 연계하면 안정적인 기여를 한다."], weaknesses:["디버프 부여 빈도가 낮으면 필살기 충전이 느리다.","핵심 상태가 비는 구간에는 성능이 크게 낮아진다."], teamPrinciple:"공허 캐릭터와 매 행동 디버프를 부여해 꿈 조각을 빠르게 모은다.", gameplay:{overview:"공허 캐릭터와 매 행동 디버프를 부여해 꿈 조각을 빠르게 모은다.", rotation:["전투 초반 핵심 자원과 상태를 준비한다.","지원 효과가 겹친 구간에 강화 행동을 사용한다."], tips:["자원 상한에 도달해 낭비되지 않게 확인한다.","적 수와 약점에 따라 주 공격 대상을 조정한다."]}}
   };

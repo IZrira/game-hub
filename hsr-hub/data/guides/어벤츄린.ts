@@ -55,4 +55,5 @@ export const 어벤츄린Guide: CharacterGuide = {
     bestLightCones: ["언제나 불공평한 운명", "언제나 여정이 평탄하기를", "승리의 순간", "여생의 첫날", { name: "우주 시장 동향", note: "아케론 파티 사용 시" }],
     skillPriority: ["전투 스킬", "특성", "필살기", "일반 공격"],
     eidolonEfficiency: []
+    ,analysis: { status:"published", summary:"방어력 기반 누적 실드와 피격 횟수 추가 공격으로 파티를 지키는 허수 보존 캐릭터다.", role:"추가 공격 실드 탱커", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["스킬 없이도 실드를 갱신하며 효과 저항을 지원한다.","고유 자원을 파티 행동과 연계하면 안정적인 기여를 한다."], weaknesses:["아군이 공격받지 않는 전투에서는 추가 공격 충전이 느리다.","핵심 상태가 비는 구간에는 성능이 크게 낮아진다."], teamPrinciple:"추가 공격 파티에서 실드와 눈먼 내기 스택을 동시에 활용한다.", gameplay:{overview:"추가 공격 파티에서 실드와 눈먼 내기 스택을 동시에 활용한다.", rotation:["전투 초반 핵심 자원과 상태를 준비한다.","지원 효과가 겹친 구간에 강화 행동을 사용한다."], tips:["자원 상한에 도달해 낭비되지 않게 확인한다.","적 수와 약점에 따라 주 공격 대상을 조정한다."]}}
   };

@@ -42,4 +42,5 @@ export const 단항음월Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "208.76%", efficiency3: "209.05%", description: "(-17 SP)" },
       { level: 6, impact: "High", efficiency1: "243.29%", efficiency3: "243.22%", description: "(-17 SP)" }
     ]
+    ,analysis: { status:"published", summary:"스킬 포인트를 최대 3개 소비해 일반 공격을 강력한 허수 확산 공격으로 강화하는 파멸 딜러다.", role:"스킬 포인트 집중 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["3단 강화 일반 공격의 단일·확산 화력이 높다.","핵심 메커니즘이 명확해 파티 역할을 구분하기 쉽다."], weaknesses:["파티 스킬 포인트 요구량이 매우 크다.","행동 순서와 자원 관리가 어긋나면 효율이 감소한다."], teamPrinciple:"포인트 생성 지원과 편성해 3단 강화 공격을 매 행동 확보한다.", gameplay:{overview:"포인트 생성 지원과 편성해 3단 강화 공격을 매 행동 확보한다.", rotation:["핵심 버프·표식 또는 자원을 먼저 준비한다.","주요 공격 구간에 필살기와 강화 행동을 집중한다."], tips:["핵심 상태의 지속 시간과 남은 자원을 매 턴 확인한다.","파티 버프가 적용된 구간에 가장 강한 행동을 배치한다."]}}
   };

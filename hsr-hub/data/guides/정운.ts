@@ -60,4 +60,5 @@ export const 정운Guide: CharacterGuide = {
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E6",
     eidolonEfficiency: []
+    ,analysis: { status:"published", summary:"축복으로 단일 딜러의 공격력과 추가 번개 피해를 높이고 필살기로 에너지를 공급하는 화합 캐릭터다.", role:"에너지·공격력 버퍼", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["낮은 스킬 포인트 소비로 에너지와 피해 증가를 제공한다.","조건을 충족하면 파티 내 역할이 분명하다."], weaknesses:["내구도가 낮고 축복 대상이 한 명뿐이다.","적 구성과 행동 순서에 따라 실전 편차가 생긴다."], teamPrinciple:"주 딜러에게 축복을 유지하고 에너지 부족 직전에 필살기를 사용한다.", gameplay:{overview:"주 딜러에게 축복을 유지하고 에너지 부족 직전에 필살기를 사용한다.", rotation:["핵심 표식·버프 또는 디버프를 먼저 적용한다.","조건이 완성되면 필살기와 주력 공격을 집중한다."], tips:["핵심 효과가 끊기기 전에 갱신한다.","다음 웨이브의 적 구성까지 고려해 자원을 남긴다."]}}
   };

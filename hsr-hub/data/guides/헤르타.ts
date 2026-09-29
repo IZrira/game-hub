@@ -43,4 +43,5 @@ export const 헤르타Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "122.26%", efficiency3: "123.07%", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "128.76%", efficiency3: "129.03%", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"적 HP가 절반 이하가 될 때마다 빙글빙글 추가 공격을 발동하는 얼음 지식 딜러다.", role:"광역 추가 공격 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["다수 잡몹의 체력이 연속으로 내려가면 추가 공격을 반복한다.","조건을 충족하면 파티 내 역할이 분명하다."], weaknesses:["고체력 단일전에서는 추가 공격 횟수가 제한된다.","적 구성과 행동 순서에 따라 실전 편차가 생긴다."], teamPrinciple:"광역 딜러와 함께 여러 적을 동시에 절반 이하로 만들어 연쇄 추가 공격을 낸다.", gameplay:{overview:"광역 딜러와 함께 여러 적을 동시에 절반 이하로 만들어 연쇄 추가 공격을 낸다.", rotation:["핵심 표식·버프 또는 디버프를 먼저 적용한다.","조건이 완성되면 필살기와 주력 공격을 집중한다."], tips:["핵심 효과가 끊기기 전에 갱신한다.","다음 웨이브의 적 구성까지 고려해 자원을 남긴다."]}}
   };

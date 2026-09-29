@@ -35,4 +35,5 @@ export const 루카Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "140.28%", efficiency3: "-", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "151.62%", efficiency3: "-", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"열상을 부여하고 강화 일반 공격으로 지속 피해를 즉시 발동하는 물리 공허 딜러다.", role:"단일 지속 피해 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["보스의 높은 HP에 비례한 열상 피해가 강하다.","핵심 메커니즘이 명확해 파티 역할을 구분하기 쉽다."], weaknesses:["다수전 대응력이 낮다.","행동 순서와 자원 관리가 어긋나면 효율이 감소한다."], teamPrinciple:"스킬로 열상을 유지하고 투지를 모아 강화 일반 공격으로 정산한다.", gameplay:{overview:"스킬로 열상을 유지하고 투지를 모아 강화 일반 공격으로 정산한다.", rotation:["핵심 버프·표식 또는 자원을 먼저 준비한다.","주요 공격 구간에 필살기와 강화 행동을 집중한다."], tips:["핵심 상태의 지속 시간과 남은 자원을 매 턴 확인한다.","파티 버프가 적용된 구간에 가장 강한 행동을 배치한다."]}}
   };

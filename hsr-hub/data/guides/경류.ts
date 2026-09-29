@@ -30,4 +30,5 @@ export const 경류Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "308% / 183%", efficiency3: "273% / 141%", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "423% / 197%", efficiency3: "378% / 153%", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"아군 HP를 소모해 전백 상태에 진입하고 강화 스킬을 연속 사용하는 얼음 파멸 딜러다.", role:"강화 상태 메인 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["전백 중 높은 치명타 확률과 공격력을 자체 확보한다.","핵심 메커니즘이 명확해 파티 역할을 구분하기 쉽다."], weaknesses:["전백 밖의 화력 공백과 파티 HP 소모가 있다.","행동 순서와 자원 관리가 어긋나면 효율이 감소한다."], teamPrinciple:"삭망을 모은 뒤 버프를 전백 상태에 집중한다.", gameplay:{overview:"삭망을 모은 뒤 버프를 전백 상태에 집중한다.", rotation:["핵심 버프·표식 또는 자원을 먼저 준비한다.","주요 공격 구간에 필살기와 강화 행동을 집중한다."], tips:["핵심 상태의 지속 시간과 남은 자원을 매 턴 확인한다.","파티 버프가 적용된 구간에 가장 강한 행동을 배치한다."]}}
   };

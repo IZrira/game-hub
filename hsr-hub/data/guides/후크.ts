@@ -41,4 +41,5 @@ export const 후크Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "111.86%", efficiency3: "123.88%", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "124.55%", efficiency3: "137.86%", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"연소를 부여한 적에게 강화 피해를 가하고 에너지를 회복하는 화염 파멸 딜러다.", role:"연소 연계 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["연소 대상에게 높은 단일·확산 피해를 낸다.","조건을 충족하면 파티 내 역할이 분명하다."], weaknesses:["연소가 없는 첫 공격과 다수전 기여가 낮다.","적 구성과 행동 순서에 따라 실전 편차가 생긴다."], teamPrinciple:"스킬로 연소를 먼저 부여하고 강화 필살기와 스킬을 연결한다.", gameplay:{overview:"스킬로 연소를 먼저 부여하고 강화 필살기와 스킬을 연결한다.", rotation:["핵심 표식·버프 또는 디버프를 먼저 적용한다.","조건이 완성되면 필살기와 주력 공격을 집중한다."], tips:["핵심 효과가 끊기기 전에 갱신한다.","다음 웨이브의 적 구성까지 고려해 자원을 남긴다."]}}
   };

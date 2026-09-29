@@ -77,4 +77,5 @@ export const 토파즈복순이Guide: CharacterGuide = {
       { level: 5, impact: "Medium", efficiency1: "229.29%", efficiency3: "-", description: "스킬 레벨 상승" },
       { level: 6, impact: "High", efficiency1: "286.90%", efficiency3: "-", description: "성흔 효과" }
     ]
+    ,analysis: { status:"published", summary:"적을 채무 증명 상태로 만들어 받는 추가 공격 피해를 높이고 복순이 행동을 가속하는 화염 수렵 딜러다.", role:"추가 공격 서브 딜러", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["추가 공격 파티의 단일 취약과 높은 공격 빈도를 제공한다.","조건을 충족하면 파티 내 역할이 분명하다."], weaknesses:["채무 증명이 단일 대상이라 다수전 전환에 시간이 든다.","적 구성과 행동 순서에 따라 실전 편차가 생긴다."], teamPrinciple:"핵심 정예에 채무 증명을 유지하고 동료 추가 공격으로 복순이를 당긴다.", gameplay:{overview:"핵심 정예에 채무 증명을 유지하고 동료 추가 공격으로 복순이를 당긴다.", rotation:["핵심 표식·버프 또는 디버프를 먼저 적용한다.","조건이 완성되면 필살기와 주력 공격을 집중한다."], tips:["핵심 효과가 끊기기 전에 갱신한다.","다음 웨이브의 적 구성까지 고려해 자원을 남긴다."]}}
   };
