@@ -1,11 +1,19 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router';
-import { Search, User, Sword, BookOpen, ChevronRight, X, Sparkles, Compass, Star, Globe, MapPin, Layers } from 'lucide-react';
+import { Search, User, Sword, BookOpen, ChevronRight, X, Sparkles, Compass, Star, Globe, MapPin, Layers, LoaderCircle } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { getGameData } from '../data/dataManager';
 import { Character } from '../types';
-import aniimoData from '../../aniimo-hub/data/aniimo.json';
+
+type SearchGameId = 'hsr' | 'ww' | 'nte';
+type SearchGameData = ReturnType<typeof import('../data/dataManager').getGameData>;
+
+const EMPTY_GAME_DATA = {
+  CHARACTER_DB: [],
+  LIGHTCONE_DB: [],
+  WEAPON_DATA: [],
+  GUIDES: []
+} as unknown as SearchGameData;
 
 export interface SearchResultItemData {
   name: string;
@@ -130,6 +138,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
       return [];
     }
   });
+  const [gameData, setGameData] = useState<Record<string, SearchGameData>>({});
+  const [aniimoData, setAniimoData] = useState<any[] | null>(null);
+  const [isDataLoading, setIsDataLoading] = useState(false);
+  const [dataLoadError, setDataLoadError] = useState(false);
 
   const navigate = useNavigate();
 
@@ -189,11 +201,78 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
     };
   }, [isOpen, onClose]);
 
-  // 언어별/게임별 데이터 로드
+  // 검색어가 입력된 뒤 현재 탭에 필요한 데이터만 로드한다.
   const currentLang = i18n.language || 'ko';
-  const hsrData = useMemo(() => getGameData(currentLang === 'en' ? 'en' : 'hsr'), [currentLang]);
-  const wwData = useMemo(() => getGameData('ww'), []);
-  const nteData = useMemo(() => getGameData('nte'), []);
+  const hsrDataKey = `hsr:${currentLang === 'en' ? 'en' : 'ko'}`;
+
+  useEffect(() => {
+    if (!query.trim()) {
+      setIsDataLoading(false);
+      setDataLoadError(false);
+      return;
+    }
+
+    const targetGames: SearchGameId[] = activeTab === 'all'
+      ? ['hsr', 'ww', 'nte']
+      : activeTab === 'aniimo'
+        ? []
+        : [activeTab];
+    const getDataKey = (game: SearchGameId) => game === 'hsr' ? hsrDataKey : game;
+    const missingGames = targetGames.filter(game => !gameData[getDataKey(game)]);
+    const needsAniimo = (activeTab === 'all' || activeTab === 'aniimo') && !aniimoData;
+
+    if (missingGames.length === 0 && !needsAniimo) {
+      setIsDataLoading(false);
+      setDataLoadError(false);
+      return;
+    }
+
+    let cancelled = false;
+    setIsDataLoading(true);
+    setDataLoadError(false);
+
+    const loadRequestedData = async () => {
+      try {
+        const [dataManagerModule, aniimoModule] = await Promise.all([
+          missingGames.length > 0 ? import('../data/dataManager') : Promise.resolve(null),
+          needsAniimo ? import('../../aniimo-hub/data/aniimo.json') : Promise.resolve(null)
+        ]);
+
+        if (cancelled) return;
+
+        if (dataManagerModule) {
+          setGameData(previous => {
+            const next = { ...previous };
+            missingGames.forEach(game => {
+              const targetId = game === 'hsr' && currentLang === 'en' ? 'en' : game;
+              next[getDataKey(game)] = dataManagerModule.getGameData(targetId);
+            });
+            return next;
+          });
+        }
+
+        if (aniimoModule) {
+          setAniimoData(aniimoModule.default as any[]);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error('검색 데이터 로드 실패:', error);
+          setDataLoadError(true);
+        }
+      } finally {
+        if (!cancelled) setIsDataLoading(false);
+      }
+    };
+
+    void loadRequestedData();
+    return () => {
+      cancelled = true;
+    };
+  }, [query, activeTab, currentLang, hsrDataKey, gameData, aniimoData]);
+
+  const hsrData = gameData[hsrDataKey] || EMPTY_GAME_DATA;
+  const wwData = gameData.ww || EMPTY_GAME_DATA;
+  const nteData = gameData.nte || EMPTY_GAME_DATA;
 
   // 통합 검색 결과 계산
   const results = useMemo(() => {
@@ -350,7 +429,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
     // 4. 아니모 (Aniimo) 검색 (Notion 없이 자체 데이터셋 기반)
     if (shouldSearchGame('aniimo')) {
       const cfg = SEARCH_CONFIG.aniimo;
-      const rawAniimo = aniimoData as any[];
+      const rawAniimo = aniimoData || [];
 
       // 4.1 아니모 개체 및 형태 검색
       rawAniimo.filter(item => {
@@ -449,7 +528,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
     }
 
     return { characters, weapons, guides, routes, deepLinks };
-  }, [query, activeTab, hsrData, wwData, nteData, t]);
+  }, [query, activeTab, hsrData, wwData, nteData, aniimoData, t]);
 
   const hasResults = results && (
     results.characters.length > 0 ||
@@ -526,8 +605,16 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
             </button>
           </div>
 
+          {/* 검색 데이터 로딩 중 */}
+          {query && isDataLoading && (
+            <div className="flex items-center justify-center gap-3 p-10 text-sm font-bold text-gray-400" role="status">
+              <LoaderCircle size={22} className="animate-spin text-brand-primary" />
+              검색 데이터를 불러오는 중입니다.
+            </div>
+          )}
+
           {/* 검색 결과가 있을 때 */}
-          {query && hasResults && (
+          {query && !isDataLoading && hasResults && (
             <div className="space-y-6 max-h-[65vh] overflow-y-auto pr-2 scrollbar-hide">
               <ResultSection
                 title={t('캐릭터 & 아니모')}
@@ -644,7 +731,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
           )}
 
           {/* 검색 결과가 없을 때 */}
-          {query && !hasResults && (
+          {query && !isDataLoading && !dataLoadError && !hasResults && (
             <div className="p-8 text-center bg-[#0a0a0a] rounded-[24px] border border-white/5 animate-in fade-in slide-in-from-bottom-4 mt-2">
               <div className="mb-4 text-orange-500 opacity-50 flex justify-center">
                 <Search size={40} />
@@ -669,6 +756,12 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                   <p className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">스타레일 아카이브 바로가기</p>
                 </button>
               </div>
+            </div>
+          )}
+
+          {query && !isDataLoading && dataLoadError && (
+            <div className="p-8 text-center bg-[#0a0a0a] rounded-[24px] border border-red-500/20 mt-2" role="alert">
+              <p className="text-sm font-bold text-red-300">검색 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
             </div>
           )}
         </div>
