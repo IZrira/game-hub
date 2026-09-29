@@ -20,5 +20,5 @@ export const 소상Guide: CharacterGuide = {
     bestLightCones: ["야경 속에서", "별바다 순항", "논검", "침묵만이"],
     skillPriority: ["전투 스킬", "필살기", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E6",
-    eidolonEfficiency: []
+    eidolonEfficiency: [], analysis:{status:"published",summary:"격파된 적에게 검세 추가 피해와 행동 가속을 얻는 물리 수렵 딜러다.",role:"격파 연계 단일 딜러",standard:"E6 / S0",reviewedAt:"2026-09-29",reviewer:"RIRA 편집팀",strengths:["격파 대상에게 높은 단일 화력을 낸다."],weaknesses:["비격파 상태에서는 성능이 낮다."],teamPrinciple:"강인성 감소 지원과 함께 운용한다.",gameplay:{overview:"적을 격파한 뒤 필살기와 스킬을 연속 사용한다.",tips:["검세 확률을 격파 상태에서 활용한다."]}}
   };
