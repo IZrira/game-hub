@@ -6,7 +6,6 @@ import {
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/archive';
-import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
@@ -23,6 +22,10 @@ import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+import { WW_GALLERY_CHARACTERS, WW_INVENTORY_COUNT } from '../data/galleryData';
+import { WW_WEAPON_DATA } from '../data/weaponData';
+import { WW_ECHO_DATA } from '../data/echoData';
+import { WW_GUIDE_DATA } from '../data/guideData';
 // import removed
 
 const GalleryWW: React.FC = () => {
@@ -102,7 +105,11 @@ const GalleryWW: React.FC = () => {
     setSearchQuery(query);
   };
 
-  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, WW_INVENTORY, GUIDES: WW_CHARACTER_GUIDES } = useMemo(() => getGameData(gameId), [gameId]);
+  const CHARACTER_DB = WW_GALLERY_CHARACTERS;
+  const WEAPON_DB = WW_WEAPON_DATA;
+  const ECHO_DB = WW_ECHO_DATA;
+  const WW_CHARACTER_GUIDES = WW_GUIDE_DATA;
+  const WW_INVENTORY = {};
   
 
 
@@ -183,7 +190,7 @@ const GalleryWW: React.FC = () => {
                   { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
                   { label: "무기", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" },
                   { label: "에코", count: ECHO_DB?.length || 0, icon: <Shield size={14} />, color: "text-emerald-400" },
-                  { label: "인벤토리", count: Object.keys(WW_INVENTORY || {}).length, icon: <Backpack size={14} />, color: "text-brand-accent" },
+                  { label: "인벤토리", count: WW_INVENTORY_COUNT, icon: <Backpack size={14} />, color: "text-brand-accent" },
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1 group hover:bg-white/[0.04] transition-all">
                     <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color} group-hover:scale-110 transition-transform`}>

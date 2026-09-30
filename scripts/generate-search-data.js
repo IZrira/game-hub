@@ -16,6 +16,7 @@ const nteCharactersPath = path.join(projectRoot, 'nte-hub', 'data', 'generated',
 const wwGuideCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guide-characters.json');
 const wwGuidesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guides.json');
 const wwCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'characters.json');
+const wwGalleryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'gallery.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -188,11 +189,11 @@ const notionWwGuides = notionData
     synergyCharacters: item.synergyCharacters || []
   }));
 
-const buildWwCharacterData = async () => {
+const buildWwData = async () => {
   const result = await build({
     absWorkingDir: projectRoot,
     stdin: {
-      contents: `import { getGameData } from './common-hub/data/dataManager.ts'; export default getGameData('ww').CHARACTER_DB;`,
+      contents: `import { getGameData } from './common-hub/data/dataManager.ts'; export default getGameData('ww');`,
       resolveDir: projectRoot,
       sourcefile: 'generate-ww-character-data.ts',
       loader: 'ts'
@@ -384,8 +385,25 @@ fs.writeFileSync(nteCharactersPath, `${JSON.stringify(notionNteCharacters.map(no
 fs.mkdirSync(path.dirname(wwGuideCharactersPath), { recursive: true });
 fs.writeFileSync(wwGuideCharactersPath, `${JSON.stringify(notionWwGuideCharacters, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, 'utf8');
-const wwCharacters = await buildWwCharacterData();
+const wwData = await buildWwData();
+const wwCharacters = wwData.CHARACTER_DB;
 fs.writeFileSync(wwCharactersPath, `${JSON.stringify(wwCharacters, null, 2)}\n`, 'utf8');
+const wwGalleryData = {
+  characters: wwCharacters.map(character => ({
+    id: character.id,
+    name: character.name,
+    originalName: character.originalName,
+    folderName: character.folderName,
+    gameId: 'ww',
+    attribute: character.attribute,
+    weaponType: character.weaponType,
+    rarity: character.rarity,
+    releaseVersion: character.releaseVersion,
+    isRover: character.isRover
+  })),
+  inventoryCount: Object.keys(wwData.WW_INVENTORY || {}).length
+};
+fs.writeFileSync(wwGalleryPath, `${JSON.stringify(wwGalleryData, null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);
