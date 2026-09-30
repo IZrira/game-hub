@@ -1,0 +1,1422 @@
+[
+  {
+    "id": "36395fae-3dc7-80b5-a488-c0d33cfb73df",
+    "name": "갈브레나",
+    "folderName": "갈브레나",
+    "attribute": "용융",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      }
+    ]
+  },
+  {
+    "id": "35b95fae-3dc7-8057-bbc4-d49d5fb0e1c1",
+    "name": "감심",
+    "folderName": "감심",
+    "attribute": "기류",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "공명 해방 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "3be95fae-3dc7-809a-848d-cf54b30c697b",
+    "name": "경연",
+    "folderName": "경연",
+    "attribute": "용융",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      }
+    ]
+  },
+  {
+    "id": "35a95fae-3dc7-8059-98be-c859fcb8b352",
+    "name": "구원",
+    "folderName": "구원",
+    "attribute": "기류",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "에코 어빌리티 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 에코 어빌리티 피해를 부스트시킨다"
+      }
+    ]
+  },
+  {
+    "id": "35e95fae-3dc7-8012-a62d-fef7c4edf10e",
+    "name": "금희",
+    "folderName": "금희",
+    "attribute": "회절",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      }
+    ]
+  },
+  {
+    "id": "35595fae-3dc7-802b-bc16-fc93764fd817",
+    "name": "기염",
+    "folderName": "기염",
+    "attribute": "기류",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      }
+    ]
+  },
+  {
+    "id": "36795fae-3dc7-8096-a858-fd8a9c3bf21d",
+    "name": "능양",
+    "folderName": "능양",
+    "attribute": "응결",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      }
+    ]
+  },
+  {
+    "id": "35895fae-3dc7-800c-bbd8-eb8bb35227e2",
+    "name": "단근",
+    "folderName": "단근",
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "인멸 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 인멸 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36095fae-3dc7-80f6-b1cb-fc2a357967de",
+    "name": "데니아",
+    "folderName": "데니아",
+    "attribute": "용융",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "불꽃",
+        "description": "불꽃 효과 사용 가능"
+      },
+      {
+        "label": "조화도 파괴 증폭",
+        "description": "파티 내 특정 캐릭터의 조화도 파괴 증폭을 증가시킬 수 있다"
+      },
+      {
+        "label": "조화 밀집 대응",
+        "description": "자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가한다"
+      }
+    ]
+  },
+  {
+    "id": "35895fae-3dc7-80cd-b053-dca32ecb0037",
+    "name": "도기",
+    "folderName": "도기",
+    "attribute": "인멸",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "37995fae-3dc7-807a-8e0e-cba40a2adb10",
+    "name": "레베카",
+    "folderName": "레베카",
+    "attribute": "전도",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "강공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 강공격 피해 부스트 가능"
+      },
+      {
+        "label": "조화도 파괴 증폭",
+        "description": "파티 내 특정 캐릭터의 조화도 파괴 증폭을 증가시킬 수 있다"
+      },
+      {
+        "label": "해킹 대응",
+        "description": "목표에게 해킹 피해를 입힐 수 있다"
+      }
+    ]
+  },
+  {
+    "id": "35795fae-3dc7-8011-812e-f98c621655b3",
+    "name": "로코코",
+    "folderName": "로코코",
+    "attribute": "인멸",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "인멸 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 인멸 피해 부스트 가능"
+      },
+      {
+        "label": "일반 공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-80f3-ad73-e164ef0ddba6",
+    "name": "루미",
+    "folderName": "루미",
+    "attribute": "전도",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "37995fae-3dc7-80e1-85f2-c013122340b5",
+    "name": "루시",
+    "folderName": "루시",
+    "attribute": "회절",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "일반 공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능"
+      },
+      {
+        "label": "해킹 대응",
+        "description": "목표에게 해킹 피해를 입힐 수 있다"
+      }
+    ]
+  },
+  {
+    "id": "37895fae-3dc7-80b5-a01c-dd19f5c97f43",
+    "name": "루실라",
+    "folderName": "루실라",
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "에코 어빌리티 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 에코 어빌리티 피해를 부스트 시킨다"
+      },
+      {
+        "label": "서리",
+        "description": "서리 효과 사용 가능"
+      },
+      {
+        "label": "에코 어빌리티 피해",
+        "description": "에코 어빌리티 피해 비교적 높음"
+      }
+    ]
+  },
+  {
+    "id": "35895fae-3dc7-80f7-bc8b-fb6ad634b8d4",
+    "name": "루크 · 헤르센",
+    "folderName": "루크 · 헤르센",
+    "attribute": "회절",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "조화 밀집 대응",
+        "description": "자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가된다"
+      }
+    ]
+  },
+  {
+    "id": "36395fae-3dc7-80ea-b4a9-fa66592df03f",
+    "name": "루파",
+    "folderName": "루파",
+    "attribute": "용융",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "용융 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 용융 피해 부스트 가능"
+      },
+      {
+        "label": "일반 공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35895fae-3dc7-804a-a32b-c2fd208f91fa",
+    "name": "린네",
+    "folderName": "린네",
+    "attribute": "회절",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      },
+      {
+        "label": "공명 해방 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능"
+      },
+      {
+        "label": "조화 파동 대응",
+        "description": "목표에게 조화 파동 피해를 입힐 수 있다"
+      },
+      {
+        "label": "조화도 파괴 증폭",
+        "description": "파티 내 특정 캐릭터의 조화도 파괴 증폭을 증가시킬 수 있다"
+      },
+      {
+        "label": "조화 밀집 대응",
+        "description": "자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가된다"
+      }
+    ]
+  },
+  {
+    "id": "36195fae-3dc7-8018-9295-e487837f428a",
+    "name": "모니에",
+    "folderName": "모니에",
+    "attribute": "용융",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      },
+      {
+        "label": "조화 파동 대응",
+        "description": "목표에게 조화 파동 피해를 입힐 수 있다"
+      },
+      {
+        "label": "부조화 수치 누적 효율",
+        "description": "파티 내 특정 캐릭터의 부조화 수치 누적 효율을 증가시킬 수 있다"
+      },
+      {
+        "label": "조화 밀집 대응",
+        "description": "자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가된다"
+      }
+    ]
+  },
+  {
+    "id": "36395fae-3dc7-8099-9781-d3666239ff54",
+    "name": "모르테피",
+    "folderName": "모르테피",
+    "attribute": "용융",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "강공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 강공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35b95fae-3dc7-8061-b3a4-e298eddef115",
+    "name": "방랑자 · 기류",
+    "folderName": "방랑자 · 기류",
+    "attribute": "기류",
+    "weaponType": "직검",
+    "isRover": true,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "풍식",
+        "description": "풍식 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "35795fae-3dc7-80ec-82ee-ea72d22597c5",
+    "name": "방랑자 · 인멸",
+    "folderName": "방랑자 · 인멸",
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "isRover": true,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      }
+    ]
+  },
+  {
+    "id": "3a195fae-3dc7-80eb-9f34-fd6775a3704d",
+    "name": "방랑자 · 전도",
+    "folderName": "방랑자 · 전도",
+    "attribute": "전도",
+    "weaponType": "직검",
+    "isRover": true,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "전자",
+        "description": "전자 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-80eb-bd6c-e91a846ee106",
+    "name": "방랑자 · 회절",
+    "folderName": "방랑자 · 회절",
+    "attribute": "회절",
+    "weaponType": "직검",
+    "isRover": true,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "정체",
+        "description": "일정 범위 내에서 목표의 행동 속도 낮추기 가능"
+      },
+      {
+        "label": "광학",
+        "description": "광학 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-809a-a4c1-c8adb9ad40f7",
+    "name": "벨리나",
+    "folderName": "벨리나",
+    "attribute": "회절",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35d95fae-3dc7-80a0-896c-e530a891a081",
+    "name": "복링",
+    "folderName": "복링",
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      },
+      {
+        "label": "전자",
+        "description": "전자 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "36395fae-3dc7-8027-b026-fc2628b1a8c0",
+    "name": "브렌트",
+    "folderName": "브렌트",
+    "attribute": "용융",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "용융 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 용융 피해 부스트 가능"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36695fae-3dc7-805a-8c75-cdc070994252",
+    "name": "산화",
+    "folderName": "산화",
+    "attribute": "응결",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짭은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 일반 공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35e95fae-3dc7-806e-85d1-d3dd5a158c22",
+    "name": "상리요",
+    "folderName": "상리요",
+    "attribute": "전도",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      }
+    ]
+  },
+  {
+    "id": "35b95fae-3dc7-8060-a8d9-fe3851fb1cb9",
+    "name": "샤콘",
+    "folderName": "샤콘",
+    "attribute": "기류",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "풍식",
+        "description": "풍식 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "36795fae-3dc7-8099-a028-e8cbba01a587",
+    "name": "설지",
+    "folderName": "설지",
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "3a295fae-3dc7-8087-99ff-c7df503277be",
+    "name": "수수",
+    "folderName": "수수",
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      },
+      {
+        "label": "서리",
+        "description": "서리 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "35a95fae-3dc7-80fe-bdf8-d2cacb35ceff",
+    "name": "시그리카",
+    "folderName": "시그리카",
+    "attribute": "기류",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "에코 어빌리티 피해",
+        "description": "에코 어빌리티 피해 비교적 높음"
+      }
+    ]
+  },
+  {
+    "id": "35e95fae-3dc7-8021-9f9c-f6008eafa491",
+    "name": "아우구스타",
+    "folderName": "아우구스타",
+    "attribute": "전도",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35c95fae-3dc7-80b0-b805-f5dd16c4d378",
+    "name": "알토",
+    "folderName": "알토",
+    "attribute": "기류",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "기류 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 기류 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36395fae-3dc7-8050-9e7f-da65568d7669",
+    "name": "앙코",
+    "folderName": "앙코",
+    "attribute": "용융",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      }
+    ]
+  },
+  {
+    "id": "35d95fae-3dc7-80e3-9749-e9e8e0644d40",
+    "name": "양양",
+    "folderName": "양양",
+    "attribute": "기류",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "공명 해방 차지",
+        "description": "파티 내 특정 캐릭터의 공명 에너지 회복 가능"
+      }
+    ]
+  },
+  {
+    "id": "3a195fae-3dc7-8059-88d7-eb79d0e3bc7d",
+    "name": "양양 · 현령",
+    "folderName": "양양 · 현령",
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "암흑",
+        "description": "암흑 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "36095fae-3dc7-80b6-9c8c-c02dd95b89d4",
+    "name": "에이메스",
+    "folderName": "에이메스",
+    "attribute": "용융",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      },
+      {
+        "label": "불꽃",
+        "description": "불꽃 효과 사용 가능"
+      },
+      {
+        "label": "조화 파동 대응",
+        "description": "목표에게 조화 파동 피해를 입힐 수 있다"
+      }
+    ]
+  },
+  {
+    "id": "35f95fae-3dc7-8095-b3da-f410525c6d75",
+    "name": "연무",
+    "folderName": "연무",
+    "attribute": "전도",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "공진 수치 파괴",
+        "description": "효과적으로 목표의 공진 수치 감소 가능"
+      },
+      {
+        "label": "경직 저항력",
+        "description": "파티 내 특정 캐릭터의 경직 저항력 향상 가능"
+      }
+    ]
+  },
+  {
+    "id": "35b95fae-3dc7-80a2-9590-c4584dd02c12",
+    "name": "유노",
+    "folderName": "유노",
+    "attribute": "기류",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "강공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 강공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36695fae-3dc7-80ac-b8ca-e2ceaf42bb35",
+    "name": "유호",
+    "folderName": "유호",
+    "attribute": "응결",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "공진 수치 파괴",
+        "description": "효과적으로 목표의 공진 수치 감소 가능"
+      },
+      {
+        "label": "협동 공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 협동 공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35f95fae-3dc7-80a1-9dfa-ff8d9ad698eb",
+    "name": "음림",
+    "folderName": "음림",
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "전도 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 전도 피해 부스트 가능"
+      },
+      {
+        "label": "공명 해방 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36395fae-3dc7-8052-83fd-d433c30447ef",
+    "name": "장리",
+    "folderName": "장리",
+    "attribute": "용융",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "용융 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 용융 피해 부스트 가능"
+      },
+      {
+        "label": "공명 해방 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 해방 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36695fae-3dc7-807a-99f2-c76206882c3e",
+    "name": "절지",
+    "folderName": "절지",
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "공명 해방 차지",
+        "description": "파티 내 특정 캐릭터의 공명 에너지 회복 가능"
+      },
+      {
+        "label": "응결 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 응결 피해 부스트 가능"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-8074-8718-cd76010c505b",
+    "name": "젠니",
+    "folderName": "젠니",
+    "attribute": "회절",
+    "weaponType": "권갑",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "강공격 피해",
+        "description": "비교적 높은 강공격 피해"
+      },
+      {
+        "label": "회절 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 회절 피해 부스트 가능"
+      },
+      {
+        "label": "광학",
+        "description": "광학 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "3bf95fae-3dc7-80c1-8d1e-faa7793ca6a4",
+    "name": "청초",
+    "folderName": "청초",
+    "attribute": "기류",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "조화 밀집 대응",
+        "description": "자신의 조화도 파괴 증폭에 근거하여 목표에게 입히는 최종 피해가 증가한다"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-800d-8ffb-c8f0ed5b128c",
+    "name": "치사",
+    "folderName": "치사",
+    "attribute": "인멸",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "암흑",
+        "description": "암흑 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "36495fae-3dc7-8019-8d04-da704ef9f982",
+    "name": "치샤",
+    "folderName": "치샤",
+    "attribute": "용융",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      }
+    ]
+  },
+  {
+    "id": "35b95fae-3dc7-807a-9575-f629deafad31",
+    "name": "카르티시아",
+    "folderName": "카르티시아",
+    "attribute": "기류",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "기류 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 기류 피해 부스트 가능"
+      },
+      {
+        "label": "풍식",
+        "description": "풍식 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "36595fae-3dc7-80ec-b4d4-c19dd7082fef",
+    "name": "카를로타",
+    "folderName": "카를로타",
+    "attribute": "응결",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      }
+    ]
+  },
+  {
+    "id": "35795fae-3dc7-807c-a95f-d944d5255c86",
+    "name": "카멜리아",
+    "folderName": "카멜리아",
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      }
+    ]
+  },
+  {
+    "id": "35f95fae-3dc7-807f-b61f-e21ea8bcbc09",
+    "name": "카카루",
+    "folderName": "카카루",
+    "attribute": "전도",
+    "weaponType": "대검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      }
+    ]
+  },
+  {
+    "id": "35695fae-3dc7-804a-bb71-ccce821045b8",
+    "name": "칸타렐라",
+    "folderName": "칸타렐라",
+    "attribute": "인멸",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "인멸 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 인멸 피해 부스트 가능"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-8079-9c6f-f75255bcf64d",
+    "name": "파수인",
+    "folderName": "파수인",
+    "attribute": "회절",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "35995fae-3dc7-80da-960a-f73787566eba",
+    "name": "페비",
+    "folderName": "페비",
+    "attribute": "회절",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "광학",
+        "description": "광학 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "35695fae-3dc7-8094-9f1f-d862fb5f918d",
+    "name": "플로로",
+    "folderName": "플로로",
+    "attribute": "인멸",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "인멸 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 인멸 피해 부스트 가능"
+      },
+      {
+        "label": "강공격 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 강공격 피해 부스트 가능"
+      }
+    ]
+  },
+  {
+    "id": "36595fae-3dc7-8057-8983-ca5518047efd",
+    "name": "히유키",
+    "folderName": "히유키",
+    "attribute": "응결",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 해방 피해",
+        "description": "비교적 높은 공명 해방 피해"
+      },
+      {
+        "label": "서리",
+        "description": "서리 효과 사용 가능"
+      }
+    ]
+  },
+  {
+    "id": "3e995fae-3dc7-80af-9829-c4be7196c7ce",
+    "name": "쇄명",
+    "folderName": "쇄명",
+    "attribute": "전도",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "전도 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 전도 피해 부스트 가능"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      },
+      {
+        "label": "합일",
+        "description": "파티 내 특정 캐릭터와 조합하여 합일 관련 효과를 발생시킬 수 있습니다"
+      }
+    ]
+  },
+  {
+    "id": "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
+    "name": "여우의 별자리",
+    "folderName": "여우의 별자리",
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "전자",
+        "description": "전자 효과 사용 가능"
+      },
+      {
+        "label": "합일",
+        "description": "파티 내 특정 캐릭터와 조합하여 합일 관련 효과를 발생시킬 수 있습니다"
+      }
+    ]
+  }
+]

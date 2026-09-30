@@ -12,6 +12,8 @@ const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'wea
 const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs.json');
 const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
 const nteCharactersPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'characters.json');
+const wwGuideCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guide-characters.json');
+const wwGuidesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guides.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -131,6 +133,58 @@ const notionItems = notionData
   }));
 
 const notionNteCharacters = notionData.filter(item => item.dbSource === 'nte_characters');
+
+const parseWwGuideCharacter = item => {
+  let attribute = item.itemAttribute || '회절';
+  let weaponType = item.weapon || '직검';
+  if (item.content) {
+    if (!item.itemAttribute) {
+      const attributeMatch = item.content.match(/(?:속성|공명\s*속성)\s*:\s*([^\s\n]+)/i);
+      if (attributeMatch) attribute = attributeMatch[1].trim();
+    }
+    if (!item.weapon) {
+      const weaponMatch = item.content.match(/(?:무기|무기\s*종류|무기\s*타입)\s*:\s*([^\s\n]+)/i);
+      if (weaponMatch) weaponType = weaponMatch[1].trim();
+    }
+  }
+  return {
+    id: item.id,
+    name: item.name,
+    folderName: item.name,
+    attribute,
+    weaponType,
+    isRover: Boolean(item.name?.includes('방랑자') || item.id?.startsWith('rover_')),
+    roles: item.combatRoles ? item.combatRoles.split('\n').map(role => {
+      const parts = role.includes(':') ? role.split(':') : role.split('：');
+      return {
+        label: parts[0].replace(/\*/g, '').trim(),
+        description: parts.length > 1 ? parts.slice(1).join(':').replace(/\*/g, '').trim() : ''
+      };
+    }).filter(role => role.label) : []
+  };
+};
+
+const notionWwGuideCharacters = notionData
+  .filter(item => item.type === '캐릭터' && item.dbSource !== 'nte_characters' && item.dbSource !== 'nte_items')
+  .map(parseWwGuideCharacter);
+
+const notionWwGuides = notionData
+  .filter(item => item.dbSource === 'ww_guides')
+  .map(item => ({
+    id: item.id,
+    name: item.name || item.id.replace(/_세팅_공략|_공략/g, '').trim(),
+    patchVersion: item.patchVersion || '1.0',
+    weapons: item.weapons || [],
+    echoSets: item.echoSets || [],
+    mainEchoes: item.mainEchoes || [],
+    variants: item.variants,
+    targetStats: item.targetStats || [],
+    mainStats: item.mainStats || [],
+    subStats: item.subStats || [],
+    skillPriority: item.skillPriority || [],
+    isUniversalSynergy: item.isUniversalSynergy,
+    synergyCharacters: item.synergyCharacters || []
+  }));
 
 const parseNteArc = item => {
   const baseStats = {};
@@ -290,6 +344,9 @@ fs.mkdirSync(path.dirname(notionItemsPath), { recursive: true });
 fs.writeFileSync(notionItemsPath, `${JSON.stringify(notionItems, null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(nteCharactersPath), { recursive: true });
 fs.writeFileSync(nteCharactersPath, `${JSON.stringify(notionNteCharacters.map(normalizeNteCharacter), null, 2)}\n`, 'utf8');
+fs.mkdirSync(path.dirname(wwGuideCharactersPath), { recursive: true });
+fs.writeFileSync(wwGuideCharactersPath, `${JSON.stringify(notionWwGuideCharacters, null, 2)}\n`, 'utf8');
+fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);

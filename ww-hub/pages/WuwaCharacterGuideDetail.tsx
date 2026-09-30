@@ -30,7 +30,8 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { WW_ECHO_DATA } from '../data/echoData';
+import { WW_GUIDE_CHARACTERS, WW_GUIDE_DATA } from '../data/guideData';
 import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 import { SONATA_SETS } from '../types';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
@@ -297,7 +298,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
-  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, GUIDES } = useMemo(() => getGameData('ww'), []);
+  const CHARACTER_DB = WW_GUIDE_CHARACTERS;
+  const ECHO_DB = WW_ECHO_DATA;
+  const GUIDES = WW_GUIDE_DATA;
 
   const character = useMemo(() => {
     const cleanParam = (charName || '').replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
