@@ -1,0 +1,2414 @@
+{
+  "characters": [
+    {
+      "id": "3e995fae-3dc7-80af-9829-c4be7196c7ce",
+      "name": "쇄명",
+      "originalName": "쇄명",
+      "folderName": "쇄명",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "3.7",
+      "isRover": false
+    },
+    {
+      "id": "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
+      "name": "여우의 별자리",
+      "originalName": "여우의 별자리",
+      "folderName": "여우의 별자리",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "3.7",
+      "isRover": false
+    },
+    {
+      "id": "3be95fae-3dc7-809a-848d-cf54b30c697b",
+      "name": "경연",
+      "originalName": "경연",
+      "folderName": "경연",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "3.6",
+      "isRover": false
+    },
+    {
+      "id": "3bf95fae-3dc7-80c1-8d1e-faa7793ca6a4",
+      "name": "청초",
+      "originalName": "청초",
+      "folderName": "청초",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "3.6",
+      "isRover": false
+    },
+    {
+      "id": "susu",
+      "name": "수수",
+      "originalName": "수수",
+      "folderName": "수수",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "3.5"
+    },
+    {
+      "id": "yangyang_magistrate",
+      "name": "양양 · 현령",
+      "originalName": "양양 · 현령",
+      "folderName": "양양 · 현령",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "3.5"
+    },
+    {
+      "id": "rebecca",
+      "name": "레베카",
+      "originalName": "레베카",
+      "folderName": "레베카",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "권총",
+      "rarity": 5,
+      "releaseVersion": "3.4"
+    },
+    {
+      "id": "lucy",
+      "name": "루시",
+      "originalName": "루시",
+      "folderName": "루시",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권총",
+      "rarity": 5,
+      "releaseVersion": "3.4"
+    },
+    {
+      "id": "lucilla",
+      "name": "루실라",
+      "originalName": "루실라",
+      "folderName": "루실라",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "3.4"
+    },
+    {
+      "id": "denia",
+      "name": "데니아",
+      "originalName": "데니아",
+      "folderName": "데니아",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "3.3"
+    },
+    {
+      "id": "hiyuki",
+      "name": "히유키",
+      "originalName": "히유키",
+      "folderName": "히유키",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "3.3"
+    },
+    {
+      "id": "sigrika",
+      "name": "시그리카",
+      "originalName": "시그리카",
+      "folderName": "시그리카",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "3.2"
+    },
+    {
+      "id": "luuk",
+      "name": "루크 · 헤르센",
+      "originalName": "루크 · 헤르센",
+      "folderName": "루크 · 헤르센",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "3.1"
+    },
+    {
+      "id": "aemeath",
+      "name": "에이메스",
+      "originalName": "에이메스",
+      "folderName": "에이메스",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "3.1"
+    },
+    {
+      "id": "linne",
+      "name": "린네",
+      "originalName": "린네",
+      "folderName": "린네",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권총",
+      "rarity": 5,
+      "releaseVersion": "3.0"
+    },
+    {
+      "id": "mornye",
+      "name": "모니에",
+      "originalName": "모니에",
+      "folderName": "모니에",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "3.0"
+    },
+    {
+      "id": "chisa",
+      "name": "치사",
+      "originalName": "치사",
+      "folderName": "치사",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "2.8"
+    },
+    {
+      "id": "buling",
+      "name": "복링",
+      "originalName": "복링",
+      "folderName": "복링",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "증폭기",
+      "rarity": 4,
+      "releaseVersion": "2.8"
+    },
+    {
+      "id": "galbrena",
+      "name": "갈브레나",
+      "originalName": "갈브레나",
+      "folderName": "갈브레나",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "권총",
+      "rarity": 5,
+      "releaseVersion": "2.7"
+    },
+    {
+      "id": "qiuyuan",
+      "name": "구원",
+      "originalName": "구원",
+      "folderName": "구원",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "2.7"
+    },
+    {
+      "id": "augusta",
+      "name": "아우구스타",
+      "originalName": "아우구스타",
+      "folderName": "아우구스타",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "2.6"
+    },
+    {
+      "id": "iuno",
+      "name": "유노",
+      "originalName": "유노",
+      "folderName": "유노",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "2.6"
+    },
+    {
+      "id": "phrolova",
+      "name": "플로로",
+      "originalName": "플로로",
+      "folderName": "플로로",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "2.5"
+    },
+    {
+      "id": "lupa",
+      "name": "루파",
+      "originalName": "루파",
+      "folderName": "루파",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "2.4"
+    },
+    {
+      "id": "cartethyia",
+      "name": "카르티시아",
+      "originalName": "카르티시아",
+      "folderName": "카르티시아",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "2.4"
+    },
+    {
+      "id": "chaconne",
+      "name": "샤콘",
+      "originalName": "샤콘",
+      "folderName": "샤콘",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권총",
+      "rarity": 5,
+      "releaseVersion": "2.3"
+    },
+    {
+      "id": "zani",
+      "name": "젠니",
+      "originalName": "젠니",
+      "folderName": "젠니",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "2.3"
+    },
+    {
+      "id": "cantarella",
+      "name": "칸타렐라",
+      "originalName": "칸타렐라",
+      "folderName": "칸타렐라",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "2.2"
+    },
+    {
+      "id": "brant",
+      "name": "브렌트",
+      "originalName": "브렌트",
+      "folderName": "브렌트",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "2.1"
+    },
+    {
+      "id": "phoebe",
+      "name": "페비",
+      "originalName": "페비",
+      "folderName": "페비",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "2.1"
+    },
+    {
+      "id": "rococo",
+      "name": "로코코",
+      "originalName": "로코코",
+      "folderName": "로코코",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "2.0"
+    },
+    {
+      "id": "carlotta",
+      "name": "카를로타",
+      "originalName": "카를로타",
+      "folderName": "카를로타",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "권총",
+      "rarity": 5,
+      "releaseVersion": "2.0"
+    },
+    {
+      "id": "camellya",
+      "name": "카멜리아",
+      "originalName": "카멜리아",
+      "folderName": "카멜리아",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "1.4"
+    },
+    {
+      "id": "lumi",
+      "name": "루미",
+      "originalName": "루미",
+      "folderName": "루미",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "대검",
+      "rarity": 4,
+      "releaseVersion": "1.4"
+    },
+    {
+      "id": "the_shorekeeper",
+      "name": "파수인",
+      "originalName": "파수인",
+      "folderName": "파수인",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "1.3"
+    },
+    {
+      "id": "youhu",
+      "name": "유호",
+      "originalName": "유호",
+      "folderName": "유호",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "권갑",
+      "rarity": 4,
+      "releaseVersion": "1.3"
+    },
+    {
+      "id": "xiangli_yao",
+      "name": "상리요",
+      "originalName": "상리요",
+      "folderName": "상리요",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "1.2"
+    },
+    {
+      "id": "zhezhi",
+      "name": "절지",
+      "originalName": "절지",
+      "folderName": "절지",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "1.2"
+    },
+    {
+      "id": "jinhsi",
+      "name": "금희",
+      "originalName": "금희",
+      "folderName": "금희",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "1.1"
+    },
+    {
+      "id": "changli",
+      "name": "장리",
+      "originalName": "장리",
+      "folderName": "장리",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "1.1"
+    },
+    {
+      "id": "jianxin",
+      "name": "감심",
+      "originalName": "감심",
+      "folderName": "감심",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "jiyan",
+      "name": "기염",
+      "originalName": "기염",
+      "folderName": "기염",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "lingyang",
+      "name": "능양",
+      "originalName": "능양",
+      "folderName": "능양",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "권갑",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "rover_aero",
+      "name": "방랑자 · 기류",
+      "originalName": "방랑자 · 기류",
+      "folderName": "방랑자 · 기류",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제2장 제4막 클리어 후에 획득",
+      "isRover": true
+    },
+    {
+      "id": "rover_havoc",
+      "name": "방랑자 · 인멸",
+      "originalName": "방랑자 · 인멸",
+      "folderName": "방랑자 · 인멸",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "조수 임무 제1장 제6막 클리어 후 획득",
+      "isRover": true
+    },
+    {
+      "id": "rover_electro",
+      "name": "방랑자 · 전도",
+      "originalName": "방랑자 · 전도",
+      "folderName": "방랑자 · 전도",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제4장 제2막 완료 후 개방",
+      "isRover": true
+    },
+    {
+      "id": "rover_spectro",
+      "name": "방랑자 · 회절",
+      "originalName": "방랑자 · 회절",
+      "folderName": "방랑자 · 회절",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "1.0",
+      "isRover": true
+    },
+    {
+      "id": "verina",
+      "name": "벨리나",
+      "originalName": "벨리나",
+      "folderName": "벨리나",
+      "gameId": "ww",
+      "attribute": "회절",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "baizhi",
+      "name": "설지",
+      "originalName": "설지",
+      "folderName": "설지",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "encore",
+      "name": "앙코",
+      "originalName": "앙코",
+      "folderName": "앙코",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "yinlin",
+      "name": "음림",
+      "originalName": "음림",
+      "folderName": "음림",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "증폭기",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "calcharo",
+      "name": "카카루",
+      "originalName": "카카루",
+      "folderName": "카카루",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "대검",
+      "rarity": 5,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "danjin",
+      "name": "단근",
+      "originalName": "단근",
+      "folderName": "단근",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "taoqi",
+      "name": "도기",
+      "originalName": "도기",
+      "folderName": "도기",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "대검",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "mortefi",
+      "name": "모르테피",
+      "originalName": "모르테피",
+      "folderName": "모르테피",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "권갑",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "sanhua",
+      "name": "산화",
+      "originalName": "산화",
+      "folderName": "산화",
+      "gameId": "ww",
+      "attribute": "응결",
+      "weaponType": "직검",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "aalto",
+      "name": "알토",
+      "originalName": "알토",
+      "folderName": "알토",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "권총",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "yangyang",
+      "name": "양양",
+      "originalName": "양양",
+      "folderName": "양양",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "yuanwu",
+      "name": "연무",
+      "originalName": "연무",
+      "folderName": "연무",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "권갑",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    },
+    {
+      "id": "chixia",
+      "name": "치샤",
+      "originalName": "치샤",
+      "folderName": "치샤",
+      "gameId": "ww",
+      "attribute": "용융",
+      "weaponType": "권총",
+      "rarity": 4,
+      "releaseVersion": "1.0"
+    }
+  ],
+  "guides": [
+    {
+      "id": "jingran",
+      "name": "경연",
+      "weapons": [
+        {
+          "name": "수많은 인도",
+          "rank": 1,
+          "note": "경연의 전용 무기로 HP와 실드 획득 시 「봉천」,「포용」를 획득한다. 「봉천」획득 시 크리티컬과 강공격의 크리티컬이 증가하며 「포용」은 강공격 발동 시 1 소모하고 강공격 피해의 방어력 무시를 제공한다."
+        },
+        {
+          "name": "천둥벼락을 다스리는 권능",
+          "rank": 2,
+          "note": "공격력과 강공격 피해 보너스를 제공하며 실드 획득 시 강공격 피해가 방어력 무시하는 무기."
+        },
+        {
+          "name": "청룡의 천장",
+          "rank": 3,
+          "note": "전체 속성 피해 보너스와 강공격 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "불길",
+          "rank": 4,
+          "note": "공격력과 공명 해방 피해 보너스와 용융 피해 보너스를 제공하는 무기. 강공격 피해 보너스는 없지만 용융 속성 캐릭터인 경연에게 충분히 좋은 무기."
+        },
+        {
+          "name": "금빛 하늘",
+          "rank": 5,
+          "note": "공명 해방 발동 시, 공격력과 강공격 피해 보너스를 제공하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "만와뢰 · 잔해",
+          "reason": "용융 피해와 강공격 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "qingcao",
+      "name": "청초",
+      "weapons": [
+        {
+          "name": "옥빛 구름",
+          "rank": 1,
+          "note": "청초의 전용 무기로 공격력과 조화 밀집 · 이탈 추가 시 기류 피해 보너스와 방어력 무시를 제공하는 무기."
+        },
+        {
+          "name": "날카로운 봄",
+          "rank": 2,
+          "note": "공격력과 일반 공격 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 3,
+          "note": "크리티컬을 100%를 쉽게 맞출 수 있는 청초에게 궁합이 좋은 무기. 공격력도 제공한다."
+        },
+        {
+          "name": "예리한 날개깃",
+          "rank": 4,
+          "note": "공명 해방 발동 시 공격력과 공명 해방 피해 보너스를 제공하는 무기. 청초의 피해 유형이 분산되어 있기 때문에 활용하기 어렵다."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "하늘의 기관 인형 · 겁살",
+          "reason": "「조화 밀집 · 이탈」추가 시, 기류 피해 증가를 추가로 제공하는 에코. 변신형 에코라서 사이클 마지막에 사용한다."
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "susu",
+      "name": "수수",
+      "weapons": [
+        {
+          "name": "노을에 깃든 이슬",
+          "rank": 1,
+          "note": "수수의 전용 무기로 HP와 협주 에너지를 제공하며 서리 효과와 치료 효과 충족 시 파티 내 모든 캐릭터의 공격력을 제공하는 무기."
+        },
+        {
+          "name": "뭇별의 교향곡",
+          "rank": 2,
+          "note": "HP와 협주 에너지를 제공하는 무기. 다만 공명 스킬 사용 시 파티 내 모든 캐릭터에게 공격력 버프는 제공할 수 없다. 수수의 공명 스킬은 치료 효과가 없다."
+        },
+        {
+          "name": "판타지 변주",
+          "rank": 3,
+          "note": "공명 스킬 발동 시 협주 에너지를 회복하는 무기."
+        },
+        {
+          "name": "심해의 메아리",
+          "rank": 4,
+          "note": "공명 해방 발동 시 치료 효과 보너스를 제공하는 무기. 무난하게 사용 가능"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "봉정계유",
+          "reason": "치료 효과 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "yangyang",
+      "name": "양양",
+      "weapons": [
+        {
+          "name": "아득히 푸른 하늘",
+          "rank": 1,
+          "note": "양양 · 현령의 전용 무기로 전체 속성 보너스와 암흑 효과 추가 후 강공격 피해 부스트와 강공격 피해 방어력 무시를 제공하는 무기"
+        },
+        {
+          "name": "푸른 의지",
+          "rank": 2,
+          "note": "공격력과 강공격 피해 보너스를 제공하는 무기. 에코 어빌리티 피해 보너스는 버리는 옵션이다."
+        },
+        {
+          "name": "천공의 광경",
+          "rank": 3,
+          "note": "공명 스킬 발동 시 일반 공격 피해와 강공격 피해 보너스를 제공하는 무기. 주 옵션이 공격력이기 때문에 세팅의 난이도가 상승한다."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "천괴중루",
+          "reason": "암흑 효과 추가 시 추가로 인멸 피해를 입히며 인멸 피해와 강공격 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "rebecca",
+      "name": "레베카",
+      "weapons": [
+        {
+          "name": "스컬 스래셔",
+          "rank": 1,
+          "note": "레베카의 전용 무기로 공격력과 일반 공격 피해 보너스, 「해킹 · 이탈」추가 시 일반 공격 피해 보너스와 파티의 공격력 증가를 제공하는 무기."
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 2,
+          "note": "주 옵션 크리티컬과 공명 효율을 제공하며 다음 등장 캐릭터에게 공격력을 제공하는 무기."
+        },
+        {
+          "name": "태양 불꽃",
+          "rank": 3,
+          "note": "주 옵션 크리티컬을 제공하며 공격력과 강공격 피해 보너스를 제공하는 무기."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "공명의 메아리 · 악몽 아담 · 스매셔",
+          "reason": "루시와 레베카가 장착 시 크리티컬과 전도 피해를 입히는 에코."
+        }
+      ]
+    },
+    {
+      "id": "lucy",
+      "name": "루시",
+      "weapons": [
+        {
+          "name": "스펙트럴 트리거",
+          "rank": 1,
+          "note": "루시의 전용 무기로 공격력과 회절 피해 보너스, 「해킹 · 이탈」추가 시 강공격 피해 부스트와 방어력 무시를 제공하는 무기."
+        },
+        {
+          "name": "위상의 파동",
+          "rank": 2,
+          "note": "공격력 증가와 「조화도 파괴 스킬」발동 시 전체 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "태양 불꽃",
+          "rank": 3,
+          "note": "주 옵션 크리티컬을 제공하며 공격력과 강공격 피해 보너스를 제공하는 무기."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "공명의 메아리 · 악몽 아담 · 스매셔",
+          "reason": "루시와 레베카가 장착 시 크리티컬과 회절 피해를 입히는 에코."
+        }
+      ]
+    },
+    {
+      "id": "lucilla",
+      "name": "루실라",
+      "weapons": [
+        {
+          "name": "프리즈 프레임",
+          "rank": 1,
+          "note": "루실라의 전용 무기로 서리 효과 추가 후 응결 피해 보너스와 파티 캐릭터의 공격력을 제공하는 무기."
+        },
+        {
+          "name": "꼭두각시의 손",
+          "rank": 2,
+          "note": "전체 속성 피해 부스트로 범용성이 좋은 무기. 세팅 난이도가 낮아진다"
+        },
+        {
+          "name": "청음",
+          "rank": 3,
+          "note": "주 옵션 크리티컬을 제공하며 공격력 버프를 제공하는 무기."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "글로모스",
+          "reason": "다음 변주 스킬로 등장하는 캐릭터에게 응결 피해를 제공하는 에코."
+        }
+      ]
+    },
+    {
+      "id": "denia",
+      "name": "데니아",
+      "weapons": [
+        {
+          "name": "위조된 작은별",
+          "rank": 1,
+          "note": "데니아의 전용 무기로 공격력과 불꽃 효과 혹은 조화 밀집 · 이탈 추가 후, 공명 해방 피해 보너스, 추가로 공격력을 제공하는 무기."
+        },
+        {
+          "name": "꼭두각시의 손",
+          "rank": 2,
+          "note": "전체 속성 피해 부스트로 범용성이 좋은 무기. 세팅 난이도가 낮아진다"
+        },
+        {
+          "name": "청음",
+          "rank": 3,
+          "note": "주 옵션 크리티컬을 제공하며 공격력 버프를 제공하는 무기."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "공명의 메아리 · 데니아",
+          "reason": "변주 스킬로 등장하는 캐릭터에게 용융 피해를 제공하는 에코"
+        }
+      ]
+    },
+    {
+      "id": "sigrika",
+      "name": "시그리카",
+      "weapons": [
+        {
+          "name": "솔스원의 해석",
+          "rank": 1,
+          "note": "시그리카의 전용 무기로 공격력과 에코 어빌리티 피해 그리고 기류 피해 방어력 무시를 제공하는 무기."
+        },
+        {
+          "name": "불빛의 심판",
+          "rank": 2,
+          "note": "공격력과 방어력 무시를 제공하는 무기. 광학 효과 피해 부스트는 받지 못한다."
+        },
+        {
+          "name": "격동의 조력",
+          "rank": 3,
+          "note": "공격력과 「조화 밀집 · 간섭」상태의 적에게 일반 공격 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "거침없는 비상",
+          "rank": 4,
+          "note": "주 옵션 크리티컬 피해와 공격력 버프만 보고 사용하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "이름없는 탐색자",
+          "reason": "기류 피해와 에코 어빌리티 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "aemeath",
+      "name": "에이메스",
+      "weapons": [
+        {
+          "name": "영원한 샛별",
+          "rank": 1,
+          "note": "에이메스의 전용 무기로 전체 속성 피해 보너스와 조화 파동 · 이탈 혹은 불꽃 효과 추가 시, 공명 해방 피해가 방어력과 용융 저항을 무시하는 무기."
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2,
+          "note": "주 옵션 크리티컬과 공명 효율, 공격력을 제공하는 무기."
+        },
+        {
+          "name": "예리한 날개깃",
+          "rank": 3,
+          "note": "주 옵션 크리티컬을 제공하며 공격력과 공명 해방 피해 보너스를 제공하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "시길룸",
+          "reason": "에이메스가 장착 시 추가 공명 해방 피해가 증가하는 전용 에코."
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "luuk",
+      "name": "루크",
+      "weapons": [
+        {
+          "name": "한낮의 의지",
+          "rank": 1,
+          "note": "루크 · 헤르센의 전용 무기로 공격력과 회절 피해 보너스, 「조화 밀집 · 이탈」추가 시 일반 공격 피해 부스트와 목표의 일반 공격 피해가 방어력을 무시하는 무기."
+        },
+        {
+          "name": "격동의 조력",
+          "rank": 2,
+          "note": "공격력과 「조화 밀집 · 간섭」상태의 적에게 일반 공격 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "물결의 파동",
+          "rank": 3,
+          "note": "공명 효율을 제공하며 일반 공격 피해 보너스와 공명 스킬 피해 보너스도 제공하는 무기."
+        },
+        {
+          "name": "천상의 나선",
+          "rank": 4,
+          "note": "루크 · 헤르센의 높은 공명 효율 요구치를 낮춰주는 무기 하지만. 크리티컬이 없는 무기라서 세팅 난이도는 올라간다."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "트윈 노바 · 네뷸러스 캐논",
+          "reason": "회절 피해와 일반 공격 피해 보너스를 제공하는 에코. 사이클 중간에 소환하지 않는 것을 추천 한다."
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "mornye",
+      "name": "모니에",
+      "weapons": [
+        {
+          "name": "별하늘 연산 측정기",
+          "rank": 1,
+          "note": "모니에의 전용 무기로 방어력과 협주 에너지를 회복하며 치료 시 파티의 크리티컬 피해를 증가시키는 무기."
+        },
+        {
+          "name": "기묘한 울림",
+          "rank": 2,
+          "note": "협주 에너지를 회복하는 무기."
+        },
+        {
+          "name": "장야의 불빛",
+          "rank": 3,
+          "note": "주 옵션 방어력만 보고 사용하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "리액터 허스크",
+          "reason": "공명 효율을 제공하는 에코."
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "linne",
+      "name": "린네",
+      "weapons": [
+        {
+          "name": "스펙트럼 블래스터",
+          "rank": 1,
+          "note": "린네의 전용 무기로 공격력과 일반 공격 피해 보너스와 「조화 파동 · 이탈」 혹은 「조화 밀집 · 이탈」추가 시 파티 모든 캐릭터 전체 피해가 증가하는 무기."
+        },
+        {
+          "name": "위상의 파동",
+          "rank": 2,
+          "note": "주 옵션에 크리티컬 피해를 제공하며 공결력과 「조화도 파괴 스킬」발동 시 전체 피해 보너스를 제공하는 무기"
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 3,
+          "note": "주 옵션에 크리티컬을 제공하며 무기 스킬에 공명 효율을 제공하는 무기 반주 스킬 발동 후 다음 등장 캐릭터가 공격력 버프도 제공하는 무기."
+        },
+        {
+          "name": "태양 불꽃",
+          "rank": 4,
+          "note": "4성 중 주 옵션 크리티컬로 낮은 세팅 난이도."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "하이와티아",
+          "reason": "회절 피해를 입히며 변주 스킬로 등장한 다음 캐릭터에게 전체 속성 피해 보너스를 제공."
+        }
+      ]
+    },
+    {
+      "id": "chisa",
+      "name": "치사",
+      "weapons": [
+        {
+          "name": "쿠모키리(曇斬)",
+          "rank": 1,
+          "note": "치사의 전용 무기로 공격력과 공명 해방 피해 보너스와 전체 속성 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "불길",
+          "rank": 2,
+          "note": "에이메스, 데니아와 함께 사용하는 불꽃 모드 파티일때 사용. 공명 해방 피해와 용융 피해 보너스를 제공"
+        },
+        {
+          "name": "에너지 절단",
+          "rank": 3,
+          "note": "「조화 밀집 · 간섭」하는 캐릭터와 조합하여 공명 해방 피해 보너스를 발동하는 무기."
+        },
+        {
+          "name": "가을의 무늬",
+          "rank": 4,
+          "note": "주 옵션 크리티컬로 낮은 세팅 난이도."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "공명의 메아리 · 명식 · 레비아탄",
+          "reason": "인멸 피해와 공명 해방 피해 보너스를 제공하는 에코"
+        }
+      ]
+    },
+    {
+      "id": "galbrena",
+      "name": "갈브레나",
+      "weapons": [
+        {
+          "name": "얽혀진 빛과 그림자",
+          "rank": 1,
+          "note": "갈브레나의 전용 무기로 강공격 피해 보너스와 에코 어빌리티 피해 보너스를 제공하며 단일 공격으로 피해 부스트도 제공한다 두 가지 효과가 있는 경우 방어력 무시까지 제공하는 독특한 무기."
+        },
+        {
+          "name": "위상의 파동",
+          "rank": 2,
+          "note": "공격력과 전체 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 3,
+          "note": "주 옵션 크리티컬과 공명 효율만 보고 사용하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "코로사우루스",
+          "reason": "3cost 에코로 용융 피해와 에코 어빌리티 피해 보너스를 제공하는 에코. 소환형 에코로 딜 사이클을 방해 하지 않는다."
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "qiuyuan",
+      "name": "구원",
+      "weapons": [
+        {
+          "name": "푸른 의지",
+          "rank": 1,
+          "note": "구원의 전용 무기로 공격력과 에코 어빌리티 발동 시 강공격 피해 보너스를 제공하며 파티에게도 에코 어빌리티 피해 보너스를 제공하는 무기."
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2,
+          "note": "높은 공명 효율을 요구하는 구원에게 공명 효율을 제공하며 크리티컬 65%를 맞춰야 하는 구원에게 주 옵션으로 크리티컬까지 제공하는 무기."
+        },
+        {
+          "name": "예리한 날개깃",
+          "rank": 3
+        },
+        {
+          "name": "행진의 서곡",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "공명의 메아리 · 펜리코",
+          "reason": "기류 피해와 강공격 피해 보너스를 증가시키는 에코"
+        }
+      ]
+    },
+    {
+      "id": "augusta",
+      "name": "아우구스타",
+      "weapons": [
+        {
+          "name": "천둥벼락을 다스리는 권능",
+          "rank": 1,
+          "note": "아우구스타의 전용 무기로 공격력과 강공격 피해 보너스를 제공하며 실드 획득 시 강공격 피해가 방어력 무시하는 무기."
+        },
+        {
+          "name": "청룡의 천장",
+          "rank": 2,
+          "note": "강공격이 핵심인 아우구스타에게 전체 속성 피해 보너스와 강공격 피해 보너스를 제공하는 무기"
+        },
+        {
+          "name": "가을의 무늬",
+          "rank": 3
+        },
+        {
+          "name": "금빛 하늘",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "거짓의 신왕",
+          "reason": "변신형 에코이지만 간단한 모션으로 사이클 중간에 사용하며 전도 피해와 강공격 피해를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "iuno",
+      "name": "유노",
+      "weapons": [
+        {
+          "name": "세상 만물의 진리",
+          "rank": 1,
+          "note": "유노의 전용 무기로 공격력과 공명 해방 피해 보너스를 제공하며 실드 획득 시 공명 해방 피해가 방어력 무시하는 무기."
+        },
+        {
+          "name": "팔방의 천추",
+          "rank": 2,
+          "note": "전체 속성 피해 보너스와 공명 해방 피해 보너스를 제공하는 무기로 궁합이 좋다"
+        },
+        {
+          "name": "격동의 조력",
+          "rank": 3,
+          "note": "주 옵션 크리티컬과 공격력만 보고 사용하는 무기"
+        },
+        {
+          "name": "황금 권갑",
+          "rank": 4
+        },
+        {
+          "name": "거침없는 비상",
+          "rank": 5
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "바다의 여인",
+          "reason": "기류 피해와 공명 해방 피해 보너스를 제공하는 에코"
+        },
+        {
+          "name": "케라사우르스",
+          "reason": "기류 피해와 공명 해방 보너스를 제공하는 에코 하지만 공중에서 에코 사용이 불가하고 입력을 한 번 더 해야 하는 단점이 있다"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "phrolova",
+      "name": "플로로",
+      "weapons": [
+        {
+          "name": "잊혀진 피안의 슬픈 악장",
+          "rank": 1,
+          "note": "플로로의 전용 무기로 공격력과 공명 스킬 피해 보너스와 에코 어빌리티 피해가 증가하며 피해 입힐 시 방어력 무시까지 제공하는 무기"
+        },
+        {
+          "name": "꼭두각시의 손",
+          "rank": 2,
+          "note": "전체 속성 피해 부스트로 범용성이 좋은 무기. 세팅 난이도가 낮아진다"
+        },
+        {
+          "name": "바다의 속삭임",
+          "rank": 3,
+          "note": "4성 중에 주 옵션에 크리티컬을 제공하는 무기 중 가장 좋은 무기"
+        },
+        {
+          "name": "청음",
+          "rank": 4,
+          "note": "공격력을 제공하며 변주 스킬, 일반 공격 발동 후 에코 어빌리티 발동 시 [부드러운 꿈] 1스택을 획득하는 무기. 1스택은 일반 공격 피해 보너스를 2스택은 목표의 인멸 속성 저항을 무시하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 헤카테",
+          "reason": "인멸 피해와 에코 어빌리티 피해 부스트를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "lupa",
+      "name": "루파",
+      "weapons": [
+        {
+          "name": "불길",
+          "rank": 1,
+          "note": "루파의 전용 무기로 공격력과 공명 해방 피해 보너스와 파티의 용융 피해 보너스까지 증가를 제공하는 무기"
+        },
+        {
+          "name": "에너지 절단",
+          "rank": 2,
+          "note": "크리티컬 피해를 제공하며 조건부 공명 해방 피해 보너스를 제공하는 무기"
+        },
+        {
+          "name": "가을의 무늬",
+          "rank": 3,
+          "note": "4성 중에 주 옵션에 크리티컬을 제공하는 무기 중 가장 좋은 무기"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "영광의 사자",
+          "reason": "장착 시 용융 피해와 공명 해방 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "cartethyia",
+      "name": "카르티시아",
+      "weapons": [
+        {
+          "name": "숙명에 맞서는 관",
+          "rank": 1,
+          "note": "카르티시아의 전용 무기로 HP 증가와 방어력 무시 그리고 적이 풍식 효과 보유 시 입히는 피해 부스트를 제공하는 무기로 궁합이 좋다"
+        },
+        {
+          "name": "날카로운 봄",
+          "rank": 2,
+          "note": "주 옵션 크리티컬과 일반 공격 피해 보너스만 보고 사용하는 무기."
+        },
+        {
+          "name": "수호자의 직검 · 기민",
+          "rank": 3,
+          "note": "주 옵션으로 HP를 제공하는 무기."
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 4,
+          "note": "주 옵션 크리티컬과 공명 효율만 보고 사용하는 무기."
+        },
+        {
+          "name": "예리한 날개깃",
+          "rank": 5,
+          "note": "주 옵션 크리티컬과 공명 해방 피해 보너스만 보고 사용하는 무기."
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "공명의 메아리 · 플뢰르 드 리스",
+          "reason": "카르티시아가 장착할 경우 기류 피해 보너스가 추가로 증가하는 전용 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "chaconne",
+      "name": "샤콘",
+      "weapons": [
+        {
+          "name": "숲속의 아리아",
+          "rank": 1,
+          "note": "샤콘의 전용 무기로 공격력과 풍식 효과 추가 후 자신의 기류 피해 보너스를 제공하는 무기. 풍식 효과 적을 공격 시 목표의 기류 저항을 감소 시켜 다음에 등장할 캐릭터에게 지원 가능한 무기"
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 2,
+          "note": "주 옵션으로 크리티컬을 제공하며 무기 스킬에 공명 효율이 있어 사이클 순환에 좋고 반주 스킬 발동 후 다음 등장 캐릭터에게 공격력을 제공하는 무기. 주력 파티인 카르티시아에겐 의미가 없지만 다른 파티로 사용 한다면 좋은 옵션"
+        },
+        {
+          "name": "죽음과 춤",
+          "rank": 3,
+          "note": "공격력 계수 힐인 복링에게 무난하게 어울리는 무기"
+        },
+        {
+          "name": "화려한 악곡",
+          "rank": 4,
+          "note": "힐러 포지션인 캐릭터에게 항상 좋은 무기 협주 에너지를 빠르게 회복 가능"
+        },
+        {
+          "name": "작별의 로맨스",
+          "rank": 5
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 켈피",
+          "reason": "변신형 에코라 사이클이 늘어지는 단점이 있지만 기류 피해와 반주 스킬 후 퇴장 시 적에게 기류 피해를 입힌다"
+        },
+        {
+          "name": "공명의 메아리 · 플뢰르 드 리스",
+          "reason": "기류 피해를 제공하는 무난한 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "zani",
+      "name": "젠니",
+      "weapons": [
+        {
+          "name": "불빛의 심판",
+          "rank": 1,
+          "note": "젠니의 전용 무기로 공격력과 일반 공격 시 방어력 무시, 자신의 광학 효과 피해 부스트를 제공하는 무기 궁합이 좋다"
+        },
+        {
+          "name": "희비극",
+          "rank": 2,
+          "note": "공격력과 강공격 피해 보너스를 제공하는 무기 강공격 비중이 높은 젠니에게 추천하는 무기"
+        },
+        {
+          "name": "천상의 나선",
+          "rank": 3,
+          "note": "공명 스킬 발동 시 공명 에너지와 공격력을 제공하는 무기. 젠니는 공명 해방 전에 공명 스킬을 사용 해야 하므로 궁합이 좋다"
+        },
+        {
+          "name": "황금 권갑",
+          "rank": 4,
+          "note": "공명 스킬 사용 시 공명 해방 피해 보너스를 제공하는 무기"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "카피타네우스",
+          "reason": "3코스트 에코로 회절 피해와 강공격 피해 보너스를 제공하는 에코. 다만 4코스트인 악몽 · 애곡하는 아익스보다 미세하게 강하기 때문에 크게 유의미 하지 않다"
+        },
+        {
+          "name": "악몽 · 애곡하는 아익스",
+          "reason": "회절 피해 부스트를 제공하는 에코. 소환형 에코이기 때문에 젠니의 사이클을 방해 하지 않는다. 파밍 난이도가 낮기 때문에 타협 시 좋은 선택지"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "cantarella",
+      "name": "칸타렐라",
+      "weapons": [
+        {
+          "name": "바다의 속삭임",
+          "rank": 1,
+          "note": "칸타렐라의 전용 무기로 공격력을 제공하며 변주 스킬, 일반 공격 발동 후 에코 어빌리티 발동 시 [부드러운 꿈] 1스택을 획득하는 무기. 1스택은 일반 공격 피해 보너스를 2스택은 목표의 인멸 속성 저항을 무시하는 무기."
+        },
+        {
+          "name": "옥수 비단",
+          "rank": 2,
+          "note": "공격력과 일반 공격 피해 보너스를 제공하는 무기로 궁합이 좋다"
+        },
+        {
+          "name": "꼭두각시의 손",
+          "rank": 3,
+          "note": "전체 속성 피해 부스트로 범용성이 좋은 무기. 세팅 난이도가 낮아진다"
+        },
+        {
+          "name": "청음",
+          "rank": 4,
+          "note": "전용 무기가 없는 경우 4성 중에 가장 좋은 선택지이나 전용 무기를 획득한 경우 에코 세팅을 다시 해야 한다."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "로렐라이",
+          "reason": "인멸 피해와 일반 공격 피해 보너스를 제공하는 에코"
+        }
+      ]
+    },
+    {
+      "id": "brant",
+      "name": "브렌트",
+      "weapons": [
+        {
+          "name": "흔들리지 않는 용기",
+          "rank": 1,
+          "note": "브렌트의 전용 무기로 브렌트에게 필수인 공명 효율을 주 옵션으로 제공하며 크리티컬과 일반 공격 피해 보너스를 제공한다. 공명 효율을 대량으로 제공하는 무기 하나로 가치가 높다."
+        },
+        {
+          "name": "날카로운 봄",
+          "rank": 2,
+          "note": "공격력과 일반 공격 피해 보너스를 제공하는 무기로 세트 효과를 솟구치는 용암을 사용하고 공명 효율을 220% 정도로 타협해야 한다."
+        },
+        {
+          "name": "행진의 서곡",
+          "rank": 3,
+          "note": "4성 중에 공명 효율을 많이 제공하는 무기. 딜 능력은 많이 배제하게 된다."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "탄식의 고룡",
+          "reason": "용융 피해와 일반 공격 피해 보너스를 제공하는 에코. 교체 직전에 사용하면 자동으로 공격한다."
+        }
+      ]
+    },
+    {
+      "id": "phoebe",
+      "name": "페비",
+      "weapons": [
+        {
+          "name": "광휘의 찬송가",
+          "rank": 1,
+          "note": "페비의 전용 무기로 광학 효과를 부여 시 일반 공격과 강공격 피해 보너스를 제공하며 반주 스킬 발동 시 주변 적에게 광학 효과 피해 부스트를 제공하는 무기"
+        },
+        {
+          "name": "꼭두각시의 손",
+          "rank": 2,
+          "note": "전체 속성 피해 부스트로 범용성이 좋은 무기. 전용 무기와 딜 차이가 거의 없다"
+        },
+        {
+          "name": "청음",
+          "rank": 3,
+          "note": "5재련 기준 상시 5성 증폭기보다 강하다"
+        },
+        {
+          "name": "바다의 선물",
+          "rank": 4,
+          "note": "광학 효과가 부여된 적에게 피해 준 경우 회절 피해 부스트를 제공하는 무기. 젠니 파티에서는 효과가 적용되지 않아서 쓰면 안된다."
+        },
+        {
+          "name": "허위의 왈츠",
+          "rank": 5,
+          "note": "이상 효과가 부여된 적에게 피해 준 경우 공격력을 제공하는 무기. 젠니 파티에서는 효과가 적용되지 않아서 쓰면 안된다."
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "카피타네우스",
+          "reason": "3코스트 에코로 회절 피해와 강공격 피해 보너스를 제공하는 에코. 다만 4코스트인 악몽 · 애곡하는 아익스보다 미세하게 강하기 때문에 크게 유의미 하지 않다"
+        },
+        {
+          "name": "악몽 · 애곡하는 아익스",
+          "reason": "회절 피해 부스트를 제공하는 에코. 소환형 에코이기 때문에 페비의 사이클을 방해 하지 않는다. 광학 효과가 있는 적에게 에코 어빌리티 대미지가 증폭하는 효과가 있기 때문에 광학 효과 부여 후 바로 에코 사용하면 된다."
+        }
+      ]
+    },
+    {
+      "id": "rococo",
+      "name": "로코코",
+      "weapons": [
+        {
+          "name": "희비극",
+          "rank": 1,
+          "note": "로코코의 전용 무기로 공격력과 강공격 피해 보너스를 제공하는 무기로 궁합이 좋다"
+        },
+        {
+          "name": "팔방의 천추",
+          "rank": 2,
+          "note": "상리요의 전용 무기로 전체 속성 피해 보너스와 공명 해방 피해 보너스를 제공하는 무기"
+        },
+        {
+          "name": "황금 권갑",
+          "rank": 3,
+          "note": "주 옵션이 크리티컬을 제공하며 공명 스킬 사용 시 공명 해방 피해 보너스를 제공하는 무난한 무기"
+        },
+        {
+          "name": "바람의 악센트",
+          "rank": 4,
+          "note": "카멜리아 파티 시 채용하는 무기"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 음험한 백로",
+          "reason": "인멸 피해와 강공격 피해 보너스를 증가시키는 에코"
+        }
+      ]
+    },
+    {
+      "id": "rover_aero",
+      "name": "방랑자 · 기류",
+      "weapons": [
+        {
+          "name": "혈맹의 약속",
+          "rank": 1,
+          "note": "방랑자 (기류)의 전용 무기로 무료 획득이 가능하다. 방랑자 (기류)만 발동하는 효과가 있다"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "공명의 메아리 · 플뢰르 드 리스",
+          "reason": "기류 피해 증가와 방랑자(기류)와 카르티시아가 장착 시 기류 피해 보너스를 추가로 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "camellya",
+      "name": "카멜리아",
+      "weapons": [
+        {
+          "name": "날카로운 봄",
+          "rank": 1,
+          "note": "카멜리아의 전용 무기로 협주 에너지 소모 시 일반 공격 피해 보너스를 추가로 제공하는 무기"
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2,
+          "note": "공명 효율과 크리티컬을 기본으로 제공하는 상시 무기로 캐릭터 중 궁합이 좋다"
+        },
+        {
+          "name": "천공의 광경",
+          "rank": 3,
+          "note": "4성 중에 가장 궁합이 좋은 무기. 일반 공격 피해와 강공격 피해 보너스를 제공"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 크라운리스",
+          "reason": "기존 크라운리스와 달리 장착만 해도 인멸 피해 보너스와 일반 공격 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "the_shorekeeper",
+      "name": "파수인",
+      "weapons": [
+        {
+          "name": "뭇별의 교향곡",
+          "rank": 1,
+          "note": "파수인의 전용 무기로 HP 증가와 협주 에너지를 제공하며, 공명 스킬로 치료 시 파티 캐릭터의 공격력 증가 버프까지 제공하는 무기"
+        },
+        {
+          "name": "판타지 변주",
+          "rank": 2
+        },
+        {
+          "name": "심해의 메아리",
+          "rank": 3
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "돌아갈 곳이 없는 오류",
+          "reason": "공명 효율과 공격력을 제공하는 에코로 공명 효율을 240% 이상 맞춰야 하는 파수인에게 세팅의 난이도를 낮춘다"
+        },
+        {
+          "name": "타종 거북이",
+          "reason": "실드와 피해 감소 그리고 적에게 입히는 피해 증가 버프를 제공하는 에코. 서포터에게 무난한 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "xiangli_yao",
+      "name": "상리요",
+      "weapons": [
+        {
+          "name": "팔방의 천추",
+          "rank": 1,
+          "note": "상리요의 전용 무기로 전체 속성 피해 보너스와 공명 해방 피해 보너스를 제공하는 무기로 궁합이 좋다"
+        },
+        {
+          "name": "세상 만물의 진리",
+          "rank": 2,
+          "note": "남으면 사용하며 공명 해방 또는 변주 스킬 발동 시 공명 해방 피해 보너스를 제공하는 무기 추가로 실드 획득 시 공명 해방 피해의 방어력을 무시하는 효과도 제공하기 때문에 실드를 제공하는 캐릭터와 함께 써야 한다"
+        },
+        {
+          "name": "황금 권갑",
+          "rank": 3,
+          "note": "주 옵션이 크리티컬을 제공하며 공명 스킬 사용 시 공명 해방 피해 보너스를 제공하는 무난한 무기"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 뇌운의 비늘",
+          "reason": "기존 뇌운의 비늘의 시전 시간이 지나치게 긴 것을 개선한 에코로 전도 피해 보너스와 공명 해방 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "jinhsi",
+      "name": "금희",
+      "weapons": [
+        {
+          "name": "태평성대",
+          "rank": 1,
+          "note": "금희의 전용 무기로 다른 캐릭터로 스택 쌓고 금희가 공격하는 메커니즘 특성과 궁합이 좋다"
+        },
+        {
+          "name": "푸른물결의 빛",
+          "rank": 2,
+          "note": "공명 스킬이 핵심이 아니지만 대신 공명 해방 피해 보너스와 궁합이 좋다"
+        },
+        {
+          "name": "에너지 절단",
+          "rank": 3,
+          "note": "공격력 증가와 공명 해방 피해 보너스를 제공하는 무기. 린네+모니에 조합 사용 시 추천"
+        },
+        {
+          "name": "멸망의 주파수",
+          "rank": 4,
+          "note": "공명 스킬을 써야 하는 금희에게 조건이 까다롭지 않으며 4성의 기초 공격력과 공격력 버프 그리고 공명 에너지까지 회복 되는 차선책 무기"
+        },
+        {
+          "name": "저무는 동녘",
+          "rank": 5,
+          "note": "공명 스킬 사용 시 공격력이 증가하는 무기"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "용의 별자리",
+          "reason": "금희와 궁합이 좋은 공명 스킬 피해 보너스와 용의 별자리의 피해가 캐릭터의 공명 스킬 피해 판정이라 스택 쌓기가 쉬워지는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "changli",
+      "name": "장리",
+      "weapons": [
+        {
+          "name": "솟아오르는 화염",
+          "rank": 1,
+          "note": "장리의 전용 무기로 최대 공명 스킬 피해 보너스를 56% 챙길 수 있는 무기"
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2,
+          "note": "공명 효율과 크리티컬을 기본으로 제공하는 상시 무기로 캐릭터 중 궁합이 좋다"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 지옥불 기사",
+          "reason": "기존 지옥불 기사와 달리 장착만 해도 용융 피해 보너스와 공명 스킬 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "jianxin",
+      "name": "감심",
+      "weapons": [
+        {
+          "name": "세상 만물의 진리",
+          "rank": 1,
+          "note": "남은 경우 사용"
+        },
+        {
+          "name": "팔방의 천추",
+          "rank": 2,
+          "note": "전체 속성 피해 보너스라는 범용성이 높은 무기"
+        },
+        {
+          "name": "바람의 악센트",
+          "rank": 3,
+          "note": "공명 효율과 협주 에너지를 제공하는 무기로 궁합이 가장 좋은 무기"
+        },
+        {
+          "name": "원능의 권갑 · 견습IV",
+          "rank": 4,
+          "note": "찬란한 광휘 세트를 사용할 경우 사용하는 무기로 일반 공격 시 회복을 하면서 공격력 버프를 부여할 수 있지만 온필드 시간이 너무 길고 실드의 양이 적어서 선호 되지는 않는다 혹은 퀵스왑 파티에서 사용"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "공명 에너지가 회복되고 다음 변주로 등장하는 캐릭터에게 피해 증가 옵션을 주는 서브 딜러용 에코"
+        },
+        {
+          "name": "타종 거북이",
+          "reason": "감심의 기의 축적 50%의 피해 감소와 타종 거북이의 3회 실드와 합연산으로 3회 무적이 된다. 초보자에게 적합한 에코"
+        }
+      ]
+    },
+    {
+      "id": "rover_spectro",
+      "name": "방랑자 · 회절",
+      "weapons": [
+        {
+          "name": "솟아오르는 화염",
+          "rank": 1,
+          "note": "남은 경우 사용하며 공명 스킬 쿨타임이 짧은 방랑자에게 추천하는 무기"
+        },
+        {
+          "name": "천공의 광경",
+          "rank": 2,
+          "note": "일반 공격과 강공격 피해 보너스를 제공하는 무기"
+        },
+        {
+          "name": "야귀의 신념,상승의 서녘,영원의 붕괴",
+          "rank": 3,
+          "note": "위에 직검들을 다른 캐릭터에게 줄 경우 대체제"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 애곡하는 아익스",
+          "reason": "광학 디버프에 걸린 대상에게 2배 피해를 가하는 버프 제공"
+        }
+      ]
+    },
+    {
+      "id": "verina",
+      "name": "벨리나",
+      "weapons": [
+        {
+          "name": "뭇별의 교향곡",
+          "rank": 1
+        },
+        {
+          "name": "판타지 변주",
+          "rank": 2
+        },
+        {
+          "name": "심해의 메아리",
+          "rank": 3
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "타종 거북이",
+          "reason": "사용 시 피해 감소 실드와 피해 증가 버프를 파티원에게 제공하는 서포터 에코"
+        },
+        {
+          "name": "돌아갈 곳이 없는 오류",
+          "reason": "장착한 캐릭터의 공명 효율 증가와 파티원의 공격력 증가 버프 제공."
+        }
+      ]
+    },
+    {
+      "id": "yinlin",
+      "name": "음림",
+      "weapons": [
+        {
+          "name": "꼭두각시의 손",
+          "rank": 1,
+          "note": "전체 속성 피해 보너스라는 범용성과 공명 스킬 사용 시 공격력 증가까지 모든 버프를 최대로 받을 수 있다"
+        },
+        {
+          "name": "청음",
+          "rank": 2,
+          "note": "크리티컬을 제공하는 무난한 무기"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 천둥의 비늘",
+          "reason": "전도 속성 피해 보너스와 공명 스킬 피해 보너스를 제공하는 에코"
+        }
+      ]
+    },
+    {
+      "id": "calcharo",
+      "name": "카카루",
+      "weapons": [
+        {
+          "name": "불길",
+          "rank": 1,
+          "note": "남은 경우 사용하며 공명 해방 피해 보너스를 많이 제공하지만 지속 시간이 짧다"
+        },
+        {
+          "name": "푸른물결의 빛",
+          "rank": 2,
+          "note": "공명 스킬이 3가지로 나누어져 있는 카카루에게 모든 버프를 극한으로 제공하는 무기 공격력 기반이라 세팅 난이도는 어렵다"
+        },
+        {
+          "name": "태평성대",
+          "rank": 3,
+          "note": "크리티컬 기반과 전체 속성 피해 보너스만 보고 챙기는 무기"
+        },
+        {
+          "name": "에너지 절단",
+          "rank": 4,
+          "note": "공명 해방 피해 보너스가 매우 짧지만 조화 간섭 부여 시 지속 시간이 유지 되는 무기 린네와 모니에 사용 시 최적의 무기"
+        },
+        {
+          "name": "가을의 무늬",
+          "rank": 5,
+          "note": "4성 중에 크리티컬을 가진 몇 안되는 무기로 카카루와 궁합도 좋다"
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 뇌운의 비늘",
+          "reason": "전도 속성 피해 보너스와 공명 해방 피해 보너스를 제공"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "buling",
+      "name": "복링",
+      "weapons": [
+        {
+          "name": "꼭두각시의 손",
+          "rank": 1,
+          "note": "남은 경우 사용하며 전체 속성 피해 보너스와 공격력 버프를 제공"
+        },
+        {
+          "name": "잊혀진 피안의 슬픈 악장",
+          "rank": 2,
+          "note": "남은 경우 사용하며 공격력 증가와 공명 스킬 보너스를 제공하며 피해 입힌 경우 방어력 무시를 제공하는 무기"
+        },
+        {
+          "name": "파도의 기록",
+          "rank": 3,
+          "note": "공격력 계수 힐인 복링에게 무난하게 어울리는 무기"
+        },
+        {
+          "name": "판타지 변주",
+          "rank": 4,
+          "note": "힐러 포지션인 캐릭터에게 항상 좋은 무기 협주 에너지를 빠르게 회복 가능"
+        },
+        {
+          "name": "융합의 원반",
+          "rank": 5
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "돌아갈 곳이 없는 오류",
+          "reason": "공명 효율 증가와 파티 공격력 증가 버프를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "lumi",
+      "name": "루미",
+      "weapons": [
+        {
+          "name": "태평성대",
+          "rank": 1,
+          "note": "남은 경우 사용하며 노란불 딜 사이클 때 공명 스킬 피해 보너스 적용된다"
+        },
+        {
+          "name": "불길",
+          "rank": 2,
+          "note": "공명 해방 피해 보너스를 제공하며 파티에 린네, 모니에 조합 시 좋은 선택지"
+        },
+        {
+          "name": "천둥벼락을 다스리는 권능",
+          "rank": 3,
+          "note": "기초 공격력은 높지만 무기의 치명타 확률이 낮은 단점이 있다"
+        },
+        {
+          "name": "가을의 무늬",
+          "rank": 4,
+          "note": "4성 중 크리티컬 확률을 제공하는 무기"
+        },
+        {
+          "name": "기묘한 울림",
+          "rank": 5,
+          "note": "서브 딜러 세팅 시 사용"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 뇌운의 비늘",
+          "reason": "전도 속성 피해 보너스와 공명 해방 피해 보너스를 제공"
+        }
+      ]
+    },
+    {
+      "id": "danjin",
+      "name": "단근",
+      "weapons": [
+        {
+          "name": "솟아오르는 화염",
+          "rank": 1,
+          "note": "남은 경우 사용하며 공명 스킬 발동 빈도가 높은 단근에게 어울리는 무기"
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2,
+          "note": "공격력 버프를 최대 스택까지 쉽게 유지 가능"
+        },
+        {
+          "name": "푸른 의지",
+          "rank": 3,
+          "note": "남은 경우 사용하며 강공격 피해가 핵심인 단근에게 강공격 피해 보너스가 있는 무기"
+        },
+        {
+          "name": "천공의 광경",
+          "rank": 4,
+          "note": "일반 공격과 강공격 피해 보너스를 제공하는 무기"
+        },
+        {
+          "name": "18형 직검 · 순간의 칼빛",
+          "rank": 5,
+          "note": "HP를 지속적으로 소모하는 단근에게 소모 시 강공격 피해 보너스와 피해 입힐 시 HP 회복은 유지력에 굉장히 좋다"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 크라운리스",
+          "reason": "변신 시간이 기존 크라운리스보다 많이 개선되었고 장착 시 인멸 피해와 일반 공격 피해 보너스 제공"
+        }
+      ]
+    },
+    {
+      "id": "taoqi",
+      "name": "도기",
+      "weapons": [
+        {
+          "name": "별하늘 연산 측정기",
+          "rank": 1,
+          "note": "남은 경우 사용"
+        },
+        {
+          "name": "장야의 불빛",
+          "rank": 2,
+          "note": "4성 중 유일한 방어력 계수 대검 무기"
+        },
+        {
+          "name": "기묘한 울림",
+          "rank": 3,
+          "note": "협주 게이지를 채우기 힘든 도기에 어느 정도 보완"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "공명 에너지를 회복하며 다음 변주로 등장하는 캐릭터에게 피해 증가 버프 부여"
+        }
+      ]
+    },
+    {
+      "id": "aalto",
+      "name": "알토",
+      "weapons": [
+        {
+          "name": "죽음과 춤",
+          "rank": 1,
+          "note": "남은 경우 사용"
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 2
+        },
+        {
+          "name": "천공의 순간",
+          "rank": 3,
+          "note": "돌진과 회피가 주력인 알토에게 좋은 무기"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "공명 에너지를 회복하며 다음 변주로 등장하는 캐릭터에게 피해 증가 버프 부여"
+        }
+      ]
+    },
+    {
+      "id": "yangyang",
+      "name": "양양",
+      "weapons": [
+        {
+          "name": "솟아오르는 화염",
+          "rank": 1
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2
+        },
+        {
+          "name": "행진의 서곡",
+          "rank": 3,
+          "note": "반주 스킬 효과만 보고 사용하는 무기"
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "공명 에너지를 회복하며 다음 변주로 등장하는 캐릭터에게 피해 증가 버프 부여"
+        }
+      ]
+    },
+    {
+      "id": "yuanwu",
+      "name": "연무",
+      "weapons": [
+        {
+          "name": "팔방의 천추",
+          "rank": 1,
+          "note": "남은 경우 사용"
+        },
+        {
+          "name": "바람의 악센트",
+          "rank": 2,
+          "note": "협주 에너지 회복으로 빠른 공진 수치 피해 가함"
+        },
+        {
+          "name": "전우의 의리",
+          "rank": 3,
+          "note": "방어력 계수 무기로 딜 상승에 유리"
+        },
+        {
+          "name": "원능의 권갑 · 견습IV",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "공명 에너지를 회복하며 다음 변주로 등장하는 캐릭터에게 피해 증가 버프 부여"
+        }
+      ]
+    },
+    {
+      "id": "encore",
+      "name": "앙코",
+      "weapons": [
+        {
+          "name": "꼭두각시의 손",
+          "rank": 1
+        },
+        {
+          "name": "파도의 기록",
+          "rank": 2
+        },
+        {
+          "name": "청음",
+          "rank": 3
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 지옥불 기사",
+          "reason": "용융 피해 보너스와 공명 스킬 피해를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "mortefi",
+      "name": "모르테피",
+      "weapons": [
+        {
+          "name": "죽음과 춤",
+          "rank": 1
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 2
+        },
+        {
+          "name": "화려한 악곡",
+          "rank": 3
+        },
+        {
+          "name": "천공의 순간",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "자신의 공명 에너지 회복과 장착한 캐릭터가 반주 스킬 사용 시 다음 교체 캐릭터에게 피해 증가 버프를 제공"
+        }
+      ]
+    },
+    {
+      "id": "chixia",
+      "name": "치샤",
+      "weapons": [
+        {
+          "name": "죽음과 춤",
+          "rank": 1
+        },
+        {
+          "name": "부동의 안개",
+          "rank": 2
+        },
+        {
+          "name": "불멸의 성화",
+          "rank": 3
+        },
+        {
+          "name": "역설의 격류",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 지옥불 기사",
+          "reason": "용융 피해를 입히는 동시에 공명 스킬 피해 보너스를 제공하는 에코"
+        }
+      ]
+    },
+    {
+      "id": "hiyuki",
+      "name": "히유키",
+      "weapons": [
+        {
+          "name": "서린 불꽃",
+          "rank": 1
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2
+        },
+        {
+          "name": "예리한 날개깃",
+          "rank": 3
+        },
+        {
+          "name": "풍류의 우화시",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "공명의 메아리 · 명식 · 허무의 신",
+          "reason": "장착 시 응결 피해 보너스와 공명 해방 피해 보너스를 제공하며 소환형 에코이기 때문에 편의성이 좋다"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "carlotta",
+      "name": "카를로타",
+      "weapons": [
+        {
+          "name": "죽음과 춤",
+          "rank": 1
+        },
+        {
+          "name": "위상의 파동",
+          "rank": 2
+        },
+        {
+          "name": "뇌전",
+          "rank": 3
+        },
+        {
+          "name": "불멸의 성화",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "이성(異性) 무장",
+          "reason": "장착 시 응결 피해 보너스와 공명 스킬 피해 보너스 상시로 제공하기 때문에 편의성이 매우 좋다"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "youhu",
+      "name": "유호",
+      "weapons": [
+        {
+          "name": "팔방의 천추",
+          "rank": 1
+        },
+        {
+          "name": "물결의 파동",
+          "rank": 2
+        },
+        {
+          "name": "바람의 악센트",
+          "rank": 3
+        },
+        {
+          "name": "21형 권갑 · 아이언 팬텀",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "반디의 군세",
+          "reason": "응결 피해 보너스와 공명 스킬 피해 보너스를 제공하는 에코로 동일한 속성이기 때문에 사용한다"
+        }
+      ]
+    },
+    {
+      "id": "zhezhi",
+      "name": "절지",
+      "weapons": [
+        {
+          "name": "옥수 비단",
+          "rank": 1
+        },
+        {
+          "name": "꼭두각시의 손",
+          "rank": 2
+        },
+        {
+          "name": "파도의 기록",
+          "rank": 3
+        },
+        {
+          "name": "청음",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "악몽 · 반디의 군세",
+          "reason": "응결 피해 보너스와 협동 공격 피해 보너스를 제공하는 에코 하지만 다른 화음 이펙트인 냉철한 결단과 함께 나오기 때문에 파밍 효율이 좋지 못하다"
+        },
+        {
+          "name": "헤카테",
+          "reason": "협동 공격 피해 보너스를 제공하는 에코로 악몽 · 반디의 군세보다 약간 밀리지만 파밍 편의성이 좋아서 추천한다"
+        }
+      ]
+    },
+    {
+      "id": "lingyang",
+      "name": "능양",
+      "weapons": [
+        {
+          "name": "세상 만물의 진리",
+          "rank": 1
+        },
+        {
+          "name": "팔방의 천추",
+          "rank": 2
+        },
+        {
+          "name": "물결의 파동",
+          "rank": 3
+        },
+        {
+          "name": "천상의 나선",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "반디의 군세",
+          "reason": "빙결 효과로 능양의 안정성 향상 및 응결 피해 보너스와 공명 스킬 피해 보너스를 제공하는 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    },
+    {
+      "id": "sanhua",
+      "name": "산화",
+      "weapons": [
+        {
+          "name": "솟아오르는 화염",
+          "rank": 1
+        },
+        {
+          "name": "천년의 회류",
+          "rank": 2
+        },
+        {
+          "name": "행진의 서곡",
+          "rank": 3
+        },
+        {
+          "name": "예리한 날개깃",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "음험한 백로",
+          "reason": "자신의 공명 에너지 회복과 장착한 캐릭터가 반주 스킬 사용 시 다음 교체 캐릭터에게 피해 증가 버프를 제공"
+        }
+      ]
+    },
+    {
+      "id": "baizhi",
+      "name": "설지",
+      "weapons": [
+        {
+          "name": "뭇별의 교향곡",
+          "rank": 1
+        },
+        {
+          "name": "판타지 변주",
+          "rank": 2
+        },
+        {
+          "name": "심해의 메아리",
+          "rank": 3
+        }
+      ],
+      "mainEchoes": [],
+      "variantMainEchoes": [
+        {
+          "name": "타종 거북이",
+          "reason": "사용 시 피해 감소 실드와 피해 증가 버프를 파티원에게 제공하는 서포터 에코"
+        },
+        {
+          "name": "돌아갈 곳이 없는 오류",
+          "reason": "장착한 캐릭터의 공명 효율 증가와 파티원의 공격력 증가 버프 제공. 공명 에너지 회복이 느린 설지에게 좋은 에코"
+        }
+      ]
+    },
+    {
+      "id": "jiyan",
+      "name": "기염",
+      "weapons": [
+        {
+          "name": "청룡의 천장",
+          "rank": 1
+        },
+        {
+          "name": "천둥벼락을 다스리는 권능",
+          "rank": 2
+        },
+        {
+          "name": "금빛 하늘",
+          "rank": 3
+        },
+        {
+          "name": "가을의 무늬",
+          "rank": 4
+        }
+      ],
+      "mainEchoes": [
+        {
+          "name": "악몽 · 폭주의 고릴라",
+          "reason": "강공격 피해 보너스와 기류 피해 보너스를 동시에 제공하는 에코. 일반 폭주의 고릴라의 문제점을 보완해서 나온 에코"
+        }
+      ],
+      "variantMainEchoes": []
+    }
+  ]
+}

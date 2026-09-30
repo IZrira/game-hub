@@ -2,7 +2,7 @@ import React, { lazy, Suspense, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2, Users } from 'lucide-react';
 import { WW_WEAPON_DATA } from '../data/weaponData';
-import notionSearchData from '../../common-hub/data/search/notion-search.json';
+import { WW_RECOMMENDATION_CHARACTERS, WW_RECOMMENDATION_GUIDES } from '../data/recommendationData';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
@@ -364,8 +364,8 @@ const WuwaWeaponDetail = () => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   const WEAPON_DATA = WW_WEAPON_DATA;
-  const GUIDES = notionSearchData.wwGuides;
-  const CHARACTER_DB = notionSearchData.wwCharacters;
+  const GUIDES = WW_RECOMMENDATION_GUIDES;
+  const CHARACTER_DB = WW_RECOMMENDATION_CHARACTERS;
   const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName || t(w.name).normalize('NFC') === targetName || (w as any).i18nKey === targetName);
 
   const recommendedResonators = React.useMemo(() => {

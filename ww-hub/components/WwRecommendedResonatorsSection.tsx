@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { Users, ChevronRight, BookOpen } from 'lucide-react';
-import notionSearchData from '../../common-hub/data/search/notion-search.json';
+import { WW_RECOMMENDATION_CHARACTERS, WW_RECOMMENDATION_GUIDES } from '../data/recommendationData';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 
 interface WwRecommendedResonatorsSectionProps {
@@ -17,8 +17,8 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
   itemName,
   theme = { primary: '#EAB308' }
 }) => {
-  const CHARACTER_DB = notionSearchData.wwCharacters;
-  const GUIDES = notionSearchData.wwGuides;
+  const CHARACTER_DB = WW_RECOMMENDATION_CHARACTERS;
+  const GUIDES = WW_RECOMMENDATION_GUIDES;
 
   const resonators = useMemo(() => {
     if (!itemName || !GUIDES || !Array.isArray(GUIDES)) return [];

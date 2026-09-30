@@ -17,6 +17,8 @@ const wwGuideCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generate
 const wwGuidesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guides.json');
 const wwCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'characters.json');
 const wwGalleryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'gallery.json');
+const wwRecommendationsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'recommendations.json');
+const wwEchoesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'echoes.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -388,6 +390,7 @@ fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, '
 const wwData = await buildWwData();
 const wwCharacters = wwData.CHARACTER_DB;
 fs.writeFileSync(wwCharactersPath, `${JSON.stringify(wwCharacters, null, 2)}\n`, 'utf8');
+fs.writeFileSync(wwEchoesPath, `${JSON.stringify(wwData.ECHO_DB, null, 2)}\n`, 'utf8');
 const wwGalleryData = {
   characters: wwCharacters.map(character => ({
     id: character.id,
@@ -404,6 +407,17 @@ const wwGalleryData = {
   inventoryCount: Object.keys(wwData.WW_INVENTORY || {}).length
 };
 fs.writeFileSync(wwGalleryPath, `${JSON.stringify(wwGalleryData, null, 2)}\n`, 'utf8');
+const wwRecommendationData = {
+  characters: wwGalleryData.characters,
+  guides: notionWwGuides.map(guide => ({
+    id: guide.id,
+    name: guide.name,
+    weapons: guide.weapons,
+    mainEchoes: guide.mainEchoes,
+    variantMainEchoes: guide.variants?.[0]?.mainEchoes || []
+  }))
+};
+fs.writeFileSync(wwRecommendationsPath, `${JSON.stringify(wwRecommendationData, null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);
