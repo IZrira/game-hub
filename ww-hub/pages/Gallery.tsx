@@ -11,12 +11,9 @@ import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
-import SearchModal from '../../common-hub/components/SearchModal';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { LightConePremiumCard, CharacterPremiumCard, ItemPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
-import { ItemDetailModal } from '@/common-hub/components/GalleryModals';
-import WuwaEchoGallery from '../components/WuwaEchoGallery';
 import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
@@ -28,6 +25,7 @@ import { WW_GUIDE_DATA } from '../data/guideData';
 // import removed
 
 const WuwaInventoryGallery = React.lazy(() => import('../components/WuwaInventoryGallery'));
+const WuwaEchoGallery = React.lazy(() => import('../components/WuwaEchoGallery'));
 
 const GalleryWW: React.FC = () => {
   const gameId = 'ww';
@@ -45,8 +43,6 @@ const GalleryWW: React.FC = () => {
   const [secondFilter, setSecondFilter] = useState(() => searchParams.get('weapon') || '전체');
   const [rarityFilter, setRarityFilter] = useState(() => searchParams.get('rarity') || '전체');
   const [categoryFilter, setCategoryFilter] = useState(() => searchParams.get('category') || '전체');
-  const [selectedItem, setSelectedItem] = useState<any>(null);
-  const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState(false);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
 
@@ -366,7 +362,9 @@ const GalleryWW: React.FC = () => {
               <WuwaInventoryGallery />
             </React.Suspense>
           ) : activeMenu === "에코" ? (
-            <WuwaEchoGallery />
+            <React.Suspense fallback={<div className="py-32 text-center text-xs font-black uppercase tracking-[0.3em] text-gray-400">Loading Archive...</div>}>
+              <WuwaEchoGallery />
+            </React.Suspense>
           ) : activeMenu === '공략' ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
