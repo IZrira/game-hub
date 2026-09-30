@@ -72,10 +72,11 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
   };
 
   return (
-    <aside className="space-y-12">
-      <div className="sticky top-20 space-y-3">
-        <h2 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.4em] px-4 mb-4">MENU</h2>
-        {MAIN_NAVIGATION.map(item => {
+    <aside className="min-w-0 lg:space-y-12">
+      <div className="lg:sticky lg:top-20 lg:space-y-3">
+        <h2 className="hidden lg:block text-[11px] font-black text-gray-400 uppercase tracking-[0.4em] px-4 mb-4">MENU</h2>
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide lg:block lg:space-y-3 lg:overflow-visible lg:pb-0">
+          {MAIN_NAVIGATION.map(item => {
           let displayLabel = item.label;
           let menuKey = item.menuKey;
           
@@ -111,13 +112,13 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
             <button
               key={item.label}
               onClick={() => handleItemClick({ ...item, menuKey })}
-              className={`w-full flex items-center gap-5 px-5 py-4 rounded-2xl transition-all border ${
+              className={`w-auto shrink-0 flex items-center gap-2 px-3 py-2.5 rounded-xl transition-all border lg:w-full lg:gap-5 lg:px-5 lg:py-4 lg:rounded-2xl ${
                 isActive 
                   ? 'bg-brand-primary/10 text-brand-accent border-brand-primary/20' 
                   : 'text-gray-400 hover:bg-white/[0.05] border-transparent'
               }`}
             >
-              <div className={`p-2.5 rounded-xl ${isActive ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/50' : 'bg-white/5'}`}>
+              <div className={`p-2 rounded-lg lg:p-2.5 lg:rounded-xl ${isActive ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/50' : 'bg-white/5'}`}>
                 {item.icon}
               </div>
               <div className="flex-1 flex items-center justify-between">
@@ -128,9 +129,10 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
               </div>
             </button>
           );
-        })}
+          })}
+        </div>
         
-        <div className="pt-8">
+        <div className="hidden pt-8 lg:block">
           <AdPlaceholder type="skyscraper" />
         </div>
       </div>

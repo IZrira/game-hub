@@ -145,9 +145,9 @@ const GalleryWW: React.FC = () => {
       />
       <PageHeader gameId="ww" title={activeMenu === '홈' ? '' : activeMenu} />
 
-      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
+      <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-6 lg:pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-6 lg:gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
-        <main className="min-h-[800px] space-y-16 relative z-10">
+        <main className="min-h-[800px] space-y-10 sm:space-y-16 relative z-10 min-w-0">
           {activeMenu === '홈' ? (
             <div className="space-y-16">
               {/* 정제된 히어로 섹션: 명조 감성의 프리미엄 디자인 */}

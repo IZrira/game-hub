@@ -32,12 +32,12 @@ const WuwaEchoGallery: React.FC = () => {
   }, [activeSonata, activeCost, search]);
 
   return (
-    <div className="space-y-12 animate-in fade-in duration-500">
-      <div className="bg-[#121212] rounded-[48px] border border-white/5 p-10 shadow-2xl space-y-8">
+    <div className="space-y-8 sm:space-y-12 animate-in fade-in duration-500">
+      <div className="bg-[#121212] rounded-[28px] sm:rounded-[48px] border border-white/5 p-4 sm:p-6 lg:p-10 shadow-2xl space-y-6 sm:space-y-8">
         {/* 상단 헤더 */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8">
           <div className="space-y-2 w-full">
-            <h2 className="text-4xl font-black italic tracking-tighter uppercase text-brand-accent">에코 도감</h2>
+            <h2 className="text-3xl sm:text-4xl font-black italic tracking-tighter uppercase text-brand-accent">에코 도감</h2>
             <p className="text-gray-400 font-bold text-sm flex items-center gap-2">
               <ActivityIcon size={14} /> 분석된 에코 개체: {ECHO_DATA.length}
             </p>
@@ -66,7 +66,7 @@ const WuwaEchoGallery: React.FC = () => {
                   <button
                     key={cost}
                     onClick={() => setActiveCost(cost as any)}
-                    className={`h-11 min-w-[44px] px-6 rounded-xl text-xs font-black transition-all border flex items-center justify-center ${
+                    className={`h-10 min-w-[44px] px-4 sm:h-11 sm:px-6 rounded-xl text-xs font-black transition-all border flex items-center justify-center ${
                       activeCost === cost ? "bg-white text-black shadow-lg shadow-white/20" : "bg-white/[0.03] text-gray-400 border-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -114,7 +114,7 @@ const WuwaEchoGallery: React.FC = () => {
       </div>
 
       {/* 에코 리스트 그리드 */}
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-x-5 gap-y-10 bg-white/[0.01] p-10 rounded-[50px] border border-white/5 shadow-2xl min-h-[400px]">
+      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3 sm:gap-x-5 sm:gap-y-8 lg:gap-y-10 bg-white/[0.01] p-3 sm:p-6 lg:p-10 rounded-[28px] sm:rounded-[50px] border border-white/5 shadow-2xl min-h-[400px]">
         {filteredEchoes.map((echo) => (
           <EchoPremiumCard 
             key={echo.id} 
