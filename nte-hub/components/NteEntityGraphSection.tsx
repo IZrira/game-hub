@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { Sparkles, Shield, Award, ChevronRight, Users } from 'lucide-react';
-import { NTE_ARCS } from '../data/arcs';
+import { NTE_ARC_DATA } from '../data/arcData';
 import { getRecommendedParties } from '../../common-hub/utils/synergyManager';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
@@ -18,7 +18,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
     const charNameNorm = normalizeName(character.name);
     const charIdNorm = normalizeName(character.id);
 
-    return NTE_ARCS.filter(arc => {
+    return NTE_ARC_DATA.filter(arc => {
       if (!arc.dedicatedChar) return false;
       const dNorm = normalizeName(arc.dedicatedChar);
       return dNorm === charNameNorm || dNorm === charIdNorm;

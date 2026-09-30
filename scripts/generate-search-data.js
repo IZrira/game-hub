@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { normalizeNteCharacter } from './lib/normalize-nte-character.js';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');
@@ -10,6 +11,7 @@ const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'ho
 const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'weapons.json');
 const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs.json');
 const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
+const nteCharactersPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'characters.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -127,6 +129,8 @@ const notionItems = notionData
     fileName: item.fileName,
     dbSource: item.dbSource
   }));
+
+const notionNteCharacters = notionData.filter(item => item.dbSource === 'nte_characters');
 
 const parseNteArc = item => {
   const baseStats = {};
@@ -284,6 +288,8 @@ fs.mkdirSync(path.dirname(nteArcsPath), { recursive: true });
 fs.writeFileSync(nteArcsPath, `${JSON.stringify(notionNteArcs.map(parseNteArc), null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(notionItemsPath), { recursive: true });
 fs.writeFileSync(notionItemsPath, `${JSON.stringify(notionItems, null, 2)}\n`, 'utf8');
+fs.mkdirSync(path.dirname(nteCharactersPath), { recursive: true });
+fs.writeFileSync(nteCharactersPath, `${JSON.stringify(notionNteCharacters.map(normalizeNteCharacter), null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);

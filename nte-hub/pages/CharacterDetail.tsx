@@ -40,7 +40,7 @@ import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import NteEntityGraphSection from '../components/NteEntityGraphSection';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { NTE_CHARACTER_DATA } from '../data/characterData';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent, CDN_URL } from '../../common-hub/utils/assetManager';
 const CDN_BASE = CDN_URL;
@@ -76,10 +76,9 @@ const Flag: React.FC<{ code: string }> = ({ code }) => (
 const CharacterDetailNTE: React.FC = () => {
   const { charName } = useParams<{ charName: string }>();
   const gameId = 'nte';
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language || 'ko';
+  const { t } = useTranslation();
   
-  const { CHARACTER_DB } = useMemo(() => getGameData(currentLang), [currentLang]);
+  const CHARACTER_DB = NTE_CHARACTER_DATA;
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(true); // Default expanded
   const [isProfileExpanded, setIsProfileExpanded] = useState(true);   // Default expanded
   const [levelIdx, setLevelIdx] = useState(7);
