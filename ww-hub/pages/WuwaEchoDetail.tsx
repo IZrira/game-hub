@@ -1,28 +1,31 @@
-import React, { useState, useMemo } from 'react';
+import React, { lazy, Suspense, useState, useMemo } from 'react';
 import { useParams, useNavigate, Link } from 'react-router';
 import { ChevronRight, Home as HomeIcon, Shield, Zap, Info, Box, Star } from 'lucide-react';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { WW_ECHO_DATA } from '../data/echoData';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 import { renderRichText, ELEMENT_COLORS } from '../data/formatter';
-import { CDN_URL } from '../../common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
-import { getItemUrl, getItemMetaDB } from '../../common-hub/data/items';
-import { ItemDetailModal } from '../../common-hub/components/GalleryModals';
-import { ItemDetail } from '../../common-hub/types';
 import { useTranslation } from 'react-i18next';
 import WwRecommendedResonatorsSection from '../components/WwRecommendedResonatorsSection';
+
+const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
+
+const getWwItemUrl = (name: string) => {
+  const fileName = name.normalize('NFC').replace(/: /g, '_').replace(/:/g, '_').replace(/[?<>]/g, '');
+  return `${CDN_URL}/ww%20images/items/${safeEncodeURIComponent(fileName)}.webp`;
+};
 
 export const WuwaEchoDetail = () => {
   const { t } = useTranslation();
   const { echoName } = useParams<{ echoName: string }>();
   const navigate = useNavigate();
   const [showPhantom, setShowPhantom] = useState(false);
-  const [selectedItem, setSelectedItem] = useState<ItemDetail | null>(null);
+  const [selectedItem, setSelectedItem] = useState<string | null>(null);
 
-  const { ECHO_DB } = useMemo(() => getGameData('ww'), []);
-  const ECHO_DATA = ECHO_DB || [];
+  const ECHO_DATA = WW_ECHO_DATA;
 
   const echo = useMemo(() => {
     return ECHO_DATA.find((e: any) => e.name === echoName);
@@ -42,12 +45,6 @@ export const WuwaEchoDetail = () => {
   const ECHO_IMAGE_BASE = `${CDN_URL}/ww%20images/Echo/`;
   const SONATA_ICON_BASE = `${CDN_URL}/ww%20images/common/sonata/`;
   const isPhantom = !!echo.hasPhantom;
-
-  const handleShowItemDetail = (itemName: string) => {
-    const db = getItemMetaDB();
-    const item = db[itemName];
-    if (item) setSelectedItem(item);
-  };
 
   const theme = { primary: '#EAB308', secondary: '#FDE047' };
 
@@ -227,7 +224,7 @@ export const WuwaEchoDetail = () => {
               const isEchoItem = ECHO_DATA.some(e => e.name === itemName);
               const imgUrl = isEchoItem 
                 ? `${ECHO_IMAGE_BASE}${encodeURIComponent(itemName.normalize('NFC'))}.webp`
-                : getItemUrl(itemName, 'ww');
+                : getWwItemUrl(itemName);
               
               return (
                 <button 
@@ -237,7 +234,7 @@ export const WuwaEchoDetail = () => {
                       navigate(`/gallery/ww/echo/${itemName}`);
                       window.scrollTo(0, 0);
                     } else {
-                      handleShowItemDetail(itemName);
+                      setSelectedItem(itemName);
                     }
                   }}
                   className="group flex flex-col items-center gap-3 transition-transform hover:scale-105"
@@ -259,10 +256,16 @@ export const WuwaEchoDetail = () => {
         <AdPlaceholder type="leaderboard" className="mt-8 mb-4 scale-90 opacity-40" />
       </div>
 
-      <ItemDetailModal 
-        item={selectedItem} 
-        onClose={() => setSelectedItem(null)} 
-      />
+      {selectedItem && (
+        <Suspense fallback={null}>
+          <ItemDetailModal
+            itemNameEn={selectedItem}
+            gameId="ww"
+            isOpen
+            onClose={() => setSelectedItem(null)}
+          />
+        </Suspense>
+      )}
     </div>
   );
 };

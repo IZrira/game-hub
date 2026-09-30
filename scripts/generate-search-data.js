@@ -78,6 +78,8 @@ const searchData = {
       gameId: 'ww',
       attribute: item.itemAttribute || '',
       weaponType: item.weapon || '',
+      folderName: item.folderName || item.name,
+      rarity: item.rarity || 5,
       summary: item.briefInfo || ''
     })),
   wwWeapons: notionData
@@ -85,7 +87,32 @@ const searchData = {
     .map(item => ({ id: item.id, name: item.name, type: item.type })),
   wwGuides: notionData
     .filter(item => item.dbSource === 'ww_guides')
-    .map(item => ({ id: item.id, name: item.name || item.id.replace(/_세팅_공략|_공략/g, '').trim() })),
+    .map(item => ({
+      id: item.id,
+      name: item.name || item.id.replace(/_세팅_공략|_공략/g, '').trim(),
+      weapons: item.weapons || [],
+      mainEchoes: item.mainEchoes || [],
+      variantMainEchoes: item.variants?.[0]?.mainEchoes || []
+    })),
+  wwEchoes: notionData
+    .filter(item => item.dbSource === 'ww_echoes')
+    .map(item => ({
+      id: item.id,
+      name: item.name,
+      cost: item.cost,
+      sonataSets: item.sonataSets || [],
+      folderName: item.name,
+      cooldown: item.cooldown,
+      description: item.content || item.skillDescription || '',
+      hasPhantom: item.hasPhantom || false,
+      enemyInfo: {
+        originalName: item.enemyOriginalName || '',
+        grade: item.enemyGrade || '',
+        description: item.enemyDescription || '',
+        specialNote: item.enemySpecialNote || '',
+        drops: item.drops || []
+      }
+    })),
   nteCharacters: notionData
     .filter(item => item.dbSource === 'nte_characters')
     .map(item => ({

@@ -5,7 +5,7 @@ import { WuwaEcho, SonataType } from '../types';
 import { renderRichText, ELEMENT_COLORS } from '../data/formatter';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 import { getItemUrl, getItemMetaDB } from '../../common-hub/data/items';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { WW_ECHO_DATA } from '../data/echoData';
 import { CDN_URL } from '../../common-hub/utils/assetManager';
 
 // 등급별 컬러 헬퍼
@@ -15,8 +15,7 @@ const getRarityColor = (rarity: number) => {
 };
 
 export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelectSonata }: any) => {
-  const { ECHO_DB } = React.useMemo(() => getGameData('ww'), []);
-  const ECHO_DATA = ECHO_DB || [];
+  const ECHO_DATA = WW_ECHO_DATA;
   // 모달 열릴 때 항상 'ability' 탭이 먼저 보이도록 초기값 고정
   const [activeTab, setActiveTab] = useState<'ability' | 'enemy'>('ability');
   

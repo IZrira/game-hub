@@ -2,12 +2,9 @@ import React, { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Search, Layers, Activity as ActivityIcon } from 'lucide-react';
 import { Link } from 'react-router';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { WW_ECHO_DATA } from '../data/echoData';
 import { SONATA_SETS, WuwaEcho, SonataType } from '../types';
-import { ItemDetail } from '../../common-hub/types';
 import { ItemPremiumCard, RelicPremiumCard } from '../../common-hub/components/GalleryCards';
-import { getItemMetaDB } from '../../common-hub/data/items';
-import { ItemDetailModal } from '../../common-hub/components/GalleryModals';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
 // 에코 도감 및 모달 내 공통 경로 설정
@@ -19,10 +16,8 @@ const WuwaEchoGallery: React.FC = () => {
   const [activeSonata, setActiveSonata] = useState<string>('전체');
   const [activeCost, setActiveCost] = useState<number | '전체'>('전체');
   const [search, setSearch] = useState('');
-  const [selectedItem, setSelectedItem] = useState<ItemDetail | null>(null);
 
-  const { ECHO_DB } = useMemo(() => getGameData('ww'), []);
-  const ECHO_DATA = ECHO_DB || [];
+  const ECHO_DATA = WW_ECHO_DATA;
 
   // 필터 로직: 세트 + 코스트 + 검색어
   const filteredEchoes = useMemo(() => {
@@ -35,14 +30,6 @@ const WuwaEchoGallery: React.FC = () => {
       })
       .sort((a, b) => b.cost - a.cost);
   }, [activeSonata, activeCost, search]);
-
-  const handleShowItemDetail = (itemName: string) => {
-    const db = getItemMetaDB();
-    const item = db[itemName];
-    if (item) {
-      setSelectedItem(item);
-    }
-  };
 
   return (
     <div className="space-y-12 animate-in fade-in duration-500">
@@ -137,12 +124,6 @@ const WuwaEchoGallery: React.FC = () => {
         ))}
       </div>
 
-
-      <WuwaItemModalWrapper
-        item={selectedItem}
-        isOpen={!!selectedItem}
-        onClose={() => setSelectedItem(null)}
-      />
     </div>
   );
 };
@@ -202,12 +183,6 @@ const EchoPremiumCard = ({ echo, to }: { echo: WuwaEcho, to: string }) => {
       </div>
     </Link>
   );
-};
-
-// ItemDetailModal 래퍼
-const WuwaItemModalWrapper = ({ item, isOpen, onClose }: { item: ItemDetail | null, isOpen: boolean, onClose: () => void }) => {
-  if (!item) return null;
-  return <ItemDetailModal item={item} onClose={onClose} />;
 };
 
 export default WuwaEchoGallery;

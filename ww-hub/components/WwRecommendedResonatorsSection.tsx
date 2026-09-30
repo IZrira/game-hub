@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { Users, ChevronRight, BookOpen } from 'lucide-react';
-import { getGameData } from '../../common-hub/data/dataManager';
+import notionSearchData from '../../common-hub/data/search/notion-search.json';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 
 interface WwRecommendedResonatorsSectionProps {
@@ -17,7 +17,8 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
   itemName,
   theme = { primary: '#EAB308' }
 }) => {
-  const { CHARACTER_DB, GUIDES } = useMemo(() => getGameData('ww'), []);
+  const CHARACTER_DB = notionSearchData.wwCharacters;
+  const GUIDES = notionSearchData.wwGuides;
 
   const resonators = useMemo(() => {
     if (!itemName || !GUIDES || !Array.isArray(GUIDES)) return [];
@@ -53,7 +54,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
       } else if (itemType === 'echo') {
         const echoList = [
           ...(Array.isArray(guide.mainEchoes) ? guide.mainEchoes : []),
-          ...(Array.isArray(guide.variants?.[0]?.mainEchoes) ? guide.variants[0].mainEchoes : [])
+          ...(Array.isArray(guide.variantMainEchoes) ? guide.variantMainEchoes : [])
         ];
 
         echoList.forEach((e: any, idx: number) => {
