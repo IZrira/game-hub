@@ -38,10 +38,10 @@ import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import WwEntityGraphSection from '../components/WwEntityGraphSection';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
-import { getGameData } from '../../common-hub/data/dataManager';
 import { useTranslation } from 'react-i18next';
 import { WuwaCharacter } from '../types';
 import { ELEMENT_COLORS } from '../data/formatter';
+import { WW_CHARACTER_DATA } from '../data/characterData';
 import { CDN_URL, safeEncodeURIComponent, withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80, 90];
@@ -76,7 +76,7 @@ const CharacterDetail: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   
-  const { CHARACTER_DB } = useMemo(() => getGameData(gameId || 'ww'), [gameId]);
+  const CHARACTER_DB = WW_CHARACTER_DATA;
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(false); // Default collapsed
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);   // New: Profile toggle
   const [levelIdx, setLevelIdx] = useState(8);

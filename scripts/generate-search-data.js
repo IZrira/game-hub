@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { build } from 'esbuild';
 import { normalizeNteCharacter } from './lib/normalize-nte-character.js';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
@@ -14,6 +15,7 @@ const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated'
 const nteCharactersPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'characters.json');
 const wwGuideCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guide-characters.json');
 const wwGuidesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guides.json');
+const wwCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'characters.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -186,6 +188,41 @@ const notionWwGuides = notionData
     synergyCharacters: item.synergyCharacters || []
   }));
 
+const buildWwCharacterData = async () => {
+  const result = await build({
+    absWorkingDir: projectRoot,
+    stdin: {
+      contents: `import { getGameData } from './common-hub/data/dataManager.ts'; export default getGameData('ww').CHARACTER_DB;`,
+      resolveDir: projectRoot,
+      sourcefile: 'generate-ww-character-data.ts',
+      loader: 'ts'
+    },
+    bundle: true,
+    platform: 'node',
+    format: 'esm',
+    write: false,
+    banner: { js: 'const __generationGlob = () => ({});' },
+    plugins: [{
+      name: 'generation-i18n-shim',
+      setup(buildContext) {
+        buildContext.onResolve({ filter: /common-hub[\\/]i18n$/ }, () => ({ path: 'generation-i18n', namespace: 'generation' }));
+        buildContext.onLoad({ filter: /.*/, namespace: 'generation' }, () => ({
+          contents: `export default { t: (value) => value };`,
+          loader: 'js'
+        }));
+      }
+    }],
+    define: {
+      'import.meta.env.DEV': 'false',
+      'import.meta.glob': '__generationGlob'
+    },
+    logLevel: 'silent'
+  });
+  const bundledSource = result.outputFiles[0].text;
+  const moduleUrl = `data:text/javascript;base64,${Buffer.from(bundledSource).toString('base64')}`;
+  return (await import(moduleUrl)).default;
+};
+
 const parseNteArc = item => {
   const baseStats = {};
   let baseAtk = 395;
@@ -347,8 +384,11 @@ fs.writeFileSync(nteCharactersPath, `${JSON.stringify(notionNteCharacters.map(no
 fs.mkdirSync(path.dirname(wwGuideCharactersPath), { recursive: true });
 fs.writeFileSync(wwGuideCharactersPath, `${JSON.stringify(notionWwGuideCharacters, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, 'utf8');
+const wwCharacters = await buildWwCharacterData();
+fs.writeFileSync(wwCharactersPath, `${JSON.stringify(wwCharacters, null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);
 console.log(`[Search] HSR: ${hsrCharacters.length} characters, ${hsrLightcones.length} light cones, ${hsrGuides.length} guides.`);
 console.log(`[Home] Generated lightweight stats for ${homeStats.global.characters} characters and ${homeStats.global.guides} guides.`);
+console.log(`[WW] Generated ${wwCharacters.length} merged character detail records.`);

@@ -1,7 +1,9 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { Sparkles, Shield, Award, ChevronRight, BookOpen, Layers } from 'lucide-react';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { WW_WEAPON_DATA } from '../data/weaponData';
+import { WW_ECHO_DATA } from '../data/echoData';
+import { WW_GUIDE_DATA } from '../data/guideData';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import type { WuwaCharacter } from '../types';
 
@@ -15,7 +17,9 @@ interface WwEntityGraphSectionProps {
 const normalizeName = (s: string) => (s || '').replace(/\s+/g, '').toLowerCase();
 
 export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ character, theme }) => {
-  const { WEAPON_DB, ECHO_DB, GUIDES } = useMemo(() => getGameData('ww'), []);
+  const WEAPON_DB = WW_WEAPON_DATA;
+  const ECHO_DB = WW_ECHO_DATA;
+  const GUIDES = WW_GUIDE_DATA;
 
   const guide = useMemo(() => {
     if (!GUIDES || !Array.isArray(GUIDES)) return null;
