@@ -16,7 +16,6 @@ import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { LightConePremiumCard, CharacterPremiumCard, ItemPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
 import { ItemDetailModal } from '@/common-hub/components/GalleryModals';
-import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import WuwaEchoGallery from '../components/WuwaEchoGallery';
 import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
@@ -27,6 +26,8 @@ import { WW_WEAPON_DATA } from '../data/weaponData';
 import { WW_ECHO_DATA } from '../data/echoData';
 import { WW_GUIDE_DATA } from '../data/guideData';
 // import removed
+
+const WuwaInventoryGallery = React.lazy(() => import('../components/WuwaInventoryGallery'));
 
 const GalleryWW: React.FC = () => {
   const gameId = 'ww';
@@ -361,10 +362,9 @@ const GalleryWW: React.FC = () => {
               </div>
             </div>
           ) : activeMenu === "인벤토리" ? (
-            <InventoryGallery 
-              gameId="ww" 
-              customCategories={["전체", "요리", "돌파 재료", "특수 화폐", "소모품", "무기 및 스킬 재료", "재료", "튜닝 관련 아이템", "에코 육성 재료", "공명자 경험치 재료", "무기 경험치 재료", "공명자 돌파 재료", "무기 제작 재료", "스킬 업그레이드 재료"]} 
-            />
+            <React.Suspense fallback={<div className="py-32 text-center text-xs font-black uppercase tracking-[0.3em] text-gray-400">Loading Archive...</div>}>
+              <WuwaInventoryGallery />
+            </React.Suspense>
           ) : activeMenu === "에코" ? (
             <WuwaEchoGallery />
           ) : activeMenu === '공략' ? (

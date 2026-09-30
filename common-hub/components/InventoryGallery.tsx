@@ -1,15 +1,33 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
-import { getItemMetaDB, FILTER_CATEGORIES, getItemUrl, getAutoRarity, categorizeItem } from '../data/items';
 import { useTranslation } from 'react-i18next';
 import { ItemPremiumCard } from './GalleryCards';
+import { CDN_URL, safeEncodeURIComponent } from '../utils/assetManager';
+
+const FILTER_CATEGORIES = ['전체', '캐릭터 성장', '광추/무기', '유물/에코', '재화/소모품'];
+
+const categorizeItem = (type: string): string => {
+  if (!type) return '기타';
+  if (type.includes('경험치') || type.includes('돌파') || type.includes('재료') || type.includes('행적')) {
+    if (type.includes('광추') || type.includes('무기')) return '광추/무기';
+    if (type.includes('에코') || type.includes('유물')) return '유물/에코';
+    return '캐릭터 성장';
+  }
+  return '재화/소모품';
+};
+
+const getDirectItemUrl = (name: string, gameId: string, fileName?: string) => {
+  const targetName = (fileName || name).normalize('NFC').replace(/\//g, '').replace(/: /g, '_').replace(/:/g, '_').replace(/[?<>]/g, '');
+  return `${CDN_URL}/${gameId}%20images/items/${safeEncodeURIComponent(targetName)}.webp`;
+};
 
 interface InventoryGalleryProps {
   gameId?: string;
   customCategories?: string[];
+  itemDatabase?: Record<string, any>;
 }
 
-const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', customCategories }) => {
+const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', customCategories, itemDatabase }) => {
   const { t } = useTranslation();
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,18 +51,19 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
   useEffect(() => { sessionStorage.setItem(`inventory_search_${gameId}`, search); }, [search, gameId]);
 
   useEffect(() => {
-    const loadItems = () => {
+    const loadItems = async () => {
       try {
-        const db = getItemMetaDB();
+        const itemModule = itemDatabase ? null : await import('../data/items');
+        const db = itemDatabase || itemModule!.getItemMetaDB();
         
         const processed = Object.entries(db).flatMap(([name, meta]) => {
           const itemMeta = meta as any;
           const itemGameId = itemMeta.gameId || 'hsr';
           if (itemGameId !== gameId) return [];
-          const rarity = itemMeta.rarity || getAutoRarity(name);
+          const rarity = itemMeta.rarity || itemModule?.getAutoRarity(name) || 3;
           return [{
             name,
-            url: getItemUrl(name, itemGameId, itemMeta.fileName) || '',
+            url: itemModule?.getItemUrl(name, itemGameId, itemMeta.fileName) || getDirectItemUrl(name, itemGameId, itemMeta.fileName || itemMeta.folderName),
             rarity,
             desc: itemMeta.desc || itemMeta.description || itemMeta.content || "상세 정보가 없습니다.",
             type: itemMeta.type || itemMeta.category || "미분류",
@@ -61,8 +80,8 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
         setLoading(false);
       }
     };
-    loadItems();
-  }, [gameId]);
+    void loadItems();
+  }, [gameId, itemDatabase]);
 
   const filteredItems = useMemo(() => {
     return items.filter(item => {

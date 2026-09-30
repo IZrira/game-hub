@@ -3,7 +3,13 @@ import { Link, useParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent, handleImageFallback, withAssetVersion, resolveRoverImageInfo } from '@/common-hub/utils/assetManager';
-import { getItemUrl, getCleanItemName } from '@/common-hub/data/items';
+
+const getCleanItemName = (name: string) => name?.replace(/[\s_\-]*[\(\[]?[1-5]성[\)\]]?$/, '').trim() || '';
+
+const getItemUrl = (name: string, gameId = 'hsr', fileName?: string) => {
+  const targetName = (fileName || name || '').normalize('NFC').replace(/\//g, '').replace(/: /g, '_').replace(/:/g, '_').replace(/[?<>]/g, '');
+  return `${CDN_URL}/${gameId}%20images/items/${safeEncodeURIComponent(targetName)}.webp`;
+};
 
 export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: number }) => {
   const { t } = useTranslation();
@@ -170,7 +176,7 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
   const { gameId } = useParams();
   
   const itemName = item.name || '';
-  const imgPath = item.url || getItemUrl(itemName, gameId);
+  const imgPath = item.url || getItemUrl(itemName, item.gameId || gameId, item.fileName || item.folderName);
 
   const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
     const fallbackGameId = item.gameId || gameId || 'hsr';

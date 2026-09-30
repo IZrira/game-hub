@@ -19,6 +19,7 @@ const wwCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', '
 const wwGalleryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'gallery.json');
 const wwRecommendationsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'recommendations.json');
 const wwEchoesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'echoes.json');
+const wwInventoryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'inventory.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -391,6 +392,7 @@ const wwData = await buildWwData();
 const wwCharacters = wwData.CHARACTER_DB;
 fs.writeFileSync(wwCharactersPath, `${JSON.stringify(wwCharacters, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwEchoesPath, `${JSON.stringify(wwData.ECHO_DB, null, 2)}\n`, 'utf8');
+fs.writeFileSync(wwInventoryPath, `${JSON.stringify(wwData.WW_INVENTORY, null, 2)}\n`, 'utf8');
 const wwGalleryData = {
   characters: wwCharacters.map(character => ({
     id: character.id,

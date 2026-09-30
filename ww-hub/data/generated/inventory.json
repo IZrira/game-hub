@@ -1,0 +1,3709 @@
+{
+  "『금빛 눈을 가진 기인의 검법』": {
+    "id": "3c195fae-3dc7-80c2-9ab8-e14322237c71",
+    "name": "『금빛 눈을 가진 기인의 검법』",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "오래되고 고풍스러운 검법 비급. 안에는 어딘가 낯익은 검초가 여럿 그려져 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "『금빛 눈을 가진 기인의 검법』",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "『유람기』 (견본)": {
+    "id": "3c195fae-3dc7-8020-8ef2-d4a817649cbf",
+    "name": "『유람기』 (견본)",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "운선(雲船)에서 주운 소설. 한 유람객이 신기루를 탐사하던 중 마주한 온갖 기괴한 일들을 묘사하고 있다. 안에는 급히 적어 둔 듯한 낙서가 몇 개 남아 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "『유람기』 (견본)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "5성 무기 보급 상자 · 새출발": {
+    "id": "39895fae-3dc7-80b9-a3b6-f39f2985a5d3",
+    "name": "5성 무기 보급 상자 · 새출발",
+    "type": "물자 상자",
+    "rarity": 5,
+    "desc": "사용 후, 푸른물결의 빛, 천년의 회류, 부동의 안개, 물결의 파동, 파도의 기록, 레이저 변형, 에너지 절단, 위상의 파동, 격동의 조력, 보손 관측기 중에서 1개를 선택하여 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "5성 무기 보급 상자 · 새출발",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "가짜 선인의 한숨": {
+    "id": "3c195fae-3dc7-80ea-8d10-d63acd5ba7f1",
+    "name": "가짜 선인의 한숨",
+    "type": "공명자 돌파 재료",
+    "rarity": 4,
+    "desc": "하늘의 기관 인형 · 겁살의 드랍 아이템, 공명자 돌파에 사용된다",
+    "sources": [
+      "하늘의 기관 인형 · 겁살 도전에서 획득",
+      "하늘의 기관 인형 · 겁살 - 조기 오픈"
+    ],
+    "folderName": "가짜 선인의 한숨",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "검객 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-8064-be8f-c390aed2c34e",
+    "name": "검객 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "검객 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "검객 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "검객 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-8095-a2c1-f06eae5b8c5d",
+    "name": "검객 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "검객 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "검객 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "검객 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-8082-af76-c001743e67af",
+    "name": "검객 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "검객 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "검객 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "경옥함금": {
+    "id": "39895fae-3dc7-800a-8aec-c4a0c96430d8",
+    "name": "경옥함금",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 공명 해방 피해 보너스가 44% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "경옥함금",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "고급 습유물 밀봉 상자 · 현방 지계": {
+    "id": "39895fae-3dc7-8007-aed8-f1114cedf7ac",
+    "name": "고급 습유물 밀봉 상자 · 현방 지계",
+    "type": "물자 상자",
+    "rarity": 4,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 고급 재료를 선택하여 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "고급 습유물 밀봉 상자 · 현방 지계",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "고급 습유물 밀봉 상자 Ⅲ": {
+    "id": "39895fae-3dc7-8006-85f0-f2b7cfb9d176",
+    "name": "고급 습유물 밀봉 상자 Ⅲ",
+    "type": "물자 상자",
+    "rarity": 4,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 고급 재료를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "고급 습유물 밀봉 상자 Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "고주파수 기관 인형 중추 핵심": {
+    "id": "39895fae-3dc7-8067-8c45-defb6e7fdbd6",
+    "name": "고주파수 기관 인형 중추 핵심",
+    "type": "무기 및 스킬 재료",
+    "rarity": 4,
+    "desc": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "합성 - 정제",
+      "합성 - 교체",
+      "기관 인형 드랍"
+    ],
+    "folderName": "고주파수 기관 인형 중추 핵심",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "군가의 중주 물자 상자 V": {
+    "id": "39895fae-3dc7-8071-b853-f96343b5b6f9",
+    "name": "군가의 중주 물자 상자 V",
+    "type": "물자 상자",
+    "rarity": 4,
+    "desc": "오픈 후, 고급 스킬 재료를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "군가의 중주 물자 상자 V",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "군가의 중주 새출발 물자 상자": {
+    "id": "39895fae-3dc7-805a-9902-d1f048830879",
+    "name": "군가의 중주 새출발 물자 상자",
+    "type": "물자 상자",
+    "rarity": 4,
+    "desc": "오픈 후, 고급 스킬 재료를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "군가의 중주 새출발 물자 상자",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "금상상월": {
+    "id": "3c195fae-3dc7-8096-90e4-f1be9f6f678d",
+    "name": "금상상월",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "연서가 경연에게 전해 달라고 부탁한 떡. 방금 만든 듯하다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "금상상월",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "금하 완자": {
+    "id": "39895fae-3dc7-80d5-bf93-dd5b97902575",
+    "name": "금하 완자",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 공명 스킬 피해 보너스가 50% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "금하 완자",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "꽃게 생선 조림": {
+    "id": "39895fae-3dc7-80f8-98e1-ef8c00725f15",
+    "name": "꽃게 생선 조림",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 공명 효율이 30% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "꽃게 생선 조림",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "꿈을 잡는 무늬": {
+    "id": "39895fae-3dc7-8095-b652-cdb862dec472",
+    "name": "꿈을 잡는 무늬",
+    "type": "튜닝 관련 아이템",
+    "rarity": 5,
+    "desc": "사용 시 아래 튜닝에서 캐릭터 콜라보 튜닝 1회 진행 가능:\n「달 위를 거니는 꿈」, 「잿불 속 다시 깨어난 분노」",
+    "sources": [
+      "패키지 상점",
+      "환상의 산호",
+      "별의 소리"
+    ],
+    "folderName": "꿈을 잡는 무늬",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "나그네의 가을 추억": {
+    "id": "39895fae-3dc7-80f0-bdd8-e1f2977af106",
+    "name": "나그네의 가을 추억",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 강공격 피해 보너스가 40% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "나그네의 가을 추억",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "낚시 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-801a-bb64-f6a4f6806b73",
+    "name": "낚시 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "낚시 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "낚시 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "낚시 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-801f-8401-f5beb329935d",
+    "name": "낚시 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "낚시 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "낚시 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "낚시 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-80db-b36a-cb1405f45ff5",
+    "name": "낚시 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "낚시 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "낚시 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "노을빛 구름 깃털": {
+    "id": "39895fae-3dc7-8052-9008-dd1de4480813",
+    "name": "노을빛 구름 깃털",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "desc": "캐릭터 돌파에 사용되는 재료",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "군생지 채집 획득",
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "노을빛 구름 깃털",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "노을을 헤엄치는 비단 잉어": {
+    "id": "39895fae-3dc7-807c-8dd0-fb5317b0a767",
+    "name": "노을을 헤엄치는 비단 잉어",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "desc": "캐릭터 돌파에 사용되는 재료",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "군생지 채집 획득",
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "노을을 헤엄치는 비단 잉어",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "데이비드 · 마르티네즈": {
+    "id": "39895fae-3dc7-803f-a995-eb277e0a47d4",
+    "name": "데이비드 · 마르티네즈",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 공격력이 30% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "데이비드 · 마르티네즈",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "도약 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-80c4-8d33-c154d632d0a8",
+    "name": "도약 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "도약 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "도약 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "도약 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-8070-a58e-d1fc84bcf501",
+    "name": "도약 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "도약 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "도약 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "도약 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-807d-b997-e422e82dbb3a",
+    "name": "도약 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "도약 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "도약 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "되묻는 우리": {
+    "id": "3c195fae-3dc7-80a9-93f0-c4f4b728ecef",
+    "name": "되묻는 우리",
+    "type": "스킬 업그레이드 재료",
+    "rarity": 4,
+    "desc": "데니아의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "데니아 도전에서 획득",
+      "데니아 - 조기 오픈"
+    ],
+    "folderName": "되묻는 우리",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "등소기": {
+    "id": "39895fae-3dc7-804f-82eb-cf2ae7f3638c",
+    "name": "등소기",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "현방성 군책부에서 사용하는 휴대용 장치. 순소환의 주파수 데이터를 다운로드하거나 업로드하는 데 사용된다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "등소기",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "뜨거운 새벽": {
+    "id": "39895fae-3dc7-80bb-8056-d7d7b3c785e9",
+    "name": "뜨거운 새벽",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 HP 최대치가 1250pt 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "뜨거운 새벽",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "몽주 초회": {
+    "id": "3c195fae-3dc7-8062-9828-c2495489d86b",
+    "name": "몽주 초회",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 공명 효율이 34% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "몽주 초회",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "미탁옥": {
+    "id": "39895fae-3dc7-8044-994b-e875dde305d1",
+    "name": "미탁옥",
+    "type": "식재료",
+    "rarity": 1,
+    "desc": "요리에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "미탁옥",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "방송국 새출발 특급 물자 상자": {
+    "id": "39895fae-3dc7-80b8-a3b6-e5411dc2a69c",
+    "name": "방송국 새출발 특급 물자 상자",
+    "type": "물자 상자",
+    "rarity": 5,
+    "desc": "오픈 후 특급 자원 보상 1개를 선택할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "방송국 새출발 특급 물자 상자",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "백옥 고기 국수": {
+    "id": "39895fae-3dc7-801b-8897-e99795fd822b",
+    "name": "백옥 고기 국수",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 공격력이 25% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "백옥 고기 국수",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "백옥 미인": {
+    "id": "39895fae-3dc7-8024-a5d4-eb872889ab5e",
+    "name": "백옥 미인",
+    "type": "식재료",
+    "rarity": 1,
+    "desc": "요리에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "백옥 미인",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "백은 칼날": {
+    "id": "39895fae-3dc7-8068-be2e-fbb877cdf5d3",
+    "name": "백은 칼날",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "desc": "캐릭터 돌파에 사용되는 재료",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "군생지 채집 획득",
+      "야외 채집 획득"
+    ],
+    "folderName": "백은 칼날",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "별미의 비법": {
+    "id": "39895fae-3dc7-808d-b3ab-c0654e2de354",
+    "name": "별미의 비법",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 공격력이 28% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "별미의 비법",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "보름달 설기": {
+    "id": "39895fae-3dc7-80ea-bde3-fea875f28814",
+    "name": "보름달 설기",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 공격력이 25% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "보름달 설기",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "보물 탐사기 허가증 · 몽주": {
+    "id": "39895fae-3dc7-808c-b68f-ed57fb7cd0b1",
+    "name": "보물 탐사기 허가증 · 몽주",
+    "type": "소모품",
+    "rarity": 4,
+    "desc": "해당 구역에서 보물 탐사기를 활성화하는 데 사용된다",
+    "sources": [
+      "양연 수집 후 획득"
+    ],
+    "folderName": "보물 탐사기 허가증 · 몽주",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "봉정 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-8093-a9f2-ec6b66bdb370",
+    "name": "봉정 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "봉정 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "봉정 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "봉정 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-8035-9e16-d97ea6276c80",
+    "name": "봉정 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "봉정 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "봉정 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "봉정 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-80a2-b7e3-cf29f6517a00",
+    "name": "봉정 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "봉정 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "봉정 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "부적": {
+    "id": "3c195fae-3dc7-80c0-bede-fe2d4b5e81dd",
+    "name": "부적",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "군책부 구성원이 「영혼 소환 의식」을 조사하던 중 발견한 「부적」. 의식의 위치를 추적할 수 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "부적",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "사운드 탐사기 허가증 · 몽주": {
+    "id": "39895fae-3dc7-805e-a092-c714ca1d202a",
+    "name": "사운드 탐사기 허가증 · 몽주",
+    "type": "소모품",
+    "rarity": 4,
+    "desc": "해당 구역에서 사운드 탐사기를 활성화하는 데 사용된다",
+    "sources": [
+      "양연 수집 후 획득"
+    ],
+    "folderName": "사운드 탐사기 허가증 · 몽주",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "삼선 볶음": {
+    "id": "39895fae-3dc7-8023-bd5b-ce28d01fd5e6",
+    "name": "삼선 볶음",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 치료 효과 보너스가 10% 증가되고 HP 최대치가 20% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "삼선 볶음",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "새겨진 그림자의 무늬": {
+    "id": "39895fae-3dc7-80a5-9ec8-f11e41cdf02a",
+    "name": "새겨진 그림자의 무늬",
+    "type": "튜닝 관련 아이템",
+    "rarity": 5,
+    "desc": "사용 시 아래 튜닝에서 무기 콜라보 튜닝 1회 진행 가능:\n「스펙트럴 트리거」, 「스컬 스래셔」",
+    "sources": [
+      "패키지 상점",
+      "환상의 산호",
+      "별의 소리"
+    ],
+    "folderName": "새겨진 그림자의 무늬",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "소생의 꽃술": {
+    "id": "39895fae-3dc7-805f-baec-c9570b126e71",
+    "name": "소생의 꽃술",
+    "type": "특수 화폐",
+    "rarity": 3,
+    "desc": "데이터를 바이오프린터에 입력하여, 아래 지역의 캐릭터 육성 채집물을 합성할 수 있습니다:\n황룡 · 금주, 검은 해안, 리나시타, 호나미 시",
+    "sources": [
+      "바다 교환소"
+    ],
+    "folderName": "소생의 꽃술",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "수존 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-8006-886e-c11c83544957",
+    "name": "수존 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "수존 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "수존 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "수존 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-8051-9ae1-cd34a963257e",
+    "name": "수존 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "수존 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "수존 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "수존 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-8098-b213-f160bd8f497c",
+    "name": "수존 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "수존 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "수존 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "습유물 돌파 보급 상자 Ⅳ": {
+    "id": "39895fae-3dc7-802f-b458-f5dfbd3e6a66",
+    "name": "습유물 돌파 보급 상자 Ⅳ",
+    "type": "물자 상자",
+    "rarity": 4,
+    "desc": "오픈 후, 공명자 돌파에 사용되는 채집 재료를 선택하여 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "습유물 돌파 보급 상자 Ⅳ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "씨름 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-80bb-bd1e-f678f3f6723d",
+    "name": "씨름 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "씨름 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "씨름 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "씨름 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-80f0-a165-c462f9b7caa6",
+    "name": "씨름 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "씨름 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "씨름 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "씨름 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-806c-8f34-feafccf69583",
+    "name": "씨름 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "씨름 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "씨름 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "악몽의 잔재": {
+    "id": "39895fae-3dc7-80ea-a876-e3adca9db66d",
+    "name": "악몽의 잔재",
+    "type": "공명자 돌파 재료",
+    "rarity": 4,
+    "desc": "악몽 아담 · 스매셔의 드랍 아이템. 루시, 레베카 돌파에 사용된다",
+    "sources": [
+      "악몽 아담 · 스매셔 도전에서 획득",
+      "악몽 아담 · 스매셔 - 조기 오픈"
+    ],
+    "folderName": "악몽의 잔재",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "안정 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-80f9-8da3-f9dbeee8b741",
+    "name": "안정 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "안정 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "안정 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "안정 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-8074-8863-ce056e4ee9f7",
+    "name": "안정 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "안정 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "안정 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "안정 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-80e8-ab0f-febdec60244d",
+    "name": "안정 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "안정 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "안정 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "엣지 드림 · 울림 주파수 대역": {
+    "id": "39895fae-3dc7-80ad-b4ef-d22a0261961d",
+    "name": "엣지 드림 · 울림 주파수 대역",
+    "type": "공명자 돌파 재료",
+    "rarity": 5,
+    "desc": "오픈 후 다음 울림 주파수 대역 중 하나를 선택하여 획득 가능: 루시의 울림 주파수 대역, 레베카의 울림 주파수 대역",
+    "sources": [
+      "???"
+    ],
+    "folderName": "엣지 드림 · 울림 주파수 대역",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "여우 모양의 가면": {
+    "id": "39895fae-3dc7-801f-90a0-d3961905c9e3",
+    "name": "여우 모양의 가면",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "여우 모양의 가면. 수호신의 신물을 훔친 범인이 떨어뜨린 것 같다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "여우 모양의 가면",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "여일의 장부": {
+    "id": "3c195fae-3dc7-809c-8d43-d5d7455fd551",
+    "name": "여일의 장부",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "점장 여일의 장부. 그의 일상 지출이 기록되어 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "여일의 장부",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "연무 코인": {
+    "id": "39895fae-3dc7-80ff-9af4-c91a58b83dd6",
+    "name": "연무 코인",
+    "type": "특수 화폐",
+    "rarity": 4,
+    "desc": "현천구가 주조한 특수 화폐. 현천구가 실험자들을 위해 준비한 각종 물자를 교환하는 데 사용된다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "연무 코인",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "엽중장": {
+    "id": "39895fae-3dc7-8001-9df7-d5caca0572f0",
+    "name": "엽중장",
+    "type": "약재",
+    "rarity": 1,
+    "desc": "합성에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "엽중장",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "옥검": {
+    "id": "3c195fae-3dc7-8046-93bf-eaa05768f5be",
+    "name": "옥검",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "청초가 당신을 위해 준비한 신물. 옥으로 만든 작은 검으로, 푸른 기운이 은은히 흐르고 잔잔한 빛을 머금고 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "옥검",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "옥화벽": {
+    "id": "39895fae-3dc7-80a5-9763-f81474ed5fba",
+    "name": "옥화벽",
+    "type": "약재",
+    "rarity": 1,
+    "desc": "합성에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "옥화벽",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "원·프로젝트 무기 보급 상자": {
+    "id": "39895fae-3dc7-8074-bb3e-dd542f12dc37",
+    "name": "원·프로젝트 무기 보급 상자",
+    "type": "물자 상자",
+    "rarity": 4,
+    "desc": "오픈 후, 원·프로젝트 무기 중 하나를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "원·프로젝트 무기 보급 상자",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "육합영": {
+    "id": "39895fae-3dc7-8041-bf13-d39c3efcea04",
+    "name": "육합영",
+    "type": "식재료",
+    "rarity": 1,
+    "desc": "요리에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "육합영",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "저주파수 기관 인형 중추 핵심": {
+    "id": "39895fae-3dc7-800b-abb1-f9351c8a4076",
+    "name": "저주파수 기관 인형 중추 핵심",
+    "type": "무기 및 스킬 재료",
+    "rarity": 2,
+    "desc": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "합성 - 교체",
+      "기관 인형 드랍",
+      "바다 교환소",
+      "응소의 영역에서 획득"
+    ],
+    "folderName": "저주파수 기관 인형 중추 핵심",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "전옥비취탕": {
+    "id": "39895fae-3dc7-802c-bbd6-cc750ab616cb",
+    "name": "전옥비취탕",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 공명 해방 피해 보너스가 40% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "전옥비취탕",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "전주파수 기관 인형 중추 핵심": {
+    "id": "39895fae-3dc7-801b-ac94-e04d44b9ba4a",
+    "name": "전주파수 기관 인형 중추 핵심",
+    "type": "무기 및 스킬 재료",
+    "rarity": 5,
+    "desc": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "합성 - 정제",
+      "합성 - 교체",
+      "기관 인형 드랍"
+    ],
+    "folderName": "전주파수 기관 인형 중추 핵심",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "정호각 약품": {
+    "id": "39895fae-3dc7-80ef-a77f-c489657a3896",
+    "name": "정호각 약품",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "정호각에서 온 약품. 부상을 치료하는 데 사용된다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "정호각 약품",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "주인 없는 양연": {
+    "id": "39895fae-3dc7-80f1-8774-c2de01c9095d",
+    "name": "주인 없는 양연",
+    "type": "재료",
+    "rarity": 5,
+    "desc": "접촉하여 주인 없는 양연을 수집할 수 있다. 또한 탐색 도구 로프를 사용하여 접근할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "주인 없는 양연",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "죽순": {
+    "id": "39895fae-3dc7-80bc-8575-eb401f2a98de",
+    "name": "죽순",
+    "type": "식재료",
+    "rarity": 1,
+    "desc": "요리에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "죽순",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "중급 습유물 밀봉 상자 · 현방 지계": {
+    "id": "39895fae-3dc7-80e3-95e5-e01e5f0e73db",
+    "name": "중급 습유물 밀봉 상자 · 현방 지계",
+    "type": "물자 상자",
+    "rarity": 3,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 중급 재료를 선택하여 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "중급 습유물 밀봉 상자 · 현방 지계",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "중급 습유물 밀봉 상자 Ⅲ": {
+    "id": "39895fae-3dc7-8016-a053-f73d6b0ac05b",
+    "name": "중급 습유물 밀봉 상자 Ⅲ",
+    "type": "물자 상자",
+    "rarity": 3,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 중급 재료를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "중급 습유물 밀봉 상자 Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "중주파수 기관 인형 중추 핵심": {
+    "id": "39895fae-3dc7-80fe-be47-f6517d3dec25",
+    "name": "중주파수 기관 인형 중추 핵심",
+    "type": "무기 및 스킬 재료",
+    "rarity": 3,
+    "desc": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "합성 - 정제",
+      "합성 - 교체",
+      "기관 인형 드랍",
+      "응소의 영역에서 획득"
+    ],
+    "folderName": "중주파수 기관 인형 중추 핵심",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "지난날의 환상": {
+    "id": "39895fae-3dc7-8088-8685-f5ab4f789361",
+    "name": "지난날의 환상",
+    "type": "공명자 돌파 재료",
+    "rarity": 1,
+    "desc": "루시와 레베카 돌파에 사용되는 재료",
+    "sources": [
+      "군생지 채집 획득",
+      "마음의 영역 · 나이트 시티의 AI 잡화점에서 교환",
+      "마음의 영역 · 나이트 시티"
+    ],
+    "folderName": "지난날의 환상",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천하별미": {
+    "id": "39895fae-3dc7-80d8-a9e2-cab1349ba5bc",
+    "name": "천하별미",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 강공격 피해 보너스가 30% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "천하별미",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "청부(靑蚨) 장신구": {
+    "id": "3c195fae-3dc7-806e-8366-cc37e1400d4a",
+    "name": "청부(靑蚨) 장신구",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "무은각에서 얻은 신비한 장신구. 「산고양이 등불」이 일부러 남긴 단서처럼 보인다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "청부(靑蚨) 장신구",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "청운상": {
+    "id": "39895fae-3dc7-8023-bbce-e214aa1088e6",
+    "name": "청운상",
+    "type": "요리",
+    "rarity": 5,
+    "desc": "파티 내 모든 공명자의 치료 효과 보너스가 50% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "청운상",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "초급 습유물 밀봉 상자 · 현방 지계": {
+    "id": "39895fae-3dc7-804a-a204-cb7c498bd564",
+    "name": "초급 습유물 밀봉 상자 · 현방 지계",
+    "type": "물자 상자",
+    "rarity": 2,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 초급 재료를 선택하여 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "초급 습유물 밀봉 상자 · 현방 지계",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "초급 습유물 밀봉 상자 Ⅲ": {
+    "id": "39895fae-3dc7-8089-8699-c23429e18470",
+    "name": "초급 습유물 밀봉 상자 Ⅲ",
+    "type": "물자 상자",
+    "rarity": 2,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 초급 재료를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "초급 습유물 밀봉 상자 Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "추억을 담은 전설의 요리": {
+    "id": "39895fae-3dc7-806f-9074-c7d8329e70a4",
+    "name": "추억을 담은 전설의 요리",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 HP 최대치가 25% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "추억을 담은 전설의 요리",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "캔 고리": {
+    "id": "39895fae-3dc7-8075-b1f6-ef44356901e2",
+    "name": "캔 고리",
+    "type": "특수 화폐",
+    "rarity": 4,
+    "desc": "화폐. 상점에서 아이템 교환에 사용된다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "캔 고리",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "퀵핵 모듈": {
+    "id": "39895fae-3dc7-8049-b59b-d8f09708a15f",
+    "name": "퀵핵 모듈",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "루시가 제공한 퀵핵 모듈. 마음의 영역 · 나이트 시티에 있는 장치를 빠르게 해킹하는 데 사용할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "퀵핵 모듈",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "크레드 칩": {
+    "id": "39895fae-3dc7-80e8-a764-ecb92aae527e",
+    "name": "크레드 칩",
+    "type": "이벤트 아이템",
+    "rarity": 4,
+    "desc": "엣지러너들이 가져온, 나이트 시티에서 유통되는 전자 화폐. 이 아이템을 수집하여 두 사람에게 보상으로 교환할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "크레드 칩",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "특급 습유물 밀봉 상자 · 현방 지계": {
+    "id": "39895fae-3dc7-800a-b1f8-d0c7ee4d6a3f",
+    "name": "특급 습유물 밀봉 상자 · 현방 지계",
+    "type": "물자 상자",
+    "rarity": 5,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 특급 재료를 선택하여 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "특급 습유물 밀봉 상자 · 현방 지계",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "특급 습유물 밀봉 상자 Ⅲ": {
+    "id": "39895fae-3dc7-8057-be89-db83a13b2ddf",
+    "name": "특급 습유물 밀봉 상자 Ⅲ",
+    "type": "물자 상자",
+    "rarity": 5,
+    "desc": "오픈 후, 무기 돌파 및 스킬 업그레이드에 사용되는 특급 재료를 선택하여 획득할 수 있다.",
+    "sources": [
+      "???"
+    ],
+    "folderName": "특급 습유물 밀봉 상자 Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "하늘길 유리의 마음": {
+    "id": "39895fae-3dc7-80f4-9ca6-c97069f5dde8",
+    "name": "하늘길 유리의 마음",
+    "type": "스킬 업그레이드 재료",
+    "rarity": 4,
+    "desc": "천괴중루의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "천괴중루 도전에서 획득",
+      "천괴중루 - 조기 오픈"
+    ],
+    "folderName": "하늘길 유리의 마음",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "학술 기관 인형 · Ⅰ": {
+    "id": "39895fae-3dc7-8049-99f2-dc6beb8bac73",
+    "name": "학술 기관 인형 · Ⅰ",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "학술 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "학술 기관 인형 · Ⅰ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "학술 기관 인형 · Ⅱ": {
+    "id": "39895fae-3dc7-80e0-bbfa-d20c8dc72163",
+    "name": "학술 기관 인형 · Ⅱ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "학술 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "학술 기관 인형 · Ⅱ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "학술 기관 인형 · Ⅲ": {
+    "id": "39895fae-3dc7-803d-b0b1-e5f0fbb29d38",
+    "name": "학술 기관 인형 · Ⅲ",
+    "type": "임무 아이템",
+    "rarity": 4,
+    "desc": "학술 기관 인형을 구성하는 부품 중 하나. 세 개의 부품을 모두 모아 기관 대왕에게 제출하면 보상을 획득할 수 있다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "학술 기관 인형 · Ⅲ",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "한 조각 현방": {
+    "id": "39895fae-3dc7-80ae-8a95-fbc5917cc8e2",
+    "name": "한 조각 현방",
+    "type": "소모품",
+    "rarity": 4,
+    "desc": "현방 지계 탐색 시 수집한 기관 조각. 수집 후 「현방의 틈새사이」 이벤트 레벨을 높이는 데 사용된다",
+    "sources": [
+      "???"
+    ],
+    "folderName": "한 조각 현방",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "화방옥쇄": {
+    "id": "39895fae-3dc7-80af-b0c6-d02d52a33e3a",
+    "name": "화방옥쇄",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 치료 효과 보너스가 25% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "화방옥쇄",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "화염에 새겨진 정의": {
+    "id": "39895fae-3dc7-80d3-9a2c-de6bf1a57ac2",
+    "name": "화염에 새겨진 정의",
+    "type": "스킬 업그레이드 재료",
+    "rarity": 4,
+    "desc": "만와뢰 · 잔해의 드랍 아이템, 공명자 돌파에 사용된다",
+    "sources": [
+      "만와뢰 · 잔해 도전에서 획득",
+      "만와뢰 · 잔해 - 조기 오픈"
+    ],
+    "folderName": "화염에 새겨진 정의",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "환상의 산호": {
+    "id": "39895fae-3dc7-80db-a52b-eb70003961ac",
+    "name": "환상의 산호",
+    "type": "튜닝 관련 아이템",
+    "rarity": 5,
+    "desc": "환상의 산호 상점에서 아이템을 교환하는 데 사용할 수 있다",
+    "sources": [
+      "튜닝 획득"
+    ],
+    "folderName": "환상의 산호",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "회음석": {
+    "id": "39895fae-3dc7-80ca-a7c0-e343b9ddcfb2",
+    "name": "회음석",
+    "type": "식재료",
+    "rarity": 1,
+    "desc": "요리에 사용되는 재료",
+    "sources": [
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "회음석",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "「길 모퉁이의 만남」 초콜릿 박스": {
+    "id": "corner_meeting_chocolate_box",
+    "name": "「길 모퉁이의 만남」 초콜릿 박스",
+    "folderName": "「길 모퉁이의 만남」 초콜릿 박스",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 HP 최대치가 30% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "「다음 생」": {
+    "id": "next_life",
+    "name": "「다음 생」",
+    "folderName": "「다음 생」",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 야외 채집 획득, 실버 투구 잡화점에서 구매, 죽음의 피안 채집 획득",
+    "gameId": "ww"
+  },
+  "「모네」": {
+    "id": "monet",
+    "name": "「모네」",
+    "folderName": "「모네」",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "라군나 지역의 특별한 드랍 아이템, 이것을 사용하여 「아베라르도 은행」에서 다양한 아이템을 교환할 수 있다",
+    "source": "라군나 탐색 획득",
+    "gameId": "ww"
+  },
+  "「모델」": {
+    "id": "model",
+    "name": "「모델」",
+    "folderName": "「모델」",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "로야와 라하이 로이 지역의 특별한 드랍 아이템, 이것을 사용하여 「스페이스트렉 아카이브」의 I.R.I.S.에서 다양한 아이템을 교환할 수 있다",
+    "source": "라하이 로이 탐색 획득",
+    "gameId": "ww"
+  },
+  "「솔리스」": {
+    "id": "solis",
+    "name": "「솔리스」",
+    "folderName": "「솔리스」",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공명 효율을 30% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "「심심할 때 먹는」 빵": {
+    "id": "snack_bread",
+    "name": "「심심할 때 먹는」 빵",
+    "folderName": "「심심할 때 먹는」 빵",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 10% 증가되고, 크리티컬 피해가 20% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "「심장의 선택」": {
+    "id": "hearts_choice",
+    "name": "「심장의 선택」",
+    "folderName": "「심장의 선택」",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공명 효율을 34% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "「잔상 킬러」 추첨권": {
+    "id": "echo_killer_ticket",
+    "name": "「잔상 킬러」 추첨권",
+    "folderName": "「잔상 킬러」 추첨권",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "쿠 · 에곤이 「흑조의 침식 시뮬레이션」에 참여한 검은 해안 사람들을 위해 준비한 교환권으로, 「흑조의 침식 시뮬레이션」 이벤트에서 보상으로 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "「터지면 튀어」 생선 통조림": {
+    "id": "pop_and_run_canned_fish",
+    "name": "「터지면 튀어」 생선 통조림",
+    "folderName": "「터지면 튀어」 생선 통조림",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 일반 공격 피해 보너스가 50% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "「황금 양모」": {
+    "id": "golden_wool",
+    "name": "「황금 양모」",
+    "folderName": "「황금 양모」",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 약제점 「로즈메리」 구매, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "『리나시타 낚시 가이드』": {
+    "id": "rinascita_fishing_guide",
+    "name": "『리나시타 낚시 가이드』",
+    "folderName": "『리나시타 낚시 가이드』",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "우연히 얻은 가이드로, 방랑자의 낚시 테크닉을 향상시키는 데 사용된다",
+    "source": "부두 상점에서 구매, 스토리 완료로 획득",
+    "gameId": "ww"
+  },
+  "1주년 기념주화": {
+    "id": "1st_anniversary_coin",
+    "name": "1주년 기념주화",
+    "folderName": "1주년 기념주화",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "기념용 전자화폐. 포포 대왕의 교환소에서 물자와 보상으로 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "No.5 효과 약제": {
+    "id": "no5_effect_medicine",
+    "name": "No.5 효과 약제",
+    "folderName": "No.5 효과 약제",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "복용 후 현재 공명자가 HP 최대치의 20%에 해당하는 HP와 160pt의 고정 HP를 회복하게 된다",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "가상 조각": {
+    "id": "virtual_fragment",
+    "name": "가상 조각",
+    "folderName": "가상 조각",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "울림 데이터로 구성된 시뮬레이션 재료. 「흑조의 침식 시뮬레이션」 이벤트에서 전투 장치를 업그레이드하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "가상 클램 코인": {
+    "id": "virtual_clam_coin",
+    "name": "가상 클램 코인",
+    "folderName": "가상 클램 코인",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "울림 데이터로 구성된 가상 클램 코인. 「흑조의 침식 시뮬레이션」 이벤트에서 전투 장치를 건설하거나 쿠 · 머니 상점에서 물자를 구매하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "클램 코인": {
+    "id": "clam_coin",
+    "name": "클램 코인",
+    "folderName": "클램 코인",
+    "rarity": 3,
+    "category": "특수 화폐",
+    "description": "황룡 지역에서 널리 유통되는 통용 화폐.",
+    "source": "솔라리스 탐색, 임무 완료, 시뮬레이션 연습장 등",
+    "gameId": "ww"
+  },
+  "간수": {
+    "id": "gansoo",
+    "name": "간수",
+    "folderName": "간수",
+    "rarity": 2,
+    "category": "재료",
+    "description": "미식 연구를 통해야 획득할 수 있는 재료",
+    "source": "마화 잡화점 구매, 식자재 가공 획득, 쿠 · 머니 상점 구입",
+    "gameId": "ww"
+  },
+  "감로꽃": {
+    "id": "nectar_flower",
+    "name": "감로꽃",
+    "folderName": "감로꽃",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득, 추천: 운릉 협곡 채집, 추천: 중부 평원 채집, 습방 약국 구매, 군생지 채집 획득",
+    "gameId": "ww"
+  },
+  "갑옷 풍뎅이": {
+    "id": "armor_beetle",
+    "name": "갑옷 풍뎅이",
+    "folderName": "갑옷 풍뎅이",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "추천: 아베라르도 금고 채집, 약제점 「로즈메리」 구매",
+    "gameId": "ww"
+  },
+  "강력 안정제": {
+    "id": "strong_stabilizer",
+    "name": "강력 안정제",
+    "folderName": "강력 안정제",
+    "rarity": 4,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "습방 약국 구매, 합성 - 구조, 약제점 「로즈메리」 구매",
+    "gameId": "ww"
+  },
+  "강력 촉매액": {
+    "id": "strong_catalyst",
+    "name": "강력 촉매액",
+    "folderName": "강력 촉매액",
+    "rarity": 4,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "습방 약국 구매, 합성 - 구조, 약제점 「로즈메리」 구매",
+    "gameId": "ww"
+  },
+  "강심 결합제": {
+    "id": "heart_binding_agent",
+    "name": "강심 결합제",
+    "folderName": "강심 결합제",
+    "rarity": 5,
+    "category": "소모품",
+    "description": "파티 내 지정된 공명자가 처음으로 치명적인 피해를 받을 시 해당 피해를 면역하고 HP 최대치의 25%를 회복하게 되며, 60초간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "강화 모듈": {
+    "id": "enhancement_module",
+    "name": "강화 모듈",
+    "folderName": "강화 모듈",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "시뮬레이션 테스터의 각종 데이터를 강화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "강화 부품": {
+    "id": "reinforcement_part",
+    "name": "강화 부품",
+    "folderName": "강화 부품",
+    "rarity": 1,
+    "category": "재료",
+    "description": "무기 제작에 사용되는 재료",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "개량 구속팔찌": {
+    "id": "refined_restraint_bracelet",
+    "name": "개량 구속팔찌",
+    "folderName": "개량 구속팔찌",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 추방자 드랍",
+    "gameId": "ww"
+  },
+  "개양귀비": {
+    "id": "corn_poppy",
+    "name": "개양귀비",
+    "folderName": "개양귀비",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 군생지 채집 획득, 추천: 화염해 채집, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "검은 연꽃": {
+    "id": "black_lotus",
+    "name": "검은 연꽃",
+    "folderName": "검은 연꽃",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 군생지 채집 획득, 추천: 쇠퇴한 방어선 채집, 추천: 원망 캠프 채집, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "검은무늬개구리": {
+    "id": "black_pattern_frog",
+    "name": "검은무늬개구리",
+    "folderName": "검은무늬개구리",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "검창포꽃": {
+    "id": "sword_iris",
+    "name": "검창포꽃",
+    "folderName": "검창포꽃",
+    "rarity": 1,
+    "category": "재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "군생지 채집 획득, 약제점 「로즈메리」 구매, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "겉바속촉 돈까스 도시락": {
+    "id": "crispy_pork_cutlet_lunchbox",
+    "name": "겉바속촉 돈까스 도시락",
+    "folderName": "겉바속촉 돈까스 도시락",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 30% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "격음 결합제": {
+    "id": "sound_binding_agent",
+    "name": "격음 결합제",
+    "folderName": "격음 결합제",
+    "rarity": 5,
+    "category": "소모품",
+    "description": "파티 내 지정된 공명자가 회피 성공 시 공명 에너지 5pt를 회복하게 되며, 60초간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "결손 응집 연소체": {
+    "id": "defective_coagulated_combustor",
+    "name": "결손 응집 연소체",
+    "folderName": "결손 응집 연소체",
+    "rarity": 2,
+    "category": "무기 및 스킬 재료",
+    "description": "권총을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 잔불의 마지막 수업, 합성 - 교체, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "결정 단체": {
+    "id": "crystal_monomer",
+    "name": "결정 단체",
+    "folderName": "결정 단체",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "정제된 결정 웨이브 플레이트이다. 더 높은 저장 용량이 있다. 결정 웨이브 플레이트가 MAX로 도달될 때, 결정 단체가 시간에 따라 회복하게 된다. 12분마다 1pt 씩 회복되는데, 사용 후 같은 양의 결정 웨이브 플레이트를 증가시킬 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "결정 용제": {
+    "id": "crystal_solvent",
+    "name": "결정 용제",
+    "folderName": "결정 용제",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "사용 후 결정 웨이브 플레이트 60개 증가",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "결정 웨이브 플레이트": {
+    "id": "crystal_waveplate",
+    "name": "결정 웨이브 플레이트",
+    "folderName": "결정 웨이브 플레이트",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "결정 웨이브 플레이트는 시간이 지남에 따라 회복된다. 저장 상한선이 있으며, 상한선에 도달하거나 초과할 시 시간에 따라 회복되지 않는다. 별의 소리를 소모하여 결정 웨이브 플레이트를 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "결투의 여운": {
+    "id": "echo_of_duel",
+    "name": "결투의 여운",
+    "folderName": "결투의 여운",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "「영광의 언덕」 결투 영상이 포함된 기억 개체. 「영광의 언덕」 플레이어의 레벨을 올리는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "경영 자금": {
+    "id": "management_funds",
+    "name": "경영 자금",
+    "folderName": "경영 자금",
+    "rarity": 3,
+    "category": "특수 화폐",
+    "description": "달맞이 야시장을 위한 자금. 가게 제작 또는 의뢰 완료에 사용된다",
+    "source": "소원 의뢰를 통해 획득",
+    "gameId": "ww"
+  },
+  "계란과자": {
+    "id": "egg_cookie",
+    "name": "계란과자",
+    "folderName": "계란과자",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 30% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "고급 공명 촉진제": {
+    "id": "advanced_resonance_potion",
+    "name": "고급 공명 촉진제",
+    "folderName": "고급 공명 촉진제",
+    "rarity": 4,
+    "category": "공명자 경험치 재료",
+    "description": "공명자에게 경험치 8,000pt를 제공한다",
+    "source": "B.1.N.G.O., 임무 획득, 물자 상자 오픈으로 획득, 솔라리스 탐색 획득, 시뮬레이션 연습장, 투사의 초상화",
+    "gameId": "ww"
+  },
+  "고급 비밀음파 통": {
+    "id": "advanced_sealed_tube",
+    "name": "고급 비밀음파 통",
+    "folderName": "고급 비밀음파 통",
+    "rarity": 4,
+    "category": "에코 육성 재료",
+    "description": "대형 에코 경험치 아이템, 사용 시 2000pt의 경험치를 제공한다",
+    "source": "솔라리스 탐색 획득, 물자 상자 오픈으로 획득, 무음 소탕 획득, 「기념품」상점 교환, 역경의 탑 교환소 교환, 연습의 상점 교환",
+    "gameId": "ww"
+  },
+  "고급 에너지 주머니": {
+    "id": "advanced_energy_bag",
+    "name": "고급 에너지 주머니",
+    "folderName": "고급 에너지 주머니",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "파티 내 지정된 공명자가 초당 HP 최대치의 2%에 해당하는 HP와 200pt의 고정 HP를 회복하게 되며, 30초간 지속된다. (멀티플레이 시 자신의 캐릭터에 대해서만 유효)",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "고급 에너지 코어": {
+    "id": "advanced_energy_core",
+    "name": "고급 에너지 코어",
+    "folderName": "고급 에너지 코어",
+    "rarity": 4,
+    "category": "무기 경험치 재료",
+    "description": "사용 후 무기 경험치 8,000pt 추가",
+    "source": "B.1.N.G.O., 임무 획득, 물자 상자 오픈으로 획득, 솔라리스 탐색 획득, 시뮬레이션 연습장, 투사의 초상화",
+    "gameId": "ww"
+  },
+  "고급 영양제": {
+    "id": "advanced_nutrient",
+    "name": "고급 영양제",
+    "folderName": "고급 영양제",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "파티 내 지정된 공명자가 HP 최대치의 20%에 해당하는 HP와 1500pt의 고정 HP를 회복하게 된다. (멀티플레이 시 자신의 캐릭터에 대해서만 유효)",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "고급 튜너": {
+    "id": "advanced_tuner",
+    "name": "고급 튜너",
+    "folderName": "고급 튜너",
+    "rarity": 4,
+    "category": "에코 육성 재료",
+    "description": "4성 에코 옵티마이즈에 사용할 수 있는 고급 장치이며, 옵티마이즈 후 1개의 부음 속성을 해제한다",
+    "source": "솔라리스 탐색 획득, 무음 소탕 획득, 합성 - 구조",
+    "gameId": "ww"
+  },
+  "고급 흡입식 소생제": {
+    "id": "advanced_inhalable_resuscitation_agent",
+    "name": "고급 흡입식 소생제",
+    "folderName": "고급 흡입식 소생제",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "파티 내 지정된 공명자가 즉시 의식을 회복하고 HP 최대치의 25%에 해당하는 HP를 회복하게 되며, 60초마다 한 번만 사용이 가능하다. (멀티플레이 시 자신의 캐릭터에 대해서만 유효)",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "고기 야채 꼬치구이": {
+    "id": "meat_and_vegetable_skewer",
+    "name": "고기 야채 꼬치구이",
+    "folderName": "고기 야채 꼬치구이",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 120pt 증가하며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "고순도 결정화 연소": {
+    "id": "high_purity_crystallized_combustor",
+    "name": "고순도 결정화 연소",
+    "folderName": "고순도 결정화 연소",
+    "rarity": 5,
+    "category": "무기 및 스킬 재료",
+    "description": "권총을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 특급 재료",
+    "source": "응소의 영역 · 고해 바다, 합성 - 정제, 합성 - 교체, 응소의 영역 · 울화의 숲, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "고요한 위상": {
+    "id": "silent_phase",
+    "name": "고요한 위상",
+    "folderName": "고요한 위상",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "돌아갈 곳이 없는 오류의 드랍 아이템, 공명자 돌파에 사용된다",
+    "source": "「돌아갈 곳이 없는 오류」 도전으로 획득, 돌아갈 곳이 없는 오류 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "고주파수 메카 성핵": {
+    "id": "high_frequency_mecha_core",
+    "name": "고주파수 메카 성핵",
+    "folderName": "고주파수 메카 성핵",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 라하이 로이 굉음종 잔상 드랍",
+    "gameId": "ww"
+  },
+  "고주파수 비명 이상 결정 조각": {
+    "id": "high_frequency_scream_abnormal_crystal_fragment",
+    "name": "고주파수 비명 이상 결정 조각",
+    "folderName": "고주파수 비명 이상 결정 조각",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "권갑을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 고급 재료",
+    "source": "응소의 영역 · 허무의 마지막 수업, 합성 - 정제, 합성 - 교체, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "고주파수 엑소스웜 성핵": {
+    "id": "high_frequency_exoswarm_core",
+    "name": "고주파수 엑소스웜 성핵",
+    "folderName": "고주파수 엑소스웜 성핵",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 엑소스웜 드랍",
+    "gameId": "ww"
+  },
+  "고주파수 의음 성핵": {
+    "id": "high_frequency_pseudo_sound_core",
+    "name": "고주파수 의음 성핵",
+    "folderName": "고주파수 의음 성핵",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 의음종 드랍",
+    "gameId": "ww"
+  },
+  "고주파수 절단된 결정": {
+    "id": "high_frequency_severed_crystal",
+    "name": "고주파수 절단된 결정",
+    "folderName": "고주파수 절단된 결정",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "대검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 고급 재료",
+    "source": "응소의 영역 · 재난의 옛 성전, 합성 - 정제, 합성 - 교체, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "고주파수 취합 성핵": {
+    "id": "high_frequency_converging_core",
+    "name": "고주파수 취합 성핵",
+    "folderName": "고주파수 취합 성핵",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 굉음종과 침묵종 잔상 드랍",
+    "gameId": "ww"
+  },
+  "고주파수 침식 선형 구조물": {
+    "id": "high_frequency_erosion_linear_structure",
+    "name": "고주파수 침식 선형 구조물",
+    "folderName": "고주파수 침식 선형 구조물",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 흑조(黑潮)의 영향을 받은 잔상 드랍",
+    "gameId": "ww"
+  },
+  "고주파수 포효 성핵": {
+    "id": "high_frequency_roar_core",
+    "name": "고주파수 포효 성핵",
+    "folderName": "고주파수 포효 성핵",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 포효종 드랍",
+    "gameId": "ww"
+  },
+  "고추": {
+    "id": "pepper",
+    "name": "고추",
+    "folderName": "고추",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "마화 잡화점 구매, 쿠 · 머니 상점 구입, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "고추기름 닭무침": {
+    "id": "spicy_chicken_salad",
+    "name": "고추기름 닭무침",
+    "folderName": "고추기름 닭무침",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 암벽 질주 및 수영 시 스태미나 소모가 15% 감소되며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "공작화": {
+    "id": "peacock_flower",
+    "name": "공작화",
+    "folderName": "공작화",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "공명자 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 군생지 채집 획득, 추천: 도원향 채집, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "공중 건설 기계 코어": {
+    "id": "aerial_construction_machinery_core",
+    "name": "공중 건설 기계 코어",
+    "folderName": "공중 건설 기계 코어",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "탐색을 통해 우연히 획득한 희귀한 재료. 스페이스트렉 관측대와 도로 건설에 사용된다",
+    "source": "라하이 로이에서 각종 플레이 및 임무 완료 시 획득",
+    "gameId": "ww"
+  },
+  "과일나무 훈제 비둘기": {
+    "id": "fruit_wood_smoked_pigeon",
+    "name": "과일나무 훈제 비둘기",
+    "folderName": "과일나무 훈제 비둘기",
+    "rarity": 5,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 55% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "광기의 마스크": {
+    "id": "mask_of_madness",
+    "name": "광기의 마스크",
+    "folderName": "광기의 마스크",
+    "rarity": 5,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "합성 - 정제, 합성 - 교체, 잔성회 드랍",
+    "gameId": "ww"
+  },
+  "구름 속 월계수 새우": {
+    "id": "cloud_laurel_shrimp",
+    "name": "구름 속 월계수 새우",
+    "folderName": "구름 속 월계수 새우",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력을 25% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "구름버섯": {
+    "id": "cloud_mushroom",
+    "name": "구름버섯",
+    "folderName": "구름버섯",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "공명자 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 추천: 중앙 거목 채집, 추천: 원숭이 절벽 채집, 습방 약국 구매, 군생지 채집 획득",
+    "gameId": "ww"
+  },
+  "구름유황": {
+    "id": "cloud_sulfur",
+    "name": "구름유황",
+    "folderName": "구름유황",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리 또는 합성에 사용되는 재료",
+    "source": "추천: 물의 경지 채집, 약제점 「로즈메리」 구매",
+    "gameId": "ww"
+  },
+  "군소 고기": {
+    "id": "sea_hare_meat",
+    "name": "군소 고기",
+    "folderName": "군소 고기",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "야외 채집 획득, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "규화목": {
+    "id": "petrified_wood",
+    "name": "규화목",
+    "folderName": "규화목",
+    "rarity": 1,
+    "category": "무기 제작 재료",
+    "description": "무기와 단조에 사용되는 재료",
+    "source": "군생지 채집 획득, 야외 채집 획득, 공명 보건실에서 구매",
+    "gameId": "ww"
+  },
+  "그랜드 슬램 피자": {
+    "id": "grand_slam_pizza",
+    "name": "그랜드 슬램 피자",
+    "folderName": "그랜드 슬램 피자",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공명 스킬 피해 보너스가 50% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "극단 열도": {
+    "id": "extreme_archipelago",
+    "name": "극단 열도",
+    "folderName": "극단 열도",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 강공격 피해 보너스가 25% 증가되며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "긁어모은 현": {
+    "id": "scraped_string",
+    "name": "긁어모은 현",
+    "folderName": "긁어모은 현",
+    "rarity": 2,
+    "category": "무기 및 스킬 재료",
+    "description": "증폭기를 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 여명의 마지막 수업, 합성 - 교체, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "금등개구리": {
+    "id": "gold_back_frog",
+    "name": "금등개구리",
+    "folderName": "금등개구리",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "금빛 파도의 무늬": {
+    "id": "radiant_tide",
+    "name": "금빛 파도의 무늬",
+    "folderName": "금빛 파도의 무늬",
+    "rarity": 5,
+    "category": "튜닝 관련 아이템",
+    "description": "사용 후 캐릭터 이벤트 튜닝 1회 진행 가능",
+    "source": "패키 상점, 여파의 산호, 별의 소리, 이벤트 획득",
+    "gameId": "ww"
+  },
+  "금은 연자육 수프": {
+    "id": "gold_and_silver_lotus_seed_soup",
+    "name": "금은 연자육 수프",
+    "folderName": "금은 연자육 수프",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 HP 최대치가 33% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "금종 결합제": {
+    "id": "golden_bell_binding_agent",
+    "name": "금종 결합제",
+    "folderName": "금종 결합제",
+    "rarity": 5,
+    "category": "소모품",
+    "description": "파티 내 지정된 공명자가 패링 발동 시, 추가적으로 적군 일정 비율의 공진 수치를 감소시키며, 60초간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "금주 꼬치구이": {
+    "id": "jinzhou_skewer",
+    "name": "금주 꼬치구이",
+    "folderName": "금주 꼬치구이",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 100pt 증가하며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "금주 마라탕": {
+    "id": "jinzhou_mala_soup",
+    "name": "금주 마라탕",
+    "folderName": "금주 마라탕",
+    "rarity": 5,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 크리티컬이 28% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "금주 잡찜": {
+    "id": "jinzhou_mixed_stew",
+    "name": "금주 잡찜",
+    "folderName": "금주 잡찜",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 8% 증가하고, 크리티컬이 6% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "금환잠자리": {
+    "id": "golden_ringed_dragonfly",
+    "name": "금환잠자리",
+    "folderName": "금환잠자리",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "기류 간섭 현탁 증폭제": {
+    "id": "aero_interference_suspension_enhancer",
+    "name": "기류 간섭 현탁 증폭제",
+    "folderName": "기류 간섭 현탁 증폭제",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "약제의 효력이 적용되는 180초 이내에 『조화 파동 · 간섭』, 『조화 밀집 · 간섭』 상태에 있는 적에게 피해를 입힐 시, 파티 내 모든 공명자의 기류 피해가 40% 증가되며, 10초간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작, 공명 보건실에서 구매",
+    "gameId": "ww"
+  },
+  "기류 보호 스프레이": {
+    "id": "aero_protection_spray",
+    "name": "기류 보호 스프레이",
+    "folderName": "기류 보호 스프레이",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "파티 내 전체 공명자의 기류 피해 저항이 15% 증가하며, 180초간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "기류 이중 결합제": {
+    "id": "aero_dual_binding_agent",
+    "name": "기류 이중 결합제",
+    "folderName": "기류 이중 결합제",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "파티 내 전체 공명자의 기류 피해 보너스가 15% 증가하며, 180초간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "기류 저항 스프레이": {
+    "id": "aero_resistance_spray",
+    "name": "기류 저항 스프레이",
+    "folderName": "기류 저항 스프레이",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "약제의 효력이 적용되는 180초 이내에 『이상 효과』가 있는 적에게 피해를 입힐 시, 파티 내 모든 공명자의 기류 피해 저항이 10초간 증가된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "합성 - 약제 제작, 약제점 「로즈메리」 구매",
+    "gameId": "ww"
+  },
+  "기묘한 주사위": {
+    "id": "strange_dice",
+    "name": "기묘한 주사위",
+    "folderName": "기묘한 주사위",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "연습 경기를 위해 준비된 주사위는 「달려라 새알심 · 연습 게임」 이벤트에서 사용할 수 있다",
+    "source": "현재 획득 불가",
+    "gameId": "ww"
+  },
+  "기억 속 금빛": {
+    "id": "gold_in_memory",
+    "name": "기억 속 금빛",
+    "folderName": "기억 속 금빛",
+    "rarity": 4,
+    "category": "스킬 업그레이드 재료",
+    "description": "시길룸의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 시길룸 도전 획득, 시길룸 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "깃털": {
+    "id": "feather",
+    "name": "깃털",
+    "folderName": "깃털",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "꺼지지 않는 심판": {
+    "id": "unextinguishable_judgment",
+    "name": "꺼지지 않는 심판",
+    "folderName": "꺼지지 않는 심판",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "리액터 허스크의 드랍 아이템, 공명자 돌파에 사용된다",
+    "source": "리액터 허스크 도전 획득, 리액터 허스크 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "꿈의 조각": {
+    "id": "dream_fragment",
+    "name": "꿈의 조각",
+    "folderName": "꿈의 조각",
+    "rarity": 5,
+    "category": "소모품",
+    "description": "꿈의 조각",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "끊어진 현": {
+    "id": "broken_string",
+    "name": "끊어진 현",
+    "folderName": "끊어진 현",
+    "rarity": 3,
+    "category": "무기 및 스킬 재료",
+    "description": "증폭기를 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 중급 재료",
+    "source": "응소의 영역 · 여명의 마지막 수업, 합성 - 정제, 합성 - 교체, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "끊임없는 파괴": {
+    "id": "endless_destruction",
+    "name": "끊임없는 파괴",
+    "folderName": "끊임없는 파괴",
+    "rarity": 5,
+    "category": "스킬 업그레이드 재료",
+    "description": "스카의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 스카 도전 획득, 스카 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "나무무늬 조각": {
+    "id": "wood_pattern_piece",
+    "name": "나무무늬 조각",
+    "folderName": "나무무늬 조각",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "황룡 지역의 특별한 드랍 아이템, 이것을 사용하여 「기념품 상점」에서 다양한 아이템을 교환할 수 있다",
+    "source": "솔라리스 탐색 획득",
+    "gameId": "ww"
+  },
+  "낙음 은행": {
+    "id": "falling_sound_bank",
+    "name": "낙음 은행",
+    "folderName": "낙음 은행",
+    "rarity": 4,
+    "category": "재료",
+    "description": "골든 낙인 시리즈 무기의 공진 레벨 UP에 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "낚시 명성": {
+    "id": "fishing_reputation",
+    "name": "낚시 명성",
+    "folderName": "낚시 명성",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "리졸리 군도의 낚시 명성 레벨을 높이는 데 사용된다",
+    "source": "외뢰 완료로 획득, 어획 도감 수록으로 획득",
+    "gameId": "ww"
+  },
+  "난로 한켠의 이중 훈제 냄비": {
+    "id": "double_smoked_pot_by_the_stove",
+    "name": "난로 한켠의 이중 훈제 냄비",
+    "folderName": "난로 한켠의 이중 훈제 냄비",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공명 해방 피해 보너스가 44% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "낡은 구속팔찌": {
+    "id": "old_restraint_bracelet",
+    "name": "낡은 구속팔찌",
+    "folderName": "낡은 구속팔찌",
+    "rarity": 2,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 교체, 추방자 드랍, 바다 교환소, 응소의 영역에서 획득, 단조 상점에서 구매(무기 작업대 옆)",
+    "gameId": "ww"
+  },
+  "납작하게 눌린 사탕": {
+    "id": "flattened_candy",
+    "name": "납작하게 눌린 사탕",
+    "folderName": "납작하게 눌린 사탕",
+    "rarity": 2,
+    "category": "요리",
+    "description": "에코 흡수 확률이 50% 증가하며, 30분간 지속된다. 「화공」의 선물: 저의 「최고의 관객」, 감사해요",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "냥더우푸": {
+    "id": "nyang_tofu",
+    "name": "냥더우푸",
+    "folderName": "냥더우푸",
+    "rarity": 5,
+    "category": "요리",
+    "description": "솔라리스에서 적 격파 시 재료 획득량이 50% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "넥타르 와인": {
+    "id": "nectar_wine",
+    "name": "넥타르 와인",
+    "folderName": "넥타르 와인",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 치료 효과 보너스가 15% 증가되며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "노래하는 현": {
+    "id": "singing_string",
+    "name": "노래하는 현",
+    "folderName": "노래하는 현",
+    "rarity": 5,
+    "category": "무기 및 스킬 재료",
+    "description": "증폭기를 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 특급 재료",
+    "source": "응소의 영역 · 여명의 마지막 수업, 합성 - 정제, 합성 - 교체, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "놀이공원 휘장": {
+    "id": "amusement_park_badge",
+    "name": "놀이공원 휘장",
+    "folderName": "놀이공원 휘장",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "놀이공원의 기념품으로 보상 교환에 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "단란 과자": {
+    "id": "sweet_cookie",
+    "name": "단란 과자",
+    "folderName": "단란 과자",
+    "rarity": 3,
+    "category": "요리",
+    "description": "스태미나가 80pt 회복된다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "단량체 회복제": {
+    "id": "monomer_recovery_agent",
+    "name": "단량체 회복제",
+    "folderName": "단량체 회복제",
+    "rarity": 2,
+    "category": "소모품",
+    "description": "해당 아이템을 사용하면 지정된 파티원의 의식을 즉시 회복시킬 수 있으며, 사용 후 60초의 쿨타임이 존재한다. (멀티플레이 시 자신의 캐릭터에 대해서만 유효)",
+    "source": "합성 - 약제 제작",
+    "gameId": "ww"
+  },
+  "단련 포인트": {
+    "id": "training_point",
+    "name": "단련 포인트",
+    "folderName": "단련 포인트",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "단련 포인트는 단련 레벨을 증가시키는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "단잎 블루밍 브레드": {
+    "id": "single_leaf_blooming_bread",
+    "name": "단잎 블루밍 브레드",
+    "folderName": "단잎 블루밍 브레드",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 강공격 피해 보너스를 44% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "단장의 축복": {
+    "id": "grandmasters_blessing",
+    "name": "단장의 축복",
+    "folderName": "단장의 축복",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "단장이 보낸 축복. 이 축복은 당신 마음 속의 검을 갈고닦아 잠시나마 더 좋은 상태를 얻을 수 있게 한다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "달맞이 초롱": {
+    "id": "moon_viewing_lantern",
+    "name": "달맞이 초롱",
+    "folderName": "달맞이 초롱",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "달맞이 축제에서 흔히 볼 수 있는 기념품. 이벤트 보상 교환에 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "달맞이꽃": {
+    "id": "evening_primrose",
+    "name": "달맞이꽃",
+    "folderName": "달맞이꽃",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 야외 채집 획득, 실버 투구 잡화점에서 구매",
+    "gameId": "ww"
+  },
+  "달밤에 묘술 부리라면": {
+    "id": "magic_ramen_in_the_moonlight",
+    "name": "달밤에 묘술 부리라면",
+    "folderName": "달밤에 묘술 부리라면",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 10% 증가되고, HP 최대치가 20% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "달빛 관측 카드": {
+    "id": "moonlight_observation_card",
+    "name": "달빛 관측 카드",
+    "folderName": "달빛 관측 카드",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "구매 후, 30일 내에 매일 별의 소리를 수령할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "달빛": {
+    "id": "moonlight",
+    "name": "달빛",
+    "folderName": "달빛",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "변화무쌍한 달빛 속에 진실이라는 보물이 숨겨져 있다... 어쩌면 과거와 미래의 모든 것이 담겨 있을지도 모른다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "달수초": {
+    "id": "moonweed",
+    "name": "달수초",
+    "folderName": "달수초",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득, 군생지 채집 획득",
+    "gameId": "ww"
+  },
+  "달콤달콤 수플레": {
+    "id": "sweet_sweet_souffle",
+    "name": "달콤달콤 수플레",
+    "folderName": "달콤달콤 수플레",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 33% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "달콤한 올리브 절임": {
+    "id": "sweet_pickled_olive",
+    "name": "달콤한 올리브 절임",
+    "folderName": "달콤한 올리브 절임",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공명 스킬 피해 보너스를 55% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "당초즙": {
+    "id": "sugar_grass_juice",
+    "name": "당초즙",
+    "folderName": "당초즙",
+    "rarity": 1,
+    "category": "재료",
+    "description": "미식 연구를 통해야 획들할 수 있는 재료",
+    "source": "마화 잡화점 구매, 식자재 가공 획득, 쿠 · 머니 상점 구입",
+    "gameId": "ww"
+  },
+  "대나무도마뱀": {
+    "id": "bamboo_lizard",
+    "name": "대나무도마뱀",
+    "folderName": "대나무도마뱀",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "더스크 허니팟": {
+    "id": "dusk_honeypot",
+    "name": "더스크 허니팟",
+    "folderName": "더스크 허니팟",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "군생지 채집 획득, 야외 채집 획득, 공명 보건실에서 구매",
+    "gameId": "ww"
+  },
+  "데이터 패킷": {
+    "id": "data_packet",
+    "name": "데이터 패킷",
+    "folderName": "데이터 패킷",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "적절하게 캡슐화된 중요한 데이터. 「종말 매트릭스」 주기 도전에서 보상을 교환하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "도전 시합 진도 포인트": {
+    "id": "challenge_match_progress_point",
+    "name": "도전 시합 진도 포인트",
+    "folderName": "도전 시합 진도 포인트",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "「영원히 휘날리는 깃발」 이벤트에서 도전 시합 진도를 향상하여 다양한 보상을 획득하세요",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "도화꽃잎죽": {
+    "id": "peach_blossom_petal_porridge",
+    "name": "도화꽃잎죽",
+    "folderName": "도화꽃잎죽",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 크리티컬이 24% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "돌장미": {
+    "id": "stone_rose",
+    "name": "돌장미",
+    "folderName": "돌장미",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 야외 채집 획득, 실버 투구 잡화점에서 구매",
+    "gameId": "ww"
+  },
+  "동기화 코인": {
+    "id": "synchronization_coin",
+    "name": "동기화 코인",
+    "folderName": "동기화 코인",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "싱크로링크 시스템이 훈련자의 시뮬레이션에서의 종합 득점에 따라 배포하는 코인. 코인 하나하나는 적격자가 이룬 성장과 돌파의 증거이며 아카데미가 적격자를 위해 준비한 각종 물자와 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "동물 기름": {
+    "id": "animal_fat",
+    "name": "동물 기름",
+    "folderName": "동물 기름",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "야외 채집 획득, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "동운마름죽": {
+    "id": "water_chestnut_porridge_with_winter_cloud",
+    "name": "동운마름죽",
+    "folderName": "동운마름죽",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 HP 최대치가 30% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "두부": {
+    "id": "tofu",
+    "name": "두부",
+    "folderName": "두부",
+    "rarity": 1,
+    "category": "재료",
+    "description": "미식 연구를 통해야 획득할 수 있는 재료",
+    "source": "마화 잡화점 구매, 식자재 가공 획득, 쿠 · 머니 상점 구입",
+    "gameId": "ww"
+  },
+  "드래곤베리": {
+    "id": "dragonberry",
+    "name": "드래곤베리",
+    "folderName": "드래곤베리",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "등롱초": {
+    "id": "lantern_grass",
+    "name": "등롱초",
+    "folderName": "등롱초",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "공명자 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 군생지 채집 획득, 추천: 호환 광산 채집, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "등불꽃": {
+    "id": "lantern_flower",
+    "name": "등불꽃",
+    "folderName": "등불꽃",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득, 군생지 채집 획득",
+    "gameId": "ww"
+  },
+  "땡땡게": {
+    "id": "dingding_crab",
+    "name": "땡땡게",
+    "folderName": "땡땡게",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "추천: 탄식 무덤의 섬 채집, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "떠돌이 기사의 요리": {
+    "id": "wandering_knights_dish",
+    "name": "떠돌이 기사의 요리",
+    "folderName": "떠돌이 기사의 요리",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 치료 효과 보너스를 34% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "라군나 기념우표": {
+    "id": "lagunna_commemorative_stamp",
+    "name": "라군나 기념우표",
+    "folderName": "라군나 기념우표",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "선행 공약이 발행한 기념우표, 일정 수량을 모으면 보상을 획득할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "라군나 에스프레소": {
+    "id": "lagunna_espresso",
+    "name": "라군나 에스프레소",
+    "folderName": "라군나 에스프레소",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 활공 스태미나 소모를 10% 감소시키며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "라임고기찜": {
+    "id": "steamed_meat_with_lime",
+    "name": "라임고기찜",
+    "folderName": "라임고기찜",
+    "rarity": 4,
+    "category": "요리",
+    "description": "에코 흡수 확률이 20% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "라임그라스": {
+    "id": "limegrass",
+    "name": "라임그라스",
+    "folderName": "라임그라스",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리 또는 합성에 사용되는 재료",
+    "source": "야외 채집 획득, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "라하이 로이 특산 식물성 우유": {
+    "id": "laha_loi_special_plant_milk",
+    "name": "라하이 로이 특산 식물성 우유",
+    "folderName": "라하이 로이 특산 식물성 우유",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 HP 최대치가 1000pt 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "레드커런트 쿠키": {
+    "id": "redcurrant_cookie",
+    "name": "레드커런트 쿠키",
+    "folderName": "레드커런트 쿠키",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 활공 스태미나 소모를 12% 감소시키며 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "레몬 스키야키": {
+    "id": "lemon_sukiyaki",
+    "name": "레몬 스키야키",
+    "folderName": "레몬 스키야키",
+    "rarity": 4,
+    "category": "요리",
+    "description": "에코 흡수 확률이 22% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "렌토 와전류": {
+    "id": "lento_eddy_current",
+    "name": "렌토 와전류",
+    "folderName": "렌토 와전류",
+    "rarity": 2,
+    "category": "무기 및 스킬 재료",
+    "description": "증폭기를 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 침례 바다, 합성 - 교체, 응소의 영역 · 안개의 숲, 「기념품」상점 교환, 단조 상점에서 구매(무기 작업대 옆), 물자 상자 오픈으로 획득.",
+    "gameId": "ww"
+  },
+  "루크사이트": {
+    "id": "luxite",
+    "name": "루크사이트",
+    "folderName": "루크사이트",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "군생지 채집 획득, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "리졸리 생선 소금구이": {
+    "id": "rizzoli_grilled_fish_with_salt",
+    "name": "리졸리 생선 소금구이",
+    "folderName": "리졸리 생선 소금구이",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 35% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "리졸리 수산업 코인": {
+    "id": "rizzoli_fishery_coin",
+    "name": "리졸리 수산업 코인",
+    "folderName": "리졸리 수산업 코인",
+    "rarity": 3,
+    "category": "특수 화폐",
+    "description": "리졸리 군도 내부에서 사용되는 수산업 코인으로, 낚시 장비 구매 및 일상 소비에 사용된다",
+    "source": "의뢰 완료로 획득, 부두 상점에서 판매로 획득",
+    "gameId": "ww"
+  },
+  "마거리트 스테이크": {
+    "id": "marguerite_steak",
+    "name": "마거리트 스테이크",
+    "folderName": "마거리트 스테이크",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공명 해방 피해 보너스를 40% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "마름": {
+    "id": "water_chestnut",
+    "name": "마름",
+    "folderName": "마름",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "마름맛탕": {
+    "id": "candied_water_chestnut",
+    "name": "마름맛탕",
+    "folderName": "마름맛탕",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 18% 증가하고, HP 최대치가 15% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "마름참새볶음": {
+    "id": "stir_fried_sparrow_with_water_chestnut",
+    "name": "마름참새볶음",
+    "folderName": "마름참새볶음",
+    "rarity": 4,
+    "category": "요리",
+    "description": "솔라리스에서 적 격파 시 재료 획득량이 25% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "마지막 녹음 테이프": {
+    "id": "last_recording_tape",
+    "name": "마지막 녹음 테이프",
+    "folderName": "마지막 녹음 테이프",
+    "rarity": 5,
+    "category": "재료",
+    "description": "터치하여 라하이 로이의 마지막 녹음 테이프를 수집할 수 있다. 탐색 도구 로프를 사용하여 마지막 녹음 테이프를 빠르게 접근할 수 있다",
+    "source": "라하이 로이 탐사 획득",
+    "gameId": "ww"
+  },
+  "맑은 탕": {
+    "id": "clear_broth",
+    "name": "맑은 탕",
+    "folderName": "맑은 탕",
+    "rarity": 3,
+    "category": "재료",
+    "description": "미식 연구를 통해야 획득할 수 있는 재료",
+    "source": "마화 잡화점 구매, 식자재 가공 획득, 쿠 · 머니 상점 구입",
+    "gameId": "ww"
+  },
+  "매운 두부조림": {
+    "id": "spicy_braised_tofu",
+    "name": "매운 두부조림",
+    "folderName": "매운 두부조림",
+    "rarity": 5,
+    "category": "요리",
+    "description": "솔라리스에서 적 격파 시 클램 코인 획득량이 50% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "매운 작령 고기 볶음": {
+    "id": "spicy_stir_fried_bird_meat",
+    "name": "매운 작령 고기 볶음",
+    "folderName": "매운 작령 고기 볶음",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 전체 공명자의 공명 효율을 20% 증가시키며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "매운 치령 고기 볶음": {
+    "id": "spicy_stir_fried_pheasant_meat",
+    "name": "매운 치령 고기 볶음",
+    "folderName": "매운 치령 고기 볶음",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 전체 공명자의 공명 효율을 24% 증가시키며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "매운 편육": {
+    "id": "spicy_sliced_meat",
+    "name": "매운 편육",
+    "folderName": "매운 편육",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력을 25% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "매일 녹차": {
+    "id": "daily_green_tea",
+    "name": "매일 녹차",
+    "folderName": "매일 녹차",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 HP 최대치가 800pt 증가하며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "매트릭스 크리스탈": {
+    "id": "matrix_crystal",
+    "name": "매트릭스 크리스탈",
+    "folderName": "매트릭스 크리스탈",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "프로그램 백그라운드에서 생성된 데이터 크리스탈. 도전에 관련된 데이터가 기록되어 있으며, 이번 「허상의 위기」에서 이벤트 보상으로 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "맹독 해초": {
+    "id": "poisonous_seaweed",
+    "name": "맹독 해초",
+    "folderName": "맹독 해초",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "추천: 테살레오 해저 산맥 채집, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "맹세의 핵심": {
+    "id": "core_of_oath",
+    "name": "맹세의 핵심",
+    "folderName": "맹세의 핵심",
+    "rarity": 5,
+    "category": "재료",
+    "description": "나선형으로 배열된 기이한 흑석 꽃. 혈맹의 약속 공진 레벨 UP에 사용된다",
+    "source": "일곱 언덕 지역 탐색 진도 보상 획득, 깊은 바다 실험장 탐색 진도 보상 획득, 상귀스 사냥 평원 탐색 진도 보상 획득",
+    "gameId": "ww"
+  },
+  "메카니컬 오어": {
+    "id": "mechanical_ore",
+    "name": "메카니컬 오어",
+    "folderName": "메카니컬 오어",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "채집을 통해 획득한 재료. 스페이스트렉 관측대와 도로 건설에 사용된다",
+    "source": "라하이 로이 채집 획득, 보이드 스톰의 잔상 처치 시 획득",
+    "gameId": "ww"
+  },
+  "명성의 깃발": {
+    "id": "flag_of_fame",
+    "name": "명성의 깃발",
+    "folderName": "명성의 깃발",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "「영광의 언덕」에서 획득한 승리를 기록하는 가상 깃발. 최고의 영광과 명망을 상징하다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "모둠 미트소스 파스타": {
+    "id": "assorted_meat_sauce_pasta",
+    "name": "모둠 미트소스 파스타",
+    "folderName": "모둠 미트소스 파스타",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 암벽 질주 및 수영 시 스태미나 소모가 35% 감소되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "모스 엠버": {
+    "id": "moss_ember",
+    "name": "모스 엠버",
+    "folderName": "모스 엠버",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 야외 채집 획득, 공명 보건실에서 구매",
+    "gameId": "ww"
+  },
+  "모임의 약속": {
+    "id": "promise_of_gathering",
+    "name": "모임의 약속",
+    "folderName": "모임의 약속",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "끝없는 파티 속에 남겨진 편지. 당신을 분위기 점수를 수집하는 게임에 초대한다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "모찌 당고": {
+    "id": "mochi_dango",
+    "name": "모찌 당고",
+    "folderName": "모찌 당고",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "호나미 시에서 샤쇼우 카페 인테리어 업그레이드, 스티커 슬롯 해제, 나미폰 휘장 업그레이드, 보급소 아이템 구매 등에 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "목련": {
+    "id": "magnolia",
+    "name": "목련",
+    "folderName": "목련",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리 또는 합성에 사용되는 재료",
+    "source": "야외 채집 획득, 추천: 금주성 채집",
+    "gameId": "ww"
+  },
+  "목화석": {
+    "id": "cotton_stone",
+    "name": "목화석",
+    "folderName": "목화석",
+    "rarity": 1,
+    "category": "무기 제작 재료",
+    "description": "무기 제작에 사용되는 재료",
+    "source": "군생지 채집 획득, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "무망의 깃털": {
+    "id": "feather_of_hopelessness",
+    "name": "무망의 깃털",
+    "folderName": "무망의 깃털",
+    "rarity": 5,
+    "category": "스킬 업그레이드 재료",
+    "description": "무망자의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 무망자 도전 획득, 무망자 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "무명의 고대 주화": {
+    "id": "unknown_ancient_coin",
+    "name": "무명의 고대 주화",
+    "folderName": "무명의 고대 주화",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "리졸리 군도에서 물고기를 잡다가 발견된 신비한 고대 주화로, 보상 교환에 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "무무 교환권": {
+    "id": "mumu_exchange_voucher",
+    "name": "무무 교환권",
+    "folderName": "무무 교환권",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "무무물류에서 파티 협력자에게 증정하는 교환 카드는 무무물류에서 제공하는 풍부한 보상을 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "무무 코인": {
+    "id": "mumu_coin",
+    "name": "무무 코인",
+    "folderName": "무무 코인",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "「무무의 도우미」 특별 소포를 교환하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "무지개빛에 묘술 부리라면": {
+    "id": "magic_ramen_in_rainbow_colors",
+    "name": "무지개빛에 묘술 부리라면",
+    "folderName": "무지개빛에 묘술 부리라면",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 12% 증가되고, HP 최대치가 25% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "미트소스 파스타": {
+    "id": "meat_sauce_pasta",
+    "name": "미트소스 파스타",
+    "folderName": "미트소스 파스타",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 암벽 질주 및 수영 시 스태미나 소모가 30% 감소되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "믿음의 열쇠": {
+    "id": "key_of_faith",
+    "name": "믿음의 열쇠",
+    "folderName": "믿음의 열쇠",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "H.E.R.M.E.S.와 신뢰 관계를 맺은 증명. 라이더 훈련의 각 강화 권한을 해제하고 업그레이드하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "밀가루": {
+    "id": "wheat_flour",
+    "name": "밀가루",
+    "folderName": "밀가루",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "마화 잡화점 구매, 쿠 · 머니 상점 구입, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "바게트 빵": {
+    "id": "baguette",
+    "name": "바게트 빵",
+    "folderName": "바게트 빵",
+    "rarity": 2,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 치료 효과 보너스가 5% 증가되고, HP 최대치가 10% 증가되며, 15분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "바다 패모": {
+    "id": "sea_fritillary",
+    "name": "바다 패모",
+    "folderName": "바다 패모",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리에 사용되는 재료",
+    "source": "추천: 검은 해안 채집",
+    "gameId": "ww"
+  },
+  "바위털 샐러드": {
+    "id": "rock_hair_salad",
+    "name": "바위털 샐러드",
+    "folderName": "바위털 샐러드",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 HP 최대치가 25% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "바이크 모딩 EXP": {
+    "id": "bike_modding_exp",
+    "name": "바이크 모딩 EXP",
+    "folderName": "바이크 모딩 EXP",
+    "rarity": 4,
+    "category": "특수 화폐",
+    "description": "온갖 복잡한 환경에서 쌓여온 운전 경험 데이터. 탐사 바이크 강화 레벨을 높이는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "반디석": {
+    "id": "firefly_stone",
+    "name": "반디석",
+    "folderName": "반디석",
+    "rarity": 1,
+    "category": "무기 제작 재료",
+    "description": "무기 제작에 사용되는 재료",
+    "source": "군생지 채집 획득, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "백금 기계의 심장": {
+    "id": "platinum_machine_heart",
+    "name": "백금 기계의 심장",
+    "folderName": "백금 기계의 심장",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "이성(異性) 무장의 드랍 아이템, 공명자 돌파에 사용된다",
+    "source": "이성(異性) 무장 도전 획득, 이성(異性) 무장 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "백랍 거미줄": {
+    "id": "pewter_cobweb",
+    "name": "백랍 거미줄",
+    "folderName": "백랍 거미줄",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "군생지 채집 획득, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "버들 올리브": {
+    "id": "willow_olive",
+    "name": "버들 올리브",
+    "folderName": "버들 올리브",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리 또는 합성에 사용되는 재료",
+    "source": "야외 채집 획득, 곤돌라 수상 시장에서 구매",
+    "gameId": "ww"
+  },
+  "버섯전골": {
+    "id": "mushroom_hotpot",
+    "name": "버섯전골",
+    "folderName": "버섯전골",
+    "rarity": 5,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 공격력이 44% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "번개의 성핵": {
+    "id": "core_of_lightning",
+    "name": "번개의 성핵",
+    "folderName": "번개의 성핵",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "뇌운의 비늘의 드랍 아이템, 공명자 돌파에 사용된다",
+    "source": "뇌운의 비늘 도전 획득",
+    "gameId": "ww"
+  },
+  "베리민트": {
+    "id": "berrymint",
+    "name": "베리민트",
+    "folderName": "베리민트",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리 또는 합성에 사용되는 재료",
+    "source": "야외 채집 획득, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "베이스액": {
+    "id": "base_liquid",
+    "name": "베이스액",
+    "folderName": "베이스액",
+    "rarity": 2,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "습방 약국 구매, 합성 - 구조, 약제점 「로즈메리」 구매",
+    "gameId": "ww"
+  },
+  "벼락의 성핵": {
+    "id": "core_of_thunder",
+    "name": "벼락의 성핵",
+    "folderName": "벼락의 성핵",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "천둥의 비늘의 드랍 아이템, 공명자의 돌파에 사용된다",
+    "source": "천둥의 비늘 도전 획득, 천둥의 비늘 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "별 카라": {
+    "id": "star_collar",
+    "name": "별 카라",
+    "folderName": "별 카라",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 강공격 피해 보너스가 35% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "별의 소리": {
+    "id": "astrites",
+    "name": "별의 소리",
+    "folderName": "별의 소리",
+    "rarity": 5,
+    "category": "특수 화폐",
+    "description": "문명의 소중한 잔음이 이 안에서 흐르고 있어 무한한 가능성을 가져다 줄 지도 모른다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "별점": {
+    "id": "star_point",
+    "name": "별점",
+    "folderName": "별점",
+    "rarity": 3,
+    "category": "소모품",
+    "description": "「흑조의 침식 시뮬레이션」에서 시뮬레이션 완료 후, 완료 상황에 따라 획득한 별점. 지원 프로토콜 해제에 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "별튀김": {
+    "id": "star_fritters",
+    "name": "별튀김",
+    "folderName": "별튀김",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 35% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "보라색 산호": {
+    "id": "purple_coral",
+    "name": "보라색 산호",
+    "folderName": "보라색 산호",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "공명자 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 군생지 채집 획득, 추천: 북락 광야 채집, 추천: 어둠의 만 채집, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "보물 탐사기 허가증 · 금주": {
+    "id": "treasure_detector_permit_jinzhou",
+    "name": "보물 탐사기 허가증 · 금주",
+    "folderName": "보물 탐사기 허가증 · 금주",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "해당 구역에서 보물 탐사기를 활성화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "보물 탐사기 허가증 · 로야 빙원": {
+    "id": "treasure_detector_permit_roya_icefield",
+    "name": "보물 탐사기 허가증 · 로야 빙원",
+    "folderName": "보물 탐사기 허가증 · 로야 빙원",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "해당 구역에서 보물 탐사기를 활성화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "보물 탐사기 허가증 · 리나시타": {
+    "id": "treasure_detector_permit_rinascita",
+    "name": "보물 탐사기 허가증 · 리나시타",
+    "folderName": "보물 탐사기 허가증 · 리나시타",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "해당 구역에서 보물 탐사기를 활성화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "보통 구속팔찌": {
+    "id": "normal_restraint_bracelet",
+    "name": "보통 구속팔찌",
+    "folderName": "보통 구속팔찌",
+    "rarity": 3,
+    "category": "무기 및 스킬 재료",
+    "description": "무기 돌파, 공명자 돌파, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 합성 - 정제, 합성 - 교체, 추방자 드랍, 응소의 영역에서 획득, 단조 상점에서 구매(무기 작업대 옆)",
+    "gameId": "ww"
+  },
+  "복운차": {
+    "id": "fortune_tea",
+    "name": "복운차",
+    "folderName": "복운차",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 12% 증가하고, HP 최대치가 10% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "부유 바다꽃": {
+    "id": "floating_sea_flower",
+    "name": "부유 바다꽃",
+    "folderName": "부유 바다꽃",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 약제점 「로즈메리」 구매, 야외 채집 획득",
+    "gameId": "ww"
+  },
+  "분극 금속 액적": {
+    "id": "polarized_metallic_droplet",
+    "name": "분극 금속 액적",
+    "folderName": "분극 금속 액적",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "직검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 고급 재료",
+    "source": "응소의 영역 · 사죄 정원, 합성 - 정제, 합성 - 교체, 응소의 영역 · 용암의 구도, 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "분노의 성핵": {
+    "id": "core_of_rage",
+    "name": "분노의 성핵",
+    "folderName": "분노의 성핵",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "지옥불 기사의 드랍 아이템, 공명자 돌파에 사용된다",
+    "source": "지옥불 기사 도전 획득, 지옥불 기사 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "분쟁의 성핵": {
+    "id": "core_of_strife",
+    "name": "분쟁의 성핵",
+    "folderName": "분쟁의 성핵",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "크라운리스 분신이 드랍한 아이템, 공명자 돌파에 사용된다",
+    "source": "크라운리스 도전 획득",
+    "gameId": "ww"
+  },
+  "불후의 영광": {
+    "id": "undying_glory",
+    "name": "불후의 영광",
+    "folderName": "불후의 영광",
+    "rarity": 4,
+    "category": "공명자 돌파 재료",
+    "description": "영광의 사자의 드랍 아이템, 공명자 돌파에 사용된다",
+    "source": "영광의 사자 도전 획득, 영광의 사자 - 조기 오픈.",
+    "gameId": "ww"
+  },
+  "붉은나비": {
+    "id": "red_butterfly",
+    "name": "붉은나비",
+    "folderName": "붉은나비",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득",
+    "gameId": "ww"
+  },
+  "붓꽃이 만발하던 날": {
+    "id": "the_day_the_iris_bloomed",
+    "name": "붓꽃이 만발하던 날",
+    "folderName": "붓꽃이 만발하던 날",
+    "rarity": 4,
+    "category": "스킬 업그레이드 재료",
+    "description": "플뢰르 드 리스의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 플뢰르 드 리스 도전 획득, 플뢰르 드 리스 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "붓꽃": {
+    "id": "iris",
+    "name": "붓꽃",
+    "folderName": "붓꽃",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "공명자 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 야외 채집 획득, 군생지 채집 획득, 추천: 왜가리 습지 채집, 습방 약국 구매",
+    "gameId": "ww"
+  },
+  "블러드 바이버넘": {
+    "id": "blood_viburnum",
+    "name": "블러드 바이버넘",
+    "folderName": "블러드 바이버넘",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "공명자 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 야외 채집 획득, 실버 투구 잡화점에서 구매",
+    "gameId": "ww"
+  },
+  "블루밍 브레드": {
+    "id": "blooming_bread",
+    "name": "블루밍 브레드",
+    "folderName": "블루밍 브레드",
+    "rarity": 4,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 강공격 피해 보너스를 40% 증가시키고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "비둘기구이": {
+    "id": "roast_pigeon",
+    "name": "비둘기구이",
+    "folderName": "비둘기구이",
+    "rarity": 5,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 방어력이 50% 증가하며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "비명 이상 키메라 210": {
+    "id": "scream_abnormal_chimera_210",
+    "name": "비명 이상 키메라 210",
+    "folderName": "비명 이상 키메라 210",
+    "rarity": 2,
+    "category": "무기 및 스킬 재료",
+    "description": "대검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 찬송 정원, 합성 - 교체, 응소의 영역 · 침식의 구도, 「기념품」상점 교환, 단조 상점에서 구매(무기 작업대 옆), 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "비명 이상 키메라 226": {
+    "id": "scream_abnormal_chimera_226",
+    "name": "비명 이상 키메라 226",
+    "folderName": "비명 이상 키메라 226",
+    "rarity": 3,
+    "category": "무기 및 스킬 재료",
+    "description": "대검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 찬송 정원, 합성 - 교체, 응소의 영역 · 침식의 구도, 「기념품」상점 교환, 단조 상점에서 구매(무기 작업대 옆), 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "비명 이상 키메라 235": {
+    "id": "scream_abnormal_chimera_235",
+    "name": "비명 이상 키메라 235",
+    "folderName": "비명 이상 키메라 235",
+    "rarity": 4,
+    "category": "무기 및 스킬 재료",
+    "description": "대검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 찬송 정원, 합성 - 교체, 응소의 영역 · 침식의 구도, 「기념품」상점 교환, 단조 상점에서 구매(무기 작업대 옆), 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "비명 이상 키메라 239": {
+    "id": "scream_abnormal_chimera_239",
+    "name": "비명 이상 키메라 239",
+    "folderName": "비명 이상 키메라 239",
+    "rarity": 5,
+    "category": "무기 및 스킬 재료",
+    "description": "대검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 찬송 정원, 합성 - 교체, 응소의 영역 · 침식의 구도, 「기념품」상점 교환, 단조 상점에서 구매(무기 작업대 옆), 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "비문 고종": {
+    "id": "monument_bell",
+    "name": "비문 고종",
+    "folderName": "비문 고종",
+    "rarity": 4,
+    "category": "스킬 업그레이드 재료",
+    "description": "타종 거북이의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 타종 거북이 도전 획득, 타종 거북이 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "비콘 핵심 모듈": {
+    "id": "beacon_core_module",
+    "name": "비콘 핵심 모듈",
+    "folderName": "비콘 핵심 모듈",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "임시 비콘의 위치 추적 기능을 활성화하는 데 사용된다",
+    "source": "합성 - 구조",
+    "gameId": "ww"
+  },
+  "비터베리": {
+    "id": "bitterberry",
+    "name": "비터베리",
+    "folderName": "비터베리",
+    "rarity": 1,
+    "category": "재료",
+    "description": "요리 또는 합성에 사용되는 재료",
+    "source": "야외 채집 획득, 추천: 중부 평원 채집, 추천: 금주성 채집, 군생지 채집 획득",
+    "gameId": "ww"
+  },
+  "비활성 금속 액적": {
+    "id": "inactive_metallic_droplet",
+    "name": "비활성 금속 액적",
+    "folderName": "비활성 금속 액적",
+    "rarity": 2,
+    "category": "무기 및 스킬 재료",
+    "description": "직검을 사용하는 캐릭터의 무기 돌파와 스킬 업그레이드에 사용되는 초급 재료",
+    "source": "응소의 영역 · 사죄 정원, 합성 - 교체, 응소의 영역 · 용암의 구도, 「기념품」상점 교환, 단조 상점에서 구매(무기 작업대 옆), 물자 상자 오픈으로 획득",
+    "gameId": "ww"
+  },
+  "빗소리 달팽이": {
+    "id": "rain_snail",
+    "name": "빗소리 달팽이",
+    "folderName": "빗소리 달팽이",
+    "rarity": 1,
+    "category": "재료",
+    "description": "합성에 사용되는 재료",
+    "source": "야외 채집 획득, 추천: 금주성 채집",
+    "gameId": "ww"
+  },
+  "빛나는 금잔": {
+    "id": "shining_golden_cup",
+    "name": "빛나는 금잔",
+    "folderName": "빛나는 금잔",
+    "rarity": 1,
+    "category": "돌파 재료",
+    "description": "캐릭터 돌파에 사용되는 재료",
+    "source": "물자 상자 오픈으로 획득, 군생지 채집 획득, 야외 채집 획득, 실버 투구 잡화점에서 구매",
+    "gameId": "ww"
+  },
+  "빛나는 볶음밥": {
+    "id": "shining_fried_rice",
+    "name": "빛나는 볶음밥",
+    "folderName": "빛나는 볶음밥",
+    "rarity": 3,
+    "category": "요리",
+    "description": "파티 내 모든 공명자의 암벽 질주 및 수영 시 스태미나 소모가 24% 감소되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "source": "요리 획득",
+    "gameId": "ww"
+  },
+  "사계의 단검": {
+    "id": "dagger_of_four_seasons",
+    "name": "사계의 단검",
+    "folderName": "사계의 단검",
+    "rarity": 4,
+    "category": "스킬 업그레이드 재료",
+    "description": "수호신 「용의 별자리」의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "source": "물자 상자 오픈으로 획득, 수호신 「용의 별자리」 도전 획득, 수호신 「용의 별자리」 - 조기 오픈",
+    "gameId": "ww"
+  },
+  "사운드 박스 · 일곱 언덕": {
+    "id": "sound_box_seven_hills",
+    "name": "사운드 박스 · 일곱 언덕",
+    "folderName": "사운드 박스 · 일곱 언덕",
+    "rarity": 5,
+    "category": "재료",
+    "description": "일곱 언덕의 사운드박스는 지세가 험난한 곳에 많이 분포되어 있지만 로프를 사용하여 빠른 접근이 가능하다. 경계의 산 인형들에게 제출하면 자원으로 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "사운드 부품": {
+    "id": "sound_component",
+    "name": "사운드 부품",
+    "folderName": "사운드 부품",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "사운드 탐사기의 특수 수집물 탐색 및 특수 수집물 위치 추적 기능을 활성화하는 데 사용된다",
+    "source": "합성 - 구조",
+    "gameId": "ww"
+  },
+  "사운드 탐사기 허가증 · 금주": {
+    "id": "sound_detector_permit_jinzhou",
+    "name": "사운드 탐사기 허가증 · 금주",
+    "folderName": "사운드 탐사기 허가증 · 금주",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "해당 구역에서 사운드 탐사기를 활성화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "사운드 탐사기 허가증 · 로야 빙원": {
+    "id": "sound_detector_permit_roya_icefield",
+    "name": "사운드 탐사기 허가증 · 로야 빙원",
+    "folderName": "사운드 탐사기 허가증 · 로야 빙원",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "해당 구역에서 사운드 탐사기를 활성화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "사운드 탐사기 허가증 · 리나시타": {
+    "id": "sound_detector_permit_rinascita",
+    "name": "사운드 탐사기 허가증 · 리나시타",
+    "folderName": "사운드 탐사기 허가증 · 리나시타",
+    "rarity": 4,
+    "category": "소모품",
+    "description": "해당 구역에서 사운드 탐사기를 활성화하는 데 사용된다",
+    "source": "???",
+    "gameId": "ww"
+  },
+  "사운드박스 · 라군나": {
+    "id": "soundbox_lagunna",
+    "name": "사운드박스 · 라군나",
+    "folderName": "사운드박스 · 라군나",
+    "rarity": 5,
+    "category": "재료",
+    "description": "라군나의 사운드박스는 지세가 험난한 곳에 많이 분포되어 있지만 로프를 사용하여 빠른 접근이 가능하다. 잃어버린 낙원의 인형들에게 제출하면 자원으로 교환할 수 있다",
+    "source": "???",
+    "gameId": "ww"
+  }
+}
