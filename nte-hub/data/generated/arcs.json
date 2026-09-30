@@ -1,0 +1,4804 @@
+[
+  {
+    "id": "3ca95fae-3dc7-80ff-98b7-fcb7a51ca6f2",
+    "name": "「마지막 장미」",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[라크리모사]에게 장착 시 무기 외관 변경 가능",
+    "growthStats": "1 : 공격력 **37** / 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 1**9.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「쓸쓸한 장미」",
+      "description": "공격력+14%/17.5%/21%/24.5%/28%\n착용자가 지속 피해를 줄 때마다 「암흑 가시」를 1중첩 획득하며, 치명 피해가 6%/7.5%/9%/10.5%/12% 증가한다(3초간 지속, 0.3초마다 최대 1회 발동, 최대 10중첩, 중복 발동 시 지속 시간 갱신). 장착자가 「바이레일 스킬」을 시전하는 즉시 「암흑 가시」를 10중첩 획득한다.\n착용자가 붕괴 상태의 적에게 피해를 줄 시, 적의 붕괴 상태 지속 시간이 3초 연장된다. (붕괴 효과 1회당 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n철 사과씨x14\n은 사과씨x18\n금 사과씨x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "철 사과씨",
+        "count": 14
+      },
+      {
+        "name": "은 사과씨",
+        "count": 18
+      },
+      {
+        "name": "금 사과씨",
+        "count": 18
+      }
+    ],
+    "description": "수면 위에 홀로 핀 마지막 장미 한 송이가 소중한 친구, 혹은 영원처럼 끝없는 꿈이 찾아오기를 기다리고 있다.",
+    "story": "수면 위에 홀로 핀 마지막 장미 한 송이가 소중한 친구, 혹은 영원처럼 끝없는 꿈이 찾아오기를 기다리고 있다.",
+    "weaponStory": "수면 위에 홀로 핀 마지막 장미 한 송이가 소중한 친구, 혹은 영원처럼 끝없는 꿈이 찾아오기를 기다리고 있다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8019-aee8-c8875d237b47",
+    "name": "「세상을 뒤흔든 비」",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[제로]에게 장착 시 무기 외관 변경 가능",
+    "growthStats": "1 : 공격력 **33** / 치명 확률 **8.8%**\n20 : 공격력 **137** / 치명 확률 **11%**\n30 : 공격력 **203** / 치명 확률 **13.2%**\n40 : 공격력 **269** / 치명 확률 **15.4%**\n50 : 공격력 **336** / 치명 확률 **17.6%**\n60 : 공격력 **402** / 치명 확률 **19.8%**\n70 : 공격력 **469** / 치명 확률 **22%**\n80 : 공격력 **512** / 치명 확률 **22%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "치명 확률",
+        "subStatValue": "8.8%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "치명 확률",
+        "subStatValue": "11%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "치명 확률",
+        "subStatValue": "13.2%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "치명 확률",
+        "subStatValue": "15.4%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "치명 확률",
+        "subStatValue": "17.6%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.8%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "치명 확률",
+        "subStatValue": "22%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "치명 확률",
+        "subStatValue": "22%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "치명 확률",
+      "subStatValue": "22%"
+    },
+    "skill": {
+      "name": "「사이클론」",
+      "description": "착용자가 「바이레일 스킬」과 「울티메이트」로 주는 빛속성 이능력 피해가 30%/33%/36%/39%/42% 증가한다.\n착용자가 「바이레일 스킬」 시전 시, 자신의 사이클 강도가 36/45/54/63/72 상승한다. (15초간 지속, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n나선형 선율 조각x14\n나선형 선율 소절x18\n나선형 선율 합주x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 14
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 18
+      }
+    ],
+    "description": "세상을 뒤흔든 빗속에서 나타난다.",
+    "story": "세상을 뒤흔든 빗속에서 나타난다.",
+    "weaponStory": "세상을 뒤흔든 빗속에서 나타난다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8088-885b-f23cb1cb443a",
+    "name": "「우리.」",
+    "gameId": "nte",
+    "rarity": 3,
+    "rarityGrade": "B",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **24** / 공격력% **8%**\n20 : 공격력 **101** / 공격력% **10%**\n30 : 공격력 **151** / 공격력% **12%**\n40 : 공격력 **200** / 공격력% **14%**\n50 : 공격력 **250** / 공격력% **16%**\n60 : 공격력 **299** / 공격력% **18%**\n70 : 공격력 **349** / 공격력% **20%**\n80 : 공격력 **380** / 공격력% **20%**",
+    "baseStats": {
+      "1": {
+        "atk": 24,
+        "subStatName": "공격력%",
+        "subStatValue": "8%"
+      },
+      "20": {
+        "atk": 101,
+        "subStatName": "공격력%",
+        "subStatValue": "10%"
+      },
+      "30": {
+        "atk": 151,
+        "subStatName": "공격력%",
+        "subStatValue": "12%"
+      },
+      "40": {
+        "atk": 200,
+        "subStatName": "공격력%",
+        "subStatValue": "14%"
+      },
+      "50": {
+        "atk": 250,
+        "subStatName": "공격력%",
+        "subStatValue": "16%"
+      },
+      "60": {
+        "atk": 299,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "70": {
+        "atk": 349,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      },
+      "80": {
+        "atk": 380,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      }
+    },
+    "stats": {
+      "atk": 380,
+      "subStatName": "공격력%",
+      "subStatValue": "20%"
+    },
+    "skill": {
+      "name": "「원핵체」",
+      "description": "착용자가 「일반 공격」으로 주는 피해+12%/13%/14%/15%/16%"
+    },
+    "ascensionMaterials": "비틀 코인x252,000\n허황된 망상x8\n간절한 망상x12\n초월적 망상x12\n무미 냉디저트x8\n오리지널 냉디저트x12\n스페셜 냉디저트x12",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 252000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 8
+      },
+      {
+        "name": "간절한 망상",
+        "count": 12
+      },
+      {
+        "name": "초월적 망상",
+        "count": 12
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 8
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 12
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 12
+      }
+    ],
+    "description": "나는, 너… 는…. 너, 는… 그것, 은… 나… 아니, 나… 는, 우리.",
+    "story": "나는, 너… 는…. 너, 는… 그것, 은… 나… 아니, 나… 는, 우리.",
+    "weaponStory": "나는, 너… 는…. 너, 는… 그것, 은… 나… 아니, 나… 는, 우리.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-804a-9808-c094c02892b6",
+    "name": "「은하의 찰나」",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「수면 별자리」",
+      "description": "착용자가 주는 혼속성 이능력 피해가 12%/14.5%/17%/19.5%/21% 증가한다. 착용자가 혼속성 이능력 피해를 줄 때, 자신의 치명 피해가 2%/2.4%/2.8%/3.2%/3.6% 증가한다. (5초간 지속, 최대 10중첩, 0.1초마다 최대 1회 중첩)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n리퀴드 드림 샘플 키트x14\n리퀴드 드림 여행 키트x18\n리퀴드 드림 캔x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 14
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 18
+      }
+    ],
+    "description": "태양이 떠오른 뒤 사라진 별들은 단지 그들이 여정을 시작한 곳으로 돌아갔을 뿐이다.",
+    "story": "태양이 떠오른 뒤 사라진 별들은 단지 그들이 여정을 시작한 곳으로 돌아갔을 뿐이다.",
+    "weaponStory": "태양이 떠오른 뒤 사라진 별들은 단지 그들이 여정을 시작한 곳으로 돌아갔을 뿐이다.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-8068-bf37-ce32ffb1d1b7",
+    "name": "가면 뒤의 눈물",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「둥지새」",
+      "description": "착용자가 「울티메이트」를 시전해 명중한 적에게 「경고의 시선」 표식이 부여되며, 표식이 부여된 적이 주는 피해가 18% 감소한다. (20초간 지속, 해당 효과 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n빛바랜 실루엣x14\n초점 잃은 실루엣x18\n어두운 실루엣x18\n무미 냉디저트x14\n오리지널 냉디저트x18\n스페셜 냉디저트x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 14
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 18
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 18
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 14
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 18
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 18
+      }
+    ],
+    "description": "내 아이를 훔쳐 간 게 누구야? 너야? 쟤야? 아니면…",
+    "story": "내 아이를 훔쳐 간 게 누구야? 너야? 쟤야? 아니면…",
+    "weaponStory": "내 아이를 훔쳐 간 게 누구야? 너야? 쟤야? 아니면…",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8060-b4b3-f7f14356c767",
+    "name": "고래의 노래",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「깊은 비탄」",
+      "description": "공격력+12%/14%/16%/18%/20%\n착용자가 붕괴 상태의 적에게 주는 피해가 12%/14%/16%/18%/20%\n증가하며, 붕괴 상태의 적 처치 시 착용자의 HP가 30% 회복된다. (30초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n빛바랜 실루엣x14\n초점 잃은 실루엣x18\n어두운 실루엣x18\n입문자 드라마 코어x14\n마스터 드라마 코어x18\n콜렉터 드라마 코어x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 14
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 18
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 18
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 14
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 18
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 18
+      }
+    ],
+    "description": "솟구치는 파도는 녀석의 이별시이다.",
+    "story": "솟구치는 파도는 녀석의 이별시이다.",
+    "weaponStory": "솟구치는 파도는 녀석의 이별시이다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8091-b9e1-d558ecaea0f7",
+    "name": "광란의 「전자음악」",
+    "gameId": "nte",
+    "rarity": 3,
+    "rarityGrade": "B",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **24** / 공격력% **8%**\n20 : 공격력 **101** / 공격력% **10%**\n30 : 공격력 **151** / 공격력% **12%**\n40 : 공격력 **200** / 공격력% **14%**\n50 : 공격력 **250** / 공격력% **16%**\n60 : 공격력 **299** / 공격력% **18%**\n70 : 공격력 **349** / 공격력% **20%**\n80 : 공격력 **380** / 공격력% **20%**",
+    "baseStats": {
+      "1": {
+        "atk": 24,
+        "subStatName": "공격력%",
+        "subStatValue": "8%"
+      },
+      "20": {
+        "atk": 101,
+        "subStatName": "공격력%",
+        "subStatValue": "10%"
+      },
+      "30": {
+        "atk": 151,
+        "subStatName": "공격력%",
+        "subStatValue": "12%"
+      },
+      "40": {
+        "atk": 200,
+        "subStatName": "공격력%",
+        "subStatValue": "14%"
+      },
+      "50": {
+        "atk": 250,
+        "subStatName": "공격력%",
+        "subStatValue": "16%"
+      },
+      "60": {
+        "atk": 299,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "70": {
+        "atk": 349,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      },
+      "80": {
+        "atk": 380,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      }
+    },
+    "stats": {
+      "atk": 380,
+      "subStatName": "공격력%",
+      "subStatValue": "20%"
+    },
+    "skill": {
+      "name": "「스파키 팬텀」",
+      "description": "착용자가 「바이레일 스킬」로 주는 피해+12%/13%/14%/15%/16%"
+    },
+    "ascensionMaterials": "비틀 코인x252,000\n허황된 망상x8\n간절한 망상x12\n초월적 망상x12\n입문자 드라마 코어x8\n마스터 드라마 코어x12\n콜렉터 드라마 코어x12",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 252000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 8
+      },
+      {
+        "name": "간절한 망상",
+        "count": 12
+      },
+      {
+        "name": "초월적 망상",
+        "count": 12
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 8
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 12
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 12
+      }
+    ],
+    "description": "전자음악이 어디 있냐고? 스파키 팬텀이 내는 소리는 「전자음악」이 아니라는 거야?",
+    "story": "전자음악이 어디 있냐고? 스파키 팬텀이 내는 소리는 「전자음악」이 아니라는 거야?",
+    "weaponStory": "전자음악이 어디 있냐고? 스파키 팬텀이 내는 소리는 「전자음악」이 아니라는 거야?",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8096-bc6f-fd9816b7f5f8",
+    "name": "광속의 솜뭉치",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 치명 피해 **17.6%**\n20 : 공격력 **137** / 치명 피해 **22%**\n30 : 공격력 **203** / 치명 피해 **26.4%**\n40 : 공격력 **269** / 치명 피해 **30.8%**\n50 : 공격력 **336** / 치명 피해 **35.2%**\n60 : 공격력 **402** / 치명 피해 **39.6%**\n70 : 공격력 **469** / 치명 피해 **44%**\n80 : 공격력 **512** / 치명 피해 **44%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "치명 피해",
+        "subStatValue": "17.6%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "치명 피해",
+        "subStatValue": "22%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "치명 피해",
+        "subStatValue": "26.4%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "치명 피해",
+        "subStatValue": "30.8%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "치명 피해",
+        "subStatValue": "35.2%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "치명 피해",
+        "subStatValue": "39.6%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "치명 피해",
+        "subStatValue": "44%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "치명 피해",
+        "subStatValue": "44%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "치명 피해",
+      "subStatValue": "44%"
+    },
+    "skill": {
+      "name": "「오토바이 캔디」",
+      "description": "착용한 캐릭터를 조작 시, 1초마다 공격력이 5%/6%/7%/8%/9% 상승한다. (최대 5중첩, 착용자가 필드 이탈 시 초기화)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n리퀴드 드림 샘플 키트x14\n리퀴드 드림 여행 키트x18\n리퀴드 드림 캔x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 14
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 18
+      }
+    ],
+    "description": "헌터 길드 기념판 아크-염혼의 「몽실!」",
+    "story": "헌터 길드 기념판 아크-염혼의 「몽실!」",
+    "weaponStory": "헌터 길드 기념판 아크-염혼의 「몽실!」",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-8030-b9d5-d58d4f40e795",
+    "name": "광폭의 솜뭉치",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「기사 캔디」",
+      "description": "착용자가 치명타를 가할 때마다 자신의 치명 피해가 4%/4.8%/5.6%/6.4%/7.2% 증가한다. (10초간 지속, 최대 10중첩, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n흐릿한 숫자 부호x14\n미해독 숫자 부호x18\n뒤틀린 숫자 부호x18\n철 사과씨x14\n은 사과씨x18\n금 사과씨x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 14
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "철 사과씨",
+        "count": 14
+      },
+      {
+        "name": "은 사과씨",
+        "count": 18
+      },
+      {
+        "name": "금 사과씨",
+        "count": 18
+      }
+    ],
+    "description": "헌터 길드 기념판 아크-불필요한 건 전부 버리자…",
+    "story": "헌터 길드 기념판 아크-불필요한 건 전부 버리자…",
+    "weaponStory": "헌터 길드 기념판 아크-불필요한 건 전부 버리자…",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-802c-afa3-d34ea1fb5ed9",
+    "name": "금기의 문",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[일로이]에게 장착 시 무기 외관 변경 가능",
+    "growthStats": "1 : 공격력 **37**/ 공격력% **12%**\n20 : 공격력 **154** / 공격력% **15%**\n30 : 공격력 **227** / 공격력% **18%**\n40 : 공격력 **301** / 공격력% **21%**\n50 : 공격력 **374** / 공격력% **24%**\n60 : 공격력 **448** / 공격력% **27%**\n70 : 공격력 **522** / 공격력% **30%**\n80 : 공격력 **570** / 공격력% 3**0%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "공격력%",
+        "subStatValue": "12%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "공격력%",
+        "subStatValue": "21%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "공격력%",
+        "subStatValue": "24%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "공격력%",
+        "subStatValue": "27%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "공격력%",
+      "subStatValue": "30%"
+    },
+    "skill": {
+      "name": "「생각의 문」",
+      "description": "공격력+16%/20%/24%/28%/32%\n착용자가 치료 발동 시 자신이 주는 령속성 이능력 피해가 30%/37.5%/45%/52.5%/60% 증가하고, 파티 내 다른 캐릭터는 15%/18.75%/22.5%/26.25%/30%의 통용 피해 증가 효과를 획득한다.(20초 지속, 동일 효과 중첩 불가, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n빛바랜 실루엣x14\n초점 잃은 실루엣x18\n어두운 실루엣x18\n철 사과씨x14\n은 사과씨x18\n금 사과씨x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 14
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 18
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 18
+      },
+      {
+        "name": "철 사과씨",
+        "count": 14
+      },
+      {
+        "name": "은 사과씨",
+        "count": 18
+      },
+      {
+        "name": "금 사과씨",
+        "count": 18
+      }
+    ],
+    "description": "그 문을 열지 마. 여기를 떠나지 마. 더 따뜻한 이곳에 남고 싶지 않아?",
+    "story": "그 문을 열지 마. 여기를 떠나지 마. 더 따뜻한 이곳에 남고 싶지 않아?",
+    "weaponStory": "그 문을 열지 마. 여기를 떠나지 마. 더 따뜻한 이곳에 남고 싶지 않아?",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-803e-bf56-ea4b1290d6bf",
+    "name": "기민의 솜뭉치",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「도둑 캔디」",
+      "description": "착용자가 극한 회피 발동 시, 자신이 주는 피해가 8%/9.6%/11.2%/12.8%/14.4% 증가한다. (10초간 지속, 최대 3중첩, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n나선형 선율 조각x14\n나선형 선율 소절x18\n나선형 선율 합주x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 14
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 18
+      }
+    ],
+    "description": "헌터 길드 기념판 아크-만남이 언제나 아름답진 않은 법…",
+    "story": "헌터 길드 기념판 아크-만남이 언제나 아름답진 않은 법…",
+    "weaponStory": "헌터 길드 기념판 아크-만남이 언제나 아름답진 않은 법…",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80e2-907d-d116bec506e8",
+    "name": "동백꽃 모임",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **43** / 치명 확률 **4.8%**\n20 : 공격력 **178** / 치명 확률 **6%**\n30 : 공격력 **265** / 치명 확률 **7.2%**\n40 : 공격력 **351** / 치명 확률 **8.4%**\n50 : 공격력 **438** / 치명 확률 **9.6%**\n60 : 공격력 **524** / 치명 확률 **10.8%**\n70 : 공격력 **611** / 치명 확률 **12%**\n80 : 공격력 **666** / 치명 확률 **12%**",
+    "baseStats": {
+      "1": {
+        "atk": 43,
+        "subStatName": "치명 확률",
+        "subStatValue": "4.8%"
+      },
+      "20": {
+        "atk": 178,
+        "subStatName": "치명 확률",
+        "subStatValue": "6%"
+      },
+      "30": {
+        "atk": 265,
+        "subStatName": "치명 확률",
+        "subStatValue": "7.2%"
+      },
+      "40": {
+        "atk": 351,
+        "subStatName": "치명 확률",
+        "subStatValue": "8.4%"
+      },
+      "50": {
+        "atk": 438,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "60": {
+        "atk": 524,
+        "subStatName": "치명 확률",
+        "subStatValue": "10.8%"
+      },
+      "70": {
+        "atk": 611,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "80": {
+        "atk": 666,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      }
+    },
+    "stats": {
+      "atk": 666,
+      "subStatName": "치명 확률",
+      "subStatValue": "12%"
+    },
+    "skill": {
+      "name": "「침묵의 정원」",
+      "description": "착용자가 피해를 받지 않은 상황에서 HP가 감소할 경우, 5초 동안 치명 피해가 12%/14%/16%/18%/20% 증가하고(최대 4중첩), 변형 아크·「침묵의 정원」을 사용할 수 있다.변형 아크·「침묵의 정원」: 자신 현재 HP의 5%만큼 차감하고, 무작위로 다음 중 1가지 공격을 시전한다(쿨타임 25초).호된 꾸지람: 가차 없는 꾸지람이 우수수 떨어져, 목표에게 공격력 24%/28%/32%/36%/40%의 주속성 피해를 5회 준다.끝없는 독설: 날카로운 독설이 가시처럼 끊임없이 목표를 찔러, 공격력 18%/21%/24%/27%/30%의 주속성 피해를 연속 6회 주고, 마지막 일격은 2배의 피해를 준다."
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n흐릿한 숫자 부호x14\n미해독 숫자 부호x18\n뒤틀린 숫자 부호x18\n입문자 드라마 코어x14\n마스터 드라마 코어x18\n콜렉터 드라마 코어x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 14
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 14
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 18
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 18
+      }
+    ],
+    "description": "꽃잎 앞에서는 항상 품위를 지켜야 하지만… 그 꽃은 나에게 정말 깊은 상처를 줬어.",
+    "story": "꽃잎 앞에서는 항상 품위를 지켜야 하지만… 그 꽃은 나에게 정말 깊은 상처를 줬어.",
+    "weaponStory": "꽃잎 앞에서는 항상 품위를 지켜야 하지만… 그 꽃은 나에게 정말 깊은 상처를 줬어.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80de-8624-c726575d1c9a",
+    "name": "뒤틀린 도시의 부름",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **25** / HP% **15%**\n20 : 공격력 **106** / HP% **18.75%**\n30 : 공격력 **157** / HP% **22.5%**\n40 : 공격력 **208** / HP% **26.25%**\n50 : 공격력 **259** / HP% **30%**\n60 : 공격력 **310** / HP% **33.75%**\n70 : 공격력 **362** / HP% **37.5%**\n80 : 공격력 **395** / HP% **37.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 25,
+        "subStatName": "HP%",
+        "subStatValue": "15%"
+      },
+      "20": {
+        "atk": 106,
+        "subStatName": "HP%",
+        "subStatValue": "18.75%"
+      },
+      "30": {
+        "atk": 157,
+        "subStatName": "HP%",
+        "subStatValue": "22.5%"
+      },
+      "40": {
+        "atk": 208,
+        "subStatName": "HP%",
+        "subStatValue": "26.25%"
+      },
+      "50": {
+        "atk": 259,
+        "subStatName": "HP%",
+        "subStatValue": "30%"
+      },
+      "60": {
+        "atk": 310,
+        "subStatName": "HP%",
+        "subStatValue": "33.75%"
+      },
+      "70": {
+        "atk": 362,
+        "subStatName": "HP%",
+        "subStatValue": "37.5%"
+      },
+      "80": {
+        "atk": 395,
+        "subStatName": "HP%",
+        "subStatValue": "37.5%"
+      }
+    },
+    "stats": {
+      "atk": 395,
+      "subStatName": "HP%",
+      "subStatValue": "37.5%"
+    },
+    "skill": {
+      "name": "「골판지 캐슬」",
+      "description": "착용자가 「바이레일 스킬」 시전 시, 자신의 치료 효율이 12%/14%/16%/18%/20% 증가한다. (10초간 지속, 해당 효과 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n흐릿한 숫자 부호x11\n미해독 숫자 부호x15\n뒤틀린 숫자 부호x15\n입문자 드라마 코어x11\n마스터 드라마 코어x15\n콜렉터 드라마 코어x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 11
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 11
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 15
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 15
+      }
+    ],
+    "description": "세상이 뒤틀리면서 아무도 알아듣지 못하는 절규를 토해낼 때, 과연 누가 이성을 온전히 유지할 수 있을까?",
+    "story": "세상이 뒤틀리면서 아무도 알아듣지 못하는 절규를 토해낼 때, 과연 누가 이성을 온전히 유지할 수 있을까?",
+    "weaponStory": "세상이 뒤틀리면서 아무도 알아듣지 못하는 절규를 토해낼 때, 과연 누가 이성을 온전히 유지할 수 있을까?",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-806a-80cc-f8e532bb07d9",
+    "name": "때는 온다",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31**/ 치명 확률 **8%**\n20 : 공격력 **129** / 치명 확률 **10%**\n30 : 공격력 **190** / 치명 확률 **12%**\n40 : 공격력 **251** / 치명 확률 **14%**\n50 : 공격력 **312** / 치명 확률 **16%**\n60 : 공격력 **373** / 치명 확률 **18%**\n70 : 공격력 **435** / 치명 확률 **20%**\n80 : 공격력 **475** / 치명 확률 **20%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "치명 확률",
+        "subStatValue": "8%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "치명 확률",
+        "subStatValue": "10%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "치명 확률",
+        "subStatValue": "14%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "치명 확률",
+        "subStatValue": "16%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "치명 확률",
+        "subStatValue": "18%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "치명 확률",
+        "subStatValue": "20%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "치명 확률",
+        "subStatValue": "20%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "치명 확률",
+      "subStatValue": "20%"
+    },
+    "skill": {
+      "name": "「용문승천」",
+      "description": "파티에 서로 다른 이능력 속성이 3가지 이상 존재하는 경우, 착용자의 공격력이 10%/12%/14%/16%/18%, 방어력이 10%/12%/14%/16%/18%, HP가 10%/12%/14%/16%/18% 상승한다."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n잃어버린 속삭임x11\n모호한 속삭임x15\n모순된 속삭임x15\n리퀴드 드림 샘플 키트x11\n리퀴드 드림 여행 키트x15\n리퀴드 드림 캔x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 11
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 15
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 15
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 11
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 15
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 15
+      }
+    ],
+    "description": "하늘에서 왔으니, 하늘로 돌아간다. 운명의 그날을 기다리며, 끝이 보이지 않는 그곳을 향해 회유한다.",
+    "story": "하늘에서 왔으니, 하늘로 돌아간다. 운명의 그날을 기다리며, 끝이 보이지 않는 그곳을 향해 회유한다.",
+    "weaponStory": "하늘에서 왔으니, 하늘로 돌아간다. 운명의 그날을 기다리며, 끝이 보이지 않는 그곳을 향해 회유한다.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80fd-a22f-e0187d22a97c",
+    "name": "만인의 갈망",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[카오스]에게 장착 시 무기 외관 변경 가능",
+    "growthStats": "1 : 공격력 **37** / 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 **19.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「황금 양털」",
+      "description": "착용자가 주는 상속성 이능력 피해가 20%/25%/30%/35%/40% 증가한다. 착용자가 「바이레일 스킬」 또는 「울티메이트」 발동 시, 자신의 치명 피해가 40%/50%/60%/70%/80% 증가한다(20초 지속, 중복 발동 시 지속 시간 갱신)."
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n무미 냉디저트x14\n오리지널 냉디저트x18\n스페셜 냉디저트x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 14
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 18
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 18
+      }
+    ],
+    "description": "그리하여 대서사시의 첫 페이지가 펼쳐지고, 일행은 여정을 시작한다. 종착점이 어디인지는… 그리 중요하지 않으리라.",
+    "story": "그리하여 대서사시의 첫 페이지가 펼쳐지고, 일행은 여정을 시작한다. 종착점이 어디인지는… 그리 중요하지 않으리라.",
+    "weaponStory": "그리하여 대서사시의 첫 페이지가 펼쳐지고, 일행은 여정을 시작한다. 종착점이 어디인지는… 그리 중요하지 않으리라.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80d3-816e-f1196af209cc",
+    "name": "말하기 어려운 마음",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31**/ 붕괴 강도 **48**\n20 : 공격력 **129** / 붕괴 강도 **60**\n30 : 공격력 **190** / 붕괴 강도 **72**\n40 : 공격력 **251** / 붕괴 강도 **84**\n50 : 공격력 **312** / 붕괴 강도 **96**\n60 : 공격력 **373** / 붕괴 강도 **108**\n70 : 공격력 **435** / 붕괴 강도 **120**\n80 : 공격력 **475** / 붕괴 강도 **120**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "48"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "60"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "72"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "84"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "96"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "108"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "120"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "120"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "붕괴 강도",
+      "subStatValue": "120"
+    },
+    "skill": {
+      "name": "「거미 지식 수집가」",
+      "description": "착용자가 「일반 공격」으로 피해를 주면, 「거미 지식」을 1중첩 획득한다(최대 8중첩, 0.5초당 최대 1중첩 획득). 착용자가 「울티메이트」 시전 시 모든 「거미 지식」을 소모하며, 1중첩당 10초 동안 전체 파티원의 공격력을 1%/1.15%/1.3%/1.45%/1.6%씩 상승시킨다. 「거미 지식」을 8중첩 소모할 경우, 전체 파티원의 공격력을 2%/2.3%/2.6%/2.9%/3.2% 추가 상승시킨다."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n허황된 망상x11\n간절한 망상x15\n초월적 망상x15\n철 사과씨x11\n은 사과씨x15\n금 사과씨x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 11
+      },
+      {
+        "name": "간절한 망상",
+        "count": 15
+      },
+      {
+        "name": "초월적 망상",
+        "count": 15
+      },
+      {
+        "name": "철 사과씨",
+        "count": 11
+      },
+      {
+        "name": "은 사과씨",
+        "count": 15
+      },
+      {
+        "name": "금 사과씨",
+        "count": 15
+      }
+    ],
+    "description": "선생님의 눈에서 빨간 빛이 보이면, 그건 보통 네가 낙제했다는 뜻이야.",
+    "story": "선생님의 눈에서 빨간 빛이 보이면, 그건 보통 네가 낙제했다는 뜻이야.",
+    "weaponStory": "선생님의 눈에서 빨간 빛이 보이면, 그건 보통 네가 낙제했다는 뜻이야.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-808e-b47f-cadc85d8b5c1",
+    "name": "망할 인연",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31**/ 붕괴 강도 **48**\n20 : 공격력 **129** / 붕괴 강도 **60**\n30 : 공격력 **190** / 붕괴 강도 **72**\n40 : 공격력 **251** / 붕괴 강도 **84**\n50 : 공격력 **312** / 붕괴 강도 **96**\n60 : 공격력 **373** / 붕괴 강도 **108**\n70 : 공격력 **435** / 붕괴 강도 **120**\n80 : 공격력 **475** / 붕괴 강도 **120**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "48"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "60"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "72"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "84"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "96"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "108"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "120"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "120"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "붕괴 강도",
+      "subStatValue": "120"
+    },
+    "skill": {
+      "name": "「단자부로」",
+      "description": "파티 내 착용자와 같은 이능력 속성의 캐릭터가 3명(자신 포함) 이상일 경우, 해당 이능력 속성 캐릭터의 붕괴 강도가 70/84/98/112/126 상승한다. (해당 방식을 통한 붕괴 강도 상승 효과는 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n흐릿한 숫자 부호x11\n미해독 숫자 부호x15\n뒤틀린 숫자 부호x15\n무미 냉디저트x11\n오리지널 냉디저트x15\n스페셜 냉디저트x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 11
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 11
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 15
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 15
+      }
+    ],
+    "description": "너를 본 순간, 마치 시간이 멈춰버린 것 같았지. 부드러운 털, 장난기 어린 얼굴… 모든 게 완벽했어. 그렇게 넋 놓고 바라보다가, 네가 떠나고 나서야… 내 꼬치구이가 사라졌다는 걸 깨달았지.",
+    "story": "너를 본 순간, 마치 시간이 멈춰버린 것 같았지. 부드러운 털, 장난기 어린 얼굴… 모든 게 완벽했어. 그렇게 넋 놓고 바라보다가, 네가 떠나고 나서야… 내 꼬치구이가 사라졌다는 걸 깨달았지.",
+    "weaponStory": "너를 본 순간, 마치 시간이 멈춰버린 것 같았지. 부드러운 털, 장난기 어린 얼굴… 모든 게 완벽했어. 그렇게 넋 놓고 바라보다가, 네가 떠나고 나서야… 내 꼬치구이가 사라졌다는 걸 깨달았지.",
+    "isNotion": true
+  },
+  {
+    "id": "3c895fae-3dc7-80b3-9a59-c153a48a82bb",
+    "name": "머리 조심",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / 치명 피해 **16%**\n20 : 공격력 **129** / 치명 피해 **20%**\n30 : 공격력 **190** / 치명 피해 **24%**\n40 : 공격력 **251** / 치명 피해 **28%**\n50 : 공격력 **312** / 치명 피해 **32%**\n60 : 공격력 **373** / 치명 피해 **36%**\n70 : 공격력 **435** / 치명 피해 **40%**\n80 : 공격력 **475** / 치명 피해 **40%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "치명 피해",
+        "subStatValue": "16%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "치명 피해",
+        "subStatValue": "20%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "치명 피해",
+        "subStatValue": "24%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "치명 피해",
+        "subStatValue": "28%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "치명 피해",
+        "subStatValue": "32%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "치명 피해",
+        "subStatValue": "36%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "치명 피해",
+        "subStatValue": "40%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "치명 피해",
+        "subStatValue": "40%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "치명 피해",
+      "subStatValue": "40%"
+    },
+    "skill": {
+      "name": "「페이스카이트」",
+      "description": "착용자가 「바이레일 스킬」 시전 후 공격력이 10%/12%/14%/16%/18% 상승하고, 「레모라」와 「스테인」 영향을 받고 있는 유닛에게 주는 상속성 이능력 피해가 10%/12%/14%/16%/18% 증가한다. (15초간 지속, 해당 효과 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n허황된 망상x11\n간절한 망상x15\n초월적 망상x15\n무미 냉디저트x11\n오리지널 냉디저트x15\n스페셜 냉디저트x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 11
+      },
+      {
+        "name": "간절한 망상",
+        "count": 15
+      },
+      {
+        "name": "초월적 망상",
+        "count": 15
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 11
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 15
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 15
+      }
+    ],
+    "description": "히히히… 무서워하지 마. 그냥 웃기를 좋아하는 연일 뿐이야…",
+    "story": "히히히… 무서워하지 마. 그냥 웃기를 좋아하는 연일 뿐이야…",
+    "weaponStory": "히히히… 무서워하지 마. 그냥 웃기를 좋아하는 연일 뿐이야…",
+    "isNotion": true
+  },
+  {
+    "id": "3c495fae-3dc7-80f4-987c-fc4ec94e87e6",
+    "name": "물망산",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **25**/ 방어력 **21%**\n20 : 공격력 **106** / 방어력 **26.25%**\n**3**0 : 공격력 **157** / 방어력 **31.5%**\n40 : 공격력 **208** / 방어력 **36.75%**\n50 : 공격력 **259** / 방어력 **42%**\n60 : 공격력 **310** / 방어력 **47.25%**\n70 : 공격력 **362** / 방어력 **52.5%**\n80 : 공격력 **395** / 방어력 **52.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 25,
+        "subStatName": "방어력",
+        "subStatValue": "21%"
+      },
+      "20": {
+        "atk": 106,
+        "subStatName": "방어력",
+        "subStatValue": "26.25%"
+      },
+      "30": {
+        "atk": 157,
+        "subStatName": "방어력",
+        "subStatValue": "31.5%"
+      },
+      "40": {
+        "atk": 208,
+        "subStatName": "방어력",
+        "subStatValue": "36.75%"
+      },
+      "50": {
+        "atk": 259,
+        "subStatName": "방어력",
+        "subStatValue": "42%"
+      },
+      "60": {
+        "atk": 310,
+        "subStatName": "방어력",
+        "subStatValue": "47.25%"
+      },
+      "70": {
+        "atk": 362,
+        "subStatName": "방어력",
+        "subStatValue": "52.5%"
+      },
+      "80": {
+        "atk": 395,
+        "subStatName": "방어력",
+        "subStatValue": "52.5%"
+      }
+    },
+    "stats": {
+      "atk": 395,
+      "subStatName": "방어력",
+      "subStatValue": "52.5%"
+    },
+    "skill": {
+      "name": "「레인맨」",
+      "description": "HP+10%/12%/14%/16%/18%\n착용자의 HP가 50%보다 높은 경우, 자신의 방어막이 10%/12%/14%/16%/18% 강화된다."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n흐릿한 숫자 부호x11\n미해독 숫자 부호x15\n뒤틀린 숫자 부호x15\n철 사과씨x11\n은 사과씨x15\n금 사과씨x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 11
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "철 사과씨",
+        "count": 11
+      },
+      {
+        "name": "은 사과씨",
+        "count": 15
+      },
+      {
+        "name": "금 사과씨",
+        "count": 15
+      }
+    ],
+    "description": "잘 자고, 일기예보 확인하는 거 잊지 마. 밥 잘 챙겨 먹고, 우산도 잊지 마!",
+    "story": "잘 자고, 일기예보 확인하는 거 잊지 마. 밥 잘 챙겨 먹고, 우산도 잊지 마!",
+    "weaponStory": "잘 자고, 일기예보 확인하는 거 잊지 마. 밥 잘 챙겨 먹고, 우산도 잊지 마!",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80aa-9d6e-f32ad1331a57",
+    "name": "미소 천사",
+    "gameId": "nte",
+    "rarity": 3,
+    "rarityGrade": "B",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **21** / HP% **12%**\n20 : 공격력 **86** / HP% **15%**\n30 : 공격력 **126** / HP% **18%**\n40 : 공격력 **167** / HP% **21%**\n50 : 공격력 **208** / HP% **24%**\n60 : 공격력 **248** / HP% **27%**\n70 : 공격력 **289** / HP% **30%**\n80 : 공격력 **316** / HP% **30%**",
+    "baseStats": {
+      "1": {
+        "atk": 21,
+        "subStatName": "HP%",
+        "subStatValue": "12%"
+      },
+      "20": {
+        "atk": 86,
+        "subStatName": "HP%",
+        "subStatValue": "15%"
+      },
+      "30": {
+        "atk": 126,
+        "subStatName": "HP%",
+        "subStatValue": "18%"
+      },
+      "40": {
+        "atk": 167,
+        "subStatName": "HP%",
+        "subStatValue": "21%"
+      },
+      "50": {
+        "atk": 208,
+        "subStatName": "HP%",
+        "subStatValue": "24%"
+      },
+      "60": {
+        "atk": 248,
+        "subStatName": "HP%",
+        "subStatValue": "27%"
+      },
+      "70": {
+        "atk": 289,
+        "subStatName": "HP%",
+        "subStatValue": "30%"
+      },
+      "80": {
+        "atk": 316,
+        "subStatName": "HP%",
+        "subStatValue": "30%"
+      }
+    },
+    "stats": {
+      "atk": 316,
+      "subStatName": "HP%",
+      "subStatValue": "30%"
+    },
+    "skill": {
+      "name": "「허그 덩굴」",
+      "description": "착용자가 적 처치 시, 자신의 HP를 12%/14%/16%/18%/20% 회복한다. (20초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x252,000\n흐릿한 숫자 부호x8\n미해독 숫자 부호x12\n뒤틀린 숫자 부호x12\n리퀴드 드림 샘플 키트x8\n리퀴드 드림 여행 키트x12\n리퀴드 드림 캔x12",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 252000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 8
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 12
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 12
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 8
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 12
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 12
+      }
+    ],
+    "description": "응? 왜 안 웃어?",
+    "story": "응? 왜 안 웃어?",
+    "weaponStory": "응? 왜 안 웃어?",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80b8-8a0f-fcfcd661bc7f",
+    "name": "발도",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **25** / 공격력% **15%**\n20 : 공격력 **106** / 공격력% **18.75%**\n30 : 공격력 **157** / 공격력% **22.5%**\n40 : 공격력 **208** / 공격력% **26.25%**\n50 : 공격력 **259** / 공격력% **30%**\n60 : 공격력 **310** / 공격력% **33.75%**\n70 : 공격력 **362** / 공격력% **37.5%**\n80 : 공격력 **395** / 공격력% **37.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 25,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "20": {
+        "atk": 106,
+        "subStatName": "공격력%",
+        "subStatValue": "18.75%"
+      },
+      "30": {
+        "atk": 157,
+        "subStatName": "공격력%",
+        "subStatValue": "22.5%"
+      },
+      "40": {
+        "atk": 208,
+        "subStatName": "공격력%",
+        "subStatValue": "26.25%"
+      },
+      "50": {
+        "atk": 259,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      },
+      "60": {
+        "atk": 310,
+        "subStatName": "공격력%",
+        "subStatValue": "33.75%"
+      },
+      "70": {
+        "atk": 362,
+        "subStatName": "공격력%",
+        "subStatValue": "37.5%"
+      },
+      "80": {
+        "atk": 395,
+        "subStatName": "공격력%",
+        "subStatValue": "37.5%"
+      }
+    },
+    "stats": {
+      "atk": 395,
+      "subStatName": "공격력%",
+      "subStatValue": "37.5%"
+    },
+    "skill": {
+      "name": "「피로 물든 요도」",
+      "description": "착용자가 반격기 발동 시, 공격력의 200%/230%/260%/290%/320%에 해당하는 주속성 이능력 피해를 1회 추가 부여한다."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n허황된 망상x11\n간절한 망상x15\n초월적 망상x15\n리퀴드 드림 샘플 키트x11\n리퀴드 드림 여행 키트x15\n리퀴드 드림 캔x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 11
+      },
+      {
+        "name": "간절한 망상",
+        "count": 15
+      },
+      {
+        "name": "초월적 망상",
+        "count": 15
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 11
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 15
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 15
+      }
+    ],
+    "description": "고월, 묵운. 뽑히는 칼날에 영혼이 잠드니, 색이 바래고 남은건 칼날의 흐느낌 뿐이네.",
+    "story": "고월, 묵운. 뽑히는 칼날에 영혼이 잠드니, 색이 바래고 남은건 칼날의 흐느낌 뿐이네.",
+    "weaponStory": "고월, 묵운. 뽑히는 칼날에 영혼이 잠드니, 색이 바래고 남은건 칼날의 흐느낌 뿐이네.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8035-bb57-d1d7329a6479",
+    "name": "백만불짜리 미소",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 방어력% **15.4%**\n20 : 공격력 **137** / 방어력% **19.25%**\n30 : 공격력 **203** / 방어력% **23.1%**\n40 : 공격력 **269** / 방어력% **26.95%**\n50 : 공격력 **336** / 방어력% **30.8%**\n60 : 공격력 **402** / 방어력% **34.65%**\n70 : 공격력 **469** / 방어력% **38.5%**\n80 : 공격력 **512** / 방어력% **38.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "방어력%",
+        "subStatValue": "15.4%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "방어력%",
+        "subStatValue": "19.25%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "방어력%",
+        "subStatValue": "23.1%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "방어력%",
+        "subStatValue": "26.95%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "방어력%",
+        "subStatValue": "30.8%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "방어력%",
+        "subStatValue": "34.65%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "방어력%",
+        "subStatValue": "38.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "방어력%",
+        "subStatValue": "38.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "방어력%",
+      "subStatValue": "38.5%"
+    },
+    "skill": {
+      "name": "「나쿠펜다」",
+      "description": "HP+24%/28%/32%/36%/40%\n착용자가 「울티메이트」 시전 시, 무작위로 다음 중 1가지 효과를 획득한다.\n1. 파티 내 HP 비율이 가장 낮은 캐릭터가 자신 최대 HP의 20%/25%/30%/35%/40%를 회복한다.\n2. 착용자 최대 HP의 20%/25%/30%/35%/40%에 해당하는 방어막을 1개 획득한다. (15초간 지속)\n3. 전체 파티원이 HP를 10%/12.5%/15%/17.5%/ 20% 회복한다.\n(해당 효과는 30초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n철 사과씨x14\n은 사과씨x18\n금 사과씨x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "철 사과씨",
+        "count": 14
+      },
+      {
+        "name": "은 사과씨",
+        "count": 18
+      },
+      {
+        "name": "금 사과씨",
+        "count": 18
+      }
+    ],
+    "description": "",
+    "story": "",
+    "weaponStory": "",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80ca-a859-e7873cabc270",
+    "name": "봄을 심는 바보",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **25**/ 방어력 **21%**\n20 : 공격력 **106** / 방어력 **26.25%**\n30 : 공격력 **157** / 방어력 **31.5%**\n40 : 공격력 **208** / 방어력 **36.75%**\n50 : 공격력 **259** / 방어력 **42%**\n60 : 공격력 **310** / 방어력 **47.25%**\n70 : 공격력 **362** / 방어력 **52.5%**\n80 : 공격력 **395** / 방어력 **52.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 25,
+        "subStatName": "방어력",
+        "subStatValue": "21%"
+      },
+      "20": {
+        "atk": 106,
+        "subStatName": "방어력",
+        "subStatValue": "26.25%"
+      },
+      "30": {
+        "atk": 157,
+        "subStatName": "방어력",
+        "subStatValue": "31.5%"
+      },
+      "40": {
+        "atk": 208,
+        "subStatName": "방어력",
+        "subStatValue": "36.75%"
+      },
+      "50": {
+        "atk": 259,
+        "subStatName": "방어력",
+        "subStatValue": "42%"
+      },
+      "60": {
+        "atk": 310,
+        "subStatName": "방어력",
+        "subStatValue": "47.25%"
+      },
+      "70": {
+        "atk": 362,
+        "subStatName": "방어력",
+        "subStatValue": "52.5%"
+      },
+      "80": {
+        "atk": 395,
+        "subStatName": "방어력",
+        "subStatValue": "52.5%"
+      }
+    },
+    "stats": {
+      "atk": 395,
+      "subStatName": "방어력",
+      "subStatValue": "52.5%"
+    },
+    "skill": {
+      "name": "「하형초」",
+      "description": "착용자가 방어막 보유 시 공격력+18%/21%/24%/27%/30%"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n빛바랜 실루엣x11\n초점 잃은 실루엣x15\n어두운 실루엣x15\n입문자 드라마 코어x11\n마스터 드라마 코어x15\n콜렉터 드라마 코어x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 11
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 15
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 15
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 11
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 15
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 15
+      }
+    ],
+    "description": "만약 내가 한 마리의 매미였다면, 나는 쉰 목소리로 노래하였으리라.",
+    "story": "만약 내가 한 마리의 매미였다면, 나는 쉰 목소리로 노래하였으리라.",
+    "weaponStory": "만약 내가 한 마리의 매미였다면, 나는 쉰 목소리로 노래하였으리라.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8063-8684-d66c8904adb8",
+    "name": "불굴의 솜뭉치",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「펀치 캔디」",
+      "description": "착용자가 주는 피해+22%/26%/30%/34%/38%. HP 50% 미만인 적에게 주는 피해는 28%/34%/40%/46%/52%(으)로 변경된다."
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n흐릿한 숫자 부호x14\n미해독 숫자 부호x18\n뒤틀린 숫자 부호x18\n철 사과씨x14\n은 사과씨x18\n금 사과씨x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 14
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "철 사과씨",
+        "count": 14
+      },
+      {
+        "name": "은 사과씨",
+        "count": 18
+      },
+      {
+        "name": "금 사과씨",
+        "count": 18
+      }
+    ],
+    "description": "헌터 길드 기념판 아크-뭉실뭉실!",
+    "story": "헌터 길드 기념판 아크-뭉실뭉실!",
+    "weaponStory": "헌터 길드 기념판 아크-뭉실뭉실!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-807c-a37c-d8f693298e2c",
+    "name": "빛나는 나날",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / 공격력% **10%**\n20 : 공격력 **129** / 공격력% **12.5%**\n30 : 공격력 **190** / 공격력% **15%**\n40 : 공격력 **251** / 공격력% **17.5%**\n50 : 공격력 **312** / 공격력% **20%**\n60 : 공격력 **373** / 공격력% **22.5%**\n70 : 공격력 **435** / 공격력% **25%**\n80 : 공격력 **475** / 공격력% **25%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "공격력%",
+        "subStatValue": "10%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "공격력%",
+        "subStatValue": "12.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "공격력%",
+        "subStatValue": "17.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "공격력%",
+        "subStatValue": "22.5%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "공격력%",
+        "subStatValue": "25%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "공격력%",
+        "subStatValue": "25%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "공격력%",
+      "subStatValue": "25%"
+    },
+    "skill": {
+      "name": "「필름-MANISH」",
+      "description": "붕괴 강도+48/57/66/75/84\n착용자가 붕괴 상태의 유닛에게 주는 피해+10%/12%/14%/16%/18%."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n잃어버린 속삭임x11\n모호한 속삭임x15\n모순된 속삭임x15\n리퀴드 드림 샘플 키트x11\n리퀴드 드림 여행 키트x15\n리퀴드 드림 캔x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 11
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 15
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 15
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 11
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 15
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 15
+      }
+    ],
+    "description": "빛나는 순간을 포착하라, 꿈속에서도 마찬가지로. 내 사전에 후회란 없고, 너는 결코 혼자가 아니야.",
+    "story": "빛나는 순간을 포착하라, 꿈속에서도 마찬가지로. 내 사전에 후회란 없고, 너는 결코 혼자가 아니야.",
+    "weaponStory": "빛나는 순간을 포착하라, 꿈속에서도 마찬가지로. 내 사전에 후회란 없고, 너는 결코 혼자가 아니야.",
+    "isNotion": true
+  },
+  {
+    "id": "3c895fae-3dc7-8022-ab9b-db53081ec1db",
+    "name": "생각하는 고양이",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 치명 피해 **17.6%**\n20 : 공격력 **137** / 치명 피해 **22%**\n30 : 공격력 **203** / 치명 피해 **26.4%**\n40 : 공격력 **269** / 치명 피해 **30.8%**\n50 : 공격력 **336** / 치명 피해 **35.2%**\n60 : 공격력 **402** / 치명 피해 **39.6%**\n70 : 공격력 **469** / 치명 피해 **44%**\n80 : 공격력 **512** / 치명 피해 **44%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "치명 피해",
+        "subStatValue": "17.6%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "치명 피해",
+        "subStatValue": "22%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "치명 피해",
+        "subStatValue": "26.4%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "치명 피해",
+        "subStatValue": "30.8%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "치명 피해",
+        "subStatValue": "35.2%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "치명 피해",
+        "subStatValue": "39.6%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "치명 피해",
+        "subStatValue": "44%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "치명 피해",
+        "subStatValue": "44%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "치명 피해",
+      "subStatValue": "44%"
+    },
+    "skill": {
+      "name": "「마몬」",
+      "description": "착용자가 100000폰즈를 보유할 때마다 빛속성 이능력 피해가 2.5%/3%/3.5%/4%/4.5% 상승한다(최대 10중첩)."
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n리퀴드 드림 샘플 키트x14\n리퀴드 드림 여행 키트x18\n리퀴드 드림 캔x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 14
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 18
+      }
+    ],
+    "description": "삶의 의미… 존재의 이유… 우주의 진리는, 4… 털뭉치!",
+    "story": "삶의 의미… 존재의 이유… 우주의 진리는, 4… 털뭉치!",
+    "weaponStory": "삶의 의미… 존재의 이유… 우주의 진리는, 4… 털뭉치!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80f9-9d40-d727435a23e2",
+    "name": "성공을 향한 첫 걸음",
+    "gameId": "nte",
+    "rarity": 3,
+    "rarityGrade": "B",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **24** / 공격력% **8%**\n20 : 공격력 **101** / 공격력% **10%**\n30 : 공격력 **151** / 공격력% **12%**\n40 : 공격력 **200** / 공격력% **14%**\n50 : 공격력 **250** / 공격력% **16%**\n60 : 공격력 **299** / 공격력% **18%**\n70 : 공격력 **349** / 공격력% **20%**\n80 : 공격력 **380** / 공격력% **20%**",
+    "baseStats": {
+      "1": {
+        "atk": 24,
+        "subStatName": "공격력%",
+        "subStatValue": "8%"
+      },
+      "20": {
+        "atk": 101,
+        "subStatName": "공격력%",
+        "subStatValue": "10%"
+      },
+      "30": {
+        "atk": 151,
+        "subStatName": "공격력%",
+        "subStatValue": "12%"
+      },
+      "40": {
+        "atk": 200,
+        "subStatName": "공격력%",
+        "subStatValue": "14%"
+      },
+      "50": {
+        "atk": 250,
+        "subStatName": "공격력%",
+        "subStatValue": "16%"
+      },
+      "60": {
+        "atk": 299,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "70": {
+        "atk": 349,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      },
+      "80": {
+        "atk": 380,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      }
+    },
+    "stats": {
+      "atk": 380,
+      "subStatName": "공격력%",
+      "subStatValue": "20%"
+    },
+    "skill": {
+      "name": "「베로스」",
+      "description": "착용자가 「바이레일 스킬」 시전 시, 자신의 공격력이 12%/13%/14%/15%/16% 상승한다. (10초간 지속, 20초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x252,000\n빛바랜 실루엣x8\n초점 잃은 실루엣x12\n어두운 실루엣x12\n나선형 선율 조각x8\n나선형 선율 소절x12\n나선형 선율 합주x12",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 252000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 8
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 12
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 12
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 8
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 12
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 12
+      }
+    ],
+    "description": "자기 관리는 성공을 향한 첫 걸음이야.",
+    "story": "자기 관리는 성공을 향한 첫 걸음이야.",
+    "weaponStory": "자기 관리는 성공을 향한 첫 걸음이야.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80ef-a6b1-d75e30172526",
+    "name": "시간 도둑",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / HP% **10%**\n20 : 공격력 **129** / HP% **12.5%**\n30 : 공격력 **190** / HP% **15%**\n40 : 공격력 **251** / HP% **17.5%**\n50 : 공격력 **312** / HP% **20%**\n60 : 공격력 **373** / HP% **22.5%**\n70 : 공격력 **435** / HP% **25%**\n80 : 공격력 **475** / HP% **25%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "HP%",
+        "subStatValue": "10%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "HP%",
+        "subStatValue": "12.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "HP%",
+        "subStatValue": "15%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "HP%",
+        "subStatValue": "17.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "HP%",
+        "subStatValue": "20%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "HP%",
+        "subStatValue": "22.5%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "HP%",
+        "subStatValue": "25%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "HP%",
+        "subStatValue": "25%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "HP%",
+      "subStatValue": "25%"
+    },
+    "skill": {
+      "name": "「락픽」",
+      "description": "착용자가 「바이레일 스킬」 시전 시, 붕괴 강도가 90/108/126/144/162 증가한다. (50초간 지속, 해당 효과 중첩 불가)\n변형 아크·「락픽」을 사용할 수 있다. (쿨타임50초)\n변형 아크·「락픽」: 「락픽」을 소환하여 해제 가능한 주변 모든 자물쇠를 딸 수 있다."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n허황된 망상x11\n간절한 망상x15\n초월적 망상x15\n철 사과씨x11\n은 사과씨x15\n금 사과씨x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 11
+      },
+      {
+        "name": "간절한 망상",
+        "count": 15
+      },
+      {
+        "name": "초월적 망상",
+        "count": 15
+      },
+      {
+        "name": "철 사과씨",
+        "count": 11
+      },
+      {
+        "name": "은 사과씨",
+        "count": 15
+      },
+      {
+        "name": "금 사과씨",
+        "count": 15
+      }
+    ],
+    "description": "시간은 스펀지 바로 옆의 물과도 같아, 잠깐 한 눈판 사이 전부 사라지고 만다.",
+    "story": "시간은 스펀지 바로 옆의 물과도 같아, 잠깐 한 눈판 사이 전부 사라지고 만다.",
+    "weaponStory": "시간은 스펀지 바로 옆의 물과도 같아, 잠깐 한 눈판 사이 전부 사라지고 만다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8078-a146-df2819cc50bd",
+    "name": "시간 밖으로의 행진",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[호토리]에게 장착 시 무기 외관 변경 가능",
+    "growthStats": "1 : 공격력 **37** / 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 1**9.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「시간 밖의 시간」",
+      "description": "공격력 +16%/20%/24%/28%/32%\n착용자가 「바이레일 스킬」 시전 후 「흉년 미궁」 상태에 돌입하고 현재 부여된 「흉년」을 제거한다. 착용자가 「흉년 미궁」 상태에 있는 동안, 파티원이 「바이레일 스킬」 또는 「서포트 스킬」을 시전할 때마다 「흉년」을 1중첩 획득한다(최대 3중첩). 착용자가 「흉년 미궁」 상태에서 「울티메이트」 시전 시 「흉년 미궁」 상태가 해제되며, 모든 「흉년」 중첩을 소모해 「울티메이트」로 주는 치명 피해를 24%/30%/36%/42%/48% 증가시킨다. 또한, 소모한 「흉년」 1중첩당 착용자가 「울티메이트」로 주는 치명 피해가 8%/10%/12%/14%/16% 추가 증가한다. 한 번에 「흉년」을 3중첩 소모할 경우, 추가로 12%/15%/18%/21%/24%의 방어 무시 효과를 획득한다. (70초간 지속)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n입문자 드라마 코어x14\n마스터 드라마 코어x18\n콜렉터 드라마 코어x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 14
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 18
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 18
+      }
+    ],
+    "description": "앞으로 나아가는 것은 녹슬지 않기 위한 것.",
+    "story": "앞으로 나아가는 것은 녹슬지 않기 위한 것.",
+    "weaponStory": "앞으로 나아가는 것은 녹슬지 않기 위한 것.",
+    "isNotion": true
+  },
+  {
+    "id": "3c895fae-3dc7-80ce-9e43-ccf6e1050085",
+    "name": "심장을 좀먹는 칼",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[잔홍]에게 장착 시 무기 외관 변경 가능",
+    "growthStats": "1 : 공격력 **37** / 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 1**9.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「요도·박명」",
+      "description": "치명 확률+16%/20%/24%/28%/32%\n착용자가 주속성 피해를 줄 때 9%/11.25%/13.5%/15.75%/18%의 치명 피해 효과를 획득한다.(15초 지속, 최대 7중첩, 0.3초마다 최대 1회 발동 가능, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n흐릿한 숫자 부호x14\n미해독 숫자 부호x18\n뒤틀린 숫자 부호x18\n나선형 선율 조각x14\n나선형 선율 소절x18\n나선형 선율 합주x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 14
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 14
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 18
+      }
+    ],
+    "description": "공포는 죽음의 영원한 동반자다.",
+    "story": "공포는 죽음의 영원한 동반자다.",
+    "weaponStory": "공포는 죽음의 영원한 동반자다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80b2-97d0-df252893abfd",
+    "name": "암흑 청춘의 망상",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **37**/ 공격력% **12%**\n20 : 공격력 **154** / 공격력% **15%**\n30 : 공격력 **227** / 공격력% **18%**\n40 : 공격력 **301** / 공격력% **21%**\n50 : 공격력 **374** / 공격력% **24%**\n60 : 공격력 **448** / 공격력% **27%**\n70 : 공격력 **522** / 공격력% **30%**\n80 : 공격력 **570** / 공격력% 3**0%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "공격력%",
+        "subStatValue": "12%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "공격력%",
+        "subStatValue": "21%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "공격력%",
+        "subStatValue": "24%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "공격력%",
+        "subStatValue": "27%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "공격력%",
+      "subStatValue": "30%"
+    },
+    "skill": {
+      "name": "「검은 책」",
+      "description": "붕괴 강도+60/67/74/81/88.\n보통 변형 아크·「검은 책」은 2개의 쇠사슬로 봉인되어 있으며, 파티 내 임의의 캐릭터가 「서포트 스킬」을 발동할 때마다 쇠사슬 1개를 해제할 수 있다. 쇠사슬 2개가 모두 해제되면 변형 아크·「검은 책」을 사용할 수 있다.\n변형 아크·「검은 책」: 검은 책을 필드에 20초 동안 소환하며 5초마다 적 1명을 지정한다. 지정된 적에게는 착용자의 암속성 이능력 피해가 20%/24%/28%/32%/36% 증가한다. 지정된 적이 붕괴 피해를 입을 시, 검은 책은 착용자 공격력 200%/230%/260%/290%/320%에 해당하는 암속성 이능력 피해를 입힌다."
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n리퀴드 드림 샘플 키트x14\n리퀴드 드림 여행 키트x18\n리퀴드 드림 캔x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 14
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 18
+      }
+    ],
+    "description": "「비밀」, 기록되는 순간 모두의 앞에 드러난다.",
+    "story": "「비밀」, 기록되는 순간 모두의 앞에 드러난다.",
+    "weaponStory": "「비밀」, 기록되는 순간 모두의 앞에 드러난다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80a8-bb0e-d5ca8bfe0606",
+    "name": "염혼의 질주",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **43** / 치명 확률 **9.6%**\n20 : 공격력 **178** / 치명 확률 **12%**\n30 : 공격력 **265** / 치명 확률 **14.4%**\n40 : 공격력 **351** / 치명 확률 **16.8%**\n50 : 공격력 **438** / 치명 확률 **19.2%**\n60 : 공격력 **524** / 치명 확률 **21.6%**\n70 : 공격력 **611** / 치명 확률 **24%**\n80 : 공격력 **666** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 43,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 178,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 265,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 351,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 438,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 524,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 611,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 666,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 666,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「머리 없는 라이더」",
+      "description": "상속성 이능력 피해가 15%/17.5%/20%/22.5%/25% 증가한다.\n「울티메이트」 시전 시, 착용자가 「바이레일 스킬」 및 「울티메이트」로 주는 피해가 10%/12.5%/15%/17.5%/20% 증가한다(10초간 지속). 해당 효과가 적용되는 동안 「바이레일 스킬」을 시전할 때마다 착용자가 「바이레일 스킬」로 주는 피해가 5%/6%/7%/8%/9% 증가한다. (해당 방식을 통한 피해 증가 효과는 최대 2회 중첩)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n리퀴드 드림 샘플 키트x14\n리퀴드 드림 여행 키트x18\n리퀴드 드림 캔x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 14
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 18
+      }
+    ],
+    "description": "몸 속에 흐르는 건 속도를 향한 갈망, 가슴에 울려 퍼지는 건 엔진의 포효! 자, 자! 속도의 영혼을 걸고 달리는 트랙으로 나가자!",
+    "story": "몸 속에 흐르는 건 속도를 향한 갈망, 가슴에 울려 퍼지는 건 엔진의 포효! 자, 자! 속도의 영혼을 걸고 달리는 트랙으로 나가자!",
+    "weaponStory": "몸 속에 흐르는 건 속도를 향한 갈망, 가슴에 울려 퍼지는 건 엔진의 포효! 자, 자! 속도의 영혼을 걸고 달리는 트랙으로 나가자!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80af-aede-d17d5f1064b7",
+    "name": "영감 배틀로얄",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **36** / 붕괴 강도 **24**\n20 : 공격력 **149** / 붕괴 강도 **30**\n30 : 공격력 **222** / 붕괴 강도 **36**\n40 : 공격력 **293** / 붕괴 강도 **42**\n50 : 공격력 **366** / 붕괴 강도 **48**\n60 : 공격력 **437** / 붕괴 강도 **54**\n70 : 공격력 **509** / 붕괴 강도 **60**\n80 : 공격력 **555** / 붕괴 강도 **60**",
+    "baseStats": {
+      "1": {
+        "atk": 36,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "24"
+      },
+      "20": {
+        "atk": 149,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "30"
+      },
+      "30": {
+        "atk": 222,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "36"
+      },
+      "40": {
+        "atk": 293,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "42"
+      },
+      "50": {
+        "atk": 366,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "48"
+      },
+      "60": {
+        "atk": 437,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "54"
+      },
+      "70": {
+        "atk": 509,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "60"
+      },
+      "80": {
+        "atk": 555,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "60"
+      }
+    },
+    "stats": {
+      "atk": 555,
+      "subStatName": "붕괴 강도",
+      "subStatValue": "60"
+    },
+    "skill": {
+      "name": "「영감 종결자」",
+      "description": "착용자가 「바이레일 스킬」 시전 시, 자신의 울트에너지가 10/12/14/16/18 증가한다. (20초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n빛바랜 실루엣x11\n초점 잃은 실루엣x15\n어두운 실루엣x15\n나선형 선율 조각x11\n나선형 선율 소절x15\n나선형 선율 합주x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 11
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 15
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 15
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 11
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 15
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 15
+      }
+    ],
+    "description": "영감은 감자칩 같아. 와그작 와그작, 부스러기를 남기지만 이유는 없지.",
+    "story": "영감은 감자칩 같아. 와그작 와그작, 부스러기를 남기지만 이유는 없지.",
+    "weaponStory": "영감은 감자칩 같아. 와그작 와그작, 부스러기를 남기지만 이유는 없지.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-802d-b328-ecef8c99a7e1",
+    "name": "영원한 왈츠",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **28** / HP% **16.5%**\n20 : 공격력 **114** / HP% **20.62%**\n30 : 공격력 **168** / HP% **24.75%**\n40 : 공격력 **223** / HP% **28.87%**\n50 : 공격력 **278** / HP% **33%**\n60 : 공격력 **333** / HP% **37.12%**\n70 : 공격력 **388** / HP% **41.25%**\n80 : 공격력 **424** / HP% **41.25%**",
+    "baseStats": {
+      "1": {
+        "atk": 28,
+        "subStatName": "HP%",
+        "subStatValue": "16.5%"
+      },
+      "20": {
+        "atk": 114,
+        "subStatName": "HP%",
+        "subStatValue": "20.62%"
+      },
+      "30": {
+        "atk": 168,
+        "subStatName": "HP%",
+        "subStatValue": "24.75%"
+      },
+      "40": {
+        "atk": 223,
+        "subStatName": "HP%",
+        "subStatValue": "28.87%"
+      },
+      "50": {
+        "atk": 278,
+        "subStatName": "HP%",
+        "subStatValue": "33%"
+      },
+      "60": {
+        "atk": 333,
+        "subStatName": "HP%",
+        "subStatValue": "37.12%"
+      },
+      "70": {
+        "atk": 388,
+        "subStatName": "HP%",
+        "subStatValue": "41.25%"
+      },
+      "80": {
+        "atk": 424,
+        "subStatName": "HP%",
+        "subStatValue": "41.25%"
+      }
+    },
+    "stats": {
+      "atk": 424,
+      "subStatName": "HP%",
+      "subStatValue": "41.25%"
+    },
+    "skill": {
+      "name": "「아라크네」",
+      "description": "HP+20%/23%/26%/29%/32%\n착용자가 「울티메이트」 시전 시, 자신이 주는 정신 피해가 10%/12%/14%/16%/18% 증가한다. (10초간 지속)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n빛바랜 실루엣x14\n초점 잃은 실루엣x18\n어두운 실루엣x18\n무미 냉디저트x14\n오리지널 냉디저트x18\n스페셜 냉디저트x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 14
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 18
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 18
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 14
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 18
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 18
+      }
+    ],
+    "description": "나와 함께 3/4 박자에 맞춰, 세계 종말이 찾아오는 그날까지 신나게 춤추는 거야!",
+    "story": "나와 함께 3/4 박자에 맞춰, 세계 종말이 찾아오는 그날까지 신나게 춤추는 거야!",
+    "weaponStory": "나와 함께 3/4 박자에 맞춰, 세계 종말이 찾아오는 그날까지 신나게 춤추는 거야!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80f3-a934-ea51dc0be66c",
+    "name": "오라오라!",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **25** / 공격력% **15%**\n20 : 공격력 **106** / 공격력% **18.75%**\n30 : 공격력 **157** / 공격력% **22.5%**\n40 : 공격력 **208** / 공격력% **26.25%**\n50 : 공격력 **259** / 공격력% **30%**\n60 : 공격력 **310** / 공격력% **33.75%**\n70 : 공격력 **362** / 공격력% **37.5%**\n80 : 공격력 **395** / 공격력% **37.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 25,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "20": {
+        "atk": 106,
+        "subStatName": "공격력%",
+        "subStatValue": "18.75%"
+      },
+      "30": {
+        "atk": 157,
+        "subStatName": "공격력%",
+        "subStatValue": "22.5%"
+      },
+      "40": {
+        "atk": 208,
+        "subStatName": "공격력%",
+        "subStatValue": "26.25%"
+      },
+      "50": {
+        "atk": 259,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      },
+      "60": {
+        "atk": 310,
+        "subStatName": "공격력%",
+        "subStatValue": "33.75%"
+      },
+      "70": {
+        "atk": 362,
+        "subStatName": "공격력%",
+        "subStatValue": "37.5%"
+      },
+      "80": {
+        "atk": 395,
+        "subStatName": "공격력%",
+        "subStatValue": "37.5%"
+      }
+    },
+    "stats": {
+      "atk": 395,
+      "subStatName": "공격력%",
+      "subStatValue": "37.5%"
+    },
+    "skill": {
+      "name": "「오라 글러브」",
+      "description": "착용자가 「일반 공격」으로 피해를 줄 때마다 10초 동안 자신의 「일반 공격」 피해가 2%/2.4%/2.8%/3.2%/3.6% 증가한다. (최대 10중첩, 1중첩당 지속 시간은 개별적으로 계산)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n빛바랜 실루엣x11\n초점 잃은 실루엣x15\n어두운 실루엣x15\n나선형 선율 조각x11\n나선형 선율 소절x15\n나선형 선율 합주x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 11
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 15
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 15
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 11
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 15
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 15
+      }
+    ],
+    "description": "머나먼 곳에 오라 글러브의 먼 사촌 동생이 있대, 이름하여 「무다무다 글러브」.",
+    "story": "머나먼 곳에 오라 글러브의 먼 사촌 동생이 있대, 이름하여 「무다무다 글러브」.",
+    "weaponStory": "머나먼 곳에 오라 글러브의 먼 사촌 동생이 있대, 이름하여 「무다무다 글러브」.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80cd-a703-dfbd4b6b7873",
+    "name": "용맹의 솜뭉치",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 치명 확률 **8.8%**\n20 : 공격력 **137** / 치명 확률 **11%**\n30 : 공격력 **203** / 치명 확률 **13.2%**\n40 : 공격력 **269** / 치명 확률 **15.4%**\n50 : 공격력 **336** / 치명 확률 **17.6%**\n60 : 공격력 **402** / 치명 확률 **19.8%**\n70 : 공격력 **469** / 치명 확률 **22%**\n80 : 공격력 **512** / 치명 확률 **22%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "치명 확률",
+        "subStatValue": "8.8%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "치명 확률",
+        "subStatValue": "11%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "치명 확률",
+        "subStatValue": "13.2%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "치명 확률",
+        "subStatValue": "15.4%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "치명 확률",
+        "subStatValue": "17.6%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.8%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "치명 확률",
+        "subStatValue": "22%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "치명 확률",
+        "subStatValue": "22%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "치명 확률",
+      "subStatValue": "22%"
+    },
+    "skill": {
+      "name": "「팝핑 캔디」",
+      "description": "착용자가 「울티메이트」 시전 시, 자신의 공격력이 25%/30%/35%/40%/45% 증가한다. (10초간 지속, 해당 효과 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n허황된 망상x14\n간절한 망상x18\n초월적 망상x18\n무미 냉디저트x14\n오리지널 냉디저트x18\n스페셜 냉디저트x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "허황된 망상",
+        "count": 14
+      },
+      {
+        "name": "간절한 망상",
+        "count": 18
+      },
+      {
+        "name": "초월적 망상",
+        "count": 18
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 14
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 18
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 18
+      }
+    ],
+    "description": "헌터 길드 기념판 아크-진정한 솜사탕은 폭발을 등지고 걷는다.",
+    "story": "헌터 길드 기념판 아크-진정한 솜사탕은 폭발을 등지고 걷는다.",
+    "weaponStory": "헌터 길드 기념판 아크-진정한 솜사탕은 폭발을 등지고 걷는다.",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-800a-aade-ddc9f6db06cd",
+    "name": "원행자의 목소리",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[링코]에게 장착시키고 변형 아크를 사용하면, 캐릭터 스킨 변경 가능",
+    "growthStats": "1 : 공격력 **37** / 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 1**9.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「골든 레코드」",
+      "description": "공격력+24%/30%/36%/42%/48%\n착용자가 「서포트 스킬」로 주는 치명 피해가 66%/82.5%/99%/115.5%/132% 증가하며, 착용자가 「서포트 스킬」로 피해를 줄 때마다 「울티메이트」로 주는 치명 피해가 22%/27.5%/33%/38.5%/44% 증가한다.(3초 지속, 최대 3 중첩, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n리퀴드 드림 샘플 키트x14\n리퀴드 드림 여행 키트x18\n리퀴드 드림 캔x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 샘플 키트",
+        "count": 14
+      },
+      {
+        "name": "리퀴드 드림 여행 키트",
+        "count": 18
+      },
+      {
+        "name": "리퀴드 드림 캔",
+        "count": 18
+      }
+    ],
+    "description": "기록된 언어는 단 하나도 해독할 수 없지만, 이것만은 분명하다. 우리는 이 우주에 혼자가 아니다.",
+    "story": "기록된 언어는 단 하나도 해독할 수 없지만, 이것만은 분명하다. 우리는 이 우주에 혼자가 아니다.",
+    "weaponStory": "기록된 언어는 단 하나도 해독할 수 없지만, 이것만은 분명하다. 우리는 이 우주에 혼자가 아니다.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-8075-9092-da2ca9750f5c",
+    "name": "위험한 게임",
+    "gameId": "nte",
+    "rarity": 3,
+    "rarityGrade": "B",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **24** / 붕괴 강도 **38**\n20 : 공격력 **101** / 붕괴 강도 **48**\n30 : 공격력 **151** / 붕괴 강도 **58**\n40 : 공격력 **200** / 붕괴 강도 **67**\n50 : 공격력 **250** / 붕괴 강도 **77**\n60 : 공격력 **299** / 붕괴 강도 **86**\n70 : 공격력 **349** / 붕괴 강도 **96**\n80 : 공격력 **380** / 붕괴 강도 **96**",
+    "baseStats": {
+      "1": {
+        "atk": 24,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "38"
+      },
+      "20": {
+        "atk": 101,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "48"
+      },
+      "30": {
+        "atk": 151,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "58"
+      },
+      "40": {
+        "atk": 200,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "67"
+      },
+      "50": {
+        "atk": 250,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "77"
+      },
+      "60": {
+        "atk": 299,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "86"
+      },
+      "70": {
+        "atk": 349,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "96"
+      },
+      "80": {
+        "atk": 380,
+        "subStatName": "붕괴 강도",
+        "subStatValue": "96"
+      }
+    },
+    "stats": {
+      "atk": 380,
+      "subStatName": "붕괴 강도",
+      "subStatValue": "96"
+    },
+    "skill": {
+      "name": "「분쇄기」",
+      "description": "착용자의 붕괴 수치 감소 시, 자신의 붕괴 강도가 60/66/72/78/84 상승한다. (10초간 지속, 20초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x252,000\n잃어버린 속삭임x8\n모호한 속삭임x12\n모순된 속삭임x12\n철 사과씨x8\n은 사과씨x12\n금 사과씨x12",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 252000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 8
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 12
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 12
+      },
+      {
+        "name": "철 사과씨",
+        "count": 8
+      },
+      {
+        "name": "은 사과씨",
+        "count": 12
+      },
+      {
+        "name": "금 사과씨",
+        "count": 12
+      }
+    ],
+    "description": "내기하자, 진 사람은 파산이야.",
+    "story": "내기하자, 진 사람은 파산이야.",
+    "weaponStory": "내기하자, 진 사람은 파산이야.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80e3-86e9-c1452b1d6da6",
+    "name": "입에 쓴 약이 몸에 좋다",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / HP% **10%**\n20 : 공격력 **129** / HP% **12.5%**\n30 : 공격력 **190** / HP% **15%**\n40 : 공격력 **251** / HP% **17.5%**\n50 : 공격력 **312** / HP% **20%**\n60 : 공격력 **373** / HP% **22.5%**\n70 : 공격력 **435** / HP% **25%**\n80 : 공격력 **475** / HP% **25%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "HP%",
+        "subStatValue": "10%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "HP%",
+        "subStatValue": "12.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "HP%",
+        "subStatValue": "15%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "HP%",
+        "subStatValue": "17.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "HP%",
+        "subStatValue": "20%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "HP%",
+        "subStatValue": "22.5%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "HP%",
+        "subStatValue": "25%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "HP%",
+        "subStatValue": "25%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "HP%",
+      "subStatValue": "25%"
+    },
+    "skill": {
+      "name": "「쓴 케이크」",
+      "description": "착용자가 피격 시, 자신의 방어력이 26%/31%/36%/41%/46% 상승한다. (10초간 지속, 20초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n흐릿한 숫자 부호x11\n미해독 숫자 부호x15\n뒤틀린 숫자 부호x15\n나선형 선율 조각x11\n나선형 선율 소절x15\n나선형 선율 합주x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 11
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 15
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 11
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 15
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 15
+      }
+    ],
+    "description": "좀 쓰긴 하지만 기분은 좋잖아, 안 그래?",
+    "story": "좀 쓰긴 하지만 기분은 좋잖아, 안 그래?",
+    "weaponStory": "좀 쓰긴 하지만 기분은 좋잖아, 안 그래?",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80ea-af06-cee599dd48ce",
+    "name": "잊힌 자",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / HP% **10%**\n20 : 공격력 **129** / HP% **12.5%**\n30 : 공격력 **190** / HP% **15%**\n40 : 공격력 **251** / HP% **17.5%**\n50 : 공격력 **312** / HP% **20%**\n60 : 공격력 **373** / HP% **22.5%**\n70 : 공격력 **435** / HP% **25%**\n80 : 공격력 **475** / HP% **25%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "HP%",
+        "subStatValue": "10%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "HP%",
+        "subStatValue": "12.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "HP%",
+        "subStatValue": "15%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "HP%",
+        "subStatValue": "17.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "HP%",
+        "subStatValue": "20%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "HP%",
+        "subStatValue": "22.5%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "HP%",
+        "subStatValue": "25%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "HP%",
+        "subStatValue": "25%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "HP%",
+      "subStatValue": "25%"
+    },
+    "skill": {
+      "name": "「그림 없는 액자」",
+      "description": "착용자의 HP가 50% 초과 시 공격력이 20%/24%/28%/32%/36% 증가하고, 50% 미만인 경우 방어력이 20%/24%/28%/32%/36% 증가한다."
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n잃어버린 속삭임x11\n모호한 속삭임x15\n모순된 속삭임x15\n철 사과씨x11\n은 사과씨x15\n금 사과씨x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 11
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 15
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 15
+      },
+      {
+        "name": "철 사과씨",
+        "count": 11
+      },
+      {
+        "name": "은 사과씨",
+        "count": 15
+      },
+      {
+        "name": "금 사과씨",
+        "count": 15
+      }
+    ],
+    "description": "명화의 들러리에 불과하지만… 나도 꽤 예쁘잖아. 안 그래?",
+    "story": "명화의 들러리에 불과하지만… 나도 꽤 예쁘잖아. 안 그래?",
+    "weaponStory": "명화의 들러리에 불과하지만… 나도 꽤 예쁘잖아. 안 그래?",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80fe-a6e5-f58bd9e714b2",
+    "name": "정화 개시",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "액체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / 공격력% **10%**\n20 : 공격력 **129** / 공격력% **12.5%**\n30 : 공격력 **190** / 공격력% **15%**\n40 : 공격력 **251** / 공격력% **17.5%**\n50 : 공격력 **312** / 공격력% **20%**\n60 : 공격력 **373** / 공격력% **22.5%**\n70 : 공격력 **435** / 공격력% **25%**\n80 : 공격력 **475** / 공격력% **25%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "공격력%",
+        "subStatValue": "10%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "공격력%",
+        "subStatValue": "12.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "공격력%",
+        "subStatValue": "17.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "공격력%",
+        "subStatValue": "22.5%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "공격력%",
+        "subStatValue": "25%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "공격력%",
+        "subStatValue": "25%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "공격력%",
+      "subStatValue": "25%"
+    },
+    "skill": {
+      "name": "「페이퍼윙즈」",
+      "description": "착용자가 「바이레일 스킬」과 「울티메이트」로 주는 령속성 이능력 피해+20%/23.75%/27.5%/31.25%/35%"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n빛바랜 실루엣x11\n초점 잃은 실루엣x15\n어두운 실루엣x15\n무미 냉디저트x11\n오리지널 냉디저트x15\n스페셜 냉디저트x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 11
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 15
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 15
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 11
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 15
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 15
+      }
+    ],
+    "description": "전투 대형 확인, 제공권 탈취 준비!",
+    "story": "전투 대형 확인, 제공권 탈취 준비!",
+    "weaponStory": "전투 대형 확인, 제공권 탈취 준비!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80d5-948d-cd52bd4f044f",
+    "name": "준비, 준비",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "플라즈마",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[나나리]에게 장착시키고 변형 아크를 사용하면, 캐릭터 스킨 변경 가능",
+    "growthStats": "1 : 공격력 **37** / 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 **19.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「사령 병부」",
+      "description": "공격력+15%/18.75%/22.5%/26.25%/30%\n「바이레일 스킬」 또는 「울티메이트」 시전 시, 「일반 공격」과 「극한 반격」으로 주는 피해가 15% 증가한다. (15초간 지속, 최대 2중첩)\n착용자가 「바이레일 스킬」을 시전하면 '좌병부'를 획득하고, 「울티메이트」를 시전하면 '우병부'를 획득한다.\n병부 획득 후 15초 내에 다른 병부를 획득할 경우, 변형 아크·「사령 병부」를 사용할 수 있다.\n변형 아크·「사령 병부」: 착용자가 보스 유닛에게 주는 피해가 10% 증가한다. (10초간 지속)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n나선형 선율 조각x14\n나선형 선율 소절x18\n나선형 선율 합주x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 14
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 18
+      }
+    ],
+    "description": "나를 잡으라, 죽음을 넘어서는 용기와 결의를 품고… 위대한 호랑이 전사에게 경례!",
+    "story": "나를 잡으라, 죽음을 넘어서는 용기와 결의를 품고… 위대한 호랑이 전사에게 경례!",
+    "weaponStory": "나를 잡으라, 죽음을 넘어서는 용기와 결의를 품고… 위대한 호랑이 전사에게 경례!",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-80d7-b8ea-d8059a94e6dc",
+    "name": "착한 강아지의 여행",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / 공격력% **18%**\n20 : 공격력 **129** / 공격력% **22.5%**\n30 : 공격력 **190** / 공격력% **27%**\n40 : 공격력 **251** / 공격력% **31.5%**\n50 : 공격력 **312** / 공격력% **36%**\n60 : 공격력 **373** / 공격력% **40.5%**\n70 : 공격력 **434** / 공격력% **45%**\n80 : 공격력 **474** / 공격력% **45%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "공격력%",
+        "subStatValue": "22.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "공격력%",
+        "subStatValue": "27%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "공격력%",
+        "subStatValue": "31.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "공격력%",
+        "subStatValue": "36%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "공격력%",
+        "subStatValue": "40.5%"
+      },
+      "70": {
+        "atk": 434,
+        "subStatName": "공격력%",
+        "subStatValue": "45%"
+      },
+      "80": {
+        "atk": 474,
+        "subStatName": "공격력%",
+        "subStatValue": "45%"
+      }
+    },
+    "stats": {
+      "atk": 474,
+      "subStatName": "공격력%",
+      "subStatValue": "45%"
+    },
+    "skill": {
+      "name": "「모픽스」",
+      "description": "에너지 충전 효율+18%/21%/24%/27%/30%.\n착용자가 「울티메이트」 발동 시, 20초 동안 파티 전체 공격력이 10%/11.5%/13%/14.5%/16% 상승하고, 적이 이 「울티메이트」로 제어 효과를 받으면 파티 전체 공격력이 추가로 6%/7%/8%/9%/10% 상승한다. (동일 효과 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n흐릿한 숫자 부호x14\n미해독 숫자 부호x18\n뒤틀린 숫자 부호x18\n무미 냉디저트x14\n오리지널 냉디저트x18\n스페셜 냉디저트x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 14
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "무미 냉디저트",
+        "count": 14
+      },
+      {
+        "name": "오리지널 냉디저트",
+        "count": 18
+      },
+      {
+        "name": "스페셜 냉디저트",
+        "count": 18
+      }
+    ],
+    "description": "뭐가 보여? 날개 달린 하얀 늑대? 귀엽고 하얀 대형견? 아니면…?",
+    "story": "뭐가 보여? 날개 달린 하얀 늑대? 귀엽고 하얀 대형견? 아니면…?",
+    "weaponStory": "뭐가 보여? 날개 달린 하얀 늑대? 귀엽고 하얀 대형견? 아니면…?",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8004-9cbe-d36775bf9e3c",
+    "name": "폭발 현장",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「비트 마왕」",
+      "description": "착용자가 필드 밖에 있을 시, 조작 중인 캐릭터의 공격력이 10%/11%/12%/13%/14% 증가하며, 착용자가 피해를 줄 때마다 조작 중인 캐릭터의 공격력이 2%/2.3%/2.6%/2.9%/3.2% 증가한다(최대 4중첩). 2초마다 최대 1회 중첩되며, 착용자가 조작 중인 캐릭터로 전환될 시 소멸한다.\n착용한 캐릭터 조작 시, 혼속성 이능력 피해가 12%/14%/16%/18%/20% 증가하며, 「일반 공격」으로 혼속성 이능력 피해를 줄 때마다 자신의 혼속성 이능력 피해가 2%/2.3%/2.6%/2.9%/3.2% 증가한다(최대 10중첩). 0.3초마다 최대 1회 발동하며 캐릭터 전환 시 소멸한다."
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n흐릿한 숫자 부호x14\n미해독 숫자 부호x18\n뒤틀린 숫자 부호x18\n나선형 선율 조각x14\n나선형 선율 소절x18\n나선형 선율 합주x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "흐릿한 숫자 부호",
+        "count": 14
+      },
+      {
+        "name": "미해독 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "뒤틀린 숫자 부호",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 14
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 18
+      }
+    ],
+    "description": "쉿… 온다, 온다! 온!! 다!!!",
+    "story": "쉿… 온다, 온다! 온!! 다!!!",
+    "weaponStory": "쉿… 온다, 온다! 온!! 다!!!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-8069-bacd-e10fcfd56224",
+    "name": "헤테로의 안녕",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 공격력% **11%**\n20 : 공격력 **137** / 공격력% **13.75%**\n30 : 공격력 **203** / 공격력% **16.5%**\n40 : 공격력 **269** / 공격력% **19.25%**\n50 : 공격력 **336** / 공격력% **22%**\n60 : 공격력 **402** / 공격력% **24.75%**\n70 : 공격력 **469** / 공격력% **27.5%**\n80 : 공격력 **512** / 공격력% **27.5%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "공격력%",
+        "subStatValue": "11%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "공격력%",
+        "subStatValue": "13.75%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "공격력%",
+        "subStatValue": "16.5%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "공격력%",
+        "subStatValue": "19.25%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "공격력%",
+        "subStatValue": "22%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "공격력%",
+        "subStatValue": "24.75%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "공격력%",
+        "subStatValue": "27.5%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "공격력%",
+      "subStatValue": "27.5%"
+    },
+    "skill": {
+      "name": "「통행 정의」",
+      "description": "공격력+15%/17.5%/20%/22.5%/25%\n보스 유닛에게 주는 피해+15%/17.5%/20%/22.5%/25%\n변형 아크·「순찰쥐」를 사용할 수 있다.\n변형 아크·「순찰쥐」: 「순찰쥐」를 소환해 전장에 투입한다. 「순찰쥐」는 지속적으로 적을 공격해 피해를 주며, 공격 1회당 착용자의 100%/125%/150%/175%/200%에 해당하는 피해를 준다. (30초간 지속, 쿨타임 60초)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n빛바랜 실루엣x14\n초점 잃은 실루엣x18\n어두운 실루엣x18\n철 사과씨x14\n은 사과씨x18\n금 사과씨x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 14
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 18
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 18
+      },
+      {
+        "name": "철 사과씨",
+        "count": 14
+      },
+      {
+        "name": "은 사과씨",
+        "count": 18
+      },
+      {
+        "name": "금 사과씨",
+        "count": 18
+      }
+    ],
+    "description": "덕분에 오늘 하루도 무사히 보냈어요. 고마워요, 순찰쥐 경장님!",
+    "story": "덕분에 오늘 하루도 무사히 보냈어요. 고마워요, 순찰쥐 경장님!",
+    "weaponStory": "덕분에 오늘 하루도 무사히 보냈어요. 고마워요, 순찰쥐 경장님!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-803a-93f3-f0f65b57b461",
+    "name": "현실 도피처",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **37**/ 공격력% **12%**\n20 : 공격력 **154** / 공격력% **15%**\n30 : 공격력 **227** / 공격력% **18%**\n40 : 공격력 **301** / 공격력% **21%**\n50 : 공격력 **374** / 공격력% **24%**\n60 : 공격력 **448** / 공격력% **27%**\n70 : 공격력 **522** / 공격력% **30%**\n80 : 공격력 **570** / 공격력% 3**0%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "공격력%",
+        "subStatValue": "12%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "공격력%",
+        "subStatValue": "18%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "공격력%",
+        "subStatValue": "21%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "공격력%",
+        "subStatValue": "24%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "공격력%",
+        "subStatValue": "27%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "공격력%",
+        "subStatValue": "30%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "공격력%",
+      "subStatValue": "30%"
+    },
+    "skill": {
+      "name": "「왕나비」",
+      "description": "령속성 이능력 피해+15%/17.5%/20%/22.5%/25%\n착용자의 부착물 피해가 10%/11.25%/12.5%/13.75%/15% 증가하며, 「울티메이트」 시전 시 부착물 피해 증가 효과가 20%/22.5%/25%/27.5%/30%(으)로 변한다. (6초 지속, 해당 효과 중첩 불가)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n빛바랜 실루엣x14\n초점 잃은 실루엣x18\n어두운 실루엣x18\n입문자 드라마 코어x14\n마스터 드라마 코어x18\n콜렉터 드라마 코어x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "빛바랜 실루엣",
+        "count": 14
+      },
+      {
+        "name": "초점 잃은 실루엣",
+        "count": 18
+      },
+      {
+        "name": "어두운 실루엣",
+        "count": 18
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 14
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 18
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 18
+      }
+    ],
+    "description": "그녀는 내가 한 마리의 나비일 뿐이라고 했다.",
+    "story": "그녀는 내가 한 마리의 나비일 뿐이라고 했다.",
+    "weaponStory": "그녀는 내가 한 마리의 나비일 뿐이라고 했다.",
+    "isNotion": true
+  },
+  {
+    "id": "3c695fae-3dc7-8060-b153-c34e7fc27cf0",
+    "name": "홍염의 신기루",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "결합",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "[신쿠]에게 장착 시 특수 외관 효과가 적용됩니다.",
+    "growthStats": "1 : 공격력 **37**/ 치명 확률 **9.6%**\n20 : 공격력 **154** / 치명 확률 **12%**\n30 : 공격력 **227** / 치명 확률 **14.4%**\n40 : 공격력 **301** / 치명 확률 **16.8%**\n50 : 공격력 **374** / 치명 확률 **19.2%**\n60 : 공격력 **448** / 치명 확률 **21.6%**\n70 : 공격력 **522** / 치명 확률 **24%**\n80 : 공격력 **570** / 치명 확률 **24%**",
+    "baseStats": {
+      "1": {
+        "atk": 37,
+        "subStatName": "치명 확률",
+        "subStatValue": "9.6%"
+      },
+      "20": {
+        "atk": 154,
+        "subStatName": "치명 확률",
+        "subStatValue": "12%"
+      },
+      "30": {
+        "atk": 227,
+        "subStatName": "치명 확률",
+        "subStatValue": "14.4%"
+      },
+      "40": {
+        "atk": 301,
+        "subStatName": "치명 확률",
+        "subStatValue": "16.8%"
+      },
+      "50": {
+        "atk": 374,
+        "subStatName": "치명 확률",
+        "subStatValue": "19.2%"
+      },
+      "60": {
+        "atk": 448,
+        "subStatName": "치명 확률",
+        "subStatValue": "21.6%"
+      },
+      "70": {
+        "atk": 522,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      },
+      "80": {
+        "atk": 570,
+        "subStatName": "치명 확률",
+        "subStatValue": "24%"
+      }
+    },
+    "stats": {
+      "atk": 570,
+      "subStatName": "치명 확률",
+      "subStatValue": "24%"
+    },
+    "skill": {
+      "name": "「월상 변화」",
+      "description": "공격력+20%/23%/26%/29%/32%\n착용자가 「울티메이트」를 발동한 후, 자신이 주는 빛속성 이능력 피해가 32%36.8%/41.6%/46.4%/51.2% 증가하며, 주는 피해가 적 방어력의 12%/13.8%/15.6%/17.4%/19.2%를 무시한다. (20초간 지속, 중복 발동 시 지속 시간 갱신)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n입문자 드라마 코어x14\n마스터 드라마 코어x18\n콜렉터 드라마 코어x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 14
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 18
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 18
+      }
+    ],
+    "description": "그 달빛은 날개를 펼치고 비상하리라는 약속을 속삭이며 비범한 열정과 영감을 불어넣는다… 하지만, 경청이 언제나 현명한 것은 아니다.",
+    "story": "그 달빛은 날개를 펼치고 비상하리라는 약속을 속삭이며 비범한 열정과 영감을 불어넣는다… 하지만, 경청이 언제나 현명한 것은 아니다.",
+    "weaponStory": "그 달빛은 날개를 펼치고 비상하리라는 약속을 속삭이며 비범한 열정과 영감을 불어넣는다… 하지만, 경청이 언제나 현명한 것은 아니다.",
+    "isNotion": true
+  },
+  {
+    "id": "3c895fae-3dc7-804f-8c79-d61fdaa3c437",
+    "name": "화려한 조명 속 광란의 파티",
+    "gameId": "nte",
+    "rarity": 4,
+    "rarityGrade": "A",
+    "type": "기체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **31** / 공격력% **10%**\n20 : 공격력 **129** / 공격력% **12.5%**\n30 : 공격력 **190** / 공격력% **15%**\n40 : 공격력 **251** / 공격력% **17.5%**\n50 : 공격력 **312** / 공격력% **20%**\n60 : 공격력 **373** / 공격력% **22.5%**\n70 : 공격력 **435** / 공격력% **25%**\n80 : 공격력 **475** / 공격력% **25%**",
+    "baseStats": {
+      "1": {
+        "atk": 31,
+        "subStatName": "공격력%",
+        "subStatValue": "10%"
+      },
+      "20": {
+        "atk": 129,
+        "subStatName": "공격력%",
+        "subStatValue": "12.5%"
+      },
+      "30": {
+        "atk": 190,
+        "subStatName": "공격력%",
+        "subStatValue": "15%"
+      },
+      "40": {
+        "atk": 251,
+        "subStatName": "공격력%",
+        "subStatValue": "17.5%"
+      },
+      "50": {
+        "atk": 312,
+        "subStatName": "공격력%",
+        "subStatValue": "20%"
+      },
+      "60": {
+        "atk": 373,
+        "subStatName": "공격력%",
+        "subStatValue": "22.5%"
+      },
+      "70": {
+        "atk": 435,
+        "subStatName": "공격력%",
+        "subStatValue": "25%"
+      },
+      "80": {
+        "atk": 475,
+        "subStatName": "공격력%",
+        "subStatValue": "25%"
+      }
+    },
+    "stats": {
+      "atk": 475,
+      "subStatName": "공격력%",
+      "subStatValue": "25%"
+    },
+    "skill": {
+      "name": "「팝」",
+      "description": "착용자가 「서포트 스킬」 시전 시, 10초 동안 주는 피해가 18%/21%/24%/27%/30% 증가한다. (20초마다 최대 1회 발동)"
+    },
+    "ascensionMaterials": "비틀 코인x336,000\n잃어버린 속삭임x11\n모호한 속삭임x15\n모순된 속삭임x15\n입문자 드라마 코어x11\n마스터 드라마 코어x15\n콜렉터 드라마 코어x15",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 336000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 11
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 15
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 15
+      },
+      {
+        "name": "입문자 드라마 코어",
+        "count": 11
+      },
+      {
+        "name": "마스터 드라마 코어",
+        "count": 15
+      },
+      {
+        "name": "콜렉터 드라마 코어",
+        "count": 15
+      }
+    ],
+    "description": "Masterpiece made by 「Pop Re-Creator」!",
+    "story": "Masterpiece made by 「Pop Re-Creator」!",
+    "weaponStory": "Masterpiece made by 「Pop Re-Creator」!",
+    "isNotion": true
+  },
+  {
+    "id": "3ca95fae-3dc7-80d3-a32f-c007dc349748",
+    "name": "휴일",
+    "gameId": "nte",
+    "rarity": 5,
+    "rarityGrade": "S",
+    "type": "고체",
+    "releaseVersion": "1.0",
+    "obtain": "",
+    "dedicatedChar": "",
+    "growthStats": "1 : 공격력 **33** / 에너지 충전 효율 **13.2%**\n20 : 공격력 **137** / 에너지 충전 효율 **16.5%**\n30 : 공격력 **203** / 에너지 충전 효율 **19.8%**\n40 : 공격력 **269** / 에너지 충전 효율 **23.1%**\n50 : 공격력 **336** / 에너지 충전 효율 **26.4%**\n60 : 공격력 **402** / 에너지 충전 효율 **29.7%**\n70 : 공격력 **469** / 에너지 충전 효율 **33%**\n80 : 공격력 **512** / 에너지 충전 효율 **33%**",
+    "baseStats": {
+      "1": {
+        "atk": 33,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "13.2%"
+      },
+      "20": {
+        "atk": 137,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "16.5%"
+      },
+      "30": {
+        "atk": 203,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "19.8%"
+      },
+      "40": {
+        "atk": 269,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "23.1%"
+      },
+      "50": {
+        "atk": 336,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "26.4%"
+      },
+      "60": {
+        "atk": 402,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "29.7%"
+      },
+      "70": {
+        "atk": 469,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "33%"
+      },
+      "80": {
+        "atk": 512,
+        "subStatName": "에너지 충전 효율",
+        "subStatValue": "33%"
+      }
+    },
+    "stats": {
+      "atk": 512,
+      "subStatName": "에너지 충전 효율",
+      "subStatValue": "33%"
+    },
+    "skill": {
+      "name": "「일식」",
+      "description": "착용자의 공격력이 30%/35%/40%/45%/50% 상승하고, 변형 아크·「일식」을 사용할 수 있다.\n변형 아크·「일식」: 착용자는 일식의 힘을 빌려 40초간 지속되는 일식을 발동할 수 있으며, 일식이 지속되는 동안, 착용자가 적 유닛을 처치할 때마다 울트에너지를 6 회복한다. (최대 5회 발동 가능, 쿨타임 300초)"
+    },
+    "ascensionMaterials": "비틀 코인x420,000\n잃어버린 속삭임x14\n모호한 속삭임x18\n모순된 속삭임x18\n나선형 선율 조각x14\n나선형 선율 소절x18\n나선형 선율 합주x18",
+    "materials": [
+      {
+        "name": "비틀 코인",
+        "count": 420000
+      },
+      {
+        "name": "잃어버린 속삭임",
+        "count": 14
+      },
+      {
+        "name": "모호한 속삭임",
+        "count": 18
+      },
+      {
+        "name": "모순된 속삭임",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 조각",
+        "count": 14
+      },
+      {
+        "name": "나선형 선율 소절",
+        "count": 18
+      },
+      {
+        "name": "나선형 선율 합주",
+        "count": 18
+      }
+    ],
+    "description": "일식이 말하길, 주 5일제가 있으라.이로써 세상에 주 5일제가 생겼다(일식 특별판).",
+    "story": "일식이 말하길, 주 5일제가 있으라.이로써 세상에 주 5일제가 생겼다(일식 특별판).",
+    "weaponStory": "일식이 말하길, 주 5일제가 있으라.이로써 세상에 주 5일제가 생겼다(일식 특별판).",
+    "isNotion": true
+  }
+]

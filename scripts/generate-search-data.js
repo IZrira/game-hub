@@ -8,6 +8,8 @@ const notionPath = path.join(projectRoot, 'common-hub', 'data', 'notion-data.jso
 const outputPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'notion-search.json');
 const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'home-stats.json');
 const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'weapons.json');
+const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs.json');
+const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -105,6 +107,92 @@ const parseWwWeapon = item => {
   };
 };
 
+const notionNteArcs = notionData
+  .filter(item => item.dbSource === 'nte_arcs' || item.dbSource === 'nte_weapons' || nteArcTypes.has(item.type || ''));
+
+const notionItems = notionData
+  .filter(item =>
+    item.dbSource === 'ww_items'
+    || item.dbSource === 'nte_items'
+    || (!item.dbSource && ['아이템', '소모품', '재료', '육성 아이템', '성급', undefined, null, ''].includes(item.type))
+  )
+  .map(item => ({
+    name: item.name,
+    type: item.type,
+    rarity: item.rarity,
+    content: item.content,
+    skillDescription: item.skillDescription,
+    obtain: item.obtain,
+    fileName: item.fileName,
+    dbSource: item.dbSource
+  }));
+
+const parseNteArc = item => {
+  const baseStats = {};
+  let baseAtk = 395;
+  let subStatName = '방어력';
+  let subStatValue = '52.5%';
+
+  for (const rawLine of (item.growthStats || '').split('\n')) {
+    const line = rawLine.replace(/\*\*/g, '').trim();
+    const match = line.match(/(\d+)\s*:\s*(?:기초\s*)?공격력\s*([\d,]+)\s*(?:\/|\,)\s*([^\d\n]+?)\s*([\d.]+%?)/i);
+    if (!match) continue;
+    const level = Number.parseInt(match[1], 10);
+    const stat = {
+      atk: Number.parseInt(match[2].replace(/,/g, ''), 10),
+      subStatName: match[3].trim(),
+      subStatValue: match[4].trim()
+    };
+    baseStats[level] = stat;
+    if (level === 80 || level === Math.max(...Object.keys(baseStats).map(Number))) {
+      baseAtk = stat.atk;
+      subStatName = stat.subStatName;
+      subStatValue = stat.subStatValue;
+    }
+  }
+
+  const materials = (item.ascensionMaterials || '').split('\n').flatMap(rawLine => {
+    const line = rawLine.trim();
+    if (!line) return [];
+    const separated = line.match(/^([^xX*]+)[xX*]\s*([\d,]+)/);
+    if (separated) {
+      return [{ name: separated[1].trim(), count: Number.parseInt(separated[2].replace(/,/g, ''), 10) || 1 }];
+    }
+    const count = line.match(/[\d,]+$/);
+    const name = line.replace(/[\d,xX*]+$/, '').trim();
+    return name ? [{ name, count: count ? Number.parseInt(count[0].replace(/,/g, ''), 10) : 1 }] : [];
+  });
+
+  const rarityText = String(item.rarity || 'A').toUpperCase();
+  const rarity = rarityText === 'S' || rarityText === '5' ? 5 : rarityText === 'B' || rarityText === '3' ? 3 : 4;
+  const story = item.weaponStory || item.description || item.content || '';
+
+  return {
+    id: item.id,
+    name: item.name,
+    gameId: 'nte',
+    rarity,
+    rarityGrade: rarity === 5 ? 'S' : rarity === 4 ? 'A' : 'B',
+    type: item.type || '결합',
+    releaseVersion: item.releaseVersion || '1.0',
+    obtain: item.obtain || '',
+    dedicatedChar: (item.dedicatedChar || item.exclusive || '').replace(/\*\*/g, '').trim(),
+    growthStats: item.growthStats || '',
+    baseStats,
+    stats: { atk: baseAtk, subStatName, subStatValue },
+    skill: {
+      name: (item.skillName || '아크 스킬').replace(/\*\*/g, '').trim(),
+      description: (item.skillDescription || '').replace(/\*\*/g, '')
+    },
+    ascensionMaterials: item.ascensionMaterials || '',
+    materials,
+    description: story,
+    story,
+    weaponStory: story,
+    isNotion: true
+  };
+};
+
 const searchData = {
   hsrCharacters,
   hsrGuides,
@@ -165,8 +253,7 @@ const searchData = {
       arc: item.arc || '',
       summary: item.briefInfo || ''
     })),
-  nteArcs: notionData
-    .filter(item => item.dbSource === 'nte_arcs' || item.dbSource === 'nte_weapons' || nteArcTypes.has(item.type || ''))
+  nteArcs: notionNteArcs
     .map(item => ({ id: item.id, name: item.name, type: item.type || '' }))
 };
 const wwGuideDisplayCount = searchData.wwGuides.length
@@ -192,6 +279,10 @@ const homeStats = {
 fs.writeFileSync(homeStatsPath, `${JSON.stringify(homeStats, null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(wwWeaponsPath), { recursive: true });
 fs.writeFileSync(wwWeaponsPath, `${JSON.stringify(notionWwWeapons.map(parseWwWeapon), null, 2)}\n`, 'utf8');
+fs.mkdirSync(path.dirname(nteArcsPath), { recursive: true });
+fs.writeFileSync(nteArcsPath, `${JSON.stringify(notionNteArcs.map(parseNteArc), null, 2)}\n`, 'utf8');
+fs.mkdirSync(path.dirname(notionItemsPath), { recursive: true });
+fs.writeFileSync(notionItemsPath, `${JSON.stringify(notionItems, null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);

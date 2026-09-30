@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { Star, Package, Copy, CheckCircle2, Compass, Shield, Zap, Sparkles, User } from 'lucide-react';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { NTE_ARC_DATA } from '../data/arcData';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
@@ -24,8 +24,7 @@ const NTEArcDetail: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
-  const { WEAPON_DATA } = useMemo(() => getGameData('nte'), []);
-  const arc = WEAPON_DATA.find((w: any) => 
+  const arc = NTE_ARC_DATA.find((w) =>
     (w.name || '').normalize('NFC') === targetName || 
     w.id === targetName || 
     t(w.name || '').normalize('NFC') === targetName
