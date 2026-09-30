@@ -7,6 +7,7 @@ const projectRoot = path.resolve(scriptDir, '..');
 const notionPath = path.join(projectRoot, 'common-hub', 'data', 'notion-data.json');
 const outputPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'notion-search.json');
 const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'home-stats.json');
+const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'weapons.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
 
@@ -62,6 +63,46 @@ const excludedWwSources = new Set([
   'ww_items', 'ww_echoes', 'ww_characters', 'ww_guides'
 ]);
 const nteArcTypes = new Set(['고체', '액체', '기체', '결합', '플라즈마']);
+const notionWwWeapons = notionData
+  .filter(item => item.type && wwWeaponTypes.has(item.type) && !excludedWwSources.has(item.dbSource));
+
+const parseWwWeapon = item => {
+  let atk = 500;
+  let subStatName = '공격력';
+  let subStatValue = '36.4%';
+  if (item.growthStats) {
+    const extractStats = level => item.growthStats.match(new RegExp(`${level}\\s*:\\s*(?:기초\\s*)?공격력\\s*\\*?\\*?(\\d+)\\*?\\*?\\s*\\/\\s*([^\\n*]+?)\\s*\\*?\\*?([\\d.]+%?)\\*?\\*?`, 'i'));
+    const levelMatch = extractStats(90) || extractStats(80) || extractStats(70);
+    if (levelMatch) {
+      atk = Number.parseInt(levelMatch[1], 10);
+      subStatName = levelMatch[2].trim();
+      subStatValue = levelMatch[3].trim();
+      if (subStatValue.endsWith('%') && Number.parseFloat(subStatValue) > 100) {
+        subStatValue = `${(Number.parseFloat(subStatValue) / 10).toFixed(1).replace(/\.0$/, '')}%`;
+      }
+    }
+  }
+  return {
+    id: item.id,
+    gameId: 'ww',
+    name: item.name,
+    rarity: Number(item.rarity) || 5,
+    type: wwWeaponTypes.has(item.type) && item.type !== '무기' ? item.type : '직검',
+    releaseVersion: item.releaseVersion || '1.0',
+    obtain: item.obtain || '노션 연동',
+    stats: { atk, subStatName, subStatValue },
+    skill: {
+      name: (item.skillName || '노션 연동 스킬').replace(/\*\*/g, '').trim(),
+      description: (item.skillDescription || '노션에서 연동된 무기 스킬 설명입니다.').trim()
+    },
+    ascensionMaterials: item.ascensionMaterials || '',
+    growthStats: item.growthStats || '',
+    weaponStory: item.weaponStory || '',
+    description: (item.weaponStory || item.content || '노션에서 연동된 무기 스토리입니다.').trim(),
+    isNotion: true,
+    content: item.content || ''
+  };
+};
 
 const searchData = {
   hsrCharacters,
@@ -148,6 +189,8 @@ const homeStats = {
   }
 };
 fs.writeFileSync(homeStatsPath, `${JSON.stringify(homeStats, null, 2)}\n`, 'utf8');
+fs.mkdirSync(path.dirname(wwWeaponsPath), { recursive: true });
+fs.writeFileSync(wwWeaponsPath, `${JSON.stringify(notionWwWeapons.map(parseWwWeapon), null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);

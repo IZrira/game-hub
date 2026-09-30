@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2, Users } from 'lucide-react';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { WW_WEAPON_DATA } from '../data/weaponData';
+import notionSearchData from '../../common-hub/data/search/notion-search.json';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
 import { renderRichText, formatDescriptionByRank, cleanSkillParagraphs } from '../data/formatter';
 import { useTranslation } from 'react-i18next';
 import { Compass, Zap, MapPin, History, Globe, Shield } from 'lucide-react';
-import ItemIcon from '../../common-hub/components/ItemIcon';
-import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
+import WwItemIcon from '../components/WwItemIcon';
 import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+
+const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 
 const LEVEL_STEPS = [1, 20, 40, 50, 60, 70, 80, 90];
 
@@ -361,8 +363,9 @@ const WuwaWeaponDetail = () => {
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
-  // 통합 getGameData를 사용해 중복 제거 및 노션 데이터 반영
-  const { WEAPON_DATA, GUIDES, CHARACTER_DB } = React.useMemo(() => getGameData('ww'), []);
+  const WEAPON_DATA = WW_WEAPON_DATA;
+  const GUIDES = notionSearchData.wwGuides;
+  const CHARACTER_DB = notionSearchData.wwCharacters;
   const weapon = WEAPON_DATA.find(w => w.name.normalize('NFC') === targetName || w.id === targetName || t(w.name).normalize('NFC') === targetName || (w as any).i18nKey === targetName);
 
   const recommendedResonators = React.useMemo(() => {
@@ -486,11 +489,16 @@ const WuwaWeaponDetail = () => {
         ]}
       />
 
-      <ItemDetailModal 
-        itemNameEn={selectedItem || ''} 
-        isOpen={!!selectedItem} 
-        onClose={() => setSelectedItem(null)} 
-      />
+      {selectedItem && (
+        <Suspense fallback={null}>
+          <ItemDetailModal
+            itemNameEn={selectedItem}
+            gameId="ww"
+            isOpen
+            onClose={() => setSelectedItem(null)}
+          />
+        </Suspense>
+      )}
       
       <PageHeader gameId="ww" category={t("무기")} title={t(weapon.name)} />
 
@@ -728,7 +736,7 @@ const WuwaWeaponDetail = () => {
              </div>
              <div className="flex flex-wrap justify-center gap-8 px-4">
                 {getWeaponMaterials(weapon).map((m, i) => (
-                  <ItemIcon 
+                  <WwItemIcon
                     key={i} 
                     name={m.name} 
                     count={m.name === "클램 코인" ? m.count.toLocaleString() : String(m.count)} 
