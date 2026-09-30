@@ -1,5 +1,5 @@
 
-import React, { useState, useMemo, useEffect, useRef } from 'react';
+import React, { Suspense, lazy, useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
 import { 
   Star, 
@@ -26,8 +26,7 @@ import {
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
-import ItemIcon from '../../common-hub/components/ItemIcon';
-import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
+import HsrItemIcon from '../components/HsrItemIcon';
 import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
@@ -41,6 +40,8 @@ import { getHsrGameData } from '../data/gameData';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
+
+const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -564,11 +565,15 @@ const CharacterDetail: React.FC = () => {
         ]}
       />
       {/* Item Modal */}
-      <ItemDetailModal 
-        itemNameEn={selectedItem || ''} 
-        isOpen={!!selectedItem} 
-        onClose={() => setSelectedItem(null)} 
-      />
+      {selectedItem && (
+        <Suspense fallback={null}>
+          <ItemDetailModal
+            itemNameEn={selectedItem}
+            isOpen
+            onClose={() => setSelectedItem(null)}
+          />
+        </Suspense>
+      )}
 
       {/* Tooltip / Popover */}
       {tooltip && (
@@ -824,7 +829,7 @@ const CharacterDetail: React.FC = () => {
                  </button>
                </div>
                <div className="flex flex-wrap justify-center gap-8 px-4">
-                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<HsrItemIcon key={i} name={m.name} count={m.count} rarityOverride={m.rarity} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
 
                </div>
             </div>
@@ -834,7 +839,7 @@ const CharacterDetail: React.FC = () => {
                  <span className="text-2xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span>
                </div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start justify-center">
-                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.traces?.map((m: any, i: number) => (<HsrItemIcon key={i} name={m.name} count={m.count} rarityOverride={m.rarity} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
                   <div className="w-8 shrink-0" />
                </div>
             </div>

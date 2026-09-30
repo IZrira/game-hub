@@ -5,7 +5,7 @@ import { ARCHIVE_DATA, LIGHTCONE_DB } from '../../common-hub/data/games';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
-import ItemIcon from '../../common-hub/components/ItemIcon';
+import HsrItemIcon from '../components/HsrItemIcon';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 
@@ -317,7 +317,7 @@ const LightConeDetail: React.FC = () => {
                   {currentMaterials.length > 0 ? (
                     currentMaterials.map((m, i) => (
                       <div key={i} className="flex flex-col items-center gap-2 group transition-transform hover:scale-105">
-                        <ItemIcon name={m.name} count={m.count} />
+                        <HsrItemIcon name={m.name} count={m.count} rarityOverride={m.rarity} />
                       </div>
                     ))
                   ) : (
