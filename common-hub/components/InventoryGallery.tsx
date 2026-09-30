@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { Search } from 'lucide-react';
 import { getItemMetaDB, FILTER_CATEGORIES, getItemUrl, getAutoRarity, categorizeItem } from '../data/items';
-import { getGameData } from '../data/dataManager';
 import { useTranslation } from 'react-i18next';
 import { ItemPremiumCard } from './GalleryCards';
 
@@ -11,8 +10,7 @@ interface InventoryGalleryProps {
 }
 
 const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', customCategories }) => {
-  const { t, i18n } = useTranslation();
-  const currentLang = i18n.language || 'ko';
+  const { t } = useTranslation();
   const [items, setItems] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   
@@ -37,22 +35,23 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
   useEffect(() => {
     const loadItems = () => {
       try {
-        const gameData = getGameData(gameId);
-        const db = gameData.INVENTORY_DB || {}; // 노션 연동 데이터가 합쳐진 DB 사용
+        const db = getItemMetaDB();
         
-        const processed = Object.entries(db).map(([name, meta]) => {
+        const processed = Object.entries(db).flatMap(([name, meta]) => {
           const itemMeta = meta as any;
+          const itemGameId = itemMeta.gameId || 'hsr';
+          if (itemGameId !== gameId) return [];
           const rarity = itemMeta.rarity || getAutoRarity(name);
-          return {
+          return [{
             name,
-            url: getItemUrl(name, itemMeta.gameId || gameId, itemMeta.fileName) || '',
+            url: getItemUrl(name, itemGameId, itemMeta.fileName) || '',
             rarity,
             desc: itemMeta.desc || itemMeta.description || itemMeta.content || "상세 정보가 없습니다.",
             type: itemMeta.type || itemMeta.category || "미분류",
             sources: itemMeta.sources || (itemMeta.source ? (typeof itemMeta.source === 'string' ? itemMeta.source.split(',').map((s:string) => s.trim()) : itemMeta.source) : ["게임 내 확인"]),
-            gameId: itemMeta.gameId || 'hsr',
+            gameId: itemGameId,
             itemAttribute: itemMeta.itemAttribute // 남여 분리 등 특수 속성
-          };
+          }];
         });
         processed.sort((a, b) => b.rarity - a.rarity || a.name.localeCompare(b.name));
         setItems(processed);
@@ -63,7 +62,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
       }
     };
     loadItems();
-  }, []);
+  }, [gameId]);
 
   const filteredItems = useMemo(() => {
     return items.filter(item => {

@@ -2,7 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router';
 import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter, Star, Sparkles, ArrowRight, Boxes, CarFront, Gauge, Timer, Wrench, MapPin } from 'lucide-react';
 import { ARCHIVE_DATA } from '../../common-hub/data/archive';
-import { getGameData } from '../../common-hub/data/dataManager';
+import { getItemMetaDB } from '../../common-hub/data/items';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
@@ -15,6 +15,12 @@ import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-
 import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
 import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
+import { NTE_ARC_DATA } from '../data/arcData';
+import { NTE_CHARACTER_DATA } from '../data/characterData';
+
+const NTE_INVENTORY_DB = Object.fromEntries(
+  Object.entries(getItemMetaDB()).filter(([, item]) => item.gameId === 'nte')
+);
 
 const GalleryNTE: React.FC = () => {
   const gameId = 'nte';
@@ -81,7 +87,10 @@ const GalleryNTE: React.FC = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const { CHARACTER_DB, WEAPON_DB, ECHO_DB, INVENTORY_DB, GUIDES: NTE_CHARACTER_GUIDES } = useMemo(() => getGameData(gameId), [gameId]);
+  const CHARACTER_DB = NTE_CHARACTER_DATA;
+  const WEAPON_DB = NTE_ARC_DATA;
+  const ECHO_DB: any[] = [];
+  const INVENTORY_DB = NTE_INVENTORY_DB;
   const [gameNotices, setGameNotices] = useState<Notice[]>([]);
 
   const game = useMemo(() => ARCHIVE_DATA?.games?.find(g => g.id === gameId) || null, []);
