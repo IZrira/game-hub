@@ -5148,6 +5148,85 @@
         "specialNote": "",
         "drops": []
       }
+    },
+    {
+      "id": "3eb95fae-3dc7-8060-a2c4-e43016bc8d6f",
+      "name": "공명의 메아리 · 태초의 여우의 별자리 · 천연",
+      "cost": 4,
+      "sonataSets": [
+        "꿈으로 세상을 비추는 마음",
+        "거울 그림자에 번개가 스치는 찰나"
+      ],
+      "folderName": "공명의 메아리 · 태초의 여우의 별자리 · 천연",
+      "cooldown": 0,
+      "description": "에코 어빌리티를 사용하여 적에게 4단 27.36%와 1단 164.16%의 전도 피해를 입힌다.장착 캐릭터가 여우의 별자리일 경우, 에코 어빌리티가 변경되어 더 넓은 범위의 적에게 최대 5단 8.20%와 1단 232.56%의 전도 피해를 입힌다.메인 슬롯에 해당 에코 어빌리티를 장착 시, 자신의 전도 피해 보너스가 10.00% 증가된다. 자신이 목표에게 「전자 효과」 추가 후, 혹은 자신이 합일을 획득하거나 합일에 대응할 시, 자신의 전도 피해 보너스가 추가로 10.00% 증가되고, 30초간 지속된다.스킬 쿨타임: 20초",
+      "hasPhantom": false,
+      "enemyInfo": {
+        "originalName": "",
+        "grade": "해일급",
+        "description": "",
+        "specialNote": "",
+        "drops": []
+      }
+    },
+    {
+      "id": "3eb95fae-3dc7-8030-b5ee-c2306856d454",
+      "name": "기탄괴",
+      "cost": 1,
+      "sonataSets": [
+        "꿈으로 세상을 비추는 마음"
+      ],
+      "folderName": "기탄괴",
+      "cooldown": 0,
+      "description": "에코 어빌리티를 사용하여 기탄괴를 소환하여 적을 위협하고 1단 25.92%의 응결 피해를 입힌 이후 2단 12.96%와 1단 77.76%의 응결 피해를 입힌다.스킬 쿨타임: 8초",
+      "hasPhantom": false,
+      "enemyInfo": {
+        "originalName": "",
+        "grade": "경파급",
+        "description": "",
+        "specialNote": "",
+        "drops": []
+      }
+    },
+    {
+      "id": "3eb95fae-3dc7-807f-82dd-e3c12f74f1be",
+      "name": "절식백",
+      "cost": 3,
+      "sonataSets": [
+        "꿈으로 세상을 비추는 마음",
+        "거울 그림자에 번개가 스치는 찰나"
+      ],
+      "folderName": "절식백",
+      "cooldown": 0,
+      "description": "에코 어빌리티를 사용하여 절식백을 소환해 적에게 3단 91.18%의 전도 피해를 입힌다.이후 15초 내에 자신이 반주 스킬을 발동하면, 다음 변주 스킬로 등장하는 캐릭터의 전도 피해 보너스를 12.00% 증가시키고, 15초간 지속된다.스킬 쿨타임: 20초",
+      "hasPhantom": false,
+      "enemyInfo": {
+        "originalName": "",
+        "grade": "거랑급",
+        "description": "",
+        "specialNote": "",
+        "drops": []
+      }
+    },
+    {
+      "id": "3eb95fae-3dc7-8015-9642-f9cdae531e6d",
+      "name": "해형살",
+      "cost": 3,
+      "sonataSets": [
+        "꿈으로 세상을 비추는 마음",
+        "추억에 붉게 물든 꽃"
+      ],
+      "folderName": "해형살",
+      "cooldown": 0,
+      "description": "에코 어빌리티를 사용하여 해형살을 소환해 적에게 273.60%의 용융 피해를 입힌다.메인 슬롯에 해당 에코 어빌리티를 장착 시, 자신의 공명 효율이 10.00% 증가된다.스킬 쿨타임: 20초",
+      "hasPhantom": false,
+      "enemyInfo": {
+        "originalName": "",
+        "grade": "거랑급",
+        "description": "",
+        "specialNote": "",
+        "drops": []
+      }
     }
   ],
   "nteCharacters": [

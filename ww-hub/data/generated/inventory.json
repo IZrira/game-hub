@@ -1496,6 +1496,375 @@
     "isNotion": true,
     "itemAttribute": ""
   },
+  "감정의 상자": {
+    "id": "3eb95fae-3dc7-80fb-8b52-d107d30f0666",
+    "name": "감정의 상자",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "조각을 모두 맞춰 완성한 감정의 상자. 마음의 열쇠 우물에 넣으면 그 안으로 들어갈 수 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "감정의 상자",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "감정의 상자 조각 · 금실 향낭": {
+    "id": "3eb95fae-3dc7-80dc-a484-d7b553750b6c",
+    "name": "감정의 상자 조각 · 금실 향낭",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "감정의 상자 속 주파수가 응결되어 형성된 실체. 향낭의 모습을 띠고 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "감정의 상자 조각 · 금실 향낭",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "감정의 상자 조각 · 월씨네 찹쌀떡": {
+    "id": "3eb95fae-3dc7-8096-aa79-c8dcc542ad4a",
+    "name": "감정의 상자 조각 · 월씨네 찹쌀떡",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "감정의 상자 속 주파수가 응결되어 형성된 실체. 찹쌀떡의 모습을 띠고 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "감정의 상자 조각 · 월씨네 찹쌀떡",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "감정의 상자 조각 · 청옥 피리": {
+    "id": "3eb95fae-3dc7-800f-ad62-e9fd966de724",
+    "name": "감정의 상자 조각 · 청옥 피리",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "감정의 상자 속 주파수가 응결되어 형성된 실체. 피리의 모습을 띠고 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "감정의 상자 조각 · 청옥 피리",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "금묘쇄": {
+    "id": "3eb95fae-3dc7-80d4-a70b-e93f24cccb5d",
+    "name": "금묘쇄",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "쇄명이 당신에게 건넨 신물. 상황이 불리하게 흘러갈 때 위험을 미리 알려 준다고 한다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "금묘쇄",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "숙명의 거울": {
+    "id": "3eb95fae-3dc7-8018-9985-f81cfd206223",
+    "name": "숙명의 거울",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "여우의 별자리가 자신의 주파수로 제작해 수호신의 권능 일부를 봉인한 신물이다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "숙명의 거울",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "심벽음": {
+    "id": "3eb95fae-3dc7-80f7-8553-c128b9a45f45",
+    "name": "심벽음",
+    "type": "요리",
+    "rarity": 3,
+    "desc": "파티 내 모든 공명자의 공명 효율이 20% 증가되고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "심벽음",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "악장의 흔적이 남은 그루터기": {
+    "id": "3eb95fae-3dc7-80a0-9912-d4aba3a87e48",
+    "name": "악장의 흔적이 남은 그루터기",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "desc": "캐릭터 돌파에 사용되는 재료",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "군생지 채집 획득",
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "악장의 흔적이 남은 그루터기",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "염원을 기울인 꽃": {
+    "id": "3eb95fae-3dc7-8082-b863-de4c394d1db2",
+    "name": "염원을 기울인 꽃",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "desc": "캐릭터 돌파에 사용되는 재료",
+    "sources": [
+      "「새알심 용사들의 난투극」 이벤트에서 획득",
+      "물자 상자 오픈으로 획득",
+      "군생지 채집 획득",
+      "야외 채집 획득",
+      "화서원 약방에서 구매"
+    ],
+    "folderName": "염원을 기울인 꽃",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "영청궐": {
+    "id": "3eb95fae-3dc7-805d-aaea-ff1a7cbe1e33",
+    "name": "영청궐",
+    "type": "요리",
+    "rarity": 5,
+    "desc": "파티 내 모든 공명자의 치료 효과 보너스가 55% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "영청궐",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "운산의 풍경을 품은 자리": {
+    "id": "3eb95fae-3dc7-80a8-af43-d3da0f4a3ab8",
+    "name": "운산의 풍경을 품은 자리",
+    "type": "재료",
+    "rarity": 5,
+    "desc": "장착 후 필드에서 「운산의 풍경을 품은 자리」 소환 가능",
+    "sources": [
+      "「달빛이 비추는 길」 이벤트에서 획득"
+    ],
+    "folderName": "운산의 풍경을 품은 자리",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "제천감의 초청장": {
+    "id": "3eb95fae-3dc7-809c-9f9a-ffdaa9f16075",
+    "name": "제천감의 초청장",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "desc": "초대장 한 장. 봉투를 보고서는 누가 보낸 것인지 확인할 수 없다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "제천감의 초청장",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "직정의 비밀 자물쇠": {
+    "id": "3eb95fae-3dc7-808f-a583-cc4d0af31c6c",
+    "name": "직정의 비밀 자물쇠",
+    "type": "이벤트 아이템",
+    "rarity": 4,
+    "desc": "직정 사람들이 사용하는 저장 도구 중 하나로, 이를 통해 「상자 속에서 펼쳐진 꿈」 이벤트에서 진행도를 쌓을 수 있다\n금빛과 백색이 어우러진 작은 함 안에 수많은 비책이 담겨 있다. 직정은 전적과 도보, 기억을 모두 그 안에 보관하며, 반고 단말기로 봉인된 정보를 열람할 수 있다. 손바닥만한 작은 물건이지만, 그 안에는 방대한 지식이 담겨 있다",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "직정의 비밀 자물쇠",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 개화(뜨거운 마음)": {
+    "id": "3eb95fae-3dc7-80bf-bf5f-d5c6284b71e6",
+    "name": "천 겹의 꽃잎 · 개화(뜨거운 마음)",
+    "type": "재료",
+    "rarity": 4,
+    "desc": "천라호영에게 제출하여 뜨거운 마음의 안정치 **500** 증가",
+    "sources": [
+      "정보 없음"
+    ],
+    "folderName": "천 겹의 꽃잎 · 개화(뜨거운 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 개화(차가운 마음)": {
+    "id": "3eb95fae-3dc7-8071-924b-f8292c09cb90",
+    "name": "천 겹의 꽃잎 · 개화(차가운 마음)",
+    "type": "재료",
+    "rarity": 4,
+    "desc": "천라호영에게 제출하여 차가운 마음의 안정치 **500** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 개화(차가운 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 개화(행복한 마음)": {
+    "id": "3eb95fae-3dc7-803c-a93f-dd61b7006896",
+    "name": "천 겹의 꽃잎 · 개화(행복한 마음)",
+    "type": "재료",
+    "rarity": 4,
+    "desc": "천라호영에게 제출하여 행복한 마음의 안정치 **500** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 개화(행복한 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 만개(뜨거운 마음)": {
+    "id": "3eb95fae-3dc7-8003-a1c4-cddc06383f54",
+    "name": "천 겹의 꽃잎 · 만개(뜨거운 마음)",
+    "type": "재료",
+    "rarity": 5,
+    "desc": "천라호영에게 제출하여 뜨거운 마음의 안정치 **800** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 만개(뜨거운 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 만개(차가운 마음)": {
+    "id": "3eb95fae-3dc7-8064-9ce5-ed7ab650bddc",
+    "name": "천 겹의 꽃잎 · 만개(차가운 마음)",
+    "type": "재료",
+    "rarity": 5,
+    "desc": "천라호영에게 제출하여 차가운 마음의 안정치 **800** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 만개(차가운 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 만개(행복한 마음)": {
+    "id": "3eb95fae-3dc7-80c2-a031-f97163a19ae4",
+    "name": "천 겹의 꽃잎 · 만개(행복한 마음)",
+    "type": "재료",
+    "rarity": 5,
+    "desc": "천라호영에게 제출하여 행복한 마음의 안정치 **800** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 만개(행복한 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 봉오리(뜨거운 마음)": {
+    "id": "3eb95fae-3dc7-80f4-845a-fb487a52ae74",
+    "name": "천 겹의 꽃잎 · 봉오리(뜨거운 마음)",
+    "type": "재료",
+    "rarity": 3,
+    "desc": "천라호영에게 제출하여 뜨거운 마음의 안정치 **200** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 봉오리(뜨거운 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 봉오리(차가운 마음)": {
+    "id": "3eb95fae-3dc7-8072-b6b8-fbed3800aaaa",
+    "name": "천 겹의 꽃잎 · 봉오리(차가운 마음)",
+    "type": "재료",
+    "rarity": 3,
+    "desc": "천라호영에게 제출하여 차가운 마음의 안정치 **200** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 봉오리(차가운 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천 겹의 꽃잎 · 봉오리(행복한 마음)": {
+    "id": "3eb95fae-3dc7-8055-803d-ef9d16e59d53",
+    "name": "천 겹의 꽃잎 · 봉오리(행복한 마음)",
+    "type": "재료",
+    "rarity": 3,
+    "desc": "천라호영에게 제출하여 행복한 마음의 안정치 **200** 증가",
+    "sources": [
+      "몽추천라에서 탐색하며 수집"
+    ],
+    "folderName": "천 겹의 꽃잎 · 봉오리(행복한 마음)",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "천연륜 잔해": {
+    "id": "3eb95fae-3dc7-8023-ba25-cbaba5ce2eb0",
+    "name": "천연륜 잔해",
+    "type": "스킬 업그레이드 재료",
+    "rarity": 4,
+    "desc": "천연 상태인 태초의 여우의 별자리 · 연율 형태의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "sources": [
+      "물자 상자 오픈으로 획득",
+      "태초의 여우의 별자리 · 천연 도전에서 획득",
+      "태초의 여우의 별자리 · 천연 - 조기 오픈에서 획득"
+    ],
+    "folderName": "천연륜 잔해",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
+  "화정추억": {
+    "id": "3eb95fae-3dc7-8048-814c-f237d6d65d5a",
+    "name": "화정추억",
+    "type": "요리",
+    "rarity": 4,
+    "desc": "파티 내 모든 공명자의 강공격 피해 보너스가 44% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "sources": [
+      "요리 획득"
+    ],
+    "folderName": "화정추억",
+    "fileName": "",
+    "gameId": "ww",
+    "isNotion": true,
+    "itemAttribute": ""
+  },
   "「길 모퉁이의 만남」 초콜릿 박스": {
     "id": "corner_meeting_chocolate_box",
     "name": "「길 모퉁이의 만남」 초콜릿 박스",
