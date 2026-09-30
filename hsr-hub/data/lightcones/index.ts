@@ -8,7 +8,7 @@ import { preservationLightcones } from './preservation';
 import { elationLightcones } from './elation';
 import { remembranceLightcones } from './remembrance';
 
-export const SORTED_LIGHTCONE_DATA = [
+const ALL_LIGHTCONE_DATA = [
   ...abundanceLightcones,
   ...destructionLightcones,
   ...eruditionLightcones,
@@ -19,3 +19,8 @@ export const SORTED_LIGHTCONE_DATA = [
   ...elationLightcones,
   ...remembranceLightcones
 ];
+
+// 동일 광추가 임시 데이터와 완성 데이터로 중복 등록되더라도 마지막 완성본만 노출한다.
+export const SORTED_LIGHTCONE_DATA = Array.from(
+  new Map(ALL_LIGHTCONE_DATA.map(lightcone => [lightcone.name, lightcone])).values()
+);

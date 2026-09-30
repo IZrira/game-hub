@@ -35,7 +35,7 @@ const hsrCharacters = readSourceFiles(hsrCharacterDir).map(file => {
 }).filter(item => item.id && item.name);
 
 const lightconeDir = path.join(projectRoot, 'hsr-hub', 'data', 'lightcones');
-const hsrLightcones = readSourceFiles(lightconeDir).flatMap(file => {
+const parsedHsrLightcones = readSourceFiles(lightconeDir).flatMap(file => {
   const lines = fs.readFileSync(file, 'utf8').split(/\r?\n/);
   const records = [];
   for (let index = 0; index < lines.length; index += 1) {
@@ -48,6 +48,7 @@ const hsrLightcones = readSourceFiles(lightconeDir).flatMap(file => {
   }
   return records;
 });
+const hsrLightcones = Array.from(new Map(parsedHsrLightcones.map(lightcone => [lightcone.name, lightcone])).values());
 
 const guideDir = path.join(projectRoot, 'hsr-hub', 'data', 'guides');
 const hsrGuides = readSourceFiles(guideDir).map(file => {
