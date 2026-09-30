@@ -65,7 +65,7 @@ const assembleItemDB = (): Record<string, any> => {
             name: itemName,
             type: item.type || targetDict[itemName]?.type || '기타',
             rarity: item.rarity || targetDict[itemName]?.rarity || 3,
-            desc: item.content || item.skillDescription || targetDict[itemName]?.desc || '',
+            desc: item.content || item.skillDescription || item.briefInfo || targetDict[itemName]?.desc || '',
             sources: item.obtain ? item.obtain.split(/[\n,]+/).map((s: string) => s.trim()).filter(Boolean) : targetDict[itemName]?.sources || ["정보 없음"],
             folderName: itemName,
             fileName: item.fileName || targetDict[itemName]?.fileName || '',

@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { ChevronLeft, Star, Package, Info, MapPin } from 'lucide-react';
+import { ChevronLeft, Star, Info, MapPin } from 'lucide-react';
 import { getItemMeta, getAutoRarity, getItemUrl, REVERSE_ITEM_MAP, getCleanItemName } from '../data/items';
-import { getGameData } from '../data/dataManager';
 
 const getRarityTheme = (r: number) => {
   switch (r) {
@@ -25,13 +24,10 @@ export default function ItemDetail() {
     window.scrollTo(0, 0);
   }, []);
 
-  const gameData = getGameData(gameId);
-  const db = gameData?.INVENTORY_DB || {};
-
   const koName = REVERSE_ITEM_MAP[itemName || ''] || itemName || '';
-  const itemData = db[koName] || getItemMeta(koName);
+  const itemData = getItemMeta(koName);
 
-  if (!itemData && !getItemMeta(koName)) {
+  if (!itemData) {
     return (
       <div className="min-h-screen pt-32 pb-20 px-4 flex flex-col items-center justify-center">
         <h1 className="text-2xl text-white font-bold mb-4">{t("아이템을 찾을 수 없습니다.")}</h1>
@@ -47,8 +43,8 @@ export default function ItemDetail() {
   }
 
   const rawDisplayName = t(koName, { keySeparator: false, nsSeparator: false });
-  const description = itemData?.desc || itemData?.description || itemData?.content
-    ? t(`desc_${koName}`, { defaultValue: t(itemData.desc || itemData.description || itemData.content, { defaultValue: itemData.desc || itemData.description || itemData.content, keySeparator: false, nsSeparator: false }), keySeparator: false, nsSeparator: false }) 
+  const description = itemData?.desc
+    ? t(`desc_${koName}`, { defaultValue: t(itemData.desc, { defaultValue: itemData.desc, keySeparator: false, nsSeparator: false }), keySeparator: false, nsSeparator: false })
     : t("아카이브에 아직 상세 정보가 등록되지 않은 아이템입니다.", { keySeparator: false, nsSeparator: false });
     
   const isEn = i18n.language.startsWith('en');
@@ -59,7 +55,7 @@ export default function ItemDetail() {
 
   const rarity = itemData?.rarity || getAutoRarity(koName);
   const itemType = itemData?.type || "미분류";
-  const url = itemData?.url || getItemUrl(koName, itemData?.gameId || gameId || 'hsr', itemData?.fileName);
+  const url = getItemUrl(koName, itemData?.gameId || gameId || 'hsr', itemData?.fileName);
 
   const theme = getRarityTheme(rarity);
 

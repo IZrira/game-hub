@@ -122,6 +122,7 @@ const notionItems = notionData
     rarity: item.rarity,
     content: item.content,
     skillDescription: item.skillDescription,
+    briefInfo: item.briefInfo,
     obtain: item.obtain,
     fileName: item.fileName,
     dbSource: item.dbSource
