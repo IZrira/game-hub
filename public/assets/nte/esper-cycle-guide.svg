@@ -55,29 +55,29 @@
 
     <!-- nodes -->
     <g filter="url(#shadow)">
-      <circle cx="600" cy="160" r="78" fill="#e9edf4" stroke="#fff" stroke-width="5"/>
-      <text class="node-label" x="600" y="153" fill="#171923">빛</text>
-      <text class="node-sub" x="600" y="183" fill="#454b59">COSMOS</text>
+      <circle cx="600" cy="160" r="78" fill="#151925" stroke="#e8f7ef" stroke-width="5"/>
+      <image x="550" y="110" width="100" height="100" href="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/common/type/%EB%B9%9B.webp"/>
+      <text class="node-label" x="600" y="222" font-size="24">빛</text>
 
-      <circle cx="842" cy="300" r="78" fill="#32b874" stroke="#7aefa9" stroke-width="5"/>
-      <text class="node-label" x="842" y="293">령</text>
-      <text class="node-sub" x="842" y="323">ANIMA</text>
+      <circle cx="842" cy="300" r="78" fill="#151925" stroke="#54dbc1" stroke-width="5"/>
+      <image x="792" y="250" width="100" height="100" href="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/common/type/%EB%A0%B9.webp"/>
+      <text class="node-label" x="842" y="362" font-size="24">령</text>
 
-      <circle cx="842" cy="520" r="78" fill="#d75a42" stroke="#ff987f" stroke-width="5"/>
-      <text class="node-label" x="842" y="513">주</text>
-      <text class="node-sub" x="842" y="543">INCANTATION</text>
+      <circle cx="842" cy="520" r="78" fill="#151925" stroke="#fb416f" stroke-width="5"/>
+      <image x="792" y="470" width="100" height="100" href="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/common/type/%EC%A3%BC.webp"/>
+      <text class="node-label" x="842" y="582" font-size="24">주</text>
 
-      <circle cx="600" cy="660" r="78" fill="#7137a5" stroke="#b778ee" stroke-width="5"/>
-      <text class="node-label" x="600" y="653">암</text>
-      <text class="node-sub" x="600" y="683">CHAOS</text>
+      <circle cx="600" cy="660" r="78" fill="#151925" stroke="#9b8cff" stroke-width="5"/>
+      <image x="550" y="610" width="100" height="100" href="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/common/type/%EC%95%94.webp"/>
+      <text class="node-label" x="600" y="722" font-size="24">암</text>
 
-      <circle cx="358" cy="520" r="78" fill="#2872bd" stroke="#75b8f7" stroke-width="5"/>
-      <text class="node-label" x="358" y="513">상</text>
-      <text class="node-sub" x="358" y="543">PSYCHE</text>
+      <circle cx="358" cy="520" r="78" fill="#151925" stroke="#f7dc3e" stroke-width="5"/>
+      <image x="308" y="470" width="100" height="100" href="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/common/type/%EC%83%81.webp"/>
+      <text class="node-label" x="358" y="582" font-size="24">상</text>
 
-      <circle cx="358" cy="300" r="78" fill="#b98725" stroke="#f1c65c" stroke-width="5"/>
-      <text class="node-label" x="358" y="293">혼</text>
-      <text class="node-sub" x="358" y="323">LAKSHANA</text>
+      <circle cx="358" cy="300" r="78" fill="#151925" stroke="#5ec7ee" stroke-width="5"/>
+      <image x="308" y="250" width="100" height="100" href="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/common/type/%ED%98%BC.webp"/>
+      <text class="node-label" x="358" y="362" font-size="24">혼</text>
     </g>
 
     <!-- composite panels -->
