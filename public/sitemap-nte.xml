@@ -784,6 +784,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/nte/weapon/%EC%A3%84%EC%99%80%20%EB%B2%8C</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/nte/weapon/%EC%A3%84%EC%99%80%20%EB%B2%8C?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/nte/weapon/%EC%A3%84%EC%99%80%20%EB%B2%8C?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/nte/weapon/%EC%A3%84%EC%99%80%20%EB%B2%8C"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/arcs/%EC%A3%84%EC%99%80%20%EB%B2%8C.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/nte/character/%EB%A0%88%EC%9D%B4%EB%B8%90</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
