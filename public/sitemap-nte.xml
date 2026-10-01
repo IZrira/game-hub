@@ -784,6 +784,17 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/nte/character/%EB%A0%88%EC%9D%B4%EB%B8%90</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://riragamehub.com/gallery/nte/character/%EB%A0%88%EC%9D%B4%EB%B8%90?lng=ko"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://riragamehub.com/gallery/nte/character/%EB%A0%88%EC%9D%B4%EB%B8%90?lng=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://riragamehub.com/gallery/nte/character/%EB%A0%88%EC%9D%B4%EB%B8%90"/>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/%EB%A0%88%EC%9D%B4%EB%B8%90/%EB%A0%88%EC%9D%B4%EB%B8%90.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/nte/parties</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
