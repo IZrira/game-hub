@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowLeft, CalendarDays, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, CalendarDays, ShieldCheck } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import { Link, useParams } from 'react-router';
 import SEO from '../components/SEO';
@@ -27,7 +27,6 @@ const GuideArticlePage: React.FC = () => {
       <article className="min-w-0">
         <header className="rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/10 via-[#121212] to-transparent p-7 sm:p-10"><div className="flex items-center gap-2 text-violet-300"><ShieldCheck size={17} /><span className="text-[10px] font-black uppercase tracking-[0.25em]">Rira Reviewed Guide</span></div><h1 className="mt-5 text-3xl font-black leading-tight sm:text-5xl">{article.title}</h1><p className="mt-5 max-w-3xl text-sm leading-7 text-gray-300">{article.excerpt}</p><div className="mt-6 flex flex-wrap gap-3 text-[11px] font-bold text-gray-500"><span className="flex items-center gap-2"><CalendarDays size={13} /> 작성 {article.publishedAt}</span><span>최종 검수 {article.reviewedAt}</span><span>{article.applicableVersion}</span></div></header>
         <div className="prose prose-invert prose-violet mt-8 max-w-none rounded-[32px] border border-white/10 bg-[#121212] p-7 prose-headings:font-black prose-h2:mt-12 prose-h2:border-b prose-h2:border-white/10 prose-h2:pb-4 prose-p:leading-8 prose-p:text-gray-300 prose-li:leading-7 prose-li:text-gray-300 prose-a:text-violet-300 sm:p-10"><ReactMarkdown>{article.content}</ReactMarkdown></div>
-        <section className="mt-8 rounded-3xl border border-white/10 bg-white/[0.025] p-6"><h2 className="font-black">검증 출처</h2><p className="mt-2 text-xs leading-5 text-gray-500">출처는 사실 확인에 사용했으며, 선택 기준과 설명 구성은 Rira의 편집 내용입니다.</p><div className="mt-4 flex flex-wrap gap-3">{article.sources.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-violet-300 hover:text-white">{source.label}<ExternalLink size={12} /></a>)}</div></section>
         <Link to={`/gallery/${gameId}/guides`} className="mt-8 inline-flex items-center gap-2 text-xs font-black text-gray-400 hover:text-white"><ArrowLeft size={14} /> {gameLabel} 공략 목록</Link>
       </article>
     </main>
