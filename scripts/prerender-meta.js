@@ -2424,6 +2424,39 @@ function runPrerender() {
     count++;
   });
 
+  // Withdrawn blog URLs can remain in Google's crawl queue after editorial
+  // removal. Generate an explicit noindex document so the SPA fallback does
+  // not make these URLs look like duplicate copies of the home page.
+  const withdrawnBlogPosts = [
+    'hsr-firefly-build-guide',
+    'ww-shorekeeper-guide',
+    'hsr-4-3-meta-analysis'
+  ];
+
+  withdrawnBlogPosts.forEach(slug => {
+    const routePath = `/blog/${slug}`;
+    const targetDir = path.join(DIST_DIR, 'blog', slug);
+    fs.mkdirSync(targetDir, { recursive: true });
+
+    let withdrawnHtml = baseHtml
+      .replace(/<title>.*?<\/title>/s, '<title>검수 종료된 공략 | RIRA ARCHIVE</title>')
+      .replace(/<meta name="description" content=".*?"\s*\/>/, '<meta name="description" content="사실 검수 기준을 충족하지 못해 공개가 종료된 공략입니다." />')
+      .replace(/\s*<link\s+rel=["']canonical["'][^>]*>\s*/gi, '\n')
+      .replace('</head>', '\n    <meta name="robots" content="noindex, nofollow" />\n  </head>');
+
+    const startMarker = '<!-- PRERENDER_CONTENT_START -->';
+    const endMarker = '<!-- PRERENDER_CONTENT_END -->';
+    const startIndex = withdrawnHtml.indexOf(startMarker);
+    const endIndex = withdrawnHtml.indexOf(endMarker);
+    if (startIndex !== -1 && endIndex !== -1) {
+      const content = `<main data-prerendered="true"><article><h1>검수 종료된 공략</h1><p>이 글은 사실 검수 기준을 충족하지 못해 공개가 종료되었습니다.</p></article></main>`;
+      withdrawnHtml = `${withdrawnHtml.slice(0, startIndex + startMarker.length)}\n${content}\n    ${withdrawnHtml.slice(endIndex)}`;
+    }
+
+    fs.writeFileSync(path.join(targetDir, 'index.html'), withdrawnHtml, 'utf8');
+    count++;
+  });
+
   // 6-1. Hub-specific reviewed guides
   const guideArticles = fs.existsSync(GUIDE_ARTICLES_FILE)
     ? JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8')).filter(article => article.status === 'published')

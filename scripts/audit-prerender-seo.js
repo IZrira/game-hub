@@ -48,6 +48,26 @@ const routes = SITEMAP_FILES.flatMap((fileName) => {
     .map((match) => decodeURI(match[1] || '/'));
 });
 
+const hsrHubPath = path.join(DIST_DIR, 'gallery', 'hsr', 'index.html');
+if (!fs.existsSync(hsrHubPath)) {
+  throw new Error('HSR hub prerendered index.html missing');
+}
+
+const hsrHubHtml = fs.readFileSync(hsrHubPath, 'utf8');
+const hsrHubLinks = new Set(
+  [...hsrHubHtml.matchAll(/<a\s+[^>]*href="([^"]+)"/g)]
+    .map((match) => decodeURI(match[1]))
+);
+const hsrDetailRoutes = routes.filter((routePath) => (
+  /^\/gallery\/hsr\/character\/[^/]+(?:\/guide)?$/.test(routePath)
+  || /^\/gallery\/hsr\/lightcone\/[^/]+$/.test(routePath)
+));
+const missingHsrHubLinks = hsrDetailRoutes.filter((routePath) => !hsrHubLinks.has(routePath));
+
+if (missingHsrHubLinks.length > 0) {
+  throw new Error(`HSR detail routes missing from hub prerender links: ${missingHsrHubLinks.join(', ')}`);
+}
+
 const problems = [];
 const warnings = [];
 const titleRoutes = new Map();
@@ -96,6 +116,7 @@ const averageTextLength = stats.length
   : 0;
 
 console.log(`SEO prerender audit: ${routes.length} sitemap routes`);
+console.log(`HSR hub crawl links: ${hsrDetailRoutes.length} character, guide, and light-cone routes`);
 console.log(`Average prerendered text: ${averageTextLength} characters`);
 console.log('Thinnest routes:');
 sorted.slice(0, 10).forEach((item) => {
