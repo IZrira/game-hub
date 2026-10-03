@@ -27,13 +27,9 @@ import {
 import * as htmlToImage from 'html-to-image';
 import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import HsrItemIcon from '../components/HsrItemIcon';
-import { CharacterReviewBoard } from '../../common-hub/components/CharacterReviewBoard';
-import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
-import HsrEntityGraphSection from '../components/HsrEntityGraphSection';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
-import SynergyDeck from '../../common-hub/components/SynergyDeck';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { getHsrGameData } from '../data/gameData';
@@ -42,6 +38,46 @@ import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
+const CharacterReviewBoard = lazy(() => import('../../common-hub/components/CharacterReviewBoard'));
+const FeedbackReportModal = lazy(() => import('../../common-hub/components/FeedbackReportModal'));
+const HsrEntityGraphSection = lazy(() => import('../components/HsrEntityGraphSection'));
+const SynergyDeck = lazy(() => import('../../common-hub/components/SynergyDeck'));
+
+const DeferredSection: React.FC<{ children: React.ReactNode; minHeight?: number }> = ({ children, minHeight = 240 }) => {
+  const targetRef = useRef<HTMLDivElement>(null);
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    const target = targetRef.current;
+    if (!target || isReady) return;
+    if (!('IntersectionObserver' in window)) {
+      setIsReady(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsReady(true);
+        observer.disconnect();
+      }
+    }, { rootMargin: '800px 0px' });
+
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, [isReady]);
+
+  return (
+    <div ref={targetRef} style={!isReady ? { minHeight } : undefined}>
+      {isReady ? children : null}
+    </div>
+  );
+};
+
+const DeferredFallback = () => (
+  <div className="flex min-h-48 items-center justify-center rounded-[36px] border border-white/5 bg-white/[0.02]">
+    <RefreshCw size={20} className="animate-spin text-brand-primary" />
+  </div>
+);
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -858,18 +894,28 @@ const CharacterDetail: React.FC = () => {
         </div>
 
         {/* Entity Graph: Recommended Equipment & Synergies */}
-        <HsrEntityGraphSection
-          character={char}
-          theme={theme}
-        />
+        <div id="equipment" className="scroll-mt-28">
+          <DeferredSection minHeight={320}>
+            <Suspense fallback={<DeferredFallback />}>
+              <HsrEntityGraphSection
+                character={char}
+                theme={theme}
+              />
+            </Suspense>
+          </DeferredSection>
+        </div>
         
         {/* Recommended Synergy / Team Formations */}
         <div id="synergy" className="scroll-mt-28">
-          <SynergyDeck 
-            characterName={char?.id || charName || ''} 
-            gameId="hsr" 
-            theme={theme} 
-          />
+          <DeferredSection minHeight={320}>
+            <Suspense fallback={<DeferredFallback />}>
+              <SynergyDeck
+                characterName={char?.id || charName || ''}
+                gameId="hsr"
+                theme={theme}
+              />
+            </Suspense>
+          </DeferredSection>
         </div>
         
 
@@ -905,24 +951,32 @@ const CharacterDetail: React.FC = () => {
           )}
 
           {/* Review Board (Comments) */}
-          <CharacterReviewBoard 
-            characterId={char?.id || charName || ''} 
-            gameId={gameId || 'hsr'} 
-          />
+          <DeferredSection minHeight={240}>
+            <Suspense fallback={<DeferredFallback />}>
+              <CharacterReviewBoard
+                characterId={char?.id || charName || ''}
+                gameId={gameId || 'hsr'}
+              />
+            </Suspense>
+          </DeferredSection>
 
 
         </section>
 
-        <FeedbackReportModal 
-          isOpen={isFeedbackModalOpen}
-          onClose={() => setIsFeedbackModalOpen(false)}
-          contextData={{
-            gameId,
-            targetId: char?.id || charName,
-            targetName: char?.name || charName,
-            type: 'character'
-          }}
-        />
+        {isFeedbackModalOpen && (
+          <Suspense fallback={null}>
+            <FeedbackReportModal
+              isOpen={isFeedbackModalOpen}
+              onClose={() => setIsFeedbackModalOpen(false)}
+              contextData={{
+                gameId,
+                targetId: char?.id || charName,
+                targetName: char?.name || charName,
+                type: 'character'
+              }}
+            />
+          </Suspense>
+        )}
       </div>
     </div>
   );
