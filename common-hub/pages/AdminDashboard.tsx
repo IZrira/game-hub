@@ -6,15 +6,25 @@ import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
 import { Navigate } from 'react-router';
 import { safeEncodeURIComponent } from '../utils/assetManager';
-import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
-import { HSR_TIER_DATA } from '../../hsr-hub/data/tiers';
 import SEO from '../components/SEO';
-import { getGameData } from '../data/dataManager';
-import AdminNoticeEditor from '../components/AdminNoticeEditor';
-import AdminPartyManager from '../components/AdminPartyManager';
 import { stripMarkdown } from '../utils/markdown';
-import MarkdownRenderer from '../components/MarkdownRenderer';
-import AdminAniimoManager from '../components/AdminAniimoManager';
+
+const AdminNoticeEditor = React.lazy(() => import('../components/AdminNoticeEditor'));
+const AdminPartyManager = React.lazy(() => import('../components/AdminPartyManager'));
+const AdminAniimoManager = React.lazy(() => import('../components/AdminAniimoManager'));
+const MarkdownRenderer = React.lazy(() => import('../components/MarkdownRenderer'));
+
+const AdminSectionFallback = () => (
+  <div className="flex min-h-48 items-center justify-center gap-3 text-gray-500">
+    <Loader2 size={20} className="animate-spin text-brand-primary" />
+    <span className="text-xs font-black uppercase tracking-[0.2em]">관리 도구 불러오는 중</span>
+  </div>
+);
+
+const loadManagedGameData = async (gameId: 'ww' | 'nte') => {
+  const { getGameData } = await import('../data/dataManager');
+  return getGameData(gameId);
+};
 
 const AdminDashboard: React.FC = () => {
   const [user, setUser] = useState<any>(null);
@@ -150,6 +160,7 @@ const AdminDashboard: React.FC = () => {
       return;
     }
     if (activeGame === 'hsr') {
+      const { CHARACTER_DATA: HSR_CHARACTERS } = await import('../../hsr-hub/data/characters');
       localChars = HSR_CHARACTERS.map(c => ({
         id: c.id,
         name: c.name,
@@ -160,7 +171,7 @@ const AdminDashboard: React.FC = () => {
         version: c.releaseVersion || '1.0'
       }));
     } else if (activeGame === 'ww') {
-      const { CHARACTER_DB } = getGameData('ww');
+      const { CHARACTER_DB } = await loadManagedGameData('ww');
       localChars = CHARACTER_DB.map((c: any) => ({
         id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
         name: c.name,
@@ -171,7 +182,7 @@ const AdminDashboard: React.FC = () => {
         version: c.releaseVersion || '1.0'
       }));
     } else if (activeGame === 'nte') {
-      const { CHARACTER_DB } = getGameData('nte');
+      const { CHARACTER_DB } = await loadManagedGameData('nte');
       localChars = CHARACTER_DB.map((c: any) => ({
         id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
         name: c.name,
@@ -531,6 +542,7 @@ const AdminDashboard: React.FC = () => {
       const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
 
       if (activeGame === 'hsr') {
+        const { CHARACTER_DATA: HSR_CHARACTERS } = await import('../../hsr-hub/data/characters');
         charTasks = HSR_CHARACTERS.map(c => ({
           id: c.id,
           name: c.name,
@@ -541,7 +553,7 @@ const AdminDashboard: React.FC = () => {
           version: (c as any).releaseVersion || c.version || '1.0'
         }));
       } else if (activeGame === 'ww') {
-        const { CHARACTER_DB } = getGameData('ww');
+        const { CHARACTER_DB } = await loadManagedGameData('ww');
         charTasks = CHARACTER_DB.map((c: any) => ({
           id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
           name: c.name,
@@ -552,7 +564,7 @@ const AdminDashboard: React.FC = () => {
           version: c.releaseVersion || '1.0'
         }));
       } else if (activeGame === 'nte') {
-        const { CHARACTER_DB } = getGameData('nte');
+        const { CHARACTER_DB } = await loadManagedGameData('nte');
         charTasks = CHARACTER_DB.map((c: any) => ({
           id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
           name: c.name,
@@ -587,7 +599,7 @@ const AdminDashboard: React.FC = () => {
     
     setLoading(true);
     try {
-      const { WEAPON_DB } = getGameData('ww');
+      const { WEAPON_DB } = await loadManagedGameData('ww');
       const weaponTasks = WEAPON_DB.map((w: any) => ({
         id: w.id || w.name.toLowerCase().replace(/\s+/g, '_'),
         name: w.name,
@@ -629,6 +641,7 @@ const AdminDashboard: React.FC = () => {
     setLoading(true);
     try {
       const syncTasks: any[] = [];
+      const { HSR_TIER_DATA } = await import('../../hsr-hub/data/tiers');
       
       Object.entries(HSR_TIER_DATA).forEach(([catId, groups]) => {
         groups.forEach(group => {
@@ -858,7 +871,11 @@ const AdminDashboard: React.FC = () => {
             </div>
           )}
 
-          {activeTab === 'aniimo' && activeGame === 'aniimo' && <AdminAniimoManager />}
+          {activeTab === 'aniimo' && activeGame === 'aniimo' && (
+            <React.Suspense fallback={<AdminSectionFallback />}>
+              <AdminAniimoManager />
+            </React.Suspense>
+          )}
 
           {activeTab !== 'home' && activeTab !== 'aniimo' && (
             <>
@@ -1273,7 +1290,9 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
           )}
 
           {activeTab === 'parties' && activeGame && activeGame !== 'aniimo' && (
-            <AdminPartyManager activeGame={activeGame} getEncodedUrl={getEncodedUrl} />
+            <React.Suspense fallback={<AdminSectionFallback />}>
+              <AdminPartyManager activeGame={activeGame} getEncodedUrl={getEncodedUrl} />
+            </React.Suspense>
           )}
 
           {activeTab === 'notices' && (
@@ -1365,11 +1384,13 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     </div>
                     <div className="space-y-2">
                       <label className="text-[10px] font-black text-gray-400 uppercase ml-1">내용 (Markdown 지원)</label>
-                      <AdminNoticeEditor
-                        initialContent={newNotice.content}
-                        onChange={(content) => setNewNotice({...newNotice, content})}
-                        placeholder="마크다운 형식으로 공지사항 내용을 작성하세요..."
-                      />
+                      <React.Suspense fallback={<AdminSectionFallback />}>
+                        <AdminNoticeEditor
+                          initialContent={newNotice.content}
+                          onChange={(content) => setNewNotice({...newNotice, content})}
+                          placeholder="마크다운 형식으로 공지사항 내용을 작성하세요..."
+                        />
+                      </React.Suspense>
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
@@ -1563,7 +1584,9 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                 </button>
                               </div>
                               <div className="text-sm text-gray-300 leading-relaxed font-medium">
-                                <MarkdownRenderer content={notice.content} variant="notice" />
+                                <React.Suspense fallback={<AdminSectionFallback />}>
+                                  <MarkdownRenderer content={notice.content} variant="notice" />
+                                </React.Suspense>
                               </div>
                             </div>
                           </div>
