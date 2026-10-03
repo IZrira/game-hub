@@ -35,7 +35,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
   }
 
   return (
-    <section id="equipment" className="space-y-6 pt-4 scroll-mt-28">
+    <section className="space-y-6 pt-4">
       {/* Section Header */}
       <div className="flex items-center gap-3 border-b border-white/5 pb-4">
         <div

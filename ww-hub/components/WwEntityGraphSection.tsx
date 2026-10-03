@@ -120,7 +120,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
   }
 
   return (
-    <section id="equipment" className="space-y-6 pt-4">
+    <section className="space-y-6 pt-4">
       {/* Header with Direct Guide CTA */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-4">
         <div className="flex items-center gap-3">
