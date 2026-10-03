@@ -759,6 +759,40 @@ function generateGuideSchema(charName, gameName, routePath, imageUrl) {
   };
 }
 
+function generateHubSchema(title, description, routePath, imageUrl) {
+  const hubNames = {
+    '/gallery/hsr': '붕괴: 스타레일',
+    '/gallery/ww': '명조: 워더링 웨이브',
+    '/gallery/nte': '이환: 네버네스 투 에버네스',
+    '/gallery/aniimo': '애니모',
+  };
+  const hubName = hubNames[routePath];
+  if (!hubName) return null;
+
+  const pageUrl = `${BASE_URL}${routePath}`;
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: '홈', item: `${BASE_URL}/` },
+          { '@type': 'ListItem', position: 2, name: hubName, item: pageUrl },
+        ],
+      },
+      {
+        '@type': 'WebPage',
+        name: title,
+        description,
+        image: imageUrl,
+        url: pageUrl,
+        mainEntityOfPage: pageUrl,
+        isPartOf: { '@type': 'WebSite', name: 'RIRA ARCHIVE', url: BASE_URL },
+      },
+    ],
+  };
+}
+
 function injectMetaAndContent(html, title, description, imageUrl, urlPath, innerContent = '', jsonLdSchema = null) {
   let injected = html;
 
@@ -2685,13 +2719,15 @@ function runPrerender() {
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
     }
+    const fallbackImage = `${CDN_URL}/hsr%20images/common/default_banner.webp`;
     createPrerenderedPage(
       routePath,
       meta.title,
       meta.description,
-      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      fallbackImage,
       baseHtml,
-      meta.content
+      meta.content,
+      generateHubSchema(meta.title, meta.description, routePath, fallbackImage)
     );
     count++;
   });

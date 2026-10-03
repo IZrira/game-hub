@@ -129,25 +129,33 @@ const GalleryWW: React.FC = () => {
     ? `리라 아카이브는 ${game.title} (Wuthering Waves)의 최신 공명자 공략, 종결 에코 세팅, 파티 조합, 티어표를 제공하는 프리미엄 서브컬쳐 게임 데이터베이스(DB, gg)입니다.`
     : `${game.title} ${t(activeMenu)} 전체 목록 및 세부 정보입니다. 서브컬쳐 데이터베이스 리라 아카이브에서 확인하세요.`;
 
+  const seoUrl = activeMenu === '홈'
+    ? `/gallery/${gameId}`
+    : `/gallery/${gameId}?menu=${encodeURIComponent(activeMenu)}`;
+  const breadcrumbs = activeMenu === '홈'
+    ? [{ name: t('홈'), url: '/' }, { name: game.title, url: `/gallery/${gameId}` }]
+    : [
+        { name: t('홈'), url: '/' },
+        { name: game.title, url: `/gallery/${gameId}` },
+        { name: t(activeMenu), url: seoUrl },
+      ];
+
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO 
         title={seoTitle} 
         description={seoDescription}
         keywords={`리라 아카이브, 서브컬쳐 데이터베이스, 서브컬쳐 db, 서브컬쳐 gg, 명조, Wuthering Waves, 워더링 웨이브, 게임 공략, 티어표, 위키, DB, gg, ${t(activeMenu)}`}
-        url={`/gallery/${gameId}?menu=${activeMenu}`}
+        url={seoUrl}
         gameCategory={game.title}
-        breadcrumbData={[
-          { name: t('홈'), url: '/' },
-          { name: game.title, url: `/gallery/${gameId}` },
-          { name: t(activeMenu), url: `/gallery/${gameId}?menu=${activeMenu}` }
-        ]}
+        breadcrumbData={breadcrumbs}
       />
       <PageHeader gameId="ww" title={activeMenu === '홈' ? '' : activeMenu} />
 
       <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-6 lg:pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-6 lg:gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
         <main className="min-h-[800px] space-y-10 sm:space-y-16 relative z-10 min-w-0">
+          {activeMenu !== '홈' && <h1 className="sr-only">{game.title} {t(activeMenu)}</h1>}
           {activeMenu === '홈' ? (
             <div className="space-y-16">
               {/* 정제된 히어로 섹션: 명조 감성의 프리미엄 디자인 */}

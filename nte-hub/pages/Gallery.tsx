@@ -161,27 +161,34 @@ const GalleryNTE: React.FC = () => {
   if (!game) return null;
 
   const seoTitle = activeMenu === '홈' 
-    ? `${game.title}: ${t('이환')} ${t('아카이브 | 공략 및 데이터베이스')}`
-    : `${game.title}: ${t('이환')} ${t(activeMenu)} ${t('도감 및 데이터베이스')}`;
+    ? `${t('이환')} 아카이브 | 공략 및 데이터베이스`
+    : `${t('이환')} ${t(activeMenu)} 도감 및 데이터베이스`;
+  const seoUrl = activeMenu === '홈'
+    ? `/gallery/${gameId}`
+    : `/gallery/${gameId}?menu=${encodeURIComponent(activeMenu)}`;
+  const breadcrumbs = activeMenu === '홈'
+    ? [{ name: t('홈'), url: '/' }, { name: game.title, url: `/gallery/${gameId}` }]
+    : [
+        { name: t('홈'), url: '/' },
+        { name: game.title, url: `/gallery/${gameId}` },
+        { name: t(activeMenu), url: seoUrl },
+      ];
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO 
         title={seoTitle} 
         description={`${game.title} ${t('데이터베이스입니다. 최신 캐릭터, 아크, 공략 및 티어표를 확인하세요.')}`}
-        url={`/gallery/${gameId}?menu=${activeMenu}`}
+        url={seoUrl}
         gameCategory={game.title}
-        breadcrumbData={[
-          { name: t('홈'), url: '/' },
-          { name: game.title, url: `/gallery/${gameId}` },
-          { name: t(activeMenu), url: `/gallery/${gameId}?menu=${activeMenu}` }
-        ]}
+        breadcrumbData={breadcrumbs}
       />
       <PageHeader gameId="nte" title={activeMenu === '홈' ? '' : activeMenu} />
 
       <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
         <main className="min-h-[800px] space-y-16 relative z-10">
+          {activeMenu !== '홈' && <h1 className="sr-only">{game.title} {t(activeMenu)}</h1>}
           {activeMenu === '홈' ? (
             <div className="space-y-16">
               <section className="relative p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
@@ -387,7 +394,7 @@ const GalleryNTE: React.FC = () => {
               <section className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-10 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col gap-2 mb-6">
                   <span className="text-[10px] font-black uppercase tracking-[0.25em] text-violet-400">NTE CONSOLE DATABASE</span>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">콘솔 카트리지</h1>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">콘솔 카트리지</h2>
                   <p className="max-w-2xl text-sm leading-6 text-gray-400">카트리지 이름, 세트 효과와 콘솔 배치에 필요한 블록 구성을 한 화면에서 비교할 수 있습니다.</p>
                 </div>
                 <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center">
@@ -485,7 +492,7 @@ const GalleryNTE: React.FC = () => {
               <section className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-10 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col gap-2 mb-6">
                   <span className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-400">NTE VEHICLE DATABASE</span>
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">이동 수단 도감</h1>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">이동 수단 도감</h2>
                   <p className="max-w-2xl text-sm leading-6 text-gray-400">종류별 설명과 최고 속도, 가속, 내구도, 획득 방법을 비교할 수 있습니다.</p>
                 </div>
                 <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center">
