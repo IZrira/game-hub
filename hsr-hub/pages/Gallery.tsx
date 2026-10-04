@@ -7,11 +7,7 @@ import {
 
 import { ARCHIVE_DATA } from '../../common-hub/data/archive';
 import HSR_CHARACTER_SUMMARY from '../data/generated/character-summary.json';
-import { SORTED_LIGHTCONE_DATA } from '../data/lightcones';
-import { RELIC_DATA } from '../data/relics';
-import { ORNAMENT_DATA } from '../data/ornaments';
-import { HSR_CHARACTER_GUIDES } from '../data/guides';
-import { ITEM_META } from '../data/items';
+import HSR_GALLERY_SUMMARY from '../data/generated/gallery-summary.json';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
@@ -20,10 +16,9 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SearchModal from '../../common-hub/components/SearchModal';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
-import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentPremiumCard, ItemPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
-import { RelicDetailModal, OrnamentDetailModal, ItemDetailModal } from '@/common-hub/components/GalleryModals';
+import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
+import { RelicDetailModal, OrnamentDetailModal } from '@/common-hub/components/GalleryModals';
 import { GlowStatsDistribution } from '../../common-hub/components/NeonComponents';
-import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 
 const InventoryGallery = lazy(() => import('../../common-hub/components/InventoryGallery'));
@@ -48,6 +43,11 @@ const GalleryHSR: React.FC = () => {
   const [selectedOrnament, setSelectedOrnament] = useState<any>(null);
   const [selectedItem, setSelectedItem] = useState<any>(null);
   const [isGlobalSearchOpen, setIsGlobalSearchOpen] = useState(false);
+  const [lightConeDb, setLightConeDb] = useState<any[]>([]);
+  const [relicDb, setRelicDb] = useState<any[]>([]);
+  const [ornamentDb, setOrnamentDb] = useState<any[]>([]);
+  const [guideDb, setGuideDb] = useState<any[]>([]);
+  const [archiveDataLoading, setArchiveDataLoading] = useState(false);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
 
@@ -115,10 +115,54 @@ const GalleryHSR: React.FC = () => {
     path: currentLang === 'en' ? t(character.path) : character.path,
     attribute: currentLang === 'en' ? t(character.attribute) : character.attribute,
   })), [currentLang, t]);
-  const LIGHTCONE_DB = SORTED_LIGHTCONE_DATA;
-  const RELIC_DB = RELIC_DATA;
-  const ORNAMENT_DB = ORNAMENT_DATA;
-  const HSR_INVENTORY = ITEM_META;
+  const LIGHTCONE_DB = lightConeDb;
+  const RELIC_DB = relicDb;
+  const ORNAMENT_DB = ornamentDb;
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadArchiveData = async () => {
+      if (activeMenu === '광추' && lightConeDb.length === 0) {
+        setArchiveDataLoading(true);
+        try {
+          const module = await import('../data/lightcones');
+          if (!cancelled) setLightConeDb(module.SORTED_LIGHTCONE_DATA);
+        } finally {
+          if (!cancelled) setArchiveDataLoading(false);
+        }
+      }
+
+      if (activeMenu === '유물 & 장신구' && relicDb.length === 0 && ornamentDb.length === 0) {
+        setArchiveDataLoading(true);
+        try {
+          const [relicModule, ornamentModule] = await Promise.all([
+            import('../data/relics'),
+            import('../data/ornaments')
+          ]);
+          if (!cancelled) {
+            setRelicDb(relicModule.RELIC_DATA);
+            setOrnamentDb(ornamentModule.ORNAMENT_DATA);
+          }
+        } finally {
+          if (!cancelled) setArchiveDataLoading(false);
+        }
+      }
+
+      if (activeMenu === '공략' && guideDb.length === 0) {
+        setArchiveDataLoading(true);
+        try {
+          const module = await import('../data/guides');
+          if (!cancelled) setGuideDb(module.HSR_CHARACTER_GUIDES);
+        } finally {
+          if (!cancelled) setArchiveDataLoading(false);
+        }
+      }
+    };
+
+    void loadArchiveData();
+    return () => { cancelled = true; };
+  }, [activeMenu, lightConeDb.length, relicDb.length, ornamentDb.length, guideDb.length]);
   
 
 
@@ -128,7 +172,7 @@ const GalleryHSR: React.FC = () => {
 
   const { filteredCharacters, filteredLightCones, filteredRelics, filteredOrnaments, filteredItems, filterOptions } = useGalleryFilter(
     gameId, debouncedSearchQuery, attrFilter, secondFilter, rarityFilter,
-    CHARACTER_DB, LIGHTCONE_DB, [], RELIC_DB, ORNAMENT_DB, HSR_INVENTORY, categoryFilter
+    CHARACTER_DB, LIGHTCONE_DB, [], RELIC_DB, ORNAMENT_DB, {}, categoryFilter
   );
 
   if (!game) return null;
@@ -205,9 +249,9 @@ const GalleryHSR: React.FC = () => {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   { label: '캐릭터', count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: 'text-blue-400' },
-                  { label: '광추', count: LIGHTCONE_DB?.length || 0, icon: <Zap size={14} />, color: 'text-yellow-400' },
-                  { label: '유물 & 장신구', count: (RELIC_DB?.length || 0) + (ORNAMENT_DB?.length || 0), icon: <LayoutGrid size={14} />, color: 'text-purple-400' },
-                  { label: '아이템', count: Object.keys(HSR_INVENTORY || {}).length, icon: <Backpack size={14} />, color: 'text-brand-accent' },
+                  { label: '광추', count: HSR_GALLERY_SUMMARY.counts.lightcones, icon: <Zap size={14} />, color: 'text-yellow-400' },
+                  { label: '유물 & 장신구', count: HSR_GALLERY_SUMMARY.counts.relics + HSR_GALLERY_SUMMARY.counts.ornaments, icon: <LayoutGrid size={14} />, color: 'text-purple-400' },
+                  { label: '아이템', count: HSR_GALLERY_SUMMARY.counts.items, icon: <Backpack size={14} />, color: 'text-brand-accent' },
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1 group hover:bg-white/[0.04] transition-all">
                     <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color} group-hover:scale-110 transition-transform`}>
@@ -222,7 +266,7 @@ const GalleryHSR: React.FC = () => {
               {/* 데이터 시각화: 운명의 길 중심 분석 */}
               <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-5 sm:p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
                 <GlowStatsDistribution data={CHARACTER_DB} type="path" title="캐릭터 운명의 길 분포" />
-                <GlowStatsDistribution data={LIGHTCONE_DB} type="path" title="광추 운명의 길 분포" />
+                <GlowStatsDistribution data={HSR_GALLERY_SUMMARY.lightcones} type="path" title="광추 운명의 길 분포" />
               </section>
 
               {/* 데이터베이스 카테고리 허브 (Category Hub) */}
@@ -248,7 +292,7 @@ const GalleryHSR: React.FC = () => {
                       path: '/gallery/hsr?menu=광추',
                       action: () => handleSetActiveMenu('광추'),
                       icon: Zap,
-                      stat: `${LIGHTCONE_DB?.length || 0}${t('개')}`,
+                      stat: `${HSR_GALLERY_SUMMARY.counts.lightcones}${t('개')}`,
                       color: 'text-yellow-400'
                     },
                     {
@@ -257,7 +301,7 @@ const GalleryHSR: React.FC = () => {
                       path: '/gallery/hsr?menu=유물%20%26%20장신구',
                       action: () => handleSetActiveMenu('유물 & 장신구'),
                       icon: LayoutGrid,
-                      stat: `${(RELIC_DB?.length || 0) + (ORNAMENT_DB?.length || 0)}${t('세트')}`,
+                      stat: `${HSR_GALLERY_SUMMARY.counts.relics + HSR_GALLERY_SUMMARY.counts.ornaments}${t('세트')}`,
                       color: 'text-purple-400'
                     },
                     {
@@ -369,9 +413,13 @@ const GalleryHSR: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
-                {filteredLightCones.map((lc: any) => <LightConePremiumCard key={lc.id} lc={lc} />)}
-              </div>
+              {archiveDataLoading && LIGHTCONE_DB.length === 0 ? (
+                <div className="py-32 text-center text-sm font-bold text-gray-400">{t('광추 데이터를 불러오는 중입니다.')}</div>
+              ) : (
+                <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
+                  {filteredLightCones.map((lc: any) => <LightConePremiumCard key={lc.id} lc={lc} />)}
+                </div>
+              )}
             </div>
           ) : activeMenu === '유물 & 장신구' ? (
             <div className="space-y-12">
@@ -382,7 +430,9 @@ const GalleryHSR: React.FC = () => {
                   <button onClick={() => setRelicSubTab('차원 장신구')} className={`h-11 px-6 rounded-xl font-black ${relicSubTab === '차원 장신구' ? 'bg-brand-accent text-black' : 'bg-white/5 text-gray-400'}`}>{t('차원 장신구')}</button>
                 </div>
               </div>
-              {relicSubTab === '유물' ? (
+              {archiveDataLoading && RELIC_DB.length === 0 && ORNAMENT_DB.length === 0 ? (
+                <div className="py-32 text-center text-sm font-bold text-gray-400">{t('유물 데이터를 불러오는 중입니다.')}</div>
+              ) : relicSubTab === '유물' ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
                   {filteredRelics.map((relic: any) => <RelicPremiumCard key={relic.id} relic={relic} onClick={() => setSelectedRelic(relic)} />)}
                 </div>
@@ -403,6 +453,9 @@ const GalleryHSR: React.FC = () => {
                   <input type="text" placeholder={t('캐릭터 명칭...')} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                 </div>
               </div>
+              {archiveDataLoading && guideDb.length === 0 ? (
+                <div className="py-32 text-center text-sm font-bold text-gray-400">{t('공략 데이터를 불러오는 중입니다.')}</div>
+              ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {(() => {
                   const normalizeGuideName = (name: string) => {
@@ -410,7 +463,7 @@ const GalleryHSR: React.FC = () => {
                     return name.replace(/\s+/g, '').replace(/[•·]/g, '').normalize('NFC');
                   };
                   const seenCharIds = new Set<string>();
-                  return (HSR_CHARACTER_GUIDES || [])
+                  return guideDb
                     .filter((g: any) => !searchQuery || g.characterName.includes(searchQuery))
                     .map((guide: any) => {
                       const char = CHARACTER_DB.find((c: any) => 
@@ -444,6 +497,7 @@ const GalleryHSR: React.FC = () => {
                     ));
                 })()}
               </div>
+              )}
             </div>
           ) : activeMenu === '인벤토리' ? (
             <Suspense fallback={<div className="py-32 text-center text-sm font-bold text-gray-400">인벤토리를 불러오는 중입니다.</div>}>

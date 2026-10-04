@@ -10,6 +10,7 @@ const notionPath = path.join(projectRoot, 'common-hub', 'data', 'notion-data.jso
 const outputPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'notion-search.json');
 const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'home-stats.json');
 const hsrCharacterSummaryPath = path.join(projectRoot, 'hsr-hub', 'data', 'generated', 'character-summary.json');
+const hsrGallerySummaryPath = path.join(projectRoot, 'hsr-hub', 'data', 'generated', 'gallery-summary.json');
 const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'weapons.json');
 const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs.json');
 const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
@@ -256,6 +257,40 @@ const buildWwData = async () => {
   return (await import(moduleUrl)).default;
 };
 
+const buildHsrGallerySummary = async () => {
+  const result = await build({
+    absWorkingDir: projectRoot,
+    stdin: {
+      contents: `
+        import { SORTED_LIGHTCONE_DATA } from './hsr-hub/data/lightcones/index.ts';
+        import { RELIC_DATA } from './hsr-hub/data/relics.ts';
+        import { ORNAMENT_DATA } from './hsr-hub/data/ornaments.ts';
+        import { ITEM_META } from './hsr-hub/data/items.ts';
+        export default {
+          lightcones: SORTED_LIGHTCONE_DATA.map(({ id, name, path }) => ({ id, name, path })),
+          counts: {
+            lightcones: SORTED_LIGHTCONE_DATA.length,
+            relics: RELIC_DATA.length,
+            ornaments: ORNAMENT_DATA.length,
+            items: Object.keys(ITEM_META).length
+          }
+        };
+      `,
+      resolveDir: projectRoot,
+      sourcefile: 'generate-hsr-gallery-summary.ts',
+      loader: 'ts'
+    },
+    bundle: true,
+    platform: 'node',
+    format: 'esm',
+    write: false,
+    logLevel: 'silent'
+  });
+  const bundledSource = result.outputFiles[0].text;
+  const moduleUrl = `data:text/javascript;base64,${Buffer.from(bundledSource).toString('base64')}`;
+  return (await import(moduleUrl)).default;
+};
+
 const parseNteArc = item => {
   const baseStats = {};
   let baseAtk = 395;
@@ -470,9 +505,12 @@ const wwRecommendationData = {
   }))
 };
 fs.writeFileSync(wwRecommendationsPath, `${JSON.stringify(wwRecommendationData, null, 2)}\n`, 'utf8');
+const hsrGallerySummary = await buildHsrGallerySummary();
+fs.writeFileSync(hsrGallerySummaryPath, `${JSON.stringify(hsrGallerySummary, null, 2)}\n`, 'utf8');
 
 const total = Object.values(searchData).reduce((sum, items) => sum + items.length, 0);
 console.log(`[Search] Generated lightweight search index with ${total} records.`);
 console.log(`[Search] HSR: ${hsrCharacters.length} characters, ${hsrLightcones.length} light cones, ${hsrGuides.length} guides.`);
+console.log(`[HSR] Generated gallery summary for ${hsrGallerySummary.counts.lightcones} light cones and ${hsrGallerySummary.counts.items} items.`);
 console.log(`[Home] Generated lightweight stats for ${homeStats.global.characters} characters and ${homeStats.global.guides} guides.`);
 console.log(`[WW] Generated ${wwCharacters.length} merged character detail records.`);

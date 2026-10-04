@@ -4,8 +4,6 @@ import { createPortal } from 'react-dom';
 import { X, Star, Copy, Check } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '@/common-hub/utils/assetManager';
-import { getItemUrl } from '../data/items';
-import { HSR_ORNAMENT_DB } from '../../hsr-hub/data';
 
 // 텍스트 복사 시 서식(볼드, 기울임 등 HTML)을 제거하고 순수 일반 텍스트만 클립보드에 담는 헬퍼
 const handlePlainCopy = (e: React.ClipboardEvent) => {
@@ -174,7 +172,13 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
   if (!item) return null;
 
   const itemName = t(item.name);
-  const imgPath = getItemUrl(item.name, item.gameId);
+  const itemFileName = (item.fileName || item.folderName || item.name)
+    .normalize('NFC')
+    .replace(/\//g, '')
+    .replace(/: /g, '_')
+    .replace(/:/g, '_')
+    .replace(/[?<>]/g, '');
+  const imgPath = `${CDN_URL}/${item.gameId || 'hsr'}%20images/items/${safeEncodeURIComponent(itemFileName)}.webp`;
 
   const handleCopyTitle = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -282,8 +286,8 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
   const isEn = i18n.language === 'en';
   if (!ornament) return null;
 
-  // 이미지 로드를 위해 명시적으로 KO 데이터베이스를 참조합니다.
-  const koOrnament = HSR_ORNAMENT_DB.find((o: any) => o.id === ornament.id) || ornament;
+  // 갤러리에서 전달한 원본 데이터에 한국어 파일명과 세부 파츠가 포함되어 있습니다.
+  const koOrnament = ornament;
 
   const typeStr = koOrnament.type || '차원 장신구';
   const imgPath = `${CDN_URL}/hsr%20images/${safeEncodeURIComponent(typeStr)}/${safeEncodeURIComponent(koOrnament.name)}.webp`;
