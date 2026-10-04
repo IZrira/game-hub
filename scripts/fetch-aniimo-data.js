@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import * as cheerio from 'cheerio';
+import { writeAniimoRuntimeData } from './generate-aniimo-runtime-data.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const OUTPUT_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
@@ -207,4 +208,5 @@ for (const entry of results) {
 
 fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 fs.writeFileSync(OUTPUT_FILE, `${JSON.stringify(results, null, 2)}\n`, 'utf8');
+writeAniimoRuntimeData();
 console.log(`\n[Aniimo] Wrote ${results.length} records to ${OUTPUT_FILE}`);

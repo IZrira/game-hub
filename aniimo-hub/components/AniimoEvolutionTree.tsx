@@ -1,11 +1,15 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { ChevronRight, GitBranch } from 'lucide-react';
-import type { AniimoEntry, AniimoEvolutionNode } from '../types';
-import aniimoData from '../data/aniimo.json';
+import type { AniimoEntry, AniimoEvolutionNode, AniimoForm } from '../types';
+import aniimoSummary from '../data/aniimo-summary.json';
 
-const allAniimos = aniimoData as AniimoEntry[];
-const aniimoMap = new Map<string, AniimoEntry>();
+type AniimoTreeEntry = Pick<AniimoEntry, 'number' | 'name' | 'elements' | 'positions'> & {
+  forms: Array<Pick<AniimoForm, 'key' | 'label'>>;
+};
+
+const allAniimos = aniimoSummary as AniimoTreeEntry[];
+const aniimoMap = new Map<string, AniimoTreeEntry>();
 allAniimos.forEach(a => {
   aniimoMap.set(a.name, a);
   aniimoMap.set(a.number, a);
@@ -27,7 +31,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
 
   // Group nodes by stage
   const stages = useMemo(() => {
-    const stageMap = new Map<string, Array<{ node: AniimoEvolutionNode; entry?: AniimoEntry }>>();
+    const stageMap = new Map<string, Array<{ node: AniimoEvolutionNode; entry?: AniimoTreeEntry }>>();
     
     nodes.forEach(node => {
       const stageName = node.stage || '기타';

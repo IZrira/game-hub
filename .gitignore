@@ -16,3 +16,4 @@ logs/
 *credentials*.json
 *service-account*.json
 analytics/
+public/assets/data/aniimo/

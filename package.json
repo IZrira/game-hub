@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predev": "npm run generate:aniimo-runtime",
     "dev": "vite",
     "prebuild": "node scripts/fetch-notion-data.js",
-    "build": "npm run typecheck && npm run generate:search-data && node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js && node scripts/audit-prerender-seo.js",
+    "build": "npm run typecheck && npm run generate:search-data && npm run generate:aniimo-runtime && node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js && node scripts/audit-prerender-seo.js",
+    "generate:aniimo-runtime": "node scripts/generate-aniimo-runtime-data.js",
     "generate:search-data": "node scripts/generate-search-data.js",
     "preview": "vite preview",
     "prerender": "node scripts/prerender-meta.js",

@@ -1,0 +1,4050 @@
+[
+  {
+    "number": "001",
+    "name": "탄멍멍",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10051.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10051.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "구름 초원",
+          "안개숲",
+          "갈매기 만",
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005101.png",
+        "elements": [
+          "불",
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005104.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "002",
+    "name": "화르랑",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10052.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10052.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "구름 초원",
+          "갈매기 만",
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005201.png",
+        "elements": [
+          "불",
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005204.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "003",
+    "name": "이글랑",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10053.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10053.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005301.png",
+        "elements": [
+          "불",
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "thunderstorm-form",
+        "label": "뇌우 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005302.png",
+        "elements": [
+          "불",
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005303.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005304.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "004",
+    "name": "헬울프",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10055.png",
+    "elements": [
+      "불",
+      "어둠"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10055.png",
+        "elements": [
+          "불",
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1005503.png",
+        "elements": [
+          "불",
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "005",
+    "name": "스타라미",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10011.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10011.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "구름 초원",
+          "갈매기 만",
+          "고래첨벙 해안",
+          "스테플 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "006",
+    "name": "스타저드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10012.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10012.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1001201.png",
+        "elements": [
+          "어둠",
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1001202.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "007",
+    "name": "호루매기",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10181.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10181.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원",
+          "갈매기 만",
+          "늑대이빨 능선",
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018101.png",
+        "elements": [
+          "바람",
+          "물"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "고래첨벙 해안",
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018103.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "008",
+    "name": "롬본이",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10184.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10184.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "갈매기 만"
+        ]
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018401.png",
+        "elements": [
+          "바람",
+          "물"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018403.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "009",
+    "name": "럼펫이",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10185.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10185.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "갈매기 만"
+        ]
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018501.png",
+        "elements": [
+          "바람",
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "고래첨벙 해안",
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018502.png",
+        "elements": [
+          "바람",
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "갈매기 만"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018503.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "010",
+    "name": "튜바얌",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10187.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10187.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "갈매기 만"
+        ]
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018701.png",
+        "elements": [
+          "바람",
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1018703.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "011",
+    "name": "플러터",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10211.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10211.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021101.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021102.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "grassland-form",
+        "label": "초원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021103.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "구름 초원",
+          "안개숲",
+          "갈매기 만",
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021104.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021105.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021106.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지",
+          "늑대이빨 능선"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "012",
+    "name": "왈츠페탈",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10212.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10212.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021201.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021202.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "grassland-form",
+        "label": "초원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021203.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021204.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021205.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1021206.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "013",
+    "name": "연댕모리",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10041.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10041.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "구름 초원",
+          "안개숲",
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004101.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004102.png",
+        "elements": [
+          "물",
+          "얼음"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "014",
+    "name": "장꾸모리",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10042.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10042.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "구름 초원",
+          "안개숲",
+          "스테플 숲"
+        ]
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004201.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004202.png",
+        "elements": [
+          "물",
+          "얼음"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "015",
+    "name": "아이시우스",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10043.png",
+    "elements": [
+      "물",
+      "얼음"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10043.png",
+        "elements": [
+          "물",
+          "얼음"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": []
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004301.png",
+        "elements": [
+          "물",
+          "얼음"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004302.png",
+        "elements": [
+          "물",
+          "얼음"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1004303.png",
+        "elements": [
+          "빛",
+          "물"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "016",
+    "name": "연잎룡",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10045.png",
+    "elements": [
+      "풀",
+      "물"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10045.png",
+        "elements": [
+          "풀",
+          "물"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "안개숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "017",
+    "name": "뭉게양",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10261.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10261.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원",
+          "갈매기 만"
+        ]
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026101.png",
+        "elements": [
+          "바람",
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원"
+        ]
+      },
+      {
+        "key": "cloudmist-form",
+        "label": "구름 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026102.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원"
+        ]
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026105.png",
+        "elements": [
+          "바람",
+          "얼음"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "018",
+    "name": "몽실양",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10262.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10262.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원"
+        ]
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026201.png",
+        "elements": [
+          "바람",
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원"
+        ]
+      },
+      {
+        "key": "cloudmist-form",
+        "label": "구름 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026202.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026204.png",
+        "elements": [
+          "어둠",
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "구름 초원"
+        ]
+      },
+      {
+        "key": "plateau-form",
+        "label": "고원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1026205.png",
+        "elements": [
+          "바람",
+          "얼음"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "019",
+    "name": "쿨쿨양",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10263.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10263.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "020",
+    "name": "삑삑초",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10201.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10201.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "구름 초원",
+          "안개숲",
+          "갈매기 만",
+          "스테플 숲",
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020101.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붓꽃 바다",
+          "청석 대지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "021",
+    "name": "위치햇그라스",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10203.png",
+    "elements": [
+      "어둠",
+      "풀"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10203.png",
+        "elements": [
+          "어둠",
+          "풀"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "안개숲"
+        ]
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020301.png",
+        "elements": [
+          "어둠",
+          "풀"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "붓꽃 바다",
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020302.png",
+        "elements": [
+          "어둠",
+          "풀"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "안개숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "022",
+    "name": "굴파미",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10207.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10207.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1020701.png",
+        "elements": [
+          "바위",
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "023",
+    "name": "싹크랩",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10161.png",
+    "elements": [
+      "바위",
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10161.png",
+        "elements": [
+          "바위",
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "구름 초원",
+          "청석 대지",
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "mudflat-form",
+        "label": "습지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016101.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016102.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "bay-form",
+        "label": "바다만 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016103.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "갈매기 만"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "024",
+    "name": "풀크랩",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10162.png",
+    "elements": [
+      "바위",
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10162.png",
+        "elements": [
+          "바위",
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "mudflat-form",
+        "label": "습지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016201.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      },
+      {
+        "key": "beach-form",
+        "label": "해변 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016202.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "bay-form",
+        "label": "바다만 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1016203.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "갈매기 만"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "025",
+    "name": "스탈크랩",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10163.png",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10163.png",
+        "elements": [
+          "얼음"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "026",
+    "name": "도깨불",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10331.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10331.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "구름 초원",
+          "늑대이빨 능선",
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033101.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "붉은바위 고지",
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033102.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "안개숲",
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033103.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "027",
+    "name": "일렁깨비",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10333.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10333.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033301.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033302.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "안개숲",
+          "청석 대지",
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1033303.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "028",
+    "name": "반짝쵸",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10231.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10231.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "붓꽃 바다",
+          "구름 초원",
+          "안개숲",
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023101.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023102.png",
+        "elements": [
+          "어둠",
+          "바람"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023103.png",
+        "elements": [
+          "바람",
+          "바위"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "늑대이빨 능선",
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "029",
+    "name": "판타쵸",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10232.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "치유"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10232.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": []
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023201.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": []
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023202.png",
+        "elements": [
+          "어둠",
+          "바람"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": []
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1023203.png",
+        "elements": [
+          "바람",
+          "바위"
+        ],
+        "positions": [
+          "치유"
+        ],
+        "locations": [
+          "늑대이빨 능선",
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "031",
+    "name": "래빗배트",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10441.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10441.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "032",
+    "name": "디텍배트",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10443.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10443.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "스테플 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "033",
+    "name": "울먹팡",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10321.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10321.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붓꽃 바다",
+          "로즈타워 숲"
+        ]
+      },
+      {
+        "key": "towerwood-form",
+        "label": "타워 숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032103.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "034",
+    "name": "콕콕바라",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10323.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10323.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "thunderstorm-form",
+        "label": "뇌우 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032301.png",
+        "elements": [
+          "풀",
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032302.png",
+        "elements": [
+          "풀",
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      },
+      {
+        "key": "towerwood-form",
+        "label": "타워 숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032303.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "035",
+    "name": "플로리안",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10324.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10324.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1032402.png",
+        "elements": [
+          "빛",
+          "풀"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "036",
+    "name": "라라에그",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10471.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10471.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047101.png",
+        "elements": [
+          "풀",
+          "얼음"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "로즈타워 숲",
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047102.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047103.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "조화의 언덕",
+          "스테플 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "037",
+    "name": "붐테일자드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10475.png",
+    "elements": [
+      "풀"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10475.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047501.png",
+        "elements": [
+          "풀",
+          "얼음"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047502.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      },
+      {
+        "key": "sea-of-flowers-form",
+        "label": "꽃바다 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1047503.png",
+        "elements": [
+          "풀"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "038",
+    "name": "허니버드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10351.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10351.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "붓꽃 바다",
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "039",
+    "name": "플로라버드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10352.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10352.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "붓꽃 바다"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "040",
+    "name": "싹뚜기",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10031.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10031.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003101.png",
+        "elements": [
+          "어둠",
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "안개숲"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003103.png",
+        "elements": [
+          "불",
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "041",
+    "name": "서걱리퍼",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10032.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10032.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "forest-form",
+        "label": "숲 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003201.png",
+        "elements": [
+          "어둠",
+          "풀"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "안개숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003202.png",
+        "elements": [
+          "불",
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "highland-form",
+        "label": "고지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003203.png",
+        "elements": [
+          "불",
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "바다끝 구름",
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "042",
+    "name": "서린댕",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10131.png",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10131.png",
+        "elements": [
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선",
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013102.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "043",
+    "name": "빙참랑",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10132.png",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10132.png",
+        "elements": [
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선",
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013202.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "044",
+    "name": "설휘랑",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10133.png",
+    "elements": [
+      "얼음"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10133.png",
+        "elements": [
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "늑대이빨 능선"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013301.png",
+        "elements": [
+          "빛",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1013302.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "045",
+    "name": "라이트밍",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10221.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10221.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1022102.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "046",
+    "name": "볼트밍",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10222.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10222.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1022201.png",
+        "elements": [
+          "어둠",
+          "전기"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1022202.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "047",
+    "name": "펀치테일",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10511.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10511.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "048",
+    "name": "버스트테일",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10512.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10512.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "뇌전의 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "049",
+    "name": "수줍달",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10171.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10171.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017101.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "050",
+    "name": "보글달",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10172.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10172.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017201.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "051",
+    "name": "둥실달",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10173.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10173.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017301.png",
+        "elements": [
+          "어둠",
+          "물"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "052",
+    "name": "둔둔달",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10174.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10174.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "nighttime-form",
+        "label": "밤 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017401.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1017402.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "053",
+    "name": "클램스타",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10191.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10191.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "054",
+    "name": "위즈스타",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10192.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10192.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "055",
+    "name": "나이트스타",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10194.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10194.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "thunderstorm-form",
+        "label": "뇌우 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1019401.png",
+        "elements": [
+          "전기",
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "고래첨벙 해안"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1019402.png",
+        "elements": [
+          "빛",
+          "물"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "056",
+    "name": "데굴굴",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10451.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10451.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045101.png",
+        "elements": [
+          "바위",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "057",
+    "name": "모터터",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10453.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10453.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045301.png",
+        "elements": [
+          "바위",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045302.png",
+        "elements": [
+          "어둠",
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "058",
+    "name": "록볼볼",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10454.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10454.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "청석 대지"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1045401.png",
+        "elements": [
+          "바위",
+          "얼음"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "059",
+    "name": "엔젤멍",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10291.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10291.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "060",
+    "name": "우스멍",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10293.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10293.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "설산기슭 초원"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1029301.png",
+        "elements": [
+          "빛",
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "061",
+    "name": "투구누니",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10021.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10021.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002101.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002102.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "062",
+    "name": "누니용사",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10026.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10026.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002601.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002602.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002603.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "063",
+    "name": "아머누니",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10027.png",
+    "elements": [
+      "어둠"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10027.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "snowfield-form",
+        "label": "설원 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002701.png",
+        "elements": [
+          "어둠",
+          "얼음"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-woods-form",
+        "label": "산림 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002702.png",
+        "elements": [
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "064",
+    "name": "바이티",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10024.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10024.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002401.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "065",
+    "name": "갸면뇽",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10022.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10022.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002201.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "066",
+    "name": "갸고일",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10023.png",
+    "elements": [
+      "바람"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10023.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      },
+      {
+        "key": "mountain-form",
+        "label": "산지 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002301.png",
+        "elements": [
+          "바람"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "붉은바위 고지"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "067",
+    "name": "갸갑파이어",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10025.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10025.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1002503.png",
+        "elements": [
+          "불",
+          "바람"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "068",
+    "name": "드리미",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10501.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10501.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "069",
+    "name": "푹자곰",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10503.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10503.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1050301.png",
+        "elements": [
+          "어둠",
+          "바위"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": [
+          "로즈타워 숲"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "070",
+    "name": "록키",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10281.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10281.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "071",
+    "name": "라바크",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10282.png",
+    "elements": [
+      "불",
+      "바위"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10282.png",
+        "elements": [
+          "불",
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "072",
+    "name": "마그라곤",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10283.png",
+    "elements": [
+      "불",
+      "바위"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10283.png",
+        "elements": [
+          "불",
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1028301.png",
+        "elements": [
+          "불",
+          "어둠"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "073",
+    "name": "크리스톤",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10284.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10284.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "074",
+    "name": "크리스바인",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10285.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "격파"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10285.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "격파"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "075",
+    "name": "침니앤트",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10431.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10431.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "076",
+    "name": "캐슬앤트",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10433.png",
+    "elements": [
+      "바위"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10433.png",
+        "elements": [
+          "바위"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "바다끝 구름"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "077",
+    "name": "램프젤리",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10141.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10141.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "078",
+    "name": "루미젤리",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10142.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10142.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "079",
+    "name": "샹들라젤리",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10143.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10143.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      },
+      {
+        "key": "rainstorm-form",
+        "label": "우천 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1014301.png",
+        "elements": [
+          "전기",
+          "물"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1014302.png",
+        "elements": [
+          "빛",
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "080",
+    "name": "버블버드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10481.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10481.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "081",
+    "name": "폼폼버드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10483.png",
+    "elements": [
+      "물"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10483.png",
+        "elements": [
+          "물"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": [
+          "조화의 언덕"
+        ]
+      }
+    ]
+  },
+  {
+    "number": "082",
+    "name": "베서스",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10122.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10122.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "10002",
+    "name": "썬더자드",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10474.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10474.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "10003",
+    "name": "썬더스퀵",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10033.png",
+    "elements": [
+      "전기"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10033.png",
+        "elements": [
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_1003305.png",
+        "elements": [
+          "빛",
+          "전기"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "11001",
+    "name": "꼬마 불꽃",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_69993.png",
+    "elements": [
+      "불"
+    ],
+    "positions": [
+      "서포터"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_69993.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      },
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_6999301.png",
+        "elements": [
+          "불"
+        ],
+        "positions": [
+          "서포터"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "99996",
+    "name": "루나센",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10371.png",
+    "elements": [
+      "빛"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10371.png",
+        "elements": [
+          "빛"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  },
+  {
+    "number": "99998",
+    "name": "헬리온",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10361.png",
+    "elements": [
+      "빛"
+    ],
+    "positions": [
+      "딜"
+    ],
+    "forms": [
+      {
+        "key": "basic-form",
+        "label": "기본 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10361.png",
+        "elements": [
+          "빛"
+        ],
+        "positions": [
+          "딜"
+        ],
+        "locations": []
+      }
+    ]
+  }
+]

@@ -3,7 +3,7 @@ import { ArrowDown, ArrowLeft, Brain, ChevronLeft, ChevronRight, Compass, Extern
 import { Link, useParams, useSearchParams } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
-import aniimoData from '../data/aniimo.json';
+import aniimoSummary from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoEvolutionNode, AniimoForm, AniimoSkill, AniimoStats } from '../types';
 import { getAniimoLocationPath } from '../utils/location';
 import { getEvolutionCondition } from '../data/evolutionConditions';
@@ -12,7 +12,11 @@ import { ELEMENT_META, getElementMatchups } from '../data/elementChart';
 import { getRecommendedPersonality } from '../data/personality';
 import { AniimoEvolutionTree } from '../components/AniimoEvolutionTree';
 
-const entries = aniimoData as AniimoEntry[];
+type AniimoSummaryEntry = Pick<AniimoEntry, 'number' | 'name' | 'imageUrl' | 'elements' | 'positions'> & {
+  forms: Array<Pick<AniimoForm, 'key' | 'label' | 'imageUrl' | 'elements' | 'positions' | 'locations'>>;
+};
+
+const entries = aniimoSummary as AniimoSummaryEntry[];
 const STAT_LABELS: Record<keyof AniimoStats, string> = {
   total: '종합 능력치', hp: 'HP', break: '무력화', attack: '공격력',
   magicDefense: '마법 방어', physicalDefense: '물리 방어', energyRecovery: '에너지 회복'
@@ -54,18 +58,44 @@ function parseEvolutionCondition(raw: string): ParsedEvolutionCondition {
 const CharacterDetailAniimo: React.FC = () => {
   const { charName = '' } = useParams<{ charName: string }>();
   const [searchParams, setSearchParams] = useSearchParams();
-  const item = entries.find(entry => entry.name === decodeURIComponent(charName));
+  const summaryItem = entries.find(entry => entry.name === decodeURIComponent(charName));
+  const [item, setItem] = useState<AniimoEntry | null>(null);
+  const [loadFailed, setLoadFailed] = useState(false);
   const requestedFormKey = searchParams.get('form');
   const [skillTab, setSkillTab] = useState<'combat' | 'unique'>('combat');
-  const [formKey, setFormKey] = useState(requestedFormKey || item?.forms?.[0]?.key || 'basic-form');
-  const index = item ? entries.findIndex(entry => entry.number === item.number) : -1;
+  const [formKey, setFormKey] = useState(requestedFormKey || summaryItem?.forms?.[0]?.key || 'basic-form');
+  const index = summaryItem ? entries.findIndex(entry => entry.number === summaryItem.number) : -1;
   const previous = index >= 0 ? entries[(index - 1 + entries.length) % entries.length] : null;
   const next = index >= 0 ? entries[(index + 1) % entries.length] : null;
+
   useEffect(() => {
+    if (!summaryItem) return;
+    const controller = new AbortController();
+    setItem(null);
+    setLoadFailed(false);
+
+    fetch(`/assets/data/aniimo/${encodeURIComponent(summaryItem.number)}.json`, { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error(`Failed to load Aniimo detail: ${response.status}`);
+        return response.json() as Promise<AniimoEntry>;
+      })
+      .then(setItem)
+      .catch(error => {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+        console.error(error);
+        setLoadFailed(true);
+      });
+
+    return () => controller.abort();
+  }, [summaryItem?.number]);
+
+  useEffect(() => {
+    if (!item) return;
     setFormKey(item?.forms?.some(form => form.key === requestedFormKey) ? requestedFormKey! : item?.forms?.[0]?.key || 'basic-form');
     setSkillTab('combat');
   }, [item?.number, requestedFormKey]);
-  if (!item) return <main className="min-h-[70vh] bg-[#0a0a0a] px-6 py-24 text-center text-white"><h1 className="text-3xl font-black">애니모를 찾을 수 없습니다.</h1><Link to="/gallery/aniimo" className="mt-6 inline-block text-violet-300">도감으로 돌아가기</Link></main>;
+  if (!summaryItem) return <main className="min-h-[70vh] bg-[#0a0a0a] px-6 py-24 text-center text-white"><h1 className="text-3xl font-black">애니모를 찾을 수 없습니다.</h1><Link to="/gallery/aniimo" className="mt-6 inline-block text-violet-300">도감으로 돌아가기</Link></main>;
+  if (!item) return <main className="flex min-h-[70vh] flex-col items-center justify-center bg-[#0a0a0a] px-6 py-24 text-center text-white"><div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-violet-300" /><p className="mt-5 text-sm font-bold text-gray-400">{loadFailed ? '상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.' : '애니모 상세 데이터를 불러오는 중입니다.'}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-violet-400/10 px-4 py-2 text-xs font-black text-violet-300 hover:bg-violet-400/20">다시 시도</button>}</main>;
   const activeForm: AniimoForm | undefined = item.forms?.find(form => form.key === formKey) || item.forms?.[0];
   const displayImage = activeForm?.imageUrl || item.imageUrl;
   const displayDescription = activeForm?.description || item.description;
