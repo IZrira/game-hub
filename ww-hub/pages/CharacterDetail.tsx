@@ -36,7 +36,7 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { WuwaCharacter } from '../types';
 import { ELEMENT_COLORS } from '../data/formatter';
-import { WW_CHARACTER_DATA } from '../data/characterData';
+import characterSummary from '../data/generated/character-summary.json';
 import { CDN_URL, safeEncodeURIComponent, withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
@@ -112,7 +112,13 @@ const CharacterDetail: React.FC = () => {
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   
-  const CHARACTER_DB = WW_CHARACTER_DATA;
+  const characterIndex = characterSummary as Array<{ id: string; name: string; originalName?: string }>;
+  const summaryChar = useMemo(
+    () => characterIndex.find(character => character.id === charName || character.name === charName || character.originalName === charName),
+    [charName]
+  );
+  const [rawChar, setRawChar] = useState<any>(null);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(false); // Default collapsed
   const [isProfileExpanded, setIsProfileExpanded] = useState(false);   // New: Profile toggle
   const [levelIdx, setLevelIdx] = useState(8);
@@ -132,7 +138,26 @@ const CharacterDetail: React.FC = () => {
     return () => window.removeEventListener('click', handleOutsideClick);
   }, [tooltip]);
 
-  const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
+  useEffect(() => {
+    if (!summaryChar) return;
+    const controller = new AbortController();
+    setRawChar(null);
+    setLoadFailed(false);
+
+    fetch(`/assets/data/ww/characters/${encodeURIComponent(summaryChar.id)}.json`, { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error(`Failed to load WW character detail: ${response.status}`);
+        return response.json();
+      })
+      .then(setRawChar)
+      .catch(error => {
+        if (error instanceof DOMException && error.name === 'AbortError') return;
+        console.error(error);
+        setLoadFailed(true);
+      });
+
+    return () => controller.abort();
+  }, [summaryChar?.id]);
 
   // AS Mode State
   const [isASMode, setIsASMode] = useState(false);
@@ -144,15 +169,6 @@ const CharacterDetail: React.FC = () => {
       setIsASMode(false);
     }
   }, [rawChar]);
-
-  // 연관 캐릭터 추천 (Internal Linking)
-  const relatedCharacters = useMemo(() => {
-    if (!rawChar) return [];
-    return CHARACTER_DB.filter((c: any) => 
-      c.id !== rawChar.id && 
-      (c.weaponType === rawChar.weaponType || c.attribute === rawChar.attribute)
-    ).slice(0, 4);
-  }, [rawChar, CHARACTER_DB]);
 
   // Derived Character Data based on Mode
   const char = useMemo(() => {
@@ -256,8 +272,6 @@ const CharacterDetail: React.FC = () => {
 
 
   const ICON_COMMON_BASE = `${CDN_URL}/ww%20images/common/position/`;
-
-  if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
 
   const currentLevel = LEVEL_STEPS[levelIdx];
 
@@ -532,6 +546,7 @@ const CharacterDetail: React.FC = () => {
   };
 
   const seoDescription = useMemo(() => {
+    if (!char) return '';
     const name = t(char.name);
     const longTailKeywords = [
       `${name} 종결 에코 세팅`,
@@ -560,6 +575,8 @@ const CharacterDetail: React.FC = () => {
     ];
   }, [char, t]);
 
+  if (!summaryChar) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
+  if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary'} /><p className="mt-5 text-sm font-black uppercase italic">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
