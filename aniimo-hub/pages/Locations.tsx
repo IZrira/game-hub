@@ -4,12 +4,12 @@ import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
-import aniimoData from '../data/aniimo.json';
+import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry } from '../types';
 import { getAniimoLocationPath } from '../utils/location';
 import { OFFICIAL_ANIIMO_HABITATS, OFFICIAL_HABITAT_TARGETS } from '../data/habitats';
 
-const entries = aniimoData as AniimoEntry[];
+const entries = aniimoData as unknown as AniimoEntry[];
 const habitats = OFFICIAL_ANIIMO_HABITATS;
 
 const LocationsAniimo: React.FC = () => (

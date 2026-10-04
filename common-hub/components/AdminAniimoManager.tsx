@@ -1,12 +1,12 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, CheckCircle2, ExternalLink, FileJson, Search, Shapes, Sparkles } from 'lucide-react';
 import { Link } from 'react-router';
-import aniimoData from '../../aniimo-hub/data/aniimo.json';
-import type { AniimoEntry } from '../../aniimo-hub/types';
+import aniimoData from '../../aniimo-hub/data/aniimo-summary.json';
+import type { AniimoEntry, AniimoForm } from '../../aniimo-hub/types';
 import { ANIIMO_ENGLISH_NAMES, getAniimoEvolutionStage } from '../../aniimo-hub/utils/evolutionStage';
 import AdminAniimoPartyManager from './AdminAniimoPartyManager';
 
-const entries = aniimoData as AniimoEntry[];
+const entries = aniimoData as unknown as AniimoEntry[];
 const ALL = '전체';
 
 const AdminAniimoManager: React.FC = () => {
@@ -15,8 +15,8 @@ const AdminAniimoManager: React.FC = () => {
   const [view, setView] = useState<'dex' | 'parties'>('dex');
   const forms = entries.flatMap(entry => entry.forms.map(form => ({ entry, form })));
   const locations = new Set(forms.flatMap(({ form }) => form.locations));
-  const incompleteEntries = entries.filter(entry => !ANIIMO_ENGLISH_NAMES[entry.number] || !entry.imageUrl || !entry.description || entry.forms.length === 0);
-  const incompleteForms = forms.filter(({ form }) => !form.imageUrl || !form.description || form.elements.length === 0 || form.positions.length === 0);
+  const incompleteEntries = entries.filter(entry => !ANIIMO_ENGLISH_NAMES[entry.number] || !entry.imageUrl || !(entry as AniimoEntry & { hasDescription?: boolean }).hasDescription || entry.forms.length === 0);
+  const incompleteForms = forms.filter(({ form }) => !form.imageUrl || !(form as AniimoForm & { hasDescription?: boolean }).hasDescription || form.elements.length === 0 || form.positions.length === 0);
 
   const filtered = useMemo(() => {
     const keyword = query.trim().toLocaleLowerCase('ko');

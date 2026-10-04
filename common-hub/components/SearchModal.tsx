@@ -251,7 +251,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
             const module = await import('../data/search/nte');
             return [game, module.loadNteSearchData()] as const;
           })),
-          needsAniimo ? import('../../aniimo-hub/data/aniimo.json') : Promise.resolve(null)
+          needsAniimo ? import('../../aniimo-hub/data/aniimo-summary.json') : Promise.resolve(null)
         ]);
 
         if (cancelled) return;

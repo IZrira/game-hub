@@ -5,7 +5,7 @@ import { CHARACTER_DB_EN } from './index';
 import i18n from '../i18n';
 import notionData from './notion-data.json';
 import wwWeaponsKo from '../locales/ww/ww_weapons_ko.json';
-import aniimoData from '../../aniimo-hub/data/aniimo.json';
+import aniimoData from '../../aniimo-hub/data/aniimo-summary.json';
 
 export interface NotionItem {
   id: string;

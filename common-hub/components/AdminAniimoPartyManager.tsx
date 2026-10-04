@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Check, Edit3, Plus, Save, Trash2, Users, X } from 'lucide-react';
-import aniimoData from '../../aniimo-hub/data/aniimo.json';
+import aniimoData from '../../aniimo-hub/data/aniimo-summary.json';
 import { ANIIMO_PARTY_RECOMMENDATIONS, normalizeAniimoParty, type AniimoPartyRecommendation } from '../../aniimo-hub/data/parties';
 import type { AniimoEntry } from '../../aniimo-hub/types';
 import { supabase } from '../lib/supabase';
 
-const entries = aniimoData as AniimoEntry[];
+const entries = aniimoData as unknown as AniimoEntry[];
 const emptyMember = () => ({ number: '', formKey: 'basic-form', role: '' });
 const newParty = (): AniimoPartyRecommendation => ({ id: crypto.randomUUID(), name: '', description: '', category: '범용', tags: [], order: 100, members: [emptyMember(), emptyMember(), emptyMember(), emptyMember()] });
 const inputClass = 'h-11 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-sm text-white outline-none focus:border-violet-400/50';

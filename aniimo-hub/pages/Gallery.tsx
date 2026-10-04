@@ -4,13 +4,13 @@ import { BarChart3, Check, ExternalLink, Search, Swords, X } from 'lucide-react'
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
-import aniimoData from '../data/aniimo.json';
+import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoForm, AniimoStats } from '../types';
 import { ANIIMO_ENGLISH_NAMES, EVOLUTION_STAGES, getAniimoEvolutionStage } from '../utils/evolutionStage';
 import { ELEMENT_META, getElementMatchups } from '../data/elementChart';
 import { getRecommendedPersonality, PERSONALITY_PRESETS } from '../data/personality';
 
-const entries = aniimoData as AniimoEntry[];
+const entries = aniimoData as unknown as AniimoEntry[];
 const ALL = '전체';
 const STAT_ROWS: Array<{ key: keyof AniimoStats; label: string }> = [
   { key: 'total', label: '종합 능력치' }, { key: 'hp', label: 'HP' },

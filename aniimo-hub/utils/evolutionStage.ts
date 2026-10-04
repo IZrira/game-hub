@@ -21,7 +21,14 @@ export const ANIIMO_ENGLISH_NAMES: Record<string, string> = {
 };
 
 export const getAniimoEvolutionStage = (item: AniimoEntry, form?: AniimoForm): AniimoEvolutionStage => {
-  const evolution = form?.evolution?.length ? form.evolution : item.evolution;
+  const summarizedStage = (form as AniimoForm & { evolutionStage?: string } | undefined)?.evolutionStage
+    || (item as AniimoEntry & { evolutionStage?: string }).evolutionStage;
+  if (EVOLUTION_STAGES.includes(summarizedStage as typeof EVOLUTION_STAGES[number])) {
+    return summarizedStage as typeof EVOLUTION_STAGES[number];
+  }
+  if (summarizedStage === '특수 개체') return summarizedStage;
+
+  const evolution = form?.evolution?.length ? form.evolution : item.evolution || [];
   const matchingNode = evolution.find(node => node.number === item.number && (!form || node.formKey === form.key))
     || evolution.find(node => node.number === item.number);
 

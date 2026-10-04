@@ -5,11 +5,11 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { supabase } from '../../common-hub/lib/supabase';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
-import aniimoData from '../data/aniimo.json';
+import aniimoData from '../data/aniimo-summary.json';
 import { ANIIMO_PARTY_RECOMMENDATIONS, normalizeAniimoParty, type AniimoPartyRecommendation } from '../data/parties';
 import type { AniimoEntry } from '../types';
 
-const entries = aniimoData as AniimoEntry[];
+const entries = aniimoData as unknown as AniimoEntry[];
 
 const PartyBuilderAniimo: React.FC = () => {
   const [parties, setParties] = useState<AniimoPartyRecommendation[]>(ANIIMO_PARTY_RECOMMENDATIONS);

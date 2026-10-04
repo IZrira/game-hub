@@ -4,12 +4,12 @@ import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
-import aniimoData from '../data/aniimo.json';
+import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry } from '../types';
 
 import { OFFICIAL_ANIIMO_HABITATS } from '../data/habitats';
 
-const entries = aniimoData as AniimoEntry[];
+const entries = aniimoData as unknown as AniimoEntry[];
 const locationCount = OFFICIAL_ANIIMO_HABITATS.length;
 const formCount = entries.reduce((total, entry) => total + entry.forms.length, 0);
 
