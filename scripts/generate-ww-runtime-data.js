@@ -12,7 +12,12 @@ export function writeWwRuntimeData() {
   const summary = characters.map(character => ({
     id: character.id,
     name: character.name,
-    originalName: character.originalName
+    originalName: character.originalName,
+    folderName: character.folderName,
+    rarity: character.rarity,
+    attribute: character.attribute,
+    weaponType: character.weaponType,
+    releaseVersion: character.releaseVersion
   }));
 
   fs.mkdirSync(DETAIL_DIR, { recursive: true });

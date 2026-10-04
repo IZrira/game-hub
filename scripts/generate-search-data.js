@@ -13,9 +13,11 @@ const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'wea
 const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs.json');
 const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
 const nteCharactersPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'characters.json');
+const nteCharacterSummaryPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'character-summary.json');
 const wwGuideCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guide-characters.json');
 const wwGuidesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guides.json');
 const wwCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'characters.json');
+const wwAdminWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'admin-weapons.json');
 const wwGalleryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'gallery.json');
 const wwRecommendationsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'recommendations.json');
 const wwEchoesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'echoes.json');
@@ -384,13 +386,34 @@ fs.writeFileSync(nteArcsPath, `${JSON.stringify(notionNteArcs.map(parseNteArc), 
 fs.mkdirSync(path.dirname(notionItemsPath), { recursive: true });
 fs.writeFileSync(notionItemsPath, `${JSON.stringify(notionItems, null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(nteCharactersPath), { recursive: true });
-fs.writeFileSync(nteCharactersPath, `${JSON.stringify(notionNteCharacters.map(normalizeNteCharacter), null, 2)}\n`, 'utf8');
+const normalizedNteCharacters = notionNteCharacters.map(normalizeNteCharacter);
+fs.writeFileSync(nteCharactersPath, `${JSON.stringify(normalizedNteCharacters, null, 2)}\n`, 'utf8');
+fs.writeFileSync(nteCharacterSummaryPath, `${JSON.stringify(normalizedNteCharacters.map(character => ({
+  id: character.id,
+  name: character.name,
+  folderName: character.folderName,
+  rarity: character.rarity,
+  attribute: character.attribute,
+  arc: character.arc,
+  releaseVersion: character.releaseVersion
+})), null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(wwGuideCharactersPath), { recursive: true });
 fs.writeFileSync(wwGuideCharactersPath, `${JSON.stringify(notionWwGuideCharacters, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, 'utf8');
 const wwData = await buildWwData();
 const wwCharacters = wwData.CHARACTER_DB;
 fs.writeFileSync(wwCharactersPath, `${JSON.stringify(wwCharacters, null, 2)}\n`, 'utf8');
+fs.writeFileSync(wwAdminWeaponsPath, `${JSON.stringify((wwData.WEAPON_DB || []).map(weapon => ({
+  id: weapon.id,
+  name: weapon.name,
+  rarity: weapon.rarity,
+  type: weapon.type,
+  releaseVersion: weapon.releaseVersion,
+  obtain: weapon.obtain,
+  stats: weapon.stats,
+  skill: weapon.skill,
+  description: weapon.description
+})), null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwEchoesPath, `${JSON.stringify(wwData.ECHO_DB, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwInventoryPath, `${JSON.stringify(wwData.WW_INVENTORY, null, 2)}\n`, 'utf8');
 const wwGalleryData = {

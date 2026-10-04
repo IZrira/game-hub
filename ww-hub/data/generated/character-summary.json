@@ -2,301 +2,601 @@
   {
     "id": "3e995fae-3dc7-80af-9829-c4be7196c7ce",
     "name": "쇄명",
-    "originalName": "쇄명"
+    "originalName": "쇄명",
+    "folderName": "쇄명",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "직검",
+    "releaseVersion": "3.7"
   },
   {
     "id": "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
     "name": "여우의 별자리",
-    "originalName": "여우의 별자리"
+    "originalName": "여우의 별자리",
+    "folderName": "여우의 별자리",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "releaseVersion": "3.7"
   },
   {
     "id": "3be95fae-3dc7-809a-848d-cf54b30c697b",
     "name": "경연",
-    "originalName": "경연"
+    "originalName": "경연",
+    "folderName": "경연",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "대검",
+    "releaseVersion": "3.6"
   },
   {
     "id": "3bf95fae-3dc7-80c1-8d1e-faa7793ca6a4",
     "name": "청초",
-    "originalName": "청초"
+    "originalName": "청초",
+    "folderName": "청초",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "직검",
+    "releaseVersion": "3.6"
   },
   {
     "id": "susu",
     "name": "수수",
-    "originalName": "수수"
+    "originalName": "수수",
+    "folderName": "수수",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "releaseVersion": "3.5"
   },
   {
     "id": "yangyang_magistrate",
     "name": "양양 · 현령",
-    "originalName": "양양 · 현령"
+    "originalName": "양양 · 현령",
+    "folderName": "양양 · 현령",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "releaseVersion": "3.5"
   },
   {
     "id": "rebecca",
     "name": "레베카",
-    "originalName": "레베카"
+    "originalName": "레베카",
+    "folderName": "레베카",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "권총",
+    "releaseVersion": "3.4"
   },
   {
     "id": "lucy",
     "name": "루시",
-    "originalName": "루시"
+    "originalName": "루시",
+    "folderName": "루시",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "권총",
+    "releaseVersion": "3.4"
   },
   {
     "id": "lucilla",
     "name": "루실라",
-    "originalName": "루실라"
+    "originalName": "루실라",
+    "folderName": "루실라",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "releaseVersion": "3.4"
   },
   {
     "id": "denia",
     "name": "데니아",
-    "originalName": "데니아"
+    "originalName": "데니아",
+    "folderName": "데니아",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "증폭기",
+    "releaseVersion": "3.3"
   },
   {
     "id": "hiyuki",
     "name": "히유키",
-    "originalName": "히유키"
+    "originalName": "히유키",
+    "folderName": "히유키",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "직검",
+    "releaseVersion": "3.3"
   },
   {
     "id": "sigrika",
     "name": "시그리카",
-    "originalName": "시그리카"
+    "originalName": "시그리카",
+    "folderName": "시그리카",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "권갑",
+    "releaseVersion": "3.2"
   },
   {
     "id": "luuk",
     "name": "루크 · 헤르센",
-    "originalName": "루크 · 헤르센"
+    "originalName": "루크 · 헤르센",
+    "folderName": "루크 · 헤르센",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "권갑",
+    "releaseVersion": "3.1"
   },
   {
     "id": "aemeath",
     "name": "에이메스",
-    "originalName": "에이메스"
+    "originalName": "에이메스",
+    "folderName": "에이메스",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "직검",
+    "releaseVersion": "3.1"
   },
   {
     "id": "linne",
     "name": "린네",
-    "originalName": "린네"
+    "originalName": "린네",
+    "folderName": "린네",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "권총",
+    "releaseVersion": "3.0"
   },
   {
     "id": "mornye",
     "name": "모니에",
-    "originalName": "모니에"
+    "originalName": "모니에",
+    "folderName": "모니에",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "대검",
+    "releaseVersion": "3.0"
   },
   {
     "id": "chisa",
     "name": "치사",
-    "originalName": "치사"
+    "originalName": "치사",
+    "folderName": "치사",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "대검",
+    "releaseVersion": "2.8"
   },
   {
     "id": "buling",
     "name": "복링",
-    "originalName": "복링"
+    "originalName": "복링",
+    "folderName": "복링",
+    "rarity": 4,
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "releaseVersion": "2.8"
   },
   {
     "id": "galbrena",
     "name": "갈브레나",
-    "originalName": "갈브레나"
+    "originalName": "갈브레나",
+    "folderName": "갈브레나",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "권총",
+    "releaseVersion": "2.7"
   },
   {
     "id": "qiuyuan",
     "name": "구원",
-    "originalName": "구원"
+    "originalName": "구원",
+    "folderName": "구원",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "직검",
+    "releaseVersion": "2.7"
   },
   {
     "id": "augusta",
     "name": "아우구스타",
-    "originalName": "아우구스타"
+    "originalName": "아우구스타",
+    "folderName": "아우구스타",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "대검",
+    "releaseVersion": "2.6"
   },
   {
     "id": "iuno",
     "name": "유노",
-    "originalName": "유노"
+    "originalName": "유노",
+    "folderName": "유노",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "권갑",
+    "releaseVersion": "2.6"
   },
   {
     "id": "phrolova",
     "name": "플로로",
-    "originalName": "플로로"
+    "originalName": "플로로",
+    "folderName": "플로로",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "증폭기",
+    "releaseVersion": "2.5"
   },
   {
     "id": "lupa",
     "name": "루파",
-    "originalName": "루파"
+    "originalName": "루파",
+    "folderName": "루파",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "대검",
+    "releaseVersion": "2.4"
   },
   {
     "id": "cartethyia",
     "name": "카르티시아",
-    "originalName": "카르티시아"
+    "originalName": "카르티시아",
+    "folderName": "카르티시아",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "직검",
+    "releaseVersion": "2.4"
   },
   {
     "id": "chaconne",
     "name": "샤콘",
-    "originalName": "샤콘"
+    "originalName": "샤콘",
+    "folderName": "샤콘",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "권총",
+    "releaseVersion": "2.3"
   },
   {
     "id": "zani",
     "name": "젠니",
-    "originalName": "젠니"
+    "originalName": "젠니",
+    "folderName": "젠니",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "권갑",
+    "releaseVersion": "2.3"
   },
   {
     "id": "cantarella",
     "name": "칸타렐라",
-    "originalName": "칸타렐라"
+    "originalName": "칸타렐라",
+    "folderName": "칸타렐라",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "증폭기",
+    "releaseVersion": "2.2"
   },
   {
     "id": "brant",
     "name": "브렌트",
-    "originalName": "브렌트"
+    "originalName": "브렌트",
+    "folderName": "브렌트",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "직검",
+    "releaseVersion": "2.1"
   },
   {
     "id": "phoebe",
     "name": "페비",
-    "originalName": "페비"
+    "originalName": "페비",
+    "folderName": "페비",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "증폭기",
+    "releaseVersion": "2.1"
   },
   {
     "id": "rococo",
     "name": "로코코",
-    "originalName": "로코코"
+    "originalName": "로코코",
+    "folderName": "로코코",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "권갑",
+    "releaseVersion": "2.0"
   },
   {
     "id": "carlotta",
     "name": "카를로타",
-    "originalName": "카를로타"
+    "originalName": "카를로타",
+    "folderName": "카를로타",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "권총",
+    "releaseVersion": "2.0"
   },
   {
     "id": "camellya",
     "name": "카멜리아",
-    "originalName": "카멜리아"
+    "originalName": "카멜리아",
+    "folderName": "카멜리아",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "releaseVersion": "1.4"
   },
   {
     "id": "lumi",
     "name": "루미",
-    "originalName": "루미"
+    "originalName": "루미",
+    "folderName": "루미",
+    "rarity": 4,
+    "attribute": "전도",
+    "weaponType": "대검",
+    "releaseVersion": "1.4"
   },
   {
     "id": "the_shorekeeper",
     "name": "파수인",
-    "originalName": "파수인"
+    "originalName": "파수인",
+    "folderName": "파수인",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "증폭기",
+    "releaseVersion": "1.3"
   },
   {
     "id": "youhu",
     "name": "유호",
-    "originalName": "유호"
+    "originalName": "유호",
+    "folderName": "유호",
+    "rarity": 4,
+    "attribute": "응결",
+    "weaponType": "권갑",
+    "releaseVersion": "1.3"
   },
   {
     "id": "xiangli_yao",
     "name": "상리요",
-    "originalName": "상리요"
+    "originalName": "상리요",
+    "folderName": "상리요",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "권갑",
+    "releaseVersion": "1.2"
   },
   {
     "id": "zhezhi",
     "name": "절지",
-    "originalName": "절지"
+    "originalName": "절지",
+    "folderName": "절지",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "releaseVersion": "1.2"
   },
   {
     "id": "jinhsi",
     "name": "금희",
-    "originalName": "금희"
+    "originalName": "금희",
+    "folderName": "금희",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "대검",
+    "releaseVersion": "1.1"
   },
   {
     "id": "changli",
     "name": "장리",
-    "originalName": "장리"
+    "originalName": "장리",
+    "folderName": "장리",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "직검",
+    "releaseVersion": "1.1"
   },
   {
     "id": "jianxin",
     "name": "감심",
-    "originalName": "감심"
+    "originalName": "감심",
+    "folderName": "감심",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "권갑",
+    "releaseVersion": "1.0"
   },
   {
     "id": "jiyan",
     "name": "기염",
-    "originalName": "기염"
+    "originalName": "기염",
+    "folderName": "기염",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "대검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "lingyang",
     "name": "능양",
-    "originalName": "능양"
+    "originalName": "능양",
+    "folderName": "능양",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "권갑",
+    "releaseVersion": "1.0"
   },
   {
     "id": "rover_aero",
     "name": "방랑자 · 기류",
-    "originalName": "방랑자 · 기류"
+    "originalName": "방랑자 · 기류",
+    "folderName": "방랑자 · 기류",
+    "rarity": 5,
+    "attribute": "기류",
+    "weaponType": "직검",
+    "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제2장 제4막 클리어 후에 획득"
   },
   {
     "id": "rover_havoc",
     "name": "방랑자 · 인멸",
-    "originalName": "방랑자 · 인멸"
+    "originalName": "방랑자 · 인멸",
+    "folderName": "방랑자 · 인멸",
+    "rarity": 5,
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "releaseVersion": "조수 임무 제1장 제6막 클리어 후 획득"
   },
   {
     "id": "rover_electro",
     "name": "방랑자 · 전도",
-    "originalName": "방랑자 · 전도"
+    "originalName": "방랑자 · 전도",
+    "folderName": "방랑자 · 전도",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "직검",
+    "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제4장 제2막 완료 후 개방"
   },
   {
     "id": "rover_spectro",
     "name": "방랑자 · 회절",
-    "originalName": "방랑자 · 회절"
+    "originalName": "방랑자 · 회절",
+    "folderName": "방랑자 · 회절",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "직검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "verina",
     "name": "벨리나",
-    "originalName": "벨리나"
+    "originalName": "벨리나",
+    "folderName": "벨리나",
+    "rarity": 5,
+    "attribute": "회절",
+    "weaponType": "증폭기",
+    "releaseVersion": "1.0"
   },
   {
     "id": "baizhi",
     "name": "설지",
-    "originalName": "설지"
+    "originalName": "설지",
+    "folderName": "설지",
+    "rarity": 5,
+    "attribute": "응결",
+    "weaponType": "증폭기",
+    "releaseVersion": "1.0"
   },
   {
     "id": "encore",
     "name": "앙코",
-    "originalName": "앙코"
+    "originalName": "앙코",
+    "folderName": "앙코",
+    "rarity": 5,
+    "attribute": "용융",
+    "weaponType": "증폭기",
+    "releaseVersion": "1.0"
   },
   {
     "id": "yinlin",
     "name": "음림",
-    "originalName": "음림"
+    "originalName": "음림",
+    "folderName": "음림",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "releaseVersion": "1.0"
   },
   {
     "id": "calcharo",
     "name": "카카루",
-    "originalName": "카카루"
+    "originalName": "카카루",
+    "folderName": "카카루",
+    "rarity": 5,
+    "attribute": "전도",
+    "weaponType": "대검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "danjin",
     "name": "단근",
-    "originalName": "단근"
+    "originalName": "단근",
+    "folderName": "단근",
+    "rarity": 4,
+    "attribute": "인멸",
+    "weaponType": "직검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "taoqi",
     "name": "도기",
-    "originalName": "도기"
+    "originalName": "도기",
+    "folderName": "도기",
+    "rarity": 4,
+    "attribute": "인멸",
+    "weaponType": "대검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "mortefi",
     "name": "모르테피",
-    "originalName": "모르테피"
+    "originalName": "모르테피",
+    "folderName": "모르테피",
+    "rarity": 4,
+    "attribute": "용융",
+    "weaponType": "권갑",
+    "releaseVersion": "1.0"
   },
   {
     "id": "sanhua",
     "name": "산화",
-    "originalName": "산화"
+    "originalName": "산화",
+    "folderName": "산화",
+    "rarity": 4,
+    "attribute": "응결",
+    "weaponType": "직검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "aalto",
     "name": "알토",
-    "originalName": "알토"
+    "originalName": "알토",
+    "folderName": "알토",
+    "rarity": 4,
+    "attribute": "기류",
+    "weaponType": "권총",
+    "releaseVersion": "1.0"
   },
   {
     "id": "yangyang",
     "name": "양양",
-    "originalName": "양양"
+    "originalName": "양양",
+    "folderName": "양양",
+    "rarity": 4,
+    "attribute": "기류",
+    "weaponType": "직검",
+    "releaseVersion": "1.0"
   },
   {
     "id": "yuanwu",
     "name": "연무",
-    "originalName": "연무"
+    "originalName": "연무",
+    "folderName": "연무",
+    "rarity": 4,
+    "attribute": "전도",
+    "weaponType": "권갑",
+    "releaseVersion": "1.0"
   },
   {
     "id": "chixia",
     "name": "치샤",
-    "originalName": "치샤"
+    "originalName": "치샤",
+    "folderName": "치샤",
+    "rarity": 4,
+    "attribute": "용융",
+    "weaponType": "권총",
+    "releaseVersion": "1.0"
   }
 ]

@@ -21,9 +21,14 @@ const AdminSectionFallback = () => (
   </div>
 );
 
-const loadManagedGameData = async (gameId: 'ww' | 'nte') => {
-  const { getGameData } = await import('../data/dataManager');
-  return getGameData(gameId);
+const loadManagedCharacterData = async (gameId: 'ww' | 'nte') => {
+  if (gameId === 'ww') {
+    const { default: characters } = await import('../../ww-hub/data/generated/character-summary.json');
+    return characters;
+  }
+
+  const { default: characters } = await import('../../nte-hub/data/generated/character-summary.json');
+  return characters;
 };
 
 const AdminDashboard: React.FC = () => {
@@ -171,8 +176,8 @@ const AdminDashboard: React.FC = () => {
         version: c.releaseVersion || '1.0'
       }));
     } else if (activeGame === 'ww') {
-      const { CHARACTER_DB } = await loadManagedGameData('ww');
-      localChars = CHARACTER_DB.map((c: any) => ({
+      const characters = await loadManagedCharacterData('ww');
+      localChars = characters.map((c: any) => ({
         id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
         name: c.name,
         folder_name: c.folderName || c.name,
@@ -182,8 +187,8 @@ const AdminDashboard: React.FC = () => {
         version: c.releaseVersion || '1.0'
       }));
     } else if (activeGame === 'nte') {
-      const { CHARACTER_DB } = await loadManagedGameData('nte');
-      localChars = CHARACTER_DB.map((c: any) => ({
+      const characters = await loadManagedCharacterData('nte');
+      localChars = characters.map((c: any) => ({
         id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
         name: c.name,
         folder_name: c.folderName || c.name,
@@ -553,8 +558,8 @@ const AdminDashboard: React.FC = () => {
           version: (c as any).releaseVersion || c.version || '1.0'
         }));
       } else if (activeGame === 'ww') {
-        const { CHARACTER_DB } = await loadManagedGameData('ww');
-        charTasks = CHARACTER_DB.map((c: any) => ({
+        const characters = await loadManagedCharacterData('ww');
+        charTasks = characters.map((c: any) => ({
           id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
           name: c.name,
           folder_name: c.folderName || c.name,
@@ -564,8 +569,8 @@ const AdminDashboard: React.FC = () => {
           version: c.releaseVersion || '1.0'
         }));
       } else if (activeGame === 'nte') {
-        const { CHARACTER_DB } = await loadManagedGameData('nte');
-        charTasks = CHARACTER_DB.map((c: any) => ({
+        const characters = await loadManagedCharacterData('nte');
+        charTasks = characters.map((c: any) => ({
           id: c.id || c.name.toLowerCase().replace(/\s+/g, '_'),
           name: c.name,
           folder_name: c.folderName || c.name,
@@ -599,8 +604,8 @@ const AdminDashboard: React.FC = () => {
     
     setLoading(true);
     try {
-      const { WEAPON_DB } = await loadManagedGameData('ww');
-      const weaponTasks = WEAPON_DB.map((w: any) => ({
+      const { default: weapons } = await import('../../ww-hub/data/generated/admin-weapons.json');
+      const weaponTasks = weapons.map((w: any) => ({
         id: w.id || w.name.toLowerCase().replace(/\s+/g, '_'),
         name: w.name,
         rarity: w.rarity || 5,
