@@ -6,7 +6,12 @@ import {
 } from 'lucide-react';
 
 import { ARCHIVE_DATA } from '../../common-hub/data/archive';
-import { getHsrGameData } from '../data/gameData';
+import HSR_CHARACTER_SUMMARY from '../data/generated/character-summary.json';
+import { SORTED_LIGHTCONE_DATA } from '../data/lightcones';
+import { RELIC_DATA } from '../data/relics';
+import { ORNAMENT_DATA } from '../data/ornaments';
+import { HSR_CHARACTER_GUIDES } from '../data/guides';
+import { ITEM_META } from '../data/items';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
@@ -102,9 +107,18 @@ const GalleryHSR: React.FC = () => {
     setSearchQuery(query);
   };
 
-  const { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB, HSR_INVENTORY, GUIDES: HSR_CHARACTER_GUIDES } = useMemo(() => {
-    return getHsrGameData(currentLang);
-  }, [currentLang, gameId]);
+  const CHARACTER_DB = useMemo(() => HSR_CHARACTER_SUMMARY.map(character => ({
+    ...character,
+    gameId: 'hsr' as const,
+    originalName: character.name,
+    name: currentLang === 'en' ? t(character.name) : character.name,
+    path: currentLang === 'en' ? t(character.path) : character.path,
+    attribute: currentLang === 'en' ? t(character.attribute) : character.attribute,
+  })), [currentLang, t]);
+  const LIGHTCONE_DB = SORTED_LIGHTCONE_DATA;
+  const RELIC_DB = RELIC_DATA;
+  const ORNAMENT_DB = ORNAMENT_DATA;
+  const HSR_INVENTORY = ITEM_META;
   
 
 

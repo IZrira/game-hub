@@ -26,6 +26,19 @@ export default defineConfig(({ mode }) => {
       ],
       build: {
         chunkSizeWarningLimit: 1000,
+        rollupOptions: {
+          output: {
+            manualChunks(id) {
+              const normalizedId = id.replace(/\\/g, '/');
+              if (
+                normalizedId.includes('/hsr-hub/data/characters/hsr/') ||
+                normalizedId.endsWith('/hsr-hub/data/characters.ts')
+              ) {
+                return 'hsr-character-details';
+              }
+            },
+          },
+        },
       },
       define: {
         'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),

@@ -1,0 +1,932 @@
+[
+  {
+    "id": "pearl",
+    "name": "펄",
+    "gameId": "hsr",
+    "folderName": "펄",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "환락",
+    "releaseVersion": "4.6"
+  },
+  {
+    "id": "robin_summeretto",
+    "name": "로빈•서머레토",
+    "gameId": "hsr",
+    "folderName": "로빈•서머레토",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "기억",
+    "releaseVersion": "4.5"
+  },
+  {
+    "id": "aventurine_waveflair",
+    "name": "어벤츄린•웨이브",
+    "gameId": "hsr",
+    "folderName": "어벤츄린•웨이브",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "환락",
+    "releaseVersion": "4.5"
+  },
+  {
+    "id": "gilgamesh",
+    "name": "길가메시",
+    "gameId": "hsr",
+    "folderName": "길가메시",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "파멸",
+    "releaseVersion": "4.4"
+  },
+  {
+    "id": "rin_tohsaka",
+    "name": "토오사카 린",
+    "gameId": "hsr",
+    "folderName": "토오사카 린",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "지식",
+    "releaseVersion": "4.4"
+  },
+  {
+    "id": "himeko_nova",
+    "name": "히메코•노바",
+    "gameId": "hsr",
+    "folderName": "히메코•노바",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "지식",
+    "releaseVersion": "4.4"
+  },
+  {
+    "id": "mortenax_blade",
+    "name": "천야•블레이드",
+    "gameId": "hsr",
+    "folderName": "천야•블레이드",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "공허",
+    "releaseVersion": "4.3"
+  },
+  {
+    "id": "trailblazer_elation",
+    "name": "개척자 (환락)",
+    "gameId": "hsr",
+    "folderName": "개척자 (환락)",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "환락",
+    "releaseVersion": "4.2"
+  },
+  {
+    "id": "evanescia",
+    "name": "에바네시아",
+    "gameId": "hsr",
+    "folderName": "에바네시아",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "환락",
+    "releaseVersion": "4.2"
+  },
+  {
+    "id": "silver_wolf_999",
+    "name": "은랑 LV.999",
+    "gameId": "hsr",
+    "folderName": "은랑 LV.999",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "환락",
+    "releaseVersion": "4.2"
+  },
+  {
+    "id": "ashveil",
+    "name": "애쉬베일",
+    "gameId": "hsr",
+    "folderName": "애쉬베일",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "수렵",
+    "releaseVersion": "4.1"
+  },
+  {
+    "id": "sparxie",
+    "name": "스파키",
+    "gameId": "hsr",
+    "folderName": "스파키",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "환락",
+    "releaseVersion": "4.0"
+  },
+  {
+    "id": "yaoguang",
+    "name": "효광",
+    "gameId": "hsr",
+    "folderName": "효광",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "환락",
+    "releaseVersion": "4.0"
+  },
+  {
+    "id": "dahlia",
+    "name": "달리아",
+    "gameId": "hsr",
+    "folderName": "달리아",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "공허",
+    "releaseVersion": "3.8"
+  },
+  {
+    "id": "cyrene",
+    "name": "키레네",
+    "gameId": "hsr",
+    "folderName": "키레네",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "기억",
+    "releaseVersion": "3.7"
+  },
+  {
+    "id": "dan_heng_permansor_terrae",
+    "name": "단항•등황",
+    "gameId": "hsr",
+    "folderName": "단항•등황",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "보존",
+    "releaseVersion": "3.6"
+  },
+  {
+    "id": "evernight",
+    "name": "에버나이트",
+    "gameId": "hsr",
+    "folderName": "에버나이트",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "기억",
+    "releaseVersion": "3.6"
+  },
+  {
+    "id": "cerydra",
+    "name": "케리드라",
+    "gameId": "hsr",
+    "folderName": "케리드라",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "화합",
+    "releaseVersion": "3.5"
+  },
+  {
+    "id": "hysilens",
+    "name": "히실렌스",
+    "gameId": "hsr",
+    "folderName": "히실렌스",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "공허",
+    "releaseVersion": "3.5"
+  },
+  {
+    "id": "saber",
+    "name": "세이버",
+    "gameId": "hsr",
+    "folderName": "세이버",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "파멸",
+    "releaseVersion": "3.4"
+  },
+  {
+    "id": "archer",
+    "name": "아처",
+    "gameId": "hsr",
+    "folderName": "아처",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "수렵",
+    "releaseVersion": "3.4"
+  },
+  {
+    "id": "phainon",
+    "name": "파이논",
+    "gameId": "hsr",
+    "folderName": "파이논",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "파멸",
+    "releaseVersion": "3.4"
+  },
+  {
+    "id": "cypher",
+    "name": "사이퍼",
+    "gameId": "hsr",
+    "folderName": "사이퍼",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "공허",
+    "releaseVersion": "3.3"
+  },
+  {
+    "id": "hyacine",
+    "name": "히아킨",
+    "gameId": "hsr",
+    "folderName": "히아킨",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "기억",
+    "releaseVersion": "3.3"
+  },
+  {
+    "id": "anaxa",
+    "name": "아낙사",
+    "gameId": "hsr",
+    "folderName": "아낙사",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "지식",
+    "releaseVersion": "3.2"
+  },
+  {
+    "id": "castorice",
+    "name": "카스토리스",
+    "gameId": "hsr",
+    "folderName": "카스토리스",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "기억",
+    "releaseVersion": "3.2"
+  },
+  {
+    "id": "mydei",
+    "name": "마이데이",
+    "gameId": "hsr",
+    "folderName": "마이데이",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "파멸",
+    "releaseVersion": "3.1"
+  },
+  {
+    "id": "tribbie",
+    "name": "트리비",
+    "gameId": "hsr",
+    "folderName": "트리비",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "화합",
+    "releaseVersion": "3.1"
+  },
+  {
+    "id": "trailblazer_remembrance",
+    "name": "개척자 (기억)",
+    "gameId": "hsr",
+    "folderName": "개척자 (기억)",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "기억",
+    "releaseVersion": "3.0"
+  },
+  {
+    "id": "the_herta",
+    "name": "더 헤르타",
+    "gameId": "hsr",
+    "folderName": "더 헤르타",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "지식",
+    "releaseVersion": "3.0"
+  },
+  {
+    "id": "aglaea",
+    "name": "아글라이아",
+    "gameId": "hsr",
+    "folderName": "아글라이아",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "기억",
+    "releaseVersion": "3.0"
+  },
+  {
+    "id": "fugue",
+    "name": "망귀인",
+    "gameId": "hsr",
+    "folderName": "망귀인",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "공허",
+    "releaseVersion": "2.7"
+  },
+  {
+    "id": "sunday",
+    "name": "선데이",
+    "gameId": "hsr",
+    "folderName": "선데이",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "화합",
+    "releaseVersion": "2.7"
+  },
+  {
+    "id": "rappa",
+    "name": "라파",
+    "gameId": "hsr",
+    "folderName": "라파",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "지식",
+    "releaseVersion": "2.6"
+  },
+  {
+    "id": "feixiao",
+    "name": "비소",
+    "gameId": "hsr",
+    "folderName": "비소",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "수렵",
+    "releaseVersion": "2.5"
+  },
+  {
+    "id": "lingsha",
+    "name": "영사",
+    "gameId": "hsr",
+    "folderName": "영사",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "풍요",
+    "releaseVersion": "2.5"
+  },
+  {
+    "id": "moze",
+    "name": "맥택",
+    "gameId": "hsr",
+    "folderName": "맥택",
+    "rarity": 4,
+    "attribute": "번개",
+    "path": "수렵",
+    "releaseVersion": "2.5"
+  },
+  {
+    "id": "yunli",
+    "name": "운리",
+    "gameId": "hsr",
+    "folderName": "운리",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "파멸",
+    "releaseVersion": "2.4"
+  },
+  {
+    "id": "jiaoqiu",
+    "name": "초구",
+    "gameId": "hsr",
+    "folderName": "초구",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "공허",
+    "releaseVersion": "2.4"
+  },
+  {
+    "id": "march_7th_hunt",
+    "name": "Mar. 7th (수렵)",
+    "gameId": "hsr",
+    "folderName": "Mar. 7th (수렵)",
+    "rarity": 4,
+    "attribute": "허수",
+    "path": "수렵",
+    "releaseVersion": "2.4"
+  },
+  {
+    "id": "firefly",
+    "name": "반디",
+    "gameId": "hsr",
+    "folderName": "반디",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "파멸",
+    "releaseVersion": "2.3"
+  },
+  {
+    "id": "jade",
+    "name": "제이드",
+    "gameId": "hsr",
+    "folderName": "제이드",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "지식",
+    "releaseVersion": "2.3"
+  },
+  {
+    "id": "trailblazer_harmony",
+    "name": "개척자 (화합)",
+    "gameId": "hsr",
+    "folderName": "개척자 (화합)",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "화합",
+    "releaseVersion": "2.2"
+  },
+  {
+    "id": "boothill",
+    "name": "부트힐",
+    "gameId": "hsr",
+    "folderName": "부트힐",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "수렵",
+    "releaseVersion": "2.2"
+  },
+  {
+    "id": "robin",
+    "name": "로빈",
+    "gameId": "hsr",
+    "folderName": "로빈",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "화합",
+    "releaseVersion": "2.1"
+  },
+  {
+    "id": "acheron",
+    "name": "아케론",
+    "gameId": "hsr",
+    "folderName": "아케론",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "공허",
+    "releaseVersion": "2.1"
+  },
+  {
+    "id": "aventurine",
+    "name": "어벤츄린",
+    "gameId": "hsr",
+    "folderName": "어벤츄린",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "보존",
+    "releaseVersion": "2.1"
+  },
+  {
+    "id": "dr_ratio",
+    "name": "Dr. 레이시오",
+    "gameId": "hsr",
+    "folderName": "Dr. 레이시오",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "수렵",
+    "releaseVersion": "2.1"
+  },
+  {
+    "id": "gallagher",
+    "name": "갤러거",
+    "gameId": "hsr",
+    "folderName": "갤러거",
+    "rarity": 4,
+    "attribute": "화염",
+    "path": "풍요",
+    "releaseVersion": "2.1"
+  },
+  {
+    "id": "black_swan",
+    "name": "블랙 스완",
+    "gameId": "hsr",
+    "folderName": "블랙 스완",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "공허",
+    "releaseVersion": "2.0"
+  },
+  {
+    "id": "sparkle",
+    "name": "스파클",
+    "gameId": "hsr",
+    "folderName": "스파클",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "화합",
+    "releaseVersion": "2.0"
+  },
+  {
+    "id": "misha",
+    "name": "미샤",
+    "gameId": "hsr",
+    "folderName": "미샤",
+    "rarity": 4,
+    "attribute": "얼음",
+    "path": "파멸",
+    "releaseVersion": "2.0"
+  },
+  {
+    "id": "ruan_mei",
+    "name": "완•매",
+    "gameId": "hsr",
+    "folderName": "완•매",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "화합",
+    "releaseVersion": "1.6"
+  },
+  {
+    "id": "xueyi",
+    "name": "설의",
+    "gameId": "hsr",
+    "folderName": "설의",
+    "rarity": 4,
+    "attribute": "양자",
+    "path": "파멸",
+    "releaseVersion": "1.6"
+  },
+  {
+    "id": "huohuo",
+    "name": "곽향",
+    "gameId": "hsr",
+    "folderName": "곽향",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "풍요",
+    "releaseVersion": "1.5"
+  },
+  {
+    "id": "argenti",
+    "name": "아젠티",
+    "gameId": "hsr",
+    "folderName": "아젠티",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "지식",
+    "releaseVersion": "1.5"
+  },
+  {
+    "id": "hanya",
+    "name": "한아",
+    "gameId": "hsr",
+    "folderName": "한아",
+    "rarity": 4,
+    "attribute": "물리",
+    "path": "화합",
+    "releaseVersion": "1.5"
+  },
+  {
+    "id": "jingliu",
+    "name": "경류",
+    "gameId": "hsr",
+    "folderName": "경류",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "파멸",
+    "releaseVersion": "1.4"
+  },
+  {
+    "id": "topaz",
+    "name": "토파즈 & 복순이",
+    "gameId": "hsr",
+    "folderName": "토파즈 & 복순이",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "수렵",
+    "releaseVersion": "1.4"
+  },
+  {
+    "id": "guinaifen",
+    "name": "계네빈",
+    "gameId": "hsr",
+    "folderName": "계네빈",
+    "rarity": 4,
+    "attribute": "화염",
+    "path": "공허",
+    "releaseVersion": "1.4"
+  },
+  {
+    "id": "dan_heng_il",
+    "name": "단항•음월",
+    "gameId": "hsr",
+    "folderName": "단항•음월",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "파멸",
+    "releaseVersion": "1.3"
+  },
+  {
+    "id": "fu_xuan",
+    "name": "부현",
+    "gameId": "hsr",
+    "folderName": "부현",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "보존",
+    "releaseVersion": "1.3"
+  },
+  {
+    "id": "lynx",
+    "name": "링스",
+    "gameId": "hsr",
+    "folderName": "링스",
+    "rarity": 4,
+    "attribute": "양자",
+    "path": "풍요",
+    "releaseVersion": "1.3"
+  },
+  {
+    "id": "blade",
+    "name": "블레이드",
+    "gameId": "hsr",
+    "folderName": "블레이드",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "파멸",
+    "releaseVersion": "1.2"
+  },
+  {
+    "id": "kafka",
+    "name": "카프카",
+    "gameId": "hsr",
+    "folderName": "카프카",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "공허",
+    "releaseVersion": "1.2"
+  },
+  {
+    "id": "luka",
+    "name": "루카",
+    "gameId": "hsr",
+    "folderName": "루카",
+    "rarity": 4,
+    "attribute": "물리",
+    "path": "공허",
+    "releaseVersion": "1.2"
+  },
+  {
+    "id": "luocha",
+    "name": "나찰",
+    "gameId": "hsr",
+    "folderName": "나찰",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "풍요",
+    "releaseVersion": "1.1"
+  },
+  {
+    "id": "silver_wolf",
+    "name": "은랑",
+    "gameId": "hsr",
+    "folderName": "은랑",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "공허",
+    "releaseVersion": "1.1"
+  },
+  {
+    "id": "yukong",
+    "name": "어공",
+    "gameId": "hsr",
+    "folderName": "어공",
+    "rarity": 4,
+    "attribute": "허수",
+    "path": "화합",
+    "releaseVersion": "1.1"
+  },
+  {
+    "id": "trailblazer_fire",
+    "name": "개척자 (보존)",
+    "gameId": "hsr",
+    "folderName": "개척자 (보존)",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "보존",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "trailblazer_physical",
+    "name": "개척자 (파멸)",
+    "gameId": "hsr",
+    "folderName": "개척자 (파멸)",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "파멸",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "gepard",
+    "name": "게파드",
+    "gameId": "hsr",
+    "folderName": "게파드",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "보존",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "jing_yuan",
+    "name": "경원",
+    "gameId": "hsr",
+    "folderName": "경원",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "지식",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "bailu",
+    "name": "백로",
+    "gameId": "hsr",
+    "folderName": "백로",
+    "rarity": 5,
+    "attribute": "번개",
+    "path": "풍요",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "bronya",
+    "name": "브로냐",
+    "gameId": "hsr",
+    "folderName": "브로냐",
+    "rarity": 5,
+    "attribute": "바람",
+    "path": "화합",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "yanqing",
+    "name": "연경",
+    "gameId": "hsr",
+    "folderName": "연경",
+    "rarity": 5,
+    "attribute": "얼음",
+    "path": "수렵",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "welt",
+    "name": "웰트",
+    "gameId": "hsr",
+    "folderName": "웰트",
+    "rarity": 5,
+    "attribute": "허수",
+    "path": "공허",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "seele",
+    "name": "제레",
+    "gameId": "hsr",
+    "folderName": "제레",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "수렵",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "clara",
+    "name": "클라라",
+    "gameId": "hsr",
+    "folderName": "클라라",
+    "rarity": 5,
+    "attribute": "물리",
+    "path": "파멸",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "himeko",
+    "name": "히메코",
+    "gameId": "hsr",
+    "folderName": "히메코",
+    "rarity": 5,
+    "attribute": "화염",
+    "path": "지식",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "natasha",
+    "name": "나타샤",
+    "gameId": "hsr",
+    "folderName": "나타샤",
+    "rarity": 4,
+    "attribute": "물리",
+    "path": "풍요",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "dan_heng",
+    "name": "단항",
+    "gameId": "hsr",
+    "folderName": "단항",
+    "rarity": 4,
+    "attribute": "바람",
+    "path": "수렵",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "sampo",
+    "name": "삼포",
+    "gameId": "hsr",
+    "folderName": "삼포",
+    "rarity": 4,
+    "attribute": "바람",
+    "path": "공허",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "serval",
+    "name": "서벌",
+    "gameId": "hsr",
+    "folderName": "서벌",
+    "rarity": 4,
+    "attribute": "번개",
+    "path": "지식",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "sushang",
+    "name": "소상",
+    "gameId": "hsr",
+    "folderName": "소상",
+    "rarity": 4,
+    "attribute": "물리",
+    "path": "수렵",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "arlan",
+    "name": "아를란",
+    "gameId": "hsr",
+    "folderName": "아를란",
+    "rarity": 4,
+    "attribute": "번개",
+    "path": "파멸",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "asta",
+    "name": "아스타",
+    "gameId": "hsr",
+    "folderName": "아스타",
+    "rarity": 4,
+    "attribute": "화염",
+    "path": "화합",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "tingyun",
+    "name": "정운",
+    "gameId": "hsr",
+    "folderName": "정운",
+    "rarity": 4,
+    "attribute": "번개",
+    "path": "화합",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "qingque",
+    "name": "청작",
+    "gameId": "hsr",
+    "folderName": "청작",
+    "rarity": 4,
+    "attribute": "양자",
+    "path": "지식",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "pela",
+    "name": "페라",
+    "gameId": "hsr",
+    "folderName": "페라",
+    "rarity": 4,
+    "attribute": "얼음",
+    "path": "공허",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "herta",
+    "name": "헤르타",
+    "gameId": "hsr",
+    "folderName": "헤르타",
+    "rarity": 4,
+    "attribute": "얼음",
+    "path": "지식",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "hook",
+    "name": "후크",
+    "gameId": "hsr",
+    "folderName": "후크",
+    "rarity": 4,
+    "attribute": "화염",
+    "path": "파멸",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "march_7th",
+    "name": "Mar. 7th",
+    "gameId": "hsr",
+    "folderName": "Mar. 7th",
+    "rarity": 4,
+    "attribute": "얼음",
+    "path": "보존",
+    "releaseVersion": "1.0"
+  }
+]

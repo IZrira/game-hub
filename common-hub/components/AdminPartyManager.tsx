@@ -12,7 +12,7 @@ import {
   NTEPartyData, 
   exportPartyToTSCode 
 } from '../types/party';
-import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
+import HSR_CHARACTERS from '../../hsr-hub/data/generated/character-summary.json';
 import { HSR_CHARACTER_VERSION_MAP, HSR_PARTIES } from '../../hsr-hub/data/parties/index';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';

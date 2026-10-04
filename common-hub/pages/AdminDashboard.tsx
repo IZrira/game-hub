@@ -165,7 +165,7 @@ const AdminDashboard: React.FC = () => {
       return;
     }
     if (activeGame === 'hsr') {
-      const { CHARACTER_DATA: HSR_CHARACTERS } = await import('../../hsr-hub/data/characters');
+      const { default: HSR_CHARACTERS } = await import('../../hsr-hub/data/generated/character-summary.json');
       localChars = HSR_CHARACTERS.map(c => ({
         id: c.id,
         name: c.name,
@@ -547,7 +547,7 @@ const AdminDashboard: React.FC = () => {
       const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
 
       if (activeGame === 'hsr') {
-        const { CHARACTER_DATA: HSR_CHARACTERS } = await import('../../hsr-hub/data/characters');
+        const { default: HSR_CHARACTERS } = await import('../../hsr-hub/data/generated/character-summary.json');
         charTasks = HSR_CHARACTERS.map(c => ({
           id: c.id,
           name: c.name,
@@ -555,7 +555,7 @@ const AdminDashboard: React.FC = () => {
           rarity: c.rarity,
           attribute: c.attribute,
           path: c.path,
-          version: (c as any).releaseVersion || c.version || '1.0'
+          version: c.releaseVersion || '1.0'
         }));
       } else if (activeGame === 'ww') {
         const characters = await loadManagedCharacterData('ww');

@@ -9,6 +9,7 @@ const projectRoot = path.resolve(scriptDir, '..');
 const notionPath = path.join(projectRoot, 'common-hub', 'data', 'notion-data.json');
 const outputPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'notion-search.json');
 const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'home-stats.json');
+const hsrCharacterSummaryPath = path.join(projectRoot, 'hsr-hub', 'data', 'generated', 'character-summary.json');
 const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'weapons.json');
 const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs.json');
 const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
@@ -36,17 +37,43 @@ const readProperty = (source, property) => {
   return match?.[1] || '';
 };
 
+const readNumericProperty = (source, property) => {
+  const match = source.match(new RegExp(`^[ \\t]*(?:["']${property}["']|${property})\\s*:\\s*(\\d+)`, 'm'));
+  return match ? Number.parseInt(match[1], 10) : undefined;
+};
+
 const hsrCharacterDir = path.join(projectRoot, 'hsr-hub', 'data', 'characters', 'hsr');
-const hsrCharacters = readSourceFiles(hsrCharacterDir).map(file => {
+const hsrCharacterSummary = readSourceFiles(hsrCharacterDir).map(file => {
   const source = fs.readFileSync(file, 'utf8');
   return {
     id: readProperty(source, 'id'),
     name: readProperty(source, 'name'),
     gameId: 'hsr',
+    folderName: readProperty(source, 'folderName') || readProperty(source, 'name'),
+    rarity: readNumericProperty(source, 'rarity') || 5,
     attribute: readProperty(source, 'attribute'),
-    path: readProperty(source, 'path')
+    path: readProperty(source, 'path'),
+    releaseVersion: readProperty(source, 'releaseVersion') || '1.0'
   };
 }).filter(item => item.id && item.name);
+
+const hsrCharacters = hsrCharacterSummary.map(({ id, name, gameId, attribute, path }) => ({
+  id,
+  name,
+  gameId,
+  attribute,
+  path
+}));
+
+hsrCharacterSummary.sort((a, b) => {
+  const versionDelta = Number.parseFloat(b.releaseVersion) - Number.parseFloat(a.releaseVersion);
+  if (versionDelta !== 0) return versionDelta;
+  if (a.rarity !== b.rarity) return b.rarity - a.rarity;
+  return a.name.localeCompare(b.name, 'ko-KR');
+});
+
+fs.mkdirSync(path.dirname(hsrCharacterSummaryPath), { recursive: true });
+fs.writeFileSync(hsrCharacterSummaryPath, `${JSON.stringify(hsrCharacterSummary, null, 2)}\n`, 'utf8');
 
 const lightconeDir = path.join(projectRoot, 'hsr-hub', 'data', 'lightcones');
 const parsedHsrLightcones = readSourceFiles(lightconeDir).flatMap(file => {

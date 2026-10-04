@@ -1,5 +1,5 @@
 import { HSR_PARTIES } from '../../hsr-hub/data/parties/index';
-import { CHARACTER_DATA as HSR_CHARACTERS } from '../../hsr-hub/data/characters';
+import HSR_CHARACTERS from '../../hsr-hub/data/generated/character-summary.json';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { NTE_PARTY_COMBINATIONS, getNTEFallbackParty } from '../../nte-hub/data/parties';
