@@ -6,7 +6,7 @@ import { isAdmin } from '../lib/admin';
 import { useAuth } from '../context/AuthContext';
 import LoginModal from './LoginModal';
 import GlobalSearch from './GlobalSearch';
-import '../i18n';
+import { changeAppLanguage } from '../i18n';
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
     const currentIndex = languages.indexOf(current);
     const next = languages[(currentIndex + 1) % languages.length];
     localStorage.setItem('rira_lang', next);
-    i18n.changeLanguage(next);
+    void changeAppLanguage(next);
 
     // URL 업데이트 (React Router 리렌더링 없이 히스토리만 수정)
     const url = new URL(window.location.href);
