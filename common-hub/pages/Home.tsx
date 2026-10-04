@@ -359,27 +359,27 @@ const Home: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
               <Users size={20} className="text-brand-primary" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('Who Created This?')}</h3>
+            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('누가 운영하나요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
-              {t('리라 아카이브의 모든 데이터는 수년간의 서브컬쳐 게임 플레이 경력을 보유한 전담 데이터 분석팀과 에디터들에 의해 정밀하게 검토되고 작성됩니다.')}
+              {t('리라 아카이브는 게임 정보를 한곳에서 빠르게 확인할 수 있도록 직접 운영하는 비공식 팬 아카이브입니다. 등록 데이터와 공략은 게시 전 원문 표기와 사이트 내 연결 상태를 확인합니다.')}
             </p>
           </div>
           <div className="space-y-4 sm:space-y-6">
             <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
               <Database size={20} className="text-brand-accent" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('How Is It Built?')}</h3>
+            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('어떻게 검토하나요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
-              {t('수년간의 하드코어 플레이 경험을 가진 전문 에디터 팀의 자체 데이터 시뮬레이션 및 교차 검증을 통해 최상의 전략과 가이드를 도출합니다. 모든 데이터는 철저한 인게임 테스트를 통해 최종 검토되어 가장 높은 신뢰도를 보장합니다.')}
+              {t('공개된 게임 정보와 게임 내 설명을 기준으로 데이터를 정리하고, 추천 세팅과 운용 판단은 별도의 분석 영역으로 구분합니다. 패치로 내용이 바뀌면 적용 버전과 검토일을 갱신하며 제보된 오류도 다시 확인합니다.')}
             </p>
           </div>
           <div className="space-y-4 sm:space-y-6">
             <div className="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
               <Globe size={20} className="text-yellow-500" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('Why Rira Archive?')}</h3>
+            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('왜 Rira Archive인가요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
-              {t('단순한 정보 나열을 넘어, 사용자가 가장 직관적이고 빠르게 최적의 플레이를 찾을 수 있도록 고밀도의 전술 지능을 제공하는 것이 리라 아카이브의 유일한 목표입니다.')}
+              {t('도감의 사실 정보와 세팅 추천, 선택 이유를 분리해 사용자가 필요한 답을 빠르게 찾도록 구성합니다. 확정하기 어려운 내용은 단정하지 않고 업데이트 과정에서 계속 보완합니다.')}
             </p>
           </div>
         </div>
@@ -396,10 +396,10 @@ const Home: React.FC = () => {
               Rira Game Hub(리라 게임 허브)는 전 세계 수많은 플레이어들이 열광하는 서브컬쳐 모바일 및 PC 게임에 대한 심도 깊은 데이터베이스와 공략을 제공하는 통합 인텔리전스 터미널입니다. 현재 <strong>붕괴: 스타레일(Honkai: Star Rail)</strong>, <strong>명조: 워더링 웨이브(Wuthering Waves)</strong>, <strong>이환(Neverness to Everness)</strong>과 <strong>애니모(Aniimo)</strong>의 데이터를 제공하고 있습니다. 애니모 허브에서는 86종의 원소·포지션·능력치 비교와 형태별 진화 계보, 특성, 스킬, 출현 지역 정보를 함께 확인할 수 있습니다.
             </p>
             <p>
-              단순히 게임 데이터를 스크래핑하여 나열하는 일반적인 위키나 도감 사이트와는 다릅니다. 당사의 분석팀은 매 업데이트마다 변동되는 몬스터의 스탯, 신규 기믹, 그리고 장비 세트 효과를 자체적으로 시뮬레이션 및 검증합니다. 이를 바탕으로 도출된 <strong>오리지널 칼럼과 가이드</strong>는 초보자부터 최상위 랭커까지 모두가 참고할 수 있는 귀중한 지표가 됩니다. 각 캐릭터의 세팅 페이지에는 최우선으로 투자해야 할 스탯의 목표치와, 타협 가능한 부옵션의 우선순위가 명확히 기재되어 있어 재화 낭비를 최소화할 수 있습니다.
+              각 도감은 명칭, 속성, 장비 효과처럼 확인 가능한 사실 정보와 추천 세팅·운용법 같은 편집 판단을 구분해 제공합니다. <strong>RIRA 분석 가이드</strong>에서는 어떤 장비와 파티를 추천하는지뿐 아니라 선택 이유, 적용 조건과 대안도 함께 설명합니다. 캐릭터 세팅 페이지에는 목표 스탯과 주·부옵션 우선순위를 표시하며, 패치에 따라 달라질 수 있는 내용에는 적용 버전과 검토 정보를 함께 관리합니다.
             </p>
             <p>
-              또한, 저희 Rira Game Hub는 유저 경험(UX)을 최우선으로 생각합니다. 빠르고 직관적인 SPA(Single Page Application) 환경을 통해 로딩 없는 데이터 검색을 지원하며, 정보의 정확성과 최신성을 유지하기 위해 자동화된 데이터 파이프라인과 전문 에디터의 크로스체크 시스템을 동시에 가동 중입니다. 앞으로도 젠레스 존 제로(Zenless Zone Zero)를 비롯한 다양한 신작 서브컬쳐 게임들의 데이터를 순차적으로 연동하여, 명실상부한 글로벌 최고 수준의 게임 전략 플랫폼으로 도약할 것입니다.
+              데이터 수집과 페이지 생성 과정에는 자동화 도구를 사용하지만, 자동 생성 결과를 그대로 정확하다고 간주하지 않습니다. 빌드 검증, 누락 데이터 확인, 내부 링크 점검과 사용자 제보를 통해 오류를 수정하며 업데이트 기록을 공지합니다. Rira Game Hub는 제공 중인 네 게임의 도감과 분석 품질을 우선 보완하고, 충분히 검토할 수 있는 범위 안에서 지원 게임과 기능을 확장합니다.
             </p>
           </div>
         </div>
