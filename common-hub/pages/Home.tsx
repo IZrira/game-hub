@@ -10,25 +10,13 @@ import { Notice } from '../data/types';
 import AdPlaceholder from '../components/AdPlaceholder';
 import {
   ChevronRight,
-  Zap,
-  Bell,
-  Activity as ActivityIcon,
   Database,
   FileText,
   Users,
-  ShieldCheck,
-  TrendingUp,
-  Cpu,
   Globe,
   Terminal,
-  Server,
-  TerminalSquare,
-  BookOpen,
   Search,
-  Sparkles,
-  Swords,
-  PawPrint,
-  BarChart3
+  ArrowRight
 } from 'lucide-react';
 
 // WebP banner asset fallbacks for game hubs
@@ -50,7 +38,6 @@ const Home: React.FC = () => {
     });
   }, []);
 
-  const globalStats = homeStatsData.global;
   const gameStats = homeStatsData.games as Record<string, { characters: number; guides: number }>;
 
   return (
@@ -66,148 +53,71 @@ const Home: React.FC = () => {
       {/* Background Grid/Matrix Effect */}
       <div className="fixed inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #333 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
-      {/* 글로벌 헤로 대시보드 */}
-      <section className="relative pt-16 sm:pt-20 md:pt-24 pb-20 sm:pb-28 md:pb-32 px-4 sm:px-6 md:px-10 overflow-hidden border-b border-white/5">
+      {/* 사용자의 첫 행동을 검색과 게임 선택으로 제한한 홈 히어로 */}
+      <section className="relative overflow-hidden border-b border-white/5 px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-20 md:px-10 md:pt-24">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-brand-primary/10 rounded-full blur-[100px] sm:blur-[150px] -translate-y-1/2 translate-x-1/4 opacity-40" />
           <div className="absolute bottom-0 left-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand-accent/5 rounded-full blur-[80px] sm:blur-[120px] translate-y-1/2 -translate-x-1/4 opacity-30" />
         </div>
 
-        <div className="max-w-[1600px] mx-auto relative z-10 text-center space-y-8 sm:space-y-10">
-          <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md animate-in fade-in slide-in-from-top-4 duration-700">
-            <Terminal size={14} className="text-brand-accent animate-pulse shrink-0" />
-            <span className="text-[9px] sm:text-[11px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.4em] truncate">{t('Initializing Rira Archive Database...')}</span>
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
+            <Terminal size={14} className="shrink-0 text-brand-accent" />
+            <span className="text-[10px] font-black uppercase tracking-[0.22em] text-gray-400">{t('4개 게임 통합 아카이브')}</span>
           </div>
 
-          <div className="space-y-4 sm:space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-100">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] sm:leading-[0.95] tracking-tighter">
-              {t('완벽한 플레이를 위한')}<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary italic">{t('데이터의 정점.')}</span>
+          <div className="mt-6 space-y-5">
+            <h1 className="text-4xl font-black leading-tight tracking-tighter sm:text-5xl md:text-6xl">
+              {t('게임을 고르고,')}<br />
+              <span className="bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary bg-clip-text text-transparent">{t('필요한 답부터 찾으세요.')}</span>
             </h1>
-            <p className="max-w-3xl mx-auto text-gray-400 text-sm sm:text-base md:text-xl font-medium leading-relaxed px-2">
-              {t('리라 아카이브는 고밀도 데이터와 심층 분석을 통해')}<br className="hidden xs:inline"/>
-              {t('당신의 성장을 완벽하게 서포트하는 프리미엄 전략 가이드입니다.')}
+            <p className="mx-auto max-w-2xl px-2 text-sm font-medium leading-7 text-gray-400 sm:text-base">
+              {t('캐릭터 이름이나 장비를 검색하거나, 플레이 중인 게임을 선택해 도감과 세팅·분석 가이드로 바로 이동하세요.')}
             </p>
           </div>
 
-          <div className="pt-4 sm:pt-8 flex flex-col sm:flex-row justify-center items-center gap-4 animate-in fade-in duration-1000 delay-500">
-            <div className="flex flex-wrap justify-center gap-3 sm:gap-4 px-2">
-              <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                <Server size={12} className="text-brand-primary" /> Multi-Game Sync
-              </div>
-              <div className="flex items-center gap-1.5 text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">
-                <Zap size={12} className="text-yellow-500" /> Real-time Analytics
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 글로벌 통계 메트릭 */}
-      <section className="relative z-20 max-w-6xl mx-auto -mt-8 sm:-mt-12 px-4 sm:px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 bg-[#121212]/90 backdrop-blur-2xl border border-white/10 rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 md:p-8 shadow-[0_32px_64px_rgba(0,0,0,0.6)] divide-y md:divide-y-0 md:divide-x divide-white/5">
-          <StatMetric label={t('보유 캐릭터')} value={globalStats.characters} icon={<Database size={16}/>} color="text-brand-accent" />
-          <StatMetric label={t('전략 리포트')} value={globalStats.guides} icon={<FileText size={16}/>} color="text-brand-primary" />
-          <StatMetric label={t('분석 데이터')} value={globalStats.items} icon={<Zap size={16}/>} color="text-yellow-500" />
-          <StatMetric label={t('활성 아카이브')} value={globalStats.games} icon={<ShieldCheck size={16}/>} color="text-green-500" />
-        </div>
-      </section>
-
-      {/* 빠른 접근 센터 (Quick Access Portal) */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-12 sm:mt-16 relative z-20">
-        <div className="flex items-center justify-between mb-4 sm:mb-6">
-          <div className="flex items-center gap-2.5">
-            <Sparkles size={18} className="text-brand-accent" />
-            <h2 className="text-sm sm:text-base font-black text-white uppercase tracking-[0.2em]">
-              {t('빠른 접근 & 핵심 기능')}
-            </h2>
-          </div>
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
-            className="hidden sm:inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors cursor-pointer"
+            className="mx-auto mt-8 flex w-full max-w-2xl items-center gap-4 rounded-2xl border border-white/10 bg-[#121212] px-5 py-4 text-left shadow-2xl transition hover:border-brand-primary/50 hover:bg-white/[0.06]"
           >
-            <span>{t('통합 검색')}</span>
-            <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-white/10 rounded">⌘K</kbd>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/15 text-brand-primary"><Search size={20} /></span>
+            <span className="min-w-0 flex-1">
+              <strong className="block text-sm text-white">{t('전체 게임에서 검색')}</strong>
+              <span className="mt-0.5 block truncate text-xs text-gray-500">{t('캐릭터·장비·공략 이름을 입력하세요')}</span>
+            </span>
+            <kbd className="hidden rounded-lg border border-white/10 bg-black/30 px-2.5 py-1.5 text-[10px] font-bold text-gray-400 sm:block">⌘ K</kbd>
           </button>
         </div>
+      </section>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
-          {/* 1. 통합 검색 (전체 게임 DB) */}
-          <Link
-            to="/search"
-            onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new CustomEvent('open-global-search'));
-            }}
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-brand-primary/40 hover:bg-brand-primary/5 transition-all group text-center cursor-pointer"
-          >
-            <div className="w-10 h-10 rounded-xl bg-brand-primary/10 border border-brand-primary/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Search size={18} className="text-brand-primary" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-brand-primary transition-colors">{t('통합 검색')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('전체 게임 DB')}</span>
-          </Link>
-
-          {/* 2. 스타레일 DB (HSR) */}
-          <Link
-            to="/gallery/hsr"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-purple-500/40 hover:bg-purple-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Sparkles size={18} className="text-purple-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-purple-400 transition-colors">{t('스타레일 DB')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('캐릭터·광추·유물')}</span>
-          </Link>
-
-          {/* 3. 명조 DB (WW) */}
-          <Link
-            to="/gallery/ww"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-emerald-500/40 hover:bg-emerald-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Swords size={18} className="text-emerald-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-emerald-400 transition-colors">{t('명조 DB')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('공명자·무기·에코')}</span>
-          </Link>
-
-          {/* 4. 이환 DB (NTE) */}
-          <Link
-            to="/gallery/nte"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-sky-500/40 hover:bg-sky-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <Zap size={18} className="text-sky-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-sky-400 transition-colors">{t('이환 DB')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('캐릭터·아크')}</span>
-          </Link>
-
-          {/* 5. 애니모 도감 (Aniimo) */}
-          <Link
-            to="/gallery/aniimo"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-amber-500/40 hover:bg-amber-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <PawPrint size={18} className="text-amber-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-amber-400 transition-colors">{t('애니모 도감')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('진화·형태·스탯')}</span>
-          </Link>
-
-          {/* 6. 데이터 비교 (전체/대표 기능) */}
-          <Link
-            to="/gallery/aniimo/characters"
-            className="flex flex-col items-center justify-center p-4 sm:p-5 rounded-2xl bg-[#121212] border border-white/5 hover:border-rose-500/40 hover:bg-rose-500/5 transition-all group text-center"
-          >
-            <div className="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center mb-2.5 group-hover:scale-110 transition-transform">
-              <BarChart3 size={18} className="text-rose-400" />
-            </div>
-            <span className="text-xs font-black text-white group-hover:text-rose-400 transition-colors">{t('데이터 비교')}</span>
-            <span className="text-[10px] font-bold text-gray-500 mt-0.5">{t('게임 데이터 비교')}</span>
-          </Link>
+      {/* 게임 선택: 같은 목적의 빠른 접근·대형 배너 영역을 하나로 통합 */}
+      <section className="relative z-20 mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+        <div className="mb-6 flex items-end justify-between gap-4">
+          <div>
+            <span className="text-[10px] font-black uppercase tracking-[0.24em] text-brand-accent">Choose a game</span>
+            <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">{t('플레이 중인 게임')}</h2>
+          </div>
+          <span className="hidden text-xs text-gray-500 sm:block">{t('도감 · 세팅 · 분석 가이드')}</span>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2">
+          {ARCHIVE_DATA.games.map((game, index) => (
+            <Link key={game.id} to={`/gallery/${game.id}`} className="group relative min-h-[210px] overflow-hidden rounded-3xl border border-white/10 bg-[#121212] transition hover:border-brand-primary/40">
+              <LazyImage src={game.bannerImage} alt={`${game.title} 게임 허브`} width={720} height={400} loading={index < 2 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} containerClassName="absolute inset-0 h-full w-full" className="h-full w-full object-cover opacity-40 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-55" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/10" />
+              <div className="relative flex min-h-[210px] flex-col justify-between p-6 sm:p-7">
+                <div>
+                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-accent">{game.id.toUpperCase()}</span>
+                  <h3 className="mt-2 text-2xl font-black text-white sm:text-3xl">{game.title}</h3>
+                  <p className="mt-2 max-w-sm text-xs leading-5 text-gray-400">{game.subTitle}</p>
+                </div>
+                <div className="mt-6 flex items-center justify-between gap-4">
+                  <span className="text-xs font-bold text-gray-400">{t('캐릭터')} {gameStats[game.id]?.characters ?? 0} · {t('가이드')} {gameStats[game.id]?.guides ?? 0}</span>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-black transition group-hover:bg-brand-accent group-hover:text-white"><ArrowRight size={16} /></span>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
 
@@ -266,92 +176,6 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* 게임 라이브러리 센터 */}
-      <section className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 py-12 sm:py-16 space-y-10 sm:space-y-16">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-white/5 pb-6 sm:pb-10">
-          <div className="space-y-1 sm:space-y-2">
-            <h2 className="text-2xl sm:text-3xl font-black tracking-tighter italic flex items-center gap-3">
-              <span className="text-brand-accent">/</span> {t('아카이브 탐색')}
-            </h2>
-            <p className="text-gray-400 text-xs sm:text-sm font-bold uppercase tracking-widest">{t('분석이 필요한 게임의 데이터베이스를 선택하세요')}</p>
-          </div>
-          <div className="flex items-center gap-3 text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest">
-            <TrendingUp size={14} className="text-brand-accent" /> {t('현재 인기 아카이브')}
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12">
-          {ARCHIVE_DATA.games.map((game, index) => (
-            <Link
-              key={game.id}
-              to={`/gallery/${game.id}`}
-              className="group relative h-[380px] sm:h-[440px] md:h-[480px] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] overflow-hidden border border-white/5 bg-[#121212] transition-all duration-700 hover:border-brand-primary/50 hover:shadow-[0_48px_96px_rgba(0,0,0,0.7)]"
-            >
-              <LazyImage
-                src={game.bannerImage}
-                alt={`${game.title} - ${t('리라 아카이브 게임 데이터베이스 탐색')}`}
-                width={1024}
-                height={1024}
-                loading="eager"
-                fetchPriority={index === 0 ? "high" : "auto"}
-                containerClassName="absolute inset-0 w-full h-full"
-                className="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/20 to-transparent" />
-
-              <div className="absolute inset-0 p-6 sm:p-10 md:p-14 flex flex-col justify-between">
-                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
-                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-brand-primary/30 backdrop-blur-md border border-brand-primary/30 text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-brand-accent">
-                    {t('시스템 코드:')} {game.id.toUpperCase()}
-                  </span>
-                  <div className="flex items-center gap-1.5 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-white/5 text-[9px] sm:text-[10px] font-black uppercase text-gray-400">
-                    <ActivityIcon size={12} className="text-green-500" /> {t('데이터 동기화 완료')}
-                  </div>
-                </div>
-
-                <div className="space-y-4 sm:space-y-6 md:space-y-8">
-                  <div className="space-y-1.5 sm:space-y-3">
-                    <h3 className="text-3xl sm:text-4xl md:text-5xl font-black leading-none text-white tracking-tighter group-hover:text-brand-accent transition-colors italic">
-                      {game.title}
-                    </h3>
-                    <p className="text-gray-400 text-sm sm:text-base md:text-xl font-medium max-w-sm line-clamp-2">
-                      {game.subTitle}
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-6 sm:gap-10 pt-2 sm:pt-4">
-                    <div className="flex flex-col">
-                      <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('캐릭터 명단')}</span>
-                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{gameStats[game.id]?.characters ?? 0}</span>
-                    </div>
-                    <div className="w-px h-8 sm:h-10 bg-white/10" />
-                    <div className="flex flex-col">
-                      <span className="text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest mb-0.5">{t('전략 보고서')}</span>
-                      <span className="text-2xl sm:text-3xl font-black tabular-nums">{gameStats[game.id]?.guides ?? 0}</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 sm:pt-4">
-                    <div className="inline-flex items-center gap-3 px-6 sm:px-8 py-3 sm:py-4 bg-white text-black rounded-2xl font-black text-[11px] sm:text-xs uppercase tracking-widest transition-all group-hover:bg-brand-accent group-hover:text-white group-hover:scale-105 active:scale-95 shadow-lg shadow-white/5">
-                      {game.title} {t('데이터베이스 탐색')} <ChevronRight size={14} className="sm:w-4 sm:h-4" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-
-          <div className="h-[300px] sm:h-[400px] md:h-[480px] rounded-[32px] sm:rounded-[44px] md:rounded-[56px] border border-dashed border-white/10 flex flex-col items-center justify-center text-center p-6 sm:p-12 bg-white/[0.02] group transition-all hover:bg-white/[0.04]">
-            <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-white/5 flex items-center justify-center mb-4 sm:mb-8 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-500 border border-white/5">
-              <Cpu size={32} className="sm:w-10 sm:h-10 text-gray-400" />
-            </div>
-            <h4 className="text-base sm:text-xl font-black text-gray-400 uppercase tracking-[0.2em] mb-2">{t('새로운 데이터 연결 준비 중')}</h4>
-            <p className="text-gray-500 text-xs sm:text-base font-medium">{t('Coming Soon: 젠레스 존 제로 & 원신 임팩트')}</p>
-          </div>
-        </div>
-      </section>
-
       {/* 데이터 분석 방법론 섹션 (E-E-A-T 강화) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-24 md:py-32 space-y-12 sm:space-y-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
@@ -385,39 +209,11 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* SEO & AdSense 봇을 위한 사이트 상세 소개글 (Text-heavy block) */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 sm:pb-24">
-        <div className="bg-[#111] border border-white/5 rounded-3xl p-6 sm:p-10 md:p-14 space-y-6 sm:space-y-8">
-          <h2 className="text-xl sm:text-2xl font-black text-white border-b border-white/10 pb-4">
-            Rira Game Hub: 최고의 서브컬쳐 게임 공략 및 데이터베이스
-          </h2>
-          <div className="space-y-4 sm:space-y-6 text-gray-400 text-xs sm:text-sm md:text-base leading-relaxed sm:leading-loose">
-            <p>
-              Rira Game Hub(리라 게임 허브)는 전 세계 수많은 플레이어들이 열광하는 서브컬쳐 모바일 및 PC 게임에 대한 심도 깊은 데이터베이스와 공략을 제공하는 통합 인텔리전스 터미널입니다. 현재 <strong>붕괴: 스타레일(Honkai: Star Rail)</strong>, <strong>명조: 워더링 웨이브(Wuthering Waves)</strong>, <strong>이환(Neverness to Everness)</strong>과 <strong>애니모(Aniimo)</strong>의 데이터를 제공하고 있습니다. 애니모 허브에서는 86종의 원소·포지션·능력치 비교와 형태별 진화 계보, 특성, 스킬, 출현 지역 정보를 함께 확인할 수 있습니다.
-            </p>
-            <p>
-              각 도감은 명칭, 속성, 장비 효과처럼 확인 가능한 사실 정보와 추천 세팅·운용법 같은 편집 판단을 구분해 제공합니다. <strong>RIRA 분석 가이드</strong>에서는 어떤 장비와 파티를 추천하는지뿐 아니라 선택 이유, 적용 조건과 대안도 함께 설명합니다. 캐릭터 세팅 페이지에는 목표 스탯과 주·부옵션 우선순위를 표시하며, 패치에 따라 달라질 수 있는 내용에는 적용 버전과 검토 정보를 함께 관리합니다.
-            </p>
-            <p>
-              데이터 수집과 페이지 생성 과정에는 자동화 도구를 사용하지만, 자동 생성 결과를 그대로 정확하다고 간주하지 않습니다. 빌드 검증, 누락 데이터 확인, 내부 링크 점검과 사용자 제보를 통해 오류를 수정하며 업데이트 기록을 공지합니다. Rira Game Hub는 제공 중인 네 게임의 도감과 분석 품질을 우선 보완하고, 충분히 검토할 수 있는 범위 안에서 지원 게임과 기능을 확장합니다.
-            </p>
-          </div>
-        </div>
-      </section>
-
       <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-10 pb-16 sm:pb-24">
         <AdPlaceholder type="leaderboard" />
       </div>
     </div>
   );
 };
-
-const StatMetric = React.memo(({ label, value, icon, color }: { label: string; value: number; icon: React.ReactNode; color: string }) => (
-  <div className="flex flex-col items-center justify-center gap-2 sm:gap-3 px-2 sm:px-4 md:px-8 py-3 md:py-0 group text-center">
-    <div className={`${color} mb-0.5 sm:mb-1 transition-transform group-hover:scale-125 duration-700`}>{icon}</div>
-    <div className="text-xl sm:text-2xl md:text-3xl font-black tabular-nums tracking-tighter">{value.toLocaleString()}</div>
-    <div className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] sm:tracking-[0.3em]">{label}</div>
-  </div>
-));
 
 export default Home;
