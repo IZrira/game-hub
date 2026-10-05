@@ -1,34 +1,19 @@
 ---
-id: b2c3d4e5-f6a7-4b6c-9d8e-1f2a3b4c5d6e
 category: "[[10_Wiki/🚀 Skills/UI-UX]]"
-confidence_score: 1.0
-tags: [ux, interaction, glassmorphism, accessibility, skeleton-ui]
-last_reinforced: 2026-05-14
-github_commit: "reinforce-100-coverage"
+tags: [ux, accessibility, ui-state, ssot]
+last_reinforced: 2026-10-05
 ---
 
-# [[ux-principles]]
+# Rira Game Hub UX 원칙
 
-## 📌 한 줄 통찰 (The Karpathy Summary)
-> 4대 UI 상태(Default, Loading, Empty, Error)의 명확한 처리와 접근성 준수를 통해 중단 없는 사용자 경험을 제공함.
+UX 정책은 프로젝트 루트의 `DESIGN.md`가 유일한 기준이다. 상태별 구현 체크리스트는 `docs/design-system/ux-principles.md`에서 관리한다.
 
-## 📖 구조화된 지식 (Synthesized Content)
-- **추출된 패턴:**
-  - **4대 UI 상태**:
-    - **Default**: 미니멀리즘과 글래스모피즘(`backdrop-blur-md`) 결합.
-    - **Loading**: Layout Shift 방지를 위한 스켈레톤 UI(`animate-pulse`) 우선 사용.
-    - **Empty**: 중앙 정렬된 회색 텍스트와 빈 슬롯(`opacity-30`) UI 제공.
-    - **Error**: `onError` 핸들러를 통한 이미지 Fallback 처리 필수.
-  - **상호작용 규격**: `transition-all duration-300` 및 `hover:scale-105` 기본값.
-- **세부 내용:**
-  - **접근성(A11y)**: 키보드 탐색 지원(`tabIndex`, `onKeyDown`) 및 `aria-label` 제공.
-  - **기획 리뷰**: Context와 Role을 먼저 정의하여 인지적 과부하 방지.
+핵심 확인 범위:
 
-## ⚠️ 모순 및 업데이트 (Contradictions & RL Update)
-- **과거 데이터와의 충돌:** 없음 (기존 위키를 공식 문서 기반으로 보강).
-- **정책 변화:** UI 상태 관리 규칙을 디자인 시스템의 핵심 지식으로 고도화함.
+- Default, Loading, Empty, Error, Success 상태
+- 키보드 탐색과 포커스
+- 이미지 fallback과 재시도
+- 모바일 읽기 순서와 터치 조작
+- 불필요한 카드, 모션과 기술 문구 제거
 
-## 🔗 지식 연결 (Graph)
-- **Parent:** [[🚀 Skills]]
-- **Related:** [[design-system]], [[component-registry]], [[text-formatting-guide]]
-- **Raw Source:** [[docs/design-system/ux-principles.md]]
+이 Wiki 문서에는 구체적인 스타일이나 Tailwind 클래스를 복제하지 않는다.

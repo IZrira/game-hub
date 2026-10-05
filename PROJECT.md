@@ -1,5 +1,12 @@
 # Project: Rira Game Hub Architecture & Milestone Tracking
 
+## Development Standards
+
+- UI·UX 정책의 단일 기준: `DESIGN.md`
+- 공통 컴포넌트 레지스트리: `docs/design-system/components.md`
+- 상태·접근성 검증: `docs/design-system/ux-principles.md`
+- 구현 전에 위 문서를 확인하고 충돌 시 `DESIGN.md`를 우선한다.
+
 ## Architecture
 - **Admin Visual Party Builder**: `common-hub/components/AdminPartyManager.tsx`, `common-hub/types/party.ts`, `common-hub/pages/AdminDashboard.tsx`.
 - **Public Party Recommendation Pages**: `hsr-hub/pages/PartyRecommendations.tsx`, `ww-hub/pages/PartyRecommendations.tsx`.

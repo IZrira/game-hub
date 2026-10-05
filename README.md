@@ -1,5 +1,7 @@
 # 🪐 Rira Game Hub & P-Reinforce: Autonomous Knowledge Engine
 
+> UI·UX 작업은 프로젝트 루트의 [`DESIGN.md`](./DESIGN.md)를 유일한 디자인 정책 기준으로 사용합니다. 공통 컴포넌트와 상태별 체크리스트는 `docs/design-system/`에서 관리합니다.
+
 > **"파편화된 게임 데이터를 모아 거대한 지식의 우주를 구축합니다."**
 
 이 프로젝트는 최신 프론트엔드 스택(React 18, Vite, TypeScript, Tailwind CSS)으로 구축된 **통합 게임 정보 위키 (Rira Game Hub)**와 이를 자동화하는 **자율형 지식 엔진 (P-Reinforce)**의 결합체입니다. 사용자가 던지는 파편화된 데이터나 스크립트를 에이전트가 해석하고 구조화하며, 시각적으로 매력적이고 고성능인 웹 애플리케이션으로 렌더링합니다.

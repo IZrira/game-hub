@@ -1,118 +1,203 @@
-# Rira Game Hub Design System
+# Rira Game Hub 통합 디자인·UX 개발 표준
 
-This document serves as the **Source of Truth** for the visual language and component architecture of the Rira Game Hub. AI agents and developers must strictly adhere to these standards to ensure consistency across all game hubs.
+이 문서는 Rira Game Hub의 UI, UX, 공통 컴포넌트, 접근성 및 시각 검증에 관한 **유일한 정책 기준(SSOT)**이다. UI를 생성하거나 수정하는 사람과 AI 에이전트는 작업 전에 이 문서를 읽고 구현과 검증 결과가 이 기준을 따르는지 확인한다.
 
-## 1. Design Tokens
+## 1. 문서 우선순위
 
-### Colors
-- **Global Background**: `#0a0a0a` (Solid), `#121212` (Card surfaces)
-- **HSR Theme**: `#7E30E1` (Primary), `#E26EE5` (Secondary)
-- **WW Theme**: `#EAB308` (Primary), `#FDE047` (Secondary)
-- **NTE Theme**: `#00D287` (Primary), `#34D399` (Secondary)
-- **System**: `#FFD600` (Accent/Numbers), `#00E676` (Success/Aero), `#FF5252` (Error/Havoc)
+1. 사용자의 현재 요청
+2. `AGENTS.md`의 프로젝트 작업 절차
+3. 이 문서 `DESIGN.md`의 디자인·UX 정책
+4. `docs/design-system/components.md`의 실제 컴포넌트 목록
+5. `docs/design-system/ux-principles.md`의 상태별 구현 체크리스트
+6. 나머지 Wiki, 보고서와 과거 기록
 
-### Glassmorphism (Glass Card)
-Standard definition for `glass-card`:
-- **Background**: `bg-white/[0.03]` or `bg-[#0f0f0f]/40`
-- **Blur**: `backdrop-blur-md` or `backdrop-blur-xl`
-- **Border**: `border-white/5` or `border-white/10`
-- **Shadow**: `shadow-2xl`
+하위 문서가 이 문서와 충돌하면 `DESIGN.md`가 우선한다. 하위 문서에 디자인 정책을 복제하지 않고 이 문서를 링크한다.
 
-### Typography
-- **Primary Font**: `font-sans` (Inter/Outfit preferred)
-- **Headings**: `font-black`, `italic`, `tracking-tighter`, `uppercase`
-- **Data/Numbers**: `font-black`, `tabular-nums`
+## 2. 제품 방향
 
----
+Rira Game Hub는 게임별 도감, 세팅 공략과 자체 분석을 빠르게 찾는 콘텐츠 아카이브다. 화면은 장식보다 정보 탐색을 우선한다.
 
-## 2. Layout & Grid Standards
+- 첫 화면에서 현재 게임과 가능한 행동을 알 수 있어야 한다.
+- 세팅 가이드는 빠른 정답 확인, 분석 가이드는 판단 근거 제공에 집중한다.
+- 동일한 정보나 이동 수단을 여러 카드로 반복하지 않는다.
+- 게임별 구조는 일관되게 유지하되 대표 정보의 우선순위는 다르게 구성한다.
+- 데이터가 많아도 제목, 여백과 구분선으로 읽기 흐름을 만든다.
 
-### Main Container
-- **Max Width**: `max-w-[1600px]`
-- **Alignment**: `mx-auto`
-- **Responsive Padding**: `px-4 md:px-8`
+## 3. 시각 언어
 
-### Image Asset Standards (CDN)
-- **GitHub CDN Integration**: All images are loaded from the official GitHub repository via `raw.githubusercontent.com` or `cdn.jsdelivr.net`.
-- **Game Directories**: `hsr images/`, `ww images/`, `nte images/`
-- **Naming Conventions**: 
-  - Standard formatting: `[Korean Folder Name]/[Image Type].webp` (e.g., `portrait.png`, `art01.webp`).
-  - **NTE Compliance Rule**: If a Neverness to Everness (NTE) asset contains a colon (`:`) in its name, it **must** be replaced with an underscore (`_`) in the URL path to ensure GitHub and Windows file system compatibility.
+### 색상
 
-### Standard Grid Patterns
-- **Detail Pages**: 
-  - Left Column: `lg:grid-cols-[550px_1fr]` or `[500px_1fr]` for large image cards.
-  - Aspect Ratio: `aspect-[3/4.2]` or `aspect-[3/4.5]` for character/item cards.
-- **Gallery Pages**:
-  - Sidebar: `lg:grid-cols-[240px_1fr]`
-  - Grid: `grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6`
+- 기본 배경: `#0a0a0a`
+- 기본 표면: `#121212`
+- 상승 표면: `#171717`
+- 기본 테두리: `border-white/10`
+- 약한 테두리: `border-white/5`
+- 기본 텍스트: `text-white`
+- 보조 텍스트: `text-gray-300` 또는 `text-gray-400`
+- 비활성 텍스트: 최소 `text-gray-500`
 
----
+게임별 강조색은 현재 선택, 핵심 행동, 속성·운명의 길과 중요한 수치에만 사용한다.
 
-## 3. Standard Components
+- HSR: `#7E30E1`
+- WW: `#EAB308`
+- NTE: `#00D287`
+- Aniimo: 해당 허브 토큰 사용
 
-### PageHeader (Breadcrumbs)
-- **Height**: `h-14`
-- **Sticky Position**: `sticky top-16` (toggleable via `isSticky` state)
-- **Z-Index**: `z-[40]` (must stay below Navbar's `z-50`)
-- **Shadow**: `shadow-2xl`
-- **Padding**: `px-4 md:px-8`
+한 화면에서 강조색이 제목, 테두리, 그림자와 배경에 동시에 반복되지 않도록 한다. 장식 목적의 보라색 그라디언트를 기본값으로 사용하지 않는다.
 
-### Section Headers
-- **Pattern**: `[Number Index] [Title Text] [Toggle Icon]`
-- **Index Style**: Large italic number (e.g., `text-4xl opacity-10`)
-- **Title Style**: `text-2xl md:text-3xl font-black italic uppercase`
+### 타이포그래피
 
----
+- 본문과 UI: 프로젝트 기본 `font-sans`
+- 페이지 제목: `font-black` 또는 `font-bold`, 자연스러운 한글 표기
+- 섹션 제목: 크기와 여백으로 계층 표현
+- 수치: 필요할 때 `tabular-nums`
+- 본문: 충분한 행간과 읽기 폭 유지
 
-## 4. Special Character Patterns
+`uppercase`, `italic`, 과도한 자간은 영문 고유 라벨이나 특별한 의미가 있을 때만 사용한다. 한글 제목의 기본 스타일로 사용하지 않는다.
 
-### Dual-Gender Characters (Rover, Trailblazer)
-- **Gallery**: Automatically alternate between male and female illustrations in the grid view using the `index` prop (`index % 2 === 0 ? female : male`).
-- **Detail Page**: Implement a gender toggle UI. The `isRover` (WW) or `isTrailblazer` (HSR) flag triggers this behavior.
-- **Assets**: Standardize naming suffixes as `(남).webp` and `(여).webp` for WW, or `art01-01.webp` vs `art01.webp` for HSR.
+### 간격과 너비
 
----
+- 간격은 가급적 4px 배수의 Tailwind 기본 스케일을 사용한다.
+- 콘텐츠 성격에 따라 `max-w-6xl`, `max-w-7xl`, `max-w-[1600px]`를 선택한다.
+- 장문 분석은 읽기 폭을 제한하고 데이터 갤러리만 넓은 컨테이너를 사용한다.
+- 모바일에서 수평 스크롤이 필요한 데이터만 명시적으로 허용한다.
 
-## 5. Interaction Patterns
+### 모서리
 
-### Hover Effects
-- **Scale**: `hover:scale-105` (Standard), `hover:scale-110` (Icon buttons)
-- **Transition**: `transition-all duration-300 ease-in-out`
-- **Brightness**: `hover:bg-white/5` or `hover:bg-white/10`
-- **Image Quality**: Use `image-rendering: -webkit-optimize-contrast` and `transform: translateZ(0)` for high-resolution assets to prevent aliasing/jaggedness during scaling.
+- 입력·작은 제어: `rounded-lg` 또는 `rounded-xl`
+- 일반 패널·카드: `rounded-xl` 또는 `rounded-2xl`
+- 대표 이미지·히어로: 최대 `rounded-3xl`
+- `rounded-full`: 필터, 칩과 원형 이미지처럼 형태에 의미가 있을 때만 사용
+- 새로운 `rounded-[숫자]` 임의값을 추가하지 않는다.
 
-### Scroll Behavior
-- **Smooth Scroll**: Enabled globally.
-- **Header Stickiness**: Default `ON` (Persisted in `localStorage` as `rira_header_sticky`).
-- **Icon Placeholders**: Supported in skill/item descriptions using `{icon:icon_name}` format.
+기존 임의 모서리 값은 관련 화면을 수정할 때 점진적으로 표준 값으로 교체한다.
 
----
+## 4. 레이아웃과 정보 계층
 
-## 6. Icon Placeholder System
+페이지는 현재 위치와 제목, 핵심 정보 또는 행동, 상세 데이터, 설명과 분석, 관련 콘텐츠와 피드백 순으로 구성한다. 홈을 제외한 콘텐츠 페이지는 기본적으로 좌측 정렬한다. 모든 영역을 가운데 정렬하거나 동일 크기 카드로 채우지 않는다.
 
-To maintain clean database strings while supporting rich UI icons (mouse buttons, keyboard keys, etc.), use the placeholder system:
+### 게임별 우선 정보
 
-### Pattern
-`"Text before {icon:mouse_left} Text after"`
+- HSR: 세팅, 목표 스탯, 스킬 우선순위, 파티
+- WW: 무기, 에코, 목표 스탯, 로테이션
+- NTE: 에스퍼 사이클, 카트리지, 역할, 이동 수단
+- Aniimo: 형태, 진화 계보, 속성, 탐사·서식 정보
 
-### Implementation Details
-- **Base Path**: `/assets/icons/[icon_name].png`
-- **Styling**: Automatically applies `.inline-icon` class.
-- **Handling**: 
-  - Regex based replacement in `renderRichText` and `renderTextWithHighlights`.
-  - Automatically hides the icon if the image file is missing (`onError`).
+공통 페이지를 복제하더라도 게임별 정보 우선순위를 다시 설계한다.
 
----
+### 상세 페이지
 
-## 7. Implementation Rules (For AI)
+- 대표 이미지와 핵심 정체성은 히어로 영역에 둔다.
+- 목표 스탯과 추천 장비처럼 비교·선택이 필요한 정보만 카드로 표현한다.
+- 소개, 운용법, 장단점과 분석은 문서형 섹션으로 표현한다.
+- 카드 안에 같은 시각 무게의 카드를 다시 넣지 않는다.
+- 긴 페이지는 sticky navigation과 의미 있는 섹션 제목을 사용한다.
 
-1. **Benchmarking**: When creating new pages, use `hsr-hub/pages/CharacterDetail.tsx` as the master template for layout and `common-hub/components/PageHeader.tsx` for navigation.
-2. **No Placeholders**: Use `generate_image` for realistic demonstrations or fetch from verified CDN paths.
-3. **Hierarchy**: Always maintain the `01/02/03` numerical indexing for major page sections.
-4. **Z-Indexing**: 
-   - Navbar: `z-50`
-   - PageHeader: `z-40`
-   - Modals/Tooltips: `z-[100]+`
-5. **Language**: Always write implementation plans and project documentation in **Korean (한글)**.
-6. **Optimization**: Minimize browser (Chrome) testing to reduce token waste. Rely on code analysis and targeted curl/status checks unless visual verification is strictly necessary.
+## 5. 카드와 표면
+
+카드는 클릭 또는 선택 가능한 독립 항목, 비교 데이터, 중요한 상태, 독립적인 이미지와 제목을 가진 콘텐츠 묶음에만 사용한다.
+
+일반 설명 문장, 단일 제목과 단순 수치 하나를 카드로 감싸지 않는다. 이런 정보는 여백, 타이포그래피와 구분선으로 정리한다.
+
+글래스모피즘은 기본 표면이 아니다. 홈의 대표 영역이나 제한된 특수 강조 영역에서만 사용하며 `backdrop-blur`, 그라디언트와 큰 그림자를 동시에 중첩하지 않는다.
+
+## 6. 컴포넌트 정책
+
+새 UI를 만들기 전에 `docs/design-system/components.md`와 실제 Props를 확인한다. 비슷한 컴포넌트가 있으면 새로 복제하지 말고 기존 컴포넌트를 확장한다.
+
+핵심 공통 컴포넌트는 `PageHeader`, `DetailStickyNav`, `GallerySidebar`, `SEO`, `ItemIcon`, `HsrItemIcon`, `LazyImage`, `AdPlaceholder`와 공통 상태 UI다.
+
+컴포넌트에 variant가 필요하면 의미 기반 이름을 사용한다. 페이지별 임의 스타일 문자열을 공통 정책으로 승격하지 않는다.
+
+## 7. 상호작용과 모션
+
+- 링크: 색상, 밑줄 또는 명확한 텍스트 변화
+- 버튼: 배경·테두리·명도 변화
+- 이미지 카드: 필요한 경우에만 미세한 이미지 확대
+- 텍스트 카드와 장식 아이콘: 기본적으로 확대 금지
+- `transition-all` 대신 실제 변화하는 속성을 지정
+- 반복 점멸과 의미 없는 pulse 효과 금지
+- `prefers-reduced-motion` 환경에서 핵심 기능 유지
+
+모션은 상태 변화를 설명해야 하며 화면을 화려하게 보이게 하기 위한 기본 장식으로 사용하지 않는다.
+
+## 8. UI 상태
+
+### Loading
+
+- 레이아웃 이동을 줄이는 스켈레톤 또는 크기가 고정된 fallback을 사용한다.
+- 실제 동기화 상태가 아닌 가짜 시스템 문구를 표시하지 않는다.
+
+### Empty
+
+- 무엇이 비어 있는지와 다음 행동을 사용자의 언어로 안내한다.
+- `EMPTY`, `SYSTEM`, `SYNCING` 같은 기술·터미널 표현을 기본값으로 사용하지 않는다.
+
+### Error
+
+- 오류 원인과 다시 시도 방법을 짧게 표시한다.
+- 이미지 오류는 재귀 로딩을 막고 공통 fallback을 사용한다.
+
+### Success
+
+- 저장, 복사, 동기화처럼 사용자가 수행한 행동의 결과만 표시한다.
+- 성공 표시가 콘텐츠 탐색을 방해하지 않게 간결하게 유지한다.
+
+## 9. 접근성
+
+- 실제 상호작용 요소는 `button`, `a`, `input` 등 의미 있는 HTML을 우선한다.
+- 키보드 포커스가 보여야 하며 Enter·Space로 조작 가능해야 한다.
+- 아이콘 단독 버튼은 접근 가능한 이름을 제공한다.
+- 정보 이미지는 의미 있는 `alt`, 장식 이미지는 빈 `alt`를 사용한다.
+- 텍스트 대비는 WCAG AA를 기준으로 한다.
+- 색상만으로 선택·등급·오류를 구분하지 않는다.
+
+## 10. 이미지와 에셋
+
+- 기존 로컬 에셋과 공식 저장소 이미지를 우선 사용한다.
+- 이미지 크기 또는 aspect ratio를 지정해 레이아웃 이동을 줄인다.
+- 모든 동적 이미지는 오류 fallback을 제공한다.
+- NTE 경로에서 파일명의 `:`는 URL과 Windows 호환을 위해 `_`로 처리한다.
+- 새로운 외부 출처 로고나 링크를 분석·공략 본문에 임의로 노출하지 않는다.
+
+## 11. 반응형 기준
+
+- 모바일 우선으로 구현하고 320px 수준의 좁은 화면에서 핵심 기능을 확인한다.
+- 데스크톱 다단 레이아웃은 모바일에서 자연스러운 읽기 순서로 쌓여야 한다.
+- 고정 높이는 콘텐츠가 잘리지 않는 경우에만 사용한다.
+- 필터와 표는 모바일에서 드롭다운, 접기 또는 제한된 수평 스크롤을 사용한다.
+- 터치 대상은 충분한 크기와 간격을 확보한다.
+
+## 12. 금지 패턴
+
+- 페이지 전체를 동일한 둥근 카드로 채우기
+- 카드 안에 같은 시각 무게의 카드 반복
+- 의미 없는 보라색 그라디언트와 글로우
+- 모든 요소의 중앙 정렬
+- 장식용 배지·pill·아이콘 타일 남용
+- 가짜 시스템 상태와 기술적인 마케팅 문구
+- 모든 hover에 확대 적용
+- 한글 제목의 무조건적인 대문자·이탤릭 스타일
+- 기존 컴포넌트와 같은 역할의 새 컴포넌트 복제
+- 특정 게임 페이지를 다른 허브에 그대로 복사
+
+## 13. 작업 절차
+
+1. `DESIGN.md` 확인
+2. 사용자 목표와 핵심 여정 정의
+3. 기존 공통 컴포넌트와 토큰 검색
+4. 정보 계층과 모바일 순서 결정
+5. 필요한 최소 변경 구현
+6. Loading, Empty, Error 상태 확인
+7. 키보드·대비·이미지 fallback 확인
+8. TypeScript 검사와 production build
+9. `git diff --check`와 실제 diff 확인
+10. 가능하면 대표 화면의 데스크톱·모바일 시각 검증
+
+## 14. 문서 유지 규칙
+
+- 새로운 디자인 정책은 이 문서에만 추가한다.
+- 컴포넌트 Props와 위치는 `docs/design-system/components.md`에서 관리한다.
+- 상태별 구체 체크리스트는 `docs/design-system/ux-principles.md`에서 관리한다.
+- 하위 문서는 이 문서의 정책을 다시 복사하지 않는다.
+- 정책 변경 시 관련 문서와 구현이 서로 일치하는지 함께 확인한다.
