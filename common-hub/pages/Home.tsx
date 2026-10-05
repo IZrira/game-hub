@@ -4,7 +4,6 @@ import { ARCHIVE_DATA } from '../data/archive';
 import homeStatsData from '../data/search/home-stats.json';
 import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
-import LazyImage from '../components/LazyImage';
 import { NoticeListView, useNoticeBadge } from '../components/NoticeComponents';
 import { Notice } from '../data/types';
 import AdPlaceholder from '../components/AdPlaceholder';
@@ -39,6 +38,12 @@ const Home: React.FC = () => {
   }, []);
 
   const gameStats = homeStatsData.games as Record<string, { characters: number; guides: number }>;
+  const gameDescriptions: Record<string, { eyebrow: string; categories: string; accent: string; icon: string }> = {
+    hsr: { eyebrow: '붕괴: 스타레일 공략 허브', categories: '캐릭터 · 광추 · 유물 · 파티', accent: 'border-purple-400/30 hover:border-purple-400/70', icon: '✦' },
+    ww: { eyebrow: '명조: 워더링 웨이브 공략 허브', categories: '공명자 · 무기 · 에코 · 파티', accent: 'border-emerald-400/30 hover:border-emerald-400/70', icon: '◈' },
+    nte: { eyebrow: '이환 공략·데이터 허브', categories: '캐릭터 · 아크 · 카트리지 · 이동 수단', accent: 'border-sky-400/30 hover:border-sky-400/70', icon: '◇' },
+    aniimo: { eyebrow: '애니모 도감 허브', categories: '애니모 · 진화 · 성격 · 서식지', accent: 'border-amber-400/30 hover:border-amber-400/70', icon: '●' },
+  };
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">
@@ -92,7 +97,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* 게임 선택: 같은 목적의 빠른 접근·대형 배너 영역을 하나로 통합 */}
-      <section className="relative z-20 mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20">
+      <section className="relative z-20 mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
             <span className="text-[10px] font-black uppercase tracking-[0.24em] text-brand-accent">Choose a game</span>
@@ -100,24 +105,24 @@ const Home: React.FC = () => {
           </div>
           <span className="hidden text-xs text-gray-500 sm:block">{t('도감 · 세팅 · 분석 가이드')}</span>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {ARCHIVE_DATA.games.map((game, index) => (
-            <Link key={game.id} to={`/gallery/${game.id}`} className="group relative min-h-[210px] overflow-hidden rounded-3xl border border-white/10 bg-[#121212] transition hover:border-brand-primary/40">
-              <LazyImage src={game.bannerImage} alt={`${game.title} 게임 허브`} width={720} height={400} loading={index < 2 ? 'eager' : 'lazy'} fetchPriority={index === 0 ? 'high' : 'auto'} containerClassName="absolute inset-0 h-full w-full" className="h-full w-full object-cover opacity-40 transition duration-500 group-hover:scale-[1.03] group-hover:opacity-55" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black via-black/75 to-black/10" />
-              <div className="relative flex min-h-[210px] flex-col justify-between p-6 sm:p-7">
-                <div>
-                  <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-accent">{game.id.toUpperCase()}</span>
-                  <h3 className="mt-2 text-2xl font-black text-white sm:text-3xl">{game.title}</h3>
-                  <p className="mt-2 max-w-sm text-xs leading-5 text-gray-400">{game.subTitle}</p>
+        <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+          {ARCHIVE_DATA.games.map((game) => {
+            const meta = gameDescriptions[game.id];
+            return <Link key={game.id} to={`/gallery/${game.id}`} className={`group flex min-h-[158px] flex-col justify-between rounded-2xl border bg-[#121212] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.045] ${meta.accent}`}>
+              <div>
+                <div className="flex items-center gap-2 text-[10px] font-black text-gray-400">
+                  <span className="text-base text-brand-accent" aria-hidden="true">{meta.icon}</span>
+                  <span>{meta.eyebrow}</span>
                 </div>
-                <div className="mt-6 flex items-center justify-between gap-4">
-                  <span className="text-xs font-bold text-gray-400">{t('캐릭터')} {gameStats[game.id]?.characters ?? 0} · {t('가이드')} {gameStats[game.id]?.guides ?? 0}</span>
-                  <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-white text-black transition group-hover:bg-brand-accent group-hover:text-white"><ArrowRight size={16} /></span>
-                </div>
+                <h3 className="mt-3 text-xl font-black text-white">{game.title}</h3>
+                <p className="mt-1.5 text-[11px] font-medium leading-5 text-gray-500">{meta.categories}</p>
+              </div>
+              <div className="mt-4 flex items-center justify-between gap-3 border-t border-white/5 pt-3">
+                <span className="text-[11px] font-bold text-gray-400">{t('캐릭터')} {gameStats[game.id]?.characters ?? 0} · {t('가이드')} {gameStats[game.id]?.guides ?? 0}</span>
+                <ArrowRight size={15} className="text-gray-500 transition group-hover:translate-x-0.5 group-hover:text-white" />
               </div>
             </Link>
-          ))}
+          })}
         </div>
       </section>
 
