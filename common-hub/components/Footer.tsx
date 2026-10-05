@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 const Footer: React.FC = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear();
 
   const navLinks = [
-    { name: 'Hub Index', path: '/' },
-    { name: 'About Us', path: '/about' },
-    { name: 'Archive Notices', path: '/notices' },
+    { name: t('홈'), path: '/' },
+    { name: t('사이트 소개'), path: '/about' },
+    { name: t('공지사항'), path: '/notices' },
   ];
 
   const policyLinks = [
-    { name: 'Privacy Policy', path: '/privacy' },
-    { name: 'Terms of Service', path: '/tos' },
-    { name: 'Contact Us', path: '/contact' },
+    { name: t('개인정보 처리방침'), path: '/privacy' },
+    { name: t('이용약관'), path: '/tos' },
+    { name: t('문의하기'), path: '/contact' },
   ];
 
   return (
@@ -25,23 +27,18 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-2xl font-black italic tracking-tighter text-white">RIRA GAME HUB</h2>
-              <p className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-primary">
-                Integrated Game Database
+              <p className="text-[10px] font-black tracking-[0.16em] text-brand-primary">
+                {t('게임 통합 데이터베이스')}
               </p>
             </div>
             <p className="text-xs text-gray-400 leading-relaxed max-w-xs font-medium">
-              Comprehensive game data and tactical analysis platform for advanced explorers.
-              All systems operational via RIRA GAME HUB.
+              {t('캐릭터와 장비 도감, 세팅 공략과 분석 가이드를 게임별로 정리한 비공식 팬 아카이브입니다.')}
             </p>
-            <div className="flex items-center gap-3 text-[10px] font-black text-green-500/60 uppercase tracking-widest">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              System Status: Operational
-            </div>
           </div>
 
           {/* 컬럼 2: 네비게이션 */}
           <div className="space-y-6">
-            <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Navigation</h3>
+            <h3 className="text-[11px] font-black text-white">{t('바로가기')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
               {navLinks.map((link) => (
                 <li key={link.name}>
@@ -53,9 +50,9 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* 컬럼 3: 지원 게임 (Supported Sectors) */}
+          {/* 컬럼 3: 지원 게임 */}
           <div className="space-y-6">
-            <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Supported Sectors</h3>
+            <h3 className="text-[11px] font-black text-white">{t('지원 게임')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
               <li><Link to="/gallery/hsr" className="hover:text-brand-primary transition-colors">Honkai: Star Rail</Link></li>
               <li><Link to="/gallery/ww" className="hover:text-brand-primary transition-colors">Wuthering Waves</Link></li>
@@ -66,7 +63,7 @@ const Footer: React.FC = () => {
 
           {/* 컬럼 4: 정책 및 소셜 */}
           <div className="space-y-6">
-            <h3 className="text-[11px] font-black text-white uppercase tracking-[0.2em]">Security & Policy</h3>
+            <h3 className="text-[11px] font-black text-white">{t('정책 및 안내')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
               {policyLinks.map((link) => (
                 <li key={link.name}>
@@ -81,24 +78,20 @@ const Footer: React.FC = () => {
 
         {/* 하단 저작권 및 면책 조항 */}
         <div className="pt-8 border-t border-white/5 space-y-6">
-          <div className="flex flex-col md:flex-row justify-between gap-4 text-[10px] font-black text-gray-400 uppercase tracking-widest">
+          <div className="flex flex-col md:flex-row justify-between gap-4 text-[10px] font-bold text-gray-400">
             <span>Copyright © {currentYear} RIRA ARCHIVE. All rights reserved.</span>
-            <span>Archive Identity & Intellectual Property / Ver 1.0.4_Stable</span>
+            <span>{t('비공식 팬 아카이브')}</span>
           </div>
 
           <div className="space-y-4">
             <p className="text-[10px] leading-relaxed text-gray-400 font-medium">
-              <strong className="text-gray-400">Legal Disclaimer:</strong> RIRA ARCHIVE is a non-profit, unofficial fan-operated project intended for educational and research purposes.
-              This terminal is not affiliated with, endorsed by, or representative of HoYoverse, Kuro Games, Hotta Studio, or Aniimo developers.
-              All game-related imagery, characters, and assets are the exclusive intellectual property and registered trademarks of their respective owners.
-              RIRA ARCHIVE operates under Fair Use principles for informational analysis.
+              <strong className="text-gray-400">{t('면책 안내')}:</strong> {t('RIRA ARCHIVE는 각 게임사와 공식 제휴하거나 승인을 받은 서비스가 아닌 비공식 팬 아카이브입니다. 게임 관련 이미지와 명칭의 권리는 각 권리자에게 있습니다.')}
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-black text-gray-300 uppercase tracking-tighter">
-              <span>Source Entities: © HoYoverse</span>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-bold text-gray-400">
+              <span>© HoYoverse</span>
               <span>© Kuro Games</span>
               <span>© Hotta Studio / Perfect World</span>
-              <span>© Aniimo Official</span>
-              <span>© RIRA ARCHIVE Game Database</span>
+              <span>© Aniimo</span>
             </div>
           </div>
         </div>

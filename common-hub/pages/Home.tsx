@@ -13,7 +13,6 @@ import {
   FileText,
   Users,
   Globe,
-  Terminal,
   Search,
   ArrowRight
 } from 'lucide-react';
@@ -67,7 +66,7 @@ const Home: React.FC = () => {
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
-            <Terminal size={14} className="shrink-0 text-brand-accent" />
+            <Database size={14} className="shrink-0 text-brand-accent" />
             <span className="text-[10px] font-black uppercase tracking-[0.22em] text-gray-400">{t('4개 게임 통합 아카이브')}</span>
           </div>
 
@@ -100,7 +99,7 @@ const Home: React.FC = () => {
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
-            <span className="text-[10px] font-black uppercase tracking-[0.24em] text-brand-accent">Choose a game</span>
+            <span className="text-[10px] font-black tracking-[0.12em] text-brand-accent">{t('게임 선택')}</span>
             <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">{t('플레이 중인 게임')}</h2>
           </div>
           <span className="hidden text-xs text-gray-500 sm:block">{t('도감 · 세팅 · 분석 가이드')}</span>
@@ -126,7 +125,7 @@ const Home: React.FC = () => {
         </div>
       </section>
 
-      {/* Rira Daily Hub (패치 노트 및 공지사항 탭) */}
+      {/* 최근 업데이트 (패치 노트 및 공지사항 탭) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-24 mb-8 relative z-20">
         <div className="bg-[#121212] border border-white/5 rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
@@ -135,7 +134,7 @@ const Home: React.FC = () => {
             <div className="flex flex-wrap items-center gap-3 sm:gap-6">
               <div className="flex items-center gap-2.5">
                 <FileText size={20} className="text-brand-accent shrink-0" />
-                <h2 className="text-base sm:text-lg font-black text-white uppercase tracking-[0.2em] font-mono">{t('Rira Daily Hub')}</h2>
+                <h2 className="text-base sm:text-lg font-black text-white">{t('최근 업데이트')}</h2>
               </div>
               <div className="flex items-center gap-1.5 bg-[#121212] p-1 rounded-xl border border-white/5">
                 <button

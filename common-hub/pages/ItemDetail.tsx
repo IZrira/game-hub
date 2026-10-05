@@ -135,8 +135,8 @@ export default function ItemDetail() {
             </div>
 
             <div className="pt-8 border-t border-white/10 mt-auto">
-              <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] italic">
-                Data synchronized with Galactic Network v4.1 • {gameId?.toUpperCase()} Registry
+              <p className="text-[10px] font-bold text-gray-500">
+                {t('등록 데이터')} · {gameId?.toUpperCase()}
               </p>
             </div>
           </div>

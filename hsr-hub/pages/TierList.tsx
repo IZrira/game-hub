@@ -397,7 +397,7 @@ const TierList: React.FC = () => {
                   </h1>
                   <p className="text-gray-400 font-bold text-sm sm:text-lg">
                     {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.description}
-                    {isSyncing && <span className="ml-3 text-[10px] text-brand-primary animate-pulse">● SYNCING...</span>}
+                    {isSyncing && <span className="ml-3 text-[10px] text-brand-primary">불러오는 중</span>}
                   </p>
                 </div>
 

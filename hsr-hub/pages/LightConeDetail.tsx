@@ -370,8 +370,8 @@ const LightConeDetail: React.FC = () => {
                 <Users size={20} className="text-brand-primary" />
               </div>
               <div className="space-y-1">
-                <h4 className="text-sm font-black text-white uppercase tracking-widest">{t('Intelligence Source')}</h4>
-                <p className="text-[11px] text-gray-400 font-medium">Authored by <span className="text-brand-accent font-black">Rira Archive Editorial Team</span></p>
+                <h4 className="text-sm font-black text-white">{t('데이터 출처')}</h4>
+                <p className="text-[11px] text-gray-400 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
               </div>
             </div>
             <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">

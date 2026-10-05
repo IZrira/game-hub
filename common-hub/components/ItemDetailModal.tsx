@@ -171,8 +171,8 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
           </div>
 
           <div className="pt-6 border-t border-white/10">
-            <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.3em] italic">
-              Data synchronized with Galactic Network v4.1
+            <p className="text-[9px] font-bold text-gray-500">
+              {t('등록 데이터')}
             </p>
           </div>
         </div>

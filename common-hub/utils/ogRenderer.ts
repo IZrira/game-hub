@@ -136,7 +136,7 @@ export class OGRenderer {
     // 7. Watermark Footer
     ctx.font = '600 16px Inter, sans-serif';
     ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
-    ctx.fillText('riragamehub.com | Integrated Game Intelligence', 80, 560);
+    ctx.fillText('riragamehub.com | 게임 도감·세팅·분석 가이드', 80, 560);
 
     // 8. Draw Character Portrait on the right if provided
     if (options.avatarUrl) {
