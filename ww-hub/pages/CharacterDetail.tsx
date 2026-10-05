@@ -75,7 +75,7 @@ const DeferredSection: React.FC<{ children: React.ReactNode; minHeight?: number 
 };
 
 const DeferredFallback = () => (
-  <div className="flex min-h-48 items-center justify-center rounded-[36px] border border-white/5 bg-white/[0.02]">
+  <div className="flex min-h-48 items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02]">
     <RefreshCw size={20} className="animate-spin text-brand-primary" />
   </div>
 );
@@ -575,8 +575,8 @@ const CharacterDetail: React.FC = () => {
     ];
   }, [char, t]);
 
-  if (!summaryChar) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
-  if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary'} /><p className="mt-5 text-sm font-black uppercase italic">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
+  if (!summaryChar) return <div className="p-20 text-center font-black text-white">{t('캐릭터를 찾을 수 없습니다.')}</div>;
+  if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary'} /><p className="mt-5 text-sm font-bold">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
@@ -657,7 +657,7 @@ const CharacterDetail: React.FC = () => {
         <div id="overview" className="relative grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start border-b border-white/5 pb-8 scroll-mt-28">
           
           {/* Left: Image with Integrated Info Overlay */}
-          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.5]">
+          <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-[#0f0f0f] aspect-[3/4.5]">
             <img 
               src={getIllustrationUrl()} 
               alt={`${t(char.name)} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
@@ -681,7 +681,7 @@ const CharacterDetail: React.FC = () => {
                   </h1>
                   <Link 
                     to={`/gallery/${gameId}/character/${char.id}/guide`} 
-                    className="mb-1 flex items-center gap-2 px-5 py-2.5 bg-brand-primary text-white rounded-2xl text-[10px] font-black shadow-[0_0_20px_rgba(var(--theme-primary-rgb),0.4)] hover:scale-105 transition-all active:scale-95 border border-white/20 whitespace-nowrap"
+                    className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-[10px] font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
                     style={{ backgroundColor: theme.primary }}
                   >
                     <BookOpen size={14} /> {t('상세 공략')}
@@ -695,7 +695,7 @@ const CharacterDetail: React.FC = () => {
                     <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
                   ))}
                 </div>
-                <div className="text-gray-400 font-bold tracking-widest text-[9px] uppercase italic opacity-40 px-2 py-0.5 border border-white/10 rounded-lg">
+                <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[9px] font-bold tracking-wide text-gray-400 opacity-70">
                    Ver {char.releaseVersion || '1.0'}
                 </div>
               </div>
@@ -709,8 +709,8 @@ const CharacterDetail: React.FC = () => {
             <div className="flex flex-wrap items-center gap-3 px-2">
               {char.isRover && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`} style={gender === 'm' ? { backgroundColor: theme.primary } : {}}>{t('남성')}</button>
-                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-500'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>
+                  <button onClick={() => setGender('m')} className={`rounded-lg px-5 py-1 text-[9px] font-black transition-colors ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-500 hover:text-gray-300'}`} style={gender === 'm' ? { backgroundColor: theme.primary } : {}}>{t('남성')}</button>
+                  <button onClick={() => setGender('f')} className={`rounded-lg px-5 py-1 text-[9px] font-black transition-colors ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-500 hover:text-gray-300'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>
                 </div>
               )}
               
@@ -721,16 +721,16 @@ const CharacterDetail: React.FC = () => {
             </div>
 
             {/* 02. Level Slider & Visual Stats Card */}
-            <div id="stats" className="glass-card p-6 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6 scroll-mt-28">
+            <div id="stats" className="space-y-6 rounded-2xl border border-white/10 bg-[#121212] p-6 scroll-mt-28">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
-                  <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400 italic">{t('기본 스텟')}</h2>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                  <h2 className="text-2xl font-black text-white">{t('기본 스탯')}</h2>
                 </div>
                 <div className="flex flex-col gap-1.5 flex-1 max-w-md relative pt-6">
                   {/* Floating Level Label */}
                   <div 
-                    className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg"
+                    className="pointer-events-none absolute top-0 -translate-x-1/2 rounded px-2 py-0.5 text-[10px] font-black text-black transition-[left] duration-75"
                     style={{ 
                       left: `${(levelIdx / 8) * 100}%`,
                       backgroundColor: theme.primary,
@@ -755,14 +755,14 @@ const CharacterDetail: React.FC = () => {
             </div>
 
             {/* 03. Profile/Story Section (Toggle) */}
-            <div className="glass-card overflow-hidden rounded-[35px] border border-white/5 bg-[#0f0f0f]/40">
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]">
               <button 
                 onClick={() => setIsProfileExpanded(!isProfileExpanded)}
                 className="w-full p-6 flex items-center justify-between group hover:bg-white/[0.02] transition-colors"
               >
                 <div className="flex items-center gap-4">
-                   <span className="text-3xl font-black italic opacity-10" style={{ color: theme.primary }}>02</span>
-                   <h2 className="text-lg font-black uppercase tracking-widest text-gray-400 group-hover:text-white transition-colors">{t('캐릭터 소개')}</h2>
+                   <span className="text-lg font-black" style={{ color: theme.primary }}>02</span>
+                   <h2 className="text-lg font-black text-white">{t('캐릭터 소개')}</h2>
                 </div>
                 <div className={`p-2 rounded-full border border-white/10 transition-transform duration-500 ${isProfileExpanded ? 'rotate-180 border-brand-primary' : ''}`}>
                    <ChevronDown size={18} />
@@ -770,7 +770,7 @@ const CharacterDetail: React.FC = () => {
               </button>
               <div className={`transition-all duration-500 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
                 <div className="px-6 border-t border-white/5 pt-6">
-                  <div className="text-gray-400 text-base leading-relaxed italic bg-black/20 p-6 rounded-[25px] border border-white/5 shadow-inner whitespace-pre-line">
+                  <div className="whitespace-pre-line border-l-2 border-white/10 pl-5 text-base leading-relaxed text-gray-300">
                     {renderTextWithHighlights(t(char.autoDescription || char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.'))}
                   </div>
                 </div>
@@ -804,14 +804,14 @@ const CharacterDetail: React.FC = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 {/* Voice Actors Card */}
                 {char.voiceActors && (
-                  <div className="glass-card rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-8 space-y-6">
+                  <div className="space-y-6 rounded-2xl border border-white/10 bg-[#121212] p-8">
                     <div className="flex items-center gap-3 border-b border-white/5 pb-4">
                       <Globe size={18} className="text-gray-500" />
-                      <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t("성우 정보")}</h3>
+                      <h3 className="text-sm font-black text-white">{t("성우 정보")}</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {char.voiceActors.split(/[\n/,]+/).filter(Boolean).map((n: string, i: number) => (
-                        <div key={`va-${i}`} className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.06] transition-all">
+                        <div key={`va-${i}`} className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.06]">
                           <div className="flex items-center gap-3">
                             <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
                             <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>
@@ -825,14 +825,14 @@ const CharacterDetail: React.FC = () => {
 
                 {/* Locales Card */}
                 {char.locales && (
-                  <div className="glass-card rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent p-8 space-y-6">
+                  <div className="space-y-6 rounded-2xl border border-white/10 bg-[#121212] p-8">
                     <div className="flex items-center gap-3 border-b border-white/5 pb-4">
                       <Globe size={18} className="text-gray-500" />
-                      <h3 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t("언어별 표기")}</h3>
+                      <h3 className="text-sm font-black text-white">{t("언어별 표기")}</h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {char.locales.split(/[\n/,]+/).filter(Boolean).map((n: string, i: number) => (
-                        <div key={`loc-${i}`} className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.03] border border-white/5 group hover:bg-white/[0.06] transition-all">
+                        <div key={`loc-${i}`} className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.03] p-4 transition-colors hover:bg-white/[0.06]">
                           <div className="flex items-center gap-3">
                             <Flag code={['kr', 'us', 'cn', 'jp'][i] || 'un'} />
                             <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{['KR', 'EN', 'CN', 'JP'][i] || 'ETC'}</span>
@@ -852,17 +852,16 @@ const CharacterDetail: React.FC = () => {
         {char.roles && char.roles.length > 0 && (
           <section className="space-y-8">
             <div className="flex items-center gap-6 px-4">
-              <div className="w-12 h-12 rounded-[22px] border-2 flex items-center justify-center font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
-              <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('전투 역할')}</h2>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
+              <h2 className="border-l-4 border-white/10 py-1.5 pl-6 text-2xl font-black leading-none text-white md:text-3xl">{t('전투 역할')}</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {char.roles.map((role: any, idx: number) => {
                 const ICON_BASE = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/position/';
                 return (
-                  <div key={idx} className="glass-card group flex flex-col gap-4 p-8 rounded-[40px] border border-white/10 bg-black/40 hover:bg-white/[0.02] transition-all duration-500 shadow-xl overflow-hidden relative">
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/[0.02] to-transparent rounded-bl-[100px] pointer-events-none" />
-                    <div className="w-16 h-16 rounded-[24px] bg-white/5 border border-white/10 flex items-center justify-center p-3 group-hover:scale-110 transition-transform duration-500 shadow-2xl">
+                  <div key={idx} className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#121212] p-8 transition-colors hover:bg-[#171717]">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 p-3">
                        <img 
                          src={`${ICON_BASE}${encodeURIComponent(t(role.label))}.webp`} 
                          className="w-full h-full object-contain brightness-110" 
@@ -871,7 +870,7 @@ const CharacterDetail: React.FC = () => {
                        />
                     </div>
                     <div className="space-y-1 relative z-10">
-                      <span className="text-brand-primary font-black text-lg italic uppercase tracking-tighter">{t(role.label).replace(/\*/g, '')}</span>
+                      <span className="text-lg font-black text-brand-primary">{t(role.label).replace(/\*/g, '')}</span>
                       <p className="text-gray-400 text-sm leading-relaxed font-medium">{t(role.description).replace(/\*/g, '')}</p>
                     </div>
                   </div>
@@ -885,29 +884,29 @@ const CharacterDetail: React.FC = () => {
         <section id="materials" className="space-y-8 scroll-mt-28">
           <SectionHeader num="05" title={t("육성 재료")} theme={theme} />
           <div className="flex flex-col gap-10">
-            <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
+            <div className="space-y-8 rounded-2xl border border-white/10 bg-[#121212] p-6 md:p-10">
                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
                  <div className="flex items-center gap-4">
                    <Package size={22} className="text-gray-400" />
-                   <span className="text-xl font-black uppercase tracking-tighter italic">{t("돌파 재료")}</span>
+                   <span className="text-xl font-black">{t("돌파 재료")}</span>
                  </div>
-                 <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">
+                 <button onClick={handleCopyMaterials} className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-xs font-bold text-gray-400 transition-colors hover:bg-white/10 hover:text-white">
                    {isCopied ? <CheckCircle2 size={14} className="text-green-500" /> : <Copy size={14} />}
                    {isCopied ? t('복사 완료!') : t('재료 리스트 복사')}
                  </button>
                </div>
                <div className="flex flex-wrap justify-center gap-8 px-4">
-                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.ascension?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400">{t('데이터가 없습니다.')}</p>}
 
                </div>
             </div>
-            <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
+            <div className="space-y-8 rounded-2xl border border-white/10 bg-[#121212] p-6 md:p-10">
                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                  <Sparkles size={22} className="text-gray-400" />
-                 <span className="text-2xl font-black uppercase tracking-tighter italic">{t("행적 재료")}</span>
+                 <span className="text-xl font-black">{t("행적 재료")}</span>
                </div>
                <div className="flex flex-nowrap overflow-x-auto gap-6 pb-4 -mx-10 px-10 scrollbar-hide items-start justify-center">
-                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400 italic">{t('데이터가 없습니다.')}</p>}
+                  {char.materials_v2?.traces?.map((m: any, i: number) => (<ItemIcon key={i} name={m.name} count={m.count} onClick={() => setSelectedItem(m.name)} />)) || <p className="text-gray-400">{t('데이터가 없습니다.')}</p>}
                   <div className="w-8 shrink-0" />
                </div>
             </div>
@@ -970,7 +969,7 @@ const CharacterDetail: React.FC = () => {
 
         {/* E-E-A-T Authorship & Methodology Note */}
         <section className="mt-12 pt-8 border-t border-white/5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/5">
+          <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-8 md:flex-row">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
                 <Users size={20} className="text-brand-primary" />
@@ -1017,11 +1016,11 @@ const SectionHeader: React.FC<{
   onToggle?: () => void 
 }> = ({ num, title, theme, expanded, onToggle }) => (
   <div className="flex items-center justify-between w-full group">
-    <div className="flex items-center gap-6">
-      <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{num}</div>
-      <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{title}</h2>
+    <div className="flex items-center gap-4 md:gap-6">
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{num}</div>
+      <h2 className="border-l-4 border-white/10 py-1 pl-4 text-xl font-black leading-none text-white md:pl-6 md:text-2xl">{title}</h2>
     </div>
-    {onToggle && (<button onClick={onToggle} className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
+    {onToggle && (<button type="button" onClick={onToggle} aria-expanded={expanded} aria-label={`${title} ${expanded ? '접기' : '펼치기'}`} className="rounded-xl border border-white/10 bg-white/5 p-3 transition-colors hover:bg-white/10">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
   </div>
 );
 
@@ -1031,14 +1030,14 @@ const MetadataCard: React.FC<{
   icon: React.ReactNode; 
   theme: { primary: string } 
 }> = ({ label, value, icon, theme }) => (
-  <div className="glass-card p-6 rounded-[30px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent group hover:from-white/[0.05] transition-all duration-500">
+  <div className="rounded-2xl border border-white/10 bg-[#121212] p-6 transition-colors hover:bg-[#171717]">
     <div className="flex items-center gap-3 mb-4">
-      <div className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 group-hover:scale-110 group-hover:text-white transition-all duration-500" style={{ color: theme.primary }}>
+      <div className="rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400" style={{ color: theme.primary }}>
         {icon}
       </div>
-      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest">{label}</span>
+      <span className="text-xs font-bold text-gray-400">{label}</span>
     </div>
-    <div className="text-xl font-black text-white tracking-tight group-hover:translate-x-1 transition-transform duration-500">{value}</div>
+    <div className="text-xl font-black tracking-tight text-white">{value}</div>
   </div>
 );
 
@@ -1050,12 +1049,12 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, 
 );
 
 const StatRow: React.FC<{ label: string; value: string | number; color: string }> = ({ label, value, color }) => (
-  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5 group hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300">
+  <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-white/10 hover:bg-white/[0.04]">
     <div className="flex items-center gap-4">
       <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors">{label}</span>
+      <span className="text-xs font-bold text-gray-400">{label}</span>
     </div>
-    <div className="text-xl font-black tabular-nums text-white group-hover:scale-105 transition-transform">{value}</div>
+    <div className="text-xl font-black tabular-nums text-white">{value}</div>
   </div>
 );
 
