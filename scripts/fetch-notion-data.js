@@ -1420,6 +1420,80 @@ function serializeHsrGuideToTypeScript(guide) {
   return `import { CharacterGuide } from './index';\n\nexport const ${guide.exportName}: CharacterGuide = ${jsonStr};\n`;
 }
 
+function readLocalHsrGuide(filePath) {
+  let content = fs.readFileSync(filePath, 'utf8');
+  content = content.replace(/import\s+[\s\S]*?;/g, '');
+  content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
+  content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
+  content = content.replace(/:\s*CharacterGuide\s*=/g, ' =');
+  content = content.replace(/export\s+const\s+([^\s=:]+)\s*=\s*/, 'const $1 = ');
+
+  const match = content.match(/const\s+([^\s=:]+)\s*=\s*([\s\S]+?);?\s*$/);
+  if (!match?.[2]) {
+    throw new Error('CharacterGuide object could not be read');
+  }
+  return new Function(`return ${match[2]}`)();
+}
+
+function normalizeGuideText(value) {
+  return typeof value === 'string' ? value.replace(/\r\n/g, '\n').trim() : value;
+}
+
+function normalizeRecommendation(item) {
+  if (typeof item === 'string') return { name: normalizeGuideText(item), note: '' };
+  return {
+    name: normalizeGuideText(item?.name || ''),
+    note: normalizeGuideText(item?.note || '')
+  };
+}
+
+function normalizeGuideValue(value) {
+  if (Array.isArray(value)) return value.map(normalizeGuideValue);
+  if (value && typeof value === 'object') {
+    return Object.keys(value)
+      .sort()
+      .reduce((result, key) => {
+        if (value[key] !== undefined) result[key] = normalizeGuideValue(value[key]);
+        return result;
+      }, {});
+  }
+  return normalizeGuideText(value);
+}
+
+function normalizeHsrGuideForComparison(guide, isNotionGuide = false) {
+  const normalizeRecommendations = (items) => (items || []).map(normalizeRecommendation);
+  const normalizeVariant = (variant) => ({
+    name: normalizeGuideText(variant?.name || ''),
+    bestRelics: normalizeRecommendations(variant?.bestRelics),
+    bestOrnaments: normalizeRecommendations(variant?.bestOrnaments),
+    bestLightCones: normalizeRecommendations(variant?.bestLightCones),
+    mainStats: normalizeGuideValue(variant?.mainStats || {}),
+    subStats: normalizeGuideValue(variant?.subStats || []),
+    targetStats: normalizeGuideValue(variant?.targetStats || [])
+  });
+
+  return {
+    patchVersion: normalizeGuideText(guide?.patchVersion || ''),
+    variants: (guide?.variants || []).map(normalizeVariant),
+    bestRelics: normalizeRecommendations(guide?.bestRelics),
+    bestOrnaments: normalizeRecommendations(guide?.bestOrnaments),
+    bestLightCones: normalizeRecommendations(guide?.bestLightCones),
+    mainStats: normalizeGuideValue(guide?.mainStats || {}),
+    subStats: normalizeGuideValue(guide?.subStats || []),
+    targetStats: normalizeGuideValue(guide?.targetStats || []),
+    skillPriority: normalizeGuideValue(guide?.skillPriority || []),
+    synergyCharacters: normalizeGuideValue(
+      isNotionGuide ? (guide?.partyRecommendation || []) : (guide?.synergyCharacters || [])
+    )
+  };
+}
+
+function compareHsrGuides(localGuide, notionGuide) {
+  const local = normalizeHsrGuideForComparison(localGuide);
+  const notion = normalizeHsrGuideForComparison(notionGuide, true);
+  return Object.keys(notion).filter(key => JSON.stringify(local[key]) !== JSON.stringify(notion[key]));
+}
+
 async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
   const guides = [];
   try {
@@ -1447,6 +1521,7 @@ async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
     console.log(`[Notion Sync] Fetched ${pages.length} HSR guide pages from Notion.`);
 
     const guidesDir = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
+    const comparison = { matched: 0, different: 0, created: 0, unreadable: 0 };
 
     for (const page of pages) {
       await sleep(100);
@@ -1460,14 +1535,44 @@ async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
 
         if (guide.fileName) {
           const filePath = path.join(guidesDir, guide.fileName);
-          const tsCode = serializeHsrGuideToTypeScript(guide);
-          fs.writeFileSync(filePath, tsCode, 'utf8');
-          console.log(`[Notion Sync] Written ${guide.fileName} for ${guide.characterName}`);
+          if (fs.existsSync(filePath)) {
+            try {
+              const localGuide = readLocalHsrGuide(filePath);
+              const changedFields = compareHsrGuides(localGuide, guide);
+              if (changedFields.length === 0) {
+                comparison.matched += 1;
+                console.log(`[Notion Sync][MATCH] ${guide.characterName}: local guide preserved`);
+              } else {
+                comparison.different += 1;
+                console.warn(
+                  `[Notion Sync][DIFF] ${guide.characterName}: ${changedFields.join(', ')} (local guide preserved)`
+                );
+              }
+            } catch (readErr) {
+              comparison.unreadable += 1;
+              console.warn(
+                `[Notion Sync][LOCAL PRESERVED] ${guide.characterName}: comparison failed (${readErr.message})`
+              );
+            }
+          } else {
+            const tsCode = serializeHsrGuideToTypeScript(guide);
+            fs.writeFileSync(filePath, tsCode, 'utf8');
+            comparison.created += 1;
+            console.log(
+              `[Notion Sync][NEW] Written ${guide.fileName} for ${guide.characterName}. ` +
+              'Register the new guide in hsr-hub/data/guides/index.ts before publishing.'
+            );
+          }
         }
       } catch (pErr) {
         console.error(`[Notion Sync] Failed to parse HSR guide page ${page.id}:`, pErr.message);
       }
     }
+    console.log(
+      `[Notion Sync] HSR guide comparison summary: ${comparison.matched} matched, ` +
+      `${comparison.different} different, ${comparison.created} new, ${comparison.unreadable} unreadable. ` +
+      'Existing local files were not overwritten.'
+    );
   } catch (err) {
     console.error(`[Notion Sync] Error in fetchHsrGuidesFromDB:`, err.message);
   }
