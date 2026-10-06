@@ -893,18 +893,6 @@ const CharacterDetail: React.FC = () => {
           />
         </div>
 
-        {/* Entity Graph: Recommended Equipment & Synergies */}
-        <div id="equipment" className="scroll-mt-28">
-          <DeferredSection minHeight={320}>
-            <Suspense fallback={<DeferredFallback />}>
-              <HsrEntityGraphSection
-                character={char}
-                theme={theme}
-              />
-            </Suspense>
-          </DeferredSection>
-        </div>
-        
         {/* Recommended Synergy / Team Formations */}
         <div id="synergy" className="scroll-mt-28">
           <DeferredSection minHeight={320}>
@@ -912,6 +900,18 @@ const CharacterDetail: React.FC = () => {
               <SynergyDeck
                 characterName={char?.id || charName || ''}
                 gameId="hsr"
+                theme={theme}
+              />
+            </Suspense>
+          </DeferredSection>
+        </div>
+
+        {/* Entity Graph: Recommended Equipment & Synergies */}
+        <div id="equipment" className="scroll-mt-28">
+          <DeferredSection minHeight={320}>
+            <Suspense fallback={<DeferredFallback />}>
+              <HsrEntityGraphSection
+                character={char}
                 theme={theme}
               />
             </Suspense>

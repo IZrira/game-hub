@@ -73,6 +73,22 @@ describe('Milestone 2 Stress Testing — synergyManager & parties', () => {
       const nteParties = getRecommendedParties('nte', nonExistent);
       expect(nteParties).toEqual([]);
     });
+
+    it('builds an HSR party from guide recommendations when no manual party exists', () => {
+      const parties = getRecommendedParties('hsr', 'pearl');
+
+      expect(parties).toHaveLength(1);
+      expect(parties[0].id).toBe('guide-auto-pearl');
+      expect(parties[0].members).toHaveLength(4);
+      expect(parties[0].members[0]).toMatchObject({
+        id: 'pearl',
+        name: '펄',
+        isMainTarget: true
+      });
+      expect(parties[0].members.map(member => member.name)).toContain('은랑 LV.999');
+      expect(parties[0].members.map(member => member.name)).toContain('어벤츄린•웨이브');
+      expect(new Set(parties[0].members.map(member => member.id)).size).toBe(4);
+    });
   });
 
   describe('getNTEFallbackParty stress tests', () => {

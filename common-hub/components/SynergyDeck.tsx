@@ -131,7 +131,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
   if (!parties || parties.length === 0) {
     return (
       <section className={`w-full mt-12 ${className}`}>
-        <SectionHeader num="08" title="추천 파티 조합" theme={theme} />
+        <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} />
         <div className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[35px] py-12 flex flex-col items-center justify-center gap-3">
           <AlertCircle size={32} className="text-gray-500 opacity-50" />
           <span className="text-sm font-bold text-gray-400 tracking-wider">데이터 준비중입니다</span>

@@ -1,5 +1,6 @@
 import { HSR_PARTIES } from '../../hsr-hub/data/parties/index';
 import HSR_CHARACTERS from '../../hsr-hub/data/generated/character-summary.json';
+import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { NTE_PARTY_COMBINATIONS, getNTEFallbackParty } from '../../nte-hub/data/parties';
@@ -44,6 +45,67 @@ export interface ElementGlowMapping {
   borderGlow: string;
 }
 
+const normalizeHsrCharacterName = (value: string) =>
+  value.normalize('NFKC').toLowerCase().replace(/[^a-z0-9가-힣]/g, '');
+
+function getHsrGuideFallbackParty(
+  character: (typeof HSR_CHARACTERS)[number]
+): UnifiedParty[] {
+  const targetName = normalizeHsrCharacterName(character.name);
+  const guide = HSR_CHARACTER_GUIDES.find(
+    item => normalizeHsrCharacterName(item.characterName) === targetName
+  );
+
+  if (!guide?.synergyCharacters?.length) return [];
+
+  const members: UnifiedPartyMember[] = [{
+    id: character.id,
+    name: character.name,
+    role: guide.analysis?.role || '핵심 캐릭터',
+    folderName: character.folderName || character.name,
+    isMainTarget: true
+  }];
+  const usedIds = new Set([character.id]);
+
+  for (const recommendation of guide.synergyCharacters) {
+    const recommendationName = typeof recommendation === 'string'
+      ? recommendation
+      : recommendation.name;
+    const normalizedRecommendation = normalizeHsrCharacterName(recommendationName);
+    const matchedCharacter = HSR_CHARACTERS.find(candidate =>
+      normalizeHsrCharacterName(candidate.name) === normalizedRecommendation ||
+      normalizeHsrCharacterName(candidate.id) === normalizedRecommendation ||
+      normalizeHsrCharacterName(candidate.folderName || '') === normalizedRecommendation
+    );
+
+    if (!matchedCharacter || usedIds.has(matchedCharacter.id)) continue;
+
+    members.push({
+      id: matchedCharacter.id,
+      name: matchedCharacter.name,
+      role: typeof recommendation === 'object' && recommendation.role
+        ? recommendation.role
+        : '추천 파트너',
+      folderName: matchedCharacter.folderName || matchedCharacter.name,
+      isTrailblazer: matchedCharacter.name.includes('개척자')
+    });
+    usedIds.add(matchedCharacter.id);
+
+    if (members.length === 4) break;
+  }
+
+  if (members.length < 2) return [];
+
+  return [{
+    id: `guide-auto-${character.id}`,
+    name: `${character.name} 추천 조합`,
+    description: '캐릭터 공략에 등록된 추천 캐릭터를 기준으로 자동 구성한 조합입니다.',
+    category: character.attribute,
+    tags: ['공략 추천', character.name],
+    members
+  }];
+}
+
 /**
  * 게임 ID 및 캐릭터 식별자(이름 또는 ID) 기반 정규화된 추천 파티 조합 조회
  */
@@ -79,7 +141,7 @@ export function getRecommendedParties(
     });
 
     if (matchedParties.length === 0) {
-      return [];
+      return charData ? getHsrGuideFallbackParty(charData) : [];
     }
 
     return matchedParties.map(party => ({
