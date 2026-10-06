@@ -4,7 +4,7 @@ export const 닥터레이시오Guide: CharacterGuide = {
     characterName: "Dr. 레이시오",
     lastUpdated: "2026-03-16",
     patchVersion: "1.6",
-    bestRelics: ["사수에 잠수한 선구자", "황토와 죽음의 거룻배"],
+    bestRelics: ["사수에 잠수한 선구자", "황무지의 도적, 황야인"],
     bestOrnaments: ["회전을 멈춘 살소토", "이즈모 현세와 타카마 신국"],
     mainStats: {
       body: "치명타 확률 or 치명타 피해",

@@ -20,7 +20,7 @@ export const 완매Guide: CharacterGuide = {
       { label: "속도", value: "145 이상" },
       { label: "속도", value: "160 이상" }
     ],
-    bestLightCones: ["거울 속의 나", "기억 속의 모습", "댄스! 댄스! 댄스!", "아직 전투는 끝나지 않았다"],
+    bestLightCones: ["거울 속 지난날의 나", "기억 속 모습", "댄스! 댄스! 댄스!", "아직 전투는 끝나지 않았다"],
     skillPriority: ["필살기", "전투 스킬", "특성", "일반 공격"],
     recommendedEidolon: "E1 / E6",
     eidolonEfficiency: [], analysis: { status:"published", summary:"격파 효율과 모든 속성 저항 관통을 제공하고 약점 격파 상태를 연장하는 범용 화합 서포터다.", role:"격파·범용 서포터", standard:"E0 / S0", reviewedAt:"2026-09-29", reviewer:"RIRA 편집팀", strengths:["파티 전체 피해와 격파 효율을 동시에 높인다.","잔매로 적의 회복을 지연한다."], weaknesses:["스킬과 필살기 지속 턴 관리가 필요하다.","격파가 불가능한 구간에서는 일부 가치가 감소한다."], teamPrinciple:"격파 딜러뿐 아니라 이중 딜러 파티에서도 전원 버프를 활용한다.", gameplay:{overview:"스킬을 유지하고 핵심 격파 전에 필살기를 전개한다.",tips:["전투 스킬 3턴을 끊지 않는다.","필살기를 격파 직전에 사용한다."]}}
