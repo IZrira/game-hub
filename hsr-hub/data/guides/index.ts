@@ -174,6 +174,7 @@ import { 토파즈복순이Guide } from './토파즈복순이';
 import { 트리비Guide } from './트리비';
 import { 파이논Guide } from './파이논';
 import { 페라Guide } from './페라';
+import { 펄Guide } from './펄';
 import { 한아Guide } from './한아';
 import { 헤르타Guide } from './헤르타';
 import { 효광Guide } from './효광';
@@ -268,6 +269,7 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   트리비Guide,
   파이논Guide,
   페라Guide,
+  펄Guide,
   한아Guide,
   헤르타Guide,
   효광Guide,

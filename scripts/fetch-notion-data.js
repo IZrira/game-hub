@@ -481,6 +481,20 @@ async function fetchNotionData() {
     return;
   }
 
+  if (process.argv.includes('--hsr-guides-only')) {
+    console.log('[Notion Sync] Running in --hsr-guides-only mode...');
+    const existing = fs.existsSync(jsonPath) ? JSON.parse(fs.readFileSync(jsonPath, 'utf8')) : [];
+    const hsrGuides = await fetchHsrGuidesFromDB(notion, n2m, NOTION_HSR_GUIDES_DB_ID);
+    const otherItems = existing.filter(item => item.dbSource !== 'hsr_guides');
+    const combined = [...otherItems, ...hsrGuides];
+    fs.writeFileSync(jsonPath, JSON.stringify(combined, null, 2), 'utf8');
+    console.log(
+      `[Notion Sync] Successfully replaced the HSR guide dataset with ${hsrGuides.length} unique guides ` +
+      'in notion-data.json.'
+    );
+    return;
+  }
+
   try {
     let allItems = [];
 
@@ -1079,6 +1093,7 @@ function cleanMd(text) {
 }
 
 const HSR_CHAR_MAP = {
+  '펄': { charName: '펄', exportName: '펄Guide', fileName: '펄.ts' },
   '아글라이아': { charName: '아글라이아', exportName: '아글라이아Guide', fileName: '아글라이아.ts' },
   '아낙사': { charName: '아낙사', exportName: '아낙사Guide', fileName: '아낙사.ts' },
   '아처': { charName: '아처', exportName: '아처Guide', fileName: '아처.ts' },
@@ -1103,7 +1118,10 @@ const HSR_CHAR_MAP = {
 };
 
 function parseHsrGuideMarkdown(pageTitle, mdContent) {
-  let rawName = pageTitle.replace(/세팅\s*공략|공략/g, '').replace(/[\[\]]/g, '').trim();
+  let rawName = pageTitle
+    .replace(/\s*(?:세팅\s*공략|분석\s*가이드|세팅|공략|가이드)\s*$/g, '')
+    .replace(/[\[\]]/g, '')
+    .trim();
   let mapped = HSR_CHAR_MAP[rawName];
   if (!mapped) {
     for (const [k, v] of Object.entries(HSR_CHAR_MAP)) {
@@ -1494,8 +1512,33 @@ function compareHsrGuides(localGuide, notionGuide) {
   return Object.keys(notion).filter(key => JSON.stringify(local[key]) !== JSON.stringify(notion[key]));
 }
 
+function registerHsrGuideInIndex(guide) {
+  const indexPath = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides', 'index.ts');
+  let source = fs.readFileSync(indexPath, 'utf8');
+  const newline = source.includes('\r\n') ? '\r\n' : '\n';
+  const importLine = `import { ${guide.exportName} } from './${path.basename(guide.fileName, '.ts')}';`;
+
+  if (!source.includes(importLine)) {
+    source = source.replace(
+      `${newline}export const HSR_CHARACTER_GUIDES`,
+      `${newline}${importLine}${newline}${newline}export const HSR_CHARACTER_GUIDES`
+    );
+  }
+
+  const arrayMatch = source.match(/export const HSR_CHARACTER_GUIDES:[\s\S]*?= \[([\s\S]*?)\n\];/);
+  if (arrayMatch && !arrayMatch[1].includes(`${guide.exportName},`)) {
+    source = source.replace(
+      /(export const HSR_CHARACTER_GUIDES:[\s\S]*?= \[[\s\S]*?)(\n\];)/,
+      `$1${newline}  ${guide.exportName},$2`
+    );
+  }
+
+  fs.writeFileSync(indexPath, source, 'utf8');
+}
+
 async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
   const guides = [];
+  const seenGuides = new Set();
   try {
     let pages = [];
     try {
@@ -1531,6 +1574,13 @@ async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
         const mdString = n2m.toMarkdownString(mdblocks);
         const guide = parseHsrGuideMarkdown(pageTitle, mdString.parent || '');
         guide.dbSource = 'hsr_guides';
+
+        const guideKey = (guide.fileName || guide.characterName || page.id).trim().toLocaleLowerCase('ko-KR');
+        if (seenGuides.has(guideKey)) {
+          console.warn(`[Notion Sync][DUPLICATE SKIPPED] ${guide.characterName}: ${guide.fileName || page.id}`);
+          continue;
+        }
+        seenGuides.add(guideKey);
         guides.push(guide);
 
         if (guide.fileName) {
@@ -1557,11 +1607,9 @@ async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
           } else {
             const tsCode = serializeHsrGuideToTypeScript(guide);
             fs.writeFileSync(filePath, tsCode, 'utf8');
+            registerHsrGuideInIndex(guide);
             comparison.created += 1;
-            console.log(
-              `[Notion Sync][NEW] Written ${guide.fileName} for ${guide.characterName}. ` +
-              'Register the new guide in hsr-hub/data/guides/index.ts before publishing.'
-            );
+            console.log(`[Notion Sync][NEW] Written and registered ${guide.fileName} for ${guide.characterName}.`);
           }
         }
       } catch (pErr) {
