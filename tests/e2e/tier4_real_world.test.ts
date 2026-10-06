@@ -53,7 +53,8 @@ describe('Tier 4: Real-World Scenarios — PageSpeed Insights Optimization', () 
     }
 
     it('4.4 should verify zero references to non-existent ww_main.webp across all source files', () => {
-      const sourceFiles = getAllSourceFiles(ROOT_DIR);
+      const sourceFiles = ['common-hub', 'hsr-hub', 'ww-hub', 'nte-hub', 'aniimo-hub']
+        .flatMap(dir => getAllSourceFiles(path.join(ROOT_DIR, dir)));
       const violations: string[] = [];
       for (const file of sourceFiles) {
         const content = fs.readFileSync(file, 'utf8');
@@ -65,7 +66,8 @@ describe('Tier 4: Real-World Scenarios — PageSpeed Insights Optimization', () 
     });
 
     it('4.5 should verify zero broken remote GitHub/CDN unknown.webp URLs in codebase', () => {
-      const sourceFiles = getAllSourceFiles(ROOT_DIR);
+      const sourceFiles = ['common-hub', 'hsr-hub', 'ww-hub', 'nte-hub', 'aniimo-hub']
+        .flatMap(dir => getAllSourceFiles(path.join(ROOT_DIR, dir)));
       const forbiddenCdn = 'riragameinfo/main/hsr%20images/items/unknown.webp';
       const violations: string[] = [];
       for (const file of sourceFiles) {

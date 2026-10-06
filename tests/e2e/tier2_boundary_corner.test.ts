@@ -54,14 +54,15 @@ describe('Tier 2: Boundary & Corner Cases — PageSpeed Insights Optimization', 
   describe('Layout Shift (CLS) Prevention', () => {
     const homePath = path.join(ROOT_DIR, 'common-hub/pages/Home.tsx');
 
-    it('2.5 should verify Home.tsx includes explicit width attribute on LazyImage', () => {
+    it('2.5 should verify the text-first home cards do not introduce image layout shifts', () => {
       const content = fs.readFileSync(homePath, 'utf8');
-      expect(content).toMatch(/<LazyImage[\s\S]*?width=\{1024\}/);
+      expect(content).not.toContain('<LazyImage');
+      expect(content).toContain('min-h-[158px]');
     });
 
-    it('2.6 should verify Home.tsx includes explicit height attribute on LazyImage', () => {
+    it('2.6 should verify the game-card grid has stable responsive columns', () => {
       const content = fs.readFileSync(homePath, 'utf8');
-      expect(content).toMatch(/<LazyImage[\s\S]*?height=\{1024\}/);
+      expect(content).toContain('md:grid-cols-2 xl:grid-cols-4');
     });
 
     it('2.7 should verify LazyImage component passes width and height through ...props to underlying <img> tag', () => {

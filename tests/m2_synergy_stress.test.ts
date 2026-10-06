@@ -4,8 +4,7 @@ import {
   getElementGlowMapping, 
   calculateSubstitutes 
 } from '../common-hub/utils/synergyManager';
-import { getNTEFallbackParty, NTE_PARTY_COMBINATIONS } from '../nte-hub/data/parties';
-import { WW_PARTY_COMBINATIONS } from '../ww-hub/data/parties';
+import { getNTEFallbackParty } from '../nte-hub/data/parties';
 
 describe('Milestone 2 Stress Testing — synergyManager & parties', () => {
   const edgeCaseInputs = [
@@ -62,19 +61,17 @@ describe('Milestone 2 Stress Testing — synergyManager & parties', () => {
       });
     });
 
-    it('returns structured parties for non-existent characters in HSR, WW, NTE', () => {
+    it('does not fabricate parties for non-existent characters', () => {
       const nonExistent = 'UnknownChar123';
       
       const hsrParties = getRecommendedParties('hsr', nonExistent);
-      expect(hsrParties.length).toBeGreaterThan(0);
+      expect(hsrParties).toEqual([]);
 
       const wwParties = getRecommendedParties('ww', nonExistent);
-      expect(wwParties.length).toBeGreaterThan(0);
-      expect(wwParties[0].name).toContain(nonExistent);
+      expect(wwParties).toEqual([]);
 
       const nteParties = getRecommendedParties('nte', nonExistent);
-      expect(nteParties.length).toBeGreaterThan(0);
-      expect(nteParties[0].name).toContain(nonExistent);
+      expect(nteParties).toEqual([]);
     });
   });
 

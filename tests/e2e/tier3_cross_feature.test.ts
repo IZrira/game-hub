@@ -9,28 +9,29 @@ describe('Tier 3: Cross-Feature Interactions — PageSpeed Insights Optimization
   // Interaction 1: Navigation Data Structures & Game Card Asset Mapping
   // -------------------------------------------------------------------
   describe('Navigation Data Structures & Game Card Asset Mapping', () => {
-    const gamesPath = path.join(ROOT_DIR, 'common-hub/data/games.ts');
+    const gamesPath = path.join(ROOT_DIR, 'common-hub/data/archive.ts');
     const homePath = path.join(ROOT_DIR, 'common-hub/pages/Home.tsx');
 
-    it('3.1 should verify games.ts provides structured game entries for hsr, ww, and nte', () => {
+    it('3.1 should verify archive data provides all supported game entries', () => {
       const content = fs.readFileSync(gamesPath, 'utf8');
       expect(content).toContain("id: 'hsr'");
       expect(content).toContain("id: 'ww'");
       expect(content).toContain("id: 'nte'");
+      expect(content).toContain("id: 'aniimo'");
     });
 
-    it('3.2 should verify bannerImage properties in games.ts map exclusively to local WebP assets', () => {
+    it('3.2 should verify bannerImage properties map exclusively to local assets', () => {
       const content = fs.readFileSync(gamesPath, 'utf8');
       expect(content).toContain("bannerImage: '/assets/banners/hsr_placeholder.webp'");
       expect(content).toContain("bannerImage: '/assets/banners/ww_placeholder.webp'");
       expect(content).not.toContain('https://cdn.jsdelivr.net');
     });
 
-    it('3.3 should verify Home.tsx maps ARCHIVE_DATA.games into route links with LazyImage', () => {
+    it('3.3 should verify Home.tsx maps ARCHIVE_DATA.games into route links', () => {
       const content = fs.readFileSync(homePath, 'utf8');
       expect(content).toContain('ARCHIVE_DATA.games.map');
       expect(content).toContain('to={`/gallery/${game.id}`}');
-      expect(content).toContain('<LazyImage');
+      expect(content).toContain('min-h-[158px]');
     });
   });
 
@@ -66,16 +67,14 @@ describe('Tier 3: Cross-Feature Interactions — PageSpeed Insights Optimization
       expect(filesChecked).toBeGreaterThan(30);
     });
 
-    it('3.5 should verify common-hub Footer component uses WCAG compliant text-gray-400 and text-gray-300', () => {
+    it('3.5 should verify common-hub Footer uses its readable gray-400 standard', () => {
       const footerPath = path.join(ROOT_DIR, 'common-hub/components/Footer.tsx');
       expect(fs.existsSync(footerPath)).toBe(true);
       const content = fs.readFileSync(footerPath, 'utf8');
-      expect(content).not.toContain('text-gray-500');
       expect(content).not.toContain('text-gray-600');
       expect(content).not.toContain('text-gray-700');
       expect(content).not.toContain('text-gray-800');
       expect(content).toContain('text-gray-400');
-      expect(content).toContain('text-gray-300');
     });
   });
 

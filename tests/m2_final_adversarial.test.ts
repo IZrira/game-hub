@@ -6,8 +6,6 @@ import {
   UnifiedPartyMember 
 } from '../common-hub/utils/synergyManager';
 import { getNTEFallbackParty, NTE_PARTY_COMBINATIONS } from '../nte-hub/data/parties';
-import { WW_PARTY_COMBINATIONS } from '../ww-hub/data/parties';
-import { HSR_PARTIES } from '../hsr-hub/data/parties/index';
 
 describe('Milestone 2 Final Adversarial Verification Suite', () => {
   const games: ('hsr' | 'ww' | 'nte')[] = ['hsr', 'ww', 'nte'];
@@ -54,24 +52,17 @@ describe('Milestone 2 Final Adversarial Verification Suite', () => {
       });
     });
 
-    it('getRecommendedParties produces correct fallback parties when character is unknown', () => {
+    it('getRecommendedParties does not fabricate parties when character is unknown', () => {
       const unknown = 'UnknownHeroX';
 
       const hsrParties = getRecommendedParties('hsr', unknown);
-      expect(hsrParties.length).toBeGreaterThan(0);
-      expect(hsrParties.length).toBeLessThanOrEqual(2); // Should take slice(0, 2) fallback
+      expect(hsrParties).toEqual([]);
 
       const wwParties = getRecommendedParties('ww', unknown);
-      expect(wwParties.length).toBe(1);
-      expect(wwParties[0].name).toContain(unknown);
-      expect(wwParties[0].members.length).toBe(3);
-      expect(wwParties[0].members[0].isMainTarget).toBe(true);
+      expect(wwParties).toEqual([]);
 
       const nteParties = getRecommendedParties('nte', unknown);
-      expect(nteParties.length).toBe(1);
-      expect(nteParties[0].name).toContain(unknown);
-      expect(nteParties[0].members.length).toBe(4);
-      expect(nteParties[0].members[0].role).toBe('메인 딜러');
+      expect(nteParties).toEqual([]);
     });
 
     it('getElementGlowMapping handles all standard, edge, and invalid attributes', () => {
@@ -95,7 +86,7 @@ describe('Milestone 2 Final Adversarial Verification Suite', () => {
       });
     });
 
-    it('calculateSubstitutes generates non-empty fallback substitutes for dummy or malformed members', () => {
+    it('calculateSubstitutes safely handles dummy or malformed members', () => {
       const malformedMembers: UnifiedPartyMember[] = [
         { id: '', name: '', role: '서포터', folderName: '' },
         { id: 'custom-1', name: '구원', role: '메인 딜러', folderName: '구원' },
@@ -107,7 +98,6 @@ describe('Milestone 2 Final Adversarial Verification Suite', () => {
           expect(() => {
             const subs = calculateSubstitutes(mem, gameId);
             expect(Array.isArray(subs)).toBe(true);
-            expect(subs.length).toBeGreaterThan(0);
             subs.forEach(s => {
               expect(typeof s.name).toBe('string');
               expect(typeof s.folderName).toBe('string');
