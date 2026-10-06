@@ -28,13 +28,14 @@ const SectionHeader: React.FC<{
   num: string; 
   title: string; 
   theme?: { primary: string; secondary?: string; shadow?: string }; 
-}> = ({ num, title, theme }) => {
+  compact?: boolean;
+}> = ({ num, title, theme, compact = false }) => {
   const primaryColor = theme?.primary || '#00D287';
   return (
-    <div className="flex items-center justify-between w-full mb-5">
-      <div className="flex items-center gap-3 md:gap-4">
+    <div className={`flex items-center justify-between w-full ${compact ? 'mb-4' : 'mb-5'}`}>
+      <div className={`flex items-center ${compact ? 'gap-3' : 'gap-3 md:gap-4'}`}>
         <div 
-          className="w-12 h-12 md:w-14 md:h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-lg md:text-xl shadow-2xl transition-transform hover:scale-105" 
+          className={`${compact ? 'w-10 h-10 rounded-2xl text-base' : 'w-12 h-12 md:w-14 md:h-14 rounded-[22px] text-lg md:text-xl'} border-2 flex items-center justify-center font-black shadow-2xl transition-transform hover:scale-105`}
           style={{ 
             backgroundColor: `${primaryColor}20`, 
             color: primaryColor, 
@@ -43,7 +44,7 @@ const SectionHeader: React.FC<{
         >
           {num}
         </div>
-        <h2 className="text-xl md:text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-4 md:pl-6 leading-none py-1">
+        <h2 className={`${compact ? 'text-lg md:text-xl pl-4' : 'text-xl md:text-2xl pl-4 md:pl-6'} font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 leading-none py-1`}>
           {title}
         </h2>
       </div>
@@ -126,13 +127,14 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
     return 'bg-sky-500/15 text-sky-300 border-sky-500/30';
   };
 
-  const defaultNum = sectionNum || (gameId === 'ww' ? '06' : '05');
+  const isHsrCompact = gameId === 'hsr';
+  const defaultNum = sectionNum || (gameId === 'hsr' ? '08' : gameId === 'ww' ? '06' : '05');
 
   if (!parties || parties.length === 0) {
     return (
-      <section className={`w-full mt-12 ${className}`}>
-        <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} />
-        <div className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[35px] py-12 flex flex-col items-center justify-center gap-3">
+      <section className={`w-full mt-12 ${isHsrCompact ? 'max-w-6xl mx-auto' : ''} ${className}`}>
+        <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} compact={isHsrCompact} />
+        <div className={`bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl flex flex-col items-center justify-center gap-3 ${isHsrCompact ? 'rounded-3xl py-9' : 'rounded-[35px] py-12'}`}>
           <AlertCircle size={32} className="text-gray-500 opacity-50" />
           <span className="text-sm font-bold text-gray-400 tracking-wider">데이터 준비중입니다</span>
         </div>
@@ -143,19 +145,19 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
   const isThreeMemberGrid = gameId === 'ww' || activeParty.members.length === 3;
 
   return (
-    <section className={`w-full mt-8 relative ${className}`}>
+    <section className={`w-full mt-8 relative ${isHsrCompact ? 'max-w-6xl mx-auto' : ''} ${className}`}>
       {/* Dynamic Ambient Background Glow */}
       <div 
         className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition-all duration-500"
         style={{ backgroundColor: theme?.primary || glow.primary }}
       />
 
-      <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} />
+      <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} compact={isHsrCompact} />
 
-      <div ref={partyCardRef} className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[28px] p-5 md:p-6 relative overflow-hidden">
+      <div ref={partyCardRef} className={`bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl relative overflow-hidden ${isHsrCompact ? 'rounded-3xl p-4 md:p-5' : 'rounded-[28px] p-5 md:p-6'}`}>
         
         {/* Header & Share Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/10 pb-4">
+        <div className={`flex flex-wrap items-center justify-between gap-3 border-b border-white/10 ${isHsrCompact ? 'mb-4 pb-3' : 'mb-6 pb-4'}`}>
           {/* Multi-party selection tabs */}
           {parties.length > 1 ? (
             <div className="flex flex-wrap gap-2">
@@ -207,7 +209,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
         </div>
 
         {/* Active Party Description Banner */}
-        <div className="mb-6 bg-white/[0.03] border border-white/10 rounded-2xl p-4 md:p-5">
+        <div className={`bg-white/[0.03] border border-white/10 rounded-2xl ${isHsrCompact ? 'mb-4 p-3 md:p-4' : 'mb-6 p-4 md:p-5'}`}>
           <div className="flex items-center gap-3 mb-2">
             <Users size={18} style={{ color: theme?.primary || glow.primary }} />
             <h3 className="text-lg font-bold text-white tracking-tight">{activeParty.name}</h3>
@@ -260,7 +262,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
         </div>
 
         {/* Member Grid */}
-        <div className={`grid gap-4 ${isThreeMemberGrid ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 md:grid-cols-4'}`}>
+        <div className={`grid ${isHsrCompact ? 'gap-3' : 'gap-4'} ${isThreeMemberGrid ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 md:grid-cols-4'}`}>
           {activeParty.members.map((member: UnifiedPartyMember, idx: number) => {
             const substitutes = calculateSubstitutes(member, gameId);
             const isDrawerOpen = !!expandedSubstitutes[member.id];
@@ -269,7 +271,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
             return (
               <div 
                 key={member.id || idx}
-                className={`group relative bg-[#121212]/60 hover:bg-[#181818]/90 border rounded-[20px] p-3 flex flex-col justify-between transition-all duration-300 ${
+                className={`group relative bg-[#121212]/60 hover:bg-[#181818]/90 border flex flex-col justify-between transition-all duration-300 ${isHsrCompact ? 'rounded-2xl p-2.5' : 'rounded-[20px] p-3'} ${
                   member.isMainTarget 
                     ? 'border-amber-400/80 shadow-[0_0_20px_rgba(251,191,36,0.25)] ring-1 ring-amber-400/50' 
                     : 'border-white/10 hover:border-white/20 shadow-lg'
@@ -285,7 +287,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                 {/* Member Portrait */}
                 <Link 
                   to={`/gallery/${gameId}/character/${encodeURIComponent(member.folderName)}`}
-                  className="relative w-full aspect-[3/4] rounded-[14px] overflow-hidden mb-2.5 bg-black/40 border border-white/5 block group-hover:border-white/20 transition-colors"
+                  className={`relative w-full overflow-hidden bg-black/40 border border-white/5 block group-hover:border-white/20 transition-colors ${isHsrCompact ? 'aspect-[4/3] rounded-xl mb-2' : 'aspect-[3/4] rounded-[14px] mb-2.5'}`}
                 >
                   <LazyImage 
                     src={artPath}
@@ -297,7 +299,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                   
                   {/* Name overlay */}
                   <div className="absolute bottom-2 left-2 right-2">
-                    <span className="text-sm font-black text-white drop-shadow-md block truncate">
+                    <span className={`${isHsrCompact ? 'text-xs' : 'text-sm'} font-black text-white drop-shadow-md block truncate`}>
                       {member.name}
                     </span>
                     {member.attribute && (
