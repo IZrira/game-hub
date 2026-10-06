@@ -2633,6 +2633,63 @@ function runPrerender() {
       </article>`;
       meta.content += generateInternalLinkList('이환 캐릭터 상세 도감', characterRoutes);
       meta.content += generateInternalLinkList('이환 아크 무기 데이터베이스', weaponRoutes);
+    } else if ([
+      '/gallery/hsr/tierlist',
+      '/gallery/hsr/parties',
+      '/gallery/hsr/terminology',
+      '/gallery/ww/tierlist',
+      '/gallery/ww/parties',
+      '/gallery/nte/parties'
+    ].includes(routePath)) {
+      const gameId = routePath.split('/')[2];
+      const featureGameLabel = gameId === 'hsr' ? '붕괴: 스타레일' : gameId === 'ww' ? '명조' : '이환';
+      const characterRoutes = sitemapRoutes.filter(candidate => new RegExp(`^/gallery/${gameId}/character/[^/]+$`).test(candidate));
+      const relatedCharacters = generateInternalLinkList(
+        `${featureGameLabel} 관련 캐릭터 도감`,
+        characterRoutes.slice(0, 12)
+      );
+      const featurePages = {
+        '/gallery/hsr/tierlist': {
+          title: '붕괴: 스타레일 티어표 | 엔드콘텐츠별 최신 메타',
+          description: '붕괴: 스타레일 캐릭터를 혼돈의 기억, 허구 이야기, 종말의 환영 등 엔드콘텐츠 기준으로 나누어 역할별 티어와 평가 근거를 확인하세요.',
+          heading: '붕괴: 스타레일 엔드콘텐츠 티어표',
+          body: `<h2>티어표 확인 방법</h2><p>하나의 종합 등급만 보지 않고 플레이할 콘텐츠와 캐릭터 역할을 먼저 선택하세요. 같은 캐릭터도 단일 보스, 다수전, 약점 구성과 파티 지원에 따라 평가가 달라질 수 있습니다.</p><h2>등급 해석 기준</h2><p>티어는 보유 여부나 애정도를 대신하는 절대 순위가 아닙니다. 명함 기준 성능, 요구 파티원, 전투 스킬 포인트, 약점 대응과 최근 환경을 함께 비교하는 참고 자료입니다. 캐릭터를 선택하면 상세 도감과 육성 가이드에서 광추·유물·목표 능력치와 추천 파티를 이어서 확인할 수 있습니다.</p>`
+        },
+        '/gallery/hsr/parties': {
+          title: '붕괴: 스타레일 추천 파티 | 캐릭터별 조합과 대체 멤버',
+          description: '붕괴: 스타레일의 캐릭터별 추천 파티, 역할 구성, 핵심 시너지와 대체 가능한 딜러·서포터·생존 캐릭터를 확인하세요.',
+          heading: '붕괴: 스타레일 추천 파티 조합',
+          body: `<h2>파티를 고르는 순서</h2><p>주력 딜러를 선택한 뒤 필요한 버퍼·디버퍼와 생존 캐릭터를 확인하세요. 추천 조합은 캐릭터 네 명의 단순 순위가 아니라 전투 스킬 포인트, 행동 순서, 약점 격파와 핵심 강화 효과가 실제로 이어지는지를 기준으로 구성합니다.</p><h2>대체 캐릭터 활용</h2><p>정해진 조합을 모두 보유하지 않아도 같은 역할의 대체 멤버를 선택할 수 있습니다. 교체할 때는 공격력 증가처럼 보이는 수치만 비교하지 말고 디버프 수, 추가 공격 빈도, 에너지 회복, 속도 조정과 생존 안정성을 함께 확인하세요. 상세 도감과 세팅 가이드에서 각 캐릭터의 운용 조건을 먼저 확인하면 조합 오류를 줄일 수 있습니다.</p>`
+        },
+        '/gallery/hsr/terminology': {
+          title: '붕괴: 스타레일 용어집 | 전투 시스템·버프·디버프 정리',
+          description: '붕괴: 스타레일 공략과 캐릭터 설명에 사용되는 전투 시스템, 상태 이상, 버프·디버프 및 콘텐츠 용어를 검색해 확인하세요.',
+          heading: '붕괴: 스타레일 전투 용어집',
+          body: `<h2>용어집 이용 방법</h2><p>캐릭터 스킬이나 공략에서 이해하기 어려운 단어를 검색하면 의미와 적용 방식을 빠르게 확인할 수 있습니다. 비슷해 보이는 피해 증가, 받는 피해 증가, 방어력 감소와 방어력 무시는 계산 방식과 적용 대상이 다르므로 같은 효과로 판단하지 않습니다.</p><h2>전투 설명 읽는 기준</h2><p>효과의 발동 조건, 대상, 지속 턴과 중첩 가능 여부를 함께 확인하세요. 추가 공격·지속 피해·격파 피해처럼 별도 판정을 사용하는 효과는 캐릭터의 운명의 길만으로 판단하기보다 실제 스킬 설명과 추천 세팅을 교차 확인하는 것이 안전합니다. 용어 확인 후 캐릭터 상세 도감으로 이동하면 스킬과 행적 문맥에서 다시 볼 수 있습니다.</p>`
+        },
+        '/gallery/ww/tierlist': {
+          title: '명조 티어표 | 심경의 탑·역할별 최신 공명자 평가',
+          description: '명조: 워더링 웨이브 공명자를 심경의 탑과 최신 전투 환경 기준으로 구분하고 메인 딜러, 서브 딜러, 서포터 역할별 티어를 확인하세요.',
+          heading: '명조 공명자 최신 티어표',
+          body: `<h2>티어표 확인 방법</h2><p>공명자의 역할과 사용하려는 콘텐츠를 먼저 선택한 뒤 등급을 비교하세요. 심경의 탑은 제한 시간, 적 구성과 속성 저항의 영향을 받으므로 한 번의 종합 순위만으로 모든 전투 성능을 설명할 수 없습니다.</p><h2>평가에 포함되는 요소</h2><p>명함 기준 피해 기여도뿐 아니라 공명 해방 회전, 협주 에너지, 반주 스킬, 필드 체류 시간과 파티 조합 난도를 함께 봅니다. 높은 티어라도 요구 무기나 특정 공명자가 필요한 경우 실제 계정에서는 우선순위가 달라질 수 있습니다. 상세 도감과 공략에서 무기·에코·목표 능력치와 운용 순서를 확인한 뒤 육성 여부를 결정하세요.</p>`
+        },
+        '/gallery/ww/parties': {
+          title: '명조 추천 파티 | 반주 스킬·공명 시너지 조합',
+          description: '명조: 워더링 웨이브의 공명자별 추천 파티와 반주 스킬 연결, 협주 에너지 운용, 역할별 대체 공명자를 확인하세요.',
+          heading: '명조 추천 파티 조합',
+          body: `<h2>파티 구성 기준</h2><p>메인 딜러의 주력 피해 유형을 정한 뒤 이를 강화하는 반주 스킬과 빠르게 협주 에너지를 채우는 공명자를 연결하세요. 힐러와 실드 역할도 단순 생존뿐 아니라 버프 유지와 교대 흐름에 영향을 줍니다.</p><h2>교대 순서와 대체 멤버</h2><p>추천 캐릭터를 보유하지 않았다면 같은 속성보다 같은 역할과 반주 효과를 우선 비교하세요. 공명 스킬·공명 해방 사용 후 다음 공명자에게 어떤 강화가 전달되는지, 버프 지속 시간 안에 주력 공격을 끝낼 수 있는지를 확인해야 합니다. 각 공명자 상세 도감과 세팅 가이드에서 에코 세트, 무기와 실제 운용 순서를 함께 확인할 수 있습니다.</p>`
+        },
+        '/gallery/nte/parties': {
+          title: '이환 추천 파티 | 4인 속성·에스퍼 사이클 조합',
+          description: '이환(NTE)의 4인 추천 파티, 캐릭터 역할, 속성 조합과 에스퍼 사이클 연결 순서 및 대체 캐릭터를 확인하세요.',
+          heading: '이환 4인 추천 파티 조합',
+          body: `<h2>파티 구성 기준</h2><p>주력 딜러를 먼저 정하고 인접 속성으로 기본 에스퍼 사이클을 만들 수 있는 파트너를 선택하세요. 남은 자리는 서포트 스킬, 붕괴, 회복과 생존 역할을 기준으로 채우는 것이 안정적입니다.</p><h2>사이클 운용과 교대</h2><p>속성만 맞춘다고 파티가 완성되는 것은 아닙니다. 사이클 수치를 채우는 캐릭터, 교대로 진입해 효과를 발동하는 캐릭터와 효과 지속 중 공격할 주력 캐릭터의 순서를 함께 설계해야 합니다. 차지나 디스코드 같은 복합 사이클은 궁극기 회전 또는 붕괴 가속이라는 목적이 있을 때 선택하고, 각 캐릭터 상세 도감에서 패시브 강화 대상과 아크 조건을 확인하세요.</p>`
+        }
+      };
+      const feature = featurePages[routePath];
+      meta.title = feature.title;
+      meta.description = feature.description;
+      meta.content = `<article><p><a href="/gallery/${gameId}">${escapeHtml(featureGameLabel)} 허브</a></p><h1>${escapeHtml(feature.heading)}</h1><p>${escapeHtml(feature.description)}</p>${feature.body}${relatedCharacters}</article>`;
     } else if (routePath === '/gallery/aniimo') {
       const aniimoFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
       const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];

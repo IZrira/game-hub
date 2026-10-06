@@ -37,6 +37,7 @@ const getMinimumTextLength = (routePath) => {
   if (/\/character\/[^/]+$/.test(routePath)) return 650;
   if (/\/(lightcone|relic|ornament|weapon|echo)\//.test(routePath)) return 240;
   if (/\/location\//.test(routePath)) return 400;
+  if (/\/gallery\/(hsr|ww|nte)\/(tierlist|parties|terminology)$/.test(routePath)) return 450;
   return 120;
 };
 
