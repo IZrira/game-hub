@@ -19,6 +19,22 @@ const LEGACY_ANIIMO_REDIRECTS: Record<string, string> = {
   '/gallery/aniimo/location/석양-해원': '/gallery/aniimo/location/고래첨벙-해안',
 };
 
+// Editorially withdrawn blog routes must not fall through to the SPA shell.
+// A 410 response gives crawlers an explicit removal signal and prevents these
+// old, unverified articles from being interpreted as duplicate home pages.
+const WITHDRAWN_BLOG_PATHS = new Set([
+  '/blog',
+  '/blog/hsr-4-3-meta-analysis',
+  '/blog/hsr-firefly-build-guide',
+  '/blog/ww-shorekeeper-guide',
+  '/blog/ww-jiyan-combat-guide',
+  '/blog/hsr-acheron-analysis',
+  '/blog/nte-starter-guide',
+  '/blog/ww-changli-build-guide',
+  '/blog/hsr-feixiao-fua-meta',
+  '/blog/nte-party-building-synergy',
+]);
+
 function normalizePath(rawPathname: string): string {
   let decoded = rawPathname;
   try {
@@ -35,6 +51,20 @@ function normalizePath(rawPathname: string): string {
 export const onRequest = async (context: PagesFunctionContext): Promise<Response> => {
   const url = new URL(context.request.url);
   const normalizedPath = normalizePath(url.pathname);
+
+  if (WITHDRAWN_BLOG_PATHS.has(normalizedPath)) {
+    return new Response(
+      '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><title>검수 종료된 공략 | RIRA ARCHIVE</title></head><body><main><h1>검수 종료된 공략</h1><p>이 콘텐츠는 편집 검수 기준에 따라 공개가 종료되었습니다.</p></main></body></html>',
+      {
+        status: 410,
+        headers: {
+          'Content-Type': 'text/html; charset=utf-8',
+          'Cache-Control': 'public, max-age=300',
+          'X-Robots-Tag': 'noindex, nofollow',
+        },
+      }
+    );
+  }
 
   // 1. Single-hop legacy 301 redirects (handles both decoded & percent-encoded, with or without trailing slash)
   if (LEGACY_ANIIMO_REDIRECTS[normalizedPath]) {

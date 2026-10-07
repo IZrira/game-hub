@@ -2462,9 +2462,15 @@ function runPrerender() {
   // removal. Generate an explicit noindex document so the SPA fallback does
   // not make these URLs look like duplicate copies of the home page.
   const withdrawnBlogPosts = [
+    'hsr-4-3-meta-analysis',
     'hsr-firefly-build-guide',
     'ww-shorekeeper-guide',
-    'hsr-4-3-meta-analysis'
+    'ww-jiyan-combat-guide',
+    'hsr-acheron-analysis',
+    'nte-starter-guide',
+    'ww-changli-build-guide',
+    'hsr-feixiao-fua-meta',
+    'nte-party-building-synergy',
   ];
 
   withdrawnBlogPosts.forEach(slug => {
