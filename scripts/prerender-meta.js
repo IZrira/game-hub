@@ -14,6 +14,7 @@ const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 const SITEMAP_FILE = path.join(PUBLIC_DIR, 'sitemap.xml');
 const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
+const ANIIMO_PARTIES_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'parties.json');
 const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
 const GUIDE_LANDING_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideLanding.json');
 
@@ -2788,18 +2789,25 @@ function runPrerender() {
       let partyListHtml = '';
       try {
         const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
-        const partiesFilePath = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'parties.ts');
-        if (fs.existsSync(partiesFilePath)) {
-          const content = fs.readFileSync(partiesFilePath, 'utf8');
-          const partyMatch = content.match(/name:\s*['"](.*?)['"][\s\S]*?description:\s*['"](.*?)['"][\s\S]*?category:\s*['"](.*?)['"]/);
-          if (partyMatch) {
-            partyListHtml = `<h2>추천 파티 목록</h2><section><h3>${escapeHtml(partyMatch[1])} (${escapeHtml(partyMatch[3])})</h3><p>${escapeHtml(partyMatch[2])}</p></section>`;
-          }
+        const parties = fs.existsSync(ANIIMO_PARTIES_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_PARTIES_FILE, 'utf8')) : [];
+        if (parties.length > 0) {
+          const partiesHtml = parties.map(party => {
+            const membersHtml = party.members.map(member => {
+              const entry = aniimoEntries.find(candidate => candidate.number === member.number);
+              if (!entry) return '';
+              const form = entry.forms.find(candidate => candidate.key === member.formKey) || entry.forms[0];
+              const query = form?.key && form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : '';
+              const formLabel = form?.label ? ` · ${form.label}` : '';
+              return `<li><a href="/gallery/aniimo/character/${encodeURIComponent(entry.name)}${query}">${escapeHtml(`${member.role}: ${entry.name}${formLabel}`)}</a></li>`;
+            }).join('');
+            return `<section><h3>${escapeHtml(party.name)} (${escapeHtml(party.category)})</h3><p>${escapeHtml(party.description)}</p><ul>${membersHtml}</ul></section>`;
+          }).join('');
+          partyListHtml = `<h2>추천 파티 목록</h2>${partiesHtml}`;
         }
       } catch (e) {}
       meta.title = '애니모 파티 추천 | 역할별 추천 조합';
       meta.description = '애니모의 역할과 형태별 능력, 원소 구성을 반영한 추천 파티와 운용 특징, 핵심 조합 및 대체 애니모를 확인하세요.';
-      meta.content = `<article><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p>${partyListHtml || '<h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p>'}<p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a></p></article>`;
+      meta.content = `<article><p><a href="/gallery/aniimo">애니모 허브</a></p><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p>${partyListHtml || '<h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p>'}<h2>파티를 확인하는 순서</h2><p>메인 딜러를 먼저 정하고 무력화, 치유와 에너지 재생처럼 부족한 역할을 채웁니다. 같은 이름의 애니모도 형태에 따라 원소·포지션·특성·스킬이 달라질 수 있으므로 카드에 표시된 형태까지 일치하는지 확인하세요.</p><p>대체 멤버를 선택할 때는 종합 능력치만 비교하지 말고 원소 상성, 스킬 발동 조건과 파티에서 맡을 역할을 함께 확인합니다.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a> · <a href="/gallery/aniimo/type-chart">원소 상성표 확인</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const rawLocation = locationSlug.replace(/-/g, ' ').trim();

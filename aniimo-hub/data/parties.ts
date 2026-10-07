@@ -1,3 +1,5 @@
+import partyRecommendations from './parties.json';
+
 export interface AniimoPartyMember {
   number: string;
   formKey: string;
@@ -16,22 +18,7 @@ export interface AniimoPartyRecommendation {
   updatedAt?: string;
 }
 
-export const ANIIMO_PARTY_RECOMMENDATIONS: AniimoPartyRecommendation[] = [
-  {
-    id: 'balanced-starter',
-    name: '범용 균형 파티',
-    description: '딜·격파·회복·에너지 재생을 한 자리씩 배치한 기본형 추천 조합입니다.',
-    category: '범용',
-    tags: ['초보자', '역할 균형'],
-    order: 1,
-    members: [
-      { number: '003', formKey: 'basic-form', role: '메인 딜러' },
-      { number: '004', formKey: 'basic-form', role: '격파' },
-      { number: '015', formKey: 'basic-form', role: '치유' },
-      { number: '016', formKey: 'basic-form', role: '에너지 재생' },
-    ],
-  },
-];
+export const ANIIMO_PARTY_RECOMMENDATIONS = partyRecommendations as AniimoPartyRecommendation[];
 
 export const normalizeAniimoParty = (value: any): AniimoPartyRecommendation => ({
   id: String(value.party_id || value.id || crypto.randomUUID()),

@@ -36,6 +36,7 @@ const getMinimumTextLength = (routePath) => {
   if (/\/character\/[^/]+\/guide$/.test(routePath)) return 450;
   if (/\/character\/[^/]+$/.test(routePath)) return 650;
   if (/\/gallery\/(?:hsr|ww|nte|aniimo)\/guides$/.test(routePath)) return 450;
+  if (routePath === '/gallery/aniimo/party-builder') return 450;
   if (/\/(lightcone|relic|ornament|weapon|echo)\//.test(routePath)) return 240;
   if (/\/location\//.test(routePath)) return 400;
   if (/\/gallery\/(hsr|ww|nte)\/(tierlist|parties|terminology)$/.test(routePath)) return 450;
