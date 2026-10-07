@@ -288,6 +288,7 @@ function validateWw() {
   logSection('WW DATA VALIDATION');
   const wwCharDir = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
   const wwWeaponsFile = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
+  const notionDataFile = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 
   if (fs.existsSync(wwCharDir)) {
     const charFiles = fs.readdirSync(wwCharDir).filter(f => f.endsWith('.ts'));
@@ -309,6 +310,23 @@ function validateWw() {
       weaponIds.add(m[1]);
     }
     logPass(`${weaponIds.size} WW weapons registered in local dataset`);
+  }
+
+  if (fs.existsSync(notionDataFile)) {
+    const notionData = JSON.parse(fs.readFileSync(notionDataFile, 'utf8'));
+    const wwGuides = notionData.filter(item => item.dbSource === 'ww_guides');
+    const guideIds = new Set();
+    wwGuides.forEach(guide => {
+      if (!guide.id) {
+        logFail(`WW guide is missing an ID: "${guide.name || 'unknown'}"`);
+        return;
+      }
+      if (guideIds.has(guide.id)) {
+        logFail(`Duplicate WW guide ID: "${guide.id}"`);
+      }
+      guideIds.add(guide.id);
+    });
+    logPass(`${wwGuides.length} WW character guides registered with unique IDs`);
   }
 }
 

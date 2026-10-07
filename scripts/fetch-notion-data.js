@@ -750,6 +750,14 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
     }
   }
 
+  // Notion currently exposes the Magistrate form guide with the generic
+  // "양양" page title. Use the guide body to keep it separate from base
+  // Yangyang instead of producing two records with the same character ID.
+  if (pageTitle.includes('양양') && mdContent.includes('양양 · 현령')) {
+    matchedCharName = '양양 · 현령';
+    charId = 'yangyang_magistrate';
+  }
+
   // 방랑자 속성별 명시적 정규화
   if (pageTitle.includes('방랑자')) {
     if (pageTitle.includes('기류')) {
