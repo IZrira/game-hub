@@ -2521,15 +2521,29 @@ function runPrerender() {
     const gameLabel = guideGameLabels[article.gameId] || article.gameId;
     const renderGuideInline = value => escapeHtml(value.replace(/\*\*/g, '').replace(/`/g, ''))
       .replace(/\[([^\]]+)\]\((\/[^)]+)\)/g, '<a href="$2">$1</a>');
-    const contentHtml = article.content.split('\n').map(line => {
+    const contentLines = article.content.split('\n');
+    const contentParts = [];
+    for (let lineIndex = 0; lineIndex < contentLines.length; lineIndex++) {
+      const line = contentLines[lineIndex];
       const text = line.trim();
-      if (text.startsWith('### ')) return `<h3>${renderGuideInline(text.slice(4))}</h3>`;
-      if (text.startsWith('## ')) return `<h2>${renderGuideInline(text.slice(3))}</h2>`;
-      if (/^\d+\.\s/.test(text)) return `<p>${renderGuideInline(text)}</p>`;
-      if (text.startsWith('- ')) return `<p>${renderGuideInline(text.slice(2))}</p>`;
-      if (!text) return '';
-      return `<p>${renderGuideInline(text)}</p>`;
-    }).join('');
+      if (/^\|.+\|$/.test(text) && /^\|(?:\s*:?-+:?\s*\|)+$/.test((contentLines[lineIndex + 1] || '').trim())) {
+        const parseCells = row => row.slice(1, -1).split('|').map(cell => cell.trim());
+        const headers = parseCells(text);
+        lineIndex += 2;
+        const rows = [];
+        while (lineIndex < contentLines.length && /^\|.+\|$/.test(contentLines[lineIndex].trim())) {
+          rows.push(parseCells(contentLines[lineIndex].trim()));
+          lineIndex++;
+        }
+        lineIndex--;
+        contentParts.push(`<table><thead><tr>${headers.map(cell => `<th>${renderGuideInline(cell)}</th>`).join('')}</tr></thead><tbody>${rows.map(row => `<tr>${row.map(cell => `<td>${renderGuideInline(cell)}</td>`).join('')}</tr>`).join('')}</tbody></table>`);
+      } else if (text.startsWith('### ')) contentParts.push(`<h3>${renderGuideInline(text.slice(4))}</h3>`);
+      else if (text.startsWith('## ')) contentParts.push(`<h2>${renderGuideInline(text.slice(3))}</h2>`);
+      else if (/^\d+\.\s/.test(text)) contentParts.push(`<p>${renderGuideInline(text)}</p>`);
+      else if (text.startsWith('- ')) contentParts.push(`<p>${renderGuideInline(text.slice(2))}</p>`);
+      else if (text) contentParts.push(`<p>${renderGuideInline(text)}</p>`);
+    }
+    const contentHtml = contentParts.join('');
     const sourcesHtml = article.sources.map(source => `<li><a href="${escapeHtml(source.url)}">${escapeHtml(source.label)}</a></li>`).join('');
     createPrerenderedPage(
       `/gallery/${article.gameId}/guides/${encodeURIComponent(article.slug)}`,
