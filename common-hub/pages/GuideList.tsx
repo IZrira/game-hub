@@ -5,6 +5,7 @@ import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
 import GallerySidebar from '../components/GallerySidebar';
 import { getPublishedGuides } from '../data/guideArticles';
+import guideLanding from '../data/guideLanding.json';
 import { AniimoMobileNav, AniimoSidebar } from '../../aniimo-hub/components/AniimoNavigation';
 
 const GAME_LABELS: Record<string, string> = {
@@ -19,6 +20,7 @@ const GuideList: React.FC = () => {
   const guides = getPublishedGuides(gameId);
   const gameLabel = GAME_LABELS[gameId] || gameId;
   const isAniimo = gameId === 'aniimo';
+  const landing = guideLanding[gameId as keyof typeof guideLanding];
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
     <SEO title={`${gameLabel} 공략 모음`} description={`${gameLabel}의 공식 정보와 Rira 분석을 구분해 검수한 공략을 확인하세요.`} url={`/gallery/${gameId}/guides`} gameCategory={gameLabel} noindex={guides.length === 0} breadcrumbData={[{ name: '홈', url: '/' }, { name: gameLabel, url: `/gallery/${gameId}` }, { name: '공략', url: `/gallery/${gameId}/guides` }]} />
@@ -33,6 +35,16 @@ const GuideList: React.FC = () => {
           <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-400">공식 사실과 Rira의 선택 기준을 구분하고, 적용 기준일과 출처를 확인한 글만 공개합니다.</p>
         </section>
         {guides.length > 0 ? <section className="grid gap-5 md:grid-cols-2">{guides.map(article => <Link key={article.slug} to={`/gallery/${gameId}/guides/${article.slug}`} className="group rounded-[28px] border border-white/10 bg-[#121212] p-6 transition hover:border-violet-400/35 hover:bg-white/[0.04]"><BookOpen size={22} className="text-violet-300" /><h2 className="mt-5 text-xl font-black group-hover:text-violet-300">{article.title}</h2><p className="mt-3 text-sm leading-6 text-gray-400">{article.excerpt}</p><div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-[11px] font-bold text-gray-500"><span className="flex items-center gap-2"><CalendarDays size={13} /> 검수 {article.reviewedAt}</span><span className="flex items-center gap-1 text-violet-300">읽기 <ArrowRight size={13} /></span></div></Link>)}</section> : <section className="rounded-3xl border border-amber-300/15 bg-amber-300/[0.04] p-10 text-center"><h2 className="font-black">검수 완료된 공략이 없습니다</h2><p className="mt-3 text-sm text-gray-400">공식 자료와 실제 데이터를 확인한 글부터 순서대로 공개합니다.</p></section>}
+        {landing && <section className="rounded-[28px] border border-white/10 bg-[#101010] p-7 sm:p-9">
+          <h2 className="text-xl font-black">{gameLabel} 공략을 읽는 기준</h2>
+          <p className="mt-3 max-w-4xl text-sm leading-7 text-gray-400">{landing.intro}</p>
+          <div className="mt-6 grid gap-3 lg:grid-cols-3">
+            {landing.criteria.map((criterion, index) => <div key={criterion} className="rounded-2xl border border-white/5 bg-white/[0.025] p-5">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">Check {index + 1}</span>
+              <p className="mt-3 text-sm leading-6 text-gray-300">{criterion}</p>
+            </div>)}
+          </div>
+        </section>}
       </div>
     </main>
   </div>;

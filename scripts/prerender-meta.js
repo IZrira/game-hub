@@ -15,6 +15,7 @@ const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.
 const SITEMAP_FILE = path.join(PUBLIC_DIR, 'sitemap.xml');
 const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
 const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
+const GUIDE_LANDING_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideLanding.json');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
@@ -2533,18 +2534,25 @@ function runPrerender() {
   const guideArticles = fs.existsSync(GUIDE_ARTICLES_FILE)
     ? JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8')).filter(article => article.status === 'published')
     : [];
+  const guideLanding = fs.existsSync(GUIDE_LANDING_FILE)
+    ? JSON.parse(fs.readFileSync(GUIDE_LANDING_FILE, 'utf8'))
+    : {};
   const guideGameLabels = { hsr: '붕괴: 스타레일', ww: '명조', nte: '이환', aniimo: '애니모' };
   [...new Set(guideArticles.map(article => article.gameId))].forEach(gameId => {
     const gameGuides = guideArticles.filter(article => article.gameId === gameId);
     const gameLabel = guideGameLabels[gameId] || gameId;
+    const landing = guideLanding[gameId];
     const listHtml = gameGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a><p>${escapeHtml(article.excerpt)}</p></li>`).join('');
+    const criteriaHtml = landing
+      ? `<section><h2>${escapeHtml(gameLabel)} 공략을 읽는 기준</h2><p>${escapeHtml(landing.intro)}</p><ol>${landing.criteria.map(criterion => `<li>${escapeHtml(criterion)}</li>`).join('')}</ol></section>`
+      : '';
     createPrerenderedPage(
       `/gallery/${gameId}/guides`,
       `${gameLabel} 공략 모음`,
       `${gameLabel}의 공식 정보와 Rira 분석을 구분하고 적용 버전과 검수일을 표시한 캐릭터 육성, 전투 및 시스템 공략을 확인하세요.`,
       `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
-      `<article><h1>${escapeHtml(gameLabel)} 공략</h1><p>적용 기준일과 출처를 확인한 글만 공개합니다.</p><ul>${listHtml}</ul></article>`
+      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>적용 기준일과 검수 상태를 확인한 글만 공개합니다.</p><ul>${listHtml}</ul>${criteriaHtml}</article>`
     );
     count++;
   });
