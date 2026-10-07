@@ -1191,6 +1191,19 @@ function generateInternalLinkList(title, routes) {
   return `<nav aria-label="${escapeHtml(title)}"><h2>${escapeHtml(title)}</h2><ul>${links}</ul></nav>`;
 }
 
+function generateAdjacentRouteNavigation(currentRoute, routes, title) {
+  const currentIndex = routes.indexOf(currentRoute);
+  if (currentIndex < 0 || routes.length < 2) return '';
+
+  const adjacentRoutes = [routes[currentIndex - 1], routes[currentIndex + 1]].filter(Boolean);
+  const links = adjacentRoutes.map((route, index) => {
+    const direction = currentIndex > 0 && index === 0 ? '이전' : '다음';
+    return `<li><a href="${escapeHtml(route)}">${direction}: ${escapeHtml(getRouteDisplayLabel(route))}</a></li>`;
+  }).join('');
+
+  return `<nav aria-label="${escapeHtml(title)}"><h2>${escapeHtml(title)}</h2><ul>${links}</ul></nav>`;
+}
+
 function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   const char = parseWwCharacter(id);
   let name = wwKoData[`character.${id}.name`] || (char ? char.name : null) || id;
@@ -2152,6 +2165,8 @@ function runPrerender() {
 
   // 1. WW Characters
   const wwIds = getCharacterIds(WW_CHAR_DIR);
+  const wwCharacterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
+  const wwGuideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
   wwIds.forEach(id => {
     const char = parseWwCharacter(id);
     if (!char) return;
@@ -2171,7 +2186,9 @@ function runPrerender() {
       `명조 ${name}의 최신 종결 에코 세팅, 추천 무기, 스킬 매커니즘 계수, 추천 파티 시너지 및 돌파·육성 재료 총정리 가이드.`,
       getWwCharacterImageUrl(char),
       baseHtml,
-      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) + guideLink
+      generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList)
+        + guideLink
+        + generateAdjacentRouteNavigation(routePath, wwCharacterRoutes, '다른 명조 공명자')
     );
     count++;
 
@@ -2183,7 +2200,9 @@ function runPrerender() {
         `명조: 워더링 웨이브 ${name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
         getWwCharacterImageUrl(char),
         baseHtml,
-        generateWwGuideHtml(id, guide, char) + `<p><a href="${routePath}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>`,
+        generateWwGuideHtml(id, guide, char)
+          + `<p><a href="${routePath}">${escapeHtml(name)} 캐릭터 상세 정보 보기</a></p>`
+          + generateAdjacentRouteNavigation(guideRoute, wwGuideRoutes, '다른 명조 공명자 공략'),
         generateGuideSchema(name, '명조: 워더링 웨이브', guideRoute, getWwCharacterImageUrl(char))
       );
       count++;
@@ -2192,6 +2211,8 @@ function runPrerender() {
 
   // 2. HSR Characters
   const hsrIds = getCharacterIds(HSR_CHAR_DIR);
+  const hsrCharacterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+$/.test(candidate));
+  const hsrGuideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(candidate));
   hsrIds.forEach(id => {
     const char = parseHsrCharacter(id);
     if (!char) return;
@@ -2211,7 +2232,9 @@ function runPrerender() {
       `붕괴: 스타레일 ${name}의 최신 추천 유물 및 장신구, 광추 랭킹, 종결 스탯 세팅, 추천 파티 조합 및 행적·돌파 재료 총정리 가이드.`,
       getHsrCharacterImageUrl(char),
       baseHtml,
-      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) + guideLink
+      generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList)
+        + guideLink
+        + generateAdjacentRouteNavigation(routePath, hsrCharacterRoutes, '다른 붕괴: 스타레일 캐릭터')
     );
     count++;
 
@@ -2223,7 +2246,8 @@ function runPrerender() {
         `붕괴: 스타레일 ${name}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`,
         getHsrCharacterImageUrl(char),
         baseHtml,
-        generateHsrGuideHtml(id, guide, char, hsrPartiesList),
+        generateHsrGuideHtml(id, guide, char, hsrPartiesList)
+          + generateAdjacentRouteNavigation(guideRoute, hsrGuideRoutes, '다른 붕괴: 스타레일 캐릭터 공략'),
         generateGuideSchema(name, '붕괴: 스타레일', guideRoute, getHsrCharacterImageUrl(char))
       );
       count++;
@@ -2274,6 +2298,7 @@ function runPrerender() {
       `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(name)}.webp`,
       baseHtml,
       generateRichWwWeaponHtml(name, id, wpNotion, recommendedChars)
+        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/')), '다른 명조 무기')
     );
     count++;
   });
@@ -2293,6 +2318,7 @@ function runPrerender() {
       `${CDN_URL}/hsr%20images/%EA%B4%91%EC%B6%94/${encodeAssetPath(lc.name)}.webp`,
       baseHtml,
       generateHsrLightconeHtml(lc, recommendedChars)
+        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/')), '다른 붕괴: 스타레일 광추')
     );
     count++;
   });
@@ -2309,6 +2335,7 @@ function runPrerender() {
       `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
       generateHsrRelicHtml(relic, recommendedChars)
+        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/relic/')), '다른 붕괴: 스타레일 유물')
     );
     count++;
   });
@@ -2325,6 +2352,7 @@ function runPrerender() {
       `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
       generateHsrOrnamentHtml(ornament, recommendedChars)
+        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/')), '다른 붕괴: 스타레일 차원 장신구')
     );
     count++;
   });
@@ -2344,6 +2372,7 @@ function runPrerender() {
         imagePath,
         baseHtml,
         generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>'
+          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate)), '다른 이환 캐릭터')
       );
       count++;
     } else if (item.dbSource === 'nte_arcs') {
@@ -2355,6 +2384,7 @@ function runPrerender() {
         `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`,
         baseHtml,
         generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 아크 도감으로 돌아가기</a></p>'
+          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/')), '다른 이환 아크')
       );
       count++;
     } else if (item.dbSource === 'ww_echoes') {
@@ -2366,6 +2396,7 @@ function runPrerender() {
         `${CDN_URL}/hsr%20images/common/default_banner.webp`,
         baseHtml,
         generateNotionHtml(item) + '<p><a href="/gallery/ww">명조 에코 도감으로 돌아가기</a></p>'
+          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/')), '다른 명조 에코')
       );
       count++;
     } else if (item.dbSource === 'ww_guides') {
@@ -2382,7 +2413,8 @@ function runPrerender() {
         `명조: 워더링 웨이브 ${item.name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
         imageUrl,
         baseHtml,
-        generateWwGuideHtml(item.id || item.name, item, item) + charLink,
+        generateWwGuideHtml(item.id || item.name, item, item) + charLink
+          + generateAdjacentRouteNavigation(guideRoute, wwGuideRoutes, '다른 명조 공명자 공략'),
         generateGuideSchema(item.name, '명조: 워더링 웨이브', guideRoute, imageUrl)
       );
       count++;
@@ -2791,7 +2823,9 @@ function runPrerender() {
       if (item) {
         meta.title = `${item.name} 능력치·스킬·진화 | 애니모 도감`;
         meta.description = `애니모 ${item.name}(NO.${item.number})의 소개, 능력치, 진화 조건, 형태별 데이터, 출현 지역, 특성과 스킬 정보를 확인하세요.`;
-        meta.content = generateRichAniimoCharacterHtml(item, aniimoEvolutionData);
+        const aniimoCharacterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/aniimo\/character\/[^/]+$/.test(candidate));
+        meta.content = generateRichAniimoCharacterHtml(item, aniimoEvolutionData)
+          + generateAdjacentRouteNavigation(routePath, aniimoCharacterRoutes, '다른 애니모 도감');
       }
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';

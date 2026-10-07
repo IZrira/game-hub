@@ -49,25 +49,44 @@ const routes = SITEMAP_FILES.flatMap((fileName) => {
     .map((match) => decodeURI(match[1] || '/'));
 });
 
-const hsrHubPath = path.join(DIST_DIR, 'gallery', 'hsr', 'index.html');
-if (!fs.existsSync(hsrHubPath)) {
-  throw new Error('HSR hub prerendered index.html missing');
-}
+const hubLinkAudits = [
+  {
+    game: 'HSR',
+    hubPath: path.join(DIST_DIR, 'gallery', 'hsr', 'index.html'),
+    routePattern: /^\/gallery\/hsr\/(?:character\/[^/]+(?:\/guide)?|lightcone\/[^/]+|relic\/[^/]+|ornament\/[^/]+)$/,
+  },
+  {
+    game: 'WW',
+    hubPath: path.join(DIST_DIR, 'gallery', 'ww', 'index.html'),
+    routePattern: /^\/gallery\/ww\/(?:character\/[^/]+(?:\/guide)?|weapon\/[^/]+|echo\/[^/]+)$/,
+  },
+  {
+    game: 'NTE',
+    hubPath: path.join(DIST_DIR, 'gallery', 'nte', 'index.html'),
+    routePattern: /^\/gallery\/nte\/(?:character|weapon)\/[^/]+$/,
+  },
+  {
+    game: 'Aniimo',
+    hubPath: path.join(DIST_DIR, 'gallery', 'aniimo', 'characters', 'index.html'),
+    routePattern: /^\/gallery\/aniimo\/character\/[^/]+$/,
+  },
+];
 
-const hsrHubHtml = fs.readFileSync(hsrHubPath, 'utf8');
-const hsrHubLinks = new Set(
-  [...hsrHubHtml.matchAll(/<a\s+[^>]*href="([^"]+)"/g)]
-    .map((match) => decodeURI(match[1]))
-);
-const hsrDetailRoutes = routes.filter((routePath) => (
-  /^\/gallery\/hsr\/character\/[^/]+(?:\/guide)?$/.test(routePath)
-  || /^\/gallery\/hsr\/lightcone\/[^/]+$/.test(routePath)
-));
-const missingHsrHubLinks = hsrDetailRoutes.filter((routePath) => !hsrHubLinks.has(routePath));
+const hubAuditStats = hubLinkAudits.map(({ game, hubPath, routePattern }) => {
+  if (!fs.existsSync(hubPath)) throw new Error(`${game} hub prerendered index.html missing`);
 
-if (missingHsrHubLinks.length > 0) {
-  throw new Error(`HSR detail routes missing from hub prerender links: ${missingHsrHubLinks.join(', ')}`);
-}
+  const hubHtml = fs.readFileSync(hubPath, 'utf8');
+  const hubLinks = new Set(
+    [...hubHtml.matchAll(/<a\s+[^>]*href="([^"]+)"/g)]
+      .map((match) => decodeURI(match[1]))
+  );
+  const detailRoutes = routes.filter((routePath) => routePattern.test(routePath));
+  const missingHubLinks = detailRoutes.filter((routePath) => !hubLinks.has(routePath));
+  if (missingHubLinks.length > 0) {
+    throw new Error(`${game} detail routes missing from hub prerender links: ${missingHubLinks.join(', ')}`);
+  }
+  return { game, count: detailRoutes.length };
+});
 
 const problems = [];
 const warnings = [];
@@ -117,7 +136,9 @@ const averageTextLength = stats.length
   : 0;
 
 console.log(`SEO prerender audit: ${routes.length} sitemap routes`);
-console.log(`HSR hub crawl links: ${hsrDetailRoutes.length} character, guide, and light-cone routes`);
+hubAuditStats.forEach(({ game, count }) => {
+  console.log(`${game} hub crawl links: ${count} detail routes`);
+});
 console.log(`Average prerendered text: ${averageTextLength} characters`);
 console.log('Thinnest routes:');
 sorted.slice(0, 10).forEach((item) => {
