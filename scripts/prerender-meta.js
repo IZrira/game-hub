@@ -23,6 +23,7 @@ const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
 const HSR_LIGHTCONE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'lightcones');
 const HSR_RELICS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
 const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts');
+const WW_GUIDE_ANALYSIS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guide-analysis.json');
 const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
 const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
 
@@ -1107,6 +1108,7 @@ const HSR_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'hsr', 'hsr_cha
 const wwKoData = fs.existsSync(WW_KO_FILE) ? JSON.parse(fs.readFileSync(WW_KO_FILE, 'utf8')) : {};
 const wwWeaponKoData = fs.existsSync(WW_WEAPON_KO_FILE) ? JSON.parse(fs.readFileSync(WW_WEAPON_KO_FILE, 'utf8')) : {};
 const hsrKoData = fs.existsSync(HSR_KO_FILE) ? JSON.parse(fs.readFileSync(HSR_KO_FILE, 'utf8')) : {};
+const wwGuideAnalysis = fs.existsSync(WW_GUIDE_ANALYSIS_FILE) ? JSON.parse(fs.readFileSync(WW_GUIDE_ANALYSIS_FILE, 'utf8')) : {};
 
 function getRouteDisplayLabel(route) {
   const decoded = decodeURI(route);
@@ -1643,6 +1645,21 @@ function generateWwGuideHtml(id, guide, char) {
   // 스킬 우선순위
   if (guide?.skillPriority && Array.isArray(guide.skillPriority) && guide.skillPriority.length > 0) {
     html += `<h2>스킬 레벨업 우선순위</h2>\n<p>${escapeHtml(guide.skillPriority.join(' > '))}</p>\n`;
+  }
+
+  const analysis = wwGuideAnalysis[id];
+  if (analysis) {
+    html += `<h2>RIRA 분석 가이드</h2>\n`;
+    html += `<p>${escapeHtml(analysis.summary)}</p>\n`;
+    html += `<h3>강점</h3>\n<ul>\n`;
+    analysis.strengths.forEach(item => { html += `<li>${escapeHtml(item)}</li>\n`; });
+    html += `</ul>\n<h3>주의점</h3>\n<ul>\n`;
+    analysis.weaknesses.forEach(item => { html += `<li>${escapeHtml(item)}</li>\n`; });
+    html += `</ul>\n<h3>실전 운용 순서</h3>\n<ol>\n`;
+    analysis.rotation.forEach(item => { html += `<li>${escapeHtml(item)}</li>\n`; });
+    html += `</ol>\n<h3>운용 팁</h3>\n<ul>\n`;
+    analysis.tips.forEach(item => { html += `<li>${escapeHtml(item)}</li>\n`; });
+    html += `</ul>\n`;
   }
 
   // 파티 시너지

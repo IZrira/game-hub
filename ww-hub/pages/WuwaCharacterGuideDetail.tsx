@@ -32,6 +32,7 @@ import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal
 import { useTranslation } from 'react-i18next';
 import { WW_ECHO_DATA } from '../data/echoData';
 import { WW_GUIDE_CHARACTERS, WW_GUIDE_DATA } from '../data/guideData';
+import guideAnalysis from '../data/guide-analysis.json';
 import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 import { SONATA_SETS } from '../types';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
@@ -330,6 +331,10 @@ const WuwaCharacterGuideDetail: React.FC = () => {
       );
     });
   }, [GUIDES, charName, character]);
+
+  const analysis = character?.id
+    ? (guideAnalysis as Record<string, any>)[character.id]
+    : undefined;
 
   const currentVariant = useMemo(() => {
     if (!guide) return null;
@@ -1634,10 +1639,49 @@ const WuwaCharacterGuideDetail: React.FC = () => {
             </div>
           </section>
 
-          {/* 05 시너지 캐릭터 */}
+          {analysis && (
+            <section id="RIRA 분석 가이드" className="space-y-6">
+              <SectionHeader num="05" title="RIRA 분석 가이드" theme={theme} />
+              <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
+                <p className="text-sm sm:text-base text-gray-200 font-medium leading-7 break-keep">{analysis.summary}</p>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                  <div className="rounded-3xl border border-emerald-400/15 bg-emerald-400/[0.04] p-6 space-y-4">
+                    <h3 className="text-base font-black text-emerald-300">강점</h3>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      {analysis.strengths.map((item: string) => <li key={item} className="leading-6">• {item}</li>)}
+                    </ul>
+                  </div>
+                  <div className="rounded-3xl border border-amber-400/15 bg-amber-400/[0.04] p-6 space-y-4">
+                    <h3 className="text-base font-black text-amber-300">주의점</h3>
+                    <ul className="space-y-3 text-sm text-gray-300">
+                      {analysis.weaknesses.map((item: string) => <li key={item} className="leading-6">• {item}</li>)}
+                    </ul>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-base font-black text-brand-accent">실전 운용 순서</h3>
+                  <ol className="space-y-3 text-sm text-gray-300">
+                    {analysis.rotation.map((item: string, index: number) => (
+                      <li key={item} className="flex gap-3 leading-6">
+                        <span className="font-black text-brand-accent">{index + 1}</span><span>{item}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+                <div className="space-y-4">
+                  <h3 className="text-base font-black text-brand-accent">운용 팁</h3>
+                  <ul className="space-y-3 text-sm text-gray-300">
+                    {analysis.tips.map((item: string) => <li key={item} className="leading-6">• {item}</li>)}
+                  </ul>
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* 06 시너지 캐릭터 */}
           {(guide.isUniversalSynergy || (guide.synergyCharacters && guide.synergyCharacters.length > 0)) && (
             <section id="시너지 캐릭터" className="space-y-6">
-              <SectionHeader num="05" title="시너지 캐릭터" theme={theme} />
+              <SectionHeader num={analysis ? "06" : "05"} title="시너지 캐릭터" theme={theme} />
 
             {guide.isUniversalSynergy ? (
               <div className="glass-card rounded-[45px] p-10 md:p-12 border border-brand-primary/20 bg-brand-primary/[0.02] shadow-2xl flex flex-col md:flex-row items-center gap-8 group overflow-hidden relative">
