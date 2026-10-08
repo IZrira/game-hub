@@ -618,6 +618,50 @@ function validateSeo() {
   }
 }
 
+function validateGuideSourceExposure() {
+  logSection('PUBLIC GUIDE SOURCE EXPOSURE VALIDATION');
+  const targets = [
+    path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides'),
+    path.join(ROOT_DIR, 'ww-hub', 'data', 'guide-analysis.json'),
+    path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.ts'),
+    path.join(ROOT_DIR, 'aniimo-hub', 'pages', 'PersonalityGuide.tsx')
+  ];
+  const forbiddenSources = [
+    /gamewith\.ai/i,
+    /namu\.wiki/i,
+    /arca\.live/i,
+    /youtube\.com/i,
+    /youtu\.be/i
+  ];
+  let exposureCount = 0;
+
+  const validateFile = filePath => {
+    const content = fs.readFileSync(filePath, 'utf8');
+    forbiddenSources.forEach(pattern => {
+      if (pattern.test(content)) {
+        exposureCount += 1;
+        logFail(`Public guide exposes external source "${pattern.source}" in ${path.relative(ROOT_DIR, filePath)}`);
+      }
+    });
+  };
+
+  targets.forEach(target => {
+    if (!fs.existsSync(target)) return;
+    const stat = fs.statSync(target);
+    if (stat.isDirectory()) {
+      fs.readdirSync(target)
+        .filter(fileName => fileName.endsWith('.ts') || fileName.endsWith('.tsx') || fileName.endsWith('.json'))
+        .forEach(fileName => validateFile(path.join(target, fileName)));
+    } else {
+      validateFile(target);
+    }
+  });
+
+  if (exposureCount === 0) {
+    logPass('Public analysis and strategy guides contain no external source-site links');
+  }
+}
+
 // ---------------------------------------------------------------------
 // Main Execution & Standardized Output Table
 // ---------------------------------------------------------------------
@@ -628,6 +672,7 @@ function run() {
   validateWw();
   validateNte();
   validateSeo();
+  validateGuideSourceExposure();
 
   console.log('\n\x1b[1mRIRA Production Validation\x1b[0m');
   console.log('──────────────────────────');
