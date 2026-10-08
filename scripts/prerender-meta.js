@@ -2645,7 +2645,31 @@ function runPrerender() {
   sitemapRoutes.forEach(routePath => {
     if (prerenderedRoutes.has(routePath)) return;
     const meta = getFallbackMeta(routePath);
-    if (routePath === '/gallery/ww') {
+    if (routePath === '/notices') {
+      meta.title = 'RIRA ARCHIVE 공지사항 | 데이터·공략 업데이트 소식';
+      meta.description = 'RIRA ARCHIVE의 게임 데이터 갱신, 신규 공략, 기능 개선과 서비스 운영 관련 최신 공지사항을 확인하세요.';
+      meta.content = `<article>
+        <h1>RIRA ARCHIVE 공지사항</h1>
+        <p>${escapeHtml(meta.description)}</p>
+        <h2>공지에서 확인할 수 있는 내용</h2>
+        <ul>
+          <li><strong>데이터 업데이트</strong> — 신규 캐릭터와 장비, 스킬, 에코, 아크 및 애니모 정보 반영 내역</li>
+          <li><strong>공략 업데이트</strong> — 세팅 가이드, 분석 가이드, 티어표와 추천 파티 변경 사항</li>
+          <li><strong>서비스 안내</strong> — 검색, 관리자 기능, 화면 구성과 사이트 운영 정책 변경 사항</li>
+        </ul>
+        <h2>게임별 최신 정보 확인</h2>
+        <p>공지 목록은 최신 등록 순서로 제공되며 제목을 선택하면 적용 대상과 세부 변경 내용을 확인할 수 있습니다. 게임별 전체 데이터와 공략은 각 허브에서 이어서 확인하세요.</p>
+        <nav aria-label="게임별 허브">
+          <ul>
+            <li><a href="/gallery/hsr">붕괴: 스타레일 허브</a></li>
+            <li><a href="/gallery/ww">명조: 워더링 웨이브 허브</a></li>
+            <li><a href="/gallery/nte">이환 허브</a></li>
+            <li><a href="/gallery/aniimo">애니모 허브</a></li>
+          </ul>
+        </nav>
+        <p>누락된 데이터나 잘못된 공략은 <a href="/contact">문의하기</a>를 통해 제보할 수 있습니다.</p>
+      </article>`;
+    } else if (routePath === '/gallery/ww') {
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/'));
       const echoRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/'));
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
