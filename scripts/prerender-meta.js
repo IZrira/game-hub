@@ -2906,10 +2906,25 @@ function runPrerender() {
       meta.description = '애니모의 불, 물, 풀, 전기, 얼음, 바위, 바람, 빛, 어둠 상성과 1.6배·1배·0.625배 피해 배율을 확인하고 상대 원소별 추천 공격 원소를 찾으세요.';
       meta.content = `<article><h1>애니모 원소 상성표</h1><p>${escapeHtml(meta.description)}</p><p>효과적 1.6배 · 보통 1배 · 저항 0.625배이며 면역은 없습니다.</p><table><thead><tr><th>공격 원소</th><th>효과적</th><th>저항</th></tr></thead><tbody>${rows.map(([element, strong, resisted]) => `<tr><th>${element}</th><td>${strong}</td><td>${resisted}</td></tr>`).join('')}</tbody></table><p>복합 원소는 두 배율을 곱하지 않고 각 방어 원소에 대한 결과를 따로 확인합니다.</p><p><a href="/gallery/aniimo">애니모 도감으로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/personality') {
-      const traits = [['E 애착', '공격 2%·무력화 2%'], ['I 낯가림', '에너지 회복 4%'], ['S 현실', '피해 4%'], ['N 영감', '치명타율 5%'], ['T 냉정', '물리 방어 6%'], ['F 배려', '마법 방어 6%'], ['J 순종', 'HP 4%'], ['P 배려', '피해 감소 4%']];
+      const traits = [
+        ['E / I', 'E 애착', '공격 2%·무력화 2%', '공격과 무력화를 함께 올리는 전투형 선택'],
+        ['E / I', 'I 낯가림', '에너지 회복 4%', '스킬 순환과 에너지 수급이 중요한 경우'],
+        ['S / N', 'S 현실', '피해 4%', '조건 없이 안정적인 피해 증가'],
+        ['S / N', 'N 영감', '치명타율 5%', '스킬이나 특성에 치명타 연계가 있는 경우'],
+        ['T / F', 'T 냉정', '물리 방어 6%', '물리 피해가 위협적인 콘텐츠'],
+        ['T / F', 'F 배려', '마법 방어 6%', '마법 피해가 위협적인 콘텐츠'],
+        ['J / P', 'J 순종', 'HP 4%', '회복량·보호막과 전체 생존력을 높일 때'],
+        ['J / P', 'P 배려', '피해 감소 4%', '받는 피해를 직접 줄이고 싶을 때']
+      ];
+      const presets = [
+        ['ESTJ', '일반 딜러', '공격·피해·물리 방어·HP를 고르게 챙기는 범용 조합'],
+        ['ENTJ', '치명타 딜러', '스킬이나 특성에 치명타 관련 효과가 있을 때 N을 선택'],
+        ['ISTP', '무력화', '에너지 순환과 안정적인 피해, 물리 방어와 피해 감소를 중시'],
+        ['ISTJ', '에너지·지원', '에너지 회복과 안정적인 생존을 우선하는 지원형 기준']
+      ];
       meta.title = '애니모 성격 추천·MBTI 효과 | 전투·홈 공략';
       meta.description = '애니모 성격 8종의 전투 보너스와 E/I·S/N·T/F·J/P 선택법, 딜러·치명타·무력화·지원 역할별 추천 성격을 확인하세요.';
-      meta.content = `<article><h1>애니모 성격 선택 가이드</h1><p>${escapeHtml(meta.description)}</p><table><thead><tr><th>성격</th><th>전투 보너스</th></tr></thead><tbody>${traits.map(([trait, effect]) => `<tr><th>${trait}</th><td>${effect}</td></tr>`).join('')}</tbody></table><h2>선택 기준</h2><p>치명타 연계가 없다면 S, 치명타 관련 스킬이나 특성이 있다면 N을 고려합니다. T와 F는 상대의 물리·마법 피해에 따라 선택하고, 전투용과 홈 운영용 개체를 구분합니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
+      meta.content = `<article><h1>애니모 성격 선택 가이드</h1><p>${escapeHtml(meta.description)}</p><p>성격은 E/I, S/N, T/F, J/P 네 축에서 하나씩 선택되어 네 가지 전투 보너스가 동시에 적용됩니다. 성격 이름만 보지 말고 현재 형태의 포지션과 스킬 조건에 맞는 효과를 조합하세요.</p><h2>성격 8종 효과</h2><table><thead><tr><th>성격 축</th><th>성격</th><th>전투 보너스</th><th>추천 상황</th></tr></thead><tbody>${traits.map(([axis, trait, effect, use]) => `<tr><td>${axis}</td><th>${trait}</th><td>${effect}</td><td>${use}</td></tr>`).join('')}</tbody></table><h2>역할별 추천 조합</h2><ul>${presets.map(([code, role, summary]) => `<li><strong>${code} · ${role}</strong> — ${summary}</li>`).join('')}</ul><h2>선택할 때 확인할 점</h2><p>치명타 전용 연계가 없다면 S의 피해 증가가 안정적이고, 치명타 관련 스킬이나 특성이 명확한 형태는 N을 고려합니다. T와 F는 고정 정답이 아니라 상대의 물리·마법 피해 유형에 맞춰 선택합니다. J는 HP 기반 회복·보호막과 범용 생존에, P는 받는 피해를 직접 낮추는 데 적합합니다.</p><p>홈에서는 성격에 대응하는 시설의 작업 효율이 증가하는 것으로 알려져 있으므로 전투용과 홈 상주용 개체를 구분하는 편이 좋습니다. 성격 변경 기능은 확인됐지만 필요한 재료와 지정 변경 가능 여부는 확정 정보가 부족하므로 희귀 개체의 변경을 서두르지 마세요.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태별 추천 확인</a> · <a href="/gallery/aniimo/party-builder">추천 파티 조합 확인</a> · <a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/party-builder') {
       let partyListHtml = '';
       try {
