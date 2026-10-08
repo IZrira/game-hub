@@ -2123,6 +2123,40 @@ function generateNotionHtml(item) {
   return html;
 }
 
+function generateWwEchoHtml(item) {
+  const grade = item.enemyGrade || '등급 정보 없음';
+  const cost = item.cost ? `${item.cost} 코스트` : '코스트 정보 없음';
+  const sonataSets = Array.isArray(item.sonataSets) ? item.sonataSets.filter(Boolean) : [];
+  const skillDescription = typeof item.skillDescription === 'string'
+    ? item.skillDescription.replace(/([.。])(?=[가-힣A-Za-z])/g, '$1 ')
+    : '';
+
+  let html = `<article><h1>명조 ${escapeHtml(item.name)} 에코 상세 정보</h1>`;
+  html += `<p>${escapeHtml(item.name)}은(는) ${escapeHtml(grade)} 등급의 ${escapeHtml(cost)} 에코입니다. 메인 에코 어빌리티와 장착 가능한 소나타 이펙트를 함께 확인해 캐릭터 세팅에 활용하세요.</p>`;
+  html += `<dl><dt>에코 등급</dt><dd>${escapeHtml(grade)}</dd><dt>코스트</dt><dd>${escapeHtml(cost)}</dd><dt>이상 에코</dt><dd>${item.hasPhantom ? '존재함' : '없음'}</dd></dl>`;
+
+  html += `<h2>${escapeHtml(item.name)} 에코 어빌리티</h2>`;
+  html += skillDescription
+    ? `<p>${escapeHtml(skillDescription).replace(/\n/g, '<br/>')}</p>`
+    : '<p>현재 등록된 에코 어빌리티 설명이 없습니다.</p>';
+
+  html += '<h2>장착 가능한 소나타 이펙트</h2>';
+  html += sonataSets.length > 0
+    ? `<ul>${sonataSets.map(setName => `<li>${escapeHtml(setName)}</li>`).join('')}</ul>`
+    : '<p>현재 등록된 소나타 이펙트 정보가 없습니다.</p>';
+
+  if (item.enemyDescription) {
+    html += `<h2>에코 설명</h2><p>${escapeHtml(item.enemyDescription).replace(/\n/g, '<br/>')}</p>`;
+  }
+  if (item.enemySpecialNote) {
+    html += `<p><strong>특이 사항:</strong> ${escapeHtml(item.enemySpecialNote).replace(/\n/g, '<br/>')}</p>`;
+  }
+
+  html += `<h2>세팅에서 확인할 점</h2><p>메인 슬롯에 사용할 때는 어빌리티의 피해 유형, 변신 또는 소환 방식, 재사용 대기시간과 추가 강화 효과가 캐릭터의 주력 공격에 맞는지 확인하세요. 서브 슬롯에서는 에코 개별 효과보다 목표 소나타 세트와 코스트 조합 완성이 우선입니다.</p>`;
+  html += `<p><a href="/gallery/ww">명조 에코 도감으로 돌아가기</a></p></article>`;
+  return html;
+}
+
 // ---------------------------------------------------------------------
 // Habitat Validation
 // ---------------------------------------------------------------------
@@ -2439,7 +2473,7 @@ function runPrerender() {
         `명조 ${item.name} 에코의 코스트, 메인 어빌리티 효과, 전투 활용 방식과 관련 에코 도감 정보를 한 페이지에서 확인하세요.`,
         `${CDN_URL}/hsr%20images/common/default_banner.webp`,
         baseHtml,
-        generateNotionHtml(item) + '<p><a href="/gallery/ww">명조 에코 도감으로 돌아가기</a></p>'
+        generateWwEchoHtml(item)
           + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/')), '다른 명조 에코')
       );
       count++;
