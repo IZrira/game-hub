@@ -281,8 +281,6 @@ function getWwCharacterImages(charData) {
 function buildUrlNode(locUrl, lastmod, priority, changefreq = 'daily', imageUrls = []) {
   // XML 특수문자 (&) 이스케이프
   const escapedLocUrl = locUrl.replace(/&/g, '&amp;');
-  const koUrl = locUrl.includes('?') ? `${locUrl}&amp;lng=ko` : `${locUrl}?lng=ko`;
-  const enUrl = locUrl.includes('?') ? `${locUrl}&amp;lng=en` : `${locUrl}?lng=en`;
 
   let node = `  <url>\n`;
   node += `    <loc>${escapedLocUrl}</loc>\n`;
@@ -291,9 +289,6 @@ function buildUrlNode(locUrl, lastmod, priority, changefreq = 'daily', imageUrls
   }
   node += `    <changefreq>${changefreq}</changefreq>\n`;
   node += `    <priority>${priority}</priority>\n`;
-  node += `    <xhtml:link rel="alternate" hreflang="ko" href="${koUrl}"/>\n`;
-  node += `    <xhtml:link rel="alternate" hreflang="en" href="${enUrl}"/>\n`;
-  node += `    <xhtml:link rel="alternate" hreflang="x-default" href="${escapedLocUrl}"/>\n`;
 
   imageUrls.forEach(img => {
     const escapedImg = img.replace(/&/g, '&amp;');
@@ -570,7 +565,6 @@ async function generateSitemap() {
     function writeSubSitemap(filename, entries) {
       const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 ${entries.map(e => e.xmlNode).join('')}</urlset>
 `;

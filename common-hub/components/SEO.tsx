@@ -55,8 +55,9 @@ export default function SEO({
   const baseUrl = "https://riragamehub.com";
   const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
 
-  // 쿼리 매개변수를 사전순으로 정렬하고 lng 파라미터를 정제하며 후행 슬래시를 정규화하는 헬퍼 함수
-  const getSortedUrl = (rawUrl: string, targetLang?: string) => {
+  // 쿼리 매개변수를 사전순으로 정렬하고 언어 선택 파라미터 및 후행 슬래시를 정규화한다.
+  // 언어 선택은 사용자 편의 기능이며 별도 색인 페이지가 아니므로 canonical에서 제외한다.
+  const getSortedUrl = (rawUrl: string) => {
     try {
       const isAbsolute = rawUrl.startsWith('http');
       const dummyBase = "https://dummy-url-for-parsing.com";
@@ -67,13 +68,8 @@ export default function SEO({
         urlObj.pathname = urlObj.pathname.slice(0, -1);
       }
 
-      // lng는 canonical/alternate를 위해 동적으로 제어하므로 일단 제거
+      // 동일한 본문을 가리키는 언어 선택 URL이 별도 문서로 색인되지 않도록 제거
       urlObj.searchParams.delete('lng');
-      
-      // 다국어 버전의 경우에만 lng 파라미터 부여
-      if (targetLang && targetLang !== 'ko') {
-        urlObj.searchParams.set('lng', targetLang);
-      }
       
       // 쿼리 파라미터를 사전 순으로 정렬하여 일관성 강제
       urlObj.searchParams.sort();
@@ -91,9 +87,6 @@ export default function SEO({
 
   // 표준(Canonical) URL은 언어 쿼리나 후행 슬래시 없는 단일 정규 URL을 가리켜 색인 분산/중복을 차단합니다.
   const canonicalUrl = getSortedUrl(fullUrl);
-  const alternateKo = getSortedUrl(fullUrl, 'ko');
-  const alternateEn = getSortedUrl(fullUrl, 'en');
-  const alternateDefault = getSortedUrl(fullUrl);
 
   const schemas: any[] = [];
 
@@ -217,11 +210,6 @@ export default function SEO({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <link rel="canonical" href={canonicalUrl} />
-
-      {/* 다국어 SEO (hreflang) 설정 */}
-      <link rel="alternate" hrefLang="ko" href={alternateKo} />
-      <link rel="alternate" hrefLang="en" href={alternateEn} />
-      <link rel="alternate" hrefLang="x-default" href={alternateDefault} />
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
