@@ -2209,20 +2209,44 @@ function runPrerender() {
 
   console.log('🚀 Starting Static Meta Injection for Prerendering...');
 
+  const homeGameStats = {
+    hsr: {
+      characters: sitemapRoutes.filter(route => /^\/gallery\/hsr\/character\/[^/]+$/.test(route)).length,
+      guides: sitemapRoutes.filter(route => /^\/gallery\/hsr\/character\/[^/]+\/guide$/.test(route)).length
+    },
+    ww: {
+      characters: sitemapRoutes.filter(route => /^\/gallery\/ww\/character\/[^/]+$/.test(route)).length,
+      guides: sitemapRoutes.filter(route => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(route)).length
+    },
+    nte: {
+      characters: sitemapRoutes.filter(route => /^\/gallery\/nte\/character\/[^/]+$/.test(route)).length
+    },
+    aniimo: {
+      characters: sitemapRoutes.filter(route => /^\/gallery\/aniimo\/character\/[^/]+$/.test(route)).length
+    }
+  };
+
   const homeArticleHtml = `<article>
     <h1>Rira Game Hub - 서브컬쳐 게임 종합 아카이브</h1>
     <p>애니모(Aniimo), 명조(Wuthering Waves), 붕괴: 스타레일(Honkai: Star Rail), 이환(Neverness to Everness)의 정밀 캐릭터 도감, 장비 스탯, 티어표와 실전 육성 가이드를 제공합니다.</p>
-    <nav aria-label="빠른 접근 및 핵심 기능">
-      <h2>빠른 접근 및 핵심 기능</h2>
+    <h2>게임별 데이터베이스</h2>
+    <ul>
+      <li><a href="/gallery/hsr">붕괴: 스타레일 허브</a> — 캐릭터 ${homeGameStats.hsr.characters}명과 육성 공략 ${homeGameStats.hsr.guides}편, 광추·유물·차원 장신구 및 파티 조합</li>
+      <li><a href="/gallery/ww">명조: 워더링 웨이브 허브</a> — 공명자 ${homeGameStats.ww.characters}명과 육성 공략 ${homeGameStats.ww.guides}편, 무기·에코 및 반주 시너지 조합</li>
+      <li><a href="/gallery/nte">이환 허브</a> — 캐릭터 ${homeGameStats.nte.characters}명, 아크·카트리지·이동 수단 및 에스퍼 사이클 분석</li>
+      <li><a href="/gallery/aniimo">애니모 허브</a> — 애니모 ${homeGameStats.aniimo.characters}종의 형태·진화·능력치, 9원소 상성과 공식 서식지 도감</li>
+    </ul>
+    <nav aria-label="빠른 접근">
+      <h2>빠른 접근</h2>
       <ul>
-        <li><a href="/search">통합 검색 (전체 게임 DB ⌘K)</a></li>
-        <li><a href="/gallery/hsr">스타레일 DB (붕괴: 스타레일 캐릭터·광추·유물)</a></li>
-        <li><a href="/gallery/ww">명조 DB (명조 공명자·무기·에코)</a></li>
-        <li><a href="/gallery/nte">이환 DB (이환 캐릭터·아크)</a></li>
-        <li><a href="/gallery/aniimo">애니모 도감 (애니모 진화·형태·스탯·상성)</a></li>
-        <li><a href="/gallery/aniimo/characters">데이터 비교 (애니모 스탯 델타 비교기)</a></li>
+        <li><a href="/search">통합 검색</a> — 네 게임의 캐릭터, 장비와 공략 이름을 한 번에 검색합니다.</li>
+        <li>게임별 분석 가이드 — <a href="/gallery/hsr/guides">스타레일</a>, <a href="/gallery/ww/guides">명조</a>, <a href="/gallery/nte/guides">이환</a>, <a href="/gallery/aniimo/guides">애니모</a>의 전투 시스템과 세팅 원리를 확인합니다.</li>
+        <li><a href="/notices">최근 업데이트</a> — 데이터와 공략 변경 내역 및 서비스 공지를 확인합니다.</li>
       </ul>
     </nav>
+    <h2>도감과 공략의 기준</h2>
+    <p>도감은 캐릭터·장비·스킬의 사실 정보를 빠르게 찾는 영역이고, 세팅 가이드는 추천 장비와 목표 능력치를 정리합니다. 분석 가이드는 추천 이유, 적용 조건, 실전 운용과 대안을 별도로 설명해 데이터와 편집 판단을 구분합니다.</p>
+    <p>공개된 게임 정보와 게임 내 설명을 기준으로 내용을 정리하고, 패치로 바뀐 수치와 연결 오류는 검증 후 갱신합니다. 자세한 운영 기준은 <a href="/about">사이트 소개</a>에서 확인하고 잘못된 정보는 <a href="/contact">문의하기</a>로 제보할 수 있습니다.</p>
   </article>`;
 
   createPrerenderedPage(
