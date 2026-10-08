@@ -32,6 +32,7 @@ import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal
 import { useTranslation } from 'react-i18next';
 import { WW_ECHO_DATA } from '../data/echoData';
 import { WW_GUIDE_CHARACTERS, WW_GUIDE_DATA } from '../data/guideData';
+import characterSummary from '../data/generated/character-summary.json';
 import guideAnalysis from '../data/guide-analysis.json';
 import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 import { SONATA_SETS } from '../types';
@@ -330,10 +331,15 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     );
     if (directMatch || !routeGuide) return directMatch;
 
+    const routeCharacter = characterSummary.find((c: any) => c.id === routeGuide.id);
     const guideName = normalizeName(routeGuide.name || '');
+    const routeCharacterName = normalizeName(routeCharacter?.name || '');
+    const routeCharacterFolder = normalizeName(routeCharacter?.folderName || '');
     return CHARACTER_DB.find((c: any) =>
       normalizeName(c.name || '') === guideName ||
-      normalizeName(c.folderName || '') === guideName
+      normalizeName(c.folderName || '') === guideName ||
+      (routeCharacterName && normalizeName(c.name || '') === routeCharacterName) ||
+      (routeCharacterFolder && normalizeName(c.folderName || '') === routeCharacterFolder)
     );
   }, [CHARACTER_DB, charName, routeGuide]);
 

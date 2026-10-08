@@ -289,6 +289,9 @@ function validateWw() {
   const wwCharDir = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
   const wwWeaponsFile = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
   const notionDataFile = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
+  const guideCharactersFile = path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'guide-characters.json');
+  const guidesFile = path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'guides.json');
+  const characterSummaryFile = path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'character-summary.json');
 
   if (fs.existsSync(wwCharDir)) {
     const charFiles = fs.readdirSync(wwCharDir).filter(f => f.endsWith('.ts'));
@@ -327,6 +330,42 @@ function validateWw() {
       guideIds.add(guide.id);
     });
     logPass(`${wwGuides.length} WW character guides registered with unique IDs`);
+  }
+
+  if (fs.existsSync(guideCharactersFile) && fs.existsSync(guidesFile) && fs.existsSync(characterSummaryFile)) {
+    const guideCharacters = JSON.parse(fs.readFileSync(guideCharactersFile, 'utf8'));
+    const guides = JSON.parse(fs.readFileSync(guidesFile, 'utf8'));
+    const characterSummary = JSON.parse(fs.readFileSync(characterSummaryFile, 'utf8'));
+    const normalizeName = value => String(value || '')
+      .toLowerCase()
+      .replace(/[·・•\s_\-()（）]/g, '');
+
+    let routeResolutionErrors = 0;
+    guides.forEach(guide => {
+      const normalizedGuideName = normalizeName(guide.name);
+      const routeCharacter = characterSummary.find(character => character.id === guide.id);
+      const expectedNames = new Set([
+        normalizedGuideName,
+        normalizeName(routeCharacter?.name),
+        normalizeName(routeCharacter?.folderName)
+      ].filter(Boolean));
+      const matches = guideCharacters.filter(character =>
+        expectedNames.has(normalizeName(character.name)) ||
+        expectedNames.has(normalizeName(character.folderName))
+      );
+
+      if (matches.length === 0) {
+        routeResolutionErrors += 1;
+        logFail(`WW guide route "${guide.id}" cannot resolve character "${guide.name || 'unknown'}"`);
+      } else if (matches.length > 1) {
+        routeResolutionErrors += 1;
+        logFail(`WW guide route "${guide.id}" resolves to multiple characters: ${matches.map(character => character.name).join(', ')}`);
+      }
+    });
+
+    if (routeResolutionErrors === 0) {
+      logPass(`${guides.length} WW guide routes resolve to exactly one character`);
+    }
   }
 }
 
