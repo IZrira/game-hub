@@ -17,6 +17,7 @@ const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json'
 const ANIIMO_PARTIES_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'parties.json');
 const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
 const GUIDE_LANDING_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideLanding.json');
+const NOTICES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notices.ts');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
@@ -426,6 +427,18 @@ function loadHsrOrnaments() {
     content = content.replace(/export\s+const\s+ORNAMENT_DATA:\s*Ornament\[\]\s*=\s*/, 'return ');
     return new Function(content)() || [];
   } catch (e) {
+    return [];
+  }
+}
+
+function loadStaticNotices() {
+  try {
+    const content = fs.readFileSync(NOTICES_FILE, 'utf8');
+    const match = content.match(/export const GLOBAL_NOTICES:[^=]+=(\s*\[[\s\S]*?\n\]);/);
+    if (!match) return [];
+    return new Function(`return ${match[1]}`)() || [];
+  } catch (error) {
+    console.warn(`[Notices] Failed to load static notices: ${error.message}`);
     return [];
   }
 }
@@ -2778,11 +2791,19 @@ function runPrerender() {
     if (prerenderedRoutes.has(routePath)) return;
     const meta = getFallbackMeta(routePath);
     if (routePath === '/notices') {
+      const staticNotices = loadStaticNotices().sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+      const latestNoticeDate = staticNotices[0]?.createdAt || '확인 중';
+      const categoryLabels = { Update: '업데이트', System: '시스템', Event: '이벤트', Info: '안내' };
+      const noticeListHtml = staticNotices.length > 0
+        ? `<h2>최근 공지</h2><ul>${staticNotices.map(notice => `<li><a href="/notices/${encodeURIComponent(notice.id)}">${escapeHtml(notice.title)}</a><p>${escapeHtml(categoryLabels[notice.category] || notice.category)} · ${escapeHtml(notice.createdAt)}${notice.version ? ` · 버전 ${escapeHtml(notice.version)}` : ''}</p></li>`).join('')}</ul>`
+        : '';
       meta.title = 'RIRA ARCHIVE 공지사항 | 데이터·공략 업데이트 소식';
       meta.description = 'RIRA ARCHIVE의 게임 데이터 갱신, 신규 공략, 기능 개선과 서비스 운영 관련 최신 공지사항을 확인하세요.';
       meta.content = `<article>
         <h1>RIRA ARCHIVE 공지사항</h1>
         <p>${escapeHtml(meta.description)}</p>
+        <dl><dt>등록 공지</dt><dd>${staticNotices.length}건</dd><dt>최근 공지일</dt><dd>${escapeHtml(latestNoticeDate)}</dd></dl>
+        ${noticeListHtml}
         <h2>공지에서 확인할 수 있는 내용</h2>
         <ul>
           <li><strong>데이터 업데이트</strong> — 신규 캐릭터와 장비, 스킬, 에코, 아크 및 애니모 정보 반영 내역</li>
