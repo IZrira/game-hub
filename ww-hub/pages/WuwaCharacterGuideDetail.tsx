@@ -303,9 +303,24 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   const ECHO_DB = WW_ECHO_DATA;
   const GUIDES = WW_GUIDE_DATA;
 
+  const routeGuide = useMemo(() => {
+    const cleanParam = (charName || '').replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
+    const normalizedParam = normalizeName(cleanParam);
+
+    return GUIDES?.find((g: any) => {
+      const cleanGuideId = (g.id || '').replace(/_세팅_공략|_공략/g, '').trim();
+      return (
+        g.id === charName ||
+        cleanGuideId === cleanParam ||
+        normalizeName(cleanGuideId) === normalizedParam ||
+        normalizeName(g.name || '') === normalizedParam
+      );
+    });
+  }, [GUIDES, charName]);
+
   const character = useMemo(() => {
     const cleanParam = (charName || '').replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
-    return CHARACTER_DB.find((c: any) => 
+    const directMatch = CHARACTER_DB.find((c: any) =>
       c.id === charName || 
       c.id === cleanParam ||
       c.name === charName ||
@@ -313,9 +328,17 @@ const WuwaCharacterGuideDetail: React.FC = () => {
       normalizeName(c.name) === normalizeName(charName || '') ||
       normalizeName(c.name) === normalizeName(cleanParam)
     );
-  }, [CHARACTER_DB, charName]);
+    if (directMatch || !routeGuide) return directMatch;
+
+    const guideName = normalizeName(routeGuide.name || '');
+    return CHARACTER_DB.find((c: any) =>
+      normalizeName(c.name || '') === guideName ||
+      normalizeName(c.folderName || '') === guideName
+    );
+  }, [CHARACTER_DB, charName, routeGuide]);
 
   const guide = useMemo(() => {
+    if (routeGuide) return routeGuide;
     return GUIDES?.find((g: any) => {
       const cleanGuideId = g.id?.replace(/_세팅_공략|_공략/g, '').trim();
       const charId = character?.id || charName;
@@ -330,11 +353,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         (g.name && (normalizeName(g.name) === charNameNormalized || normalizeName(g.name) === charFolderNormalized))
       );
     });
-  }, [GUIDES, charName, character]);
+  }, [GUIDES, charName, character, routeGuide]);
 
-  const analysis = character?.id
-    ? (guideAnalysis as Record<string, any>)[character.id]
-    : undefined;
+  const analysisData = guideAnalysis as Record<string, any>;
+  const analysis = analysisData[guide?.id || '']
+    || analysisData[character?.id || '']
+    || analysisData[charName || ''];
 
   const synergyCharacters = useMemo(() => {
     if (!Array.isArray(guide?.synergyCharacters)) return [];
@@ -643,6 +667,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
   const heroImageUrl = getCharacterImage(character.folderName, character.isRover);
   const lastUpdatedDate = guide.patchVersion ? `v${guide.patchVersion}` : '2026-05-23';
+  const characterRouteId = guide.id || charName || character.id;
 
   const faqData = [
     {
@@ -669,8 +694,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: `/gallery/ww` },
           { name: t('캐릭터'), url: `/gallery/ww?menu=캐릭터` },
-          { name: t(character.name), url: `/gallery/ww/character/${character.id}` },
-          { name: t('세팅 가이드'), url: `/gallery/ww/character/${character.id}/guide` }
+          { name: t(character.name), url: `/gallery/ww/character/${characterRouteId}` },
+          { name: t('세팅 가이드'), url: `/gallery/ww/character/${characterRouteId}/guide` }
         ]}
       />
       
@@ -686,7 +711,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         <div className="flex-1 w-full space-y-12 sm:space-y-16 guide-content">
           
           <Link 
-            to={`/gallery/ww/character/${character.id}`}
+            to={`/gallery/ww/character/${characterRouteId}`}
             className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl text-xs sm:text-sm font-black text-gray-300 hover:text-white transition-all backdrop-blur-md group w-fit"
           >
             <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
@@ -1839,7 +1864,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           onClose={() => setIsFeedbackModalOpen(false)}
           contextData={{
             gameId,
-            targetId: character?.id || charName,
+            targetId: characterRouteId,
             targetName: character?.name || charName,
             type: 'guide'
           }}
