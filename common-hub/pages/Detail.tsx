@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
 import { useTranslation } from 'react-i18next';
+import DOMPurify from 'dompurify';
 import { ChevronLeft, Copy, Check, Share2, Bookmark, ChevronRight, ArrowLeft } from 'lucide-react';
 import { ARCHIVE_DATA } from '../data/archive';
 import PageHeader from '../components/PageHeader';
@@ -24,6 +25,14 @@ const Detail: React.FC = () => {
 
   const game = ARCHIVE_DATA.games.find(g => g.id === gameId);
   const post = game?.posts.find(p => p.id === postId);
+  const sanitizedContent = useMemo(
+    () => DOMPurify.sanitize(post?.content || '', {
+      USE_PROFILES: { html: true },
+      FORBID_TAGS: ['script', 'style', 'iframe', 'object', 'embed'],
+      FORBID_ATTR: ['style', 'onerror', 'onload'],
+    }),
+    [post?.content]
+  );
 
   useEffect(() => {
     if (contentRef.current) {
@@ -96,7 +105,7 @@ const Detail: React.FC = () => {
               prose-p:text-gray-300 prose-p:text-lg prose-p:leading-[1.8] prose-p:mb-6
               prose-strong:text-brand-light prose-strong:font-bold prose-strong:bg-brand-primary/20 prose-strong:px-1 prose-strong:rounded
               prose-img:rounded-2xl prose-img:shadow-2xl prose-img:cursor-pointer hover:prose-img:opacity-90 transition-opacity"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizedContent }}
           />
 
           <div className="mt-12 p-8 rounded-2xl bg-white/5 border border-white/10">

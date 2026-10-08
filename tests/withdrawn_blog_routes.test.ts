@@ -39,4 +39,28 @@ describe('withdrawn blog routes', () => {
     expect(await response.text()).toBe('active route');
     expect(next).toHaveBeenCalledOnce();
   });
+
+  it('returns a real 404 for an unknown application route', async () => {
+    const next = vi.fn(async () => new Response('SPA fallback', { status: 200 }));
+    const response = await onRequest({
+      request: new Request('https://riragamehub.com/__missing_route__'),
+      next,
+    });
+
+    expect(response.status).toBe(404);
+    expect(response.headers.get('X-Robots-Tag')).toBe('noindex, nofollow');
+    expect(await response.text()).toContain('페이지를 찾을 수 없습니다');
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('allows generated notice detail routes', async () => {
+    const next = vi.fn(async () => new Response('notice', { status: 200 }));
+    const response = await onRequest({
+      request: new Request('https://riragamehub.com/notices/update-2026-07-25'),
+      next,
+    });
+
+    expect(response.status).toBe(200);
+    expect(next).toHaveBeenCalledOnce();
+  });
 });

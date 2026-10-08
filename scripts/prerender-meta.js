@@ -2851,6 +2851,25 @@ function runPrerender() {
         </nav>
         <p>누락된 데이터나 잘못된 공략은 <a href="/contact">문의하기</a>를 통해 제보할 수 있습니다.</p>
       </article>`;
+    } else if (routePath.startsWith('/notices/')) {
+      const noticeId = decodeURIComponent(routePath.slice('/notices/'.length));
+      const notice = loadStaticNotices().find(item => item.id === noticeId);
+      if (notice) {
+        const categoryLabels = { Update: '업데이트', System: '시스템', Event: '이벤트', Info: '안내' };
+        const paragraphs = String(notice.content || '')
+          .split(/\n{2,}/)
+          .map(paragraph => `<p>${escapeHtml(paragraph).replace(/\n/g, '<br>')}</p>`)
+          .join('');
+        meta.title = `${notice.title} | RIRA ARCHIVE 공지사항`;
+        meta.description = String(notice.content || '').replace(/\s+/g, ' ').trim().slice(0, 155);
+        meta.content = `<article>
+          <p><a href="/notices">공지사항</a></p>
+          <h1>${escapeHtml(notice.title)}</h1>
+          <p><strong>${escapeHtml(categoryLabels[notice.category] || notice.category)}</strong> · ${escapeHtml(notice.createdAt)}${notice.version ? ` · 버전 ${escapeHtml(notice.version)}` : ''}</p>
+          ${paragraphs}
+          <p><a href="/notices">전체 공지 목록으로 돌아가기</a></p>
+        </article>`;
+      }
     } else if (routePath === '/gallery/ww') {
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/'));
       const echoRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/'));

@@ -1,3 +1,5 @@
+import { INDEXABLE_AND_APP_PATHS } from './generated-routes';
+
 interface PagesFunctionContext {
   request: Request;
   next: () => Promise<Response>;
@@ -48,6 +50,35 @@ function normalizePath(rawPathname: string): string {
   return decoded;
 }
 
+function isStaticAssetPath(pathname: string): boolean {
+  return pathname.startsWith('/assets/') ||
+    pathname.startsWith('/icons/') ||
+    pathname.startsWith('/images/') ||
+    pathname.startsWith('/manifest') ||
+    pathname === '/robots.txt' ||
+    pathname === '/favicon.ico' ||
+    pathname === '/apple-touch-icon.png' ||
+    pathname === '/logo192.png' ||
+    pathname === '/logo512.png' ||
+    pathname.endsWith('.xml') ||
+    pathname.endsWith('.txt') ||
+    /\.[a-z0-9]{2,8}$/i.test(pathname);
+}
+
+function notFoundResponse(): Response {
+  return new Response(
+    '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex, nofollow"><title>페이지를 찾을 수 없습니다 | RIRA ARCHIVE</title></head><body><main><h1>페이지를 찾을 수 없습니다</h1><p>주소가 변경되었거나 존재하지 않는 페이지입니다.</p><p><a href="/">RIRA ARCHIVE 홈으로 이동</a></p></main></body></html>',
+    {
+      status: 404,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'public, max-age=60',
+        'X-Robots-Tag': 'noindex, nofollow',
+      },
+    }
+  );
+}
+
 export const onRequest = async (context: PagesFunctionContext): Promise<Response> => {
   const url = new URL(context.request.url);
   const normalizedPath = normalizePath(url.pathname);
@@ -78,6 +109,13 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
     const cleanPath = url.pathname.replace(/\/+$/, '');
     const redirectUrl = new URL(cleanPath + url.search + url.hash, url.origin);
     return Response.redirect(redirectUrl.toString(), 301);
+  }
+
+  // Every public content route is generated alongside the sitemap. Reject an
+  // unknown application path at the edge instead of serving the SPA shell with
+  // HTTP 200, which search engines correctly classify as a soft 404.
+  if (!isStaticAssetPath(normalizedPath) && !INDEXABLE_AND_APP_PATHS.has(normalizedPath)) {
+    return notFoundResponse();
   }
 
   // 3. Forward request to downstream / static asset pipeline

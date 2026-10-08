@@ -9,4 +9,40 @@
       <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://riragamehub.com/notices/update-2026-07-25</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/notices/notice-2026-06-17</loc>
+    <lastmod>2026-06-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/notices/update-hsr-4-3</loc>
+    <lastmod>2026-06-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/notices/update-ww-3-4</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+    </image:image>
+  </url>
 </urlset>
