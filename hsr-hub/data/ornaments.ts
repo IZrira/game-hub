@@ -19,6 +19,11 @@ export interface Ornament {
   };
   pieces: OrnamentPiece[];
   image?: string;
+  guide?: {
+    summary: string;
+    bestFor: string[];
+    selectionTips: string[];
+  };
 }
 
 export const ORNAMENT_DATA: Ornament[] = [
@@ -292,7 +297,20 @@ export const ORNAMENT_DATA: Ornament[] = [
       { type: "Planar Sphere", name: "페나코니의 그랜드 호텔", enName: "Penacony's Grand Hotel" },
       { type: "Link Rope", name: "페나코니의 꿈을 좇는 궤도", enName: "Penacony's Dream-Seeking Tracks" }
     ],
-    image: "꿈의 땅 페나코니"
+    image: "꿈의 땅 페나코니",
+    guide: {
+      summary: "에너지 회복효율이 필요한 서포터가 같은 속성의 주력 딜러를 강화할 때 사용하는 장신구다. 장착자 자신이 아니라 같은 속성의 다른 아군에게 피해 증가가 적용되므로 파티 속성 구성이 선택 기준이 된다.",
+      bestFor: [
+        "필살기 회전을 위해 에너지 회복효율이 필요한 서포터",
+        "주력 딜러와 같은 속성으로 편성되는 화합·공허·풍요 캐릭터",
+        "같은 속성 딜러 한 명에게 피해 지원을 집중하는 파티"
+      ],
+      selectionTips: [
+        "장착자와 주력 딜러의 속성이 다르면 피해 증가 효과가 발동하지 않는다.",
+        "같은 속성의 다른 아군만 강화하므로 장착자의 개인 피해를 높이는 용도로는 적합하지 않다.",
+        "파티 속성이 자주 바뀐다면 속성 조건이 없는 범용 지원 장신구와 비교한다."
+      ]
+    }
   },
   {
     id: "ornament_뭇별_경기장",
@@ -360,7 +378,20 @@ export const ORNAMENT_DATA: Ornament[] = [
       { type: "Planar Sphere", name: "나부 선주의 천외 누선", enName: "The Xianzhou Luofu's Celestial Ark" },
       { type: "Link Rope", name: "나부 선주의 불멸의 거목 가지", enName: "The Xianzhou Luofu's Ambrosial Arbor Vines" }
     ],
-    image: "불로인의 선주"
+    image: "불로인의 선주",
+    guide: {
+      summary: "장착자의 최대 HP를 높이면서 속도 120을 달성하면 파티 전체에 공격력 버프를 제공하는 생존·지원 장신구다. HP를 회복량이나 생존력으로 활용하는 서포터가 공격력 기반 딜러를 지원할 때 효율적이다.",
+      bestFor: [
+        "HP가 생존력이나 회복량에 직접 연결되는 풍요·보존 캐릭터",
+        "속도 120을 자연스럽게 달성할 수 있는 서포터",
+        "공격력 계수를 사용하는 딜러가 중심인 파티"
+      ],
+      selectionTips: [
+        "파티 공격력 8% 효과는 장착자의 속도가 120 이상일 때만 발동한다.",
+        "HP 증가가 필요하지 않은 캐릭터라면 다른 지원 장신구가 더 높은 개인 효율을 낼 수 있다.",
+        "HP 계수 딜러나 공격력 버프를 활용하지 않는 파티에서는 파티 강화 가치가 낮아진다."
+      ]
+    }
   },
   {
     id: "ornament_도적국_탈리아",

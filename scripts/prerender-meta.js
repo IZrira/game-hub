@@ -2001,6 +2001,27 @@ function generateHsrOrnamentHtml(ornament, recommendedChars = []) {
     html += `</ul>\n`;
   }
 
+  if (ornament.guide) {
+    html += `<h2>선택 및 활용 가이드</h2>\n`;
+    if (ornament.guide.summary) {
+      html += `<p>${escapeHtml(ornament.guide.summary)}</p>\n`;
+    }
+    if (Array.isArray(ornament.guide.bestFor) && ornament.guide.bestFor.length > 0) {
+      html += `<h3>추천 대상</h3>\n<ul>\n`;
+      ornament.guide.bestFor.forEach(item => {
+        html += `<li>${escapeHtml(item)}</li>\n`;
+      });
+      html += `</ul>\n`;
+    }
+    if (Array.isArray(ornament.guide.selectionTips) && ornament.guide.selectionTips.length > 0) {
+      html += `<h3>선택 전 확인</h3>\n<ul>\n`;
+      ornament.guide.selectionTips.forEach(item => {
+        html += `<li>${escapeHtml(item)}</li>\n`;
+      });
+      html += `</ul>\n`;
+    }
+  }
+
   if (recommendedChars.length > 0) {
     html += `<h2>${escapeHtml(ornament.name)} 추천 착용 캐릭터</h2>\n<ul>\n`;
     recommendedChars.forEach(rc => {

@@ -182,6 +182,39 @@ const OrnamentDetail: React.FC = () => {
               )}
                 </div>
               </div>
+
+              {ornament.guide && !isEn && (
+                <div className="space-y-6">
+                  <h2 className="text-xl font-black text-white">선택 및 활용 가이드</h2>
+                  <div className="bg-white/5 rounded-[32px] p-8 border border-white/5 space-y-8">
+                    <p className="text-gray-300 leading-7">{ornament.guide.summary}</p>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <h3 className="text-sm font-black text-brand-accent">추천 대상</h3>
+                        <ul className="space-y-3 text-sm text-gray-300">
+                          {ornament.guide.bestFor.map((item: string) => (
+                            <li key={item} className="flex gap-3 leading-6">
+                              <span className="text-brand-accent" aria-hidden="true">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="text-sm font-black text-brand-accent">선택 전 확인</h3>
+                        <ul className="space-y-3 text-sm text-gray-300">
+                          {ornament.guide.selectionTips.map((item: string) => (
+                            <li key={item} className="flex gap-3 leading-6">
+                              <span className="text-brand-accent" aria-hidden="true">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
