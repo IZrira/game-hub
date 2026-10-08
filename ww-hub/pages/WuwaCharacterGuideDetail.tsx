@@ -336,6 +336,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     ? (guideAnalysis as Record<string, any>)[character.id]
     : undefined;
 
+  const synergyCharacters = useMemo(() => {
+    if (!Array.isArray(guide?.synergyCharacters)) return [];
+    const skillLabels = new Set([...(guide.skillPriority || []), '스킬 레벨 업 우선 순위']);
+    return guide.synergyCharacters.filter((member: string) => !skillLabels.has(member));
+  }, [guide]);
+
   const currentVariant = useMemo(() => {
     if (!guide) return null;
     if (guide.variants && guide.variants.length > 0) {
@@ -1679,7 +1685,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           )}
 
           {/* 06 시너지 캐릭터 */}
-          {(guide.isUniversalSynergy || (guide.synergyCharacters && guide.synergyCharacters.length > 0)) && (
+          {(guide.isUniversalSynergy || synergyCharacters.length > 0) && (
             <section id="시너지 캐릭터" className="space-y-6">
               <SectionHeader num={analysis ? "06" : "05"} title="시너지 캐릭터" theme={theme} />
 
@@ -1700,10 +1706,10 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   </p>
                 </div>
               </div>
-            ) : guide.synergyCharacters && guide.synergyCharacters.length > 0 ? (
+            ) : synergyCharacters.length > 0 ? (
               <div className="glass-card rounded-[45px] p-10 md:p-12 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
                 <div className="flex flex-wrap gap-8 items-center">
-                  {guide.synergyCharacters.map((member: string, idx: number) => {
+                  {synergyCharacters.map((member: string, idx: number) => {
                     let memberName = member;
                     let memberNote = '';
 

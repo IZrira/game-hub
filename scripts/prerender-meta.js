@@ -1663,8 +1663,12 @@ function generateWwGuideHtml(id, guide, char) {
   }
 
   // 파티 시너지
-  if (guide?.synergyCharacters && Array.isArray(guide.synergyCharacters) && guide.synergyCharacters.length > 0) {
-    html += `<h2>추천 파티 조합 및 시너지 캐릭터</h2>\n<p>${escapeHtml(guide.synergyCharacters.join(', '))}</p>\n`;
+  const skillLabels = new Set([...(guide?.skillPriority || []), '스킬 레벨 업 우선 순위']);
+  const synergyCharacters = Array.isArray(guide?.synergyCharacters)
+    ? guide.synergyCharacters.filter(member => !skillLabels.has(member))
+    : [];
+  if (synergyCharacters.length > 0) {
+    html += `<h2>추천 파티 조합 및 시너지 캐릭터</h2>\n<p>${escapeHtml(synergyCharacters.join(', '))}</p>\n`;
   }
 
   html += `</article>`;
