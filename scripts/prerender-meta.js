@@ -1577,6 +1577,7 @@ function generateWwGuideHtml(id, guide, char) {
   }
   let html = `<article>\n`;
   html += `<h1>명조: 워더링 웨이브 ${escapeHtml(name)} 종결 육성 공략 가이드</h1>\n`;
+  html += `<p>${escapeHtml(name)}의 추천 무기, 에코 세트와 메인 에코, 목표 능력치, 주·부 옵션 및 스킬 육성 순서를 한 페이지에서 비교할 수 있도록 정리했습니다.</p>\n`;
   if (guide?.patchVersion) {
     html += `<p><strong>적용 패치 버전:</strong> v${escapeHtml(guide.patchVersion)}</p>\n`;
   }
@@ -1595,6 +1596,32 @@ function generateWwGuideHtml(id, guide, char) {
       html += `<li><strong>${w.rank || ''}순위:</strong> ${escapeHtml(wName)}${wNote ? ` (${escapeHtml(wNote)})` : ''}</li>\n`;
     });
     html += `</ol>\n`;
+  }
+
+  if (guide?.variants && Array.isArray(guide.variants) && guide.variants.length > 0) {
+    html += `<h2>세팅 유형별 에코 선택</h2>\n`;
+    guide.variants.forEach(variant => {
+      html += `<section><h3>${escapeHtml(variant.name || '추천 세팅')}</h3>\n`;
+      if (Array.isArray(variant.echoSets) && variant.echoSets.length > 0) {
+        html += `<h4>에코 세트</h4>\n<ul>\n`;
+        variant.echoSets.forEach(echoSet => {
+          const echoSetName = typeof echoSet === 'string' ? echoSet : echoSet?.name;
+          const echoSetNote = typeof echoSet === 'object' && echoSet ? echoSet.note : '';
+          if (echoSetName) html += `<li><strong>${escapeHtml(echoSetName)}</strong>${echoSetNote ? ` — ${escapeHtml(echoSetNote)}` : ''}</li>\n`;
+        });
+        html += `</ul>\n`;
+      }
+      if (Array.isArray(variant.mainEchoes) && variant.mainEchoes.length > 0) {
+        html += `<h4>메인 에코</h4>\n<ul>\n`;
+        variant.mainEchoes.forEach(mainEcho => {
+          const mainEchoName = typeof mainEcho === 'string' ? mainEcho : mainEcho?.name;
+          const mainEchoReason = typeof mainEcho === 'object' && mainEcho ? mainEcho.reason : '';
+          if (mainEchoName) html += `<li><strong>${escapeHtml(mainEchoName)}</strong>${mainEchoReason ? ` — ${escapeHtml(mainEchoReason)}` : ''}</li>\n`;
+        });
+        html += `</ul>\n`;
+      }
+      html += `</section>\n`;
+    });
   }
 
   // 추천 에코 세트
@@ -1682,6 +1709,8 @@ function generateWwGuideHtml(id, guide, char) {
     : [];
   if (synergyCharacters.length > 0) {
     html += `<h2>추천 파티 조합 및 시너지 캐릭터</h2>\n<p>${escapeHtml(synergyCharacters.join(', '))}</p>\n`;
+  } else if (guide?.isUniversalSynergy) {
+    html += `<h2>파티 활용</h2>\n<p>${escapeHtml(name)}은 특정 파티원 한 명에게만 고정되지 않는 범용 지원 캐릭터입니다. 주력 딜러의 피해 유형과 교대 순서에 맞춰 편성하고, 버프·회복 효과가 필요한 공격 구간 전에 협주 에너지와 공명 해방을 준비하세요.</p>\n`;
   }
 
   html += `</article>`;
