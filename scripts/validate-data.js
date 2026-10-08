@@ -169,6 +169,7 @@ function validateHsr() {
   const hsrRelicsFile = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
   const hsrOrnamentsFile = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts');
   const hsrGuidesDir = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
+  const hsrCharacterSummaryFile = path.join(ROOT_DIR, 'hsr-hub', 'data', 'generated', 'character-summary.json');
 
   // Character IDs
   const charFiles = fs.readdirSync(hsrCharDir).filter(f => f.endsWith('.ts'));
@@ -278,6 +279,45 @@ function validateHsr() {
       } catch (e) {}
     });
     logPass('HSR character guides cross-references verified');
+
+    if (fs.existsSync(hsrCharacterSummaryFile)) {
+      const characterSummary = JSON.parse(fs.readFileSync(hsrCharacterSummaryFile, 'utf8'));
+      const normalizeName = value => String(value || '')
+        .normalize('NFC')
+        .replace(/\s+/g, '')
+        .replace(/[•·]/g, '');
+      let routeResolutionErrors = 0;
+
+      guideFiles.forEach(fileName => {
+        const content = fs.readFileSync(path.join(hsrGuidesDir, fileName), 'utf8');
+        const nameMatch = content.match(/["'`]?characterName["'`]?\s*:\s*["'`]([^"'`]+)["'`]/);
+        const guideName = nameMatch?.[1];
+
+        if (!guideName) {
+          routeResolutionErrors += 1;
+          logFail(`HSR guide file "${fileName}" is missing characterName`);
+          return;
+        }
+
+        const normalizedGuideName = normalizeName(guideName);
+        const matches = characterSummary.filter(character =>
+          normalizeName(character.name) === normalizedGuideName ||
+          normalizeName(character.folderName) === normalizedGuideName
+        );
+
+        if (matches.length === 0) {
+          routeResolutionErrors += 1;
+          logFail(`HSR guide "${guideName}" cannot resolve a character route`);
+        } else if (matches.length > 1) {
+          routeResolutionErrors += 1;
+          logFail(`HSR guide "${guideName}" resolves to multiple characters: ${matches.map(character => character.id).join(', ')}`);
+        }
+      });
+
+      if (routeResolutionErrors === 0) {
+        logPass(`${guideFiles.length} HSR guide routes resolve to exactly one character`);
+      }
+    }
   }
 }
 
