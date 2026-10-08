@@ -2050,6 +2050,40 @@ function generateHsrOrnamentHtml(ornament, recommendedChars = []) {
     html += `</ul>\n`;
   }
 
+  const effectText = String(setEffect || '');
+  const generatedTips = [];
+  if (effectText) {
+    generatedTips.push('차원 장신구는 차원 구체와 연결 매듭을 함께 착용하면 2세트 효과가 적용됩니다. 주 옵션을 먼저 맞춘 뒤 세트 조건과 부 옵션 손실을 비교하세요.');
+  }
+  if (/효과 명중/.test(effectText)) {
+    generatedTips.push('효과 명중 조건은 전투 화면에서 적용되는 최종 수치를 기준으로 확인합니다. 디버프 적중이 필요하지 않은 캐릭터라면 조건을 위해 효과 명중을 과도하게 올리지 않습니다.');
+  }
+  if (/속도/.test(effectText)) {
+    generatedTips.push('속도 조건은 캐릭터의 목표 행동 횟수와 파티 버프 적용 시점을 함께 계산합니다. 세트 발동만을 위해 의미 없는 중간 속도에 머물지 않도록 확인하세요.');
+  }
+  if (/치명타/.test(effectText)) {
+    generatedTips.push('치명타 효과는 치명타가 적용되는 직접 피해 캐릭터에게 우선합니다. 지속 피해나 격파 피해 중심 세팅은 치명타 투자 효율을 별도로 비교해야 합니다.');
+  }
+  if (/격파 특수효과|격파 피해/.test(effectText)) {
+    generatedTips.push('격파 관련 효과는 약점 격파를 직접 담당하거나 격파 피해를 주력으로 사용하는 캐릭터가 안정적으로 활용할 수 있습니다.');
+  }
+  if (/방어력/.test(effectText)) {
+    generatedTips.push('방어력 효과는 방어력 계수의 보호막·피해·회복을 사용하는 캐릭터에게 우선하며, HP 계수 캐릭터와는 효율이 다릅니다.');
+  }
+  if (/첫 공격/.test(effectText)) {
+    generatedTips.push('전투 진입 후 첫 공격까지만 유지되는 효과는 장기전의 상시 강화가 아닙니다. 첫 행동의 피해나 발동 안정성이 중요한 경우에 선택합니다.');
+  }
+  if (/이상일 경우|이상일 시|이상일 때/.test(effectText)) {
+    generatedTips.push('수치 조건이 있는 추가 효과는 조건 미달 시 발동하지 않습니다. 조건 달성에 필요한 부 옵션과 다른 장신구의 상시 효과를 비교하세요.');
+  }
+  if (generatedTips.length > 0 && !ornament.guide) {
+    html += `<h2>${escapeHtml(ornament.name)} 선택 기준</h2>\n<ul>\n`;
+    generatedTips.forEach(tip => {
+      html += `<li>${escapeHtml(tip)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
   if (ornament.guide) {
     html += `<h2>선택 및 활용 가이드</h2>\n`;
     if (ornament.guide.summary) {
@@ -2086,6 +2120,8 @@ function generateHsrOrnamentHtml(ornament, recommendedChars = []) {
       html += `<li>${linkHtml}${noteStr}</li>\n`;
     });
     html += `</ul>\n`;
+  } else {
+    html += `<h2>추천 캐릭터 확인 방법</h2>\n<p>현재 연결된 캐릭터 세팅 공략은 없습니다. 캐릭터가 장신구의 주 능력치와 발동 조건을 모두 활용하는지 확인하고, 추천 세팅 데이터가 등록되면 이 페이지에 자동으로 표시됩니다.</p>\n`;
   }
 
   html += `<p><a href="/gallery/hsr">붕괴: 스타레일 차원 장신구 도감으로 돌아가기</a></p>\n`;
