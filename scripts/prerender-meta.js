@@ -1967,7 +1967,7 @@ function generateHsrLightconeHtml(lc, recommendedChars = []) {
 function generateHsrRelicHtml(relic, recommendedChars = []) {
   let html = `<article>\n`;
   html += `<h1>붕괴: 스타레일 ${escapeHtml(relic.name)} 유물 세트 효과 및 추천 캐릭터</h1>\n`;
-  html += `<p><strong>유형:</strong> 터널 유물 | <strong>게임:</strong> 붕괴: 스타레일</p>\n`;
+  html += `<p><strong>유형:</strong> 터널 유물 | <strong>게임:</strong> 붕괴: 스타레일${relic.releaseVersion ? ` | <strong>출시 버전:</strong> ${escapeHtml(relic.releaseVersion)}` : ''}</p>\n`;
 
   if (relic['2piece']) {
     html += `<h2>2세트 효과</h2>\n<p>${escapeHtml(relic['2piece'])}</p>\n`;
@@ -1979,6 +1979,32 @@ function generateHsrRelicHtml(relic, recommendedChars = []) {
     html += `<h2>세트 구성 부위</h2>\n<ul>\n`;
     relic.pieces.forEach(p => {
       html += `<li><strong>${escapeHtml(p.type)}:</strong> ${escapeHtml(p.name)}</li>\n`;
+    });
+    html += `</ul>\n`;
+  }
+
+  const twoPieceEffect = String(relic['2piece'] || '');
+  const fourPieceEffect = String(relic['4piece'] || '');
+  const selectionNotes = [];
+  if (twoPieceEffect) {
+    selectionNotes.push(`2세트는 ${twoPieceEffect.replace(/[.。]$/, '')} 효과를 바로 얻으므로, 4세트 조건을 완성하기 전 다른 2세트와 조합하는 선택지도 비교합니다.`);
+  }
+  if (/일반 공격/.test(fourPieceEffect)) {
+    selectionNotes.push('4세트는 일반 공격을 주력으로 사용하고 전투 중 꾸준히 발동하는 캐릭터에게 적합합니다. 일반 공격 비중이 낮다면 세트 효과를 충분히 활용하기 어렵습니다.');
+  } else if (/전투 스킬/.test(fourPieceEffect) || /필살기/.test(fourPieceEffect)) {
+    selectionNotes.push('4세트의 전투 스킬·필살기 발동 조건과 효과 지속 시간을 실제 전투 순서에서 유지할 수 있는지 먼저 확인합니다.');
+  } else if (/치유|회복/.test(fourPieceEffect)) {
+    selectionNotes.push('4세트는 회복 행동의 발동 빈도와 파티 지원 효과의 유지 시간을 기준으로 선택합니다.');
+  } else if (fourPieceEffect) {
+    selectionNotes.push('4세트는 설명에 적힌 발동 조건을 반복해서 충족할 수 있을 때 사용합니다. 조건이 맞지 않으면 범용 2세트 조합이 더 안정적일 수 있습니다.');
+  }
+  if (/치명타/.test(twoPieceEffect + fourPieceEffect)) {
+    selectionNotes.push('치명타 관련 효과는 치명타가 적용되는 공격을 사용하는 캐릭터가 우선입니다. 지속 피해나 격파 피해 중심 세팅은 별도 효율을 확인해야 합니다.');
+  }
+  if (selectionNotes.length > 0) {
+    html += `<h2>${escapeHtml(relic.name)} 선택 기준</h2>\n<ul>\n`;
+    selectionNotes.forEach(note => {
+      html += `<li>${escapeHtml(note)}</li>\n`;
     });
     html += `</ul>\n`;
   }
@@ -1998,6 +2024,8 @@ function generateHsrRelicHtml(relic, recommendedChars = []) {
       html += `<li>${linkHtml}${noteStr}</li>\n`;
     });
     html += `</ul>\n`;
+  } else {
+    html += `<h2>추천 캐릭터 확인 방법</h2>\n<p>현재 연결된 캐릭터 세팅 공략은 없습니다. 유물 효과의 발동 조건과 캐릭터의 주력 공격 방식이 일치하는지 확인하고, 추천 세팅 데이터가 등록되면 이 페이지에 자동으로 표시됩니다.</p>\n`;
   }
 
   html += `<p><a href="/gallery/hsr">붕괴: 스타레일 유물 도감으로 돌아가기</a></p>\n`;
