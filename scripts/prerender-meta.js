@@ -2832,9 +2832,10 @@ function runPrerender() {
       meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/locations') {
       const locations = OFFICIAL_ANIIMO_HABITATS;
+      const totalHabitatAppearances = locations.reduce((total, location) => total + (OFFICIAL_HABITAT_TARGETS[location] || 0), 0);
       meta.title = `애니모 공식 서식지 ${locations.length}곳 | 서식지별 도감`;
       meta.description = `애니모의 공식 서식지 ${locations.length}곳을 지역별로 탐색하고 각 서식지에서 만날 수 있는 애니모 종류와 형태 정보를 확인하세요.`;
-      meta.content = `<article><h1>서식지별 애니모 도감</h1><p>${escapeHtml(meta.description)}</p><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
+      meta.content = `<article><h1>서식지별 애니모 도감</h1><p>${escapeHtml(meta.description)}</p><dl><dt>공식 서식지</dt><dd>${locations.length}곳</dd><dt>지역별 출현 기록</dt><dd>총 ${totalHabitatAppearances}건</dd></dl><h2>공식 서식지 목록</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)} · ${OFFICIAL_HABITAT_TARGETS[location]}종</a></li>`).join('')}</ul><h2>서식지 도감 이용 방법</h2><p>지역을 선택하면 그곳에서 확인되는 애니모와 출현 형태를 함께 볼 수 있습니다. 같은 애니모라도 기본 형태와 지역 형태의 외형, 원소 또는 역할이 다를 수 있으므로 포획 대상을 찾을 때는 형태 이름까지 확인하세요.</p><p>원소와 포지션을 기준으로 전체 애니모를 찾거나 능력치를 비교하려면 <a href="/gallery/aniimo/characters">애니모 도감·능력치 비교기</a>를 이용하세요. 전투 편성을 준비할 때는 <a href="/gallery/aniimo/type-chart">원소 상성표</a>와 <a href="/gallery/aniimo/party-builder">파티 추천</a>을 함께 확인할 수 있습니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/type-chart') {
       const rows = [
         ['불', '풀·얼음', '불·물·바위·빛'], ['물', '불·바위', '물·풀·얼음·빛'],
