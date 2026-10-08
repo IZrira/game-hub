@@ -3001,10 +3001,14 @@ function runPrerender() {
       meta.content = `<article><h1>애니모 성격 선택 가이드</h1><p>${escapeHtml(meta.description)}</p><p>성격은 E/I, S/N, T/F, J/P 네 축에서 하나씩 선택되어 네 가지 전투 보너스가 동시에 적용됩니다. 성격 이름만 보지 말고 현재 형태의 포지션과 스킬 조건에 맞는 효과를 조합하세요.</p><h2>성격 8종 효과</h2><table><thead><tr><th>성격 축</th><th>성격</th><th>전투 보너스</th><th>추천 상황</th></tr></thead><tbody>${traits.map(([axis, trait, effect, use]) => `<tr><td>${axis}</td><th>${trait}</th><td>${effect}</td><td>${use}</td></tr>`).join('')}</tbody></table><h2>역할별 추천 조합</h2><ul>${presets.map(([code, role, summary]) => `<li><strong>${code} · ${role}</strong> — ${summary}</li>`).join('')}</ul><h2>선택할 때 확인할 점</h2><p>치명타 전용 연계가 없다면 S의 피해 증가가 안정적이고, 치명타 관련 스킬이나 특성이 명확한 형태는 N을 고려합니다. T와 F는 고정 정답이 아니라 상대의 물리·마법 피해 유형에 맞춰 선택합니다. J는 HP 기반 회복·보호막과 범용 생존에, P는 받는 피해를 직접 낮추는 데 적합합니다.</p><p>홈에서는 성격에 대응하는 시설의 작업 효율이 증가하는 것으로 알려져 있으므로 전투용과 홈 상주용 개체를 구분하는 편이 좋습니다. 성격 변경 기능은 확인됐지만 필요한 재료와 지정 변경 가능 여부는 확정 정보가 부족하므로 희귀 개체의 변경을 서두르지 마세요.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태별 추천 확인</a> · <a href="/gallery/aniimo/party-builder">추천 파티 조합 확인</a> · <a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/party-builder') {
       let partyListHtml = '';
+      let partySummaryHtml = '';
       try {
         const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
         const parties = fs.existsSync(ANIIMO_PARTIES_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_PARTIES_FILE, 'utf8')) : [];
         if (parties.length > 0) {
+          const totalMembers = parties.reduce((total, party) => total + (party.members || []).length, 0);
+          const categories = [...new Set(parties.map(party => party.category).filter(Boolean))];
+          partySummaryHtml = `<dl><dt>등록 추천 파티</dt><dd>${parties.length}개</dd><dt>등록 조합원</dt><dd>${totalMembers}자리</dd><dt>분류</dt><dd>${escapeHtml(categories.join(' · '))}</dd></dl>`;
           const partiesHtml = parties.map(party => {
             const membersHtml = party.members.map(member => {
               const entry = aniimoEntries.find(candidate => candidate.number === member.number);
@@ -3012,16 +3016,18 @@ function runPrerender() {
               const form = entry.forms.find(candidate => candidate.key === member.formKey) || entry.forms[0];
               const query = form?.key && form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : '';
               const formLabel = form?.label ? ` · ${form.label}` : '';
-              return `<li><a href="/gallery/aniimo/character/${encodeURIComponent(entry.name)}${query}">${escapeHtml(`${member.role}: ${entry.name}${formLabel}`)}</a></li>`;
+              const combatProfile = [...(form?.elements || []), ...(form?.positions || [])].join(' · ');
+              return `<li><strong>${escapeHtml(member.role)}</strong> — <a href="/gallery/aniimo/character/${encodeURIComponent(entry.name)}${query}">${escapeHtml(`${entry.name}${formLabel}`)}</a>${combatProfile ? ` <small>(${escapeHtml(combatProfile)})</small>` : ''}</li>`;
             }).join('');
-            return `<section><h3>${escapeHtml(party.name)} (${escapeHtml(party.category)})</h3><p>${escapeHtml(party.description)}</p><ul>${membersHtml}</ul></section>`;
+            const tags = Array.isArray(party.tags) && party.tags.length > 0 ? `<p><strong>추천 대상:</strong> ${escapeHtml(party.tags.join(' · '))}</p>` : '';
+            return `<section><h3>${escapeHtml(party.name)} (${escapeHtml(party.category)})</h3><p>${escapeHtml(party.description)}</p>${tags}<h4>조합원과 역할</h4><ul>${membersHtml}</ul></section>`;
           }).join('');
           partyListHtml = `<h2>추천 파티 목록</h2>${partiesHtml}`;
         }
       } catch (e) {}
       meta.title = '애니모 파티 추천 | 역할별 추천 조합';
       meta.description = '애니모의 역할과 형태별 능력, 원소 구성을 반영한 추천 파티와 운용 특징, 핵심 조합 및 대체 애니모를 확인하세요.';
-      meta.content = `<article><p><a href="/gallery/aniimo">애니모 허브</a></p><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p>${partyListHtml || '<h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p>'}<h2>파티를 확인하는 순서</h2><p>메인 딜러를 먼저 정하고 무력화, 치유와 에너지 재생처럼 부족한 역할을 채웁니다. 같은 이름의 애니모도 형태에 따라 원소·포지션·특성·스킬이 달라질 수 있으므로 카드에 표시된 형태까지 일치하는지 확인하세요.</p><p>대체 멤버를 선택할 때는 종합 능력치만 비교하지 말고 원소 상성, 스킬 발동 조건과 파티에서 맡을 역할을 함께 확인합니다.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a> · <a href="/gallery/aniimo/type-chart">원소 상성표 확인</a></p></article>`;
+      meta.content = `<article><p><a href="/gallery/aniimo">애니모 허브</a></p><h1>애니모 파티 추천</h1><p>${escapeHtml(meta.description)}</p>${partySummaryHtml}${partyListHtml || '<h2>추천 조합 확인</h2><p>관리자가 검토한 4인 추천 조합을 분류별로 확인하고, 각 애니모의 형태별 능력과 스킬 상세 페이지로 이동할 수 있습니다.</p>'}<h2>파티를 확인하는 순서</h2><ol><li>메인 딜러를 먼저 정하고 주력 원소와 공격 방식을 확인합니다.</li><li>무력화 담당으로 공격 기회를 만들고 치유 담당으로 전투를 안정화합니다.</li><li>에너지 재생이나 지원 역할을 추가해 주력 스킬의 사용 주기를 보완합니다.</li><li>상대 원소에 저항받는 조합이면 같은 역할의 다른 원소 애니모를 비교합니다.</li></ol><p>같은 이름의 애니모도 형태에 따라 원소·포지션·특성·스킬이 달라질 수 있으므로 카드에 표시된 형태까지 일치하는지 확인하세요. 대체 멤버를 선택할 때는 종합 능력치만 비교하지 말고 원소 상성, 스킬 발동 조건과 파티에서 맡을 역할을 함께 확인합니다.</p><h2>교체할 때 유지할 기준</h2><p>메인 딜러를 바꾸면 파티의 주력 원소와 지원 효과도 함께 다시 확인해야 합니다. 치유와 에너지 재생을 동시에 제외하면 장기전 안정성이 낮아질 수 있고, 무력화 담당이 빠지면 강한 스킬을 넣을 공격 구간이 줄어들 수 있습니다.</p><p><a href="/gallery/aniimo/characters">애니모 도감에서 형태 확인</a> · <a href="/gallery/aniimo/type-chart">원소 상성표 확인</a> · <a href="/gallery/aniimo/personality">성격 선택 기준 확인</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const rawLocation = locationSlug.replace(/-/g, ' ').trim();
