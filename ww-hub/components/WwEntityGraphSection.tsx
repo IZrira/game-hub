@@ -46,7 +46,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
       const rank = typeof w === 'object' ? w.rank : undefined;
       const note = typeof w === 'object' ? w.note : undefined;
       const weaponData = (WEAPON_DB as any[])?.find(dbW => dbW.name === name);
-      const imageUrl = `${CDN_URL}/ww%20images/weapon/${safeEncodeURIComponent(name)}.webp`;
+      const imageUrl = `${CDN_URL}/ww%20images/Weapons/${safeEncodeURIComponent(name)}.webp`;
 
       return {
         name,
