@@ -2707,9 +2707,19 @@ function runPrerender() {
     const gameGuides = guideArticles.filter(article => article.gameId === gameId);
     const gameLabel = guideGameLabels[gameId] || gameId;
     const landing = guideLanding[gameId];
-    const listHtml = gameGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a><p>${escapeHtml(article.excerpt)}</p></li>`).join('');
+    const latestReviewedAt = gameGuides.map(article => article.reviewedAt || article.publishedAt).filter(Boolean).sort().at(-1) || '확인 중';
+    const listHtml = gameGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a><p>${escapeHtml(article.excerpt)}</p><p><small>검수일 ${escapeHtml(article.reviewedAt || article.publishedAt || '확인 중')}</small></p></li>`).join('');
     const criteriaHtml = landing
       ? `<section><h2>${escapeHtml(gameLabel)} 공략을 읽는 기준</h2><p>${escapeHtml(landing.intro)}</p><ol>${landing.criteria.map(criterion => `<li>${escapeHtml(criterion)}</li>`).join('')}</ol></section>`
+      : '';
+    const guideNavigation = {
+      hsr: [['캐릭터·광추·유물 도감', '/gallery/hsr'], ['혼돈·허구 티어표', '/gallery/hsr/tierlist'], ['추천 파티 조합', '/gallery/hsr/parties'], ['전투 용어집', '/gallery/hsr/terminology']],
+      ww: [['공명자·무기·에코 도감', '/gallery/ww'], ['심경의 탑 티어표', '/gallery/ww/tierlist'], ['추천 파티 조합', '/gallery/ww/parties']],
+      nte: [['캐릭터·아크 도감', '/gallery/nte'], ['추천 파티 조합', '/gallery/nte/parties']],
+      aniimo: [['형태별 애니모 도감', '/gallery/aniimo/characters'], ['원소 상성표', '/gallery/aniimo/type-chart'], ['성격 선택 가이드', '/gallery/aniimo/personality'], ['추천 파티 조합', '/gallery/aniimo/party-builder']]
+    }[gameId] || [];
+    const navigationHtml = guideNavigation.length > 0
+      ? `<section><h2>공략과 함께 확인할 데이터</h2><ul>${guideNavigation.map(([label, href]) => `<li><a href="${href}">${escapeHtml(label)}</a></li>`).join('')}</ul><p>공략에서 제시하는 선택 기준을 확인한 뒤, 도감의 실제 수치와 현재 보유 캐릭터·장비를 대조하세요. 적용 버전이나 검수일보다 게임 업데이트가 최신이라면 변경된 수치를 먼저 확인해야 합니다.</p></section>`
       : '';
     createPrerenderedPage(
       `/gallery/${gameId}/guides`,
@@ -2717,7 +2727,7 @@ function runPrerender() {
       `${gameLabel}의 공식 정보와 Rira 분석을 구분하고 적용 버전과 검수일을 표시한 캐릭터 육성, 전투 및 시스템 공략을 확인하세요.`,
       `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
-      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>적용 기준일과 검수 상태를 확인한 글만 공개합니다.</p><ul>${listHtml}</ul>${criteriaHtml}</article>`
+      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>공식 수치와 사이트 내 데이터를 대조하고 적용 기준일과 검수 상태를 확인한 글만 공개합니다.</p><dl><dt>공개 공략</dt><dd>${gameGuides.length}편</dd><dt>최근 검수일</dt><dd>${escapeHtml(latestReviewedAt)}</dd></dl><h2>검수 완료된 공략</h2><ul>${listHtml}</ul>${criteriaHtml}${navigationHtml}</article>`
     );
     count++;
   });
