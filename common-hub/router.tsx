@@ -1,8 +1,9 @@
-import React, { Suspense } from 'react';
-import { createBrowserRouter, Outlet, ScrollRestoration, useParams } from 'react-router';
+import React, { Suspense, useEffect, useState } from 'react';
+import { createBrowserRouter, Outlet, ScrollRestoration, useLocation, useParams } from 'react-router';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';
+import i18n, { getGameLanguageScope, loadGameLanguageResources, SupportedLanguage } from './i18n';
 
 // 1. 페이지 지연 로딩 (Lazy Loading)
 const Home = React.lazy(() => import('./pages/Home'));
@@ -98,6 +99,32 @@ const PageFallback = () => (
   </div>
 );
 
+const RouteLanguageGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const location = useLocation();
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    let isActive = true;
+    setIsReady(false);
+
+    const language = (i18n.language || 'ko') as SupportedLanguage;
+    const scope = getGameLanguageScope(location.pathname);
+    void loadGameLanguageResources(language, scope)
+      .catch((error) => {
+        console.error('Failed to load route translations:', error);
+      })
+      .finally(() => {
+        if (isActive) setIsReady(true);
+      });
+
+    return () => {
+      isActive = false;
+    };
+  }, [location.pathname]);
+
+  return isReady ? <>{children}</> : <PageFallback />;
+};
+
 // 2. 공통 레이아웃 래퍼 컴포넌트
 const RootLayout = () => {
   return (
@@ -110,9 +137,11 @@ const RootLayout = () => {
         }} 
       />
       <Layout>
-        <Suspense fallback={<PageFallback />}>
-          <Outlet /> {/* 자식 라우트들이 이 자리에 렌더링됩니다 */}
-        </Suspense>
+        <RouteLanguageGate>
+          <Suspense fallback={<PageFallback />}>
+            <Outlet /> {/* 자식 라우트들이 이 자리에 렌더링됩니다 */}
+          </Suspense>
+        </RouteLanguageGate>
       </Layout>
     </ErrorBoundary>
   );

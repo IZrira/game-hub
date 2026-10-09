@@ -13,6 +13,7 @@ type TranslationModule = {
 } & Record<string, unknown>;
 
 type TranslationLoader = () => Promise<TranslationModule>;
+type GameLanguageScope = 'hsr' | 'ww';
 
 const baseTranslationLoaders: Record<SupportedLanguage, TranslationLoader> = {
   ko: () => import('./ko.json'),
@@ -26,10 +27,17 @@ const gameTranslationLoaders: Record<SupportedLanguage, Record<string, Translati
   ja: import.meta.glob<TranslationModule>('./**/*_ja.json'),
 };
 
-const languageLoadPromises = new Map<SupportedLanguage, Promise<void>>();
+const baseLanguageLoadPromises = new Map<SupportedLanguage, Promise<void>>();
+const gameLanguageLoadPromises = new Map<string, Promise<void>>();
 
 const isSupportedLanguage = (value: string | null): value is SupportedLanguage =>
   value === 'ko' || value === 'en' || value === 'ja';
+
+export const getGameLanguageScope = (pathname?: string): GameLanguageScope | null => {
+  const currentPath = pathname ?? (typeof window === 'undefined' ? '' : window.location.pathname);
+  const gameId = currentPath.match(/^\/gallery\/(hsr|ww)(?:\/|$)/)?.[1];
+  return gameId === 'hsr' || gameId === 'ww' ? gameId : null;
+};
 
 export const getInitialLanguage = (): SupportedLanguage => {
   if (typeof window === 'undefined') return 'ko';
@@ -54,37 +62,67 @@ const i18nReady = i18n
     },
   });
 
-/** 선택한 언어의 번역만 한 번 불러와 i18next에 등록합니다. */
-export const loadLanguageResources = (language: SupportedLanguage): Promise<void> => {
-  const cachedPromise = languageLoadPromises.get(language);
+/** 선택한 언어의 공통 번역만 한 번 불러와 i18next에 등록합니다. */
+const loadBaseLanguageResources = (language: SupportedLanguage): Promise<void> => {
+  const cachedPromise = baseLanguageLoadPromises.get(language);
   if (cachedPromise) return cachedPromise;
 
   const loadPromise = (async () => {
     await i18nReady;
+    const baseModule = await baseTranslationLoaders[language]();
+    i18n.addResourceBundle(language, 'translation', baseModule.default || baseModule, true, true);
+  })().catch((error) => {
+    baseLanguageLoadPromises.delete(language);
+    throw error;
+  });
 
-    const gameLoaders = Object.values(gameTranslationLoaders[language]);
-    const [baseModule, ...gameModules] = await Promise.all([
-      baseTranslationLoaders[language](),
-      ...gameLoaders.map((loader) => loader()),
-    ]);
+  baseLanguageLoadPromises.set(language, loadPromise);
+  return loadPromise;
+};
 
-    const mergedTranslation = [baseModule, ...gameModules].reduce<Record<string, unknown>>(
+/** 현재 게임에 필요한 번역 팩만 지연 로딩합니다. */
+export const loadGameLanguageResources = async (
+  language: SupportedLanguage,
+  scope: GameLanguageScope | null,
+): Promise<void> => {
+  await loadBaseLanguageResources(language);
+  if (!scope) return;
+
+  const cacheKey = `${language}:${scope}`;
+  const cachedPromise = gameLanguageLoadPromises.get(cacheKey);
+  if (cachedPromise) return cachedPromise;
+
+  const loadPromise = (async () => {
+    const scopedLoaders = Object.entries(gameTranslationLoaders[language])
+      .filter(([path]) => path.includes(`/locales/${scope}/`))
+      .map(([, loader]) => loader);
+
+    const gameModules = await Promise.all(scopedLoaders.map((loader) => loader()));
+    const mergedTranslation = gameModules.reduce<Record<string, unknown>>(
       (combined, module) => ({ ...combined, ...(module.default || module) }),
       {},
     );
 
-    i18n.addResourceBundle(language, 'translation', mergedTranslation, true, true);
+    if (gameModules.length > 0) {
+      i18n.addResourceBundle(language, 'translation', mergedTranslation, true, true);
+    }
   })().catch((error) => {
-    languageLoadPromises.delete(language);
+    gameLanguageLoadPromises.delete(cacheKey);
     throw error;
   });
 
-  languageLoadPromises.set(language, loadPromise);
+  gameLanguageLoadPromises.set(cacheKey, loadPromise);
   return loadPromise;
 };
 
+/** 선택한 언어와 현재 게임 범위에 필요한 번역만 불러옵니다. */
+export const loadLanguageResources = (
+  language: SupportedLanguage,
+  scope: GameLanguageScope | null = getGameLanguageScope(),
+): Promise<void> => loadGameLanguageResources(language, scope);
+
 export const changeAppLanguage = async (language: SupportedLanguage): Promise<void> => {
-  await loadLanguageResources(language);
+  await loadLanguageResources(language, getGameLanguageScope());
   await i18n.changeLanguage(language);
 };
 
