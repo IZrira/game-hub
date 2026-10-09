@@ -9,6 +9,7 @@ const projectRoot = path.resolve(scriptDir, '..');
 const notionPath = path.join(projectRoot, 'common-hub', 'data', 'notion-data.json');
 const outputPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'notion-search.json');
 const homeStatsPath = path.join(projectRoot, 'common-hub', 'data', 'search', 'home-stats.json');
+const guideArticlesPath = path.join(projectRoot, 'common-hub', 'data', 'guideArticles.json');
 const hsrCharacterSummaryPath = path.join(projectRoot, 'hsr-hub', 'data', 'generated', 'character-summary.json');
 const hsrGallerySummaryPath = path.join(projectRoot, 'hsr-hub', 'data', 'generated', 'gallery-summary.json');
 const wwWeaponsPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'weapons.json');
@@ -26,6 +27,8 @@ const wwEchoesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'echo
 const wwInventoryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'inventory.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
 const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
+const guideArticles = JSON.parse(fs.readFileSync(guideArticlesPath, 'utf8'));
+const publishedNteGuideCount = guideArticles.filter(article => article.gameId === 'nte' && article.status === 'published').length;
 
 const readSourceFiles = directory => fs.readdirSync(directory, { withFileTypes: true }).flatMap(entry => {
   const target = path.join(directory, entry.name);
@@ -430,13 +433,13 @@ const homeStats = {
   global: {
     games: 4,
     characters: hsrCharacters.length + searchData.wwCharacters.length + searchData.nteCharacters.length + aniimoData.length,
-    guides: hsrGuides.length + wwGuideDisplayCount + 5,
+    guides: hsrGuides.length + wwGuideDisplayCount + publishedNteGuideCount + 5,
     items: 2098
   },
   games: {
     hsr: { characters: hsrCharacters.length, guides: hsrGuides.length },
     ww: { characters: searchData.wwCharacters.length, guides: wwGuideDisplayCount },
-    nte: { characters: searchData.nteCharacters.length, guides: 0 },
+    nte: { characters: searchData.nteCharacters.length, guides: publishedNteGuideCount },
     aniimo: { characters: aniimoData.length, guides: 5 }
   }
 };

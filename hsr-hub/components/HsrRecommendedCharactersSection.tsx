@@ -3,9 +3,7 @@ import { Link } from 'react-router';
 import { Users, ChevronRight, Sparkles } from 'lucide-react';
 import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import { CHARACTER_DB } from '../../common-hub/data/games';
-import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
-
-const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+import { getHsrCharacterArtUrl, handleImageFallback } from '../../common-hub/utils/assetManager';
 
 interface HsrRecommendedCharactersSectionProps {
   itemType: 'lightcone' | 'relic' | 'ornament';
@@ -115,7 +113,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {characters.map(char => {
           const folder = char.folderName || char.name;
-          const imageUrl = `${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/${safeEncodeURIComponent(folder)}/art01.webp`;
+          const imageUrl = getHsrCharacterArtUrl(folder);
 
           return (
             <Link
@@ -130,9 +128,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
                   loading="lazy"
                   referrerPolicy="no-referrer"
                   className="h-full w-full object-contain"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLElement).style.display = 'none';
-                  }}
+                  onError={handleImageFallback}
                 />
               </div>
 

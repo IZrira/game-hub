@@ -26,6 +26,15 @@ export const safeEncodeURIComponent = (str: string): string => {
 };
 
 /**
+ * HSR 캐릭터 대표 이미지 경로를 항상 동일한 인코딩 규칙으로 생성합니다.
+ * 한글 경로를 브라우저의 암묵적 인코딩에 맡기지 않아 CDN별 해석 차이를 줄입니다.
+ */
+export const getHsrCharacterArtUrl = (folderName: string, isTrailblazer = false): string => {
+  const fileName = isTrailblazer ? 'art01-01.webp' : 'art01.webp';
+  return `${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/${safeEncodeURIComponent(folderName)}/${fileName}`;
+};
+
+/**
  * 방랑자(Rover) 이름 및 속성 표준화 및 이미지 경로 생성 유틸리티
  * '방랑자 (회절)', '방랑자 (기류)', '방랑자 (인멸)', '방랑자 (전도)' 등 다양한 형태 지원
  */

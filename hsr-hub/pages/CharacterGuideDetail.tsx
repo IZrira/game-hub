@@ -30,6 +30,7 @@ import TableOfContents from '../../common-hub/components/TableOfContents';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
+import { getHsrCharacterArtUrl, handleImageFallback } from '../../common-hub/utils/assetManager';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
@@ -171,7 +172,7 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 relative">
         {party.members.map((member: any, idx: number) => {
           const memberChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(member.name)) || normalizeName(c.folderName) === normalizeName(t(member.name)));
-          const memberImg = memberChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(memberChar.folderName.normalize('NFC'))}/art01.webp` : '';
+          const memberImg = memberChar ? getHsrCharacterArtUrl(memberChar.folderName, memberChar.isTrailblazer) : '';
           
           return (
             <div 
@@ -181,7 +182,7 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
               <div className="relative w-24 h-24 sm:w-28 sm:h-28">
                  <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/20 to-transparent rounded-full blur-2xl opacity-0 group-hover/member:opacity-40 transition-opacity" />
                  <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-primary/50 transition-all duration-500 p-1 bg-black/40 shadow-2xl">
-                    <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full scale-110 group-hover/member:scale-125 transition-transform duration-700" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                    <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full scale-110 group-hover/member:scale-125 transition-transform duration-700" onError={handleImageFallback} />
                  </div>
                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-[9px] font-black text-brand-accent uppercase tracking-widest whitespace-nowrap z-10">
                    {t(member.role)}
@@ -204,12 +205,12 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
                   <div className="flex flex-wrap items-center justify-center gap-2">
                     {member.substitutes.map((sub: any, sIdx: number) => {
                       const subChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(sub.name)) || normalizeName(c.folderName) === normalizeName(t(sub.name)));
-                      const subImg = subChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(subChar.folderName.normalize('NFC'))}/${sub.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}` : '';
+                      const subImg = subChar ? getHsrCharacterArtUrl(subChar.folderName, subChar.isTrailblazer || sub.isTrailblazer) : '';
                       return (
                         <div key={sIdx} className="flex flex-col items-center gap-1 group/sub">
                           <div className="w-11 h-11 rounded-2xl border border-white/10 overflow-hidden bg-black/40 p-0.5 group-hover/sub:border-brand-accent/50 transition-all shadow-md">
                             {subImg ? (
-                              <img src={subImg} alt={sub.name} className="w-full h-full object-cover rounded-xl group-hover/sub:scale-110 transition-transform" onError={(e) => { e.currentTarget.style.opacity = '0.3'; }} />
+                              <img src={subImg} alt={sub.name} className="w-full h-full object-cover rounded-xl group-hover/sub:scale-110 transition-transform" onError={handleImageFallback} />
                             ) : (
                               <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-500 font-bold">{sub.name?.[0]}</div>
                             )}
@@ -1132,7 +1133,7 @@ const CharacterGuideDetail: React.FC = () => {
                 <div className="flex flex-wrap gap-8">
                   {synergyCharacters.map((member, idx) => {
                     const memberChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(member.name)) || normalizeName(c.folderName) === normalizeName(t(member.name)));
-                    const memberImg = memberChar ? `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(memberChar.folderName.normalize('NFC'))}/${memberChar.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}` : '';
+                    const memberImg = memberChar ? getHsrCharacterArtUrl(memberChar.folderName, memberChar.isTrailblazer) : '';
                     
                     return (
                       <Link 
@@ -1143,7 +1144,7 @@ const CharacterGuideDetail: React.FC = () => {
                         <div className="relative w-20 h-20 md:w-24 md:h-24">
                            <div className="absolute inset-0 bg-brand-primary/20 rounded-full blur-xl opacity-0 group-hover/member:opacity-100 transition-opacity" />
                            <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-accent transition-all duration-300 p-1 bg-black/40 shadow-xl">
-                              <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full group-hover/member:scale-110 transition-transform duration-500" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                              <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full group-hover/member:scale-110 transition-transform duration-500" onError={handleImageFallback} />
                            </div>
                         </div>
                         <div className="text-center space-y-1">
