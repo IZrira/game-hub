@@ -1,6 +1,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '../lib/supabase';
+import type { User, Session, Subscription } from '@supabase/supabase-js';
+
+const loadSupabaseClient = async () => {
+  const { supabase } = await import('../lib/supabase');
+  return supabase;
+};
+
+export const shouldInitializeAuth = (
+  location: Pick<Location, 'hash' | 'search'>,
+  storageKeys: string[]
+): boolean => {
+  const hasOAuthCallback = location.hash.includes('access_token=')
+    || new URLSearchParams(location.search).has('code');
+  const hasPersistedSession = storageKeys.some(key => /^sb-.+-auth-token$/.test(key));
+  return hasOAuthCallback || hasPersistedSession;
+};
 
 export interface AuthContextType {
   user: User | null;
@@ -25,13 +39,36 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const closeLoginModal = () => setIsLoginModalOpen(false);
 
   useEffect(() => {
-    if (!supabase) {
+    const storageKeys = Object.keys(window.localStorage);
+    if (!shouldInitializeAuth(window.location, storageKeys)) {
       setLoading(false);
       return;
     }
 
+    let subscription: Subscription | undefined;
+    let cancelled = false;
+
     const initializeAuth = async () => {
       try {
+        const supabase = await loadSupabaseClient();
+        if (!supabase || cancelled) {
+          setLoading(false);
+          return;
+        }
+
+        const authSubscription = supabase.auth.onAuthStateChange((event, currentSession) => {
+          if (cancelled) return;
+          setSession(currentSession);
+          setUser(currentSession?.user ?? null);
+
+          if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
+            if (window.location.hash) {
+              window.history.replaceState(null, '', window.location.pathname + window.location.search);
+            }
+          }
+        });
+        subscription = authSubscription.data.subscription;
+
         // If the URL has corrupted double hashes like ##access_token, normalize it
         if (window.location.hash.startsWith('##')) {
           const cleanHash = window.location.hash.replace(/^#+/, '#');
@@ -79,29 +116,20 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       } catch (err) {
         console.warn('Auth initialization error:', err);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
-    initializeAuth();
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, currentSession) => {
-      setSession(currentSession);
-      setUser(currentSession?.user ?? null);
-
-      if (event === 'SIGNED_IN' || event === 'USER_UPDATED') {
-        if (window.location.hash) {
-          window.history.replaceState(null, '', window.location.pathname + window.location.search);
-        }
-      }
-    });
+    void initializeAuth();
 
     return () => {
-      subscription.unsubscribe();
+      cancelled = true;
+      subscription?.unsubscribe();
     };
   }, []);
 
   const signInWithProvider = async (provider: 'google' | 'discord') => {
+    const supabase = await loadSupabaseClient();
     if (!supabase) {
       console.warn('Supabase is not initialized. Social login disabled in mock mode.');
       return;
@@ -120,6 +148,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signOut = async () => {
+    const supabase = await loadSupabaseClient();
     if (!supabase) {
       setUser(null);
       setSession(null);
