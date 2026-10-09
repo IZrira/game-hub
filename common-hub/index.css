@@ -1,6 +1,14 @@
 
-@import "tailwindcss";
+@import "tailwindcss" source(none);
 @plugin "@tailwindcss/typography";
+
+/* UI 소스만 스캔해 문서·백업·빌드 산출물의 문자열이 CSS로 생성되지 않게 합니다. */
+@source "../index.html";
+@source "./**/*.{ts,tsx}";
+@source "../hsr-hub/**/*.{ts,tsx}";
+@source "../ww-hub/**/*.{ts,tsx}";
+@source "../nte-hub/**/*.{ts,tsx}";
+@source "../aniimo-hub/**/*.{ts,tsx}";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
