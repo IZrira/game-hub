@@ -31,6 +31,17 @@ export default defineConfig(({ mode }) => {
             manualChunks(id) {
               const normalizedId = id.replace(/\\/g, '/');
               if (
+                normalizedId.includes('/node_modules/react/') ||
+                normalizedId.includes('/node_modules/react-dom/') ||
+                normalizedId.includes('/node_modules/react-router/') ||
+                normalizedId.includes('/node_modules/scheduler/') ||
+                normalizedId.includes('/node_modules/i18next/') ||
+                normalizedId.includes('/node_modules/react-i18next/') ||
+                normalizedId.includes('/node_modules/react-helmet-async/')
+              ) {
+                return 'vendor-core';
+              }
+              if (
                 normalizedId.includes('/hsr-hub/data/characters/hsr/') ||
                 normalizedId.endsWith('/hsr-hub/data/characters.ts')
               ) {
