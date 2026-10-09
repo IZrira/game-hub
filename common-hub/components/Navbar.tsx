@@ -4,9 +4,10 @@ import { Gamepad2, Globe, Download, LogOut, User as UserIcon, ShieldCheck, Menu,
 import { useTranslation } from 'react-i18next';
 import { isAdmin } from '../lib/admin';
 import { useAuth } from '../context/AuthContext';
-import LoginModal from './LoginModal';
 import GlobalSearch from './GlobalSearch';
 import { changeAppLanguage } from '../i18n';
+
+const LoginModal = React.lazy(() => import('./LoginModal'));
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -14,7 +15,7 @@ const Navbar: React.FC = () => {
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const location = useLocation();
   const { t, i18n } = useTranslation();
-  const { user, signOut, openLoginModal } = useAuth();
+  const { user, signOut, openLoginModal, isLoginModalOpen } = useAuth();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -243,8 +244,12 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       )}
-      {/* Login Modal */}
-      <LoginModal />
+      {/* 로그인할 때만 애니메이션 라이브러리와 모달 코드를 불러옵니다. */}
+      {isLoginModalOpen && (
+        <React.Suspense fallback={null}>
+          <LoginModal />
+        </React.Suspense>
+      )}
     </nav>
   );
 };
