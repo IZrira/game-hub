@@ -18,10 +18,7 @@ import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
-import { WW_GALLERY_CHARACTERS, WW_INVENTORY_COUNT } from '../data/galleryData';
-import { WW_WEAPON_DATA } from '../data/weaponData';
-import { WW_ECHO_DATA } from '../data/echoData';
-import { WW_GUIDE_DATA } from '../data/guideData';
+import { WW_ECHO_COUNT, WW_GALLERY_CHARACTERS, WW_INVENTORY_COUNT, WW_WEAPON_COUNT } from '../data/galleryData';
 // import removed
 
 const WuwaInventoryGallery = React.lazy(() => import('../components/WuwaInventoryGallery'));
@@ -43,6 +40,9 @@ const GalleryWW: React.FC = () => {
   const [secondFilter, setSecondFilter] = useState(() => searchParams.get('weapon') || '전체');
   const [rarityFilter, setRarityFilter] = useState(() => searchParams.get('rarity') || '전체');
   const [categoryFilter, setCategoryFilter] = useState(() => searchParams.get('category') || '전체');
+  const [weaponDb, setWeaponDb] = useState<any[]>([]);
+  const [guideDb, setGuideDb] = useState<any[]>([]);
+  const [archiveDataLoading, setArchiveDataLoading] = useState(false);
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
 
@@ -103,11 +103,38 @@ const GalleryWW: React.FC = () => {
   };
 
   const CHARACTER_DB = WW_GALLERY_CHARACTERS;
-  const WEAPON_DB = WW_WEAPON_DATA;
-  const ECHO_DB = WW_ECHO_DATA;
-  const WW_CHARACTER_GUIDES = WW_GUIDE_DATA;
+  const WEAPON_DB = weaponDb;
+  const WW_CHARACTER_GUIDES = guideDb;
   const WW_INVENTORY = {};
-  
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadArchiveData = async () => {
+      if (activeMenu === '무기' && weaponDb.length === 0) {
+        setArchiveDataLoading(true);
+        try {
+          const module = await import('../data/weaponData');
+          if (!cancelled) setWeaponDb(module.WW_WEAPON_DATA);
+        } finally {
+          if (!cancelled) setArchiveDataLoading(false);
+        }
+      }
+
+      if (activeMenu === '공략' && guideDb.length === 0) {
+        setArchiveDataLoading(true);
+        try {
+          const module = await import('../data/guideData');
+          if (!cancelled) setGuideDb(module.WW_GUIDE_DATA);
+        } finally {
+          if (!cancelled) setArchiveDataLoading(false);
+        }
+      }
+    };
+
+    void loadArchiveData();
+    return () => { cancelled = true; };
+  }, [activeMenu, weaponDb.length, guideDb.length]);
 
 
   const game = useMemo(() => {
@@ -116,7 +143,7 @@ const GalleryWW: React.FC = () => {
 
   const { filteredCharacters, filteredLightCones, filteredItems, filterOptions } = useGalleryFilter(
     gameId, debouncedSearchQuery, attrFilter, secondFilter, rarityFilter,
-    CHARACTER_DB, [], WEAPON_DB, ECHO_DB, [], WW_INVENTORY, categoryFilter
+    CHARACTER_DB, [], WEAPON_DB, [], [], WW_INVENTORY, categoryFilter
   );
 
   if (!game) return null;
@@ -193,8 +220,8 @@ const GalleryWW: React.FC = () => {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
-                  { label: "무기", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" },
-                  { label: "에코", count: ECHO_DB?.length || 0, icon: <Shield size={14} />, color: "text-emerald-400" },
+                  { label: "무기", count: WW_WEAPON_COUNT, icon: <Zap size={14} />, color: "text-yellow-400" },
+                  { label: "에코", count: WW_ECHO_COUNT, icon: <Shield size={14} />, color: "text-emerald-400" },
                   { label: "인벤토리", count: WW_INVENTORY_COUNT, icon: <Backpack size={14} />, color: "text-brand-accent" },
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1 group hover:bg-white/[0.04] transition-all">
@@ -236,7 +263,7 @@ const GalleryWW: React.FC = () => {
                       path: '/gallery/ww?menu=무기',
                       action: () => handleSetActiveMenu('무기'),
                       icon: Zap,
-                      stat: `${WEAPON_DB?.length || 0}${t('개')}`,
+                      stat: `${WW_WEAPON_COUNT}${t('개')}`,
                       color: 'text-yellow-400'
                     },
                     {
@@ -245,7 +272,7 @@ const GalleryWW: React.FC = () => {
                       path: '/gallery/ww?menu=에코',
                       action: () => handleSetActiveMenu('에코'),
                       icon: Shield,
-                      stat: `${ECHO_DB?.length || 0}${t('종')}`,
+                      stat: `${WW_ECHO_COUNT}${t('종')}`,
                       color: 'text-emerald-400'
                     },
                     {
@@ -355,7 +382,9 @@ const GalleryWW: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
+              {archiveDataLoading && WEAPON_DB.length === 0 ? (
+                <div className="py-32 text-center text-sm font-bold text-gray-400">{t('무기 데이터를 불러오는 중입니다.')}</div>
+              ) : <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
                 {filteredLightCones.map((lc: any) => (
                   <WuwaWeaponCard 
                     key={lc.id} 
@@ -363,7 +392,7 @@ const GalleryWW: React.FC = () => {
                     to={`/gallery/ww/weapon/${encodeURIComponent(lc.name)}`}
                   />
                 ))}
-              </div>
+              </div>}
             </div>
           ) : activeMenu === "인벤토리" ? (
             <React.Suspense fallback={<div className="py-32 text-center text-xs font-black uppercase tracking-[0.3em] text-gray-400">Loading Archive...</div>}>
@@ -382,7 +411,9 @@ const GalleryWW: React.FC = () => {
                   <input type="text" placeholder={t('공명자 명칭...')} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {archiveDataLoading && WW_CHARACTER_GUIDES.length === 0 ? (
+                <div className="py-32 text-center text-sm font-bold text-gray-400">{t('공략 데이터를 불러오는 중입니다.')}</div>
+              ) : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {(() => {
                   const seenCharIds = new Set<string>();
                   const normalizeGuideName = (name: string) => {
@@ -451,7 +482,7 @@ const GalleryWW: React.FC = () => {
                     <GuidePremiumCard key={`${item.char.id}-${idx}`} char={item.char} guide={item.guide} />
                   ));
                 })()}
-              </div>
+              </div>}
             </div>
           ) : null}
         </main>

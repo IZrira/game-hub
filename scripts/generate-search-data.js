@@ -494,7 +494,9 @@ const wwGalleryData = {
     releaseVersion: character.releaseVersion,
     isRover: character.isRover
   })),
-  inventoryCount: Object.keys(wwData.WW_INVENTORY || {}).length
+  inventoryCount: Object.keys(wwData.WW_INVENTORY || {}).length,
+  weaponCount: (wwData.WEAPON_DB || []).length,
+  echoCount: (wwData.ECHO_DB || []).length
 };
 fs.writeFileSync(wwGalleryPath, `${JSON.stringify(wwGalleryData, null, 2)}\n`, 'utf8');
 const wwRecommendationData = {
