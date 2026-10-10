@@ -6,6 +6,7 @@ import SEO from '../components/SEO';
 import { useTranslation } from 'react-i18next';
 import { NoticeListView, useNoticeBadge } from '../components/NoticeComponents';
 import { Notice } from '../data/types';
+import { GLOBAL_NOTICES } from '../data/notices';
 import AdPlaceholder from '../components/AdPlaceholder';
 import {
   ChevronRight,
@@ -25,15 +26,34 @@ export const DEFAULT_GAME_BANNERS = {
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
-  const [globalNotices, setGlobalNotices] = React.useState<Notice[]>([]);
+  const [globalNotices, setGlobalNotices] = React.useState<Notice[]>(GLOBAL_NOTICES);
   const navigate = useNavigate();
   const [dailyHubTab, setDailyHubTab] = React.useState<'patch_notes' | 'notices'>('patch_notes');
   const { markAsRead } = useNoticeBadge();
 
   React.useEffect(() => {
-    import('../data/notices').then(({ fetchNotices }) => {
-      fetchNotices().then(setGlobalNotices);
-    });
+    let isActive = true;
+    const refreshNotices = () => {
+      import('../data/notices').then(({ fetchNotices }) => {
+        fetchNotices().then((notices) => {
+          if (isActive) setGlobalNotices(notices);
+        });
+      });
+    };
+
+    if ('requestIdleCallback' in window) {
+      const idleId = window.requestIdleCallback(refreshNotices, { timeout: 3000 });
+      return () => {
+        isActive = false;
+        window.cancelIdleCallback(idleId);
+      };
+    }
+
+    const timer = setTimeout(refreshNotices, 1500);
+    return () => {
+      isActive = false;
+      clearTimeout(timer);
+    };
   }, []);
 
   const gameStats = homeStatsData.games as Record<string, { characters: number; guides: number }>;

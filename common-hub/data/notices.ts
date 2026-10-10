@@ -1,5 +1,4 @@
 import { Notice } from './types';
-import { supabase } from '../lib/supabase';
 
 // 정적 공지사항 데이터 (DB 연동 실패 시 폴백 및 사이드바 뱃지용으로 사용)
 export const GLOBAL_NOTICES: Notice[] = [
@@ -52,6 +51,7 @@ export const GLOBAL_NOTICES: Notice[] = [
  */
 export async function fetchNotices(gameId?: 'hsr' | 'ww'): Promise<Notice[]> {
   try {
+    const { supabase } = await import('../lib/supabase');
     let query = supabase.from('notices').select('*').order('created_at', { ascending: false });
     
     if (gameId) {
