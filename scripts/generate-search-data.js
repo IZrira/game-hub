@@ -17,6 +17,7 @@ const nteArcsPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'arcs
 const notionItemsPath = path.join(projectRoot, 'common-hub', 'data', 'generated', 'notion-items.json');
 const nteCharactersPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'characters.json');
 const nteCharacterSummaryPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'character-summary.json');
+const nteGallerySummaryPath = path.join(projectRoot, 'nte-hub', 'data', 'generated', 'gallery-summary.json');
 const wwGuideCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guide-characters.json');
 const wwGuidesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'guides.json');
 const wwCharactersPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'characters.json');
@@ -260,6 +261,31 @@ const buildWwData = async () => {
   return (await import(moduleUrl)).default;
 };
 
+const buildNteGallerySummary = async () => {
+  const result = await build({
+    absWorkingDir: projectRoot,
+    stdin: {
+      contents: `
+        import { NTE_ARC_DATA } from './nte-hub/data/arcData.ts';
+        import { getItemMetaDB } from './common-hub/data/items.ts';
+        const inventoryCount = Object.values(getItemMetaDB()).filter(item => item.gameId === 'nte').length;
+        export default { arcCount: NTE_ARC_DATA.length, inventoryCount };
+      `,
+      resolveDir: projectRoot,
+      sourcefile: 'generate-nte-gallery-summary.ts',
+      loader: 'ts'
+    },
+    bundle: true,
+    platform: 'node',
+    format: 'esm',
+    write: false,
+    logLevel: 'silent'
+  });
+  const bundledSource = result.outputFiles[0].text;
+  const moduleUrl = `data:text/javascript;base64,${Buffer.from(bundledSource).toString('base64')}`;
+  return (await import(moduleUrl)).default;
+};
+
 const buildHsrGallerySummary = async () => {
   const result = await build({
     absWorkingDir: projectRoot,
@@ -462,6 +488,8 @@ fs.writeFileSync(nteCharacterSummaryPath, `${JSON.stringify(normalizedNteCharact
   arc: character.arc,
   releaseVersion: character.releaseVersion
 })), null, 2)}\n`, 'utf8');
+const nteGallerySummary = await buildNteGallerySummary();
+fs.writeFileSync(nteGallerySummaryPath, `${JSON.stringify(nteGallerySummary, null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(wwGuideCharactersPath), { recursive: true });
 fs.writeFileSync(wwGuideCharactersPath, `${JSON.stringify(notionWwGuideCharacters, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, 'utf8');

@@ -2,7 +2,6 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { useNavigate, useSearchParams, Link } from 'react-router';
 import { Search, Users, Zap, Shield, Backpack, Bell, ChevronRight, Book, Filter, Star, Sparkles, ArrowRight, Boxes, CarFront, Gauge, Timer, Wrench, MapPin } from 'lucide-react';
 import { ARCHIVE_DATA } from '../../common-hub/data/archive';
-import { getItemMetaDB } from '../../common-hub/data/items';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
@@ -10,17 +9,13 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { CharacterPremiumCard, LightConePremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
-import InventoryGallery from '../../common-hub/components/InventoryGallery';
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
 import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
-import { NTE_ARC_DATA } from '../data/arcData';
-import { NTE_CHARACTER_DATA } from '../data/characterData';
+import { NTE_ARC_COUNT, NTE_GALLERY_CHARACTERS, NTE_INVENTORY_COUNT } from '../data/galleryData';
 
-const NTE_INVENTORY_DB = Object.fromEntries(
-  Object.entries(getItemMetaDB()).filter(([, item]) => item.gameId === 'nte')
-);
+const InventoryGallery = React.lazy(() => import('../../common-hub/components/InventoryGallery'));
 
 const GalleryNTE: React.FC = () => {
   const gameId = 'nte';
@@ -33,6 +28,8 @@ const GalleryNTE: React.FC = () => {
   const [secondFilter, setSecondFilter] = useState(() => searchParams.get('weapon') || '전체');
   const [rarityFilter, setRarityFilter] = useState(() => searchParams.get('rarity') || '전체');
   const [categoryFilter, setCategoryFilter] = useState(() => searchParams.get('category') || '전체');
+  const [arcDb, setArcDb] = useState<any[]>([]);
+  const [archiveDataLoading, setArchiveDataLoading] = useState(false);
   const { t } = useTranslation();
   const [selectedNotice, setSelectedNotice] = useState<Notice | null>(null);
   const { markAsRead } = useNoticeBadge();
@@ -87,11 +84,30 @@ const GalleryNTE: React.FC = () => {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  const CHARACTER_DB = NTE_CHARACTER_DATA;
-  const WEAPON_DB = NTE_ARC_DATA;
+  const CHARACTER_DB = NTE_GALLERY_CHARACTERS;
+  const WEAPON_DB = arcDb;
   const ECHO_DB: any[] = [];
-  const INVENTORY_DB = NTE_INVENTORY_DB;
+  const INVENTORY_DB = {};
   const [gameNotices, setGameNotices] = useState<Notice[]>([]);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    const loadArchiveData = async () => {
+      if ((activeMenu === '아크' || activeMenu === '무기') && arcDb.length === 0) {
+        setArchiveDataLoading(true);
+        try {
+          const module = await import('../data/arcData');
+          if (!cancelled) setArcDb(module.NTE_ARC_DATA);
+        } finally {
+          if (!cancelled) setArchiveDataLoading(false);
+        }
+      }
+    };
+
+    void loadArchiveData();
+    return () => { cancelled = true; };
+  }, [activeMenu, arcDb.length]);
 
   const game = useMemo(() => ARCHIVE_DATA?.games?.find(g => g.id === gameId) || null, []);
 
@@ -208,10 +224,10 @@ const GalleryNTE: React.FC = () => {
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {[
                   { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
-                  { label: "아크", count: WEAPON_DB?.length || 0, icon: <Zap size={14} />, color: "text-yellow-400" },
+                  { label: "아크", count: NTE_ARC_COUNT, icon: <Zap size={14} />, color: "text-yellow-400" },
                   { label: "콘솔", count: NTE_CARTRIDGES.length, icon: <Boxes size={14} />, color: "text-violet-400" },
                   { label: "이동 수단", count: NTE_VEHICLES.length, icon: <CarFront size={14} />, color: "text-emerald-400" },
-                  { label: "인벤토리", count: Object.keys(INVENTORY_DB || {}).length, icon: <Backpack size={14} />, color: "text-brand-accent" }
+                  { label: "인벤토리", count: NTE_INVENTORY_COUNT, icon: <Backpack size={14} />, color: "text-brand-accent" }
                 ].map((stat, i) => (
                   <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1">
                     <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color}`}>{stat.icon}</div>
@@ -244,7 +260,7 @@ const GalleryNTE: React.FC = () => {
                       path: '/gallery/nte?menu=무기',
                       action: () => handleSetActiveMenu('무기'),
                       icon: Zap,
-                      stat: `${WEAPON_DB?.length || 0}${t('개')}`,
+                      stat: `${NTE_ARC_COUNT}${t('개')}`,
                       color: 'text-yellow-400'
                     },
                     {
@@ -383,11 +399,13 @@ const GalleryNTE: React.FC = () => {
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
+              {archiveDataLoading && WEAPON_DB.length === 0 ? (
+                <div className="py-32 text-center text-sm font-bold text-gray-400">{t('아크 데이터를 불러오는 중입니다.')}</div>
+              ) : <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-2.5 sm:gap-4">
                 {filteredLightCones.map((arc: any) => (
                   <LightConePremiumCard key={arc.id || arc.name} lc={arc} />
                 ))}
-              </div>
+              </div>}
             </div>
           ) : activeMenu === "콘솔" ? (
             <div className="space-y-8">
@@ -611,10 +629,12 @@ const GalleryNTE: React.FC = () => {
               <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭·수치·획득 방법이 달라질 수 있습니다.</p>
             </div>
           ) : activeMenu === "인벤토리" ? (
-            <InventoryGallery 
-              gameId="nte" 
-              customCategories={["전체"]} 
-            />
+            <React.Suspense fallback={<div className="py-32 text-center text-xs font-black uppercase tracking-[0.3em] text-gray-400">Loading Archive...</div>}>
+              <InventoryGallery
+                gameId="nte"
+                customCategories={["전체"]}
+              />
+            </React.Suspense>
           ) : (
             <div className="py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
               <Book className="mx-auto text-gray-400 opacity-20" size={48} />
