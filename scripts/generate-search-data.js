@@ -479,15 +479,24 @@ fs.writeFileSync(notionItemsPath, `${JSON.stringify(notionItems, null, 2)}\n`, '
 fs.mkdirSync(path.dirname(nteCharactersPath), { recursive: true });
 const normalizedNteCharacters = notionNteCharacters.map(normalizeNteCharacter);
 fs.writeFileSync(nteCharactersPath, `${JSON.stringify(normalizedNteCharacters, null, 2)}\n`, 'utf8');
-fs.writeFileSync(nteCharacterSummaryPath, `${JSON.stringify(normalizedNteCharacters.map(character => ({
+const nteCharacterSummary = normalizedNteCharacters.map(character => ({
   id: character.id,
   name: character.name,
+  gameId: 'nte',
   folderName: character.folderName,
+  fileName: character.fileName,
+  isTrailblazer: character.isTrailblazer,
   rarity: character.rarity,
   attribute: character.attribute,
   arc: character.arc,
   releaseVersion: character.releaseVersion
-})), null, 2)}\n`, 'utf8');
+})).sort((a, b) => {
+  const versionDelta = String(b.releaseVersion).localeCompare(String(a.releaseVersion), undefined, { numeric: true });
+  if (versionDelta !== 0) return versionDelta;
+  if (a.rarity !== b.rarity) return b.rarity - a.rarity;
+  return a.name.localeCompare(b.name, 'ko-KR');
+});
+fs.writeFileSync(nteCharacterSummaryPath, `${JSON.stringify(nteCharacterSummary, null, 2)}\n`, 'utf8');
 const nteGallerySummary = await buildNteGallerySummary();
 fs.writeFileSync(nteGallerySummaryPath, `${JSON.stringify(nteGallerySummary, null, 2)}\n`, 'utf8');
 fs.mkdirSync(path.dirname(wwGuideCharactersPath), { recursive: true });

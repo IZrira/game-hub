@@ -423,6 +423,36 @@ function validateNte() {
     }
     logPass(`${arcNames.size} NTE arcs registered`);
   }
+
+  const characterSummaryFile = path.join(ROOT_DIR, 'nte-hub', 'data', 'generated', 'character-summary.json');
+  if (!fs.existsSync(characterSummaryFile)) {
+    logFail('NTE character summary not found');
+    return;
+  }
+
+  const characterSummary = JSON.parse(fs.readFileSync(characterSummaryFile, 'utf8'));
+  const invalidGameIds = characterSummary.filter(character => character.gameId !== 'nte');
+  if (invalidGameIds.length > 0) {
+    logFail(`${invalidGameIds.length} NTE character summaries are missing gameId`);
+  } else {
+    logPass(`${characterSummary.length} NTE character summaries include gameId`);
+  }
+
+  const versionSorted = characterSummary.every((character, index) => {
+    if (index === 0) return true;
+    return String(characterSummary[index - 1].releaseVersion).localeCompare(
+      String(character.releaseVersion), undefined, { numeric: true }
+    ) >= 0;
+  });
+  if (versionSorted) logPass('NTE recent characters are sorted by release version');
+  else logFail('NTE recent characters are not sorted by release version');
+
+  const appraiser = characterSummary.find(character => character.name === '감정사');
+  if (appraiser?.fileName === '감정사' && appraiser?.isTrailblazer === true) {
+    logPass('NTE 감정사 gender-specific card image metadata verified');
+  } else {
+    logFail('NTE 감정사 card image metadata is incomplete');
+  }
 }
 
 // ---------------------------------------------------------------------
