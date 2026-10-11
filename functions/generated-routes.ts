@@ -732,6 +732,8 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/ww/echo/하늘의 기관 인형 · 겁살",
   "/gallery/ww/echo/해형살",
   "/gallery/ww/guides",
+  "/gallery/ww/guides/concerto-energy-swap-rotation-guide",
+  "/gallery/ww/guides/echo-sonata-selection-guide",
   "/gallery/ww/guides/resonator-weapon-echo-guide",
   "/gallery/ww/parties",
   "/gallery/ww/tierlist",
