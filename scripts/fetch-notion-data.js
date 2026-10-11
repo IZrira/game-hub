@@ -258,6 +258,12 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     const resonance = extractRichText(props['공명']);
     const skins = extractRichText(props['스킨']) || extractRichText(props['skins']);
     const trait = extractRichText(props['특성']);
+    const consoleLayoutProperty = props['콘솔 배치 유형'];
+    const consoleLayoutValue = consoleLayoutProperty?.select?.name
+      || consoleLayoutProperty?.number?.toString()
+      || extractRichText(consoleLayoutProperty);
+    const consoleLayoutMatch = consoleLayoutValue.match(/[1-4]/);
+    const consoleLayoutType = consoleLayoutMatch ? Number(consoleLayoutMatch[0]) : null;
 
     // 선택적 영문 파일명(이미지 매핑용) 추가
     const fileName = props['파일 명']?.rich_text?.[0]?.plain_text || props['파일명']?.rich_text?.[0]?.plain_text || props['영문명']?.rich_text?.[0]?.plain_text || '';
@@ -405,6 +411,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         dedicatedChar,
         skins,
         trait,
+        consoleLayoutType,
         content: contentMarkdown
       });
     }

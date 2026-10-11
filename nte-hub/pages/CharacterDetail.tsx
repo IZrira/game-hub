@@ -1066,7 +1066,11 @@ const CharacterDetailNTE: React.FC = () => {
         </section>
 
         <div id="console-layout" className="scroll-mt-28">
-          <NTEConsoleLayoutSection characterName={char.name} theme={theme} />
+          <NTEConsoleLayoutSection
+            characterName={char.name}
+            consoleLayoutType={char.consoleLayoutType}
+            theme={theme}
+          />
         </div>
         
         <div id="skills" className="scroll-mt-28">

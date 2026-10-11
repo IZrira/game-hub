@@ -142,6 +142,9 @@ export const normalizeNteCharacter = item => {
     ascensionMaterials: item.ascensionMaterials || '',
     skillMaterials: item.skillMaterials || '',
     basicAttack: item.basicAttack || '',
+    consoleLayoutType: [1, 2, 3, 4].includes(Number(item.consoleLayoutType))
+      ? Number(item.consoleLayoutType)
+      : null,
     isNotion: true,
     skins: skinSource.split('\n').map(value => value.replace(/[*=]/g, '').trim()).filter(Boolean)
   };

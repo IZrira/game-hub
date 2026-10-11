@@ -8,14 +8,18 @@ import {
 
 interface NTEConsoleLayoutSectionProps {
   characterName?: string;
+  consoleLayoutType?: number | null;
   theme: { primary: string };
 }
 
-const NTEConsoleLayoutSection: React.FC<NTEConsoleLayoutSectionProps> = ({ characterName, theme }) => {
-  const layoutType = getNTEConsoleLayoutType(characterName);
+const NTEConsoleLayoutSection: React.FC<NTEConsoleLayoutSectionProps> = ({ characterName, consoleLayoutType, theme }) => {
+  const notionLayoutType = [1, 2, 3, 4].includes(Number(consoleLayoutType))
+    ? Number(consoleLayoutType) as 1 | 2 | 3 | 4
+    : null;
+  const layoutType = notionLayoutType ?? getNTEConsoleLayoutType(characterName);
 
   return (
-    <section className="space-y-6">
+    <section className="mx-auto max-w-5xl space-y-5">
       <div className="flex items-center gap-4">
         <div
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2"
@@ -29,27 +33,24 @@ const NTEConsoleLayoutSection: React.FC<NTEConsoleLayoutSectionProps> = ({ chara
         </div>
         <div>
           <h2 className="text-2xl font-black text-white">콘솔 배치</h2>
-          <p className="mt-1 text-sm text-gray-400">캐릭터마다 고정된 콘솔 판 유형과 사용할 수 있는 칸을 확인합니다.</p>
+          <p className="mt-1 text-sm text-gray-400">캐릭터의 콘솔 판 유형과 블록 배치 영역을 확인합니다.</p>
         </div>
       </div>
 
       {layoutType ? (
-        <div className="grid gap-6 rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-center">
-          <div className="overflow-hidden rounded-2xl border border-violet-400/20 bg-black/25 p-3 sm:p-5">
+        <div className="grid gap-5 rounded-3xl border border-white/10 bg-[#121212] p-4 sm:p-6 lg:grid-cols-[minmax(0,540px)_260px] lg:items-center lg:justify-center">
+          <div className="overflow-hidden rounded-2xl border border-violet-400/20 bg-black/25 p-3 sm:p-4">
             <img
               src={getNTEConsoleLayoutImageUrl(layoutType)}
               alt={`${characterName} 콘솔 배치 유형 ${layoutType}`}
               loading="lazy"
-              className="mx-auto h-auto max-h-[560px] w-full object-contain"
+              className="mx-auto h-auto max-h-[400px] w-full max-w-[500px] object-contain"
             />
           </div>
-          <div className="space-y-5">
+          <div className="space-y-4">
             <div>
               <span className="text-[10px] font-black uppercase tracking-[0.25em] text-violet-400">CONSOLE LAYOUT</span>
-              <h3 className="mt-2 text-2xl font-black text-white">콘솔 배치 유형 {layoutType}</h3>
-              <p className="mt-3 text-sm leading-6 text-gray-400">
-                밝게 표시된 칸을 기준으로 카트리지 모양과 방향을 맞춰 배치하세요. 같은 카트리지 세트를 조합하면 2세트·4세트 효과를 활성화할 수 있습니다.
-              </p>
+              <h3 className="mt-2 text-xl font-black text-white">콘솔 배치 유형 {layoutType}</h3>
             </div>
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-white/[0.03] p-4 text-xs leading-5 text-gray-400">
               <Info size={16} className="mt-0.5 shrink-0 text-violet-300" />
