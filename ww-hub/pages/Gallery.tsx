@@ -18,6 +18,7 @@ import WuwaWeaponCard from './WuwaWeaponCard';
 import { CDN_URL } from '@/common-hub/utils/assetManager';
 import { GlowStatsDistribution, NeonDivider } from '../../common-hub/components/NeonComponents';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+import ReviewedGuideHighlights from '../../common-hub/components/ReviewedGuideHighlights';
 import { WW_ECHO_COUNT, WW_GALLERY_CHARACTERS, WW_INVENTORY_COUNT, WW_WEAPON_COUNT } from '../data/galleryData';
 // import removed
 
@@ -330,6 +331,8 @@ const GalleryWW: React.FC = () => {
                   })}
                 </div>
               </section>
+
+              <ReviewedGuideHighlights gameId="ww" accentClassName="text-emerald-400" />
 
               {/* 최근 업데이트 캐릭터 행: 반응형 가로 스크롤 적용 */}
               <section className="space-y-6">

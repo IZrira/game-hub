@@ -2875,6 +2875,8 @@ function runPrerender() {
       const echoRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/'));
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+$/.test(candidate));
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
+      const reviewedGuides = guideArticles.filter(article => article.gameId === 'ww');
+      const reviewedGuideHtml = reviewedGuides.map(article => `<li><a href="/gallery/ww/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a> — ${escapeHtml(article.excerpt)}</li>`).join('');
       meta.title = '명조 허브 | 공명자·무기·에코 도감 & 심경의 탑 티어표';
       meta.description = `명조: 워더링 웨이브(Wuthering Waves)의 전체 ${characterRoutes.length}명 공명자, ${weaponRoutes.length}개 무기, ${echoRoutes.length}종 에코 도감과 종결 세팅 가이드, 심경의 탑 티어표 및 파티 조합을 확인하세요.`;
       meta.content = `<article>
@@ -2897,6 +2899,12 @@ function runPrerender() {
             <li><a href="/gallery/ww/parties">추천 파티 조합</a></li>
           </ul>
         </nav>
+        <section>
+          <h2>명조 핵심 분석 가이드</h2>
+          <p>공명자별 추천 장비를 확인하기 전에 무기 효과, 에코와 소나타, 교대 흐름을 판단하는 기준을 먼저 확인하세요.</p>
+          <ul>${reviewedGuideHtml}</ul>
+          <p><a href="/gallery/ww/guides">명조 분석 가이드 전체 보기</a></p>
+        </section>
       </article>`;
       meta.content += generateInternalLinkList('명조 공명자 상세 도감', characterRoutes);
       meta.content += generateInternalLinkList('명조 공명자 종결 공략 가이드', guideRoutes);
@@ -2908,6 +2916,8 @@ function runPrerender() {
       const lightConeRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/'));
       const relicRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/relic/'));
       const ornamentRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/'));
+      const reviewedGuides = guideArticles.filter(article => article.gameId === 'hsr');
+      const reviewedGuideHtml = reviewedGuides.map(article => `<li><a href="/gallery/hsr/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a> — ${escapeHtml(article.excerpt)}</li>`).join('');
       meta.title = '붕괴: 스타레일 허브 | 전체 캐릭터·광추·유물 도감 & 티어표';
       meta.description = `붕괴: 스타레일(Honkai: Star Rail)의 전체 ${characterRoutes.length}명 캐릭터, ${lightConeRoutes.length}개 광추, ${relicRoutes.length + ornamentRoutes.length}개 유물·차원 장신구 도감과 실전 육성 가이드, 혼돈의 기억 티어표를 확인하세요.`;
       meta.content = `<article>
@@ -2930,6 +2940,12 @@ function runPrerender() {
             <li><a href="/gallery/hsr/parties">추천 파티 조합</a></li>
           </ul>
         </nav>
+        <section>
+          <h2>스타레일 핵심 분석 가이드</h2>
+          <p>캐릭터별 추천 세팅을 확인하기 전에 속도·행동 게이지, 피해 공식과 장비 선택 순서를 이해하면 현재 파티에 맞는 선택을 할 수 있습니다.</p>
+          <ul>${reviewedGuideHtml}</ul>
+          <p><a href="/gallery/hsr/guides">스타레일 분석 가이드 전체 보기</a></p>
+        </section>
       </article>`;
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 상세 도감', characterRoutes);
       meta.content += generateInternalLinkList('붕괴: 스타레일 캐릭터 종결 공략 가이드', guideRoutes);

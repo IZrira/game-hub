@@ -20,6 +20,7 @@ import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentP
 import { RelicDetailModal, OrnamentDetailModal } from '@/common-hub/components/GalleryModals';
 import { GlowStatsDistribution } from '../../common-hub/components/NeonComponents';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+import ReviewedGuideHighlights from '../../common-hub/components/ReviewedGuideHighlights';
 
 const InventoryGallery = lazy(() => import('../../common-hub/components/InventoryGallery'));
 
@@ -359,6 +360,8 @@ const GalleryHSR: React.FC = () => {
                   })}
                 </div>
               </section>
+
+              <ReviewedGuideHighlights gameId="hsr" accentClassName="text-brand-accent" />
 
               {/* 최근 업데이트 캐릭터 행: 반응형 가로 스크롤 적용 */}
               <section className="space-y-6">
