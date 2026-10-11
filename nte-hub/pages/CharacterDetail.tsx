@@ -31,6 +31,7 @@ import * as htmlToImage from 'html-to-image';
 import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import NTESkillAndAwakeningSection from '../components/NTESkillAndAwakeningSection';
+import NTEConsoleLayoutSection from '../components/NTEConsoleLayoutSection';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
@@ -771,6 +772,7 @@ const CharacterDetailNTE: React.FC = () => {
           { id: 'overview', label: t('개요') },
           { id: 'stats', label: t('기본 스탯') },
           { id: 'materials', label: t('육성 재료') },
+          { id: 'console-layout', label: t('콘솔 배치') },
           { id: 'skills', label: t('스킬 & 각성') },
           { id: 'equipment', label: t('전용 아크') },
           { id: 'synergy', label: t('추천 파티') }
@@ -1062,6 +1064,10 @@ const CharacterDetailNTE: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <div id="console-layout" className="scroll-mt-28">
+          <NTEConsoleLayoutSection characterName={char.name} theme={theme} />
+        </div>
         
         <div id="skills" className="scroll-mt-28">
           <NTESkillAndAwakeningSection 
