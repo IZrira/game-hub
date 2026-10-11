@@ -19,7 +19,7 @@ const NTEConsoleLayoutSection: React.FC<NTEConsoleLayoutSectionProps> = ({ chara
   const layoutType = notionLayoutType ?? getNTEConsoleLayoutType(characterName);
 
   return (
-    <section className="mx-auto max-w-5xl space-y-5">
+    <section className="w-full space-y-5">
       <div className="flex items-center gap-4">
         <div
           className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border-2"
