@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
-import { getInitialLanguage, loadLanguageResources } from './i18n';
+import { consumeLegacyLanguageQuery, getInitialLanguage, loadLanguageResources } from './i18n';
 import App from './App';
 import './index.css';
 
@@ -12,7 +12,9 @@ if (!rootElement) {
 }
 
 const renderApp = async () => {
-  await loadLanguageResources(getInitialLanguage());
+  const initialLanguage = getInitialLanguage();
+  await loadLanguageResources(initialLanguage);
+  consumeLegacyLanguageQuery();
 
   const root = ReactDOM.createRoot(rootElement);
   root.render(

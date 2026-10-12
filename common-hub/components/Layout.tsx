@@ -1,21 +1,14 @@
 
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router';
-import { Library, Github, Search, Globe, Download } from 'lucide-react';
-import GlobalSearch from './GlobalSearch';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router';
 import AdPlaceholder from './AdPlaceholder';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import CookieBanner from './CookieBanner';
-import { useTranslation } from 'react-i18next';
 import { logger } from '../utils/logger';
-import { changeAppLanguage } from '../i18n';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
-  const isHome = location.pathname === '/';
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const { i18n } = useTranslation();
 
   // Initialize Global Error Logger and Scroll to Top
   useEffect(() => {
@@ -29,32 +22,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       navigator.serviceWorker.register('/sw.js').catch(console.error);
     }
   }, []);
-
-  const handleInstallPWA = () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      deferredPrompt.userChoice.then(() => setDeferredPrompt(null));
-    }
-  };
-
-  const languages: ('ko' | 'en' | 'ja')[] = ['ko', 'en', 'ja'];
-
-  const toggleLang = () => {
-    const current = (i18n.language || 'ko').slice(0, 2) as 'ko' | 'en' | 'ja';
-    const currentIndex = languages.indexOf(current);
-    const next = languages[(currentIndex + 1) % languages.length];
-    localStorage.setItem('rira_lang', next);
-    void changeAppLanguage(next);
-    
-    // URL 업데이트 (React Router 리렌더링 없이 히스토리만 수정)
-    const url = new URL(window.location.href);
-    if (next === 'ko') {
-      url.searchParams.delete('lng');
-    } else {
-      url.searchParams.set('lng', next);
-    }
-    window.history.replaceState({}, '', url);
-  };
 
   return (
     <div className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative">

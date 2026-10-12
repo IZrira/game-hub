@@ -49,17 +49,7 @@ const Navbar: React.FC = () => {
     const current = (i18n.language || 'ko').slice(0, 2) as 'ko' | 'en' | 'ja';
     const currentIndex = languages.indexOf(current);
     const next = languages[(currentIndex + 1) % languages.length];
-    localStorage.setItem('rira_lang', next);
     void changeAppLanguage(next);
-
-    // URL 업데이트 (React Router 리렌더링 없이 히스토리만 수정)
-    const url = new URL(window.location.href);
-    if (next === 'ko') {
-      url.searchParams.delete('lng');
-    } else {
-      url.searchParams.set('lng', next);
-    }
-    window.history.replaceState({}, '', url);
   };
 
   const handleLogout = async () => {

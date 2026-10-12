@@ -49,6 +49,26 @@ export const getInitialLanguage = (): SupportedLanguage => {
   return isSupportedLanguage(savedLanguage) ? savedLanguage : 'ko';
 };
 
+/**
+ * 예전 공유 링크의 `lng` 값을 한 번 적용한 뒤 주소에서 제거합니다.
+ * 언어별 쿼리 URL이 검색엔진에 별도 문서로 누적되지 않도록 하면서도
+ * 기존 외부 링크로 들어온 사용자의 언어 선택은 유지합니다.
+ */
+export const consumeLegacyLanguageQuery = (): void => {
+  if (typeof window === 'undefined') return;
+
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has('lng')) return;
+
+  const queryLanguage = url.searchParams.get('lng');
+  if (isSupportedLanguage(queryLanguage)) {
+    localStorage.setItem('rira_lang', queryLanguage);
+  }
+
+  url.searchParams.delete('lng');
+  window.history.replaceState(window.history.state, '', `${url.pathname}${url.search}${url.hash}`);
+};
+
 const i18nReady = i18n
   .use(initReactI18next)
   .init({
@@ -122,8 +142,10 @@ export const loadLanguageResources = (
 ): Promise<void> => loadGameLanguageResources(language, scope);
 
 export const changeAppLanguage = async (language: SupportedLanguage): Promise<void> => {
+  localStorage.setItem('rira_lang', language);
   await loadLanguageResources(language, getGameLanguageScope());
   await i18n.changeLanguage(language);
+  consumeLegacyLanguageQuery();
 };
 
 export default i18n;

@@ -79,6 +79,35 @@ function notFoundResponse(): Response {
   );
 }
 
+/** Return the clean canonical URL for legacy language-query requests. */
+export function getLanguageCanonicalUrl(requestUrl: string): string | null {
+  const url = new URL(requestUrl);
+  if (!url.searchParams.has('lng')) return null;
+
+  url.searchParams.delete('lng');
+  url.searchParams.sort();
+  url.protocol = 'https:';
+  url.hostname = 'riragamehub.com';
+  url.port = '';
+  return url.toString();
+}
+
+function withLanguageCanonicalHeader(response: Response, requestUrl: string): Response {
+  const canonicalUrl = getLanguageCanonicalUrl(requestUrl);
+  if (!canonicalUrl || response.status < 200 || response.status >= 300) return response;
+
+  const headers = new Headers(response.headers);
+  const existingLink = headers.get('Link');
+  const canonicalLink = `<${canonicalUrl}>; rel="canonical"`;
+  headers.set('Link', existingLink ? `${existingLink}, ${canonicalLink}` : canonicalLink);
+
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export const onRequest = async (context: PagesFunctionContext): Promise<Response> => {
   const url = new URL(context.request.url);
   const normalizedPath = normalizePath(url.pathname);
@@ -139,14 +168,14 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
           const assetUrl = new URL(currClean + '/' + url.search, url.origin);
           const assetRes = await context.env.ASSETS.fetch(new Request(assetUrl.toString(), context.request));
           if (assetRes.status === 200) {
-            return assetRes;
+            return withLanguageCanonicalHeader(assetRes, context.request.url);
           }
 
           // Fallback: try fetching .html file directly
           const htmlUrl = new URL(currClean + '.html' + url.search, url.origin);
           const htmlRes = await context.env.ASSETS.fetch(new Request(htmlUrl.toString(), context.request));
           if (htmlRes.status === 200) {
-            return htmlRes;
+            return withLanguageCanonicalHeader(htmlRes, context.request.url);
           }
         }
       } catch {
@@ -155,5 +184,5 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
     }
   }
 
-  return response;
+  return withLanguageCanonicalHeader(response, context.request.url);
 };

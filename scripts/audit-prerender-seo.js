@@ -90,11 +90,38 @@ const hubAuditStats = hubLinkAudits.map(({ game, hubPath, routePattern }) => {
   return { game, count: detailRoutes.length };
 });
 
+// Search Console에서 실제로 Soft 404 또는 크롤링 후 미색인으로 보고된
+// 핵심 URL입니다. 해당 문서가 삭제되거나 얇은 셸로 퇴행하면 배포 전에 막습니다.
+const searchConsolePriorityRoutes = [
+  '/gallery/hsr/character/feixiao/guide',
+  '/gallery/hsr/lightcone/풍작',
+  '/gallery/ww/character/baizhi',
+  '/gallery/ww/character/rover_aero',
+  '/gallery/hsr/character/boothill/guide',
+  '/gallery/ww/character/chisa',
+  '/gallery/ww/character/chaconne/guide',
+  '/gallery/nte/weapon/봄을 심는 바보',
+  '/gallery/hsr/guides/damage-formula-guide',
+  '/gallery/aniimo/character/싹크랩',
+  '/gallery/ww/weapon/41형 대검 · 무거운 책임',
+  '/gallery/ww/weapon/전우의 의리',
+  '/gallery/ww/weapon/태초의 권갑',
+  '/gallery/aniimo/type-chart',
+  '/gallery/hsr/character/misha',
+  '/gallery/hsr/character/trailblazer_destruction',
+];
+
 const problems = [];
 const warnings = [];
 const titleRoutes = new Map();
 const descriptionRoutes = new Map();
 const stats = [];
+
+for (const routePath of searchConsolePriorityRoutes) {
+  if (!routes.includes(routePath)) {
+    problems.push(`${routePath}: Search Console priority route missing from sitemap`);
+  }
+}
 
 for (const routePath of routes) {
   const segments = routePath.split('/').filter(Boolean).map((segment) => decodeURI(segment));
@@ -115,6 +142,19 @@ for (const routePath of routes) {
   if (!description) problems.push(`${routePath}: description missing`);
   else if (description.length < 45) warnings.push(`${routePath}: description too short (${description.length})`);
   if (!canonical) problems.push(`${routePath}: canonical missing`);
+  else {
+    const encodedPath = routePath
+      .split('/')
+      .map((segment) => encodeURIComponent(decodeURIComponent(segment)))
+      .join('/');
+    const expectedCanonical = `https://riragamehub.com${encodedPath}`;
+    if (canonical !== expectedCanonical) {
+      problems.push(`${routePath}: canonical mismatch (${canonical})`);
+    }
+    if (canonical.includes('?lng=')) {
+      problems.push(`${routePath}: language query leaked into canonical`);
+    }
+  }
   if (textLength < getMinimumTextLength(routePath)) {
     problems.push(`${routePath}: prerendered text too short (${textLength})`);
   }
