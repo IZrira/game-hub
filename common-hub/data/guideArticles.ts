@@ -8,6 +8,9 @@ export interface GuideSource {
 }
 
 export interface GuideArticle {
+  characterId?: string;
+  notionDatabaseId?: string;
+  notionPageId?: string;
   gameId: string;
   slug: string;
   status: GuideStatus;

@@ -3,6 +3,7 @@ import { NotionToMarkdown } from 'notion-to-md';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { syncNteGuides } from './lib/sync-nte-guides.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,6 +41,7 @@ const NOTION_HSR_GUIDES_DB_ID = process.env.NOTION_HSR_GUIDES_DB_ID || '36f95fae
 const NOTION_NTE_ITEM_DB_ID = process.env.NOTION_NTE_ITEM_DB_ID || '38095fae3dc780a29fffe0381071580d'; // NTE Items DB
 const NOTION_NTE_CHARACTER_DB_ID = process.env.NOTION_NTE_CHARACTER_DB_ID || '38095fae3dc7802aa4abf9ab1977e687'; // NTE Characters DB
 const NOTION_NTE_ARC_DB_ID = process.env.NOTION_NTE_ARC_DB_ID || '38095fae3dc780c3a7c4d901cbe9411c'; // NTE Arcs DB
+const NOTION_NTE_GUIDES_DB_ID = process.env.NOTION_NTE_GUIDES_DB_ID || '3f695fae3dc7801f936ce549d8fefeef';
 
 const destDir = path.join(ROOT_DIR, 'common-hub', 'data');
 const jsonPath = path.join(destDir, 'notion-data.json');
@@ -438,6 +440,11 @@ async function fetchNotionData() {
   const notion = new Client({ auth: NOTION_TOKEN, notionVersion: '2022-06-28' });
   const n2m = new NotionToMarkdown({ notionClient: notion });
 
+  if (process.argv.includes('--nte-guides-only')) {
+    await syncNteGuides(notion, n2m, NOTION_NTE_GUIDES_DB_ID, ROOT_DIR);
+    return;
+  }
+
   if (process.argv.includes('--nte-only') || process.argv.includes('--nte-characters-only')) {
     console.log('[Notion Sync] Running in NTE sync mode...');
     const existing = fs.existsSync(jsonPath) ? JSON.parse(fs.readFileSync(jsonPath, 'utf8')) : [];
@@ -620,6 +627,7 @@ async function fetchNotionData() {
       console.log(`[Notion Sync] Fetched and parsed ${hsrGuides.length} HSR character guides.`);
     }
 
+    await syncNteGuides(notion, n2m, NOTION_NTE_GUIDES_DB_ID, ROOT_DIR);
     fs.writeFileSync(jsonPath, JSON.stringify(allItems, null, 2), 'utf8');
     console.log(`[Notion Sync] Successfully fetched total ${allItems.length} items and updated notion-data.json!`);
   } catch (error) {

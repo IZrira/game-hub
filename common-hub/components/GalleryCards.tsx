@@ -272,6 +272,10 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
   let imgPath = "";
   if (gameId === 'hsr') {
     imgPath = `${CDN_URL}/hsr%20images/캐릭터/${safeEncodeURIComponent(char.folderName || char.name || '')}/art01.webp`;
+  } else if (gameId === 'nte') {
+    const folder = char.folderName || char.name || '';
+    const file = `${char.fileName || folder}${char.isTrailblazer ? '_f' : ''}`;
+    imgPath = `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(file)}.webp`;
   } else {
     // 명조 캐릭터 이미지 매핑
     const folder = char.folderName || char.name || '';
@@ -287,7 +291,7 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
   if (char.id === 'baizhi') objectPos = 'center 30%'; // 설지의 얼굴을 더 위로 끌어올림
 
   return (
-    <Link to={`/gallery/${gameId}/character/${char.id}/guide`} className="group relative aspect-video rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
+    <Link to={guide.url || `/gallery/${gameId}/character/${char.id}/guide`} className="group relative aspect-video rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
       <img 
         src={imgPath} 
         alt={t(char.name)} 

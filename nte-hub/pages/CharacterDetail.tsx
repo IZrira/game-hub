@@ -1,6 +1,7 @@
 
 import React, { Suspense, lazy, useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
+import { getPublishedGuides } from '../../common-hub/data/guideArticles';
 import { 
   Star, 
   ChevronDown, 
@@ -818,7 +819,10 @@ const CharacterDetailNTE: React.FC = () => {
                     {t(char.name)}
                   </h1>
                   <Link 
-                    to={`/gallery/${gameId}/character/${char.id}/guide`} 
+                    to={(() => {
+                      const guide = getPublishedGuides('nte').find(article => article.characterId === char.id);
+                      return guide ? `/gallery/nte/guides/${encodeURIComponent(guide.slug)}` : '/gallery/nte?menu=공략';
+                    })()}
                     className={`mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-[10px] font-black transition-colors hover:brightness-110 whitespace-nowrap ${char.attribute === '빛' || char.abilityAttribute === '빛' ? 'text-gray-900' : 'text-white'}`}
                     style={{ backgroundColor: theme.primary }}
                   >

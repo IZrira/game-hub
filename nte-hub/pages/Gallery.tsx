@@ -14,6 +14,7 @@ import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
 import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
 import { NTE_ARC_COUNT, NTE_GALLERY_CHARACTERS, NTE_INVENTORY_COUNT } from '../data/galleryData';
+import { getPublishedGuides } from '../../common-hub/data/guideArticles';
 
 const InventoryGallery = React.lazy(() => import('../../common-hub/components/InventoryGallery'));
 
@@ -627,6 +628,16 @@ const GalleryNTE: React.FC = () => {
               )}
 
               <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭·수치·획득 방법이 달라질 수 있습니다.</p>
+            </div>
+          ) : activeMenu === "공략" ? (
+            <div className="space-y-8">
+              <h2 className="text-2xl sm:text-3xl font-black">{t('캐릭터 육성 공략')}</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                {filteredCharacters.map((char: any) => {
+                  const guide = getPublishedGuides('nte').find(article => article.characterId === char.id);
+                  return guide ? <GuidePremiumCard key={char.id} char={char} guide={{ patchVersion: guide.applicableVersion, url: `/gallery/nte/guides/${encodeURIComponent(guide.slug)}` }} /> : null;
+                })}
+              </div>
             </div>
           ) : activeMenu === "인벤토리" ? (
             <React.Suspense fallback={<div className="py-32 text-center text-xs font-black uppercase tracking-[0.3em] text-gray-400">Loading Archive...</div>}>

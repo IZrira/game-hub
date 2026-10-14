@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { createBrowserRouter, Outlet, ScrollRestoration, useLocation, useParams } from 'react-router';
+import { createBrowserRouter, Navigate, Outlet, ScrollRestoration, useLocation, useParams } from 'react-router';
+import { getPublishedGuides } from './data/guideArticles';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';
@@ -86,8 +87,12 @@ const CharacterDetailDispatcher = () => {
 
 
 const CharacterGuideDispatcher = () => {
-  const { gameId } = useParams<{ gameId: string }>();
+  const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   if (gameId === 'ww') return <CharacterGuideDetailWW />;
+  if (gameId === 'nte') {
+    const guide = getPublishedGuides('nte').find(article => article.characterId === charName);
+    return <Navigate to={guide ? `/gallery/nte/guides/${encodeURIComponent(guide.slug)}` : '/gallery/nte/guides'} replace />;
+  }
   return <CharacterGuideDetailHSR />;
 };
 
