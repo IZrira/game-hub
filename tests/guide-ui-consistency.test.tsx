@@ -1,5 +1,5 @@
 import React from 'react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import HsrGuide from '../hsr-hub/pages/CharacterGuideDetail';
@@ -9,12 +9,14 @@ import { HSR_CHARACTER_GUIDES } from '../hsr-hub/data/guides';
 import sourceGuides from '../ww-hub/data/generated/guides.json';
 import articles from '../common-hub/data/guideArticles.json';
 import { parseNteCharacterGuide } from '../nte-hub/data/parseCharacterGuide';
+import { mockHsrGuideFetch } from './helpers/hsrGuideFetch';
 
 vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (value: string) => value }) }));
 vi.mock('../common-hub/components/SEO', () => ({ default: () => null }));
 vi.mock('../common-hub/components/PageHeader', () => ({ default: () => null }));
 vi.mock('../common-hub/components/FeedbackReportModal', () => ({ default: () => null }));
-afterEach(cleanup);
+beforeEach(() => vi.stubGlobal('fetch', mockHsrGuideFetch()));
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 const cases = [
   { game: 'HSR', path: '/gallery/hsr/character/acheron/guide', route: '/gallery/:gameId/character/:charName/guide', component: HsrGuide },
@@ -24,8 +26,9 @@ const cases = [
 const renderCase = (entry: typeof cases[number]) => render(<MemoryRouter initialEntries={[entry.path]}><Routes><Route path={entry.route} element={<entry.component />} /></Routes></MemoryRouter>);
 
 describe('shared guide body contract', () => {
-  it.each(cases)('$game uses the same section order and card structures', entry => {
+  it.each(cases)('$game uses the same section order and card structures', async entry => {
     const { container } = renderCase(entry);
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const sections = Array.from(container.querySelectorAll('[data-guide-section]'));
     expect(sections.map(section => section.getAttribute('data-guide-section'))).toEqual(['equipment', 'sets', 'stats', 'priorities', 'synergy']);
     expect(sections.map(section => section.querySelector('h2')?.textContent)).toEqual(['추천 장비', '세트 세팅', '옵션과 목표 수치', '육성 우선순위', '시너지 캐릭터']);
@@ -54,8 +57,9 @@ describe('shared guide body contract', () => {
     expect(container.querySelector('.guide-summary-values')?.textContent).not.toContain(' · ');
   });
 
-  it('renders HSR summary options as separate rows and retains their slot association', () => {
+  it('renders HSR summary options as separate rows and retains their slot association', async () => {
     renderCase(cases[0]);
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const rows = within(screen.getByRole('region', { name: '추천 세팅 요약' })).getAllByRole('listitem');
     expect(rows.length).toBeGreaterThanOrEqual(4);
     ['몸통', '신발', '차원 구체', '연결 매듭'].forEach(label => expect(rows.some(row => row.textContent?.startsWith(label))).toBe(true));
@@ -84,8 +88,9 @@ describe('shared guide body contract', () => {
 
 
 describe('recommendation readability and original data', () => {
-  it.each(cases)('$game summary icons match the displayed equipment', entry => {
+  it.each(cases)('$game summary icons match the displayed equipment', async entry => {
     const { container } = renderCase(entry);
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const icons = Array.from(container.querySelectorAll<HTMLImageElement>('.guide-summary-icon'));
     expect(icons.length).toBeGreaterThanOrEqual(2);
     const equipment = Array.from(container.querySelectorAll('.guide-equipment-card'));
@@ -125,10 +130,11 @@ describe('recommendation readability and original data', () => {
 
 
 describe('HSR and WW ranked option alternatives', () => {
-  it('ranks HSR options and summary in source order for the selected variant', () => {
+  it('ranks HSR options and summary in source order for the selected variant', async () => {
     const source = HSR_CHARACTER_GUIDES.find(item => item.characterName === '초구')!;
     const original = JSON.stringify(source);
     const { container } = renderCase({ ...cases[0], path: '/gallery/hsr/character/초구/guide' });
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const check = (values: string[]) => {
       const card = Array.from(container.querySelectorAll('.guide-option-card')).find(card => card.querySelector('h4')?.textContent === '차원 구체')!;
       const rows = Array.from(card.querySelectorAll('li'));
@@ -178,10 +184,11 @@ it.each([{ route: 'camellya', sourceId: 'camellya' }, { route: '3be95fae-3dc7-80
 });
 
 
-it('separates HSR conditional setup prose from numeric target cards', () => {
+it('separates HSR conditional setup prose from numeric target cards', async () => {
   const source = HSR_CHARACTER_GUIDES.find(item => item.characterName.replace(/[•·]/g, '') === '히메코노바')!;
   const snapshot = JSON.stringify(source);
   const { container } = renderCase({ ...cases[0], path: '/gallery/hsr/character/히메코노바/guide' });
+  await screen.findByRole('region', { name: '추천 세팅 요약' });
   const numeric = screen.getByRole('heading', { name: '목표 스탯' }).closest('section')!;
   const conditional = screen.getByRole('heading', { name: '조건별 세팅' }).closest('section')!;
   expect(numeric.querySelectorAll('.guide-target-value')).toHaveLength(3);
@@ -194,12 +201,13 @@ it('separates HSR conditional setup prose from numeric target cards', () => {
 });
 
 
-it('keeps Phainon physical recommendations and removes the invalid wind build from setup and analysis', () => {
+it('keeps Phainon physical recommendations and removes the invalid wind build from setup and analysis', async () => {
   const source = HSR_CHARACTER_GUIDES.find(item => item.characterName === '파이논')!;
   expect(source.variants?.map(item => item.name)).toEqual(['물리 세팅']);
   expect(source.variants?.[0].mainStats).toEqual(source.mainStats);
   expect(JSON.stringify(source)).not.toContain('바람');
   const { container } = renderCase({ ...cases[0], path: '/gallery/hsr/character/파이논/guide' });
+  await screen.findByRole('region', { name: '추천 세팅 요약' });
   expect(screen.queryByRole('button', { name: '바람 세팅' })).toBeNull();
   expect(container.textContent).toContain('물리 피해');
   expect(container.textContent).toContain('꿈을 엮는 요정의 낙원');
@@ -208,10 +216,11 @@ it('keeps Phainon physical recommendations and removes the invalid wind build fr
 });
 
 
-it('renders Cyrene speed ornaments as equal alternatives under one ranked group', () => {
+it('renders Cyrene speed ornaments as equal alternatives under one ranked group', async () => {
   const source = HSR_CHARACTER_GUIDES.find(item => item.characterName === '키레네')!;
   const snapshot = JSON.stringify(source);
   renderCase({ ...cases[0], path: '/gallery/hsr/character/키레네/guide' });
+  await screen.findByRole('region', { name: '추천 세팅 요약' });
   const card = screen.getByRole('heading', { name: '속도 증가 장신구', level: 4 }).closest('.guide-equipment-card')!;
   expect(card.tagName).toBe('DIV');
   expect(card.querySelector('.guide-equipment-image')).toBeNull();

@@ -1,12 +1,9 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { ChevronLeft, Info } from 'lucide-react';
-import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import characterSummary from '../data/generated/character-summary.json';
-import { SORTED_LIGHTCONE_DATA as LIGHTCONE_DB } from '../data/lightcones';
-import { RELIC_DATA as RELIC_DB } from '../data/relics';
-import { ORNAMENT_DATA as ORNAMENT_DB } from '../data/ornaments';
-import { HSR_PARTIES } from '../data/parties';
+import guideRuntimeManifest from '../data/generated/guide-runtime-manifest.json';
+import type { HsrGuideRuntime } from '../utils/guideRuntime';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
@@ -91,7 +88,9 @@ const getStatValueAndNote = (stat: string | { value: string; note: string } | un
   return { value: stat, note: undefined };
 };
 
-const CharacterGuideDetail: React.FC = () => {
+const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) => {
+  const HSR_CHARACTER_GUIDES = [data.guide];
+  const { lightcones: LIGHTCONE_DB, relics: RELIC_DB, ornaments: ORNAMENT_DB, parties: HSR_PARTIES } = data;
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t } = useTranslation();
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
@@ -373,4 +372,55 @@ const CharacterGuideDetail: React.FC = () => {
     </div>
   );
 };
+const CharacterGuideDetail: React.FC = () => {
+  const { charName, gameId } = useParams<{ charName: string; gameId: string }>();
+  const { t } = useTranslation();
+  const character = CHARACTER_DB.find(candidate => candidate.id === charName
+    || normalizeName(candidate.folderName) === normalizeName(charName || '')
+    || normalizeName(t(candidate.name)) === normalizeName(charName || ''));
+  const manifest = guideRuntimeManifest as Record<string, string>;
+  const url = character ? manifest[character.id] : undefined;
+  const [loaded, setLoaded] = useState<{ url: string; data: HsrGuideRuntime } | null>(null);
+  const [failedUrl, setFailedUrl] = useState<string>();
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    if (!url) return;
+    const controller = new AbortController();
+    setFailedUrl(undefined);
+    void fetch(url, { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error(`Guide request failed: ${response.status}`);
+        return response.json() as Promise<HsrGuideRuntime>;
+      })
+      .then(data => {
+        if (!data.guide || !Array.isArray(data.lightcones) || !Array.isArray(data.parties)
+          || !Array.isArray(data.relics) || !Array.isArray(data.ornaments)) throw new Error('Invalid guide data');
+        if (!controller.signal.aborted) setLoaded({ url, data });
+      })
+      .catch(error => {
+        if (controller.signal.aborted) return;
+        console.error('Failed to load character guide:', error);
+        setFailedUrl(url);
+      });
+    return () => controller.abort();
+  }, [url, attempt]);
+
+  if (!url) return (
+    <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
+      <Info size={40} className="text-gray-300" />
+      <h2 className="text-2xl font-black">공략을 찾을 수 없습니다</h2>
+      <Link to={`/gallery/${gameId}`} className="text-brand-primary">도감으로 돌아가기</Link>
+    </div>
+  );
+  if (loaded?.url === url) return <CharacterGuideContent key={url} data={loaded.data} />;
+  if (failedUrl === url) return (
+    <div role="alert" className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
+      <p>공략을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
+      <button type="button" className="rounded-xl bg-brand-primary px-6 py-3" onClick={() => { setFailedUrl(undefined); setAttempt(value => value + 1); }}>다시 불러오기</button>
+    </div>
+  );
+  return <div role="status" className="min-h-[70vh] flex items-center justify-center text-gray-400">공략을 불러오는 중입니다.</div>;
+};
+
 export default CharacterGuideDetail;

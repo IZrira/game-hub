@@ -1,15 +1,17 @@
 import React from 'react';
-import { afterEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { Link, MemoryRouter, Route, Routes } from 'react-router';
 import CharacterGuideDetail from '../hsr-hub/pages/CharacterGuideDetail';
 import { HSR_CHARACTER_GUIDES } from '../hsr-hub/data/guides';
+import { mockHsrGuideFetch } from './helpers/hsrGuideFetch';
 
 vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (value: string) => value }) }));
 vi.mock('../common-hub/components/SEO', () => ({ default: () => null }));
 vi.mock('../common-hub/components/PageHeader', () => ({ default: () => null }));
 
-afterEach(cleanup);
+beforeEach(() => vi.stubGlobal('fetch', mockHsrGuideFetch()));
+afterEach(() => { cleanup(); vi.unstubAllGlobals(); });
 
 const renderGuide = (characterName: string) => render(
   <MemoryRouter initialEntries={[`/gallery/hsr/character/${characterName}/guide`]}>
@@ -21,8 +23,42 @@ const renderGuide = (characterName: string) => render(
 );
 
 describe('HSR guide selected build and analysis navigation', () => {
-  it('switches relics, ornaments, main options and conditions together, preserving shared light cones', () => {
+  it('retries a failed guide request and renders the original guide', async () => {
+    const fetchGuide = mockHsrGuideFetch();
+    fetchGuide.mockResolvedValueOnce(new Response('', { status: 503 }));
+    vi.stubGlobal('fetch', fetchGuide);
+    const errorLog = vi.spyOn(console, 'error').mockImplementation(() => {});
+    try {
+      renderGuide('초구');
+      await screen.findByRole('alert');
+      fireEvent.click(screen.getByRole('button', { name: '다시 불러오기' }));
+      expect((await screen.findByRole('region', { name: '추천 세팅 요약' })).textContent).toContain('그 무수한 봄날');
+      expect(fetchGuide).toHaveBeenCalledTimes(2);
+      expect(screen.queryByRole('alert')).toBeNull();
+    } finally {
+      errorLog.mockRestore();
+    }
+  });
+
+  it('ignores a late response from the previous character after navigation', async () => {
+    let finishPrevious!: (response: Response) => void;
+    const pending = new Promise<Response>(resolve => { finishPrevious = resolve; });
+    const fetchGuide = mockHsrGuideFetch();
+    fetchGuide.mockImplementationOnce(() => pending);
+    vi.stubGlobal('fetch', fetchGuide);
+    renderGuide('초구');
+    await waitFor(() => expect(fetchGuide).toHaveBeenCalledOnce());
+    const previousUrl = String(fetchGuide.mock.calls[0][0]);
+    fireEvent.click(screen.getByRole('link', { name: '아케론 공략으로 이동' }));
+    expect((await screen.findByRole('region', { name: '추천 세팅 요약' })).textContent).toContain('흘러가는 강가를 따라');
+    const previousResponse = await mockHsrGuideFetch()(previousUrl);
+    await act(async () => { finishPrevious(previousResponse); });
+    await waitFor(() => expect(screen.getByRole('region', { name: '추천 세팅 요약' }).textContent).toContain('흘러가는 강가를 따라'));
+  });
+
+  it('switches relics, ornaments, main options and conditions together, preserving shared light cones', async () => {
     const { container } = renderGuide('초구');
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const source = HSR_CHARACTER_GUIDES.find(guide => guide.characterName === '초구')!;
     const originalData = JSON.stringify(source);
     const summary = screen.getByRole('region', { name: '추천 세팅 요약' });
@@ -55,8 +91,9 @@ describe('HSR guide selected build and analysis navigation', () => {
     expect(JSON.stringify(source)).toBe(originalData);
   });
 
-  it('preserves variant-specific target values and the source substat priority', () => {
+  it('preserves variant-specific target values and the source substat priority', async () => {
     const { container } = renderGuide('카프카');
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const stats = container.querySelector('[id="권장 스텟"]') as HTMLElement;
     expect(within(stats).getByText('160 이상')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: '4돌파 이상' }));
@@ -71,6 +108,7 @@ describe('HSR guide selected build and analysis navigation', () => {
 
   it('refreshes section navigation after analysis switching and retains the selected setup', async () => {
     const { container } = renderGuide('초구');
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
     fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
     expect(container.querySelector('[id="추천 광추"]')).toBeNull();
@@ -93,11 +131,13 @@ describe('HSR guide selected build and analysis navigation', () => {
     });
   });
 
-  it('resets variant and view when navigating to another character and keeps target conditions with values', () => {
+  it('resets variant and view when navigating to another character and keeps target conditions with values', async () => {
     const { container } = renderGuide('초구');
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
     fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
     fireEvent.click(screen.getByRole('link', { name: '아케론 공략으로 이동' }));
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect(screen.getByRole('button', { name: '세팅 가이드' }).getAttribute('aria-pressed')).toBe('true');
     const stats = container.querySelector('[id="권장 스텟"]') as HTMLElement;
     const conditionalValues = within(stats).getAllByText('80% 이상');
@@ -108,10 +148,11 @@ describe('HSR guide selected build and analysis navigation', () => {
     expect(screen.queryByRole('button', { name: '지속 피해 세팅' })).toBeNull();
   });
 
-  it('can navigate from a missing guide to a published one without changing hook order', () => {
+  it('can navigate from a missing guide to a published one without changing hook order', async () => {
     renderGuide('존재하지 않는 캐릭터');
     expect(screen.getByRole('heading', { name: '공략을 찾을 수 없습니다' })).toBeTruthy();
     fireEvent.click(screen.getByRole('link', { name: '아케론 공략으로 이동' }));
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect(screen.getByRole('region', { name: '추천 세팅 요약' }).textContent).toContain('흘러가는 강가를 따라');
     expect(screen.queryByRole('heading', { name: '공략을 찾을 수 없습니다' })).toBeNull();
   });
