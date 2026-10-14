@@ -192,3 +192,17 @@ it('separates HSR conditional setup prose from numeric target cards', () => {
   expect(container.textContent).toContain('선데이 사용 시 치명타 확률 -20%');
   expect(JSON.stringify(source)).toBe(snapshot);
 });
+
+
+it('keeps Phainon physical recommendations and removes the invalid wind build from setup and analysis', () => {
+  const source = HSR_CHARACTER_GUIDES.find(item => item.characterName === '파이논')!;
+  expect(source.variants?.map(item => item.name)).toEqual(['물리 세팅']);
+  expect(source.variants?.[0].mainStats).toEqual(source.mainStats);
+  expect(JSON.stringify(source)).not.toContain('바람');
+  const { container } = renderCase({ ...cases[0], path: '/gallery/hsr/character/파이논/guide' });
+  expect(screen.queryByRole('button', { name: '바람 세팅' })).toBeNull();
+  expect(container.textContent).toContain('물리 피해');
+  expect(container.textContent).toContain('꿈을 엮는 요정의 낙원');
+  fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
+  expect(container.textContent).not.toContain('바람');
+});
