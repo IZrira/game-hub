@@ -51,6 +51,7 @@
 .guide-field-label { font-size:12px; line-height:20px; font-weight:600; color:#d1d5db; overflow-wrap:anywhere; }
 .guide-equipment-grid,.guide-option-grid,.guide-target-grid,.guide-priority-list,.guide-member-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
 .guide-equipment-grid { grid-template-columns:minmax(0,1fr); }
+.guide-equipment-grid>:only-child,.guide-option-grid>:only-child,.guide-target-grid>:only-child { grid-column:1/-1; }
 .guide-panel>.guide-copy { margin-bottom:16px; }
 .guide-panel>.guide-copy:last-child { margin-bottom:0; }
 .guide-equipment-note,.guide-equipment-effects,.guide-equipment-alternatives { width:100%; border-top:1px solid var(--guide-border); padding-top:12px; }
