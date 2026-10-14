@@ -312,7 +312,7 @@ const CharacterGuideDetail: React.FC = () => {
     { title: '터널 유물', items: parsedRelics.map(item => {
       const baseName = item.cleanName.replace(/\s*[24]세트/g, '').replace(/쫒/g, '쫓').trim();
       const entry = RELIC_DB.find(candidate => candidate.name === item.cleanName || candidate.name === baseName || normalizeName(candidate.name) === normalizeName(baseName));
-      return { name: t(item.cleanName), rank: item.rank, note: item.note ? t(item.note) : undefined, image: getMainImageUrl(entry) || '', to: `/gallery/${gameId}/relic/${encodeURIComponent(entry?.name || baseName)}` };
+      return { name: t(item.cleanName), rank: item.rank, note: item.note ? t(item.note) : undefined, image: getMainImageUrl(entry) || '', group: !entry && /2세트\s*\+/.test(item.cleanName), to: entry ? `/gallery/${gameId}/relic/${encodeURIComponent(entry.name)}` : undefined };
     }) },
     { title: '차원 장신구', items: parsedOrnaments.map(item => {
       const baseName = item.cleanName.replace(/\s*[24]세트/g, '').trim();

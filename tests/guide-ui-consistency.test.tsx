@@ -218,7 +218,13 @@ it('renders Cyrene speed ornaments as equal alternatives under one ranked group'
   expect(card.querySelectorAll('.guide-rank')).toHaveLength(1);
   expect(card.querySelector('.guide-rank')?.textContent).toBe('2순위');
   const links = within(card as HTMLElement).getAllByRole('link');
-  expect(links.map(link => link.textContent)).toEqual(['겁화 연등의 연마궁', '생명의 바커 공']);
+  expect(links.map(link => link.textContent)).toEqual(['겁화 연등의 연마궁', '사색하는 거목']);
+  expect(card.textContent).not.toContain('바커');
+  const relicGroup = screen.getByRole('heading', { name: '속도 2세트 + 속도 2세트', level: 4 }).closest('.guide-equipment-card')!;
+  expect(relicGroup.tagName).toBe('DIV');
+  expect(relicGroup.querySelector('.guide-equipment-image')).toBeNull();
+  expect(relicGroup.textContent).toContain('속도 200 이상 세팅 시 해당 세트가 강제된다.');
+  expect(screen.getByRole('heading', { name: '영원의 땅 앰포리어스', level: 4 })).toBeTruthy();
   links.forEach(link => {
     expect(link.getAttribute('href')).not.toContain(encodeURIComponent('속도 증가 장신구'));
     expect(link.querySelector('img')?.getAttribute('src')).toContain('.webp');
