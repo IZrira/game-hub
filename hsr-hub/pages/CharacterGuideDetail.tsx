@@ -359,7 +359,7 @@ const CharacterGuideDetail: React.FC = () => {
           <GuideBuildContent primary={primaryEquipment} sets={setEquipment} setsId="추천 장비" options={mainOptions} subStats={currentVariant?.subStats || []} targets={[{ label: '목표 스탯', items: parsedTargetStats.filter(item => !item.description) }, { label: '조건별 세팅', items: parsedTargetStats.filter(item => item.description) }].filter(group => group.items.length > 0)} skills={((currentVariant && 'skillPriority' in currentVariant ? currentVariant.skillPriority : undefined) || guide.skillPriority || []).map(name => ({ name }))} members={members} setupNote={currentVariant?.note} />
         </>}
         {publishedAnalysis && activeGuideView === 'analysis' && <GuideAnalysis data={{ summary: publishedAnalysis.summary, metadata: [{ label: '역할', value: publishedAnalysis.role }, { label: '분석 기준', value: publishedAnalysis.standard }, { label: '검토', value: publishedAnalysis.reviewedAt }, { label: '작성·검수', value: publishedAnalysis.reviewer }], strengths: publishedAnalysis.strengths, weaknesses: publishedAnalysis.weaknesses, teamPrinciple: publishedAnalysis.teamPrinciple, overview: publishedAnalysis.gameplay.overview, rotation: publishedAnalysis.gameplay.rotation, tips: publishedAnalysis.gameplay.tips }} />}
-        <GuideFooter updatedAt={`${lastUpdatedDate} (v${guide.patchVersion || '1.0'})`} message="이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다." />
+        <GuideFooter updatedAt={`${lastUpdatedDate} (v${guide.patchVersion || '1.0'})`} message="게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다." />
       </GuideLayout>
     </div>
   );

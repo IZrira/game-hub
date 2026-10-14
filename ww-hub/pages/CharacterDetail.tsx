@@ -980,7 +980,7 @@ const CharacterDetail: React.FC = () => {
               </div>
             </div>
             <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
-              {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
+              {t('게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다.')}
             </div>
           </div>
           {char && (

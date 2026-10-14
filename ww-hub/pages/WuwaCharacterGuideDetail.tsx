@@ -566,7 +566,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           <GuideBuildContent primary={primaryEquipment} sets={setEquipment} setsId="추천 에코" options={mainOptions} subStats={guide.subStats || []} targets={[{ label: '목표 스탯', items: targetValues }]} skills={(guide.skillPriority || []).map((name: string) => ({ name }))} members={guide.isUniversalSynergy ? [] : members} synergyNote={guide.isUniversalSynergy ? '회복 및 서포팅 능력이 뛰어나 특정 딜러에 국한되지 않습니다. 파티의 생존력과 전투 지속력을 높이기 위해 어떤 파티 조합이든 마지막 3번째 자리에 자유롭게 편성하여 활용할 수 있습니다.' : undefined} setupNote={currentVariant?.note} />
         </>}
         {analysis && activeGuideView === 'analysis' && <GuideAnalysis data={{ summary: analysis.summary, strengths: analysis.strengths, weaknesses: analysis.weaknesses, rotation: analysis.rotation, tips: analysis.tips }} />}
-        <GuideFooter message="이 분석 리포트는 게임 데이터 분석과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다." action={<button type="button" className="guide-back-link" onClick={() => setIsFeedbackModalOpen(true)}>{t('데이터 오류 제보')}</button>} />
+        <GuideFooter message="게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다." action={<button type="button" className="guide-back-link" onClick={() => setIsFeedbackModalOpen(true)}>{t('데이터 오류 제보')}</button>} />
         <FeedbackReportModal isOpen={isFeedbackModalOpen} onClose={() => setIsFeedbackModalOpen(false)} contextData={{ gameId, targetId: characterRouteId, targetName: character.name || charName, type: 'guide' }} />
       </GuideLayout>
     </div>
