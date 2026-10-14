@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { NTE_GALLERY_CHARACTERS } from '../nte-hub/data/galleryData';
 import { NTE_TIER_CATEGORIES } from '../nte-hub/data/tiers';
+import { onRequest } from '../functions/_middleware';
 import { mergeAdminTiers } from '../nte-hub/data/adminData';
 
 const checkCatalog = (categories: typeof NTE_TIER_CATEGORIES) => {
@@ -40,4 +41,11 @@ describe('NTE tier list uses the character gallery catalog', () => {
     expect(categories[1].tiers.find(group => group.tier === 'S')?.characters.some(character => character.name === '감정사')).toBe(true);
     expect(JSON.stringify(NTE_TIER_CATEGORIES)).toBe(before);
   });
+});
+
+
+it('allows direct NTE tier-list requests through the production edge', async () => {
+  const response = await onRequest({ request: new Request('https://riragamehub.com/gallery/nte/tierlist'), next: async () => new Response('tier-list page') });
+  expect(response.status).toBe(200);
+  expect(await response.text()).toBe('tier-list page');
 });

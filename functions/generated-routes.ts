@@ -569,6 +569,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/nte/guides/archive-data-usage-guide",
   "/gallery/nte/guides/esper-cycle-combat-guide",
   "/gallery/nte/parties",
+  "/gallery/nte/tierlist",
   "/gallery/nte/weapon/「마지막 장미」",
   "/gallery/nte/weapon/「세상을 뒤흔든 비」",
   "/gallery/nte/weapon/「우리.」",
