@@ -99,3 +99,5 @@
 .guide-option-notes li+li { border-top:1px solid var(--guide-border); padding-top:16px; }
 .guide-option-notes .guide-copy { margin-top:6px; }
 @media(max-width:639px) { .guide-option-grid { grid-template-columns:minmax(0,1fr); } }
+
+.guide-target-descriptions { display:flex; flex-direction:column; gap:12px; }

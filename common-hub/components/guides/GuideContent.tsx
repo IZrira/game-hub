@@ -25,7 +25,7 @@ export function parseGuideOption(value: string, ranked = false): GuideOption['va
   const parts = ranked ? name.split(/\s+or\s+/i).map(item => item.trim()).filter(Boolean) : [name];
   return parts.map((value, index) => ({ value, note, rank: parts.length > 1 ? index + 1 : undefined }));
 }
-export interface GuideTarget { label: string; value: string; note?: string; conditional?: boolean }
+export interface GuideTarget { label: string; value: string; note?: string; conditional?: boolean; description?: boolean }
 export interface GuideTargetGroup { label: string; conditional?: boolean; items: GuideTarget[] }
 export interface GuidePriority { name: string; detail?: string }
 export interface GuideMember { name: string; image?: string; to?: string; details?: string[] }
@@ -95,10 +95,10 @@ export function GuideBuildContent({ primary, sets, setsId, options, subStats, ta
         ...option.values.filter(item => item.note).map((item, itemIndex) => <li key={`${index}-${itemIndex}`}><h4 className="guide-field-label">{sanitizePublicGuideText(t(option.label))} — {sanitizePublicGuideText(t(item.value))}</h4><p className="guide-copy">{sanitizePublicGuideText(t(item.note!))}</p></li>),
       ])}</ul></GuidePanel>}
       <GuidePanel title="부옵션 우선순위"><ol className="guide-ranked-list">{subStats.map((stat, index) => <li key={index}><span className="guide-rank">{index + 1}</span><span className="text-sm">{sanitizePublicGuideText(t(stat))}</span></li>)}</ol></GuidePanel>
-      {targets.map((group, index) => <GuidePanel key={index} title={group.label} conditional={group.conditional}><div className="guide-target-grid">{group.items.map((item, itemIndex) => <div key={itemIndex} className="guide-target-card">
+      {targets.map((group, index) => <GuidePanel key={index} title={group.label} conditional={group.conditional}><div className={group.items.every(item => item.description) ? "guide-target-descriptions" : "guide-target-grid"}>{group.items.map((item, itemIndex) => <div key={itemIndex} className="guide-target-card">
         {item.conditional && <span className="guide-tag">{t('적용 조건')}</span>}
         <p className="guide-field-label">{sanitizePublicGuideText(t(item.label))}</p>
-        <p className="guide-target-value">{sanitizePublicGuideText(t(item.value))}</p>
+        <p className={item.description ? "guide-copy" : "guide-target-value"}>{sanitizePublicGuideText(t(item.value))}</p>
         {item.note && <p className="guide-copy">{sanitizePublicGuideText(t(item.note))}</p>}
       </div>)}</div></GuidePanel>)}
     </section>

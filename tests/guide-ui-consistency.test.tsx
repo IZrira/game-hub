@@ -176,3 +176,19 @@ it.each([{ route: 'camellya', sourceId: 'camellya' }, { route: '3be95fae-3dc7-80
   });
   expect(JSON.stringify(source)).toBe(snapshot);
 });
+
+
+it('separates HSR conditional setup prose from numeric target cards', () => {
+  const source = HSR_CHARACTER_GUIDES.find(item => item.characterName.replace(/[•·]/g, '') === '히메코노바')!;
+  const snapshot = JSON.stringify(source);
+  const { container } = renderCase({ ...cases[0], path: '/gallery/hsr/character/히메코노바/guide' });
+  const numeric = screen.getByRole('heading', { name: '목표 스탯' }).closest('section')!;
+  const conditional = screen.getByRole('heading', { name: '조건별 세팅' }).closest('section')!;
+  expect(numeric.querySelectorAll('.guide-target-value')).toHaveLength(3);
+  expect(conditional.querySelector('.guide-target-value')).toBeNull();
+  expect(conditional.querySelectorAll('.guide-target-descriptions .guide-copy')).toHaveLength(2);
+  expect(conditional.textContent).toContain('선데이의 속도 160 이상, 치명타 확률 -20%');
+  expect(conditional.textContent).toContain('스파클 속도 매+댄댄댄 조합으로 속도 168 이상, 속도 세팅 X');
+  expect(container.textContent).toContain('선데이 사용 시 치명타 확률 -20%');
+  expect(JSON.stringify(source)).toBe(snapshot);
+});
