@@ -3,6 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
 import { normalizeNteCharacter } from './lib/normalize-nte-character.js';
+import { writeCharacterTranslationPacks } from './generate-character-translations.js';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');
@@ -557,3 +558,4 @@ console.log(`[Search] HSR: ${hsrCharacters.length} characters, ${hsrLightcones.l
 console.log(`[HSR] Generated gallery summary for ${hsrGallerySummary.counts.lightcones} light cones and ${hsrGallerySummary.counts.items} items.`);
 console.log(`[Home] Generated lightweight stats for ${homeStats.global.characters} characters and ${homeStats.global.guides} guides.`);
 console.log(`[WW] Generated ${wwCharacters.length} merged character detail records.`);
+writeCharacterTranslationPacks({ hsr: hsrCharacterSummary, ww: wwCharacters });
