@@ -6,6 +6,7 @@ import Footer from './Footer';
 import Navbar from './Navbar';
 import CookieBanner from './CookieBanner';
 import { logger } from '../utils/logger';
+import { retireServiceWorker } from '../utils/retireServiceWorker';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
@@ -16,11 +17,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [location.pathname]);
 
-  // 46,000건 에러 중지용 킬 스위치 등록 (임시)
+  // Retire legacy workers without a registration/reload cycle on every visit.
   useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(console.error);
-    }
+    void retireServiceWorker().catch(console.error);
   }, []);
 
   return (

@@ -55,6 +55,7 @@ const hsrCharacterSummary = readSourceFiles(hsrCharacterDir).map(file => {
     name: readProperty(source, 'name'),
     gameId: 'hsr',
     folderName: readProperty(source, 'folderName') || readProperty(source, 'name'),
+    ...(/isTrailblazer:\s*true/.test(source) ? { isTrailblazer: true } : {}),
     rarity: readNumericProperty(source, 'rarity') || 5,
     attribute: readProperty(source, 'attribute'),
     path: readProperty(source, 'path'),

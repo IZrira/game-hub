@@ -5,6 +5,7 @@
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
+import { getRouteTranslationPacks, type GameLanguageScope } from './utils/routeTranslations';
 
 export type SupportedLanguage = 'ko' | 'en' | 'ja';
 
@@ -13,7 +14,6 @@ type TranslationModule = {
 } & Record<string, unknown>;
 
 type TranslationLoader = () => Promise<TranslationModule>;
-type GameLanguageScope = 'hsr' | 'ww';
 
 const baseTranslationLoaders: Record<SupportedLanguage, TranslationLoader> = {
   ko: () => import('./ko.json'),
@@ -104,17 +104,20 @@ const loadBaseLanguageResources = (language: SupportedLanguage): Promise<void> =
 export const loadGameLanguageResources = async (
   language: SupportedLanguage,
   scope: GameLanguageScope | null,
+  pathname = typeof window === 'undefined' ? '' : window.location.pathname,
+  search = typeof window === 'undefined' ? '' : window.location.search,
 ): Promise<void> => {
   await loadBaseLanguageResources(language);
   if (!scope) return;
 
-  const cacheKey = `${language}:${scope}`;
+  const packs = getRouteTranslationPacks(scope, pathname, search);
+  const cacheKey = `${language}:${scope}:${packs.join(',')}`;
   const cachedPromise = gameLanguageLoadPromises.get(cacheKey);
   if (cachedPromise) return cachedPromise;
 
   const loadPromise = (async () => {
     const scopedLoaders = Object.entries(gameTranslationLoaders[language])
-      .filter(([path]) => path.includes(`/locales/${scope}/`))
+      .filter(([path]) => path.includes(`/locales/${scope}/`) && packs.some(pack => path.endsWith(`/${pack}_${language}.json`)))
       .map(([, loader]) => loader);
 
     const gameModules = await Promise.all(scopedLoaders.map((loader) => loader()));

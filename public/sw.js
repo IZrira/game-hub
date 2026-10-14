@@ -10,18 +10,6 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  // Unregister itself and all other service workers on the same scope.
-  self.registration.unregister()
-    .then(() => self.clients.matchAll())
-    .then((clients) => {
-      // Force all pages to reload to clear any remaining Service Worker state.
-      clients.forEach(client => {
-        if (client.url && 'navigate' in client) {
-          client.navigate(client.url);
-        }
-      });
-    })
-    .then(() => {
-      console.log('Service Worker Kill-Switch: Unregistered and cache cleared.');
-    });
+  // Retire this worker without navigating any open tabs.
+  event.waitUntil(self.registration.unregister());
 });

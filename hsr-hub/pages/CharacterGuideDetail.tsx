@@ -2,7 +2,10 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router';
 import { ChevronLeft, Info } from 'lucide-react';
 import { HSR_CHARACTER_GUIDES } from '../data/guides';
-import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../../common-hub/data/games';
+import characterSummary from '../data/generated/character-summary.json';
+import { SORTED_LIGHTCONE_DATA as LIGHTCONE_DB } from '../data/lightcones';
+import { RELIC_DATA as RELIC_DB } from '../data/relics';
+import { ORNAMENT_DATA as ORNAMENT_DB } from '../data/ornaments';
 import { HSR_PARTIES } from '../data/parties';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -13,6 +16,7 @@ import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+const CHARACTER_DB = characterSummary;
 
 const normalizeName = (name: string) => {
   if (!name) return "";

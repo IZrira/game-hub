@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, useParams, useSearchParams } from 'react-router';
 import { Star } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent, handleImageFallback, withAssetVersion, resolveRoverImageInfo } from '@/common-hub/utils/assetManager';
+import wwCardThumbnails from '../../ww-hub/data/generated/card-thumbnails.json';
 
 const getCleanItemName = (name: string) => name?.replace(/[\s_\-]*[\(\[]?[1-5]성[\)\]]?$/, '').trim() || '';
 
@@ -14,6 +15,7 @@ const getItemUrl = (name: string, gameId = 'hsr', fileName?: string) => {
 export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: number }) => {
   const { t } = useTranslation();
   const { gameId } = useParams();
+  const [searchParams] = useSearchParams();
   const folderName = char.folderName || char.name || '';
   const characterSlug = gameId === 'nte' ? char.name : char.id;
   
@@ -43,16 +45,20 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
   return (
     <Link to={`/gallery/${gameId}/character/${encodeURIComponent(characterSlug || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all duration-500">
       <img 
-        src={imgPath} 
+        src={gameId === 'ww' ? (wwCardThumbnails as Record<string, string>)[imgPath.split('?')[0]] || imgPath : imgPath}
         alt={`${t(char.name || '')} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
-        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 will-change-transform" 
+        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
         style={{ 
           imageRendering: '-webkit-optimize-contrast',
           backfaceVisibility: 'hidden',
-          transform: 'translateZ(0)',
         }}
-        loading="lazy" 
+        loading={searchParams.get('menu') === '캐릭터' && index < 4 ? 'eager' : 'lazy'}
+        decoding="async"
         onError={(e) => {
+          if (e.currentTarget.src.includes('/assets/thumbnails/ww/')) {
+            e.currentTarget.src = imgPath;
+            return;
+          }
           if (char.isTrailblazer && !e.currentTarget.src.includes('%EA%B0%9C%EC%B2%99%EC%9E%90/')) {
             const baseFolderName = safeEncodeURIComponent('개척자');
             const fileName = e.currentTarget.src.includes('art01-01.webp') ? 'art01-01.webp' : 'art01.webp';

@@ -5,6 +5,8 @@ import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';
 import i18n, { getGameLanguageScope, loadGameLanguageResources, SupportedLanguage } from './i18n';
+import { useTranslation } from 'react-i18next';
+import { getRouteTranslationPacks } from './utils/routeTranslations';
 
 // 1. 페이지 지연 로딩 (Lazy Loading)
 const Home = React.lazy(() => import('./pages/Home'));
@@ -113,28 +115,28 @@ const PageFallback = () => (
 
 const RouteLanguageGate: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
-  const [isReady, setIsReady] = useState(false);
+  useTranslation();
+  const language = (i18n.language || 'ko') as SupportedLanguage;
+  const scope = getGameLanguageScope(location.pathname);
+  const resourceKey = `${language}:${scope}:${scope ? getRouteTranslationPacks(scope, location.pathname, location.search).join(',') : ''}`;
+  const [readyKey, setReadyKey] = useState('');
 
   useEffect(() => {
     let isActive = true;
-    setIsReady(false);
-
-    const language = (i18n.language || 'ko') as SupportedLanguage;
-    const scope = getGameLanguageScope(location.pathname);
-    void loadGameLanguageResources(language, scope)
+    void loadGameLanguageResources(language, scope, location.pathname, location.search)
       .catch((error) => {
         console.error('Failed to load route translations:', error);
       })
       .finally(() => {
-        if (isActive) setIsReady(true);
+        if (isActive) setReadyKey(resourceKey);
       });
 
     return () => {
       isActive = false;
     };
-  }, [location.pathname]);
+  }, [resourceKey]);
 
-  return isReady ? <>{children}</> : <PageFallback />;
+  return readyKey === resourceKey ? <>{children}</> : <PageFallback />;
 };
 
 // 2. 공통 레이아웃 래퍼 컴포넌트

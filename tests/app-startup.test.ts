@@ -17,6 +17,7 @@ it('mounts the application even when initial translations fail to load', async (
   boot.language.mockRejectedValue(new Error('network failure'));
   await import('../common-hub/index');
   await waitFor(() => expect(boot.render).toHaveBeenCalledOnce());
+  expect(boot.language).toHaveBeenCalledWith('ko', null);
 });
 it('replaces the boot spinner with a retry action when startup fails', async () => {
   boot.language.mockResolvedValue(undefined);

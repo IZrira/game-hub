@@ -14,7 +14,7 @@ if (!rootElement) {
 const renderApp = async () => {
   const initialLanguage = getInitialLanguage();
   try {
-    await loadLanguageResources(initialLanguage);
+    await loadLanguageResources(initialLanguage, null);
   } catch (error) {
     console.error('Initial language resources could not be loaded:', error);
   }
