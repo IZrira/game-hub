@@ -71,19 +71,25 @@
     }
     .js-enabled .app-boot-loader {
       position: fixed;
-      inset: 0;
+      top: 12px;
+      right: 12px;
       z-index: 100000;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0a0a0a;
+      max-width: calc(100vw - 24px);
+      padding: 8px 12px;
+      border: 1px solid rgba(126, 48, 225, 0.25);
+      border-radius: 9999px;
+      background: rgba(10, 10, 10, 0.92);
+      pointer-events: none;
     }
     .app-boot-loader__brand {
       display: flex;
       align-items: center;
       gap: 12px;
       color: #c084fc;
-      font-size: 0.9rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.08em;
     }
@@ -94,6 +100,14 @@
       background: #a855f7;
       box-shadow: 0 0 14px #7e30e1;
       animation: prerender-pulse 1.2s infinite ease-in-out;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .app-boot-loader__dot,
+      .prerender-top-shimmer,
+      .prerender-status-dot,
+      .prerender-main {
+        animation: none !important;
+      }
     }
 
     /* Prerender Shell & Skeleton Shimmer */
