@@ -2,7 +2,7 @@ export interface SettingVariant {
   name: string;
   note?: string;
   bestRelics: (string | { name: string; note: string })[];
-  bestOrnaments: (string | { name: string; note: string })[];
+  bestOrnaments: (string | { name: string; note: string; alternatives?: string[] })[];
   bestLightCones?: (string | { name: string; note: string })[];
   skillPriority?: string[];
   mainStats: {
@@ -57,7 +57,7 @@ export interface CharacterGuide {
   eidolonVariants?: EidolonVariant[];
   // 1. 유물 & 장신구 세팅
   bestRelics: (string | { name: string; note: string })[];
-  bestOrnaments: (string | { name: string; note: string })[];
+  bestOrnaments: (string | { name: string; note: string; alternatives?: string[] })[];
   // 2. 권장 주옵션
   mainStats: {
     body: string | { value: string; note: string };

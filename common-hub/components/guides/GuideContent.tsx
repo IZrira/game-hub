@@ -13,7 +13,8 @@ export interface GuideEquipment {
   note?: string;
   badges?: string[];
   effects?: { label: string; value: string }[];
-  alternatives?: { name: string; image?: string }[];
+  alternatives?: { name: string; image?: string; to?: string }[];
+  group?: boolean;
 }
 export interface GuideEquipmentGroup { id?: string; title: string; items: GuideEquipment[]; note?: string }
 export interface GuideOption { label: string; values: { value: string; note?: string; rank?: number }[]; note?: string }

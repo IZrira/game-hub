@@ -206,3 +206,26 @@ it('keeps Phainon physical recommendations and removes the invalid wind build fr
   fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
   expect(container.textContent).not.toContain('바람');
 });
+
+
+it('renders Cyrene speed ornaments as equal alternatives under one ranked group', () => {
+  const source = HSR_CHARACTER_GUIDES.find(item => item.characterName === '키레네')!;
+  const snapshot = JSON.stringify(source);
+  renderCase({ ...cases[0], path: '/gallery/hsr/character/키레네/guide' });
+  const card = screen.getByRole('heading', { name: '속도 증가 장신구', level: 4 }).closest('.guide-equipment-card')!;
+  expect(card.tagName).toBe('DIV');
+  expect(card.querySelector('.guide-equipment-image')).toBeNull();
+  expect(card.querySelectorAll('.guide-rank')).toHaveLength(1);
+  expect(card.querySelector('.guide-rank')?.textContent).toBe('2순위');
+  const links = within(card as HTMLElement).getAllByRole('link');
+  expect(links.map(link => link.textContent)).toEqual(['겁화 연등의 연마궁', '생명의 바커 공']);
+  links.forEach(link => {
+    expect(link.getAttribute('href')).not.toContain(encodeURIComponent('속도 증가 장신구'));
+    expect(link.querySelector('img')?.getAttribute('src')).toContain('.webp');
+  });
+  expect(within(card as HTMLElement).getAllByText('고속 세팅을 해야하는 키레네 특성 상 우선적으로 맞춰야 한다')).toHaveLength(1);
+  fireEvent.click(screen.getByRole('button', { name: '메인 딜러 세팅 : 6돌파 이상 권장' }));
+  expect(screen.queryByRole('heading', { name: '속도 증가 장신구' })).toBeNull();
+  expect(screen.getByRole('heading', { name: '고요한 습골지', level: 4 })).toBeTruthy();
+  expect(JSON.stringify(source)).toBe(snapshot);
+});

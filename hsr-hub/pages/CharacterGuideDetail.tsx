@@ -61,6 +61,7 @@ const parseItemWithNote = (item: any, defaultRank: number) => {
 
   return {
     raw: item,
+    alternatives: typeof item === 'object' ? item.alternatives as string[] | undefined : undefined,
     cleanName,
     rank,
     note: note && note.length > 0 ? note : undefined
@@ -316,7 +317,11 @@ const CharacterGuideDetail: React.FC = () => {
     { title: '차원 장신구', items: parsedOrnaments.map(item => {
       const baseName = item.cleanName.replace(/\s*[24]세트/g, '').trim();
       const entry = ORNAMENT_DB.find(candidate => candidate.name === item.cleanName || candidate.name === baseName || normalizeName(candidate.name) === normalizeName(baseName));
-      return { name: t(item.cleanName), rank: item.rank, note: item.note ? t(item.note) : undefined, image: getMainImageUrl(entry) || '', to: `/gallery/${gameId}/ornament/${encodeURIComponent(entry?.name || baseName)}` };
+      const alternatives = item.alternatives?.map(name => {
+        const alternative = ORNAMENT_DB.find(candidate => candidate.name === name);
+        return { name: t(name), image: getMainImageUrl(alternative) || '', to: alternative ? `/gallery/${gameId}/ornament/${encodeURIComponent(alternative.name)}` : undefined };
+      });
+      return { name: t(item.cleanName), rank: item.rank, note: item.note ? t(item.note) : undefined, image: getMainImageUrl(entry) || '', group: Boolean(alternatives?.length), alternatives, to: alternatives?.length ? undefined : `/gallery/${gameId}/ornament/${encodeURIComponent(entry?.name || baseName)}` };
     }) },
   ];
   const members = synergyCharacters.map(member => {
