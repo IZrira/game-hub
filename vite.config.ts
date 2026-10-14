@@ -28,8 +28,27 @@ export default defineConfig(({ mode }) => {
         chunkSizeWarningLimit: 1000,
         rollupOptions: {
           output: {
-            // Ship one application module so cached HTML cannot request removed page chunks.
-            inlineDynamicImports: true,
+            chunkFileNames: 'assets/module-[hash].js',
+            manualChunks(id) {
+              const normalizedId = id.replace(/\\/g, '/');
+              if (
+                normalizedId.includes('/node_modules/react/') ||
+                normalizedId.includes('/node_modules/react-dom/') ||
+                normalizedId.includes('/node_modules/react-router/') ||
+                normalizedId.includes('/node_modules/scheduler/') ||
+                normalizedId.includes('/node_modules/i18next/') ||
+                normalizedId.includes('/node_modules/react-i18next/') ||
+                normalizedId.includes('/node_modules/react-helmet-async/')
+              ) {
+                return 'vendor-core';
+              }
+              if (
+                normalizedId.includes('/hsr-hub/data/characters/hsr/') ||
+                normalizedId.endsWith('/hsr-hub/data/characters.ts')
+              ) {
+                return 'hsr-character-details';
+              }
+            },
           },
         },
       },

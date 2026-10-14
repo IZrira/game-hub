@@ -13,7 +13,11 @@ if (!rootElement) {
 
 const renderApp = async () => {
   const initialLanguage = getInitialLanguage();
-  await loadLanguageResources(initialLanguage);
+  try {
+    await loadLanguageResources(initialLanguage);
+  } catch (error) {
+    console.error('Initial language resources could not be loaded:', error);
+  }
   consumeLegacyLanguageQuery();
 
   const root = ReactDOM.createRoot(rootElement);
@@ -26,4 +30,13 @@ const renderApp = async () => {
   );
 };
 
-void renderApp();
+void renderApp().catch(error => {
+  console.error('Application startup failed:', error);
+  rootElement.replaceChildren();
+  const message = document.createElement('p');
+  message.textContent = '페이지를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+  const retry = document.createElement('button');
+  retry.textContent = '다시 불러오기';
+  retry.onclick = () => window.location.reload();
+  rootElement.append(message, retry);
+});
