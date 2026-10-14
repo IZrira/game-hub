@@ -23,6 +23,36 @@ const renderGuide = (characterId: string) => render(
 );
 
 describe('WW guide navigation and selected build', () => {
+  it.each(['rebecca', 'lucy', 'chisa', 'qiuyuan'])('preserves mixed-set conditions and echo explanations for %s', characterId => {
+    const source = sourceGuides.find(item => item.id === characterId)! as any;
+    const original = JSON.stringify(source);
+    const { container } = renderGuide(characterId);
+    const selector = screen.getByRole('group', { name: '세팅 선택' });
+    const buttons = within(selector).getAllByRole('button');
+    source.variants.forEach((variant: any, index: number) => {
+      fireEvent.click(buttons[index]);
+      const sets = container.querySelector('[id="추천 에코"]')!;
+      for (const item of variant.echoSets) {
+        if (item.note) expect(sets.textContent).toContain(item.note);
+      }
+      for (const echo of variant.mainEchoes) {
+        expect(sets.textContent).toContain(echo.name);
+        expect(sets.textContent).toContain(echo.reason);
+      }
+      const stats = container.querySelector('[id="권장 스텟"]')!;
+      for (const slot of variant.mainStats || source.mainStats) {
+        for (const value of slot.stats) expect(stats.textContent).toContain(value);
+        if (slot.note) expect(stats.textContent).toContain(slot.note);
+      }
+      if (variant.name.includes('+')) expect(sets.querySelector('.guide-equipment-alternatives')).toBeTruthy();
+    });
+    fireEvent.click(buttons[0]);
+    if (characterId === 'rebecca' || characterId === 'lucy') {
+      expect(container.querySelector('[id="추천 에코"]')?.textContent).toContain('2 Pieces × 2');
+    }
+    expect(JSON.stringify(source)).toBe(original);
+  });
+
   it('links synergy cards to published character routes instead of source database IDs', () => {
     const { container } = renderGuide('camellya');
     const synergy = container.querySelector('[id="시너지 캐릭터"]') as HTMLElement;
@@ -60,8 +90,9 @@ describe('WW guide navigation and selected build', () => {
     }
     expect(stats.textContent).toContain('공명 효율을 부 옵션에서 맞출 수 없을 경우 주 옵션에서 챙긴다');
     const skillSection = container.querySelector('[id="스킬 육성 우선순위"]') as HTMLElement;
-    const skills = Array.from(skillSection.querySelectorAll('div.flex > div')).map(node => node.textContent);
+    const skills = within(skillSection).getAllByRole('listitem').map(node => node.querySelector('p')?.textContent);
     expect(skills).toEqual(originalGuide.skillPriority);
+    fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
     const analysis = container.querySelector('[id="RIRA 분석 가이드"]') as HTMLElement;
     expect(analysis.textContent).toContain(sourceAnalysis.jiyan.summary);
     for (const detail of [...sourceAnalysis.jiyan.strengths, ...sourceAnalysis.jiyan.weaknesses, ...sourceAnalysis.jiyan.rotation, ...sourceAnalysis.jiyan.tips]) {

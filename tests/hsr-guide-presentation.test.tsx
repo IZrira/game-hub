@@ -77,7 +77,7 @@ describe('HSR guide selected build and analysis navigation', () => {
     await waitFor(() => {
       for (const navigation of screen.getAllByRole('navigation', { name: '공략 섹션 이동' })) {
         expect(within(navigation).getByRole('link', { name: /RIRA 분석/ })).toBeTruthy();
-        expect(within(navigation).queryByRole('link', { name: /추천 광추/ })).toBeNull();
+        expect(within(navigation).queryByRole('link', { name: /추천 장비/ })).toBeNull();
       }
     });
     fireEvent.click(screen.getByRole('button', { name: '세팅 가이드' }));
@@ -85,7 +85,7 @@ describe('HSR guide selected build and analysis navigation', () => {
     expect(screen.getByRole('region', { name: '추천 세팅 요약' }).textContent).toContain('깊은 감옥에 수감된 죄수');
     await waitFor(() => {
       for (const navigation of screen.getAllByRole('navigation', { name: '공략 섹션 이동' })) {
-        expect(within(navigation).getByRole('link', { name: /추천 광추/ })).toBeTruthy();
+        expect(within(navigation).getByRole('link', { name: /추천 장비/ })).toBeTruthy();
         expect(within(navigation).queryByRole('link', { name: /RIRA 분석/ })).toBeNull();
       }
     });

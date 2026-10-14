@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { handleImageFallback } from '../../utils/assetManager';
 import { isNotionUrl, sanitizePublicGuideText } from '../../utils/publicGuideLinks';
 import './guide-layout.css';
+import type { GuideEquipment } from './GuideContent';
 
 interface Heading { id: string; text: string }
 
@@ -98,9 +99,9 @@ export function GuideHero({ name, image, backTo, version, updatedAt, tags = [], 
   </header>;
 }
 
-export function GuideSummary({ items }: { items: { label: string; value: string; note?: string }[] }) {
-  const shown = items.filter(item => item.value);
-  return <section aria-label="추천 세팅 요약" className="guide-summary"><div className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-100"><Star size={15} className="text-violet-300" aria-hidden />추천 세팅 한눈에 보기</div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3">{shown.map((item, index) => <div key={index} className={`guide-summary-item ${index >= 2 ? 'col-span-2' : ''} ${shown.length === 4 && index === 3 ? 'sm:col-span-3' : 'sm:col-span-1'}`}><span className="mb-1 block text-xs font-semibold text-gray-400">{sanitizePublicGuideText(item.label)}</span><p className="break-words text-sm font-bold leading-6 text-white">{sanitizePublicGuideText(item.value)}</p>{item.note && <p className="mt-1 text-xs leading-5 text-gray-300">{sanitizePublicGuideText(item.note)}</p>}</div>)}</div></section>;
+export function GuideSummary({ items }: { items: { label: string; value: string | { label?: string; value: string }[]; note?: string }[] }) {
+  const shown = items.filter(item => Array.isArray(item.value) ? item.value.length > 0 : Boolean(item.value));
+  return <section aria-label="추천 세팅 요약" className="guide-summary"><div className="mb-3 flex items-center gap-2 text-sm font-bold text-gray-100"><Star size={15} className="text-violet-300" aria-hidden />추천 세팅 한눈에 보기</div><div className="grid grid-cols-2 gap-3 sm:grid-cols-3">{shown.map((item, index) => <div key={index} className={`guide-summary-item ${index >= 2 ? 'col-span-2' : ''} ${shown.length === 4 && index === 3 ? 'sm:col-span-3' : 'sm:col-span-1'}`}><span className="mb-1 block text-xs font-semibold text-gray-400">{sanitizePublicGuideText(item.label)}</span>{Array.isArray(item.value) ? <ul className="guide-summary-values">{item.value.map((row, rowIndex) => <li key={rowIndex}>{row.label && <span>{sanitizePublicGuideText(row.label)}</span>}<strong>{sanitizePublicGuideText(row.value)}</strong></li>)}</ul> : <p className="break-words text-sm font-bold leading-6 text-white">{sanitizePublicGuideText(item.value)}</p>}{item.note && <p className="mt-1 text-xs leading-5 text-gray-300">{sanitizePublicGuideText(item.note)}</p>}</div>)}</div></section>;
 }
 
 export function GuideVariantSelector({ label, options, value, onChange, description }: { label: string; options: { label: string; value: string }[]; value: string; onChange: (value: string) => void; description?: string }) {
@@ -113,8 +114,12 @@ export function GuideSectionHeader({ num, title }: { num: string; title: string;
   return <div className="guide-section-heading"><span aria-hidden>{num}</span><h2>{sanitizePublicGuideText(t(title, { keySeparator: false, nsSeparator: false }))}</h2></div>;
 }
 
-export function GuideEquipmentCard({ name, image, to, rank }: { name: string; image: string; to?: string; rank: number }) {
-  const body = <><div className="guide-equipment-image">{!isNotionUrl(image) && <img src={image} alt={sanitizePublicGuideText(name)} loading="lazy" onError={handleImageFallback} />}</div><div className="min-w-0 flex-1"><div className="mb-2 flex flex-wrap items-center gap-2"><span className="guide-rank">{rank}순위</span>{rank === 1 && <span className="text-xs font-semibold text-violet-200">우선 추천</span>}</div><p className="break-words text-sm font-bold leading-6 text-white">{sanitizePublicGuideText(name)}</p>{to && !isNotionUrl(to) && <span className="mt-2 inline-flex items-center gap-1 text-xs text-gray-400">장비 정보<ArrowRight size={12} aria-hidden /></span>}</div></>;
+export function GuideEquipmentCard({ name, image, to, rank, note, badges, effects, alternatives }: GuideEquipment) {
+  const body = <><div className="guide-equipment-heading"><div className="guide-equipment-image">{image && !isNotionUrl(image) && <img src={image} alt={sanitizePublicGuideText(name)} loading="lazy" onError={handleImageFallback} />}</div><div className="min-w-0 flex-1"><div className="mb-2 flex flex-wrap items-center gap-2">{rank !== undefined && <span className="guide-rank">{rank}순위</span>}{rank === 1 && <span className="text-xs font-semibold text-violet-200">우선 추천</span>}{badges?.map((badge, index) => <span key={index} className="guide-tag">{sanitizePublicGuideText(badge)}</span>)}</div><h4 className="guide-item-name">{sanitizePublicGuideText(name)}</h4>{to && !isNotionUrl(to) && <span className="mt-2 inline-flex items-center gap-1 text-xs text-gray-400">장비 정보<ArrowRight size={12} aria-hidden /></span>}</div></div>
+    {note && <p className="guide-copy guide-equipment-note">{sanitizePublicGuideText(note)}</p>}
+    {effects?.length ? <dl className="guide-equipment-effects">{effects.map((effect, index) => <div key={index}><dt className="guide-field-label">{sanitizePublicGuideText(effect.label)}</dt><dd className="guide-copy">{sanitizePublicGuideText(effect.value)}</dd></div>)}</dl> : null}
+    {alternatives?.length ? <div className="guide-equipment-alternatives"><p className="guide-field-label">선택 가능한 세트</p><ul className="guide-value-list">{alternatives.map((item, index) => <li key={index}>{item.image && !isNotionUrl(item.image) && <img src={item.image} alt="" loading="lazy" onError={handleImageFallback} />}<span>{sanitizePublicGuideText(item.name)}</span></li>)}</ul></div> : null}
+  </>;
   const className = `guide-equipment-card ${rank === 1 ? 'guide-equipment-best' : ''}`;
   return to && !isNotionUrl(to) ? <Link to={to} className={className}>{body}</Link> : <div className={className}>{body}</div>;
 }
