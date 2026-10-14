@@ -28,13 +28,15 @@ describe('HSR guide selected build and analysis navigation', () => {
     const summary = screen.getByRole('region', { name: '추천 세팅 요약' });
     expect(summary.textContent).toContain('밤낮의 경계를 나는 매');
     expect(summary.textContent).toContain('생명의 바커 공');
-    expect(summary.textContent).toContain('HP or 화염 피해');
+    expect(summary.textContent).toContain('차원 구체 · 1순위HP');
+    expect(summary.textContent).toContain('차원 구체 · 2순위화염 피해');
 
     fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
     expect(screen.getByRole('button', { name: '지속 피해 세팅' }).getAttribute('aria-pressed')).toBe('true');
     expect(summary.textContent).toContain('깊은 감옥에 수감된 죄수');
     expect(summary.textContent).toContain('즐거움에 취한 바다의 일각');
-    expect(summary.textContent).toContain('화염 피해 or 공격력');
+    expect(summary.textContent).toContain('차원 구체 · 1순위화염 피해');
+    expect(summary.textContent).toContain('차원 구체 · 2순위공격력');
     expect(summary.textContent).not.toContain('HP or 화염 피해');
 
     const equipment = container.querySelector('[id="추천 장비"]') as HTMLElement;

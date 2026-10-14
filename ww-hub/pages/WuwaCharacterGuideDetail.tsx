@@ -495,7 +495,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     { label: t('에코 세트'), value: parsedEchoSetsData.isCombo ? parsedEchoSetsData.comboParts.map((item: any) => ({ value: t(item.cleanName), image: sonataEquipment(item).image })) : primaryEchoSetName ? t(primaryEchoSetName.split(/[:：]/)[0].trim()) : '', image: parsedEchoSetsData.isCombo ? undefined : setEquipment[0]?.items[0]?.image },
     { label: t('메인 에코'), value: parsedMainEchoes[0]?.cleanName ? t(parsedMainEchoes[0].cleanName) : '', image: parsedMainEchoes[0] ? getEchoImage(parsedMainEchoes[0].cleanName) : undefined },
   ];
-  const mainOptions = mainStatsToDisplay.map((item: any) => ({ label: `${item.cost} COST`, values: (item.stats || []).flatMap((value: string) => parseGuideOption(value)), note: item.note }));
+  const mainOptions = mainStatsToDisplay.map((item: any) => ({ label: `${item.cost} COST`, values: (item.stats || []).flatMap((value: string) => parseGuideOption(value, true)), note: item.note }));
   const targetValues = (guide.targetStats || []).map((item: any) => {
     const parts = String(item.value || '').split(/[:：]/);
     const extra = parts.slice(1).join(':').trim();

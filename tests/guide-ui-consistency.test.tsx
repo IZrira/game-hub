@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 import HsrGuide from '../hsr-hub/pages/CharacterGuideDetail';
 import WwGuide from '../ww-hub/pages/WuwaCharacterGuideDetail';
 import NteGuide from '../nte-hub/pages/CharacterGuideDetail';
+import { HSR_CHARACTER_GUIDES } from '../hsr-hub/data/guides';
 import sourceGuides from '../ww-hub/data/generated/guides.json';
 import articles from '../common-hub/data/guideArticles.json';
 import { parseNteCharacterGuide } from '../nte-hub/data/parseCharacterGuide';
@@ -56,8 +57,9 @@ describe('shared guide body contract', () => {
   it('renders HSR summary options as separate rows and retains their slot association', () => {
     renderCase(cases[0]);
     const rows = within(screen.getByRole('region', { name: '추천 세팅 요약' })).getAllByRole('listitem');
-    expect(rows).toHaveLength(4);
-    ['몸통', '신발', '차원 구체', '연결 매듭'].forEach((label, index) => expect(within(rows[index]).getByText(label)).toBeTruthy());
+    expect(rows.length).toBeGreaterThanOrEqual(4);
+    ['몸통', '신발', '차원 구체', '연결 매듭'].forEach(label => expect(rows.some(row => row.textContent?.startsWith(label))).toBe(true));
+    expect(rows.some(row => row.textContent?.includes(' or '))).toBe(false);
   });
 
   it('does not add an empty analysis view when source analysis is unavailable', () => {
@@ -118,5 +120,40 @@ describe('recommendation readability and original data', () => {
     const names = source.mainStats[0].split(/\s+or\s+/i);
     names.forEach((name, index) => expect(rows[index].textContent).toBe(`${index + 1}순위${name}`));
     expect(JSON.stringify(article)).toBe(before);
+  });
+});
+
+
+describe('HSR and WW ranked option alternatives', () => {
+  it('ranks HSR options and summary in source order for the selected variant', () => {
+    const source = HSR_CHARACTER_GUIDES.find(item => item.characterName === '초구')!;
+    const original = JSON.stringify(source);
+    const { container } = renderCase({ ...cases[0], path: '/gallery/hsr/character/초구/guide' });
+    const check = (values: string[]) => {
+      const card = Array.from(container.querySelectorAll('.guide-option-card')).find(card => card.querySelector('h4')?.textContent === '차원 구체')!;
+      const rows = Array.from(card.querySelectorAll('li'));
+      expect(rows.map(row => row.textContent)).toEqual(values.map((value, index) => `${index + 1}순위${value}`));
+    };
+    check(['HP', '화염 피해']);
+    fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
+    check(['화염 피해', '공격력']);
+    expect(JSON.stringify(source)).toBe(original);
+  });
+
+  it('ranks WW option alternatives while retaining the explanation verbatim', () => {
+    const source = sourceGuides.find(item => item.id === 'jingran')! as any;
+    const slot = (source.variants?.[0]?.mainStats || source.mainStats)[0];
+    const original = slot.stats;
+    try {
+      slot.stats = ['크리티컬 or 크리티컬 피해 : 조건 충족 시 공격력 or 피해 보너스 선택'];
+      const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/jingran/guide' });
+      const rows = Array.from(container.querySelectorAll('.guide-option-card')[0].querySelectorAll('li'));
+      expect(rows.map(row => row.textContent)).toEqual(['1순위크리티컬', '2순위크리티컬 피해']);
+      const notes = container.querySelector('.guide-option-notes')!;
+      expect(notes.textContent).toContain('조건 충족 시 공격력 or 피해 보너스 선택');
+      expect(container.querySelector('.guide-option-grid')!.textContent).not.toContain('조건 충족');
+    } finally {
+      slot.stats = original;
+    }
   });
 });

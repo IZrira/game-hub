@@ -10,7 +10,7 @@ import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../.
 import { useTranslation } from 'react-i18next';
 import { getHsrCharacterArtUrl } from '../../common-hub/utils/assetManager';
 import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
-import { GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
+import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
@@ -298,7 +298,10 @@ const CharacterGuideDetail: React.FC = () => {
     ['신발', currentVariant?.mainStats.boots],
     ['차원 구체', currentVariant?.mainStats.sphere],
     ['연결 매듭', currentVariant?.mainStats.rope],
-  ].map(([label, stat]) => ({ label: String(label), values: [getStatValueAndNote(stat)] }));
+  ].map(([label, stat]) => {
+    const parsed = getStatValueAndNote(stat);
+    return { label: String(label), values: parseGuideOption(parsed.value, true), note: parsed.note };
+  });
   const primaryEquipment = [{ id: '추천 광추', title: '추천 광추', items: parsedLightCones.map(item => {
     const entry = LIGHTCONE_DB.find(candidate => candidate.name === item.cleanName);
     const image = entry ? encodeURI(`${BASE_IMAGE_URL}/광추/${entry.path.normalize('NFC')}/${(entry.fileName || entry.folderName).normalize('NFC')}.webp`) : '';
@@ -351,7 +354,7 @@ const CharacterGuideDetail: React.FC = () => {
             { label: t('추천 광추'), value: parsedLightCones[0] ? t(parsedLightCones[0].cleanName) : '', image: primaryEquipment[0].items[0]?.image },
             { label: t('터널 유물'), value: parsedRelics[0] ? t(parsedRelics[0].cleanName) : '', image: setEquipment[0].items[0]?.image },
             { label: t('차원 장신구'), value: parsedOrnaments[0] ? t(parsedOrnaments[0].cleanName) : '', image: setEquipment[1].items[0]?.image },
-            { label: t('주옵션'), value: mainOptions.map(item => ({ label: t(item.label), value: t(item.values[0].value) })) },
+            { label: t('주옵션'), value: mainOptions.flatMap(item => item.values.map(option => ({ label: `${t(item.label)}${option.rank ? ` · ${option.rank}순위` : ''}`, value: t(option.value) }))) },
           ]} />
           <GuideBuildContent primary={primaryEquipment} sets={setEquipment} setsId="추천 장비" options={mainOptions} subStats={currentVariant?.subStats || []} targets={[{ label: '목표 스탯', items: parsedTargetStats }]} skills={((currentVariant && 'skillPriority' in currentVariant ? currentVariant.skillPriority : undefined) || guide.skillPriority || []).map(name => ({ name }))} members={members} setupNote={currentVariant?.note} />
         </>}
