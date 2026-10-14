@@ -30,7 +30,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 const CharacterCard = memo(({ char, gameId }: { char: NTETierCharacter, gameId: string | undefined }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte images';
-  const imgUrl = `${BASE_IMAGE_URL}/skills/${encodeURIComponent(char.name)}/${encodeURIComponent(char.name)}.webp`;
+  const imgUrl = `${BASE_IMAGE_URL}/skills/${encodeURIComponent(char.folderName || char.name)}/${encodeURIComponent(`${char.fileName || char.name}${char.isTrailblazer ? '_f' : ''}`)}.webp`;
 
   return (
     <Link
@@ -196,7 +196,7 @@ const NTETierList: React.FC = () => {
 
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
               <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider mr-1">속성:</span>
-              {['전체', '혼', '령', '음', '양', '공', '상'].map(attr => (
+              {['전체', '혼', '령', '암', '빛', '주', '상'].map(attr => (
                 <button
                   key={attr}
                   onClick={() => setAttrFilter(attr)}

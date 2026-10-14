@@ -1,3 +1,5 @@
+import { NTE_GALLERY_CHARACTERS } from './galleryData';
+
 export interface NTETierCharacter {
   id: string;
   name: string;
@@ -5,6 +7,9 @@ export interface NTETierCharacter {
   attribute: '령' | '혼' | '음' | '양' | '공' | '상' | string;
   change?: 'up' | 'down' | 'new' | 'stay';
   note?: string;
+  folderName?: string;
+  fileName?: string;
+  isTrailblazer?: boolean;
 }
 
 export interface NTETierGroup {
@@ -21,7 +26,7 @@ export interface NTETierCategory {
   tiers: NTETierGroup[];
 }
 
-export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
+const DEFAULT_NTE_TIER_CATEGORIES: NTETierCategory[] = [
   {
     id: 'overall',
     name: '종합 메타 티어 (Overall Meta)',
@@ -66,10 +71,6 @@ export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
         description: '안정적인 성능을 보여주는 육성 가치 높은 에스퍼',
         color: '#10b981',
         characters: [
-          { id: 'nte-amber', name: '엠버', role: '서브 딜러', attribute: '령', change: 'stay' },
-          { id: 'nte-bell', name: '벨', role: '서포터', attribute: '음', change: 'stay' },
-          { id: 'nte-roberta', name: '로베르타', role: '탱커/힐러', attribute: '상', change: 'stay' },
-          { id: 'nte-serena', name: '세레나', role: '서브 딜러', attribute: '혼', change: 'stay' }
         ]
       },
       {
@@ -77,10 +78,6 @@ export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
         description: '초반 스토리 진행 및 서브 파티용 에스퍼',
         color: '#6b7280',
         characters: [
-          { id: 'nte-zero', name: '제로', role: '메인 딜러', attribute: '공', change: 'stay' },
-          { id: 'nte-kin', name: '킨', role: '서브 딜러', attribute: '혼', change: 'stay' },
-          { id: 'nte-wendy', name: '웬디', role: '서포터', attribute: '령', change: 'stay' },
-          { id: 'nte-laura', name: '로라', role: '탱커/힐러', attribute: '양', change: 'stay' }
         ]
       }
     ]
@@ -129,8 +126,6 @@ export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
         characters: [
           { id: 'nte-haniel', name: '하니엘', role: '서포터', attribute: '공', change: 'stay' },
           { id: 'nte-nanali', name: '나나리', role: '서브 딜러', attribute: '상', change: 'stay' },
-          { id: 'nte-amber', name: '엠버', role: '서브 딜러', attribute: '령', change: 'stay' },
-          { id: 'nte-bell', name: '벨', role: '서포터', attribute: '음', change: 'stay' }
         ]
       },
       {
@@ -138,12 +133,6 @@ export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
         description: '보스전 기믹 대응 제한적',
         color: '#6b7280',
         characters: [
-          { id: 'nte-zero', name: '제로', role: '메인 딜러', attribute: '공', change: 'stay' },
-          { id: 'nte-kin', name: '킨', role: '서브 딜러', attribute: '혼', change: 'stay' },
-          { id: 'nte-wendy', name: '웬디', role: '서포터', attribute: '령', change: 'stay' },
-          { id: 'nte-laura', name: '로라', role: '탱커/힐러', attribute: '양', change: 'stay' },
-          { id: 'nte-roberta', name: '로베르타', role: '탱커/힐러', attribute: '상', change: 'stay' },
-          { id: 'nte-serena', name: '세레나', role: '서브 딜러', attribute: '혼', change: 'stay' }
         ]
       }
     ]
@@ -192,8 +181,6 @@ export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
         characters: [
           { id: 'nte-edgar', name: '에드가', role: '서브 딜러', attribute: '혼', change: 'stay' },
           { id: 'nte-daffodil', name: '다포딜', role: '탱커/힐러', attribute: '양', change: 'stay' },
-          { id: 'nte-amber', name: '엠버', role: '서브 딜러', attribute: '령', change: 'stay' },
-          { id: 'nte-bell', name: '벨', role: '서포터', attribute: '음', change: 'stay' }
         ]
       },
       {
@@ -201,14 +188,26 @@ export const NTE_TIER_CATEGORIES: NTETierCategory[] = [
         description: '일반적인 필드 에스퍼',
         color: '#6b7280',
         characters: [
-          { id: 'nte-zero', name: '제로', role: '메인 딜러', attribute: '공', change: 'stay' },
-          { id: 'nte-kin', name: '킨', role: '서브 딜러', attribute: '혼', change: 'stay' },
-          { id: 'nte-wendy', name: '웬디', role: '서포터', attribute: '령', change: 'stay' },
-          { id: 'nte-laura', name: '로라', role: '탱커/힐러', attribute: '양', change: 'stay' },
-          { id: 'nte-roberta', name: '로베르타', role: '탱커/힐러', attribute: '상', change: 'stay' },
-          { id: 'nte-serena', name: '세레나', role: '서브 딜러', attribute: '혼', change: 'stay' }
         ]
       }
     ]
   }
 ];
+
+const normalizeName = (name: string) => name.normalize('NFC').replace(/\s+/g, '');
+const catalogByName = new Map(NTE_GALLERY_CHARACTERS.map(character => [normalizeName(character.name), character]));
+
+export function resolveNteTierCharacter(character: NTETierCharacter): NTETierCharacter | undefined {
+  const registered = catalogByName.get(normalizeName(character.name));
+  if (!registered) return undefined;
+  return { ...character, id: registered.id, name: registered.name, attribute: registered.attribute,
+    folderName: registered.folderName, fileName: registered.fileName, isTrailblazer: registered.isTrailblazer };
+}
+
+export const NTE_TIER_CATEGORIES: NTETierCategory[] = DEFAULT_NTE_TIER_CATEGORIES.map(category => ({
+  ...category,
+  tiers: category.tiers.map(group => ({ ...group, characters: group.characters.flatMap(character => {
+    const registered = resolveNteTierCharacter(character);
+    return registered ? [registered] : [];
+  }) })),
+}));

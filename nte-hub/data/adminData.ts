@@ -1,5 +1,5 @@
 import { NTEPartyCombination, NTEPartyMember } from './parties';
-import { NTE_TIER_CATEGORIES, NTETierCategory, NTETierCharacter } from './tiers';
+import { NTE_TIER_CATEGORIES, NTETierCategory, NTETierCharacter, resolveNteTierCharacter } from './tiers';
 
 export function toPublicParty(item: any): NTEPartyCombination {
   const member = (m: any): NTEPartyMember => ({
@@ -32,7 +32,9 @@ export function mergeAdminTiers(rows: any[]): NTETierCategory[] {
   for (const row of ordered) {
     const category = categories.find(c => c.id === row.category_id);
     if (!category || !row.character_name || !row.tier) continue;
-    const name = normalize(row.character_name);
+    const registered = resolveNteTierCharacter({ name: row.character_name } as NTETierCharacter);
+    if (!registered) continue;
+    const name = normalize(registered.name);
     const existing = category.tiers.flatMap(g => g.characters).find(c => normalize(c.name) === name)
       || NTE_TIER_CATEGORIES.flatMap(c => c.tiers.flatMap(g => g.characters)).find(c => normalize(c.name) === name);
     category.tiers.forEach(g => { g.characters = g.characters.filter(c => normalize(c.name) !== name); });
@@ -43,9 +45,7 @@ export function mergeAdminTiers(rows: any[]): NTETierCategory[] {
     }
     group.characters.push({
       ...existing,
-      id: existing?.id || row.character_name,
-      name: row.character_name,
-      attribute: row.attribute || existing?.attribute || '',
+      ...registered,
       role: (row.role === '탱커·힐러' ? '탱커/힐러' : row.role) || existing?.role || '서포터',
       change: row.change || existing?.change || 'stay',
       note: row.note ?? existing?.note,
