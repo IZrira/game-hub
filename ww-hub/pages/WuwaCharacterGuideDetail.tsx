@@ -5,7 +5,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
 import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
-import { GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter, type GuideMember, type GuideEquipmentGroup } from '../../common-hub/components/guides/GuideContent';
+import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter, type GuideMember, type GuideEquipmentGroup } from '../../common-hub/components/guides/GuideContent';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
 import { WW_ECHO_DATA } from '../data/echoData';
@@ -491,11 +491,11 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     ].filter(group => group.items.length > 0);
   setEquipment.push({ title: '추천 메인 에코', items: parsedMainEchoes.map((item: any) => ({ name: t(item.cleanName), image: getEchoImage(item.cleanName), note: item.reason ? t(item.reason) : undefined, badges: item.cost === 3 ? ['3 COST'] : [] })) });
   const summaryItems = [
-    { label: t('추천 무기'), value: parsedWeapons[0]?.cleanName ? t(parsedWeapons[0].cleanName) : '' },
-    { label: t('에코 세트'), value: parsedEchoSetsData.isCombo ? parsedEchoSetsData.comboParts.map((item: any) => ({ value: t(item.cleanName) })) : primaryEchoSetName ? t(primaryEchoSetName.split(/[:：]/)[0].trim()) : '' },
-    { label: t('메인 에코'), value: parsedMainEchoes[0]?.cleanName ? t(parsedMainEchoes[0].cleanName) : '' },
+    { label: t('추천 무기'), value: parsedWeapons[0]?.cleanName ? t(parsedWeapons[0].cleanName) : '', image: primaryEquipment[0].items[0]?.image },
+    { label: t('에코 세트'), value: parsedEchoSetsData.isCombo ? parsedEchoSetsData.comboParts.map((item: any) => ({ value: t(item.cleanName), image: sonataEquipment(item).image })) : primaryEchoSetName ? t(primaryEchoSetName.split(/[:：]/)[0].trim()) : '', image: parsedEchoSetsData.isCombo ? undefined : setEquipment[0]?.items[0]?.image },
+    { label: t('메인 에코'), value: parsedMainEchoes[0]?.cleanName ? t(parsedMainEchoes[0].cleanName) : '', image: parsedMainEchoes[0] ? getEchoImage(parsedMainEchoes[0].cleanName) : undefined },
   ];
-  const mainOptions = mainStatsToDisplay.map((item: any) => ({ label: `${item.cost} COST`, values: (item.stats || []).map((value: string) => ({ value, note: item.note })) }));
+  const mainOptions = mainStatsToDisplay.map((item: any) => ({ label: `${item.cost} COST`, values: (item.stats || []).flatMap((value: string) => parseGuideOption(value)), note: item.note }));
   const targetValues = (guide.targetStats || []).map((item: any) => {
     const parts = String(item.value || '').split(/[:：]/);
     const extra = parts.slice(1).join(':').trim();

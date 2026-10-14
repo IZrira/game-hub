@@ -348,9 +348,9 @@ const CharacterGuideDetail: React.FC = () => {
         {(!publishedAnalysis || activeGuideView === 'setup') && <>
           {guide.variants && guide.variants.length > 1 && <GuideVariantSelector label={t('세팅 선택')} options={guide.variants.map((variant, index) => ({ label: t(variant.name), value: String(index) }))} value={String(selectedVariantIndex)} onChange={value => setSelectedVariantIndex(Number(value))} description={t('선택한 세팅의 광추, 유물, 옵션과 목표 수치가 함께 표시됩니다.')} />}
           <GuideSummary items={[
-            { label: t('추천 광추'), value: parsedLightCones[0] ? t(parsedLightCones[0].cleanName) : '' },
-            { label: t('터널 유물'), value: parsedRelics[0] ? t(parsedRelics[0].cleanName) : '' },
-            { label: t('차원 장신구'), value: parsedOrnaments[0] ? t(parsedOrnaments[0].cleanName) : '' },
+            { label: t('추천 광추'), value: parsedLightCones[0] ? t(parsedLightCones[0].cleanName) : '', image: primaryEquipment[0].items[0]?.image },
+            { label: t('터널 유물'), value: parsedRelics[0] ? t(parsedRelics[0].cleanName) : '', image: setEquipment[0].items[0]?.image },
+            { label: t('차원 장신구'), value: parsedOrnaments[0] ? t(parsedOrnaments[0].cleanName) : '', image: setEquipment[1].items[0]?.image },
             { label: t('주옵션'), value: mainOptions.map(item => ({ label: t(item.label), value: t(item.values[0].value) })) },
           ]} />
           <GuideBuildContent primary={primaryEquipment} sets={setEquipment} setsId="추천 장비" options={mainOptions} subStats={currentVariant?.subStats || []} targets={[{ label: '목표 스탯', items: parsedTargetStats }]} skills={((currentVariant && 'skillPriority' in currentVariant ? currentVariant.skillPriority : undefined) || guide.skillPriority || []).map(name => ({ name }))} members={members} setupNote={currentVariant?.note} />

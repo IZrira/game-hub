@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 import HsrGuide from '../hsr-hub/pages/CharacterGuideDetail';
 import WwGuide from '../ww-hub/pages/WuwaCharacterGuideDetail';
 import NteGuide from '../nte-hub/pages/CharacterGuideDetail';
+import sourceGuides from '../ww-hub/data/generated/guides.json';
 import articles from '../common-hub/data/guideArticles.json';
 import { parseNteCharacterGuide } from '../nte-hub/data/parseCharacterGuide';
 
@@ -76,5 +77,46 @@ describe('shared guide body contract', () => {
     expect(container.querySelector('[data-guide-section="analysis"] .guide-panel')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: '세팅 가이드' }));
     expect(container.querySelector('[data-guide-section="equipment"]')).toBeTruthy();
+  });
+});
+
+
+describe('recommendation readability and original data', () => {
+  it.each(cases)('$game summary icons match the displayed equipment', entry => {
+    const { container } = renderCase(entry);
+    const icons = Array.from(container.querySelectorAll<HTMLImageElement>('.guide-summary-icon'));
+    expect(icons.length).toBeGreaterThanOrEqual(2);
+    const equipment = Array.from(container.querySelectorAll('.guide-equipment-card'));
+    icons.forEach(icon => {
+      const name = icon.parentElement!.textContent!.trim();
+      const card = equipment.find(card => card.querySelector('h4')?.textContent === name);
+      expect(card, name).toBeTruthy();
+      expect(icon.getAttribute('src')).toBe(card!.querySelector('img')?.getAttribute('src'));
+    });
+  });
+
+  it('separates the screenshot WW option explanation and preserves its COST association', () => {
+    const source = sourceGuides.find(item => item.id === 'jingran')!;
+    const before = JSON.stringify(source);
+    const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/jingran/guide' });
+    const options = container.querySelector('.guide-option-grid')!;
+    expect(options.textContent).toContain('크리티컬 피해');
+    expect(options.textContent).not.toContain('2개 사용 후');
+    const explanation = screen.getByRole('heading', { name: '선택 조건·설명' }).closest('section')!;
+    expect(within(explanation).getByRole('heading', { name: '4 COST — 크리티컬 피해' })).toBeTruthy();
+    expect(explanation.textContent).toContain('크리티컬 피해 2개 사용 후 크리티컬 100% 가까이 세팅 시 추천');
+    expect(JSON.stringify(source)).toBe(before);
+  });
+
+  it('renders NTE or alternatives in original order and keeps descriptions out of option names', () => {
+    const article = articles.find(item => item.title === '구원 세팅 공략')!;
+    const before = JSON.stringify(article);
+    const source = parseNteCharacterGuide(article.content);
+    const { container } = renderCase({ ...cases[2], path: `/gallery/nte/guides/${article.slug}` });
+    const rows = Array.from(container.querySelectorAll('.guide-option-card .guide-value-list li'));
+    expect(rows.map(row => row.querySelector('.guide-rank')?.textContent)).toEqual(['1순위', '2순위']);
+    const names = source.mainStats[0].split(/\s+or\s+/i);
+    names.forEach((name, index) => expect(rows[index].textContent).toBe(`${index + 1}순위${name}`));
+    expect(JSON.stringify(article)).toBe(before);
   });
 });

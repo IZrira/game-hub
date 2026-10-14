@@ -16,7 +16,15 @@ export interface GuideEquipment {
   alternatives?: { name: string; image?: string }[];
 }
 export interface GuideEquipmentGroup { id?: string; title: string; items: GuideEquipment[]; note?: string }
-export interface GuideOption { label: string; values: { value: string; note?: string }[] }
+export interface GuideOption { label: string; values: { value: string; note?: string; rank?: number }[]; note?: string }
+// Colon explanations are parsed only in option fields, never equipment names.
+export function parseGuideOption(value: string, ranked = false): GuideOption['values'] {
+  const separator = value.search(/[:：]/);
+  const name = (separator < 0 ? value : value.slice(0, separator)).trim();
+  const note = separator < 0 ? undefined : value.slice(separator + 1).trim() || undefined;
+  const parts = ranked ? name.split(/\s+or\s+/i).map(item => item.trim()).filter(Boolean) : [name];
+  return parts.map((value, index) => ({ value, note, rank: parts.length > 1 ? index + 1 : undefined }));
+}
 export interface GuideTarget { label: string; value: string; note?: string; conditional?: boolean }
 export interface GuideTargetGroup { label: string; conditional?: boolean; items: GuideTarget[] }
 export interface GuidePriority { name: string; detail?: string }
@@ -80,8 +88,12 @@ export function GuideBuildContent({ primary, sets, setsId, options, subStats, ta
       {optionNote && <p className="guide-copy">{sanitizePublicGuideText(t(optionNote))}</p>}
       <GuidePanel title="주옵션"><div className="guide-option-grid">{options.map((option, index) => <div key={index} className="guide-option-card">
         <h4 className="guide-field-label">{sanitizePublicGuideText(t(option.label))}</h4>
-        <ul className="guide-value-list">{option.values.map((item, itemIndex) => <li key={itemIndex}><p className="guide-item-name">{sanitizePublicGuideText(t(item.value))}</p>{item.note && <p className="guide-copy">{sanitizePublicGuideText(t(item.note))}</p>}</li>)}</ul>
+        <ul className="guide-value-list">{option.values.map((item, itemIndex) => <li key={itemIndex}><p className="guide-item-name guide-option-value">{item.rank !== undefined && <span className="guide-rank">{item.rank}순위</span>}{sanitizePublicGuideText(t(item.value))}</p></li>)}</ul>
       </div>)}</div></GuidePanel>
+      {options.some(option => option.note || option.values.some(item => item.note)) && <GuidePanel title="선택 조건·설명"><ul className="guide-option-notes">{options.flatMap((option, index) => [
+        ...(option.note ? [<li key={`${index}-group`}><h4 className="guide-field-label">{sanitizePublicGuideText(t(option.label))}</h4><p className="guide-copy">{sanitizePublicGuideText(t(option.note))}</p></li>] : []),
+        ...option.values.filter(item => item.note).map((item, itemIndex) => <li key={`${index}-${itemIndex}`}><h4 className="guide-field-label">{sanitizePublicGuideText(t(option.label))} — {sanitizePublicGuideText(t(item.value))}</h4><p className="guide-copy">{sanitizePublicGuideText(t(item.note!))}</p></li>),
+      ])}</ul></GuidePanel>}
       <GuidePanel title="부옵션 우선순위"><ol className="guide-ranked-list">{subStats.map((stat, index) => <li key={index}><span className="guide-rank">{index + 1}</span><span className="text-sm">{sanitizePublicGuideText(t(stat))}</span></li>)}</ol></GuidePanel>
       {targets.map((group, index) => <GuidePanel key={index} title={group.label} conditional={group.conditional}><div className="guide-target-grid">{group.items.map((item, itemIndex) => <div key={itemIndex} className="guide-target-card">
         {item.conditional && <span className="guide-tag">{t('적용 조건')}</span>}

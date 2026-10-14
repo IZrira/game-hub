@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
-import { GuideBuildContent, GuideFooter, GuideViewTabs } from '../../common-hub/components/guides/GuideContent';
+import { GuideBuildContent, GuideFooter, GuideViewTabs, parseGuideOption } from '../../common-hub/components/guides/GuideContent';
 import { getPublishedGuides } from '../../common-hub/data/guideArticles';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { NTE_CHARACTER_DATA } from '../data/characterData';
@@ -33,7 +33,7 @@ export default function CharacterGuideDetail() {
     return { name: arc.name, rank: arc.rank, note: arc.note, image: getNteGuideArcImageUrl(arc.name), to: registered ? `/gallery/nte/weapon/${encodeURIComponent(registered.name)}` : undefined };
   }) }];
   const sets = [{ title: '콘솔 세트', items: currentConsole ? [{ name: currentConsole.name, note: currentConsole.note, image: cartridge ? getNTECartridgeImageUrl(cartridge.imageFileName, 5) : undefined, effects: cartridge ? [{ label: '2세트 효과', value: cartridge.twoPieceEffect }, { label: '4세트 효과', value: cartridge.fourPieceEffect }] : [] }] : [] }];
-  const options = guide.mainStats.map((value, index) => ({ label: `추천 옵션 ${index + 1}`, values: [{ value }] }));
+  const options = guide.mainStats.map((value, index) => ({ label: `추천 옵션 ${index + 1}`, values: parseGuideOption(value, true) }));
   const targets = guide.statGroups.map(group => ({ label: group.label, conditional: conditional(group.label), items: group.items.map(item => ({ ...item, conditional: conditional(item.label) })) }));
   const skills = guide.skillPriority.map(name => ({ name, detail: character.skills?.find((item: any) => item.type.replace(/\s/g, '') === name.replace(/\s/g, ''))?.name }));
   const awakenings = guide.awakeningPriority.map(rank => ({ name: `각성 ${rank}`, detail: character.eidolons?.find((item: any) => Number(item.rank) === rank)?.name.replace(/^\d+[.、]\s*/, '') }));
@@ -50,8 +50,8 @@ export default function CharacterGuideDetail() {
       <GuideViewTabs value="setup" onChange={() => {}} analysisAvailable={false} />
       {guide.consoles.length > 1 && <GuideVariantSelector label="세팅 선택" description="콘솔 설명과 세트 효과만 바뀝니다. 주·부옵션과 기본 목표는 공통이며, 별도 조건을 함께 확인하세요." options={guide.consoles.map((set, index) => ({ label: set.name, value: String(index) }))} value={String(selectedConsole)} onChange={value => setSelectedConsole(Number(value))} />}
       <GuideSummary items={[
-        { label: '우선 추천 아크', value: guide.arcs[0]?.name || '' },
-        { label: '콘솔 세트', value: currentConsole?.name || '' },
+        { label: '우선 추천 아크', value: guide.arcs[0]?.name || '', image: primary[0].items[0]?.image },
+        { label: '콘솔 세트', value: currentConsole?.name || '', image: sets[0].items[0]?.image },
         { label: '기본 목표', value: guide.statGroups[0]?.items.filter(item => !conditional(item.label)).map(item => ({ label: item.label, value: item.value })) || [] },
       ]} />
       <GuideBuildContent primary={primary} sets={sets} options={options} subStats={guide.subStats} targets={targets} skills={skills} awakenings={awakenings} members={members} optionNote="아래 주·부옵션은 공통 기준입니다. 조건이 붙은 설명은 그대로 함께 확인하세요." notes={guide.notes} />
