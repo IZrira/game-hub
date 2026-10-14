@@ -157,3 +157,22 @@ describe('HSR and WW ranked option alternatives', () => {
     }
   });
 });
+
+
+it.each([{ route: 'camellya', sourceId: 'camellya' }, { route: '3be95fae-3dc7-809a-848d-cf54b30c697b', sourceId: 'jingran' }])('ranks actual WW array options for $route without changing source data', ({ route, sourceId }) => {
+  const source = sourceGuides.find(item => item.id === sourceId)! as any;
+  const snapshot = JSON.stringify(source);
+  const { container } = renderCase({ ...cases[1], path: `/gallery/ww/character/${route}/guide` });
+  const slots = source.variants?.[0]?.mainStats || source.mainStats;
+  const cards = Array.from(container.querySelectorAll('.guide-option-card'));
+  expect(cards).toHaveLength(slots.length);
+  slots.forEach((slot: any, index: number) => {
+    const rows = Array.from(cards[index].querySelectorAll('li'));
+    expect(rows).toHaveLength(slot.stats.length);
+    rows.forEach((row, rank) => {
+      expect(row.querySelector('.guide-rank')?.textContent).toBe(slot.stats.length > 1 ? `${rank + 1}순위` : undefined);
+      expect(row.textContent).toContain(slot.stats[rank].split(/[:：]/)[0].trim());
+    });
+  });
+  expect(JSON.stringify(source)).toBe(snapshot);
+});
