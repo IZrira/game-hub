@@ -110,6 +110,13 @@ function withLanguageCanonicalHeader(response: Response, requestUrl: string): Re
 
 export const onRequest = async (context: PagesFunctionContext): Promise<Response> => {
   const url = new URL(context.request.url);
+  // Consolidate the former production domain while preserving each URL's path and query.
+  if (url.hostname === 'rira-game-hub.pages.dev') {
+    url.protocol = 'https:';
+    url.hostname = 'riragamehub.com';
+    url.port = '';
+    return Response.redirect(url.toString(), 301);
+  }
   const normalizedPath = normalizePath(url.pathname);
 
   if (WITHDRAWN_BLOG_PATHS.has(normalizedPath)) {
