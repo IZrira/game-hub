@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { createBrowserRouter, Navigate, Outlet, ScrollRestoration, useLocation, useParams } from 'react-router';
-import { getPublishedGuides } from './data/guideArticles';
+import { getPublishedGuide, getPublishedGuides } from './data/guideArticles';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';
@@ -36,6 +36,7 @@ const WuwaWeaponDetail = React.lazy(() => import('../ww-hub/pages/WuwaWeaponDeta
 const NTEArcDetail = React.lazy(() => import('../nte-hub/pages/NTEArcDetail'));
 const Terminology = React.lazy(() => import('../hsr-hub/pages/Terminology'));
 const CharacterGuideDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterGuideDetail'));
+const CharacterGuideDetailNTE = React.lazy(() => import('../nte-hub/pages/CharacterGuideDetail'));
 const CharacterGuideDetailWW = React.lazy(() => import('../ww-hub/pages/WuwaCharacterGuideDetail'));
 const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
 const WuwaEchoDetail = React.lazy(() => import('../ww-hub/pages/WuwaEchoDetail'));
@@ -94,6 +95,12 @@ const CharacterGuideDispatcher = () => {
     return <Navigate to={guide ? `/gallery/nte/guides/${encodeURIComponent(guide.slug)}` : '/gallery/nte/guides'} replace />;
   }
   return <CharacterGuideDetailHSR />;
+};
+
+const GuideArticleDispatcher = () => {
+  const { gameId = '', slug = '' } = useParams<{ gameId: string; slug: string }>();
+  if (gameId === 'nte' && getPublishedGuide(gameId, slug)?.notionPageId) return <CharacterGuideDetailNTE key={slug} />;
+  return <GuideArticle />;
 };
 
 // 로딩 화면 폴백
@@ -181,7 +188,7 @@ export const router = createBrowserRouter([
       { path: "gallery/:gameId/parties", element: <PartyDispatcher /> },
       { path: "gallery/:gameId/terminology", element: <Terminology /> },
       { path: "gallery/:gameId/guides", element: <GuideList /> },
-      { path: "gallery/:gameId/guides/:slug", element: <GuideArticle /> },
+      { path: "gallery/:gameId/guides/:slug", element: <GuideArticleDispatcher /> },
       { path: "gallery/:gameId/character/:charName/guide", element: <CharacterGuideDispatcher /> },
       { path: "admin", element: <AdminDashboard /> },
       

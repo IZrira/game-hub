@@ -16,7 +16,7 @@ const GuideArticlePage: React.FC = () => {
   const article = getPublishedGuide(gameId, slug);
   const gameLabel = GAME_LABELS[gameId] || gameId;
   const isAniimo = gameId === 'aniimo';
-  const relatedGuides = getPublishedGuides(gameId).filter(guide => guide.slug !== slug).slice(0, 3);
+  const relatedGuides = getPublishedGuides(gameId).filter(guide => !guide.characterId && guide.slug !== slug).slice(0, 3);
 
   if (!article) return <div className="min-h-[70vh] bg-[#0a0a0a] px-6 py-32 text-center text-white"><SEO title="공략을 찾을 수 없음" description="공개되지 않았거나 존재하지 않는 공략입니다." noindex={true} /><h1 className="text-2xl font-black">공개된 공략을 찾을 수 없습니다</h1><Link to={`/gallery/${gameId}`} className="mt-6 inline-flex text-sm font-black text-violet-300">허브로 돌아가기</Link></div>;
 

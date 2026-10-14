@@ -2746,7 +2746,7 @@ function runPrerender() {
     : {};
   const guideGameLabels = { hsr: '붕괴: 스타레일', ww: '명조', nte: '이환', aniimo: '애니모' };
   [...new Set(guideArticles.map(article => article.gameId))].forEach(gameId => {
-    const gameGuides = guideArticles.filter(article => article.gameId === gameId);
+    const gameGuides = guideArticles.filter(article => article.gameId === gameId && !article.characterId);
     const gameLabel = guideGameLabels[gameId] || gameId;
     const landing = guideLanding[gameId];
     const latestReviewedAt = gameGuides.map(article => article.reviewedAt || article.publishedAt).filter(Boolean).sort().at(-1) || '확인 중';

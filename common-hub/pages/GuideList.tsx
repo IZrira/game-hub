@@ -17,7 +17,7 @@ const GAME_LABELS: Record<string, string> = {
 
 const GuideList: React.FC = () => {
   const { gameId = '' } = useParams<{ gameId: string }>();
-  const guides = getPublishedGuides(gameId);
+  const guides = getPublishedGuides(gameId).filter(guide => !guide.characterId);
   const gameLabel = GAME_LABELS[gameId] || gameId;
   const isAniimo = gameId === 'aniimo';
   const landing = guideLanding[gameId as keyof typeof guideLanding];
