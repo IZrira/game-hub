@@ -66,6 +66,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         {/* 1. 뒤로 가기 버튼 */}
         <button 
           onClick={() => navigate(-1)} 
+          aria-label={t('이전으로')}
           className="flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white transition-colors group px-2 py-1.5 -ml-2 rounded-lg hover:bg-white/5 shrink-0"
         >
           <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
@@ -124,6 +125,8 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         {/* 4. 즐겨찾기 별 표시 */}
         <button 
           onClick={toggleFavorite} 
+          aria-label={isFavorite ? t('즐겨찾기 해제') : t('즐겨찾기 추가')}
+          aria-pressed={isFavorite}
           className={`p-2 rounded-xl transition-all group border ${
             isFavorite ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-yellow-500/50 hover:bg-white/10'
           }`}

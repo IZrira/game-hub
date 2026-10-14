@@ -1,22 +1,15 @@
-import React, { useMemo, useState, useEffect, useRef } from 'react';
-import { useParams, Link, useNavigate } from 'react-router';
+import React, { useMemo, useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router';
 import { 
   ChevronLeft, 
-  ChevronRight,
   Zap, 
-  Star, 
   Info, 
   Sparkles,
   Layers,
   Box,
   TrendingUp,
-  Clock,
-  Crown,
   Target,
-  Dna,
   ShieldCheck,
-  MousePointer2,
-  LayoutGrid,
   CheckCircle2,
   AlertCircle,
   BookOpen,
@@ -26,11 +19,11 @@ import { HSR_CHARACTER_GUIDES } from '../data/guides';
 import { CHARACTER_DB, LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../../common-hub/data/games';
 import { HSR_PARTIES } from '../data/parties';
 import SEO from '../../common-hub/components/SEO';
-import TableOfContents from '../../common-hub/components/TableOfContents';
 import PageHeader from '../../common-hub/components/PageHeader';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
+import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector, GuideEquipmentCard, GuideSectionHeader as SectionHeader } from '../../common-hub/components/guides/GuideLayout';
 import { useTranslation } from 'react-i18next';
 import { getHsrCharacterArtUrl, handleImageFallback } from '../../common-hub/utils/assetManager';
+import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
 
 const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
 
@@ -50,23 +43,6 @@ const getMainImageUrl = (item: any) => {
   const safeName = item.name.normalize('NFC');
   const url = `${BASE_IMAGE_URL}/${safeType}/${safeName}.webp`;
   return encodeURI(url);
-};
-
-const SectionHeader: React.FC<{ num: string; title: string; theme: any }> = ({ num, title, theme }) => {
-  const { t } = useTranslation();
-  return (
-    <div className="flex items-center gap-6 px-4">
-      <div 
-        className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" 
-        style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}
-      >
-        {num}
-      </div>
-      <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">
-        {t(title, { keySeparator: false, nsSeparator: false })}
-      </h2>
-    </div>
-  );
 };
 
 const StatBoxPremium: React.FC<{ 
@@ -93,9 +69,9 @@ const StatBoxPremium: React.FC<{
   };
 
   return (
-    <div className="group glass-card rounded-[28px] p-5 sm:p-6 border border-white/10 hover:border-white/25 transition-all bg-gradient-to-b from-white/[0.05] to-white/[0.02] flex flex-col items-center text-center gap-4 h-full relative overflow-hidden shadow-lg">
+    <div className="group glass-card min-w-0 rounded-2xl p-4 sm:p-5 border border-white/10 hover:border-white/25 transition-all bg-gradient-to-b from-white/[0.05] to-white/[0.02] flex flex-col items-center text-center gap-3 h-full relative overflow-hidden">
       {imgUrl ? (
-        <div className="w-14 h-14 bg-black/40 rounded-2xl p-2.5 flex items-center justify-center group-hover:scale-105 transition-transform duration-300 shadow-md border border-white/10 relative z-10">
+        <div className="w-11 h-11 bg-black/40 rounded-xl p-2 flex items-center justify-center border border-white/10 relative z-10">
           <img 
             src={imgUrl} 
             alt={label} 
@@ -104,7 +80,7 @@ const StatBoxPremium: React.FC<{
           />
         </div>
       ) : (
-        <div className="w-14 h-14 bg-black/40 rounded-2xl flex items-center justify-center border border-white/10 relative z-10">
+        <div className="w-11 h-11 bg-black/40 rounded-xl flex items-center justify-center border border-white/10 relative z-10">
           <span className="text-white font-black text-lg uppercase opacity-40">{label.slice(0, 1)}</span>
         </div>
       )}
@@ -136,21 +112,21 @@ const StatBoxPremium: React.FC<{
                     : 'bg-white/[0.04] hover:bg-white/[0.07] border border-white/10'
                 }`}
               >
-                <div className="flex items-center justify-center gap-2">
+                <div className="flex min-w-0 max-w-full flex-wrap items-center justify-center gap-1.5">
                   {processedValues.length > 1 && (
-                    <span className={`text-[10px] font-black px-1.5 py-0.5 rounded shrink-0 ${
+                    <span className={`text-xs font-black px-1.5 py-0.5 rounded shrink-0 ${
                       isFirstChoice ? 'bg-brand-accent text-black' : 'bg-white/15 text-white'
                     }`}>
                       #{i + 1}
                     </span>
                   )}
-                  <span className="text-sm sm:text-base font-bold text-white tracking-tight break-keep text-center leading-snug">
+                  <span className="min-w-0 max-w-full text-sm sm:text-base font-bold text-white tracking-tight break-words text-center leading-snug">
                     {t(statName)}
                   </span>
                 </div>
                 {noteText && (
                   <div className="w-full pt-1.5 mt-0.5 border-t border-white/10 flex flex-col items-center">
-                    <span className="text-[11px] sm:text-xs text-gray-400 font-normal leading-relaxed text-center break-keep">
+                    <span className="text-xs text-gray-300 font-normal leading-relaxed text-center break-keep">
                       {t(noteText)}
                     </span>
                   </div>
@@ -177,20 +153,20 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
           return (
             <div 
               key={idx} 
-              className="flex flex-col items-center gap-4 group/member relative bg-white/[0.02] border border-white/5 rounded-3xl p-4 sm:p-5 transition-all hover:border-brand-primary/20"
+              className="flex flex-col items-center gap-4 group/member relative bg-white/[0.02] border border-white/10 rounded-3xl p-4 sm:p-5 transition-all hover:border-brand-primary/20"
             >
               <div className="relative w-24 h-24 sm:w-28 sm:h-28">
                  <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/20 to-transparent rounded-full blur-2xl opacity-0 group-hover/member:opacity-40 transition-opacity" />
                  <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-primary/50 transition-all duration-500 p-1 bg-black/40 shadow-2xl">
                     <img src={memberImg} alt={member.name} className="w-full h-full object-cover rounded-full scale-110 group-hover/member:scale-125 transition-transform duration-700" onError={handleImageFallback} />
                  </div>
-                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-[9px] font-black text-brand-accent uppercase tracking-widest whitespace-nowrap z-10">
+                 <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-0.5 bg-white/5 backdrop-blur-md border border-white/10 rounded-full text-xs font-black text-brand-accent uppercase tracking-widest whitespace-nowrap z-10">
                    {t(member.role)}
                  </div>
               </div>
               <div className="text-center space-y-0.5">
-                <div className="text-base sm:text-lg font-black text-white group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-                <div className="text-[10px] sm:text-[11px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+                <div className="text-base sm:text-lg font-black text-white group-hover/member:text-brand-accent transition-colors break-words">{t(member.name)}</div>
+                <div className="text-xs font-bold text-gray-300 tracking-wide break-words">{t(member.role)}</div>
               </div>
 
               {/* 대체 캐릭터 (호버 없이 하단에 직접 배치) */}
@@ -198,7 +174,7 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
                 <div className="w-full pt-3 border-t border-white/5 flex flex-col items-center gap-2 mt-auto">
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
-                    <span className="text-[10px] font-black text-brand-accent uppercase tracking-wider">
+                    <span className="text-xs font-black text-brand-accent uppercase tracking-wider">
                       {t('대체 캐릭터')}
                     </span>
                   </div>
@@ -212,10 +188,10 @@ const PartyCardContent: React.FC<{ party: any; gameId: string | undefined }> = (
                             {subImg ? (
                               <img src={subImg} alt={sub.name} className="w-full h-full object-cover rounded-xl group-hover/sub:scale-110 transition-transform" onError={handleImageFallback} />
                             ) : (
-                              <div className="w-full h-full flex items-center justify-center text-[10px] text-gray-500 font-bold">{sub.name?.[0]}</div>
+                              <div className="w-full h-full flex items-center justify-center text-xs text-gray-500 font-bold">{sub.name?.[0]}</div>
                             )}
                           </div>
-                          <span className="text-[9px] font-bold text-gray-400 group-hover/sub:text-brand-accent transition-colors max-w-[56px] truncate text-center">
+                          <span className="text-xs font-bold text-gray-300 group-hover/sub:text-brand-accent transition-colors max-w-[56px] break-words text-center">
                             {t(sub.name)}
                           </span>
                         </div>
@@ -292,6 +268,11 @@ const CharacterGuideDetail: React.FC = () => {
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [activeGuideView, setActiveGuideView] = useState<'setup' | 'analysis'>('setup');
 
+  useEffect(() => {
+    setSelectedVariantIndex(0);
+    setActiveGuideView('setup');
+  }, [charName]);
+
   const resolvedKoName = useMemo(() => {
     if (!charName) return undefined;
     const searchName = normalizeName(charName);
@@ -329,21 +310,21 @@ const CharacterGuideDetail: React.FC = () => {
   const guide = useMemo(() => {
     if (!character) {
       const searchName = normalizeName(resolvedKoName || "");
-      return HSR_CHARACTER_GUIDES.find(g => normalizeName(g.characterName) === searchName);
+      return sanitizePublicGuideData(HSR_CHARACTER_GUIDES.find(g => normalizeName(g.characterName) === searchName));
     }
     const searchName = normalizeName(character.name || character.folderName || resolvedKoName || "");
-    return HSR_CHARACTER_GUIDES.find(g => 
+    return sanitizePublicGuideData(HSR_CHARACTER_GUIDES.find(g =>
       g.characterName === character.name ||
       g.characterName === character.folderName ||
       normalizeName(g.characterName) === searchName ||
       (character.id && normalizeName(g.characterName) === normalizeName(character.id))
-    );
+    ));
   }, [character, resolvedKoName]);
 
   const currentVariant = useMemo(() => {
     if (!guide) return null;
     if (guide.variants && guide.variants.length > 0) {
-      return guide.variants[selectedVariantIndex];
+      return guide.variants[selectedVariantIndex] || guide.variants[0];
     }
     return {
       name: "기본",
@@ -504,19 +485,6 @@ const CharacterGuideDetail: React.FC = () => {
 
   const hasStatNotes = mainStatsWithNotes.length > 0 || targetStatDetails.length > 0;
 
-  if (!guide || !character) {
-    return (
-      <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white p-8">
-        <Info size={40} className="text-gray-400 mb-6" />
-        <h2 className="text-2xl font-black uppercase tracking-widest mb-2">공략을 찾을 수 없습니다</h2>
-        <p className="text-gray-400 mb-8">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>
-        <Link to={`/gallery/${gameId}`} className="flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-xl font-black text-sm hover:scale-105 transition-all">
-          <ChevronLeft size={16} /> 도감으로 돌아가기
-        </Link>
-      </div>
-    );
-  }
-
   const faqData = useMemo(() => {
     if (!guide || !character) return [];
     
@@ -577,6 +545,19 @@ const CharacterGuideDetail: React.FC = () => {
     return questions;
   }, [guide, character, synergyCharacters]);
 
+  if (!guide || !character) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white p-8">
+        <Info size={40} className="text-gray-300 mb-6" />
+        <h2 className="text-2xl font-black uppercase tracking-widest mb-2">공략을 찾을 수 없습니다</h2>
+        <p className="text-gray-300 mb-8">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>
+        <Link to={`/gallery/${gameId}`} className="flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-xl font-black text-sm hover:scale-105 transition-all">
+          <ChevronLeft size={16} /> 도감으로 돌아가기
+        </Link>
+      </div>
+    );
+  }
+
   const cdnFolderName = character.folderName.normalize('NFC');
   const heroImageUrl = `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(cdnFolderName)}/${character.isTrailblazer ? 'art01-01.webp' : 'art01.webp'}`;
 
@@ -606,61 +587,23 @@ const CharacterGuideDetail: React.FC = () => {
 
       <PageHeader gameId={gameId} category={t("공략")} title={`${character?.name || charName} 가이드`} />
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 pt-8 flex flex-col lg:flex-row gap-8 sm:gap-12 justify-between">
-        <div className="flex-1 w-full space-y-12 sm:space-y-16 guide-content">
-          {/* 돌아가기 토글 버튼 */}
-          <Link 
-            to={`/gallery/${gameId}/character/${character.id}`}
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl text-xs sm:text-sm font-black text-gray-300 hover:text-white transition-all backdrop-blur-md group w-fit"
-          >
-            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            {t('캐릭터 상세 정보로 돌아가기')}
-          </Link>
-
-          {/* Hero Section */}
-          <section className="relative p-6 sm:p-10 md:p-16 rounded-[28px] sm:rounded-[44px] md:rounded-[60px] bg-[#0c0c0c] border border-white/5 overflow-hidden group">
-            <div 
-              style={{ backgroundImage: `url(${heroImageUrl})`, filter: 'brightness(0.3) blur(20px)', opacity: 0.2 }} 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-            />
-            <div className="absolute top-6 right-6 sm:top-10 sm:right-10 flex flex-col items-end gap-1.5 z-20">
-              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 bg-white/5 rounded-lg border border-white/10">
-                <Clock size={12} className="text-gray-400" />
-                <span className="text-[9px] sm:text-[10px] font-black text-gray-400 uppercase tracking-widest">Update: {guide.lastUpdated}</span>
-              </div>
-              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
-                <Sparkles size={12} className="text-brand-accent" />
-                <span className="text-[9px] sm:text-[10px] font-black text-brand-accent uppercase tracking-widest">v{guide.patchVersion}</span>
-              </div>
-            </div>
-
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 sm:gap-12">
-              <div className="relative shrink-0">
-                <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-[28px] sm:rounded-[40px] md:rounded-[50px] border-4 border-white/10 overflow-hidden shadow-2xl relative z-10 bg-black/40">
-                  <img src={heroImageUrl} alt={charName} className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-700" />
-                </div>
-                <div className="absolute -inset-4 bg-brand-primary/20 blur-3xl rounded-full opacity-30 animate-pulse" />
-              </div>
-              <div className="text-center md:text-left space-y-4 sm:space-y-6">
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3">
-                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-gray-400">{t(character.path)}</span>
-                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em]" style={{ backgroundColor: `${theme.primary}20`, color: theme.secondary, border: `1px solid ${theme.primary}40` }}>{t(character.attribute)}</span>
-                </div>
-                <h1 className="text-2xl sm:text-4xl md:text-6xl font-black tracking-tighter uppercase leading-tight">
-                  {character?.name || charName} <span className="text-brand-accent">가이드</span>
-                </h1>
-                <p className="text-gray-400 font-bold text-xs sm:text-base md:text-lg border-l-4 border-brand-primary/40 pl-4 sm:pl-6">{t('최적의 성능을 위한 장비와 스탯 아카이브입니다.')}</p>
-              </div>
-            </div>
-          </section>
+      <GuideLayout navigationKey={`${character.id}-${activeGuideView}-${selectedVariantIndex}`}>
+          <GuideHero
+            name={t(character.name)}
+            image={heroImageUrl}
+            backTo={`/gallery/${gameId}/character/${character.id}`}
+            version={guide.patchVersion}
+            updatedAt={lastUpdatedDate}
+            tags={[t(character.path), t(character.attribute)]}
+          />
 
           {publishedAnalysis && (
-            <nav aria-label="공략 종류 선택" className="sticky top-20 z-30 grid grid-cols-2 gap-2 p-2.5 rounded-2xl bg-black/90 backdrop-blur-xl border border-white/10 shadow-2xl">
+            <nav aria-label="공략 종류 선택" className="grid grid-cols-2 gap-2 p-2 rounded-2xl bg-white/[0.03] border border-white/10">
               <button
                 type="button"
                 aria-pressed={activeGuideView === 'setup'}
                 onClick={() => setActiveGuideView('setup')}
-                className={`px-4 sm:px-5 py-3 rounded-xl border text-sm font-black transition-all ${activeGuideView === 'setup' ? 'bg-brand-primary/25 border-brand-accent/40 text-brand-accent shadow-[0_0_20px_rgba(126,48,225,0.15)]' : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 text-gray-400 hover:text-white'}`}
+                className={`px-4 sm:px-5 py-3 rounded-xl border text-sm font-black transition-all ${activeGuideView === 'setup' ? 'bg-brand-primary/25 border-brand-accent/40 text-brand-accent shadow-[0_0_20px_rgba(126,48,225,0.15)]' : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 text-gray-300 hover:text-white'}`}
               >
                 세팅 가이드
               </button>
@@ -668,7 +611,7 @@ const CharacterGuideDetail: React.FC = () => {
                 type="button"
                 aria-pressed={activeGuideView === 'analysis'}
                 onClick={() => setActiveGuideView('analysis')}
-                className={`px-4 sm:px-5 py-3 rounded-xl border text-sm font-black transition-all ${activeGuideView === 'analysis' ? 'bg-brand-primary/25 border-brand-accent/40 text-brand-accent shadow-[0_0_20px_rgba(126,48,225,0.15)]' : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 text-gray-400 hover:text-white'}`}
+                className={`px-4 sm:px-5 py-3 rounded-xl border text-sm font-black transition-all ${activeGuideView === 'analysis' ? 'bg-brand-primary/25 border-brand-accent/40 text-brand-accent shadow-[0_0_20px_rgba(126,48,225,0.15)]' : 'bg-white/[0.04] hover:bg-white/[0.08] border-white/10 text-gray-300 hover:text-white'}`}
               >
                 RIRA 분석 가이드
               </button>
@@ -677,53 +620,48 @@ const CharacterGuideDetail: React.FC = () => {
 
           {(!publishedAnalysis || activeGuideView === 'setup') && (
             <>
+          {guide.variants && guide.variants.length > 1 && (
+            <GuideVariantSelector
+              label={t('세팅 선택')}
+              options={guide.variants.map((variant, index) => ({ label: t(variant.name), value: String(index) }))}
+              value={String(selectedVariantIndex)}
+              onChange={(value) => setSelectedVariantIndex(Number(value))}
+              description={t('선택한 세팅의 광추, 유물, 옵션과 목표 수치가 함께 표시됩니다.')}
+            />
+          )}
+          <GuideSummary items={[
+            { label: t('추천 광추'), value: parsedLightCones[0] ? t(parsedLightCones[0].cleanName) : '' },
+            { label: t('터널 유물'), value: parsedRelics[0] ? t(parsedRelics[0].cleanName) : '' },
+            { label: t('차원 장신구'), value: parsedOrnaments[0] ? t(parsedOrnaments[0].cleanName) : '' },
+            { label: t('주옵션'), value: [
+              { label: '몸통', stat: currentVariant?.mainStats.body },
+              { label: '신발', stat: currentVariant?.mainStats.boots },
+              { label: '차원 구체', stat: currentVariant?.mainStats.sphere },
+              { label: '연결 매듭', stat: currentVariant?.mainStats.rope },
+            ].filter((item) => item.stat).map((item) => `${t(item.label)} ${t(getStatValueAndNote(item.stat).value)}`).join(' · ') },
+          ].filter((item) => item.value)} />
           {/* 01 추천 광추 */}
           <section id="추천 광추" className="space-y-6">
             <SectionHeader num="01" title="추천 광추" theme={theme} />
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
               {parsedLightCones.map((lc, i) => {
                 const lightCone = LIGHTCONE_DB.find(l => l.name === lc.cleanName);
                 const lcUrl = lightCone ? encodeURI(`${BASE_IMAGE_URL}/광추/${lightCone.path.normalize('NFC')}/${(lightCone.fileName || lightCone.folderName).normalize('NFC')}.webp`) : null;
-                const isBest = lc.rank === 1;
-
                 return (
-                  <Link 
-                    key={i} 
+                  <GuideEquipmentCard
+                    key={i}
+                    name={t(lc.cleanName)}
+                    image={lcUrl || ''}
                     to={`/gallery/${gameId}/lightcone/${encodeURIComponent(lc.cleanName)}`}
-                    className={`group glass-card rounded-[32px] p-4 pt-6 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
-                      isBest 
-                        ? 'border-2 border-brand-accent shadow-[0_0_50px_rgba(255,214,0,0.15)] hover:shadow-[0_0_80px_rgba(255,214,0,0.3)] scale-[1.02] hover:scale-105 z-10 bg-brand-primary/5' 
-                        : 'border border-white/5 hover:border-brand-primary/30'
-                    }`}
-                  >
-                    {isBest && (
-                      <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20" />
-                    )}
-                    <div className={`absolute top-0 left-0 z-20 px-3 py-1.5 rounded-br-[20px] text-[10px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300 backdrop-blur-md'} uppercase tracking-widest`}>
-                      {lc.rank}순위
-                    </div>
-                    {isBest && (
-                      <div className="absolute top-2 right-2 z-20 bg-black/40 p-1.5 rounded-full backdrop-blur-md border border-brand-accent/30 shadow-lg">
-                        <Crown size={12} className="text-brand-accent" />
-                      </div>
-                    )}
-                    <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
-                      {lcUrl ? <img src={lcUrl} alt={lc.cleanName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} /> : <Box className="text-gray-400" />}
-                    </div>
-                    <div className="flex flex-col items-center gap-1.5 w-full">
-                      <h4 className="text-[11px] md:text-[12px] font-black text-white group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1">{t(lc.cleanName)}</h4>
-                      {isBest && (
-                        <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
-                      )}
-                    </div>
-                  </Link>
+                    rank={lc.rank}
+                  />
                 );
               })}
             </div>
 
             {/* 추천 광추 상세 분석 */}
             {lightConesWithNotes.length > 0 && (
-              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
@@ -733,7 +671,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
                         {t('추천 광추 상세 분석')}
                       </h4>
-                      <span className="text-xs text-gray-400 font-medium">광추별 추천 이유 및 운용 팁</span>
+                      <span className="text-xs text-gray-300 font-medium">광추별 추천 이유 및 운용 팁</span>
                     </div>
                   </div>
                 </div>
@@ -743,19 +681,19 @@ const CharacterGuideDetail: React.FC = () => {
                     return (
                       <div 
                         key={idx} 
-                        className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                        className={`flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
                           isRank1 
                             ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(126,48,225,0.1)]' 
                             : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                         }`}
                       >
-                        <div className="flex items-center gap-2.5 shrink-0 sm:w-[280px] md:w-[320px]">
+                        <div className="flex items-center gap-2.5 shrink-0 lg:w-[260px]">
                           <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                             isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                           }`}>
                             {lc.rank}순위
                           </span>
-                          <span className="font-bold text-sm sm:text-base text-white truncate">{t(lc.cleanName)}</span>
+                          <span className="font-bold text-sm sm:text-base text-white break-words">{t(lc.cleanName)}</span>
                         </div>
                         <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
                           {t(lc.note)}
@@ -769,23 +707,14 @@ const CharacterGuideDetail: React.FC = () => {
           </section>
 
           {/* 02 추천 장비 */}
-          <section id="추천 장비" className="space-y-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <SectionHeader num="02" title="추천 장비" theme={theme} />
-              {guide.variants && guide.variants.length > 1 && (
-                <div className="flex bg-white/5 p-1.5 rounded-2xl border border-white/10 mx-4">
-                  {guide.variants.map((v, idx) => (
-                    <button key={idx} onClick={() => setSelectedVariantIndex(idx)} className={`px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-400 hover:text-gray-300'}`}>{v.name}</button>
-                  ))}
-                </div>
-              )}
-            </div>
+          <section id="추천 장비" className="space-y-5 sm:space-y-6">
+            <SectionHeader num="02" title="추천 장비" theme={theme} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 sm:gap-6">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Layers size={22} className="text-gray-400" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{t('터널 유물')}</span>
+                  <Layers size={22} className="text-gray-300" />
+                  <span className="text-xl font-bold tracking-tight">{t('터널 유물')}</span>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   {parsedRelics.map((relicItem, i) => {
@@ -800,17 +729,17 @@ const CharacterGuideDetail: React.FC = () => {
                       <Link 
                         key={i} 
                         to={`/gallery/${gameId}/relic/${encodeURIComponent(relic?.name || baseRelicName)}`} 
-                        className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                        className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/10 hover:border-brand-primary/30'}`}
                       >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="flex items-center gap-4 w-full">
                           <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
-                            {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-400" />}
+                            {relic ? <img src={getMainImageUrl(relic) || ''} className="w-full h-full object-contain" /> : <Layers className="text-gray-300" />}
                           </div>
                           <div className="flex flex-col gap-1 w-full z-10 min-w-0">
-                            <div className="flex items-center justify-between w-full">
-                              <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(relicItem.cleanName)}</span>
-                              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                            <div className="flex items-start justify-between gap-3 w-full">
+                              <span className="min-w-0 flex-1 text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-words">{t(relicItem.cleanName)}</span>
+                              <span className={`text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-300'}`}>
                                 {relicItem.rank}순위
                               </span>
                             </div>
@@ -822,10 +751,10 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
               </div>
 
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Box size={22} className="text-gray-400" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{t('차원 장신구')}</span>
+                  <Box size={22} className="text-gray-300" />
+                  <span className="text-xl font-bold tracking-tight">{t('차원 장신구')}</span>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
                   {parsedOrnaments.map((ornamentItem, i) => {
@@ -840,17 +769,17 @@ const CharacterGuideDetail: React.FC = () => {
                       <Link 
                         key={i} 
                         to={`/gallery/${gameId}/ornament/${encodeURIComponent(ornament?.name || baseOrnName)}`} 
-                        className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/5 hover:border-brand-primary/30'}`}
+                        className={`flex flex-col gap-3.5 p-5 rounded-3xl transition-all group overflow-hidden relative ${isFirst ? 'bg-brand-primary/10 border-2 border-brand-primary/50 shadow-[0_0_20px_rgba(126,48,225,0.15)] z-10' : 'bg-white/5 border border-white/10 hover:border-brand-primary/30'}`}
                       >
                         {isFirst && <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />}
                         <div className="flex items-center gap-4 w-full">
                           <div className="w-14 h-14 rounded-2xl bg-black/40 p-2 shrink-0 group-hover:scale-110 transition-transform relative z-10">
-                            {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-400" />}
+                            {ornament ? <img src={getMainImageUrl(ornament) || ''} className="w-full h-full object-contain" /> : <Box className="text-gray-300" />}
                           </div>
                           <div className="flex flex-col gap-1 w-full z-10 min-w-0">
-                            <div className="flex items-center justify-between w-full">
-                              <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors truncate">{t(ornamentItem.cleanName)}</span>
-                              <span className={`text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                            <div className="flex items-start justify-between gap-3 w-full">
+                              <span className="min-w-0 flex-1 text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-words">{t(ornamentItem.cleanName)}</span>
+                              <span className={`text-xs font-black uppercase tracking-widest px-2 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-300'}`}>
                                 {ornamentItem.rank}순위
                               </span>
                             </div>
@@ -865,7 +794,7 @@ const CharacterGuideDetail: React.FC = () => {
 
             {/* 유물 & 차원 장신구 세팅 상세 분석 & 가이드 */}
             {hasEquipmentNotes && (
-              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
@@ -875,7 +804,7 @@ const CharacterGuideDetail: React.FC = () => {
                       <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
                         {t('유물 & 차원 장신구 세팅 상세 분석')}
                       </h4>
-                      <span className="text-xs text-gray-400 font-medium">추천 장비 순위별 상세 효과 및 운용 팁</span>
+                      <span className="text-xs text-gray-300 font-medium">추천 장비 순위별 상세 효과 및 운용 팁</span>
                     </div>
                   </div>
                 </div>
@@ -906,19 +835,19 @@ const CharacterGuideDetail: React.FC = () => {
                         return (
                           <div 
                             key={idx} 
-                            className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                            className={`flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
                               isRank1 
                                 ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(126,48,225,0.1)]' 
                                 : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                             }`}
                           >
-                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[380px] md:w-[420px] lg:w-[450px]">
+                            <div className="flex items-center gap-2.5 shrink-0 lg:w-[320px]">
                               <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                                 isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                               }`}>
                                 {r.rank}순위
                               </span>
-                              <span className="font-bold text-sm sm:text-base text-white truncate">{t(r.cleanName)}</span>
+                              <span className="font-bold text-sm sm:text-base text-white break-words">{t(r.cleanName)}</span>
                             </div>
                             <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
                               {t(r.note)}
@@ -942,19 +871,19 @@ const CharacterGuideDetail: React.FC = () => {
                         return (
                           <div 
                             key={idx} 
-                            className={`flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
+                            className={`flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5 p-4 sm:p-5 rounded-2xl transition-all border-l-4 shadow-sm group ${
                               isRank1 
                                 ? 'bg-brand-primary/[0.08] border border-brand-primary/30 border-l-brand-accent shadow-[0_0_15px_rgba(126,48,225,0.1)]' 
                                 : 'bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-white/20 border-l-white/20'
                             }`}
                           >
-                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[380px] md:w-[420px] lg:w-[450px]">
+                            <div className="flex items-center gap-2.5 shrink-0 lg:w-[320px]">
                               <span className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-black uppercase tracking-wider shrink-0 ${
                                 isRank1 ? 'bg-brand-accent text-black' : 'bg-white/10 text-gray-200 border border-white/10'
                               }`}>
                                 {o.rank}순위
                               </span>
-                              <span className="font-bold text-sm sm:text-base text-white truncate">{t(o.cleanName)}</span>
+                              <span className="font-bold text-sm sm:text-base text-white break-words">{t(o.cleanName)}</span>
                             </div>
                             <p className="text-sm sm:text-base text-gray-200 font-medium leading-relaxed flex-1 break-keep">
                               {t(o.note)}
@@ -970,42 +899,16 @@ const CharacterGuideDetail: React.FC = () => {
           </section>
 
           {/* 03 권장 스탯 */}
-          <section id="권장 스텟" className="space-y-10">
+          <section id="권장 스텟" className="space-y-5 sm:space-y-6">
             <SectionHeader num="03" title="권장 스텟" theme={theme} />
             <div className="flex flex-col gap-8">
-              {/* Target Stats Section (Top) */}
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent shadow-xl">
-                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
-                  <Target size={22} className="text-gray-400" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {targetStatCards.map((s, i) => (
-                    <div 
-                      key={i} 
-                      className="flex flex-col justify-between p-5 bg-white/[0.04] hover:bg-white/[0.08] rounded-2xl border border-white/10 hover:border-white/20 transition-all group relative gap-3 h-full overflow-hidden"
-                    >
-                      <div className="flex items-start justify-between gap-2 w-full">
-                        <span className="text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider group-hover:text-white transition-colors break-keep break-words">{t(s.label)}</span>
-                      </div>
-                      <div className="flex flex-col items-start w-full">
-                        <span className="text-xl sm:text-2xl font-black text-white italic tabular-nums break-keep break-words text-left">{t(s.value)}</span>
-                        <div className="w-12 h-1 bg-white/20 rounded-full mt-2 overflow-hidden">
-                           <div className="w-full h-full bg-white/60" />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Main & Sub Stats Section (Bottom) */}
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
+              {/* Main and Sub Stats */}
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                   <ShieldCheck size={22} className="text-white" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic text-white">{t('주옵션 & 부옵션')}</span>
+                  <span className="text-xl font-bold tracking-tight text-white">{t('주옵션 & 부옵션')}</span>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 xl:grid-cols-4 gap-3 sm:gap-4">
                   {(() => {
                     const bodyStat = getStatValueAndNote(currentVariant?.mainStats.body);
                     const bootsStat = getStatValueAndNote(currentVariant?.mainStats.boots);
@@ -1043,7 +946,7 @@ const CharacterGuideDetail: React.FC = () => {
                           }`}>
                             #{i + 1}
                           </span>
-                          <span className="text-sm sm:text-base font-bold text-white whitespace-nowrap">
+                          <span className="text-sm sm:text-base font-bold text-white break-words">
                             {t(s)}
                           </span>
                         </div>
@@ -1053,9 +956,36 @@ const CharacterGuideDetail: React.FC = () => {
                 </div>
               </div>
 
+              {/* Target Stats and Conditions */}
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent shadow-xl">
+                <div className="flex items-center gap-4 border-b border-white/5 pb-6">
+                  <Target size={22} className="text-gray-300" />
+                  <span className="text-xl font-bold tracking-tight">{t('목표 스탯')}</span>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {targetStatCards.map((s, i) => (
+                    <div
+                      key={i}
+                      className="flex flex-col justify-between p-5 bg-white/[0.04] hover:bg-white/[0.08] rounded-2xl border border-white/10 hover:border-white/20 transition-all group relative gap-3 h-full overflow-hidden"
+                    >
+                      <div className="flex items-start justify-between gap-2 w-full">
+                        <span className="text-xs sm:text-sm font-bold text-gray-300 uppercase tracking-wider group-hover:text-white transition-colors break-keep break-words">{t(s.label)}</span>
+                      </div>
+                      <div className="flex flex-col items-start w-full">
+                        <span className="text-xl sm:text-2xl font-bold text-white tabular-nums break-keep break-words text-left">{t(s.value)}</span>
+                        {s.note && <p className="mt-2 text-sm text-gray-300 leading-relaxed">{t(s.note)}</p>}
+                        <div className="w-12 h-1 bg-white/20 rounded-full mt-2 overflow-hidden">
+                           <div className="w-full h-full bg-white/60" />
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* 권장 스탯 상세 가이드 */}
               {hasStatNotes && (
-                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+                <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
@@ -1065,7 +995,7 @@ const CharacterGuideDetail: React.FC = () => {
                         <h4 className="text-lg sm:text-xl font-black tracking-tight text-white flex items-center gap-2">
                           {t('권장 스탯 상세 가이드')}
                         </h4>
-                        <span className="text-xs text-gray-400 font-medium">세팅 추천 수치 및 조건별 가이드</span>
+                        <span className="text-xs text-gray-300 font-medium">세팅 추천 수치 및 조건별 가이드</span>
                       </div>
                     </div>
                   </div>
@@ -1078,8 +1008,8 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {mainStatsWithNotes.map((stat: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
-                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[200px] md:w-[240px]">
+                          <div key={idx} className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
+                            <div className="flex items-center gap-2.5 shrink-0 lg:w-[240px]">
                               <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-accent text-black shrink-0 shadow-sm">
                                 {t(stat.label)}
                               </span>
@@ -1102,8 +1032,8 @@ const CharacterGuideDetail: React.FC = () => {
                       </div>
                       <div className="grid grid-cols-1 gap-3">
                         {targetStatDetails.map((item: any, idx: number) => (
-                          <div key={idx} className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
-                            <div className="flex items-center gap-2.5 shrink-0 sm:w-[200px] md:w-[240px]">
+                          <div key={idx} className="flex flex-col lg:flex-row lg:items-center gap-3 lg:gap-5 p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-brand-primary/30 transition-all border-l-4 border-l-brand-accent shadow-sm group">
+                            <div className="flex items-center gap-2.5 shrink-0 lg:w-[240px]">
                               <span className="px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-black tracking-wide bg-brand-primary/20 text-white border border-brand-accent/30 shrink-0 shadow-sm whitespace-nowrap">
                                 {t(item.label)}
                               </span>
@@ -1127,9 +1057,9 @@ const CharacterGuideDetail: React.FC = () => {
 
           {/* 04 시너지 캐릭터 */}
           {synergyCharacters.length > 0 && (
-            <section id="시너지 캐릭터" className="space-y-10">
+            <section id="시너지 캐릭터" className="space-y-5 sm:space-y-6">
               <SectionHeader num="04" title="추천 시너지 캐릭터" theme={theme} />
-              <div className="glass-card rounded-[45px] p-10 md:p-12 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
                 <div className="flex flex-wrap gap-8">
                   {synergyCharacters.map((member, idx) => {
                     const memberChar = CHARACTER_DB.find(c => normalizeName(t(c.name)) === normalizeName(t(member.name)) || normalizeName(c.folderName) === normalizeName(t(member.name)));
@@ -1148,8 +1078,8 @@ const CharacterGuideDetail: React.FC = () => {
                            </div>
                         </div>
                         <div className="text-center space-y-1">
-                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors whitespace-nowrap">{t(member.name)}</div>
-                          <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest whitespace-nowrap">{t(member.role)}</div>
+                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors break-words">{t(member.name)}</div>
+                          <div className="text-xs font-bold text-gray-300 tracking-wide break-words">{t(member.role)}</div>
                         </div>
                       </Link>
                     );
@@ -1165,8 +1095,8 @@ const CharacterGuideDetail: React.FC = () => {
             <section id="rira-analysis" className="space-y-8 scroll-mt-32">
               <SectionHeader num="R" title="RIRA 분석" theme={theme} />
 
-              <div className="glass-card rounded-[40px] p-6 sm:p-9 border border-brand-primary/25 bg-gradient-to-br from-brand-primary/10 via-white/[0.03] to-transparent space-y-6 shadow-2xl">
-                <div className="flex flex-wrap gap-2 text-[11px] font-black tracking-wider">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-brand-primary/25 bg-gradient-to-br from-brand-primary/10 via-white/[0.03] to-transparent space-y-6 shadow-2xl">
+                <div className="flex flex-wrap gap-2 text-xs font-black tracking-wider">
                   <span className="px-3 py-1.5 rounded-full bg-brand-primary/20 text-brand-accent border border-brand-accent/25">{publishedAnalysis.role}</span>
                   <span className="px-3 py-1.5 rounded-full bg-white/[0.06] text-gray-300 border border-white/10">분석 기준 {publishedAnalysis.standard}</span>
                   <span className="px-3 py-1.5 rounded-full bg-white/[0.06] text-gray-300 border border-white/10">검토 {publishedAnalysis.reviewedAt}</span>
@@ -1175,11 +1105,11 @@ const CharacterGuideDetail: React.FC = () => {
                   <p className="text-xs font-black text-brand-accent uppercase tracking-[0.2em] mb-3">RIRA 한줄평</p>
                   <p className="text-lg sm:text-xl font-bold text-white leading-relaxed break-keep">{publishedAnalysis.summary}</p>
                 </div>
-                <p className="text-xs text-gray-400">작성·검수: {publishedAnalysis.reviewer}</p>
+                <p className="text-xs text-gray-300">작성·검수: {publishedAnalysis.reviewer}</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="glass-card rounded-[32px] p-6 sm:p-8 border border-emerald-400/20 bg-emerald-400/[0.04] space-y-5">
+                <div className="glass-card rounded-3xl p-5 sm:p-7 border border-emerald-400/20 bg-emerald-400/[0.04] space-y-5">
                   <h3 className="flex items-center gap-3 text-xl font-black text-white"><CheckCircle2 size={21} className="text-emerald-400" /> 장점</h3>
                   <ul className="space-y-3">
                     {publishedAnalysis.strengths.map((item, index) => (
@@ -1187,7 +1117,7 @@ const CharacterGuideDetail: React.FC = () => {
                     ))}
                   </ul>
                 </div>
-                <div className="glass-card rounded-[32px] p-6 sm:p-8 border border-amber-400/20 bg-amber-400/[0.04] space-y-5">
+                <div className="glass-card rounded-3xl p-5 sm:p-7 border border-amber-400/20 bg-amber-400/[0.04] space-y-5">
                   <h3 className="flex items-center gap-3 text-xl font-black text-white"><AlertCircle size={21} className="text-amber-400" /> 주의점</h3>
                   <ul className="space-y-3">
                     {publishedAnalysis.weaknesses.map((item, index) => (
@@ -1198,13 +1128,13 @@ const CharacterGuideDetail: React.FC = () => {
               </div>
 
               {publishedAnalysis.teamPrinciple && (
-                <div className="glass-card rounded-[32px] p-6 sm:p-8 border border-white/10 bg-white/[0.03] space-y-3">
+                <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 bg-white/[0.03] space-y-3">
                   <h3 className="flex items-center gap-3 text-xl font-black text-white"><Users size={21} className="text-brand-accent" /> 파티 구성 원리</h3>
                   <p className="text-sm sm:text-base text-gray-200 leading-relaxed break-keep">{publishedAnalysis.teamPrinciple}</p>
                 </div>
               )}
 
-              <div className="glass-card rounded-[36px] p-6 sm:p-9 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-7">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-7">
                 <div>
                   <h3 className="flex items-center gap-3 text-xl font-black text-white mb-3"><Zap size={21} className="text-brand-accent" /> 기본 운용법</h3>
                   <p className="text-sm sm:text-base text-gray-200 leading-relaxed break-keep">{publishedAnalysis.gameplay.overview}</p>
@@ -1231,36 +1161,29 @@ const CharacterGuideDetail: React.FC = () => {
 
           {/* E-E-A-T Authorship & Methodology Note */}
           <section className="mt-12 pt-8 border-t border-white/5">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/5">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/10">
               <div className="flex items-center gap-4">
                 <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
                   <Users size={20} className="text-brand-primary" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="text-sm font-black text-white">{t('데이터 출처')}</h4>
-                  <p className="text-[11px] text-gray-400 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
+                  <p className="text-xs text-gray-300 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
                 </div>
               </div>
-              <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
+              <div className="text-xs text-gray-300 max-w-md text-center md:text-right font-medium leading-relaxed">
                 {t('이 분석 리포트는 최신 생성형 AI 기술을 활용한 데이터 프로세싱과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
               </div>
             </div>
             {guide && (
               <div className="mt-4 flex justify-end">
-                <p className="text-[11px] font-bold text-gray-400 tracking-wider uppercase">
+                <p className="text-xs font-bold text-gray-300 tracking-wider uppercase">
                   {t('최종 업데이트')} : {lastUpdatedDate} (v{guide.patchVersion || '1.0'})
                 </p>
               </div>
             )}
           </section>
-        </div>
-
-        {/* Sidebar / TOC */}
-        <aside className="hidden lg:block w-[320px] shrink-0 sticky top-32 h-fit space-y-8">
-          <TableOfContents selector=".guide-content" />
-          <AdPlaceholder type="rectangle" />
-        </aside>
-      </div>
+      </GuideLayout>
     </div>
   );
 };

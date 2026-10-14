@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { sanitizePublicGuideData } from './lib/public-guide-links.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -332,7 +333,7 @@ function loadHsrGuidesMap() {
 
         const match = content.match(/const\s+([^\s=:]+)\s*=\s*([\s\S]+?);?\s*$/);
         if (match && match[2]) {
-          const obj = new Function('return ' + match[2])();
+          const obj = sanitizePublicGuideData(new Function('return ' + match[2])());
           if (obj && obj.characterName) {
             map.set(obj.characterName.trim(), obj);
             map.set(file.replace('.ts', '').trim(), obj);
@@ -379,8 +380,9 @@ function loadWwGuidesMap() {
     const notionData = getNotionData();
     notionData.forEach(item => {
       if (item.dbSource === 'ww_guides') {
-        if (item.id) map.set(item.id.trim(), item);
-        if (item.name) map.set(item.name.trim(), item);
+        const publicGuide = sanitizePublicGuideData(item);
+        if (item.id) map.set(item.id.trim(), publicGuide);
+        if (item.name) map.set(item.name.trim(), publicGuide);
       }
     });
   } catch (e) {}
@@ -1121,7 +1123,7 @@ const HSR_KO_FILE = path.join(ROOT_DIR, 'common-hub', 'locales', 'hsr', 'hsr_cha
 const wwKoData = fs.existsSync(WW_KO_FILE) ? JSON.parse(fs.readFileSync(WW_KO_FILE, 'utf8')) : {};
 const wwWeaponKoData = fs.existsSync(WW_WEAPON_KO_FILE) ? JSON.parse(fs.readFileSync(WW_WEAPON_KO_FILE, 'utf8')) : {};
 const hsrKoData = fs.existsSync(HSR_KO_FILE) ? JSON.parse(fs.readFileSync(HSR_KO_FILE, 'utf8')) : {};
-const wwGuideAnalysis = fs.existsSync(WW_GUIDE_ANALYSIS_FILE) ? JSON.parse(fs.readFileSync(WW_GUIDE_ANALYSIS_FILE, 'utf8')) : {};
+const wwGuideAnalysis = fs.existsSync(WW_GUIDE_ANALYSIS_FILE) ? sanitizePublicGuideData(JSON.parse(fs.readFileSync(WW_GUIDE_ANALYSIS_FILE, 'utf8'))) : {};
 
 function getRouteDisplayLabel(route) {
   const decoded = decodeURI(route);
@@ -2739,7 +2741,7 @@ function runPrerender() {
 
   // 6-1. Hub-specific reviewed guides
   const guideArticles = fs.existsSync(GUIDE_ARTICLES_FILE)
-    ? JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8')).filter(article => article.status === 'published')
+    ? sanitizePublicGuideData(JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8'))).filter(article => article.status === 'published')
     : [];
   const guideLanding = fs.existsSync(GUIDE_LANDING_FILE)
     ? JSON.parse(fs.readFileSync(GUIDE_LANDING_FILE, 'utf8'))
@@ -2801,14 +2803,13 @@ function runPrerender() {
       else if (text) contentParts.push(`<p>${renderGuideInline(text)}</p>`);
     }
     const contentHtml = contentParts.join('');
-    const sourcesHtml = article.sources.map(source => `<li><a href="${escapeHtml(source.url)}">${escapeHtml(source.label)}</a></li>`).join('');
     createPrerenderedPage(
       `/gallery/${article.gameId}/guides/${encodeURIComponent(article.slug)}`,
       article.title,
       article.excerpt,
       `${CDN_URL}/hsr%20images/common/default_banner.webp`,
       baseHtml,
-      `<article><p><a href="/gallery/${article.gameId}">${escapeHtml(gameLabel)} 허브</a> &gt; <a href="/gallery/${article.gameId}/guides">공략</a></p><h1>${escapeHtml(article.title)}</h1><p><strong>적용 기준:</strong> ${escapeHtml(article.applicableVersion)} · <strong>최종 검수:</strong> ${escapeHtml(article.reviewedAt)}</p>${contentHtml}<h2>검증 출처</h2><ul>${sourcesHtml}</ul></article>`
+      `<article><p><a href="/gallery/${article.gameId}">${escapeHtml(gameLabel)} 허브</a> &gt; <a href="/gallery/${article.gameId}/guides">공략</a></p><h1>${escapeHtml(article.title)}</h1><p><strong>적용 기준:</strong> ${escapeHtml(article.applicableVersion)} · <strong>최종 검수:</strong> ${escapeHtml(article.reviewedAt)}</p>${contentHtml}</article>`
     );
     count++;
   });

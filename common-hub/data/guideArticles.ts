@@ -1,4 +1,5 @@
 import rawArticles from './guideArticles.json';
+import { sanitizePublicGuideData } from '../utils/publicGuideLinks';
 
 export type GuideStatus = 'draft' | 'review' | 'published';
 
@@ -24,7 +25,7 @@ export interface GuideArticle {
   sources: GuideSource[];
 }
 
-export const GUIDE_ARTICLES = rawArticles as GuideArticle[];
+export const GUIDE_ARTICLES = sanitizePublicGuideData(rawArticles) as GuideArticle[];
 
 export const getPublishedGuides = (gameId: string) =>
   GUIDE_ARTICLES.filter(article => article.status === 'published' && article.gameId === gameId);

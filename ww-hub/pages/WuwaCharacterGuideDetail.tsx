@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router';
+import { useParams, Link } from 'react-router';
 import { 
   ChevronLeft, 
   ChevronRight,
@@ -27,7 +27,8 @@ import {
 } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
+import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector, GuideSectionHeader, GuideEquipmentCard } from '../../common-hub/components/guides/GuideLayout';
+import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
 import { WW_ECHO_DATA } from '../data/echoData';
@@ -194,23 +195,6 @@ const getEchoImage = (echoName: string) => {
   return `${BASE_IMAGE_URL}/Echo/${encodeURIComponent(echoName.normalize('NFC'))}.webp`;
 };
 
-const SectionHeader: React.FC<{ num: string; title: string; theme: any }> = ({ num, title, theme }) => {
-  const { t } = useTranslation();
-  return (
-    <div className="flex items-center gap-6 px-4">
-      <div 
-        className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" 
-        style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}
-      >
-        {num}
-      </div>
-      <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">
-        {t(title, { keySeparator: false, nsSeparator: false })}
-      </h2>
-    </div>
-  );
-};
-
 const StatBoxPremium: React.FC<{ 
   label: string; 
   value?: string; 
@@ -294,7 +278,6 @@ const StatBoxPremium: React.FC<{
 
 const WuwaCharacterGuideDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
-  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
@@ -308,7 +291,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     const cleanParam = (charName || '').replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
     const normalizedParam = normalizeName(cleanParam);
 
-    return GUIDES?.find((g: any) => {
+    const matchedGuide = GUIDES?.find((g: any) => {
       const cleanGuideId = (g.id || '').replace(/_세팅_공략|_공략/g, '').trim();
       return (
         g.id === charName ||
@@ -317,6 +300,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         normalizeName(g.name || '') === normalizedParam
       );
     });
+    return matchedGuide ? sanitizePublicGuideData(matchedGuide) : undefined;
   }, [GUIDES, charName]);
 
   const character = useMemo(() => {
@@ -345,7 +329,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
   const guide = useMemo(() => {
     if (routeGuide) return routeGuide;
-    return GUIDES?.find((g: any) => {
+    const matchedGuide = GUIDES?.find((g: any) => {
       const cleanGuideId = g.id?.replace(/_세팅_공략|_공략/g, '').trim();
       const charId = character?.id || charName;
       const charNameNormalized = normalizeName(character?.name || charName || '');
@@ -359,12 +343,14 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         (g.name && (normalizeName(g.name) === charNameNormalized || normalizeName(g.name) === charFolderNormalized))
       );
     });
+    return matchedGuide ? sanitizePublicGuideData(matchedGuide) : undefined;
   }, [GUIDES, charName, character, routeGuide]);
 
   const analysisData = guideAnalysis as Record<string, any>;
-  const analysis = analysisData[guide?.id || '']
+  const sourceAnalysis = analysisData[guide?.id || '']
     || analysisData[character?.id || '']
     || analysisData[charName || ''];
+  const analysis = sourceAnalysis ? sanitizePublicGuideData(sourceAnalysis) : undefined;
 
   const synergyCharacters = useMemo(() => {
     if (!Array.isArray(guide?.synergyCharacters)) return [];
@@ -383,6 +369,10 @@ const WuwaCharacterGuideDetail: React.FC = () => {
       mainEchoes: guide.mainEchoes || (guide.mainEcho ? [guide.mainEcho] : []),
     };
   }, [guide, selectedVariantIndex]);
+
+  useEffect(() => {
+    setSelectedVariantIndex(0);
+  }, [charName]);
 
   const mainStatsToDisplay = useMemo(() => {
     return currentVariant?.mainStats && currentVariant.mainStats.length > 0
@@ -672,8 +662,14 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   }
 
   const heroImageUrl = getCharacterImage(character.folderName, character.isRover);
-  const lastUpdatedDate = guide.patchVersion ? `v${guide.patchVersion}` : '2026-05-23';
   const characterRouteId = guide.id || charName || character.id;
+  const primaryEchoSet = currentVariant?.echoSets?.[0];
+  const primaryEchoSetName = typeof primaryEchoSet === 'string' ? primaryEchoSet : primaryEchoSet?.name;
+  const summaryItems = [
+    parsedWeapons[0]?.cleanName && { label: t('추천 무기'), value: t(parsedWeapons[0].cleanName) },
+    primaryEchoSetName && { label: t('에코 세트'), value: t(primaryEchoSetName.split(/[:：]/)[0].trim()) },
+    parsedMainEchoes[0]?.cleanName && { label: t('메인 에코'), value: t(parsedMainEchoes[0].cleanName) },
+  ].filter(Boolean) as { label: string; value: string }[];
 
   const faqData = [
     {
@@ -713,96 +709,46 @@ const WuwaCharacterGuideDetail: React.FC = () => {
         category="공략" 
       />
 
-      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 md:px-12 pt-8 flex flex-col lg:flex-row gap-8 sm:gap-12 justify-between">
-        <div className="flex-1 w-full space-y-12 sm:space-y-16 guide-content">
-          
-          <Link 
-            to={`/gallery/ww/character/${characterRouteId}`}
-            className="inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 rounded-2xl text-xs sm:text-sm font-black text-gray-300 hover:text-white transition-all backdrop-blur-md group w-fit"
-          >
-            <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            {t('캐릭터 상세 정보로 돌아가기')}
-          </Link>
+      <GuideLayout navigationKey={`${characterRouteId}:${selectedVariantIndex}`}>
+          <GuideHero
+            name={t(character.name)}
+            image={heroImageUrl}
+            backTo={`/gallery/ww/character/${characterRouteId}`}
+            version={guide.patchVersion ? `v${guide.patchVersion}` : undefined}
+            tags={[character.weaponType, character.attribute].filter(Boolean).map((tag: string) => t(tag))}
+            description={t('무기와 에코 세팅, 목표 수치와 육성 우선순위를 확인하세요.')}
+          />
 
-          {/* Hero Section */}
-          <section className="relative p-6 sm:p-10 md:p-16 rounded-[28px] sm:rounded-[44px] md:rounded-[60px] bg-[#0c0c0c] border border-white/5 overflow-hidden group">
-            <div 
-              style={{ backgroundImage: `url(${heroImageUrl})`, filter: 'brightness(0.3) blur(20px)', opacity: 0.2 }} 
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
+          {guide.variants && guide.variants.length > 1 && (
+            <GuideVariantSelector
+              label={t('세팅 선택')}
+              options={guide.variants.map((variant: any, index: number) => ({ label: t(formatVariantTabName(variant.name)), value: String(index) }))}
+              value={String(selectedVariantIndex)}
+              onChange={(value) => setSelectedVariantIndex(Number(value))}
+              description={t('선택한 세팅에 맞춰 에코 세트·메인 에코·주옵션을 함께 표시합니다. 추천 무기·목표 수치·부옵션은 공통입니다.')}
             />
-            <div className="absolute top-6 right-6 sm:top-10 sm:right-10 flex flex-col items-end gap-1.5 z-20">
-              <div className="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 bg-brand-primary/10 rounded-lg border border-brand-primary/20">
-                <Sparkles size={12} className="text-brand-accent" />
-                <span className="text-[9px] sm:text-[10px] font-black text-brand-accent uppercase tracking-widest">{lastUpdatedDate}</span>
-              </div>
-            </div>
+          )}
 
-            <div className="relative z-10 flex flex-col md:flex-row items-center gap-6 sm:gap-12">
-              <div className="relative shrink-0">
-                <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 rounded-[28px] sm:rounded-[40px] md:rounded-[50px] border-4 border-white/10 overflow-hidden shadow-2xl relative z-10 bg-black/40">
-                  <img src={heroImageUrl} alt={character.name} className="w-full h-full object-cover scale-110 hover:scale-125 transition-transform duration-700" />
-                </div>
-                <div className="absolute -inset-4 bg-brand-primary/20 blur-3xl rounded-full opacity-30 animate-pulse" />
-              </div>
-              <div className="text-center md:text-left space-y-4 sm:space-y-6">
-                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3">
-                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] bg-white/5 border border-white/10 text-gray-400">{t(character.weaponType || '')}</span>
-                  <span className="px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em]" style={{ backgroundColor: `${theme.primary}20`, color: theme.secondary, border: `1px solid ${theme.primary}40` }}>{t(character.attribute)}</span>
-                </div>
-                <h1 className="text-2xl sm:text-4xl md:text-6xl font-black tracking-tighter uppercase leading-tight">
-                  {t(character.name)} <span className="text-brand-accent">가이드</span>
-                </h1>
-                <p className="text-gray-500 font-bold text-xs sm:text-base md:text-lg border-l-4 border-brand-primary/40 pl-4 sm:pl-6">{t('최적의 성능을 위한 무기와 에코 세팅 데이터입니다.')}</p>
-              </div>
-            </div>
-          </section>
+          <GuideSummary items={summaryItems} />
 
           {/* 01 추천 무기 */}
           <section id="추천 무기" className="space-y-6">
-            <SectionHeader num="01" title="추천 무기" theme={theme} />
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-              {parsedWeapons.map((w: any, i: number) => {
-                const weaponUrl = getWeaponImage(w.cleanName);
-                const isBest = w.rank === 1;
-
-                return (
-                  <Link 
-                    key={i} 
-                    to={`/gallery/ww/weapon/${encodeURIComponent(w.cleanName)}`}
-                    className={`group glass-card rounded-[32px] p-4 pt-6 flex flex-col items-center gap-4 hover:bg-white/[0.04] transition-all duration-500 text-center relative overflow-hidden ${
-                      isBest 
-                        ? 'border-2 border-brand-accent shadow-[0_0_50px_rgba(255,214,0,0.15)] hover:shadow-[0_0_80px_rgba(255,214,0,0.3)] scale-[1.02] hover:scale-105 z-10 bg-brand-primary/5' 
-                        : 'border border-white/5 hover:border-brand-primary/30'
-                    }`}
-                  >
-                    {isBest && (
-                      <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent z-20" />
-                    )}
-                    <div className={`absolute top-0 left-0 z-20 px-3 py-1.5 rounded-br-[20px] text-[10px] font-black ${isBest ? 'bg-brand-accent text-black shadow-lg' : 'bg-white/10 text-gray-300 backdrop-blur-md'} uppercase tracking-widest`}>
-                      {w.rank}순위
-                    </div>
-                    {isBest && (
-                      <div className="absolute top-2 right-2 z-20 bg-black/40 p-1.5 rounded-full backdrop-blur-md border border-brand-accent/30 shadow-lg">
-                        <Crown size={12} className="text-brand-accent" />
-                      </div>
-                    )}
-                    <div className={`w-full aspect-[3/4] rounded-2xl ${isBest ? 'bg-gradient-to-b from-brand-primary/20 to-black/60' : 'bg-black/40'} flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform overflow-hidden relative shadow-inner`}>
-                      <img src={weaponUrl} alt={w.cleanName} className="w-full h-full object-contain drop-shadow-2xl" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
-                    </div>
-                    <div className="flex flex-col items-center gap-1.5 w-full">
-                      <h4 className="text-[11px] md:text-[12px] font-black text-white group-hover:text-brand-accent transition-colors truncate w-full text-center leading-tight tracking-tighter px-1">{t(w.cleanName)}</h4>
-                      {isBest && (
-                        <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em]">{t('추천 선택')}</span>
-                      )}
-                    </div>
-                  </Link>
-                );
-              })}
+            <GuideSectionHeader num="01" title="추천 무기" theme={theme} />
+            <div className="grid grid-cols-1 gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {parsedWeapons.map((weapon: any, index: number) => (
+                <GuideEquipmentCard
+                  key={index}
+                  rank={weapon.rank}
+                  name={t(weapon.cleanName)}
+                  image={getWeaponImage(weapon.cleanName)}
+                  to={`/gallery/ww/weapon/${encodeURIComponent(weapon.cleanName)}`}
+                />
+              ))}
             </div>
 
             {/* 추천 무기 상세 분석 & 가이드 */}
             {weaponsWithNotes.length > 0 && (
-              <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+              <div className="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
                 <div className="flex items-center justify-between border-b border-white/10 pb-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
@@ -851,44 +797,17 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           </section>
 
           {/* 02 추천 에코 (장비) */}
-          <section id="추천 에코" className="space-y-10">
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-              <SectionHeader num="02" title="추천 에코 세트" theme={theme} />
-              {guide.variants && guide.variants.length > 1 && (
-                <div className="flex flex-wrap bg-white/5 p-1.5 rounded-2xl border border-white/10 mx-4 shrink-0">
-                  {guide.variants.map((v: any, idx: number) => {
-                    const primarySetFullName = typeof v.echoSets?.[0] === 'string'
-                      ? v.echoSets[0]
-                      : (v.echoSets?.[0]?.name || v.name || '');
-                    const primaryPart = (primarySetFullName || '').split('+')[0].trim();
-                    const sonataInfo = resolveSonataInfo(primaryPart);
-                    const setImgUrl = sonataInfo.imgUrl;
-                    
-                    return (
-                      <button 
-                        key={idx} 
-                        onClick={() => setSelectedVariantIndex(idx)} 
-                        className={`flex items-center gap-2 px-6 py-2 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all ${selectedVariantIndex === idx ? 'bg-brand-primary text-white shadow-xl' : 'text-gray-500 hover:text-gray-300 hover:bg-white/5'}`}
-                      >
-                        {setImgUrl && (
-                          <img src={setImgUrl} alt={sonataInfo.sonataName} className={`w-4 h-4 object-contain ${selectedVariantIndex !== idx && 'opacity-60 grayscale'}`} onError={(e) => (e.currentTarget.style.display = 'none')} />
-                        )}
-                        {t(formatVariantTabName(v.name))}
-                      </button>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+          <section id="추천 에코" className="space-y-6">
+            <GuideSectionHeader num="02" title="추천 에코 세트" theme={theme} />
             <div className="flex flex-col gap-8">
               {parsedEchoSetsData.isCombo ? (
-                <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent shadow-xl">
+                <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent shadow-xl">
                   <div className="flex items-center justify-between border-b border-white/5 pb-6">
                     <div className="flex items-center gap-4">
                       <Layers size={22} className="text-brand-accent" />
                       <span className="text-xl font-black uppercase tracking-tighter italic">{t('화음 세트 조합')}</span>
                     </div>
-                    <span className="px-3.5 py-1 rounded-full text-[11px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                    <span className="px-3.5 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
                       {parsedEchoSetsData.comboBadge}
                     </span>
                   </div>
@@ -930,12 +849,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                               <div className="flex items-center justify-between w-full">
                                 <span className="text-base sm:text-lg font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-keep">{t(part.cleanName)}</span>
-                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-brand-primary/20 text-brand-accent border border-brand-accent/30'}`}>
+                                <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-brand-primary/20 text-brand-accent border border-brand-accent/30'}`}>
                                   {part.badgeText}
                                 </span>
                               </div>
                               {part.sonataName && (
-                                <span className="text-xs text-gray-400 font-medium truncate">
+                                <span className="text-xs text-gray-400 font-medium break-words">
                                   소나타: {t(part.sonataName)}
                                 </span>
                               )}
@@ -954,7 +873,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                           {/* 해당 2세트 효과를 제공하는 소나타 리스트 */}
                           {part.matchingSets && part.matchingSets.length > 0 && (
                             <div className="pt-3 border-t border-white/5 space-y-2">
-                              <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                              <div className="flex items-center justify-between text-xs font-bold text-gray-400">
                                 <span className="flex items-center gap-1.5 text-gray-300">
                                   <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
                                   {t('해당 2세트 효과 보유 화음')} ({part.matchingSets.length}종)
@@ -976,7 +895,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                           onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                                         />
                                       </div>
-                                      <span className="text-xs text-gray-300 font-medium truncate group-hover/sonata:text-brand-accent transition-colors">
+                                      <span className="text-xs text-gray-300 font-medium break-words group-hover/sonata:text-brand-accent transition-colors">
                                         {t(setName)}
                                       </span>
                                     </div>
@@ -996,13 +915,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   {parsedEchoSetsData.threePieceSets.length > 0 && parsedEchoSetsData.twoPieceSets.length > 0 ? (
                 <div className="grid grid-cols-1 gap-8">
                   {/* 3세트 화음 카드 */}
-                  <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                  <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                     <div className="flex items-center justify-between border-b border-white/5 pb-6">
                       <div className="flex items-center gap-4">
                         <Layers size={22} className="text-brand-accent" />
                         <span className="text-xl font-black uppercase tracking-tighter italic">{t('3세트 화음')}</span>
                       </div>
-                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                      <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
                         3 Pieces
                       </span>
                     </div>
@@ -1026,7 +945,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                 <div className="flex items-center justify-between w-full">
                                   <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
-                                  <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                  <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                     {set.rank}순위
                                   </span>
                                 </div>
@@ -1046,13 +965,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                   </div>
 
                   {/* 2세트 화음 카드 */}
-                  <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                  <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                     <div className="flex items-center justify-between border-b border-white/5 pb-6">
                       <div className="flex items-center gap-4">
                         <Box size={22} className="text-purple-400" />
                         <span className="text-xl font-black uppercase tracking-tighter italic">{t('2세트 화음')}</span>
                       </div>
-                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                      <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-purple-500/10 text-purple-300 border border-purple-500/20">
                         2 Pieces
                       </span>
                     </div>
@@ -1082,7 +1001,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                 <div className="flex items-center justify-between w-full">
                                   <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
-                                  <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                  <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                     {set.rank}순위
                                   </span>
                                 </div>
@@ -1106,12 +1025,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                             {/* 해당 2세트 효과를 제공하는 모든 화음 세트 (아이콘 + 세트 이름) */}
                             {matchingSets.length > 0 && (
                               <div className="pt-3 border-t border-white/5 space-y-2.5">
-                                <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                                <div className="flex items-center justify-between text-xs font-bold text-gray-400">
                                   <span className="flex items-center gap-1.5 text-gray-300">
                                     <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
                                     {t('해당 2세트 효과 보유 화음')} ({matchingSets.length}종)
                                   </span>
-                                  <span className="text-[10px] text-gray-500 font-medium">
+                                  <span className="text-xs text-gray-500 font-medium">
                                     {matchingSets.length > 1 ? t('아래 화음 중 2세트 자유 선택') : t('해당 화음 2세트 장착 시 적용')}
                                   </span>
                                 </div>
@@ -1131,7 +1050,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                             onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                                           />
                                         </div>
-                                        <span className="text-xs text-gray-200 font-semibold truncate group-hover/sonata:text-brand-accent transition-colors">
+                                        <span className="text-xs text-gray-200 font-semibold break-words group-hover/sonata:text-brand-accent transition-colors">
                                           {t(setName)}
                                         </span>
                                       </div>
@@ -1151,13 +1070,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 <>
                   {/* 3세트만 있는 경우 */}
                   {parsedEchoSetsData.threePieceSets.length > 0 && (
-                    <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                    <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                       <div className="flex items-center justify-between border-b border-white/5 pb-6">
                         <div className="flex items-center gap-4">
                           <Layers size={22} className="text-brand-accent" />
                           <span className="text-xl font-black uppercase tracking-tighter italic">{t('3세트 화음')}</span>
                         </div>
-                        <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                        <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
                           3 Pieces
                         </span>
                       </div>
@@ -1181,12 +1100,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                 <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                   <div className="flex items-center justify-between w-full">
                                     <span className="text-base font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
-                                    <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                    <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                       {set.rank}순위
                                     </span>
                                   </div>
                                   {set.sonataName && (
-                                    <span className="text-xs text-gray-400 font-medium truncate">
+                                    <span className="text-xs text-gray-400 font-medium break-words">
                                       소나타: {t(set.sonataName)}
                                     </span>
                                   )}
@@ -1208,13 +1127,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
                   {/* 2세트만 있는 경우 (2+2 세트 등) */}
                   {parsedEchoSetsData.twoPieceSets.length > 0 && (
-                    <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                    <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                       <div className="flex items-center justify-between border-b border-white/5 pb-6">
                         <div className="flex items-center gap-4">
                           <Box size={22} className="text-purple-400" />
                           <span className="text-xl font-black uppercase tracking-tighter italic">{t('2세트 화음')}</span>
                         </div>
-                        <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                        <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-purple-500/10 text-purple-300 border border-purple-500/20">
                           2 Pieces
                         </span>
                       </div>
@@ -1244,7 +1163,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                 <div className="flex flex-col gap-1 w-full z-10 min-w-0">
                                   <div className="flex items-center justify-between w-full">
                                     <span className="text-base sm:text-lg font-bold text-gray-200 group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName)}</span>
-                                    <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                    <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                       {set.rank}순위
                                     </span>
                                   </div>
@@ -1255,13 +1174,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                       </span>
                                     ) : (
                                       set.sonataName && (
-                                        <span className="text-xs text-gray-400 font-medium truncate">
+                                        <span className="text-xs text-gray-400 font-medium break-words">
                                           소나타: {t(set.sonataName)}
                                         </span>
                                       )
                                     )}
                                     {set.effectName && matchingSets.length <= 1 && (
-                                      <span className="text-[11px] text-brand-accent/80 font-semibold shrink-0">
+                                      <span className="text-xs text-brand-accent/80 font-semibold shrink-0">
                                         ({t(set.effectName)})
                                       </span>
                                     )}
@@ -1281,12 +1200,12 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                               {/* 해당 2세트 효과를 제공하는 모든 화음 세트 (아이콘 + 세트 이름) */}
                               {matchingSets.length > 0 && (
                                 <div className="pt-3 border-t border-white/5 space-y-2.5">
-                                  <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                                  <div className="flex items-center justify-between text-xs font-bold text-gray-400">
                                     <span className="flex items-center gap-1.5 text-gray-300">
                                       <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
                                       {t('해당 2세트 효과 보유 화음')} ({matchingSets.length}종)
                                     </span>
-                                    <span className="text-[10px] text-gray-500 font-medium">
+                                    <span className="text-xs text-gray-500 font-medium">
                                       {matchingSets.length > 1 ? t('아래 화음 중 2세트 자유 선택') : t('해당 화음 2세트 장착 시 적용')}
                                     </span>
                                   </div>
@@ -1306,7 +1225,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                               onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                                             />
                                           </div>
-                                          <span className="text-xs text-gray-200 font-semibold truncate group-hover/sonata:text-brand-accent transition-colors">
+                                          <span className="text-xs text-gray-200 font-semibold break-words group-hover/sonata:text-brand-accent transition-colors">
                                             {t(setName)}
                                           </span>
                                         </div>
@@ -1327,13 +1246,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
               {/* 5세트 (단일 세팅) 카드 */}
               {parsedEchoSetsData.allSets.length > 0 && (
-                <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
+                <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.04] to-transparent">
                   <div className="flex items-center justify-between border-b border-white/5 pb-6">
                     <div className="flex items-center gap-4">
                       <Layers size={22} className="text-gray-500" />
                       <span className="text-xl font-black uppercase tracking-tighter italic">{t('화음 세트')}</span>
                     </div>
-                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
+                    <span className="px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest bg-brand-primary/10 text-brand-accent border border-brand-primary/20">
                       5 Pieces
                     </span>
                   </div>
@@ -1362,7 +1281,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                 <div className="flex items-center gap-1.5 min-w-0">
                                   <span className="text-lg sm:text-xl font-black text-white group-hover:text-brand-accent transition-colors break-keep">{t(set.cleanName || '에코 세트')}</span>
                                 </div>
-                                <span className={`text-[10px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
+                                <span className={`text-xs font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0 ${isFirst ? 'bg-brand-accent text-black' : 'bg-black/50 text-gray-400'}`}>
                                   {set.rank}순위
                                 </span>
                               </div>
@@ -1380,7 +1299,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
                           {matchingSets.length > 0 && (
                             <div className="pt-3 border-t border-white/5 space-y-2.5">
-                              <div className="flex items-center justify-between text-[11px] font-bold text-gray-400">
+                              <div className="flex items-center justify-between text-xs font-bold text-gray-400">
                                 <span className="flex items-center gap-1.5 text-gray-300">
                                   <span className="w-1.5 h-1.5 rounded-full bg-brand-accent inline-block" />
                                   {t('해당 2세트 효과 화음 세트')} ({matchingSets.length}종)
@@ -1402,7 +1321,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                                           onError={(e) => { e.currentTarget.style.display = 'none'; }} 
                                         />
                                       </div>
-                                      <span className="text-xs text-gray-200 font-semibold truncate group-hover/sonata:text-brand-accent transition-colors">
+                                      <span className="text-xs text-gray-200 font-semibold break-words group-hover/sonata:text-brand-accent transition-colors">
                                         {t(setName)}
                                       </span>
                                     </div>
@@ -1420,40 +1339,40 @@ const WuwaCharacterGuideDetail: React.FC = () => {
             </>
           )}
 
-              <div className="glass-card rounded-[45px] p-10 border border-brand-primary/20 bg-brand-primary/[0.02] space-y-8 relative overflow-hidden group">
-                <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-colors duration-700" />
-                <div className="flex items-center gap-4 border-b border-white/5 pb-6 relative z-10">
-                  <Target size={22} className="text-brand-primary" />
-                  <span className="text-xl font-black uppercase tracking-tighter italic">{t('추천 메인 에코')}</span>
+              <div className="rounded-3xl border border-white/10 bg-[#111318] p-4 sm:p-5 space-y-4">
+                <div className="flex items-center gap-3">
+                  <Target size={18} className="text-violet-300 shrink-0" />
+                  <h3 className="text-base sm:text-lg font-bold text-white">{t('추천 메인 에코')}</h3>
                 </div>
-                <div className="flex flex-col gap-8 relative z-10">
+                <div className="flex flex-col gap-3">
                   {parsedMainEchoes.map((me: any, idx: number) => {
                     const echoUrl = getEchoImage(me.cleanName);
 
                     return (
-                      <div 
+                      <article
                         key={idx} 
-                        className="flex flex-col md:flex-row items-center gap-8 bg-black/20 p-6 rounded-3xl border border-white/5 hover:border-brand-primary/30 transition-all cursor-default group/echo relative overflow-hidden"
+                        aria-label={`${t(me.cleanName)} 메인 에코`}
+                        className="rounded-2xl border border-white/10 bg-[#111318] p-4 sm:p-5 space-y-3"
                       >
-                        <div className="w-24 h-24 rounded-full border border-brand-primary/30 p-2 bg-black/40 shrink-0 group-hover/echo:border-brand-accent transition-colors">
-                          <img src={echoUrl} alt={me.cleanName} className="w-full h-full object-cover rounded-full group-hover/echo:scale-105 transition-transform" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
-                        </div>
-                        <div className="space-y-4 text-center md:text-left flex-1 min-w-0">
-                          <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
-                            <h4 className="text-xl sm:text-2xl font-black text-white group-hover/echo:text-brand-accent transition-colors">{t(me.cleanName)}</h4>
+                        <div className="flex items-center gap-4">
+                          <div className="w-20 h-20 rounded-xl border border-white/10 bg-black/30 p-1 shrink-0 overflow-hidden">
+                            <img src={echoUrl} alt={me.cleanName} className="w-full h-full object-cover rounded-lg" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                          </div>
+                          <div className="min-w-0 flex-1 space-y-2">
+                            <h4 className="text-base sm:text-lg font-bold leading-6 text-white break-words">{t(me.cleanName)}</h4>
                             {me.cost === 3 && (
-                              <span className="px-2.5 py-0.5 rounded-full text-xs font-black tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/40 shadow-[0_0_12px_rgba(168,85,247,0.2)] whitespace-nowrap">
+                              <span className="inline-flex px-2 py-0.5 rounded-md text-xs font-semibold bg-violet-400/10 text-violet-200 border border-violet-400/25">
                                 3 COST
                               </span>
                             )}
                           </div>
-                          {me.reason && (
-                            <p className="text-sm sm:text-base text-gray-300 leading-relaxed font-medium break-keep">
-                              {t(me.reason)}
-                            </p>
-                          )}
                         </div>
-                      </div>
+                        {me.reason && (
+                          <p className="border-t border-white/10 pt-3 text-sm leading-6 text-gray-300 break-words">
+                            {t(me.reason)}
+                          </p>
+                        )}
+                      </article>
                     );
                   })}
                 </div>
@@ -1477,11 +1396,11 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           </section>
 
           {/* 03 권장 스탯 */}
-          <section id="권장 스텟" className="space-y-10">
-            <SectionHeader num="03" title="권장 스텟" theme={theme} />
+          <section id="권장 스텟" className="space-y-6">
+            <GuideSectionHeader num="03" title="권장 스텟" theme={theme} />
             <div className="flex flex-col gap-8">
               {/* Target Stats Section (Top) */}
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent shadow-xl">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent shadow-xl">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                   <Target size={22} className="text-gray-500" />
                   <span className="text-xl font-black uppercase tracking-tighter italic">{t('목표 스탯')}</span>
@@ -1523,7 +1442,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               </div>
 
               {/* Main & Sub Stats Section (Bottom) */}
-              <div className="glass-card rounded-[45px] p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
                 <div className="flex items-center gap-4 border-b border-white/5 pb-6">
                   <ShieldCheck size={22} className="text-white" />
                   <span className="text-xl font-black uppercase tracking-tighter italic text-white">{t('에코 주옵션 & 부옵션')}</span>
@@ -1591,7 +1510,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
               {/* 권장 스탯 상세 가이드 */}
               {hasStatNotes && (
-                <div className="glass-card rounded-[36px] p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
+                <div className="glass-card rounded-3xl p-6 sm:p-8 border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent space-y-6 shadow-2xl">
                   <div className="flex items-center justify-between border-b border-white/10 pb-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-2xl bg-white/10 flex items-center justify-center border border-white/15 shrink-0">
@@ -1660,9 +1579,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
           {/* 04 스킬 육성 우선순위 */}
           <section id="스킬 육성 우선순위" className="space-y-6">
-            <SectionHeader num="04" title="스킬 육성 우선순위" theme={theme} />
+            <GuideSectionHeader num="04" title="스킬 육성 우선순위" theme={theme} />
             
-            <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-6 bg-gradient-to-br from-white/[0.03] to-transparent">
+            <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-6 bg-gradient-to-br from-white/[0.03] to-transparent">
               <div className="flex flex-wrap gap-3 sm:gap-4 items-center">
                 {guide.skillPriority.map((skill: string, idx: number) => (
                   <React.Fragment key={idx}>
@@ -1678,8 +1597,8 @@ const WuwaCharacterGuideDetail: React.FC = () => {
 
           {analysis && (
             <section id="RIRA 분석 가이드" className="space-y-6">
-              <SectionHeader num="05" title="RIRA 분석 가이드" theme={theme} />
-              <div className="glass-card rounded-[45px] p-8 sm:p-10 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
+              <GuideSectionHeader num="05" title="RIRA 분석 가이드" theme={theme} />
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 space-y-8 bg-gradient-to-br from-white/[0.03] to-transparent">
                 <p className="text-sm sm:text-base text-gray-200 font-medium leading-7 break-keep">{analysis.summary}</p>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                   <div className="rounded-3xl border border-emerald-400/15 bg-emerald-400/[0.04] p-6 space-y-4">
@@ -1718,10 +1637,10 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           {/* 06 시너지 캐릭터 */}
           {(guide.isUniversalSynergy || synergyCharacters.length > 0) && (
             <section id="시너지 캐릭터" className="space-y-6">
-              <SectionHeader num={analysis ? "06" : "05"} title="시너지 캐릭터" theme={theme} />
+              <GuideSectionHeader num={analysis ? "06" : "05"} title="시너지 캐릭터" theme={theme} />
 
             {guide.isUniversalSynergy ? (
-              <div className="glass-card rounded-[45px] p-10 md:p-12 border border-brand-primary/20 bg-brand-primary/[0.02] shadow-2xl flex flex-col md:flex-row items-center gap-8 group overflow-hidden relative">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-brand-primary/20 bg-brand-primary/[0.02] shadow-2xl flex flex-col md:flex-row items-center gap-8 group overflow-hidden relative">
                 <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-primary/10 rounded-full blur-3xl group-hover:bg-brand-primary/20 transition-colors duration-700" />
                 <div className="w-20 h-20 rounded-3xl bg-black/40 flex items-center justify-center border border-brand-primary/30 shrink-0 shadow-[0_0_30px_rgba(74,222,128,0.15)] group-hover:scale-110 transition-transform duration-500 z-10">
                   <Infinity size={40} className="text-brand-accent" />
@@ -1738,7 +1657,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 </div>
               </div>
             ) : synergyCharacters.length > 0 ? (
-              <div className="glass-card rounded-[45px] p-10 md:p-12 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
+              <div className="glass-card rounded-3xl p-5 sm:p-7 border border-white/5 bg-gradient-to-br from-white/[0.02] to-transparent shadow-2xl">
                 <div className="flex flex-wrap gap-8 items-center">
                   {synergyCharacters.map((member: string, idx: number) => {
                     let memberName = member;
@@ -1807,13 +1726,13 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                     const memberImg = memberChar 
                       ? getCharacterImage(memberChar.folderName, memberChar.isRover) 
                       : getCharacterImage(memberName, memberName.includes('방랑자'));
-                    
-                    return (
-                      <Link 
-                        key={idx}
-                        to={`/gallery/ww/character/${memberChar?.id || memberName}`}
-                        className="flex flex-col items-center gap-4 group/member w-[100px] relative"
-                      >
+                    const memberRouteId = characterSummary.find((candidate) =>
+                      candidate.id === memberChar?.id ||
+                      normalizeName(candidate.name) === normalizeName(memberChar?.name || memberName) ||
+                      normalizeName(candidate.folderName) === normalizeName(memberChar?.folderName || memberName)
+                    )?.id;
+                    const memberCard = (
+                      <>
                         <div className="relative w-20 h-20 md:w-24 md:h-24">
                            <div className="absolute inset-0 bg-brand-primary/20 rounded-full blur-xl opacity-0 group-hover/member:opacity-100 transition-opacity" />
                            <div className="relative w-full h-full rounded-full border-2 border-white/10 overflow-hidden group-hover/member:border-brand-accent transition-all duration-300 p-1 bg-black/40 shadow-xl">
@@ -1821,14 +1740,24 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                            </div>
                         </div>
                         <div className="text-center space-y-1 w-full">
-                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors truncate px-1">{t(memberName)}</div>
+                          <div className="text-sm font-black text-gray-300 group-hover/member:text-brand-accent transition-colors break-words px-1">{t(memberName)}</div>
                           {memberChar?.roles?.[0] ? (
-                            <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest truncate">{t(memberChar.roles[0].label)}</div>
+                            <div className="text-xs font-bold text-gray-400 uppercase tracking-widest break-words">{t(memberChar.roles[0].label)}</div>
                           ) : memberNote ? (
-                            <div className="text-[10px] font-bold text-brand-accent uppercase tracking-widest truncate">{t(memberNote)}</div>
+                            <div className="text-xs font-bold text-brand-accent uppercase tracking-widest break-words">{t(memberNote)}</div>
                           ) : null}
                         </div>
+                      </>
+                    );
+
+                    return memberRouteId ? (
+                      <Link key={idx} to={`/gallery/ww/character/${encodeURIComponent(memberRouteId)}`} className="flex flex-col items-center gap-3 group/member w-[110px] relative">
+                        {memberCard}
                       </Link>
+                    ) : (
+                      <div key={idx} className="flex flex-col items-center gap-3 group/member w-[110px] relative">
+                        {memberCard}
+                      </div>
                     );
                   })}
                 </div>
@@ -1846,10 +1775,10 @@ const WuwaCharacterGuideDetail: React.FC = () => {
                 </div>
                 <div className="space-y-1">
                   <h4 className="text-sm font-black text-white">{t('데이터 출처')}</h4>
-                  <p className="text-[11px] text-gray-500 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
+                  <p className="text-xs text-gray-500 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
                 </div>
               </div>
-              <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
+              <div className="text-xs text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
                 {t('이 분석 리포트는 게임 데이터 분석과 전담 에디터의 정밀한 검토 및 인게임 테스트를 통해 완성되었습니다. 데이터의 정확성과 전술적 가치를 최우선으로 합니다.')}
               </div>
             </div>
@@ -1863,8 +1792,6 @@ const WuwaCharacterGuideDetail: React.FC = () => {
               </button>
             </div>
           </section>
-        </div>
-
         <FeedbackReportModal 
           isOpen={isFeedbackModalOpen}
           onClose={() => setIsFeedbackModalOpen(false)}
@@ -1876,11 +1803,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
           }}
         />
 
-        {/* Sidebar */}
-        <aside className="hidden lg:block w-[320px] shrink-0 sticky top-32 h-fit space-y-8">
-          <AdPlaceholder type="rectangle" />
-        </aside>
-      </div>
+      </GuideLayout>
     </div>
   );
 };
