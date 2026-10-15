@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import { HelmetProvider } from 'react-helmet-async';
 import { consumeLegacyLanguageQuery, getInitialLanguage, loadLanguageResources } from './i18n';
 import App from './App';
+import { preloadHome } from './pages/homeRuntime';
 import './index.css';
 
 const rootElement = document.getElementById('root');
@@ -13,11 +14,12 @@ if (!rootElement) {
 
 const renderApp = async () => {
   const initialLanguage = getInitialLanguage();
-  try {
-    await loadLanguageResources(initialLanguage, null);
-  } catch (error) {
+  const languageReady = loadLanguageResources(initialLanguage, null).catch(error => {
     console.error('Initial language resources could not be loaded:', error);
-  }
+  });
+  // Keep prerendered content visible until the first home render is ready.
+  // Other entry routes must not download the home chunk.
+  await Promise.all([languageReady, window.location.pathname === '/' ? preloadHome() : undefined]);
   consumeLegacyLanguageQuery();
 
   const root = ReactDOM.createRoot(rootElement);

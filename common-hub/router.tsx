@@ -7,9 +7,9 @@ import { Loader2 } from 'lucide-react';
 import i18n, { getGameLanguageScope, loadGameLanguageResources, SupportedLanguage } from './i18n';
 import { useTranslation } from 'react-i18next';
 import { getRouteTranslationPacks } from './utils/routeTranslations';
+import Home, { isHomeReady } from './pages/homeRuntime';
 
 // 1. 페이지 지연 로딩 (Lazy Loading)
-const Home = React.lazy(() => import('./pages/Home'));
 const GalleryHSR = React.lazy(() => import('../hsr-hub/pages/Gallery'));
 const GalleryWW = React.lazy(() => import('../ww-hub/pages/Gallery'));
 const GalleryNTE = React.lazy(() => import('../nte-hub/pages/Gallery'));
@@ -119,7 +119,7 @@ const RouteLanguageGate: React.FC<{ children: React.ReactNode }> = ({ children }
   const language = (i18n.language || 'ko') as SupportedLanguage;
   const scope = getGameLanguageScope(location.pathname);
   const resourceKey = `${language}:${scope}:${scope ? getRouteTranslationPacks(scope, location.pathname, location.search).join(',') : ''}`;
-  const [readyKey, setReadyKey] = useState('');
+  const [readyKey, setReadyKey] = useState(() => location.pathname === '/' && isHomeReady() ? resourceKey : '');
 
   useEffect(() => {
     let isActive = true;
