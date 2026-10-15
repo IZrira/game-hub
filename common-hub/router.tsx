@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { createBrowserRouter, Navigate, Outlet, ScrollRestoration, useLocation, useParams } from 'react-router';
-import { getPublishedGuide, getPublishedGuides } from './data/guideArticles';
+import { getPublishedGuide, getPublishedGuides } from './data/guideSummaries';
 import Layout from './components/Layout';
 import ErrorBoundary from './components/ErrorBoundary';
 import { Loader2 } from 'lucide-react';

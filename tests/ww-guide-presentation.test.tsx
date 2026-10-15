@@ -82,8 +82,9 @@ describe('WW guide navigation and selected build', () => {
     await screen.findByRole('region', { name: '추천 세팅 요약' });
     const selector = screen.getByRole('group', { name: '세팅 선택' });
     const buttons = within(selector).getAllByRole('button');
-    source.variants.forEach((variant: any, index: number) => {
+    for (const [index, variant] of source.variants.entries()) {
       fireEvent.click(buttons[index]);
+      await waitFor(() => expect(buttons[index].getAttribute('aria-pressed')).toBe('true'));
       const sets = container.querySelector('[id="추천 에코"]')!;
       for (const item of variant.echoSets) {
         if (item.note) expect(sets.textContent).toContain(item.note);
@@ -98,8 +99,9 @@ describe('WW guide navigation and selected build', () => {
         if (slot.note) expect(stats.textContent).toContain(slot.note);
       }
       if (variant.name.includes('+')) expect(sets.querySelector('.guide-equipment-alternatives')).toBeTruthy();
-    });
+    }
     fireEvent.click(buttons[0]);
+    await waitFor(() => expect(buttons[0].getAttribute('aria-pressed')).toBe('true'));
     if (characterId === 'rebecca' || characterId === 'lucy') {
       expect(container.querySelector('[id="추천 에코"]')?.textContent).toContain('2 Pieces × 2');
     }

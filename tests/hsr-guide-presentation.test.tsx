@@ -68,7 +68,7 @@ describe('HSR guide selected build and analysis navigation', () => {
     expect(summary.textContent).toContain('차원 구체 · 2순위화염 피해');
 
     fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
-    expect(screen.getByRole('button', { name: '지속 피해 세팅' }).getAttribute('aria-pressed')).toBe('true');
+    await waitFor(() => expect(screen.getByRole('button', { name: '지속 피해 세팅' }).getAttribute('aria-pressed')).toBe('true'));
     expect(summary.textContent).toContain('깊은 감옥에 수감된 죄수');
     expect(summary.textContent).toContain('즐거움에 취한 바다의 일각');
     expect(summary.textContent).toContain('차원 구체 · 1순위화염 피해');

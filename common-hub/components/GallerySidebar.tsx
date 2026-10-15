@@ -19,7 +19,7 @@ import { useTranslation } from 'react-i18next';
 import { useNoticeBadge } from './NoticeComponents';
 import { GLOBAL_NOTICES } from '../data/notices';
 import { Notice } from '../data/types';
-import { getPublishedGuides } from '../data/guideArticles';
+import { getPublishedGuides } from '../data/guideSummaries';
 
 interface SidebarItem {
   label: string;

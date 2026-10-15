@@ -5,6 +5,7 @@
 ## 변경할 때 지킬 것
 
 - 도감 상세와 공략은 해당 항목에 필요한 데이터와 번역만 로드한다. 전체 DB를 상세 페이지의 정적 의존으로 되돌리지 않는다.
+- 공통 라우터·공략 목록·사이드바는 guideSummaries의 메타데이터만 사용한다. guideArticles의 전체 본문은 실제 상세에서만 사용한다. 로컬 원본 변경 후 generate:guide-summaries로 갱신하며 개발·테스트·빌드에도 자동 연결되어 있다.
 - 원본 로컬 데이터는 유지한다. 빌드 산출물 생성과 Notion 동기화는 별개이며 성능 검증을 위해 Notion을 임의 실행하지 않는다.
 - 초기 HTML의 본문·링크를 전체 화면 로더로 가리지 않는다. 초기 HTML과 사이트맵 생성·SEO 감사를 유지한다.
 - 목록 이미지는 표시 크기에 맞는 후보와 정확한 sizes를 제공한다. 우선순위 high는 실제 첫 화면 핵심 이미지에만 사용한다. 나머지는 lazy 및 async decoding을 우선한다.
@@ -19,9 +20,11 @@
 
 TypeScript → 테스트 → npm run build → npm run perf:audit → git diff --check → diff 검토.
 
-GitHub Quality Gate에서도 빌드 후 perf:audit를 실행한다. 예산 초과는 실패 처리한다. 기준을 조용히 올리지 말고 원인과 필요성을 보고서에 적는다.
+npm run build 마지막에 perf:audit를 실행하므로 GitHub Quality Gate와 Cloudflare의 같은 빌드 명령에 모두 적용된다. 예산 초과는 빌드 실패 처리한다. 기준을 조용히 올리지 말고 원인과 필요성을 보고서에 적는다.
 
-현재 예산(bytes): 진입 JS gzip 56,000, 진입 JS와 HTML modulepreload 합계 gzip 220,000, 개별 CSS gzip 34,000, 개별 JS chunk gzip 250,000, 캐릭터별 공략 JSON 40,000, 공략 번역 팩 28,000, WW 작은 썸네일 40,000, 큰 썸네일 110,000.
+현재 예산(bytes): 진입 JS gzip 32,000, 진입 JS와 HTML modulepreload 합계 gzip 170,000, 분석 가이드 메타데이터 24,000, 개별 CSS gzip 34,000, 개별 JS chunk gzip 250,000, 캐릭터별 공략 JSON 40,000, 공략 번역 팩 28,000, WW 작은 썸네일 40,000, 큰 썸네일 110,000.
+
+2026-10-15 후속 개선에서 분석 가이드 본문을 초기 의존에서 제거한 뒤 진입/초기 JS 예산을 낮췄다. 이전 56,000/220,000 기준으로 되돌리지 않는다. 측정 기록: docs/reports/2026-10-15-guide-startup.md.
 
 한 파일 예산만으로 전체 경로 비용을 보장하지 않는다. 동적 chunk 개수·초기 정적 의존·실제 네트워크도 별도로 확인한다. 수치는 로컬 gzip 추정과 비압축 파일 크기로 구분한다.
 

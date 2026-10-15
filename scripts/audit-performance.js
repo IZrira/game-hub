@@ -6,7 +6,8 @@ import { gzipSync } from 'node:zlib';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // Budgets are regression limits, not Lighthouse scores or real-user timings.
 export const budgets = {
-  entryGzip: 56_000, initialJsGzip: 220_000, cssGzip: 34_000, chunkGzip: 250_000,
+  entryGzip: 32_000, initialJsGzip: 170_000, cssGzip: 34_000, chunkGzip: 250_000,
+  articleSummariesRaw: 24_000,
   guideRaw: 40_000, labelsRaw: 28_000, smallImageRaw: 40_000, largeImageRaw: 110_000,
 };
 export function checkBudgets(records) {
@@ -19,6 +20,7 @@ export function auditPerformance() {
     records.push({ file, metric, bytes: gzip ? gzipSync(buffer).length : buffer.length });
   };
   const html = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
+  add('common-hub/data/generated/guide-summaries.json', 'articleSummariesRaw');
   const entry = html.match(/<script\b[^>]*type="module"[^>]*src="([^"]+)"/);
   if (!entry) throw new Error('Built module entry missing; run npm run build first.');
   add(`dist${entry[1]}`, 'entryGzip', true);

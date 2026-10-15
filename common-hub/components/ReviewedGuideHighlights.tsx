@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, BookOpen, CalendarDays } from 'lucide-react';
 import { Link } from 'react-router';
-import { getPublishedGuides } from '../data/guideArticles';
+import { getPublishedGuides } from '../data/guideSummaries';
 
 interface ReviewedGuideHighlightsProps {
   gameId: string;

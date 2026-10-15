@@ -6,6 +6,9 @@ import { normalizeNteCharacter } from './lib/normalize-nte-character.js';
 import { writeCharacterTranslationPacks } from './generate-character-translations.js';
 import { writeHsrGuideRuntime } from './generate-hsr-guide-runtime.js';
 import { writeWwGuideRuntime } from './generate-ww-guide-runtime.js';
+import { writeGuideSummaries } from './generate-guide-summaries.js';
+
+writeGuideSummaries();
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(scriptDir, '..');

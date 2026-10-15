@@ -42,8 +42,5 @@ jobs:
       - name: Run full regression test suite
         run: npm test
 
-      - name: Build and audit prerendered SEO
+      - name: Build, audit prerendered SEO and enforce performance budgets
         run: npm run build
-
-      - name: Enforce performance budgets
-        run: npm run perf:audit

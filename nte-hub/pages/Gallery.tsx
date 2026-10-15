@@ -14,7 +14,7 @@ import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
 import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
 import { NTE_ARC_COUNT, NTE_GALLERY_CHARACTERS, NTE_INVENTORY_COUNT } from '../data/galleryData';
-import { getPublishedGuides } from '../../common-hub/data/guideArticles';
+import { getPublishedGuides } from '../../common-hub/data/guideSummaries';
 
 const InventoryGallery = React.lazy(() => import('../../common-hub/components/InventoryGallery'));
 

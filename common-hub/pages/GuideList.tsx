@@ -4,7 +4,7 @@ import { Link, useParams } from 'react-router';
 import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
 import GallerySidebar from '../components/GallerySidebar';
-import { getPublishedGuides } from '../data/guideArticles';
+import { getPublishedGuides } from '../data/guideSummaries';
 import guideLanding from '../data/guideLanding.json';
 import { AniimoMobileNav, AniimoSidebar } from '../../aniimo-hub/components/AniimoNavigation';
 
