@@ -7,6 +7,13 @@ import wwCardThumbnails from '../../ww-hub/data/generated/card-thumbnails.json';
 
 const getCleanItemName = (name: string) => name?.replace(/[\s_\-]*[\(\[]?[1-5]성[\)\]]?$/, '').trim() || '';
 
+interface CardThumbnail {
+  small: string;
+  large: string;
+  smallWidth: number;
+  largeWidth: number;
+}
+
 const getItemUrl = (name: string, gameId = 'hsr', fileName?: string) => {
   const targetName = (fileName || name || '').normalize('NFC').replace(/\//g, '').replace(/: /g, '_').replace(/:/g, '_').replace(/[?<>]/g, '');
   return `${CDN_URL}/${gameId}%20images/items/${safeEncodeURIComponent(targetName)}.webp`;
@@ -42,20 +49,28 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
     }
   }
 
+  const thumbnail = gameId === 'ww' ? (wwCardThumbnails as Record<string, CardThumbnail>)[imgPath.split('?')[0]] : undefined;
+  const isCharacterList = searchParams.get('menu') === '캐릭터';
+
   return (
     <Link to={`/gallery/${gameId}/character/${encodeURIComponent(characterSlug || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all duration-500">
       <img 
-        src={gameId === 'ww' ? (wwCardThumbnails as Record<string, string>)[imgPath.split('?')[0]] || imgPath : imgPath}
+        src={thumbnail?.large || imgPath}
+        srcSet={thumbnail ? `${thumbnail.small} ${thumbnail.smallWidth}w, ${thumbnail.large} ${thumbnail.largeWidth}w` : undefined}
+        sizes={thumbnail ? (isCharacterList ? '(min-width: 1024px) 180px, (min-width: 640px) 25vw, 50vw' : '(min-width: 1024px) 240px, (min-width: 640px) 33vw, 50vw') : undefined}
         alt={`${t(char.name || '')} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
         className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
         style={{ 
           imageRendering: '-webkit-optimize-contrast',
           backfaceVisibility: 'hidden',
         }}
-        loading={searchParams.get('menu') === '캐릭터' && index < 4 ? 'eager' : 'lazy'}
+        loading={isCharacterList && index < 4 ? 'eager' : 'lazy'}
+        fetchPriority={isCharacterList && index === 0 ? 'high' : 'auto'}
         decoding="async"
         onError={(e) => {
           if (e.currentTarget.src.includes('/assets/thumbnails/ww/')) {
+            e.currentTarget.removeAttribute('srcset');
+            e.currentTarget.removeAttribute('sizes');
             e.currentTarget.src = imgPath;
             return;
           }
@@ -232,12 +247,16 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
             <>
               <img 
                 src={imgPathM} 
+                loading="lazy"
+                decoding="async"
                 alt={`${t(itemName)} (M)`} 
                 className="w-1/2 h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
                 onError={handleError}
               />
               <img 
                 src={imgPathF} 
+                loading="lazy"
+                decoding="async"
                 alt={`${t(itemName)} (F)`} 
                 className="w-1/2 h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
                 onError={handleError}
@@ -246,6 +265,8 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
           ) : (
             <img 
               src={imgPath || ''} 
+              loading="lazy"
+              decoding="async"
               alt={t(itemName)} 
               className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)]" 
               onError={handleError}

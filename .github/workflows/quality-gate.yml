@@ -44,3 +44,6 @@ jobs:
 
       - name: Build and audit prerendered SEO
         run: npm run build
+
+      - name: Enforce performance budgets
+        run: npm run perf:audit

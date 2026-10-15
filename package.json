@@ -24,7 +24,8 @@
     "lint": "tsc --noEmit",
     "typecheck": "tsc --noEmit",
     "seo:analyze": "node scripts/analyze-seo.js",
-    "seo:audit": "node scripts/audit-prerender-seo.js"
+    "seo:audit": "node scripts/audit-prerender-seo.js",
+    "perf:audit": "node scripts/audit-performance.js"
   },
   "dependencies": {
     "@notionhq/client": "^5.22.0",

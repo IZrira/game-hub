@@ -42,10 +42,12 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
   // In a real app, you would call (window.adsbygoogle = window.adsbygoogle || []).push({});
   // after the component mounts.
   React.useEffect(() => {
-    if (pushedRef.current) return;
+    if (pushedRef.current || !slot || slot === 'YOUR_AD_SLOT_ID') return;
+    let frame = 0;
+    let stopped = false;
 
     const pushAd = () => {
-      if (!adRef.current) return;
+      if (stopped || pushedRef.current || !adRef.current) return;
       
       // Check if the element already has an ad or is being processed
       const status = adRef.current.getAttribute('data-adsbygoogle-status');
@@ -70,19 +72,26 @@ const AdPlaceholder: React.FC<AdPlaceholderProps> = ({ type, className = '', slo
         } catch (e) {
           console.error('AdSense error:', e);
         }
-      } else {
-        // If no width yet, try again in the next frame
-        requestAnimationFrame(pushAd);
       }
     };
 
     // Small delay to ensure layout is stable
     const timer = setTimeout(() => {
-      requestAnimationFrame(pushAd);
+      frame = requestAnimationFrame(pushAd);
     }, 100);
-
-    return () => clearTimeout(timer);
-  }, []);
+    // A hidden slot must not spin a requestAnimationFrame loop indefinitely.
+    const observer = typeof ResizeObserver === 'undefined' ? undefined : new ResizeObserver(() => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(pushAd);
+    });
+    if (adRef.current) observer?.observe(adRef.current);
+    return () => {
+      stopped = true;
+      clearTimeout(timer);
+      cancelAnimationFrame(frame);
+      observer?.disconnect();
+    };
+  }, [slot]);
 
   // When no valid approved AdSense slot ID is configured, do not render dummy placeholders.
   // This prevents AdSense rejection for "Valuable Inventory: Template / Scaffolding / Under Construction".

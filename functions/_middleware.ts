@@ -157,10 +157,11 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
   // 3. Forward request to downstream / static asset pipeline
   const response = await context.next();
 
-  // These generated filenames include a content hash. Replace inherited
-  // no-cache directives only for successful guide JSON responses.
-  if (/^\/assets\/data\/(?:hsr|ww)\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath)
-    && (response.status === 304 || (response.status === 200 && response.headers.get('Content-Type')?.includes('application/json')))) {
+  // Replace inherited no-cache only for successful content-hashed assets.
+  const immutableGuide = /^\/assets\/data\/(?:hsr|ww)\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
+  const immutableThumbnail = /^\/assets\/thumbnails\/ww\/[a-f0-9]{20}\.webp$/.test(normalizedPath);
+  const expectedType = immutableGuide ? 'application/json' : immutableThumbnail ? 'image/webp' : undefined;
+  if (expectedType && (response.status === 304 || (response.status === 200 && response.headers.get('Content-Type')?.includes(expectedType)))) {
     const headers = new Headers(response.headers);
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
     return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
