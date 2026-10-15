@@ -11,6 +11,7 @@ export const getRouteTranslationPacks = (scope: GameLanguageScope, pathname: str
     if (menu === '무기') return [...ui, 'ww_weapons'];
     return ui;
   }
+  if (/\/character\/[^/]+\/guide\/?$/.test(pathname)) return [...ui, 'guide_labels'];
   const detailMatch = pathname.match(/\/character\/([^/]+)\/?$/);
   if (detailMatch) {
     try {
@@ -26,6 +27,6 @@ export const getRouteTranslationPacks = (scope: GameLanguageScope, pathname: str
     return [...ui, `${scope}_characters`];
   }
   if (/\/(lightcone|weapon)\//.test(pathname)) return [...ui, scope === 'hsr' ? 'hsr_lightcones' : 'ww_weapons'];
-  // Keep all resources for guides, parties and other routes until their keys are audited.
+  // Keep complete resources for other routes until their keys are audited.
   return [...ui, `${scope}_characters`, scope === 'hsr' ? 'hsr_lightcones' : 'ww_weapons'];
 };

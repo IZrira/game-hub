@@ -1,6 +1,6 @@
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, within } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import HsrGuide from '../hsr-hub/pages/CharacterGuideDetail';
 import WwGuide from '../ww-hub/pages/WuwaCharacterGuideDetail';
@@ -145,7 +145,7 @@ describe('HSR and WW ranked option alternatives', () => {
     };
     check(['HP', '화염 피해']);
     fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
-    check(['화염 피해', '공격력']);
+    await waitFor(() => check(['화염 피해', '공격력']));
     expect(JSON.stringify(source)).toBe(original);
   });
 

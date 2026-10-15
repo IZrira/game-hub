@@ -16,8 +16,10 @@ describe('route translation selection', () => {
     expect(getRouteTranslationPacks('ww', `/gallery/ww/character/${encodeURIComponent('카멜리아')}/`)).toEqual(['ww_ui', 'characters/shared', 'characters/camellya']);
     expect(getRouteTranslationPacks('hsr', '/gallery/hsr/character/evernight')).toEqual(['characters/shared', 'characters/evernight']);
   });
-  it('keeps complete resources for guides and unknown detail aliases', () => {
-    expect(getRouteTranslationPacks('hsr', '/gallery/hsr/character/cyrene/guide')).toEqual(['hsr_characters', 'hsr_lightcones']);
+  it('loads only guide labels for setting guides, retaining complete packs on other routes', () => {
+    expect(getRouteTranslationPacks('hsr', '/gallery/hsr/character/cyrene/guide')).toEqual(['guide_labels']);
+    expect(getRouteTranslationPacks('ww', '/gallery/ww/character/camellya/guide/')).toEqual(['ww_ui', 'guide_labels']);
+    expect(getRouteTranslationPacks('ww', '/gallery/ww/party')).toEqual(['ww_ui', 'ww_characters', 'ww_weapons']);
     expect(getRouteTranslationPacks('ww', '/gallery/ww/character/unknown')).toEqual(['ww_ui', 'ww_characters']);
     expect(getRouteTranslationPacks('ww', '/gallery/ww/character/%broken')).toEqual(['ww_ui', 'ww_characters']);
   });
