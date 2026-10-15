@@ -8,10 +8,11 @@ import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter, type GuideMember, type GuideEquipmentGroup } from '../../common-hub/components/guides/GuideContent';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
 import { useTranslation } from 'react-i18next';
-import { WW_ECHO_DATA } from '../data/echoData';
-import { WW_GUIDE_CHARACTERS, WW_GUIDE_DATA } from '../data/guideData';
+import guideCharacters from '../data/generated/guide-characters.json';
+import guideManifest from '../data/generated/guide-runtime-manifest.json';
+import type { WwGuideRuntime } from '../utils/guideRuntime';
 import characterSummary from '../data/generated/character-summary.json';
-import guideAnalysis from '../data/guide-analysis.json';
+import { normalizeWwGuideName as normalizeName } from '../../scripts/lib/ww-guide-route.js';
 import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 import { SONATA_SETS } from '../types';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
@@ -145,16 +146,6 @@ const formatVariantTabName = (name: string) => {
   return grouped.map(g => g.text).join(' + ');
 };
 
-const normalizeName = (name: string) => {
-  if (!name) return "";
-  return name
-    .replace(/_?세팅_?공략|_?공략|_?세팅/g, '')
-    .replace(/[()（）\s]/g, '')
-    .replace(/[•·]/g, '')
-    .toLowerCase()
-    .normalize('NFC');
-};
-
 const getCharacterImage = (folderName: string, isRover?: boolean) => {
   const roverInfo = resolveRoverImageInfo(folderName, undefined, 'f');
   if (roverInfo) {
@@ -172,7 +163,7 @@ const getEchoImage = (echoName: string) => {
   return `${BASE_IMAGE_URL}/Echo/${encodeURIComponent(echoName.normalize('NFC'))}.webp`;
 };
 
-const WuwaCharacterGuideDetail: React.FC = () => {
+const WuwaCharacterGuideContent: React.FC<{ data: WwGuideRuntime }> = ({ data }) => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t } = useTranslation();
 
@@ -180,9 +171,9 @@ const WuwaCharacterGuideDetail: React.FC = () => {
   const [activeGuideView, setActiveGuideView] = useState<'setup' | 'analysis'>('setup');
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
 
-  const CHARACTER_DB = WW_GUIDE_CHARACTERS;
-  const ECHO_DB = WW_ECHO_DATA;
-  const GUIDES = WW_GUIDE_DATA;
+  const CHARACTER_DB = guideCharacters;
+  const ECHO_DB = data.echoes;
+  const GUIDES = useMemo(() => [data.guide], [data.guide]);
 
   const routeGuide = useMemo(() => {
     const cleanParam = (charName || '').replace(/_?세팅_?공략|_?공략|_?세팅/g, '').trim();
@@ -243,10 +234,7 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     return matchedGuide ? sanitizePublicGuideData(matchedGuide) : undefined;
   }, [GUIDES, charName, character, routeGuide]);
 
-  const analysisData = guideAnalysis as Record<string, any>;
-  const sourceAnalysis = analysisData[guide?.id || '']
-    || analysisData[character?.id || '']
-    || analysisData[charName || ''];
+  const sourceAnalysis = data.analysis;
   const analysis = sourceAnalysis ? sanitizePublicGuideData(sourceAnalysis) : undefined;
 
   const synergyCharacters = useMemo(() => {
@@ -572,4 +560,53 @@ const WuwaCharacterGuideDetail: React.FC = () => {
     </div>
   );
 };
+const WuwaCharacterGuideDetail: React.FC = () => {
+  const { charName = '' } = useParams<{ charName: string }>();
+  const aliases = guideManifest.aliases as Record<string, string>;
+  const normalizedAliases = guideManifest.normalizedAliases as Record<string, string>;
+  const normalizedRoute = normalizeName(charName);
+  const url = Object.hasOwn(aliases, charName) ? aliases[charName]
+    : Object.hasOwn(normalizedAliases, normalizedRoute) ? normalizedAliases[normalizedRoute] : undefined;
+  const [loaded, setLoaded] = useState<{ url: string; data: WwGuideRuntime } | null>(null);
+  const [failedUrl, setFailedUrl] = useState<string>();
+  const [attempt, setAttempt] = useState(0);
+
+  useEffect(() => {
+    if (!url) return;
+    const controller = new AbortController();
+    setFailedUrl(undefined);
+    void fetch(url, { signal: controller.signal })
+      .then(response => {
+        if (!response.ok) throw new Error(`Guide request failed: ${response.status}`);
+        return response.json() as Promise<WwGuideRuntime>;
+      })
+      .then(data => {
+        if (!data.guide || !Array.isArray(data.echoes)) throw new Error('Invalid guide data');
+        if (!controller.signal.aborted) setLoaded({ url, data });
+      })
+      .catch(error => {
+        if (controller.signal.aborted) return;
+        console.error('Failed to load WW guide:', error);
+        setFailedUrl(url);
+      });
+    return () => controller.abort();
+  }, [url, attempt]);
+
+  if (!url) return (
+    <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
+      <Info size={40} className="text-gray-400" />
+      <h2 className="text-2xl font-black">공략을 찾을 수 없습니다</h2>
+      <Link to="/gallery/ww" className="text-brand-primary">도감으로 돌아가기</Link>
+    </div>
+  );
+  if (loaded?.url === url) return <WuwaCharacterGuideContent key={url} data={loaded.data} />;
+  if (failedUrl === url) return (
+    <div role="alert" className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
+      <p>공략을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
+      <button type="button" className="rounded-xl bg-brand-primary px-6 py-3" onClick={() => { setFailedUrl(undefined); setAttempt(value => value + 1); }}>다시 불러오기</button>
+    </div>
+  );
+  return <div role="status" className="min-h-[70vh] flex items-center justify-center text-gray-400">공략을 불러오는 중입니다.</div>;
+};
+
 export default WuwaCharacterGuideDetail;

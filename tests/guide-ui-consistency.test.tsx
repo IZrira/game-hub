@@ -66,8 +66,9 @@ describe('shared guide body contract', () => {
     expect(rows.some(row => row.textContent?.includes(' or '))).toBe(false);
   });
 
-  it('does not add an empty analysis view when source analysis is unavailable', () => {
+  it('does not add an empty analysis view when source analysis is unavailable', async () => {
     const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/yinlin/guide' });
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     fireEvent.click(screen.getByRole('button', { name: '떠오르는 구름 5세트' }));
     // Keep the same frame, but never open analysis without source content.
     expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(true);
@@ -75,8 +76,9 @@ describe('shared guide body contract', () => {
     expect(screen.getByRole('button', { name: '떠오르는 구름 5세트' }).getAttribute('aria-pressed')).toBe('true');
   });
 
-  it('switches published WW analysis through the shared view controls', () => {
+  it('switches published WW analysis through the shared view controls', async () => {
     const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/jiyan/guide' });
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect(container.querySelector('.guide-view-tabs')).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
     expect(container.querySelector('[data-guide-section="equipment"]')).toBeNull();
@@ -102,10 +104,11 @@ describe('recommendation readability and original data', () => {
     });
   });
 
-  it('separates the screenshot WW option explanation and preserves its COST association', () => {
+  it('separates the screenshot WW option explanation and preserves its COST association', async () => {
     const source = sourceGuides.find(item => item.id === 'jingran')!;
     const before = JSON.stringify(source);
     const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/jingran/guide' });
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const options = container.querySelector('.guide-option-grid')!;
     expect(options.textContent).toContain('크리티컬 피해');
     expect(options.textContent).not.toContain('2개 사용 후');
@@ -146,13 +149,19 @@ describe('HSR and WW ranked option alternatives', () => {
     expect(JSON.stringify(source)).toBe(original);
   });
 
-  it('ranks WW option alternatives while retaining the explanation verbatim', () => {
+  it('ranks WW option alternatives while retaining the explanation verbatim', async () => {
     const source = sourceGuides.find(item => item.id === 'jingran')! as any;
     const slot = (source.variants?.[0]?.mainStats || source.mainStats)[0];
     const original = slot.stats;
     try {
       slot.stats = ['크리티컬 or 크리티컬 피해 : 조건 충족 시 공격력 or 피해 보너스 선택'];
+      const fetchRuntime = mockHsrGuideFetch();
+      vi.stubGlobal('fetch', vi.fn(async (url: string) => {
+        const data = await (await fetchRuntime(url)).json();
+        return new Response(JSON.stringify({ ...data, guide: source }));
+      }));
       const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/jingran/guide' });
+      await screen.findByRole('region', { name: '추천 세팅 요약' });
       const rows = Array.from(container.querySelectorAll('.guide-option-card')[0].querySelectorAll('li'));
       expect(rows.map(row => row.textContent)).toEqual(['1순위크리티컬', '2순위크리티컬 피해']);
       const notes = container.querySelector('.guide-option-notes')!;
@@ -165,10 +174,11 @@ describe('HSR and WW ranked option alternatives', () => {
 });
 
 
-it.each([{ route: 'camellya', sourceId: 'camellya' }, { route: '3be95fae-3dc7-809a-848d-cf54b30c697b', sourceId: 'jingran' }])('ranks actual WW array options for $route without changing source data', ({ route, sourceId }) => {
+it.each([{ route: 'camellya', sourceId: 'camellya' }, { route: '3be95fae-3dc7-809a-848d-cf54b30c697b', sourceId: 'jingran' }])('ranks actual WW array options for $route without changing source data', async ({ route, sourceId }) => {
   const source = sourceGuides.find(item => item.id === sourceId)! as any;
   const snapshot = JSON.stringify(source);
   const { container } = renderCase({ ...cases[1], path: `/gallery/ww/character/${route}/guide` });
+  await screen.findByRole('region', { name: '추천 세팅 요약' });
   const slots = source.variants?.[0]?.mainStats || source.mainStats;
   const cards = Array.from(container.querySelectorAll('.guide-option-card'));
   expect(cards).toHaveLength(slots.length);

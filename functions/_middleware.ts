@@ -159,7 +159,7 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
 
   // These generated filenames include a content hash. Replace inherited
   // no-cache directives only for successful guide JSON responses.
-  if (/^\/assets\/data\/hsr\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath)
+  if (/^\/assets\/data\/(?:hsr|ww)\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath)
     && (response.status === 304 || (response.status === 200 && response.headers.get('Content-Type')?.includes('application/json')))) {
     const headers = new Headers(response.headers);
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
