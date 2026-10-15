@@ -4,6 +4,8 @@
 
 > 성능 변경과 신규 콘텐츠 개발은 [`성능 유지 기준`](./docs/guides/PERFORMANCE.md)을 따릅니다. 빌드 후 `npm run perf:audit`로 용량 회귀를 검사합니다.
 
+> 품질 평가는 [`3인 독립 평가 기준`](./docs/guides/THREE_ENGINEER_REVIEW.md)에 따라 성능·보안·디자인 담당을 나눠 수행합니다. 자동 예약 없이 요청 시 실행하며, [`보고서 양식`](./docs/templates/three-engineer-review.md)으로 증거와 미검증 항목을 보관합니다.
+
 > **"파편화된 게임 데이터를 모아 거대한 지식의 우주를 구축합니다."**
 
 이 프로젝트는 최신 프론트엔드 스택(React 18, Vite, TypeScript, Tailwind CSS)으로 구축된 **통합 게임 정보 위키 (Rira Game Hub)**와 이를 자동화하는 **자율형 지식 엔진 (P-Reinforce)**의 결합체입니다. 사용자가 던지는 파편화된 데이터나 스크립트를 에이전트가 해석하고 구조화하며, 시각적으로 매력적이고 고성능인 웹 애플리케이션으로 렌더링합니다.
