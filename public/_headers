@@ -20,6 +20,3 @@
 
 /assets/thumbnails/*
   Cache-Control: public, max-age=31536000, immutable
-
-/assets/data/hsr/guides/*
-  Cache-Control: public, max-age=31536000, immutable

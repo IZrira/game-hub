@@ -9,6 +9,7 @@ import summary from '../hsr-hub/data/generated/character-summary.json';
 import manifest from '../hsr-hub/data/generated/guide-runtime-manifest.json';
 import { sanitizePublicGuideData } from '../common-hub/utils/publicGuideLinks';
 import type { HsrGuideRuntime } from '../hsr-hub/utils/guideRuntime';
+import { onRequest } from '../functions/_middleware';
 
 const normalize = (name: string) => name.replace(/\s+/g, '').replace(/[•·]/g, '').normalize('NFC');
 const clean = (entry: string | { name: string }) => (typeof entry === 'string' ? entry : entry.name)
@@ -65,4 +66,21 @@ it('keeps every equipment lookup and image field across all guide variants and a
 it('does not statically import the complete guide, equipment or party catalogs in the page', () => {
   const page = fs.readFileSync('hsr-hub/pages/CharacterGuideDetail.tsx', 'utf8');
   expect(page).not.toMatch(/from ['"]\.\.\/data\/(guides|lightcones|relics|ornaments|parties)['"]/);
+});
+
+it('replaces inherited no-cache only for successful hashed guide JSON, retaining other headers', async () => {
+  for (const status of [200, 304]) {
+    const response = await onRequest({
+      request: new Request(`https://riragamehub.com${paths.cyrene}`),
+      next: async () => new Response(status === 304 ? null : '{}', { status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-cache', ETag: 'guide-version', 'X-Content-Type-Options': 'nosniff' } })
+    });
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=31536000, immutable');
+    expect(response.headers.get('ETag')).toBe('guide-version');
+    expect(response.headers.get('X-Content-Type-Options')).toBe('nosniff');
+    expect(response.status).toBe(status);
+  }
+  for (const [url, status, type] of [[paths.cyrene, 404, 'application/json'], [paths.cyrene, 200, 'text/html'], ['/assets/data/ww/characters/camellya.json', 200, 'application/json']] as const) {
+    const response = await onRequest({ request: new Request(`https://riragamehub.com${url}`), next: async () => new Response('{}', { status, headers: { 'Content-Type': type, 'Cache-Control': 'no-cache' } }) });
+    expect(response.headers.get('Cache-Control')).toBe('no-cache');
+  }
 });

@@ -157,6 +157,15 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
   // 3. Forward request to downstream / static asset pipeline
   const response = await context.next();
 
+  // These generated filenames include a content hash. Replace inherited
+  // no-cache directives only for successful guide JSON responses.
+  if (/^\/assets\/data\/hsr\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath)
+    && (response.status === 304 || (response.status === 200 && response.headers.get('Content-Type')?.includes('application/json')))) {
+    const headers = new Headers(response.headers);
+    headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+    return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+  }
+
   // 4. Intercept Cloudflare Pages 308/301 directory index redirects to prevent redirect loop
   // When a static directory exists (e.g. dist/about/index.html), Cloudflare Pages asset server
   // defaults to redirecting /about to /about/ with 308. We intercept this and fetch the asset
