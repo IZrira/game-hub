@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { auditGoogleVerification } from './lib/google-verification.js';
+import { inspectPrerenderContent } from './lib/prerender-content-checks.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -137,6 +138,8 @@ for (const routePath of routes) {
   }
 
   const html = fs.readFileSync(htmlPath, 'utf8');
+  const contentCheck = inspectPrerenderContent(html, routePath);
+  problems.push(...contentCheck.problems.map(problem => `${routePath}: ${problem}`));
   const title = html.match(/<title>(.*?)<\/title>/s)?.[1]?.trim() || '';
   const description = html.match(/<meta name="description" content="(.*?)"\s*\/>/s)?.[1]?.trim() || '';
   const canonical = html.match(/<link rel="canonical" href="(.*?)"\s*\/>/s)?.[1]?.trim() || '';
@@ -167,7 +170,7 @@ for (const routePath of routes) {
 
   if (title) titleRoutes.set(title, [...(titleRoutes.get(title) || []), routePath]);
   if (description) descriptionRoutes.set(description, [...(descriptionRoutes.get(description) || []), routePath]);
-  stats.push({ routePath, textLength, internalLinks });
+  stats.push({ routePath, textLength, internalLinks, articleBodyLength: contentCheck.bodyLength });
 }
 
 for (const [title, matchedRoutes] of titleRoutes) {
@@ -187,6 +190,8 @@ hubAuditStats.forEach(({ game, count }) => {
   console.log(`${game} hub crawl links: ${count} detail routes`);
 });
 console.log(`Average prerendered text: ${averageTextLength} characters`);
+const guideBodies = stats.filter(item => item.articleBodyLength !== undefined);
+console.log(`Guide article bodies: ${guideBodies.length} checked; minimum ${guideBodies.length ? Math.min(...guideBodies.map(item => item.articleBodyLength)) : 0} chars (navigation/footer excluded)`);
 console.log('Thinnest routes:');
 sorted.slice(0, 10).forEach((item) => {
   console.log(`- ${item.routePath}: ${item.textLength} chars, ${item.internalLinks} internal links`);
