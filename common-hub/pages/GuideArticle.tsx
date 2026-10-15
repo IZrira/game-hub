@@ -6,17 +6,24 @@ import { Link, useParams } from 'react-router';
 import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
 import GallerySidebar from '../components/GallerySidebar';
-import { getPublishedGuide, getPublishedGuides } from '../data/guideArticles';
+import { getPublishedGuide, getPublishedGuides } from '../data/guideSummaries';
+import { useGuideArticle } from '../hooks/useGuideArticle';
 import { AniimoMobileNav, AniimoSidebar } from '../../aniimo-hub/components/AniimoNavigation';
 
 const GAME_LABELS: Record<string, string> = { hsr: '붕괴: 스타레일', ww: '명조', nte: '이환', aniimo: '애니모' };
 
 const GuideArticlePage: React.FC = () => {
   const { gameId = '', slug = '' } = useParams<{ gameId: string; slug: string }>();
-  const article = getPublishedGuide(gameId, slug);
+  const summary = getPublishedGuide(gameId, slug);
+  const { article, loading, failed, retry } = useGuideArticle(gameId, slug);
   const gameLabel = GAME_LABELS[gameId] || gameId;
   const isAniimo = gameId === 'aniimo';
   const relatedGuides = getPublishedGuides(gameId).filter(guide => !guide.characterId && guide.slug !== slug).slice(0, 3);
+
+  if (summary && (loading || failed)) return <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
+    <SEO title={summary.title} description={summary.excerpt} url={`/gallery/${gameId}/guides/${summary.slug}`} type="article" />
+    {failed ? <div role="alert" className="text-center"><p>공략을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p><button type="button" className="mt-4 rounded-xl bg-brand-primary px-6 py-3" onClick={retry}>다시 불러오기</button></div> : <p role="status" className="text-gray-400">공략을 불러오는 중입니다.</p>}
+  </div>;
 
   if (!article) return <div className="min-h-[70vh] bg-[#0a0a0a] px-6 py-32 text-center text-white"><SEO title="공략을 찾을 수 없음" description="공개되지 않았거나 존재하지 않는 공략입니다." noindex={true} /><h1 className="text-2xl font-black">공개된 공략을 찾을 수 없습니다</h1><Link to={`/gallery/${gameId}`} className="mt-6 inline-flex text-sm font-black text-violet-300">허브로 돌아가기</Link></div>;
 

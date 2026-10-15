@@ -22,5 +22,6 @@ common-hub/locales/hsr/characters/
 common-hub/locales/ww/characters/
 public/assets/data/hsr/guides/
 public/assets/data/ww/guides/
+public/assets/data/articles/
 common-hub/locales/hsr/guide_labels_*.json
 common-hub/locales/ww/guide_labels_*.json

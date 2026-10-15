@@ -8,6 +8,7 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 export const budgets = {
   entryGzip: 32_000, initialJsGzip: 170_000, cssGzip: 34_000, chunkGzip: 250_000,
   articleSummariesRaw: 24_000,
+  articleRaw: 24_000,
   guideRaw: 40_000, labelsRaw: 28_000, smallImageRaw: 40_000, largeImageRaw: 110_000,
 };
 export function checkBudgets(records) {
@@ -21,6 +22,8 @@ export function auditPerformance() {
   };
   const html = fs.readFileSync(path.join(root, 'dist/index.html'), 'utf8');
   add('common-hub/data/generated/guide-summaries.json', 'articleSummariesRaw');
+  const articles = JSON.parse(fs.readFileSync(path.join(root, 'common-hub/data/generated/article-runtime-manifest.json'), 'utf8'));
+  for (const url of Object.values(articles)) add(`public${url}`, 'articleRaw');
   const entry = html.match(/<script\b[^>]*type="module"[^>]*src="([^"]+)"/);
   if (!entry) throw new Error('Built module entry missing; run npm run build first.');
   add(`dist${entry[1]}`, 'entryGzip', true);
