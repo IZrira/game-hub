@@ -1,6 +1,6 @@
 import React from 'react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router';
 import HsrGuide from '../hsr-hub/pages/CharacterGuideDetail';
 import WwGuide from '../ww-hub/pages/WuwaCharacterGuideDetail';
@@ -77,15 +77,42 @@ describe('shared guide body contract', () => {
     expect(screen.getByRole('button', { name: '떠오르는 구름 5세트' }).getAttribute('aria-pressed')).toBe('true');
   });
 
-  it('switches published WW analysis through the shared view controls', async () => {
-    const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/jiyan/guide' });
+  it.each(['immediate', 'deferred'] as const)('switches published WW analysis after %s data loading', async loading => {
+    const fetchGuide = mockHsrGuideFetch();
+    let release!: () => void;
+    if (loading === 'deferred') {
+      const pending = new Promise<void>(resolve => { release = resolve; });
+      vi.stubGlobal('fetch', vi.fn(async (input: string | URL | Request) => {
+        await pending;
+        return fetchGuide(input);
+      }));
+    }
+    let result!: ReturnType<typeof renderCase>;
+    await act(async () => {
+      result = renderCase({ ...cases[1], path: '/gallery/ww/character/jiyan/guide' });
+    });
+    const { container } = result;
+    if (loading === 'deferred') {
+      expect(screen.queryByRole('region', { name: '추천 세팅 요약' })).toBeNull();
+      await act(async () => { release(); });
+    }
     await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect(container.querySelector('.guide-view-tabs')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
-    expect(container.querySelector('[data-guide-section="equipment"]')).toBeNull();
-    expect(container.querySelector('[data-guide-section="analysis"] .guide-panel')).toBeTruthy();
-    fireEvent.click(screen.getByRole('button', { name: '세팅 가이드' }));
-    expect(container.querySelector('[data-guide-section="equipment"]')).toBeTruthy();
+    const analysisButton = screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement;
+    expect(analysisButton.disabled).toBe(false);
+    await act(async () => { fireEvent.click(analysisButton); });
+    await waitFor(() => {
+      expect(analysisButton.getAttribute('aria-pressed')).toBe('true');
+      expect(container.querySelector('[data-guide-section="equipment"]')).toBeNull();
+      expect(container.querySelector('[data-guide-section="analysis"] .guide-panel')).toBeTruthy();
+    });
+    const setupButton = screen.getByRole('button', { name: '세팅 가이드' });
+    await act(async () => { fireEvent.click(setupButton); });
+    await waitFor(() => {
+      expect(setupButton.getAttribute('aria-pressed')).toBe('true');
+      expect(container.querySelector('[data-guide-section="equipment"]')).toBeTruthy();
+      expect(container.querySelector('[data-guide-section="analysis"]')).toBeNull();
+    });
   });
 });
 

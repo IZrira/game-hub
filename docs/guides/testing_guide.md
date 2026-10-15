@@ -50,3 +50,5 @@ package.json과 AGENTS.md의 Notion lifecycle 규칙을 먼저 확인하고 `npm
 Windows spawn EPERM은 환경 실패로 분리하고 허용된 재실행 성공 전에는 통과 처리하지 않습니다. Notion은 명시 요청 없이 실행하지 않습니다.
 
 현재 Security Scan은 `npm audit --audit-level=critical`을 실행하므로 CI 성공을 취약점 0개나 전체 보안 합격으로 표현하지 않습니다. 정적 테스트 통과를 실제 화면·콘솔 오류 없음 또는 WCAG 전체 충족으로 확대하지 않습니다.
+
+비동기 데이터로 마운트되는 화면은 React act로 준비·상태 반영을 기다리고, 클릭은 한 번만 수행한 뒤 waitFor/findBy로 최종 선택 상태와 본문을 함께 검증합니다. 고정 sleep·실패 재시도 설정·assertion 제거로 검사 실패를 숨기지 않습니다. 즉시/지연 응답은 제어 가능한 fixture로 각각 확인합니다.
