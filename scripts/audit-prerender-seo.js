@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { auditGoogleVerification } from './lib/google-verification.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -112,6 +113,10 @@ const searchConsolePriorityRoutes = [
 ];
 
 const problems = [];
+problems.push(...auditGoogleVerification(
+  fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8'),
+  fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf8')
+));
 const warnings = [];
 const titleRoutes = new Map();
 const descriptionRoutes = new Map();
