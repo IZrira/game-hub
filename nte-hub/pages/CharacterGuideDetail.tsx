@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useParams } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
 import { GuideBuildContent, GuideFooter, GuideViewTabs, parseGuideOption } from '../../common-hub/components/guides/GuideContent';
-import { getPublishedGuides } from '../../common-hub/data/guideArticles';
+import { getPublishedGuides } from '../../common-hub/data/guideSummaries';
+import type { GuideArticle } from '../../common-hub/data/guideArticles';
+import { useGuideArticle } from '../../common-hub/hooks/useGuideArticle';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { NTE_CHARACTER_DATA } from '../data/characterData';
 import { NTE_CARTRIDGES, getNTECartridgeImageUrl } from '../data/cartridges';
@@ -17,11 +19,19 @@ const conditional = (label: string) => /해금|각성|세팅|사용|경우/.test
 
 export default function CharacterGuideDetail() {
   const { slug, charName } = useParams<{ slug: string; charName: string }>();
-  const article = getPublishedGuides('nte').find(item => item.notionPageId && (slug ? item.slug === slug : item.characterId === charName || item.title === `${charName} 세팅 공략`));
-  const character = NTE_CHARACTER_DATA.find(item => item.id === article?.characterId);
+  const summary = getPublishedGuides('nte').find(item => item.notionPageId && (slug ? item.slug === slug : item.characterId === charName || item.title === `${charName} 세팅 공략`));
+  const character = NTE_CHARACTER_DATA.find(item => item.id === summary?.characterId);
+  const { article, failed, retry } = useGuideArticle('nte', summary && character ? summary.slug : '');
+  if (!summary || !character) return <div className="min-h-[70vh] p-20 text-center text-white"><SEO title="공략을 찾을 수 없음" noindex /><h1 className="text-2xl font-black">캐릭터 공략을 찾을 수 없습니다</h1><Link to="/gallery/nte?menu=공략" className="mt-6 inline-block text-violet-300">공략 목록으로 돌아가기</Link></div>;
+  if (!article) return <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
+    <SEO title={summary.title} description={summary.excerpt} url={`/gallery/nte/guides/${encodeURIComponent(summary.slug)}`} type="article" />
+    {failed ? <div role="alert" className="text-center"><p>공략을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p><button type="button" className="mt-4 rounded-xl bg-brand-primary px-6 py-3" onClick={retry}>다시 불러오기</button></div> : <p role="status" className="text-gray-400">공략을 불러오는 중입니다.</p>}
+  </div>;
+  return <CharacterGuideContent key={article.slug} article={article} character={character} />;
+}
+
+function CharacterGuideContent({ article, character }: { article: GuideArticle; character: (typeof NTE_CHARACTER_DATA)[number] }) {
   const [selectedConsole, setSelectedConsole] = useState(0);
-  useEffect(() => { setSelectedConsole(0); }, [article?.slug]);
-  if (!article || !character) return <div className="min-h-[70vh] p-20 text-center text-white"><SEO title="공략을 찾을 수 없음" noindex /><h1 className="text-2xl font-black">캐릭터 공략을 찾을 수 없습니다</h1><Link to="/gallery/nte?menu=공략" className="mt-6 inline-block text-violet-300">공략 목록으로 돌아가기</Link></div>;
 
   const guide = parseNteCharacterGuide(article.content);
   const currentConsole = guide.consoles[selectedConsole] || guide.consoles[0];

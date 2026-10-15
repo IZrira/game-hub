@@ -43,8 +43,9 @@ describe('shared guide body contract', () => {
     expect(container.querySelector('.guide-view-tabs')?.children).toHaveLength(2);
   });
 
-  it('renders each NTE summary target in its own list row instead of one joined sentence', () => {
+  it('renders each NTE summary target in its own list row instead of one joined sentence', async () => {
     const { container } = renderCase(cases[2]);
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const article = articles.find(item => item.title === '레이븐 세팅 공략')!;
     const original = parseNteCharacterGuide(article.content).statGroups[0].items;
     const summary = screen.getByRole('region', { name: '추천 세팅 요약' });
@@ -118,11 +119,12 @@ describe('recommendation readability and original data', () => {
     expect(JSON.stringify(source)).toBe(before);
   });
 
-  it('renders NTE or alternatives in original order and keeps descriptions out of option names', () => {
+  it('renders NTE or alternatives in original order and keeps descriptions out of option names', async () => {
     const article = articles.find(item => item.title === '구원 세팅 공략')!;
     const before = JSON.stringify(article);
     const source = parseNteCharacterGuide(article.content);
     const { container } = renderCase({ ...cases[2], path: `/gallery/nte/guides/${article.slug}` });
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     const rows = Array.from(container.querySelectorAll('.guide-option-card .guide-value-list li'));
     expect(rows.map(row => row.querySelector('.guide-rank')?.textContent)).toEqual(['1순위', '2순위']);
     const names = source.mainStats[0].split(/\s+or\s+/i);
