@@ -1,5 +1,7 @@
 import fs from 'fs';
 import { sanitizePublicGuideData } from './lib/public-guide-links.js';
+import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
+import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -28,6 +30,7 @@ const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts'
 const WW_GUIDE_ANALYSIS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guide-analysis.json');
 const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
 const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
+const NTE_PARTY_FILE = path.join(ROOT_DIR, 'nte-hub', 'data', 'parties.ts');
 
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://riragamehub.com';
@@ -847,7 +850,8 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
   `;
 
   if (jsonLdSchema) {
-    extraTags += `\n    <script type="application/ld+json">\n${JSON.stringify(jsonLdSchema, null, 2)}\n    </script>`;
+    const json = serializeJsonLd(jsonLdSchema, 2);
+    extraTags += `\n    <script type="application/ld+json">\n${json}\n    </script>`;
   }
 
   injected = injected.replace('</head>', `${extraTags}\n  </head>`);
@@ -2372,6 +2376,10 @@ function runPrerender() {
   const hsrPartiesList = loadHsrPartiesList();
   const wwGuidesMap = loadWwGuidesMap();
   const wwPartiesList = loadWwPartiesList();
+  const ntePartiesBody = generateNtePartyBody(
+    parseNtePartyCombinations(fs.readFileSync(NTE_PARTY_FILE, 'utf8')),
+    sitemapRouteSet
+  );
 
   // 1. WW Characters
   const wwIds = getCharacterIds(WW_CHAR_DIR);
@@ -3028,7 +3036,7 @@ function runPrerender() {
           title: '이환 추천 파티 | 4인 속성·에스퍼 사이클 조합',
           description: '이환(NTE)의 4인 추천 파티, 캐릭터 역할, 속성 조합과 에스퍼 사이클 연결 순서 및 대체 캐릭터를 확인하세요.',
           heading: '이환 4인 추천 파티 조합',
-          body: `<h2>파티 구성 기준</h2><p>주력 딜러를 먼저 정하고 인접 속성으로 기본 에스퍼 사이클을 만들 수 있는 파트너를 선택하세요. 남은 자리는 서포트 스킬, 붕괴, 회복과 생존 역할을 기준으로 채우는 것이 안정적입니다.</p><h2>사이클 운용과 교대</h2><p>속성만 맞춘다고 파티가 완성되는 것은 아닙니다. 사이클 수치를 채우는 캐릭터, 교대로 진입해 효과를 발동하는 캐릭터와 효과 지속 중 공격할 주력 캐릭터의 순서를 함께 설계해야 합니다. 차지나 디스코드 같은 복합 사이클은 궁극기 회전 또는 붕괴 가속이라는 목적이 있을 때 선택하고, 각 캐릭터 상세 도감에서 패시브 강화 대상과 아크 조건을 확인하세요.</p>`
+          body: ntePartiesBody
         }
       };
       const feature = featurePages[routePath];

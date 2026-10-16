@@ -1,6 +1,23 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { useTranslation } from 'react-i18next';
+import { useLocation } from 'react-router';
+import { capturePrerenderSeoHead } from '../utils/prerenderSeoHead';
+import { serializeJsonLd } from '../utils/serializeJsonLd.js';
+
+const releasePrerenderHead = typeof document === 'undefined'
+  ? () => {}
+  : capturePrerenderSeoHead(document.head);
+
+function LiveSeoHead({ children }: { children: React.ReactNode }) {
+  const [ready, setReady] = useState(typeof document === 'undefined');
+  useLayoutEffect(() => {
+    // Keep static SEO until the route commits, then remove it BEFORE React can adopt its nodes.
+    releasePrerenderHead();
+    setReady(true);
+  }, []);
+  return ready ? children : null;
+}
 
 interface BreadcrumbItem {
   name: string;
@@ -47,13 +64,15 @@ export default function SEO({
   googleVerification
 }: SEOProps) {
   const { i18n } = useTranslation();
+  const location = useLocation();
   const currentLang = i18n.language || 'ko';
   const locale = currentLang === 'en' ? 'en_US' : 'ko_KR';
   
   const siteName = "RIRA ARCHIVE";
   const siteTitle = `${title} | ${siteName}`;
   const baseUrl = "https://riragamehub.com";
-  const fullUrl = url.startsWith('http') ? url : `${baseUrl}${url}`;
+  const pageUrl = url || `${location.pathname}${location.search}`;
+  const fullUrl = pageUrl.startsWith('http') ? pageUrl : `${baseUrl}${pageUrl}`;
 
   // 쿼리 매개변수를 사전순으로 정렬하고 언어 선택 파라미터 및 후행 슬래시를 정규화한다.
   // 언어 선택은 사용자 편의 기능이며 별도 색인 페이지가 아니므로 canonical에서 제외한다.
@@ -195,15 +214,15 @@ export default function SEO({
   // 관리자 페이지 등 인덱싱 원천 차단 시 단순 noindex 태그만 삽입
   if (noindex) {
     return (
-      <Helmet>
+      <LiveSeoHead><Helmet>
         <title>{siteTitle}</title>
         <meta name="robots" content="noindex, nofollow" />
-      </Helmet>
+      </Helmet></LiveSeoHead>
     );
   }
 
   return (
-    <Helmet>
+    <LiveSeoHead><Helmet>
       {/* 기본 메타 태그 */}
       {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
       <title>{siteTitle}</title>
@@ -239,8 +258,8 @@ export default function SEO({
 
       {/* 구조화 데이터 주입 (AEO/SEO/Breadcrumb) */}
       <script type="application/ld+json">
-        {JSON.stringify(schemas.length === 1 ? schemas[0] : schemas)}
+        {serializeJsonLd(schemas.length === 1 ? schemas[0] : schemas)}
       </script>
-    </Helmet>
+    </Helmet></LiveSeoHead>
   );
 }

@@ -707,13 +707,15 @@ const CharacterDetailNTE: React.FC = () => {
     return questions;
   }, [char, t]);
 
+  const characterUrl = `/gallery/${gameId}/character/${encodeURIComponent(char.name)}`;
+
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
         title={`${t(char.name)} ${t('종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | 이환(NTE) 공략 DB')}`} 
         description={seoDescription}
         image={getIllustrationUrl()}
-        url={`/gallery/${gameId}/character/${char.id}`}
+        url={characterUrl}
         gameCategory={t('이환 (Neverness to Everness)')}
         itemType={t(char.arc)}
         modifiedTime={lastUpdatedDate}
@@ -722,7 +724,7 @@ const CharacterDetailNTE: React.FC = () => {
           { name: t('홈'), url: '/' },
           { name: t('이환 (Neverness to Everness)'), url: `/gallery/${gameId}` },
           { name: t('캐릭터'), url: `/gallery/${gameId}?menu=캐릭터` },
-          { name: t(char.name), url: `/gallery/${gameId}/character/${char.id}` }
+          { name: t(char.name), url: characterUrl }
         ]}
       />
       {/* Item Modal */}

@@ -134,6 +134,7 @@ const Navbar: React.FC = () => {
             onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
             className="p-2 text-gray-300 hover:text-white rounded-xl bg-white/5 border border-white/10 flex items-center justify-center active:scale-95"
             aria-label="Search"
+            data-global-search-trigger
             title="통합 검색"
           >
             <Search size={18} className="text-brand-primary" />

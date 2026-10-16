@@ -672,7 +672,7 @@ const CharacterDetail: React.FC = () => {
             <div className="absolute bottom-8 left-8 right-8 space-y-3">
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
-                  <img src={`${ICON_COMMON_BASE}${safeEncodeURIComponent(char.attribute)}.webp`} className="w-3.5 h-3.5 object-contain" alt="" />
+                  <img key={char.attribute} src={`${ICON_COMMON_BASE}${safeEncodeURIComponent(`${char.attribute} 피해 부스트`)}.webp`} className="w-3.5 h-3.5 object-contain" alt="" onError={event => { event.currentTarget.hidden = true; }} />
                   {t((char as any).weaponType || '')} | {t(char.attribute)}
                 </div>
                 <div className="flex items-end justify-between gap-4">

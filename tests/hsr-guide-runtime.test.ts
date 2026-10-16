@@ -39,7 +39,7 @@ it('keeps every equipment lookup and image field across all guide variants and a
         const original = SORTED_LIGHTCONE_DATA.find(entry => entry.name === name);
         const actual = runtime.lightcones.find(entry => entry.name === name);
         expect(actual, `${id}/lightcone/${name}`).toEqual(original ? {
-          name: original.name, path: original.path, fileName: original.fileName, folderName: original.folderName
+          name: original.name, path: original.path, fileName: original.fileName, folderName: original.folderName, rarity: original.rarity
         } : undefined);
       }
       for (const [items, full, selected] of [
@@ -51,11 +51,13 @@ it('keeps every equipment lookup and image field across all guide variants and a
           const baseName = name.replace(/\s*[24]세트/g, '').replace(/쫒/g, '쫓').trim();
           const original = full.find(entry => entry.name === name || entry.name === baseName || normalize(entry.name) === normalize(baseName));
           const actual = selected.find(entry => entry.name === name || entry.name === baseName || normalize(entry.name) === normalize(baseName));
-          expect(actual, `${id}/set/${name}`).toEqual(original ? { name: original.name, type: original.type } : undefined);
+          if (original) expect(actual, `${id}/set/${name}`).toMatchObject({ name: original.name, type: original.type });
+          else expect(actual, `${id}/set/${name}`).toBeUndefined();
           const alternatives = typeof item === 'object' && 'alternatives' in item ? item.alternatives : [];
           for (const alternativeName of Array.isArray(alternatives) ? alternatives : []) {
             const alternative = full.find(entry => entry.name === alternativeName);
-            expect(selected.find(entry => entry.name === alternativeName)).toEqual(alternative ? { name: alternative.name, type: alternative.type } : undefined);
+            if (alternative) expect(selected.find(entry => entry.name === alternativeName)).toMatchObject({ name: alternative.name, type: alternative.type });
+            else expect(selected.find(entry => entry.name === alternativeName)).toBeUndefined();
           }
         }
       }
@@ -66,6 +68,25 @@ it('keeps every equipment lookup and image field across all guide variants and a
 it('does not statically import the complete guide, equipment or party catalogs in the page', () => {
   const page = fs.readFileSync('hsr-hub/pages/CharacterGuideDetail.tsx', 'utf8');
   expect(page).not.toMatch(/from ['"]\.\.\/data\/(guides|lightcones|relics|ornaments|parties)['"]/);
+});
+
+it('preserves equipment rarity and effects used by the deferred entity section', () => {
+  for (const [id, url] of Object.entries(paths)) {
+    const runtime = JSON.parse(fs.readFileSync(`public${url}`, 'utf8')) as HsrGuideRuntime;
+    for (const entry of runtime.lightcones) {
+      expect(entry.rarity, `${id}/${entry.name}`).toEqual(SORTED_LIGHTCONE_DATA.find(item => item.name === entry.name)?.rarity);
+    }
+    for (const entry of runtime.relics) {
+      const original = RELIC_DATA.find(item => item.name === entry.name);
+      expect(entry['2piece'], `${id}/${entry.name}`).toEqual(original?.['2piece']);
+      expect(entry['4piece'], `${id}/${entry.name}`).toEqual(original?.['4piece']);
+    }
+    for (const entry of runtime.ornaments) {
+      const original = ORNAMENT_DATA.find(item => item.name === entry.name);
+      expect(entry.setEffect, `${id}/${entry.name}`).toEqual(original?.setEffect);
+      expect(entry['2piece'], `${id}/${entry.name}`).toEqual(original?.['2piece']);
+    }
+  }
 });
 
 it('replaces inherited no-cache only for successful hashed guide JSON, retaining other headers', async () => {

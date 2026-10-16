@@ -18,9 +18,9 @@ export function createHsrGuideRuntime(character, sources) {
   const related = entries => entries.filter(entry => guideText.includes(normalize(entry.name)));
   return sanitizePublicGuideData({
     guide,
-    lightcones: related(sources.lightcones).map(({ name, path, fileName, folderName }) => ({ name, path, fileName, folderName })),
-    relics: related(sources.relics).map(({ name, type }) => ({ name, type })),
-    ornaments: related(sources.ornaments).map(({ name, type }) => ({ name, type })),
+    lightcones: related(sources.lightcones).map(({ name, path, fileName, folderName, rarity }) => ({ name, path, fileName, folderName, rarity })),
+    relics: related(sources.relics).map(({ name, type, '2piece': twoPiece, '4piece': fourPiece }) => ({ name, type, '2piece': twoPiece, '4piece': fourPiece })),
+    ornaments: related(sources.ornaments).map(({ name, type, setEffect, '2piece': twoPiece }) => ({ name, type, setEffect, '2piece': twoPiece })),
     parties: sources.parties.filter(party => party.members.some(member => normalize(member.name) === normalize(character.folderName || character.name)))
   });
 }
@@ -42,6 +42,7 @@ export async function writeHsrGuideRuntime() {
     bundle: true, platform: 'node', format: 'esm', write: false, logLevel: 'silent'
   });
   const sources = (await import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].text).toString('base64')}`)).default;
+  fs.writeFileSync(path.join(root, 'hsr-hub/data/generated/synergy-guide-summary.json'), `${JSON.stringify(sources.guides.map(({ characterName, synergyCharacters, analysis }) => ({ characterName, synergyCharacters, analysis: { role: analysis?.role } })), null, 2)}\n`, 'utf8');
   const characters = JSON.parse(fs.readFileSync(path.join(root, 'hsr-hub/data/generated/character-summary.json'), 'utf8'));
   const directory = path.join(root, 'public/assets/data/hsr/guides');
   fs.mkdirSync(directory, { recursive: true });

@@ -1,17 +1,22 @@
-import React, { Suspense, lazy, useState, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useEffect, useRef, useCallback } from 'react';
+import { useDialogFocus } from './useDialogFocus';
 import { Search } from 'lucide-react';
 import { useLocation } from 'react-router';
 
 const SearchModal = lazy(() => import('./SearchModal'));
 
-const SearchLoadingFallback = () => (
-  <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md" role="status" aria-label="통합 검색 불러오는 중">
+const SearchLoadingFallback = () => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(dialogRef);
+  return (
+  <div ref={dialogRef} tabIndex={-1} className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="통합 검색 불러오는 중">
     <div className="flex flex-col items-center gap-4">
       <div className="h-9 w-9 animate-spin rounded-full border-2 border-white/15 border-t-brand-primary" />
       <span className="text-[10px] font-black uppercase tracking-[0.28em] text-gray-400">검색 데이터 불러오는 중</span>
     </div>
   </div>
-);
+  );
+};
 
 interface GlobalSearchProps {
   className?: string;
@@ -20,6 +25,35 @@ interface GlobalSearchProps {
 
 export default function GlobalSearch({ className = '', showText = true }: GlobalSearchProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+  const openRef = useRef(false);
+  const openSearch = useCallback(() => {
+    if (!openRef.current) {
+      returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+      openRef.current = true;
+      setIsOpen(true);
+    }
+  }, []);
+  const closeSearch = useCallback(() => {
+    openRef.current = false;
+    setIsOpen(false);
+  }, []);
+  useEffect(() => {
+    if (isOpen) return;
+    const target = returnFocusRef.current;
+    if (target) {
+      const isVisible = (element: HTMLElement) => {
+        for (let node: HTMLElement | null = element; node; node = node.parentElement) {
+          if (node.hidden || getComputedStyle(node).display === 'none' || getComputedStyle(node).visibility === 'hidden') return false;
+        }
+        return true;
+      };
+      const fallback = Array.from(document.querySelectorAll<HTMLElement>('[data-global-search-trigger]')).find(isVisible);
+      (target.isConnected && target !== document.body && isVisible(target) ? target : fallback || buttonRef.current)?.focus();
+      returnFocusRef.current = null;
+    }
+  }, [isOpen]);
   const location = useLocation();
 
   // 단축키 (Cmd+K 또는 Ctrl+K) 및 커스텀 이벤트 감지
@@ -27,13 +61,13 @@ export default function GlobalSearch({ className = '', showText = true }: Global
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
         e.preventDefault();
-        setIsOpen(true);
+        openSearch();
       }
-      if (e.key === 'Escape') setIsOpen(false);
+      if (e.key === 'Escape') closeSearch();
     };
 
     const handleCustomOpen = () => {
-      setIsOpen(true);
+      openSearch();
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -42,7 +76,7 @@ export default function GlobalSearch({ className = '', showText = true }: Global
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('open-global-search', handleCustomOpen);
     };
-  }, []);
+  }, [openSearch, closeSearch]);
 
   // URL을 바탕으로 active gameId 유추
   const getGameIdFromPath = (pathname: string): 'all' | 'hsr' | 'ww' | 'nte' | 'aniimo' => {
@@ -58,8 +92,12 @@ export default function GlobalSearch({ className = '', showText = true }: Global
   return (
     <>
       <button
+        ref={buttonRef}
+        data-global-search-trigger
         type="button"
-        onClick={() => setIsOpen(true)}
+        onClick={openSearch}
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
         className={`flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-all text-xs font-bold group cursor-pointer ${className}`}
         title="통합 아카이브 검색 (⌘K / Ctrl+K)"
         aria-label="통합 아카이브 검색"
@@ -80,7 +118,7 @@ export default function GlobalSearch({ className = '', showText = true }: Global
         <Suspense fallback={<SearchLoadingFallback />}>
           <SearchModal
             isOpen
-            onClose={() => setIsOpen(false)}
+            onClose={closeSearch}
             gameId={activeGameId}
           />
         </Suspense>

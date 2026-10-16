@@ -221,10 +221,11 @@ const NTEPartyRecommendations: React.FC = () => {
   }, [parties, searchQuery, selectedTag]);
 
   return (
-    <div className="flex bg-[#0a0a0a] min-h-screen text-gray-200">
+    <div className="flex flex-col lg:flex-row bg-[#0a0a0a] min-h-screen text-gray-200">
       <SEO 
         title={t("이환(NTE) 추천 파티 조합 및 4인 속성 시너지 가이드")}
-        description={t("헤테로 시티 최고의 4인 파티 추천. 령, 혼, 음, 양, 공, 상 6대 이능력 속성 연계 및 바이레일 스킬 시너지 덱.")}
+        description={t("이환(NTE)의 빛·령·주·암·상·혼 속성을 활용한 4인 추천 파티와 에스퍼 사이클 조합을 확인하세요.")}
+        url="/gallery/nte/parties"
         keywords="이환, Neverness to Everness, 파티 추천, 추천 조합, 구원 파티, 민트 파티, 6대 속성 시너지, 리라 아카이브"
       />
       <GallerySidebar />

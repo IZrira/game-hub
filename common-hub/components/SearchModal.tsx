@@ -1,4 +1,5 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
+import { useDialogFocus } from './useDialogFocus';
 import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router';
 import { Search, User, Sword, BookOpen, ChevronRight, X, Sparkles, Compass, Star, Globe, MapPin, Layers, LoaderCircle } from 'lucide-react';
@@ -123,6 +124,8 @@ interface SearchModalProps {
 }
 
 const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'all' }) => {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useDialogFocus(dialogRef, isOpen);
   const { t, i18n } = useTranslation();
   const [query, setQuery] = useState('');
   const [activeTab, setActiveTab] = useState<'all' | 'hsr' | 'ww' | 'nte' | 'aniimo'>(
@@ -164,7 +167,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
       // 키보드 상/하 네비게이션
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         e.preventDefault();
-        const items = Array.from(document.querySelectorAll<HTMLElement>('.search-result-item, .search-shortcut-item'));
+        const items = Array.from(dialogRef.current?.querySelectorAll<HTMLElement>('.search-result-item, .search-shortcut-item') || []);
         if (!items.length) return;
 
         const currentIndex = items.findIndex(item => document.activeElement === item);
@@ -572,7 +575,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
       {/* 배경 오버레이 */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={onClose} />
 
-      <div className="relative z-[10001] w-full max-w-2xl bg-[#0d0d0d] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 rounded-[28px] sm:rounded-[32px]">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="통합 아카이브 검색" tabIndex={-1} className="relative z-[10001] w-full max-w-2xl bg-[#0d0d0d] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 rounded-[28px] sm:rounded-[32px]">
         <div className="p-6 sm:p-8">
           {/* 게임 필터 탭 바 */}
           <div className="flex items-center gap-1 sm:gap-2 mb-4 p-1 bg-white/[0.03] border border-white/5 rounded-2xl overflow-x-auto scrollbar-hide">
@@ -600,7 +603,8 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
             <div className="relative flex-1">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary" size={20} />
               <input
-                autoFocus
+                data-dialog-autofocus
+                aria-label="검색어"
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}

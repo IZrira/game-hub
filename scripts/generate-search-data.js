@@ -5,6 +5,7 @@ import { build } from 'esbuild';
 import { normalizeNteCharacter } from './lib/normalize-nte-character.js';
 import { writeCharacterTranslationPacks } from './generate-character-translations.js';
 import { writeHsrGuideRuntime } from './generate-hsr-guide-runtime.js';
+import { writeHsrCharacterRuntime } from './generate-hsr-character-runtime.js';
 import { writeWwGuideRuntime } from './generate-ww-guide-runtime.js';
 import { writeGuideSummaries } from './generate-guide-summaries.js';
 
@@ -565,4 +566,5 @@ console.log(`[Home] Generated lightweight stats for ${homeStats.global.character
 console.log(`[WW] Generated ${wwCharacters.length} merged character detail records.`);
 writeCharacterTranslationPacks({ hsr: hsrCharacterSummary, ww: wwCharacters });
 await writeHsrGuideRuntime();
+await writeHsrCharacterRuntime();
 writeWwGuideRuntime();

@@ -132,7 +132,11 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
 
     const processed = rawReviews.map((r) => {
       const computedUpvotes = upvotesCountMap.get(r.id) ?? r.upvotes_count ?? r.like_count ?? 0;
-      const computedReports = reportsCountMap.get(r.id) ?? r.report_count ?? 0;
+      // Remote report rows are private to the reporter/admin. Only the server's
+      // aggregate is complete; local demo mode still counts its local records.
+      const computedReports = isOfflineMode
+        ? reportsCountMap.get(r.id) ?? r.report_count ?? 0
+        : r.report_count ?? 0;
 
       return {
         ...r,

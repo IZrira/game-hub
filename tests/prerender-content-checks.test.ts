@@ -20,3 +20,11 @@ it('rejects duplicate AdSense loaders with different query parameters', () => {
   expect(inspectPrerenderContent(wrap(full) + script('one'), route).problems).toEqual([]);
   expect(inspectPrerenderContent(wrap(full) + script('one') + script('two'), route).problems).toContain('Duplicate AdSense loader scripts (2)');
 });
+it('rejects generic NTE party prose or truncated parties even when the text floor is satisfied', () => {
+  expect(inspectPrerenderContent(wrap(full), '/gallery/nte/parties').problems)
+    .toContain('NTE party recommendations missing from initial article');
+  const party = (count: number) => `<article><section data-nte-party="one">${Array.from({ length: count }, () => '<li data-nte-member>멤버</li>').join('')}</section></article>`;
+  expect(inspectPrerenderContent(wrap(party(3)), '/gallery/nte/parties').problems)
+    .toContain('NTE initial party must retain all four members');
+  expect(inspectPrerenderContent(wrap(party(4)), '/gallery/nte/parties').problems).toEqual([]);
+});

@@ -1,4 +1,5 @@
 import { INDEXABLE_AND_APP_PATHS } from './generated-routes';
+import { withSecurityHeaders } from './security-headers';
 
 interface PagesFunctionContext {
   request: Request;
@@ -108,7 +109,7 @@ function withLanguageCanonicalHeader(response: Response, requestUrl: string): Re
   });
 }
 
-export const onRequest = async (context: PagesFunctionContext): Promise<Response> => {
+const handleRequest = async (context: PagesFunctionContext): Promise<Response> => {
   const url = new URL(context.request.url);
   // Consolidate the former production domain while preserving each URL's path and query.
   if (url.hostname === 'rira-game-hub.pages.dev') {
@@ -159,10 +160,12 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
 
   // Replace inherited no-cache only for successful content-hashed assets.
   const immutableGuide = /^\/assets\/data\/(?:hsr|ww)\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
+  const immutableHsrCharacter = /^\/assets\/data\/hsr\/characters\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
   const immutableArticle = /^\/assets\/data\/articles\/[a-z0-9_-]+\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
   const immutableThumbnail = /^\/assets\/thumbnails\/ww\/[a-f0-9]{20}\.webp$/.test(normalizedPath);
-  const expectedType = immutableGuide || immutableArticle ? 'application/json' : immutableThumbnail ? 'image/webp' : undefined;
-  if (expectedType && (response.status === 304 || (response.status === 200 && response.headers.get('Content-Type')?.includes(expectedType)))) {
+  const expectedType = immutableGuide || immutableArticle || immutableHsrCharacter ? 'application/json' : immutableThumbnail ? 'image/webp' : undefined;
+  const privateOrNoStore = /(?:^|,)\s*(?:private|no-store)\b/i.test(response.headers.get('Cache-Control') || '');
+  if (expectedType && !privateOrNoStore && (response.status === 304 || (response.status === 200 && response.headers.get('Content-Type')?.includes(expectedType)))) {
     const headers = new Headers(response.headers);
     headers.set('Cache-Control', 'public, max-age=31536000, immutable');
     return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
@@ -204,3 +207,6 @@ export const onRequest = async (context: PagesFunctionContext): Promise<Response
 
   return withLanguageCanonicalHeader(response, context.request.url);
 };
+
+export const onRequest = async (context: PagesFunctionContext): Promise<Response> =>
+  withSecurityHeaders(await handleRequest(context));

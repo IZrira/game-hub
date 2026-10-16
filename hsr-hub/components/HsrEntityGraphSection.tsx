@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { Sparkles, Shield, Award, ChevronRight, BookOpen } from 'lucide-react';
-import { HSR_CHARACTER_GUIDES } from '../data/guides';
-import { LIGHTCONE_DB, RELIC_DB, ORNAMENT_DB } from '../../common-hub/data/games';
+import guideManifest from '../data/generated/guide-runtime-manifest.json';
+import { useHsrRuntime } from '../utils/useHsrRuntime';
+import type { HsrGuideRuntime } from '../utils/guideRuntime';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import type { HsrCharacter } from '../types';
 
@@ -14,11 +15,13 @@ interface HsrEntityGraphSectionProps {
 }
 
 export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ character, theme }) => {
-  const guide = useMemo(() => {
-    return HSR_CHARACTER_GUIDES.find(
-      g => g.characterName === character.name || g.characterName === character.folderName || g.characterName === character.id
-    );
-  }, [character]);
+  const url = (guideManifest as Record<string, string>)[character.id];
+  const validate = React.useCallback((value: HsrGuideRuntime) => Boolean(value?.guide && Array.isArray(value.lightcones) && Array.isArray(value.relics) && Array.isArray(value.ornaments)), []);
+  const { data, failed, retry } = useHsrRuntime<HsrGuideRuntime>(url, validate);
+  const guide = data?.guide;
+  const LIGHTCONE_DB = data?.lightcones || [];
+  const RELIC_DB = data?.relics || [];
+  const ORNAMENT_DB = data?.ornaments || [];
 
   const recommendedLightCones = useMemo(() => {
     if (!guide) return [];
@@ -88,6 +91,8 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
     }).filter(o => o.name);
   }, [guide]);
 
+  if (failed) return <div className="p-6 text-center"><button onClick={retry}>다시 시도</button></div>;
+  if (!data && url) return <div className="min-h-48" aria-busy="true" />;
   if (!guide && recommendedLightCones.length === 0 && recommendedRelics.length === 0) {
     return null;
   }

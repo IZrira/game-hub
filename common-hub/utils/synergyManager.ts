@@ -1,10 +1,13 @@
 import { HSR_PARTIES } from '../../hsr-hub/data/parties/index';
 import HSR_CHARACTERS from '../../hsr-hub/data/generated/character-summary.json';
-import { HSR_CHARACTER_GUIDES } from '../../hsr-hub/data/guides';
+import hsrGuideSummary from '../../hsr-hub/data/generated/synergy-guide-summary.json';
+import type { CharacterGuide } from '../../hsr-hub/data/guides';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
 import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { NTE_PARTY_COMBINATIONS, getNTEFallbackParty } from '../../nte-hub/data/parties';
 import { NTE_CHARACTERS } from '../../nte-hub/data/index';
+
+const HSR_CHARACTER_GUIDES = hsrGuideSummary as Array<Pick<CharacterGuide, 'characterName' | 'synergyCharacters'> & { analysis: { role?: string } }>;
 
 export interface UnifiedPartyMember {
   id: string;

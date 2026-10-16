@@ -173,7 +173,7 @@ const GalleryAniimo: React.FC = () => {
           </article>; })}
         </section>
 
-        {filtered.length === 0 && <div className="rounded-3xl border border-white/10 py-20 text-center text-gray-500"><X className="mx-auto mb-3" />조건에 맞는 애니모가 없습니다.</div>}
+        {filtered.length === 0 && <div className="rounded-3xl border border-white/10 py-20 text-center text-gray-500"><X className="mx-auto mb-3" /><p>조건에 맞는 애니모가 없습니다.</p><button type="button" onClick={() => { setQuery(''); setElement(ALL); setPosition(ALL); setLocation(ALL); setStage(ALL); setPersonality(ALL); }} className="mt-4 rounded-lg border border-white/10 px-4 py-2 text-xs font-bold text-gray-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-violet-400">검색 조건 초기화</button></div>}
         <p className="text-center text-xs leading-6 text-gray-500">데이터 출처: 애니모 공식 위키 · 마지막 확인일 {entries[0]?.checkedAt} · 공식 업데이트에 따라 수치가 변경될 수 있습니다.</p>
         </div>
       </main>

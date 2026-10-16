@@ -16,6 +16,13 @@ export function inspectPrerenderContent(html, routePath) {
   const problems = [];
   if (guideDetail && article.length !== 1) problems.push('Expected one prerendered guide article');
   if (guideDetail && bodyLength < 300) problems.push(`Guide article body missing or truncated (${bodyLength} chars; regression floor 300)`);
+  if (routePath === '/gallery/nte/parties') {
+    const parties = article.find('section[data-nte-party]');
+    if (article.length !== 1 || !parties.length) problems.push('NTE party recommendations missing from initial article');
+    parties.each((_, party) => {
+      if ($(party).find('[data-nte-member]').length !== 4) problems.push('NTE initial party must retain all four members');
+    });
+  }
   if (adScripts > 1) problems.push(`Duplicate AdSense loader scripts (${adScripts})`);
   return { problems, bodyLength: guideDetail ? bodyLength : undefined, adScripts };
 }

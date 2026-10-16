@@ -9,7 +9,7 @@ export const budgets = {
   entryGzip: 32_000, initialJsGzip: 170_000, cssGzip: 34_000, chunkGzip: 250_000,
   articleSummariesRaw: 24_000,
   articleRaw: 24_000,
-  guideRaw: 40_000, labelsRaw: 28_000, smallImageRaw: 40_000, largeImageRaw: 110_000,
+  guideRaw: 40_000, characterRaw: 40_000, labelsRaw: 28_000, smallImageRaw: 40_000, largeImageRaw: 110_000,
 };
 export function checkBudgets(records) {
   return records.filter(({ metric, bytes }) => bytes > budgets[metric]);
@@ -38,6 +38,8 @@ export function auditPerformance() {
     for (const url of new Set(Object.values(scope === 'ww' ? manifest.aliases : manifest))) add(`public${url}`, 'guideRaw');
     for (const language of ['ko', 'en']) add(`common-hub/locales/${scope}/guide_labels_${language}.json`, 'labelsRaw');
   }
+  const characters = JSON.parse(fs.readFileSync(path.join(root, 'hsr-hub/data/generated/character-runtime-manifest.json'), 'utf8'));
+  for (const url of new Set(Object.values(characters))) add(`public${url}`, 'characterRaw');
   const images = JSON.parse(fs.readFileSync(path.join(root, 'ww-hub/data/generated/card-thumbnails.json'), 'utf8'));
   for (const item of Object.values(images)) {
     add(`public${item.small}`, 'smallImageRaw');

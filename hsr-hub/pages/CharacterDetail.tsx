@@ -32,7 +32,9 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
-import { getHsrGameData } from '../data/gameData';
+import characterSummary from '../data/generated/detail-character-summary.json';
+import characterManifest from '../data/generated/character-runtime-manifest.json';
+import { useHsrRuntime } from '../utils/useHsrRuntime';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
@@ -107,12 +109,42 @@ const Flag: React.FC<{ code: string }> = ({ code }) => (
   <img src={`https://flagcdn.com/w20/${code}.png`} alt={code} className="inline-block w-4 h-3 object-cover rounded-sm mr-1.5" />
 );
 
+interface CharacterRuntime { character: any; english?: any }
+
 const CharacterDetail: React.FC = () => {
+  const { charName } = useParams<{ charName: string }>();
+  const { t, i18n } = useTranslation();
+  const selected = characterSummary.find(c => c.id === charName || c.name === charName || t(c.name) === charName);
+  const url = selected ? (characterManifest as Record<string, string>)[selected.id] : undefined;
+  const validate = React.useCallback((value: CharacterRuntime) => value?.character?.id === selected?.id, [selected?.id]);
+  const { data, failed, retry } = useHsrRuntime<CharacterRuntime>(url, validate);
+  const rawChar = useMemo(() => {
+    if (!data) return undefined;
+    const character = data.character;
+    if (i18n.language !== 'en') return character;
+    if (data.english) return data.english;
+    return {
+      ...character, originalName: character.name, name: t(character.name),
+      path: character.path ? t(character.path) : undefined,
+      attribute: character.attribute ? t(character.attribute) : undefined,
+      materials_v2: {
+        ascension: character.materials_v2?.ascension?.map((material: any) => ({ ...material, name: t(material.name) })) || [],
+        traces: character.materials_v2?.traces?.map((material: any) => ({ ...material, name: t(material.name) })) || []
+      }
+    };
+  }, [data, i18n.language, t]);
+  if (!url) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
+  if (failed) return <div className="p-20 text-center text-white"><button onClick={retry}>{t('다시 시도')}</button></div>;
+  if (!rawChar) return <DeferredFallback />;
+  return <CharacterDetailContent key={selected.id} rawChar={rawChar} />;
+};
+
+const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   
-  const { CHARACTER_DB } = useMemo(() => getHsrGameData(currentLang), [currentLang]);
+  const CHARACTER_DB = useMemo(() => characterSummary.map(c => currentLang === 'en' ? { ...c, name: t(c.name), path: t(c.path), attribute: t(c.attribute) } : c), [currentLang, t]);
   const [isMetadataExpanded, setIsMetadataExpanded] = useState(true); // Default expanded
   const [isProfileExpanded, setIsProfileExpanded] = useState(true);   // Default expanded
   const [levelIdx, setLevelIdx] = useState(7);
@@ -135,7 +167,6 @@ const CharacterDetail: React.FC = () => {
     return () => window.removeEventListener('click', handleGlobalClick);
   }, [tooltip]);
 
-  const rawChar = useMemo(() => CHARACTER_DB.find((c: any) => c.id === charName || c.name === charName || c.originalName === charName), [CHARACTER_DB, charName]);
 
   // AS Mode State
   const [isASMode, setIsASMode] = useState(false);

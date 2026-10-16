@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { auditGoogleVerification } from './lib/google-verification.js';
 import { inspectPrerenderContent } from './lib/prerender-content-checks.js';
+import { inspectPrerenderHead } from './lib/prerender-head-checks.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -95,6 +96,8 @@ const hubAuditStats = hubLinkAudits.map(({ game, hubPath, routePattern }) => {
 // Search Console에서 실제로 Soft 404 또는 크롤링 후 미색인으로 보고된
 // 핵심 URL입니다. 해당 문서가 삭제되거나 얇은 셸로 퇴행하면 배포 전에 막습니다.
 const searchConsolePriorityRoutes = [
+  '/gallery/nte/parties',
+  '/gallery/nte/character/감정사',
   '/gallery/hsr/character/feixiao/guide',
   '/gallery/hsr/lightcone/풍작',
   '/gallery/ww/character/baizhi',
@@ -140,9 +143,8 @@ for (const routePath of routes) {
   const html = fs.readFileSync(htmlPath, 'utf8');
   const contentCheck = inspectPrerenderContent(html, routePath);
   problems.push(...contentCheck.problems.map(problem => `${routePath}: ${problem}`));
-  const title = html.match(/<title>(.*?)<\/title>/s)?.[1]?.trim() || '';
-  const description = html.match(/<meta name="description" content="(.*?)"\s*\/>/s)?.[1]?.trim() || '';
-  const canonical = html.match(/<link rel="canonical" href="(.*?)"\s*\/>/s)?.[1]?.trim() || '';
+  const { title, description, canonical, problems: headProblems } = inspectPrerenderHead(html);
+  problems.push(...headProblems.map(problem => `${routePath}: ${problem}`));
   const textLength = extractText(html).length;
   const internalLinks = [...html.matchAll(/<a\s+[^>]*href="\/(?!\/)/g)].length;
 
