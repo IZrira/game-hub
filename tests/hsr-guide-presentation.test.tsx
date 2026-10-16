@@ -23,6 +23,17 @@ const renderGuide = (characterName: string) => render(
 );
 
 describe('HSR guide selected build and analysis navigation', () => {
+  it('keeps the first selection after mount effects settle in StrictMode', async () => {
+    render(<React.StrictMode><MemoryRouter initialEntries={['/gallery/hsr/character/초구/guide']}>
+      <Routes><Route path="/gallery/:gameId/character/:charName/guide" element={<CharacterGuideDetail />} /></Routes>
+    </MemoryRouter></React.StrictMode>);
+    const option = await screen.findByRole('button', { name: '지속 피해 세팅' });
+    fireEvent.click(option);
+    await act(async () => { await Promise.resolve(); });
+    expect(option.getAttribute('aria-pressed')).toBe('true');
+    expect(screen.getByRole('region', { name: '추천 세팅 요약' }).textContent).toContain('깊은 감옥에 수감된 죄수');
+  });
+
   it('retries a failed guide request and renders the original guide', async () => {
     const fetchGuide = mockHsrGuideFetch();
     fetchGuide.mockResolvedValueOnce(new Response('', { status: 503 }));

@@ -96,10 +96,8 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
   const [selectedVariantIndex, setSelectedVariantIndex] = useState(0);
   const [activeGuideView, setActiveGuideView] = useState<'setup' | 'analysis'>('setup');
 
-  useEffect(() => {
-    setSelectedVariantIndex(0);
-    setActiveGuideView('setup');
-  }, [charName]);
+  // The parent keys this content by guide URL, so a new guide starts with
+  // fresh state without a mount effect overwriting an early user selection.
 
   const resolvedKoName = useMemo(() => {
     if (!charName) return undefined;

@@ -46,3 +46,13 @@ SQL Editor 직접 적용이므로 CLI migration 이력이 자동 기록됐다고
 타입 검사, 50파일 364테스트, production build와 SEO·성능 예산 검사, diff 공백 검사 통과. 운영 적용 후 동일 검증을 다시 실행해 통과했다. Notion 동기화·게임 데이터/디자인 변경·운영 콘텐츠 수정 없음. 새 migration/test/report 파일을 검토해 정상 commit/push 절차로 보관한다.
 
 실제 로그인 JWT/Data API/관리자 작성·삭제의 종단 간 검증 및 새 public 테이블 생성에 의한 event trigger 실동작은 미검증이다. commit/push·Cloudflare 배포 결과는 최종 보고로 인계한다. 공개 bucket listing, update_updated_at_column search_path, 비밀번호 보호 설정과 기타 과잉 grants는 이번 변경 범위에 포함하지 않았다. 사이트 전체 보안 통과로 확대하지 않는다.
+
+## 푸시 후 CI 후속 검증
+
+보안 변경 commit `a89adae`의 Cloudflare 배포와 audit 검사는 성공했지만 Quality Gate의 기존 HSR 가이드 테스트가 첫 세팅 선택 유지 assertion에서 실패했다. 로컬 364테스트 성공과 별개로 CI 실패를 완료로 처리하지 않았다.
+
+콘텐츠는 부모의 guide URL key로 이미 초기화되는데 mount effect가 선택을 다시 초기화하는 중복 경로를 제거했다. 동일 가이드의 별칭 이동은 선택을 유지하고, 다른 가이드 이동은 key 변경으로 초기화한다. 이 중복 초기화는 경쟁 가능성이 있는 코드이나 CI 실패의 독립 재현을 확보한 것은 아니다. StrictMode 최초 선택 유지 회귀 테스트를 추가했으며 기존 선택 전환·다른 캐릭터 초기화 assertion은 약화하지 않았다.
+
+성능·보안·UX 담당이 각각 읽기 전용으로 후속 diff를 검토했다. 추가 요청·권한 변경·다른 캐릭터 상태 잔존의 정적 차단점은 없었다. 직접 브라우저 검증이나 CI 원인 독립 재현으로 확대하지 않는다. 후속 타입 검사와 전체 50파일 365테스트, 해당 가이드 8테스트 5회 반복, 최종 production build·SEO·성능 예산·diff 공백 검사는 통과했다. 새 commit의 CI/배포 결과는 최종 인계에 명시한다.
+
+운영 적용 후 실제 세 public 테이블을 anon 역할의 읽기 전용 트랜잭션으로 조회해 각각 행 존재 여부 true를 확인했다. 실제 데이터 내용은 가져오지 않았다.
