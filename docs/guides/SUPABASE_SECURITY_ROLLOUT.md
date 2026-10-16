@@ -1,6 +1,14 @@
 # Storage·댓글 권한 보강 적용 절차
 
-2026-10-16. `20261016085211_secure_storage_and_comment_fields.sql`은 공식 CLI 2.120.0의 `migration new`로 생성했다. 운영에는 적용하지 않았다. GitHub/Cloudflare 배포는 SQL을 자동 적용한다는 뜻이 아니다.
+2026-10-16. `20261016085211_secure_storage_and_comment_fields.sql`은 공식 CLI 2.120.0의 `migration new`로 생성했다. 최초에는 운영 미적용 후보였으나, 이후 사용자 운영 승인과 기존 두 관리자 권한 설정 후 SQL Editor에서 해당 변경을 운영 적용했다. GitHub/Cloudflare 배포가 SQL을 적용한 것은 아니다. [운영 적용 기록](../reports/2026-10-16-supabase-security-production.md)을 함께 확인한다.
+
+## 현재 상태와 재실행 주의
+
+- 기존 등록 관리자 두 계정의 서버 관리 `app_metadata.role=admin` 저장을 재조회했다. JWT 반영을 위해 각 계정의 재로그인이 필요하다. 조직 소유권이나 DB superuser를 부여한 것은 아니다.
+- Storage 관리자 쓰기 정책 세 개에서 user_metadata/이메일 허용을 제거했다. 댓글 guard, 소유자 UPDATE 정책 정리, 신고 관계 비공개, 집계 함수 search_path/직접 실행 제한을 적용하고 카탈로그 재조회로 확인했다.
+- 운영 테이블 레코드의 일괄 수정, 운영 테스트 사용자·댓글·Storage 객체 생성, 기존 grant/API 공개 설정 변경은 하지 않았다.
+- 운영 `supabase_migrations.schema_migrations` 테이블은 조회 시 존재하지 않았다. SQL Editor 적용이므로 CLI migration 이력이 자동 기록됐다고 가정하지 않는다. 새 trigger/policy는 단순 재실행 시 충돌하므로 실제 객체와 배포 기록을 먼저 확인한다. 무조건 재실행하거나 이력을 임의 생성하지 않는다.
+- 실제 로그인 계정의 전체 업로드·댓글·좋아요·신고 여정 및 동시 쓰기 정확성은 미검증이다. 아래 최초 점검·로컬 테스트 조건은 해당 한계를 보완하는 후속 절차로 유지한다.
 
 ## 변경 의도
 
@@ -26,7 +34,7 @@
 - comment_reports/comment_upvotes에는 CRUD grant가 없고 TRUNCATE/REFERENCES/TRIGGER 권한이 관측되었다. Dashboard는 API DISABLED를 표시했다. character_reviews/party_recommendations의 CRUD 허용은 기존 상태다. 이 후보는 GRANT·기본 권한·API 노출 설정을 변경하지 않아 접근을 열지 않는다. 미리보기 UI 수정으로 신고 API가 활성화되는 것도 아니다.
 - public 역할의 과잉 TRUNCATE/REFERENCES/TRIGGER 권한은 별도 최소 권한 검토 후보다. 실제 Data API 호출·악용은 확인하지 않았고, 이 migration에서 추가 회수하지 않았다. 무관한 권한을 임의로 변경하지 않는다.
 
-현재 정책이 저장소에 존재한다는 사실은 확인했지만 전용 A/B/관리자 계정의 허용·거부 동작, 기존 Storage 관리자의 app_metadata 일치, migration 적용 결과는 아직 미검증이다. 운영 DDL은 실행하지 않았으며 후보를 운영 반영 완료로 보고하지 않는다.
+이 절의 항목은 최초 운영 읽기 점검 시점의 기록이다. 이후 관리자 일치·운영 DDL 적용·카탈로그 결과는 위 현재 상태 및 운영 적용 기록으로 갱신했다. 전용 계정의 전체 실제 API 허용/거부 여정은 여전히 미검증이다.
 
 ## 로컬 검증
 
@@ -36,7 +44,7 @@
 
 ## 운영 반영 조건
 
-위 현재 정책 검토 및 실제 DB 허용/거부 테스트가 모두 끝난 후 대상 프로젝트·migration 이력과 적용 SQL을 재대조하여 승인된 절차로 적용한다. 프론트와 SQL을 함께 배포하고 신고 count·작성/편집·고정·좋아요·신고의 정상 여정을 확인한다. 운영 침해/전체 보안 PASS는 이 변경만으로 판단하지 않는다. 현 단계는 배포 전 검증이 남은 상태다.
+일반적인 후속 배포는 위 현재 정책 검토 및 전용 DB 허용/거부 테스트 후 대상·이력·SQL을 대조하여 적용한다. 이번 운영 승인 작업은 사전 롤백 DDL 실행, 임시 복제 테이블 guard 검사, Storage 정책식 평가 후 반영했으며 기존 로컬 pgTAP/실제 계정 여정을 대체한 것으로 표현하지 않는다. 신고 count·작성/편집·고정·좋아요·신고의 실제 정상 여정은 별도 검증해야 한다. 운영 침해/전체 보안 PASS는 이 변경만으로 판단하지 않는다.
 
 ## 공식 기준
 
