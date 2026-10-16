@@ -4,6 +4,7 @@
 
 ## 현재 상태와 재실행 주의
 
+- 후속 콘텐츠 쓰기 보강 `20261016141014_restrict_content_writes_and_internal_function.sql`도 별도 사용자 승인 후 운영 적용했다. 캐릭터/공지/티어표의 관리자 쓰기 통일 및 내부 event 함수 클라이언트 EXECUTE 제한 결과는 [후속 적용 기록](../reports/2026-10-16-content-admin-policy-preflight.md)을 따른다. 기존 공개 SELECT와 테이블 grants는 유지했다.
 - 기존 등록 관리자 두 계정의 서버 관리 `app_metadata.role=admin` 저장을 재조회했다. JWT 반영을 위해 각 계정의 재로그인이 필요하다. 조직 소유권이나 DB superuser를 부여한 것은 아니다.
 - Storage 관리자 쓰기 정책 세 개에서 user_metadata/이메일 허용을 제거했다. 댓글 guard, 소유자 UPDATE 정책 정리, 신고 관계 비공개, 집계 함수 search_path/직접 실행 제한을 적용하고 카탈로그 재조회로 확인했다.
 - 운영 테이블 레코드의 일괄 수정, 운영 테스트 사용자·댓글·Storage 객체 생성, 기존 grant/API 공개 설정 변경은 하지 않았다.
