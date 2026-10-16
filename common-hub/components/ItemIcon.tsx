@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getItemMeta, getItemUrl, getAutoRarity, REVERSE_ITEM_MAP, getCleanItemName } from '../data/items';
 import { useTranslation } from 'react-i18next';
+import RecoverableImage from './RecoverableImage';
 
 interface ItemIconProps {
   name: string;
@@ -68,6 +69,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
   const cleanName = getCleanItemName(koName);
   const translatedName = t(cleanName, { keySeparator: false });
   const displayName = truncateMiddle(translatedName, currentSize.limit);
+  const ImageComponent = (gameId || itemInfo?.gameId) === 'ww' ? RecoverableImage : 'img';
 
   return (
     <div 
@@ -87,8 +89,8 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
       `}>
         <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity bg-white pointer-events-none z-20" />
         
-        <img 
-          src={imgSrc} 
+        <ImageComponent
+          src={imgSrc || '/assets/unknown.webp'}
           alt={translatedName}
           width="150"
           height="150"
@@ -96,7 +98,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
           decoding="async"
           style={{ imageRendering: 'auto' }}
           className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110"
-          onError={handleError}
+          onError={(gameId || itemInfo?.gameId) === 'ww' ? undefined : handleError}
         />
 
         {count !== undefined && count !== null && (

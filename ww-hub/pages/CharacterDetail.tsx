@@ -26,6 +26,7 @@ import {
 } from 'lucide-react';
 import * as htmlToImage from 'html-to-image';
 import ItemIcon from '../../common-hub/components/ItemIcon';
+import RecoverableImage from '../../common-hub/components/RecoverableImage';
 import WuwaSkillSection from '../components/WuwaSkillSection';
 import WuwaSkillInput from '../components/WuwaSkillInput';
 import WuwaResonanceChain from '../components/WuwaResonanceChain';
@@ -658,7 +659,7 @@ const CharacterDetail: React.FC = () => {
           
           {/* Left: Image with Integrated Info Overlay */}
           <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-[#0f0f0f] aspect-[3/4.5]">
-            <img 
+            <RecoverableImage
               src={getIllustrationUrl()} 
               alt={`${t(char.name)} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
