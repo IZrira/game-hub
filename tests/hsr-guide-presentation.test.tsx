@@ -110,6 +110,7 @@ describe('HSR guide selected build and analysis navigation', () => {
     const { container } = renderGuide('초구');
     await screen.findByRole('region', { name: '추천 세팅 요약' });
     fireEvent.click(screen.getByRole('button', { name: '지속 피해 세팅' }));
+    await waitFor(() => expect(screen.getByRole('button', { name: '지속 피해 세팅' }).getAttribute('aria-pressed')).toBe('true'));
     fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
     expect(container.querySelector('[id="추천 광추"]')).toBeNull();
     const analysis = HSR_CHARACTER_GUIDES.find(guide => guide.characterName === '초구')!.analysis!;
@@ -121,7 +122,7 @@ describe('HSR guide selected build and analysis navigation', () => {
       }
     });
     fireEvent.click(screen.getByRole('button', { name: '세팅 가이드' }));
-    expect(screen.getByRole('button', { name: '지속 피해 세팅' }).getAttribute('aria-pressed')).toBe('true');
+    await waitFor(() => expect(screen.getByRole('button', { name: '지속 피해 세팅' }).getAttribute('aria-pressed')).toBe('true'));
     expect(screen.getByRole('region', { name: '추천 세팅 요약' }).textContent).toContain('깊은 감옥에 수감된 죄수');
     await waitFor(() => {
       for (const navigation of screen.getAllByRole('navigation', { name: '공략 섹션 이동' })) {
