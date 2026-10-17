@@ -6585,10 +6585,10 @@
     "skillInput": {
       "overview": "개요\n\n플로로의 일반 공격 3단, 공명 스킬은 강화된 일반 공격 혹은 강화된 공명 스킬과 연계하여 서로 다른 「특수 에너지」를 획득할 수 있다\n\n6개의 「특수 에너지」를 획득 후 강화된 강공격을 발동하여 대량의 피해를 입히고 공명 해방을 해제할 수 있다\n\n공명 해방 발동 후 플로로는 「특수 에너지」를 차례대로 판독하여 헤카테의 강력한 공격 형식을 변경시킨다\n\n강화 상태 기간 동안, 파티 내 캐릭터가 에코 어빌리티 발동 시 헤카테가 강력한 공격을 발동한다",
       "inputs": [
-        "· 멸망과 죽음의 악장: 특수 에너지가 30 이상인 경우, [mouse left 이미지]+[mouse left 이미지]+[mouse left 이미지]+[mouse left 이미지] 혹은 [key E 이미지]+[mouse left 이미지]",
-        "· 영원히 사라지지 않는 잠꼬대: [mouse left 이미지]+[mouse left 이미지]+[mouse left 이미지]+ 길게 누르기+[key E 이미지] 혹은 [key E 이미지]+[key E 이미지]",
-        "· 마지막 작곡: 6개의 「흔들리는 음」을 보유하는 동시에 「표준음」 상태가 아닐 시 [mouse left 이미지] 길게 누르기",
-        "· 강화된 공격 · 헤카테: 지휘 상태에 있을 시, [mouse left 이미지]+[mouse left 이미지]+[mouse left 이미지] 혹은 파티 내 캐릭터가 에코 어빌리티 발동"
+        "· 멸망과 죽음의 악장: 특수 에너지가 30 이상인 경우, [mouse left]+[mouse left]+[mouse left]+[mouse left] 혹은 [key E]+[mouse left]",
+        "· 영원히 사라지지 않는 잠꼬대: [mouse left 이미지]+[mouse left 이미지]+[mouse left 이미지]+ 길게 누르기+[key E] 혹은 [key E]+[key E]",
+        "· 마지막 작곡: 6개의 「흔들리는 음」을 보유하는 동시에 「표준음」 상태가 아닐 시 [mouse left] 길게 누르기",
+        "· 강화된 공격 · 헤카테: 지휘 상태에 있을 시, [mouse left]+[mouse left]+[mouse left] 혹은 파티 내 캐릭터가 에코 어빌리티 발동"
       ],
       "hideGauge": true
     },

@@ -9,9 +9,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const ROOT_DIR = path.resolve(__dirname, '..');
 
-// TLS 인증서 검증 우회 (로컬 개발 및 사설 CA 환경 호환)
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
 // 1. .env 및 .env.local 파서
 function loadEnv() {
   const envFiles = ['.env', '.env.local'];
@@ -97,7 +94,7 @@ const extractRichText = (prop) => {
   return sanitizeAwsSecrets(res);
 };
 
-async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조') {
+async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조', selectedNames = null) {
   let results = [];
   let hasMore = true;
   let nextCursor = undefined;
@@ -153,6 +150,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         useSort = false;
         continue;
       } else {
+        if (selectedNames) throw e;
         console.error(`[Notion Sync] Query also failed without sort on ${dbId}:`, e.message);
         break;
       }
@@ -162,6 +160,10 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
   const itemsMap = new Map();
   let wwKeysLogged = false;
   
+  if (selectedNames) {
+    results = results.filter(page => selectedNames.includes(page.properties['캐릭터']?.title?.map(text => text.plain_text).join('')));
+    if (results.length !== selectedNames.length) throw new Error('Requested WW characters were missing or duplicated; refusing to overwrite.');
+  }
   for (const page of results) {
     const props = page.properties;
     
@@ -189,6 +191,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         const mdString = n2m.toMarkdownString(mdblocks);
         contentMarkdown = sanitizeAwsSecrets(mdString.parent || '');
       } catch (mdErr) {
+        if (selectedNames) throw mdErr;
         console.error(`[Notion Sync] Failed to fetch markdown content for page ${page.id}:`, mdErr);
       }
     }
@@ -429,6 +432,7 @@ async function fetchNotionData() {
   }
 
   if (!NOTION_TOKEN || NOTION_TOKEN === 'secret_xxxxxxxxx') {
+    if (process.argv.some(argument => argument.startsWith('--ww-character-names='))) throw new Error('Notion token missing; scoped synchronization did not run.');
     console.log('[Notion Sync] Notion token is missing. Skipping fetch.');
     if (!fs.existsSync(jsonPath)) {
       fs.writeFileSync(jsonPath, JSON.stringify([], null, 2), 'utf8');
@@ -439,6 +443,25 @@ async function fetchNotionData() {
   console.log('[Notion Sync] Connecting to Notion API...');
   const notion = new Client({ auth: NOTION_TOKEN, notionVersion: '2022-06-28' });
   const n2m = new NotionToMarkdown({ notionClient: notion });
+
+  const wwNamesArgument = process.argv.find(argument => argument.startsWith('--ww-character-names='));
+  if (wwNamesArgument) {
+    const names = wwNamesArgument.slice('--ww-character-names='.length).split(',').map(name => name.trim()).filter(Boolean);
+    if (!names.length || new Set(names).size !== names.length || !NOTION_WW_CHARACTER_DB_ID) throw new Error('Invalid scoped WW character request.');
+    const existing = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+    const fresh = await fetchFromDB(notion, NOTION_WW_CHARACTER_DB_ID, n2m, true, '명조', names);
+    for (const name of names) {
+      const matches = fresh.filter(item => item.name === name);
+      if (matches.length !== 1 || existing.filter(item => item.id === matches[0].id && item.type === '캐릭터').length !== 1) {
+        throw new Error(`Scoped WW identity mismatch: ${name}; refusing to overwrite.`);
+      }
+    }
+    const byId = new Map(fresh.map(item => [item.id, item]));
+    const combined = existing.map(item => item.type === '캐릭터' && byId.has(item.id) ? { ...item, ...byId.get(item.id) } : item);
+    fs.writeFileSync(jsonPath, JSON.stringify(combined, null, 2), 'utf8');
+    console.log(`[Notion Sync] Updated only ${names.join(', ')} (${fresh.length} characters).`);
+    return;
+  }
 
   if (process.argv.includes('--nte-guides-only')) {
     await syncNteGuides(notion, n2m, NOTION_NTE_GUIDES_DB_ID, ROOT_DIR);
