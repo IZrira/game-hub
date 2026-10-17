@@ -7,6 +7,7 @@ import notionData from './notion-data.json';
 import wwWeaponsKo from '../locales/ww/ww_weapons_ko.json';
 import wwCharactersKo from '../locales/ww/ww_characters_ko.json';
 import { parseNotionSkillInput, repairNotionSkillReferences } from '../../ww-hub/utils/notionSkillInput';
+import { parseWwNotionMaterials } from '../../ww-hub/utils/notionMaterials';
 import aniimoData from '../../aniimo-hub/data/aniimo-summary.json';
 
 export interface NotionItem {
@@ -251,41 +252,8 @@ export const getGameData = (targetId: string) => {
         });
       }
 
-      const parsedAscension: any[] = [];
-      if (item.ascensionMaterials) {
-        const parts = item.ascensionMaterials.split(/\n/);
-        parts.forEach((p: string) => {
-          const trimmed = p.trim();
-          if (trimmed) {
-            const nameMatch = trimmed.match(/([^\dx*,]+)/);
-            const countMatch = trimmed.match(/[\dx*,]+$/);
-            if (nameMatch) {
-              parsedAscension.push({
-                name: nameMatch[1].trim(),
-                count: countMatch ? parseInt(countMatch[0].replace(/[x*,]/g, ''), 10) : 1
-              });
-            }
-          }
-        });
-      }
-
-      const parsedTraces: any[] = [];
-      if (item.skillMaterials) {
-        const parts = item.skillMaterials.split(/\n/);
-        parts.forEach((p: string) => {
-          const trimmed = p.trim();
-          if (trimmed) {
-            const nameMatch = trimmed.match(/([^\dx*,]+)/);
-            const countMatch = trimmed.match(/[\dx*,]+$/);
-            if (nameMatch) {
-              parsedTraces.push({
-                name: nameMatch[1].trim(),
-                count: countMatch ? parseInt(countMatch[0].replace(/[x*,]/g, ''), 10) : 1
-              });
-            }
-          }
-        });
-      }
+      const parsedAscension = parseWwNotionMaterials(item.ascensionMaterials);
+      const parsedTraces = parseWwNotionMaterials(item.skillMaterials);
 
       const parsedSkills: any[] = [];
       const skillMap = [
