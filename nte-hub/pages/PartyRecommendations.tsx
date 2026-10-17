@@ -16,6 +16,7 @@ import { NTE_PARTY_COMBINATIONS, NTEPartyCombination } from '../data/parties';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
+import { NTE_PARTY_SEO } from '../../common-hub/data/ntePartySeo.js';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
 
@@ -223,9 +224,9 @@ const NTEPartyRecommendations: React.FC = () => {
   return (
     <div className="flex flex-col lg:flex-row bg-[#0a0a0a] min-h-screen text-gray-200">
       <SEO 
-        title={t("이환(NTE) 추천 파티 조합 및 4인 속성 시너지 가이드")}
-        description={t("이환(NTE)의 빛·령·주·암·상·혼 속성을 활용한 4인 추천 파티와 에스퍼 사이클 조합을 확인하세요.")}
-        url="/gallery/nte/parties"
+        title={t(NTE_PARTY_SEO.title)}
+        description={t(NTE_PARTY_SEO.description)}
+        url={NTE_PARTY_SEO.url}
         keywords="이환, Neverness to Everness, 파티 추천, 추천 조합, 구원 파티, 민트 파티, 6대 속성 시너지, 리라 아카이브"
       />
       <GallerySidebar />
@@ -241,10 +242,10 @@ const NTEPartyRecommendations: React.FC = () => {
                 <span className="text-[10px] font-black text-brand-accent tracking-[0.3em] uppercase">Tactical Synergies</span>
               </div>
               <h1 className="text-3xl md:text-5xl font-black text-white italic tracking-tighter mt-1">
-                4-SLOT ESPER COMBINATIONS
+                {t(NTE_PARTY_SEO.heading)}
               </h1>
               <p className="text-gray-400 text-sm mt-2 font-medium">
-                {t("헤테로 시티 왜곡 토벌 및 심층 구역을 위한 최적의 4인 이능력 파티 조합을 확인하세요.")}
+                {t(NTE_PARTY_SEO.description)}
               </p>
             </div>
 

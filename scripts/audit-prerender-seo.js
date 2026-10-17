@@ -4,6 +4,7 @@ import { fileURLToPath } from 'url';
 import { auditGoogleVerification } from './lib/google-verification.js';
 import { inspectPrerenderContent } from './lib/prerender-content-checks.js';
 import { inspectPrerenderHead } from './lib/prerender-head-checks.js';
+import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -145,6 +146,11 @@ for (const routePath of routes) {
   problems.push(...contentCheck.problems.map(problem => `${routePath}: ${problem}`));
   const { title, description, canonical, problems: headProblems } = inspectPrerenderHead(html);
   problems.push(...headProblems.map(problem => `${routePath}: ${problem}`));
+  if (routePath === NTE_PARTY_SEO.url) {
+    if (title !== `${NTE_PARTY_SEO.title} | RIRA ARCHIVE`) problems.push(`${routePath}: shared party title mismatch`);
+    if (description !== NTE_PARTY_SEO.description) problems.push(`${routePath}: shared party description mismatch`);
+    if (!html.includes(`<h1>${NTE_PARTY_SEO.heading}</h1>`)) problems.push(`${routePath}: shared party heading mismatch`);
+  }
   const textLength = extractText(html).length;
   const internalLinks = [...html.matchAll(/<a\s+[^>]*href="\/(?!\/)/g)].length;
 

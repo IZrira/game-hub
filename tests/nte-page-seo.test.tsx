@@ -6,6 +6,7 @@ import CharacterDetailNTE from '../nte-hub/pages/CharacterDetail';
 import NTEPartyRecommendations from '../nte-hub/pages/PartyRecommendations';
 import { NTE_CHARACTER_DATA } from '../nte-hub/data/characterData';
 import { NTE_PARTY_COMBINATIONS } from '../nte-hub/data/parties';
+import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 
 const seo = vi.hoisted(() => vi.fn());
 vi.mock('../common-hub/components/SEO', () => ({ default: (props: unknown) => { seo(props); return null; } }));
@@ -52,6 +53,10 @@ describe('NTE page canonical inputs', () => {
 
     const props = seo.mock.lastCall![0];
     expect(props.url).toBe('/gallery/nte/parties');
+    expect(props.title).toBe(NTE_PARTY_SEO.title);
+    expect(props.description).toBe(NTE_PARTY_SEO.description);
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(NTE_PARTY_SEO.heading);
+    expect(screen.getByText(NTE_PARTY_SEO.description)).toBeTruthy();
     expect(props.description).toBe('이환(NTE)의 빛·령·주·암·상·혼 속성을 활용한 4인 추천 파티와 에스퍼 사이클 조합을 확인하세요.');
     expect(screen.getAllByRole('heading', { level: 4 }).map(heading => heading.textContent)).toEqual(NTE_PARTY_COMBINATIONS.map(party => party.name));
   });

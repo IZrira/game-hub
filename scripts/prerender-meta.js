@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { sanitizePublicGuideData } from './lib/public-guide-links.js';
 import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
+import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -3033,9 +3034,7 @@ function runPrerender() {
           body: `<h2>파티 구성 기준</h2><p>메인 딜러의 주력 피해 유형을 정한 뒤 이를 강화하는 반주 스킬과 빠르게 협주 에너지를 채우는 공명자를 연결하세요. 힐러와 실드 역할도 단순 생존뿐 아니라 버프 유지와 교대 흐름에 영향을 줍니다.</p><h2>교대 순서와 대체 멤버</h2><p>추천 캐릭터를 보유하지 않았다면 같은 속성보다 같은 역할과 반주 효과를 우선 비교하세요. 공명 스킬·공명 해방 사용 후 다음 공명자에게 어떤 강화가 전달되는지, 버프 지속 시간 안에 주력 공격을 끝낼 수 있는지를 확인해야 합니다. 각 공명자 상세 도감과 세팅 가이드에서 에코 세트, 무기와 실제 운용 순서를 함께 확인할 수 있습니다.</p>`
         },
         '/gallery/nte/parties': {
-          title: '이환 추천 파티 | 4인 속성·에스퍼 사이클 조합',
-          description: '이환(NTE)의 4인 추천 파티, 캐릭터 역할, 속성 조합과 에스퍼 사이클 연결 순서 및 대체 캐릭터를 확인하세요.',
-          heading: '이환 4인 추천 파티 조합',
+          ...NTE_PARTY_SEO,
           body: ntePartiesBody
         }
       };
