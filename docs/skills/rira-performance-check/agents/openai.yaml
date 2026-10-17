@@ -1,0 +1,4 @@
+interface:
+  display_name: "성능점검"
+  short_description: "RIRA 실제 로딩 병목과 번들 회귀를 측정해 비교 점검"
+  default_prompt: "$rira-performance-check 지정한 대상만 점검하고 근거와 미검증 항목을 알려줘. 수정·설치는 별도 요청 범위에서만 해."

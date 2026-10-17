@@ -1,0 +1,4 @@
+interface:
+  display_name: "UI점검"
+  short_description: "RIRA 허브 간 크기·여백·반응형·접근성 일관성 점검"
+  default_prompt: "$rira-ui-check 지정한 대상만 점검하고 근거와 미검증 항목을 알려줘. 수정·설치는 별도 요청 범위에서만 해."

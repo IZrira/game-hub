@@ -1,0 +1,4 @@
+interface:
+  display_name: "스킬점검"
+  short_description: "외부 스킬 설치 전 명령·훅·비밀 전송·권한 요구를 점검"
+  default_prompt: "$rira-skill-audit 지정한 대상만 점검하고 근거와 미검증 항목을 알려줘. 수정·설치는 별도 요청 범위에서만 해."

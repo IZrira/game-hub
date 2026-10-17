@@ -1,0 +1,4 @@
+interface:
+  display_name: "SEO점검"
+  short_description: "RIRA 검색 색인·초기 HTML·내부 링크·구조화 데이터 점검"
+  default_prompt: "$rira-seo-check 지정한 대상만 점검하고 근거와 미검증 항목을 알려줘. 수정·설치는 별도 요청 범위에서만 해."
