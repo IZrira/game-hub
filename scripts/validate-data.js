@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { isValidHsrRelicReference } from './lib/hsr-relic-reference.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -206,6 +207,7 @@ function validateHsr() {
 
   // Relics (evaluated loading)
   const relics = new Set();
+  const relicDefinitions = [];
   if (fs.existsSync(hsrRelicsFile)) {
     try {
       let content = fs.readFileSync(hsrRelicsFile, 'utf8');
@@ -213,7 +215,10 @@ function validateHsr() {
       content = content.replace(/export\s+default\s+RELIC_DATA;?/, '');
       const list = new Function(content)() || [];
       list.forEach(r => {
-        if (r.name) relics.add(r.name.trim());
+        if (r.name) {
+          relics.add(r.name.trim());
+          relicDefinitions.push(r);
+        }
       });
     } catch(e) {}
   }
@@ -270,7 +275,7 @@ function validateHsr() {
             ];
             allGuideRelics.forEach(r => {
               const rName = typeof r === 'string' ? r.trim() : r?.name?.trim();
-              if (rName && !relics.has(rName)) {
+              if (rName && !isValidHsrRelicReference(rName, relicDefinitions)) {
                 logWarn(`HSR guide "${guide.characterName}" references unindexed Relic: "${rName}"`);
               }
             });
