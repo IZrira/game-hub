@@ -67,14 +67,36 @@ describe('shared guide body contract', () => {
     expect(rows.some(row => row.textContent?.includes(' or '))).toBe(false);
   });
 
-  it('does not add an empty analysis view when source analysis is unavailable', async () => {
-    const { container } = renderCase({ ...cases[1], path: '/gallery/ww/character/yinlin/guide' });
+  it.each(['immediate', 'deferred'] as const)('retains WW variant selection without empty analysis after %s data loading', async loading => {
+    const fetchGuide = mockHsrGuideFetch();
+    let release!: () => void;
+    if (loading === 'deferred') {
+      const pending = new Promise<void>(resolve => { release = resolve; });
+      vi.stubGlobal('fetch', vi.fn(async (input: string | URL | Request) => {
+        await pending;
+        return fetchGuide(input);
+      }));
+    }
+    let result!: ReturnType<typeof renderCase>;
+    await act(async () => {
+      result = renderCase({ ...cases[1], path: '/gallery/ww/character/yinlin/guide' });
+    });
+    const { container } = result;
+    if (loading === 'deferred') {
+      expect(screen.queryByRole('region', { name: '추천 세팅 요약' })).toBeNull();
+      await act(async () => { release(); });
+    }
     await screen.findByRole('region', { name: '추천 세팅 요약' });
-    fireEvent.click(screen.getByRole('button', { name: '떠오르는 구름 5세트' }));
+    // Flush loading effects before interacting; DOM presence alone is not readiness.
+    await act(async () => {
+      fireEvent.click(screen.getByRole('button', { name: '떠오르는 구름 5세트' }));
+    });
+    await waitFor(() => {
+      expect(screen.getByRole('button', { name: '떠오르는 구름 5세트' }).getAttribute('aria-pressed')).toBe('true');
+    });
     // Keep the same frame, but never open analysis without source content.
     expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(true);
     expect(container.querySelector('[data-guide-section="analysis"]')).toBeNull();
-    expect(screen.getByRole('button', { name: '떠오르는 구름 5세트' }).getAttribute('aria-pressed')).toBe('true');
   });
 
   it.each(['immediate', 'deferred'] as const)('switches published WW analysis after %s data loading', async loading => {
