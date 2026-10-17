@@ -260,7 +260,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
         </div>
 
         {/* Member Grid */}
-        <div className={`grid gap-4 ${gameId === 'hsr' ? 'grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto' : isThreeMemberGrid ? 'grid-cols-1 sm:grid-cols-3' : 'grid-cols-2 md:grid-cols-4'}`}>
+        <div className={`grid gap-4 ${gameId === 'hsr' || !isThreeMemberGrid ? 'grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto' : 'grid-cols-2 sm:grid-cols-3 max-w-2xl mx-auto'}`}>
           {activeParty.members.map((member: UnifiedPartyMember, idx: number) => {
             const substitutes = calculateSubstitutes(member, gameId);
             const isDrawerOpen = !!expandedSubstitutes[member.id];
