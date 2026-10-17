@@ -11,3 +11,10 @@ it('keeps scoped WW synchronization fail-closed and preserves existing records',
 it('does not disable TLS verification for Notion synchronization', () => {
   expect(script).not.toMatch(/NODE_TLS_REJECT_UNAUTHORIZED\s*=\s*['"]0/);
 });
+it('keeps Phrolova input tokens recognizable as icons without the image suffix', () => {
+  const items = JSON.parse(fs.readFileSync('common-hub/data/notion-data.json', 'utf8'));
+  const characters = items.filter((item: { name: string; type: string }) => item.name === '플로로' && item.type === '캐릭터');
+  expect(characters).toHaveLength(1);
+  expect(characters[0].skillInputGuide).toContain('[mouse left]');
+  expect(characters[0].skillInputGuide).not.toMatch(/\[(?:mouse left|key E)\s+이미지\]/i);
+});
