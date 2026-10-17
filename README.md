@@ -1,5 +1,7 @@
 # 🪐 Rira Game Hub & P-Reinforce: Autonomous Knowledge Engine
 
+> 개발 작업의 공통 규칙은 [`AGENTS.md`](./AGENTS.md)를 따릅니다. 원격 코드·이미지 저장소 조회는 [`GitHub MCP 운영 기준`](./docs/guides/GITHUB_MCP.md)을 사용하며, 로컬 Git 검증·커밋·푸시 절차는 그대로 유지합니다.
+
 > UI·UX 작업은 프로젝트 루트의 [`DESIGN.md`](./DESIGN.md)를 유일한 디자인 정책 기준으로 사용합니다. 공통 컴포넌트와 상태별 체크리스트는 `docs/design-system/`에서 관리합니다.
 
 > 성능 변경과 신규 콘텐츠 개발은 [`성능 유지 기준`](./docs/guides/PERFORMANCE.md)을 따릅니다. 빌드 후 `npm run perf:audit`로 용량 회귀를 검사합니다.
@@ -38,7 +40,7 @@
    - **2순위 (localStorage Cache)**: `0ms` 지연 없는 즉각적인 로컬 캐싱 및 브라우저 즉시 렌더링.
    - **3순위 (TypeScript Code Exporter)**: `exportPartyToTSCode()` 직렬화 엔진으로 `[코드 내보내기]` 원클릭 클립보드 복사 ➡️ 소스코드 영구 병합.
 4. **비동기 데이터 동기화 (Notion API)**:
-   - `fetch-notion-data.js` 스크립트가 Notion 데이터베이스를 정기적으로 크롤링하여 로컬 JSON 스키마로 변환.
+   - Notion 데이터 동기화는 사용자가 명시적으로 요청한 경우에만 프로젝트의 공식 스크립트로 실행합니다. 일반 빌드에서 임의로 동기화하지 않으며, 로컬 원본과 중복·충돌을 확인합니다. 실행 기준은 `AGENTS.md`를 따릅니다.
 5. **소셜 로그인 및 보안 리뷰 시스템 (Supabase Auth & RLS)**:
    - Google 및 Discord OAuth 로그인을 지원하는 완벽한 인증 시스템.
    - 캐릭터 리뷰 및 댓글 작성 시 작성자 본인만 수정/삭제 가능하도록 행 수준 보안(RLS) 적용.

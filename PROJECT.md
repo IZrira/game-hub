@@ -2,6 +2,9 @@
 
 ## Development Standards
 
+- 공통 작업·검증·동기화·Git 처리 기준: `AGENTS.md`
+- GitHub 원격 조회 및 인증 운영 기준: `docs/guides/GITHUB_MCP.md`
+- MCP 연결 확인은 코드 저장소와 이미지 저장소 조회 성공을 뜻하며, CI·Cloudflare 배포·이미지 CDN 정상 여부까지 보장하지 않는다.
 - UI·UX 정책의 단일 기준: `DESIGN.md`
 - 공통 컴포넌트 레지스트리: `docs/design-system/components.md`
 - 상태·접근성 검증: `docs/design-system/ux-principles.md`
