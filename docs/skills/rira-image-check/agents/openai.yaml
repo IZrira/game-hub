@@ -1,0 +1,4 @@
+interface:
+  display_name: "이미지점검"
+  short_description: "RIRA 이미지 누락·대체 표시의 원본·경로·로딩 진단"
+  default_prompt: "$rira-image-check 지정한 페이지의 이미지 원본과 파일명·경로·로딩을 대조해 원인을 확인해."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "검증배포"
+  short_description: "RIRA 변경 검증과 안전한 커밋·푸시·배포 결과 확인"
+  default_prompt: "$rira-verify-deploy 현재 작업 변경만 검증하고 허용된 커밋·푸시·자동 배포 결과를 확인해."
