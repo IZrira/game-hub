@@ -512,6 +512,16 @@ fs.writeFileSync(wwGuideCharactersPath, `${JSON.stringify(notionWwGuideCharacter
 fs.writeFileSync(wwGuidesPath, `${JSON.stringify(notionWwGuides, null, 2)}\n`, 'utf8');
 const wwData = await buildWwData();
 const wwCharacters = wwData.CHARACTER_DB;
+// Fail the production build instead of publishing unresolved internal translation keys.
+const wwKoreanTranslations = Object.assign({}, ...['common-hub/ko.json', 'common-hub/locales/ww/ww_characters_ko.json', 'common-hub/locales/ww/ww_ui_ko.json']
+  .map(file => JSON.parse(fs.readFileSync(path.join(projectRoot, file), 'utf8'))));
+const missingWwKeys = new Set();
+const auditWwReferences = value => {
+  if (typeof value === 'string' && /^character\.[\w]+\.[\w.]+$/.test(value) && !wwKoreanTranslations[value]) missingWwKeys.add(value);
+  else if (value && typeof value === 'object') Object.values(value).forEach(auditWwReferences);
+};
+wwCharacters.forEach(auditWwReferences);
+if (missingWwKeys.size) throw new Error(`[WW] Unresolved character translations: ${[...missingWwKeys].join(', ')}`);
 fs.writeFileSync(wwCharactersPath, `${JSON.stringify(wwCharacters, null, 2)}\n`, 'utf8');
 fs.writeFileSync(wwAdminWeaponsPath, `${JSON.stringify((wwData.WEAPON_DB || []).map(weapon => ({
   id: weapon.id,

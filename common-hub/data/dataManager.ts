@@ -5,6 +5,8 @@ import { CHARACTER_DB_EN } from './index';
 import i18n from '../i18n';
 import notionData from './notion-data.json';
 import wwWeaponsKo from '../locales/ww/ww_weapons_ko.json';
+import wwCharactersKo from '../locales/ww/ww_characters_ko.json';
+import { parseNotionSkillInput, repairNotionSkillReferences } from '../../ww-hub/utils/notionSkillInput';
 import aniimoData from '../../aniimo-hub/data/aniimo-summary.json';
 
 export interface NotionItem {
@@ -811,28 +813,6 @@ export const getGameData = (targetId: string) => {
     const key = (c.folderName || c.originalName || c.name || '').trim();
     if (key) wwCharMap.set(key, c);
   });
-  const normalizeNotionGuide = (text: string) => {
-    if (!text) return '';
-    let normalized = text.replace(/\r\n/g, '\n');
-    normalized = normalized.replace(/^스킬 입력 가이드[^\n]*\n?/i, '');
-    normalized = normalized.replace(/(?<!\n)\n(?!\n)/g, '\n\n');
-    normalized = normalized.replace(/\[공명 회로 게이지 이미지(\d*)(?:\.webp)?\]/g, '[공명 회로 게이지$1.webp]');
-    return normalized.trim();
-  };
-
-  const extractOverviewAndInputs = (text: string) => {
-    if (!text) return { overview: '', extractedInputs: [] };
-    const match = text.match(/\n\n(메커니즘 설명|조작 입력)\n\n/);
-    if (match) {
-      const splitIndex = match.index;
-      const overview = text.substring(0, splitIndex!).trim();
-      const mechText = text.substring(splitIndex!).trim();
-      const extractedInputs = mechText.replace(/^(메커니즘 설명|조작 입력)\n\n/, '').split('\n\n').filter(Boolean);
-      return { overview, extractedInputs };
-    }
-    return { overview: text, extractedInputs: [] };
-  };
-
   notionCharacters.forEach(c => {
     const key = (c.folderName || c.originalName || c.name || '').trim();
     if (key) {
@@ -840,8 +820,7 @@ export const getGameData = (targetId: string) => {
       let rawGuide = c.skillInputGuide || '';
       if (rawGuide.trim().toLowerCase() === 'a') rawGuide = ''; // Ignore 'a' placeholder
 
-      const normalizedGuide = rawGuide ? normalizeNotionGuide(rawGuide) : '';
-      const { overview, extractedInputs } = extractOverviewAndInputs(normalizedGuide);
+      const { overview, extractedInputs } = parseNotionSkillInput(rawGuide);
 
       let finalInputs = c.combatCycle ? c.combatCycle.split('\n').filter(Boolean) : [];
       if (finalInputs.length === 0 && extractedInputs.length > 0) {
@@ -872,6 +851,7 @@ export const getGameData = (targetId: string) => {
 
         wwCharMap.set(key, {
           ...existing,
+          ...repairNotionSkillReferences(existing, c.skills || [], wwCharactersKo),
           name: c.name || existing.name || '',
           attribute: c.attribute || existing.attribute || '',
           weaponType: c.weaponType || existing.weaponType || '' as any,
