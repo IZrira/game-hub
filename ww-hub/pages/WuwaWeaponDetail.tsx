@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router';
 import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2, Users } from 'lucide-react';
 import { WW_WEAPON_DATA } from '../data/weaponData';
 import { getWwWeaponSeo } from '../../common-hub/utils/wwWeaponSeo.js';
+import { getWwWeaponLevelOptions } from '../utils/weaponLevels';
 import { WW_RECOMMENDATION_CHARACTERS, WW_RECOMMENDATION_GUIDES } from '../data/recommendationData';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -15,8 +16,6 @@ import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
-
-const LEVEL_STEPS = [1, 20, 40, 50, 60, 70, 80, 90];
 
 const VERSION_UPDATES: Record<string, string> = {
   "1.0": "2024-05-23",
@@ -470,7 +469,12 @@ const WuwaWeaponDetail = () => {
     return encodeURI(`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/Weapons/${t(weapon.name).normalize('NFC')}.webp`);
   };
 
-  const currentStats = getWwWeaponStatsForLevel(weapon.stats.atk, weapon.stats.subStatValue, LEVEL_STEPS[levelIdx], weapon.name);
+  const levelOptions = getWwWeaponLevelOptions(weapon);
+  const maxLevelIdx = levelOptions.levels.length - 1;
+  const selectedLevelIdx = Math.min(levelIdx, maxLevelIdx);
+  const selectedLevel = levelOptions.levels[selectedLevelIdx];
+  const currentStats = levelOptions.rows?.[selectedLevelIdx]
+    || getWwWeaponStatsForLevel(weapon.stats.atk, weapon.stats.subStatValue, selectedLevel, weapon.name);
   const weaponSeo = getWwWeaponSeo(weapon, (text: string) => t(text));
 
 
@@ -564,22 +568,23 @@ const WuwaWeaponDetail = () => {
                   <div 
                     className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg z-10"
                     style={{ 
-                      left: `${(levelIdx / 7) * 100}%`,
+                      left: `${(selectedLevelIdx / maxLevelIdx) * 100}%`,
                       backgroundColor: theme.primary,
                       boxShadow: `0 0 10px ${theme.primary}40`
                     }}
                   >
-                    Lv.{LEVEL_STEPS[levelIdx]}
+                    Lv.{selectedLevel}
                   </div>
                   <input 
-                    type="range" min="0" max="7" value={levelIdx} 
+                    type="range" min="0" max={maxLevelIdx} value={selectedLevelIdx}
+                    aria-label={t('무기 레벨')} aria-valuetext={`Lv.${selectedLevel}`}
                     onChange={(e) => setLevelIdx(parseInt(e.target.value))}
                     className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-brand-primary"
                     style={{ accentColor: theme.primary }}
                   />
                   <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                     <span>1</span>
-                    <span>90</span>
+                    <span>{levelOptions.levels[maxLevelIdx]}</span>
                   </div>
                 </div>
               </div>
