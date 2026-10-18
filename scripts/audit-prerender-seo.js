@@ -5,6 +5,7 @@ import { auditGoogleVerification } from './lib/google-verification.js';
 import { inspectPrerenderContent } from './lib/prerender-content-checks.js';
 import { inspectPrerenderHead } from './lib/prerender-head-checks.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
+import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -118,6 +119,12 @@ const searchConsolePriorityRoutes = [
 ];
 
 const problems = [];
+const priorityWeaponNames = ['전우의 의리', '태초의 권갑'];
+const priorityWeapons = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'ww-hub/data/generated/weapons.json'), 'utf8'))
+  .filter(weapon => priorityWeaponNames.includes(weapon.name));
+for (const name of priorityWeaponNames) {
+  if (!priorityWeapons.some(weapon => weapon.name === name)) problems.push(`WW priority weapon missing: ${name}`);
+}
 problems.push(...auditGoogleVerification(
   fs.readFileSync(path.join(ROOT_DIR, 'index.html'), 'utf8'),
   fs.readFileSync(path.join(DIST_DIR, 'index.html'), 'utf8')
@@ -146,6 +153,13 @@ for (const routePath of routes) {
   problems.push(...contentCheck.problems.map(problem => `${routePath}: ${problem}`));
   const { title, description, canonical, problems: headProblems } = inspectPrerenderHead(html);
   problems.push(...headProblems.map(problem => `${routePath}: ${problem}`));
+  const priorityWeapon = priorityWeapons.find(weapon => routePath === `/gallery/ww/weapon/${weapon.name}`);
+  if (priorityWeapon) {
+    const expected = getWwWeaponSeo(priorityWeapon);
+    if (title !== `${expected.title} | RIRA ARCHIVE` || description !== expected.description) problems.push(`${routePath}: weapon metadata differs from runtime data`);
+    if (!html.includes(`<h1>${expected.heading}</h1>`)) problems.push(`${routePath}: weapon heading mismatch`);
+    if (html.includes('레벨별 성장 스탯 (1~90Lv)')) problems.push(`${routePath}: unverified fixed growth level range`);
+  }
   if (routePath === NTE_PARTY_SEO.url) {
     if (title !== `${NTE_PARTY_SEO.title} | RIRA ARCHIVE`) problems.push(`${routePath}: shared party title mismatch`);
     if (description !== NTE_PARTY_SEO.description) problems.push(`${routePath}: shared party description mismatch`);

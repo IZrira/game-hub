@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { Star, ShieldCheck, ChevronDown, ChevronUp, Package, Info, Copy, CheckCircle2, Users } from 'lucide-react';
 import { WW_WEAPON_DATA } from '../data/weaponData';
+import { getWwWeaponSeo } from '../../common-hub/utils/wwWeaponSeo.js';
 import { WW_RECOMMENDATION_CHARACTERS, WW_RECOMMENDATION_GUIDES } from '../data/recommendationData';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -470,14 +471,15 @@ const WuwaWeaponDetail = () => {
   };
 
   const currentStats = getWwWeaponStatsForLevel(weapon.stats.atk, weapon.stats.subStatValue, LEVEL_STEPS[levelIdx], weapon.name);
+  const weaponSeo = getWwWeaponSeo(weapon, (text: string) => t(text));
 
 
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary relative">
       <SEO 
-        title={`${t(weapon.name)} ${t('상세 정보 및 스탯 | 명조 아카이브')}`} 
-        description={`${t('명조 (Wuthering Waves)')} ${weapon.rarity}${t('성')} ${t(weapon.type)} ${t(weapon.name)}${t('의 상세 스탯, 무기 스킬, 획득처 및 스토리를 확인하세요.')}`}
+        title={weaponSeo.title}
+        description={weaponSeo.description}
         image={getIllustrationUrl()}
         url={`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`}
         modifiedTime={lastUpdatedDate}
@@ -529,7 +531,7 @@ const WuwaWeaponDetail = () => {
                   )}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
-                  {t(weapon.name)}
+                  {weaponSeo.heading}
                 </h1>
               </div>
               

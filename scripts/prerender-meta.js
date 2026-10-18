@@ -2,6 +2,7 @@ import fs from 'fs';
 import { sanitizePublicGuideData } from './lib/public-guide-links.js';
 import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
+import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -1900,7 +1901,7 @@ function generateHsrGuideHtml(id, guide, char, hsrPartiesList) {
 
 function generateRichWwWeaponHtml(weaponName, wpId, wpNotion, recommendedChars = []) {
   let html = `<article>\n`;
-  html += `<h1>명조 ${escapeHtml(weaponName)} 상세 정보 및 추천 캐릭터</h1>\n`;
+  html += `<h1>${escapeHtml(weaponName)}</h1>\n`;
 
   const rarity = wpNotion?.rarity || (wpId?.includes('wp-5') ? 5 : wpId?.includes('wp-4') ? 4 : wpId?.includes('wp-3') ? 3 : '');
   const type = wpNotion?.type || (wpId?.includes('-bb-') ? '대검' : wpId?.includes('-sw-') ? '직검' : wpId?.includes('-ps-') ? '권총' : wpId?.includes('-ga-') ? '권갑' : wpId?.includes('-rc-') ? '증폭기' : '무기');
@@ -1935,7 +1936,7 @@ function generateRichWwWeaponHtml(weaponName, wpId, wpNotion, recommendedChars =
 
   // Growth Stats
   if (wpNotion?.growthStats) {
-    html += `<h2>레벨별 성장 스탯 (1~90Lv)</h2>\n<pre>${escapeHtml(wpNotion.growthStats)}</pre>\n`;
+    html += `<h2>레벨별 성장 스탯</h2>\n<pre>${escapeHtml(wpNotion.growthStats)}</pre>\n`;
   }
 
   // Ascension Materials
@@ -2510,10 +2511,11 @@ function runPrerender() {
   allWwWeapons.forEach(({ name, id, wpNotion }) => {
     const routePath = `/gallery/ww/weapon/${encodeURIComponent(name)}`;
     const recommendedChars = wwWeaponToChars.get(name) || [];
+    const weaponSeo = getWwWeaponSeo({ name, rarity: wpNotion?.rarity, type: wpNotion?.type });
     createPrerenderedPage(
       routePath,
-      `${name} 옵션 비교 및 추천 착용 캐릭터 | 명조 무기 DB`,
-      `명조 무기 ${name}의 돌파별 상세 능력치, 스킬 효과, 속성 보너스 및 추천 착용 공명자 완벽 분석 가이드.`,
+      weaponSeo.title,
+      weaponSeo.description,
       `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(name)}.webp`,
       baseHtml,
       generateRichWwWeaponHtml(name, id, wpNotion, recommendedChars)
