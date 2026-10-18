@@ -36,7 +36,7 @@ const NTE_PARTY_FILE = path.join(ROOT_DIR, 'nte-hub', 'data', 'parties.ts');
 
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://riragamehub.com';
-const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 const prerenderedRoutes = new Set();
 const globalHsrNameToIdMap = new Map();
 const globalWwNameToIdMap = new Map();

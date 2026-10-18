@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { WW_ECHO_DATA } from '../data/echoData';
 import { SONATA_SETS, WuwaEcho, SonataType } from '../types';
 import { ItemPremiumCard, RelicPremiumCard } from '../../common-hub/components/GalleryCards';
-import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, handleImageFallback } from '../../common-hub/utils/assetManager';
 
 // 에코 도감 및 모달 내 공통 경로 설정
 const getSonataIconUrl = (setName: string) => {
@@ -102,6 +102,7 @@ const WuwaEchoGallery: React.FC = () => {
                 >
                   <img 
                     src={getSonataIconUrl(set)} 
+                    onError={handleImageFallback}
                     alt={set} 
                     className="w-8 h-8 object-contain drop-shadow-md"
                   />
@@ -164,7 +165,9 @@ const EchoPremiumCard = ({ echo, to }: { echo: WuwaEcho, to: string }) => {
               const folderName = (echo as any).folderName;
               if (folderName && !target.src.includes(safeEncodeURIComponent(folderName))) {
                 target.src = `${CDN_URL}/ww%20images/Echo/${safeEncodeURIComponent(folderName)}.webp`;
+                return;
               }
+              handleImageFallback(e);
             }}
           />
         </div>

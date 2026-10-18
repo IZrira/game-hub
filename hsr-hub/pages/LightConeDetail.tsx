@@ -55,7 +55,7 @@ const LightConeDetail: React.FC = () => {
   if (!lc) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Light Cone Registry Not Found')}</div>;
 
   const getIllustrationUrl = () => {
-    const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+    const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
     const targetName = lc.fileName || lc.folderName || lc.name || '';
     
     return (lc as any).gameId === 'ww'

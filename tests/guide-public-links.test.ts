@@ -96,7 +96,7 @@ describe('public guide link policy', () => {
       '',
       '[일반 링크](https://example.com/guide)',
       '',
-      '![장비 이미지](https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/weapon.webp)',
+      '![장비 이미지](https://raw.githubusercontent.com/IZrira/riragameinfo/main/weapon.webp)',
     ].join('\n');
     const sanitized = sanitizePublicGuideText(text);
     const html = renderToStaticMarkup(React.createElement(ReactMarkdown, { remarkPlugins: [remarkGfm] }, sanitized));
@@ -106,7 +106,7 @@ describe('public guide link policy', () => {
     expect(html).toContain('참고 세팅');
     expect(decodeURI(html)).toContain('href="/gallery/ww?menu=캐릭터"');
     expect(html).toContain('href="https://example.com/guide"');
-    expect(html).toContain('src="https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/weapon.webp"');
+    expect(html).toContain('src="https://raw.githubusercontent.com/IZrira/riragameinfo/main/weapon.webp"');
   });
 
   it('preserves ordinary links, internal paths and gameplay text exactly', () => {
@@ -116,7 +116,7 @@ describe('public guide link policy', () => {
       '[광추 설명](/gallery/hsr/lightcone/흘러가는%20강가를%20따라)',
       '[일반 링크](https://example.com/guide?ref=notion.so)',
       '[도메인 이름이 다른 링크](https://notion.so.example.com/guide)',
-      '![무기](https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/weapon.webp)',
+      '![무기](https://raw.githubusercontent.com/IZrira/riragameinfo/main/weapon.webp)',
     ].join('\n');
 
     expect(sanitizePublicGuideText(text)).toBe(text);

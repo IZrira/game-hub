@@ -466,7 +466,7 @@ const WuwaWeaponDetail = () => {
   );
 
   const getIllustrationUrl = () => {
-    return encodeURI(`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images/Weapons/${t(weapon.name).normalize('NFC')}.webp`);
+    return encodeURI(`https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww images/Weapons/${t(weapon.name).normalize('NFC')}.webp`);
   };
 
   const levelOptions = getWwWeaponLevelOptions(weapon);

@@ -1,3 +1,4 @@
+import { handleImageFallback } from '../utils/assetManager';
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Star, Package, Info, MapPin } from 'lucide-react';
@@ -63,15 +64,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
 
   const theme = getRarityTheme(rarity);
 
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    if (resolvedGameId === 'nte') {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp"; // 비틀 코인
-    } else if (resolvedGameId === 'ww') {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp"; // 클레딧
-    } else {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp"; // 신용 포인트
-    }
-  };
+  const handleError = handleImageFallback;
 
   const isGenderSplit = itemData?.itemAttribute?.includes('남여 분리') || itemData?.itemAttribute?.includes('남녀 분리') || 
     ['행복한 「에이본」 가족', '프로필-「비일상적인 복장」', '프로필-그래피티 타임', '프로필-헌터는 휴가 중', '프로필-환상의 콤비'].includes(koName);

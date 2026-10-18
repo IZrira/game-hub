@@ -50,7 +50,7 @@ function getStaticNotices() {
 }
 
 const BASE_URL = 'https://riragamehub.com';
-const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
 // URL 인코딩 헬퍼 (공백을 %20으로 변환하고 괄호 등을 처리)
 function encodeAssetPath(str) {

@@ -29,7 +29,7 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
 
 const CharacterCard = memo(({ char, gameId }: { char: NTETierCharacter, gameId: string | undefined }) => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte images';
+  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte images';
   const imgUrl = `${BASE_IMAGE_URL}/skills/${encodeURIComponent(char.folderName || char.name)}/${encodeURIComponent(`${char.fileName || char.name}${char.isTrailblazer ? '_f' : ''}`)}.webp`;
 
   return (

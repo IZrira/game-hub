@@ -12,7 +12,7 @@ import { getHsrCharacterArtUrl } from '../../common-hub/utils/assetManager';
 import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
 
-const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
 const CHARACTER_DB = characterSummary;
 
 const normalizeName = (name: string) => {

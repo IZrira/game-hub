@@ -23,7 +23,7 @@ import { useTranslation } from 'react-i18next';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 import { supabase } from '../../common-hub/lib/supabase';
 
-const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
 
 const normalizeName = (name: string) => {
   if (!name) return "";

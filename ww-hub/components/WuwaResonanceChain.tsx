@@ -43,7 +43,7 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
                     className="w-full h-full object-contain brightness-110" 
                     alt={cleanName} 
                     onError={(e) => {
-                      (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/skill_placeholder.webp';
+                      (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/skill_placeholder.webp';
                     }}
                   />
                   <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-black/80 border border-white/20 flex items-center justify-center text-[10px] font-black text-white italic shadow-lg">

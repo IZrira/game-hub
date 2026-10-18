@@ -199,16 +199,7 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
   const itemName = item.name || '';
   const imgPath = item.url || getItemUrl(itemName, item.gameId || gameId, item.fileName || item.folderName);
 
-  const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-    const fallbackGameId = item.gameId || gameId || 'hsr';
-    if (fallbackGameId === 'nte') {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
-    } else if (fallbackGameId === 'ww') {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp";
-    } else {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp";
-    }
-  };
+  const handleError = handleImageFallback;
 
   const getRarityStyles = (r: number) => {
     switch (r) {

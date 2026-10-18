@@ -131,7 +131,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
   const tasks = getTaskLabels();
 
   const getAvatarUrl = (char: PlannedCharacter) => {
-    const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+    const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
     if (char.gameId === 'ww') {
       const folder = char.folderName || char.name;
       return `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/${safeEncodeURIComponent(folder)}.webp`;
@@ -241,7 +241,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
                           alt={char.name}
                           className="w-full h-full object-cover"
                           onError={(e) => {
-                            (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/skill_placeholder.webp';
+                            (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/skill_placeholder.webp';
                           }}
                         />
                       </div>

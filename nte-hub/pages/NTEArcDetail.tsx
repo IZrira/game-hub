@@ -50,7 +50,7 @@ const NTEArcDetail: React.FC = () => {
   }
 
   const getIllustrationUrl = () => {
-    return encodeURI(`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte images/arcs/${t(arc.name).normalize('NFC')}.webp`);
+    return encodeURI(`https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte images/arcs/${t(arc.name).normalize('NFC')}.webp`);
   };
 
   // 현재 레벨의 스탯 계산
@@ -114,7 +114,7 @@ const NTEArcDetail: React.FC = () => {
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000 p-6" 
               onError={(e) => {
                 // 폴백 이미지
-                e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
+                e.currentTarget.src = "https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
               }}
             />
             {/* 오버레이 그라데이션 */}

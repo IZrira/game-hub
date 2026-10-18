@@ -21,8 +21,8 @@ const previous = JSON.parse(await fs.readFile(manifestPath, 'utf8'));
 const refresh = process.argv.includes('--refresh');
 const manifest = {};
 const download = async url => {
-  const sources = [url, url.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net'),
-    url.replace('https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main', 'https://raw.githubusercontent.com/IZrira/riragameinfo/main')];
+  const sources = [url, url.replace('https://raw.githubusercontent.com/IZrira/riragameinfo/main',
+    'https://fastly.jsdelivr.net/gh/IZrira/riragameinfo@main')];
   let lastError;
   for (const sourceUrl of sources) {
     try {

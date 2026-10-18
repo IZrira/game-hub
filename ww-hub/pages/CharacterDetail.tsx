@@ -859,7 +859,7 @@ const CharacterDetail: React.FC = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {char.roles.map((role: any, idx: number) => {
-                const ICON_BASE = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/position/';
+                const ICON_BASE = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/position/';
                 return (
                   <div key={idx} className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-[#121212] p-8 transition-colors hover:bg-[#171717]">
                     <div className="flex h-16 w-16 items-center justify-center rounded-xl border border-white/10 bg-white/5 p-3">

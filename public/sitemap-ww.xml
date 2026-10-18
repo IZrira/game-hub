@@ -6,7 +6,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -14,7 +14,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -23,7 +23,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%95%8C%ED%86%A0/%EC%95%8C%ED%86%A0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%95%8C%ED%86%A0/%EC%95%8C%ED%86%A0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -32,7 +32,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%95%8C%ED%86%A0/%EC%95%8C%ED%86%A0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%95%8C%ED%86%A0/%EC%95%8C%ED%86%A0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -41,7 +41,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -50,7 +50,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4/%EC%97%90%EC%9D%B4%EB%A9%94%EC%8A%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -59,7 +59,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -68,7 +68,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80/%EC%95%84%EC%9A%B0%EA%B5%AC%EC%8A%A4%ED%83%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -77,7 +77,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%84%A4%EC%A7%80/%EC%84%A4%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%84%A4%EC%A7%80/%EC%84%A4%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -86,7 +86,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%84%A4%EC%A7%80/%EC%84%A4%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%84%A4%EC%A7%80/%EC%84%A4%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -95,7 +95,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B8%8C%EB%A0%8C%ED%8A%B8/%EB%B8%8C%EB%A0%8C%ED%8A%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B8%8C%EB%A0%8C%ED%8A%B8/%EB%B8%8C%EB%A0%8C%ED%8A%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -104,7 +104,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B8%8C%EB%A0%8C%ED%8A%B8/%EB%B8%8C%EB%A0%8C%ED%8A%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B8%8C%EB%A0%8C%ED%8A%B8/%EB%B8%8C%EB%A0%8C%ED%8A%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -113,7 +113,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B3%B5%EB%A7%81/%EB%B3%B5%EB%A7%81.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B3%B5%EB%A7%81/%EB%B3%B5%EB%A7%81.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -122,7 +122,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B3%B5%EB%A7%81/%EB%B3%B5%EB%A7%81.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B3%B5%EB%A7%81/%EB%B3%B5%EB%A7%81.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -131,7 +131,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EC%B9%B4%EB%A3%A8/%EC%B9%B4%EC%B9%B4%EB%A3%A8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EC%B9%B4%EB%A3%A8/%EC%B9%B4%EC%B9%B4%EB%A3%A8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -140,7 +140,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EC%B9%B4%EB%A3%A8/%EC%B9%B4%EC%B9%B4%EB%A3%A8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EC%B9%B4%EB%A3%A8/%EC%B9%B4%EC%B9%B4%EB%A3%A8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -149,7 +149,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -158,7 +158,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84/%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -167,7 +167,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -176,7 +176,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC/%EC%B9%B8%ED%83%80%EB%A0%90%EB%9D%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -185,7 +185,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -194,7 +194,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80/%EC%B9%B4%EB%A5%BC%EB%A1%9C%ED%83%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -203,7 +203,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -212,7 +212,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84/%EC%B9%B4%EB%A5%B4%ED%8B%B0%EC%8B%9C%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -221,7 +221,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%83%A4%EC%BD%98/%EC%83%A4%EC%BD%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%83%A4%EC%BD%98/%EC%83%A4%EC%BD%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -230,7 +230,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%83%A4%EC%BD%98/%EC%83%A4%EC%BD%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%83%A4%EC%BD%98/%EC%83%A4%EC%BD%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -239,7 +239,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9E%A5%EB%A6%AC/%EC%9E%A5%EB%A6%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9E%A5%EB%A6%AC/%EC%9E%A5%EB%A6%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -248,7 +248,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9E%A5%EB%A6%AC/%EC%9E%A5%EB%A6%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9E%A5%EB%A6%AC/%EC%9E%A5%EB%A6%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -257,7 +257,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%98%EC%82%AC/%EC%B9%98%EC%82%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%98%EC%82%AC/%EC%B9%98%EC%82%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -266,7 +266,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%98%EC%82%AC/%EC%B9%98%EC%82%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%98%EC%82%AC/%EC%B9%98%EC%82%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -275,7 +275,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%98%EC%83%A4/%EC%B9%98%EC%83%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%98%EC%83%A4/%EC%B9%98%EC%83%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -284,7 +284,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%B9%98%EC%83%A4/%EC%B9%98%EC%83%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%B9%98%EC%83%A4/%EC%B9%98%EC%83%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -293,7 +293,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8B%A8%EA%B7%BC/%EB%8B%A8%EA%B7%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8B%A8%EA%B7%BC/%EB%8B%A8%EA%B7%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -302,7 +302,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8B%A8%EA%B7%BC/%EB%8B%A8%EA%B7%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8B%A8%EA%B7%BC/%EB%8B%A8%EA%B7%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -311,7 +311,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8D%B0%EB%8B%88%EC%95%84/%EB%8D%B0%EB%8B%88%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8D%B0%EB%8B%88%EC%95%84/%EB%8D%B0%EB%8B%88%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -320,7 +320,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8D%B0%EB%8B%88%EC%95%84/%EB%8D%B0%EB%8B%88%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8D%B0%EB%8B%88%EC%95%84/%EB%8D%B0%EB%8B%88%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -329,7 +329,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%95%99%EC%BD%94/%EC%95%99%EC%BD%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%95%99%EC%BD%94/%EC%95%99%EC%BD%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -338,7 +338,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%95%99%EC%BD%94/%EC%95%99%EC%BD%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%95%99%EC%BD%94/%EC%95%99%EC%BD%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -347,7 +347,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -356,7 +356,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98/%EA%B0%88%EB%B8%8C%EB%A0%88%EB%82%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -365,7 +365,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%9E%88%EC%9C%A0%ED%82%A4/%ED%9E%88%EC%9C%A0%ED%82%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%9E%88%EC%9C%A0%ED%82%A4/%ED%9E%88%EC%9C%A0%ED%82%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -374,7 +374,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%9E%88%EC%9C%A0%ED%82%A4/%ED%9E%88%EC%9C%A0%ED%82%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%9E%88%EC%9C%A0%ED%82%A4/%ED%9E%88%EC%9C%A0%ED%82%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -383,7 +383,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9C%A0%EB%85%B8/%EC%9C%A0%EB%85%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9C%A0%EB%85%B8/%EC%9C%A0%EB%85%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -392,7 +392,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9C%A0%EB%85%B8/%EC%9C%A0%EB%85%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9C%A0%EB%85%B8/%EC%9C%A0%EB%85%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -401,7 +401,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B0%90%EC%8B%AC/%EA%B0%90%EC%8B%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B0%90%EC%8B%AC/%EA%B0%90%EC%8B%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -410,7 +410,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B0%90%EC%8B%AC/%EA%B0%90%EC%8B%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B0%90%EC%8B%AC/%EA%B0%90%EC%8B%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -419,7 +419,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B8%88%ED%9D%AC/%EA%B8%88%ED%9D%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B8%88%ED%9D%AC/%EA%B8%88%ED%9D%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -428,7 +428,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B8%88%ED%9D%AC/%EA%B8%88%ED%9D%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B8%88%ED%9D%AC/%EA%B8%88%ED%9D%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -437,7 +437,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B8%B0%EC%97%BC/%EA%B8%B0%EC%97%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B8%B0%EC%97%BC/%EA%B8%B0%EC%97%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -446,7 +446,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B8%B0%EC%97%BC/%EA%B8%B0%EC%97%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B8%B0%EC%97%BC/%EA%B8%B0%EC%97%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -455,7 +455,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8A%A5%EC%96%91/%EB%8A%A5%EC%96%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8A%A5%EC%96%91/%EB%8A%A5%EC%96%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -464,7 +464,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8A%A5%EC%96%91/%EB%8A%A5%EC%96%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8A%A5%EC%96%91/%EB%8A%A5%EC%96%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -473,7 +473,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A6%B0%EB%84%A4/%EB%A6%B0%EB%84%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A6%B0%EB%84%A4/%EB%A6%B0%EB%84%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -482,7 +482,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A6%B0%EB%84%A4/%EB%A6%B0%EB%84%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A6%B0%EB%84%A4/%EB%A6%B0%EB%84%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -491,7 +491,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EC%8B%A4%EB%9D%BC/%EB%A3%A8%EC%8B%A4%EB%9D%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%EC%8B%A4%EB%9D%BC/%EB%A3%A8%EC%8B%A4%EB%9D%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -500,7 +500,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EC%8B%A4%EB%9D%BC/%EB%A3%A8%EC%8B%A4%EB%9D%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%EC%8B%A4%EB%9D%BC/%EB%A3%A8%EC%8B%A4%EB%9D%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -509,7 +509,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EC%8B%9C/%EB%A3%A8%EC%8B%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%EC%8B%9C/%EB%A3%A8%EC%8B%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -518,7 +518,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EC%8B%9C/%EB%A3%A8%EC%8B%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%EC%8B%9C/%EB%A3%A8%EC%8B%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -527,7 +527,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EB%AF%B8/%EB%A3%A8%EB%AF%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%EB%AF%B8/%EB%A3%A8%EB%AF%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -536,7 +536,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%EB%AF%B8/%EB%A3%A8%EB%AF%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%EB%AF%B8/%EB%A3%A8%EB%AF%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -545,7 +545,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%ED%8C%8C/%EB%A3%A8%ED%8C%8C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%ED%8C%8C/%EB%A3%A8%ED%8C%8C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -554,7 +554,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%ED%8C%8C/%EB%A3%A8%ED%8C%8C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%ED%8C%8C/%EB%A3%A8%ED%8C%8C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -563,7 +563,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -572,7 +572,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC/%EB%A3%A8%ED%81%AC%20%C2%B7%20%ED%97%A4%EB%A5%B4%EC%84%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -581,7 +581,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%AA%A8%EB%8B%88%EC%97%90/%EB%AA%A8%EB%8B%88%EC%97%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%AA%A8%EB%8B%88%EC%97%90/%EB%AA%A8%EB%8B%88%EC%97%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -590,7 +590,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%AA%A8%EB%8B%88%EC%97%90/%EB%AA%A8%EB%8B%88%EC%97%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%AA%A8%EB%8B%88%EC%97%90/%EB%AA%A8%EB%8B%88%EC%97%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -599,7 +599,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -608,7 +608,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC/%EB%AA%A8%EB%A5%B4%ED%85%8C%ED%94%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -617,7 +617,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%8E%98%EB%B9%84/%ED%8E%98%EB%B9%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%8E%98%EB%B9%84/%ED%8E%98%EB%B9%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -626,7 +626,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%8E%98%EB%B9%84/%ED%8E%98%EB%B9%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%8E%98%EB%B9%84/%ED%8E%98%EB%B9%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -635,7 +635,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%94%8C%EB%A1%9C%EB%A1%9C/%ED%94%8C%EB%A1%9C%EB%A1%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%94%8C%EB%A1%9C%EB%A1%9C/%ED%94%8C%EB%A1%9C%EB%A1%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -644,7 +644,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%94%8C%EB%A1%9C%EB%A1%9C/%ED%94%8C%EB%A1%9C%EB%A1%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%94%8C%EB%A1%9C%EB%A1%9C/%ED%94%8C%EB%A1%9C%EB%A1%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -653,7 +653,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B5%AC%EC%9B%90/%EA%B5%AC%EC%9B%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B5%AC%EC%9B%90/%EA%B5%AC%EC%9B%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -662,7 +662,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EA%B5%AC%EC%9B%90/%EA%B5%AC%EC%9B%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EA%B5%AC%EC%9B%90/%EA%B5%AC%EC%9B%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -671,7 +671,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A0%88%EB%B2%A0%EC%B9%B4/%EB%A0%88%EB%B2%A0%EC%B9%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A0%88%EB%B2%A0%EC%B9%B4/%EB%A0%88%EB%B2%A0%EC%B9%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -680,7 +680,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A0%88%EB%B2%A0%EC%B9%B4/%EB%A0%88%EB%B2%A0%EC%B9%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A0%88%EB%B2%A0%EC%B9%B4/%EB%A0%88%EB%B2%A0%EC%B9%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -689,7 +689,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A1%9C%EC%BD%94%EC%BD%94/%EB%A1%9C%EC%BD%94%EC%BD%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A1%9C%EC%BD%94%EC%BD%94/%EB%A1%9C%EC%BD%94%EC%BD%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -698,7 +698,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%A1%9C%EC%BD%94%EC%BD%94/%EB%A1%9C%EC%BD%94%EC%BD%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A1%9C%EC%BD%94%EC%BD%94/%EB%A1%9C%EC%BD%94%EC%BD%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -707,10 +707,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EB%82%A8%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EB%82%A8%29.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EC%95%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EC%95%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -719,10 +719,10 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EB%82%A8%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EB%82%A8%29.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EC%95%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EA%B8%B0%EB%A5%98%28%EC%95%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -731,10 +731,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84%28%EB%82%A8%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84%28%EB%82%A8%29.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84%28%EC%95%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%A0%84%EB%8F%84%28%EC%95%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -743,10 +743,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8%28%EB%82%A8%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8%28%EB%82%A8%29.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8%28%EC%95%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%EC%9D%B8%EB%A9%B8%28%EC%95%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -755,10 +755,10 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EB%82%A8%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EB%82%A8%29.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EC%95%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EC%95%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -767,10 +767,10 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EB%82%A8%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EB%82%A8%29.webp</image:loc>
     </image:image>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EC%95%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88/%EB%B0%A9%EB%9E%91%EC%9E%90%20%C2%B7%20%ED%9A%8C%EC%A0%88%28%EC%95%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -779,7 +779,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%82%B0%ED%99%94/%EC%82%B0%ED%99%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%82%B0%ED%99%94/%EC%82%B0%ED%99%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -788,7 +788,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%82%B0%ED%99%94/%EC%82%B0%ED%99%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%82%B0%ED%99%94/%EC%82%B0%ED%99%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -797,7 +797,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -806,7 +806,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4/%EC%8B%9C%EA%B7%B8%EB%A6%AC%EC%B9%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -815,7 +815,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%88%98%EC%88%98/%EC%88%98%EC%88%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%88%98%EC%88%98/%EC%88%98%EC%88%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -824,7 +824,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%88%98%EC%88%98/%EC%88%98%EC%88%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%88%98%EC%88%98/%EC%88%98%EC%88%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -833,7 +833,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8F%84%EA%B8%B0/%EB%8F%84%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8F%84%EA%B8%B0/%EB%8F%84%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -842,7 +842,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%8F%84%EA%B8%B0/%EB%8F%84%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%8F%84%EA%B8%B0/%EB%8F%84%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -851,7 +851,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%8C%8C%EC%88%98%EC%9D%B8/%ED%8C%8C%EC%88%98%EC%9D%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%8C%8C%EC%88%98%EC%9D%B8/%ED%8C%8C%EC%88%98%EC%9D%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -860,7 +860,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%ED%8C%8C%EC%88%98%EC%9D%B8/%ED%8C%8C%EC%88%98%EC%9D%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%ED%8C%8C%EC%88%98%EC%9D%B8/%ED%8C%8C%EC%88%98%EC%9D%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -869,7 +869,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B2%A8%EB%A6%AC%EB%82%98/%EB%B2%A8%EB%A6%AC%EB%82%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B2%A8%EB%A6%AC%EB%82%98/%EB%B2%A8%EB%A6%AC%EB%82%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -878,7 +878,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EB%B2%A8%EB%A6%AC%EB%82%98/%EB%B2%A8%EB%A6%AC%EB%82%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%B2%A8%EB%A6%AC%EB%82%98/%EB%B2%A8%EB%A6%AC%EB%82%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -887,7 +887,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%83%81%EB%A6%AC%EC%9A%94/%EC%83%81%EB%A6%AC%EC%9A%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%83%81%EB%A6%AC%EC%9A%94/%EC%83%81%EB%A6%AC%EC%9A%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -896,7 +896,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%83%81%EB%A6%AC%EC%9A%94/%EC%83%81%EB%A6%AC%EC%9A%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%83%81%EB%A6%AC%EC%9A%94/%EC%83%81%EB%A6%AC%EC%9A%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -905,7 +905,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%96%91%EC%96%91/%EC%96%91%EC%96%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%96%91%EC%96%91/%EC%96%91%EC%96%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -914,7 +914,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%96%91%EC%96%91/%EC%96%91%EC%96%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%96%91%EC%96%91/%EC%96%91%EC%96%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -923,7 +923,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -932,7 +932,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9/%EC%96%91%EC%96%91%20%C2%B7%20%ED%98%84%EB%A0%B9.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -941,7 +941,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9D%8C%EB%A6%BC/%EC%9D%8C%EB%A6%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9D%8C%EB%A6%BC/%EC%9D%8C%EB%A6%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -950,7 +950,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9D%8C%EB%A6%BC/%EC%9D%8C%EB%A6%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9D%8C%EB%A6%BC/%EC%9D%8C%EB%A6%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -959,7 +959,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9C%A0%ED%98%B8/%EC%9C%A0%ED%98%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9C%A0%ED%98%B8/%EC%9C%A0%ED%98%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -968,7 +968,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%9C%A0%ED%98%B8/%EC%9C%A0%ED%98%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%9C%A0%ED%98%B8/%EC%9C%A0%ED%98%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -977,7 +977,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%97%B0%EB%AC%B4/%EC%97%B0%EB%AC%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%97%B0%EB%AC%B4/%EC%97%B0%EB%AC%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -986,7 +986,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%97%B0%EB%AC%B4/%EC%97%B0%EB%AC%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%97%B0%EB%AC%B4/%EC%97%B0%EB%AC%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -995,7 +995,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%A0%A0%EB%8B%88/%EC%A0%A0%EB%8B%88.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%A0%A0%EB%8B%88/%EC%A0%A0%EB%8B%88.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1004,7 +1004,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%A0%A0%EB%8B%88/%EC%A0%A0%EB%8B%88.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%A0%A0%EB%8B%88/%EC%A0%A0%EB%8B%88.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1013,7 +1013,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%A0%88%EC%A7%80/%EC%A0%88%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%A0%88%EC%A7%80/%EC%A0%88%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1022,7 +1022,7 @@
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/%EC%A0%88%EC%A7%80/%EC%A0%88%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EC%A0%88%EC%A7%80/%EC%A0%88%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1031,7 +1031,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B0%94%EB%8B%A4%EC%9D%98%20%EC%86%8D%EC%82%AD%EC%9E%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B0%94%EB%8B%A4%EC%9D%98%20%EC%86%8D%EC%82%AD%EC%9E%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1040,7 +1040,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%AD%EC%9D%8C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%AD%EC%9D%8C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1049,7 +1049,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%88%88%EB%B6%80%EC%8B%A0%20%EB%B9%9B.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%88%88%EB%B6%80%EC%8B%A0%20%EB%B9%9B.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1058,7 +1058,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%97%88%EC%9C%84%EC%9D%98%20%EC%99%88%EC%B8%A0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%97%88%EC%9C%84%EC%9D%98%20%EC%99%88%EC%B8%A0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1066,7 +1066,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/18%ED%98%95%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EC%88%9C%EA%B0%84%EC%9D%98%20%EC%B9%BC%EB%B9%9B.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/18%ED%98%95%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EC%88%9C%EA%B0%84%EC%9D%98%20%EC%B9%BC%EB%B9%9B.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1074,7 +1074,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/21%ED%98%95%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EC%95%84%EC%9D%B4%EC%96%B8%20%ED%8C%AC%ED%85%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/21%ED%98%95%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EC%95%84%EC%9D%B4%EC%96%B8%20%ED%8C%AC%ED%85%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1082,7 +1082,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/25%ED%98%95%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EC%9A%B8%EB%A6%BC%EC%9D%98%20%EB%A9%9C%EB%A1%9C%EB%94%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/25%ED%98%95%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EC%9A%B8%EB%A6%BC%EC%9D%98%20%EB%A9%9C%EB%A1%9C%EB%94%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1090,7 +1090,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/26%ED%98%95%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EB%A7%B9%EB%A0%AC%ED%95%9C%20%EB%8F%8C%EA%B2%A9.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/26%ED%98%95%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EB%A7%B9%EB%A0%AC%ED%95%9C%20%EB%8F%8C%EA%B2%A9.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1098,7 +1098,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/41%ED%98%95%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EB%AC%B4%EA%B1%B0%EC%9A%B4%20%EC%B1%85%EC%9E%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/41%ED%98%95%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EB%AC%B4%EA%B1%B0%EC%9A%B4%20%EC%B1%85%EC%9E%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1106,7 +1106,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B0%80%EC%9D%84%EC%9D%98%20%EB%AC%B4%EB%8A%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B0%80%EC%9D%84%EC%9D%98%20%EB%AC%B4%EB%8A%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1114,7 +1114,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B1%B0%EC%B9%A8%EC%97%86%EB%8A%94%20%EB%B9%84%EC%83%81.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B1%B0%EC%B9%A8%EC%97%86%EB%8A%94%20%EB%B9%84%EC%83%81.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1122,7 +1122,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B2%A9%EB%8F%99%EC%9D%98%20%EC%A1%B0%EB%A0%A5.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B2%A9%EB%8F%99%EC%9D%98%20%EC%A1%B0%EB%A0%A5.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1130,7 +1130,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EA%B6%8C%EA%B0%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EA%B6%8C%EA%B0%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1138,7 +1138,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EA%B6%8C%EC%B4%9D.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EA%B6%8C%EC%B4%9D.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1146,7 +1146,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EB%8C%80%EA%B2%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EB%8C%80%EA%B2%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1154,7 +1154,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EC%A6%9D%ED%8F%AD%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EC%A6%9D%ED%8F%AD%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1162,7 +1162,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EC%A7%81%EA%B2%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B2%AC%EC%8A%B5%EC%9A%A9%20%EC%A7%81%EA%B2%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1170,7 +1170,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B4%91%ED%9C%98%EC%9D%98%20%EC%B0%AC%EC%86%A1%EA%B0%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B4%91%ED%9C%98%EC%9D%98%20%EC%B0%AC%EC%86%A1%EA%B0%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1178,7 +1178,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B5%89%EC%9D%8C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B5%89%EC%9D%8C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1186,7 +1186,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B8%88%EB%B9%9B%20%ED%95%98%EB%8A%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B8%88%EB%B9%9B%20%ED%95%98%EB%8A%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1194,7 +1194,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B8%88%EC%A3%BC%EC%9D%98%20%EC%88%98%ED%98%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B8%88%EC%A3%BC%EC%9D%98%20%EC%88%98%ED%98%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1202,7 +1202,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%B8%B0%EB%AC%98%ED%95%9C%20%EC%9A%B8%EB%A6%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%B8%B0%EB%AC%98%ED%95%9C%20%EC%9A%B8%EB%A6%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1210,7 +1210,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EA%BC%AD%EB%91%90%EA%B0%81%EC%8B%9C%EC%9D%98%20%EC%86%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EA%BC%AD%EB%91%90%EA%B0%81%EC%8B%9C%EC%9D%98%20%EC%86%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1218,7 +1218,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%82%A0%EC%B9%B4%EB%A1%9C%EC%9A%B4%20%EB%B4%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%82%A0%EC%B9%B4%EB%A1%9C%EC%9A%B4%20%EB%B4%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1226,7 +1226,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%85%B8%EC%9D%84%EC%97%90%20%EA%B9%83%EB%93%A0%20%EC%9D%B4%EC%8A%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%85%B8%EC%9D%84%EC%97%90%20%EA%B9%83%EB%93%A0%20%EC%9D%B4%EC%8A%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1234,7 +1234,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%87%8C%EC%A0%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%87%8C%EC%A0%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1242,7 +1242,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%A0%88%EC%9D%B4%EC%A0%80%20%EB%B3%80%ED%98%95.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%A0%88%EC%9D%B4%EC%A0%80%20%EB%B3%80%ED%98%95.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1250,7 +1250,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%A7%88%EC%9D%8C%EC%9D%98%20%EB%8B%BB.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%A7%88%EC%9D%8C%EC%9D%98%20%EB%8B%BB.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1258,7 +1258,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%A7%8C%EC%B7%A8%EC%9D%98%20%EC%98%81%EC%9B%85%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%A7%8C%EC%B7%A8%EC%9D%98%20%EC%98%81%EC%9B%85%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1266,7 +1266,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%A9%B8%EB%A7%9D%EC%9D%98%20%EC%A3%BC%ED%8C%8C%EC%88%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%A9%B8%EB%A7%9D%EC%9D%98%20%EC%A3%BC%ED%8C%8C%EC%88%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1274,7 +1274,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%AC%BC%EA%B2%B0%EC%9D%98%20%ED%8C%8C%EB%8F%99.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%AC%BC%EA%B2%B0%EC%9D%98%20%ED%8C%8C%EB%8F%99.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1282,7 +1282,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%AD%87%EB%B3%84%EC%9D%98%20%EA%B5%90%ED%96%A5%EA%B3%A1.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%AD%87%EB%B3%84%EC%9D%98%20%EA%B5%90%ED%96%A5%EA%B3%A1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1290,7 +1290,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B0%94%EB%8B%A4%EC%9D%98%20%EC%84%A0%EB%AC%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B0%94%EB%8B%A4%EC%9D%98%20%EC%84%A0%EB%AC%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1298,7 +1298,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B0%94%EB%9E%8C%EC%9D%98%20%EC%95%85%EC%84%BC%ED%8A%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B0%94%EB%9E%8C%EC%9D%98%20%EC%95%85%EC%84%BC%ED%8A%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1306,7 +1306,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B3%84%ED%95%98%EB%8A%98%20%EC%97%B0%EC%82%B0%20%EC%B8%A1%EC%A0%95%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B3%84%ED%95%98%EB%8A%98%20%EC%97%B0%EC%82%B0%20%EC%B8%A1%EC%A0%95%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1314,7 +1314,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B3%B4%EC%86%90%20%EA%B4%80%EC%B8%A1%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B3%B4%EC%86%90%20%EA%B4%80%EC%B8%A1%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1322,7 +1322,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B6%80%EB%8F%99%EC%9D%98%20%EC%95%88%EA%B0%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B6%80%EB%8F%99%EC%9D%98%20%EC%95%88%EA%B0%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1330,7 +1330,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B6%88%EA%B8%B8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B6%88%EA%B8%B8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1338,7 +1338,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B6%88%EB%A9%B8%EC%9D%98%20%EC%84%B1%ED%99%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B6%88%EB%A9%B8%EC%9D%98%20%EC%84%B1%ED%99%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1346,7 +1346,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EB%B6%88%EB%B9%9B%EC%9D%98%20%EC%8B%AC%ED%8C%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%B6%88%EB%B9%9B%EC%9D%98%20%EC%8B%AC%ED%8C%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1354,7 +1354,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%83%81%EC%8A%B9%EC%9D%98%20%EC%84%9C%EB%85%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%83%81%EC%8A%B9%EC%9D%98%20%EC%84%9C%EB%85%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1362,7 +1362,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%84%9C%EB%A6%B0%20%EB%B6%88%EA%BD%83.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%84%9C%EB%A6%B0%20%EB%B6%88%EA%BD%83.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1370,7 +1370,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%84%B8%EC%83%81%20%EB%A7%8C%EB%AC%BC%EC%9D%98%20%EC%A7%84%EB%A6%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%84%B8%EC%83%81%20%EB%A7%8C%EB%AC%BC%EC%9D%98%20%EC%A7%84%EB%A6%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1378,7 +1378,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%86%94%EC%8A%A4%EC%9B%90%EC%9D%98%20%ED%95%B4%EC%84%9D.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%86%94%EC%8A%A4%EC%9B%90%EC%9D%98%20%ED%95%B4%EC%84%9D.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1386,7 +1386,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%86%9F%EC%95%84%EC%98%A4%EB%A5%B4%EB%8A%94%20%ED%99%94%EC%97%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%86%9F%EC%95%84%EC%98%A4%EB%A5%B4%EB%8A%94%20%ED%99%94%EC%97%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1394,7 +1394,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%EB%A7%8E%EC%9D%80%20%EC%9D%B8%EB%8F%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1402,7 +1402,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%ED%8C%8C%EA%B4%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%ED%8C%8C%EA%B4%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1410,7 +1410,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%ED%86%B5%EC%B0%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%ED%86%B5%EC%B0%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1418,7 +1418,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EB%B2%BD%EB%A1%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EB%B2%BD%EB%A1%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1426,7 +1426,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%ED%83%90%EC%83%89.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%ED%83%90%EC%83%89.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1434,7 +1434,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%ED%96%89%EC%A0%81.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%96%89%EC%9E%90%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%ED%96%89%EC%A0%81.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1442,7 +1442,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EA%B0%95%EB%A0%A5.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EA%B0%95%EB%A0%A5.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1450,7 +1450,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EC%9A%A9%EB%A7%B9.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EC%9A%A9%EB%A7%B9.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1458,7 +1458,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EA%B7%BC%EC%84%B1.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EA%B7%BC%EC%84%B1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1466,7 +1466,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EB%AA%A8%EB%9E%B5.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EB%AA%A8%EB%9E%B5.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1474,7 +1474,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EA%B8%B0%EB%AF%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%98%ED%98%B8%EC%9E%90%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EA%B8%B0%EB%AF%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1482,7 +1482,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%99%EB%AA%85%EC%97%90%20%EB%A7%9E%EC%84%9C%EB%8A%94%20%EA%B4%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%99%EB%AA%85%EC%97%90%20%EB%A7%9E%EC%84%9C%EB%8A%94%20%EA%B4%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1490,7 +1490,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%88%B2%EC%86%8D%EC%9D%98%20%EC%95%84%EB%A6%AC%EC%95%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%88%B2%EC%86%8D%EC%9D%98%20%EC%95%84%EB%A6%AC%EC%95%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1498,7 +1498,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%8A%A4%EC%BB%AC%20%EC%8A%A4%EB%9E%98%EC%85%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1506,7 +1506,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%B4%20%ED%8A%B8%EB%A6%AC%EA%B1%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1514,7 +1514,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC%20%EB%B8%94%EB%9E%98%EC%8A%A4%ED%84%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%8A%A4%ED%8E%99%ED%8A%B8%EB%9F%BC%20%EB%B8%94%EB%9E%98%EC%8A%A4%ED%84%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1522,7 +1522,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%8B%AC%ED%95%B4%EC%9D%98%20%EB%A9%94%EC%95%84%EB%A6%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%8B%AC%ED%95%B4%EC%9D%98%20%EB%A9%94%EC%95%84%EB%A6%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1530,7 +1530,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%95%84%EB%93%9D%ED%9E%88%20%ED%91%B8%EB%A5%B8%20%ED%95%98%EB%8A%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%95%84%EB%93%9D%ED%9E%88%20%ED%91%B8%EB%A5%B8%20%ED%95%98%EB%8A%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1538,7 +1538,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%95%BC%EA%B7%80%EC%9D%98%20%EC%8B%A0%EB%85%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%95%BC%EA%B7%80%EC%9D%98%20%EC%8B%A0%EB%85%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1546,7 +1546,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%96%BD%ED%98%80%EC%A7%84%20%EB%B9%9B%EA%B3%BC%20%EA%B7%B8%EB%A6%BC%EC%9E%90.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%96%BD%ED%98%80%EC%A7%84%20%EB%B9%9B%EA%B3%BC%20%EA%B7%B8%EB%A6%BC%EC%9E%90.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1554,7 +1554,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%97%90%EB%84%88%EC%A7%80%20%EC%A0%88%EB%8B%A8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%97%90%EB%84%88%EC%A7%80%20%EC%A0%88%EB%8B%A8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1562,7 +1562,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%97%AD%EC%84%A4%EC%9D%98%20%EA%B2%A9%EB%A5%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%97%AD%EC%84%A4%EC%9D%98%20%EA%B2%A9%EB%A5%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1570,7 +1570,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%81%EC%9B%90%EC%9D%98%20%EB%B6%95%EA%B4%B4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%81%EC%9B%90%EC%9D%98%20%EB%B6%95%EA%B4%B4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1578,7 +1578,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%81%EC%9B%90%ED%95%9C%20%EC%83%9B%EB%B3%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%81%EC%9B%90%ED%95%9C%20%EC%83%9B%EB%B3%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1586,7 +1586,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%88%EB%A6%AC%ED%95%9C%20%EB%82%A0%EA%B0%9C%EA%B9%83.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%88%EB%A6%AC%ED%95%9C%20%EB%82%A0%EA%B0%9C%EA%B9%83.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1594,7 +1594,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%A5%EB%B9%9B%20%EA%B5%AC%EB%A6%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1602,7 +1602,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%A5%EC%88%98%20%EB%B9%84%EB%8B%A8.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%A5%EC%88%98%20%EB%B9%84%EB%8B%A8.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1610,7 +1610,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9A%A9%EC%84%9C%EC%9D%98%20%EB%AA%85%EC%83%81%EB%A1%9D.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9A%A9%EC%84%9C%EC%9D%98%20%EB%AA%85%EC%83%81%EB%A1%9D.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1618,7 +1618,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EA%B2%AC%EC%8A%B5IV.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%EA%B2%AC%EC%8A%B5IV.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1626,7 +1626,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EA%B2%AC%EC%8A%B5III.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%EA%B2%AC%EC%8A%B5III.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1634,7 +1634,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EA%B2%AC%EC%8A%B5I.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%EA%B2%AC%EC%8A%B5I.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1642,7 +1642,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EA%B2%AC%EC%8A%B5V.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%EA%B2%AC%EC%8A%B5V.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1650,7 +1650,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EA%B2%AC%EC%8A%B5II.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9B%90%EB%8A%A5%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%EA%B2%AC%EC%8A%B5II.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1658,7 +1658,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9C%84%EC%83%81%EC%9D%98%20%ED%8C%8C%EB%8F%99.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9C%84%EC%83%81%EC%9D%98%20%ED%8C%8C%EB%8F%99.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1666,7 +1666,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9C%84%EC%A1%B0%EB%90%9C%20%EC%9E%91%EC%9D%80%EB%B3%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9C%84%EC%A1%B0%EB%90%9C%20%EC%9E%91%EC%9D%80%EB%B3%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1674,7 +1674,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9C%B5%ED%95%A9%EC%9D%98%20%EC%9B%90%EB%B0%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9C%B5%ED%95%A9%EC%9D%98%20%EC%9B%90%EB%B0%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1682,7 +1682,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9E%8A%ED%98%80%EC%A7%84%20%ED%94%BC%EC%95%88%EC%9D%98%20%EC%8A%AC%ED%94%88%20%EC%95%85%EC%9E%A5.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9E%8A%ED%98%80%EC%A7%84%20%ED%94%BC%EC%95%88%EC%9D%98%20%EC%8A%AC%ED%94%88%20%EC%95%85%EC%9E%A5.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1690,7 +1690,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9E%91%EB%B3%84%EC%9D%98%20%EB%A1%9C%EB%A7%A8%EC%8A%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9E%91%EB%B3%84%EC%9D%98%20%EB%A1%9C%EB%A7%A8%EC%8A%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1698,7 +1698,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%9E%A5%EC%95%BC%EC%9D%98%20%EB%B6%88%EB%B9%9B.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%9E%A5%EC%95%BC%EC%9D%98%20%EB%B6%88%EB%B9%9B.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1706,7 +1706,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%A0%80%EB%AC%B4%EB%8A%94%20%EB%8F%99%EB%85%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%A0%80%EB%AC%B4%EB%8A%94%20%EB%8F%99%EB%85%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1714,7 +1714,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%A0%84%EC%9A%B0%EC%9D%98%20%EC%9D%98%EB%A6%AC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%A0%84%EC%9A%B0%EC%9D%98%20%EC%9D%98%EB%A6%AC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1722,7 +1722,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%A3%BD%EC%9D%8C%EA%B3%BC%20%EC%B6%A4.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%A3%BD%EC%9D%8C%EA%B3%BC%20%EC%B6%A4.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1730,7 +1730,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EA%B3%B5%EC%9D%98%20%EA%B4%91%EA%B2%BD.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EA%B3%B5%EC%9D%98%20%EA%B4%91%EA%B2%BD.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1738,7 +1738,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EA%B3%B5%EC%9D%98%20%EC%88%9C%EA%B0%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EA%B3%B5%EC%9D%98%20%EC%88%9C%EA%B0%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1746,7 +1746,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EA%B3%B5%EC%9D%98%20%EC%97%AD%ED%96%89.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EA%B3%B5%EC%9D%98%20%EC%97%AD%ED%96%89.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1754,7 +1754,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EB%85%84%EC%9D%98%20%ED%9A%8C%EB%A5%98.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EB%85%84%EC%9D%98%20%ED%9A%8C%EB%A5%98.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1762,7 +1762,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EB%91%A5%EB%B2%BC%EB%9D%BD%EC%9D%84%20%EB%8B%A4%EC%8A%A4%EB%A6%AC%EB%8A%94%20%EA%B6%8C%EB%8A%A5.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EB%91%A5%EB%B2%BC%EB%9D%BD%EC%9D%84%20%EB%8B%A4%EC%8A%A4%EB%A6%AC%EB%8A%94%20%EA%B6%8C%EB%8A%A5.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1770,7 +1770,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EC%83%81%EC%9D%98%20%EB%82%98%EC%84%A0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EC%83%81%EC%9D%98%20%EB%82%98%EC%84%A0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1778,7 +1778,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%9C%EC%83%81%EC%9D%98%20%EC%9D%8C%EB%A5%A0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%9C%EC%83%81%EC%9D%98%20%EC%9D%8C%EB%A5%A0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1786,7 +1786,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%B2%AD%EB%A3%A1%EC%9D%98%20%EC%B2%9C%EC%9E%A5.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%B2%AD%EB%A3%A1%EC%9D%98%20%EC%B2%9C%EC%9E%A5.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1794,7 +1794,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%BF%A0%EB%AA%A8%ED%82%A4%EB%A6%AC%28%E6%9B%87%E6%96%AC%29.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%BF%A0%EB%AA%A8%ED%82%A4%EB%A6%AC%28%E6%9B%87%E6%96%AC%29.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1802,7 +1802,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%EC%96%91%20%EB%B6%88%EA%BD%83.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%EC%96%91%20%EB%B6%88%EA%BD%83.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1810,7 +1810,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EA%B6%8C%EA%B0%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EA%B6%8C%EA%B0%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1818,7 +1818,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EA%B6%8C%EC%B4%9D.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EA%B6%8C%EC%B4%9D.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1826,7 +1826,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EB%8C%80%EA%B2%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EB%8C%80%EA%B2%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1834,7 +1834,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1842,7 +1842,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EC%A7%81%EA%B2%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%EC%B4%88%EC%9D%98%20%EC%A7%81%EA%B2%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1850,7 +1850,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%83%9C%ED%8F%89%EC%84%B1%EB%8C%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%83%9C%ED%8F%89%EC%84%B1%EB%8C%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1858,7 +1858,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%8C%8C%EB%8F%84%EC%9D%98%20%EA%B8%B0%EB%A1%9D.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%8C%8C%EB%8F%84%EC%9D%98%20%EA%B8%B0%EB%A1%9D.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1866,7 +1866,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%8C%90%ED%83%80%EC%A7%80%20%EB%B3%80%EC%A3%BC.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%8C%90%ED%83%80%EC%A7%80%20%EB%B3%80%EC%A3%BC.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1874,7 +1874,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%8C%94%EB%B0%A9%EC%9D%98%20%EC%B2%9C%EC%B6%94.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%8C%94%EB%B0%A9%EC%9D%98%20%EC%B2%9C%EC%B6%94.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1882,7 +1882,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%91%B8%EB%A5%B8%20%EC%9D%98%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%91%B8%EB%A5%B8%20%EC%9D%98%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1890,7 +1890,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%91%B8%EB%A5%B8%EB%AC%BC%EA%B2%B0%EC%9D%98%20%EB%B9%9B.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%91%B8%EB%A5%B8%EB%AC%BC%EA%B2%B0%EC%9D%98%20%EB%B9%9B.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1898,7 +1898,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%92%8D%EB%A5%98%EC%9D%98%20%EC%9A%B0%ED%99%94%EC%8B%9C.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%92%8D%EB%A5%98%EC%9D%98%20%EC%9A%B0%ED%99%94%EC%8B%9C.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1906,7 +1906,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%94%84%EB%A6%AC%EC%A6%88%20%ED%94%84%EB%A0%88%EC%9E%84.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1914,7 +1914,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%95%9C%EB%82%AE%EC%9D%98%20%EC%9D%98%EC%A7%80.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%95%9C%EB%82%AE%EC%9D%98%20%EC%9D%98%EC%A7%80.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1922,7 +1922,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%96%89%EC%A7%84%EC%9D%98%20%EC%84%9C%EA%B3%A1.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%96%89%EC%A7%84%EC%9D%98%20%EC%84%9C%EA%B3%A1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1930,7 +1930,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%98%88%EB%A7%B9%EC%9D%98%20%EC%95%BD%EC%86%8D.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%98%88%EB%A7%B9%EC%9D%98%20%EC%95%BD%EC%86%8D.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1938,7 +1938,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%99%94%EB%A0%A4%ED%95%9C%20%EC%95%85%EA%B3%A1.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%99%94%EB%A0%A4%ED%95%9C%20%EC%95%85%EA%B3%A1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1946,7 +1946,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%99%A9%EA%B8%88%20%EA%B6%8C%EA%B0%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%99%A9%EA%B8%88%20%EA%B6%8C%EA%B0%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1954,7 +1954,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%ED%9D%91%EB%B9%9B.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EA%B6%8C%EA%B0%91%20%C2%B7%20%ED%9D%91%EB%B9%9B.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1962,7 +1962,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%ED%9D%91%EC%84%B1.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EA%B6%8C%EC%B4%9D%20%C2%B7%20%ED%9D%91%EC%84%B1.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1970,7 +1970,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%ED%98%84%EB%AA%85.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EB%8C%80%EA%B2%80%20%C2%B7%20%ED%98%84%EB%AA%85.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1978,7 +1978,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%ED%9D%91%EA%B4%91.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A6%9D%ED%8F%AD%EA%B8%B0%20%C2%B7%20%ED%9D%91%EA%B4%91.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1986,7 +1986,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%ED%9D%91%EB%A2%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%91%EC%95%BC%EC%9D%98%20%EC%A7%81%EA%B2%80%20%C2%B7%20%ED%9D%91%EB%A2%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -1994,7 +1994,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%94%EB%93%A4%EB%A6%AC%EC%A7%80%20%EC%95%8A%EB%8A%94%20%EC%9A%A9%EA%B8%B0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%94%EB%93%A4%EB%A6%AC%EC%A7%80%20%EC%95%8A%EB%8A%94%20%EC%9A%A9%EA%B8%B0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2002,7 +2002,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%ED%9D%AC%EB%B9%84%EA%B7%B9.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%ED%9D%AC%EB%B9%84%EA%B7%B9.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2110,7 +2110,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%A5%EA%B6%90%EC%97%90%20%ED%94%BC%EB%8A%94%20%EA%BD%83.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2118,7 +2118,7 @@
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%A0%81%EB%A7%89%ED%95%9C%20%EC%96%B4%EB%91%A0.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2146,7 +2146,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2155,7 +2155,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2164,7 +2164,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
   <url>
@@ -2173,7 +2173,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
-      <image:loc>https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/common/default_banner.webp</image:loc>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/common/default_banner.webp</image:loc>
     </image:image>
   </url>
 </urlset>

@@ -203,9 +203,9 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
     if (e.currentTarget.src.endsWith('/assets/unknown.webp')) return;
     const fallbackGameId = item.gameId || 'hsr';
     if (fallbackGameId === 'nte') {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
+      e.currentTarget.src = "https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp";
     } else if (fallbackGameId === 'ww') {
-      e.currentTarget.src = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp";
+      e.currentTarget.src = "https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp";
     } else {
       e.currentTarget.src = "/assets/unknown.webp";
     }

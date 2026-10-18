@@ -41,7 +41,7 @@ const OrnamentDetail: React.FC = () => {
     );
   }
 
-  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images';
+  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
   
   // 이미지 로드를 위해 명시적으로 KO 데이터베이스를 참조합니다.
   const koOrnament = HSR_ORNAMENT_DB.find((o: any) => o.id === ornament?.id) || ornament;
@@ -160,7 +160,7 @@ const OrnamentDetail: React.FC = () => {
                             className="w-full h-full object-contain"
                             loading="lazy"
                             decoding="async"
-                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/items/relic_placeholder.webp'; }}
                           />
                         </div>
                     <span className="text-[12px] font-bold text-gray-400 group-hover:text-white transition-colors">{displayPieceName}</span>

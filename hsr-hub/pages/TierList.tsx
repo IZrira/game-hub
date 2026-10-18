@@ -367,7 +367,7 @@ const TierList: React.FC = () => {
     const folder = char.folderName || char.folder_name || char.name;
     if (!folder) return '';
     const folderNorm = folder.trim();
-    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/캐릭터/${safeEncodeURIComponent(folderNorm)}/art01.webp`;
+    return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/캐릭터/${safeEncodeURIComponent(folderNorm)}/art01.webp`;
   };
 
   return (

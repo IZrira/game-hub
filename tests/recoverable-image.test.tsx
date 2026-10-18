@@ -18,7 +18,7 @@ it('retries the same asset and stops at a local neutral placeholder', () => {
   fireEvent.error(img());
   expect(img().getAttribute('src')).toBe(source.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net'));
   fireEvent.error(img());
-  expect(img().getAttribute('src')).toContain('raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/items/test.webp');
+  expect(img().getAttribute('src')).toBe('/assets/unknown.webp');
   fireEvent.error(img());
   expect(img().getAttribute('src')).toBe('/assets/unknown.webp');
   fireEvent.error(img());
@@ -51,7 +51,7 @@ it('observes the replacement lazy image after a failure before viewport entry', 
   expect(screen.getByAltText('material').getAttribute('src')).toContain('fastly.jsdelivr.net');
   act(() => enter([{ isIntersecting: true } as IntersectionObserverEntry], {} as IntersectionObserver));
   act(() => vi.advanceTimersByTime(8000));
-  expect(screen.getByAltText('material').getAttribute('src')).toContain('raw.githubusercontent.com');
+  expect(screen.getByAltText('material').getAttribute('src')).toBe('/assets/unknown.webp');
 });
 it('resets attempts on a new source and does not block surrounding interaction', () => {
   let clicks = 0;
@@ -60,5 +60,5 @@ it('resets attempts on a new source and does not block surrounding interaction',
   fireEvent.click(screen.getByRole('button'));
   expect(clicks).toBe(1);
   rerender(<RecoverableImage src={source + '?v=next'} alt="material" />);
-  expect(screen.getByAltText('material').getAttribute('src')).toBe(source + '?v=next');
+  expect(screen.getByAltText('material').getAttribute('src')).toBe(source.replace('https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main', 'https://raw.githubusercontent.com/IZrira/riragameinfo/main') + '?v=next');
 });

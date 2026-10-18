@@ -45,7 +45,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
   }, []);
 
   // CDN URL
-  const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+  const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
   const getWwCharacterImage = (folder: string) => {
     let mappedFolder = (folder || '').trim();

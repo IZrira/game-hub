@@ -41,7 +41,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
         <div className="p-8 border-b border-white/5 flex items-center gap-8 bg-white/[0.02]">
           <div className="w-32 h-32 bg-white/5 rounded-3xl p-4 shrink-0 shadow-inner">
             <img 
-              src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/Weapons/${encodeURIComponent(weapon.name.normalize('NFC'))}.webp`}
+              src={`https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/${encodeURIComponent(weapon.name.normalize('NFC'))}.webp`}
               className="w-full h-full object-contain"
               alt={weapon.name}
             />

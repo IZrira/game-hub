@@ -156,7 +156,7 @@ const CharacterDetailNTE: React.FC = () => {
   // Preload base and skin images to prevent delay when switching skins
   useEffect(() => {
     if (rawChar) {
-      const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+      const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
       const folderName = rawChar.folderName || rawChar.name || '';
       
       const baseImg = new Image();
@@ -565,7 +565,7 @@ const CharacterDetailNTE: React.FC = () => {
   };
 
   const getIllustrationUrl = () => {
-    const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+    const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
     const folderName = char.folderName || char.name || '';
     
     if (char.fixedUrl) return char.fixedUrl;
@@ -796,7 +796,7 @@ const CharacterDetailNTE: React.FC = () => {
               fetchPriority="high"
               decoding="async"
               onError={(e) => {
-                const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+                const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
                 if (e.currentTarget.src.includes('art01_as.webp')) {
                   e.currentTarget.src = e.currentTarget.src.replace('art01_as.webp', 'art01.webp');
                 } else if (char.isTrailblazer && !e.currentTarget.src.includes('%EA%B0%9C%EC%B2%99%EC%9E%90/')) {

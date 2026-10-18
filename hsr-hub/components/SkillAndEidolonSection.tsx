@@ -62,9 +62,9 @@ export default function SkillAndEidolonSection({
   const categories = SKILL_CATEGORIES_HSR;
 
   const CDN_BASE = gameId === 'nte' 
-    ? `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte images/skills/${safeEncodeURIComponent(char.name)}/`
-    : `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/`;
-  const STAT_ICON_BASE = "https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/common/stats/";
+    ? `https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte images/skills/${safeEncodeURIComponent(char.name)}/`
+    : `https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/`;
+  const STAT_ICON_BASE = "https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/common/stats/";
 
   const groupedSkills = useMemo(() => {
     const groups: Record<string, { skill: SkillDetail, filename: string }[]> = {

@@ -40,7 +40,7 @@ const RelicDetail: React.FC = () => {
     );
   }
 
-  const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+  const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
   // 이미지 로드를 위해 명시적으로 KO 데이터베이스를 참조합니다.
   const koRelic = HSR_RELIC_DB.find((r: any) => r.id === relic?.id) || relic;
@@ -162,7 +162,7 @@ const RelicDetail: React.FC = () => {
                             className="w-full h-full object-contain"
                             loading="lazy"
                             decoding="async"
-                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr images/items/relic_placeholder.webp'; }}
+                            onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/items/relic_placeholder.webp'; }}
                           />
                         </div>
                       <span className="text-[11px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{t(pieceName)}</span>

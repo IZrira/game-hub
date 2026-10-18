@@ -30,16 +30,6 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
     setImgSrc(getItemUrl(name, gameId) || (itemInfo?.enName ? getItemUrl(itemInfo.enName, gameId) : null));
   }, [name, itemInfo?.enName, gameId]);
 
-  const handleError = () => {
-    const fallbackGameId = gameId || itemInfo?.gameId || 'hsr';
-    if (fallbackGameId === 'nte') {
-      setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/items/%EB%B9%84%ED%8B%80%20%EC%BD%94%EC%9D%B8.webp");
-    } else if (fallbackGameId === 'ww') {
-      setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/items/%ED%81%B4%EB%A0%88%EB%94%A7.webp");
-    } else {
-      setImgSrc("https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp");
-    }
-  };
 
   const truncateMiddle = (text: string, maxLength: number) => {
     if (text.length <= maxLength) return text;
@@ -98,7 +88,6 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
           decoding="async"
           style={{ imageRendering: 'auto' }}
           className="w-full h-full object-contain p-1 relative z-10 filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.5)] transform transition-transform duration-500 group-hover:scale-110"
-          onError={(gameId || itemInfo?.gameId) === 'ww' ? undefined : handleError}
         />
 
         {count !== undefined && count !== null && (

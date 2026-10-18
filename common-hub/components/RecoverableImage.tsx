@@ -1,12 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { repositoryImageCandidates } from '../utils/imageSources';
 
 /** Retry the same public asset through a bounded provider chain, never another item. */
 export function imageCandidates(src: string): string[] {
-  const prefix = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/';
-  if (!src.startsWith(prefix)) return [src, '/assets/unknown.webp'];
-  const path = src.slice(prefix.length);
-  return [src, `https://fastly.jsdelivr.net/gh/IZrira/riragameinfo@main/${path}`,
-    `https://raw.githubusercontent.com/IZrira/riragameinfo/main/${path}`, '/assets/unknown.webp'];
+  return repositoryImageCandidates(src);
 }
 
 function ImageAttempt({ src, onLoad, onError, ...props }: React.ImgHTMLAttributes<HTMLImageElement> & { src: string }) {

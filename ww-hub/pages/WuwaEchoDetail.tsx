@@ -4,7 +4,7 @@ import { ChevronRight, Home as HomeIcon, Shield, Zap, Info, Box, Star } from 'lu
 import { WW_ECHO_DATA } from '../data/echoData';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 import { renderRichText, ELEMENT_COLORS } from '../data/formatter';
-import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { CDN_URL, safeEncodeURIComponent, handleImageFallback } from '../../common-hub/utils/assetManager';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -86,6 +86,7 @@ export const WuwaEchoDetail = () => {
             <img 
               src={`${ECHO_IMAGE_BASE}${encodeURIComponent((isPhantom && showPhantom ? '이상 · ' + echo.name : echo.name).normalize('NFC'))}.webp`} 
               alt={echo.name} 
+              onError={handleImageFallback}
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-1000 p-12" 
             />
             {/* Overlay Gradient */}

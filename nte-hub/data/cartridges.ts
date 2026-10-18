@@ -138,7 +138,7 @@ export const NTE_CARTRIDGE_EFFECT_TYPES = Array.from(
   new Set(NTE_CARTRIDGES.map((cartridge) => cartridge.effectType)),
 );
 
-const CARTRIDGE_IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/Console';
+const CARTRIDGE_IMAGE_BASE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/Console';
 
 export const getNTECartridgeImageUrl = (imageFileName: string, rarity: 3 | 4 | 5) =>
   `${CARTRIDGE_IMAGE_BASE_URL}/${encodeURIComponent(`${rarity}성 「${imageFileName}」.webp`)}`;

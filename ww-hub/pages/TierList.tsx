@@ -117,7 +117,7 @@ const TierList: React.FC = () => {
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
+  const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww images';
 
   const [liveData, setLiveData] = useState<Record<string, TierGroup[]>>(WW_TIER_DATA);
   const [allCharacters, setAllCharacters] = useState<any[]>([]);

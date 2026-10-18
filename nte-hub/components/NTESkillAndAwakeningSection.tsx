@@ -35,7 +35,7 @@ export default function NTESkillAndAwakeningSection({
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('도시 스킬');
 
-  const CDN_BASE = `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/`;
+  const CDN_BASE = `https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/skills/${safeEncodeURIComponent(char.folderName || char.name)}/`;
 
   const groupedSkills = useMemo(() => {
     const groups: Record<string, { skill: SkillDetail, filename: string }[]> = {

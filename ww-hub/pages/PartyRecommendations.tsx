@@ -25,7 +25,7 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
   '생존': <Shield size={14} className="text-emerald-500" />,
 };
 
-const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
+const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww images';
 
 const normalizeName = (name: string) => {
   if (!name) return "";

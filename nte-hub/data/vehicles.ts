@@ -333,7 +333,7 @@ export const NTE_VEHICLE_DISPLAY_ORDER = [
   'tomorrow-rush', 'k01', 'porsche-918-spyder', 'porsche-taycan-turbo-gt', 'porsche-911-turbo-930',
 ] as const;
 
-const VEHICLE_IMAGE_BASE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/Vehicles';
+const VEHICLE_IMAGE_BASE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/Vehicles';
 
 export const getNTEVehicleImageUrl = (imageFileName: string) =>
   `${VEHICLE_IMAGE_BASE_URL}/${encodeURIComponent(`${imageFileName}.webp`)}`;

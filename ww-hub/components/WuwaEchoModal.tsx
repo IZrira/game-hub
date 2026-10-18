@@ -6,7 +6,7 @@ import { renderRichText, ELEMENT_COLORS } from '../data/formatter';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 import { getItemUrl, getItemMetaDB } from '../../common-hub/data/items';
 import { WW_ECHO_DATA } from '../data/echoData';
-import { CDN_URL } from '../../common-hub/utils/assetManager';
+import { CDN_URL, handleImageFallback } from '../../common-hub/utils/assetManager';
 
 // 등급별 컬러 헬퍼
 const getRarityColor = (rarity: number) => {
@@ -73,7 +73,9 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                     const folderName = (echo as any).folderName;
                     if (folderName && !target.src.includes(encodeURIComponent(folderName))) {
                       target.src = `${ECHO_IMAGE_BASE}${encodeURIComponent(folderName.normalize('NFC'))}.webp`;
+                      return;
                     }
+                    handleImageFallback(e);
                   }}
                 />
               </div>
@@ -204,7 +206,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {Object.entries((echo as any).enemyInfo?.resistances || {}).map(([attr, val]) => (
                       <div key={attr} className="flex items-center gap-3 px-4 py-2.5 rounded-full border border-white/5 bg-white/[0.03]">
-                        <img src={`https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/common/stats/${attr}%20피해%20저항.webp`} className="w-5 h-5" alt={attr} />
+                        <img src={`https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/stats/${attr}%20피해%20저항.webp`} className="w-5 h-5" alt={attr} />
                         <div className="flex justify-between w-full items-center">
                           <span className="text-[11px] font-black tracking-tight" style={{ color: ELEMENT_COLORS[attr] }}>{attr} 피해 저항</span>
                           <span className="text-[12px] font-black text-white">{val as number}%</span>

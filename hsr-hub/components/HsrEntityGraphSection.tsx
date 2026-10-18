@@ -7,7 +7,7 @@ import type { HsrGuideRuntime } from '../utils/guideRuntime';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import type { HsrCharacter } from '../types';
 
-const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
 interface HsrEntityGraphSectionProps {
   character: HsrCharacter;

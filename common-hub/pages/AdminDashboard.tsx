@@ -744,13 +744,13 @@ const AdminDashboard: React.FC = () => {
         mappedFolder = '방랑자 · 회절';
       }
       const fileName = isRover ? `${mappedFolder}(여)` : mappedFolder;
-      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
+      return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
     if (game === 'nte') {
       const fileName = safeFolder === '감정사' ? '감정사_f' : safeFolder;
-      return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte%20images/skills/${safeEncodeURIComponent(safeFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
+      return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/skills/${safeEncodeURIComponent(safeFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
-    return `https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/hsr%20images/캐릭터/${safeEncodeURIComponent(safeFolder)}/art01.webp`;
+    return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/캐릭터/${safeEncodeURIComponent(safeFolder)}/art01.webp`;
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Activity className="animate-spin text-amber-500" size={48} /></div>;

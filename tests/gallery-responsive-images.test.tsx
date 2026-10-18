@@ -82,7 +82,7 @@ it('clears responsive candidates before falling back to the original and then th
 it('keeps the original URL for a character without a generated thumbnail', () => {
   renderCard(0, '캐릭터', { id: 'missing', name: '없는캐릭터', folderName: '없는캐릭터' });
   const image = screen.getByRole('img');
-  expect(image.getAttribute('src')).toContain('cdn.jsdelivr.net');
+  expect(image.getAttribute('src')).toContain('raw.githubusercontent.com/IZrira/riragameinfo/main/');
   expect(image.hasAttribute('srcset')).toBe(false);
 });
 

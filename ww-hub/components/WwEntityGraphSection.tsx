@@ -7,7 +7,7 @@ import { WW_GUIDE_DATA } from '../data/guideData';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import type { WuwaCharacter } from '../types';
 
-const CDN_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main';
+const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
 interface WwEntityGraphSectionProps {
   character: WuwaCharacter;

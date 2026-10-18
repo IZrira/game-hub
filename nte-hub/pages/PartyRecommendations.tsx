@@ -27,7 +27,7 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
   '탱커/힐러': <Shield size={14} className="text-emerald-500" />,
 };
 
-const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/nte images';
+const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte images';
 
 const getIconUrl = (member: { folderName?: string; name: string }) => {
   const folder = member.folderName || member.name;

@@ -17,7 +17,7 @@ import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/
 import { SONATA_SETS } from '../types';
 import { SONATA_EFFECTS } from '../data/sonataEffects';
 
-const BASE_IMAGE_URL = 'https://cdn.jsdelivr.net/gh/IZrira/riragameinfo@main/ww images';
+const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww images';
 
 const getMatchingTwoPieceSets = (text: string): string[] => {
   if (!text) return [];
