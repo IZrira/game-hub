@@ -6,6 +6,8 @@
 
 > 성능 변경과 신규 콘텐츠 개발은 [`성능 유지 기준`](./docs/guides/PERFORMANCE.md)을 따릅니다. 빌드 후 `npm run perf:audit`로 용량 회귀를 검사합니다.
 
+> GF2 PDF·Notion 캐릭터 입력 시 [`GF2 용어 사전 및 입력 형식`](./docs/guides/GF2_TERMS.md)을 먼저 조회합니다. 용어 이름의 `_`는 공백으로 정리하고, 같은 이름의 효과를 재사용하되 수치·조건이 다른 정의는 덮어쓰지 않습니다.
+
 > 품질 평가는 [`3인 독립 평가 기준`](./docs/guides/THREE_ENGINEER_REVIEW.md)에 따라 성능·보안·디자인 담당을 나눠 수행합니다. 자동 예약 없이 요청 시 실행하며, [`보고서 양식`](./docs/templates/three-engineer-review.md)으로 증거와 미검증 항목을 보관합니다.
 
 > **"파편화된 게임 데이터를 모아 거대한 지식의 우주를 구축합니다."**
