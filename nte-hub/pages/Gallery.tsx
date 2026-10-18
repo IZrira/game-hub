@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import HubIntro from '../../common-hub/components/HubIntro';
+import ReviewedGuideHighlights from '../../common-hub/components/ReviewedGuideHighlights';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
 import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { CharacterPremiumCard, LightConePremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
@@ -207,44 +209,28 @@ const GalleryNTE: React.FC = () => {
         <main className="min-h-[800px] space-y-16 relative z-10">
           {activeMenu !== '홈' && <h1 className="sr-only">{game.title} {t(activeMenu)}</h1>}
           {activeMenu === '홈' ? (
-            <div className="space-y-16">
-              <section className="relative p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
-                <div className="relative z-10 space-y-4 sm:space-y-6">
-                  <div className="space-y-0.5">
-                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-tight">
-                      <span className="text-white">Neverness to </span>
-                      <span className="text-brand-accent">Everness</span>
-                    </h1>
-                  </div>
-                  <p className="text-gray-400 font-bold max-w-lg text-xs sm:text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-4 sm:pl-6">
-                    {t("이환 아카이브에 오신 것을 환영합니다. 모든 캐릭터와 아크, 실전 조합 정보를 탐색하세요.")}
-                  </p>
+            <div className="space-y-8 sm:space-y-10">
+              <HubIntro title={t('이환')} description={t('캐릭터·아크 도감부터 에스퍼 사이클, 콘솔 카트리지와 이동 수단까지 확인하세요.')} stats={[{ label: t('캐릭터'), value: CHARACTER_DB.length }, { label: t('아크'), value: NTE_ARC_COUNT }, { label: t('콘솔'), value: NTE_CARTRIDGES.length }, { label: t('이동 수단'), value: NTE_VEHICLES.length }, { label: t('인벤토리'), value: NTE_INVENTORY_COUNT }]} searchPath="/gallery/nte?menu=캐릭터" searchLabel={t('캐릭터 이름 검색')} links={[{ label: t('캐릭터 도감'), to: '/gallery/nte?menu=캐릭터' }, { label: t('에스퍼 사이클'), to: '/gallery/nte/guides/esper-cycle-combat-guide' }, { label: t('콘솔 카트리지'), to: '/gallery/nte?menu=콘솔' }, { label: t('이동 수단'), to: '/gallery/nte?menu=이동%20수단' }]} />
+              <section className="space-y-6">
+                <div className="flex items-center gap-3 px-2">
+                  <h2 className="text-xl font-bold text-white">{t('최근 업데이트')}</h2>
+                </div>
+                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                  {CHARACTER_DB.slice(0, 5).map((char: any, idx: number) => (
+                    <CharacterPremiumCard key={char.id} char={char} index={idx} />
+                  ))}
                 </div>
               </section>
 
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                  { label: "캐릭터", count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: "text-blue-400" },
-                  { label: "아크", count: NTE_ARC_COUNT, icon: <Zap size={14} />, color: "text-yellow-400" },
-                  { label: "콘솔", count: NTE_CARTRIDGES.length, icon: <Boxes size={14} />, color: "text-violet-400" },
-                  { label: "이동 수단", count: NTE_VEHICLES.length, icon: <CarFront size={14} />, color: "text-emerald-400" },
-                  { label: "인벤토리", count: NTE_INVENTORY_COUNT, icon: <Backpack size={14} />, color: "text-brand-accent" }
-                ].map((stat, i) => (
-                  <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1">
-                    <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color}`}>{stat.icon}</div>
-                    <span className="text-xl font-black text-white leading-none">{stat.count}</span>
-                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none pt-1">{t(stat.label)}</span>
-                  </div>
-                ))}
-              </div>
+              <ReviewedGuideHighlights gameId="nte" accentClassName="text-emerald-300" variant="list" />
 
               {/* 데이터베이스 카테고리 허브 (Category Hub) */}
               <section className="space-y-6">
                 <div className="flex items-center gap-3 px-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-sky-400 animate-pulse" />
-                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('데이터베이스 카테고리')}</h3>
+                  <div className="w-1.5 h-1.5 rounded-full bg-sky-400" />
+                  <h2 className="text-xl font-bold text-white">{t('데이터베이스 카테고리')}</h2>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-x-6 sm:grid-cols-2">
                   {[
                     {
                       title: t('캐릭터 도감'),
@@ -319,16 +305,16 @@ const GalleryNTE: React.FC = () => {
                             cat.action();
                           }
                         }}
-                        className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-sky-500/40 hover:bg-white/[0.05]"
+                        className="group block border-b border-white/10 py-4 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300"
                       >
                         <div className="flex items-center justify-between">
-                          <span className={`rounded-xl bg-white/5 p-2.5 ${cat.color} group-hover:scale-110 transition-transform`}>
+                          <span className={`${cat.color}`}>
                             <Icon size={18} />
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">{cat.stat}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
                         </div>
-                        <h4 className="mt-5 text-lg font-black text-white group-hover:text-sky-400 transition-colors">{cat.title}</h4>
-                        <p className="mt-2 min-h-[40px] text-xs leading-5 text-gray-400">{cat.description}</p>
+                        <h3 className="mt-2 text-base font-black text-white group-hover:text-sky-400 transition-colors">{cat.title}</h3>
+                        <p className="mt-2 text-xs leading-5 text-gray-400">{cat.description}</p>
                         <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-sky-400 group-hover:translate-x-1 transition-transform">
                           {t('탐색하기')} <ArrowRight size={13} />
                         </span>
@@ -338,16 +324,6 @@ const GalleryNTE: React.FC = () => {
                 </div>
               </section>
 
-              <section className="space-y-6">
-                <div className="flex items-center gap-3 px-2">
-                  <h3 className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('최근 업데이트')}</h3>
-                </div>
-                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-                  {CHARACTER_DB.slice(0, 5).map((char: any, idx: number) => (
-                    <CharacterPremiumCard key={char.id} char={char} index={idx} />
-                  ))}
-                </div>
-              </section>
             </div>
           ) : activeMenu === "캐릭터" ? (
             <div className="space-y-12">

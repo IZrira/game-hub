@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useSearchParams } from 'react-router';
 import { BarChart3, Check, ExternalLink, Search, Swords, X } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -22,7 +22,8 @@ type CompareSelection = { number: string; formKey: string };
 type ComparedAniimo = { id: string; item: AniimoEntry; form: AniimoForm; stats: AniimoStats };
 
 const GalleryAniimo: React.FC = () => {
-  const [query, setQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const [query, setQuery] = useState(() => searchParams.get('search') || '');
   const [element, setElement] = useState(ALL);
   const [position, setPosition] = useState(ALL);
   const [location, setLocation] = useState(ALL);

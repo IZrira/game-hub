@@ -3,6 +3,9 @@ import { ArrowRight, Brain, ExternalLink, Layers3, MapPin, PawPrint, Sparkles, S
 import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import HubIntro from '../../common-hub/components/HubIntro';
+import LazyImage from '../../common-hub/components/LazyImage';
+import { getAniimoLocationPath } from '../utils/location';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry } from '../types';
@@ -15,7 +18,7 @@ const formCount = entries.reduce((total, entry) => total + entry.forms.length, 0
 
 const tools = [
   { title: '애니모 도감', description: '전체 애니모를 원소·포지션·지역으로 검색하고 기본 상세 정보를 확인합니다.', path: '/gallery/aniimo/characters', icon: PawPrint, stat: `${entries.length}종` },
-  { title: '비교 매트릭스', description: '선택한 아니모 간의 스탯 델타와 역할군별 능력치 차이를 정밀 비교합니다.', path: '/gallery/aniimo/characters', icon: Layers3, stat: '스탯 비교' },
+  { title: '능력치 비교', description: '선택한 애니모의 형태별 능력치와 역할 차이를 비교합니다.', path: '/gallery/aniimo/characters', icon: Layers3, stat: '스탯 비교' },
   { title: '파티 추천', description: '역할과 형태별 특성을 반영해 엄선한 4인 추천 조합과 서포터를 확인합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '추천 조합' },
   { title: '원소 상성표', description: '9개 원소의 공격 배율과 복합 원소 상대 추천 공격 원소를 확인합니다.', path: '/gallery/aniimo/type-chart', icon: Swords, stat: '9원소' },
   { title: '서식지 도감', description: '공식 14대 서식지를 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}개 서식지` },
@@ -28,20 +31,57 @@ const HubAniimo: React.FC = () => <div className="min-h-[100dvh] bg-[#0a0a0a] te
   <AniimoMobileNav />
   <main className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-12 px-4 pb-24 pt-10 sm:px-6 md:px-8 lg:grid-cols-[240px_minmax(0,1fr)]">
     <AniimoSidebar />
-    <div className="min-w-0 space-y-16">
-      <section className="group relative overflow-hidden rounded-[28px] border border-white/5 bg-[#0a0a0a] p-6 sm:rounded-[40px] sm:p-10 md:p-12">
-        {entries[0]?.imageUrl && <img src={entries[0].imageUrl} alt="대표 애니모" referrerPolicy="no-referrer" className="absolute inset-y-0 right-0 h-full w-3/5 object-contain object-right opacity-30 transition-transform duration-700 [mask-image:linear-gradient(to_left,black,transparent)] group-hover:scale-105" />}
-        <div className="relative z-10 max-w-2xl space-y-5"><div className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 backdrop-blur-md"><Sparkles size={12} className="animate-pulse text-violet-300" /><span className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">Aniimo Archive v1.0</span></div><h1 className="text-3xl font-black italic uppercase leading-tight tracking-tighter sm:text-5xl md:text-7xl"><span className="text-white">ANIIMO </span><span className="text-violet-300">ARCHIVE</span></h1><p className="max-w-lg border-l-2 border-violet-400/50 pl-4 text-xs font-bold leading-relaxed text-gray-400 sm:pl-6 sm:text-sm md:text-base">형태별 능력치, 진화 계보, 출현 지역과 전투 상성을 연결한 애니모 전용 데이터베이스입니다.</p><a href="https://www.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white">애니모 공식 사이트 <ExternalLink size={13} /></a></div>
+    <div className="min-w-0 space-y-8 sm:space-y-10">
+      <HubIntro title="애니모" description="형태·진화·서식 정보를 찾고, 능력치와 성격을 비교하세요." searchPath="/gallery/aniimo/characters" searchLabel="이름 또는 도감 번호 검색"
+        stats={[{ label: '등록 애니모', value: entries.length }, { label: '형태 데이터', value: formCount }, { label: '원소 상성', value: 9 }, { label: '출현 지역', value: locationCount }]}
+        links={[{ label: '전체 도감', to: '/gallery/aniimo/characters' }, { label: '진화·형태 가이드', to: '/gallery/aniimo/guides/evolution-and-forms-guide' }, { label: '원소 상성표', to: '/gallery/aniimo/type-chart' }]} />
+
+      <section aria-labelledby="aniimo-browse-heading" className="space-y-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <h2 id="aniimo-browse-heading" className="text-xl font-bold">애니모 찾아보기</h2>
+          <Link to="/gallery/aniimo/characters" className="inline-flex min-h-11 items-center text-sm text-violet-300 hover:text-white">전체 도감 <ArrowRight size={14} /></Link>
+        </div>
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {entries.slice(0, 4).map((entry, index) => <Link key={entry.number} to={`/gallery/aniimo/character/${encodeURIComponent(entry.name)}`} className="min-w-0 rounded-2xl border border-white/10 p-3 transition-colors hover:bg-white/[0.03] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300">
+            <LazyImage src={entry.imageUrl || '/assets/unknown.webp'} alt={entry.name} loading={index < 2 ? 'eager' : 'lazy'} containerClassName="aspect-square" className="h-full w-full object-contain" referrerPolicy="no-referrer" />
+            <p className="mt-2 text-xs text-gray-400">NO.{entry.number}</p>
+            <h3 className="mt-1 font-bold">{entry.name}</h3>
+            <p className="mt-1 text-xs text-gray-400">{entry.elements.join(' · ')}</p>
+          </Link>)}
+        </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-4 lg:grid-cols-4">{[
-        { value: entries.length, label: '등록 애니모', icon: PawPrint, color: 'text-violet-300' },
-        { value: formCount, label: '형태 데이터', icon: Layers3, color: 'text-cyan-300' },
-        { value: 9, label: '원소 상성', icon: Swords, color: 'text-rose-300' },
-        { value: locationCount, label: '출현 지역', icon: MapPin, color: 'text-emerald-300' },
-      ].map(({ value, label, icon: Icon, color }) => <div key={label} className="group flex flex-col items-center justify-center gap-1 rounded-[28px] border border-white/5 bg-white/[0.02] p-4 transition-all hover:bg-white/[0.04]"><div className={`rounded-xl bg-white/5 p-2.5 transition-transform group-hover:scale-110 ${color}`}><Icon size={14} /></div><strong className="text-xl font-black leading-none text-white">{value}</strong><span className="pt-1 text-[9px] font-black uppercase tracking-widest text-gray-400">{label}</span></div>)}</section>
+      <div className="grid gap-8 xl:grid-cols-2">
+        <section className="space-y-4 border-t border-white/10 pt-5">
+          <h2 className="text-xl font-bold">진화와 형태 살펴보기</h2>
+          <p className="text-sm leading-6 text-gray-400">종마다 다른 진화 조건과 지역 형태를 확인하세요. 진화 계보는 각 애니모 상세에서 볼 수 있습니다.</p>
+          <div className="flex flex-wrap gap-2">
+            {entries.slice(0, 2).map(entry => <Link key={entry.number} to={`/gallery/aniimo/character/${encodeURIComponent(entry.name)}`} className="inline-flex min-h-11 items-center rounded-xl border border-white/10 px-3 text-sm hover:bg-white/5">{entry.name} 상세 <ArrowRight size={14} /></Link>)}
+          </div>
+          <Link to="/gallery/aniimo/guides/evolution-and-forms-guide" className="inline-flex min-h-11 items-center gap-2 text-sm text-violet-300 hover:text-white">진화·형태 선택 가이드 <ArrowRight size={14} /></Link>
+        </section>
+        <section className="space-y-4 border-t border-white/10 pt-5">
+          <h2 className="text-xl font-bold">서식지로 찾기</h2>
+          <p className="text-sm leading-6 text-gray-400">출현 지역별 애니모와 지역 형태를 확인하세요.</p>
+          <div className="flex flex-wrap gap-2">
+            {OFFICIAL_ANIIMO_HABITATS.slice(0, 4).map(habitat => <Link key={habitat} to={getAniimoLocationPath(habitat)} className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 px-3 text-sm hover:bg-white/5"><MapPin size={14} />{habitat}</Link>)}
+          </div>
+          <Link to="/gallery/aniimo/locations" className="inline-flex min-h-11 items-center gap-2 text-sm text-violet-300 hover:text-white">전체 서식지 보기 <ArrowRight size={14} /></Link>
+        </section>
+      </div>
+      <section className="flex flex-wrap items-center justify-between gap-4 border-y border-white/10 py-5">
+        <div><h2 className="text-xl font-bold">애니모 비교</h2><p className="mt-2 text-sm text-gray-400">도감에서 비교할 형태를 골라 능력치와 역할 차이를 확인하세요.</p></div>
+        <Link to="/gallery/aniimo/characters" className="inline-flex min-h-11 items-center gap-2 rounded-xl border border-white/10 px-4 text-sm hover:bg-white/5">비교할 애니모 선택 <ArrowRight size={14} /></Link>
+      </section>
 
-      <section className="space-y-6"><div className="flex items-center gap-3 px-2"><div className="h-1.5 w-1.5 animate-pulse rounded-full bg-violet-300" /><h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400">데이터베이스 메뉴</h2></div><div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">{tools.map(({ title, description, path, icon: Icon, stat }) => <Link key={path} to={path} className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-violet-400/30 hover:bg-white/[0.04]"><div className="flex items-center justify-between"><span className="rounded-xl bg-white/5 p-2.5 text-violet-300"><Icon size={18} /></span><span className="text-[9px] font-black uppercase tracking-widest text-gray-600">{stat}</span></div><h3 className="mt-5 text-lg font-black group-hover:text-violet-300">{title}</h3><p className="mt-2 min-h-16 text-xs leading-6 text-gray-400">{description}</p><span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-violet-300">탐색하기 <ArrowRight size={13} /></span></Link>)}</div></section>
+      <section className="space-y-4" aria-label="애니모 전체 메뉴">
+        <h2 className="text-xl font-bold">전체 메뉴</h2>
+        <div className="grid gap-x-6 md:grid-cols-2">{tools.map(({ title, description, path, stat }) => <Link key={title} to={path} className="group border-b border-white/10 py-4 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300">
+          <div className="flex flex-wrap items-baseline justify-between gap-2"><h3 className="text-base font-bold">{title}</h3><span className="text-xs text-gray-400">{stat}</span></div>
+          <p className="mt-2 text-sm leading-6 text-gray-400">{description}</p>
+        </Link>)}</div>
+        <a href="https://www.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex min-h-11 items-center gap-2 text-sm text-violet-300 hover:text-white">애니모 공식 사이트 <ExternalLink size={13} /></a>
+      </section>
 
     </div>
   </main>

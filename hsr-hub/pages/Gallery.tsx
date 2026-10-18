@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import HubIntro from '../../common-hub/components/HubIntro';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SearchModal from '../../common-hub/components/SearchModal';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
@@ -19,7 +20,6 @@ import { useGalleryFilter } from '@/common-hub/hooks/useGalleryFilter';
 import { CharacterPremiumCard, LightConePremiumCard, RelicPremiumCard, OrnamentPremiumCard, GuidePremiumCard } from '@/common-hub/components/GalleryCards';
 import { RelicDetailModal, OrnamentDetailModal } from '@/common-hub/components/GalleryModals';
 import { GlowStatsDistribution } from '../../common-hub/components/NeonComponents';
-import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 import ReviewedGuideHighlights from '../../common-hub/components/ReviewedGuideHighlights';
 
 const InventoryGallery = lazy(() => import('../../common-hub/components/InventoryGallery'));
@@ -211,72 +211,33 @@ const GalleryHSR: React.FC = () => {
 
       <div className="max-w-[1600px] mx-auto w-full px-4 sm:px-6 md:px-8 pt-10 pb-24 grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-12">
         <GallerySidebar activeMenu={activeMenu} setActiveMenu={handleSetActiveMenu} />
-        <main className="min-h-[800px] space-y-16 relative z-10">
+        <main className="min-h-[800px] space-y-16 relative z-10 min-w-0">
           {activeMenu !== '홈' && <h1 className="sr-only">{game.title} {activeMenu}</h1>}
           {activeMenu === '홈' ? (
-            <div className="space-y-16">
-              {/* 정제된 히어로 섹션: 더 깔끔하고 가독성 높은 프리미엄 디자인 */}
-              <section className="relative p-6 sm:p-10 md:p-12 rounded-[28px] sm:rounded-[40px] bg-[#0a0a0a] border border-white/5 overflow-hidden group">
-                <div 
-                  style={{
-                    backgroundImage: `url(${getCharacterArtPath('hsr', '애쉬베일')})`,
-                    maskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
-                    WebkitMaskImage: 'linear-gradient(to bottom, black 40%, transparent 100%)',
-                    filter: 'brightness(0.35)',
-                  }} 
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" 
-                />
-                
-                <div className="relative z-10 space-y-4 sm:space-y-6">
-                  <div className="inline-flex items-center gap-2.5 px-4 py-1.5 bg-white/5 rounded-full border border-white/10 backdrop-blur-md">
-                    <Sparkles size={12} className="text-brand-accent animate-pulse" />
-                    <span className="text-[10px] font-black text-gray-300 uppercase tracking-[0.2em]">{t('HSR Archive v1.0')}</span>
-                  </div>
-                  
-                  <div className="space-y-0.5">
-                    <h1 className="text-3xl sm:text-5xl md:text-7xl font-black italic tracking-tighter uppercase leading-tight">
-                      <span className="text-white">HSR </span>
-                      <span className="text-brand-accent">Archive</span>
-                    </h1>
-                  </div>
-                  
-                  <p className="text-gray-400 font-bold max-w-lg text-xs sm:text-sm md:text-base leading-relaxed border-l-2 border-brand-primary/50 pl-4 sm:pl-6">
-                    {t('은하 열차의 여정을 기록하는 가장 정밀한 데이터베이스입니다. 모든 개척자님들을 위한 정밀 공략 자료를 탐사하세요.')}
-                  </p>
+            <div className="space-y-8 sm:space-y-10">
+              <HubIntro title={t('붕괴: 스타레일')} description={t('캐릭터·광추·유물 도감과 목표 스탯, 세팅·파티 가이드를 확인하세요.')} stats={[{ label: t('캐릭터'), value: CHARACTER_DB.length }, { label: t('광추'), value: HSR_GALLERY_SUMMARY.counts.lightcones }, { label: t('유물 & 장신구'), value: HSR_GALLERY_SUMMARY.counts.relics + HSR_GALLERY_SUMMARY.counts.ornaments }, { label: t('아이템'), value: HSR_GALLERY_SUMMARY.counts.items }]} searchPath="/gallery/hsr?menu=캐릭터" searchLabel={t('캐릭터 이름 검색')} links={[{ label: t('캐릭터 도감'), to: '/gallery/hsr?menu=캐릭터' }, { label: t('캐릭터 육성 공략'), to: '/gallery/hsr?menu=공략' }, { label: t('추천 파티 조합'), to: '/gallery/hsr/parties' }]} />
+              <section className="space-y-6">
+                <div className="flex items-center gap-3 px-2">
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-accent" />
+                  <h2 className="text-xl font-bold text-white">{t('최근 업데이트 캐릭터')}</h2>
+                </div>
+                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                  {filteredCharacters
+                    .slice(0, 5)
+                    .map((char: any, idx: number) => (
+                      <CharacterPremiumCard key={char.id} char={char} index={idx} />
+                    ))}
                 </div>
               </section>
-
-              {/* 통계 요약: 깔끔한 스타일 */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                {[
-                  { label: '캐릭터', count: CHARACTER_DB?.length || 0, icon: <Users size={14} />, color: 'text-blue-400' },
-                  { label: '광추', count: HSR_GALLERY_SUMMARY.counts.lightcones, icon: <Zap size={14} />, color: 'text-yellow-400' },
-                  { label: '유물 & 장신구', count: HSR_GALLERY_SUMMARY.counts.relics + HSR_GALLERY_SUMMARY.counts.ornaments, icon: <LayoutGrid size={14} />, color: 'text-purple-400' },
-                  { label: '아이템', count: HSR_GALLERY_SUMMARY.counts.items, icon: <Backpack size={14} />, color: 'text-brand-accent' },
-                ].map((stat, i) => (
-                  <div key={i} className="p-4 rounded-[28px] bg-white/[0.02] border border-white/5 flex flex-col items-center justify-center gap-1 group hover:bg-white/[0.04] transition-all">
-                    <div className={`p-2.5 rounded-xl bg-white/5 ${stat.color} group-hover:scale-110 transition-transform`}>
-                      {stat.icon}
-                    </div>
-                    <span className="text-xl font-black text-white leading-none">{stat.count}</span>
-                    <span className="text-[9px] font-black text-gray-400 uppercase tracking-widest leading-none pt-1">{t(stat.label)}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* 데이터 시각화: 운명의 길 중심 분석 */}
-              <section className="grid grid-cols-1 lg:grid-cols-2 gap-10 p-5 sm:p-8 rounded-[32px] bg-white/[0.01] border border-white/5">
-                <GlowStatsDistribution data={CHARACTER_DB} type="path" title="캐릭터 운명의 길 분포" />
-                <GlowStatsDistribution data={HSR_GALLERY_SUMMARY.lightcones} type="path" title="광추 운명의 길 분포" />
-              </section>
+              <ReviewedGuideHighlights gameId="hsr" accentClassName="text-brand-accent" variant="list" />
 
               {/* 데이터베이스 카테고리 허브 (Category Hub) */}
               <section className="space-y-6">
                 <div className="flex items-center gap-3 px-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse" />
-                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('데이터베이스 카테고리')}</h3>
+                  <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
+                  <h2 className="text-xl font-bold text-white">{t('데이터베이스 카테고리')}</h2>
                 </div>
-                <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="grid gap-x-6 sm:grid-cols-2">
                   {[
                     {
                       title: t('캐릭터 도감'),
@@ -342,16 +303,16 @@ const GalleryHSR: React.FC = () => {
                             cat.action();
                           }
                         }}
-                        className="group rounded-[28px] border border-white/5 bg-white/[0.02] p-6 transition hover:border-brand-primary/40 hover:bg-white/[0.05]"
+                        className="group block border-b border-white/10 py-4 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300"
                       >
                         <div className="flex items-center justify-between">
-                          <span className={`rounded-xl bg-white/5 p-2.5 ${cat.color} group-hover:scale-110 transition-transform`}>
+                          <span className={`${cat.color}`}>
                             <Icon size={18} />
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400 bg-white/5 px-2.5 py-1 rounded-full">{cat.stat}</span>
+                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
                         </div>
-                        <h4 className="mt-5 text-lg font-black text-white group-hover:text-brand-primary transition-colors">{cat.title}</h4>
-                        <p className="mt-2 min-h-[40px] text-xs leading-5 text-gray-400">{cat.description}</p>
+                        <h3 className="mt-2 text-base font-black text-white group-hover:text-brand-primary transition-colors">{cat.title}</h3>
+                        <p className="mt-2 text-xs leading-5 text-gray-400">{cat.description}</p>
                         <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-brand-primary group-hover:translate-x-1 transition-transform">
                           {t('탐색하기')} <ArrowRight size={13} />
                         </span>
@@ -361,24 +322,15 @@ const GalleryHSR: React.FC = () => {
                 </div>
               </section>
 
-              <ReviewedGuideHighlights gameId="hsr" accentClassName="text-brand-accent" />
+              <details className="border-t border-white/10 pt-4">
+                <summary className="cursor-pointer py-2 text-sm font-semibold text-gray-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300">{t('데이터 분포 보기')}</summary>
+              {/* 데이터 시각화: 운명의 길 중심 분석 */}
+              <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+                <GlowStatsDistribution data={CHARACTER_DB} type="path" title="캐릭터 운명의 길 분포" />
+                <GlowStatsDistribution data={HSR_GALLERY_SUMMARY.lightcones} type="path" title="광추 운명의 길 분포" />
+              </div>
 
-              {/* 최근 업데이트 캐릭터 행: 반응형 가로 스크롤 적용 */}
-              <section className="space-y-6">
-                <div className="flex items-center gap-3 px-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
-                  <h3 className="text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">{t('최근 업데이트 캐릭터')}</h3>
-                </div>
-                <div className="grid grid-cols-2 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-                  {filteredCharacters
-                    .slice(0, 5)
-                    .map((char: any, idx: number) => (
-                      <CharacterPremiumCard key={char.id} char={char} index={idx} />
-                    ))}
-                </div>
-              </section>
-
-
+              </details>
             </div>
           ) : activeMenu === '캐릭터' ? (
             <div className="space-y-12">

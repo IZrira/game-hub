@@ -15,6 +15,8 @@
 - `PageHeader` — `common-hub/components/PageHeader.tsx`: 현재 게임, 카테고리와 제목
 - `DetailStickyNav` — `common-hub/components/DetailStickyNav.tsx`: 긴 상세 페이지의 섹션 이동
 - `GallerySidebar` — `common-hub/components/GallerySidebar.tsx`: 게임 허브 내부 도감·공략 이동
+- `HubIntro` — `common-hub/components/HubIntro.tsx`: 허브의 게임명·설명·실제 집계 수치·검색·바로가기. `title`, `description`, `stats: { label, value }[]`, `searchPath`, `searchLabel`, `links: { label, to }[]`를 받는다. 검색 경로는 내부 기존 도감으로 지정하며 `search` query를 전달한다. 게임별 콘텐츠 순서는 DESIGN.md를 따른다.
+- `ReviewedGuideHighlights` — `common-hub/components/ReviewedGuideHighlights.tsx`: 공개된 가이드 요약만 사용한다. `gameId`, `accentClassName?`, `variant?: 'cards' | 'list'`; 허브 홈은 목록형을 사용한다.
 
 ## 이미지와 아이템
 

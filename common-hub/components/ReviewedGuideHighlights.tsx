@@ -6,11 +6,13 @@ import { getPublishedGuides } from '../data/guideSummaries';
 interface ReviewedGuideHighlightsProps {
   gameId: string;
   accentClassName?: string;
+  variant?: 'cards' | 'list';
 }
 
 const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
   gameId,
   accentClassName = 'text-violet-300',
+  variant = 'cards',
 }) => {
   const guides = getPublishedGuides(gameId);
 
@@ -20,15 +22,15 @@ const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
     <section className="space-y-6" aria-labelledby={`${gameId}-reviewed-guides`}>
       <div className="flex items-end justify-between gap-4 px-2">
         <div>
-          <div className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] ${accentClassName}`}>
+          {variant === 'cards' && <div className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] ${accentClassName}`}>
             <BookOpen size={14} />
             Rira Reviewed
-          </div>
+          </div>}
           <h2 id={`${gameId}-reviewed-guides`} className="mt-2 text-xl font-black text-white sm:text-2xl">
             핵심 분석 가이드
           </h2>
           <p className="mt-2 text-xs leading-5 text-gray-400">
-            장비 이름만 확인하는 대신, 세팅과 전투 선택의 기준을 먼저 이해할 수 있는 검수 완료 문서입니다.
+            세팅과 전투 선택의 이유를 확인하세요.
           </p>
         </div>
         <Link
@@ -39,18 +41,18 @@ const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
         </Link>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className={variant === 'list' ? 'divide-y divide-white/10 border-y border-white/10' : 'grid gap-4 md:grid-cols-2 xl:grid-cols-3'}>
         {guides.slice(0, 3).map((guide) => (
           <Link
             key={guide.slug}
             to={`/gallery/${gameId}/guides/${guide.slug}`}
-            className="group rounded-[24px] border border-white/5 bg-white/[0.025] p-5 transition hover:border-white/15 hover:bg-white/[0.05]"
+            className={variant === 'list' ? 'group block py-4 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300' : 'group rounded-[24px] border border-white/5 bg-white/[0.025] p-5 transition hover:border-white/15 hover:bg-white/[0.05]'}
           >
             <h3 className="text-base font-black leading-6 text-white transition group-hover:text-violet-200">
               {guide.title}
             </h3>
             <p className="mt-2 line-clamp-3 text-xs leading-5 text-gray-400">{guide.excerpt}</p>
-            <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4 text-[10px] font-bold text-gray-500">
+            <div className={`flex items-center justify-between text-xs text-gray-400 ${variant === 'list' ? 'mt-2' : 'mt-4 border-t border-white/5 pt-4'}`}>
               <span className="flex items-center gap-1.5"><CalendarDays size={12} /> 검수 {guide.reviewedAt}</span>
               <span className={`flex items-center gap-1 ${accentClassName}`}>읽기 <ArrowRight size={12} /></span>
             </div>
