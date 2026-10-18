@@ -73,20 +73,18 @@ const GalleryAniimo: React.FC = () => {
       <main className="max-w-[1500px] mx-auto grid gap-8 px-4 sm:px-6 py-10 sm:py-16 lg:grid-cols-[230px_minmax(0,1fr)]">
         <AniimoSidebar />
         <div className="min-w-0 space-y-10">
-        <section className="relative overflow-hidden rounded-[32px] sm:rounded-[48px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-12">
+        <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-5 sm:p-7">
           <div className="relative max-w-3xl space-y-4">
             <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-300">Rira Analysis Database</p>
-            <h1 className="text-4xl sm:text-6xl font-black italic tracking-tighter">ANIIMO <span className="text-violet-300">ARCHIVE</span></h1>
+            <h1 className="text-2xl sm:text-4xl font-black tracking-tight break-keep">애니모 도감·능력치 비교</h1>
             <p className="text-sm sm:text-base leading-7 text-gray-300">전체 {entries.length}종을 원소와 포지션으로 탐색하고, 최대 3종의 핵심 능력치를 한 화면에서 비교할 수 있습니다.</p>
             <div className="flex flex-wrap gap-4"><Link to="/gallery/aniimo/type-chart" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white"><Swords size={13} /> 원소 상성표 보기</Link><a href="https://wiki.aniimo.com/ko" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-xs font-bold text-violet-300 hover:text-white">공식 애니모 위키에서 원본 정보 확인 <ExternalLink size={13} /></a></div>
           </div>
         </section>
 
-        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7"><div className="flex items-center gap-2"><span className="text-violet-300">/</span><h2 className="font-black">지역별 애니모</h2></div><p className="mt-2 text-xs text-gray-500">페이지를 이동하지 않고 출현 지역에 맞는 애니모와 형태를 바로 확인하세요.</p><div className="mt-5 flex flex-wrap gap-2">{locations.map(value => <button key={value} type="button" aria-pressed={location === value} onClick={() => setLocation(value)} className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${location === value ? 'border-violet-300 bg-violet-400 text-black' : 'border-white/10 bg-white/5 text-gray-300 hover:border-violet-400/40 hover:text-violet-300'}`}>{value}</button>)}</div></section>
-
         <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7 space-y-5">
           <div className="flex flex-col lg:flex-row gap-4">
-            <label className="relative flex-1"><Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={17} /><input value={query} onChange={event => setQuery(event.target.value)} placeholder="이름 또는 도감 번호 검색" className="w-full h-12 rounded-xl border border-white/10 bg-black/30 pl-11 pr-4 text-sm outline-none focus:border-violet-400/60" /></label>
+            <label className="relative flex-1"><Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={17} /><input aria-label="이름 또는 도감 번호 검색" value={query} onChange={event => setQuery(event.target.value)} placeholder="이름 또는 도감 번호 검색" className="w-full h-12 rounded-xl border border-white/10 bg-black/30 pl-11 pr-4 text-sm outline-none focus:border-violet-400/60" /></label>
             <Filter value={element} setValue={setElement} options={elements} label="원소" />
             <Filter value={position} setValue={setPosition} options={positions} label="포지션" />
             <Filter value={stage} setValue={setStage} options={[ALL, ...EVOLUTION_STAGES, '특수 개체']} label="성장 단계" />
@@ -100,6 +98,8 @@ const GalleryAniimo: React.FC = () => {
             </div>
           </div>
         </section>
+
+        <section className="rounded-3xl border border-white/10 bg-[#121212] p-5 sm:p-7"><div className="flex items-center gap-2"><span className="text-violet-300">/</span><h2 className="font-black">지역별 애니모</h2></div><p className="mt-2 text-xs text-gray-500">페이지를 이동하지 않고 출현 지역에 맞는 애니모와 형태를 바로 확인하세요.</p><div className="mt-5 flex flex-wrap gap-2">{locations.map(value => <button key={value} type="button" aria-pressed={location === value} onClick={() => setLocation(value)} className={`rounded-xl border px-3 py-2 text-xs font-bold transition ${location === value ? 'border-violet-300 bg-violet-400 text-black' : 'border-white/10 bg-white/5 text-gray-300 hover:border-violet-400/40 hover:text-violet-300'}`}>{value}</button>)}</div></section>
 
         {compared.length > 0 && <section className="overflow-hidden rounded-3xl border border-violet-400/20 bg-violet-400/[0.04]">
           <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">

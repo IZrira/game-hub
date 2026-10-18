@@ -78,7 +78,7 @@ const Home: React.FC = () => {
       <div className="fixed inset-0 pointer-events-none opacity-20" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #333 1px, transparent 0)', backgroundSize: '40px 40px' }} />
 
       {/* 사용자의 첫 행동을 검색과 게임 선택으로 제한한 홈 히어로 */}
-      <section className="relative overflow-hidden border-b border-white/5 px-4 pb-16 pt-16 sm:px-6 sm:pb-20 sm:pt-20 md:px-10 md:pt-24">
+      <section className="relative overflow-hidden border-b border-white/5 px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12">
         <div className="absolute inset-0 z-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-[500px] sm:w-[800px] h-[500px] sm:h-[800px] bg-brand-primary/10 rounded-full blur-[100px] sm:blur-[150px] -translate-y-1/2 translate-x-1/4 opacity-40" />
           <div className="absolute bottom-0 left-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-brand-accent/5 rounded-full blur-[80px] sm:blur-[120px] translate-y-1/2 -translate-x-1/4 opacity-30" />
@@ -90,8 +90,8 @@ const Home: React.FC = () => {
             <span className="text-[10px] font-black uppercase tracking-[0.22em] text-gray-400">{t('4개 게임 통합 아카이브')}</span>
           </div>
 
-          <div className="mt-6 space-y-5">
-            <h1 className="text-4xl font-black leading-tight tracking-tighter sm:text-5xl md:text-6xl">
+          <div className="mt-4 space-y-3">
+            <h1 className="text-3xl font-black leading-tight tracking-tighter break-keep sm:text-4xl md:text-5xl">
               {t('게임을 고르고,')}<br />
               <span className="bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary bg-clip-text text-transparent">{t('필요한 답부터 찾으세요.')}</span>
             </h1>
@@ -103,7 +103,7 @@ const Home: React.FC = () => {
           <button
             type="button"
             onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
-            className="mx-auto mt-8 flex w-full max-w-2xl items-center gap-4 rounded-2xl border border-white/10 bg-[#121212] px-5 py-4 text-left shadow-2xl transition hover:border-brand-primary/50 hover:bg-white/[0.06]"
+            className="mx-auto mt-5 flex w-full max-w-2xl items-center gap-4 rounded-2xl border border-white/10 bg-[#121212] px-5 py-4 text-left shadow-2xl transition hover:border-brand-primary/50 hover:bg-white/[0.06]"
           >
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/15 text-brand-primary"><Search size={20} /></span>
             <span className="min-w-0 flex-1">

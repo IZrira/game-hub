@@ -277,36 +277,33 @@ const PartyRecommendations: React.FC = () => {
         <GallerySidebar />
 
         <div className="space-y-12">
-          <div className="relative h-[400px] flex items-center justify-center overflow-hidden border-b border-white/5 rounded-[48px]">
+          <div className="relative overflow-hidden border-b border-white/5 rounded-2xl px-6 py-6 sm:py-8">
             <div className="absolute inset-0 z-0">
               <div className="absolute inset-0 bg-gradient-to-b from-brand-primary/20 via-[#050505] to-[#050505]" />
             </div>
 
-            <div className="relative z-10 max-w-4xl mx-auto px-6 text-center space-y-6">
+            <div className="relative z-10 max-w-4xl mx-auto space-y-3">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-accent text-[10px] font-black uppercase tracking-[0.3em]">
-                <Sparkles size={12} /> Recommended Formations
+                <Sparkles size={12} /> {t('추천 파티 조합')}
               </div>
-              <h1 className="text-5xl md:text-7xl font-black italic tracking-tighter uppercase">
-                Party <span className="text-brand-accent">Synergy</span>
+              <h1 className="text-3xl sm:text-4xl font-black tracking-tight break-keep">
+                {t('명조 추천 파티 조합')}
               </h1>
-              <p className="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+              <p className="text-gray-400 text-sm font-medium leading-relaxed">
                 명조: 워더링 웨이브의 최적 파티 조합 가이드입니다.
               </p>
             </div>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="p-8 rounded-[32px] bg-gradient-to-br from-brand-primary/10 to-transparent border border-brand-primary/20 space-y-6">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-brand-primary/20 flex items-center justify-center border border-brand-primary/30">
-                  <Info className="text-brand-accent" size={24} />
-                </div>
-                <h2 className="text-xl font-black text-white uppercase tracking-tight">Party Building Guide</h2>
-              </div>
-              <p className="text-sm text-gray-400 font-medium leading-relaxed">
+            <details className="p-4 rounded-2xl bg-gradient-to-br from-brand-primary/10 to-transparent border border-brand-primary/20">
+              <summary className="cursor-pointer text-sm font-bold text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-primary">
+                <Info className="inline-block mr-2 text-brand-accent" size={16} />{t('파티 편성 안내')}
+              </summary>
+              <p className="mt-3 text-sm text-gray-400 font-medium leading-relaxed">
                 본 가이드는 추천 조합일 뿐이며, 상황에 따라 유동적으로 변경될 수 있습니다.
               </p>
-            </div>
+            </details>
           </div>
 
           <div className="sticky top-16 z-40 bg-[#050505]/80 backdrop-blur-xl border-b border-white/5 py-4">

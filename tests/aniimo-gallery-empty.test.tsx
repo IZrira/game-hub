@@ -10,6 +10,15 @@ vi.mock('../aniimo-hub/components/AniimoNavigation', () => ({ AniimoSidebar: () 
 afterEach(cleanup);
 
 describe('Aniimo empty search recovery', () => {
+  it('places accessible name search before regional browsing without removing filters', () => {
+    render(<MemoryRouter><Gallery /></MemoryRouter>);
+    const input = screen.getByRole('textbox', { name: '이름 또는 도감 번호 검색' });
+    const regions = screen.getByRole('heading', { name: '지역별 애니모' });
+    expect(input.compareDocumentPosition(regions) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(screen.getAllByRole('combobox')).toHaveLength(4);
+    expect(screen.getByRole('heading', { level: 1 }).textContent).toBe('애니모 도감·능력치 비교');
+  });
+
   it('resets every search condition while keeping comparison selections', () => {
     render(<MemoryRouter><Gallery /></MemoryRouter>);
     const gallery = screen.getByRole('region', { name: '애니모 전체 도감' });
