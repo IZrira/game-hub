@@ -251,14 +251,14 @@ function getNotionData() {
 }
 
 function getHsrCharacterImageUrl(charData) {
-  if (!charData) return `${CDN_URL}/hsr%20images/common/default_banner.webp`;
+  if (!charData) return `${BASE_URL}/assets/brand/rira-fox.webp`;
   if (charData.isTrailblazer) return `${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EA%B0%9C%EC%B2%99%EC%9E%90/art01.webp`;
   const folder = charData.folderName || charData.name || charData.id;
   return `${CDN_URL}/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/${encodeAssetPath(folder)}/art01.webp`;
 }
 
 function getWwCharacterImageUrl(charData) {
-  if (!charData) return `${CDN_URL}/hsr%20images/common/default_banner.webp`;
+  if (!charData) return `${BASE_URL}/assets/brand/rira-fox.webp`;
   if (charData.isRover) {
     const folderName = charData.folderName || `방랑자 · ${charData.attribute}`;
     return `${CDN_URL}/ww%20images/skills/${encodeAssetPath(folderName)}/${encodeAssetPath(folderName)}%28%EC%95%AC%29.webp`;
@@ -2367,7 +2367,7 @@ function runPrerender() {
     '/',
     'Rira Archive | 애니모·명조·스타레일 게임 DB',
     '애니모(Aniimo), 명조, 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 한곳에서 확인하세요.',
-    `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+    `${BASE_URL}/assets/brand/rira-fox.webp`,
     baseHtml,
     homeArticleHtml
   );
@@ -2553,7 +2553,7 @@ function runPrerender() {
       routePath,
       `${relic.name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 유물 DB`,
       `붕괴: 스타레일 ${relic.name} 유물의 2세트/4세트 효과, 구성 부위 및 최적 추천 착용 캐릭터 총정리.`,
-      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
       generateHsrRelicHtml(relic, recommendedChars)
         + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/relic/')), '다른 붕괴: 스타레일 유물')
@@ -2570,7 +2570,7 @@ function runPrerender() {
       routePath,
       `${ornament.name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 차원 장신구 DB`,
       `붕괴: 스타레일 ${ornament.name} 차원 장신구의 2세트 효과, 구성 부위 및 추천 장착 캐릭터 완벽 분석.`,
-      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
       generateHsrOrnamentHtml(ornament, recommendedChars)
         + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/')), '다른 붕괴: 스타레일 차원 장신구')
@@ -2614,7 +2614,7 @@ function runPrerender() {
         routePath,
         `${item.name} 에코 상세 정보 | 명조 에코 DB`,
         `명조 ${item.name} 에코의 코스트, 메인 어빌리티 효과, 전투 활용 방식과 관련 에코 도감 정보를 한 페이지에서 확인하세요.`,
-        `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+        `${BASE_URL}/assets/brand/rira-fox.webp`,
         baseHtml,
         generateWwEchoHtml(item)
           + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/')), '다른 명조 에코')
@@ -2675,7 +2675,7 @@ function runPrerender() {
       page.path,
       page.title,
       page.desc,
-      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
       page.content
     );
@@ -2704,7 +2704,7 @@ function runPrerender() {
       `/blog/${post.id}`,
       post.title,
       post.excerpt,
-      post.imageUrl || `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      post.imageUrl || `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
       postHtmlContent
     );
@@ -2780,7 +2780,7 @@ function runPrerender() {
       `/gallery/${gameId}/guides`,
       `${gameLabel} 공략 모음`,
       `${gameLabel}의 공식 정보와 Rira 분석을 구분하고 적용 버전과 검수일을 표시한 캐릭터 육성, 전투 및 시스템 공략을 확인하세요.`,
-      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
       `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>공식 수치와 사이트 내 데이터를 대조하고 적용 기준일과 검수 상태를 확인한 글만 공개합니다.</p><dl><dt>공개 공략</dt><dd>${gameGuides.length}편</dd><dt>최근 검수일</dt><dd>${escapeHtml(latestReviewedAt)}</dd></dl><h2>검수 완료된 공략</h2><ul>${listHtml}</ul>${criteriaHtml}${navigationHtml}</article>`
     );
@@ -2818,7 +2818,7 @@ function runPrerender() {
       `/gallery/${article.gameId}/guides/${encodeURIComponent(article.slug)}`,
       article.title,
       article.excerpt,
-      `${CDN_URL}/hsr%20images/common/default_banner.webp`,
+      `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
       `<article><p><a href="/gallery/${article.gameId}">${escapeHtml(gameLabel)} 허브</a> &gt; <a href="/gallery/${article.gameId}/guides">공략</a></p><h1>${escapeHtml(article.title)}</h1><p><strong>적용 기준:</strong> ${escapeHtml(article.applicableVersion)} · <strong>최종 검수:</strong> ${escapeHtml(article.reviewedAt)}</p>${contentHtml}</article>`
     );
@@ -3161,7 +3161,7 @@ function runPrerender() {
     } else if (/^\/gallery\/hsr\/(lightcone|relic|ornament)\//.test(routePath)) {
       meta.content += '<p><a href="/gallery/hsr">붕괴: 스타레일 장비 도감으로 돌아가기</a></p>';
     }
-    const fallbackImage = `${CDN_URL}/hsr%20images/common/default_banner.webp`;
+    const fallbackImage = `${BASE_URL}/assets/brand/rira-fox.webp`;
     createPrerenderedPage(
       routePath,
       meta.title,

@@ -387,7 +387,7 @@ async function generateSitemap() {
     const aniimoEntries = [];
     const blogEntries = [];
 
-    const defaultBanner = `${CDN_URL}/hsr%20images/common/default_banner.webp`;
+    const defaultBanner = `${BASE_URL}/assets/brand/rira-fox.webp`;
 
     function addEntry(targetArray, url, lastmod, priority, changefreq, images = []) {
       if (allUrlSet.has(url)) return;

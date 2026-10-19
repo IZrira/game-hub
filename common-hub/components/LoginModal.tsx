@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, Gamepad2 } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useAuth } from '../context/AuthContext';
 
@@ -57,7 +57,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: p
             <div className="relative h-32 bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center">
               <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }} />
               <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white shadow-xl relative z-10">
-                <Gamepad2 size={32} />
+                <img src="/assets/brand/rira-fox-icon.webp" alt="RIRA GAME HUB" width={64} height={64} className="w-full h-full rounded-2xl object-contain" />
               </div>
               <button 
                 onClick={handleClose}

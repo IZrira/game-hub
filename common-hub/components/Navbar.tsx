@@ -68,7 +68,7 @@ const Navbar: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
           <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-brand-primary to-brand-accent flex items-center justify-center text-white shadow-lg shadow-brand-primary/20 group-hover:scale-110 transition-transform shrink-0">
-            <Gamepad2 size={22} className="sm:w-6 sm:h-6" />
+            <img src="/assets/brand/rira-fox-icon.webp" alt="" width={40} height={40} className="w-full h-full rounded-xl object-contain" />
           </div>
           <span className="text-base sm:text-lg md:text-xl font-black text-white tracking-tighter uppercase truncate">RIRA GAME HUB</span>
         </Link>
