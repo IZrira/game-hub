@@ -374,7 +374,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
             gameLabel: cfg.gameName,
             routePath: [cfg.gameName, '도감', c.attribute, cfg.getCharacterPath(c)].filter(Boolean),
             description: c.summary || c.tagline,
-            url: `/gallery/ww/character/${encodeURIComponent(c.id)}`
+            url: (c as any).searchUrl || `/gallery/ww/character/${encodeURIComponent(c.id)}`
           });
         });
 
@@ -400,7 +400,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
           const character = wwData.CHARACTER_DB?.find((c: Character) =>
             c.gameId === 'ww' && c.name?.replace(/\s+/g, '').toLowerCase() === charName?.replace(/\s+/g, '').toLowerCase()
           );
-          if (character) {
+          if (character && (character as any).hasDetailRoute !== false) {
             guides.push({
               name: `${charName} 세팅 공략`,
               type: t('공략'),
