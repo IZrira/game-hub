@@ -44,6 +44,7 @@ const AdminDashboard = React.lazy(() => import('./pages/AdminDashboard'));
 const WuwaEchoDetail = React.lazy(() => import('../ww-hub/pages/WuwaEchoDetail'));
 const ItemDetailDispatcher = React.lazy(() => import('./pages/ItemDetail'));
 const NotFound = React.lazy(() => import('./pages/NotFound'));
+const SearchPage = React.lazy(() => import('./pages/Search'));
 
 // 새로 추가된 정책 및 블로그 페이지
 const AboutUs = React.lazy(() => import('./pages/AboutUs'));
@@ -169,6 +170,7 @@ export const router = createBrowserRouter([
     // 자식 라우트들을 배열로 깔끔하게 관리합니다.
     children: [
       { index: true, element: <Home /> }, // 최상위 경로 (/)
+      { path: "search", element: <SearchPage /> },
       { path: "gallery/:gameId", element: <GalleryDispatcher /> },
       { path: "gallery/:gameId/post/:postId", element: <Detail /> },
       { path: "gallery/:gameId/character/:charName", element: <CharacterDetailDispatcher /> },

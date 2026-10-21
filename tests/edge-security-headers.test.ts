@@ -5,7 +5,7 @@ import { onRequest } from '../functions/_middleware';
 import { SECURITY_HEADERS, withSecurityHeaders } from '../functions/security-headers';
 
 describe('Pages Function security response policy', () => {
-  it.each(['/search', '/search?q=설지', '/login', '/profile'])('keeps real utility route %s reachable without indexing it', async path => {
+  it.each(['/search', '/search?q=설지'])('keeps the real search route %s reachable', async path => {
     const next = vi.fn(async () => new Response('<main>앱 화면</main>', { status: 200 }));
     const response = await onRequest({ request: new Request(`https://riragamehub.com${path}`), next });
     expect(response.status).toBe(200);

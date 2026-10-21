@@ -885,14 +885,12 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/ww/weapon/흑야의 직검 · 흑뢰",
   "/gallery/ww/weapon/흔들리지 않는 용기",
   "/gallery/ww/weapon/희비극",
-  "/login",
   "/notices",
   "/notices/notice-2026-06-17",
   "/notices/update-2026-07-25",
   "/notices/update-hsr-4-3",
   "/notices/update-ww-3-4",
   "/privacy",
-  "/profile",
   "/search",
   "/tos"
 ]);

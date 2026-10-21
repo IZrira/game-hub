@@ -121,13 +121,14 @@ interface SearchModalProps {
   isOpen: boolean;
   onClose: () => void;
   gameId?: string;
+  initialQuery?: string;
 }
 
-const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'all' }) => {
+const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'all', initialQuery = '' }) => {
   const dialogRef = useRef<HTMLDivElement>(null);
   useDialogFocus(dialogRef, isOpen);
   const { t, i18n } = useTranslation();
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(initialQuery);
   const [activeTab, setActiveTab] = useState<'all' | 'hsr' | 'ww' | 'nte' | 'aniimo'>(
     gameId === 'all' || gameId in SEARCH_CONFIG ? (gameId as any) : 'all'
   );
