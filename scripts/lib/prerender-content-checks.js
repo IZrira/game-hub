@@ -14,6 +14,10 @@ export function inspectPrerenderContent(html, routePath) {
     } catch { return false; }
   }).length;
   const problems = [];
+  const text = article.text();
+  const wwCharacter = /^\/gallery\/ww\/character\/[^/]+$/.test(routePath);
+  if (wwCharacter && /\{\d+\}/.test(text)) problems.push('Unresolved numeric placeholders in initial article');
+  if (wwCharacter && /독보적인 전투 메커니즘|은\(는\)|이\(가\)/.test(text)) problems.push('Generic or unresolved generated prose in initial article');
   if (guideDetail && article.length !== 1) problems.push('Expected one prerendered guide article');
   if (guideDetail && bodyLength < 300) problems.push(`Guide article body missing or truncated (${bodyLength} chars; regression floor 300)`);
   if (routePath === '/gallery/nte/parties') {

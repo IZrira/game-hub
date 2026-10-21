@@ -31,6 +31,7 @@ import WuwaSkillSection from '../components/WuwaSkillSection';
 import WuwaSkillInput from '../components/WuwaSkillInput';
 import WuwaResonanceChain from '../components/WuwaResonanceChain';
 import SEO from '../../common-hub/components/SEO';
+import { getWwCharacterSeo } from '../../common-hub/utils/wwCharacterSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
@@ -546,22 +547,6 @@ const CharacterDetail: React.FC = () => {
     }
   };
 
-  const seoDescription = useMemo(() => {
-    if (!char) return '';
-    const name = t(char.name);
-    const longTailKeywords = [
-      `${name} 종결 에코 세팅`,
-      `${name} 무기 대체 추천`,
-      `${name} 파티 조합 시너지`,
-      `${name} 스킬 콤보 사이클`,
-      `${name} 공명 체인 효율`
-    ];
-    const seed = char.id.charCodeAt(0) + char.id.charCodeAt(char.id.length - 1);
-    const k1 = longTailKeywords[seed % longTailKeywords.length];
-    const k2 = longTailKeywords[(seed + 1) % longTailKeywords.length];
-    return `${t('명조 (Wuthering Waves)')} ${t(char.attribute)} ${t('속성')} ${t((char as any).weaponType)} ${t('캐릭터')} ${name} 공략. ${k1}, ${k2} 등 최적의 세팅 정보를 완벽 정리했습니다.`;
-  }, [char, t]);
-
   const faqData = useMemo(() => {
     if (!char) return [];
     return [
@@ -582,8 +567,8 @@ const CharacterDetail: React.FC = () => {
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
       <SEO 
-        title={`${t(char.name)} ${t('캐릭터 공략 및 세팅 정보')}`} 
-        description={seoDescription}
+        title={getWwCharacterSeo({ name: t(char.name), attribute: t(char.attribute), weaponType: t(char.weaponType) }).title}
+        description={getWwCharacterSeo({ name: t(char.name), attribute: t(char.attribute), weaponType: t(char.weaponType) }).description}
         image={getIllustrationUrl()}
         url={`/gallery/${gameId}/character/${char.id}`}
         gameCategory={t('명조 (Wuthering Waves)')}

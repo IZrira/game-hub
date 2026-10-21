@@ -3,6 +3,7 @@ import { sanitizePublicGuideData } from './lib/public-guide-links.js';
 import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
+import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -14,6 +15,10 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
 const PUBLIC_DIR = path.join(ROOT_DIR, 'public');
 const WW_CHAR_DIR = path.join(ROOT_DIR, 'ww-hub', 'data', 'characters', 'ww');
+// Use the same already-generated local records as the app; no remote sync.
+const wwRuntimeCharacters = new Map(JSON.parse(fs.readFileSync(
+  path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'characters.json'), 'utf8'
+)).map(character => [character.id, character]));
 const HSR_CHAR_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'characters', 'hsr');
 const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
@@ -181,6 +186,8 @@ function parseHsrCharacter(id) {
 }
 
 function parseWwCharacter(id) {
+  const runtimeCharacter = wwRuntimeCharacters.get(id);
+  if (runtimeCharacter) return runtimeCharacter;
   try {
     const filePath = path.join(WW_CHAR_DIR, `${id}.ts`);
     if (!fs.existsSync(filePath)) return null;
@@ -628,41 +635,30 @@ function getWwPartiesForCharacter(id, charName, allParties) {
 // ---------------------------------------------------------------------
 
 function buildProfileParagraph(d) {
-  let text = `${escapeHtml(d.name)}은(는) ${escapeHtml(d.gameName)}의 ${escapeHtml(d.rarityStr)}${escapeHtml(d.attributeStr)}${escapeHtml(d.typeStr)}캐릭터로, 독보적인 전투 메커니즘을 바탕으로 파티에서 핵심적인 역할을 담당합니다.`;
-  if (d.briefInfo && !d.briefInfo.startsWith('character.')) {
-    const cleanBrief = escapeHtml(d.briefInfo.replace(/\n/g, ' ').trim());
-    text += ` (${cleanBrief})`;
-  }
-  return `  <p class="summary-profile"><strong>개요 및 전투 역할:</strong> ${text}</p>`;
+  return `  <p class="summary-profile"><strong>캐릭터 분류:</strong> ${escapeHtml(d.name)} · ${escapeHtml(d.gameName)} · ${escapeHtml(d.rarityStr)}${escapeHtml(d.attributeStr)}${escapeHtml(d.typeStr)}</p>`;
 }
 
 function buildEquipmentParagraph(d) {
   let parts = [];
   if (d.bestGear && d.bestGear.length > 0) {
     const gearText = d.bestGear.slice(0, 2).map(escapeHtml).join(', ');
-    let subText = (d.subGear && d.subGear.length > 0) ? ` 및 장신구/주 에코 「${d.subGear.slice(0, 2).map(escapeHtml).join(', ')}」` : '';
-    parts.push(`추천 종결 장비(유물/에코) 세팅으로는 「${gearText}」${subText} 조합이 권장됩니다.`);
-  } else {
-    parts.push(`유물 및 에코 세팅은 캐릭터의 핵심 옵션을 효율적으로 높일 수 있는 조합 선택이 권장됩니다.`);
+    let subText = (d.subGear && d.subGear.length > 0) ? ` / 보조 장비: ${d.subGear.slice(0, 2).map(escapeHtml).join(', ')}` : '';
+    parts.push(`추천 세트: ${gearText}${subText}.`);
   }
 
   if (d.bestWeapons && d.bestWeapons.length > 0) {
     const weaponText = d.bestWeapons.slice(0, 2).map(escapeHtml).join(', ');
-    parts.push(`최우선 추천 종결 무기(광추)로는 「${weaponText}」이(가) 가장 뛰어난 성능 효율을 제공합니다.`);
-  } else {
-    parts.push(`무기(광추)의 경우 캐릭터의 유효 옵션을 보완해 주는 장비를 우선 채용하는 것이 좋습니다.`);
+    parts.push(`추천 장비 순위: ${weaponText}. 세부 조건과 대안은 아래 추천 목록을 확인하세요.`);
   }
 
-  return `  <p class="summary-equipment"><strong>추천 종결 장비 &amp; 무기:</strong> ${parts.join(' ')}</p>`;
+  return parts.length ? `  <p class="summary-equipment"><strong>추천 장비:</strong> ${parts.join(' ')}</p>` : '';
 }
 
 function buildStatsParagraph(d) {
   let parts = [];
   if (d.targetStats && d.targetStats.length > 0) {
     const targetText = d.targetStats.slice(0, 3).map(escapeHtml).join(', ');
-    parts.push(`육성 시 달성해야 할 핵심 목표 스탯으로는 ${targetText} 설정이 권장됩니다.`);
-  } else {
-    parts.push(`육성 시 주요 전투 스탯의 균형 있는 성장을 목표로 세팅하는 것이 중요합니다.`);
+    parts.push(`목표 수치: ${targetText}.`);
   }
 
   if (d.mainStatsStr) {
@@ -672,11 +668,9 @@ function buildStatsParagraph(d) {
   if (d.subStats && d.subStats.length > 0) {
     const subText = d.subStats.slice(0, 4).map(escapeHtml).join(', ');
     parts.push(`우선 유효 부옵션으로는 ${subText} 순으로 옵션을 확보하는 것이 좋습니다.`);
-  } else {
-    parts.push(`부옵션의 경우 딜링 및 생존 효율을 높이는 옵션 위주로 가공하는 것을 권장합니다.`);
   }
 
-  return `  <p class="summary-stats"><strong>목표 스탯 &amp; 옵션 우선순위:</strong> ${parts.join(' ')}</p>`;
+  return parts.length ? `  <p class="summary-stats"><strong>목표 스탯 &amp; 옵션 우선순위:</strong> ${parts.join(' ')}</p>` : '';
 }
 
 function buildSynergyParagraph(d) {
@@ -685,20 +679,18 @@ function buildSynergyParagraph(d) {
     const p = d.parties[0];
     const partyName = escapeHtml(p.name);
     const memberText = p.members.map(escapeHtml).join(', ');
-    parts.push(`추천 파티 조합으로는 『${partyName}』 (${memberText}) 구성을 통해 극대화된 전투 시너지를 기대할 수 있습니다.`);
+    parts.push(`추천 파티: ${partyName} (${memberText}).`);
   } else if (d.synergyChars && d.synergyChars.length > 0) {
     const synText = d.synergyChars.slice(0, 4).map(escapeHtml).join(', ');
-    parts.push(`추천 시너지 파티원으로는 ${synText} 등과의 조합이 전투 성능 향상에 크게 기여합니다.`);
-  } else {
-    parts.push(`파티 구성 시 서로의 속성 및 버프/디버프 시너지를 보완할 수 있는 동료들과의 조합을 추천합니다.`);
+    parts.push(`추천 파티원: ${synText}.`);
   }
 
-  return `  <p class="summary-synergy"><strong>추천 파티 조합 &amp; 팀 시너지:</strong> ${parts.join(' ')}</p>`;
+  return parts.length ? `  <p class="summary-synergy"><strong>추천 파티:</strong> ${parts.join(' ')}</p>` : '';
 }
 
 function generateNarrativeSummaryHtml(data) {
   return `<section class="narrative-analysis-summary" style="margin-bottom: 24px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 8px;">\n` +
-    `  <h2>Character Analysis Summary (캐릭터 종합 분석)</h2>\n` +
+    `  <h2>세팅 요약</h2>\n` +
     `${buildProfileParagraph(data)}\n` +
     `${buildEquipmentParagraph(data)}\n` +
     `${buildStatsParagraph(data)}\n` +
@@ -1353,7 +1345,7 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
     html += `<h2>스킬 및 공명 회로 정보</h2>\n`;
     skills.forEach(s => {
       let sName = wwKoData[s.name] || s.name;
-      let sDesc = wwKoData[s.description] || s.description;
+      let sDesc = (wwKoData[s.description] || s.description || '').replace(/==|\*\*/g, '');
       const tagStr = s.tag ? ` (${escapeHtml(s.tag)})` : '';
       html += `<h3>${escapeHtml(sName)}${tagStr}</h3>\n<p>${escapeHtml(sDesc || '').replace(/\n/g, '<br/>')}</p>\n`;
     });
@@ -1365,7 +1357,7 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
     html += `<h2>공명 체인 돌파 효과</h2>\n`;
     eidolons.forEach(e => {
       let eName = wwKoData[e.name] || e.name;
-      let eDesc = wwKoData[e.description] || e.description;
+      let eDesc = (wwKoData[e.description] || e.description || '').replace(/==|\*\*/g, '');
       html += `<h3>${escapeHtml(e.rank || '')}: ${escapeHtml(eName || '')}</h3>\n<p>${escapeHtml(eDesc || '').replace(/\n/g, '<br/>')}</p>\n`;
     });
   }
@@ -2400,10 +2392,11 @@ function runPrerender() {
     const guideLink = guide && sitemapRouteSet.has(guideRoute)
       ? `<p><a href="${guideRoute}">${escapeHtml(name)} 종결 세팅 공략 보기</a></p>`
       : '';
+    const characterSeo = getWwCharacterSeo({ name, attribute: char.attribute, weaponType: char.weaponType });
     createPrerenderedPage(
       routePath,
-      `${name} 종결 세팅 · 추천 파티 조합 & 돌파 재료 계산 | 명조 공략 DB`,
-      `명조 ${name}의 최신 종결 에코 세팅, 추천 무기, 스킬 매커니즘 계수, 추천 파티 시너지 및 돌파·육성 재료 총정리 가이드.`,
+      characterSeo.title,
+      characterSeo.description,
       getWwCharacterImageUrl(char),
       baseHtml,
       generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList)

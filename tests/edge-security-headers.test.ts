@@ -5,6 +5,12 @@ import { onRequest } from '../functions/_middleware';
 import { SECURITY_HEADERS, withSecurityHeaders } from '../functions/security-headers';
 
 describe('Pages Function security response policy', () => {
+  it.each(['/search', '/search?q=설지', '/login', '/profile'])('keeps real utility route %s reachable without indexing it', async path => {
+    const next = vi.fn(async () => new Response('<main>앱 화면</main>', { status: 200 }));
+    const response = await onRequest({ request: new Request(`https://riragamehub.com${path}`), next });
+    expect(response.status).toBe(200);
+    expect(next).toHaveBeenCalledOnce();
+  });
   it('matches every global security header in public/_headers without changing CSP', () => {
     const block = readFileSync('public/_headers', 'utf8').split(/\r?\n\s*\r?\n/)[0];
     const entries = Object.fromEntries(block.split(/\r?\n/).slice(1).map(line => {

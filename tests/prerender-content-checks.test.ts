@@ -5,6 +5,10 @@ const route = '/gallery/hsr/guides/damage-formula-guide';
 const wrap = (article: string) => `<div class="prerender-shell"><nav>${'메뉴'.repeat(500)}</nav>${article}<footer>${'푸터'.repeat(500)}</footer></div>`;
 const full = `<article><h1>제목</h1><p>${'고유 본문 설명. '.repeat(60)}</p></article>`;
 
+it.each(['{0}pt를 소모한다', '독보적인 전투 메커니즘을 바탕으로 파티에서 핵심적인 역할을 담당합니다.', '설지은(는)'])('rejects unresolved or generic generated character prose: %s', text => {
+  expect(inspectPrerenderContent(wrap(`<article><p>${text}</p></article>`), '/gallery/ww/character/baizhi').problems.length).toBeGreaterThan(0);
+});
+
 it('accepts complete guide body without changing indexing policy', () => {
   expect(inspectPrerenderContent(wrap(full), route).problems).toEqual([]);
 });
