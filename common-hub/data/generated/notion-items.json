@@ -14859,5 +14859,16 @@
     "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
+  },
+  {
+    "name": "비틀 코인",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "먹이사슬 최하위에 위치한 생물류 이상으로 작은 딱정벌레를 닮았다. 도시에서 살아남기 위해 코인의 외관과 소리를 흉내내 누군가 주워가길 기다리며, 유통되는 과정에서 더 나은 생존 기회를 노린다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
   }
 ]

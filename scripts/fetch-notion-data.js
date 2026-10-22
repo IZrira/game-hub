@@ -94,7 +94,7 @@ const extractRichText = (prop) => {
   return sanitizeAwsSecrets(res);
 };
 
-async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조', selectedNames = null) {
+async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = '명조', selectedNames = null, strict = false) {
   let results = [];
   let hasMore = true;
   let nextCursor = undefined;
@@ -150,7 +150,7 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
         useSort = false;
         continue;
       } else {
-        if (selectedNames) throw e;
+        if (selectedNames || strict) throw e;
         console.error(`[Notion Sync] Query also failed without sort on ${dbId}:`, e.message);
         break;
       }
@@ -432,6 +432,7 @@ async function fetchNotionData() {
   }
 
   if (!NOTION_TOKEN || NOTION_TOKEN === 'secret_xxxxxxxxx') {
+    if (process.argv.includes('--nte-items-only')) throw new Error('Notion token missing; NTE item synchronization did not run.');
     if (process.argv.some(argument => argument.startsWith('--ww-character-names='))) throw new Error('Notion token missing; scoped synchronization did not run.');
     console.log('[Notion Sync] Notion token is missing. Skipping fetch.');
     if (!fs.existsSync(jsonPath)) {
@@ -465,6 +466,20 @@ async function fetchNotionData() {
 
   if (process.argv.includes('--nte-guides-only')) {
     await syncNteGuides(notion, n2m, NOTION_NTE_GUIDES_DB_ID, ROOT_DIR);
+    return;
+  }
+
+  if (process.argv.includes('--nte-items-only')) {
+    const existing = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+    const fresh = await fetchFromDB(notion, NOTION_NTE_ITEM_DB_ID, n2m, false, 'NTE', null, true);
+    if (!fresh.length) throw new Error('NTE item synchronization returned no records; refusing to overwrite.');
+    const byId = new Map(fresh.map(item => [item.id, { ...item, type: item.type || '아이템', dbSource: 'nte_items' }]));
+    if (byId.size !== fresh.length) throw new Error('Duplicate NTE item IDs; refusing to overwrite.');
+    const retainedIds = new Set(existing.filter(item => item.dbSource === 'nte_items').map(item => item.id));
+    const combined = existing.flatMap(item => item.dbSource !== 'nte_items' ? [item] : byId.has(item.id) ? [byId.get(item.id)] : []);
+    combined.push(...Array.from(byId.values()).filter(item => !retainedIds.has(item.id)));
+    fs.writeFileSync(jsonPath, JSON.stringify(combined, null, 2), 'utf8');
+    console.log(`[Notion Sync] Updated only NTE items (${fresh.length} records).`);
     return;
   }
 

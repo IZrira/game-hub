@@ -13,7 +13,7 @@ export const NTE_ITEM_META: Record<string, NTEItemMeta> = {
   "비틀 코인": {
     name: "비틀 코인",
     category: "재화/소모품",
-    rarity: 1,
+    rarity: 3,
     description: "헤테로 시티 전역에서 통용되는 표준 통화. 물품 거래와 아크/캐릭터 육성에 필수적으로 사용된다.",
     source: "임무 완료, 도시 탐색, 상점 판매",
     gameId: "nte"
