@@ -12,6 +12,18 @@
     "releaseVersion": "1.4"
   },
   {
+    "id": "40195fae-3dc7-8019-82aa-fa3a66941bd5",
+    "name": "아카네 린",
+    "gameId": "nte",
+    "folderName": "아카네 린",
+    "fileName": "아카네 린",
+    "isTrailblazer": false,
+    "rarity": 5,
+    "attribute": "상",
+    "arc": "액체",
+    "releaseVersion": "1.4"
+  },
+  {
     "id": "3d695fae-3dc7-80c6-9b30-c0be561ee825",
     "name": "링코",
     "gameId": "nte",

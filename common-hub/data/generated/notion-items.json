@@ -1067,6 +1067,270 @@
     "dbSource": "ww_items"
   },
   {
+    "name": "감정의 상자",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "조각을 모두 맞춰 완성한 감정의 상자. 마음의 열쇠 우물에 넣으면 그 안으로 들어갈 수 있다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "감정의 상자 조각 · 금실 향낭",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "감정의 상자 속 주파수가 응결되어 형성된 실체. 향낭의 모습을 띠고 있다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "감정의 상자 조각 · 월씨네 찹쌀떡",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "감정의 상자 속 주파수가 응결되어 형성된 실체. 찹쌀떡의 모습을 띠고 있다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "감정의 상자 조각 · 청옥 피리",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "감정의 상자 속 주파수가 응결되어 형성된 실체. 피리의 모습을 띠고 있다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "금묘쇄",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "쇄명이 당신에게 건넨 신물. 상황이 불리하게 흘러갈 때 위험을 미리 알려 준다고 한다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "숙명의 거울",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "여우의 별자리가 자신의 주파수로 제작해 수호신의 권능 일부를 봉인한 신물이다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "심벽음",
+    "type": "요리",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "파티 내 모든 공명자의 공명 효율이 20% 증가되고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "briefInfo": "",
+    "obtain": "요리 획득",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "악장의 흔적이 남은 그루터기",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "content": "",
+    "skillDescription": "캐릭터 돌파에 사용되는 재료",
+    "briefInfo": "",
+    "obtain": "물자 상자 오픈으로 획득\n군생지 채집 획득\n야외 채집 획득\n화서원 약방에서 구매",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "염원을 기울인 꽃",
+    "type": "돌파 재료",
+    "rarity": 1,
+    "content": "",
+    "skillDescription": "캐릭터 돌파에 사용되는 재료",
+    "briefInfo": "",
+    "obtain": "「새알심 용사들의 난투극」 이벤트에서 획득\n물자 상자 오픈으로 획득\n군생지 채집 획득\n야외 채집 획득\n화서원 약방에서 구매",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "영청궐",
+    "type": "요리",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "파티 내 모든 공명자의 치료 효과 보너스가 55% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "운산의 풍경을 품은 자리",
+    "type": "재료",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "장착 후 필드에서 「운산의 풍경을 품은 자리」 소환 가능",
+    "briefInfo": "",
+    "obtain": "「달빛이 비추는 길」 이벤트에서 획득",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "제천감의 초청장",
+    "type": "임무 아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "초대장 한 장. 봉투를 보고서는 누가 보낸 것인지 확인할 수 없다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "직정의 비밀 자물쇠",
+    "type": "이벤트 아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "직정 사람들이 사용하는 저장 도구 중 하나로, 이를 통해 「상자 속에서 펼쳐진 꿈」 이벤트에서 진행도를 쌓을 수 있다\n금빛과 백색이 어우러진 작은 함 안에 수많은 비책이 담겨 있다. 직정은 전적과 도보, 기억을 모두 그 안에 보관하며, 반고 단말기로 봉인된 정보를 열람할 수 있다. 손바닥만한 작은 물건이지만, 그 안에는 방대한 지식이 담겨 있다",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 개화(뜨거운 마음)",
+    "type": "재료",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 뜨거운 마음의 안정치 **500** 증가",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 개화(차가운 마음)",
+    "type": "재료",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 차가운 마음의 안정치 **500** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 개화(행복한 마음)",
+    "type": "재료",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 행복한 마음의 안정치 **500** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 만개(뜨거운 마음)",
+    "type": "재료",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 뜨거운 마음의 안정치 **800** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 만개(차가운 마음)",
+    "type": "재료",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 차가운 마음의 안정치 **800** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 만개(행복한 마음)",
+    "type": "재료",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 행복한 마음의 안정치 **800** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 봉오리(뜨거운 마음)",
+    "type": "재료",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 뜨거운 마음의 안정치 **200** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 봉오리(차가운 마음)",
+    "type": "재료",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 차가운 마음의 안정치 **200** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천 겹의 꽃잎 · 봉오리(행복한 마음)",
+    "type": "재료",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "천라호영에게 제출하여 행복한 마음의 안정치 **200** 증가",
+    "briefInfo": "",
+    "obtain": "몽추천라에서 탐색하며 수집",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "천연륜 잔해",
+    "type": "스킬 업그레이드 재료",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "천연 상태인 태초의 여우의 별자리 · 연율 형태의 드랍 아이템, 스킬 업그레이드에 사용된다",
+    "briefInfo": "",
+    "obtain": "물자 상자 오픈으로 획득\n태초의 여우의 별자리 · 천연 도전에서 획득\n태초의 여우의 별자리 · 천연 - 조기 오픈에서 획득",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
+    "name": "화정추억",
+    "type": "요리",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "파티 내 모든 공명자의 강공격 피해 보너스가 44% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
+    "briefInfo": "",
+    "obtain": "요리 획득",
+    "fileName": "",
+    "dbSource": "ww_items"
+  },
+  {
     "name": "「9℃」 커피 원두",
     "type": "식재료",
     "rarity": 2,
@@ -1107,6 +1371,28 @@
     "skillDescription": "이 공연에서 당신은 여행객 사이에 숨은 신사다. 모자를 벗고 허리 굽혀 인사해 아름다운 파티에 경의를 표하자.",
     "briefInfo": "",
     "obtain": "후디니의 계략 무대\n헌터 거래소\n합성",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "「근무」 시간",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "레이븐이 찍힌 사진. 「업무 중, 방해 금지.」 레이븐의 방문에는 가끔 이런 팻말이 걸려 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "「깃털 특간」 S급 아크 랜덤상자",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -1155,6 +1441,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "「마녀」의 축복",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「마녀」의 축복입니다. 받아주세요.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "「마음대로 슬라임」",
     "type": "아이템",
     "rarity": 5,
@@ -1195,6 +1492,17 @@
     "skillDescription": "백장이 선물한 탈것. 출퇴근 피크 시간만 되면 특별한 힘이 발동되어, 마치 붉은 번개마냥 도시의 차량들 사이를 가르며 질주한다고 한다.",
     "briefInfo": "",
     "obtain": "탈것 '맥퀸' 해제",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "「미래로 저어라!」",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「집사」 Mr.데이비드의 고급 배. 다음 버전에서는 금속 재질로 변경한 뒤 엔진을 장착하고, 더 안전한 밀폐형 선실을 적용할 예정이다. 이는 선박 업계의 새로운 도약을 이끌 모델이 될 것이다!",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -1391,6 +1699,28 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "「텅 빈 사무실, 일종의 형언치 못할 감정이 마음 속에서 거칠게 소용돌이친다. 마치 심장에서 수많은 팔이 자라나, 일하지 않는 나를 마구 긁어대는 듯한 느낌이랄까… 너무 괴롭다… 이 불안감을 해소해야만 한다. 그냥 내가 사무실의 네트워크 모듈이었으면 좋겠다… 몸속에 끊임없이 복잡한 정보가 입력되고, 다시 바깥으로 출력되는 그런…」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "「푸카 멤버십 플랜」 S급 아크 선택상자",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "「해달별 특간」 S급 아크 랜덤상자",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -1672,6 +2002,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "God knows...",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "미래가 온통 어둠뿐이라 해도 함께 나아가자. 신의 가호가 우리와 함께하기를.",
+    "briefInfo": "",
+    "obtain": "번외-「그날의 우리에게」",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "LCD 디스플레이",
     "type": "인테리어",
     "rarity": 5,
@@ -1679,6 +2020,28 @@
     "skillDescription": "행복감을 높여주는 인테리어 아이템. 풀스크린 디자인에 스마트 시스템을 갖추어, 여가 시간을 위한 최고의 선택이라 할 수 있다.",
     "briefInfo": "",
     "obtain": "브라운 전자기기 판매점(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "Letters to me",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "아직 찾지 못한 답, 여전히 막막한 미래. 그래도 이 노래를 그날의 우리에게 바친다.",
+    "briefInfo": "",
+    "obtain": "번외-「그날의 우리에게」",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "LP판",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "한정판 LP판. 인기 록 음악 대부분이 수록되어 있다. 록 음악과 레코드판 수집을 즐기는 사람에게 선물하면 좋을지도?",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -1716,6 +2079,39 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "Porsche 911 Turbo (930)",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "Porsche 911 Turbo (930), 백미러 너머로 시대를 따돌리다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "Porsche Club",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "Porsche Club 가입을 환영합니다. 오늘은 어떤 차를 타고 나가시겠어요?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "Porsche Taycan Turbo GT with Weissach Package",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "Taycan Turbo GT with Weissach Package, 차세대 동력으로 재해석하는 스포츠카의 DNA. 압도적인 성능으로 트랙을 정복하라.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "Ride",
     "type": "선물",
     "rarity": 5,
@@ -1734,6 +2130,17 @@
     "skillDescription": "다채로운 선율이 우리가 함께 보낸 여름날처럼 가볍고 산뜻하게 주위를 감싼다.",
     "briefInfo": "",
     "obtain": "Exile on Main St. 레코드숍(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "Salzburg-리버리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「Porsche 918 Spyder」, 「Porsche Taycan Turbo GT with Weissach Package」, 「Porsche 911 Turbo (930)」의 전용 리버리.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -1820,6 +2227,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "가가 가가?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "가루 세제",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "강력하고 효과적인 세제로, 물에 녹여 아이들이 비눗방울을 불며 놀 때 사용한다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -1958,8 +2376,30 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "각별한 사이: 레이븐",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "각별한 사이: 민트",
     "type": "중요",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "각별한 사이: 아카네 린",
+    "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "",
@@ -2090,6 +2530,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "거울 조각",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "당신은 이곳에서 벗어나야 하고 꿈에서 깨어나야 하며, 자신이 누구인지 알아야 한다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "거침없는 전진",
     "type": "인테리어",
     "rarity": 5,
@@ -2097,6 +2548,28 @@
     "skillDescription": "벽면에 거는 인테리어용 그림. 버스가 이렇게 빨리 달릴 수 있다니, 정말 대단하다!",
     "briefInfo": "",
     "obtain": "Oops! Chest 기프트숍(브릿지 구역)\nOops! Chest 기프트숍(에소라마치)\nOops! Chest 기프트숍(미구엘 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "건전지",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "리모컨 건전지를 숨기는 것은 부모님들의 비장의 무기 중 하나다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "검은지빠귀",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "검은지빠귀가 엄청나게 큰 신탁석을 얻었다!",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -2145,6 +2618,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "고기 듬뿍 양지 쌀국수",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "고기와 채소가 듬뿍 들어간 푸짐한 쌀국수 한 그릇! 대왕 훈제 칠면조 다리와 함께 먹는 것은 추천하지 않는다.",
+    "briefInfo": "",
+    "obtain": "푸카 환상 레스토랑(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "고깔 유령",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "모자 단단히 쓰고, 신나게 등장!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "고농축 소독액",
     "type": "아이템",
     "rarity": 2,
@@ -2163,6 +2658,17 @@
     "skillDescription": "집 안에 깔아 두기 좋은 부드러운 카펫. 만약 어떤 행성에 당신 혼자만 존재한다면, 외로움과 자기애는 영원한 명제가 될 것이다.",
     "briefInfo": "",
     "obtain": "럭셔리 인테리어(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "고독한 새의 애가",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "검은지빠귀의 노래가 세월을 깨우자, 시간은 가라앉고, 또 가라앉는다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -2196,6 +2702,17 @@
     "skillDescription": "끝내 꺼내지 못한 말이 담긴 꽃씨. 피어나기 전까지 그 안에 담긴 뜻을 알 수 없다.",
     "briefInfo": "",
     "obtain": "재료 선택 상자 오픈\n이상 추적 「세레니티」",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "고성의 물",
+    "type": "아이템",
+    "rarity": 2,
+    "content": "",
+    "skillDescription": "기념으로 소장할 수 있다. 상당한 수량을 모으면 「백작님」과의 즐거운 시간을 인정받아, 최종 플레이 정산 점수를 대폭 올릴 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -2288,6 +2805,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "곰돌이 쿠키",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "사키리는 항상 「너무 애 같다」고 투덜대지만 달콤하고 폭신한 곰돌이 쿠키를 싫어할 사람이 있을까?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "과즙 젤리",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "관광 안내서",
     "type": "아이템",
     "rarity": 5,
@@ -2310,11 +2849,44 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "구름 솜사탕 밀크티",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "파라다이스에서 인기 많은 환상의 음료. 마시면 발걸음이 바람처럼 가벼워져 파라다이스 곳곳을 누빌 수 있다.",
+    "briefInfo": "",
+    "obtain": "티타임 하우스(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "구세주",
     "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "창문 밖으로 날아간 새는 결국 새장에 갇혔다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "궁극의 모둠",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "어린애나 고르는 거지, 난 다 가질 거야! 맛있는 것도 행운도 전부 한 번에 챙기겠어!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "궤도 너머의 기관사",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "다음 역에서는 어떤 풍경이 보일까?",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -2328,6 +2900,17 @@
     "skillDescription": "빠져선 안 될 인테리어 오브제. 부드럽게 빛나는 구체를 우아한 원형 장식으로 둘러싸 고요하고 신비로운 시각적 경험을 선사한다.",
     "briefInfo": "",
     "obtain": "브라운 전자기기 판매점(미구엘 구역)\n브라운 전자기기 판매점(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "귀여운 호랑이의 강림",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "스카버러 마켓에서 보드 주사위 스킨 「귀여운 호랑이의 강림」을 획득한다.",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -2427,6 +3010,17 @@
     "skillDescription": "",
     "briefInfo": "",
     "obtain": "탈차원 기물 교환\n환석 가공\n이벤트 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "기묘한 순간",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "손안의 파라다이스, 다가오는 기묘한 만남.",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -2563,6 +3157,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "깃털 열쇠",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「눈물 한 방울이 땅에 떨어지자, 새 한 마리가 그것을 물고 날아갔다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "깊은 우정: 구원",
     "type": "중요",
     "rarity": 5,
@@ -2598,6 +3203,17 @@
   {
     "name": "깊은 우정: 라크리모사",
     "type": "중요",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "깊은 우정: 레이븐",
+    "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "",
@@ -2823,6 +3439,17 @@
     "skillDescription": "집 안에 깔아 두기 좋은 실용적인 발 매트. 산뜻하고 귀여운 블루 앤 화이트 배색으로, 발을 내디딜 때마다 들꽃이 가득한 봄날의 풀밭을 밟는 듯한 생기를 선사한다.",
     "briefInfo": "",
     "obtain": "럭셔리 인테리어(미구엘 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "꽃사탕 선물",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "고, 고마워요, 숯덩이의 친구!",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -3113,6 +3740,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "내일의 스타",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "스포트라이트의 중심에 선 지금 이 순간, 후광이 당신을 비춘다.",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "내추럴 우드 램프",
     "type": "인테리어",
     "rarity": 4,
@@ -3157,11 +3795,44 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "노을빛 벨벳",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "특별한 날에만 꺼내 입는 옷. 「일 년에 몇 번 입지도 않는데, 굳이 에너지 절약까지 신경 써서 코디할 필요는 없잖아?」",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "노이즈 제거액",
     "type": "아이템",
     "rarity": 4,
     "content": "",
     "skillDescription": "본성 픽셀을 효과적으로 높여주는 아이템. 「본성 인화지」를 기반으로 사용자의 「본성 픽셀」상태를 불러온 후, 특수 편집된 베이스 용액이 주파수를 진동시켜 본성 픽셀 시퀀스의 불균형을 복구하고, 이상 때문에 발생한 본성 해석도 차트의 「노이즈」를 줄인다. 사용 시 본성 픽셀을 60P 획득한다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "녹턴 열쇠",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「물처럼 흐르는 노래가 밤의 긴 꿈을 따라 굽이굽이 이어진다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "놀이공원 유람기",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "일상을 푸카하게!",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -3278,6 +3949,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "단꿈 캔디 상자",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "우유 사탕, 초콜릿, 과즙 젤리… 작은 상자 하나에 매일의 달콤한 꿈이 가득 담겨 있다.",
+    "briefInfo": "",
+    "obtain": "타이쿤 프로젝트-기부",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "단단한 버터",
     "type": "식재료",
     "rarity": 2,
@@ -3318,6 +4000,28 @@
     "skillDescription": "집 안에 깔아 두기 좋은 부드러운 카펫. 숲속 나뭇잎 사이로 쏟아지는 햇살을 닮았다. 침대 옆이나 베란다에 깔면 오후의 햇살이 드리우는 여유로운 시간을 즐길 수 있다.",
     "briefInfo": "",
     "obtain": "럭셔리 인테리어(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "달걀프라이",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "멋진 하루는 맛있는 아침 식사로 시작된다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "달달도넛",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "스카버러 마켓에서 보드 주사위 스킨 「달달도넛」을 획득한다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -3366,6 +4070,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "달빛 아래 손님",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "어둠이 살며시 찾아오면 이 손님도 잘 부탁드려요.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "달콤한 연분홍",
     "type": "선물",
     "rarity": 3,
@@ -3373,6 +4088,17 @@
     "skillDescription": "우아하게 피어난 분홍색 백합. 봄바람 속 첫 만남처럼 부드럽고 강인하다.",
     "briefInfo": "",
     "obtain": "피어나는 꽃집(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "달콤한 용암",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "용암이 초콜릿으로 만들어졌다면, 위험한 건 살찌는 것뿐?",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -3454,6 +4180,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "대왕 훈제 칠면조 다리",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "파라다이스의 대표 인기 메뉴! 윤기가 자르르 흐르는 푸짐한 대왕 훈제 칠면조 다리. 이세계의 놀이공원에서도 큰 인기를 끌고 있다는데… 아직 확인된 바는 없다.",
+    "briefInfo": "",
+    "obtain": "든든 버거집(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "더 팬텀 X",
     "type": "아이템",
     "rarity": 5,
@@ -3531,6 +4268,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "돈비가 내린다",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "돈을 물 쓰듯 쓰는 것이 곧 부의 상징.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "동력 증폭",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "동력 증폭으로 한계를 뛰어넘는 주행 성능! 탁월한 당신만을 위한 특별 맞춤 제작.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "동행 포인트",
     "type": "아이템",
     "rarity": 2,
@@ -3538,6 +4297,17 @@
     "skillDescription": "잘해보자고, 파트너!",
     "briefInfo": "",
     "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "동화 한 편",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "벽은 빵으로, 창문은 사탕으로… 초콜릿 쿠키 비행기가 솜사탕 바람을 타고 날고 또 난다.",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -3652,6 +4422,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "듀얼 러시",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "전기와 엔진이 만들어내는 굉음, 전통을 잇는 역대급 후속작.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "드높은 하늘",
     "type": "선물",
     "rarity": 4,
@@ -3663,11 +4444,33 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "드리운 눈꽃",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "하얗게 빛나는 꽃잎이 가지 끝을 장식하고, 길고 곧게 뻗은 꽃대가 단아한 도자기 화분과 어우러져 집 안에 고요한 분위기를 더한다.",
+    "briefInfo": "",
+    "obtain": "번외 임무 「그날의 우리에게」",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "드리프터 증표",
     "type": "중요",
     "rarity": 5,
     "content": "",
     "skillDescription": "소타가 선물한 할인 쿠폰. 쿠폰을 소지하고 나쓰나리 두부 가게에 가면 우정 할인을 받을 수 있다. 소타가 새로운 「헤테로의 드리프터」로 인정해 주었으니, 전임 「드리프터」의 새로운 사업에도 힘을 보태주자!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "드림랜드 티파티 종일 이용권",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -3751,6 +4554,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "라바 타운 광차",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "언제든 라바 타운의 모험을 다시 즐겨보세요.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "라이징 헌터 가이드",
     "type": "육성 재료",
     "rarity": 2,
@@ -3758,6 +4572,17 @@
     "skillDescription": "<라이징 헌터의 개인적 견해, 레벨업 공략 선공개!>「베이글」에서 「참깨」를 999개 이상 획득한 헌터가 작성한 공략글이다. 갓 헌터 면허를 딴 초보 헌터가 효과를 검증하려 했으나, 이 댓글을 마지막으로 사라졌다. 이… 상… 을… 조… 심… 해…!",
     "briefInfo": "",
     "obtain": "후디니의 마술 무대\n헌터 거래소\n월드 탐색",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "라이트 버블껌",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -3938,6 +4763,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "롤리팝 안경",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "신기한 막대사탕 두 개가 있다. 하나는 앞길을 꿰뚫어 보고, 다른 하나는 비밀을 발견할 수 있다. 이걸 쓰고 시크릿 플라워 가든으로 모험을 떠나보자.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "리드미컬 벌집",
     "type": "선물",
     "rarity": 4,
@@ -3982,6 +4818,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "리틀 푸카 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "리프레시 재충전",
     "type": "아이템",
     "rarity": 4,
@@ -4011,6 +4858,17 @@
     "skillDescription": "「뽑기 할 일 있으면 링콕만 믿어요! 제가 콕! 집어줄게요.」",
     "briefInfo": "",
     "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "마녀 기원 중…",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "모자가 조금 과하게 크지만, 함께할 공간은 오히려 더 충분해 보인다.",
+    "briefInfo": "",
+    "obtain": "레이븐-Lv.6 각성 시 획득",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -4191,6 +5049,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "막이 내린 후",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "우리의 이야기는 이제 막 시작됐다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "만물의 향기",
     "type": "인테리어",
     "rarity": 5,
@@ -4257,6 +5126,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "맞물린 고리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "헤테로에는 밤이 없다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "매듭의 예술",
     "type": "선물",
     "rarity": 3,
@@ -4264,6 +5144,17 @@
     "skillDescription": "집안에 없어서는 안 될 인테리어용 오브제. 검은색의 매듭 모양 조형물로, 집안에 예술적인 분위기를 더해준다.",
     "briefInfo": "",
     "obtain": "Oops! Chest 기프트숍(미구엘 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "매운 소고기 볶음",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "간이 세고 매콤한 편이다. 담백한 맛을 선호하는 사람에게는 추천하지 않는다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -4334,6 +5225,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "멜팅 초콜릿 밀크티",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "반쯤 뜯어진 푸카 초콜릿이 밀크티 속으로 천천히 가라앉는다. 향긋하고 따뜻한 이 음료는 파라다이스에서만 만날 수 있는 달콤한 추억이다.",
+    "briefInfo": "",
+    "obtain": "티타임 하우스(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "명망의 지팡이",
     "type": "육성 재료",
     "rarity": 5,
@@ -4341,6 +5243,17 @@
     "skillDescription": "「귀족」 신분은 이 축제의 입장권일 뿐. 황금으로 만든 지팡이라도 아라크네 아가씨에게는 발판이나 다름없다.",
     "briefInfo": "",
     "obtain": "이상 순례 「멈추지 않는 아라크네」",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "명예의 증표",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "선택과 신뢰에 감사드립니다. 트랙 위에 우리의 이름을 함께 새기겠습니다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -4576,6 +5489,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "문어 선장",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "장난꾸러기 문어 선장을 집으로 데려가세요!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "물 한 컵",
     "type": "인테리어",
     "rarity": 5,
@@ -4594,6 +5518,28 @@
     "skillDescription": "이 공연에서 당신은 무고한 관중이자 족쇄의 제공자이며 미래의 흑막이다.",
     "briefInfo": "",
     "obtain": "재료 선택 상자 오픈\n후디니의 계략 무대\n헌터 거래소",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "미니 케이크 마운틴",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 상징! 거대한 케이크 마운틴이 당신의 접시 위에! 어느 층부터 맛볼까?",
+    "briefInfo": "",
+    "obtain": "달콤 베이커리(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "미라클 휠",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "환상적인 아침, 환상적인 점심, 환상적인 밤 보내세요.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -4675,6 +5621,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "바삭 콘 푸딩 모험선",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "광산 구역의 거대한 와플콘 화산을 그대로 재현한 디저트. 한입 베어 물면 캔디 밸리를 누비는 광차에 올라탄 듯한 기분을 느낄 수 있다.",
+    "briefInfo": "",
+    "obtain": "아이스 타임(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "바삭몽 변신 도구",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "바삭몽, 분홍색 머리띠를 하고 노란 구두를 신은 나비파이. 살짝만 건드려도 바삭 소리를 내며, 입안에서 부서지는 크리스피한 식감이 일품이다.",
+    "briefInfo": "",
+    "obtain": "동화의 옷장(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "바퀴벌레! 바퀴벌레!",
     "type": "선물",
     "rarity": 3,
@@ -4682,6 +5650,17 @@
     "skillDescription": "바퀴벌레를 자동으로 탐지하는 바퀴벌레 모양의 로봇. 발견 즉시 자동으로 경보가 울린다(퇴치는 셀프). 다만 내구성이 약할 수 있으니 주의하자…",
     "briefInfo": "",
     "obtain": "타기도의 자판기",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "바텐더 스페셜",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「질문해도 되는데, 일단 음료부터 한 잔 시켜.」",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -4713,6 +5692,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "Q³ 기념일 한정 의상. 편안함과 스타일을 모두 잡은 잠옷. 친구들과 잠들기 전 이야기를 들을 때 입기 좋다.「옛날 옛적 숲에 늑대가 살았어요. 친구를 사귀고 싶던 늑대는 벨벳으로 만든 빨간 망토를 썼답니다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "반짝반짝 팝핑 캔디",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -4752,6 +5742,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "밤하늘의 깃털 - 리버리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "검은 새가 당신을 따라가고 있어요. 못 봤다고요? 깃털이 바닥에 이렇게나 흩어져 있는데…",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "방향치 기물",
     "type": "아이템",
     "rarity": 4,
@@ -4759,6 +5760,17 @@
     "skillDescription": "",
     "briefInfo": "",
     "obtain": "스카버러 마켓",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "방황의 날",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -4779,6 +5791,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "벽면에 거는 인테리어용 그림. 안녕, 내 최고의 배송 파트너! 햇살도 딱 좋네, 이제 출발하자!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "백년의 고독",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「마녀의 집」 주인 레이븐의 명함. 레이븐이 아무리 노력해도, 무엇이든 대답해 주는 수정 구슬은 레이븐이 자신의 운명을 물을 때면 언제나 침묵한다. 그럴 때마다 레이븐은 수정 구슬 속에서 소용돌이치는 안개를 멍하니 바라보며 자신이 어디에서 태어나 어디에서 자라고 어디에 묻히게 될지 상상하곤 했다. 그날 레이븐은 생각에 잠기다 보니 어느새 깊은 잠에 빠져들었다. 기묘한 꿈을 꾸게 될 줄도 모른 채. 꿈속에서 레이븐은 검은 깃털의 새가 되어 사람들의 머리 위를 날아다녔고, 수백 년의 세월을 뒤에 둔 채 노랫소리를 대지에 흩뿌리며 한 계절 또 한 계절을 넘나들었다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -4845,6 +5868,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "백일 이상 붉은 꽃은 없다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "백작님의 애장품",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "기념으로 소장할 수 있다. 상당한 수량을 모으면 「백작님」이 수집 동호인으로 인정하며, 최종 플레이 정산 점수를 대폭 올릴 수 있다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -4994,6 +6028,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "별지기",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "모든 점술가는 만물에 깃든 은유를 밝혀내고 싶어 한다. 그녀에게 운명이란 밤하늘을 쉼 없이 돌고 도는 무수한 별과 같다. 「하늘을 수놓은 수많은 별자리 속에서, 저는 서로를 비추는 우리의 운명을 엿보았어요.」",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "보라빛 밤",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "달은 가장 눈부신 조명이다.",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "보랏빛 황혼",
     "type": "인테리어",
     "rarity": 3,
@@ -5023,6 +6079,17 @@
     "skillDescription": "타기도의 얼굴을 넣어 만든 포스터. 이런 사소한 일은 안심하고 보스 타기도에게 맡겨!",
     "briefInfo": "",
     "obtain": "흰고래 서점(브릿지 구역)\n흰고래 서점(에소라마치)\n흰고래 서점(미구엘 구역)\n흰고래 서점(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "보조 배터리",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "스푸키 쿠키하우스 손전등 전용 모델. 이곳의 특별 보급품이다!",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -5456,6 +6523,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "비눗물",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "어린 시절 한 번쯤 해봤을 놀이.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "비늘무늬",
     "type": "이상 가구 재료",
     "rarity": 4,
@@ -5643,6 +6721,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "빅 푸카 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "빈 상자 주사위",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「정답이 뭐야? 가치 따위는 없어」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "빈티지 블라인드 박스",
     "type": "육성 재료",
     "rarity": 2,
@@ -5720,6 +6820,50 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "쁘띠 바삭몽",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 인기 마스코트 바삭몽을 모티브로 만든 인형. 황금빛 그라데이션 도색으로 바삭바삭해 보여 식욕을 자극하지만, 취급 시 각별히 주의해야 한다!",
+    "briefInfo": "",
+    "obtain": "푸카 잡화점(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쁘띠 스틱몽",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 인기 마스코트 스틱몽을 모티브로 만든 인형. 크림과 짙은 색의 필링이 그라데이션으로 선명하게 대비되어, 적당히 신사다운 분위기를 풍긴다.",
+    "briefInfo": "",
+    "obtain": "푸카 잡화점(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쁘띠 와플몽",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 인기 마스코트 와플몽을 모티브로 만든 인형. 머리에 버터를 얹고 몸에 시럽을 두른 격자무늬 와플로, 쫀득하고 탱글탱글한 식감에 달콤한 향기를 가득 풍긴다. 단, 절대 먹지 말 것!",
+    "briefInfo": "",
+    "obtain": "푸카 잡화점(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쁘띠 쿠키몽",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 인기 마스코트 쿠키몽을 모티브로 만든 인형. 품에 안으면 폭신폭신하고 맛있는 냄새가 난다!",
+    "briefInfo": "",
+    "obtain": "푸카 잡화점(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "사과",
     "type": "식재료",
     "rarity": 2,
@@ -5736,6 +6880,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "벽면에 거는 인테리어용 그림. 폭주하는 신을 건드리지 마! (진지하게 멋있는 척하는 중)… 잠깐, 이렇게 부르는 게 맞던가?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "사냥꾼 열쇠",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「안개를 뚫고 전진하고, 사냥하며, 결코 멈추지 않는다.」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -5782,6 +6937,17 @@
     "skillDescription": "이 공연에서 당신은 참가자다. 앞에 있는 카드는 하트3… 아쉽지만, 틀렸습니다.",
     "briefInfo": "",
     "obtain": "재료 선택 상자 오픈\n후디니의 계략 무대\n헌터 거래소",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "사탕 눈알",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "기념으로 소장할 수 있다. 「백작님」이 손님을 맞이하기 위해 준비한 듯하다. 최종 플레이 정산 점수를 대폭 올릴 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -5890,6 +7056,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "벽면에 거는 인테리어용 그림. 작은 동물이 따뜻하고 촉촉한 보금자리에서 잠들었다. 쉿… 이대로 영원히, 새하얀 꿈을 꾸길.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "생선탕",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "가시를 모두 발라낸 생선탕, 감칠맛이 일품이다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -6105,6 +7282,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "소프트 토피",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "손 편지 한 통",
     "type": "선물",
     "rarity": 5,
@@ -6116,11 +7304,44 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "솜사탕 나무 막대사탕",
+    "type": "아이템",
+    "rarity": 2,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 인기 사탕! 작은 솜사탕 나무를 닮아, 한입 베어 물면 푸카 파라다이스만의 달콤함을 만끽할 수 있다.",
+    "briefInfo": "",
+    "obtain": "단꿈 캔디숍(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "솜솜 영웅",
     "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "영웅이 돌아왔다! 꽃을 뿌리고 환호하라!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쇠톱",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "흔히 볼 수 있는 쇠톱. 목공 작업을 할 때 유용한 도구다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쇼핑 데이",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「목록 좀 볼까… 나나리 선원, 계속 전진!」 「옙! 민트 선장님!」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -6204,6 +7425,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "숯덩이 코인",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "숲속의 꿈",
     "type": "선물",
     "rarity": 4,
@@ -6222,6 +7454,28 @@
     "skillDescription": "눈길을 사로잡는 장식용 식물. 푸르게 우거진 잎과 하얀 화분이 완벽한 조화를 이루어, 자연의 고요함과 생동감을 연상시킨다.",
     "briefInfo": "",
     "obtain": "힐링 플랜트 가게(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "슈퍼 플레이어",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "Play has no limits!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "슈퍼스타",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "진심을 다해 무대를 누비며 가장 찬란하게 빛나는 별이 된다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -6325,6 +7579,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "스트라이드 껌",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "스트라이드 껌 하나를 씹으면 이능력이 폭발해 이상 조사를 멈출 수가 없다!",
+    "briefInfo": "",
+    "obtain": "2-Four 편의점 한정 판매\n\n\n\n자판기\n\n\n\n2-Four 편의점(브릿지 구역)\n\n\n\n2-Four 편의점\n\n\n\n2-Four 편의점(에소라마치)\n\n\n\n2-Four 편의점(미구엘 구역)\n\n\n\n2-Four 편의점(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "스트레스리스 의자",
     "type": "인테리어",
     "rarity": 3,
@@ -6336,6 +7601,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "스틱몽 변신 도구",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "스틱몽, 검은색 중절모를 쓰고 흰색 콧수염을 기른 막대 모양 샌드 쿠키. 신사다운 풍채가 돋보이며 필링 맛은 비밀이다.",
+    "briefInfo": "",
+    "obtain": "동화의 옷장(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "스페셜 냉디저트",
     "type": "육성 재료",
     "rarity": 4,
@@ -6343,6 +7619,83 @@
     "skillDescription": "한정판 맞춤 아이스크림. 장식은 그대로지만 특별한 재료를 첨가해 맛이 한층 더 깊어졌다.",
     "briefInfo": "",
     "obtain": "버블캔 공장\n헌터 거래소\n합성",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스포트라이트",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "오늘 밤 불빛이 픽셀 하나만큼 더 밝아졌다.",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스푸키 보석",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "보석 모양의 스푸키 쿠키하우스 전용 아이템이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스푸키 아이스크림",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "아이스크림 모양의 스푸키 쿠키하우스 전용 아이템이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스푸키 전단지",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "기념으로 소장할 수 있다. 상당한 수량을 모으면 스푸키 쿠키하우스의 베테랑 방문객으로 인정받아, 최종 플레이 정산 점수를 대폭 올릴 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스푸키 캔디",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "스푸키 쿠키하우스 전용 아이템이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스푸키 케이크",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "케이크 모양의 스푸키 쿠키하우스 전용 아이템이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "스푸키 하우스",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "그렇게까지… 무섭진 않겠지?",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -6363,6 +7716,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "「과거」와 「현재」가 이곳에서 겹쳐진다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "시들지 않는 깃털",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "레이븐의 홈웨어. 레이븐은 별일이 없을 때 평범한 옷에 자신만의 개성을 더해 리폼하곤 하는데, 이 옷은 지금까지도 그녀가 가장 아끼는 편한 옷이다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -6567,6 +7931,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "실크햇 고양이 막대사탕",
+    "type": "아이템",
+    "rarity": 2,
+    "content": "",
+    "skillDescription": "사탕을 먹으면 구름을 뚫고 하늘로 올라가는 짜릿함을 다시 만끽할 수 있다. 역시 프리즈비에 다시 도전하러…",
+    "briefInfo": "",
+    "obtain": "단꿈 캔디숍(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "실패한 요리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "실망하지 말자. 누구나 한 번쯤 겪는 일이니까. 다만 다른 사람에게 권하지는 말자.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "심상 파편·「제로」",
     "type": "아이템",
     "rarity": 5,
@@ -6612,6 +7998,17 @@
   },
   {
     "name": "심상 파편·라크리모사",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "심상 파편·레이븐",
     "type": "아이템",
     "rarity": 5,
     "content": "",
@@ -6669,6 +8066,17 @@
     "name": "심상 파편·아들러",
     "type": "아이템",
     "rarity": 4,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "심상 파편·아카네 린",
+    "type": "아이템",
+    "rarity": 5,
     "content": "",
     "skillDescription": "",
     "briefInfo": "",
@@ -6853,6 +8261,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "씬스틸러",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "스포트라이트가 켜졌다. 빛나는 순간을 남겨 보자!",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "아깝네 린",
     "type": "아이템",
     "rarity": 5,
@@ -7029,6 +8448,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "아크 라이트 컬렉션Ⅱ",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "아크 플로어 램프",
     "type": "인테리어",
     "rarity": 3,
@@ -7106,6 +8536,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "알록달록 꽃사탕",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "잃어버린 사탕도 숯덩이의 보물이 될 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "알록달록 꿈",
     "type": "선물",
     "rarity": 3,
@@ -7172,6 +8613,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "양배추 볶음",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "멋진 하루는 맛있는 아침 식사로 시작된다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "양파",
     "type": "식재료",
     "rarity": 2,
@@ -7232,6 +8684,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "어제의 흥이 깨지기 전에 어서 손을 내밀어.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "에너지 절약",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「쓸데없는 일은 하지 않고, 해야 할 일도 최대한 간단하게 처리한다.」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -7491,6 +8954,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "와그작 캔디",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "와플몽 변신 도구",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "와플몽, 머리에는 버터 조각을 얹고 몸에는 시럽을 두른 네모난 와플. 부드럽고 쫀득한 식감에 향긋한 냄새까지 풍기는 달콤한 간식이다.",
+    "briefInfo": "",
+    "obtain": "동화의 옷장(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "왈츠",
     "type": "선물",
     "rarity": 3,
@@ -7531,6 +9016,28 @@
     "skillDescription": "집 안에 깔아 두기 좋은 부드러운 카펫. 선명한 주황색과 검은색의 대비가 돋보이는 인테리어 아이템이다.",
     "briefInfo": "",
     "obtain": "럭셔리 인테리어(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "용암 필링 캔디",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "용해제",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "강력한 용해 효과를 가진 용해제. 충분한 양을 사용하면 집 안 구석구석의 모든 때를 녹일 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -7623,11 +9130,44 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "운명의 각주",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "운명을 알고 싶은가? 그렇다면 운명을 잊을 준비를 하라.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "운세 주사위",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「어쩌면 우리가 피할 수 없기에, 운명은 비로소 운명이 되는 것일지도 모른다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "운행 기록",
     "type": "아이템",
     "rarity": 4,
     "content": "",
     "skillDescription": "열차 승무원 「미스 레비」가 분실한 운행 일지. 유령호가 궤도 너머에서 운행되던 시기의 중요한 정보가 기록되어 있다. 운행 기록을 주워 「이세계 재활용 센터」의 담당자에게 전달하자. 유령호 연구와 관리에 기여할 뿐만 아니라, 어쩌면 또 다른 돈벌이 수단이 될 수도 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "웃음 가득",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "이걸 착용한 플레이어는 자기도 모르게 입꼬리가 올라간다고 한다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -7898,6 +9438,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "월급 루팡",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "진정한 고수는 세상 속에 숨어 사는 법. 부드럽고 심플해 흔히 볼 수 있는 옷이야말로 어디에든 자연스럽게 섞여 들기 제격이다. 쉿, 조용… 우리 지금 월급 루팡 중이거든.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "웜 오렌지 소파-L자형",
     "type": "인테리어",
     "rarity": 5,
@@ -7986,6 +9537,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "유람 수첩",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "도장을 찍고 추억을 모아, 첫 페이지부터 나만의 모험 이야기를 써 내려가세요.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "유령 깃털",
     "type": "아이템",
     "rarity": 5,
@@ -7993,6 +9555,17 @@
     "skillDescription": "이세계 보급역에서 「미스 레비의 선물」로 교환 가능",
     "briefInfo": "",
     "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "유령 디핑 소스 와플",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "귀신의 집 레스토랑의 특선 메뉴! 유령 모양의 아이스크림이 서서히 녹아내리며, 그 속에는 밤의 유령이 준비한 작은 장난이 숨어 있다.",
+    "briefInfo": "",
+    "obtain": "달콤 베이커리(푸카 파라다이스)",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -8096,6 +9669,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "유일무이",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "There is no substitute.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "유일한 확실성",
     "type": "아이템",
     "rarity": 5,
@@ -8125,6 +9709,17 @@
     "skillDescription": "앨리의 인형극 「만남~ 은빛 달의 왈츠」를 모티브로 만든 인형. 은빛 보름달이 드리우면 신비로운 무도회가 시작된다. 오늘 밤, 당신은 누구를 파트너로 선택하시겠습니까?",
     "briefInfo": "",
     "obtain": "인형 뽑기 기계",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "음속 유성-리버리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "페달이 만드는 리듬, 체인이 빚어내는 선율.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -8175,6 +9770,17 @@
   {
     "name": "의기투합: 라크리모사",
     "type": "중요",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "의기투합: 레이븐",
+    "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "",
@@ -8393,6 +9999,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "이상 수정",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "특수 에너지가 담긴 희귀 화폐. 「차원의 틈에서 자라는 이상 결정체, 굴절되어 생긴 빛의 궤적은 어쩌면 세계를 연결할 수 있을지도 모른다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "이상 실험 단서",
     "type": "아이템",
     "rarity": 5,
@@ -8431,6 +10048,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "기이한 현상: 투안 사부로에 대한 배경 설명",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "이성 스프레이",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "분사하면 놀람을 줄이고 공포를 몰아내 평정심을 되찾을 수 있다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -8516,6 +10144,17 @@
   {
     "name": "인연의 시작: 라크리모사",
     "type": "중요",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "인연의 시작: 레이븐",
+    "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "",
@@ -8679,6 +10318,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "일등상",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "고양이인가… 사람인가… 어쨌든… 「미드나이트」 고양이 가판대에 오신 것을 환영합니다!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "일반 드라이브 모듈",
     "type": "아이템",
     "rarity": 3,
@@ -8822,6 +10472,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "자이언트 핫도그",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "35cm가 넘는 거대한 핫도그. 한입 베어 물면 진한 고기 풍미가 입안 가득 퍼진다. 유일한 단점은, 다 먹을 수가 없다는 것…",
+    "briefInfo": "",
+    "obtain": "든든 버거집(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "자전 행성 카펫",
     "type": "인테리어",
     "rarity": 5,
@@ -8926,6 +10587,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "전 비밀 조직 「주홍글씨」의 일원이자 현재 게흐로스 섬에 수감된 잔홍의 명함.사실 「잔홍」도 「붉은 접시꽃」도 그녀가 태어날 때부터 갖고 있던 이름은 아니다. 이름에는 언제나 신비한 힘이 있다. 어떤 이는 이름으로 기억되고, 어떤 이는 이름을 통해 새로운 삶을 얻으며, 또 어떤 이는 어느 날 본래의 자신을 완전히 잃어버린다. 부서진 무지개는 하늘 끝에 걸려 있고, 붉은 접시꽃의 뿌리는 기억을 뒤덮는다. 그리고 어떤 것들은 이미 오래전, 수많은 폐허와 함께 정원의 가장 깊은 곳에 묻혀버렸다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "적과 흑",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "레이븐의 수많은 컬렉션 중 하나. 평소 스타일과 달리, 복고풍 의상 위의 강렬한 붉은색이 대담하면서도 매혹적인 분위기를 자아낸다. 골동품뿐만 아니라 옷에 있어서도 꽤 까다로운 취향을 가진 모양이다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -9086,6 +10758,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "제로백",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "속도는 더 이상 족쇄가 아니다. 원하는 곳 어디든 갈 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "조각조각 피리 소리",
     "type": "아이템",
     "rarity": 5,
@@ -9137,6 +10820,17 @@
     "skillDescription": "주황색의 원형 안락의자. 가볍고 실용적인 디자인으로, 언제 어디서나 편하게 사용할 수 있다.",
     "briefInfo": "",
     "obtain": "럭셔리 인테리어(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "주황빛 기연",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "어쩐지 장난의 기운이 느껴지는데…",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -9196,6 +10890,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "지원금 입금 완료",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "노고에 감사드립니다. 그에 맞는 보수를 드리죠.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "직원용 엘리베이터 카드",
     "type": "아이템",
     "rarity": 5,
@@ -9236,6 +10941,17 @@
     "skillDescription": "실용적인 수납 가구. 순백색의 디자인으로, 물건을 깔끔하게 진열할 수 있는 현대적인 전시 공간을 제공한다.",
     "briefInfo": "",
     "obtain": "DSD 아트토이 가게(에소라마치)\nDSD 아트토이 가게(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "진주 보물",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "나만의 보물.",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -9295,11 +11011,33 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "질주 본능",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "서로 다른 시대에 태어나 같은 열망을 쫓는다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "집사의 품격",
     "type": "인테리어",
     "rarity": 5,
     "content": "",
     "skillDescription": "벽면에 거는 인테리어용 그림. 훗날 그는 자신의 모든 재능을 위대한 가문을 위해 바쳤다고 말할 것이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "징조의 새",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -9427,6 +11165,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "천구본",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "독특한 모양의 정교한 천구본. 먼 옛날에 밤하늘을 관측하는 데 사용했다고 한다. 점술에 능하고 골동품 수집을 좋아하는 사람에게 선물하면 좋을지도?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "천국의 프롤로그",
     "type": "선물",
     "rarity": 3,
@@ -9434,6 +11183,17 @@
     "skillDescription": "인기 록 밴드 Invictus의 데뷔 앨범 <광>의 수록곡 홍보 포스터. 폭발적인 리듬이 터져 나오는 순간, 무대는 시작된다.",
     "briefInfo": "",
     "obtain": "흰고래 서점(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "천재적 발상",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "이것 또한 계획의 일부다.",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -9478,6 +11238,17 @@
     "skillDescription": "눈길을 사로잡는 장식용 식물. 무성한 이파리가 청록색 왕관처럼 보인다. 심플하고 세련된 화분과 조합하면 산뜻하면서도 격조 있는 분위기를 연출할 수 있다.",
     "briefInfo": "",
     "obtain": "힐링 플랜트 가게(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "청춘의 각주",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "공부와 취미, 두 마리 토끼 다 잡을 수 있어! 「이쪽은 에이전트 젠Z의 '오리온'이야! 세 자매 중 막내지만 아주 믿음직하지! 특히 178화에서는…」",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -9566,6 +11337,28 @@
     "skillDescription": "희미한 실루엣이 포착되었다.「CoC＞0.1██D██0초점██5██MTF＜████＞██픽셀 너비████」",
     "briefInfo": "",
     "obtain": "이상 드롭\n합성\n헌터 거래소\n방향치 기물 교환",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "촛불 친구",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "촛불은 희미하게 흔들리고, 꼬마 유령은 소리 없이 움직인다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "최강의 친구",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "강, 강한 친구, 선물, 줄게요!",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -9680,6 +11473,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "칠흑의 밤",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "어둠이 물처럼 짙게 내려앉은 밤.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "칠흑의 트랙",
     "type": "아이템",
     "rarity": 5,
@@ -9768,6 +11572,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "캐러멜 회전초",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "[푸카몽][무기]---[회전초]---[무기][푸카몽]",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "캐릭터 레벨 경험치",
     "type": "중요",
     "rarity": 3,
@@ -9814,6 +11629,17 @@
   {
     "name": "캐릭터 카드·라크리모사",
     "type": "캐릭터",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "캐릭터 카드·레이븐",
+    "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "",
@@ -9870,6 +11696,17 @@
     "name": "캐릭터 카드·아들러",
     "type": "캐릭터",
     "rarity": 4,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "캐릭터 카드·아카네 린",
+    "type": "아이템",
+    "rarity": 5,
     "content": "",
     "skillDescription": "",
     "briefInfo": "",
@@ -9971,6 +11808,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "방금 딴 꽃. 백장의 소개에 따르면, 꽃말은 「고난을 두려워하지 않는 마음」이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "캔디 열쇠",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "석상의 손이 텅 비어 있다. 마치 이 사탕을 기다리고 있는 듯하다. 방문객은 절대 먹지 마시오.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -10318,6 +12166,39 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "쿠키 비행기",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "제시간에 딱 맞춰, 달콤함 저 너머로 이륙!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쿠키몽 변신 도구",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "쿠키몽, 파란색과 흰색 줄무늬의 파티 모자를 쓰고 빨간 코를 단 유쾌한 쿠키. 언제나 최고로 HIGH한 파티 피플.",
+    "briefInfo": "",
+    "obtain": "동화의 옷장(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "쿨링 민트 캔디",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "큐박스 음악 플레이어",
     "type": "아이템",
     "rarity": 5,
@@ -10516,6 +12397,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "태엽감기",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "To be continued.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "터보 루키",
     "type": "아이템",
     "rarity": 5,
@@ -10576,6 +12468,28 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "「토마토 젤리 폭주 현장: 실시간 라이브!」 임무 아이템",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "토마토 감자 볶음",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "식탁에서 좀처럼 맛보기 힘든 별미.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "토마토 달걀 야채 스튜",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "식후에 즐기는 국물 요리. 한 그릇 먹고 나면 속이 편안해진다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -10692,6 +12606,83 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "티타임 주전자",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "여유롭고 한가로운 어느 오후로부터.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "티파티의 별",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "달콤한 꿈을 싣고 한 바퀴.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "파라다이스 골드 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "푸카 파라다이스의 특별 손님이 되신 것을 축하합니다!",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "파라다이스 메모리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "오늘 푸카했나요?",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "파라다이스 스타",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "신분 확인 완료: 파라다이스 스타, 즐거움 인증!",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "파라다이스 열차장",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "치익… 다음 역은 행복, 걱정 역에는 정차하지 않습니다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "파라다이스에서 온 편지",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "푸카 파라다이스에서 온 초대장입니다. 확인해 주세요!",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "파티야",
     "type": "아이템",
     "rarity": 5,
@@ -10780,6 +12771,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "퍼스 선물 상자",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "핑크퍼스 은행 로고가 찍힌 금화 초콜릿이 1개 들어 있다. 부디 라돈 님의 가호가 있기를.",
+    "briefInfo": "",
+    "obtain": "방향치 기물 교환\n\n\n\n방향치 기물 교환",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "퍼플 제이드",
     "type": "선물",
     "rarity": 4,
@@ -10831,6 +12833,39 @@
     "skillDescription": "흘러가는 구름을 닮은 편안한 디자인, 구름 위에 누운 듯한 포근함을 선사한다.",
     "briefInfo": "",
     "obtain": "럭셔리 인테리어(에소라마치)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "포근한 안식처",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "따뜻한 핫초코 한 잔으로 활기찬 하루를 시작하세요!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "포옹보다 더 가까운 푸른빛",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "아카네 린이 찍힌 사진. 공연이 끝난 무대에서 두 사람은 서로 등을 맞댄 채 쉬고 있다. 말하지 않아도, 바라보지 않아도, 서로의 마음을 이해할 수 있다. 등을 맞대는 건 포옹보다 심장을 더 가까이 맞닿게 하는 방법이니까. 두근거리는 심장 소리마다 묻는다. 너도 어딘가에서 나와 함께, 별들에 둘러싸인 보름달을 올려다보고 있을까?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "폭신 솜사탕",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -10945,6 +12980,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "폰즈의 전설",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "헤테로에는 정말 살아 있는 전설이 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "표고버섯",
     "type": "식재료",
     "rarity": 2,
@@ -11044,6 +13090,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "푸짐한 모둠 치킨 세트",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "회전목마 매점에서 맛볼 수 있는 특별한 음식! 치킨이 가득 담긴 도시락 곳곳에 회전목마 토끼 쿠키와 진저브레드맨이 놓여 있다. 단짠단짠의 정수인 만큼 칼로리도 폭탄이지만…",
+    "briefInfo": "",
+    "obtain": "든든 버거집(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카 미라클 휠 종일 이용권",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "푸카 빈",
     "type": "식재료",
     "rarity": 2,
@@ -11051,6 +13119,39 @@
     "skillDescription": "어서 무지개 미끄럼틀로 올라가! 푸카와 함께 달콤한 세상으로 떠나자!",
     "briefInfo": "",
     "obtain": "푸카 캔디 가게(브릿지 구역)\n푸카 캔디 가게(미구엘 구역)\n푸카 캔디 가게(뉴 헤랜드 구역)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카 스타 쿠폰",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "나만의 파라다이스 모험을 시작해 보세요!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카 유람-리버리",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "푸카 파라다이스 컬래버 리버리. 언제 어디서나 사탕과 도넛의 바다를 누빌 수 있다.",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카 초콜릿",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "「숯덩이의 보물」 콘텐츠 아이템",
+    "briefInfo": "",
+    "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -11066,6 +13167,28 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "푸카 타이쿤",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "원칙1: 절대 손해 보지 말 것. 원칙2: 원칙1을 절대 잊지 말 것.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카 타임",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "24시간 열려 있는 푸카 파라다이스, 언제든 만나는 즐거운 순간!",
+    "briefInfo": "",
+    "obtain": "기연 보급역(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "푸카 한정판 진주조개 캔디",
     "type": "중요",
     "rarity": 5,
@@ -11073,6 +13196,105 @@
     "skillDescription": "바다의 풍미가 살아있는 하드 캔디! 조개 모양의 전용 케이스에 개별적으로 포장되며, 수량이 한정되어 있다.",
     "briefInfo": "",
     "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카 향긋 기념 커피",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "컵과 컵 홀더에 푸카 파라다이스 로고가 선명히 새겨진 작은 기념품. 따뜻하고 향긋한 커피 한 모금이면 이곳저곳을 누비며 쌓인 피로가 말끔히 사라진다.",
+    "briefInfo": "",
+    "obtain": "소원 카페(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카를 향해",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "목적지는 언제나 행복한 푸카 파라다이스.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카몽",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "푸카 파라다이스에 오신 걸 환영합니다!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카몽 꼬마 손님",
+    "type": "아이템",
+    "rarity": 2,
+    "content": "",
+    "skillDescription": "기념으로 소장할 수 있다. 상당한 수량을 모으면 「백작님」과의 즐거운 시간을 인정받아, 최종 플레이 정산 점수를 대폭 올릴 수 있다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카몽 장갑 아이스바",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "푸카몽의 말랑말랑한 발바닥 젤리 장갑을 쏙 빼닮은 모양에 상큼한 과일 향이 나는 아이스바. 포장지에도 귀여운 푸카몽 그림이 그려져 있어 절대 놓칠 수 없는 파라다이스의 한정 상품!",
+    "briefInfo": "",
+    "obtain": "아이스 타임(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카몽 테마 디저트 세트",
+    "type": "아이템",
+    "rarity": 4,
+    "content": "",
+    "skillDescription": "귀여운 푸카몽 4종 세트가 한자리에! 마음껏 즐길 일만… 뭐라고? 너무 귀여워서 먹기 아깝다고?",
+    "briefInfo": "",
+    "obtain": "푸카 환상 레스토랑(푸카 파라다이스)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카의 기묘한 모험",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "푸카 파라다이스에서 당신만의 모험을 시작하세요!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "푸카푸카",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "스카버러 마켓에서 보드 주사위 스킨 「푸카푸카」를 획득한다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "풀 메탈 로커",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "모든 소녀에게는 남몰래 숨겨 둔 거친 면이 있다. 예전에 학교에서 「보호세」를 걷었다는 소문이 어쩌면 사실일지도? 「그건 학교에서 연 콘서트 티켓값이었다고!」",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -11264,6 +13486,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "프로필-곰돌이 쿠키",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "사키리는 항상 「너무 애 같다」고 투덜대지만 달콤하고 폭신한 곰돌이 쿠키를 싫어할 사람이 있을까?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "프로필-그래피티 타임",
     "type": "프로필",
     "rarity": 5,
@@ -11302,6 +13535,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "행복이 찾아오는 방식은 늘 일정한 법칙 없이, 충격을 동반하는 「경착륙」과도 같은 법이다. 마치 행복이 찾아왔음을 알리는 박쥐가 창문으로 날아들 때마다 청명한 충돌음과 깨진 유리 조각을 동반하는 것처럼.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-노을빛 벨벳",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "특별한 날에만 꺼내 입는 옷. 「일 년에 몇 번 입지도 않는데, 굳이 에너지 절약까지 신경 써서 코디할 필요는 없잖아?」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -11363,11 +13607,33 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "프로필-바텐더 스페셜",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「질문해도 되는데, 일단 음료부터 한 잔 시켜.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "프로필-반전 동화",
     "type": "프로필",
     "rarity": 5,
     "content": "",
     "skillDescription": "Q³ 기념일 한정 파자마. 친구들과 잠들기 전 이야기를 들을 때 입기 좋다.「옛날 옛적 숲에 늑대가 살았어요. 친구를 사귀고 싶던 늑대는 벨벳으로 만든 빨간 망토를 썼답니다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-별지기",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "모든 점술가는 만물에 깃든 은유를 밝혀내고 싶어 한다. 그녀에게 운명이란 밤하늘을 쉼 없이 돌고 도는 무수한 별과 같다. 「하늘을 수놓은 수많은 별자리 속에서, 저는 서로를 비추는 우리의 운명을 엿보았어요.」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -11385,11 +13651,44 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "프로필-슈퍼스타",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "진심을 다해 무대를 누비며 가장 찬란하게 빛나는 별이 된다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-시들지 않는 깃털",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "레이븐의 홈웨어. 레이븐은 별일이 없을 때 평범한 옷에 자신만의 개성을 더해 리폼하곤 하는데, 이 옷은 지금까지도 그녀가 가장 아끼는 편한 옷이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "프로필-아카데미 스타",
     "type": "프로필",
     "rarity": 5,
     "content": "",
     "skillDescription": "예쁘면서 편안한 스쿨룩 스타일. 나나리는 손수 만든 완장을 무척 만족스러워한다.\n「큼큼, 콜린스 가문은 콜린스 가문만의 가풍이 있지!」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-에너지 절약",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「쓸데없는 일은 하지 않고, 해야 할 일도 최대한 간단하게 처리한다.」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -11418,11 +13717,44 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "프로필-월급 루팡",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "진정한 고수는 세상 속에 숨어 사는 법. 부드럽고 심플해 흔히 볼 수 있는 옷이야말로 어디에든 자연스럽게 섞여 들기 제격이다. 쉿, 조용… 우리 지금 월급 루팡 중이거든.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-적과 흑",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "레이븐의 수많은 컬렉션 중 하나. 평소 스타일과 달리, 복고풍 의상 위의 강렬한 붉은색이 대담하면서도 매혹적인 분위기를 자아낸다. 골동품뿐만 아니라 옷에 있어서도 꽤 까다로운 취향을 가진 모양이다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "프로필-청죽의 숨결",
     "type": "프로필",
     "rarity": 5,
     "content": "",
     "skillDescription": "어느 해 핑크퍼스 은행 송년회의 공연 의상, 당시 조반니 씨는 이런 흑백 생물에 유난히 빠져 있었다.\n「저, 저희 은행, 혹시 판다 훠궈랑 컬래버라도 하는 건가요…」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-청춘의 각주",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "공부와 취미, 두 마리 토끼 다 잡을 수 있어! 「이쪽은 에이전트 젠Z의 '오리온'이야! 세 자매 중 막내지만 아주 믿음직하지! 특히 178화에서는…」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -11467,6 +13799,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "나나리의 홈웨어. 심플한 원피스에 독특한 장식을 더했다.\n「이야말로 호랑이에게 날개를 단 격이지. 호랑이랑 날개는 찰떡궁합이야!」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "프로필-풀 메탈 로커",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "모든 소녀에게는 남몰래 숨겨 둔 거친 면이 있다. 예전에 학교에서 「보호세」를 걷었다는 소문이 어쩌면 사실일지도? 「그건 학교에서 연 콘서트 티켓값이었다고!」",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -11638,11 +13981,165 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "하늘의 뜻",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "스카버러 마켓에서 보드 주사위 스킨 「하늘의 뜻」을 획득한다.",
+    "briefInfo": "",
+    "obtain": "쇼핑몰 구매를 통해 획득",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "하니엠",
     "type": "아이템",
     "rarity": 5,
     "content": "",
     "skillDescription": "L이라니… 난 M만 입어!",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 2 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 3 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 4 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 5 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 6 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 7 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 8 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 9 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 10 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 A 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 J 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 K 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "하트 Q 카드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -11737,6 +14234,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "해달별 열쇠",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "「여기서부터 내딛는 모든 걸음은 달 너머로 향한다.」",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "해바라기씨",
     "type": "이상 가구 재료",
     "rarity": 4,
@@ -11755,6 +14263,17 @@
     "skillDescription": "가지런하게 토막 낸 해수어. 단단하고 기름진 살코기를 집어 들기만 해도 짭조름한 바닷바람이 코끝을 스치는 느낌이다.",
     "briefInfo": "",
     "obtain": "세븐 오션 수산물 가게(브릿지 구역)\n세븐 오션 수산물 가게(뉴 헤랜드 구역)\n세븐 오션 수산물 가게(해오름섬)",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "해적 문어 버블 캔디",
+    "type": "아이템",
+    "rarity": 3,
+    "content": "",
+    "skillDescription": "해적 문어 선장이 버블 캔디 보물상자를 품에 꼭 안고 있다!",
+    "briefInfo": "",
+    "obtain": "단꿈 캔디숍(푸카 파라다이스)",
     "fileName": "",
     "dbSource": "nte_items"
   },
@@ -11891,6 +14410,17 @@
     "dbSource": "nte_items"
   },
   {
+    "name": "호라이즌 스펙터",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "미등의 잔상은 지평선 끝에서 희미한 유령이 되어 질주한다.",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
     "name": "호박",
     "type": "아이템",
     "rarity": 3,
@@ -11984,6 +14514,17 @@
     "rarity": 5,
     "content": "",
     "skillDescription": "해산물 가게 사장의 경계심을 풀고 화물차 키를 받으려면 30,000 폰즈를 보증금으로 내야 한다. 나중에 보증금을 돌려받을 수 있을까? 설마 돈 내고 일하는 꼴이 되는 건 아니겠지?",
+    "briefInfo": "",
+    "obtain": "",
+    "fileName": "",
+    "dbSource": "nte_items"
+  },
+  {
+    "name": "화이트 버드",
+    "type": "아이템",
+    "rarity": 5,
+    "content": "",
+    "skillDescription": "블랙 버드의 점술 없이도 바로 알아볼 수 있다.",
     "briefInfo": "",
     "obtain": "",
     "fileName": "",
@@ -12318,269 +14859,5 @@
     "obtain": "",
     "fileName": "",
     "dbSource": "nte_items"
-  },
-  {
-    "name": "감정의 상자",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "조각을 모두 맞춰 완성한 감정의 상자. 마음의 열쇠 우물에 넣으면 그 안으로 들어갈 수 있다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "감정의 상자 조각 · 금실 향낭",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "감정의 상자 속 주파수가 응결되어 형성된 실체. 향낭의 모습을 띠고 있다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "감정의 상자 조각 · 월씨네 찹쌀떡",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "감정의 상자 속 주파수가 응결되어 형성된 실체. 찹쌀떡의 모습을 띠고 있다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "감정의 상자 조각 · 청옥 피리",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "감정의 상자 속 주파수가 응결되어 형성된 실체. 피리의 모습을 띠고 있다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "금묘쇄",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "쇄명이 당신에게 건넨 신물. 상황이 불리하게 흘러갈 때 위험을 미리 알려 준다고 한다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "숙명의 거울",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "여우의 별자리가 자신의 주파수로 제작해 수호신의 권능 일부를 봉인한 신물이다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "심벽음",
-    "type": "요리",
-    "rarity": 3,
-    "content": "",
-    "skillDescription": "파티 내 모든 공명자의 공명 효율이 20% 증가되고, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
-    "briefInfo": "",
-    "obtain": "요리 획득",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "악장의 흔적이 남은 그루터기",
-    "type": "돌파 재료",
-    "rarity": 1,
-    "content": "",
-    "skillDescription": "캐릭터 돌파에 사용되는 재료",
-    "briefInfo": "",
-    "obtain": "물자 상자 오픈으로 획득\n군생지 채집 획득\n야외 채집 획득\n화서원 약방에서 구매",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "염원을 기울인 꽃",
-    "type": "돌파 재료",
-    "rarity": 1,
-    "content": "",
-    "skillDescription": "캐릭터 돌파에 사용되는 재료",
-    "briefInfo": "",
-    "obtain": "「새알심 용사들의 난투극」 이벤트에서 획득\n물자 상자 오픈으로 획득\n군생지 채집 획득\n야외 채집 획득\n화서원 약방에서 구매",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "영청궐",
-    "type": "요리",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "파티 내 모든 공명자의 치료 효과 보너스가 55% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "운산의 풍경을 품은 자리",
-    "type": "재료",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "장착 후 필드에서 「운산의 풍경을 품은 자리」 소환 가능",
-    "briefInfo": "",
-    "obtain": "「달빛이 비추는 길」 이벤트에서 획득",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "제천감의 초청장",
-    "type": "임무 아이템",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "초대장 한 장. 봉투를 보고서는 누가 보낸 것인지 확인할 수 없다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "직정의 비밀 자물쇠",
-    "type": "이벤트 아이템",
-    "rarity": 4,
-    "content": "",
-    "skillDescription": "직정 사람들이 사용하는 저장 도구 중 하나로, 이를 통해 「상자 속에서 펼쳐진 꿈」 이벤트에서 진행도를 쌓을 수 있다\n금빛과 백색이 어우러진 작은 함 안에 수많은 비책이 담겨 있다. 직정은 전적과 도보, 기억을 모두 그 안에 보관하며, 반고 단말기로 봉인된 정보를 열람할 수 있다. 손바닥만한 작은 물건이지만, 그 안에는 방대한 지식이 담겨 있다",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 개화(뜨거운 마음)",
-    "type": "재료",
-    "rarity": 4,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 뜨거운 마음의 안정치 **500** 증가",
-    "briefInfo": "",
-    "obtain": "",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 개화(차가운 마음)",
-    "type": "재료",
-    "rarity": 4,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 차가운 마음의 안정치 **500** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 개화(행복한 마음)",
-    "type": "재료",
-    "rarity": 4,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 행복한 마음의 안정치 **500** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 만개(뜨거운 마음)",
-    "type": "재료",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 뜨거운 마음의 안정치 **800** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 만개(차가운 마음)",
-    "type": "재료",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 차가운 마음의 안정치 **800** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 만개(행복한 마음)",
-    "type": "재료",
-    "rarity": 5,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 행복한 마음의 안정치 **800** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 봉오리(뜨거운 마음)",
-    "type": "재료",
-    "rarity": 3,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 뜨거운 마음의 안정치 **200** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 봉오리(차가운 마음)",
-    "type": "재료",
-    "rarity": 3,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 차가운 마음의 안정치 **200** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천 겹의 꽃잎 · 봉오리(행복한 마음)",
-    "type": "재료",
-    "rarity": 3,
-    "content": "",
-    "skillDescription": "천라호영에게 제출하여 행복한 마음의 안정치 **200** 증가",
-    "briefInfo": "",
-    "obtain": "몽추천라에서 탐색하며 수집",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "천연륜 잔해",
-    "type": "스킬 업그레이드 재료",
-    "rarity": 4,
-    "content": "",
-    "skillDescription": "천연 상태인 태초의 여우의 별자리 · 연율 형태의 드랍 아이템, 스킬 업그레이드에 사용된다",
-    "briefInfo": "",
-    "obtain": "물자 상자 오픈으로 획득\n태초의 여우의 별자리 · 천연 도전에서 획득\n태초의 여우의 별자리 · 천연 - 조기 오픈에서 획득",
-    "fileName": "",
-    "dbSource": "ww_items"
-  },
-  {
-    "name": "화정추억",
-    "type": "요리",
-    "rarity": 4,
-    "content": "",
-    "skillDescription": "파티 내 모든 공명자의 강공격 피해 보너스가 44% 증가되며, 30분간 지속된다. 멀티플레이 시 자신의 캐릭터에 대해서만 유효하다",
-    "briefInfo": "",
-    "obtain": "요리 획득",
-    "fileName": "",
-    "dbSource": "ww_items"
   }
 ]
