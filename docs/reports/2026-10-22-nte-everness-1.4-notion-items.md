@@ -1,0 +1,526 @@
+# NTE 1.4 Everness 신규 아이템 → Notion 반영 보고서
+
+작성일: 2026-10-22. 대상은 사용자가 지정한 NTE 인벤토리 Notion DB다. 웹사이트 동기화·배포 요청과는 구분한다.
+
+## 사용자 기준
+
+- 기존 DB에 없는 항목만 추가한다. 기존 값을 수정하거나 삭제하지 않는다.
+- 해당 사이트에서 고유 이미지가 확인되지 않으면 추가하지 않는다. 공통 대체 이미지도 제외한다.
+- 설명·성급·분류·사용처·이미지는 제공된 것만 넣고, 누락 필드는 항목별로 보고한다.
+- 내부 코드가 다른 동명 항목은 보고한 뒤 한 개만 작성한다.
+- 미번역 항목은 보고 후 보류한다. 이름뿐 아니라 사용 효과에 미번역 키·중국어가 남은 경우도 보류한다.
+
+## DB 구조 확인과 정정
+
+DB: https://app.notion.com/p/riragame/38095fae3dc780a29fffe0381071580d
+
+- 실제 속성은 아이템 명(title), 이름, 설명, 성급, 필터(분류), 사용처, 획득처, 특이 사항의 8개다.
+- 설명·성급·분류·사용처 속성이 없다는 뜻이 아니다. 앞선 안내에서 별도 내부 코드 속성이 없다는 설명이 부정확하게 전달됐다.
+- 별도 이미지 속성은 없으므로 이미지는 본문의 image 블록에 넣었다. DB 속성은 새로 만들거나 변경하지 않았다.
+
+## 집계
+
+- 원본 1.4 신규 아이템 링크: 241개. 캐릭터·아크·코스튬·업적의 별도 목록은 이 아이템 DB 반영 범위에 포함하지 않았다.
+- 기존 항목 일치: 4개 링크.
+- 미번역 보류: 22개.
+- 이미지 조건 불충족 제외: 6개.
+- 동명 코드 통합으로 추가하지 않은 중복: 2개.
+- 최종 추가 대상: 207개. 현재 생성 성공: 207개.
+
+## 수집·판별 기준
+
+- 출처: https://everness.info/ko 의 「버전 1.4의 새로운 기능」에서 아이템 링크를 펼쳐 확인했다.
+- 상세 페이지는 실제 브라우저로 열어 표시된 텍스트와 이미지 currentSrc, complete, naturalWidth를 확인했다. 비공개 내부 앱 상태나 추정 API 응답을 원문으로 사용하지 않았다.
+- source 이미지가 실제 로딩된 항목만 추가했다. `/decoration.webp`는 아이템 고유 이미지가 아니라 공통 대체 이미지이므로 제외했다. 로딩 미확인 항목은 재조회했으며 부재 원인을 404라고 단정하지 않았다.
+- 상세 페이지의 사용 효과는 사용처, 별도 배경 문구는 설명에 대응했다. S/A/B/C/D는 기존 DB의 5/4/3/2/1성 체계로 대응했다. 등급이 표시되지 않으면 빈칸이다.
+- 상세 페이지에 분류명이 텍스트로 명시되지 않아 새 항목의 필터는 모두 빈칸으로 유지했다. 아이콘 모양이나 코드 이름만으로 임의 분류하지 않았다. 이는 분류를 완료했다는 뜻이 아니다.
+- 획득처 탭에 실제 출처명이 있는 경우만 획득처를 입력했다. 「출처는 아직 이용할 수 없습니다」는 데이터가 아니므로 넣지 않았다.
+- 영문 곡 제목 God knows..., Letters to me 등 고유명은 이름이 영문이라는 이유만으로 미번역 처리하지 않았다.
+- API 키는 기존 로컬 환경에서만 읽었다. 키를 출력·문서화·커밋하지 않았다. Windows 시스템 CA를 사용했으며 TLS 인증서 검증을 해제하지 않았다.
+- 이미지 파일을 별도 저장소에 재업로드하지 않았다. 노션 image 블록은 확인된 Everness 외부 이미지 URL을 참조하므로 원본 URL 변경·접근 정책 변경에 영향을 받을 수 있다.
+
+## 동명 코드 보고와 선택
+
+- 거울 조각: 유지 Scaled_Mirror_1, 제외 Scaled_Mirror_2. 두 코드의 표시 설명·사용 효과·이미지가 같아 먼저 제시된 코드 하나만 생성했다.
+- 폭신 솜사탕: 유지 DefendAthenaTower_1005, 제외 DefendAthenaTower_1006. 두 코드의 표시 설명·사용 효과·이미지가 같아 먼저 제시된 코드 하나만 생성했다.
+
+## 기존 항목이 있어 추가하지 않은 링크
+
+- 호감도: /ko/items/Affection_50_1042
+- 호감도: /ko/items/Affection_50_1074
+- 호감도: /ko/items/Affection_50_1090
+- 환석: /ko/items/BindAnnulith
+
+## 미번역 보류
+
+- ST_Item.SpecialGift_1090_name — 코드: SpecialGift_1090
+- ST_Item.SpecialGift_1074_name — 코드: SpecialGift_1074
+- ST_Item.SpecialGift_elyms1_name — 코드: SpecialGift_elyms1
+- ST_Item.SpecialGift_elyms2_name — 코드: SpecialGift_elyms2
+- ST_Item.SpecialGift_elyms3_name — 코드: SpecialGift_elyms3
+- <!>Universal_stickers_1074_name — 코드: Universal_stickers_1074
+- <!>Universal_avatar1_1074_name — 코드: Universal_avatar1_1074
+- <!>Universal_frame_1074_name — 코드: Universal_frame_1074
+- <!>Universal_BusinessCard_1074_name — 코드: Universal_BusinessCard_1074
+- <!>Universal_stickers_1090_name — 코드: Universal_stickers_1090
+- <!>Universal_avatar1_1090_name — 코드: Universal_avatar1_1090
+- <!>Universal_frame_1090_name — 코드: Universal_frame_1090
+- <!>Universal_BusinessCard_1090_name — 코드: Universal_BusinessCard_1090
+- 별지기·은하수 — 코드: Fashion_character_1042_01_dye1 — 본문 사용 효과 미번역
+- 인연의 시작: Exe — 코드: Friendship_1_1074 — 본문 사용 효과 미번역
+- 의기투합: Exe — 코드: Friendship_2_1074 — 본문 사용 효과 미번역
+- 깊은 우정: Exe — 코드: Friendship_3_1074 — 본문 사용 효과 미번역
+- 각별한 사이: Exe — 코드: Friendship_4_1074 — 본문 사용 효과 미번역
+- 인연의 시작: 엘림 — 코드: Friendship_1_1090 — 본문 사용 효과 미번역
+- 의기투합: 엘림 — 코드: Friendship_2_1090 — 본문 사용 효과 미번역
+- 깊은 우정: 엘림 — 코드: Friendship_3_1090 — 본문 사용 효과 미번역
+- 각별한 사이: 엘림 — 코드: Friendship_4_1090 — 본문 사용 효과 미번역
+
+## 이미지 조건 불충족 제외
+
+- 레이븐(1.8700%) — 코드: 1042_LotteryShow_heiyu — 아이템 고유 이미지 로딩 미확인 또는 공통 대체 이미지
+- 아카네 린(1.8700%) — 코드: 1057_LotteryShow_mingyin — 아이템 고유 이미지 로딩 미확인 또는 공통 대체 이미지
+- 심상 파편·엘림 — 코드: Characterawaken_elyms — 아이템 고유 이미지 로딩 미확인 또는 공통 대체 이미지
+- 심상 파편·Exe — 코드: Characterawaken_Exe — 아이템 고유 이미지 로딩 미확인 또는 공통 대체 이미지
+- 캐릭터 카드·엘림 — 코드: CharacterCard_1090 — 아이템 고유 이미지 로딩 미확인 또는 공통 대체 이미지
+- 캐릭터 카드·Exe — 코드: CharacterCard_1074 — 아이템 고유 이미지 로딩 미확인 또는 공통 대체 이미지
+
+## 신규 항목별 누락 필드
+
+- 설명: 32개 미확인.
+- 성급: 2개 미확인.
+- 분류: 207개 미확인.
+- 사용처: 2개 미확인.
+- 획득처: 158개 미확인.
+
+분류는 전 항목 공통 미확인이다. 아래는 원본 코드별 기록이며 기존 DB 속성에 내부 코드를 임의 삽입하지 않았다.
+
+- 운세 주사위 (Dicelimite_blackbird): 분류, 획득처
+- 빈 상자 주사위 (Dicelimite_akane): 분류, 획득처
+- 녹턴 열쇠 (WeaponGacha_lacrimosa): 분류, 획득처
+- 사냥꾼 열쇠 (WeaponGacha_kaesi): 분류, 획득처
+- 깃털 열쇠 (WeaponGacha_blackbird): 분류, 획득처
+- 해달별 열쇠 (WeaponGacha_akane): 분류, 획득처
+- 심상 파편·레이븐 (Characterawaken_blackbird): 설명, 분류, 획득처
+- 심상 파편·아카네 린 (Characterawaken_akane): 설명, 분류, 획득처
+- 캐릭터 카드·레이븐 (CharacterCard_1042): 설명, 분류, 획득처
+- 캐릭터 카드·아카네 린 (CharacterCard_1057): 설명, 분류, 획득처
+- God knows... (disc_0016): 분류
+- Letters to me (disc_0017): 분류
+- 마녀 기원 중… (Figure_blackbird_01): 분류
+- 막이 내린 후 (Figure_mingyinlin_01): 분류, 획득처
+- 문어 선장 (Doll_amusementpark_Octopus): 분류, 획득처
+- 쿠키 비행기 (Doll_amusementpark_plane): 분류, 획득처
+- 파라다이스 열차장 (Doll_amusementpark_train): 분류, 획득처
+- 티타임 주전자 (Doll_amusementpark_kettle): 분류, 획득처
+- 스푸키 하우스 (Doll_amusementpark_house): 분류, 획득처
+- 라바 타운 광차 (Doll_amusementpark_cart): 분류, 획득처
+- 티파티의 별 (Doll_amusementpark_rabbit): 분류, 획득처
+- 푸카를 향해 (Doll_amusementpark_airship): 분류, 획득처
+- 달콤한 용암 (Doll_amusementpark_Volcano): 분류, 획득처
+- 미라클 휠 (Doll_amusementpark_turn): 분류, 획득처
+- 진주 보물 (Doll_amusementpark_clamshell): 분류, 획득처
+- 고깔 유령 (Doll_amusementpark_ghost2): 분류, 획득처
+- 달빛 아래 손님 (Doll_amusementpark_ghost3): 분류, 획득처
+- 촛불 친구 (Doll_amusementpark_ghost4): 분류, 획득처
+- 주황빛 기연 (Doll_amusementpark_ghost5): 분류, 획득처
+- 쁘띠 쿠키몽 (Doll_amusementpark_spc004): 분류
+- 쁘띠 스틱몽 (Doll_amusementpark_spc005): 분류
+- 쁘띠 바삭몽 (Doll_amusementpark_spc006): 분류
+- 쁘띠 와플몽 (Doll_amusementpark_spc007): 분류
+- 드리운 눈꽃 (Furniture_bonsai_011): 분류
+- 「근무」 시간 (BusinessCard_Characterawaken_blackbird): 분류, 획득처
+- 포옹보다 더 가까운 푸른빛 (BusinessCard_Characterawaken_akane): 분류, 획득처
+- 「푸카 멤버십 플랜」 S급 아크 선택상자 (weaponbox_pukaland): 설명, 분류, 획득처
+- 시들지 않는 깃털 (Fashion_character_1042_nighty): 분류, 획득처
+- 별지기 (Fashion_character_1042_01): 분류
+- 적과 흑 (Fashion_character_1042_02): 분류, 획득처
+- 에너지 절약 (Fashion_character_1057_nighty): 분류, 획득처
+- 노을빛 벨벳 (Fashion_character_1057_01): 분류
+- 바텐더 스페셜 (Fashion_character_1057_02): 분류, 획득처
+- 슈퍼스타 (Fashion_character_1057_03): 분류, 획득처
+- 풀 메탈 로커 (Fashion_character_1057_04): 분류
+- 밤하늘의 깃털 - 리버리 (Fashion_vehicle_1042_V013): 분류, 획득처
+- 음속 유성-리버리 (Fashion_vehicle_1057_V013): 분류, 획득처
+- 징조의 새 (Fashion_glide_1042): 설명, 분류, 사용처, 획득처
+- 방황의 날 (Fashion_glide_1057): 설명, 분류, 사용처, 획득처
+- 아크 라이트 컬렉션Ⅱ (bp_weaponbox_02): 설명, 분류, 획득처
+- 명예의 증표 (Furniture_Ornament_041): 분류, 획득처
+- 「깃털 특간」 S급 아크 랜덤상자 (fork_choosebox_blackbird): 설명, 분류, 획득처
+- 「해달별 특간」 S급 아크 랜덤상자 (fork_choosebox_akane): 설명, 분류, 획득처
+- 궤도 너머의 기관사 (Title_EndlessTrial_001): 분류, 획득처
+- 천구본 (SpecialGift_1042): 분류, 획득처
+- LP판 (SpecialGift_1057): 분류, 획득처
+- 쇠톱 (Scaled_Hacksaw): 분류, 획득처
+- 용해제 (Scaled_Dissolver): 분류, 획득처
+- 가루 세제 (Scaled_Detergent): 분류, 획득처
+- 달걀프라이 (Scaled_Recipe_1): 분류, 획득처
+- 양배추 볶음 (Scaled_Recipe_2): 분류, 획득처
+- 토마토 감자 볶음 (Scaled_Recipe_3): 분류, 획득처
+- 매운 소고기 볶음 (Scaled_Recipe_4): 분류, 획득처
+- 생선탕 (Scaled_Recipe_5): 분류, 획득처
+- 토마토 달걀 야채 스튜 (Scaled_Recipe_6): 분류, 획득처
+- 실패한 요리 (Scaled_Recipe_Useless): 분류, 획득처
+- 건전지 (Scaled_Battery): 분류, 획득처
+- 거울 조각 (Scaled_Mirror_1): 분류, 획득처
+- 롤리팝 안경 (Maze_magiclook): 분류, 획득처
+- 파라다이스 골드 카드 (PukalandDiscountCard): 분류
+- 비눗물 (Scaled_BubbleWater): 분류, 획득처
+- 단꿈 캔디 상자 (NewTycoon_Donation_01): 분류
+- 퍼스 선물 상자 (NewTycoon_Donation_02): 분류
+- 인연의 시작: 레이븐 (Friendship_1_1042): 설명, 분류, 획득처
+- 의기투합: 레이븐 (Friendship_2_1042): 설명, 분류, 획득처
+- 깊은 우정: 레이븐 (Friendship_3_1042): 설명, 분류, 획득처
+- 각별한 사이: 레이븐 (Friendship_4_1042): 설명, 분류, 획득처
+- 운명의 각주 (Universal_stickers_1042): 분류, 획득처
+- 화이트 버드 (Universal_avatar1_1042): 분류, 획득처
+- 고독한 새의 애가 (Universal_frame_1042): 분류, 획득처
+- 백년의 고독 (Universal_BusinessCard_1042): 분류, 획득처
+- 각별한 사이: 아카네 린 (Friendship_4_1057): 설명, 분류, 획득처
+- 보조 배터리 (HauntedHouse_battery): 분류, 획득처
+- 캔디 열쇠 (HauntedHouse_finalKey): 성급, 분류, 획득처
+- 푸카몽 꼬마 손님 (HauntedHouse_GingerbreadMan): 분류, 획득처
+- 스푸키 캔디 (HauntedHouse_LeftHouseKey): 분류, 획득처
+- 스푸키 아이스크림 (HauntedHouse_RightHouseKey): 분류, 획득처
+- 백작님의 애장품 (HauntedHouse_Paintings): 성급, 분류, 획득처
+- 스푸키 전단지 (HauntedHouse_Poster): 분류, 획득처
+- 이성 스프레이 (HauntedHouse_Spray): 분류, 획득처
+- 쿠키몽 변신 도구 (Transformer_Pukaland_01): 분류
+- 스틱몽 변신 도구 (Transformer_Pukaland_02): 분류
+- 바삭몽 변신 도구 (Transformer_Pukaland_03): 분류
+- 와플몽 변신 도구 (Transformer_Pukaland_04): 분류
+- 푸카의 기묘한 모험 (Combat_Frame_06): 분류, 획득처
+- 푸카몽 (Combat_Avatar_06): 분류, 획득처
+- 놀이공원 유람기 (Combat_BussinessCard_06): 분류, 획득처
+- 포근한 안식처 (Universal_frame_lawson): 분류, 획득처
+- 태엽감기 (SNv14_Frame_Oversea_001): 분류, 획득처
+- 웃음 가득 (SNv15_Frame_Oversea_001): 분류, 획득처
+- 맞물린 고리 (SNv14_Frame_Oversea_002): 분류, 획득처
+- 슈퍼 플레이어 (SNv15_Frame_Oversea_002): 분류, 획득처
+- 「마녀」의 축복 (SNv14_Frame_Oversea_003): 분류, 획득처
+- 궁극의 모둠 (SNv15_Avatar_Oversea_001): 분류, 획득처
+- 쇼핑 데이 (SNv14_BusinessCard_Oversea_001): 분류, 획득처
+- 돈비가 내린다 (Wallpaper_PuKaLandPlan): 분류, 획득처
+- 푸카 타이쿤 (Title_PuKaLandPlan): 분류, 획득처
+- 지원금 입금 완료 (Frame_PuKaLandPlan): 분류, 획득처
+- 폰즈의 전설 (BusinessCard_PuKaLandPlan): 분류, 획득처
+- 푸카 타임 (Wallpaper_PuKaLandActivity): 분류
+- 기묘한 순간 (PhoneCase_PuKaLandActivity): 분류
+- 프로필-청춘의 각주 (Fashion_1020_1_Avatar): 분류, 획득처
+- 프로필-월급 루팡 (Fashion_1023_1_Avatar): 분류, 획득처
+- 프로필-곰돌이 쿠키 (Fashion_1003_2_Avatar): 분류, 획득처
+- 프로필-별지기 (Fashion_1042_1_Avatar): 분류, 획득처
+- 프로필-적과 흑 (Fashion_1042_2_Avatar): 분류, 획득처
+- 프로필-시들지 않는 깃털 (Fashion_1042_nighty_Avatar): 분류, 획득처
+- 프로필-노을빛 벨벳 (Fashion_1057_1_Avatar): 분류, 획득처
+- 프로필-바텐더 스페셜 (Fashion_1057_2_Avatar): 분류, 획득처
+- 프로필-슈퍼스타 (Fashion_1057_3_Avatar): 분류, 획득처
+- 프로필-풀 메탈 로커 (Fashion_1057_4_Avatar): 분류, 획득처
+- 프로필-에너지 절약 (Fashion_1057_nighty_Avatar): 분류, 획득처
+- 청춘의 각주 (Fashion_character_1020_01): 분류, 획득처
+- 월급 루팡 (Fashion_character_1023_01): 분류, 획득처
+- 곰돌이 쿠키 (Fashion_character_1003_02): 분류, 획득처
+- 듀얼 러시 (BussinessCard_MangHe_bsj2): 분류, 획득처
+- 호라이즌 스펙터 (BussinessCard_MangHe_bsjjlb): 분류, 획득처
+- 유일무이 (PhoneCase_Bsjjlb): 분류, 획득처
+- 내일의 스타 (Pendant_1): 분류
+- 스포트라이트 (Pendant_2): 분류
+- 칠흑의 밤 (Pendant_3): 분류, 획득처
+- 일등상 (Pendant_4): 분류, 획득처
+- 천재적 발상 (Pendant_5): 분류
+- 보라빛 밤 (Pendant_6): 분류
+- 검은지빠귀 (Pendant_7): 분류, 획득처
+- 숯덩이 코인 (DefendAthenaTowerCoin): 분류, 획득처
+- 꽃사탕 선물 (Title_DefendAthena_01): 분류, 획득처
+- 최강의 친구 (Title_DefendAthena_02): 분류, 획득처
+- 과즙 젤리 (DefendAthenaTower_1001): 분류, 획득처
+- 반짝반짝 팝핑 캔디 (DefendAthenaTower_1002): 분류, 획득처
+- 푸카 초콜릿 (DefendAthenaTower_1003): 분류, 획득처
+- 라이트 버블껌 (DefendAthenaTower_1004): 분류, 획득처
+- 폭신 솜사탕 (DefendAthenaTower_1005): 분류, 획득처
+- 쿨링 민트 캔디 (DefendAthenaTower_2001): 분류, 획득처
+- 용암 필링 캔디 (DefendAthenaTower_2002): 분류, 획득처
+- 소프트 토피 (DefendAthenaTower_2003): 분류, 획득처
+- 와그작 캔디 (DefendAthenaTower_2004): 분류, 획득처
+- 파라다이스 메모리 (Frame_Pukaland): 분류
+- 씬스틸러 (Avatar_Pukaland): 분류
+- 유람 수첩 (Puka_Checkin): 분류, 획득처
+- 제로백 (Frame_MangHe_bsj2): 분류, 획득처
+- Porsche Club (Title_Bsjjlb): 분류, 획득처
+- 질주 본능 (Wallpaper_Bsjjlb): 분류, 획득처
+- 하트 A 카드 (PukaPokerA): 설명, 분류, 획득처
+- 하트 2 카드 (PukaPoker2): 설명, 분류, 획득처
+- 하트 3 카드 (PukaPoker3): 설명, 분류, 획득처
+- 하트 4 카드 (PukaPoker4): 설명, 분류, 획득처
+- 하트 5 카드 (PukaPoker5): 설명, 분류, 획득처
+- 하트 6 카드 (PukaPoker6): 설명, 분류, 획득처
+- 하트 7 카드 (PukaPoker7): 설명, 분류, 획득처
+- 하트 8 카드 (PukaPoker8): 설명, 분류, 획득처
+- 하트 9 카드 (PukaPoker9): 설명, 분류, 획득처
+- 하트 10 카드 (PukaPoker10): 설명, 분류, 획득처
+- 하트 J 카드 (PukaPokerJ): 설명, 분류, 획득처
+- 하트 Q 카드 (PukaPokerQ): 설명, 분류, 획득처
+- 하트 K 카드 (PukaPokerK): 설명, 분류, 획득처
+- 리틀 푸카 카드 (PukaPokerJokerL): 설명, 분류, 획득처
+- 빅 푸카 카드 (PukaPokerJokerB): 설명, 분류, 획득처
+- 파라다이스에서 온 편지 (BusinessCard_Pukaland): 분류
+- 파라다이스 스타 (Title_Pukaland): 분류
+- Salzburg-리버리 (Vehicle026_Decal_02): 분류, 획득처
+- 동력 증폭 (Vehicle026_ECU_02): 분류, 획득처
+- 푸카푸카 (LotteryDiceSkin01): 분류, 획득처
+- 달달도넛 (LotteryDiceSkin02): 분류, 획득처
+- 귀여운 호랑이의 강림 (LotteryDiceSkin03): 분류
+- 하늘의 뜻 (LotteryDiceSkin04): 분류
+- 푸카 유람-리버리 (Fashion_vehicle_V006_Decal_004): 분류
+- 푸카 미라클 휠 종일 이용권 (Pukaland_atmosphere_ticket_01): 설명, 분류, 획득처
+- 드림랜드 티파티 종일 이용권 (Pukaland_atmosphere_ticket_02): 설명, 분류, 획득처
+- 동화 한 편 (Fashion_Glide_all_5): 분류
+- 스푸키 케이크 (HauntedHouse_CakeKey): 분류, 획득처
+- 사탕 눈알 (HauntedHouse_Eyeballs): 분류, 획득처
+- 고성의 물 (HauntedHouse_Water): 분류, 획득처
+- 스푸키 보석 (HauntedHouse_DiamondKey): 분류, 획득처
+- 스트라이드 껌 (Food_Stride): 분류
+- 푸카 향긋 기념 커피 (Food_128): 분류
+- 구름 솜사탕 밀크티 (Food_129): 분류
+- 멜팅 초콜릿 밀크티 (Food_130): 분류
+- 미니 케이크 마운틴 (Food_131): 분류
+- 유령 디핑 소스 와플 (Food_132): 분류
+- 바삭 콘 푸딩 모험선 (Food_133): 분류
+- 푸카몽 장갑 아이스바 (Food_134): 분류
+- 솜사탕 나무 막대사탕 (Food_135): 분류
+- 실크햇 고양이 막대사탕 (Food_136): 분류
+- 해적 문어 버블 캔디 (Food_137): 분류
+- 푸짐한 모둠 치킨 세트 (Food_138): 분류
+- 대왕 훈제 칠면조 다리 (Food_139): 분류
+- 자이언트 핫도그 (Food_140): 분류
+- 푸카몽 테마 디저트 세트 (Food_141): 분류
+- 고기 듬뿍 양지 쌀국수 (Food_142): 분류
+- 푸카 스타 쿠폰 (PukalandTicket): 분류, 획득처
+- 이상 수정 (BindRiftcrystal): 분류, 획득처
+- 알록달록 꽃사탕 (DefendTowerCoin): 분류, 획득처
+- 캐러멜 회전초 (GingerbreadCoin): 분류, 획득처
+- Porsche 911 Turbo (930) (vehicle037): 분류, 획득처
+- Porsche Taycan Turbo GT with Weissach Package (vehicle038): 분류, 획득처
+- 「미래로 저어라!」 (Vehicle055): 분류
+
+## 반영 페이지
+
+- 운세 주사위: https://www.notion.so/40195fae3dc781cda3e0f528bd7da720
+- 빈 상자 주사위: https://www.notion.so/40195fae3dc781abb6c4c41e14c6767a
+- 녹턴 열쇠: https://www.notion.so/40195fae3dc781efa394eb72671c34af
+- 사냥꾼 열쇠: https://www.notion.so/40195fae3dc781aa886edc991bc72d9c
+- 깃털 열쇠: https://www.notion.so/40195fae3dc78120a5bfcd97e27828f9
+- 해달별 열쇠: https://www.notion.so/40195fae3dc781f98a63cb59eb241f16
+- 심상 파편·레이븐: https://www.notion.so/40195fae3dc7810aa92fc106aed63692
+- 심상 파편·아카네 린: https://www.notion.so/40195fae3dc781518dceccdb882d88ae
+- 캐릭터 카드·레이븐: https://www.notion.so/40195fae3dc78141a04aeab9eefe906f
+- 캐릭터 카드·아카네 린: https://www.notion.so/40195fae3dc781e2ae61cb88f2981d17
+- God knows...: https://www.notion.so/40195fae3dc78115bfecd798fc933f96
+- Letters to me: https://www.notion.so/40195fae3dc7816d90c6f248f5646671
+- 마녀 기원 중…: https://www.notion.so/40195fae3dc781a38395eceb1d7a28cd
+- 막이 내린 후: https://www.notion.so/40195fae3dc781a9867aea80a874ba93
+- 문어 선장: https://www.notion.so/40195fae3dc781b596d4f022ec82e933
+- 쿠키 비행기: https://www.notion.so/40195fae3dc781f5b2b4f5c2d31e2977
+- 파라다이스 열차장: https://www.notion.so/40195fae3dc7817b8763ca12e052c229
+- 티타임 주전자: https://www.notion.so/40195fae3dc781668400cb7edd59826d
+- 스푸키 하우스: https://www.notion.so/40195fae3dc781e5ab66f83d700728f7
+- 라바 타운 광차: https://www.notion.so/40195fae3dc781f398f2e88f3beab8c6
+- 티파티의 별: https://www.notion.so/40195fae3dc78188a4cbfb8ba29a2c96
+- 푸카를 향해: https://www.notion.so/40195fae3dc781658c9bc4d1ff478cde
+- 달콤한 용암: https://www.notion.so/40195fae3dc781ec811cc4386c6b84fb
+- 미라클 휠: https://www.notion.so/40195fae3dc781b7a8bfd37f0868e6e7
+- 진주 보물: https://www.notion.so/40195fae3dc78179a03ec0b1ef0229e9
+- 고깔 유령: https://www.notion.so/40195fae3dc7819180e7d05a9da4f8db
+- 달빛 아래 손님: https://www.notion.so/40195fae3dc781859b4bc70506199881
+- 촛불 친구: https://www.notion.so/40195fae3dc781d98825e371104661ef
+- 주황빛 기연: https://www.notion.so/40195fae3dc78127a8c4c583b1e16f52
+- 쁘띠 쿠키몽: https://www.notion.so/40195fae3dc7818eb36bc8b95fca5f87
+- 쁘띠 스틱몽: https://www.notion.so/40195fae3dc7813b996adfdc5f4b00f4
+- 쁘띠 바삭몽: https://www.notion.so/40195fae3dc78192b185de7669eecf49
+- 쁘띠 와플몽: https://www.notion.so/40195fae3dc78108ade6c7cb5c61b68a
+- 드리운 눈꽃: https://www.notion.so/40195fae3dc781148f65cbcafbd19151
+- 「근무」 시간: https://www.notion.so/40195fae3dc7819f8d19ce09c07d00b2
+- 포옹보다 더 가까운 푸른빛: https://www.notion.so/40195fae3dc781c2b4ebcfd4e9dde284
+- 「푸카 멤버십 플랜」 S급 아크 선택상자: https://www.notion.so/40195fae3dc7819e854cd8275877c7d6
+- 시들지 않는 깃털: https://www.notion.so/40195fae3dc781889468f5bcc17e1482
+- 별지기: https://www.notion.so/40195fae3dc78101bf90cf0c8e60376f
+- 적과 흑: https://www.notion.so/40195fae3dc78100bc0ff05f331e6b42
+- 에너지 절약: https://www.notion.so/40195fae3dc7816195b3f9415fd81fef
+- 노을빛 벨벳: https://www.notion.so/40195fae3dc781858d30e2ff7135e86b
+- 바텐더 스페셜: https://www.notion.so/40195fae3dc7818faf5cffd95db0163c
+- 슈퍼스타: https://www.notion.so/40195fae3dc7810bb86cdac505e0f8c5
+- 풀 메탈 로커: https://www.notion.so/40195fae3dc781b7bcdec6c972d8670f
+- 밤하늘의 깃털 - 리버리: https://www.notion.so/40195fae3dc781e8af18c8e271bc2630
+- 음속 유성-리버리: https://www.notion.so/40195fae3dc78133a7d7e9dfd6b5cd0c
+- 징조의 새: https://www.notion.so/40195fae3dc781b0b51ed384699b1079
+- 방황의 날: https://www.notion.so/40195fae3dc781e1a224cf95ff95890a
+- 아크 라이트 컬렉션Ⅱ: https://www.notion.so/40195fae3dc78191a5edde3ff9b6abba
+- 명예의 증표: https://www.notion.so/40195fae3dc781f69dbae0e445791d04
+- 「깃털 특간」 S급 아크 랜덤상자: https://www.notion.so/40195fae3dc781a694b7d8938edc83f0
+- 「해달별 특간」 S급 아크 랜덤상자: https://www.notion.so/40195fae3dc78178bf25f4bb86382f90
+- 궤도 너머의 기관사: https://www.notion.so/40195fae3dc781389820f1cafb7071bd
+- 천구본: https://www.notion.so/40195fae3dc781dcaf0fe8c03ac3ded2
+- LP판: https://www.notion.so/40195fae3dc78154b271e18709d71ae7
+- 쇠톱: https://www.notion.so/40195fae3dc78121a625c45763f74988
+- 용해제: https://www.notion.so/40195fae3dc781be8f27c2b2753b6ea5
+- 가루 세제: https://www.notion.so/40195fae3dc781febb41fdb3771c5052
+- 달걀프라이: https://www.notion.so/40195fae3dc78157916dfc14615f0d17
+- 양배추 볶음: https://www.notion.so/40195fae3dc781b08faaecf6c15182ed
+- 토마토 감자 볶음: https://www.notion.so/40195fae3dc7815e8a6dfcb6e6b1355f
+- 매운 소고기 볶음: https://www.notion.so/40195fae3dc781428e8ce8385cf9c86f
+- 생선탕: https://www.notion.so/40195fae3dc781ef8155d3eb8b811a30
+- 토마토 달걀 야채 스튜: https://www.notion.so/40195fae3dc7814986d2e18b83178a07
+- 실패한 요리: https://www.notion.so/40195fae3dc781129c84c58b885927b5
+- 건전지: https://www.notion.so/40195fae3dc781beaba3ccb72c0ca675
+- 거울 조각: https://www.notion.so/40195fae3dc78193a8d0f79b3fbdc6a6
+- 롤리팝 안경: https://www.notion.so/40195fae3dc7814c8888c3a034df4651
+- 파라다이스 골드 카드: https://www.notion.so/40195fae3dc78192a03af4e618195555
+- 비눗물: https://www.notion.so/40195fae3dc781adb6deea2c0f03ae7e
+- 단꿈 캔디 상자: https://www.notion.so/40195fae3dc781209578eb336eb6c00c
+- 퍼스 선물 상자: https://www.notion.so/40195fae3dc781e8b3f0e37f66a0cc56
+- 인연의 시작: 레이븐: https://www.notion.so/40195fae3dc78162825ece0a8325798c
+- 의기투합: 레이븐: https://www.notion.so/40195fae3dc7811a8c03eb8c4ad957f5
+- 깊은 우정: 레이븐: https://www.notion.so/40195fae3dc78112bd23c94833883669
+- 각별한 사이: 레이븐: https://www.notion.so/40195fae3dc7818f999dd976747f2a9d
+- 운명의 각주: https://www.notion.so/40195fae3dc781cab9bdd797881c8a61
+- 화이트 버드: https://www.notion.so/40195fae3dc7811daed5e990aedc0e65
+- 고독한 새의 애가: https://www.notion.so/40195fae3dc781d8b78fc4341db27a8e
+- 백년의 고독: https://www.notion.so/40195fae3dc78118a835cee25d152532
+- 각별한 사이: 아카네 린: https://www.notion.so/40195fae3dc781d382abf95b31517f40
+- 보조 배터리: https://www.notion.so/40195fae3dc7813b8f9fc997681fa8c3
+- 캔디 열쇠: https://www.notion.so/40195fae3dc781a0a50beded1caa1634
+- 푸카몽 꼬마 손님: https://www.notion.so/40195fae3dc781459198cc6442b1f6eb
+- 스푸키 캔디: https://www.notion.so/40195fae3dc781cb9eb1e28c8e8ff3da
+- 스푸키 아이스크림: https://www.notion.so/40195fae3dc781c3865dc58d69b3278c
+- 백작님의 애장품: https://www.notion.so/40195fae3dc78179ac78ee535cb1276e
+- 스푸키 전단지: https://www.notion.so/40195fae3dc781eaa454c667505ca4ee
+- 이성 스프레이: https://www.notion.so/40195fae3dc781d59867c1df3e75957d
+- 쿠키몽 변신 도구: https://www.notion.so/40195fae3dc781d5bee5fb3c78b7950f
+- 스틱몽 변신 도구: https://www.notion.so/40195fae3dc7811b9ae6d91daf59c80b
+- 바삭몽 변신 도구: https://www.notion.so/40195fae3dc781778990c8286ee69927
+- 와플몽 변신 도구: https://www.notion.so/40195fae3dc781709375d9d39fa6d48f
+- 푸카의 기묘한 모험: https://www.notion.so/40195fae3dc78130bdf3ed0f3d1d8b19
+- 푸카몽: https://www.notion.so/40195fae3dc781bea3becf1acb93003b
+- 놀이공원 유람기: https://www.notion.so/40195fae3dc781d3879bd7e54a25235a
+- 포근한 안식처: https://www.notion.so/40195fae3dc78101af06ffd5172cc5c7
+- 태엽감기: https://www.notion.so/40195fae3dc781f9ba97fcc784f38408
+- 웃음 가득: https://www.notion.so/40195fae3dc781c7becde5f180ee7cd6
+- 맞물린 고리: https://www.notion.so/40195fae3dc781158112e3560d91a828
+- 슈퍼 플레이어: https://www.notion.so/40195fae3dc781a0aaa2f82a83aa8e1c
+- 「마녀」의 축복: https://www.notion.so/40195fae3dc781419b72c0f907d0d5d5
+- 궁극의 모둠: https://www.notion.so/40195fae3dc781ecab68d9154e35fc1b
+- 쇼핑 데이: https://www.notion.so/40195fae3dc781dd82a3d6341a9c29b3
+- 돈비가 내린다: https://www.notion.so/40195fae3dc78163b7c0e95433853f52
+- 푸카 타이쿤: https://www.notion.so/40195fae3dc781a7a383f6df42612160
+- 지원금 입금 완료: https://www.notion.so/40195fae3dc78165aa35d792ffc44200
+- 폰즈의 전설: https://www.notion.so/40195fae3dc7810abbbdd036b985adab
+- 푸카 타임: https://www.notion.so/40195fae3dc781ff9752f68a7fd1030e
+- 기묘한 순간: https://www.notion.so/40195fae3dc781babf7afa7550b34ec8
+- 프로필-청춘의 각주: https://www.notion.so/40195fae3dc78100b700e9b6f2c076f8
+- 프로필-월급 루팡: https://www.notion.so/40195fae3dc781a7ac6ce4f1414c90a0
+- 프로필-곰돌이 쿠키: https://www.notion.so/40195fae3dc7819c99eac72205caeb5e
+- 프로필-별지기: https://www.notion.so/40195fae3dc78141bbd6e12c8527d5a7
+- 프로필-적과 흑: https://www.notion.so/40195fae3dc78153a309d6d3b22d5ecf
+- 프로필-시들지 않는 깃털: https://www.notion.so/40195fae3dc781c1a1a4e96520364239
+- 프로필-노을빛 벨벳: https://www.notion.so/40195fae3dc78179a2eaff3ba82d8e98
+- 프로필-바텐더 스페셜: https://www.notion.so/40195fae3dc7810c903edf2c1561a6a0
+- 프로필-슈퍼스타: https://www.notion.so/40195fae3dc781eab219e1c0cd5d2696
+- 프로필-풀 메탈 로커: https://www.notion.so/40195fae3dc781f99a6fe2c4f1fccd84
+- 프로필-에너지 절약: https://www.notion.so/40195fae3dc781958961ea029c887181
+- 청춘의 각주: https://www.notion.so/40195fae3dc781d19a42f6ca98626bdd
+- 월급 루팡: https://www.notion.so/40195fae3dc78159bc83fa62e43b42f4
+- 곰돌이 쿠키: https://www.notion.so/40195fae3dc7814d9a2ddeea077f2c64
+- 듀얼 러시: https://www.notion.so/40195fae3dc781d48589dae92279e292
+- 호라이즌 스펙터: https://www.notion.so/40195fae3dc781ce8ac1ef23bb0532b0
+- 유일무이: https://www.notion.so/40195fae3dc7813abdece6419a6fec93
+- 내일의 스타: https://www.notion.so/40195fae3dc78107a47bc0ea4fef3da1
+- 스포트라이트: https://www.notion.so/40195fae3dc781be9a0be034b29b022a
+- 칠흑의 밤: https://www.notion.so/40195fae3dc781cdba02c2b5b52554db
+- 일등상: https://www.notion.so/40195fae3dc7813e8c18f5af065f36c6
+- 천재적 발상: https://www.notion.so/40195fae3dc78141aca8e6fdeecd5a8c
+- 보라빛 밤: https://www.notion.so/40195fae3dc781d189f9c49a1488c203
+- 검은지빠귀: https://www.notion.so/40195fae3dc781378691f4271511f8a7
+- 숯덩이 코인: https://www.notion.so/40195fae3dc7812d8408f3cf1f72e5f5
+- 꽃사탕 선물: https://www.notion.so/40195fae3dc781988483c6a8b91c7c43
+- 최강의 친구: https://www.notion.so/40195fae3dc781b2bb73fa257cafeb6b
+- 과즙 젤리: https://www.notion.so/40195fae3dc781ffa80ccdbabb5b1d1e
+- 반짝반짝 팝핑 캔디: https://www.notion.so/40195fae3dc7812d8874cdcb80aea2b2
+- 푸카 초콜릿: https://www.notion.so/40195fae3dc781f49a5aeed6f6be25b3
+- 라이트 버블껌: https://www.notion.so/40195fae3dc781e9a0f1dde631abe28f
+- 폭신 솜사탕: https://www.notion.so/40195fae3dc781f3bd70f58018324c88
+- 쿨링 민트 캔디: https://www.notion.so/40195fae3dc78161ad0bcaa1af6d9c14
+- 용암 필링 캔디: https://www.notion.so/40195fae3dc78169ae81dff8c3459d35
+- 소프트 토피: https://www.notion.so/40195fae3dc7815a956ed787d0c8fde7
+- 와그작 캔디: https://www.notion.so/40195fae3dc781dc8755f2560bd2bc7d
+- 파라다이스 메모리: https://www.notion.so/40195fae3dc7814b8278ee636c43c5e1
+- 씬스틸러: https://www.notion.so/40195fae3dc7812ea323ed3c8201660c
+- 유람 수첩: https://www.notion.so/40195fae3dc78165b687eec99e0703d6
+- 제로백: https://www.notion.so/40195fae3dc7817d983dfff95d264c06
+- Porsche Club: https://www.notion.so/40195fae3dc781559d30efb2a10bc954
+- 질주 본능: https://www.notion.so/40195fae3dc781da8181eb03073cd4b5
+- 하트 A 카드: https://www.notion.so/40195fae3dc781c99535e68938c8f5b0
+- 하트 2 카드: https://www.notion.so/40195fae3dc781a3ad43e12b3630b282
+- 하트 3 카드: https://www.notion.so/40195fae3dc781569257fbe7bad3483a
+- 하트 4 카드: https://www.notion.so/40195fae3dc781ce8afef78f1fb59623
+- 하트 5 카드: https://www.notion.so/40195fae3dc78125b7c4dcb31aad0eb0
+- 하트 6 카드: https://www.notion.so/40195fae3dc7818dad3dd4a048682e50
+- 하트 7 카드: https://www.notion.so/40195fae3dc781fb82b7dec2d3140046
+- 하트 8 카드: https://www.notion.so/40195fae3dc781349e16dacbdaac2dad
+- 하트 9 카드: https://www.notion.so/40195fae3dc78110b228f71e23000fcb
+- 하트 10 카드: https://www.notion.so/40195fae3dc78189965ed059848391ae
+- 하트 J 카드: https://www.notion.so/40195fae3dc78151ad1ec6ec9835fcc1
+- 하트 Q 카드: https://www.notion.so/40195fae3dc781019431cfb5c83ad56b
+- 하트 K 카드: https://www.notion.so/40195fae3dc78112b9e1d9a50a61dfd8
+- 리틀 푸카 카드: https://www.notion.so/40195fae3dc7813c8a54ee3d9b2ade75
+- 빅 푸카 카드: https://www.notion.so/40195fae3dc781c99437e31958834220
+- 파라다이스에서 온 편지: https://www.notion.so/40195fae3dc7816dba02f04eaa564c17
+- 파라다이스 스타: https://www.notion.so/40195fae3dc7816a9da9c36ef62b8a83
+- Salzburg-리버리: https://www.notion.so/40195fae3dc7811aac21fd15b9618a8c
+- 동력 증폭: https://www.notion.so/40195fae3dc781569140d6f2c1dca4aa
+- 푸카푸카: https://www.notion.so/40195fae3dc7811aaae0f0ad4480d533
+- 달달도넛: https://www.notion.so/40195fae3dc7815b8e82e88c667a4ba9
+- 귀여운 호랑이의 강림: https://www.notion.so/40195fae3dc781169419e1e763640295
+- 하늘의 뜻: https://www.notion.so/40195fae3dc781a4b723cf72b3f81493
+- 푸카 유람-리버리: https://www.notion.so/40195fae3dc78163aa58f7894c759c1b
+- 푸카 미라클 휠 종일 이용권: https://www.notion.so/40195fae3dc781ad8957fdb215e6a502
+- 드림랜드 티파티 종일 이용권: https://www.notion.so/40195fae3dc781fe9b54ca66c0015a02
+- 동화 한 편: https://www.notion.so/40195fae3dc781958998f90c61106bfb
+- 스푸키 케이크: https://www.notion.so/40195fae3dc781389c08e4810291ff12
+- 사탕 눈알: https://www.notion.so/40195fae3dc781bcb5bdee33519b856e
+- 고성의 물: https://www.notion.so/40195fae3dc781e69674c286ae7d65d0
+- 스푸키 보석: https://www.notion.so/40195fae3dc7813faa57f4345128b7ff
+- 스트라이드 껌: https://www.notion.so/40195fae3dc7815fb103f5a38ccc3d24
+- 푸카 향긋 기념 커피: https://www.notion.so/40195fae3dc78194a883ec7d7f3af0cb
+- 구름 솜사탕 밀크티: https://www.notion.so/40195fae3dc7818b80d2c07692dee506
+- 멜팅 초콜릿 밀크티: https://www.notion.so/40195fae3dc781ab8d7fc6277870d6ea
+- 미니 케이크 마운틴: https://www.notion.so/40195fae3dc781019acec02d082ff9c4
+- 유령 디핑 소스 와플: https://www.notion.so/40195fae3dc78130b68be1653b5d1db7
+- 바삭 콘 푸딩 모험선: https://www.notion.so/40195fae3dc7818eb027ca9a92a6ad2f
+- 푸카몽 장갑 아이스바: https://www.notion.so/40195fae3dc781aca700d195ff8b13cc
+- 솜사탕 나무 막대사탕: https://www.notion.so/40195fae3dc78197ab5fe438fe87c3bb
+- 실크햇 고양이 막대사탕: https://www.notion.so/40195fae3dc781d583aef3ebfe97f9a2
+- 해적 문어 버블 캔디: https://www.notion.so/40195fae3dc78111b5ebf106584ab1da
+- 푸짐한 모둠 치킨 세트: https://www.notion.so/40195fae3dc7814aa8bdfacf8a29bf8a
+- 대왕 훈제 칠면조 다리: https://www.notion.so/40195fae3dc781138585fefa87e56a8b
+- 자이언트 핫도그: https://www.notion.so/40195fae3dc7810d9332c059330179d7
+- 푸카몽 테마 디저트 세트: https://www.notion.so/40195fae3dc781488fa7f0bb386e671d
+- 고기 듬뿍 양지 쌀국수: https://www.notion.so/40195fae3dc781d5878ecf6e5201ff4b
+- 푸카 스타 쿠폰: https://www.notion.so/40195fae3dc7810683ecc3b77a0a6186
+- 이상 수정: https://www.notion.so/40195fae3dc7815e9403c285824f538a
+- 알록달록 꽃사탕: https://www.notion.so/40195fae3dc7811cb4f4dec86b52e079
+- 캐러멜 회전초: https://www.notion.so/40195fae3dc781758e3ddc84fb516365
+- Porsche 911 Turbo (930): https://www.notion.so/40195fae3dc78146becfe443b1c892fd
+- Porsche Taycan Turbo GT with Weissach Package: https://www.notion.so/40195fae3dc781819d53f64a5901f3b9
+- 「미래로 저어라!」: https://www.notion.so/40195fae3dc781ccac75e136c9d41d1b
+
+## 검증·개발 범위
+
+- 기존 1023개 → 현재 1230개. 신규 207개.
+- 기존 속성 변경 감지: 0개. DB 스키마 유지: true.
+- 신규 페이지 검증: 207개. 오류 항목: 0개.
+- 노션 페이지 속성과 image 블록 URL을 생성 원고와 대조했다. 브라우저에서 첫 항목의 실제 표시도 확인했다.
+- 사이트 코드·런타임 데이터·AGENTS.md는 변경하지 않았다. 공식 Notion→사이트 동기화 스크립트와 prebuild는 실행하지 않았다.
+- 프로젝트 수정은 이 보고서뿐이므로 TypeScript·npm build는 실행하지 않았다. 실제 사이트 반영 또는 Cloudflare 배포를 완료했다고 주장하지 않는다.
+- 문서의 diff 검사·commit·push 결과는 완료 응답에서 별도로 보고한다.
+
+중간 검토 자료: `C:/Users/swjja/.codex/visualizations/2026/09/17/01a0afee-8444-7b72-911a-5702df30fe3a/nte-*.json`. 토큰은 포함하지 않는다.
