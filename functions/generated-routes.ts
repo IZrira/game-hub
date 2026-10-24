@@ -281,6 +281,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/hsr/character/yunli/guide",
   "/gallery/hsr/guides",
   "/gallery/hsr/guides/build-guide-reading-order",
+  "/gallery/hsr/guides/content-reset-guide",
   "/gallery/hsr/guides/damage-formula-guide",
   "/gallery/hsr/guides/speed-and-action-value-guide",
   "/gallery/hsr/lightcone/「나」의 탄생",

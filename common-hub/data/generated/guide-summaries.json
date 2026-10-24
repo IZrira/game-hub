@@ -419,5 +419,16 @@
     "notionDatabaseId": "3f695fae3dc7801f936ce549d8fefeef",
     "notionPageId": "3f695fae-3dc7-8003-a972-d12318f43de4",
     "characterId": "3b895fae-3dc7-805d-bccd-ef15766973d1"
+  },
+  {
+    "gameId": "hsr",
+    "slug": "content-reset-guide",
+    "status": "published",
+    "title": "스타레일 콘텐츠 초기화 시간과 주간·월간 숙제 가이드",
+    "excerpt": "지원 보상·의뢰·주간 점수·상점·레진 합성부터 공훈과 엔드 콘텐츠까지, 아시아 서버 한국 시간 기준 초기화 주기와 보상 수령 시점을 정리했습니다.",
+    "publishedAt": "2026-10-24",
+    "reviewedAt": "2026-10-24",
+    "applicableVersion": "붕괴: 스타레일 4.6 · 아시아 서버 / 한국 시간",
+    "author": "Rira Editor"
   }
 ]
