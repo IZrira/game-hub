@@ -430,5 +430,16 @@
     "reviewedAt": "2026-10-24",
     "applicableVersion": "붕괴: 스타레일 4.6 · 아시아 서버 / 한국 시간",
     "author": "Rira Editor"
+  },
+  {
+    "gameId": "nte",
+    "slug": "wanted-and-jail-guide",
+    "status": "published",
+    "title": "이환 지명수배·유치장 탈출 가이드",
+    "excerpt": "수배 1~4단계 변화, 유치장 하루 일과와 정식 탈출 5개·번외 루트의 준비물과 진행 순서를 정리했습니다.",
+    "publishedAt": "2026-10-25",
+    "reviewedAt": "2026-10-25",
+    "applicableVersion": "2026-10-17 문서 기준 · 현재 버전 실전 검증 전",
+    "author": "Rira Editor"
   }
 ]

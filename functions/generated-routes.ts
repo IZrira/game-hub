@@ -570,6 +570,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/nte/guides/호토리-build-guide",
   "/gallery/nte/guides/archive-data-usage-guide",
   "/gallery/nte/guides/esper-cycle-combat-guide",
+  "/gallery/nte/guides/wanted-and-jail-guide",
   "/gallery/nte/parties",
   "/gallery/nte/tierlist",
   "/gallery/nte/weapon/「마지막 장미」",

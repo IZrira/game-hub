@@ -2,7 +2,7 @@
   "global": {
     "games": 4,
     "characters": 263,
-    "guides": 182,
+    "guides": 183,
     "items": 2098
   },
   "games": {
@@ -16,7 +16,7 @@
     },
     "nte": {
       "characters": 24,
-      "guides": 25
+      "guides": 26
     },
     "aniimo": {
       "characters": 86,
