@@ -32,6 +32,19 @@ describe('NTE page canonical inputs', () => {
   const character = NTE_CHARACTER_DATA.find(item => item.name === '감정사')!;
   const expectedCharacterUrl = `/gallery/nte/character/${encodeURIComponent(character.name)}`;
 
+  it.each(['감정사', '아카네 린'])('uses only NTE metadata and no hidden FAQ for %s', (name) => {
+    render(<MemoryRouter initialEntries={[`/gallery/nte/character/${encodeURIComponent(name)}`]}><Routes>
+      <Route path="/gallery/:gameId/character/:charName" element={<CharacterDetailNTE />} />
+    </Routes></MemoryRouter>);
+
+    const props = seo.mock.lastCall![0];
+    expect(props.description).toBe(`이환(NTE) ${name}의 속성, 기본 스탯, 스킬·각성 효과와 아크·콘솔 세팅 및 육성 재료를 확인하세요.`);
+    expect(props.title).toBe(`${name} 종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | 이환(NTE) 공략 DB`);
+    expect(props.url).toBe(`/gallery/nte/character/${encodeURIComponent(name)}`);
+    expect(props.faqData).toBeUndefined();
+    expect(props.description).not.toMatch(/스타레일|광추|유물|운명의 길/);
+  });
+
   it.each([
     ['name', encodeURIComponent(character.name)],
     ['legacy UUID', character.id],

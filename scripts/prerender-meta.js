@@ -4,6 +4,7 @@ import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
+import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -2575,14 +2576,14 @@ function runPrerender() {
   notionData.forEach(item => {
     if (!item.name) return;
     if (item.dbSource === 'nte_characters') {
-      const gameLabel = '이환(NTE)';
+      const characterSeo = getNteCharacterSeo(item.name);
       const imagePath = `${CDN_URL}/nte%20images/skills/${encodeAssetPath(item.name)}/${encodeAssetPath(item.name)}.webp`;
-      const routePath = `/gallery/nte/character/${encodeURIComponent(item.name)}`;
+      const routePath = characterSeo.url;
 
       createPrerenderedPage(
         routePath,
-        `${item.name} 종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | ${gameLabel} 공략 DB`,
-        `${gameLabel} ${item.name}의 최신 종결 세팅, 스킬 매커니즘 계수, 추천 파티 조합 및 돌파 재료 총정리 가이드.`,
+        characterSeo.title,
+        characterSeo.description,
         imagePath,
         baseHtml,
         generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>'

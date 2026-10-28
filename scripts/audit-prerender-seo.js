@@ -6,6 +6,7 @@ import { inspectPrerenderContent } from './lib/prerender-content-checks.js';
 import { inspectPrerenderHead } from './lib/prerender-head-checks.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
+import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
@@ -153,6 +154,14 @@ for (const routePath of routes) {
   problems.push(...contentCheck.problems.map(problem => `${routePath}: ${problem}`));
   const { title, description, canonical, problems: headProblems } = inspectPrerenderHead(html);
   problems.push(...headProblems.map(problem => `${routePath}: ${problem}`));
+  if (/^\/gallery\/nte\/character\/[^/]+$/.test(routePath)) {
+    const expected = getNteCharacterSeo(segments[3]);
+    if (title !== `${expected.title} | RIRA ARCHIVE` || description !== expected.description) {
+      problems.push(`${routePath}: NTE character metadata differs from runtime metadata`);
+    }
+    if (canonical !== `https://riragamehub.com${expected.url}`) problems.push(`${routePath}: NTE character canonical differs from runtime metadata`);
+    if (html.includes('"FAQPage"')) problems.push(`${routePath}: NTE character has an unsupported hidden FAQ schema`);
+  }
   const priorityWeapon = priorityWeapons.find(weapon => routePath === `/gallery/ww/weapon/${weapon.name}`);
   if (priorityWeapon) {
     const expected = getWwWeaponSeo(priorityWeapon);
