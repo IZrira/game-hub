@@ -7,7 +7,7 @@ import { ORNAMENT_DATA } from '../hsr-hub/data/ornaments';
 import { HSR_PARTIES } from '../hsr-hub/data/parties';
 import summary from '../hsr-hub/data/generated/character-summary.json';
 import manifest from '../hsr-hub/data/generated/guide-runtime-manifest.json';
-import { sanitizePublicGuideData } from '../common-hub/utils/publicGuideLinks';
+import { sanitizePublicGuideData, sanitizePublicHsrGuideData } from '../common-hub/utils/publicGuideLinks';
 import type { HsrGuideRuntime } from '../hsr-hub/utils/guideRuntime';
 import { onRequest } from '../functions/_middleware';
 
@@ -16,14 +16,51 @@ const clean = (entry: string | { name: string }) => (typeof entry === 'string' ?
   .split(/[:：]/)[0].replace(/\s*\d+순위.*$/, '').replace(/유성을\s*쫒는\s*괴도/g, '유성을 쫓는 괴도').trim();
 const paths = manifest as Record<string, string>;
 
-it('preserves each original HSR guide and its related party order', () => {
+it('withholds unverified eidolon ratios from every published guide and variant while retaining the local source', () => {
+  let sourceTables = 0;
+  for (const [id, url] of Object.entries(paths)) {
+    const runtime = JSON.parse(fs.readFileSync(`public${url}`, 'utf8')) as HsrGuideRuntime;
+    const source = HSR_CHARACTER_GUIDES.find(guide => normalize(guide.characterName) === normalize(runtime.guide.characterName))!;
+    const originals = [source, ...(source.variants || [])] as Array<{ eidolonEfficiency?: unknown[] }>;
+    const published = [runtime.guide, ...(runtime.guide.variants || [])] as Array<{ eidolonEfficiency?: unknown[] }>;
+    originals.forEach((original, index) => {
+      if (!original.eidolonEfficiency?.length) return;
+      sourceTables++;
+      expect(published[index].eidolonEfficiency, `${id}/variant-${index}`).toEqual([]);
+      expect(original.eidolonEfficiency.length).toBeGreaterThan(0);
+    });
+    expect(runtime.guide.recommendedEidolon).toEqual(source.recommendedEidolon);
+    expect(JSON.stringify(runtime.guide)).not.toMatch(/"efficiency[13]":/);
+  }
+  expect(sourceTables).toBeGreaterThan(0);
+});
+
+it('does not ship obsolete hashed guide files containing withheld comparisons', () => {
+  const files = fs.readdirSync('public/assets/data/hsr/guides').filter(name => /^[a-z0-9_]+\.[a-f0-9]{12}\.json$/.test(name));
+  expect(files.sort()).toEqual(Object.values(paths).map(url => url.split('/').pop()).sort());
+  for (const file of files) {
+    expect(fs.readFileSync(`public/assets/data/hsr/guides/${file}`, 'utf8'), file).not.toMatch(/"efficiency[13]":/);
+  }
+});
+
+it('uses the same public policy for gallery and equipment client catalogs', () => {
+  const catalog = JSON.parse(fs.readFileSync('hsr-hub/data/generated/public-guide-catalog.json', 'utf8'));
+  expect(catalog).toEqual(sanitizePublicHsrGuideData(HSR_CHARACTER_GUIDES));
+  for (const file of ['hsr-hub/pages/Gallery.tsx', 'hsr-hub/components/HsrRecommendedCharactersSection.tsx', 'hsr-hub/data/index.ts']) {
+    const source = fs.readFileSync(file, 'utf8');
+    expect(source, file).toContain('generated/public-guide-catalog.json');
+    expect(source.replace(/^import type .*$/gm, ''), file).not.toMatch(/(?:from\s*|import\()['"](?:\.\.\/data\/|\.\/)guides['"]/);
+  }
+});
+
+it('publishes each HSR guide with the approved withholding policy and preserves related party order', () => {
   expect(Object.keys(paths)).toHaveLength(HSR_CHARACTER_GUIDES.length);
   for (const character of summary) {
     const runtime = JSON.parse(fs.readFileSync(`public${paths[character.id]}`, 'utf8')) as HsrGuideRuntime;
     const original = HSR_CHARACTER_GUIDES.find(guide => guide.characterName === character.name
       || guide.characterName === character.folderName || normalize(guide.characterName) === normalize(character.name)
       || normalize(guide.characterName) === normalize(character.id));
-    expect(runtime.guide, character.id).toEqual(sanitizePublicGuideData(original));
+    expect(runtime.guide, character.id).toEqual(sanitizePublicHsrGuideData(original));
     const parties = HSR_PARTIES.filter(party => party.members.some(member => normalize(member.name) === normalize(character.folderName || character.name)));
     expect(runtime.parties, character.id).toEqual(sanitizePublicGuideData(parties));
   }

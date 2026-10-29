@@ -1,9 +1,12 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router';
 import { Users, ChevronRight, Sparkles } from 'lucide-react';
-import { HSR_CHARACTER_GUIDES } from '../data/guides';
+import publicGuides from '../data/generated/public-guide-catalog.json';
+import type { CharacterGuide } from '../data/guides';
 import { CHARACTER_DB } from '../../common-hub/data/games';
 import { getHsrCharacterArtUrl, handleImageFallback } from '../../common-hub/utils/assetManager';
+
+const HSR_CHARACTER_GUIDES = publicGuides as CharacterGuide[];
 
 interface HsrRecommendedCharactersSectionProps {
   itemType: 'lightcone' | 'relic' | 'ornament';

@@ -3,7 +3,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { build } from 'esbuild';
-import { sanitizePublicGuideData } from './lib/public-guide-links.js';
+import { sanitizePublicHsrGuideData } from './lib/public-guide-links.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const normalize = value => String(value || '').replace(/\s+/g, '').replace(/[•·]/g, '').replace(/쫒/g, '쫓').normalize('NFC');
@@ -16,7 +16,7 @@ export function createHsrGuideRuntime(character, sources) {
   if (!guide) return null;
   const guideText = normalize(JSON.stringify(guide));
   const related = entries => entries.filter(entry => guideText.includes(normalize(entry.name)));
-  return sanitizePublicGuideData({
+  return sanitizePublicHsrGuideData({
     guide,
     lightcones: related(sources.lightcones).map(({ name, path, fileName, folderName, rarity }) => ({ name, path, fileName, folderName, rarity })),
     relics: related(sources.relics).map(({ name, type, '2piece': twoPiece, '4piece': fourPiece }) => ({ name, type, '2piece': twoPiece, '4piece': fourPiece })),
@@ -42,6 +42,7 @@ export async function writeHsrGuideRuntime() {
     bundle: true, platform: 'node', format: 'esm', write: false, logLevel: 'silent'
   });
   const sources = (await import(`data:text/javascript;base64,${Buffer.from(result.outputFiles[0].text).toString('base64')}`)).default;
+  fs.writeFileSync(path.join(root, 'hsr-hub/data/generated/public-guide-catalog.json'), `${JSON.stringify(sanitizePublicHsrGuideData(sources.guides))}\n`, 'utf8');
   fs.writeFileSync(path.join(root, 'hsr-hub/data/generated/synergy-guide-summary.json'), `${JSON.stringify(sources.guides.map(({ characterName, synergyCharacters, analysis }) => ({ characterName, synergyCharacters, analysis: { role: analysis?.role } })), null, 2)}\n`, 'utf8');
   const characters = JSON.parse(fs.readFileSync(path.join(root, 'hsr-hub/data/generated/character-summary.json'), 'utf8'));
   const directory = path.join(root, 'public/assets/data/hsr/guides');
@@ -57,6 +58,13 @@ export async function writeHsrGuideRuntime() {
     manifest[character.id] = `/assets/data/hsr/guides/${filename}`;
   }
   fs.writeFileSync(path.join(root, 'hsr-hub/data/generated/guide-runtime-manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8');
+  // Old hashed JSON must not ship alongside the current publication policy.
+  const currentFiles = new Set(Object.values(manifest).map(url => path.basename(url)));
+  for (const filename of fs.readdirSync(directory)) {
+    if (/^[a-z0-9_]+\.[a-f0-9]{12}\.json$/.test(filename) && !currentFiles.has(filename)) {
+      fs.unlinkSync(path.join(directory, filename));
+    }
+  }
   console.log(`[HSR] Generated ${Object.keys(manifest).length} character guide runtime files.`);
 }
 

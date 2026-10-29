@@ -42,3 +42,16 @@ export function sanitizePublicGuideData(data) {
   if (data && typeof data === 'object') return Object.fromEntries(Object.entries(data).map(([key, value]) => [key, sanitizePublicGuideData(value)]));
   return data;
 }
+
+// Local comparison tables have no verified calculation conditions yet.
+// Withhold them at the HSR publishing boundary, preserving source records.
+export function sanitizePublicHsrGuideData(data) {
+  if (typeof data === 'string') return sanitizePublicGuideText(data);
+  if (Array.isArray(data)) return data.map(sanitizePublicHsrGuideData);
+  if (data && typeof data === 'object') {
+    return Object.fromEntries(Object.entries(data).map(([key, value]) => [
+      key, key === 'eidolonEfficiency' || key === 'eidolonVariants' ? [] : sanitizePublicHsrGuideData(value)
+    ]));
+  }
+  return data;
+}

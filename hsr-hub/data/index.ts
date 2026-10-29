@@ -2,7 +2,7 @@ import { CHARACTER_DATA } from './characters';
 import { SORTED_LIGHTCONE_DATA } from './lightcones';
 import { RELIC_DATA } from './relics';
 import { ORNAMENT_DATA } from './ornaments';
-import { HSR_CHARACTER_GUIDES } from './guides';
+import HSR_CHARACTER_GUIDES from './generated/public-guide-catalog.json';
 import { ITEM_META } from './items';
 import { Character, LightCone, Relic, Ornament } from '../../common-hub/types';
 

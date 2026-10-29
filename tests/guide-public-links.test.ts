@@ -11,6 +11,7 @@ import { MemoryRouter } from 'react-router';
 import {
   isNotionUrl,
   sanitizePublicGuideData,
+  sanitizePublicHsrGuideData,
   sanitizePublicGuideText,
 } from '../common-hub/utils/publicGuideLinks';
 import { HSR_CHARACTER_GUIDES } from '../hsr-hub/data/guides';
@@ -212,6 +213,9 @@ describe('public guide link policy', () => {
     const hsrFixture = {
       characterName: 'Fixture',
       targetStats: [{ label: '속도', value: '134 이상', note: '[추가 조건](https://app.notion.com/private)' }],
+      eidolonEfficiency: [{ level: 1, efficiency1: '128.52%', efficiency3: '137.12%' }],
+      eidolonVariants: [{ name: '비교', efficiency: [{ level: 1, efficiency1: '128.52%' }] }],
+      variants: [{ name: '대안', eidolonEfficiency: [{ level: 1, efficiency3: '137.12%' }], bestRelics: ['기존 추천'] }],
     };
     const wwFixture = Object.freeze({
       id: 'fixture', name: 'Fixture', dbSource: 'ww_guides',
@@ -228,6 +232,7 @@ describe('public guide link policy', () => {
         WW_GUIDE_ANALYSIS_FILE: 'fixture-analysis.json',
         path,
         sanitizePublicGuideData,
+        sanitizePublicHsrGuideData,
         getNotionData: () => [wwFixture],
         fs: {
           existsSync: () => true,
@@ -240,6 +245,10 @@ describe('public guide link policy', () => {
     );
 
     expect(output.hsr.get('Fixture')?.targetStats[0]).toEqual({ label: '속도', value: '134 이상', note: '추가 조건' });
+    expect(output.hsr.get('Fixture')?.eidolonEfficiency).toEqual([]);
+    expect(output.hsr.get('Fixture')?.eidolonVariants).toEqual([]);
+    expect(output.hsr.get('Fixture')?.variants[0].eidolonEfficiency).toEqual([]);
+    expect(output.hsr.get('Fixture')?.variants[0].bestRelics).toEqual(['기존 추천']);
     expect(output.ww.get('fixture')?.weapons[0].rank).toBe(1);
     expect(output.ww.get('fixture')?.weapons[0].note).toContain('공격력 4000 이상');
     expect(output.analysis.fixture.summary).toContain('운용 조건');

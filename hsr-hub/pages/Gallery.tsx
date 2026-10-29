@@ -153,8 +153,8 @@ const GalleryHSR: React.FC = () => {
       if (activeMenu === '공략' && guideDb.length === 0) {
         setArchiveDataLoading(true);
         try {
-          const module = await import('../data/guides');
-          if (!cancelled) setGuideDb(module.HSR_CHARACTER_GUIDES);
+          const module = await import('../data/generated/public-guide-catalog.json');
+          if (!cancelled) setGuideDb(module.default);
         } finally {
           if (!cancelled) setArchiveDataLoading(false);
         }

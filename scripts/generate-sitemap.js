@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createUnknownWebp } from './create_unknown_webp.js';
+import { getHsrGuideRegistry, findRegisteredHsrGuide } from './lib/hsr-guide-routes.js';
 
 createUnknownWebp();
 
@@ -136,21 +137,16 @@ function parseWwCharacter(id) {
 
 // HSR 가이드 존재 여부 목록 조회
 function getRegisteredHsrGuides() {
-  const registered = new Set();
+  const registered = new Map();
   try {
     if (!fs.existsSync(HSR_GUIDE_INDEX)) return registered;
     const content = fs.readFileSync(HSR_GUIDE_INDEX, 'utf8');
-    const importRegex = /import\s+.*?\s+from\s+['"]\.\/(.*?)['"]/g;
-    let match;
-    while ((match = importRegex.exec(content)) !== null) {
-      if (match[1] && match[1] !== 'index') {
-        registered.add(match[1].trim());
-      }
-    }
+    return getHsrGuideRegistry(content, filename =>
+      fs.readFileSync(path.join(HSR_GUIDE_DIR, `${filename}.ts`), 'utf8'));
   } catch (error) {
     console.error('Error reading HSR guide index:', error);
+    throw error;
   }
-  return registered;
 }
 
 // WW 가이드 존재 여부 목록 조회
@@ -420,10 +416,9 @@ async function generateSitemap() {
       addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/character/${id}`, charLastmod, '0.8', 'daily', images);
 
       if (charData) {
-        const hasGuide = (charData.folderName && registeredHsrGuides.has(charData.folderName)) ||
-                         (charData.name && registeredHsrGuides.has(charData.name));
-        if (hasGuide) {
-          const guideFilePath = path.join(HSR_GUIDE_DIR, `${id}.ts`);
+        const guideFilename = findRegisteredHsrGuide(charData, registeredHsrGuides);
+        if (guideFilename) {
+          const guideFilePath = path.join(HSR_GUIDE_DIR, `${guideFilename}.ts`);
           const guideLastmod = getFileLastmod(guideFilePath) || charLastmod;
           addEntry(hsrEntries, `${BASE_URL}/gallery/hsr/character/${id}/guide`, guideLastmod, '0.8', 'daily', images);
         }

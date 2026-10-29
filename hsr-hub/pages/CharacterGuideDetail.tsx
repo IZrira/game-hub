@@ -9,7 +9,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
 import { useTranslation } from 'react-i18next';
 import { getHsrCharacterArtUrl } from '../../common-hub/utils/assetManager';
-import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
+import { sanitizePublicHsrGuideData } from '../../common-hub/utils/publicGuideLinks';
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
 
 const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
@@ -122,10 +122,10 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
   const guide = useMemo(() => {
     if (!character) {
       const searchName = normalizeName(resolvedKoName || "");
-      return sanitizePublicGuideData(HSR_CHARACTER_GUIDES.find(g => normalizeName(g.characterName) === searchName));
+      return sanitizePublicHsrGuideData(HSR_CHARACTER_GUIDES.find(g => normalizeName(g.characterName) === searchName));
     }
     const searchName = normalizeName(character.name || character.folderName || resolvedKoName || "");
-    return sanitizePublicGuideData(HSR_CHARACTER_GUIDES.find(g =>
+    return sanitizePublicHsrGuideData(HSR_CHARACTER_GUIDES.find(g =>
       g.characterName === character.name ||
       g.characterName === character.folderName ||
       normalizeName(g.characterName) === searchName ||

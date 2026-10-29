@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { sanitizePublicGuideData } from './lib/public-guide-links.js';
+import { sanitizePublicGuideData, sanitizePublicHsrGuideData } from './lib/public-guide-links.js';
 import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
@@ -346,7 +346,7 @@ function loadHsrGuidesMap() {
 
         const match = content.match(/const\s+([^\s=:]+)\s*=\s*([\s\S]+?);?\s*$/);
         if (match && match[2]) {
-          const obj = sanitizePublicGuideData(new Function('return ' + match[2])());
+          const obj = sanitizePublicHsrGuideData(new Function('return ' + match[2])());
           if (obj && obj.characterName) {
             map.set(obj.characterName.trim(), obj);
             map.set(file.replace('.ts', '').trim(), obj);
