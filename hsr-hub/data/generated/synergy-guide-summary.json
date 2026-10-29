@@ -216,7 +216,7 @@
   {
     "characterName": "블랙 스완",
     "analysis": {
-      "role": "지속 피해 핵심 딜러"
+      "role": "아르카나 지속 피해·방어력 감소"
     }
   },
   {
@@ -240,7 +240,7 @@
   {
     "characterName": "삼포",
     "analysis": {
-      "role": "풍화 지속 피해 딜러"
+      "role": "풍화 딜러·지속 피해 증폭"
     }
   },
   {
@@ -258,7 +258,7 @@
   {
     "characterName": "설의",
     "analysis": {
-      "role": "격파·추가 공격 딜러"
+      "role": "강인성 소모·추가 공격 딜러"
     }
   },
   {
