@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { sanitizePublicGuideData, sanitizePublicHsrGuideData } from './lib/public-guide-links.js';
+import { attachNteGuideAnalysis, renderNteGuideAnalysis } from './lib/nte-guide-analysis.js';
 import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
@@ -2745,8 +2746,9 @@ function runPrerender() {
   });
 
   // 6-1. Hub-specific reviewed guides
+  const nteAnalyses = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'nte-hub/data/guideAnalysis.json'), 'utf8'));
   const guideArticles = fs.existsSync(GUIDE_ARTICLES_FILE)
-    ? sanitizePublicGuideData(JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8'))).filter(article => article.status === 'published')
+    ? sanitizePublicGuideData(JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8')).map(article => attachNteGuideAnalysis(article, nteAnalyses))).filter(article => article.status === 'published')
     : [];
   const guideLanding = fs.existsSync(GUIDE_LANDING_FILE)
     ? JSON.parse(fs.readFileSync(GUIDE_LANDING_FILE, 'utf8'))
@@ -2807,7 +2809,7 @@ function runPrerender() {
       else if (text.startsWith('- ')) contentParts.push(`<p>${renderGuideInline(text.slice(2))}</p>`);
       else if (text) contentParts.push(`<p>${renderGuideInline(text)}</p>`);
     }
-    const contentHtml = contentParts.join('');
+    const contentHtml = contentParts.join('') + renderNteGuideAnalysis(article.analysis, escapeHtml);
     createPrerenderedPage(
       `/gallery/${article.gameId}/guides/${encodeURIComponent(article.slug)}`,
       article.title,

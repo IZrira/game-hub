@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { createUnknownWebp } from './create_unknown_webp.js';
 import { getHsrGuideRegistry, findRegisteredHsrGuide } from './lib/hsr-guide-routes.js';
+import { attachNteGuideAnalysis } from './lib/nte-guide-analysis.js';
 
 createUnknownWebp();
 
@@ -503,7 +504,9 @@ async function generateSitemap() {
     addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/party-builder`, null, '0.8', 'weekly', [defaultBanner]);
 
     if (fs.existsSync(GUIDE_ARTICLES_FILE)) {
+      const nteAnalyses = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'nte-hub/data/guideAnalysis.json'), 'utf8'));
       const publishedGuides = JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8'))
+        .map(article => attachNteGuideAnalysis(article, nteAnalyses))
         .filter(article => article.status === 'published');
       const guideTargets = { hsr: hsrEntries, ww: wwEntries, nte: nteEntries, aniimo: aniimoEntries };
       const gamesWithGuides = new Set(publishedGuides.map(article => article.gameId));

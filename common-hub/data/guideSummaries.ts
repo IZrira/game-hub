@@ -1,7 +1,7 @@
 import summaries from './generated/guide-summaries.json';
 import type { GuideArticle } from './guideArticles';
 
-export type GuideSummary = Omit<GuideArticle, 'content' | 'sources'>;
+export type GuideSummary = Omit<GuideArticle, 'content' | 'sources' | 'analysis'>;
 export const GUIDE_SUMMARIES = summaries as GuideSummary[];
 
 export const getPublishedGuides = (gameId: string) =>

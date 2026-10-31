@@ -26,6 +26,21 @@ const renderGuide = (slug = article.slug) => render(
 );
 
 describe('NTE guide selected console and conditions', () => {
+  it('switches between reviewed analysis and the unchanged setup, resetting on navigation', async () => {
+    renderGuide('파디아-build-guide');
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
+    const setupText = screen.getByRole('region', { name: '추천 세팅 요약' }).textContent;
+    fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
+    expect(screen.getByRole('heading', { name: 'RIRA 한줄평' })).toBeTruthy();
+    expect(screen.queryByRole('region', { name: '추천 세팅 요약' })).toBeNull();
+    fireEvent.click(screen.getByRole('button', { name: '세팅 가이드' }));
+    expect(screen.getByRole('region', { name: '추천 세팅 요약' }).textContent).toBe(setupText);
+    fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
+    fireEvent.click(screen.getByRole('link', { name: '레이븐 공략 이동' }));
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
+    expect(screen.getByRole('heading', { level: 1, name: /레이븐/ })).toBeTruthy();
+    expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(true);
+  });
   it('does not bundle all article bodies into the NTE setup page', async () => {
     const result = await build({ entryPoints: ['nte-hub/pages/CharacterGuideDetail.tsx'], bundle: true, packages: 'external', outdir: 'unused', write: false, metafile: true, logLevel: 'silent' });
     expect(Object.keys(result.metafile!.inputs).some(file => /guideArticles\.(json|ts)$/.test(file))).toBe(false);

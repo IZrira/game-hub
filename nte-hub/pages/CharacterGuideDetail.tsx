@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
-import { GuideBuildContent, GuideFooter, GuideViewTabs, parseGuideOption } from '../../common-hub/components/guides/GuideContent';
+import { GuideAnalysis, GuideBuildContent, GuideFooter, GuideViewTabs, parseGuideOption } from '../../common-hub/components/guides/GuideContent';
 import { getPublishedGuides } from '../../common-hub/data/guideSummaries';
 import type { GuideArticle } from '../../common-hub/data/guideArticles';
 import { useGuideArticle } from '../../common-hub/hooks/useGuideArticle';
@@ -32,6 +32,8 @@ export default function CharacterGuideDetail() {
 
 function CharacterGuideContent({ article, character }: { article: GuideArticle; character: (typeof NTE_CHARACTER_DATA)[number] }) {
   const [selectedConsole, setSelectedConsole] = useState(0);
+  const [activeGuideView, setActiveGuideView] = useState<'setup' | 'analysis'>('setup');
+  const analysis = article.analysis?.status === 'published' ? article.analysis : undefined;
 
   const guide = parseNteCharacterGuide(article.content);
   const currentConsole = guide.consoles[selectedConsole] || guide.consoles[0];
@@ -55,9 +57,15 @@ function CharacterGuideContent({ article, character }: { article: GuideArticle; 
   return <div className="min-h-screen bg-[#0a0a0a] text-white">
     <SEO title={`이환 ${character.name} 공략 | 아크 · 콘솔 세팅 · 육성 우선순위`} description={article.excerpt} image={characterImage(character)} url={url} gameCategory="이환 (NTE)" itemType="세팅 가이드" type="article" publishedTime={article.publishedAt} modifiedTime={article.reviewedAt} breadcrumbData={[{ name: '홈', url: '/' }, { name: '이환', url: '/gallery/nte' }, { name: character.name, url: characterUrl }, { name: '세팅 가이드', url }]} />
     <PageHeader gameId="nte" title={`${character.name} 공략`} category="공략" categoryUrl="/gallery/nte?menu=공략" />
-    <GuideLayout navigationKey={`${article.slug}:${selectedConsole}`}>
+    <GuideLayout navigationKey={`${article.slug}:${selectedConsole}:${activeGuideView}`}>
       <GuideHero name={character.name} image={characterImage(character)} backTo={characterUrl} version={article.applicableVersion} updatedAt={article.reviewedAt} tags={[character.arc, `${character.attribute}속성`]} />
-      <GuideViewTabs value="setup" onChange={() => {}} analysisAvailable={false} />
+      <GuideViewTabs value={activeGuideView} onChange={setActiveGuideView} analysisAvailable={Boolean(analysis)} />
+      {activeGuideView === 'analysis' && analysis ? <GuideAnalysis data={{
+        summary: analysis.summary,
+        metadata: [{ label: '역할', value: analysis.role }, { label: '분석 기준', value: analysis.standard }, { label: '검토', value: analysis.reviewedAt }, { label: '작성·검수', value: analysis.reviewer }],
+        strengths: analysis.strengths, weaknesses: analysis.weaknesses, teamPrinciple: analysis.teamPrinciple,
+        overview: analysis.gameplay.overview, rotation: analysis.gameplay.rotation, tips: analysis.gameplay.tips,
+      }} /> : <>
       {guide.consoles.length > 1 && <GuideVariantSelector label="세팅 선택" description="콘솔 설명과 세트 효과만 바뀝니다. 주·부옵션과 기본 목표는 공통이며, 별도 조건을 함께 확인하세요." options={guide.consoles.map((set, index) => ({ label: set.name, value: String(index) }))} value={String(selectedConsole)} onChange={value => setSelectedConsole(Number(value))} />}
       <GuideSummary items={[
         { label: '우선 추천 아크', value: guide.arcs[0]?.name || '', image: primary[0].items[0]?.image },
@@ -65,6 +73,7 @@ function CharacterGuideContent({ article, character }: { article: GuideArticle; 
         { label: '기본 목표', value: guide.statGroups[0]?.items.filter(item => !conditional(item.label)).map(item => ({ label: item.label, value: item.value })) || [] },
       ]} />
       <GuideBuildContent primary={primary} sets={sets} options={options} subStats={guide.subStats} targets={targets} skills={skills} awakenings={awakenings} members={members} optionNote="아래 주·부옵션은 공통 기준입니다. 조건이 붙은 설명은 그대로 함께 확인하세요." notes={guide.notes} />
+      </>}
       <GuideFooter updatedAt={article.reviewedAt} action={<Link to="/gallery/nte?menu=공략" className="guide-back-link">캐릭터 공략 목록</Link>} />
     </GuideLayout>
   </div>;
