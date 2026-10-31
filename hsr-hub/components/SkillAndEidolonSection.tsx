@@ -416,11 +416,11 @@ export default function SkillAndEidolonSection({
         </div>
       </section>
 
-      {/* 08 성흔 / 공명 체인 */}
+      {/* 성혼: 기억 정령 유무에 따라 섹션 번호 07/08 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '08' : '07'}</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">{t('성흔', { keySeparator: false, nsSeparator: false })}</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">{t('성혼', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         <div className="grid grid-cols-1 gap-8">
           {char.eidolons?.map((eidolon: any, idx) => {
