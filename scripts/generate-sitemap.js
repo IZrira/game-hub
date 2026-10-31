@@ -1,4 +1,6 @@
 import fs from 'fs';
+import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
+import { getWaveLocations, aniimoLocationPath } from './lib/aniimo-locations.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createUnknownWebp } from './create_unknown_webp.js';
@@ -521,7 +523,7 @@ async function generateSitemap() {
     }
 
     const aniimoFileLastmod = getFileLastmod(ANIIMO_DATA_FILE);
-    const aniimoItems = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+    const aniimoItems = loadAniimoCatalog(ROOT_DIR);
     aniimoItems.forEach(item => {
       addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/character/${encodeURIComponent(item.name)}`, item.checkedAt || aniimoFileLastmod, '0.8', 'weekly', item.imageUrl ? [item.imageUrl] : []);
     });
@@ -546,6 +548,11 @@ async function generateSitemap() {
     OFFICIAL_ANIIMO_HABITATS.forEach(habitat => {
       const slug = habitat.trim().replace(/\s+/g, '-');
       addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`, aniimoFileLastmod, '0.7', 'weekly');
+    });
+    getWaveLocations(aniimoItems).forEach(location => {
+      const entries = aniimoItems.filter(item => item.regionId === location.regionId && item.forms.some(form => form.locations.includes(location.name)));
+      const lastmod = entries.map(item => item.checkedAt).filter(Boolean).sort().at(-1) || aniimoFileLastmod;
+      addEntry(aniimoEntries, `${BASE_URL}${aniimoLocationPath(location.name, location.regionId)}`, lastmod, '0.7', 'weekly');
     });
 
     // 6. Blog & Notices -> sitemap-blog.xml

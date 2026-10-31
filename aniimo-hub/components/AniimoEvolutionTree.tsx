@@ -3,27 +3,25 @@ import { Link } from 'react-router';
 import { ChevronRight, GitBranch } from 'lucide-react';
 import type { AniimoEntry, AniimoEvolutionNode, AniimoForm } from '../types';
 import aniimoSummary from '../data/aniimo-summary.json';
+import { findAniimoEvolutionEntry } from '../utils/identity';
 
-type AniimoTreeEntry = Pick<AniimoEntry, 'number' | 'name' | 'elements' | 'positions'> & {
-  forms: Array<Pick<AniimoForm, 'key' | 'label'>>;
+type AniimoTreeEntry = Pick<AniimoEntry, 'id' | 'regionId' | 'number' | 'name' | 'elements' | 'positions'> & {
+  forms: Array<Pick<AniimoForm, 'key' | 'label' | 'elements' | 'positions'>>;
 };
 
 const allAniimos = aniimoSummary as AniimoTreeEntry[];
-const aniimoMap = new Map<string, AniimoTreeEntry>();
-allAniimos.forEach(a => {
-  aniimoMap.set(a.name, a);
-  aniimoMap.set(a.number, a);
-});
 
 interface AniimoEvolutionTreeProps {
   currentName: string;
   currentFormKey?: string;
+  regionId?: string;
   nodes: AniimoEvolutionNode[];
 }
 
 export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
   currentName,
   currentFormKey = 'basic-form',
+  regionId,
   nodes
 }) => {
   // Stage sequence definition
@@ -38,7 +36,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
       if (!stageMap.has(stageName)) {
         stageMap.set(stageName, []);
       }
-      const entry = aniimoMap.get(node.name) || (node.number ? aniimoMap.get(node.number) : undefined);
+      const entry = findAniimoEvolutionEntry(allAniimos, node, regionId);
       stageMap.get(stageName)!.push({ node, entry });
     });
 
@@ -51,7 +49,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
       if (idxB !== -1) return 1;
       return 0;
     });
-  }, [nodes]);
+  }, [nodes, regionId]);
 
   if (!nodes || nodes.length === 0) return null;
 
@@ -65,15 +63,15 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
               <span>{stageName}</span>
               <ul>
                 {items.map(({ node, entry }) => (
-                  <li key={`${node.number}-${node.name}`}>
-                    <a href={`/gallery/aniimo/character/${encodeURIComponent(node.name)}`}>
-                      NO.{node.number} {node.name} ({entry?.elements?.join('/') || ''})
+                  <li key={`${node.id || node.number}-${node.formKey}-${node.imageUrl}`}>
+                    <a href={node.name ? `/gallery/aniimo/character/${encodeURIComponent(node.name)}${node.formKey && node.formKey !== 'basic-form' ? `?form=${encodeURIComponent(node.formKey)}` : ''}` : undefined}>
+                      {node.number ? `NO.${node.number}` : '공식 정보 미제공'} {node.name || '미확인'} ({entry?.elements?.join('/') || ''})
                     </a>
                     {entry?.forms && entry.forms.length > 1 && (
                       <ul>
                         {entry.forms.map(f => (
                           <li key={f.key}>
-                            <a href={`/gallery/aniimo/character/${encodeURIComponent(node.name)}?form=${encodeURIComponent(f.key)}`}>
+                            <a href={`/gallery/aniimo/character/${encodeURIComponent(node.name || '')}?form=${encodeURIComponent(f.key)}`}>
                               {f.label}
                             </a>
                           </li>
@@ -108,14 +106,15 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
 
                 <div className="flex flex-col gap-4">
                   {items.map(({ node, entry }) => {
-                    const isCurrentChar = node.name === currentName;
-                    const allForms = entry?.forms && entry.forms.length > 0 ? entry.forms : [];
-                    const displayElements = entry?.elements || [];
-                    const displayPositions = entry?.positions || [];
+                    const isCurrentChar = node.name === currentName && (!regionId || node.formKey === currentFormKey);
+                    const allForms = entry?.forms && entry.forms.length > 0 ? (regionId ? entry.forms.filter(form => form.key === node.formKey) : entry.forms) : [];
+                    const nodeForm = regionId ? entry?.forms.find(form => form.key === node.formKey) : undefined;
+                    const displayElements = nodeForm?.elements || entry?.elements || [];
+                    const displayPositions = nodeForm?.positions || entry?.positions || [];
 
                     return (
                       <div
-                        key={`${node.number}-${node.name}`}
+                        key={`${node.id || node.number}-${node.formKey}-${node.imageUrl}`}
                         className={`relative group flex flex-col w-56 rounded-2xl border transition-all duration-300 p-4 ${
                           isCurrentChar
                             ? 'border-violet-400 bg-gradient-to-b from-violet-500/15 via-[#161325] to-[#111118] shadow-[0_0_28px_rgba(167,139,250,0.25)] ring-1 ring-violet-400/40'
@@ -129,34 +128,35 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                         )}
 
                         {/* Card Header & Avatar */}
-                        <Link
-                          to={`/gallery/aniimo/character/${encodeURIComponent(node.name)}`}
+                        <EvolutionNodeLink
+                          node={node}
                           className="flex items-center gap-3"
                         >
                           <div className="relative h-14 w-14 shrink-0 rounded-xl bg-white/5 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
                             {node.imageUrl ? (
                               <img
                                 src={node.imageUrl}
-                                alt={`${node.name} 아이콘`}
+                                alt={`${node.name || '미확인'} 아이콘`}
                                 loading="lazy"
                                 referrerPolicy="no-referrer"
                                 className="h-full w-full object-contain"
                               />
                             ) : (
                               <div className="h-full w-full flex items-center justify-center text-[10px] text-gray-600">
-                                NO.{node.number}
+                                {node.number ? `NO.${node.number}` : '공식 정보 미제공'}
                               </div>
                             )}
                           </div>
                           <div className="min-w-0 flex-1">
                             <span className="text-[9px] font-bold text-gray-500 tracking-wider">
-                              NO.{node.number}
+                              {node.number ? `NO.${node.number}` : '공식 정보 미제공'}
                             </span>
                             <h4 className={`text-sm font-black truncate transition-colors ${
                               isCurrentChar ? 'text-violet-300' : 'text-white group-hover:text-violet-300'
                             }`}>
-                              {node.name}
+                              {node.name || '미확인'}
                             </h4>
+                            {regionId && node.formLabel && <span className="text-[10px] text-violet-300">{node.formLabel}</span>}
                             <div className="mt-1 flex items-center gap-1.5 text-[10px] font-semibold text-gray-400">
                               {displayElements.length > 0 && <span>{displayElements.join('/')}</span>}
                               {displayPositions.length > 0 && (
@@ -167,7 +167,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                               )}
                             </div>
                           </div>
-                        </Link>
+                        </EvolutionNodeLink>
 
                         {/* Forms Pills */}
                         {allForms.length > 1 && (
@@ -182,7 +182,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                                 return (
                                   <Link
                                     key={form.key}
-                                    to={`/gallery/aniimo/character/${encodeURIComponent(node.name)}${
+                                    to={`/gallery/aniimo/character/${encodeURIComponent(node.name || '')}${
                                       form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''
                                     }`}
                                     className={`px-1.5 py-0.5 rounded text-[9px] font-black transition-all ${
@@ -240,28 +240,29 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
 
               <div className="pl-3 border-l-2 border-violet-500/20 space-y-3 ml-1">
                 {items.map(({ node, entry }) => {
-                  const isCurrentChar = node.name === currentName;
-                  const allForms = entry?.forms && entry.forms.length > 0 ? entry.forms : [];
-                  const displayElements = entry?.elements || [];
+                  const isCurrentChar = node.name === currentName && (!regionId || node.formKey === currentFormKey);
+                  const allForms = entry?.forms && entry.forms.length > 0 ? (regionId ? entry.forms.filter(form => form.key === node.formKey) : entry.forms) : [];
+                  const nodeForm = regionId ? entry?.forms.find(form => form.key === node.formKey) : undefined;
+                  const displayElements = nodeForm?.elements || entry?.elements || [];
 
                   return (
                     <div
-                      key={`${node.number}-${node.name}`}
+                      key={`${node.id || node.number}-${node.formKey}-${node.imageUrl}`}
                       className={`rounded-2xl border p-3.5 transition-all ${
                         isCurrentChar
                           ? 'border-violet-400/80 bg-violet-500/10'
                           : 'border-white/10 bg-white/[0.02]'
                       }`}
                     >
-                      <Link
-                        to={`/gallery/aniimo/character/${encodeURIComponent(node.name)}`}
+                      <EvolutionNodeLink
+                        node={node}
                         className="flex items-center gap-3"
                       >
                         <div className="h-12 w-12 shrink-0 rounded-xl bg-white/5 border border-white/10 p-1">
                           {node.imageUrl && (
                             <img
                               src={node.imageUrl}
-                              alt={node.name}
+                              alt={node.name || '미확인'}
                               loading="lazy"
                               referrerPolicy="no-referrer"
                               className="h-full w-full object-contain"
@@ -270,7 +271,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center justify-between">
-                            <span className="text-[9px] font-bold text-gray-500">NO.{node.number}</span>
+                            <span className="text-[9px] font-bold text-gray-500">{node.number ? `NO.${node.number}` : '공식 정보 미제공'}</span>
                             {isCurrentChar && (
                               <span className="text-[9px] font-black text-violet-300 bg-violet-400/20 px-1.5 py-0.5 rounded">
                                 현재 선택
@@ -278,13 +279,14 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                             )}
                           </div>
                           <strong className={`block text-sm font-black ${isCurrentChar ? 'text-violet-300' : 'text-white'}`}>
-                            {node.name}
+                            {node.name || '미확인'}
                           </strong>
+                          {regionId && node.formLabel && <span className="block text-[10px] text-violet-300">{node.formLabel}</span>}
                           <span className="text-[10px] text-gray-400 font-semibold">
                             {displayElements.join('/')}
                           </span>
                         </div>
-                      </Link>
+                      </EvolutionNodeLink>
 
                       {allForms.length > 1 && (
                         <div className="mt-2.5 pt-2.5 border-t border-white/5">
@@ -294,7 +296,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                               return (
                                 <Link
                                   key={form.key}
-                                  to={`/gallery/aniimo/character/${encodeURIComponent(node.name)}${
+                                  to={`/gallery/aniimo/character/${encodeURIComponent(node.name || '')}${
                                     form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''
                                   }`}
                                   className={`px-2 py-0.5 rounded text-[9px] font-black ${
@@ -321,5 +323,10 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
     </div>
   );
 };
+
+const EvolutionNodeLink = ({ node, className, children }: { node: AniimoEvolutionNode; className?: string; children: React.ReactNode }) =>
+  node.name
+    ? <Link className={className} to={`/gallery/aniimo/character/${encodeURIComponent(node.name)}${node.formKey && node.formKey !== 'basic-form' ? `?form=${encodeURIComponent(node.formKey)}` : ''}`}>{children}</Link>
+    : <div className={className}>{children}</div>;
 
 export default AniimoEvolutionTree;

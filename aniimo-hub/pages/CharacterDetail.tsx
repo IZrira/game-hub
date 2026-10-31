@@ -7,12 +7,13 @@ import aniimoSummary from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoEvolutionNode, AniimoForm, AniimoSkill, AniimoStats } from '../types';
 import { getAniimoLocationPath } from '../utils/location';
 import { getEvolutionCondition } from '../data/evolutionConditions';
-import { ANIIMO_ENGLISH_NAMES, getAniimoEvolutionStage } from '../utils/evolutionStage';
+import { getAniimoEnglishName, getAniimoEvolutionStage } from '../utils/evolutionStage';
+import { getAniimoId, isSameAniimo } from '../utils/identity';
 import { ELEMENT_META, getElementMatchups } from '../data/elementChart';
 import { getRecommendedPersonality } from '../data/personality';
 import { AniimoEvolutionTree } from '../components/AniimoEvolutionTree';
 
-type AniimoSummaryEntry = Pick<AniimoEntry, 'number' | 'name' | 'imageUrl' | 'elements' | 'positions'> & {
+type AniimoSummaryEntry = Pick<AniimoEntry, 'id' | 'regionId' | 'regionName' | 'number' | 'name' | 'imageUrl' | 'elements' | 'positions'> & {
   forms: Array<Pick<AniimoForm, 'key' | 'label' | 'imageUrl' | 'elements' | 'positions' | 'locations'>>;
 };
 
@@ -64,9 +65,10 @@ const CharacterDetailAniimo: React.FC = () => {
   const requestedFormKey = searchParams.get('form');
   const [skillTab, setSkillTab] = useState<'combat' | 'unique'>('combat');
   const [formKey, setFormKey] = useState(requestedFormKey || summaryItem?.forms?.[0]?.key || 'basic-form');
-  const index = summaryItem ? entries.findIndex(entry => entry.number === summaryItem.number) : -1;
-  const previous = index >= 0 ? entries[(index - 1 + entries.length) % entries.length] : null;
-  const next = index >= 0 ? entries[(index + 1) % entries.length] : null;
+  const regionEntries = entries.filter(entry => entry.regionId === summaryItem?.regionId);
+  const index = summaryItem ? regionEntries.findIndex(entry => isSameAniimo(entry, summaryItem)) : -1;
+  const previous = index >= 0 ? regionEntries[(index - 1 + regionEntries.length) % regionEntries.length] : null;
+  const next = index >= 0 ? regionEntries[(index + 1) % regionEntries.length] : null;
 
   useEffect(() => {
     if (!summaryItem) return;
@@ -74,12 +76,15 @@ const CharacterDetailAniimo: React.FC = () => {
     setItem(null);
     setLoadFailed(false);
 
-    fetch(`/assets/data/aniimo/${encodeURIComponent(summaryItem.number)}.json`, { signal: controller.signal })
+    fetch(`/assets/data/aniimo/${encodeURIComponent(getAniimoId(summaryItem))}.json`, { signal: controller.signal })
       .then(response => {
         if (!response.ok) throw new Error(`Failed to load Aniimo detail: ${response.status}`);
         return response.json() as Promise<AniimoEntry>;
       })
-      .then(setItem)
+      .then(detail => {
+        if (!isSameAniimo(detail, summaryItem)) throw new Error('Aniimo detail identity mismatch');
+        setItem(detail);
+      })
       .catch(error => {
         if (error instanceof DOMException && error.name === 'AbortError') return;
         console.error(error);
@@ -87,13 +92,13 @@ const CharacterDetailAniimo: React.FC = () => {
       });
 
     return () => controller.abort();
-  }, [summaryItem?.number]);
+  }, [summaryItem?.id, summaryItem?.number]);
 
   useEffect(() => {
     if (!item) return;
     setFormKey(item?.forms?.some(form => form.key === requestedFormKey) ? requestedFormKey! : item?.forms?.[0]?.key || 'basic-form');
     setSkillTab('combat');
-  }, [item?.number, requestedFormKey]);
+  }, [item?.id, item?.number, requestedFormKey]);
   if (!summaryItem) return <main className="min-h-[70vh] bg-[#0a0a0a] px-6 py-24 text-center text-white"><h1 className="text-3xl font-black">애니모를 찾을 수 없습니다.</h1><Link to="/gallery/aniimo" className="mt-6 inline-block text-violet-300">도감으로 돌아가기</Link></main>;
   if (!item) return <main className="flex min-h-[70vh] flex-col items-center justify-center bg-[#0a0a0a] px-6 py-24 text-center text-white"><div className="h-10 w-10 animate-spin rounded-full border-2 border-white/10 border-t-violet-300" /><p className="mt-5 text-sm font-bold text-gray-400">{loadFailed ? '상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.' : '애니모 상세 데이터를 불러오는 중입니다.'}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-violet-400/10 px-4 py-2 text-xs font-black text-violet-300 hover:bg-violet-400/20">다시 시도</button>}</main>;
   const activeForm: AniimoForm | undefined = item.forms?.find(form => form.key === formKey) || item.forms?.[0];
@@ -111,18 +116,18 @@ const CharacterDetailAniimo: React.FC = () => {
   const displayEvolution = activeForm?.evolution || item.evolution;
   const displayResonanceLevels = activeForm?.resonanceLevels || item.resonanceLevels;
   const evolutionStage = getAniimoEvolutionStage(item, activeForm);
-  const englishName = ANIIMO_ENGLISH_NAMES[item.number];
+  const englishName = getAniimoEnglishName(item);
   const elementMatchups = getElementMatchups(displayElements);
   const recommendedPersonality = activeForm ? getRecommendedPersonality(activeForm) : null;
   const activeSkills = skillTab === 'combat' ? displayCombatSkills : displayUniqueSkills;
   const evolutionStages = ['유년기', '성장기', '성숙기'].map(stage => ({ stage, nodes: displayEvolution.filter(node => node.stage === stage) })).filter(group => group.nodes.length > 0);
-  const evolutionRequirements = displayEvolution.map(node => ({ node, condition: getEvolutionCondition(node.number, node.formKey) })).filter((value): value is { node: AniimoEvolutionNode; condition: string } => Boolean(value.condition));
+  const evolutionRequirements = displayEvolution.map(node => ({ node, condition: getEvolutionCondition(node.number, node.formKey, item.regionId) })).filter((value): value is { node: AniimoEvolutionNode; condition: string } => Boolean(value.condition));
 
   // 연관 애니모 데이터 추출
-  const sameElementAniimos = entries.filter(e => e.number !== item.number && e.elements.some(elem => displayElements.includes(elem))).slice(0, 6);
-  const samePositionAniimos = entries.filter(e => e.number !== item.number && e.positions.some(pos => displayPositions.includes(pos))).slice(0, 6);
+  const sameElementAniimos = entries.filter(e => !isSameAniimo(e, item) && e.elements.some(elem => displayElements.includes(elem))).slice(0, 6);
+  const samePositionAniimos = entries.filter(e => !isSameAniimo(e, item) && e.positions.some(pos => displayPositions.includes(pos))).slice(0, 6);
   const sameLocationAniimos = displayLocations.length > 0
-    ? entries.filter(e => e.number !== item.number && e.forms.some(f => f.locations.some(loc => displayLocations.includes(loc)))).slice(0, 6)
+    ? entries.filter(e => !isSameAniimo(e, item) && e.forms.some(f => f.locations.some(loc => displayLocations.includes(loc)))).slice(0, 6)
     : [];
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
@@ -138,7 +143,7 @@ const CharacterDetailAniimo: React.FC = () => {
       <section className="grid overflow-hidden rounded-[32px] border border-white/10 bg-[#121212] lg:grid-cols-[minmax(0,430px)_1fr]">
         <div className="relative min-h-[360px] bg-gradient-to-br from-violet-500/20 via-cyan-400/5 to-transparent p-8"><span className="absolute left-5 top-5 text-xs font-black italic tracking-[0.25em] text-white/30">NO.{item.number}</span>{displayImage && <img src={displayImage} alt={`${item.name} ${activeForm?.label || ''} 이미지`} referrerPolicy="no-referrer" className="h-full max-h-[460px] w-full object-contain" />}</div>
         <div className="p-7 sm:p-10">
-          <div className="flex flex-wrap items-center gap-3"><div className="mr-1"><h1 className="text-4xl sm:text-5xl font-black tracking-tighter">{item.name}</h1><p className="mt-1 text-sm font-bold text-gray-500">{englishName}</p><p className="mt-2 text-xs font-black tracking-[0.16em] text-violet-300">{evolutionStage}</p></div>{displayElements.map(value => <Link key={value} to={`/gallery/aniimo/characters?element=${encodeURIComponent(value)}`}><Badge value={value} accent /></Link>)}{displayPositions.map(value => <Link key={value} to={`/gallery/aniimo/characters?position=${encodeURIComponent(value)}`}><Badge value={value} /></Link>)}</div>
+          <div className="flex flex-wrap items-center gap-3"><div className="mr-1"><h1 className="text-4xl sm:text-5xl font-black tracking-tighter">{item.name}</h1><p className="mt-1 text-sm font-bold text-gray-500">{englishName}</p><p className="mt-2 text-xs font-black tracking-[0.16em] text-violet-300">{item.regionName && `${item.regionName} · `}{evolutionStage}</p></div>{displayElements.map(value => <Link key={value} to={`/gallery/aniimo/characters?element=${encodeURIComponent(value)}`}><Badge value={value} accent /></Link>)}{displayPositions.map(value => <Link key={value} to={`/gallery/aniimo/characters?position=${encodeURIComponent(value)}`}><Badge value={value} /></Link>)}</div>
           {item.forms?.length > 1 && <div className="mt-6 flex flex-wrap gap-2"><span className="w-full text-[11px] font-bold text-gray-400 mb-1">형태 변환 (능력치·원소 변경):</span>{item.forms.map(form => <button key={form.key} onClick={() => { setFormKey(form.key); setSearchParams(form.key === item.forms[0]?.key ? {} : { form: form.key }, { replace: true }); }} className={`rounded-xl px-4 py-2 text-xs font-black transition ${activeForm?.key === form.key ? 'bg-violet-400 text-black shadow-lg shadow-violet-500/20' : 'bg-white/5 text-gray-400 hover:text-white'}`}>{form.label}</button>)}</div>}
           <div className="mt-7"><h2 className="text-sm font-black text-violet-300">소개</h2><p className="mt-2 text-sm leading-7 text-gray-300">{displayDescription}</p></div>
           <div className="mt-8 space-y-3">{Object.entries(displayStats).map(([key, value]) => { const statKey = key as keyof AniimoStats; const numeric = value ?? 0; return <div key={key} className="grid grid-cols-[90px_1fr_36px] items-center gap-3 text-xs"><span className="font-bold text-gray-400">{STAT_LABELS[statKey]}</span><div className="h-2 overflow-hidden rounded-full bg-white/10"><div className="h-full rounded-full bg-gradient-to-r from-violet-500 to-cyan-400" style={{ width: `${Math.min(100, numeric / STAT_MAX[statKey] * 100)}%` }} /></div><span className="text-right font-black">{value ?? '-'}</span></div>; })}</div>
@@ -152,7 +157,7 @@ const CharacterDetailAniimo: React.FC = () => {
       {(item.evolution?.length || 0) > 0 && <Section title="진화 계보 및 조건">
         <p className="mb-4 text-xs text-gray-400">단계별 진화(유년기 → 성장기 → 성숙기) 흐름입니다. 지역에 따른 형태 변환과 구별되며, 조건 충족 시 진화가 해제됩니다.</p>
         <Link to="/gallery/aniimo/guides/evolution-and-forms-guide" className="mb-5 inline-flex items-center gap-2 rounded-xl bg-violet-400/10 px-4 py-2 text-xs font-black text-violet-300 hover:bg-violet-400/15 hover:text-white">진화와 형태 선택 기준 보기 <ChevronRight size={14} /></Link>
-        <AniimoEvolutionTree currentName={item.name} currentFormKey={activeForm?.key} nodes={item.evolution || []} />
+        {(activeForm?.evolutionRoutes || item.evolutionRoutes)?.length ? (activeForm?.evolutionRoutes || item.evolutionRoutes)!.map((route, routeIndex) => <AniimoEvolutionTree key={routeIndex} currentName={item.name} currentFormKey={activeForm?.key} regionId={item.regionId} nodes={route} />) : <AniimoEvolutionTree currentName={item.name} currentFormKey={activeForm?.key} regionId={item.regionId} nodes={item.regionId ? displayEvolution : item.evolution || []} />}
         {evolutionRequirements.length > 0 && <div className="mt-6 border-t border-white/10 pt-6"><h3 className="flex items-center gap-2 text-sm font-black"><Target size={16} className="text-violet-300" /> 진화 해제 &amp; 기준 상세</h3><div className="mt-4 grid gap-3 lg:grid-cols-2">{evolutionRequirements.map(({ node, condition }) => {
           const parsed = parseEvolutionCondition(condition);
           return <article key={`${node.number}-${node.formKey}`} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 space-y-3">
@@ -189,7 +194,7 @@ const CharacterDetailAniimo: React.FC = () => {
       </Section>}
 
       <div className="grid gap-6 md:grid-cols-2">
-        {displayLocations.length > 0 && <Section title="출현 지역" icon={<MapPin size={18} />}><div className="flex flex-wrap gap-2">{displayLocations.map(location => <Link key={location} to={getAniimoLocationPath(location)} className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-black text-gray-300 transition hover:bg-violet-400/15 hover:text-violet-300">{location}</Link>)}</div></Section>}
+        {displayLocations.length > 0 && <Section title="출현 지역" icon={<MapPin size={18} />}><div className="flex flex-wrap gap-2">{displayLocations.map(location => item.regionId && location === '미확인 구역' ? <span key={location} className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-black text-gray-300">{location}</span> : <Link key={location} to={getAniimoLocationPath(location, item.regionId)} className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-black text-gray-300 transition hover:bg-violet-400/15 hover:text-violet-300">{location}</Link>)}</div></Section>}
         {displayHomeAbilities.length > 0 && <Section title="홈 능력" icon={<Home size={18} />}><div className="grid gap-3 sm:grid-cols-2">{displayHomeAbilities.map((ability, abilityIndex) => <article key={`${ability.type}-${abilityIndex}`} className="rounded-2xl border border-white/10 bg-white/5 p-4"><div className="flex items-center justify-between gap-3"><h3 className="font-black text-white">{ability.name}</h3><span className="rounded-lg bg-violet-400/15 px-2.5 py-1 text-sm font-black text-violet-300">Lv.{ability.value ?? '-'}</span></div><p className="mt-2 text-xs leading-5 text-gray-400">{ability.description}</p></article>)}</div></Section>}
       </div>
 
@@ -208,7 +213,7 @@ const CharacterDetailAniimo: React.FC = () => {
                 <h3 className="text-xs font-black uppercase tracking-wider text-violet-300 mb-3">같은 원소 ({displayElements.join(', ')}) 애니모</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                   {sameElementAniimos.map(related => (
-                    <Link key={related.number} to={`/gallery/aniimo/character/${encodeURIComponent(related.name)}`} className="group rounded-2xl border border-white/5 bg-white/[0.02] p-3 text-center transition hover:border-violet-400/40 hover:bg-white/[0.05]">
+                    <Link key={getAniimoId(related)} to={`/gallery/aniimo/character/${encodeURIComponent(related.name)}`} className="group rounded-2xl border border-white/5 bg-white/[0.02] p-3 text-center transition hover:border-violet-400/40 hover:bg-white/[0.05]">
                       <div className="aspect-square w-full rounded-xl bg-white/5 p-2 mb-2">
                         {related.imageUrl && <img src={related.imageUrl} alt={related.name} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain group-hover:scale-105 transition" />}
                       </div>
@@ -224,7 +229,7 @@ const CharacterDetailAniimo: React.FC = () => {
                 <h3 className="text-xs font-black uppercase tracking-wider text-cyan-300 mb-3">같은 포지션 ({displayPositions.join(', ')}) 애니모</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                   {samePositionAniimos.map(related => (
-                    <Link key={related.number} to={`/gallery/aniimo/character/${encodeURIComponent(related.name)}`} className="group rounded-2xl border border-white/5 bg-white/[0.02] p-3 text-center transition hover:border-cyan-400/40 hover:bg-white/[0.05]">
+                    <Link key={getAniimoId(related)} to={`/gallery/aniimo/character/${encodeURIComponent(related.name)}`} className="group rounded-2xl border border-white/5 bg-white/[0.02] p-3 text-center transition hover:border-cyan-400/40 hover:bg-white/[0.05]">
                       <div className="aspect-square w-full rounded-xl bg-white/5 p-2 mb-2">
                         {related.imageUrl && <img src={related.imageUrl} alt={related.name} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain group-hover:scale-105 transition" />}
                       </div>
@@ -240,7 +245,7 @@ const CharacterDetailAniimo: React.FC = () => {
                 <h3 className="text-xs font-black uppercase tracking-wider text-emerald-300 mb-3">같은 서식 지역 애니모</h3>
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
                   {sameLocationAniimos.map(related => (
-                    <Link key={related.number} to={`/gallery/aniimo/character/${encodeURIComponent(related.name)}`} className="group rounded-2xl border border-white/5 bg-white/[0.02] p-3 text-center transition hover:border-emerald-400/40 hover:bg-white/[0.05]">
+                    <Link key={getAniimoId(related)} to={`/gallery/aniimo/character/${encodeURIComponent(related.name)}`} className="group rounded-2xl border border-white/5 bg-white/[0.02] p-3 text-center transition hover:border-emerald-400/40 hover:bg-white/[0.05]">
                       <div className="aspect-square w-full rounded-xl bg-white/5 p-2 mb-2">
                         {related.imageUrl && <img src={related.imageUrl} alt={related.name} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain group-hover:scale-105 transition" />}
                       </div>

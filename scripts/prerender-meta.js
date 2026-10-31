@@ -1,4 +1,6 @@
 import fs from 'fs';
+import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
+import { getWaveLocations, aniimoLocationPath, waveLocationSlug } from './lib/aniimo-locations.js';
 import { sanitizePublicGuideData, sanitizePublicHsrGuideData } from './lib/public-guide-links.js';
 import { attachNteGuideAnalysis, renderNteGuideAnalysis } from './lib/nte-guide-analysis.js';
 import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
@@ -987,7 +989,7 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
   }).join('');
 
   // Evolution Condition info
-  const evoCond = (evolutionData && evolutionData.conditions) ? (evolutionData.conditions[item.number] || '') : '';
+  const evoCond = (!item.regionId && evolutionData && evolutionData.conditions) ? (evolutionData.conditions[item.number] || '') : '';
   let evoCondHtml = '';
   if (evoCond) {
     const parts = evoCond.split('|').map(p => p.trim()).filter(Boolean);
@@ -1024,15 +1026,19 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
   // Evolution tree links
   let evoTreeHtml = '';
   if (item.evolution && item.evolution.length > 0) {
-    const treeLinks = item.evolution.map(node => {
-      const isCurrent = node.name === item.name;
-      const nodeLabel = `[${node.stage}] NO.${node.number} ${node.name || '미공개'}`;
-      if (!node.name) {
-        return `<li>${escapeHtml(nodeLabel)}</li>`;
-      }
-      return isCurrent
-        ? `<li><strong>${escapeHtml(nodeLabel)} (현재)</strong></li>`
-        : `<li><a href="/gallery/aniimo/character/${encodeURIComponent(node.name)}">${escapeHtml(nodeLabel)}</a></li>`;
+    const routes = item.regionId && item.evolutionRoutes?.length ? item.evolutionRoutes : [item.evolution];
+    const treeLinks = routes.map(route => {
+      const routeLinks = route.map(node => {
+        const isCurrent = node.name === item.name;
+        const nodeLabel = `[${node.stage}] NO.${node.number} ${node.name || '미공개'}`;
+        if (!node.name) {
+          return `<li>${escapeHtml(nodeLabel)}</li>`;
+        }
+        return isCurrent
+          ? `<li><strong>${escapeHtml(nodeLabel)} (현재)</strong></li>`
+          : `<li><a href="/gallery/aniimo/character/${encodeURIComponent(node.name)}${item.regionId && node.formKey && node.formKey !== 'basic-form' ? `?form=${encodeURIComponent(node.formKey)}` : ''}">${escapeHtml(nodeLabel)}</a></li>`;
+      }).join('');
+      return item.regionId ? `<li><ul>${routeLinks}</ul></li>` : routeLinks;
     }).join('');
     evoTreeHtml = `<h2>진화 계보</h2><ul>${treeLinks}</ul>${evoCondHtml}`;
   }
@@ -1043,11 +1049,13 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
     const formItems = item.forms.map(form => {
       const formStats = Object.entries(form.stats || {}).map(([k, v]) => `${STAT_LABEL_MAP[k] || k}: ${v}`).join(' · ');
       const formLocs = (form.locations || []).join(', ') || '정보 없음';
+      const formDetails = item.regionId ? `<p>${escapeHtml(form.description || '')}</p>${['traits', 'explorationSkills', 'combatSkills', 'uniqueSkills'].map(field => (form[field] || []).map(skill => `<section><h4>${escapeHtml(skill.name)}</h4><p>${escapeHtml(skill.description)}</p></section>`).join('')).join('')}` : '';
       return `<div>
         <h3>${escapeHtml(form.label || form.key)}</h3>
         <p>원소: ${escapeHtml((form.elements || []).join('/'))} | 역할: ${escapeHtml((form.positions || []).join('/'))}</p>
         <p>능력치: ${escapeHtml(formStats)}</p>
         <p>출현 위치: ${escapeHtml(formLocs)}</p>
+        ${formDetails}
       </div>`;
     }).join('');
     formsHtml = `<h2>형태별 정보</h2>${formItems}`;
@@ -1065,7 +1073,7 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
 
   // Locations
   const locationHtml = item.locations?.length
-    ? `<h2>출현 지역</h2><ul>${item.locations.map(loc => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(loc.trim().replace(/\s+/g, '-'))}">${escapeHtml(loc)}</a></li>`).join('')}</ul>`
+    ? `<h2>출현 지역</h2><ul>${item.locations.map(loc => item.regionId && loc === '미확인 구역' ? `<li>${escapeHtml(loc)}</li>` : `<li><a href="${aniimoLocationPath(loc, item.regionId)}">${escapeHtml(loc)}</a></li>`).join('')}</ul>`
     : '';
 
   // Traits
@@ -3041,24 +3049,31 @@ function runPrerender() {
       meta.description = feature.description;
       meta.content = `<article><p><a href="/gallery/${gameId}">${escapeHtml(featureGameLabel)} 허브</a></p><h1>${escapeHtml(feature.heading)}</h1><p>${escapeHtml(feature.description)}</p>${feature.body}${relatedCharacters}</article>`;
     } else if (routePath === '/gallery/aniimo') {
-      const aniimoFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
-      const aniimoEntries = fs.existsSync(aniimoFile) ? JSON.parse(fs.readFileSync(aniimoFile, 'utf8')) : [];
-      const locations = OFFICIAL_ANIIMO_HABITATS;
+      const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
+      const locations = [...OFFICIAL_ANIIMO_HABITATS, ...getWaveLocations(aniimoEntries).map(location => location.name)];
       const formCount = aniimoEntries.reduce((total, item) => total + (item.forms || []).length, 0);
       meta.title = '애니모 허브 | 도감·원소 상성·공식 서식지 데이터베이스';
       meta.description = `애니모 ${aniimoEntries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locations.length}개 공식 서식지별 출현 정보를 한곳에서 확인하세요.`;
       meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>원소 상성</dt><dd>9종</dd><dt>공식 서식지</dt><dd>${locations.length}곳</dd></dl><h2>애니모 데이터베이스</h2><nav aria-label="애니모 데이터베이스 메뉴"><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a> — 원소, 포지션과 서식지로 검색하고 최대 3종의 능력치를 비교합니다.</li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a> — 9개 원소의 공격 배율과 복합 원소 대응 방법을 확인합니다.</li><li><a href="/gallery/aniimo/personality">애니모 성격 추천·MBTI 효과</a> — 8개 성격이 전투와 홈 능력에 주는 효과를 역할별로 비교합니다.</li><li><a href="/gallery/aniimo/party-builder">애니모 파티 추천</a> — 형태와 역할을 반영한 4인 조합, 핵심 시너지와 대체 멤버를 확인합니다.</li><li><a href="/gallery/aniimo/locations">애니모 서식지 도감</a> — 공식 ${locations.length}개 서식지별 출현 애니모와 지역 형태를 찾습니다.</li></ul></nav><h2>처음 이용하는 방법</h2><p>먼저 도감에서 육성하거나 포획할 애니모를 선택하고 상세 페이지에서 형태별 능력치, 특성, 스킬과 진화 계보를 확인하세요. 같은 애니모라도 선택한 형태에 따라 이미지와 전투 데이터, 출현 지역이 달라질 수 있습니다.</p><p>전투 준비 단계에서는 상대 원소에 맞는 상성을 확인한 뒤 공격·지원·방어 역할이 겹치지 않도록 파티 추천을 살펴보세요. 성격 가이드는 주력 능력치와 홈 능력을 고를 때 참고할 수 있습니다.</p><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/characters') {
-      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+      const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
       meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
       meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/locations') {
       const locations = OFFICIAL_ANIIMO_HABITATS;
+      const waveLocations = getWaveLocations(loadAniimoCatalog(ROOT_DIR));
       const totalHabitatAppearances = locations.reduce((total, location) => total + (OFFICIAL_HABITAT_TARGETS[location] || 0), 0);
-      meta.title = `애니모 공식 서식지 ${locations.length}곳 | 서식지별 도감`;
-      meta.description = `애니모의 공식 서식지 ${locations.length}곳을 지역별로 탐색하고 각 서식지에서 만날 수 있는 애니모 종류와 형태 정보를 확인하세요.`;
+      meta.title = `애니모 공식 서식지 ${locations.length + waveLocations.length}곳 | 서식지별 도감`;
+      meta.description = `애니모의 기존 서식지 ${locations.length}곳과 웨이브 군도 출현 지역 ${waveLocations.length}곳에서 만날 수 있는 애니모 종류와 형태 정보를 확인하세요.`;
       meta.content = `<article><h1>서식지별 애니모 도감</h1><p>${escapeHtml(meta.description)}</p><dl><dt>공식 서식지</dt><dd>${locations.length}곳</dd><dt>지역별 출현 기록</dt><dd>총 ${totalHabitatAppearances}건</dd></dl><h2>공식 서식지 목록</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)} · ${OFFICIAL_HABITAT_TARGETS[location]}종</a></li>`).join('')}</ul><h2>서식지 도감 이용 방법</h2><p>지역을 선택하면 그곳에서 확인되는 애니모와 출현 형태를 함께 볼 수 있습니다. 같은 애니모라도 기본 형태와 지역 형태의 외형, 원소 또는 역할이 다를 수 있으므로 포획 대상을 찾을 때는 형태 이름까지 확인하세요.</p><p>원소와 포지션을 기준으로 전체 애니모를 찾거나 능력치를 비교하려면 <a href="/gallery/aniimo/characters">애니모 도감·능력치 비교기</a>를 이용하세요. 전투 편성을 준비할 때는 <a href="/gallery/aniimo/type-chart">원소 상성표</a>와 <a href="/gallery/aniimo/party-builder">파티 추천</a>을 함께 확인할 수 있습니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
+      if (waveLocations.length) {
+        const totalAppearances = totalHabitatAppearances + waveLocations.reduce((total, location) => total + location.count, 0);
+        meta.content = meta.content
+          .replace(`<dd>${locations.length}곳</dd>`, `<dd>${locations.length + waveLocations.length}곳</dd>`)
+          .replace(`<dd>총 ${totalHabitatAppearances}건</dd>`, `<dd>총 ${totalAppearances}건</dd>`)
+          .replace('</article>', `<h2>웨이브 군도 출현 지역</h2><ul>${waveLocations.map(location => `<li><a href="${aniimoLocationPath(location.name, location.regionId)}">${escapeHtml(location.name)} · ${location.count}종</a></li>`).join('')}</ul></article>`);
+      }
     } else if (routePath === '/gallery/aniimo/type-chart') {
       const rows = [
         ['불', '풀·얼음', '불·물·바위·빛'], ['물', '불·바위', '물·풀·얼음·빛'],
@@ -3094,7 +3109,7 @@ function runPrerender() {
       let partyListHtml = '';
       let partySummaryHtml = '';
       try {
-        const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+        const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
         const parties = fs.existsSync(ANIIMO_PARTIES_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_PARTIES_FILE, 'utf8')) : [];
         if (parties.length > 0) {
           const totalMembers = parties.reduce((total, party) => total + (party.members || []).length, 0);
@@ -3102,7 +3117,7 @@ function runPrerender() {
           partySummaryHtml = `<dl><dt>등록 추천 파티</dt><dd>${parties.length}개</dd><dt>등록 조합원</dt><dd>${totalMembers}자리</dd><dt>분류</dt><dd>${escapeHtml(categories.join(' · '))}</dd></dl>`;
           const partiesHtml = parties.map(party => {
             const membersHtml = party.members.map(member => {
-              const entry = aniimoEntries.find(candidate => candidate.number === member.number);
+              const entry = aniimoEntries.find(candidate => !candidate.regionId && candidate.number === member.number);
               if (!entry) return '';
               const form = entry.forms.find(candidate => candidate.key === member.formKey) || entry.forms[0];
               const query = form?.key && form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : '';
@@ -3122,11 +3137,13 @@ function runPrerender() {
     } else if (/^\/gallery\/aniimo\/location\//.test(routePath)) {
       const locationSlug = decodeURIComponent(routePath.split('/').at(-1));
       const rawLocation = locationSlug.replace(/-/g, ' ').trim();
-      const location = OFFICIAL_ANIIMO_HABITATS.find(candidate => candidate.trim().replace(/\s+/g, '-') === locationSlug || candidate === rawLocation) || rawLocation;
-      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+      const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
+      const waveLocation = getWaveLocations(aniimoEntries).find(candidate => waveLocationSlug(candidate.name) === locationSlug);
+      const regionId = waveLocation?.regionId;
+      const location = waveLocation?.name || OFFICIAL_ANIIMO_HABITATS.find(candidate => candidate.trim().replace(/\s+/g, '-') === locationSlug || candidate === rawLocation) || rawLocation;
       const appearances = aniimoEntries.filter(entry =>
-        (entry.habitats || []).includes(location) ||
-        (entry.forms || []).some(form => (form.locations || []).includes(location))
+        entry.regionId === regionId && ((entry.habitats || []).includes(location) ||
+        (entry.forms || []).some(form => (form.locations || []).includes(location)))
       ).map(entry => {
         const matchingForms = (entry.forms || []).filter(form => (form.locations || []).includes(location));
         return {
@@ -3134,7 +3151,7 @@ function runPrerender() {
           forms: matchingForms.length > 0 ? matchingForms : entry.forms
         };
       });
-      const officialCount = OFFICIAL_HABITAT_TARGETS[location] || appearances.length;
+      const officialCount = regionId ? appearances.length : OFFICIAL_HABITAT_TARGETS[location] || appearances.length;
       meta.title = `${location} 공식 서식지 · 서식 애니모 ${officialCount}종 | 애니모 서식지 도감`;
       meta.description = `${location}에서 서식하는 애니모 ${officialCount}종의 이름과 지역별 형태, 원소·포지션 정보를 확인하고 각 애니모 상세 도감으로 이동하세요.`;
       const appearanceLinks = appearances.map(({ entry, forms }) => forms.map(form => {
@@ -3145,7 +3162,7 @@ function runPrerender() {
       meta.content = `<article><h1>${escapeHtml(location)} 공식 서식지</h1><p>${escapeHtml(meta.description)}</p><ul>${appearanceLinks}</ul><h2>다른 공식 서식지</h2><ul>${otherLocations}</ul><p><a href="/gallery/aniimo/locations">애니모 서식지 도감으로 돌아가기</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/character\//.test(routePath)) {
       const name = decodeURIComponent(routePath.split('/').at(-1));
-      const aniimoEntries = fs.existsSync(ANIIMO_DATA_FILE) ? JSON.parse(fs.readFileSync(ANIIMO_DATA_FILE, 'utf8')) : [];
+      const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
       const item = aniimoEntries.find(candidate => candidate.name === name);
       if (item) {
         meta.title = `${item.name} 능력치·스킬·진화 | 애니모 도감`;

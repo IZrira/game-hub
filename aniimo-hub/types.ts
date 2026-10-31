@@ -9,6 +9,10 @@ export interface AniimoStats {
 }
 
 export interface AniimoEntry {
+  id?: string;
+  regionId?: string;
+  regionName?: string;
+  englishName?: string;
   number: string;
   name: string;
   elements: string[];
@@ -28,6 +32,7 @@ export interface AniimoEntry {
   combatSkills: AniimoSkill[];
   uniqueSkills: AniimoSkill[];
   evolution: AniimoEvolutionNode[];
+  evolutionRoutes?: AniimoEvolutionNode[][];
   resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   checkedAt: string;
 }
@@ -49,6 +54,7 @@ export interface AniimoForm {
   combatSkills: AniimoSkill[];
   uniqueSkills: AniimoSkill[];
   evolution: AniimoEvolutionNode[];
+  evolutionRoutes?: AniimoEvolutionNode[][];
   resonanceLevels: Array<{ level: string; requirement: string; material: string; materialImageUrl: string | null }>;
   sourceUrl: string;
 }
@@ -61,6 +67,8 @@ export interface AniimoHomeAbility {
 }
 
 export interface AniimoEvolutionNode {
+  id?: string;
+  regionId?: string;
   stage: string;
   imageUrl: string | null;
   name: string | null;

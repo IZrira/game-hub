@@ -1,9 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SOURCE_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
 const SUMMARY_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo-summary.json');
 const DETAIL_DIR = path.join(ROOT_DIR, 'public', 'assets', 'data', 'aniimo');
 
@@ -31,6 +31,7 @@ const summarizeForm = (entry, form) => ({
 });
 
 const summarizeEntry = entry => ({
+  ...(entry.id ? { id: entry.id, regionId: entry.regionId, regionName: entry.regionName } : {}),
   number: entry.number,
   name: entry.name,
   imageUrl: entry.imageUrl,
@@ -46,14 +47,14 @@ const summarizeEntry = entry => ({
 });
 
 export function writeAniimoRuntimeData() {
-  const entries = JSON.parse(fs.readFileSync(SOURCE_FILE, 'utf8'));
+  const entries = loadAniimoCatalog(ROOT_DIR);
   const summary = entries.map(summarizeEntry);
 
   fs.mkdirSync(DETAIL_DIR, { recursive: true });
   fs.writeFileSync(SUMMARY_FILE, `${JSON.stringify(summary, null, 2)}\n`, 'utf8');
   entries.forEach(entry => {
     fs.writeFileSync(
-      path.join(DETAIL_DIR, `${entry.number}.json`),
+      path.join(DETAIL_DIR, `${entry.id || entry.number}.json`),
       `${JSON.stringify(entry)}\n`,
       'utf8'
     );

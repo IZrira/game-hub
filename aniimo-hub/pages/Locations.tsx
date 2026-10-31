@@ -6,11 +6,10 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry } from '../types';
-import { getAniimoLocationPath } from '../utils/location';
-import { OFFICIAL_ANIIMO_HABITATS, OFFICIAL_HABITAT_TARGETS } from '../data/habitats';
+import { getAniimoLocationPath, getAniimoLocationGroups } from '../utils/location';
 
 const entries = aniimoData as unknown as AniimoEntry[];
-const habitats = OFFICIAL_ANIIMO_HABITATS;
+const habitats = getAniimoLocationGroups(entries);
 
 const LocationsAniimo: React.FC = () => (
   <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
@@ -37,22 +36,22 @@ const LocationsAniimo: React.FC = () => (
           </div>
           <h1 className="mt-4 text-4xl font-black">공식 서식지 도감</h1>
           <p className="mt-3 text-sm leading-7 text-gray-300">
-            공식 14개 서식지를 선택하면 해당 서식지에 서식하는 애니모와 형태를 확인할 수 있습니다.
+            서식지를 선택하면 해당 지역에서 확인되는 애니모와 형태를 볼 수 있습니다. 웨이브 군도는 기존 서식지와 구분해 표시합니다.
           </p>
         </section>
         <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
           {habitats.map(habitat => {
-            const count = entries.filter(entry => (entry.habitats || []).includes(habitat)).length || OFFICIAL_HABITAT_TARGETS[habitat];
             return (
               <Link
-                key={habitat}
-                to={getAniimoLocationPath(habitat)}
+                key={getAniimoLocationPath(habitat.name, habitat.regionId)}
+                to={getAniimoLocationPath(habitat.name, habitat.regionId)}
                 className="group rounded-2xl border border-white/10 bg-[#121212] p-5 hover:border-violet-400/40"
               >
                 <div className="flex items-center justify-between">
-                  <h2 className="font-black group-hover:text-violet-300">{habitat}</h2>
-                  <span className="text-xs font-bold text-gray-500">{count}종</span>
+                  <h2 className="font-black group-hover:text-violet-300">{habitat.name}</h2>
+                  <span className="text-xs font-bold text-gray-500">{habitat.count}종</span>
                 </div>
+                {habitat.regionName && <p className="mt-2 text-xs text-cyan-300">{habitat.regionName}</p>}
               </Link>
             );
           })}

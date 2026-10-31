@@ -47,7 +47,7 @@ describe('Aniimo empty search recovery', () => {
     fireEvent.click(within(gallery).getAllByRole('button', { name: '비교하기' })[0]);
     const selects = screen.getAllByRole('combobox') as HTMLSelectElement[];
     for (const select of selects) fireEvent.change(select, { target: { value: select.options[1].value } });
-    const locationButtons = screen.getAllByRole('button').filter(button => button.hasAttribute('aria-pressed'));
+    const locationButtons = within(screen.getByRole('region', { name: '출현 지역 선택' })).getAllByRole('button');
     fireEvent.click(locationButtons[1]);
     const input = screen.getByPlaceholderText('이름 또는 도감 번호 검색');
     fireEvent.change(input, { target: { value: 'zzzz-no-result' } });

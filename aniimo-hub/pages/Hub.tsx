@@ -5,7 +5,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import LazyImage from '../../common-hub/components/LazyImage';
-import { getAniimoLocationPath } from '../utils/location';
+import { getAniimoLocationPath, getAniimoLocationGroups } from '../utils/location';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry } from '../types';
@@ -13,7 +13,7 @@ import type { AniimoEntry } from '../types';
 import { OFFICIAL_ANIIMO_HABITATS } from '../data/habitats';
 
 const entries = aniimoData as unknown as AniimoEntry[];
-const locationCount = OFFICIAL_ANIIMO_HABITATS.length;
+const locationCount = getAniimoLocationGroups(entries).length;
 const formCount = entries.reduce((total, entry) => total + entry.forms.length, 0);
 
 const tools = [
@@ -21,7 +21,7 @@ const tools = [
   { title: '능력치 비교', description: '선택한 애니모의 형태별 능력치와 역할 차이를 비교합니다.', path: '/gallery/aniimo/characters', icon: Layers3, stat: '스탯 비교' },
   { title: '파티 추천', description: '역할과 형태별 특성을 반영해 엄선한 4인 추천 조합과 서포터를 확인합니다.', path: '/gallery/aniimo/party-builder', icon: Users, stat: '추천 조합' },
   { title: '원소 상성표', description: '9개 원소의 공격 배율과 복합 원소 상대 추천 공격 원소를 확인합니다.', path: '/gallery/aniimo/type-chart', icon: Swords, stat: '9원소' },
-  { title: '서식지 도감', description: '공식 14대 서식지를 기준으로 만날 수 있는 애니모와 지역 형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}개 서식지` },
+  { title: '서식지 도감', description: '기존 서식지와 웨이브 군도의 출현 애니모·형태를 탐색합니다.', path: '/gallery/aniimo/locations', icon: MapPin, stat: `${locationCount}개 서식지` },
   { title: '성격 가이드', description: '성격 8종의 전투·홈 효과와 역할별 추천 MBTI 조합을 확인합니다.', path: '/gallery/aniimo/personality', icon: Brain, stat: '8성격' },
 ];
 
@@ -34,7 +34,7 @@ const HubAniimo: React.FC = () => <div className="min-h-[100dvh] bg-[#0a0a0a] te
     <div className="min-w-0 space-y-8 sm:space-y-10">
       <HubIntro title="애니모" description="형태·진화·서식 정보를 찾고, 능력치와 성격을 비교하세요." searchPath="/gallery/aniimo/characters" searchLabel="이름 또는 도감 번호 검색"
         stats={[{ label: '등록 애니모', value: entries.length }, { label: '형태 데이터', value: formCount }, { label: '원소 상성', value: 9 }, { label: '출현 지역', value: locationCount }]}
-        links={[{ label: '전체 도감', to: '/gallery/aniimo/characters' }, { label: '진화·형태 가이드', to: '/gallery/aniimo/guides/evolution-and-forms-guide' }, { label: '원소 상성표', to: '/gallery/aniimo/type-chart' }]} />
+        links={[{ label: '전체 도감', to: '/gallery/aniimo/characters' }, { label: '웨이브 군도', to: '/gallery/aniimo/characters?region=300301' }, { label: '진화·형태 가이드', to: '/gallery/aniimo/guides/evolution-and-forms-guide' }, { label: '원소 상성표', to: '/gallery/aniimo/type-chart' }]} />
 
       <section aria-labelledby="aniimo-browse-heading" className="space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-3">

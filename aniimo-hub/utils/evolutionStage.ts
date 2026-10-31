@@ -1,4 +1,5 @@
 import type { AniimoEntry, AniimoForm } from '../types';
+import { findAniimoEvolutionEntry } from './identity';
 
 export const EVOLUTION_STAGES = ['유년기', '성장기', '성숙기'] as const;
 export type AniimoEvolutionStage = typeof EVOLUTION_STAGES[number] | '특수 개체';
@@ -29,10 +30,13 @@ export const getAniimoEvolutionStage = (item: AniimoEntry, form?: AniimoForm): A
   if (summarizedStage === '특수 개체') return summarizedStage;
 
   const evolution = form?.evolution?.length ? form.evolution : item.evolution || [];
-  const matchingNode = evolution.find(node => node.number === item.number && (!form || node.formKey === form.key))
-    || evolution.find(node => node.number === item.number);
+  const matchingNode = evolution.find(node => findAniimoEvolutionEntry([item], node, item.regionId) && (!form || node.formKey === form.key))
+    || evolution.find(node => findAniimoEvolutionEntry([item], node, item.regionId));
 
   return EVOLUTION_STAGES.includes(matchingNode?.stage as typeof EVOLUTION_STAGES[number])
     ? matchingNode!.stage as typeof EVOLUTION_STAGES[number]
     : '특수 개체';
 };
+
+export const getAniimoEnglishName = (item: Pick<AniimoEntry, 'number' | 'regionId' | 'englishName'>): string | undefined =>
+  item.englishName || (!item.regionId ? ANIIMO_ENGLISH_NAMES[item.number] : undefined);

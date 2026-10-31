@@ -148,6 +148,9 @@ const parseDetail = (html) => {
 };
 
 const indexHtml = await fetchHtml(INDEX_URL);
+if (/\/ko\/item\/\d{3}\/[^/"\s]+\/300301/.test(indexHtml)) {
+  throw new Error('The official index now contains region-local duplicate numbers. Preserve aniimo.json; run scripts/fetch-aniimo-wave-data.js for the new region instead.');
+}
 const $ = cheerio.load(indexHtml);
 const roster = [];
 

@@ -6,11 +6,11 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoForm } from '../types';
-import { getAniimoLocationPath, toAniimoLocationSlug } from '../utils/location';
-import { OFFICIAL_ANIIMO_HABITATS, normalizeHabitat } from '../data/habitats';
+import { getAniimoLocationPath, toAniimoLocationSlug, getAniimoLocationGroups } from '../utils/location';
+import { normalizeHabitat } from '../data/habitats';
 
 const entries = aniimoData as unknown as AniimoEntry[];
-const habitats = OFFICIAL_ANIIMO_HABITATS;
+const habitats = getAniimoLocationGroups(entries);
 
 type FormFilter = 'all' | 'basic' | 'special' | 'exclusive';
 
@@ -19,20 +19,21 @@ const LocationDetailAniimo: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState<FormFilter>('all');
 
   const decodedSlug = decodeURIComponent(locationSlug);
-  const normalizedCandidate = normalizeHabitat(decodedSlug.replace(/-/g, ' '));
-  const habitat = habitats.find(h => toAniimoLocationSlug(h) === toAniimoLocationSlug(normalizedCandidate)) || normalizedCandidate;
-
-  const isValidHabitat = habitats.includes(habitat as any);
-
-  // If accessed via a legacy name or sub-location (e.g. 초승달-만, 스타폴-숲), redirect to canonical habitat URL
-  if (isValidHabitat && toAniimoLocationSlug(decodedSlug) !== toAniimoLocationSlug(habitat)) {
-    return <Navigate to={getAniimoLocationPath(habitat)} replace />;
-  }
+  const isWaveSlug = decodedSlug.startsWith('wave-archipelago--');
+  const normalizedCandidate = isWaveSlug ? decodedSlug : normalizeHabitat(decodedSlug.replace(/-/g, ' '));
+  const location = habitats.find(h => isWaveSlug
+    ? toAniimoLocationSlug(h.name, h.regionId) === decodedSlug
+    : !h.regionId && toAniimoLocationSlug(h.name) === toAniimoLocationSlug(normalizedCandidate));
+  const habitat = location?.name || normalizedCandidate;
+  const regionId = location?.regionId;
+  const isValidHabitat = Boolean(location);
 
   const appearances = useMemo(() => {
     if (!isValidHabitat) return [];
     return entries
-      .filter(entry => (entry.habitats || []).includes(habitat))
+      .filter(entry => entry.regionId === regionId && (regionId
+        ? entry.forms.some(form => form.locations.includes(habitat))
+        : (entry.habitats || []).includes(habitat)))
       .map(entry => {
         const matchingForms = entry.forms.filter(form => (form.locations || []).includes(habitat));
         const formsToDisplay = matchingForms.length > 0 ? matchingForms : entry.forms;
@@ -41,16 +42,18 @@ const LocationDetailAniimo: React.FC = () => {
           forms: formsToDisplay
         };
       });
-  }, [habitat, isValidHabitat]);
+  }, [habitat, regionId, isValidHabitat]);
 
   // Determine if a form is exclusive to this habitat
   const isFormExclusive = useMemo(() => {
     return (form: AniimoForm) => {
+      // A single listed location in the new official catalog does not certify exclusivity.
+      if (regionId) return false;
       const locs = form.locations || [];
       if (locs.length === 0) return false;
-      return locs.every(loc => normalizeHabitat(loc) === habitat);
+      return locs.every(loc => (regionId ? loc : normalizeHabitat(loc)) === habitat);
     };
-  }, [habitat]);
+  }, [habitat, regionId]);
 
   // Counts for filters
   const filterCounts = useMemo(() => {
@@ -94,11 +97,15 @@ const LocationDetailAniimo: React.FC = () => {
     });
   }, [appearances, activeFilter, isFormExclusive]);
 
+  if (isValidHabitat && decodedSlug !== toAniimoLocationSlug(habitat, regionId)) {
+    return <Navigate to={getAniimoLocationPath(habitat, regionId)} replace />;
+  }
+
   if (!isValidHabitat) {
     return (
       <main className="min-h-[70vh] bg-[#0a0a0a] px-6 py-24 text-center text-white">
         <h1 className="text-3xl font-black">공식 서식지를 찾을 수 없습니다.</h1>
-        <p className="mt-2 text-sm text-gray-400">요청하신 지역은 공식 14대 서식지에 포함되지 않습니다.</p>
+        <p className="mt-2 text-sm text-gray-400">요청하신 지역의 도감 정보를 확인할 수 없습니다.</p>
         <Link to="/gallery/aniimo/locations" className="mt-6 inline-block text-violet-300">
           서식지 도감으로 돌아가기
         </Link>
@@ -111,13 +118,13 @@ const LocationDetailAniimo: React.FC = () => {
       <SEO
         title={`${habitat} 공식 서식지 · 서식 애니모 ${appearances.length}종 | 애니모 서식지 도감`}
         description={`${habitat}에서 서식하는 애니모 ${appearances.length}종과 각 지역 형태를 확인하세요.`}
-        url={getAniimoLocationPath(habitat)}
+        url={getAniimoLocationPath(habitat, regionId)}
         gameCategory="애니모"
         breadcrumbData={[
           { name: '홈', url: '/' },
           { name: '애니모 허브', url: '/gallery/aniimo' },
           { name: '서식지 도감', url: '/gallery/aniimo/locations' },
-          { name: habitat, url: getAniimoLocationPath(habitat) }
+          { name: habitat, url: getAniimoLocationPath(habitat, regionId) }
         ]}
       />
       <PageHeader gameId="aniimo" category="서식지 도감" categoryUrl="/gallery/aniimo/locations" title={habitat} />
@@ -132,6 +139,7 @@ const LocationDetailAniimo: React.FC = () => {
               <span className="text-xs font-black uppercase tracking-[0.25em]">Official Habitat Archive</span>
             </div>
             <h1 className="mt-4 text-4xl font-black tracking-tighter sm:text-5xl">{habitat}</h1>
+            {location?.regionName && <p className="mt-2 text-sm font-bold text-cyan-300">{location.regionName}</p>}
             <p className="mt-3 text-sm leading-7 text-gray-300">
               이 서식지에서 확인되는 공식 서식 애니모는 총 <strong className="text-white">{appearances.length}종</strong>입니다.
               {filterCounts.exclusive > 0 && (
@@ -196,7 +204,7 @@ const LocationDetailAniimo: React.FC = () => {
 
               return (
                 <article
-                  key={entry.number}
+                  key={entry.id || entry.number}
                   className={`overflow-hidden rounded-2xl border transition hover:border-violet-400/40 bg-[#121212] ${
                     hasExclusive ? 'border-amber-400/30' : 'border-white/10'
                   }`}
@@ -264,15 +272,15 @@ const LocationDetailAniimo: React.FC = () => {
 
           {/* Other Official Habitats */}
           <section className="rounded-3xl border border-white/10 bg-[#121212] p-6">
-            <h2 className="font-black">다른 공식 서식지 (14개)</h2>
+            <h2 className="font-black">다른 공식 서식지</h2>
             <div className="mt-4 flex flex-wrap gap-2">
-              {habitats.filter(candidate => candidate !== habitat).map(candidate => (
+              {habitats.filter(candidate => candidate.name !== habitat || candidate.regionId !== regionId).map(candidate => (
                 <Link
-                  key={candidate}
-                  to={getAniimoLocationPath(candidate)}
+                  key={getAniimoLocationPath(candidate.name, candidate.regionId)}
+                  to={getAniimoLocationPath(candidate.name, candidate.regionId)}
                   className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-bold text-gray-300 hover:border-violet-400/40 hover:text-white"
                 >
-                  {candidate}
+                  {candidate.regionName ? `${candidate.regionName} · ` : ''}{candidate.name}
                 </Link>
               ))}
             </div>

@@ -1,7 +1,7 @@
 {
   "global": {
     "games": 4,
-    "characters": 263,
+    "characters": 292,
     "guides": 183,
     "items": 2098
   },
@@ -19,7 +19,7 @@
       "guides": 26
     },
     "aniimo": {
-      "characters": 86,
+      "characters": 115,
       "guides": 5
     }
   }

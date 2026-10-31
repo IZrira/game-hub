@@ -105,7 +105,7 @@ const EVOLUTION_FORM_CONDITIONS: Record<string, string> = {
   '066:mountain-form': '애니모 48레벨 달성, 월드에서 보물 상자 누적 30개 열기 | 소모: 질풍석 1개',
 };
 
-export const getEvolutionCondition = (number: string | null, formKey?: string | null) => {
-  if (!number) return undefined;
+export const getEvolutionCondition = (number: string | null, formKey?: string | null, regionId?: string) => {
+  if (!number || regionId) return undefined;
   return (formKey && EVOLUTION_FORM_CONDITIONS[`${number}:${formKey}`]) || EVOLUTION_CONDITIONS[number];
 };

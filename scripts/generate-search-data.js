@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { build } from 'esbuild';
@@ -34,7 +35,7 @@ const wwRecommendationsPath = path.join(projectRoot, 'ww-hub', 'data', 'generate
 const wwEchoesPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'echoes.json');
 const wwInventoryPath = path.join(projectRoot, 'ww-hub', 'data', 'generated', 'inventory.json');
 const notionData = JSON.parse(fs.readFileSync(notionPath, 'utf8'));
-const aniimoData = JSON.parse(fs.readFileSync(path.join(projectRoot, 'aniimo-hub', 'data', 'aniimo.json'), 'utf8'));
+const aniimoData = loadAniimoCatalog(projectRoot);
 const guideArticles = JSON.parse(fs.readFileSync(guideArticlesPath, 'utf8'));
 const publishedNteGuideCount = guideArticles.filter(article => article.gameId === 'nte' && article.status === 'published').length;
 
