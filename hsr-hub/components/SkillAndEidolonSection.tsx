@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useLayoutEffect, useId } from 'react';
 import { SkillDetail } from '../../common-hub/types';
 import { HsrCharacter } from '../types';
 import { ShieldAlert, PlusCircle, MinusCircle, Sparkles, Zap } from 'lucide-react';
@@ -435,7 +435,7 @@ export default function SkillAndEidolonSection({
             
             return (
               <div key={idx} className="group flex flex-col md:flex-row glass-card rounded-[40px] border border-white/5 hover:bg-white/[0.04] shadow-xl overflow-hidden transition-all duration-300">
-                <div className="p-6 md:w-[360px] shrink-0 flex flex-col items-center justify-center gap-4 relative overflow-hidden border-b md:border-b-0 md:border-r border-white/5 bg-black/20">
+                <div className="py-6 px-3 sm:px-6 md:w-[360px] shrink-0 flex flex-col items-center justify-center gap-4 relative overflow-hidden border-b md:border-b-0 md:border-r border-white/5 bg-black/20">
                   <span className="absolute top-0 right-0 text-[100px] font-black text-white/[0.02] leading-none -mr-4 -mt-4 select-none">{String(idx + 1).padStart(2, '0')}</span>
                   
                   <div className="relative w-24 h-24 z-10">
@@ -444,15 +444,17 @@ export default function SkillAndEidolonSection({
                     </div>
                   </div>
                   
-                  <div className="text-center z-10 relative w-full px-2">
+                  <div className="text-center z-10 relative w-full sm:px-2">
                     <span className="inline-block text-[10px] font-black text-brand-primary px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1.5">{eidolon.rank || `E${String(idx + 1).padStart(2, '0')}`}</span>
-                    <h5 className="text-lg font-black text-white leading-tight group-hover:text-brand-accent transition-colors whitespace-nowrap overflow-hidden text-ellipsis">{t(eidolon.name, { keySeparator: false, nsSeparator: false })}</h5>
+                    <EidolonName>{t(eidolon.name, { keySeparator: false, nsSeparator: false })}</EidolonName>
                   </div>
                 </div>
                 
-                <div className="p-6 md:p-8 flex items-center flex-1 bg-black/10">
-                  <div className="text-base md:text-lg text-gray-300 leading-relaxed font-medium whitespace-pre-line">
-                    {renderContent(t(eidolon.description, { keySeparator: false, nsSeparator: false }))}
+                <div className="p-6 md:p-8 flex items-center flex-1 min-w-0 bg-black/10">
+                  <div className="w-full text-base md:text-lg text-gray-300 leading-relaxed font-medium whitespace-pre-line">
+                    {char.id === 'aeon_aha' && idx === 1
+                      ? <CharacterEidolonEffects description={t(eidolon.description, { keySeparator: false, nsSeparator: false })} renderContent={renderContent} />
+                      : renderContent(t(eidolon.description, { keySeparator: false, nsSeparator: false }))}
                   </div>
                 </div>
               </div>
@@ -462,6 +464,50 @@ export default function SkillAndEidolonSection({
       </section>
     </div>
   );
+};
+
+// Fit the complete name to its existing column without truncation or horizontal scrolling.
+const EidolonName: React.FC<{ children: string }> = ({ children }) => {
+  const ref = useRef<HTMLHeadingElement>(null);
+  useLayoutEffect(() => {
+    const heading = ref.current;
+    if (!heading) return;
+    const fit = () => {
+      heading.style.fontSize = '18px';
+      const text = heading.firstElementChild as HTMLElement | null;
+      if (text && heading.clientWidth > 0 && text.offsetWidth > heading.clientWidth) {
+        heading.style.fontSize = `${18 * heading.clientWidth / text.offsetWidth}px`;
+      }
+    };
+    fit();
+    const observer = typeof ResizeObserver === 'undefined' ? null : new ResizeObserver(fit);
+    observer?.observe(heading);
+    let active = true;
+    void document.fonts?.ready.then(() => { if (active) fit(); });
+    return () => { active = false; observer?.disconnect(); };
+  }, [children]);
+  return <h5 ref={ref} className="text-lg font-black text-white leading-tight group-hover:text-brand-accent transition-colors whitespace-nowrap"><span className="inline-block">{children}</span></h5>;
+};
+
+const CharacterEidolonEffects: React.FC<{
+  description: string;
+  renderContent: SkillAndEidolonSectionProps['renderContent'];
+}> = ({ description, renderContent }) => {
+  const [open, setOpen] = useState<Record<number, boolean>>({});
+  const id = useId();
+  const parts = useMemo(() => description.split(/\n(?=• )/), [description]);
+  const effects = parts.slice(1).map(part => /^• (.+?):\s*([\s\S]*)$/.exec(part));
+  // Unknown/localized formats retain the full original description.
+  if (!effects.length || effects.some(effect => !effect)) return <>{renderContent(description)}</>;
+  return <div className="space-y-3">
+    <div>{renderContent(parts[0])}</div>
+    {effects.map((effect, index) => effect && <div key={index} className="rounded-2xl border border-white/10 bg-white/[0.02]">
+      <button type="button" aria-expanded={!!open[index]} aria-controls={`${id}-${index}`} onClick={() => setOpen(current => ({ ...current, [index]: !current[index] }))} className="w-full flex items-center justify-between gap-3 px-4 py-3 text-left text-sm font-bold text-white hover:bg-white/5 rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-brand-accent">
+        <span>{effect[1]}</span><span aria-hidden="true">{open[index] ? '−' : '+'}</span>
+      </button>
+      <div id={`${id}-${index}`} hidden={!open[index]}>{open[index] && <div className="px-4 pb-4 text-base">{renderContent(effect[2])}</div>}</div>
+    </div>)}
+  </div>;
 };
 
 const StatBox: React.FC<{ icon: React.ReactNode; label: string; value: string; color: string }> = ({ icon, label, value, color }) => {

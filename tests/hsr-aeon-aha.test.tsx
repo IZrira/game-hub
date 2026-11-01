@@ -10,6 +10,33 @@ vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (value: string) =>
 afterEach(cleanup);
 
 describe('user-supplied Aeon Aha character', () => {
+  it('renders each E2 character effect only while its own toggle is open', () => {
+    const renderContent = vi.fn((text: string) => [text]);
+    render(<SkillAndEidolonSection char={aha} gender="f" setGender={vi.fn()} theme={{ primary: '#a855f7', secondary: '#c084fc', shadow: '#000' }} renderContent={renderContent} setTooltip={vi.fn()} />);
+    const effect = aha.eidolons![1].description.split('\n\n')[1].replace(/^• [^:]+:\s*/, '');
+    expect(renderContent.mock.calls.some(([text]) => text.includes(effect))).toBe(false);
+    const toggle = screen.getByRole('button', { name: '에바네시아' });
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute('aria-expanded')).toBe('true');
+    expect(screen.getByText(effect)).toBeTruthy();
+    expect(screen.queryByText(/쾌감 포인트를 1pt 제공하고/)).toBeNull();
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    expect(screen.queryByText(effect)).toBeNull();
+  });
+
+  it('preserves all eight original character effects when expanded', () => {
+    const renderContent = vi.fn((text: string) => [text]);
+    render(<SkillAndEidolonSection char={aha} gender="f" setGender={vi.fn()} theme={{ primary: '#a855f7', secondary: '#c084fc', shadow: '#000' }} renderContent={renderContent} setTooltip={vi.fn()} />);
+    const effects = [...aha.eidolons![1].description.matchAll(/(?:^|\n)• (.+?):\s*([\s\S]*?)(?=\n• |$)/g)];
+    expect(effects).toHaveLength(8);
+    for (const [, name, body] of effects) {
+      fireEvent.click(screen.getByRole('button', { name }));
+      expect(renderContent.mock.calls.some(([text]) => text === body)).toBe(true);
+    }
+    expect(screen.getAllByRole('button', { expanded: true })).toHaveLength(8);
+  });
+
   it('registers exactly once ahead of 4.6 without replacing an existing character', () => {
     expect(CHARACTER_DATA.filter(character => character.id === 'aeon_aha')).toHaveLength(1);
     expect(CHARACTER_DATA[0]).toBe(aha);
