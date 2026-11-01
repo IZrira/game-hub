@@ -166,7 +166,7 @@ export default function SkillAndEidolonSection({
   };
 
   return (
-    <div className="space-y-16">
+    <div className="hsr-skill-details space-y-16">
       {/* 05 스킬 정보 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">

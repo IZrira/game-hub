@@ -127,3 +127,10 @@
 .prose img {
   @apply rounded-2xl border border-white/10;
 }
+
+/* These detail cards sit on a flat background; repeated backdrop capture adds
+   scroll compositing work without revealing any content behind the cards. */
+.hsr-skill-details .glass-card {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}

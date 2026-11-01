@@ -20,37 +20,60 @@ export const DetailStickyNav: React.FC<DetailStickyNavProps> = ({
   const [activeTab, setActiveTab] = useState<string>(tabs[0]?.id || '');
   const navRef = useRef<HTMLDivElement>(null);
   const isClickScrolling = useRef(false);
+  const activeId = useRef(activeTab);
 
   useEffect(() => {
     if (tabs.length === 0) return;
 
+    let positions: { id: string; top: number }[] = [];
+    const canObserveResize = typeof ResizeObserver !== 'undefined';
+    const measurePositions = () => tabs.flatMap(tab => {
+      const el = document.getElementById(tab.id);
+      return el ? [{ id: tab.id, top: el.getBoundingClientRect().top + window.scrollY }] : [];
+    });
     const handleScroll = () => {
       if (isClickScrolling.current) return;
+      // Preserve navigation correctness in older browsers without ResizeObserver.
+      if (!canObserveResize) positions = measurePositions();
 
       const scrollPos = window.scrollY + 180;
       let currentId = tabs[0].id;
 
-      for (const tab of tabs) {
-        const el = document.getElementById(tab.id);
-        if (el) {
-          const top = el.offsetTop;
-          if (scrollPos >= top) {
-            currentId = tab.id;
-          }
-        }
+      for (const position of positions) {
+        if (scrollPos >= position.top) currentId = position.id;
       }
 
-      setActiveTab(currentId);
+      if (activeId.current !== currentId) {
+        activeId.current = currentId;
+        setActiveTab(currentId);
+      }
     };
 
+    // Measure only when layout changes, never on the continuous scroll path.
+    const refreshPositions = () => {
+      positions = measurePositions();
+      handleScroll();
+    };
+    const observer = canObserveResize ? new ResizeObserver(refreshPositions) : null;
+    observer?.observe(document.body);
+    for (const tab of tabs) {
+      const section = document.getElementById(tab.id);
+      if (section) observer?.observe(section);
+    }
+    window.addEventListener('resize', refreshPositions, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
+    refreshPositions();
 
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('resize', refreshPositions);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, [tabs]);
 
   const scrollToSection = (id: string) => {
     isClickScrolling.current = true;
+    activeId.current = id;
     setActiveTab(id);
 
     const el = document.getElementById(id);
