@@ -3,6 +3,76 @@ import { createDetailedBaseStats, createMaterial } from '../dataFactory';
 
 export const elationLightcones: HsrLightCone[] = [
   {
+    "id": "lc_아하가_처음_울리는_순간",
+    "name": "「아하」가 처음 울리는 순간",
+    "gameId": "hsr",
+    "releaseVersion": "4.7",
+    "folderName": "「아하」가 처음 울리는 순간",
+    "rarity": 5,
+    "path": "환락",
+    "baseStats": createDetailedBaseStats(
+      [43, 166, 283, 417, 551, 685, 819, 953],
+      [26, 102, 173, 255, 337, 418, 500, 582],
+      [24, 92, 157, 232, 306, 380, 455, 529]
+    ),
+    "skill": {
+      "name": "즉흥 순회공연",
+      "description": "장착한 캐릭터의 기본 속도가 12pt 증가한다. 다른 단일 아군에게 전투 스킬 발동 시, 웃음 포인트를 10pt 획득하고, 해당 효과는 발동 후 1턴 동안 다시 발동할 수 없으며, 이후 모든 아군이 이번 전투에서 피해를 가할 시 적의 방어력을 16% 무시하게 하고, 해당 효과는 중첩할 수 없다",
+      "descriptions": [
+        "장착한 캐릭터의 기본 속도가 12pt 증가한다. 다른 단일 아군에게 전투 스킬 발동 시, 웃음 포인트를 10pt 획득하고, 해당 효과는 발동 후 1턴 동안 다시 발동할 수 없으며, 이후 모든 아군이 이번 전투에서 피해를 가할 시 적의 방어력을 16% 무시하게 하고, 해당 효과는 중첩할 수 없다",
+        "장착한 캐릭터의 기본 속도가 14pt 증가한다. 다른 단일 아군에게 전투 스킬 발동 시, 웃음 포인트를 12pt 획득하고, 해당 효과는 발동 후 1턴 동안 다시 발동할 수 없으며, 이후 모든 아군이 이번 전투에서 피해를 가할 시 적의 방어력을 18% 무시하게 하고, 해당 효과는 중첩할 수 없다",
+        "장착한 캐릭터의 기본 속도가 16pt 증가한다. 다른 단일 아군에게 전투 스킬 발동 시, 웃음 포인트를 14pt 획득하고, 해당 효과는 발동 후 1턴 동안 다시 발동할 수 없으며, 이후 모든 아군이 이번 전투에서 피해를 가할 시 적의 방어력을 20% 무시하게 하고, 해당 효과는 중첩할 수 없다",
+        "장착한 캐릭터의 기본 속도가 18pt 증가한다. 다른 단일 아군에게 전투 스킬 발동 시, 웃음 포인트를 16pt 획득하고, 해당 효과는 발동 후 1턴 동안 다시 발동할 수 없으며, 이후 모든 아군이 이번 전투에서 피해를 가할 시 적의 방어력을 22% 무시하게 하고, 해당 효과는 중첩할 수 없다",
+        "장착한 캐릭터의 기본 속도가 20pt 증가한다. 다른 단일 아군에게 전투 스킬 발동 시, 웃음 포인트를 18pt 획득하고, 해당 효과는 발동 후 1턴 동안 다시 발동할 수 없으며, 이후 모든 아군이 이번 전투에서 피해를 가할 시 적의 방어력을 24% 무시하게 하고, 해당 효과는 중첩할 수 없다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("천진난만 크레파스", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("천진난만 크레파스", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 4, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 5, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] }
+    ],
+    "story": "추후 추가"
+  },
+  {
+    "id": "lc_세상_끝에서_만나자",
+    "name": "세상 끝에서 만나자!",
+    "gameId": "hsr",
+    "releaseVersion": "4.7",
+    "folderName": "세상 끝에서 만나자!",
+    "rarity": 4,
+    "path": "환락",
+    "baseStats": createDetailedBaseStats(
+      [38, 148, 252, 371, 490, 609, 728, 847],
+      [22, 83, 141, 208, 275, 342, 409, 476],
+      [18, 69, 118, 174, 230, 285, 341, 397]
+    ),
+    "skill": {
+      "name": "공모",
+      "description": "파티 내 「환락」 운명의 길 캐릭터 1명당 장착한 캐릭터의 치명타 피해가 6% 증가하고, 에이언즈★아하가 필드에 있을 시 장착한 캐릭터의 치명타 피해가 추가로 12% 증가한다",
+      "descriptions": [
+        "파티 내 「환락」 운명의 길 캐릭터 1명당 장착한 캐릭터의 치명타 피해가 6% 증가하고, 에이언즈★아하가 필드에 있을 시 장착한 캐릭터의 치명타 피해가 추가로 12% 증가한다",
+        "파티 내 「환락」 운명의 길 캐릭터 1명당 장착한 캐릭터의 치명타 피해가 7% 증가하고, 에이언즈★아하가 필드에 있을 시 장착한 캐릭터의 치명타 피해가 추가로 14% 증가한다",
+        "파티 내 「환락」 운명의 길 캐릭터 1명당 장착한 캐릭터의 치명타 피해가 8% 증가하고, 에이언즈★아하가 필드에 있을 시 장착한 캐릭터의 치명타 피해가 추가로 16% 증가한다",
+        "파티 내 「환락」 운명의 길 캐릭터 1명당 장착한 캐릭터의 치명타 피해가 9% 증가하고, 에이언즈★아하가 필드에 있을 시 장착한 캐릭터의 치명타 피해가 추가로 18% 증가한다",
+        "파티 내 「환락」 운명의 길 캐릭터 1명당 장착한 캐릭터의 치명타 피해가 10% 증가하고, 에이언즈★아하가 필드에 있을 시 장착한 캐릭터의 치명타 피해가 추가로 20% 증가한다"
+      ]
+    },
+    "ascensionMaterials": [
+      { "level": 20, "items": [createMaterial("신용 포인트", 5000, 3), createMaterial("천진난만 크레파스", 8, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 15000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("천진난만 크레파스", 20, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 35000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 4, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 8, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 85000, 3), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 185000, 4), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 5, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 6, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 385000, 5), createMaterial("≪복슬복슬호≫ 수작업 스토리보드", 4, 3), createMaterial("≪복슬복슬호≫ 연재 기념호", 12, 4), createMaterial("≪복슬복슬호≫ 소장판 합본", 15, 5), createMaterial("천진난만 크레파스", 20, 2), createMaterial("꿈을 만드는 딥 펜", 20, 3), createMaterial("꿈을 그리는 붓", 14, 4)] }
+    ],
+    "story": "추후 추가"
+  },
+  {
     "id": "lc_다음_꽃피는_계절의_만남",
     "name": "다음 꽃피는 계절의 만남",
     "gameId": "hsr",
