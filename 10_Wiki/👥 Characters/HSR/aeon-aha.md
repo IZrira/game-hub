@@ -1,13 +1,12 @@
 ﻿---
 id: hsr-char-aeon_aha
 category: "[[10_Wiki/👥 Characters/HSR]]"
-confidence_score: 1.0
 tags: [hsr, quantum, 환락, 에이언즈, v4-7]
 rarity: 5
 element: 양자
 path: 환락
 release_version: "4.7"
-last_reinforced: 2026-05-19
+last_reinforced: 2026-11-01
 ---
 
 # [[aeon_aha]] (에이언즈★아하)
