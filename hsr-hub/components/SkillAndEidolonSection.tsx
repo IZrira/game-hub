@@ -40,7 +40,8 @@ const SKILL_CATEGORIES_HSR = [
   { id: 'talent', label: '특성' },
   { id: 'elation_skill', label: '환락 스킬' },
   { id: 'technique', label: '비술' },
-  { id: 'assist_skill', label: '지원 스킬' }
+  { id: 'assist_skill', label: '지원 스킬' },
+  { id: 'exclusive_effect', label: '전용 효과' }
 ];
 
 export default function SkillAndEidolonSection({ 
@@ -68,12 +69,12 @@ export default function SkillAndEidolonSection({
 
   const groupedSkills = useMemo(() => {
     const groups: Record<string, { skill: SkillDetail, filename: string }[]> = {
-      basic_atk: [], skill: [], ultimate: [], talent: [], technique: [], elation_skill: [], assist_skill: [],
+      basic_atk: [], skill: [], ultimate: [], talent: [], technique: [], elation_skill: [], assist_skill: [], exclusive_effect: [],
       memo_info: [], memo_skill: [], memo_talent: [],
       intro: [], outro: []
     };
     const counters: Record<string, number> = { 
-      basic_atk: 0, skill: 0, ultimate: 0, talent: 0, technique: 0, elation_skill: 0, assist_skill: 0,
+      basic_atk: 0, skill: 0, ultimate: 0, talent: 0, technique: 0, elation_skill: 0, assist_skill: 0, exclusive_effect: 0,
       memo_info: 0, memo_skill: 0, memo_talent: 0,
       intro: 0, outro: 0
     };
@@ -93,7 +94,8 @@ export default function SkillAndEidolonSection({
       const tag = skill.tag || "";
       let type = 'talent';
       
-      if (tag.includes('기억 정령 스킬') || tag.toLowerCase().includes('memokeeper skill')) type = 'memo_skill';
+      if (tag.includes('전용 효과')) type = 'exclusive_effect';
+      else if (tag.includes('기억 정령 스킬') || tag.toLowerCase().includes('memokeeper skill')) type = 'memo_skill';
       else if (tag.includes('기억 정령 특성') || tag.toLowerCase().includes('memokeeper talent')) type = 'memo_talent';
       else if (tag.includes('기억 정령') || tag.toLowerCase().includes('memokeeper')) type = 'memo_info';
       else if (tag.includes('일반 공격') || tag.toLowerCase().includes('basic atk')) type = 'basic_atk';
@@ -105,7 +107,9 @@ export default function SkillAndEidolonSection({
       else if (tag.includes('특성') || tag.toLowerCase().includes('talent')) type = 'talent';
 
       let filename;
-      if (type === 'basic_atk' && unifiedBasicIcon && basicAtkSkills.length > 1) {
+      if (type === 'exclusive_effect' && !skill.icon) {
+        filename = '';
+      } else if (type === 'basic_atk' && unifiedBasicIcon && basicAtkSkills.length > 1) {
         filename = `${unifiedBasicIcon}.webp`;
       } else if (skill.icon) {
         filename = `${skill.icon}.webp`;
@@ -179,7 +183,7 @@ export default function SkillAndEidolonSection({
                 className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-500 ${activeCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
               >
                 <div className="w-10 h-10 flex items-center justify-center relative z-10">
-                  <img
+                  {groupedSkills[cat.id][0].filename ? <img
                     src={`${CDN_BASE}${groupedSkills[cat.id][0].filename}`}
                     className={`w-full h-full object-contain transition-all duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
                     alt={cat.label}
@@ -194,7 +198,7 @@ export default function SkillAndEidolonSection({
                         target.style.opacity = '0.3';
                       }
                     }}
-                  />
+                  /> : <Sparkles size={24} aria-hidden="true" className="text-gray-400" />}
                 </div>
                 <span className={`text-[11px] font-black uppercase tracking-widest transition-colors ${activeCategory === cat.id ? 'text-white' : 'text-gray-400 group-hover:text-gray-300'}`}>{t(cat.label, { keySeparator: false, nsSeparator: false })}</span>
               </button>
@@ -204,7 +208,7 @@ export default function SkillAndEidolonSection({
           <div className="space-y-8">
             {activeSkills.map(({ skill, filename }, idx) => (
               <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
-                 <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
+                 {filename && <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
                    <img
                      src={`${CDN_BASE}${filename}`}
                      className="w-full h-full object-contain rotate-12"
@@ -220,12 +224,12 @@ export default function SkillAndEidolonSection({
                        }
                      }}
                    />
-                 </div>
+                 </div>}
                  <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
                    <div className="flex flex-col md:flex-row items-start gap-8">
                       <div className="relative shrink-0">
                         <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
-                           <img
+                           {filename ? <img
                              src={`${CDN_BASE}${filename}`}
                              className="w-full h-full object-contain brightness-110"
                              alt={skill.name}
@@ -239,7 +243,7 @@ export default function SkillAndEidolonSection({
                                  target.style.opacity = '0.3';
                                }
                              }}
-                           />
+                           /> : <Sparkles size={32} aria-hidden="true" className="text-gray-400" />}
                         </div>
                       </div>
                       <div className="space-y-6 flex-1 min-w-0">

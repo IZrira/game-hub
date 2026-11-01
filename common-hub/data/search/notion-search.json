@@ -8,6 +8,13 @@
       "path": "공허"
     },
     {
+      "id": "aeon_aha",
+      "name": "에이언즈★아하",
+      "gameId": "hsr",
+      "attribute": "양자",
+      "path": "환락"
+    },
+    {
       "id": "aglaea",
       "name": "아글라이아",
       "gameId": "hsr",

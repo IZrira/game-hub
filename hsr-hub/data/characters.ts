@@ -94,8 +94,11 @@ import himekoNova from './characters/hsr/himeko_nova';
 import robinSummeretto from './characters/hsr/robin_summeretto';
 import aventurineWaveflair from './characters/hsr/aventurine_waveflair';
 import pearl from './characters/hsr/pearl';
+import aeonAha from './characters/hsr/aeon_aha';
 
 export const CHARACTER_DATA: Character[] = [
+  // 4.7
+  aeonAha,
   // 4.6
   pearl,
   // 4.5

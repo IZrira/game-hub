@@ -148,6 +148,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/hsr",
   "/gallery/hsr/character/acheron",
   "/gallery/hsr/character/acheron/guide",
+  "/gallery/hsr/character/aeon_aha",
   "/gallery/hsr/character/aglaea",
   "/gallery/hsr/character/aglaea/guide",
   "/gallery/hsr/character/anaxa",

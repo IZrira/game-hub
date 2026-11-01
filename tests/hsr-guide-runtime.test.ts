@@ -55,8 +55,10 @@ it('uses the same public policy for gallery and equipment client catalogs', () =
 
 it('publishes each HSR guide with the approved withholding policy and preserves related party order', () => {
   expect(Object.keys(paths)).toHaveLength(HSR_CHARACTER_GUIDES.length);
-  for (const character of summary) {
-    const runtime = JSON.parse(fs.readFileSync(`public${paths[character.id]}`, 'utf8')) as HsrGuideRuntime;
+  for (const [id, url] of Object.entries(paths)) {
+    const character = summary.find(entry => entry.id === id)!;
+    expect(character, id).toBeDefined();
+    const runtime = JSON.parse(fs.readFileSync(`public${url}`, 'utf8')) as HsrGuideRuntime;
     const original = HSR_CHARACTER_GUIDES.find(guide => guide.characterName === character.name
       || guide.characterName === character.folderName || normalize(guide.characterName) === normalize(character.name)
       || normalize(guide.characterName) === normalize(character.id));

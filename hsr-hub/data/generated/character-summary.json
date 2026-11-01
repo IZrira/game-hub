@@ -1,5 +1,15 @@
 [
   {
+    "id": "aeon_aha",
+    "name": "에이언즈★아하",
+    "gameId": "hsr",
+    "folderName": "에이언즈★아하",
+    "rarity": 5,
+    "attribute": "양자",
+    "path": "환락",
+    "releaseVersion": "4.7"
+  },
+  {
     "id": "pearl",
     "name": "펄",
     "gameId": "hsr",

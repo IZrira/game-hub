@@ -34,6 +34,7 @@ import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import characterSummary from '../data/generated/detail-character-summary.json';
 import characterManifest from '../data/generated/character-runtime-manifest.json';
+import guideManifest from '../data/generated/guide-runtime-manifest.json';
 import { useHsrRuntime } from '../utils/useHsrRuntime';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
@@ -203,7 +204,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
     return rawChar;
   }, [rawChar, isASMode]);
 
-  const lastUpdatedDate = char ? (VERSION_UPDATES[char.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
+  const lastUpdatedDate = char ? (char.updatedAt || VERSION_UPDATES[char.releaseVersion || '1.0'] || '2026-05-23') : '2026-05-23';
 
   const theme = useMemo(() => {
     if (!char) return { primary: '#7E30E1', secondary: '#E26EE5', shadow: 'rgba(126, 48, 225, 0.4)' };
@@ -722,13 +723,13 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                   <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight drop-shadow-lg">
                     {t(char.name)}
                   </h1>
-                  <Link 
+                  {(guideManifest as Record<string, string>)[char.id] && <Link
                     to={`/gallery/${gameId}/character/${char.id}/guide`} 
                     className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-[10px] font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
                     style={{ backgroundColor: theme.primary }}
                   >
                     <BookOpen size={14} /> {t('상세 공략')}
-                  </Link>
+                  </Link>}
                 </div>
               </div>
               

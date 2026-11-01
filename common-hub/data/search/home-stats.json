@@ -1,13 +1,13 @@
 {
   "global": {
     "games": 4,
-    "characters": 292,
+    "characters": 293,
     "guides": 183,
     "items": 2098
   },
   "games": {
     "hsr": {
-      "characters": 93,
+      "characters": 94,
       "guides": 93
     },
     "ww": {

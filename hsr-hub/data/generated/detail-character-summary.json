@@ -1,5 +1,12 @@
 [
   {
+    "id": "aeon_aha",
+    "name": "에이언즈★아하",
+    "folderName": "에이언즈★아하",
+    "path": "환락",
+    "attribute": "양자"
+  },
+  {
     "id": "pearl",
     "name": "펄",
     "folderName": "펄",

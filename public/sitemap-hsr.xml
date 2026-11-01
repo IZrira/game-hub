@@ -44,6 +44,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/hsr/character/aeon_aha</loc>
+    <lastmod>2026-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr%20images/%EC%BA%90%EB%A6%AD%ED%84%B0/%EC%97%90%EC%9D%B4%EC%96%B8%EC%A6%88%E2%98%85%EC%95%84%ED%95%98/art01.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/hsr/character/aglaea</loc>
     <lastmod>2026-04-28</lastmod>
     <changefreq>daily</changefreq>
