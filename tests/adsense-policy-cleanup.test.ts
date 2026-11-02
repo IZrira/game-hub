@@ -14,7 +14,7 @@ it('keeps the privacy policy ad disclosure current in the app and the prerendere
   for (const source of [read('common-hub/pages/PrivacyPolicy.tsx'), read('scripts/prerender-meta.js')]) {
     expect(source).toContain('https://policies.google.com/technologies/partner-sites');
     expect(source).toContain('https://www.aboutads.info/choices/');
-    expect(source).toContain('2026년 11월 2일');
+    expect(source).toContain('2026년 11월 3일');
   }
   expect(read('common-hub/pages/PrivacyPolicy.tsx')).not.toMatch(/DART|\*\*/);
   expect(read('common-hub/pages/TermsOfService.tsx')).not.toContain('DART');

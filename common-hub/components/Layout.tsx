@@ -4,7 +4,6 @@ import { useLocation } from 'react-router';
 import AdPlaceholder from './AdPlaceholder';
 import Footer from './Footer';
 import Navbar from './Navbar';
-import CookieBanner from './CookieBanner';
 import { logger } from '../utils/logger';
 import { retireServiceWorker } from '../utils/retireServiceWorker';
 
@@ -39,7 +38,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       </div>
 
       <Footer />
-      <CookieBanner />
     </div>
   );
 };
