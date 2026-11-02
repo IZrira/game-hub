@@ -1,6 +1,6 @@
-# 🪐 Rira Game Hub & P-Reinforce: Autonomous Knowledge Engine
+# Rira Game Hub
 
-> 개발 작업의 공통 규칙은 [`AGENTS.md`](./AGENTS.md)를 따릅니다. 원격 코드·이미지 저장소 조회는 [`GitHub MCP 운영 기준`](./docs/guides/GITHUB_MCP.md)을 사용하며, 로컬 Git 검증·커밋·푸시 절차는 그대로 유지합니다.
+> 개발 작업의 공통 규칙은 [`AGENTS.md`](./AGENTS.md)를 따릅니다. Codex와 Claude Code가 함께 쓰는 단일 기준이며, Claude Code는 [`CLAUDE.md`](./CLAUDE.md)를 통해 같은 문서를 읽습니다. 원격 코드·이미지 저장소와 Cloudflare 조회는 [`GitHub MCP 운영 기준`](./docs/guides/GITHUB_MCP.md)을 따르고, 로컬 Git 검증·커밋·푸시 절차는 그대로 유지합니다.
 
 > UI·UX 작업은 프로젝트 루트의 [`DESIGN.md`](./DESIGN.md)를 유일한 디자인 정책 기준으로 사용합니다. 공통 컴포넌트와 상태별 체크리스트는 `docs/design-system/`에서 관리합니다.
 
@@ -10,84 +10,150 @@
 
 > 품질 평가는 [`3인 독립 평가 기준`](./docs/guides/THREE_ENGINEER_REVIEW.md)에 따라 성능·보안·디자인 담당을 나눠 수행합니다. 자동 예약 없이 요청 시 실행하며, [`보고서 양식`](./docs/templates/three-engineer-review.md)으로 증거와 미검증 항목을 보관합니다.
 
-> **"파편화된 게임 데이터를 모아 거대한 지식의 우주를 구축합니다."**
-
-이 프로젝트는 최신 프론트엔드 스택(React 18, Vite, TypeScript, Tailwind CSS)으로 구축된 **통합 게임 정보 위키 (Rira Game Hub)**와 이를 자동화하는 **자율형 지식 엔진 (P-Reinforce)**의 결합체입니다. 사용자가 던지는 파편화된 데이터나 스크립트를 에이전트가 해석하고 구조화하며, 시각적으로 매력적이고 고성능인 웹 애플리케이션으로 렌더링합니다.
+여러 게임의 캐릭터·장비·공략 정보를 한곳에서 제공하는 게임 정보 사이트입니다. 운영 주소는 [riragamehub.com](https://riragamehub.com)이며, GitHub `main`에 push하면 Cloudflare Pages(`rira-game-hub`)가 자동으로 배포합니다.
 
 ---
 
-## 🎮 주요 서비스 도메인 (Game Hubs)
+## 게임 허브
 
-현재 Rira Game Hub는 3개의 주요 게임 도메인을 완벽 지원 및 확장 중입니다:
+각 게임은 독립된 폴더(`*-hub/`)와 `/gallery/:gameId` 경로를 가집니다.
 
-1. **Honkai: Star Rail (붕괴: 스타레일 - HSR)**: 턴제 메커니즘, 속성/운명의 길, 실시간 동기화 티어표, 고도화된 파티 조합 추천 및 캐릭터별 시너지 덱.
-2. **Wuthering Waves (명조 - WW)**: 실시간 액션, 공명 체인(돌파), 에코 데이터, 복잡한 스킬 콤보 및 3인 파티 조합 빌더.
-3. **Neverness to Everness (이환 - NTE)**: 신규 추가된 어반 오픈월드 RPG 아카이브. 특수 문자 치환, 4인 속성 시너지 파티 추천 탑재.
+- **붕괴: 스타레일 (`hsr`)**: 캐릭터, 광추, 유물·장신구, 용어집, 티어표, 파티 추천, 캐릭터 분석 가이드.
+- **명조 (`ww`)**: 캐릭터, 무기, 에코, 티어표, 3인 파티 추천, 캐릭터 가이드.
+- **이환 (`nte`)**: 캐릭터, 아크(무기), 티어표, 4인 파티 추천, 공략 가이드.
+- **애니모 (`aniimo`)**: 도감, 지역, 속성 상성표, 성격 가이드, 파티 빌더, 진화·형태 가이드.
+- **소녀전선2 (GF2)**: 용어 사전(`docs/guides/GF2_TERMS*.md`)만 준비된 상태이며 공개 라우트와 허브 폴더는 아직 없습니다.
 
----
-
-## 📌 주요 기능 및 아키텍처 요약
-
-1. **멀티 도메인 허브 구조 (Multi-Hub Architecture)**:
-   - `common-hub`: 전역 상태, 디자인 토큰, Footer, 메인 라우터, Asset Manager, 통합 관리자 대시보드 (`/admin`).
-   - `hsr-hub`, `ww-hub`, `nte-hub`: 각 게임별 특화 로직, 데이터베이스 및 독립 UI 층.
-2. **멀티 게임 파티 빌더 & 돌파 추천 엔진 (Admin Party Builder)**:
-   - 각 게임별 슬롯 규격 자동 동기화 (스타레일/이환: 4인 고정, 명조: 3인 고정).
-   - **슬롯 우선 배치 ➡️ 배치된 캐릭터 전용 메인 딜러 토글 카드** 워크플로우.
-   - **돌파 추천 시스템 (`breakthrough`)**: 명함, 1돌+, 2돌+, 2돌 필수, 풀돌 등 본체 및 대체 캐릭터별 개별 성혼/돌파 수치 지정.
-   - **특수기호(`•`, `·`) 및 캐릭터명 원클릭 삽입 칩 + 파티명 자동완성 엔진**.
-   - 고정 높이 컨테이너(`h-[650px]`) 기반 흔들림 없는 고속 캐릭터 검색 모달.
-3. **3단계 오프라인 퍼스트 실시간 데이터 동기화 (3-Tier Sync Architecture)**:
-   - **1순위 (Supabase Cloud)**: `party_recommendations`, `tier_lists` 테이블을 통한 무중단 실시간 동기화.
-   - **2순위 (localStorage Cache)**: `0ms` 지연 없는 즉각적인 로컬 캐싱 및 브라우저 즉시 렌더링.
-   - **3순위 (TypeScript Code Exporter)**: `exportPartyToTSCode()` 직렬화 엔진으로 `[코드 내보내기]` 원클릭 클립보드 복사 ➡️ 소스코드 영구 병합.
-4. **비동기 데이터 동기화 (Notion API)**:
-   - Notion 데이터 동기화는 사용자가 명시적으로 요청한 경우에만 프로젝트의 공식 스크립트로 실행합니다. 일반 빌드에서 임의로 동기화하지 않으며, 로컬 원본과 중복·충돌을 확인합니다. 실행 기준은 `AGENTS.md`를 따릅니다.
-5. **소셜 로그인 및 보안 리뷰 시스템 (Supabase Auth & RLS)**:
-   - Google 및 Discord OAuth 로그인을 지원하는 완벽한 인증 시스템.
-   - 캐릭터 리뷰 및 댓글 작성 시 작성자 본인만 수정/삭제 가능하도록 행 수준 보안(RLS) 적용.
-6. **SEO 및 구글 애드센스 호환성 (AdSense Compliance)**:
-   - 검색 엔진 최적화(SEO)를 위한 `sitemap.xml` 동적 생성 및 `prerender-meta.js` 정적 사전 렌더링.
-   - 구글 애드센스 필수 보안/정책 페이지 완비 (`Privacy Policy`, `Terms of Service`, `Contact Us`).
-7. **Obsidian Vault 연동 P-Reinforce 지식 엔진**:
-   - `00_Raw/` ➡️ `10_Wiki/` ➡️ `20_Meta/` 3단계 지식 정제 파이프라인.
+공통 페이지: 홈, 통합 검색(`/search`), 게임별 가이드 목록(`/gallery/:gameId/guides`), 공지(`/notices`), 소개·개인정보처리방침·이용약관·문의, 관리자 화면(`/admin`).
 
 ---
 
-## 🛠️ 기술 스택 (Tech Stack)
+## 기술 스택
 
-- **Frontend Framework**: React 18, Vite, TypeScript
-- **Styling**: Tailwind CSS (글래스모피즘 및 다크 모드 특화), Framer Motion, Lucide React
-- **Data Layer**: JSON 정적 데이터 + Notion API + Supabase Realtime
-- **Backend & Auth**: Supabase (PostgreSQL, OAuth, RLS)
-- **CDN**: jsDelivr / GitHub Raw Content (IZrira/riragameinfo)
+- **Frontend**: React 19, React Router 8, Vite 6, TypeScript 5.8, Tailwind CSS 4, motion, lucide-react
+- **다국어**: i18next (한국어·영어·일본어). 게임별 번역 묶음은 경로에 따라 필요한 것만 불러옵니다.
+- **Backend·인증**: Supabase (PostgreSQL, Google·Discord OAuth, RLS, Storage)
+- **호스팅**: Cloudflare Pages + Pages Functions(`functions/`)
+- **이미지**: 별도 저장소 `IZrira/riragameinfo` (GitHub raw → jsDelivr 순서로 조회)
+- **콘텐츠 원본 연동**: Notion API (명시적 요청 시에만 동기화)
+- **테스트**: Vitest
 
 ---
 
-## 📂 프로젝트 구조 (Project Structure)
+## 앱 구조
 
 ```plaintext
-root/
-├── common-hub/             # [공용] 메인 라우터, 관리자 대시보드(AdminPartyManager), 전역 컴포넌트, 유틸리티
-│   ├── components/         # AdminPartyManager, LazyImage, Navbar, Footer, PageHeader 등
-│   ├── types/              # party.ts (UnifiedPartyData 유니온), game.ts 등
-│   └── utils/              # imageHelper, synergyManager, safeEncodeURIComponent 등
-├── hsr-hub/                # [붕괴: 스타레일] 특화 컴포넌트, 데이터베이스, 추천 파티(PartyRecommendations)
-├── ww-hub/                 # [명조] 특화 컴포넌트, 데이터베이스, 추천 파티(PartyRecommendations)
-├── nte-hub/                # [이환] 특화 컴포넌트 및 데이터베이스
-├── scripts/                # Notion 데이터 페칭, 사이트맵 생성, 메타태그 사전 렌더링(prerender-meta.js)
-├── 00_Raw/                 # [불변] 가공되지 않은 사용자 데이터
-├── 10_Wiki/                # [Obsidian Vault] 프로젝트 지식, 의사결정 기록(work-log), 캐릭터 위키
-├── 20_Meta/                # [Obsidian Meta] 인덱스, 대시보드, 시스템 정책
-└── .github/                # GitHub Sync 및 CI/CD 워크플로우
+index.html                     # SEO 기본 HTML, AdSense, Cloudflare Analytics
+└─ common-hub/index.tsx        # 언어 리소스 선로드 후 렌더링
+   └─ common-hub/App.tsx       # AuthProvider + RouterProvider
+      └─ common-hub/router.tsx # 전체 라우트 정의 (모든 페이지 lazy loading)
+```
+
+- `router.tsx`는 `/gallery/:gameId/...` 경로에서 `gameId`를 보고 각 허브의 페이지로 분기합니다(Dispatcher 컴포넌트). 게임 전용 경로(광추, 에코, 아크, 애니모 지역 등)는 별도로 등록되어 있습니다.
+- 경로가 바뀌면 `RouteLanguageGate`가 해당 게임의 번역 묶음을 먼저 불러온 뒤 페이지를 표시합니다.
+- `functions/_middleware.ts`는 Cloudflare Pages Functions에서 보안 헤더, 옛 주소 301 이동, 철회한 글의 410 응답, 존재하는 경로 판별(`functions/generated-routes.ts`)을 처리합니다.
+
+---
+
+## 데이터 흐름
+
+콘텐츠는 **원본 → 생성 스크립트 → 생성 결과물 → 화면** 순서로 연결됩니다. 생성 결과물은 다음 실행 때 다시 만들어지므로 직접 고치지 않고 원본이나 생성 스크립트를 수정합니다.
+
+1. **원본 (직접 편집)**
+   - HSR 캐릭터: `hsr-hub/data/characters/hsr/*.ts`, 목록 등록 `hsr-hub/data/characters.ts`
+   - HSR 공략: `hsr-hub/data/guides/*.ts` (`index.ts`에 등록)
+   - HSR 광추: `hsr-hub/data/lightcones/*.ts`
+   - WW·NTE 데이터: `ww-hub/data/`, `nte-hub/data/`
+   - Aniimo 도감: `aniimo-hub/data/aniimo.json` 등
+   - 가이드 글: `common-hub/data/guideArticles.json`, 공지: `common-hub/data/notices.ts`
+2. **Notion 동기화 (요청 시에만)**: `npm run sync:notion` (`scripts/fetch-notion-data.js`)
+   - `common-hub/data/notion-data.json`에 WW·NTE 데이터를 저장합니다.
+   - HSR 공략은 로컬 파일과 비교한 뒤 `hsr-hub/data/guides/*.ts`로 저장합니다.
+3. **생성 스크립트**: `predev`, `pretest`, `build` 때 자동 실행됩니다.
+   - `*-hub/data/generated/*.json`: 목록·요약 데이터, 상세 데이터 위치표(manifest). **Git에 포함됩니다.**
+   - `public/assets/data/{hsr,ww,aniimo}/...`: 상세 페이지가 `fetch`로 불러오는 JSON. 파일명에 내용 해시가 붙습니다. **Git에서 제외됩니다(.gitignore).**
+   - `common-hub/data/search/`: 통합 검색 인덱스, 홈 통계
+   - `common-hub/locales/{hsr,ww}/`: 캐릭터·공략 번역 묶음
+4. **화면**: 목록은 생성된 요약 JSON을 import하고, 상세 페이지는 manifest에서 해시 파일 경로를 찾아 필요한 순간에만 받아옵니다.
+
+---
+
+## 이미지
+
+- 이미지는 이 저장소가 아니라 `IZrira/riragameinfo` 저장소의 `hsr images`, `ww images`, `nte images`, `gf2 images` 폴더에 있습니다.
+- `common-hub/utils/imageSources.ts`가 `raw.githubusercontent.com` → `fastly.jsdelivr.net` → `/assets/unknown.webp` 순서로 시도합니다. 옛 `cdn.jsdelivr.net` 주소는 자동으로 새 주소로 바뀝니다.
+- 이미지 누락은 코드의 참조 경로와 이미지 저장소의 실제 파일명(대소문자, 공백, 확장자, 한글 정규화)을 대조해 진단합니다.
+
+---
+
+## Supabase
+
+- 인증: Google·Discord OAuth (`common-hub/context/AuthContext.tsx`, `common-hub/lib/supabase.ts`)
+- 테이블: `party_recommendations`, `tier_lists`, `notices`, `character_reviews`, `comment_upvotes`, `comment_reports` 등
+- 권한: 행 수준 보안(RLS)과 Storage 정책은 `supabase/migrations/`에서 관리합니다.
+- 관리자 화면의 파티 추천은 Supabase → localStorage 캐시 → 코드 내장 기본값 순서로 불러오며, 편집 결과를 TypeScript 코드로 내보낼 수 있습니다(`exportPartyToTSCode`).
+
+---
+
+## 빌드·검증·배포
+
+```bash
+npm run dev          # 개발 서버 (port 3001), predev에서 생성 스크립트 실행
+npm run typecheck    # TypeScript 검사
+npm test             # Vitest 회귀 테스트 (pretest에서 생성 스크립트 실행)
+npm run validate:data
+npm run build        # 아래 순서로 실행
+```
+
+`npm run build` 순서: 가이드 요약 생성 → TypeScript 검사 → 검색 데이터 생성 → Aniimo·WW 실행 데이터 생성 → 사이트맵·경로 목록 생성(`public/sitemap*.xml`, `functions/generated-routes.ts`) → Vite 빌드 → 페이지 메타 사전 렌더링(`prerender-meta.js`) → SEO 검사 → 용량 예산 검사(`perf:audit`).
+
+- Notion 동기화가 요청되지 않은 빌드는 `AGENTS.md`의 lifecycle 차단 절차로 실행합니다.
+- 빌드·테스트는 `public/sitemap.xml`의 `lastmod` 같은 생성 파일을 다시 쓸 수 있으므로, 커밋 전에 이번 작업과 무관한 변경을 구분합니다.
+- CI(`.github/workflows/`): `main` push 시 Quality Gate(`typecheck` → `validate:data` → `test` → `build`)와 Security Scan(`npm audit --audit-level=critical`)이 실행됩니다.
+- 배포: GitHub push를 Cloudflare Pages가 자동 배포합니다. 별도 배포 명령은 실행하지 않습니다.
+
+---
+
+## 콘텐츠 추가 작업 방식
+
+새 캐릭터·장비·도감을 추가하는 커밋에는 보통 다음이 함께 포함됩니다.
+
+1. 원본 데이터 파일과 목록 등록
+2. 다시 생성된 `data/generated/*.json`, 검색·번역 파일
+3. `functions/generated-routes.ts`와 `public/sitemap*.xml`
+4. 해당 기능의 회귀 테스트(`tests/*.test.ts`)
+5. 작업 보고서와 성능·보안·디자인 검토 보고서(`docs/reports/`)
+6. 캐릭터 추가 시 Obsidian 위키(`10_Wiki/👥 Characters/`) 갱신
+
+커밋 메시지는 `feat:`, `fix:`, `content:`, `docs:`, `perf:`, `chore:` 형식을 사용하고 검증 후 `main`에 push합니다.
+
+---
+
+## 폴더 구조
+
+```plaintext
+game-hub/
+├── common-hub/        # 진입점, 라우터, 공통 레이아웃·컴포넌트, 홈·검색·가이드·공지·관리자, i18n, 이미지 유틸
+├── hsr-hub/           # 붕괴: 스타레일 (캐릭터, 광추, 유물, 공략, 티어, 파티)
+├── ww-hub/            # 명조 (캐릭터, 무기, 에코, 공략, 티어, 파티)
+├── nte-hub/           # 이환 (캐릭터, 아크, 공략, 티어, 파티)
+├── aniimo-hub/        # 애니모 (도감, 지역, 상성, 성격, 파티 빌더)
+├── functions/         # Cloudflare Pages Functions (middleware, 보안 헤더, 생성된 경로 목록)
+├── scripts/           # Notion 동기화, 생성 스크립트, 사이트맵, 사전 렌더링, SEO·성능 감사
+├── public/            # 정적 파일, 사이트맵, 생성된 상세 데이터(일부 Git 제외)
+├── supabase/          # DB migration과 정책 테스트
+├── tests/             # Vitest 회귀 테스트
+├── docs/              # guides(운영 기준), skills(에이전트 스킬 원본), design-system, reports, templates
+├── 00_Raw/ 10_Wiki/ 20_Meta/   # Obsidian 지식 저장소 (원자료 → 위키 → 메타)
+├── AGENTS.md / CLAUDE.md       # 에이전트 작업 규칙 (Codex·Claude Code 공용)
+├── DESIGN.md / SKILL.md        # 디자인 정책 / UI 작업 실행 순서
+└── .github/workflows/          # Quality Gate, Security Scan
 ```
 
 ---
 
-## 📞 문의 및 비즈니스 (Contact)
+## 문의
 
-본 프로젝트의 법적, 상업적 문의 또는 구글 애드센스/파트너십 관련 사항은 아래 공식 이메일로 소통하실 수 있습니다:
+법적·상업적 문의, 애드센스·파트너십 관련 사항은 아래 이메일로 보내 주세요.
+
 - **Email**: [rira.game.hub@gmail.com](mailto:rira.game.hub@gmail.com)
-
----
-*Powered by Rira Archive & P-Reinforce AI Engines.*
