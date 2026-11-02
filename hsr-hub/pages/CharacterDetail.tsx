@@ -1,6 +1,7 @@
 
 import React, { Suspense, lazy, useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
+import { useHasRecommendedParties } from '../../common-hub/hooks/useHasRecommendedParties';
 import { 
   Star, 
   ChevronDown, 
@@ -282,6 +283,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
   }, [char]);
 
 
+  const hasParties = useHasRecommendedParties('hsr', char?.id || charName || '');
   if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
 
   const currentLevel = LEVEL_STEPS[levelIdx];
@@ -680,7 +682,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
           { id: 'materials', label: t('육성 재료') },
           { id: 'skills', label: t('행적 & 스킬') },
           { id: 'equipment', label: t('종결 장비') },
-          { id: 'synergy', label: t('추천 파티') }
+          ...(hasParties ? [{ id: 'synergy', label: t('추천 파티') }] : [])
         ]}
         activeColor={theme.primary}
       />
@@ -925,17 +927,19 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
         </div>
 
         {/* Recommended Synergy / Team Formations */}
-        <div id="synergy" className="scroll-mt-28">
-          <DeferredSection minHeight={320}>
-            <Suspense fallback={<DeferredFallback />}>
-              <SynergyDeck
-                characterName={char?.id || charName || ''}
-                gameId="hsr"
-                theme={theme}
-              />
-            </Suspense>
-          </DeferredSection>
-        </div>
+        {hasParties && (
+          <div id="synergy" className="scroll-mt-28">
+            <DeferredSection minHeight={320}>
+              <Suspense fallback={<DeferredFallback />}>
+                <SynergyDeck
+                  characterName={char?.id || charName || ''}
+                  gameId="hsr"
+                  theme={theme}
+                />
+              </Suspense>
+            </DeferredSection>
+          </div>
+        )}
 
         {/* Entity Graph: Recommended Equipment & Synergies */}
         <div id="equipment" className="scroll-mt-28">

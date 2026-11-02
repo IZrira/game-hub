@@ -1,6 +1,7 @@
 
 import React, { Suspense, lazy, useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
+import { useHasRecommendedParties } from '../../common-hub/hooks/useHasRecommendedParties';
 import { 
   Star, 
   ChevronDown, 
@@ -560,6 +561,7 @@ const CharacterDetail: React.FC = () => {
     ];
   }, [char, t]);
 
+  const hasParties = useHasRecommendedParties('ww', char?.id || charName || '');
   if (!summaryChar) return <div className="p-20 text-center font-black text-white">{t('캐릭터를 찾을 수 없습니다.')}</div>;
   if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary'} /><p className="mt-5 text-sm font-bold">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
 
@@ -632,7 +634,7 @@ const CharacterDetail: React.FC = () => {
           { id: 'skills', label: t('스킬') },
           { id: 'resonance-chain', label: t('공명 체인') },
           { id: 'equipment', label: t('종결 장비') },
-          { id: 'synergy', label: t('추천 파티') }
+          ...(hasParties ? [{ id: 'synergy', label: t('추천 파티') }] : [])
         ]}
         activeColor={theme.primary}
       />
@@ -937,17 +939,19 @@ const CharacterDetail: React.FC = () => {
         </div>
 
         {/* Team Formations & Synergies */}
-        <div id="synergy" className="scroll-mt-28">
-          <DeferredSection minHeight={320}>
-            <Suspense fallback={<DeferredFallback />}>
-              <SynergyDeck
-                characterName={char?.id || charName || ''}
-                gameId="ww"
-                theme={theme}
-              />
-            </Suspense>
-          </DeferredSection>
-        </div>
+        {hasParties && (
+          <div id="synergy" className="scroll-mt-28">
+            <DeferredSection minHeight={320}>
+              <Suspense fallback={<DeferredFallback />}>
+                <SynergyDeck
+                  characterName={char?.id || charName || ''}
+                  gameId="ww"
+                  theme={theme}
+                />
+              </Suspense>
+            </DeferredSection>
+          </div>
+        )}
 
 
         

@@ -9,6 +9,7 @@ import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
 import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
+import { hasPublishableText } from '../common-hub/utils/placeholderText.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -1953,7 +1954,7 @@ function generateRichWwWeaponHtml(weaponName, wpId, wpNotion, recommendedChars =
 
   // Story
   const story = wpNotion?.weaponStory || (wpId ? wwWeaponKoData[`weapon.${wpId}.description`] : '') || '';
-  if (story) {
+  if (hasPublishableText(story)) {
     html += `<h2>무기 스토리</h2>\n<p>${escapeHtml(story).replace(/\n/g, '<br/>')}</p>\n`;
   }
 
@@ -2007,7 +2008,7 @@ function generateHsrLightconeHtml(lc, recommendedChars = []) {
     html += `</ul>\n`;
   }
 
-  if (lc.story) {
+  if (hasPublishableText(lc.story)) {
     html += `<h2>광추 스토리</h2>\n<p>${escapeHtml(lc.story).replace(/\n/g, '<br/>')}</p>\n`;
   }
 

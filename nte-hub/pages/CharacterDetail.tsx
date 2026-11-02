@@ -1,6 +1,7 @@
 
 import React, { Suspense, lazy, useState, useMemo, useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router';
+import { useHasRecommendedParties } from '../../common-hub/hooks/useHasRecommendedParties';
 import { getPublishedGuides } from '../../common-hub/data/guideSummaries';
 import { 
   Star, 
@@ -354,6 +355,7 @@ const CharacterDetailNTE: React.FC = () => {
   }, [char]);
 
 
+  const hasParties = useHasRecommendedParties('nte', char?.id || charName || '');
   if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
 
   const currentLevel = LEVEL_STEPS[levelIdx];
@@ -730,7 +732,7 @@ const CharacterDetailNTE: React.FC = () => {
           { id: 'console-layout', label: t('콘솔 배치') },
           { id: 'skills', label: t('스킬 & 각성') },
           { id: 'equipment', label: t('전용 아크') },
-          { id: 'synergy', label: t('추천 파티') }
+          ...(hasParties ? [{ id: 'synergy', label: t('추천 파티') }] : [])
         ]}
         activeColor={theme.primary}
       />
@@ -1055,17 +1057,19 @@ const CharacterDetailNTE: React.FC = () => {
         </div>
         
         {/* Recommended Team Formations */}
-        <div id="synergy" className="scroll-mt-28">
-          <DeferredSection minHeight={320}>
-            <Suspense fallback={<DeferredFallback />}>
-              <SynergyDeck
-                characterName={char?.id || charName || ''}
-                gameId="nte"
-                theme={theme}
-              />
-            </Suspense>
-          </DeferredSection>
-        </div>
+        {hasParties && (
+          <div id="synergy" className="scroll-mt-28">
+            <DeferredSection minHeight={320}>
+              <Suspense fallback={<DeferredFallback />}>
+                <SynergyDeck
+                  characterName={char?.id || charName || ''}
+                  gameId="nte"
+                  theme={theme}
+                />
+              </Suspense>
+            </DeferredSection>
+          </div>
+        )}
         
 
         {/* E-E-A-T Authorship & Methodology Note */}

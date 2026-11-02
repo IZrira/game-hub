@@ -8,6 +8,7 @@ import SEO from '../../common-hub/components/SEO';
 import HsrItemIcon from '../components/HsrItemIcon';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { hasPublishableText } from '../../common-hub/utils/placeholderText.js';
 
 import { HsrLightCone } from '../types';
 import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';
@@ -338,7 +339,8 @@ const LightConeDetail: React.FC = () => {
           theme={theme}
         />
 
-        {/* 04. Story Section (Toggle) - BOTTOM FULL WIDTH */}
+        {/* 04. Story Section (Toggle) - BOTTOM FULL WIDTH, omitted until a real story exists */}
+        {hasPublishableText(lc.story) && (
         <div className="glass-card overflow-hidden rounded-[35px] border border-white/5 transition-all duration-300">
             <button 
               onClick={() => setIsStoryOpen(!isStoryOpen)}
@@ -356,12 +358,13 @@ const LightConeDetail: React.FC = () => {
             <div className={`transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100 pb-10' : 'max-h-0 opacity-0'}`}>
               <div className="px-8 border-t border-white/5 pt-8">
                 <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">
-                    {t(lc.story || '스토리 정보가 없습니다.').replace(/\*/g, '')}
+                    {t(lc.story).replace(/\*/g, '')}
                 </div>
               </div>
             </div>
         </div>
-        
+        )}
+
         {/* E-E-A-T Authorship & Methodology Note */}
         <section className="mt-12 pt-8 border-t border-white/5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/5">
