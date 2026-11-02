@@ -10,6 +10,7 @@ import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
 import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import { hasPublishableText } from '../common-hub/utils/placeholderText.js';
+import { formatGuideBasis, GUIDE_REVIEW_POLICY } from '../common-hub/utils/guideVerification.js';
 import { loadEquipmentRecommendations } from './lib/equipment-recommendations.js';
 import { getRecommendations } from '../common-hub/utils/equipmentRecommendations.js';
 import path from 'path';
@@ -2806,7 +2807,7 @@ function runPrerender() {
     const gameLabel = guideGameLabels[gameId] || gameId;
     const landing = guideLanding[gameId];
     const latestReviewedAt = gameGuides.map(article => article.reviewedAt || article.publishedAt).filter(Boolean).sort().at(-1) || '확인 중';
-    const listHtml = gameGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a><p>${escapeHtml(article.excerpt)}</p><p><small>검수일 ${escapeHtml(article.reviewedAt || article.publishedAt || '확인 중')}</small></p></li>`).join('');
+    const listHtml = gameGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a><p>${escapeHtml(article.excerpt)}</p><p><small>최종 검수 ${escapeHtml(article.reviewedAt || article.publishedAt || '확인 중')} · ${escapeHtml(formatGuideBasis(article.gameId, article.applicableVersion))}</small></p></li>`).join('');
     const criteriaHtml = landing
       ? `<section><h2>${escapeHtml(gameLabel)} 공략을 읽는 기준</h2><p>${escapeHtml(landing.intro)}</p><ol>${landing.criteria.map(criterion => `<li>${escapeHtml(criterion)}</li>`).join('')}</ol></section>`
       : '';
@@ -2825,7 +2826,7 @@ function runPrerender() {
       `${gameLabel}의 공식 정보와 Rira 분석을 구분하고 적용 버전과 검수일을 표시한 캐릭터 육성, 전투 및 시스템 공략을 확인하세요.`,
       `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
-      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>공식 수치와 사이트 내 데이터를 대조하고 적용 기준일과 검수 상태를 확인한 글만 공개합니다.</p><dl><dt>공개 공략</dt><dd>${gameGuides.length}편</dd><dt>최근 검수일</dt><dd>${escapeHtml(latestReviewedAt)}</dd></dl><h2>검수 완료된 공략</h2><ul>${listHtml}</ul>${criteriaHtml}${navigationHtml}</article>`
+      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>${escapeHtml(GUIDE_REVIEW_POLICY)}</p><dl><dt>공개 공략</dt><dd>${gameGuides.length}편</dd><dt>최근 검수일</dt><dd>${escapeHtml(latestReviewedAt)}</dd></dl><h2>검수 완료된 공략</h2><ul>${listHtml}</ul>${criteriaHtml}${navigationHtml}</article>`
     );
     count++;
   });
@@ -2863,7 +2864,7 @@ function runPrerender() {
       article.excerpt,
       `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
-      `<article><p><a href="/gallery/${article.gameId}">${escapeHtml(gameLabel)} 허브</a> &gt; <a href="/gallery/${article.gameId}/guides">공략</a></p><h1>${escapeHtml(article.title)}</h1><p><strong>적용 기준:</strong> ${escapeHtml(article.applicableVersion)} · <strong>최종 검수:</strong> ${escapeHtml(article.reviewedAt)}</p>${contentHtml}</article>`
+      `<article><p><a href="/gallery/${article.gameId}">${escapeHtml(gameLabel)} 허브</a> &gt; <a href="/gallery/${article.gameId}/guides">공략</a></p><h1>${escapeHtml(article.title)}</h1><p><strong>적용 기준:</strong> ${escapeHtml(formatGuideBasis(article.gameId, article.applicableVersion))} · <strong>최종 검수:</strong> ${escapeHtml(article.reviewedAt)}</p>${contentHtml}</article>`
     );
     count++;
   });
