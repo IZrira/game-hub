@@ -72,7 +72,7 @@ const GalleryAniimo: React.FC = () => {
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`애니모 공식 위키에서 확인한 ${entries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`} url="/gallery/aniimo/characters" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '애니모 도감', url: '/gallery/aniimo/characters' }]} />
+      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`공식 도감 기준 ${entries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`} url="/gallery/aniimo/characters" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '애니모 도감', url: '/gallery/aniimo/characters' }]} />
       <PageHeader gameId="aniimo" category="허브" categoryUrl="/gallery/aniimo" title="애니모 도감" />
       <AniimoMobileNav />
 
@@ -184,7 +184,7 @@ const GalleryAniimo: React.FC = () => {
         </section>
 
         {filtered.length === 0 && <div className="rounded-3xl border border-white/10 py-20 text-center text-gray-500"><X className="mx-auto mb-3" /><p>조건에 맞는 애니모가 없습니다.</p><button type="button" onClick={() => { setQuery(''); setElement(ALL); setPosition(ALL); setLocation(ALL); setStage(ALL); setPersonality(ALL); setRegion(ALL); }} className="mt-4 rounded-lg border border-white/10 px-4 py-2 text-xs font-bold text-gray-300 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-violet-400">검색 조건 초기화</button></div>}
-        <p className="text-center text-xs leading-6 text-gray-500">데이터 출처: 애니모 공식 위키 · 항목별 확인일 {checkedPeriod || '상세 도감 참조'} · 공식 업데이트에 따라 수치가 변경될 수 있습니다.</p>
+        <p className="text-center text-xs leading-6 text-gray-500">공식 도감 기준 · 항목별 확인일 {checkedPeriod || '상세 도감 참조'} · 공식 업데이트에 따라 수치가 변경될 수 있습니다.</p>
         </div>
       </main>
     </div>

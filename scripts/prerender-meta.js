@@ -1110,7 +1110,8 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
 
   return `<article>
     <h1>${escapeHtml(item.name)}</h1>
-    <p>NO.${escapeHtml(item.number)} · 원소: ${escapeHtml(item.elements.join('/'))} · 포지션: ${escapeHtml(item.positions.join('/'))}</p>
+    <p>NO.${escapeHtml(item.number)} · 원소: ${escapeHtml(item.elements.join('/'))} · 포지션: ${escapeHtml(item.positions.join('/'))} · <a href="/gallery/aniimo/type-chart">원소 상성표 보기</a></p>${item.checkedAt ? `
+    <p>공식 도감 기준 · 확인일 ${escapeHtml(item.checkedAt)}</p>` : ''}
     <h2>소개</h2>
     <p>${escapeHtml(item.description)}</p>
     <h2>기본 능력치</h2>
@@ -3096,7 +3097,7 @@ function runPrerender() {
     } else if (routePath === '/gallery/aniimo/characters') {
       const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
-      meta.description = `애니모 공식 위키에서 확인한 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
+      meta.description = `공식 도감 기준 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
       meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/locations') {
       const locations = OFFICIAL_ANIIMO_HABITATS;

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ArrowDown, ArrowLeft, Brain, ChevronLeft, ChevronRight, Compass, ExternalLink, Home, MapPin, Shield, Sparkles, Swords, Target } from 'lucide-react';
+import { ArrowDown, ArrowLeft, Brain, ChevronLeft, ChevronRight, Compass, Home, MapPin, Shield, Sparkles, Swords, Target } from 'lucide-react';
 import { Link, useParams, useSearchParams } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
@@ -260,7 +260,7 @@ const CharacterDetailAniimo: React.FC = () => {
         </Section>
       )}
 
-      <footer className="flex flex-col gap-3 border-t border-white/10 py-8 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between"><Link to="/gallery/aniimo" className="inline-flex items-center gap-2 font-bold hover:text-white"><ArrowLeft size={15} /> 애니모 도감으로 돌아가기</Link><div><span>마지막 확인일 {item.checkedAt}</span><a href={activeForm?.sourceUrl || item.sourceUrl} target="_blank" rel="noreferrer" className="ml-4 inline-flex items-center gap-1 text-violet-300 hover:text-white">공식 출처 <ExternalLink size={12} /></a></div></footer>
+      <footer className="flex flex-col gap-3 border-t border-white/10 py-8 text-xs text-gray-500 sm:flex-row sm:items-center sm:justify-between"><Link to="/gallery/aniimo" className="inline-flex items-center gap-2 font-bold hover:text-white"><ArrowLeft size={15} /> 애니모 도감으로 돌아가기</Link><div><span>공식 도감 기준 · 확인일 {item.checkedAt}</span></div></footer>
     </main>
   </div>;
 };
