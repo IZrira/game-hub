@@ -34,7 +34,6 @@ import SEO from '../../common-hub/components/SEO';
 import { getWwCharacterSeo } from '../../common-hub/utils/wwCharacterSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { WuwaCharacter } from '../types';
 import { ELEMENT_COLORS } from '../data/formatter';

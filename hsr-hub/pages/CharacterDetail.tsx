@@ -31,7 +31,6 @@ import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import characterSummary from '../data/generated/detail-character-summary.json';
 import characterManifest from '../data/generated/character-runtime-manifest.json';
 import guideManifest from '../data/generated/guide-runtime-manifest.json';

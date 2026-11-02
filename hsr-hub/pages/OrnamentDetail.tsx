@@ -4,7 +4,6 @@ import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-re
 import { HSR_ORNAMENT_DB } from '../data';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
 import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';

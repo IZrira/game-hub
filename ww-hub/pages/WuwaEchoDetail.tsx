@@ -254,7 +254,7 @@ export const WuwaEchoDetail = () => {
           </div>
         </section>
 
-        <AdPlaceholder type="leaderboard" className="mt-8 mb-4 scale-90 opacity-40" />
+        <AdPlaceholder type="leaderboard" className="mt-8 mb-4" />
       </div>
 
       {selectedItem && (

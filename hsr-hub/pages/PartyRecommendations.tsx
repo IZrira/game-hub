@@ -18,7 +18,6 @@ import { HSR_PARTIES, PartyCombination, PartyMember } from '../data/parties';
 import { CHARACTER_DB } from '../../common-hub/data/games';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import PageHeader from '../../common-hub/components/PageHeader';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 import { supabase } from '../../common-hub/lib/supabase';

@@ -5,7 +5,6 @@ import { Hash, Search, ChevronLeft, Book, Info, ArrowLeft } from 'lucide-react';
 import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import { CHARACTER_DB } from '../../common-hub/data/games';
 import PageHeader from '../../common-hub/components/PageHeader';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 
 const Terminology: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();

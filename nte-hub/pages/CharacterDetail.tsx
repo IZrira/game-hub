@@ -37,7 +37,6 @@ import SEO from '../../common-hub/components/SEO';
 import { getNteCharacterSeo } from '../../common-hub/utils/nteCharacterSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { NTE_CHARACTER_DATA } from '../data/characterData';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent, CDN_URL } from '../../common-hub/utils/assetManager';

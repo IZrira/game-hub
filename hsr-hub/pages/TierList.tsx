@@ -12,7 +12,6 @@ import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
-import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { supabase } from '../../common-hub/lib/supabase';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {

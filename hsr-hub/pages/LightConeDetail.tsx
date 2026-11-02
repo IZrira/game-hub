@@ -387,7 +387,7 @@ const LightConeDetail: React.FC = () => {
           )}
         </section>
 
-        <AdPlaceholder type="leaderboard" className="mt-4 mb-2 scale-90 opacity-40" />
+        <AdPlaceholder type="leaderboard" className="mt-4 mb-2" />
       </div>
     </div>
   );

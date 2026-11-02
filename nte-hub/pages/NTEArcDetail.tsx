@@ -267,7 +267,7 @@ const NTEArcDetail: React.FC = () => {
               </div>
             </div>
             
-            <AdPlaceholder type="leaderboard" className="mt-2 opacity-40" />
+            <AdPlaceholder type="leaderboard" className="mt-2" />
           </div>
         </div>
 
