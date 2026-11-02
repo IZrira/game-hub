@@ -37,6 +37,7 @@ interface SEOProps {
   faqData?: Array<{ question: string; answer: string }>; // AEO를 위한 FAQ 스키마 데이터
   breadcrumbData?: BreadcrumbItem[]; // 검색엔진 경로 구조화를 위한 데이터
   noindex?: boolean;      // 검색 노출 차단 옵션 (관리자 페이지 등 전용)
+  indexable?: boolean;    // false면 메타는 유지하고 noindex, follow로 표시 (추천 없는 장비 페이지 등)
   publishedTime?: string; // 콘텐츠 발행일 (ISO 포맷 또는 YYYY-MM-DD)
   modifiedTime?: string;  // 콘텐츠 최종 수정일 (ISO 포맷 또는 YYYY-MM-DD)
   isHomepage?: boolean;   // 홈페이지 여부
@@ -57,6 +58,7 @@ export default function SEO({
   faqData,
   breadcrumbData,
   noindex = false,
+  indexable = true,
   publishedTime,
   modifiedTime,
   isHomepage = false,
@@ -228,7 +230,7 @@ export default function SEO({
       <title>{siteTitle}</title>
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
-      <link rel="canonical" href={canonicalUrl} />
+      {indexable && <link rel="canonical" href={canonicalUrl} />}
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
@@ -242,7 +244,7 @@ export default function SEO({
       <meta property="og:image:type" content="image/webp" />
 
       {/* 로봇 및 언어 설정 */}
-      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+      <meta name="robots" content={indexable ? "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" : "noindex, follow"} />
       <meta property="og:locale" content={locale} />
       
       {/* 업데이트 일자 표기 */}

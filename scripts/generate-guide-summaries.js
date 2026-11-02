@@ -4,8 +4,19 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { sanitizePublicGuideData } from './lib/public-guide-links.js';
 import { attachNteGuideAnalysis } from './lib/nte-guide-analysis.js';
+import { buildNteArcRecommendations } from '../common-hub/utils/equipmentRecommendations.js';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+
+// Arc pages need the "아크" picks of each published guide, but not the guide bodies.
+function writeNteArcRecommendations(articles) {
+  const readJson = file => JSON.parse(fs.readFileSync(path.join(root, file), 'utf8'));
+  const guides = articles.filter(article => article.gameId === 'nte' && article.status === 'published' && article.characterId);
+  const { weapon } = buildNteArcRecommendations(guides, readJson('nte-hub/data/generated/character-summary.json'), readJson('nte-hub/data/generated/arcs.json'));
+  const sorted = Object.fromEntries([...weapon.entries()].sort(([a], [b]) => a.localeCompare(b, 'ko')));
+  fs.writeFileSync(path.join(root, 'nte-hub/data/generated/arc-recommendations.json'), `${JSON.stringify(sorted, null, 2)}\n`);
+}
+
 export function writeGuideSummaries() {
   const analyses = JSON.parse(fs.readFileSync(path.join(root, 'nte-hub/data/guideAnalysis.json'), 'utf8'));
   const articles = sanitizePublicGuideData(JSON.parse(fs.readFileSync(path.join(root, 'common-hub/data/guideArticles.json'), 'utf8')).map(article => attachNteGuideAnalysis(article, analyses)));
@@ -23,6 +34,7 @@ export function writeGuideSummaries() {
     manifest[`${article.gameId}/${article.slug}`] = url;
   }
   fs.writeFileSync(path.join(root, 'common-hub/data/generated/article-runtime-manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`);
+  writeNteArcRecommendations(articles);
   console.log(`[Guides] Generated ${summaries.length} metadata-only article summaries.`);
 }
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) writeGuideSummaries();

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useParams, Link } from 'react-router';
 import { Star, Package, Copy, CheckCircle2, Compass, Shield, Zap, Sparkles, User } from 'lucide-react';
 import { NTE_ARC_DATA } from '../data/arcData';
+import { getNteArcRecommendations, isNteArcIndexable } from '../data/arcRecommendations';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
@@ -92,6 +93,7 @@ const NTEArcDetail: React.FC = () => {
         description={`${t('이환(Neverness to Everness)')} ${theme.label}${t('등급')} ${t(arc.type || '결합')} 아크 ${t(arc.name)}${t('의 상세 스탯, 스킬 메커니즘, 돌파 재료 및 아크 스토리를 확인하세요.')}`}
         image={getIllustrationUrl()}
         url={`/gallery/nte/weapon/${encodeURIComponent(arc.name)}`}
+        indexable={isNteArcIndexable(arc.name)}
       />
 
       <ItemDetailModal 
@@ -321,6 +323,27 @@ const NTEArcDetail: React.FC = () => {
                 {arc.dedicatedChar.replace(/\*\*/g, '').trim()}
               </span>
             </div>
+          </div>
+        )}
+
+        {/* 추천 캐릭터: 공개된 캐릭터 공략의 아크 순위 기준 */}
+        {getNteArcRecommendations(arc.name).length > 0 && (
+          <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
+            <div className="flex items-center gap-4 border-b border-white/5 pb-4">
+              <User size={22} style={{ color: theme.primary }} className="opacity-80" />
+              <h2 className="text-xl font-black uppercase tracking-tighter italic">{t("추천 캐릭터")}</h2>
+            </div>
+            <ul className="space-y-3">
+              {getNteArcRecommendations(arc.name).map(rec => (
+                <li key={rec.charId} className="bg-white/[0.02] p-5 rounded-[22px] border border-white/5">
+                  <Link to={`/gallery/nte/character/${encodeURIComponent(rec.charName)}`} className="font-black text-white hover:underline">
+                    {t(rec.charName)}
+                  </Link>
+                  {rec.rank && <span className="ml-2 text-sm font-bold" style={{ color: theme.primary }}>{rec.rank}{t("순위")}</span>}
+                  {rec.note && <p className="mt-2 text-sm text-gray-300 leading-relaxed">{rec.note}</p>}
+                </li>
+              ))}
+            </ul>
           </div>
         )}
 

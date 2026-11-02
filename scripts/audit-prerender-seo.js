@@ -136,7 +136,14 @@ const descriptionRoutes = new Map();
 const stats = [];
 
 for (const routePath of searchConsolePriorityRoutes) {
-  if (!routes.includes(routePath)) {
+  if (routes.includes(routePath)) continue;
+  // Unrecommended equipment is deliberately kept out of the sitemap (AdSense plan A4);
+  // it must still exist as a prerendered page that says noindex.
+  const htmlPath = path.join(DIST_DIR, ...routePath.split('/').filter(Boolean), 'index.html');
+  const html = fs.existsSync(htmlPath) ? fs.readFileSync(htmlPath, 'utf8') : '';
+  if (html.includes('<meta name="robots" content="noindex, follow" />')) {
+    warnings.push(`${routePath}: Search Console priority route is intentionally noindex (no guide recommends it)`);
+  } else {
     problems.push(`${routePath}: Search Console priority route missing from sitemap`);
   }
 }

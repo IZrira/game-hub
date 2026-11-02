@@ -5,6 +5,7 @@ import { WW_WEAPON_DATA } from '../data/weaponData';
 import { getWwWeaponSeo } from '../../common-hub/utils/wwWeaponSeo.js';
 import { getWwWeaponLevelOptions } from '../utils/weaponLevels';
 import { WW_RECOMMENDATION_CHARACTERS, WW_RECOMMENDATION_GUIDES } from '../data/recommendationData';
+import { isWwEquipmentIndexable } from '../data/equipmentIndex';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
@@ -487,6 +488,7 @@ const WuwaWeaponDetail = () => {
         image={getIllustrationUrl()}
         url={`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`}
         modifiedTime={lastUpdatedDate}
+        indexable={isWwEquipmentIndexable('weapon', weapon.name)}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: '/gallery/ww' },

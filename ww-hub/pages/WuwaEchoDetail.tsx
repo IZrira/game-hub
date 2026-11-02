@@ -10,6 +10,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import WwRecommendedResonatorsSection from '../components/WwRecommendedResonatorsSection';
+import { isWwEquipmentIndexable } from '../data/equipmentIndex';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 
@@ -55,6 +56,7 @@ export const WuwaEchoDetail = () => {
         description={`${t('명조 (Wuthering Waves)')} ${t('에코')} ${echo.name}${t('의 스킬 효과, 코스트, 소나타 세트 효과 및 획득처 정보를 확인하세요.')}`}
         image={`${ECHO_IMAGE_BASE}${encodeURIComponent(echo.name.normalize('NFC'))}.webp`}
         url={`/gallery/ww/echo/${echo.name}`}
+        indexable={isWwEquipmentIndexable('echo', echo.name)}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('명조 (Wuthering Waves)'), url: '/gallery/ww' },

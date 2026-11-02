@@ -12,6 +12,7 @@ import { hasPublishableText } from '../../common-hub/utils/placeholderText.js';
 
 import { HsrLightCone } from '../types';
 import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';
+import { isHsrEquipmentIndexable } from '../data/equipmentIndex';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -147,6 +148,7 @@ const LightConeDetail: React.FC = () => {
         gameCategory={t('붕괴: 스타레일')}
         itemType={t(lc.path)}
         modifiedTime={lastUpdatedDate}
+        indexable={isHsrEquipmentIndexable('lightcone', lc.name)}
         breadcrumbData={[
           { name: t('홈'), url: '/' },
           { name: t('붕괴: 스타레일'), url: `/gallery/${gameId}` },

@@ -10,6 +10,8 @@ import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
 import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import { hasPublishableText } from '../common-hub/utils/placeholderText.js';
+import { loadEquipmentRecommendations } from './lib/equipment-recommendations.js';
+import { getRecommendations } from '../common-hub/utils/equipmentRecommendations.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -895,7 +897,7 @@ function injectMetaAndContent(html, title, description, imageUrl, urlPath, inner
   return injected;
 }
 
-function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml, innerContent = '', jsonLdSchema = null) {
+function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml, innerContent = '', jsonLdSchema = null, { noindex = false } = {}) {
   // Static hosts resolve percent-encoded URLs to decoded filesystem names.
   // decodeURI preserves reserved characters such as %2F and %3A while decoding
   // Korean names and spaces, which also keeps the path safe on Windows builds.
@@ -903,7 +905,13 @@ function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml
   const targetDir = path.join(DIST_DIR, ...routeSegments);
   fs.mkdirSync(targetDir, { recursive: true });
 
-  const finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
+  let finalHtml = injectMetaAndContent(baseHtml, title, description, imageUrl, routePath, innerContent, jsonLdSchema);
+  if (noindex) {
+    // Reachable for visitors, but not offered to search: no canonical, noindex but keep link equity.
+    finalHtml = finalHtml
+      .replace(/\s*<link\s+rel=["']canonical["'][^>]*>/gi, '')
+      .replace('</head>', '    <meta name="robots" content="noindex, follow" />\n  </head>');
+  }
   fs.writeFileSync(path.join(targetDir, 'index.html'), finalHtml, 'utf8');
 
   // Also write [route].html so static clean-url engines can serve the file directly without directory 308 redirect
@@ -914,6 +922,24 @@ function createPrerenderedPage(routePath, title, description, imageUrl, baseHtml
   }
 
   prerenderedRoutes.add(routePath);
+}
+
+const equipment = loadEquipmentRecommendations();
+
+/** Recommendation list shared by echo and arc pages; links only to routes that exist. */
+function generateRecommendedCharactersHtml(heading, recommendations, characterRoute) {
+  if (!recommendations.length) return '';
+  let html = `<h2>${escapeHtml(heading)}</h2>\n<ul>\n`;
+  recommendations.forEach(rc => {
+    const rankStr = rc.rank ? `<strong>[${rc.rank}순위]</strong> ` : '';
+    const noteStr = rc.note ? `: ${escapeHtml(rc.note)}` : '';
+    const route = characterRoute(rc);
+    const linkHtml = globalSitemapRouteSet.has(decodeURI(route)) || globalSitemapRouteSet.has(route)
+      ? `<a href="${route}">${escapeHtml(rc.charName)} 캐릭터 정보</a>`
+      : escapeHtml(rc.charName);
+    html += `<li>${rankStr}${linkHtml}${noteStr}</li>\n`;
+  });
+  return `${html}</ul>\n`;
 }
 
 function getSitemapRoutes() {
@@ -2523,7 +2549,9 @@ function runPrerender() {
       `${CDN_URL}/ww%20images/Weapons/${encodeAssetPath(name)}.webp`,
       baseHtml,
       generateRichWwWeaponHtml(name, id, wpNotion, recommendedChars)
-        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/')), '다른 명조 무기')
+        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/weapon/')), '다른 명조 무기'),
+      null,
+      { noindex: !equipment.isIndexable('weapon', name) }
     );
     count++;
   });
@@ -2543,7 +2571,9 @@ function runPrerender() {
       `${CDN_URL}/hsr%20images/%EA%B4%91%EC%B6%94/${encodeAssetPath(lc.name)}.webp`,
       baseHtml,
       generateHsrLightconeHtml(lc, recommendedChars)
-        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/')), '다른 붕괴: 스타레일 광추')
+        + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/lightcone/')), '다른 붕괴: 스타레일 광추'),
+      null,
+      { noindex: !equipment.isIndexable('lightcone', lc.name) }
     );
     count++;
   });
@@ -2608,8 +2638,12 @@ function runPrerender() {
         `이환(NTE) ${item.name} 아크의 등급별 능력치, 블록 구성, 고유 스킬 효과와 추천 캐릭터 및 활용 정보를 확인하세요.`,
         `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`,
         baseHtml,
-        generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 아크 도감으로 돌아가기</a></p>'
-          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/')), '다른 이환 아크')
+        generateNotionHtml(item)
+          + generateRecommendedCharactersHtml(`${item.name} 추천 캐릭터`, getRecommendations(equipment.maps.arc, item.name), rc => `/gallery/nte/character/${encodeURIComponent(rc.charName)}`)
+          + '<p><a href="/gallery/nte">이환 아크 도감으로 돌아가기</a></p>'
+          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/')), '다른 이환 아크'),
+        null,
+        { noindex: !equipment.isIndexable('arc', item.name) }
       );
       count++;
     } else if (item.dbSource === 'ww_echoes') {
@@ -2621,7 +2655,10 @@ function runPrerender() {
         `${BASE_URL}/assets/brand/rira-fox.webp`,
         baseHtml,
         generateWwEchoHtml(item)
-          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/')), '다른 명조 에코')
+          + generateRecommendedCharactersHtml(`${item.name} 추천 착용 공명자`, getRecommendations(equipment.maps.echo, item.name), rc => `/gallery/ww/character/${encodeURIComponent(rc.charId)}`)
+          + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/ww/echo/')), '다른 명조 에코'),
+        null,
+        { noindex: !equipment.isIndexable('echo', item.name) }
       );
       count++;
     } else if (item.dbSource === 'ww_guides') {
