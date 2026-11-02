@@ -5,7 +5,7 @@ description: RIRA Game Hub에서 SEO점검, 색인·canonical·사이트맵·검
 
 # SEO점검
 
-호출: `SEO점검` 또는 `$rira-seo-check`. RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `SEO점검`, `/rira-seo-check`(Claude Code) 또는 `$rira-seo-check`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 프로젝트 루트 AGENTS.md와 git status를 확인하고 대상 URL·게임·배포 commit을 고정한다. 기본은 읽기 전용 진단이다. 수정·색인 요청·계정 설정 변경은 사용자의 현재 범위에서만 한다.
 

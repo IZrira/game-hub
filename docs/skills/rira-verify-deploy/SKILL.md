@@ -5,7 +5,7 @@ description: RIRA Game Hub에서 검증배포 요청 시 변경 범위를 검증
 
 # 검증배포
 
-호출: `검증배포` 또는 `$rira-verify-deploy`.
+호출: `검증배포`, `/rira-verify-deploy`(Claude Code) 또는 `$rira-verify-deploy`(Codex).
 
 ## 시작
 

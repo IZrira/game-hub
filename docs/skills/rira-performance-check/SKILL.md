@@ -5,7 +5,7 @@ description: RIRA Game Hub에서 성능점검, 페이지 전환·로딩 지연·
 
 # 성능점검
 
-호출: `성능점검` 또는 `$rira-performance-check`. RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `성능점검`, `/rira-performance-check`(Claude Code) 또는 `$rira-performance-check`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 AGENTS.md, docs/guides/PERFORMANCE.md와 git status를 확인한다. 대상 URL·commit·기능과 측정 도구를 고정한다. 진단만 요청하면 코드·캐시·운영 데이터는 변경하지 않는다.
 

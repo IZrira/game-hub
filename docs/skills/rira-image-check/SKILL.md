@@ -5,7 +5,7 @@ description: RIRA Game Hub의 이미지점검 요청이나 캐릭터·장비·�
 
 # 이미지점검
 
-호출: `이미지점검 [게임] [캐릭터/장비]` 또는 `$rira-image-check`.
+호출: `이미지점검 [게임] [캐릭터/장비]`, `/rira-image-check`(Claude Code) 또는 `$rira-image-check`(Codex).
 
 대상 프로젝트는 `D:\rira game hub\game-hub`, 코드 remote는 `IZrira/game-hub`, 이미지 저장소는 `IZrira/riragameinfo`다. 현재 요청, `AGENTS.md`, 해당 경로 지침과 `git status`를 확인한다. 진단만 요청하면 수정·commit·push하지 않는다.
 

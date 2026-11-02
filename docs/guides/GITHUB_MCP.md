@@ -38,6 +38,31 @@
 
 Codex 설정은 사용자 PC에 있으며 저장소 clone만으로 다른 PC에 설치되지 않는다. 다른 환경에서는 공식 절차로 별도 등록·인증해야 한다.
 
+## Claude Code 연결
+
+- 같은 서버를 프로젝트 `.mcp.json`에 `github`(읽기 전용 원격 서버)와 `cloudflare`로 등록했다. `github`는 Codex와 같은 Windows 사용자 환경 변수 `GITHUB_PAT_TOKEN`을 `${…}` 참조로 읽고, `cloudflare`는 OAuth 로그인을 쓴다. 값은 파일에 넣지 않는다. `CLOUDFLARE_API_TOKEN`은 아래 REST 대체 경로에서만 쓴다.
+- `.mcp.json`은 `game-hub` 폴더에서 연 Claude 세션에서만 읽힌다. 처음 열 때 Claude가 프로젝트 MCP 서버 사용 승인을 묻는다. 승인 전에는 도구가 없는 상태다.
+- 2026-11-02 Claude 세션 검사: `get_me`로 `IZrira` 인증, `IZrira/riragameinfo` 루트(`gf2`·`hsr`·`nte`·`ww images`) 조회, `IZrira/game-hub` 최신 commit `5b1ce5e` 조회에 성공했다. 같은 날 `cloudflare` 서버는 "Insufficient scope: required user:read account:read"로 연결에 실패했다. 토큰에 해당 읽기 권한이 없으므로 Cloudflare 배포 확인은 권한 보완 전까지 실제 사이트 접근으로만 한다.
+- 2026-11-02 재검사(토큰 "RIRA Codex Site Operations"에 `User Details: Read`, `Account Settings: Read` 추가 후 앱 재시작): GitHub MCP `get_me`(`IZrira`)와 `riragameinfo` 조회 성공. 재시작 직후 첫 호출은 `ECONNRESET`·`ETIMEDOUT`으로 실패했다가 재시도에서 성공했다. Cloudflare는 토큰 검증 API에서 `active`였지만, API 토큰으로 MCP `initialize`를 보내면 HTTP 200에 본문이 비어 있어 Claude 앱이 `InvalidHTTPResponse`로 실패한다. 그래서 `.mcp.json`의 `cloudflare`는 헤더를 빼고 OAuth 로그인 방식으로 바꿨다. 사용자가 `/mcp` → cloudflare → Authenticate로 한 번 로그인해야 한다.
+
+- 2026-11-02 원인 확인: 이 PC의 Norton 360 Web/Mail Shield가 HTTPS를 가로채 검사한다. `mcp.cloudflare.com`과 `api.githubcopilot.com` 모두 실제 인증서 대신 "Norton Web/Mail Shield Root" 인증서로 응답한다. Cloudflare MCP 호스트(`mcp`, `builds`, `observability`, `bindings`)는 HTTP 200 뒤 본문이 끊겨(curl exit 56, PowerShell "connection was closed") Claude 앱이 `InvalidHTTPResponse`를 낸다. OAuth 방식으로 바꿔도 같다. GitHub MCP 재시작 직후의 `ECONNRESET`도 같은 원인일 가능성이 있다. 해결하려면 사용자가 Norton에서 `mcp.cloudflare.com`, `*.mcp.cloudflare.com`, `api.githubcopilot.com`을 HTTPS 검사 예외로 추가해야 한다. 보안 설정이므로 에이전트가 바꾸지 않는다.
+- 2026-11-02 해결: 사용자가 Norton **기능 → 안전한 웹 → 이 장치 → 제외 항목**에 `https://mcp.cloudflare.com/*`, `https://*.mcp.cloudflare.com/*`, `https://api.githubcopilot.com/*`를 추가했다. 이후 두 호스트 모두 실제 인증서(Google Trust Services, Sectigo)로 응답하고, Cloudflare 메타데이터 본문도 정상으로 받았다. 바이러스 차단의 "제외 항목"은 파일·폴더 전용이라 웹사이트를 넣을 수 없다.
+- 2026-11-02 최종 확인(OAuth, Read only 범위): Cloudflare MCP `whoami`가 사용자 계정으로 인증됐고, `execute`의 GET으로 Pages `rira-game-hub` 배포 목록을 조회했다(production `main 5b1ce5e` deploy success). 같은 시점 GitHub MCP `get_me`(`IZrira`)도 성공했다. Cloudflare MCP의 `execute`는 쓰기 API도 호출할 수 있으므로, 설정 변경 요청이 없는 작업에서는 GET만 사용한다.
+
+### Cloudflare 배포 확인 대체 경로(읽기 전용)
+
+MCP가 연결되지 않을 때 Bash에서 실행한다. 토큰 값은 출력하지 않는다. 2026-11-02에 production `main 5b1ce5e` 배포 성공을 이 명령으로 확인했다.
+
+```bash
+H="Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+ACC=$(curl -s -H "$H" "https://api.cloudflare.com/client/v4/accounts" | python -c "import sys,json;print(json.load(sys.stdin)['result'][0]['id'])")
+curl -s -H "$H" "https://api.cloudflare.com/client/v4/accounts/$ACC/pages/projects/rira-game-hub/deployments?per_page=3" \
+  | python -c "import sys,json
+for x in json.load(sys.stdin)['result']:
+  m=x['deployment_trigger']['metadata'];s=x['latest_stage'];print(x['environment'],m.get('branch'),(m.get('commit_hash') or '')[:7],s['name'],s['status'],x['created_on'])"
+```
+- 토큰 교체 후에는 Claude 앱을 완전히 종료하고 다시 실행해야 새 환경 변수를 읽는다. MCP 장애 시 `gh` CLI(2026-11-02 설치, 사용자가 `gh auth login`으로 직접 로그인)나 `git` CLI로 대체한다.
+
 ## 검증과 문서 유지
 
 - MCP 변경 후에는 인증 계정, 대상 저장소 조회 결과, 검사 날짜와 미검증 기능을 갱신한다.

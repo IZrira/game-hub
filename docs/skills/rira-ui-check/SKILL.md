@@ -5,7 +5,7 @@ description: RIRA Game Hub에서 UI점검 또는 허브 간 카드 크기·여�
 
 # UI점검
 
-호출: `UI점검` 또는 `$rira-ui-check`. RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `UI점검`, `/rira-ui-check`(Claude Code) 또는 `$rira-ui-check`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 AGENTS.md와 DESIGN.md, git status를 확인한다. 대상 허브·URL·섹션과 사용자가 지정한 기준 화면을 고정한다. 수정 요청이 없으면 읽기 전용 비교만 한다.
 
