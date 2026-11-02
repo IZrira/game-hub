@@ -93,20 +93,33 @@ export function getLanguageCanonicalUrl(requestUrl: string): string | null {
   return url.toString();
 }
 
-function withLanguageCanonicalHeader(response: Response, requestUrl: string): Response {
-  const canonicalUrl = getLanguageCanonicalUrl(requestUrl);
-  if (!canonicalUrl || response.status < 200 || response.status >= 300) return response;
+const SUPPORTED_LANGUAGES = new Set(['ko', 'en', 'ja']);
 
-  const headers = new Headers(response.headers);
-  const existingLink = headers.get('Link');
-  const canonicalLink = `<${canonicalUrl}>; rel="canonical"`;
-  headers.set('Link', existingLink ? `${existingLink}, ${canonicalLink}` : canonicalLink);
+/**
+ * Legacy `?lng=` URLs were served with HTTP 200 and a canonical header, and Google
+ * reported them as soft 404s. Redirect them to the clean URL instead, carrying a
+ * non-default language choice in a preference cookie that the app reads on load.
+ */
+export function getLegacyLanguageRedirect(requestUrl: string): { location: string; cookie: string | null } | null {
+  const url = new URL(requestUrl);
+  if (!url.searchParams.has('lng')) return null;
 
-  return new Response(response.body, {
-    status: response.status,
-    statusText: response.statusText,
-    headers,
-  });
+  const language = url.searchParams.get('lng') || '';
+  url.searchParams.delete('lng');
+  url.searchParams.sort();
+  const keepsLanguage = SUPPORTED_LANGUAGES.has(language) && language !== 'ko';
+  return {
+    location: `${url.pathname}${url.search}${url.hash}`,
+    cookie: keepsLanguage ? `rira_lang=${language}; Path=/; Max-Age=31536000; SameSite=Lax; Secure` : null,
+  };
+}
+
+function legacyLanguageRedirect(requestUrl: string): Response | null {
+  const redirect = getLegacyLanguageRedirect(requestUrl);
+  if (!redirect) return null;
+  const headers = new Headers({ Location: redirect.location, 'Cache-Control': 'public, max-age=300' });
+  if (redirect.cookie) headers.set('Set-Cookie', redirect.cookie);
+  return new Response(null, { status: 301, headers });
 }
 
 const handleRequest = async (context: PagesFunctionContext): Promise<Response> => {
@@ -119,6 +132,11 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
     return Response.redirect(url.toString(), 301);
   }
   const normalizedPath = normalizePath(url.pathname);
+
+  if (!isStaticAssetPath(normalizedPath)) {
+    const languageRedirect = legacyLanguageRedirect(url.toString());
+    if (languageRedirect) return languageRedirect;
+  }
 
   if (WITHDRAWN_BLOG_PATHS.has(normalizedPath)) {
     return new Response(
@@ -189,14 +207,14 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
           const assetUrl = new URL(currClean + '/' + url.search, url.origin);
           const assetRes = await context.env.ASSETS.fetch(new Request(assetUrl.toString(), context.request));
           if (assetRes.status === 200) {
-            return withLanguageCanonicalHeader(assetRes, context.request.url);
+            return assetRes;
           }
 
           // Fallback: try fetching .html file directly
           const htmlUrl = new URL(currClean + '.html' + url.search, url.origin);
           const htmlRes = await context.env.ASSETS.fetch(new Request(htmlUrl.toString(), context.request));
           if (htmlRes.status === 200) {
-            return withLanguageCanonicalHeader(htmlRes, context.request.url);
+            return htmlRes;
           }
         }
       } catch {
@@ -205,7 +223,7 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
     }
   }
 
-  return withLanguageCanonicalHeader(response, context.request.url);
+  return response;
 };
 
 export const onRequest = async (context: PagesFunctionContext): Promise<Response> =>

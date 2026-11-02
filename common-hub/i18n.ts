@@ -46,7 +46,11 @@ export const getInitialLanguage = (): SupportedLanguage => {
   if (isSupportedLanguage(queryLanguage)) return queryLanguage;
 
   const savedLanguage = localStorage.getItem('rira_lang');
-  return isSupportedLanguage(savedLanguage) ? savedLanguage : 'ko';
+  if (isSupportedLanguage(savedLanguage)) return savedLanguage;
+
+  // Set by the edge when a legacy `?lng=` link is redirected to its clean URL.
+  const cookieLanguage = document.cookie.match(/(?:^|;\s*)rira_lang=([a-z]{2})/)?.[1] ?? null;
+  return isSupportedLanguage(cookieLanguage) ? cookieLanguage : 'ko';
 };
 
 /**
