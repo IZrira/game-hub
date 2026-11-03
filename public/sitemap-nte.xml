@@ -524,6 +524,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/nte/guides/wanted-and-jail-guide</loc>
+    <lastmod>2026-10-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://riragamehub.com/assets/brand/rira-fox.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EA%B0%90%EC%A0%95%EC%82%AC-build-guide</loc>
     <lastmod>2026-11-03</lastmod>
     <changefreq>monthly</changefreq>
@@ -724,15 +733,6 @@
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%ED%98%B8%ED%86%A0%EB%A6%AC-build-guide</loc>
     <lastmod>2026-10-11</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <image:image>
-      <image:loc>https://riragamehub.com/assets/brand/rira-fox.webp</image:loc>
-    </image:image>
-  </url>
-  <url>
-    <loc>https://riragamehub.com/gallery/nte/guides/wanted-and-jail-guide</loc>
-    <lastmod>2026-10-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>

@@ -116,7 +116,7 @@ describe('NTE guide selected console and conditions', () => {
     expect(cards.map(card => within(card).getByText(/^각성 \d$/, { exact: true }).textContent)).toEqual(source.awakeningPriority.map(rank => `각성 ${rank}`));
     const party = screen.getByRole('heading', { name: '시너지 캐릭터' }).closest('section')!;
     expect(within(party).getAllByText('사키리', { exact: true })).toHaveLength(1);
-    expect(source.party.filter(name => name === '사키리')).toHaveLength(2);
+    expect(source.party.filter(name => name === '사키리')).toHaveLength(1);
     expect(within(party).getAllByRole('link')).toHaveLength(new Set(source.party).size);
     expect(container.querySelector('a[href*="notion."]')).toBeNull();
     expect(JSON.stringify(article)).toBe(original);

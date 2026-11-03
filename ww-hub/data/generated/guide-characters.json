@@ -722,6 +722,36 @@
     ]
   },
   {
+    "id": "3e995fae-3dc7-80af-9829-c4be7196c7ce",
+    "name": "쇄명",
+    "folderName": "쇄명",
+    "attribute": "전도",
+    "weaponType": "직검",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "빠른 협주",
+        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
+      },
+      {
+        "label": "일반 공격 피해",
+        "description": "비교적 높은 일반 공격 피해"
+      },
+      {
+        "label": "전도 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 전도 피해 부스트 가능"
+      },
+      {
+        "label": "공명 스킬 피해 부스트",
+        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
+      },
+      {
+        "label": "합일",
+        "description": "파티 내 특정 캐릭터와 조합하여 합일 관련 효과를 발생시킬 수 있습니다"
+      }
+    ]
+  },
+  {
     "id": "3a295fae-3dc7-8087-99ff-c7df503277be",
     "name": "수수",
     "folderName": "수수",
@@ -898,6 +928,36 @@
       {
         "label": "조화 파동 대응",
         "description": "목표에게 조화 파동 피해를 입힐 수 있다"
+      }
+    ]
+  },
+  {
+    "id": "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
+    "name": "여우의 별자리",
+    "folderName": "여우의 별자리",
+    "attribute": "전도",
+    "weaponType": "증폭기",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "메인 딜러",
+        "description": "비교적 강한 피해 부여 가능"
+      },
+      {
+        "label": "공명 스킬 피해",
+        "description": "비교적 높은 공명 스킬 피해"
+      },
+      {
+        "label": "협동 공격",
+        "description": "비교적 강한 협동 공격 능력 보유"
+      },
+      {
+        "label": "전자",
+        "description": "전자 효과 사용 가능"
+      },
+      {
+        "label": "합일",
+        "description": "파티 내 특정 캐릭터와 조합하여 합일 관련 효과를 발생시킬 수 있습니다"
       }
     ]
   },
@@ -1356,66 +1416,6 @@
       {
         "label": "서리",
         "description": "서리 효과 사용 가능"
-      }
-    ]
-  },
-  {
-    "id": "3e995fae-3dc7-80af-9829-c4be7196c7ce",
-    "name": "쇄명",
-    "folderName": "쇄명",
-    "attribute": "전도",
-    "weaponType": "직검",
-    "isRover": false,
-    "roles": [
-      {
-        "label": "빠른 협주",
-        "description": "짧은 시간에 비교적 높은 협주 효율 보유"
-      },
-      {
-        "label": "일반 공격 피해",
-        "description": "비교적 높은 일반 공격 피해"
-      },
-      {
-        "label": "전도 피해 부스트",
-        "description": "파티 내 특정 캐릭터의 전도 피해 부스트 가능"
-      },
-      {
-        "label": "공명 스킬 피해 부스트",
-        "description": "파티 내 특정 캐릭터의 공명 스킬 피해 부스트 가능"
-      },
-      {
-        "label": "합일",
-        "description": "파티 내 특정 캐릭터와 조합하여 합일 관련 효과를 발생시킬 수 있습니다"
-      }
-    ]
-  },
-  {
-    "id": "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
-    "name": "여우의 별자리",
-    "folderName": "여우의 별자리",
-    "attribute": "전도",
-    "weaponType": "증폭기",
-    "isRover": false,
-    "roles": [
-      {
-        "label": "메인 딜러",
-        "description": "비교적 강한 피해 부여 가능"
-      },
-      {
-        "label": "공명 스킬 피해",
-        "description": "비교적 높은 공명 스킬 피해"
-      },
-      {
-        "label": "협동 공격",
-        "description": "비교적 강한 협동 공격 능력 보유"
-      },
-      {
-        "label": "전자",
-        "description": "전자 효과 사용 가능"
-      },
-      {
-        "label": "합일",
-        "description": "파티 내 특정 캐릭터와 조합하여 합일 관련 효과를 발생시킬 수 있습니다"
       }
     ]
   }

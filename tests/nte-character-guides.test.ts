@@ -30,7 +30,11 @@ describe('NTE character guide presentation data', () => {
     expect(evaluator.statGroups[0].items[0].value).toBe('40% 이상');
     expect(evaluator.statGroups[1].items[0].value).toBe('45% 이상');
     expect(evaluator.consoles.map(set => set.name)).toEqual(['음속 블루 고슴도치', '잃어버린 빛']);
-    expect(evaluator.party.filter(name => name === '사키리')).toHaveLength(2);
+    // The duplicate 사키리 was removed in Notion on 2026-11-03.
+    expect(evaluator.party.filter(name => name === '사키리')).toHaveLength(1);
+    // The parser still keeps a source duplicate as written; the page de-duplicates it.
+    const withDuplicate = guides.find(guide => guide.title.startsWith('감정사'))!.content.replace('민트, 스키아', '민트, 스키아, 사키리');
+    expect(parseNteCharacterGuide(withDuplicate).party.filter(name => name === '사키리')).toHaveLength(2);
   });
 
   it('supports skill priorities written without commas', () => {
