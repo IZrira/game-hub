@@ -39,6 +39,12 @@ describe('NTE guide selected console and conditions', () => {
     fireEvent.click(screen.getByRole('link', { name: '레이븐 공략 이동' }));
     await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect(screen.getByRole('heading', { level: 1, name: /레이븐/ })).toBeTruthy();
+    // 레이븐 has its own reviewed analysis now; navigation still resets to the setup view.
+    expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(false);
+  });
+  it('disables the analysis view for a guide without a reviewed analysis', async () => {
+    renderGuide('구원-build-guide');
+    await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(true);
   });
   it('does not bundle all article bodies into the NTE setup page', async () => {

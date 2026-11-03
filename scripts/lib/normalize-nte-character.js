@@ -78,7 +78,14 @@ export const normalizeNteCharacter = item => {
     });
   }
 
-  const eidolons = (item.awakenings || '').split(/\n\n+/).filter(block => block.trim()).map((block, index) => {
+  // Most entries separate awakenings with blank lines, but some also put a blank
+  // line between "N. 이름" and its description; group by the numbered headings then.
+  const awakeningText = item.awakenings || '';
+  const numberedBlocks = awakeningText.split(/\n(?=\d+\.\s)/).map(block => block.trim()).filter(Boolean);
+  const awakeningBlocks = numberedBlocks.length > 1 && numberedBlocks.every(block => /^\d+\.\s/.test(block))
+    ? numberedBlocks
+    : awakeningText.split(/\n\n+/).filter(block => block.trim());
+  const eidolons = awakeningBlocks.map((block, index) => {
     const lines = block.split('\n');
     return {
       rank: index + 1,
