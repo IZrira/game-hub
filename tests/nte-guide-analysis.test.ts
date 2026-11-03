@@ -15,7 +15,7 @@ describe('reviewed local NTE analysis publication', () => {
     expect(result.content).toBe(source.content);
     expect(parseNteCharacterGuide(result.content)).toEqual(parseNteCharacterGuide(source.content));
     expect(JSON.stringify(source)).toBe(before);
-    expect(result.reviewedAt).toBe('2026-10-31');
+    expect(result.reviewedAt).toBe([source.reviewedAt, record.analysis.reviewedAt].sort().at(-1));
     const url = (manifest as Record<string, string>)[`nte/${slug}`];
     const published = JSON.parse(fs.readFileSync(`public${url}`, 'utf8'));
     expect(published.analysis).toEqual(record.analysis);
@@ -36,7 +36,7 @@ describe('reviewed local NTE analysis publication', () => {
   it('keeps unrelated articles untouched', () => {
     const original = articles.find(article => article.gameId !== 'nte')!;
     expect(attachNteGuideAnalysis(original, records)).toBe(original);
-    const noReview = articles.find(article => article.slug === '감정사-build-guide')!;
+    const noReview = articles.find(article => article.gameId === 'nte' && !(article.slug in records))!;
     expect(attachNteGuideAnalysis(noReview, records)).toBe(noReview);
   });
 
