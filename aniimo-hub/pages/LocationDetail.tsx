@@ -8,6 +8,7 @@ import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoForm } from '../types';
 import { getAniimoLocationPath, toAniimoLocationSlug, getAniimoLocationGroups } from '../utils/location';
 import { normalizeHabitat } from '../data/habitats';
+import { regionSummaryParagraphs, summarizeRegion } from '../utils/regionSummary.js';
 
 const entries = aniimoData as unknown as AniimoEntry[];
 const habitats = getAniimoLocationGroups(entries);
@@ -54,6 +55,11 @@ const LocationDetailAniimo: React.FC = () => {
       return locs.every(loc => (regionId ? loc : normalizeHabitat(loc)) === habitat);
     };
   }, [habitat, regionId]);
+
+  const regionSummary = useMemo(
+    () => regionSummaryParagraphs(summarizeRegion(appearances, isFormExclusive)),
+    [appearances, isFormExclusive]
+  );
 
   // Counts for filters
   const filterCounts = useMemo(() => {
@@ -194,6 +200,15 @@ const LocationDetailAniimo: React.FC = () => {
               )}
             </div>
           </section>
+
+          {/* Region overview computed from the encyclopedia entries listed below */}
+          {regionSummary.length > 0 && (
+            <section className="rounded-3xl border border-white/10 bg-[#121212] p-6 space-y-3">
+              <h2 className="font-black">지역 한눈에 보기</h2>
+              {regionSummary.map(paragraph => <p key={paragraph} className="text-sm leading-7 text-gray-300">{paragraph}</p>)}
+              <Link to="/gallery/aniimo/type-chart" className="inline-block text-xs font-bold text-violet-300 hover:text-white">원소 상성표 전체 보기</Link>
+            </section>
+          )}
 
           {/* Appearances Grid */}
           <section aria-label={`${habitat} 서식 애니모`} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">

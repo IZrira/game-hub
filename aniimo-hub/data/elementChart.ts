@@ -1,3 +1,5 @@
+import { ANIIMO_ELEMENT_ROWS } from './elementChartData.js';
+
 export const ANIIMO_ELEMENTS = ['불', '물', '풀', '전기', '얼음', '바위', '바람', '빛', '어둠'] as const;
 
 export type AniimoElement = typeof ANIIMO_ELEMENTS[number];
@@ -15,17 +17,7 @@ export const ELEMENT_META: Record<AniimoElement, { icon: string; color: string }
   어둠: { icon: '🌑', color: '#c4b5fd' },
 };
 
-const rows: Record<AniimoElement, readonly ElementEffectiveness[]> = {
-  불: [0.625, 0.625, 1.6, 1, 1.6, 0.625, 1, 0.625, 1],
-  물: [1.6, 0.625, 0.625, 1, 0.625, 1.6, 1, 0.625, 1],
-  풀: [0.625, 1.6, 0.625, 1, 1, 1.6, 1, 0.625, 1],
-  전기: [1, 1.6, 1, 0.625, 0.625, 0.625, 1.6, 1, 1],
-  얼음: [0.625, 1.6, 1, 1.6, 0.625, 0.625, 1, 1, 1],
-  바위: [1.6, 0.625, 0.625, 1, 1.6, 0.625, 1, 1, 0.625],
-  바람: [1, 1, 1.6, 0.625, 1, 1, 0.625, 1, 1.6],
-  빛: [1, 1, 1, 0.625, 1, 1, 1.6, 0.625, 1.6],
-  어둠: [1, 0.625, 1.6, 1.6, 1, 1, 0.625, 1.6, 1],
-};
+const rows = ANIIMO_ELEMENT_ROWS as unknown as Record<AniimoElement, readonly ElementEffectiveness[]>;
 
 export const ELEMENT_CHART = Object.fromEntries(
   ANIIMO_ELEMENTS.map(attacker => [

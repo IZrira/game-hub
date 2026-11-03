@@ -13,6 +13,7 @@ import { hasPublishableText } from '../common-hub/utils/placeholderText.js';
 import { formatGuideBasis, GUIDE_REVIEW_POLICY } from '../common-hub/utils/guideVerification.js';
 import { loadEquipmentRecommendations } from './lib/equipment-recommendations.js';
 import { getRecommendations } from '../common-hub/utils/equipmentRecommendations.js';
+import { regionSummaryParagraphs, summarizeRegion } from '../aniimo-hub/utils/regionSummary.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -3199,7 +3200,10 @@ function runPrerender() {
         return `<li><a href="/gallery/aniimo/character/${encodeURIComponent(entry.name)}${query}">${escapeHtml(`NO.${entry.number} ${entry.name} · ${form.label}`)}</a></li>`;
       }).join('')).join('');
       const otherLocations = OFFICIAL_ANIIMO_HABITATS.filter(candidate => candidate !== location).map(candidate => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(candidate.trim().replace(/\s+/g, '-'))}">${escapeHtml(candidate)}</a></li>`).join('');
-      meta.content = `<article><h1>${escapeHtml(location)} 공식 서식지</h1><p>${escapeHtml(meta.description)}</p><ul>${appearanceLinks}</ul><h2>다른 공식 서식지</h2><ul>${otherLocations}</ul><p><a href="/gallery/aniimo/locations">애니모 서식지 도감으로 돌아가기</a></p></article>`;
+      // Same overview as the app: exclusivity is only certain in the original 14 habitats.
+      const regionParagraphs = regionSummaryParagraphs(summarizeRegion(appearances, form => !regionId && (form.locations || []).length > 0 && form.locations.every(loc => loc === location)));
+      const regionSummaryHtml = regionParagraphs.length ? `<h2>지역 한눈에 보기</h2>${regionParagraphs.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join('')}<p><a href="/gallery/aniimo/type-chart">원소 상성표 전체 보기</a></p>` : '';
+      meta.content = `<article><h1>${escapeHtml(location)} 공식 서식지</h1><p>${escapeHtml(meta.description)}</p>${regionSummaryHtml}<ul>${appearanceLinks}</ul><h2>다른 공식 서식지</h2><ul>${otherLocations}</ul><p><a href="/gallery/aniimo/locations">애니모 서식지 도감으로 돌아가기</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/character\//.test(routePath)) {
       const name = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
