@@ -43,6 +43,12 @@ describe('NTE guide selected console and conditions', () => {
     expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(false);
   });
   it('disables the analysis view for a guide without a reviewed analysis', async () => {
+    // Every NTE character guide now has a reviewed analysis, so serve one without it.
+    const base = mockGuideFetch();
+    vi.stubGlobal('fetch', vi.fn(async (input: string | URL | Request) => {
+      const { analysis: _omitted, ...withoutAnalysis } = await (await base(input)).json();
+      return new Response(JSON.stringify(withoutAnalysis), { headers: { 'Content-Type': 'application/json' } });
+    }));
     renderGuide('구원-build-guide');
     await screen.findByRole('region', { name: '추천 세팅 요약' });
     expect((screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement).disabled).toBe(true);
