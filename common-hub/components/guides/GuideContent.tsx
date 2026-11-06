@@ -182,9 +182,12 @@ export function GuideAnalysis({ data }: { data: GuideAnalysisData }) {
     <GuidePanel title="RIRA 한줄평"><p className="guide-item-name">{sanitizePublicGuideText(t(data.summary))}</p>{data.metadata && <dl className="guide-metadata">{data.metadata.filter(item => item.value).map((item, index) => <div key={index}><dt>{t(item.label)}</dt><dd>{sanitizePublicGuideText(t(item.value))}</dd></div>)}</dl>}</GuidePanel>
     {data.teams?.length ? <GuidePanel title="추천 파티"><ul className="guide-team-list">{data.teams.map((team, index) => <li key={index} className="guide-team-row">
       <p className="guide-field-label">{sanitizePublicGuideText(t(team.label))}</p>
-      <ul className="guide-team-slots">{team.slots.map((slot, slotIndex) => <li key={slotIndex} className="guide-team-slot" data-alternatives={slot.length > 1 || undefined}>{slot.map((member, memberIndex) => <React.Fragment key={memberIndex}>
-        {memberIndex > 0 && <span className="guide-team-or">{t('또는')}</span>}<TeamPortrait member={member} />
-      </React.Fragment>)}</li>)}</ul>
+      <ul className="guide-team-slots">{team.slots.map((slot, slotIndex) => slot.length > 2
+        // Three or more candidates: small portraits in a grid under one "pick one" caption.
+        ? <li key={slotIndex} className="guide-team-slot" data-alternatives data-many><span className="guide-team-or">{t('중 1명')}</span><div className="guide-team-mini">{slot.map((member, memberIndex) => <TeamPortrait key={memberIndex} member={member} />)}</div></li>
+        : <li key={slotIndex} className="guide-team-slot" data-alternatives={slot.length > 1 || undefined}>{slot.map((member, memberIndex) => <React.Fragment key={memberIndex}>
+          {memberIndex > 0 && <span className="guide-team-or">{t('또는')}</span>}<TeamPortrait member={member} />
+        </React.Fragment>)}</li>)}</ul>
     </li>)}</ul></GuidePanel> : null}
     {data.teamPrinciple && <GuidePanel title="파티 구성 원리"><p className="guide-copy">{sanitizePublicGuideText(t(data.teamPrinciple))}</p></GuidePanel>}
     {data.overview && <GuidePanel title="기본 운용법"><p className="guide-copy">{sanitizePublicGuideText(t(data.overview))}</p></GuidePanel>}

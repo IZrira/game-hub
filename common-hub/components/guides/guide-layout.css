@@ -148,3 +148,6 @@ a.guide-team-member:hover .guide-team-face { border-color:rgba(255,255,255,.35);
 @media(max-width:639px) { .guide-team-face,.guide-team-fallback { width:64px; height:64px; } .guide-gear-icon { width:52px; height:52px; } }
 .guide-team-face { display:block; overflow:hidden; }
 .guide-team-face img { display:block; width:100%; height:100%; object-fit:cover; object-position:50% 0; transform:scale(1.8); transform-origin:50% 12%; }
+.guide-team-mini { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 4px; width:100%; }
+.guide-team-mini .guide-team-face,.guide-team-mini .guide-team-fallback { width:44px; height:44px; }
+.guide-team-mini .guide-team-name { font-size:11px; line-height:14px; font-weight:500; }
