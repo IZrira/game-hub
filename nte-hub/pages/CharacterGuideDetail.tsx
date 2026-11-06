@@ -49,6 +49,11 @@ function CharacterGuideContent({ article, character }: { article: GuideArticle; 
   const targets = guide.statGroups.map(group => ({ label: group.label, conditional: conditional(group.label), items: group.items.map(item => ({ ...item, conditional: conditional(item.label) })) }));
   const skills = guide.skillPriority.map(name => ({ name, detail: character.skills?.find((item: any) => item.type.replace(/\s/g, '') === name.replace(/\s/g, ''))?.name }));
   const awakenings = guide.awakeningPriority.map(rank => ({ name: `각성 ${rank}`, detail: character.eidolons?.find((item: any) => Number(item.rank) === rank)?.name.replace(/^\d+[.、]\s*/, '') }));
+  // Step labels map to the character's own skill icon files; actions without a skill (교대, 회피) get none.
+  const SKILL_FILES: Record<string, string> = { '일반 공격': '일반 공격', '강공격': '일반 공격', '바이레일': '바이레일 스킬', '울티메이트': '울티메이트', '서포트 스킬': '서포트 스킬' };
+  const skillIconOf = (action: string) => SKILL_FILES[action]
+    ? `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(character.folderName || character.name)}/${safeEncodeURIComponent(SKILL_FILES[action])}.webp`
+    : undefined;
   const memberOf = (name: string) => {
     const member = NTE_CHARACTER_DATA.find(item => item.name === name);
     return { name, image: member ? characterImage(member) : undefined, to: member ? `/gallery/nte/character/${encodeURIComponent(member.name)}` : undefined, details: member ? [member.attribute, member.arc] : [] };
@@ -77,6 +82,7 @@ function CharacterGuideContent({ article, character }: { article: GuideArticle; 
         teams: analysis.teams?.map(team => ({ label: team.label, slots: team.slots.map(slot => slot.map(memberOf)) })),
         gear: analysis.gear?.map(gearOf),
         targets: analysis.targets,
+        stepIcon: skillIconOf,
       }} /> : <>
       {guide.consoles.length > 1 && <GuideVariantSelector label="세팅 선택" description="콘솔 설명과 세트 효과만 바뀝니다. 주·부옵션과 기본 목표는 공통이며, 별도 조건을 함께 확인하세요." options={guide.consoles.map((set, index) => ({ label: set.name, value: String(index) }))} value={String(selectedConsole)} onChange={value => setSelectedConsole(Number(value))} />}
       <GuideSummary items={[

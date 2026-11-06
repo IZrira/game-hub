@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { CircleCheck, Lightbulb, TriangleAlert } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { handleImageFallback } from '../../utils/assetManager';
 import { isNotionUrl, sanitizePublicGuideText } from '../../utils/publicGuideLinks';
@@ -45,6 +46,16 @@ export interface GuideAnalysisData {
   teams?: GuideAnalysisTeam[];
   gear?: GuideAnalysisGear[];
   targets?: GuideAnalysisTargets;
+  /** Returns the skill icon for a step's action label, if the game has one. */
+  stepIcon?: (action: string) => string | undefined;
+}
+
+// Skill icons are stored as .webp or .png depending on the character, so retry once before hiding.
+function StepIcon({ src }: { src: string }) {
+  const [current, setCurrent] = React.useState(src);
+  const [failed, setFailed] = React.useState(false);
+  if (failed) return null;
+  return <img src={current} alt="" loading="lazy" className="guide-step-icon" onError={() => current.endsWith('.webp') ? setCurrent(current.replace(/\.webp$/, '.png')) : setFailed(true)} />;
 }
 
 // The earliest action word in a step becomes its label; steps without one stay unlabeled.
@@ -67,7 +78,7 @@ function TeamPortrait({ member }: { member: GuideMember }) {
   const { t } = useTranslation();
   const name = sanitizePublicGuideText(t(member.name));
   const body = <>{member.image && !isNotionUrl(member.image)
-    ? <img src={member.image} alt="" loading="lazy" onError={handleImageFallback} />
+    ? <span className="guide-team-face"><img src={member.image} alt="" loading="lazy" onError={handleImageFallback} /></span>
     : <span className="guide-team-fallback" aria-hidden="true">{name.slice(0, 2)}</span>}<span className="guide-team-name">{name}</span></>;
   return member.to && !isNotionUrl(member.to)
     ? <Link to={member.to} className="guide-team-member">{body}</Link>
@@ -160,7 +171,12 @@ export function GuideViewTabs({ value, onChange, analysisAvailable = true }: { v
 
 export function GuideAnalysis({ data }: { data: GuideAnalysisData }) {
   const { t } = useTranslation();
-  const list = (items: string[]) => <ul className="guide-value-list">{items.map((item, index) => <li key={index} className="guide-copy">{sanitizePublicGuideText(t(item))}</li>)}</ul>;
+  // The marker repeats the panel meaning next to each line; the panel title still names it in text.
+  const MARK = { strength: CircleCheck, caution: TriangleAlert, tip: Lightbulb } as const;
+  const marked = (items: string[], kind: keyof typeof MARK) => {
+    const Icon = MARK[kind];
+    return <ul className="guide-marked-list" data-kind={kind}>{items.map((item, index) => <li key={index}><Icon aria-hidden="true" className="guide-marked-icon" /><p className="guide-copy">{sanitizePublicGuideText(t(item))}</p></li>)}</ul>;
+  };
   return <section id="RIRA 분석 가이드" className="guide-section" data-guide-section="analysis">
     <GuideSectionHeader num="R" title="RIRA 분석" />
     <GuidePanel title="RIRA 한줄평"><p className="guide-item-name">{sanitizePublicGuideText(t(data.summary))}</p>{data.metadata && <dl className="guide-metadata">{data.metadata.filter(item => item.value).map((item, index) => <div key={index}><dt>{t(item.label)}</dt><dd>{sanitizePublicGuideText(t(item.value))}</dd></div>)}</dl>}</GuidePanel>
@@ -174,8 +190,9 @@ export function GuideAnalysis({ data }: { data: GuideAnalysisData }) {
     {data.overview && <GuidePanel title="기본 운용법"><p className="guide-copy">{sanitizePublicGuideText(t(data.overview))}</p></GuidePanel>}
     {data.rotation?.length ? <GuidePanel title="운용 순서"><ol className="guide-step-list">{data.rotation.map((step, index) => {
       const action = rotationAction(step);
+      const icon = action ? data.stepIcon?.(action) : undefined;
       return <li key={index} className="guide-step">
-        <p className="guide-step-head"><span className="guide-rank">{index + 1}{t('단계')}</span>{action && <span className="guide-step-action">{t(action)}</span>}</p>
+        <div className="guide-step-head">{icon && <StepIcon key={icon} src={icon} />}<p className="guide-step-label"><span className="guide-rank">{index + 1}{t('단계')}</span>{action && <span className="guide-step-action">{t(action)}</span>}</p></div>
         <p className="guide-copy">{sanitizePublicGuideText(t(step))}</p>
       </li>;
     })}</ol></GuidePanel> : null}
@@ -191,8 +208,8 @@ export function GuideAnalysis({ data }: { data: GuideAnalysisData }) {
       <thead><tr><th scope="col"><span className="sr-only">{t('단계')}</span></th>{data.targets.columns.map((column, index) => <th key={index} scope="col">{sanitizePublicGuideText(t(column))}</th>)}</tr></thead>
       <tbody>{data.targets.rows.map((row, index) => <tr key={index}><th scope="row">{sanitizePublicGuideText(t(row.label))}</th>{row.values.map((value, valueIndex) => <td key={valueIndex}>{sanitizePublicGuideText(value)}</td>)}</tr>)}</tbody>
     </table></div></GuidePanel> : null}
-    <div className="guide-analysis-grid">{data.strengths?.length ? <GuidePanel title="장점">{list(data.strengths)}</GuidePanel> : null}{data.weaknesses?.length ? <GuidePanel title="주의점">{list(data.weaknesses)}</GuidePanel> : null}</div>
-    {data.tips?.length ? <GuidePanel title="운용 핵심">{list(data.tips)}</GuidePanel> : null}
+    <div className="guide-analysis-grid">{data.strengths?.length ? <GuidePanel title="장점">{marked(data.strengths, 'strength')}</GuidePanel> : null}{data.weaknesses?.length ? <GuidePanel title="주의점">{marked(data.weaknesses, 'caution')}</GuidePanel> : null}</div>
+    {data.tips?.length ? <GuidePanel title="운용 핵심">{marked(data.tips, 'tip')}</GuidePanel> : null}
   </section>;
 }
 
