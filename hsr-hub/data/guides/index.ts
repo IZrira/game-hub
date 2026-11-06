@@ -41,6 +41,8 @@ export interface CharacterAnalysis {
   strengths: string[];
   weaknesses: string[];
   teamPrinciple?: string;
+  /** Why each recommended item suits this character; images and links come from the item databases. */
+  gear?: { kind: "lightcone" | "relic" | "ornament"; name: string; note?: string; reason: string }[];
   gameplay: {
     overview: string;
     rotation?: string[];

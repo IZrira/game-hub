@@ -151,3 +151,5 @@ a.guide-team-member:hover .guide-team-face { border-color:rgba(255,255,255,.35);
 .guide-team-mini { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px 4px; width:100%; }
 .guide-team-mini .guide-team-face,.guide-team-mini .guide-team-fallback { width:44px; height:44px; }
 .guide-team-mini .guide-team-name { font-size:11px; line-height:14px; font-weight:500; }
+/* On phones a slot is about 60px wide, so two 44px faces would overlap: stack the candidates instead. */
+@media(max-width:639px) { .guide-team-mini { grid-template-columns:minmax(0,1fr); gap:8px; } .guide-team-mini .guide-team-face,.guide-team-mini .guide-team-fallback { width:40px; height:40px; } .guide-team-mini .guide-team-name { word-break:keep-all; } }

@@ -512,6 +512,25 @@ const WuwaCharacterGuideContent: React.FC<{ data: WwGuideRuntime }> = ({ data })
     return { name: t(name), image: entry ? getCharacterImage(entry.folderName, entry.isRover) : undefined, to: routeId ? `/gallery/ww/character/${encodeURIComponent(routeId)}` : undefined, details: [entry?.roles?.[0]?.label, note].filter(Boolean).map((value: string) => t(value)) };
   });
 
+  // Analysis view: base targets, item reasons, optional named teams and skill icons.
+  const analysisTargets = targetValues.length ? { columns: targetValues.map((item: any) => t(item.label)), rows: [{ label: t('기본'), values: targetValues.map((item: any) => item.value) }] } : undefined;
+  const analysisGear = analysis?.gear?.map((item: any) => {
+    if (item.kind === 'weapon') return { ...item, image: getWeaponImage(item.name), to: `/gallery/ww/weapon/${encodeURIComponent(item.name)}` };
+    if (item.kind === 'sonata') return { ...item, image: `${BASE_IMAGE_URL}/common/sonata/${encodeURIComponent(item.name.normalize('NFC'))}.webp` };
+    return { ...item, image: getEchoImage(item.name) };
+  });
+  const memberByName = (name: string) => members.find(member => normalizeName(member.name) === normalizeName(t(name)))
+    || (() => {
+      const entry = CHARACTER_DB.find((candidate: any) => normalizeName(t(candidate.name)) === normalizeName(t(name)) || normalizeName(candidate.folderName) === normalizeName(name));
+      const routeId = characterSummary.find(candidate => candidate.id === entry?.id)?.id;
+      return { name: t(name), image: entry ? getCharacterImage(entry.folderName, entry.isRover) : undefined, to: routeId ? `/gallery/ww/character/${encodeURIComponent(routeId)}` : undefined };
+    })();
+  const analysisTeams = analysis?.teams?.map((team: { label: string; slots: string[][] }) => ({ label: team.label, slots: team.slots.map(slot => slot.map(memberByName)) }));
+  const WW_SKILL_FILES: Record<string, string> = { '일반 공격': '기본 공격', '강공격': '기본 공격', '공명 스킬': '공명 스킬', '공명 해방': '공명 해방', '변주 스킬': '변주 스킬', '반주 스킬': '반주 스킬' };
+  const skillIconOf = (action: string) => WW_SKILL_FILES[action]
+    ? `${BASE_IMAGE_URL.replace(' ', '%20')}/skills/${encodeURIComponent(character.folderName.normalize('NFC'))}/${encodeURIComponent(WW_SKILL_FILES[action])}.webp`
+    : undefined;
+
   const faqData = [
     {
       question: `${character.name}의 추천 무기는 무엇인가요?`,
@@ -553,7 +572,7 @@ const WuwaCharacterGuideContent: React.FC<{ data: WwGuideRuntime }> = ({ data })
           <GuideSummary items={summaryItems} />
           <GuideBuildContent primary={primaryEquipment} sets={setEquipment} setsId="추천 에코" options={mainOptions} subStats={guide.subStats || []} targets={[{ label: '목표 스탯', items: targetValues }]} skills={(guide.skillPriority || []).map((name: string) => ({ name }))} members={guide.isUniversalSynergy ? [] : members} synergyNote={guide.isUniversalSynergy ? '회복 및 서포팅 능력이 뛰어나 특정 딜러에 국한되지 않습니다. 파티의 생존력과 전투 지속력을 높이기 위해 어떤 파티 조합이든 마지막 3번째 자리에 자유롭게 편성하여 활용할 수 있습니다.' : undefined} setupNote={currentVariant?.note} />
         </>}
-        {analysis && activeGuideView === 'analysis' && <GuideAnalysis data={{ summary: analysis.summary, strengths: analysis.strengths, weaknesses: analysis.weaknesses, rotation: analysis.rotation, tips: analysis.tips }} />}
+        {analysis && activeGuideView === 'analysis' && <GuideAnalysis data={{ summary: analysis.summary, metadata: analysis.role ? [{ label: '역할', value: analysis.role }] : undefined, strengths: analysis.strengths, weaknesses: analysis.weaknesses, teamPrinciple: analysis.teamPrinciple, rotation: analysis.rotation, tips: analysis.tips, teams: analysisTeams, gear: analysisGear, targets: analysisTargets, stepIcon: skillIconOf }} />}
         <GuideFooter message="게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다." action={<button type="button" className="guide-back-link" onClick={() => setIsFeedbackModalOpen(true)}>{t('데이터 오류 제보')}</button>} />
         <FeedbackReportModal isOpen={isFeedbackModalOpen} onClose={() => setIsFeedbackModalOpen(false)} contextData={{ gameId, targetId: characterRouteId, targetName: character.name || charName, type: 'guide' }} />
       </GuideLayout>

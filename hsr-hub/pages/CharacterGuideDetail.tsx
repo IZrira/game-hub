@@ -8,7 +8,7 @@ import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
 import { useTranslation } from 'react-i18next';
-import { getHsrCharacterArtUrl } from '../../common-hub/utils/assetManager';
+import { CDN_URL, getHsrCharacterArtUrl, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { sanitizePublicHsrGuideData } from '../../common-hub/utils/publicGuideLinks';
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
 
@@ -325,10 +325,37 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
       return { name: t(item.cleanName), rank: item.rank, note: item.note ? t(item.note) : undefined, image: getMainImageUrl(entry) || '', group: Boolean(alternatives?.length), alternatives, to: alternatives?.length ? undefined : `/gallery/${gameId}/ornament/${encodeURIComponent(entry?.name || baseName)}` };
     }) },
   ];
-  const members = synergyCharacters.map(member => {
+  const memberOf = (member: { name: string; role?: string; description?: string }) => {
     const entry = CHARACTER_DB.find(candidate => normalizeName(t(candidate.name)) === normalizeName(t(member.name)) || normalizeName(candidate.folderName) === normalizeName(t(member.name)));
-    return { name: t(member.name), image: entry ? getHsrCharacterArtUrl(entry.folderName, entry.isTrailblazer) : undefined, to: entry ? `/gallery/${gameId}/character/${entry.id}` : undefined, details: [member.role, member.description].filter(Boolean) };
+    return { name: t(member.name), image: entry ? getHsrCharacterArtUrl(entry.folderName, entry.isTrailblazer) : undefined, to: entry ? `/gallery/${gameId}/character/${entry.id}` : undefined, details: [member.role, member.description].filter(Boolean) as string[] };
+  };
+  const members = synergyCharacters.map(memberOf);
+
+  // Analysis view: parties that include this character, every variant's base targets, item reasons and skill icons.
+  const ownName = normalizeName(character.name);
+  const analysisTeams = HSR_PARTIES
+    .filter(party => party.members.some(member => normalizeName(member.name) === ownName))
+    .map(party => ({ label: t(party.name), slots: party.members.map(member => [member, ...(member.substitutes || [])].map(memberOf)) }));
+  const targetRows = (guide.variants?.length ? guide.variants : [{ name: '기본', targetStats: guide.targetStats }])
+    .map(variant => ({ label: t(variant.name), stats: (variant.targetStats || []).filter(stat => !/사용\s*시|경우|참고|세팅|조건/.test(stat.label)).map(stat => ({ label: stat.label, value: getStatValueAndNote(stat.value).value })) }))
+    .filter(row => row.stats.length > 0);
+  const targetColumns = [...new Set(targetRows.flatMap(row => row.stats.map(stat => stat.label)))];
+  const analysisTargets = targetColumns.length ? {
+    columns: targetColumns.map(label => t(label)),
+    rows: targetRows.map(row => ({ label: row.label, values: targetColumns.map(label => row.stats.filter(stat => stat.label === label).map(stat => stat.value).join(' / ') || '—') })),
+  } : undefined;
+  const analysisGear = publishedAnalysis?.gear?.map(item => {
+    if (item.kind === 'lightcone') {
+      const entry = LIGHTCONE_DB.find(candidate => candidate.name === item.name);
+      return { ...item, image: entry ? encodeURI(`${BASE_IMAGE_URL}/광추/${entry.path.normalize('NFC')}/${(entry.fileName || entry.folderName).normalize('NFC')}.webp`) : undefined, to: `/gallery/${gameId}/lightcone/${encodeURIComponent(item.name)}` };
+    }
+    const entry = (item.kind === 'relic' ? RELIC_DB : ORNAMENT_DB).find(candidate => candidate.name === item.name);
+    return { ...item, image: getMainImageUrl(entry) || undefined, to: entry ? `/gallery/${gameId}/${item.kind}/${encodeURIComponent(entry.name)}` : undefined };
   });
+  const SKILL_ICON_FILES: Record<string, string> = { '일반 공격': 'basic_atk_1', '전투 스킬': 'skill_1', '필살기': 'ultimate_1', '비술': 'technique_1' };
+  const skillIconOf = (action: string) => SKILL_ICON_FILES[action]
+    ? `${CDN_URL}/hsr%20images/skills/${safeEncodeURIComponent(character.folderName)}/${SKILL_ICON_FILES[action]}.webp`
+    : undefined;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
@@ -364,7 +391,7 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
           ]} />
           <GuideBuildContent primary={primaryEquipment} sets={setEquipment} setsId="추천 장비" options={mainOptions} subStats={currentVariant?.subStats || []} targets={[{ label: '목표 스탯', items: parsedTargetStats.filter(item => !item.description) }, { label: '조건별 세팅', items: parsedTargetStats.filter(item => item.description) }].filter(group => group.items.length > 0)} skills={((currentVariant && 'skillPriority' in currentVariant ? currentVariant.skillPriority : undefined) || guide.skillPriority || []).map(name => ({ name }))} members={members} setupNote={currentVariant?.note} />
         </>}
-        {publishedAnalysis && activeGuideView === 'analysis' && <GuideAnalysis data={{ summary: publishedAnalysis.summary, metadata: [{ label: '역할', value: publishedAnalysis.role }, { label: '분석 기준', value: publishedAnalysis.standard }, { label: '검토', value: publishedAnalysis.reviewedAt }, { label: '작성·검수', value: publishedAnalysis.reviewer }], strengths: publishedAnalysis.strengths, weaknesses: publishedAnalysis.weaknesses, teamPrinciple: publishedAnalysis.teamPrinciple, overview: publishedAnalysis.gameplay.overview, rotation: publishedAnalysis.gameplay.rotation, tips: publishedAnalysis.gameplay.tips }} />}
+        {publishedAnalysis && activeGuideView === 'analysis' && <GuideAnalysis data={{ summary: publishedAnalysis.summary, metadata: [{ label: '역할', value: publishedAnalysis.role }, { label: '분석 기준', value: publishedAnalysis.standard }, { label: '검토', value: publishedAnalysis.reviewedAt }, { label: '작성·검수', value: publishedAnalysis.reviewer }], strengths: publishedAnalysis.strengths, weaknesses: publishedAnalysis.weaknesses, teamPrinciple: publishedAnalysis.teamPrinciple, overview: publishedAnalysis.gameplay.overview, rotation: publishedAnalysis.gameplay.rotation, tips: publishedAnalysis.gameplay.tips, teams: analysisTeams.length ? analysisTeams : undefined, gear: analysisGear, targets: analysisTargets, stepIcon: skillIconOf }} />}
         <GuideFooter updatedAt={`${lastUpdatedDate} (v${guide.patchVersion || '1.0'})`} message="게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다." />
       </GuideLayout>
     </div>

@@ -128,6 +128,12 @@ function escapeHtml(str) {
     .replace(/'/g, '&#039;');
 }
 
+// HSR·WW analysis item reasons, matching the "장비 선택 근거" section of the app.
+function renderGuideGearReasons(gear) {
+  if (!Array.isArray(gear) || gear.length === 0) return '';
+  return `<h3>장비 선택 근거</h3>\n<ul>\n${gear.map(item => `<li>${escapeHtml(item.name)}${item.note ? ` (${escapeHtml(item.note)})` : ''}: ${escapeHtml(item.reason)}</li>`).join('\n')}\n</ul>\n`;
+}
+
 function encodeAssetPath(str) {
   return encodeURIComponent(str)
     .replace(/%20/g, '%20')
@@ -1730,7 +1736,13 @@ function generateWwGuideHtml(id, guide, char) {
   const analysis = wwGuideAnalysis[id];
   if (analysis) {
     html += `<h2>RIRA 분석 가이드</h2>\n`;
+    if (analysis.role) html += `<p><strong>역할:</strong> ${escapeHtml(analysis.role)}</p>\n`;
     html += `<p>${escapeHtml(analysis.summary)}</p>\n`;
+    if (analysis.teamPrinciple) html += `<h3>파티 구성 원리</h3>\n<p>${escapeHtml(analysis.teamPrinciple)}</p>\n`;
+    if (Array.isArray(analysis.teams) && analysis.teams.length > 0) {
+      html += `<h3>추천 파티</h3>\n<ul>\n${analysis.teams.map(team => `<li>${escapeHtml(team.label)}: ${escapeHtml(team.slots.map(slot => slot.join(' 또는 ')).join(' · '))}</li>`).join('\n')}\n</ul>\n`;
+    }
+    html += renderGuideGearReasons(analysis.gear);
     html += `<h3>강점</h3>\n<ul>\n`;
     analysis.strengths.forEach(item => { html += `<li>${escapeHtml(item)}</li>\n`; });
     html += `</ul>\n<h3>주의점</h3>\n<ul>\n`;
@@ -1912,6 +1924,7 @@ function generateHsrGuideHtml(id, guide, char, hsrPartiesList) {
     if (analysis.teamPrinciple) {
       html += `<h3>파티 구성 원리</h3><p>${escapeHtml(analysis.teamPrinciple)}</p>\n`;
     }
+    html += renderGuideGearReasons(analysis.gear);
     if (analysis.gameplay?.overview) {
       html += `<h3>기본 운용법</h3><p>${escapeHtml(analysis.gameplay.overview)}</p>\n`;
     }
