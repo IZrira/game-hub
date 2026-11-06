@@ -250,6 +250,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/nte/weapon/%EB%8B%AC%EC%9D%98%20%EB%8C%80%EC%B2%99%EC%A0%90</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/arcs/%EB%8B%AC%EC%9D%98%20%EB%8C%80%EC%B2%99%EC%A0%90.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/nte/weapon/%EB%8F%99%EB%B0%B1%EA%BD%83%20%EB%AA%A8%EC%9E%84</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -542,7 +550,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EA%B0%90%EC%A0%95%EC%82%AC-build-guide</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -551,7 +559,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EA%B5%AC%EC%9B%90-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -560,7 +568,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EB%82%98%EB%82%98%EB%A6%AC-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -569,7 +577,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EB%8B%A4%ED%8F%AC%EB%94%9C-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -587,7 +595,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EB%A0%88%EC%9D%B4%EB%B8%90-build-guide</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -596,7 +604,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EB%A7%81%EC%BD%94-build-guide</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -614,7 +622,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EB%B0%B1%EC%9E%A5-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -623,7 +631,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%82%AC%ED%82%A4%EB%A6%AC-build-guide</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -641,7 +649,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%8B%A0%EC%BF%A0-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -650,7 +658,16 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%95%84%EB%93%A4%EB%9F%AC-build-guide</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://riragamehub.com/assets/brand/rira-fox.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/nte/guides/%EC%95%84%EC%B9%B4%EB%84%A4%20%EB%A6%B0-build-guide</loc>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -677,7 +694,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%9D%BC%EB%A1%9C%EC%9D%B4-build-guide</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -686,7 +703,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%9E%94%ED%99%8D-build-guide</loc>
-    <lastmod>2026-11-03</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -695,7 +712,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%B9%98%EC%A6%88-build-guide</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -704,7 +721,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%B9%B4%EC%98%A4%EC%8A%A4-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -713,7 +730,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%ED%8C%8C%EB%94%94%EC%95%84-build-guide</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -722,7 +739,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%ED%95%98%EB%8B%88%EC%97%98-build-guide</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -731,7 +748,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%ED%95%98%ED%86%A0%EB%A5%B4-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
@@ -740,7 +757,7 @@
   </url>
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%ED%98%B8%ED%86%A0%EB%A6%AC-build-guide</loc>
-    <lastmod>2026-11-05</lastmod>
+    <lastmod>2026-11-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>

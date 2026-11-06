@@ -19,7 +19,8 @@ describe('NTE character guide presentation data', () => {
     expect(guide.consoles.length).toBe((article.content.match(/^콘솔\s*세트\s*\d*\s*$/gm) || []).length);
     expect(guide.consoles.every(set => set.name && set.note)).toBe(true);
     expect(guide.consoles.every(set => NTE_CARTRIDGES.some(cartridge => cartridge.name === set.name))).toBe(true);
-    expect(guide.skillPriority.length).toBeGreaterThanOrEqual(4);
+    // Support guides such as 사키리 or 아들러 only ask for passive skills, so two entries is a valid minimum.
+    expect(guide.skillPriority.length).toBeGreaterThanOrEqual(2);
     expect(guide.party.every(name => characters.some(character => character.name === name))).toBe(true);
     expect(guide.notes).toEqual([]);
   });
@@ -38,8 +39,14 @@ describe('NTE character guide presentation data', () => {
   });
 
   it('supports skill priorities written without commas', () => {
-    const guide = parseNteCharacterGuide(guides.find(guide => guide.title.startsWith('감정사'))!.content);
+    // No synced guide uses the space-only format any more, so check the parser with a sample line.
+    const guide = parseNteCharacterGuide('스킬 레벨 업 우선 순위\n울티메이트 바이레일 스킬 서포트 스킬 일반 공격');
     expect(guide.skillPriority).toEqual(['울티메이트', '바이레일 스킬', '서포트 스킬', '일반 공격']);
+  });
+  it('reads equal-priority markers in skill and awakening orders', () => {
+    const guide = parseNteCharacterGuide('스킬 레벨 업 우선 순위\n울티메이트 = 바이레일 스킬 = 일반 공격, 서포트 스킬\n\n각성 우선 순위\n5 = 6 > 2 > 3 > 4 > 1');
+    expect(guide.skillPriority).toEqual(['울티메이트', '바이레일 스킬', '일반 공격', '서포트 스킬']);
+    expect(guide.awakeningPriority).toEqual([5, 6, 2, 3, 4, 1]);
   });
   it('preserves conditional main-stat explanations as option text', () => {
     const guide = parseNteCharacterGuide(guides.find(guide => guide.title.startsWith('신쿠'))!.content);

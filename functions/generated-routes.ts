@@ -614,6 +614,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/nte/guides/스키아-build-guide",
   "/gallery/nte/guides/신쿠-build-guide",
   "/gallery/nte/guides/아들러-build-guide",
+  "/gallery/nte/guides/아카네 린-build-guide",
   "/gallery/nte/guides/에드가-build-guide",
   "/gallery/nte/guides/우미츠키-build-guide",
   "/gallery/nte/guides/일로이-build-guide",
