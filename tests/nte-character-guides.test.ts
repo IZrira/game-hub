@@ -54,6 +54,7 @@ describe('NTE character guide presentation data', () => {
   });
   it('uses exact repository filenames for quoted arc illustrations', () => {
     expect(getNteGuideArcImageUrl('세상을 뒤흔든 비')).toContain(encodeURIComponent('「세상을 뒤흔든 비」'));
+    expect(getNteGuideArcImageUrl('마지막 장미')).toContain(encodeURIComponent('「마지막 장미」'));
     expect(getNteGuideArcImageUrl('은하의 찰나')).toContain(encodeURIComponent('「은하의 찰나」'));
     expect(getNteGuideArcImageUrl('죄와 벌')).toContain(encodeURIComponent('죄와 벌'));
   });

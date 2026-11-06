@@ -21,6 +21,12 @@ export interface GuideCharacterAnalysis {
   weaknesses: string[];
   teamPrinciple: string;
   gameplay: { overview: string; rotation: string[]; tips: string[] };
+  /** Optional structured views. Each team slot lists interchangeable character names. */
+  teams?: { label: string; slots: string[][] }[];
+  /** Equipment shown with its icon and a one-line reason. kind selects the icon source per game. */
+  gear?: { kind: string; name: string; note?: string; reason: string }[];
+  /** Target stats by tier, e.g. columns ["공격력", "치명 확률"] and rows 기본/종결. */
+  targets?: { columns: string[]; rows: { label: string; values: string[] }[] };
 }
 
 export interface GuideArticle {

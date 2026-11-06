@@ -49,10 +49,19 @@ function CharacterGuideContent({ article, character }: { article: GuideArticle; 
   const targets = guide.statGroups.map(group => ({ label: group.label, conditional: conditional(group.label), items: group.items.map(item => ({ ...item, conditional: conditional(item.label) })) }));
   const skills = guide.skillPriority.map(name => ({ name, detail: character.skills?.find((item: any) => item.type.replace(/\s/g, '') === name.replace(/\s/g, ''))?.name }));
   const awakenings = guide.awakeningPriority.map(rank => ({ name: `각성 ${rank}`, detail: character.eidolons?.find((item: any) => Number(item.rank) === rank)?.name.replace(/^\d+[.、]\s*/, '') }));
-  const members = [...new Set(guide.party)].map(name => {
+  const memberOf = (name: string) => {
     const member = NTE_CHARACTER_DATA.find(item => item.name === name);
     return { name, image: member ? characterImage(member) : undefined, to: member ? `/gallery/nte/character/${encodeURIComponent(member.name)}` : undefined, details: member ? [member.attribute, member.arc] : [] };
-  });
+  };
+  const members = [...new Set(guide.party)].map(memberOf);
+  const gearOf = (item: { kind: string; name: string; note?: string; reason: string }) => {
+    if (item.kind === 'console') {
+      const set = NTE_CARTRIDGES.find(cartridge => cartridge.name === item.name);
+      return { ...item, image: set ? getNTECartridgeImageUrl(set.imageFileName, 5) : undefined };
+    }
+    const registered = arcs.find(arc => arc.name.replace(/[「」]/g, '') === item.name);
+    return { ...item, image: getNteGuideArcImageUrl(item.name), to: registered ? `/gallery/nte/weapon/${encodeURIComponent(registered.name)}` : undefined };
+  };
 
   return <div className="min-h-screen bg-[#0a0a0a] text-white">
     <SEO title={`이환 ${character.name} 공략 | 아크 · 콘솔 세팅 · 육성 우선순위`} description={article.excerpt} image={characterImage(character)} url={url} gameCategory="이환 (NTE)" itemType="세팅 가이드" type="article" publishedTime={article.publishedAt} modifiedTime={article.reviewedAt} breadcrumbData={[{ name: '홈', url: '/' }, { name: '이환', url: '/gallery/nte' }, { name: character.name, url: characterUrl }, { name: '세팅 가이드', url }]} />
@@ -65,6 +74,9 @@ function CharacterGuideContent({ article, character }: { article: GuideArticle; 
         metadata: [{ label: '역할', value: analysis.role }, { label: '분석 기준', value: analysis.standard }, { label: '검토', value: analysis.reviewedAt }, { label: '작성·검수', value: analysis.reviewer }],
         strengths: analysis.strengths, weaknesses: analysis.weaknesses, teamPrinciple: analysis.teamPrinciple,
         overview: analysis.gameplay.overview, rotation: analysis.gameplay.rotation, tips: analysis.gameplay.tips,
+        teams: analysis.teams?.map(team => ({ label: team.label, slots: team.slots.map(slot => slot.map(memberOf)) })),
+        gear: analysis.gear?.map(gearOf),
+        targets: analysis.targets,
       }} /> : <>
       {guide.consoles.length > 1 && <GuideVariantSelector label="세팅 선택" description="콘솔 설명과 세트 효과만 바뀝니다. 주·부옵션과 기본 목표는 공통이며, 별도 조건을 함께 확인하세요." options={guide.consoles.map((set, index) => ({ label: set.name, value: String(index) }))} value={String(selectedConsole)} onChange={value => setSelectedConsole(Number(value))} />}
       <GuideSummary items={[

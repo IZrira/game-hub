@@ -30,6 +30,9 @@ export interface GuideTarget { label: string; value: string; note?: string; cond
 export interface GuideTargetGroup { label: string; conditional?: boolean; items: GuideTarget[] }
 export interface GuidePriority { name: string; detail?: string }
 export interface GuideMember { name: string; image?: string; to?: string; details?: string[] }
+export interface GuideAnalysisTeam { label: string; slots: GuideMember[][] }
+export interface GuideAnalysisGear { name: string; image?: string; to?: string; note?: string; reason: string }
+export interface GuideAnalysisTargets { columns: string[]; rows: { label: string; values: string[] }[] }
 export interface GuideAnalysisData {
   summary: string;
   metadata?: { label: string; value: string }[];
@@ -39,6 +42,36 @@ export interface GuideAnalysisData {
   overview?: string;
   rotation?: string[];
   tips?: string[];
+  teams?: GuideAnalysisTeam[];
+  gear?: GuideAnalysisGear[];
+  targets?: GuideAnalysisTargets;
+}
+
+// The earliest action word in a step becomes its label; steps without one stay unlabeled.
+const ROTATION_ACTIONS: [string, string][] = [
+  ['울티메이트', '울티메이트'], ['바이레일', '바이레일'], ['서포트 스킬', '서포트 스킬'], ['일반 공격', '일반 공격'], ['평타', '일반 공격'], ['평꾹', '일반 공격'],
+  ['강공격', '강공격'], ['회피', '회피'], ['교대', '교대'], ['교체', '교대'], ['등장', '교대'], ['필살기', '필살기'], ['전투 스킬', '전투 스킬'],
+  // WW words are matched in full so NTE terms such as 「풍미 변주」 do not pick them up.
+  ['비술', '비술'], ['공명 해방', '공명 해방'], ['공명 스킬', '공명 스킬'], ['변주 스킬', '변주 스킬'], ['협주 에너지', '협주 에너지'], ['에스퍼 사이클', '에스퍼 사이클'],
+];
+export function rotationAction(step: string): string | undefined {
+  let best: { at: number; label: string } | undefined;
+  for (const [word, label] of ROTATION_ACTIONS) {
+    const at = step.indexOf(word);
+    if (at >= 0 && (!best || at < best.at)) best = { at, label };
+  }
+  return best?.label;
+}
+
+function TeamPortrait({ member }: { member: GuideMember }) {
+  const { t } = useTranslation();
+  const name = sanitizePublicGuideText(t(member.name));
+  const body = <>{member.image && !isNotionUrl(member.image)
+    ? <img src={member.image} alt="" loading="lazy" onError={handleImageFallback} />
+    : <span className="guide-team-fallback" aria-hidden="true">{name.slice(0, 2)}</span>}<span className="guide-team-name">{name}</span></>;
+  return member.to && !isNotionUrl(member.to)
+    ? <Link to={member.to} className="guide-team-member">{body}</Link>
+    : <span className="guide-team-member">{body}</span>;
 }
 
 export function GuidePanel({ title, children, conditional = false, id }: { title: string; children: React.ReactNode; conditional?: boolean; id?: string }) {
@@ -131,10 +164,34 @@ export function GuideAnalysis({ data }: { data: GuideAnalysisData }) {
   return <section id="RIRA 분석 가이드" className="guide-section" data-guide-section="analysis">
     <GuideSectionHeader num="R" title="RIRA 분석" />
     <GuidePanel title="RIRA 한줄평"><p className="guide-item-name">{sanitizePublicGuideText(t(data.summary))}</p>{data.metadata && <dl className="guide-metadata">{data.metadata.filter(item => item.value).map((item, index) => <div key={index}><dt>{t(item.label)}</dt><dd>{sanitizePublicGuideText(t(item.value))}</dd></div>)}</dl>}</GuidePanel>
-    <div className="guide-analysis-grid">{data.strengths?.length ? <GuidePanel title="장점">{list(data.strengths)}</GuidePanel> : null}{data.weaknesses?.length ? <GuidePanel title="주의점">{list(data.weaknesses)}</GuidePanel> : null}</div>
+    {data.teams?.length ? <GuidePanel title="추천 파티"><ul className="guide-team-list">{data.teams.map((team, index) => <li key={index} className="guide-team-row">
+      <p className="guide-field-label">{sanitizePublicGuideText(t(team.label))}</p>
+      <ul className="guide-team-slots">{team.slots.map((slot, slotIndex) => <li key={slotIndex} className="guide-team-slot" data-alternatives={slot.length > 1 || undefined}>{slot.map((member, memberIndex) => <React.Fragment key={memberIndex}>
+        {memberIndex > 0 && <span className="guide-team-or">{t('또는')}</span>}<TeamPortrait member={member} />
+      </React.Fragment>)}</li>)}</ul>
+    </li>)}</ul></GuidePanel> : null}
     {data.teamPrinciple && <GuidePanel title="파티 구성 원리"><p className="guide-copy">{sanitizePublicGuideText(t(data.teamPrinciple))}</p></GuidePanel>}
     {data.overview && <GuidePanel title="기본 운용법"><p className="guide-copy">{sanitizePublicGuideText(t(data.overview))}</p></GuidePanel>}
-    {data.rotation?.length ? <GuidePanel title="운용 순서"><GuidePriorityList items={data.rotation.map(name => ({ name }))} rankLabel="단계" /></GuidePanel> : null}
+    {data.rotation?.length ? <GuidePanel title="운용 순서"><ol className="guide-step-list">{data.rotation.map((step, index) => {
+      const action = rotationAction(step);
+      return <li key={index} className="guide-step">
+        <p className="guide-step-head"><span className="guide-rank">{index + 1}{t('단계')}</span>{action && <span className="guide-step-action">{t(action)}</span>}</p>
+        <p className="guide-copy">{sanitizePublicGuideText(t(step))}</p>
+      </li>;
+    })}</ol></GuidePanel> : null}
+    {data.gear?.length ? <GuidePanel title="장비 선택 근거"><ul className="guide-gear-list">{data.gear.map((item, index) => {
+      const icon = item.image && !isNotionUrl(item.image) ? <img src={item.image} alt="" loading="lazy" onError={handleImageFallback} className="guide-gear-icon" /> : <span className="guide-gear-icon" aria-hidden="true" />;
+      const name = sanitizePublicGuideText(t(item.name));
+      return <li key={index} className="guide-gear-row">{icon}<div className="guide-gear-text">
+        <p className="guide-item-name">{item.to && !isNotionUrl(item.to) ? <Link to={item.to} className="guide-gear-link">{name}</Link> : name}{item.note && <span className="guide-gear-note">{sanitizePublicGuideText(t(item.note))}</span>}</p>
+        <p className="guide-copy">{sanitizePublicGuideText(t(item.reason))}</p>
+      </div></li>;
+    })}</ul></GuidePanel> : null}
+    {data.targets?.rows.length ? <GuidePanel title="육성 목표"><div className="guide-target-table-wrap"><table className="guide-target-table">
+      <thead><tr><th scope="col"><span className="sr-only">{t('단계')}</span></th>{data.targets.columns.map((column, index) => <th key={index} scope="col">{sanitizePublicGuideText(t(column))}</th>)}</tr></thead>
+      <tbody>{data.targets.rows.map((row, index) => <tr key={index}><th scope="row">{sanitizePublicGuideText(t(row.label))}</th>{row.values.map((value, valueIndex) => <td key={valueIndex}>{sanitizePublicGuideText(value)}</td>)}</tr>)}</tbody>
+    </table></div></GuidePanel> : null}
+    <div className="guide-analysis-grid">{data.strengths?.length ? <GuidePanel title="장점">{list(data.strengths)}</GuidePanel> : null}{data.weaknesses?.length ? <GuidePanel title="주의점">{list(data.weaknesses)}</GuidePanel> : null}</div>
     {data.tips?.length ? <GuidePanel title="운용 핵심">{list(data.tips)}</GuidePanel> : null}
   </section>;
 }
