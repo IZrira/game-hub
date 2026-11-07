@@ -355,7 +355,7 @@ const CharacterDetailNTE: React.FC = () => {
   }, [char]);
 
 
-  const hasParties = useHasRecommendedParties('nte', char?.id || charName || '');
+  const hasParties = useHasRecommendedParties('nte', char?.name || charName || '');
   if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
 
   const currentLevel = LEVEL_STEPS[levelIdx];
@@ -1062,7 +1062,7 @@ const CharacterDetailNTE: React.FC = () => {
             <DeferredSection minHeight={320}>
               <Suspense fallback={<DeferredFallback />}>
                 <SynergyDeck
-                  characterName={char?.id || charName || ''}
+                  characterName={char?.name || charName || ''}
                   gameId="nte"
                   theme={theme}
                 />

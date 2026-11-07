@@ -9,15 +9,15 @@ const source = fs.readFileSync(new URL('../nte-hub/data/parties.ts', import.meta
 const sitemap = fs.readFileSync(new URL('../public/sitemap-nte.xml', import.meta.url), 'utf8');
 const routes = new Set(Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g), match => new URL(match[1]).pathname));
 const parties = parseNtePartyCombinations(source);
+const memberCount = parties.reduce((sum, party) => sum + party.members.length, 0);
+const substituteCount = parties.reduce((sum, party) => sum + party.members.reduce((n, member) => n + (member.substitutes?.length || 0), 0), 0);
 
 describe('NTE party initial HTML', () => {
-  it('extracts the exact six local parties without executing imports or fallback code', () => {
-    expect(parties).toHaveLength(6);
+  it('extracts every local party without executing imports or fallback code', () => {
+    expect(parties.length).toBeGreaterThan(0);
     expect(parties).toEqual(NTE_PARTY_COMBINATIONS);
-    expect(parties.map(party => party.name)).toEqual([
-      '구원 령 속성 폭딜 파티', '민트 령 속성 제어 파티', '치즈 & 호토리 빛 속성 연계 파티',
-      '호토리 빛 속성 광휘 파티', '아들러 주 속성 지원 파티', '라크리모사 암속성 제어 파티',
-    ]);
+    expect(new Set(parties.map(party => party.name)).size).toBe(parties.length);
+    expect(new Set(parties.map(party => party.id)).size).toBe(parties.length);
     const guarded = `import unavailable from 'not-a-real-module';\nthrow new Error('must not execute');\n${source}\nthrow new Error('must not execute');`;
     expect(parseNtePartyCombinations(guarded)).toEqual(NTE_PARTY_COMBINATIONS);
   });
@@ -27,8 +27,8 @@ describe('NTE party initial HTML', () => {
     const $ = load(generateNtePartyBody(parties, routes));
     const sections = $('[data-nte-party]').toArray();
     expect(sections).toHaveLength(NTE_PARTY_COMBINATIONS.length);
-    expect($('[data-nte-member]')).toHaveLength(24);
-    expect($('[data-nte-substitute]')).toHaveLength(18);
+    expect($('[data-nte-member]')).toHaveLength(memberCount);
+    expect($('[data-nte-substitute]')).toHaveLength(substituteCount);
     NTE_PARTY_COMBINATIONS.forEach((party, index) => {
       const section = $(sections[index]);
       expect(section.attr('data-nte-party')).toBe(party.id);
@@ -60,7 +60,7 @@ describe('NTE party initial HTML', () => {
   it('links only published NTE character names, never authoring IDs or external locations', () => {
     const $ = load(generateNtePartyBody(parties, routes));
     const links = $('a').toArray();
-    expect(links).toHaveLength(48); // 24 members + 18 substitutes + 6 main characters.
+    expect(links).toHaveLength(memberCount + substituteCount + parties.length); // members, substitutes and each party's main character.
     links.forEach(link => {
       const href = $(link).attr('href')!;
       expect(href).toBe(`/gallery/nte/character/${encodeURIComponent($(link).text())}`);
@@ -70,7 +70,7 @@ describe('NTE party initial HTML', () => {
     });
     const missing = load(generateNtePartyBody(parties, new Set()));
     expect(missing('a')).toHaveLength(0);
-    expect(missing('[data-nte-member]').first().text()).toContain('구원 — 메인 딜러');
+    expect(missing('[data-nte-member]').first().text()).toContain(`${parties[0].members[0].name} — ${parties[0].members[0].role}`);
   });
 
   it('escapes all editable text and refuses path traversal even if passed an unsafe route set', () => {

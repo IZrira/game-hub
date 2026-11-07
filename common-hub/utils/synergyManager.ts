@@ -205,16 +205,18 @@ export function getRecommendedParties(
   }
 
   if (gameId === 'nte') {
+    // NTE character ids are Notion page ids, so resolve them to the name the party data uses.
+    const ntChar = NTE_CHARACTERS.find(c => c.id.toLowerCase() === targetNorm || c.name.toLowerCase() === targetNorm || c.folderName?.toLowerCase() === targetNorm);
+    const nteName = (ntChar?.name || characterNameOrId).trim().toLowerCase();
     const matchedParties = NTE_PARTY_COMBINATIONS.filter(party => {
-      const mainDpsMatch = party.mainDPS?.toLowerCase().includes(targetNorm);
-      const memberMatch = party.members.some(m => 
-        m.name.toLowerCase().includes(targetNorm) || 
+      const mainDpsMatch = party.mainDPS?.toLowerCase() === nteName;
+      const memberMatch = party.members.some(m =>
+        m.name.toLowerCase() === nteName ||
         m.id.toLowerCase() === targetNorm ||
-        m.folderName.toLowerCase() === targetNorm ||
-        m.substitutes?.some(s => s.name.toLowerCase().includes(targetNorm))
+        m.folderName.toLowerCase() === nteName ||
+        m.substitutes?.some(s => s.name.toLowerCase() === nteName)
       );
-      const tagMatch = party.tags?.some(t => t.toLowerCase().includes(targetNorm));
-      return mainDpsMatch || memberMatch || tagMatch;
+      return mainDpsMatch || memberMatch;
     });
 
     if (matchedParties.length > 0) {
@@ -233,7 +235,7 @@ export function getRecommendedParties(
           role: m.role,
           folderName: m.folderName,
           attribute: m.attribute,
-          isMainTarget: m.name.toLowerCase().includes(targetNorm) || m.id.toLowerCase() === targetNorm,
+          isMainTarget: m.name.toLowerCase() === nteName || m.id.toLowerCase() === targetNorm,
           substitutes: m.substitutes
         }))
       }));

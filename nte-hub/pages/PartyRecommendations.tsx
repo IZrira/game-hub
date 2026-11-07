@@ -17,6 +17,7 @@ import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
 import { NTE_PARTY_SEO } from '../../common-hub/data/ntePartySeo.js';
+import { getNteCharacterIconUrl } from '../../common-hub/utils/imageHelper';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
 
@@ -29,10 +30,7 @@ const ROLE_ICONS: Record<string, React.ReactNode> = {
 
 const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte images';
 
-const getIconUrl = (member: { folderName?: string; name: string }) => {
-  const folder = member.folderName || member.name;
-  return encodeURI(`${BASE_IMAGE_URL}/skills/${folder.normalize('NFC')}/${folder.normalize('NFC')}.webp`);
-};
+const getIconUrl = (member: { folderName?: string; name: string }) => getNteCharacterIconUrl((member.folderName || member.name).normalize('NFC'));
 
 const PartyMemberItem = React.memo(({ 
   member, 

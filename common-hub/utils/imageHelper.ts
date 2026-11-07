@@ -8,6 +8,13 @@ export const getCharacterImage = (src: string | undefined): string => {
   return src;
 };
 
+// NTE portraits live at skills/<folder>/<folder>.webp; the player character 감정사 only has gendered files.
+const NTE_GENDERED_PORTRAITS = new Set(['감정사']);
+export const getNteCharacterIconUrl = (folderName: string): string => {
+  const file = `${folderName}${NTE_GENDERED_PORTRAITS.has(folderName) ? '_f' : ''}`;
+  return `${CDN_URL}/nte%20images/skills/${safeEncodeURIComponent(folderName)}/${safeEncodeURIComponent(file)}.webp`;
+};
+
 /**
  * 캐릭터 폴더 구조에 기반한 경로를 생성합니다.
  */
@@ -22,7 +29,7 @@ export const getCharacterArtPath = (gameId: string, folderName: string, artNum: 
     return withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(safeFolderName)}/${safeEncodeURIComponent(safeFolderName)}.webp`);
   }
   if (gameId === 'nte') {
-    return `${CDN_URL}/nte%20images/characters/${safeEncodeURIComponent(safeFolderName)}/${safeEncodeURIComponent(artNum)}.png`;
+    return getNteCharacterIconUrl(safeFolderName);
   }
   return `${CDN_URL}/${gameId}%20images/캐릭터/${safeEncodeURIComponent(safeFolderName)}/${safeEncodeURIComponent(artNum)}.webp`;
 };

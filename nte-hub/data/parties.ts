@@ -26,230 +26,1828 @@ export interface NTEPartyCombination {
   cons?: string[];
 }
 
+// Built from the user-confirmed teams in guideAnalysis.json (2026-11-07). Same 4-person line-ups are listed once.
 export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   {
-    id: 'nte_guwon_spirit_hyper',
-    name: '구원 령 속성 폭딜 파티',
-    description: '구원의 강력한 령 속성 메인 딜링과 민트의 속성 시너지를 극대화하는 에이본 골동품점 대표 파티 조합입니다.',
-    mainDPS: '구원',
-    tags: ['구원', '령', '에이본 골동품점', '폭딜'],
-    category: '령 속성 시너지',
-    pros: ['강력한 령 속성 연계 딜링', '에이본 골동품점 캐릭터 시너지'],
-    cons: ['속성 디버프 해제 수단 부족'],
+    id: "nte_1_잔홍",
+    name: "잔홍 붕괴 (고각성 추천) 파티",
+    description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "잔홍",
+    tags: [
+      "잔홍",
+      "사키리",
+      "다포딜",
+      "아들러"
+    ],
+    category: "붕괴 (고각성 추천)",
     members: [
-      { id: 'nte-guwon', name: '구원', role: '메인 딜러', folderName: '구원', attribute: '령' },
-      { 
-        id: 'nte-mint', 
-        name: '민트', 
-        role: '서브 딜러', 
-        folderName: '민트', 
-        attribute: '령',
-        substitutes: [{ id: 'nte-adler', name: '아들러', folderName: '아들러', role: '서브 딜러' }]
-      },
-      { 
-        id: 'nte-hotori', 
-        name: '호토리', 
-        role: '서포터', 
-        folderName: '호토리', 
-        attribute: '빛',
-        substitutes: [{ id: 'nte-cheese', name: '치즈', folderName: '치즈', role: '서포터' }]
+      {
+        id: "nte-잔홍",
+        name: "잔홍",
+        role: "메인 딜러",
+        folderName: "잔홍",
+        attribute: "주"
       },
       {
-        id: 'nte-lacrimosa',
-        name: '라크리모사',
-        role: '탱커/힐러',
-        folderName: '라크리모사',
-        attribute: '암',
-        substitutes: [{ id: 'nte-cheese', name: '치즈', folderName: '치즈', role: '탱커/힐러' }]
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-아들러",
+        name: "아들러",
+        role: "서포터",
+        folderName: "아들러",
+        attribute: "주"
       }
     ]
   },
   {
-    id: 'nte_mint_spirit_control',
-    name: '민트 령 속성 제어 파티',
-    description: '민트의 령 속성 보조 딜링과 구원의 강력한 범위 타격을 결합한 에이본 시너지 파티입니다.',
-    mainDPS: '민트',
-    tags: ['민트', '령', '제어'],
-    category: '령 속성 시너지',
-    pros: ['유연한 서브 딜링', '높은 속성 연계성'],
-    cons: ['방어적 지원의존도 존재'],
+    id: "nte_2_라크리모사",
+    name: "라크리모사 파티 1",
+    description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "라크리모사",
+    tags: [
+      "라크리모사",
+      "사키리",
+      "하니엘",
+      "아들러",
+      "호토리"
+    ],
+    category: "추천 조합",
     members: [
-      { id: 'nte-mint', name: '민트', role: '메인 딜러', folderName: '민트', attribute: '령' },
-      { 
-        id: 'nte-guwon', 
-        name: '구원', 
-        role: '서브 딜러', 
-        folderName: '구원', 
-        attribute: '령',
-        substitutes: [{ id: 'nte-lacrimosa', name: '라크리모사', folderName: '라크리모사', role: '서브 딜러' }]
-      },
-      { 
-        id: 'nte-adler', 
-        name: '아들러', 
-        role: '서포터', 
-        folderName: '아들러', 
-        attribute: '주',
-        substitutes: [{ id: 'nte-hotori', name: '호토리', folderName: '호토리', role: '서포터' }]
+      {
+        id: "nte-라크리모사",
+        name: "라크리모사",
+        role: "메인 딜러",
+        folderName: "라크리모사",
+        attribute: "암"
       },
       {
-        id: 'nte-cheese',
-        name: '치즈',
-        role: '탱커/힐러',
-        folderName: '치즈',
-        attribute: '빛',
-        substitutes: [{ id: 'nte-lacrimosa', name: '라크리모사', folderName: '라크리모사', role: '탱커/힐러' }]
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-하니엘",
+        name: "하니엘",
+        role: "서포터",
+        folderName: "하니엘",
+        attribute: "혼"
+      },
+      {
+        id: "nte-아들러",
+        name: "아들러",
+        role: "서포터",
+        folderName: "아들러",
+        attribute: "주",
+        substitutes: [
+          {
+            id: "nte-호토리",
+            name: "호토리",
+            folderName: "호토리",
+            role: "서포터"
+          }
+        ]
       }
     ]
   },
   {
-    id: 'nte_cheese_light_synergy',
-    name: '치즈 & 호토리 빛 속성 연계 파티',
-    description: '빛 속성 캐릭터들의 유기적인 전술 연계 및 지속적인 화력 보조를 구현한 조합입니다.',
-    mainDPS: '치즈',
-    tags: ['치즈', '빛', '광휘'],
-    category: '빛 속성 시너지',
-    pros: ['지속적인 광휘 피해', '뛰어난 파티 시너지'],
-    cons: ['단일 대상 폭딜 한계'],
+    id: "nte_3_아카네 린",
+    name: "아카네 린 사이클 파티",
+    description: "아카네 린을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "아카네 린",
+    tags: [
+      "아카네 린",
+      "감정사",
+      "레이븐",
+      "링코"
+    ],
+    category: "사이클",
     members: [
-      { id: 'nte-cheese', name: '치즈', role: '메인 딜러', folderName: '치즈', attribute: '빛' },
-      { 
-        id: 'nte-hotori', 
-        name: '호토리', 
-        role: '서브 딜러', 
-        folderName: '호토리', 
-        attribute: '빛',
-        substitutes: [{ id: 'nte-adler', name: '아들러', folderName: '아들러', role: '서브 딜러' }]
-      },
-      { 
-        id: 'nte-mint', 
-        name: '민트', 
-        role: '서포터', 
-        folderName: '민트', 
-        attribute: '령',
-        substitutes: [{ id: 'nte-lacrimosa', name: '라크리모사', folderName: '라크리모사', role: '서포터' }]
+      {
+        id: "nte-아카네 린",
+        name: "아카네 린",
+        role: "메인 딜러",
+        folderName: "아카네 린",
+        attribute: "상"
       },
       {
-        id: 'nte-guwon',
-        name: '구원',
-        role: '탱커/힐러',
-        folderName: '구원',
-        attribute: '령',
-        substitutes: [{ id: 'nte-adler', name: '아들러', folderName: '아들러', role: '탱커/힐러' }]
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령"
       }
     ]
   },
   {
-    id: 'nte_hotori_light_radiance',
-    name: '호토리 빛 속성 광휘 파티',
-    description: '호토리의 광휘 스킬을 중심으로 치즈와 함께 빛 속성 공조를 일으키는 공격형 조합입니다.',
-    mainDPS: '호토리',
-    tags: ['호토리', '빛', '공격형'],
-    category: '빛 속성 시너지',
-    pros: ['빠른 스킬 순환', '빛 속성 공조 효과'],
-    cons: ['체력 관리 주의 필요'],
+    id: "nte_4_감정사",
+    name: "감정사 블라썸 파티",
+    description: "감정사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "감정사",
+    tags: [
+      "감정사",
+      "호토리",
+      "일로이",
+      "구원"
+    ],
+    category: "블라썸",
     members: [
-      { id: 'nte-hotori', name: '호토리', role: '메인 딜러', folderName: '호토리', attribute: '빛' },
-      { 
-        id: 'nte-cheese', 
-        name: '치즈', 
-        role: '서브 딜러', 
-        folderName: '치즈', 
-        attribute: '빛',
-        substitutes: [{ id: 'nte-mint', name: '민트', folderName: '민트', role: '서브 딜러' }]
-      },
-      { 
-        id: 'nte-guwon', 
-        name: '구원', 
-        role: '서포터', 
-        folderName: '구원', 
-        attribute: '령',
-        substitutes: [{ id: 'nte-lacrimosa', name: '라크리모사', folderName: '라크리모사', role: '서포터' }]
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "메인 딜러",
+        folderName: "감정사",
+        attribute: "빛"
       },
       {
-        id: 'nte-adler',
-        name: '아들러',
-        role: '탱커/힐러',
-        folderName: '아들러',
-        attribute: '주',
-        substitutes: [{ id: 'nte-mint', name: '민트', folderName: '민트', role: '탱커/힐러' }]
+        id: "nte-호토리",
+        name: "호토리",
+        role: "서포터",
+        folderName: "호토리",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령"
+      },
+      {
+        id: "nte-구원",
+        name: "구원",
+        role: "서브 딜러",
+        folderName: "구원",
+        attribute: "령"
       }
     ]
   },
   {
-    id: 'nte_adler_curse_support',
-    name: '아들러 주 속성 지원 파티',
-    description: '아들러의 주 속성 디버프 능력과 라크리모사의 제어 성능을 극대화한 전술적 파티 조합입니다.',
-    mainDPS: '아들러',
-    tags: ['아들러', '주', '전술'],
-    category: '주/암 속성 시너지',
-    pros: ['상대 디버프 및 지속 피해', '안정적인 보조 성능'],
-    cons: ['순간 폭딜 능력 부족'],
+    id: "nte_5_레이븐",
+    name: "레이븐 노바·스코치 파티",
+    description: "레이븐을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "레이븐",
+    tags: [
+      "레이븐",
+      "다포딜",
+      "하니엘",
+      "사키리"
+    ],
+    category: "노바·스코치",
     members: [
-      { id: 'nte-adler', name: '아들러', role: '메인 딜러', folderName: '아들러', attribute: '주' },
-      { 
-        id: 'nte-lacrimosa', 
-        name: '라크리모사', 
-        role: '서브 딜러', 
-        folderName: '라크리모사', 
-        attribute: '암',
-        substitutes: [{ id: 'nte-guwon', name: '구원', folderName: '구원', role: '서브 딜러' }]
-      },
-      { 
-        id: 'nte-mint', 
-        name: '민트', 
-        role: '서포터', 
-        folderName: '민트', 
-        attribute: '령',
-        substitutes: [{ id: 'nte-hotori', name: '호토리', folderName: '호토리', role: '서포터' }]
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "메인 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
       },
       {
-        id: 'nte-cheese',
-        name: '치즈',
-        role: '탱커/힐러',
-        folderName: '치즈',
-        attribute: '빛',
-        substitutes: [{ id: 'nte-hotori', name: '호토리', folderName: '호토리', role: '탱커/힐러' }]
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-하니엘",
+        name: "하니엘",
+        role: "서포터",
+        folderName: "하니엘",
+        attribute: "혼"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
       }
     ]
   },
   {
-    id: 'nte_lacrimosa_dark_control',
-    name: '라크리모사 암속성 제어 파티',
-    description: '라크리모사의 단일 암속성 딜링과 아들러의 주 속성 지원을 결합한 제어 특화 파티입니다.',
-    mainDPS: '라크리모사',
-    tags: ['라크리모사', '암', '제어'],
-    category: '암/주 속성 시너지',
-    pros: ['강력한 단일 제어', '암/주 속성 시너지'],
-    cons: ['광역 잡몹 처리 속도 저하'],
+    id: "nte_6_잔홍",
+    name: "잔홍 노바·스코치 파티",
+    description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "잔홍",
+    tags: [
+      "잔홍",
+      "다포딜",
+      "라크리모사",
+      "레이븐",
+      "링코",
+      "사키리"
+    ],
+    category: "노바·스코치",
     members: [
-      { id: 'nte-lacrimosa', name: '라크리모사', role: '메인 딜러', folderName: '라크리모사', attribute: '암' },
-      { 
-        id: 'nte-adler', 
-        name: '아들러', 
-        role: '서브 딜러', 
-        folderName: '아들러', 
-        attribute: '주',
-        substitutes: [{ id: 'nte-mint', name: '민트', folderName: '민트', role: '서브 딜러' }]
-      },
-      { 
-        id: 'nte-hotori', 
-        name: '호토리', 
-        role: '서포터', 
-        folderName: '호토리', 
-        attribute: '빛',
-        substitutes: [{ id: 'nte-cheese', name: '치즈', folderName: '치즈', role: '서포터' }]
+      {
+        id: "nte-잔홍",
+        name: "잔홍",
+        role: "메인 딜러",
+        folderName: "잔홍",
+        attribute: "주"
       },
       {
-        id: 'nte-guwon',
-        name: '구원',
-        role: '탱커/힐러',
-        folderName: '구원',
-        attribute: '령',
-        substitutes: [{ id: 'nte-mint', name: '민트', folderName: '민트', role: '탱커/힐러' }]
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암",
+        substitutes: [
+          {
+            id: "nte-라크리모사",
+            name: "라크리모사",
+            folderName: "라크리모사",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-사키리",
+            name: "사키리",
+            folderName: "사키리",
+            role: "서포터"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_7_라크리모사",
+    name: "라크리모사 디스코드 파티",
+    description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "라크리모사",
+    tags: [
+      "라크리모사",
+      "사키리",
+      "다포딜",
+      "하니엘"
+    ],
+    category: "디스코드",
+    members: [
+      {
+        id: "nte-라크리모사",
+        name: "라크리모사",
+        role: "메인 딜러",
+        folderName: "라크리모사",
+        attribute: "암"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-하니엘",
+        name: "하니엘",
+        role: "서포터",
+        folderName: "하니엘",
+        attribute: "혼"
+      }
+    ]
+  },
+  {
+    id: "nte_8_레이븐",
+    name: "레이븐 파티 1",
+    description: "레이븐을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "레이븐",
+    tags: [
+      "레이븐",
+      "다포딜",
+      "라크리모사",
+      "감정사",
+      "호토리",
+      "신쿠",
+      "치즈",
+      "에드가",
+      "사키리"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "메인 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암",
+        substitutes: [
+          {
+            id: "nte-라크리모사",
+            name: "라크리모사",
+            folderName: "라크리모사",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛",
+        substitutes: [
+          {
+            id: "nte-호토리",
+            name: "호토리",
+            folderName: "호토리",
+            role: "서브 딜러"
+          },
+          {
+            id: "nte-신쿠",
+            name: "신쿠",
+            folderName: "신쿠",
+            role: "서브 딜러"
+          },
+          {
+            id: "nte-치즈",
+            name: "치즈",
+            folderName: "치즈",
+            role: "서브 딜러"
+          },
+          {
+            id: "nte-에드가",
+            name: "에드가",
+            folderName: "에드가",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      }
+    ]
+  },
+  {
+    id: "nte_9_잔홍",
+    name: "잔홍 파티 1",
+    description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "잔홍",
+    tags: [
+      "잔홍",
+      "사키리",
+      "다포딜",
+      "라크리모사",
+      "링코",
+      "일로이",
+      "하니엘",
+      "파디아",
+      "아들러"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-잔홍",
+        name: "잔홍",
+        role: "메인 딜러",
+        folderName: "잔홍",
+        attribute: "주"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암",
+        substitutes: [
+          {
+            id: "nte-라크리모사",
+            name: "라크리모사",
+            folderName: "라크리모사",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-일로이",
+            name: "일로이",
+            folderName: "일로이",
+            role: "서포터"
+          },
+          {
+            id: "nte-하니엘",
+            name: "하니엘",
+            folderName: "하니엘",
+            role: "서포터"
+          },
+          {
+            id: "nte-파디아",
+            name: "파디아",
+            folderName: "파디아",
+            role: "서포터"
+          },
+          {
+            id: "nte-아들러",
+            name: "아들러",
+            folderName: "아들러",
+            role: "서포터"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_10_잔홍",
+    name: "잔홍 파티 2",
+    description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "잔홍",
+    tags: [
+      "잔홍",
+      "다포딜",
+      "레이븐",
+      "사키리"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-잔홍",
+        name: "잔홍",
+        role: "메인 딜러",
+        folderName: "잔홍",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      }
+    ]
+  },
+  {
+    id: "nte_11_잔홍",
+    name: "잔홍 헥스 파티",
+    description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "잔홍",
+    tags: [
+      "잔홍",
+      "링코",
+      "일로이",
+      "사키리"
+    ],
+    category: "헥스",
+    members: [
+      {
+        id: "nte-잔홍",
+        name: "잔홍",
+        role: "메인 딜러",
+        folderName: "잔홍",
+        attribute: "주"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      }
+    ]
+  },
+  {
+    id: "nte_12_나나리",
+    name: "나나리 파티 1",
+    description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "나나리",
+    tags: [
+      "나나리",
+      "링코",
+      "일로이",
+      "아들러",
+      "사키리"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-나나리",
+        name: "나나리",
+        role: "메인 딜러",
+        folderName: "나나리",
+        attribute: "령"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-아들러",
+            name: "아들러",
+            folderName: "아들러",
+            role: "힐러"
+          }
+        ]
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      }
+    ]
+  },
+  {
+    id: "nte_13_잔홍",
+    name: "잔홍 파티 3",
+    description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "잔홍",
+    tags: [
+      "잔홍",
+      "라크리모사",
+      "다포딜",
+      "사키리",
+      "아들러",
+      "링코",
+      "일로이"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-잔홍",
+        name: "잔홍",
+        role: "메인 딜러",
+        folderName: "잔홍",
+        attribute: "주"
+      },
+      {
+        id: "nte-라크리모사",
+        name: "라크리모사",
+        role: "서브 딜러",
+        folderName: "라크리모사",
+        attribute: "암",
+        substitutes: [
+          {
+            id: "nte-다포딜",
+            name: "다포딜",
+            folderName: "다포딜",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주",
+        substitutes: [
+          {
+            id: "nte-아들러",
+            name: "아들러",
+            folderName: "아들러",
+            role: "서포터"
+          }
+        ]
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-일로이",
+            name: "일로이",
+            folderName: "일로이",
+            role: "서포터"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_14_나나리",
+    name: "나나리 파티 2",
+    description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "나나리",
+    tags: [
+      "나나리",
+      "감정사",
+      "사키리",
+      "링코"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-나나리",
+        name: "나나리",
+        role: "메인 딜러",
+        folderName: "나나리",
+        attribute: "령"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령"
+      }
+    ]
+  },
+  {
+    id: "nte_15_신쿠",
+    name: "신쿠 차지 파티 1",
+    description: "신쿠을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "신쿠",
+    tags: [
+      "신쿠",
+      "감정사",
+      "일로이",
+      "하토르"
+    ],
+    category: "차지",
+    members: [
+      {
+        id: "nte-신쿠",
+        name: "신쿠",
+        role: "메인 딜러",
+        folderName: "신쿠",
+        attribute: "빛"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령"
+      },
+      {
+        id: "nte-하토르",
+        name: "하토르",
+        role: "서브 딜러",
+        folderName: "하토르",
+        attribute: "상"
+      }
+    ]
+  },
+  {
+    id: "nte_16_나나리",
+    name: "나나리 블라썸 파티 1",
+    description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "나나리",
+    tags: [
+      "나나리",
+      "민트",
+      "감정사",
+      "구원",
+      "일로이",
+      "호토리"
+    ],
+    category: "블라썸",
+    members: [
+      {
+        id: "nte-나나리",
+        name: "나나리",
+        role: "메인 딜러",
+        folderName: "나나리",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-민트",
+            name: "민트",
+            folderName: "민트",
+            role: "메인 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-구원",
+        name: "구원",
+        role: "서브 딜러",
+        folderName: "구원",
+        attribute: "령"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-호토리",
+            name: "호토리",
+            folderName: "호토리",
+            role: "힐러"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_17_라크리모사",
+    name: "라크리모사 파티 2",
+    description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "라크리모사",
+    tags: [
+      "라크리모사",
+      "사키리",
+      "하니엘",
+      "레이븐",
+      "링코",
+      "일로이"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-라크리모사",
+        name: "라크리모사",
+        role: "메인 딜러",
+        folderName: "라크리모사",
+        attribute: "암"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주",
+        substitutes: [
+          {
+            id: "nte-하니엘",
+            name: "하니엘",
+            folderName: "하니엘",
+            role: "서포터"
+          }
+        ]
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-일로이",
+            name: "일로이",
+            folderName: "일로이",
+            role: "서포터"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_18_레이븐",
+    name: "레이븐 파티 2",
+    description: "레이븐을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "레이븐",
+    tags: [
+      "레이븐",
+      "라크리모사",
+      "카오스",
+      "스키아",
+      "하토르",
+      "일로이",
+      "사키리"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "메인 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-라크리모사",
+        name: "라크리모사",
+        role: "서브 딜러",
+        folderName: "라크리모사",
+        attribute: "암"
+      },
+      {
+        id: "nte-카오스",
+        name: "카오스",
+        role: "서브 딜러",
+        folderName: "카오스",
+        attribute: "상",
+        substitutes: [
+          {
+            id: "nte-스키아",
+            name: "스키아",
+            folderName: "스키아",
+            role: "서브 딜러"
+          },
+          {
+            id: "nte-하토르",
+            name: "하토르",
+            folderName: "하토르",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-사키리",
+            name: "사키리",
+            folderName: "사키리",
+            role: "힐러"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_19_나나리",
+    name: "나나리 블라썸 파티 2",
+    description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "나나리",
+    tags: [
+      "나나리",
+      "감정사",
+      "일로이",
+      "구원",
+      "호토리"
+    ],
+    category: "블라썸",
+    members: [
+      {
+        id: "nte-나나리",
+        name: "나나리",
+        role: "메인 딜러",
+        folderName: "나나리",
+        attribute: "령"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-구원",
+            name: "구원",
+            folderName: "구원",
+            role: "힐러"
+          }
+        ]
+      },
+      {
+        id: "nte-호토리",
+        name: "호토리",
+        role: "서포터",
+        folderName: "호토리",
+        attribute: "빛"
+      }
+    ]
+  },
+  {
+    id: "nte_20_민트",
+    name: "민트 블라썸 파티",
+    description: "민트을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "민트",
+    tags: [
+      "민트",
+      "호토리",
+      "일로이",
+      "구원",
+      "감정사"
+    ],
+    category: "블라썸",
+    members: [
+      {
+        id: "nte-민트",
+        name: "민트",
+        role: "메인 딜러",
+        folderName: "민트",
+        attribute: "령"
+      },
+      {
+        id: "nte-호토리",
+        name: "호토리",
+        role: "서포터",
+        folderName: "호토리",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-구원",
+            name: "구원",
+            folderName: "구원",
+            role: "힐러"
+          }
+        ]
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      }
+    ]
+  },
+  {
+    id: "nte_21_민트",
+    name: "민트 헥스 파티",
+    description: "민트을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "민트",
+    tags: [
+      "민트",
+      "링코",
+      "사키리",
+      "일로이",
+      "아들러"
+    ],
+    category: "헥스",
+    members: [
+      {
+        id: "nte-민트",
+        name: "민트",
+        role: "메인 딜러",
+        folderName: "민트",
+        attribute: "령"
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-아들러",
+            name: "아들러",
+            folderName: "아들러",
+            role: "힐러"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_22_백장",
+    name: "백장 스코치·헥스 파티",
+    description: "백장을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "백장",
+    tags: [
+      "백장",
+      "다포딜",
+      "사키리",
+      "하니엘",
+      "링코"
+    ],
+    category: "스코치·헥스",
+    members: [
+      {
+        id: "nte-백장",
+        name: "백장",
+        role: "메인 딜러",
+        folderName: "백장",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주",
+        substitutes: [
+          {
+            id: "nte-하니엘",
+            name: "하니엘",
+            folderName: "하니엘",
+            role: "서포터"
+          }
+        ]
+      },
+      {
+        id: "nte-링코",
+        name: "링코",
+        role: "서포터",
+        folderName: "링코",
+        attribute: "령"
+      }
+    ]
+  },
+  {
+    id: "nte_23_백장",
+    name: "백장 디스코드 파티",
+    description: "백장을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "백장",
+    tags: [
+      "백장",
+      "다포딜",
+      "사키리",
+      "하니엘"
+    ],
+    category: "디스코드",
+    members: [
+      {
+        id: "nte-백장",
+        name: "백장",
+        role: "메인 딜러",
+        folderName: "백장",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-하니엘",
+        name: "하니엘",
+        role: "서포터",
+        folderName: "하니엘",
+        attribute: "혼"
+      }
+    ]
+  },
+  {
+    id: "nte_24_백장",
+    name: "백장 스코치·디스코드 파티",
+    description: "백장을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "백장",
+    tags: [
+      "백장",
+      "사키리",
+      "다포딜",
+      "파디아"
+    ],
+    category: "스코치·디스코드",
+    members: [
+      {
+        id: "nte-백장",
+        name: "백장",
+        role: "메인 딜러",
+        folderName: "백장",
+        attribute: "주"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-파디아",
+        name: "파디아",
+        role: "서포터",
+        folderName: "파디아",
+        attribute: "혼"
+      }
+    ]
+  },
+  {
+    id: "nte_25_백장",
+    name: "백장 헥스 파티",
+    description: "백장을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "백장",
+    tags: [
+      "백장",
+      "사키리",
+      "다포딜",
+      "구원"
+    ],
+    category: "헥스",
+    members: [
+      {
+        id: "nte-백장",
+        name: "백장",
+        role: "메인 딜러",
+        folderName: "백장",
+        attribute: "주"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-다포딜",
+        name: "다포딜",
+        role: "서브 딜러",
+        folderName: "다포딜",
+        attribute: "암"
+      },
+      {
+        id: "nte-구원",
+        name: "구원",
+        role: "서브 딜러",
+        folderName: "구원",
+        attribute: "령"
+      }
+    ]
+  },
+  {
+    id: "nte_26_신쿠",
+    name: "신쿠 차지 파티 2",
+    description: "신쿠을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "신쿠",
+    tags: [
+      "신쿠",
+      "스키아",
+      "감정사",
+      "일로이",
+      "나나리",
+      "구원"
+    ],
+    category: "차지",
+    members: [
+      {
+        id: "nte-신쿠",
+        name: "신쿠",
+        role: "메인 딜러",
+        folderName: "신쿠",
+        attribute: "빛"
+      },
+      {
+        id: "nte-스키아",
+        name: "스키아",
+        role: "서브 딜러",
+        folderName: "스키아",
+        attribute: "상"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-나나리",
+            name: "나나리",
+            folderName: "나나리",
+            role: "힐러"
+          },
+          {
+            id: "nte-구원",
+            name: "구원",
+            folderName: "구원",
+            role: "힐러"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_27_신쿠",
+    name: "신쿠 차지 파티 3",
+    description: "신쿠을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "신쿠",
+    tags: [
+      "신쿠",
+      "아카네 린",
+      "하토르",
+      "스키아",
+      "감정사",
+      "일로이",
+      "나나리",
+      "구원"
+    ],
+    category: "차지",
+    members: [
+      {
+        id: "nte-신쿠",
+        name: "신쿠",
+        role: "메인 딜러",
+        folderName: "신쿠",
+        attribute: "빛"
+      },
+      {
+        id: "nte-아카네 린",
+        name: "아카네 린",
+        role: "서브 딜러",
+        folderName: "아카네 린",
+        attribute: "상",
+        substitutes: [
+          {
+            id: "nte-하토르",
+            name: "하토르",
+            folderName: "하토르",
+            role: "서브 딜러"
+          },
+          {
+            id: "nte-스키아",
+            name: "스키아",
+            folderName: "스키아",
+            role: "서브 딜러"
+          }
+        ]
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-나나리",
+            name: "나나리",
+            folderName: "나나리",
+            role: "힐러"
+          },
+          {
+            id: "nte-구원",
+            name: "구원",
+            folderName: "구원",
+            role: "힐러"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_28_아카네 린",
+    name: "아카네 린 쾌속+차지 파티",
+    description: "아카네 린을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "아카네 린",
+    tags: [
+      "아카네 린",
+      "레이븐",
+      "신쿠",
+      "일로이"
+    ],
+    category: "쾌속+차지",
+    members: [
+      {
+        id: "nte-아카네 린",
+        name: "아카네 린",
+        role: "메인 딜러",
+        folderName: "아카네 린",
+        attribute: "상"
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-신쿠",
+        name: "신쿠",
+        role: "서브 딜러",
+        folderName: "신쿠",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령"
+      }
+    ]
+  },
+  {
+    id: "nte_29_카오스",
+    name: "카오스 스테인+레모라 파티",
+    description: "카오스을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "카오스",
+    tags: [
+      "카오스",
+      "하토르",
+      "호토리",
+      "감정사",
+      "에드가",
+      "레이븐",
+      "하니엘",
+      "파디아"
+    ],
+    category: "스테인+레모라",
+    members: [
+      {
+        id: "nte-카오스",
+        name: "카오스",
+        role: "메인 딜러",
+        folderName: "카오스",
+        attribute: "상"
+      },
+      {
+        id: "nte-하토르",
+        name: "하토르",
+        role: "서브 딜러",
+        folderName: "하토르",
+        attribute: "상"
+      },
+      {
+        id: "nte-호토리",
+        name: "호토리",
+        role: "서포터",
+        folderName: "호토리",
+        attribute: "빛",
+        substitutes: [
+          {
+            id: "nte-감정사",
+            name: "감정사",
+            folderName: "감정사",
+            role: "서포터"
+          },
+          {
+            id: "nte-에드가",
+            name: "에드가",
+            folderName: "에드가",
+            role: "서포터"
+          }
+        ]
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼",
+        substitutes: [
+          {
+            id: "nte-하니엘",
+            name: "하니엘",
+            folderName: "하니엘",
+            role: "서브 딜러"
+          },
+          {
+            id: "nte-파디아",
+            name: "파디아",
+            folderName: "파디아",
+            role: "서브 딜러"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    id: "nte_30_카오스",
+    name: "카오스 레모라 파티",
+    description: "카오스을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "카오스",
+    tags: [
+      "카오스",
+      "감정사",
+      "하니엘",
+      "하토르"
+    ],
+    category: "레모라",
+    members: [
+      {
+        id: "nte-카오스",
+        name: "카오스",
+        role: "메인 딜러",
+        folderName: "카오스",
+        attribute: "상"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-하니엘",
+        name: "하니엘",
+        role: "서포터",
+        folderName: "하니엘",
+        attribute: "혼"
+      },
+      {
+        id: "nte-하토르",
+        name: "하토르",
+        role: "서브 딜러",
+        folderName: "하토르",
+        attribute: "상"
+      }
+    ]
+  },
+  {
+    id: "nte_31_카오스",
+    name: "카오스 레모라+차지 파티",
+    description: "카오스을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "카오스",
+    tags: [
+      "카오스",
+      "감정사",
+      "일로이",
+      "하니엘",
+      "하토르"
+    ],
+    category: "레모라+차지",
+    members: [
+      {
+        id: "nte-카오스",
+        name: "카오스",
+        role: "메인 딜러",
+        folderName: "카오스",
+        attribute: "상"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령",
+        substitutes: [
+          {
+            id: "nte-하니엘",
+            name: "하니엘",
+            folderName: "하니엘",
+            role: "힐러"
+          }
+        ]
+      },
+      {
+        id: "nte-하토르",
+        name: "하토르",
+        role: "서브 딜러",
+        folderName: "하토르",
+        attribute: "상"
+      }
+    ]
+  },
+  {
+    id: "nte_32_나나리",
+    name: "나나리 블라썸 파티 3",
+    description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "나나리",
+    tags: [
+      "나나리",
+      "감정사",
+      "구원",
+      "호토리"
+    ],
+    category: "블라썸",
+    members: [
+      {
+        id: "nte-나나리",
+        name: "나나리",
+        role: "메인 딜러",
+        folderName: "나나리",
+        attribute: "령"
+      },
+      {
+        id: "nte-감정사",
+        name: "감정사",
+        role: "서브 딜러",
+        folderName: "감정사",
+        attribute: "빛"
+      },
+      {
+        id: "nte-구원",
+        name: "구원",
+        role: "서브 딜러",
+        folderName: "구원",
+        attribute: "령"
+      },
+      {
+        id: "nte-호토리",
+        name: "호토리",
+        role: "서포터",
+        folderName: "호토리",
+        attribute: "빛"
+      }
+    ]
+  },
+  {
+    id: "nte_33_라크리모사",
+    name: "라크리모사 파티 3",
+    description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "라크리모사",
+    tags: [
+      "라크리모사",
+      "사키리",
+      "하니엘",
+      "호토리"
+    ],
+    category: "추천 조합",
+    members: [
+      {
+        id: "nte-라크리모사",
+        name: "라크리모사",
+        role: "메인 딜러",
+        folderName: "라크리모사",
+        attribute: "암"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주"
+      },
+      {
+        id: "nte-하니엘",
+        name: "하니엘",
+        role: "서포터",
+        folderName: "하니엘",
+        attribute: "혼"
+      },
+      {
+        id: "nte-호토리",
+        name: "호토리",
+        role: "서포터",
+        folderName: "호토리",
+        attribute: "빛"
+      }
+    ]
+  },
+  {
+    id: "nte_34_아카네 린",
+    name: "아카네 린 스테인 파티",
+    description: "아카네 린을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
+    mainDPS: "아카네 린",
+    tags: [
+      "아카네 린",
+      "레이븐",
+      "일로이",
+      "사키리",
+      "하니엘",
+      "감정사",
+      "신쿠",
+      "호토리"
+    ],
+    category: "스테인",
+    members: [
+      {
+        id: "nte-아카네 린",
+        name: "아카네 린",
+        role: "메인 딜러",
+        folderName: "아카네 린",
+        attribute: "상"
+      },
+      {
+        id: "nte-레이븐",
+        name: "레이븐",
+        role: "서브 딜러",
+        folderName: "레이븐",
+        attribute: "혼"
+      },
+      {
+        id: "nte-일로이",
+        name: "일로이",
+        role: "힐러",
+        folderName: "일로이",
+        attribute: "령"
+      },
+      {
+        id: "nte-사키리",
+        name: "사키리",
+        role: "서포터",
+        folderName: "사키리",
+        attribute: "주",
+        substitutes: [
+          {
+            id: "nte-하니엘",
+            name: "하니엘",
+            folderName: "하니엘",
+            role: "서포터"
+          },
+          {
+            id: "nte-감정사",
+            name: "감정사",
+            folderName: "감정사",
+            role: "서포터"
+          },
+          {
+            id: "nte-신쿠",
+            name: "신쿠",
+            folderName: "신쿠",
+            role: "서포터"
+          },
+          {
+            id: "nte-호토리",
+            name: "호토리",
+            folderName: "호토리",
+            role: "서포터"
+          }
+        ]
       }
     ]
   }
-];
+]
 
 /**
  * NTE 캐릭터가 사전 정의 파티에 없거나 미완성일 경우,
