@@ -35,8 +35,8 @@ export const 트리비Guide: CharacterGuide = {
         subStats: ["치명타 피해", "치명타 확률", "HP"],
         targetStats: [
           { label: "속도", value: "141 이상" },
-          { label: "치명타 확률", value: "60" },
-          { label: "치명타 피해", value: "120" }
+          { label: "치명타 확률", value: "60%" },
+          { label: "치명타 피해", value: "120%" }
         ]
       }
     ],

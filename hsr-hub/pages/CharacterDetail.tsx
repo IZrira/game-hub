@@ -30,6 +30,7 @@ import { GLOBAL_SPECIAL_TERMS } from '../../hsr-hub/data/terms';
 import HsrItemIcon from '../components/HsrItemIcon';
 import SkillAndEidolonSection from '../components/SkillAndEidolonSection';
 import SEO from '../../common-hub/components/SEO';
+import { getHsrCharacterSeo } from '../../common-hub/utils/guideSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import characterSummary from '../data/generated/detail-character-summary.json';
@@ -567,20 +568,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
     }
   };
 
-  const seoDescription = useMemo(() => {
-    const name = t(char.name);
-    const longTailKeywords = [
-      `${name} 종결 광추 대체`,
-      `${name} 조합 유물 스탯`,
-      `${name} 파티 시너지 덱 추천`,
-      `${name} 성능 평가 티어`,
-      `${name} 돌파 효율 우선순위`
-    ];
-    const seed = char.id.charCodeAt(0) + char.id.charCodeAt(char.id.length - 1);
-    const k1 = longTailKeywords[seed % longTailKeywords.length];
-    const k2 = longTailKeywords[(seed + 1) % longTailKeywords.length];
-    return `${name} 상세 가이드 및 공략. ${k1}, ${k2} 등 최적의 세팅을 완벽 정리했습니다. 붕괴: 스타레일 최신 메타 분석.`;
-  }, [char, t]);
+  const characterSeo = getHsrCharacterSeo({ name: t(char.name), attribute: t(char.attribute), path: t(char.path) });
 
   const faqData = useMemo(() => {
     if (!char) return [];
@@ -618,8 +606,8 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
-        title={`${t(char.name)} ${t('캐릭터 공략 및 세팅 정보')}`} 
-        description={seoDescription}
+        title={characterSeo.title}
+        description={characterSeo.description}
         image={getIllustrationUrl()}
         url={`/gallery/${gameId}/character/${char.id}`}
         gameCategory={t('붕괴: 스타레일')}

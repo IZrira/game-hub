@@ -426,7 +426,7 @@
   {
     "characterName": "연경",
     "analysis": {
-      "role": "무피격 단일 딜러"
+      "role": "단일 치명타 딜러"
     }
   },
   {
@@ -456,7 +456,7 @@
   {
     "characterName": "은랑",
     "analysis": {
-      "role": "약점 부여 디버퍼"
+      "role": "약점 부여·방어력 감소 디버퍼"
     }
   },
   {
@@ -468,7 +468,7 @@
   {
     "characterName": "정운",
     "analysis": {
-      "role": "에너지·공격력 버퍼"
+      "role": "단일 딜러 에너지·공격력 서포터"
     }
   },
   {
@@ -510,7 +510,7 @@
   {
     "characterName": "카프카",
     "analysis": {
-      "role": "지속 피해 기폭제"
+      "role": "지속 피해 딜러 · 서포터"
     }
   },
   {
@@ -560,7 +560,7 @@
   {
     "characterName": "토파즈 & 복순이",
     "analysis": {
-      "role": "추가 공격 서브 딜러"
+      "role": "추가 공격 서포터 · 서브 딜러"
     }
   },
   {
@@ -578,7 +578,7 @@
   {
     "characterName": "페라",
     "analysis": {
-      "role": "광역 방어 감소 디버퍼"
+      "role": "광역 방어력 감소 디버퍼"
     }
   },
   {
@@ -614,13 +614,13 @@
   {
     "characterName": "후크",
     "analysis": {
-      "role": "연소 연계 딜러"
+      "role": "연소 활용 단일·확산 딜러"
     }
   },
   {
     "characterName": "히메코",
     "analysis": {
-      "role": "격파 연계 광역 딜러"
+      "role": "광역 추가 공격 딜러 · 격파 서브 딜러"
     }
   },
   {

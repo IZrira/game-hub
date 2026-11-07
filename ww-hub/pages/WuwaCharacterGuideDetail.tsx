@@ -7,6 +7,7 @@ import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../.
 import { sanitizePublicGuideData } from '../../common-hub/utils/publicGuideLinks';
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter, type GuideMember, type GuideEquipmentGroup } from '../../common-hub/components/guides/GuideContent';
 import FeedbackReportModal from '../../common-hub/components/FeedbackReportModal';
+import { getWwGuideSeo } from '../../common-hub/utils/guideSeo.js';
 import { useTranslation } from 'react-i18next';
 import guideCharacters from '../data/generated/guide-characters.json';
 import guideManifest from '../data/generated/guide-runtime-manifest.json';
@@ -526,6 +527,7 @@ const WuwaCharacterGuideContent: React.FC<{ data: WwGuideRuntime }> = ({ data })
       return { name: t(name), image: entry ? getCharacterImage(entry.folderName, entry.isRover) : undefined, to: routeId ? `/gallery/ww/character/${encodeURIComponent(routeId)}` : undefined };
     })();
   const analysisTeams = analysis?.teams?.map((team: { label: string; slots: string[][] }) => ({ label: team.label, slots: team.slots.map(slot => slot.map(memberByName)) }));
+  const guideSeo = getWwGuideSeo({ name: t(character.name), hasParties: !guide.isUniversalSynergy && members.length > 0, hasAnalysis: Boolean(analysis) });
   const WW_SKILL_FILES: Record<string, string> = { '일반 공격': '기본 공격', '강공격': '기본 공격', '공명 스킬': '공명 스킬', '공명 해방': '공명 해방', '변주 스킬': '변주 스킬', '반주 스킬': '반주 스킬' };
   const skillIconOf = (action: string) => WW_SKILL_FILES[action]
     ? `${BASE_IMAGE_URL.replace(' ', '%20')}/skills/${encodeURIComponent(character.folderName.normalize('NFC'))}/${encodeURIComponent(WW_SKILL_FILES[action])}.webp`
@@ -545,8 +547,8 @@ const WuwaCharacterGuideContent: React.FC<{ data: WwGuideRuntime }> = ({ data })
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <SEO 
-        title={`명조 ${t(character.name)} 공략 | 종결 에코 세팅 · 무기 티어 순위 · 파티 조합 - 리라 아카이브`}
-        description={`명조: 워더링 웨이브 ${t(character.name)}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`}
+        title={guideSeo.title}
+        description={guideSeo.description}
         image={heroImageUrl}
         url={`/gallery/ww/character/${charName}/guide`}
         gameCategory={t('명조 (Wuthering Waves)')}

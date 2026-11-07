@@ -8,6 +8,7 @@ import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
 import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
+import { getHsrCharacterSeo, getHsrGuideSeo, getWwGuideSeo } from '../common-hub/utils/guideSeo.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import { hasPublishableText } from '../common-hub/utils/placeholderText.js';
 import { formatGuideBasis, GUIDE_REVIEW_POLICY } from '../common-hub/utils/guideVerification.js';
@@ -779,7 +780,7 @@ function generateGuideSchema(charName, gameName, routePath, imageUrl) {
             "url": `${BASE_URL}/assets/logo.png`
           }
         },
-        "description": `${gameName} ${charName}의 추천 무기/광추, 에코/유물 세팅, 추천 파티 조합 및 스탯 목표치 완벽 공략.`,
+        "description": `${gameName} ${charName}의 추천 무기·광추, 에코·유물 세팅과 목표 스탯 공략.`,
         "mainEntityOfPage": {
           "@type": "WebPage",
           "@id": `${BASE_URL}${routePath}`
@@ -1182,7 +1183,7 @@ function getRouteDisplayLabel(route) {
     if (name.startsWith('character.')) name = char?.folderName || id;
 
     if (isGuide) {
-      return `${name} 종결 육성 공략 (광추·유물 세팅 & 파티 조합)`;
+      return `${name} 세팅 공략 (광추·유물·목표 스탯)`;
     }
     const rarity = char?.rarity ? `${char.rarity}성` : '5성';
     const attribute = char?.attribute ? ` · ${char.attribute}` : '';
@@ -1767,6 +1768,16 @@ function generateWwGuideHtml(id, guide, char) {
 
   html += `</article>`;
   return html;
+}
+
+// Party mentions in titles follow what the guide page shows: synergy members or registered parties.
+function wwGuideHasParties(guide) {
+  if (!guide || guide.isUniversalSynergy) return false;
+  const skillLabels = new Set([...(guide.skillPriority || []), '스킬 레벨 업 우선 순위']);
+  return (guide.synergyCharacters || []).some(member => !skillLabels.has(member));
+}
+function hsrGuideHasParties(guide, name, id, hsrPartiesList) {
+  return (guide?.synergyCharacters?.length || 0) > 0 || getHsrPartiesForCharacter(name, id, hsrPartiesList || []).length > 0;
 }
 
 function generateHsrGuideHtml(id, guide, char, hsrPartiesList) {
@@ -2462,8 +2473,8 @@ function runPrerender() {
     if (guide) {
       createPrerenderedPage(
         guideRoute,
-        `명조 ${name} 공략 | 종결 에코 세팅 · 추천 무기 순위 · 파티 조합`,
-        `명조: 워더링 웨이브 ${name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
+        getWwGuideSeo({ name, hasParties: wwGuideHasParties(guide), hasAnalysis: Boolean(wwGuideAnalysis[guide.id] || wwGuideAnalysis[id]) }).title,
+        getWwGuideSeo({ name, hasParties: wwGuideHasParties(guide), hasAnalysis: Boolean(wwGuideAnalysis[guide.id] || wwGuideAnalysis[id]) }).description,
         getWwCharacterImageUrl(char),
         baseHtml,
         generateWwGuideHtml(id, guide, char)
@@ -2494,8 +2505,8 @@ function runPrerender() {
       : '';
     createPrerenderedPage(
       routePath,
-      `${name} 종결 세팅 · 추천 파티 조합 & 육성 재료 | 붕괴: 스타레일 공략 DB`,
-      `붕괴: 스타레일 ${name}의 최신 추천 유물 및 장신구, 광추 랭킹, 종결 스탯 세팅, 추천 파티 조합 및 행적·돌파 재료 총정리 가이드.`,
+      getHsrCharacterSeo({ name, attribute: char.attribute, path: char.path }).title,
+      getHsrCharacterSeo({ name, attribute: char.attribute, path: char.path }).description,
       getHsrCharacterImageUrl(char),
       baseHtml,
       generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList)
@@ -2508,8 +2519,8 @@ function runPrerender() {
     if (guide) {
       createPrerenderedPage(
         guideRoute,
-        `스타레일 ${name} 공략 | 종결 유물 세팅 · 추천 광추 순위 · 파티 조합`,
-        `붕괴: 스타레일 ${name}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`,
+        getHsrGuideSeo({ name, hasParties: hsrGuideHasParties(guide, name, id, hsrPartiesList), hasAnalysis: guide?.analysis?.status === 'published' }).title,
+        getHsrGuideSeo({ name, hasParties: hsrGuideHasParties(guide, name, id, hsrPartiesList), hasAnalysis: guide?.analysis?.status === 'published' }).description,
         getHsrCharacterImageUrl(char),
         baseHtml,
         generateHsrGuideHtml(id, guide, char, hsrPartiesList)
@@ -2687,8 +2698,8 @@ function runPrerender() {
         : '';
       createPrerenderedPage(
         guideRoute,
-        `명조 ${item.name} 공략 | 종결 에코 세팅 · 추천 무기 순위 · 파티 조합`,
-        `명조: 워더링 웨이브 ${item.name}의 최신 종결 에코 세트(주옵션/부옵션 목표치), 추천 무기 1~4순위 랭킹, 스킬 레벨업 우선순위, 최적 파티 시너지 조합 완벽 공략 가이드.`,
+        getWwGuideSeo({ name: item.name, hasParties: wwGuideHasParties(item), hasAnalysis: Boolean(wwGuideAnalysis[item.id]) }).title,
+        getWwGuideSeo({ name: item.name, hasParties: wwGuideHasParties(item), hasAnalysis: Boolean(wwGuideAnalysis[item.id]) }).description,
         imageUrl,
         baseHtml,
         generateWwGuideHtml(item.id || item.name, item, item) + charLink

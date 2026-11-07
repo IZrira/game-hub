@@ -9,6 +9,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { GuideLayout, GuideHero, GuideSummary, GuideVariantSelector } from '../../common-hub/components/guides/GuideLayout';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, getHsrCharacterArtUrl, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { getHsrGuideSeo } from '../../common-hub/utils/guideSeo.js';
 import { sanitizePublicHsrGuideData } from '../../common-hub/utils/publicGuideLinks';
 import { parseGuideOption, GuideBuildContent, GuideAnalysis, GuideViewTabs, GuideFooter } from '../../common-hub/components/guides/GuideContent';
 
@@ -352,6 +353,7 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
     const entry = (item.kind === 'relic' ? RELIC_DB : ORNAMENT_DB).find(candidate => candidate.name === item.name);
     return { ...item, image: getMainImageUrl(entry) || undefined, to: entry ? `/gallery/${gameId}/${item.kind}/${encodeURIComponent(entry.name)}` : undefined };
   });
+  const guideSeo = getHsrGuideSeo({ name: character.name, hasParties: members.length > 0, hasAnalysis: Boolean(publishedAnalysis) });
   const SKILL_ICON_FILES: Record<string, string> = { '일반 공격': 'basic_atk_1', '전투 스킬': 'skill_1', '필살기': 'ultimate_1', '비술': 'technique_1' };
   const skillIconOf = (action: string) => SKILL_ICON_FILES[action]
     ? `${CDN_URL}/hsr%20images/skills/${safeEncodeURIComponent(character.folderName)}/${SKILL_ICON_FILES[action]}.webp`
@@ -360,8 +362,8 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
       <SEO 
-        title={`스타레일 ${character?.name || charName} 공략 | 종결 유물 세팅 · 추천 광추 순위 · 파티 조합 - 리라 아카이브`} 
-        description={`붕괴: 스타레일 ${character?.name || charName}의 최신 추천 유물 및 차원 장신구, 종결 광추 랭킹, 주옵션/부옵션 목표 수치, 추천 파티 조합 완벽 공략 가이드.`} 
+        title={guideSeo.title}
+        description={guideSeo.description}
         image={heroImageUrl} 
         url={`/gallery/${gameId}/character/${character.id}/guide`}
         gameCategory={t('붕괴: 스타레일')}
