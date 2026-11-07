@@ -22,8 +22,8 @@ export const 더헤르타Guide: CharacterGuide = {
     },
     subStats: ["속도", "치명타 확률", "치명타 피해", "공격력"],
     targetStats: [
-      { label: "치명타 확률", value: "80" },
-      { label: "치명타 피해", value: "160" },
+      { label: "치명타 확률", value: "80%" },
+      { label: "치명타 피해", value: "160%" },
       { label: "공격력", value: "3300" }
     ],
     bestLightCones: [

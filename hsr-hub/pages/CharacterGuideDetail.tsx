@@ -337,7 +337,7 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
     .filter(party => party.members.some(member => normalizeName(member.name) === ownName))
     .map(party => ({ label: t(party.name), slots: party.members.map(member => [member, ...(member.substitutes || [])].map(memberOf)) }));
   const targetRows = (guide.variants?.length ? guide.variants : [{ name: '기본', targetStats: guide.targetStats }])
-    .map(variant => ({ label: t(variant.name), stats: (variant.targetStats || []).filter(stat => !/사용\s*시|경우|참고|세팅|조건/.test(stat.label)).map(stat => ({ label: stat.label, value: getStatValueAndNote(stat.value).value })) }))
+    .map(variant => ({ label: t(variant.name), stats: (variant.targetStats || []).filter(stat => !/사용\s*시|경우|참고|세팅|조건/.test(stat.label)).map(stat => ({ label: stat.label, value: `${getStatValueAndNote(stat.value).value}${stat.note ? ` (${t(stat.note)})` : ''}` })) }))
     .filter(row => row.stats.length > 0);
   const targetColumns = [...new Set(targetRows.flatMap(row => row.stats.map(stat => stat.label)))];
   const analysisTargets = targetColumns.length ? {
