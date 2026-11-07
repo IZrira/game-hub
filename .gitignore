@@ -27,3 +27,9 @@ public/assets/data/ww/guides/
 public/assets/data/articles/
 common-hub/locales/hsr/guide_labels_*.json
 common-hub/locales/ww/guide_labels_*.json
+
+# Local Claude Code setup: personal settings, project-installed skills and agents
+.claude/settings.local.json
+.claude/skills/
+.claude/agents/
+skills-lock.json
