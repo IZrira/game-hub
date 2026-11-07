@@ -41,7 +41,8 @@ export const elationParties: PartyCombination[] = [
           { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' },
           { name: '히아킨', role: '힐러', folderName: '히아킨' },
           { name: '어벤츄린', role: '탱커', folderName: '어벤츄린' },
-          { name: '부현', role: '탱커', folderName: '부현' }
+          { name: '부현', role: '탱커', folderName: '부현' },
+          { name: '펄', role: '힐러', folderName: '펄' }
         ]
       }
     ],
@@ -73,7 +74,8 @@ export const elationParties: PartyCombination[] = [
         folderName: '곽향',
         substitutes: [
           { name: '단항•등황', role: '메인 딜러', folderName: '단항•등황' },
-          { name: '히아킨', role: '힐러', folderName: '히아킨' }
+          { name: '히아킨', role: '힐러', folderName: '히아킨' },
+          { name: '펄', role: '힐러', folderName: '펄' }
         ]
       }
     ],

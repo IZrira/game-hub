@@ -130,16 +130,17 @@ export function getRecommendedParties(
     }
 
     const matchedParties = HSR_PARTIES.filter(party => {
-      const mainDpsMatch = searchTerms.some(term => party.mainDPS.toLowerCase().includes(term));
+      // Exact names only: substrings would attach 단항•등황 parties to 단항, 로빈•서머레토 parties to 로빈, and so on.
+      const mainDpsMatch = searchTerms.some(term => party.mainDPS.toLowerCase() === term);
       const memberMatch = party.members.some(m => 
         searchTerms.some(term => 
-          m.name.toLowerCase().includes(term) || 
+          m.name.toLowerCase() === term ||
           m.id.toLowerCase() === term ||
           m.folderName.toLowerCase() === term ||
-          m.substitutes?.some(s => s.name.toLowerCase().includes(term))
+          m.substitutes?.some(s => s.name.toLowerCase() === term)
         )
       );
-      const tagMatch = party.tags?.some(t => searchTerms.some(term => t.toLowerCase().includes(term)));
+      const tagMatch = party.tags?.some(t => searchTerms.some(term => t.toLowerCase() === term));
       return mainDpsMatch || memberMatch || tagMatch;
     });
 
@@ -155,7 +156,7 @@ export function getRecommendedParties(
       mainDPS: party.mainDPS,
       tags: party.tags,
       members: party.members.map(m => {
-        const isTarget = searchTerms.some(term => m.name.toLowerCase().includes(term) || m.id.toLowerCase() === term);
+        const isTarget = searchTerms.some(term => m.name.toLowerCase() === term || m.id.toLowerCase() === term);
         return {
           id: m.id,
           name: m.name,
@@ -175,13 +176,12 @@ export function getRecommendedParties(
   }
 
   if (gameId === 'ww') {
-    const matchedParties = WW_PARTY_COMBINATIONS.filter(party => {
-      return party.members.some(m => 
-        m.name.toLowerCase().includes(targetNorm) || 
-        m.id.toLowerCase() === targetNorm ||
-        m.folderName.toLowerCase() === targetNorm
-      );
-    });
+    // Exact id or name only: substrings would mix 양양 with 양양 · 현령. Party member ids are the character ids.
+    const isWwTarget = (m: { id: string; name: string; folderName: string }) =>
+      m.id.toLowerCase() === targetNorm ||
+      m.name.toLowerCase() === targetNorm ||
+      m.folderName.toLowerCase() === targetNorm;
+    const matchedParties = WW_PARTY_COMBINATIONS.filter(party => party.members.some(isWwTarget));
 
     if (matchedParties.length > 0) {
       return matchedParties.map(party => ({
@@ -195,7 +195,7 @@ export function getRecommendedParties(
           name: m.name,
           role: m.role,
           folderName: m.folderName,
-          isMainTarget: m.name.toLowerCase().includes(targetNorm) || m.id.toLowerCase() === targetNorm,
+          isMainTarget: isWwTarget(m),
           isRover: m.id.startsWith('rover_')
         }))
       }));

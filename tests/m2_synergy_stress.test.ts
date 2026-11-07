@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { 
   getRecommendedParties, 
   getElementGlowMapping, 
@@ -74,8 +74,27 @@ describe('Milestone 2 Stress Testing — synergyManager & parties', () => {
       expect(nteParties).toEqual([]);
     });
 
-    it('builds an HSR party from guide recommendations when no manual party exists', () => {
+    it('prefers manual HSR parties over the guide fallback', () => {
       const parties = getRecommendedParties('hsr', 'pearl');
+      expect(parties.length).toBeGreaterThan(0);
+      expect(parties.some(party => party.id === 'guide-auto-pearl')).toBe(false);
+      expect(parties.some(party => party.members.some(m => m.name === '펄' && m.isMainTarget))).toBe(true);
+    });
+
+    it('matches HSR and WW party members by exact name, not by substring', () => {
+      const danHeng = getRecommendedParties('hsr', 'dan_heng');
+      expect(danHeng.length).toBeGreaterThan(0);
+      expect(danHeng.every(party => party.members.some(m => m.name === '단항' || m.substitutes?.some(s => s.name === '단항')))).toBe(true);
+      expect(getRecommendedParties('ww', 'yangyang').some(party => party.members.some(m => m.name === '양양 · 현령'))).toBe(false);
+    });
+
+    it('builds an HSR party from guide recommendations when no manual party exists', async () => {
+      // Every guide with a synergy list now has a manual party, so drop the manual parties to reach the fallback.
+      vi.resetModules();
+      vi.doMock('../hsr-hub/data/parties/index', () => ({ HSR_PARTIES: [] }));
+      const { getRecommendedParties: getWithoutManual } = await import('../common-hub/utils/synergyManager');
+      const parties = getWithoutManual('hsr', 'pearl');
+      vi.doUnmock('../hsr-hub/data/parties/index');
 
       expect(parties).toHaveLength(1);
       expect(parties[0].id).toBe('guide-auto-pearl');

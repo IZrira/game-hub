@@ -24,6 +24,7 @@ import { memoryParties } from './memory';
 import { singleParties } from './single';
 import { breakParties } from './break';
 import { dotParties } from './dot';
+import { guideBasedParties } from './guide_based';
 
 // 캐릭터 도감 최신순 기반 버전 매핑
 export const HSR_CHARACTER_VERSION_MAP: Record<string, number> = {
@@ -104,7 +105,8 @@ const allParties: PartyCombination[] = [
   ...memoryParties,
   ...singleParties,
   ...breakParties,
-  ...dotParties
+  ...dotParties,
+  ...guideBasedParties
 ];
 
 /**
