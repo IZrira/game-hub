@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { execFileSync } from 'child_process';
 import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
 import { getWaveLocations, aniimoLocationPath } from './lib/aniimo-locations.js';
 import path from 'path';
@@ -77,14 +78,43 @@ function getCharacterIds(directory) {
   }
 }
 
-function getFileLastmod(filePath) {
+// lastmod for file-backed pages is the date of the last commit that touched the
+// file. File mtime is not used: a fresh CI checkout stamps every file with the
+// build date, which would mark every page as changed on every deploy.
+function git(args) {
+  return execFileSync('git', args, { cwd: ROOT_DIR, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024, timeout: 120000 }).trim();
+}
+
+function loadGitFileDates() {
+  const dates = new Map();
   try {
-    if (!fs.existsSync(filePath)) return null;
-    const stats = fs.statSync(filePath);
-    return stats.mtime.toISOString().split('T')[0];
-  } catch {
-    return null;
+    if (git(['rev-parse', '--is-shallow-repository']) === 'true') {
+      // Cloudflare Pages clones only the commit being built. Without full history
+      // every file would date to that commit, so fetch it once (the repo is small)
+      // and leave lastmod out if that fails.
+      if (process.env.CF_PAGES !== '1') {
+        console.warn('Shallow git history: file-based lastmod values are omitted.');
+        return dates;
+      }
+      git(['fetch', '--unshallow', '--quiet']);
+    }
+    let currentDate = null;
+    for (const line of git(['-c', 'core.quotePath=false', 'log', '--format=%x00%cs', '--name-only']).split('\n')) {
+      if (line.startsWith('\0')) currentDate = line.slice(1);
+      else if (line && currentDate && !dates.has(line)) dates.set(line, currentDate);
+    }
+  } catch (error) {
+    console.warn(`Git history unavailable, file-based lastmod values are omitted: ${error.message}`);
+    dates.clear();
   }
+  return dates;
+}
+
+let gitFileDates = null;
+function getFileLastmod(filePath) {
+  gitFileDates ??= loadGitFileDates();
+  const relative = path.relative(ROOT_DIR, filePath).split(path.sep).join('/');
+  return gitFileDates.get(relative) || null;
 }
 
 // HSR 캐릭터 정보 파싱
@@ -594,7 +624,7 @@ async function generateSitemap() {
     validateGeneratedUrls(allUrls, new Set(wwIds));
 
     // File writing helper
-    const today = new Date().toISOString().split('T')[0];
+    // No build-date fallback: a sitemap whose pages carry no date gets no lastmod.
     function getMaxLastmod(entries) {
       let max = null;
       for (const e of entries) {
@@ -602,7 +632,7 @@ async function generateSitemap() {
           max = e.lastmod;
         }
       }
-      return max || today;
+      return max;
     }
 
     function writeSubSitemap(filename, entries) {
@@ -641,8 +671,7 @@ ${entries.map(e => e.xmlNode).join('')}</urlset>
       const lastmod = getMaxLastmod(s.entries);
       indexXml += `  <sitemap>
     <loc>${BASE_URL}/${s.name}</loc>
-    <lastmod>${lastmod}</lastmod>
-  </sitemap>
+${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}  </sitemap>
 `;
     });
     indexXml += `</sitemapindex>\n`;

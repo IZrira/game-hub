@@ -116,7 +116,7 @@ AGENTS.md 등 작업 규칙 문서만 변경하고 코드 또는 데이터를 �
 - Codex(Windows 제한 샌드박스): Node `child_process.spawn`이 `EPERM`으로 차단되는 것이 확인되어 있다. esbuild 직접 실행은 가능하다. `npm run build`가 `spawn EPERM`으로 실패하면 프로젝트 오류로 판단하지 않고, 사용자에게 추가 실행 권한을 요청해 샌드박스 밖에서 다시 실행한다. 샌드박스 밖에서는 정상 동작하는 것이 확인되었다.
 - Claude Code: Node spawn과 `npm run typecheck`·`npm run build`가 정상 동작하는 것을 2026-11-02에 확인했다. `EPERM`이 나면 환경 제한으로 넘기지 말고 원인을 조사한다.
 - 어느 환경이든 권한 문제가 남아 있으면 검증 성공으로 보고하지 않는다.
-- `npm run build`·`npm test`·`predev`는 생성 스크립트로 추적 파일(예: `public/sitemap.xml`의 `lastmod`)을 다시 쓸 수 있다. 실행 후 `git status`로 이번 작업과 무관한 생성 변경을 구분하고 commit에 섞지 않는다.
+- `npm run build`·`npm test`·`predev`는 생성 스크립트로 추적 파일을 다시 쓸 수 있다. 실행 후 `git status`로 이번 작업과 무관한 생성 변경을 구분하고 commit에 섞지 않는다. 사이트맵 `lastmod`는 데이터의 날짜 필드나 원본 파일의 마지막 commit 날짜만 쓰므로 빌드를 반복해도 바뀌지 않는다(2026-11-08). 사이트맵이 바뀌었다면 데이터나 URL이 실제로 바뀐 것이니 그 작업의 commit에 함께 넣는다.
 
 빌드가 실제 코드 오류로 실패하면:
 
