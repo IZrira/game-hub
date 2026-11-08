@@ -1,10 +1,11 @@
 export interface PartyMember {
   id: string;
   name: string;
-  role: '메인 딜러' | '서브 딜러' | '서포터' | '탱커/힐러';
+  role: '메인 딜러' | '서브 딜러' | '서포터' | '탱커/힐러' | '탱커·힐러';
   folderName: string;
   isTrailblazer?: boolean;
-  substitutes?: { name: string; folderName: string; isTrailblazer?: boolean; role?: string; }[];
+  breakthrough?: string;
+  substitutes?: { name: string; folderName: string; isTrailblazer?: boolean; role?: string; breakthrough?: string; }[];
 }
 
 export interface PartyCombination {
@@ -14,16 +15,12 @@ export interface PartyCombination {
   mainDPS: string;
   members: PartyMember[];
   tags: string[];
-  category: '단일' | '범위' | '지속 피해' | '추가 공격' | '격파' | '기억' | '환락';
+  category: '단일' | '범위' | '지속 피해' | '추가 공격' | '격파' | '기억' | '환락' | '하이퍼캐리';
+  pros?: string[];
+  cons?: string[];
 }
 
-import { followUpParties } from './follow_up';
-import { elationParties } from './elation';
-import { aoeParties } from './aoe';
-import { memoryParties } from './memory';
-import { singleParties } from './single';
-import { breakParties } from './break';
-import { dotParties } from './dot';
+import { cloudParties } from './cloud';
 import { guideBasedParties } from './guide_based';
 
 // 캐릭터 도감 최신순 기반 버전 매핑
@@ -98,29 +95,8 @@ export const HSR_CHARACTER_VERSION_MAP: Record<string, number> = {
   '히메코': 1.0
 };
 
-const allParties: PartyCombination[] = [
-  ...followUpParties,
-  ...elationParties,
-  ...aoeParties,
-  ...memoryParties,
-  ...singleParties,
-  ...breakParties,
-  ...dotParties,
+// 클라우드 파티는 관리자 화면의 표시 순서를 그대로 따르고, 가이드 기반 파티는 그 뒤에 둔다.
+export const HSR_PARTIES: PartyCombination[] = [
+  ...cloudParties,
   ...guideBasedParties
 ];
-
-/**
- * 파티원 중 도감에서 가장 최신(가장 높은 버전) 캐릭터의 버전을 반환
- */
-const getPartyMaxVersion = (party: PartyCombination): number => {
-  const versions = party.members.map(member => HSR_CHARACTER_VERSION_MAP[member.name] || 1.0);
-  return Math.max(...versions);
-};
-
-// 도감 최신 캐릭터 포함 여부를 기준으로 내림차순 정렬
-export const HSR_PARTIES: PartyCombination[] = [...allParties].sort((a, b) => {
-  const maxVersionA = getPartyMaxVersion(a);
-  const maxVersionB = getPartyMaxVersion(b);
-
-  return maxVersionB - maxVersionA;
-});

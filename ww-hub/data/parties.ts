@@ -30,7 +30,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w1",
-    name: "여우의 별자리 파티",
+    name: "여우의 별자리·방랑자 · 전도 전자 파티",
     description: "여우의 별자리를 중심으로 방랑자 · 전도와 파수인을 편성하는 전도 조합입니다.",
     members: [
       {
@@ -57,7 +57,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w2",
-    name: "경연 파티",
+    name: "경연·루파 용융 파티",
     description: "경연을 중심으로 루파와 파수인을 편성하는 조합입니다.",
     members: [
       {
@@ -84,7 +84,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w3",
-    name: "청초 파티",
+    name: "청초·샤콘 기류 파티",
     description: "청초를 중심으로 샤콘과 파수인을 편성하는 기류 조합입니다.",
     members: [
       {
@@ -111,7 +111,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w4",
-    name: "양양 · 현령 파티",
+    name: "양양 · 현령·치사 암흑 파티",
     description: "양양 · 현령을 중심으로 치사와 응결 서포터·힐러 수수를 편성하는 조합입니다.",
     members: [
       {
@@ -165,7 +165,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w7",
-    name: "에이메스 파티",
+    name: "에이메스 불꽃 파티",
     description: "에이메스를 중심으로 데니아와 모니에를 편성하는 용융 조합입니다.",
     members: [
       {
@@ -192,7 +192,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w8",
-    name: "루크 · 헤르센 파티",
+    name: "루크 · 헤르센·린네 조화 밀집 파티",
     description: "루크 · 헤르센을 중심으로 린네와 파수인을 편성하는 회절 조합입니다.",
     members: [
       {
@@ -219,7 +219,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w9",
-    name: "히유키 파티",
+    name: "히유키 서리 파티",
     description: "히유키를 중심으로 치사와 벨리나를 편성하는 조합입니다.",
     members: [
       {
@@ -246,7 +246,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w10",
-    name: "갈브레나 파티",
+    name: "갈브레나·루파 용융 파티",
     description: "갈브레나를 중심으로 루파와 파수인을 편성하는 용융 조합입니다.",
     members: [
       {
@@ -300,7 +300,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w12",
-    name: "플로로 파티",
+    name: "플로로·칸타렐라 에코 어빌리티 파티",
     description: "플로로를 중심으로 칸타렐라와 로코코를 편성하는 인멸 조합입니다.",
     members: [
       {
@@ -435,7 +435,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w17",
-    name: "카멜리아 파티",
+    name: "카멜리아·산화 일반 공격 파티",
     description: "카멜리아를 중심으로 산화와 파수인을 편성하는 조합입니다.",
     members: [
       {
@@ -462,7 +462,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w18",
-    name: "상리요 파티",
+    name: "상리요·음림 전도 파티",
     description: "상리요를 중심으로 음림과 벨리나를 편성하는 전도 조합입니다.",
     members: [
       {
@@ -543,7 +543,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w21",
-    name: "카를로타 파티",
+    name: "카를로타·절지 응결 파티",
     description: "카를로타를 중심으로 절지와 파수인을 편성하는 응결 조합입니다.",
     members: [
       {
@@ -624,7 +624,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w25",
-    name: "방랑자 · 인멸 파티",
+    name: "방랑자 · 인멸·단근 인멸 파티",
     description: "방랑자 · 인멸을 중심으로 단근과 벨리나를 편성하는 인멸 조합입니다.",
     members: [
       {
@@ -678,7 +678,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w29",
-    name: "앙코 파티",
+    name: "앙코·산화 파티",
     description: "앙코를 중심으로 산화와 벨리나를 편성하는 조합입니다.",
     members: [
       {
@@ -705,7 +705,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w32",
-    name: "능양 파티",
+    name: "능양·산화 응결 파티",
     description: "능양을 중심으로 산화와 설지를 편성하는 응결 조합입니다.",
     members: [
       {
