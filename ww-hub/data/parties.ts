@@ -273,7 +273,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w11",
-    name: "아우구스타 파티",
+    name: "아우구스타 강공격 파티",
     description: "강공격 딜러 아우구스타 앞에 유노를 두고 반주 스킬로 넘기는 조합입니다.",
     members: [
       {
@@ -327,7 +327,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w13",
-    name: "카르티시아 파티",
+    name: "카르티시아 풍식 파티",
     description: "풍식 효과를 활용하는 카르티시아에 샤콘과 방랑자 · 기류를 붙인 기류 조합입니다.",
     members: [
       {
@@ -354,7 +354,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w14",
-    name: "젠니 파티",
+    name: "젠니 광학 효과 파티",
     description: "페비가 광학 효과를 걸어 젠니의 「강렬한 불기운」을 쌓는 회절 조합입니다.",
     members: [
       {
@@ -489,7 +489,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w19",
-    name: "금희 파티",
+    name: "금희 협동 공격 파티",
     description: "속성이 다르고 협동 공격을 자주 넣는 절지로 금희의 「봄의 빛」을 빠르게 채우는 조합입니다.",
     members: [
       {
@@ -597,7 +597,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
   },
   {
     id: "ww_c5_w23",
-    name: "카카루 파티",
+    name: "카카루 공명 해방 파티",
     description: "공명 해방 딜러 카카루에 음림과 감심을 붙인 조합입니다.",
     members: [
       {

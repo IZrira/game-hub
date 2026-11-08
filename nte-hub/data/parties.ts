@@ -73,7 +73,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_2_라크리모사",
-    name: "라크리모사 파티 1",
+    name: "라크리모사 스코치 파티 (아들러형)",
     description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "라크리모사",
     tags: [
@@ -254,7 +254,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_6_잔홍",
-    name: "잔홍 노바·스코치 파티",
+    name: "잔홍 노바·스코치 파티 (링코형)",
     description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "잔홍",
     tags: [
@@ -358,7 +358,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_8_레이븐",
-    name: "레이븐 파티 1",
+    name: "레이븐·다포딜 파티 (감정사)",
     description: "레이븐을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "레이븐",
     tags: [
@@ -440,7 +440,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_9_잔홍",
-    name: "잔홍 파티 1",
+    name: "잔홍 스코치 파티 (다포딜형)",
     description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "잔홍",
     tags: [
@@ -522,7 +522,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_10_잔홍",
-    name: "잔홍 파티 2",
+    name: "잔홍 노바·스코치 파티 (사키리형)",
     description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "잔홍",
     tags: [
@@ -608,7 +608,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_12_나나리",
-    name: "나나리 파티 1",
+    name: "나나리 헥스 파티",
     description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "나나리",
     tags: [
@@ -660,7 +660,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_13_잔홍",
-    name: "잔홍 파티 3",
+    name: "잔홍 스코치 파티 (라크리모사형)",
     description: "잔홍을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "잔홍",
     tags: [
@@ -730,7 +730,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_14_나나리",
-    name: "나나리 파티 2",
+    name: "나나리·감정사 파티",
     description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "나나리",
     tags: [
@@ -773,7 +773,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_15_신쿠",
-    name: "신쿠 차지 파티 1",
+    name: "신쿠 차지 기본형 파티",
     description: "신쿠을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "신쿠",
     tags: [
@@ -816,7 +816,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_16_나나리",
-    name: "나나리 블라썸 파티 1",
+    name: "나나리 블라썸 파티 (구원·일로이)",
     description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "나나리",
     tags: [
@@ -877,7 +877,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_17_라크리모사",
-    name: "라크리모사 파티 2",
+    name: "라크리모사·레이븐 2딜 파티",
     description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "라크리모사",
     tags: [
@@ -938,7 +938,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_18_레이븐",
-    name: "레이븐 파티 2",
+    name: "레이븐·라크리모사 파티 (카오스)",
     description: "레이븐을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "레이븐",
     tags: [
@@ -1006,7 +1006,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_19_나나리",
-    name: "나나리 블라썸 파티 2",
+    name: "나나리 블라썸 파티 (일로이·호토리)",
     description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "나나리",
     tags: [
@@ -1343,7 +1343,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_26_신쿠",
-    name: "신쿠 차지 파티 2",
+    name: "신쿠 차지 파티 (스키아)",
     description: "신쿠을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "신쿠",
     tags: [
@@ -1402,7 +1402,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_27_신쿠",
-    name: "신쿠 차지 파티 3",
+    name: "신쿠 차지 파티 (아카네 린)",
     description: "신쿠을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "신쿠",
     tags: [
@@ -1690,7 +1690,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_32_나나리",
-    name: "나나리 블라썸 파티 3",
+    name: "나나리 블라썸 파티 (구원·호토리)",
     description: "나나리을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "나나리",
     tags: [
@@ -1733,7 +1733,7 @@ export const NTE_PARTY_COMBINATIONS: NTEPartyCombination[] = [
   },
   {
     id: "nte_33_라크리모사",
-    name: "라크리모사 파티 3",
+    name: "라크리모사 스코치 파티 (호토리형)",
     description: "라크리모사을(를) 메인 딜러로 하는 4인 조합입니다. 대체 가능한 캐릭터는 각 자리에 함께 표시합니다.",
     mainDPS: "라크리모사",
     tags: [
