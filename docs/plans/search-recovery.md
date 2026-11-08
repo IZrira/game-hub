@@ -104,7 +104,7 @@
     - `public/_headers`의 `/*` 규칙 `no-cache, must-revalidate`가 `/assets/*.js` 규칙과 합쳐진다. 그래서 해시 파일명 JS가 `no-cache, must-revalidate, public, max-age=31536000, immutable`로 나간다. 브라우저는 방문할 때마다 JS를 재검증한다. Google 렌더러는 자체 캐시를 써서 영향이 작을 수 있다(미검증).
     - 캐릭터 상세의 제목("아케론 캐릭터 공략 및 세팅 정보")과 H1("아케론 상세 정보 & 종결 육성 가이드")이 가이드와 같은 검색어를 노린다. D2의 근거다.
   - 후속 후보(사용자 승인 후 별도 항목으로)
-    - R2-1. 장비 상세가 필요한 장비 한 건만 불러오도록 바꾼다(캐릭터 상세의 JSON 분리 방식과 같게).
+    - [x] R2-1. 광추 상세는 해당 광추 한 건의 해시 JSON(최대 8.6KB)만 불러온다. `scripts/generate-hsr-lightcone-runtime.js`가 172개 파일과 매니페스트를 만든다. 추천 캐릭터 섹션은 전체 캐릭터 데이터 대신 `character-summary.json`을 쓴다. 광추 4개·장신구 1개의 렌더링 텍스트와 색인 여부가 운영 사이트와 같았다(2026-11-08). 유물·장신구 상세의 데이터 분리는 아직 하지 않았다.
     - [x] R2-2. `_headers`의 전역 `no-cache`를 없애고, `functions/_middleware.ts`가 `immutable`이 아닌 정적 응답(HTML·이미지·robots·사이트맵 등)에만 `no-cache, must-revalidate`를 붙인다. 해시 JS·CSS는 `immutable`만 받는다. 보안 헤더는 그대로다(2026-11-08).
 - [ ] R3. 성과 그룹 내부 링크 강화
   - NTE 공략, 애니모 서식지, HSR·WW 가이드 같은 성과 있는 페이지끼리 연결을 늘린다. 예: 서식지 ↔ 서식 애니모, 공략 ↔ 추천 파티 ↔ 파티원 공략.

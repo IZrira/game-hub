@@ -23,6 +23,7 @@ common-hub/locales/hsr/characters/
 common-hub/locales/ww/characters/
 public/assets/data/hsr/guides/
 public/assets/data/hsr/characters/
+public/assets/data/hsr/lightcones/
 public/assets/data/ww/guides/
 public/assets/data/articles/
 common-hub/locales/hsr/guide_labels_*.json

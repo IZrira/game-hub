@@ -191,7 +191,8 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
 
   // Replace inherited no-cache only for successful content-hashed assets.
   const immutableGuide = /^\/assets\/data\/(?:hsr|ww)\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
-  const immutableHsrCharacter = /^\/assets\/data\/hsr\/characters\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
+  const immutableHsrCharacter = /^\/assets\/data\/hsr\/characters\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath) ||
+    /^\/assets\/data\/hsr\/lightcones\/[a-f0-9]{16}\.json$/.test(normalizedPath);
   const immutableArticle = /^\/assets\/data\/articles\/[a-z0-9_-]+\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);
   const immutableThumbnail = /^\/assets\/thumbnails\/ww\/[a-f0-9]{20}\.webp$/.test(normalizedPath);
   const expectedType = immutableGuide || immutableArticle || immutableHsrCharacter ? 'application/json' : immutableThumbnail ? 'image/webp' : undefined;

@@ -1,7 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useParams, Link, useNavigate } from 'react-router';
-import { ChevronRight, Star, ShieldCheck, Info, ArrowLeft, Package, ChevronDown, ChevronUp, Users } from 'lucide-react';
-import { ARCHIVE_DATA, LIGHTCONE_DB } from '../../common-hub/data/games';
+import { ChevronRight, Star, ShieldCheck, Info, ArrowLeft, Package, ChevronDown, ChevronUp, Users, RefreshCw } from 'lucide-react';
+import lightconeManifest from '../data/generated/lightcone-runtime-manifest.json';
+import { useHsrRuntime } from '../utils/useHsrRuntime';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
@@ -38,13 +39,33 @@ const VERSION_UPDATES: Record<string, string> = {
   "3.3": "2025-05-28"
 };
 
+interface LightconeRuntime { lightcone: HsrLightCone }
+
+// Loads only the selected light cone's hashed JSON instead of bundling every
+// light cone and character (see scripts/generate-hsr-lightcone-runtime.js).
 const LightConeDetail: React.FC = () => {
-  const { gameId, lcName } = useParams<{ gameId: string; lcName: string }>();
+  const { lcName } = useParams<{ lcName: string }>();
+  const { t } = useTranslation();
+  const url = lcName ? (lightconeManifest as Record<string, string>)[lcName] : undefined;
+  const validate = React.useCallback((value: LightconeRuntime) => value?.lightcone?.name === lcName, [lcName]);
+  const { data, failed, retry } = useHsrRuntime<LightconeRuntime>(url, validate);
+
+  if (!url) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Light Cone Registry Not Found')}</div>;
+  if (failed) return <div className="p-20 text-center text-white"><button onClick={retry}>{t('다시 시도')}</button></div>;
+  if (!data) {
+    return (
+      <div className="flex min-h-[60vh] items-center justify-center bg-[#0a0a0a]">
+        <RefreshCw size={20} className="animate-spin text-brand-primary" />
+      </div>
+    );
+  }
+  return <LightConeDetailContent key={data.lightcone.name} lc={data.lightcone} />;
+};
+
+const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
+  const { gameId } = useParams<{ gameId: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
-
-  const game = useMemo(() => ARCHIVE_DATA.games.find(g => g.id === gameId), [gameId]);
-  const lc = useMemo(() => LIGHTCONE_DB.find(l => l.name === lcName) as HsrLightCone | undefined, [lcName]);
 
   const [levelIdx, setLevelIdx] = React.useState(7); // Default to Lv. 80
   const [rankIdx, setRankIdx] = React.useState(0);   // Default to 1-Superimposition

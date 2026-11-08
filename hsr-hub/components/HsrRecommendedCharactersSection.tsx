@@ -3,7 +3,10 @@ import { Link } from 'react-router';
 import { Users, ChevronRight, Sparkles } from 'lucide-react';
 import publicGuides from '../data/generated/public-guide-catalog.json';
 import type { CharacterGuide } from '../data/guides';
-import { CHARACTER_DB } from '../../common-hub/data/games';
+// The lightweight summary carries every field used here (id, name, folderName,
+// rarity, attribute, path) without bundling full character data into
+// equipment detail pages.
+import CHARACTER_DB from '../data/generated/character-summary.json';
 import { getHsrCharacterArtUrl, handleImageFallback } from '../../common-hub/utils/assetManager';
 
 const HSR_CHARACTER_GUIDES = publicGuides as CharacterGuide[];

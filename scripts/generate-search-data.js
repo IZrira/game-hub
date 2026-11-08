@@ -7,6 +7,7 @@ import { normalizeNteCharacter } from './lib/normalize-nte-character.js';
 import { writeCharacterTranslationPacks } from './generate-character-translations.js';
 import { writeHsrGuideRuntime } from './generate-hsr-guide-runtime.js';
 import { writeHsrCharacterRuntime } from './generate-hsr-character-runtime.js';
+import { writeHsrLightconeRuntime } from './generate-hsr-lightcone-runtime.js';
 import { writeWwGuideRuntime } from './generate-ww-guide-runtime.js';
 import { writeGuideSummaries } from './generate-guide-summaries.js';
 
@@ -578,4 +579,5 @@ console.log(`[WW] Generated ${wwCharacters.length} merged character detail recor
 writeCharacterTranslationPacks({ hsr: hsrCharacterSummary, ww: wwCharacters });
 await writeHsrGuideRuntime();
 await writeHsrCharacterRuntime();
+await writeHsrLightconeRuntime();
 writeWwGuideRuntime();
