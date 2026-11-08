@@ -108,20 +108,38 @@ export function buildNteArcRecommendations(guides, characters, arcs) {
   return { weapon: sortByRank(arc) };
 }
 
-// Pages kept indexable despite having no recommendation, because people already
-// reach them from search (Search Console clicks, 2026-10-04 ~ 10-31).
+// Pages kept indexable outside the recommendation rule because people already
+// reach them from search. 절식백: Search Console clicks 2026-10-04 ~ 10-31.
+// The others are single-recommender, non-signature items with impressions in
+// 2026-05-01 ~ 11-07 (decision D1, 2026-11-09).
 export const SEARCH_TRAFFIC_EXCEPTIONS = {
   echo: ['절식백'],
+  lightcone: ['같은 심정', '미래엔 우리가 함께할 거야', '행성과의 만남', '과거와 미래', '쇼타임'],
+  weapon: ['허위의 왈츠', '바다의 선물', '수호자의 직검 · 기민', '역설의 격류'],
+  arc: ['「은하의 찰나」'],
 };
 
+// Kinds where one recommendation is enough: relic and ornament sets and echoes
+// are mostly built around one character, and there are few of them.
+const SINGLE_RECOMMENDATION_KINDS = new Set(['relic', 'ornament', 'echo']);
+
 /**
+ * Indexing rule shared by the detail pages, prerender and sitemap (decision D1):
+ * index when two or more characters recommend the item, or one does and the item
+ * is signature gear (signature-equipment.json) or a relic/ornament/echo, or the
+ * page already has search traffic. Everything else stays reachable but noindex.
  * @param {Map<string, any[]>} map recommendations for this equipment kind
  * @param {'lightcone'|'relic'|'ornament'|'weapon'|'echo'|'arc'} kind
  * @param {string} name
+ * @param {{ lightcone?: string[], weapon?: string[], arc?: string[] }} [signature] generated signature-equipment.json
  */
-export function isIndexableEquipment(map, kind, name) {
+export function isIndexableEquipment(map, kind, name, signature = {}) {
   const key = String(name || '').normalize('NFC').trim();
-  return map.has(key) || (SEARCH_TRAFFIC_EXCEPTIONS[kind] || []).includes(key);
+  if ((SEARCH_TRAFFIC_EXCEPTIONS[kind] || []).includes(key)) return true;
+  const recommenders = (map.get(key) || []).length;
+  if (recommenders === 0) return false;
+  if (recommenders >= 2 || SINGLE_RECOMMENDATION_KINDS.has(kind)) return true;
+  return (signature[kind] || []).includes(key);
 }
 
 /** @param {Record<string, any[]>} json a map serialized with Object.fromEntries */

@@ -19,10 +19,11 @@ export function loadEquipmentRecommendations() {
   );
   const ww = buildWwEquipmentRecommendations(readJson('ww-hub/data/generated/recommendations.json'));
   const arc = recommendationMapFromJson(readJson('nte-hub/data/generated/arc-recommendations.json'));
+  const signature = readJson('common-hub/data/generated/signature-equipment.json');
   const maps = { lightcone: hsr.lightcone, relic: hsr.relic, ornament: hsr.ornament, weapon: ww.weapon, echo: ww.echo, arc };
   return {
     maps,
     /** @param {keyof typeof maps} kind @param {string} name */
-    isIndexable: (kind, name) => isIndexableEquipment(maps[kind], kind, name),
+    isIndexable: (kind, name) => isIndexableEquipment(maps[kind], kind, name, signature),
   };
 }

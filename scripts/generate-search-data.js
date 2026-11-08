@@ -8,6 +8,7 @@ import { writeCharacterTranslationPacks } from './generate-character-translation
 import { writeHsrGuideRuntime } from './generate-hsr-guide-runtime.js';
 import { writeHsrCharacterRuntime } from './generate-hsr-character-runtime.js';
 import { writeHsrLightconeRuntime } from './generate-hsr-lightcone-runtime.js';
+import { writeSignatureEquipment } from './generate-signature-equipment.js';
 import { writeWwGuideRuntime } from './generate-ww-guide-runtime.js';
 import { writeGuideSummaries } from './generate-guide-summaries.js';
 
@@ -585,4 +586,5 @@ writeCharacterTranslationPacks({ hsr: hsrCharacterSummary, ww: wwCharacters });
 await writeHsrGuideRuntime();
 await writeHsrCharacterRuntime();
 await writeHsrLightconeRuntime();
+await writeSignatureEquipment();
 writeWwGuideRuntime();

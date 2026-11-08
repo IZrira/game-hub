@@ -1,4 +1,5 @@
 import arcRecommendations from './generated/arc-recommendations.json';
+import signatureEquipment from '../../common-hub/data/generated/signature-equipment.json';
 import { getRecommendations, isIndexableEquipment, recommendationMapFromJson } from '../../common-hub/utils/equipmentRecommendations.js';
 
 export interface NteArcRecommendation {
@@ -16,5 +17,5 @@ export function getNteArcRecommendations(name: string): NteArcRecommendation[] {
 }
 
 export function isNteArcIndexable(name: string): boolean {
-  return isIndexableEquipment(NTE_ARC_RECOMMENDATIONS, 'arc', name);
+  return isIndexableEquipment(NTE_ARC_RECOMMENDATIONS, 'arc', name, signatureEquipment);
 }
