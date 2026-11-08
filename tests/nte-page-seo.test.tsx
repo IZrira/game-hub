@@ -38,8 +38,9 @@ describe('NTE page canonical inputs', () => {
     </Routes></MemoryRouter>);
 
     const props = seo.mock.lastCall![0];
-    expect(props.description).toBe(`이환(NTE) ${name}의 속성, 기본 스탯, 스킬·각성 효과와 아크·콘솔 세팅 및 육성 재료를 확인하세요.`);
-    expect(props.title).toBe(`${name} 종결 세팅 · 추천 파티 조합 & 스킬 매커니즘 | 이환(NTE) 공략 DB`);
+    // Character reference page; setting queries belong to the build guide (search recovery D2).
+    expect(props.description).toBe(`이환(NTE) ${name}의 속성, 기본 스탯, 스킬·각성 효과와 육성 재료를 정리한 캐릭터 도감입니다.`);
+    expect(props.title).toBe(`${name} 스킬·각성·육성 재료 | 이환(NTE) 캐릭터 도감`);
     expect(props.url).toBe(`/gallery/nte/character/${encodeURIComponent(name)}`);
     expect(props.faqData).toBeUndefined();
     expect(props.description).not.toMatch(/스타레일|광추|유물|운명의 길/);

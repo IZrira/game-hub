@@ -704,9 +704,11 @@ function buildSynergyParagraph(d) {
   return parts.length ? `  <p class="summary-synergy"><strong>추천 파티:</strong> ${parts.join(' ')}</p>` : '';
 }
 
-function generateNarrativeSummaryHtml(data) {
+// heading: NTE character pages are the character reference (search recovery D2)
+// and their summary holds only the profile, so they pass "캐릭터 요약".
+function generateNarrativeSummaryHtml(data, heading = '세팅 요약') {
   return `<section class="narrative-analysis-summary" style="margin-bottom: 24px; padding: 16px; background: rgba(255,255,255,0.05); border-radius: 8px;">\n` +
-    `  <h2>세팅 요약</h2>\n` +
+    `  <h2>${heading}</h2>\n` +
     `${buildProfileParagraph(data)}\n` +
     `${buildEquipmentParagraph(data)}\n` +
     `${buildStatsParagraph(data)}\n` +
@@ -2265,8 +2267,10 @@ function generateHsrOrnamentHtml(ornament, recommendedChars = []) {
 
 function generateNotionHtml(item) {
   const isCharacter = (item.type || '') === '캐릭터';
+  const isNteCharacter = item.dbSource === 'nte_characters';
   let html = `<article>\n`;
-  html += `<h1>${escapeHtml(item.name)}</h1>\n`;
+  // NTE character pages are the character reference; the build guide is the setting page (D2).
+  html += `<h1>${escapeHtml(item.name)}${isNteCharacter ? ' 캐릭터 정보' : ''}</h1>\n`;
 
   if (isCharacter) {
     const isNte = item.gameId === 'nte' || item.dbSource === 'nte_characters';
@@ -2287,10 +2291,10 @@ function generateNotionHtml(item) {
       parties: [],
       synergyChars: []
     };
-    html += generateNarrativeSummaryHtml(normData);
+    html += generateNarrativeSummaryHtml(normData, isNteCharacter ? '캐릭터 요약' : undefined);
   }
 
-  html += `<h2>해당 항목의 세부 정보 및 가이드입니다.</h2>\n`;
+  html += isNteCharacter ? `<h2>캐릭터 상세 정보</h2>\n` : `<h2>해당 항목의 세부 정보 및 가이드입니다.</h2>\n`;
 
   if (item.cost) {
     html += `<p><strong>코스트:</strong> ${escapeHtml(item.cost)}</p>\n`;
@@ -2668,6 +2672,10 @@ function runPrerender() {
   });
 
   // 5. Notion Data (NTE characters, NTE arcs, WW echoes, WW guides)
+  // NTE build guides by character id, so each character page links to its setting page.
+  const nteBuildGuideByCharacter = new Map((fs.existsSync(GUIDE_ARTICLES_FILE) ? JSON.parse(fs.readFileSync(GUIDE_ARTICLES_FILE, 'utf8')) : [])
+    .filter(article => article.gameId === 'nte' && article.status === 'published' && article.characterId)
+    .map(article => [article.characterId, article]));
   notionData.forEach(item => {
     if (!item.name) return;
     if (item.dbSource === 'nte_characters') {
@@ -2681,7 +2689,9 @@ function runPrerender() {
         characterSeo.description,
         imagePath,
         baseHtml,
-        generateNotionHtml(item) + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>'
+        generateNotionHtml(item)
+          + (nteBuildGuideByCharacter.has(item.id) ? `<p><a href="/gallery/nte/guides/${encodeURIComponent(nteBuildGuideByCharacter.get(item.id).slug)}"><strong>${escapeHtml(item.name)} 아크·콘솔 세팅 공략 보기</strong></a></p>` : '')
+          + '<p><a href="/gallery/nte">이환 캐릭터 도감으로 돌아가기</a></p>'
           + generateAdjacentRouteNavigation(routePath, sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate)), '다른 이환 캐릭터')
       );
       count++;
