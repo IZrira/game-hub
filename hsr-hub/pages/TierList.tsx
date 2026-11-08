@@ -5,7 +5,7 @@ import {
   ArrowUp, ArrowDown, Sparkles, LayoutGrid, Compass, Swords, Skull, Box,
   Loader2, ArrowLeft
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { HSR_TIER_DATA, HSR_TIER_CATEGORIES, TierCharacter, TierGroup } from '../data/tiers';
 import CHARACTER_DATA from '../data/generated/character-summary.json';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
@@ -451,18 +451,12 @@ const TierList: React.FC = () => {
             </div>
           </div>
 
-          <AnimatePresence mode="wait">
-            {isSyncing ? (
-              <motion.div 
-                key="skeleton"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-                className="space-y-8"
-              >
+          {/* No AnimatePresence mode="wait" here: on this page the skeleton's exit
+              never completed, so the tier list stayed on the skeleton forever. */}
+          {isSyncing ? (
+              <div className="space-y-8">
                 {[...Array(4)].map((_, i) => <TierSkeleton key={i} />)}
-              </motion.div>
+              </div>
             ) : (
               <motion.div 
                 key="content"
@@ -496,7 +490,6 @@ const TierList: React.FC = () => {
                 ))}
               </motion.div>
             )}
-          </AnimatePresence>
         </div>
       </div>
     </div>

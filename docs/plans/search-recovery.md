@@ -117,7 +117,8 @@
     - NTE 공략 목록에 "캐릭터 세팅 공략" 24편을 앱과 초기 HTML 모두에 추가했다(제목·검수일만, 새 문장 없음).
     - `hsr-hub/utils/characterRoute.ts`, `ww-hub/utils/characterRoute.ts`가 이름·id를 공개 주소로 바꾼다. 파티·티어표·SynergyDeck이 이를 쓴다. 상세 페이지가 없는 WW 캐릭터(Notion 전용 3명)는 링크 없이 표시한다.
     - HSR 캐릭터 요약에 `routeId`(파일 이름)를 기록하고 상세 페이지가 이를 인식한다. `trailblazer_fire`·`trailblazer_physical` 주소는 공개 주소로 301 이동한다.
-  - 남은 문제: HSR 티어표가 운영·로컬 모두 캐릭터를 하나도 표시하지 않는다(데이터 로딩 문제로 보임, 미조사). SynergyDeck 링크는 브라우저에서 표시되는 화면을 찾지 못해 타입 검사로만 확인했다.
+  - HSR 티어표가 캐릭터를 하나도 표시하지 않던 문제는 고쳤다(2026-11-09). 데이터는 정상으로 불러왔지만 `AnimatePresence mode="wait"`에서 로딩 화면의 퇴장 애니메이션이 끝나지 않아 목록이 나타나지 않았다. 로딩 화면 전환 애니메이션을 없앴다. 고친 뒤 헤드리스 Chrome에서 94명이 표시되고 등급별 인원과 이름이 Supabase `chaos` 데이터와 같았다.
+  - 남은 문제: SynergyDeck 링크는 브라우저에서 표시되는 화면을 찾지 못해 타입 검사로만 확인했다.
 - [ ] R4. 실적 점검 스크립트
   - Search Console API 읽기 전용으로 주별 클릭·노출, 그룹별 노출 URL 수, 대표 URL 검사 결과를 출력한다.
   - 기존 `scripts/analyze-seo.js`는 추적 파일(`analytics/seo-report-latest.*`)을 덮어쓰고 속성이 `pages.dev`로 고정되어 있다. 새 스크립트는 파일을 쓰지 않고 화면에만 출력한다.
