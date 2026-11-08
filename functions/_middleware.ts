@@ -122,6 +122,19 @@ function legacyLanguageRedirect(requestUrl: string): Response | null {
   return new Response(null, { status: 301, headers });
 }
 
+// HTML and other unhashed files must be revalidated so a deploy is picked up at
+// once. This used to be a global `/*` rule in public/_headers, but Pages merges
+// matching rules, so hashed /assets JS and CSS were served with
+// "no-cache, ..., immutable" and revalidated on every visit. Apply it here to
+// static responses that are not already marked immutable instead.
+function withRevalidation(response: Response): Response {
+  const cacheControl = response.headers.get('Cache-Control') || '';
+  if (/\bimmutable\b/i.test(cacheControl) || /(?:^|,)\s*(?:private|no-store|no-cache)\b/i.test(cacheControl)) return response;
+  const headers = new Headers(response.headers);
+  headers.set('Cache-Control', 'no-cache, must-revalidate');
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
+
 const handleRequest = async (context: PagesFunctionContext): Promise<Response> => {
   const url = new URL(context.request.url);
   // Consolidate the former production domain while preserving each URL's path and query.
@@ -207,14 +220,14 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
           const assetUrl = new URL(currClean + '/' + url.search, url.origin);
           const assetRes = await context.env.ASSETS.fetch(new Request(assetUrl.toString(), context.request));
           if (assetRes.status === 200) {
-            return assetRes;
+            return withRevalidation(assetRes);
           }
 
           // Fallback: try fetching .html file directly
           const htmlUrl = new URL(currClean + '.html' + url.search, url.origin);
           const htmlRes = await context.env.ASSETS.fetch(new Request(htmlUrl.toString(), context.request));
           if (htmlRes.status === 200) {
-            return htmlRes;
+            return withRevalidation(htmlRes);
           }
         }
       } catch {
@@ -223,7 +236,7 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
     }
   }
 
-  return response;
+  return withRevalidation(response);
 };
 
 export const onRequest = async (context: PagesFunctionContext): Promise<Response> =>

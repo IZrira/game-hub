@@ -78,6 +78,29 @@ describe('Pages Function security response policy', () => {
     expect(response.headers.get('Cache-Control')).toBe('no-store');
   });
 
+  it('does not put a global Cache-Control rule in public/_headers (Pages would merge it into immutable assets)', () => {
+    const block = readFileSync('public/_headers', 'utf8').split(/\r?\n\s*\r?\n/)[0];
+    expect(block).not.toMatch(/Cache-Control/i);
+  });
+
+  it.each([
+    ['/gallery/hsr', 'text/html; charset=utf-8', null],
+    ['/robots.txt', 'text/plain', null],
+    ['/sitemap.xml', 'application/xml', 'public, max-age=0, must-revalidate'],
+  ] as const)('makes static %s revalidate on every request', async (path, type, cache) => {
+    const response = await onRequest({ request: new Request(`https://riragamehub.com${path}`),
+      next: async () => new Response('ok', { headers: { 'Content-Type': type, ...(cache ? { 'Cache-Control': cache } : {}) } }),
+    });
+    expect(response.headers.get('Cache-Control')).toBe('no-cache, must-revalidate');
+  });
+
+  it('keeps immutable caching on hashed JS without adding no-cache', async () => {
+    const response = await onRequest({ request: new Request('https://riragamehub.com/assets/index-CSuvArXa.js'),
+      next: async () => new Response('', { headers: { 'Content-Type': 'text/javascript', 'Cache-Control': 'public, max-age=31536000, immutable' } }),
+    });
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=31536000, immutable');
+  });
+
   it.each(['private, max-age=0', 'no-store'])('never replaces downstream %s with a public immutable cache', async cache => {
     const response = await onRequest({ request: new Request('https://riragamehub.com/assets/data/hsr/characters/feixiao.abcdef123456.json'),
       next: async () => new Response('{}', { headers: { 'Content-Type': 'application/json', 'Cache-Control': cache } }),
