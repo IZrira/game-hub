@@ -20,7 +20,7 @@ describe('WW party compact introduction', () => {
     expect(guidance).not.toBeNull();
     expect(guidance!.hasAttribute('open')).toBe(false);
     expect(guidance!.textContent).toContain('본 가이드는 추천 조합일 뿐이며, 상황에 따라 유동적으로 변경될 수 있습니다.');
-    expect(screen.getByPlaceholderText('파티명, 설명 검색...')).toBeTruthy();
+    expect(screen.getByPlaceholderText('캐릭터, 파티명 검색...')).toBeTruthy();
     expect(screen.getByRole('heading', { name: '기염 하이퍼캐리' })).toBeTruthy();
   });
 });
