@@ -1321,12 +1321,11 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
   const narrativeSummaryHtml = generateNarrativeSummaryHtml(normData);
 
   let html = `<article>\n`;
-  html += `<h1>명조 ${escapeHtml(name)} 상세 정보 &amp; 종결 육성 가이드</h1>\n`;
+  html += `<h1>명조 ${escapeHtml(name)} 캐릭터 정보</h1>\n`;
   html += `<p><strong>분류:</strong> ${escapeHtml(normData.rarityStr)}${escapeHtml(normData.attributeStr)}${escapeHtml(normData.typeStr)} | <strong>게임:</strong> 명조: 워더링 웨이브</p>\n`;
   if (briefInfo) {
     html += `<p>${escapeHtml(briefInfo).replace(/\n/g, '<br/>')}</p>\n`;
   }
-  html += narrativeSummaryHtml;
 
   // 1. Base Stats
   if (char?.baseStats) {
@@ -1336,54 +1335,6 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
     if (lv90['기초 공격력']) html += `<li><strong>기초 공격력:</strong> ${escapeHtml(lv90['기초 공격력'])}</li>\n`;
     if (lv90['기초 방어력']) html += `<li><strong>기초 방어력:</strong> ${escapeHtml(lv90['기초 방어력'])}</li>\n`;
     html += `</ul>\n`;
-  }
-
-  // 2. Recommended Weapons & Echoes with clickable links
-  if (bestWeapons.length > 0) {
-    html += `<h2>추천 무기 순위</h2>\n<ol>\n`;
-    bestWeapons.forEach(w => {
-      const noteStr = w.note ? ` (${escapeHtml(w.note)})` : '';
-      const weaponRoute = `/gallery/ww/weapon/${encodeURIComponent(w.name)}`;
-      const link = globalSitemapRouteSet.has(weaponRoute)
-        ? `<a href="${weaponRoute}">${escapeHtml(w.name)}</a>`
-        : escapeHtml(w.name);
-      html += `<li><strong>[${w.rank || ''}순위]</strong> ${link}${noteStr}</li>\n`;
-    });
-    html += `</ol>\n`;
-  }
-
-  if (bestGear.length > 0) {
-    html += `<h2>추천 에코 세트</h2>\n<ul>\n`;
-    bestGear.forEach(e => {
-      const echoRoute = `/gallery/ww/echo/${encodeURIComponent(e)}`;
-      const link = globalSitemapRouteSet.has(echoRoute)
-        ? `<a href="${echoRoute}">${escapeHtml(e)}</a>`
-        : escapeHtml(e);
-      html += `<li>${link}</li>\n`;
-    });
-    html += `</ul>\n`;
-  }
-
-  // 3. Recommended Parties
-  if (matchedParties.length > 0) {
-    html += `<h2>추천 파티 조합</h2>\n`;
-    matchedParties.forEach(p => {
-      const memberLinks = (p.members || []).map(m => {
-        const memberId = globalWwNameToIdMap.get(m.trim()) || globalWwNameToIdMap.get(m);
-        const memberRoute = memberId ? `/gallery/ww/character/${encodeURIComponent(memberId)}` : null;
-        if (memberRoute && globalSitemapRouteSet.has(memberRoute)) {
-          return `<a href="${memberRoute}">${escapeHtml(m)}</a>`;
-        }
-        return escapeHtml(m);
-      }).join(', ');
-      html += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
-    });
-  }
-
-  // 4. Guide Link
-  const guideRoute = `/gallery/ww/character/${encodeURIComponent(id)}/guide`;
-  if (guide && globalSitemapRouteSet.has(guideRoute)) {
-    html += `<p><a href="${guideRoute}"><strong>${escapeHtml(name)} 종결 세팅 및 무기·에코 공략 가이드 전문 보기</strong></a></p>\n`;
   }
 
   // 5. Skills
@@ -1419,6 +1370,69 @@ function generateWwCharacterHtml(id, wwGuidesMap, wwPartiesList) {
       });
       html += `</ul>\n`;
     }
+  }
+
+  // Setting content comes after the character data (search recovery D2): the
+  // detail page is the character reference and the guide is the setting page.
+  // With a guide, keep only the summary and links; without one, keep it all.
+  let setting = '';
+  // 2. Recommended Weapons & Echoes with clickable links
+  if (bestWeapons.length > 0) {
+    setting += `<h2>추천 무기 순위</h2>\n<ol>\n`;
+    bestWeapons.forEach(w => {
+      const noteStr = w.note ? ` (${escapeHtml(w.note)})` : '';
+      const weaponRoute = `/gallery/ww/weapon/${encodeURIComponent(w.name)}`;
+      const link = globalSitemapRouteSet.has(weaponRoute)
+        ? `<a href="${weaponRoute}">${escapeHtml(w.name)}</a>`
+        : escapeHtml(w.name);
+      setting += `<li><strong>[${w.rank || ''}순위]</strong> ${link}${noteStr}</li>\n`;
+    });
+    setting += `</ol>\n`;
+  }
+
+  if (bestGear.length > 0) {
+    setting += `<h2>추천 에코 세트</h2>\n<ul>\n`;
+    bestGear.forEach(e => {
+      const echoRoute = `/gallery/ww/echo/${encodeURIComponent(e)}`;
+      const link = globalSitemapRouteSet.has(echoRoute)
+        ? `<a href="${echoRoute}">${escapeHtml(e)}</a>`
+        : escapeHtml(e);
+      setting += `<li>${link}</li>\n`;
+    });
+    setting += `</ul>\n`;
+  }
+
+  // 3. Recommended Parties
+  if (matchedParties.length > 0) {
+    setting += `<h2>추천 파티 조합</h2>\n`;
+    matchedParties.forEach(p => {
+      const memberLinks = (p.members || []).map(m => {
+        const memberId = globalWwNameToIdMap.get(m.trim()) || globalWwNameToIdMap.get(m);
+        const memberRoute = memberId ? `/gallery/ww/character/${encodeURIComponent(memberId)}` : null;
+        if (memberRoute && globalSitemapRouteSet.has(memberRoute)) {
+          return `<a href="${memberRoute}">${escapeHtml(m)}</a>`;
+        }
+        return escapeHtml(m);
+      }).join(', ');
+      setting += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
+    });
+  }
+
+  const guideRoute = `/gallery/ww/character/${encodeURIComponent(id)}/guide`;
+  html += narrativeSummaryHtml;
+  if (guide && globalSitemapRouteSet.has(guideRoute)) {
+    const linkList = (label, items, kind) => items.length
+      ? `<li><strong>${label}:</strong> ${items.map(item => {
+        const route = `/gallery/ww/${kind}/${encodeURIComponent(item)}`;
+        return globalSitemapRouteSet.has(route) ? `<a href="${route}">${escapeHtml(item)}</a>` : escapeHtml(item);
+      }).join(', ')}</li>\n`
+      : '';
+    html += `<ul>\n${linkList('추천 무기', bestWeapons.slice(0, 3).map(weapon => weapon.name), 'weapon')}${linkList('추천 에코 세트', bestGear, 'echo')}`
+      + (matchedParties.length ? `<li><strong>추천 파티:</strong> ${matchedParties.map(party => escapeHtml(party.name)).join(', ')}</li>\n` : '')
+      + `</ul>\n`;
+    html += `<p><a href="${guideRoute}"><strong>${escapeHtml(name)} 무기·에코 세팅 공략 전문 보기</strong></a></p>\n`;
+  } else {
+    html += setting;
   }
 
   html += `<p><a href="/gallery/ww">명조 공명자 목록으로 돌아가기</a></p>\n`;
@@ -1491,12 +1505,11 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
   const narrativeSummaryHtml = generateNarrativeSummaryHtml(normData);
 
   let html = `<article>\n`;
-  html += `<h1>${escapeHtml(name)} 상세 정보 &amp; 종결 육성 가이드</h1>\n`;
+  html += `<h1>${escapeHtml(name)} 캐릭터 정보</h1>\n`;
   html += `<p><strong>분류:</strong> ${escapeHtml(normData.rarityStr)}${escapeHtml(normData.attributeStr)}${escapeHtml(normData.typeStr)} | <strong>게임:</strong> 붕괴: 스타레일</p>\n`;
   if (briefInfo) {
     html += `<p>${escapeHtml(briefInfo).replace(/\n/g, '<br/>')}</p>\n`;
   }
-  html += narrativeSummaryHtml;
 
   // 1. Base Stats
   if (char?.baseStats) {
@@ -1508,70 +1521,6 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
     if (char.baseStats.speed) html += `<li><strong>기본 속도:</strong> ${escapeHtml(char.baseStats.speed)}</li>\n`;
     if (char.baseStats.energy) html += `<li><strong>에너지 최대치:</strong> ${escapeHtml(char.baseStats.energy)}</li>\n`;
     html += `</ul>\n`;
-  }
-
-  // 2. Recommended Equipment (Light Cones, Relics, Ornaments) with clickable links
-  if (bestLightCones.length > 0) {
-    html += `<h2>추천 광추 순위</h2>\n<ol>\n`;
-    bestLightCones.forEach(lc => {
-      const noteStr = lc.note ? ` (${escapeHtml(lc.note)})` : '';
-      const lcRoute = `/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}`;
-      const link = globalSitemapRouteSet.has(lcRoute)
-        ? `<a href="${lcRoute}">${escapeHtml(lc.name)}</a>`
-        : escapeHtml(lc.name);
-      html += `<li><strong>[${lc.rank}순위]</strong> ${link}${noteStr}</li>\n`;
-    });
-    html += `</ol>\n`;
-  }
-
-  if (bestRelics.length > 0 || bestOrnaments.length > 0) {
-    html += `<h2>추천 유물 및 차원 장신구 세팅</h2>\n`;
-    if (bestRelics.length > 0) {
-      html += `<h3>추천 터널 유물</h3>\n<ul>\n`;
-      bestRelics.forEach(r => {
-        const noteStr = r.note ? ` (${escapeHtml(r.note)})` : '';
-        const relicRoute = `/gallery/hsr/relic/${encodeURIComponent(r.name)}`;
-        const link = globalSitemapRouteSet.has(relicRoute)
-          ? `<a href="${relicRoute}">${escapeHtml(r.name)}</a>`
-          : escapeHtml(r.name);
-        html += `<li>${link}${noteStr}</li>\n`;
-      });
-      html += `</ul>\n`;
-    }
-    if (bestOrnaments.length > 0) {
-      html += `<h3>추천 차원 장신구</h3>\n<ul>\n`;
-      bestOrnaments.forEach(o => {
-        const noteStr = o.note ? ` (${escapeHtml(o.note)})` : '';
-        const ornamentRoute = `/gallery/hsr/ornament/${encodeURIComponent(o.name)}`;
-        const link = globalSitemapRouteSet.has(ornamentRoute)
-          ? `<a href="${ornamentRoute}">${escapeHtml(o.name)}</a>`
-          : escapeHtml(o.name);
-        html += `<li>${link}${noteStr}</li>\n`;
-      });
-      html += `</ul>\n`;
-    }
-  }
-
-  // 3. Recommended Parties
-  if (matchedParties.length > 0) {
-    html += `<h2>추천 파티 조합</h2>\n`;
-    matchedParties.forEach(p => {
-      const memberLinks = (p.members || []).map(m => {
-        const memberId = globalHsrNameToIdMap.get(m.trim()) || globalHsrNameToIdMap.get(m);
-        const memberRoute = memberId ? `/gallery/hsr/character/${encodeURIComponent(memberId)}` : null;
-        if (memberRoute && globalSitemapRouteSet.has(memberRoute)) {
-          return `<a href="${memberRoute}">${escapeHtml(m)}</a>`;
-        }
-        return escapeHtml(m);
-      }).join(', ');
-      html += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
-    });
-  }
-
-  // 4. Dedicated Guide Link
-  const guideRoute = `/gallery/hsr/character/${encodeURIComponent(id)}/guide`;
-  if (guide && globalSitemapRouteSet.has(guideRoute)) {
-    html += `<p><a href="${guideRoute}"><strong>${escapeHtml(name)} 종결 세팅 및 육성 공략 가이드 전문 보기</strong></a></p>\n`;
   }
 
   // 5. Skills
@@ -1610,6 +1559,85 @@ function generateHsrCharacterHtml(id, hsrGuidesMap, hsrPartiesList) {
       });
       html += `</ul>\n`;
     }
+  }
+
+  // Setting content comes after the character data (search recovery D2): the
+  // detail page is the character reference and the guide is the setting page.
+  // With a guide, keep only the summary and links; without one, keep it all.
+  let setting = '';
+  // 2. Recommended Equipment (Light Cones, Relics, Ornaments) with clickable links
+  if (bestLightCones.length > 0) {
+    setting += `<h2>추천 광추 순위</h2>\n<ol>\n`;
+    bestLightCones.forEach(lc => {
+      const noteStr = lc.note ? ` (${escapeHtml(lc.note)})` : '';
+      const lcRoute = `/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}`;
+      const link = globalSitemapRouteSet.has(lcRoute)
+        ? `<a href="${lcRoute}">${escapeHtml(lc.name)}</a>`
+        : escapeHtml(lc.name);
+      setting += `<li><strong>[${lc.rank}순위]</strong> ${link}${noteStr}</li>\n`;
+    });
+    setting += `</ol>\n`;
+  }
+
+  if (bestRelics.length > 0 || bestOrnaments.length > 0) {
+    setting += `<h2>추천 유물 및 차원 장신구 세팅</h2>\n`;
+    if (bestRelics.length > 0) {
+      setting += `<h3>추천 터널 유물</h3>\n<ul>\n`;
+      bestRelics.forEach(r => {
+        const noteStr = r.note ? ` (${escapeHtml(r.note)})` : '';
+        const relicRoute = `/gallery/hsr/relic/${encodeURIComponent(r.name)}`;
+        const link = globalSitemapRouteSet.has(relicRoute)
+          ? `<a href="${relicRoute}">${escapeHtml(r.name)}</a>`
+          : escapeHtml(r.name);
+        setting += `<li>${link}${noteStr}</li>\n`;
+      });
+      setting += `</ul>\n`;
+    }
+    if (bestOrnaments.length > 0) {
+      setting += `<h3>추천 차원 장신구</h3>\n<ul>\n`;
+      bestOrnaments.forEach(o => {
+        const noteStr = o.note ? ` (${escapeHtml(o.note)})` : '';
+        const ornamentRoute = `/gallery/hsr/ornament/${encodeURIComponent(o.name)}`;
+        const link = globalSitemapRouteSet.has(ornamentRoute)
+          ? `<a href="${ornamentRoute}">${escapeHtml(o.name)}</a>`
+          : escapeHtml(o.name);
+        setting += `<li>${link}${noteStr}</li>\n`;
+      });
+      setting += `</ul>\n`;
+    }
+  }
+
+  // 3. Recommended Parties
+  if (matchedParties.length > 0) {
+    setting += `<h2>추천 파티 조합</h2>\n`;
+    matchedParties.forEach(p => {
+      const memberLinks = (p.members || []).map(m => {
+        const memberId = globalHsrNameToIdMap.get(m.trim()) || globalHsrNameToIdMap.get(m);
+        const memberRoute = memberId ? `/gallery/hsr/character/${encodeURIComponent(memberId)}` : null;
+        if (memberRoute && globalSitemapRouteSet.has(memberRoute)) {
+          return `<a href="${memberRoute}">${escapeHtml(m)}</a>`;
+        }
+        return escapeHtml(m);
+      }).join(', ');
+      setting += `<section><h3>${escapeHtml(p.name)}</h3><p>${memberLinks}</p>${p.description ? `<p>${escapeHtml(p.description)}</p>` : ''}</section>\n`;
+    });
+  }
+
+  const guideRoute = `/gallery/hsr/character/${encodeURIComponent(id)}/guide`;
+  html += narrativeSummaryHtml;
+  if (guide && globalSitemapRouteSet.has(guideRoute)) {
+    const linkList = (label, items, kind) => items.length
+      ? `<li><strong>${label}:</strong> ${items.map(item => {
+        const route = `/gallery/hsr/${kind}/${encodeURIComponent(item.name)}`;
+        return globalSitemapRouteSet.has(route) ? `<a href="${route}">${escapeHtml(item.name)}</a>` : escapeHtml(item.name);
+      }).join(', ')}</li>\n`
+      : '';
+    html += `<ul>\n${linkList('추천 광추', bestLightCones.slice(0, 3), 'lightcone')}${linkList('추천 터널 유물', bestRelics, 'relic')}${linkList('추천 차원 장신구', bestOrnaments, 'ornament')}`
+      + (matchedParties.length ? `<li><strong>추천 파티:</strong> ${matchedParties.map(party => escapeHtml(party.name)).join(', ')}</li>\n` : '')
+      + `</ul>\n`;
+    html += `<p><a href="${guideRoute}"><strong>${escapeHtml(name)} 장비·파티 세팅 공략 전문 보기</strong></a></p>\n`;
+  } else {
+    html += setting;
   }
 
   html += `<p><a href="/gallery/hsr">붕괴: 스타레일 캐릭터 목록으로 돌아가기</a></p>\n`;

@@ -720,7 +720,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                     className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-[10px] font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
                     style={{ backgroundColor: theme.primary }}
                   >
-                    <BookOpen size={14} /> {t('상세 공략')}
+                    <BookOpen size={14} /> {t('세팅 공략')}
                   </Link>}
                 </div>
               </div>
