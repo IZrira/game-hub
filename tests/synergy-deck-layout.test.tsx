@@ -24,7 +24,8 @@ describe('detail recommendation card sizing', () => {
     const { container } = render(<MemoryRouter><SynergyDeck characterName="test" gameId={gameId} /></MemoryRouter>);
     const portraits = screen.getAllByAltText(/포트레이트/);
     expect(portraits).toHaveLength(gameId === 'ww' ? 3 : 4);
-    const memberGrid = portraits[0].closest('a')!.parentElement!.parentElement!;
+    // The portrait box is a link only for characters with a published page (see characterRoute).
+    const memberGrid = portraits[0].closest('[class~="aspect-[3/4]"]')!.parentElement!.parentElement!;
     expect(memberGrid.classList.contains('grid-cols-2')).toBe(true);
     expect(memberGrid.classList.contains('mx-auto')).toBe(true);
     expect(memberGrid.classList.contains(gameId === 'ww' ? 'max-w-2xl' : 'max-w-4xl')).toBe(true);
@@ -33,6 +34,11 @@ describe('detail recommendation card sizing', () => {
     expect(container.querySelector('section')?.className).toContain('w-full');
     expect(screen.getByText('설명 유지')).toBeTruthy();
     fireEvent.click(screen.getAllByRole('button', { name: '+ 대체 1명' })[0]);
-    expect(screen.getByRole('link', { name: /대체 캐릭터/ })).toBeTruthy();
+    // Mocked names have no HSR/WW detail page, so they must not become dead links; NTE links by name.
+    if (gameId === 'nte') expect(screen.getByRole('link', { name: /대체 캐릭터/ })).toBeTruthy();
+    else {
+      expect(screen.getByText('대체 캐릭터')).toBeTruthy();
+      expect(screen.queryByRole('link', { name: /대체 캐릭터/ })).toBeNull();
+    }
   });
 });

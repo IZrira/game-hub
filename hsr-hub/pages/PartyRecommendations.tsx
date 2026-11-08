@@ -7,6 +7,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import PartyBrowser, { PartyCardData } from '../../common-hub/components/PartyBrowser';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
+import { getHsrCharacterPath } from '../utils/characterRoute';
 
 const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images';
 const HSR_ACCENT = '#7E30E1';
@@ -128,7 +129,8 @@ const PartyRecommendations: React.FC = () => {
       const file = trailblazerArt ? 'art01-01.webp' : 'art01.webp';
       return `${BASE_IMAGE_URL}/캐릭터/${encodeURIComponent(char.folderName.normalize('NFC'))}/${file}`;
     };
-    const href = (name: string) => `/gallery/${gameId}/character/${encodeURIComponent(name)}`;
+    // Detail URLs use the English id; a Korean name in the path is a 404.
+    const href = (name: string) => getHsrCharacterPath(name);
     return partiesList.map(party => ({
       id: party.id,
       name: party.name,
@@ -153,7 +155,7 @@ const PartyRecommendations: React.FC = () => {
         })),
       })),
     }));
-  }, [partiesList, charMap, gameId, t]);
+  }, [partiesList, charMap, t]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-24 font-sans">

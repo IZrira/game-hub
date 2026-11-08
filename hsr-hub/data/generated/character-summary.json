@@ -704,6 +704,7 @@
   },
   {
     "id": "trailblazer_fire",
+    "routeId": "trailblazer_preservation",
     "name": "개척자 (보존)",
     "gameId": "hsr",
     "folderName": "개척자 (보존)",
@@ -715,6 +716,7 @@
   },
   {
     "id": "trailblazer_physical",
+    "routeId": "trailblazer_destruction",
     "name": "개척자 (파멸)",
     "gameId": "hsr",
     "folderName": "개척자 (파멸)",

@@ -11,6 +11,7 @@ import CHARACTER_DATA from '../data/generated/character-summary.json';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import { getHsrCharacterPath } from '../utils/characterRoute';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { supabase } from '../../common-hub/lib/supabase';
 
@@ -72,10 +73,14 @@ const TierSkeleton = () => (
 
 const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter, gameId: string | undefined, getIconUrl: (char: TierCharacter) => string }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const href = getHsrCharacterPath(char.name) || getHsrCharacterPath(char.id);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const CardShell: any = href ? Link : 'div';
 
   return (
-    <Link
-      to={`/gallery/${gameId}/character/${char.name}`}
+    // Detail URLs use the English id; a Korean name in the path is a 404.
+    <CardShell
+      {...(href ? { to: href } : {})}
       className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/5 hover:border-brand-primary/50 transition-all shadow-lg"
     >
       {!isLoaded && (
@@ -129,7 +134,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
           {char.name}
         </p>
       </div>
-    </Link>
+    </CardShell>
   );
 });
 
@@ -351,10 +356,10 @@ const TierList: React.FC = () => {
     const items: Array<{ name: string; url: string; position: number }> = [];
     filteredTierList.forEach(group => {
       group.characters.forEach(char => {
-        if (items.some(i => i.name === char.name)) return;
+        if (items.some(i => i.name === char.name) || !(getHsrCharacterPath(char.name) || getHsrCharacterPath(char.id))) return;
         items.push({
           name: char.name,
-          url: `/gallery/${gameId}/character/${char.name}`,
+          url: getHsrCharacterPath(char.name) || getHsrCharacterPath(char.id) || '',
           position: position++
         });
       });

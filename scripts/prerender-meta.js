@@ -2829,6 +2829,11 @@ function runPrerender() {
   const guideGameLabels = { hsr: '붕괴: 스타레일', ww: '명조', nte: '이환', aniimo: '애니모' };
   [...new Set(guideArticles.map(article => article.gameId))].forEach(gameId => {
     const gameGuides = guideArticles.filter(article => article.gameId === gameId && !article.characterId);
+    // Character build guides are listed too, so they are linked from the index and not only from each character page.
+    const characterGuides = guideArticles.filter(article => article.gameId === gameId && article.characterId);
+    const characterGuideHtml = characterGuides.length > 0
+      ? `<section><h2>캐릭터 세팅 공략</h2><p>${characterGuides.length}편 · 캐릭터별 장비와 육성 우선순위</p><ul>${characterGuides.map(article => `<li><a href="/gallery/${gameId}/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a> <small>최종 검수 ${escapeHtml(article.reviewedAt || article.publishedAt || '확인 중')}</small></li>`).join('')}</ul></section>`
+      : '';
     const gameLabel = guideGameLabels[gameId] || gameId;
     const landing = guideLanding[gameId];
     const latestReviewedAt = gameGuides.map(article => article.reviewedAt || article.publishedAt).filter(Boolean).sort().at(-1) || '확인 중';
@@ -2851,7 +2856,7 @@ function runPrerender() {
       `${gameLabel}의 공식 정보와 Rira 분석을 구분하고 적용 버전과 검수일을 표시한 캐릭터 육성, 전투 및 시스템 공략을 확인하세요.`,
       `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
-      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>${escapeHtml(GUIDE_REVIEW_POLICY)}</p><dl><dt>공개 공략</dt><dd>${gameGuides.length}편</dd><dt>최근 검수일</dt><dd>${escapeHtml(latestReviewedAt)}</dd></dl><h2>검수 완료된 공략</h2><ul>${listHtml}</ul>${criteriaHtml}${navigationHtml}</article>`
+      `<article><p><a href="/gallery/${gameId}">${escapeHtml(gameLabel)} 허브</a></p><h1>${escapeHtml(gameLabel)} 공략</h1><p>${escapeHtml(GUIDE_REVIEW_POLICY)}</p><dl><dt>공개 공략</dt><dd>${gameGuides.length}편</dd><dt>최근 검수일</dt><dd>${escapeHtml(latestReviewedAt)}</dd></dl><h2>검수 완료된 공략</h2><ul>${listHtml}</ul>${characterGuideHtml}${criteriaHtml}${navigationHtml}</article>`
     );
     count++;
   });

@@ -10,6 +10,19 @@ import {
   UnifiedParty 
 } from '../utils/synergyManager';
 import { getCharacterArtPath } from '../utils/imageHelper';
+import { getHsrCharacterPath } from '../../hsr-hub/utils/characterRoute';
+import { getWwCharacterPath } from '../../ww-hub/utils/characterRoute';
+
+// HSR and WW detail URLs use English ids; NTE uses the Korean name. A party
+// member without a published page renders without a link instead of a 404.
+const characterPath = (gameId: 'hsr' | 'ww' | 'nte', folderName: string) =>
+  gameId === 'hsr' ? getHsrCharacterPath(folderName)
+    : gameId === 'ww' ? getWwCharacterPath(folderName)
+      : `/gallery/nte/character/${encodeURIComponent(folderName)}`;
+
+function MaybeLink({ to, children, ...rest }: { to?: string; children: React.ReactNode; className?: string }) {
+  return to ? <Link to={to} {...rest}>{children}</Link> : <div {...rest}>{children}</div>;
+}
 import { ChevronDown, ChevronUp, Users, Sparkles, CheckCircle2, AlertCircle, Share2, Camera, Link as LinkIcon, Check } from 'lucide-react';
 
 export interface SynergyDeckProps {
@@ -274,8 +287,8 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                 )}
 
                 {/* Member Portrait */}
-                <Link 
-                  to={`/gallery/${gameId}/character/${encodeURIComponent(member.folderName)}`}
+                <MaybeLink
+                  to={characterPath(gameId, member.folderName)}
                   className="relative w-full aspect-[3/4] rounded-[14px] overflow-hidden mb-2.5 bg-black/40 border border-white/5 block group-hover:border-white/20 transition-colors"
                 >
                   <LazyImage 
@@ -297,7 +310,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                       </span>
                     )}
                   </div>
-                </Link>
+                </MaybeLink>
 
                 {/* Role Badge */}
                 <div className="mb-2">
@@ -336,9 +349,9 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                           {substitutes.map((sub, sIdx) => {
                             const subArtPath = getCharacterArtPath(gameId, sub.folderName, 'art01');
                             return (
-                              <Link 
-                                key={sIdx} 
-                                to={`/gallery/${gameId}/character/${encodeURIComponent(sub.folderName)}`}
+                              <MaybeLink
+                                key={sIdx}
+                                to={characterPath(gameId, sub.folderName)}
                                 className="flex items-center gap-1.5 bg-white/5 pr-2 rounded-full border border-white/10 overflow-hidden hover:bg-white/20 transition-all hover:scale-105"
                               >
                                 <div className="w-5 h-5 rounded-full overflow-hidden bg-black/40 shrink-0">
@@ -349,7 +362,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                                   />
                                 </div>
                                 <span className="text-[10px] font-bold text-gray-200">{sub.name}</span>
-                              </Link>
+                              </MaybeLink>
                             );
                           })}
                         </div>

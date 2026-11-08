@@ -59,8 +59,13 @@ const readNumericProperty = (source, property) => {
 const hsrCharacterDir = path.join(projectRoot, 'hsr-hub', 'data', 'characters', 'hsr');
 const hsrCharacterSummary = readSourceFiles(hsrCharacterDir).map(file => {
   const source = fs.readFileSync(file, 'utf8');
+  const id = readProperty(source, 'id');
+  // The public URL (sitemap, edge allowlist) uses the file name. Record it when
+  // it differs from the data id, e.g. trailblazer_preservation -> trailblazer_fire.
+  const routeId = path.basename(file, '.ts');
   return {
-    id: readProperty(source, 'id'),
+    id,
+    ...(routeId !== id ? { routeId } : {}),
     name: readProperty(source, 'name'),
     gameId: 'hsr',
     folderName: readProperty(source, 'folderName') || readProperty(source, 'name'),

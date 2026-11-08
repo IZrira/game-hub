@@ -106,9 +106,18 @@
   - 후속 후보(사용자 승인 후 별도 항목으로)
     - [x] R2-1. 광추 상세는 해당 광추 한 건의 해시 JSON(최대 8.6KB)만 불러온다. `scripts/generate-hsr-lightcone-runtime.js`가 172개 파일과 매니페스트를 만든다. 추천 캐릭터 섹션은 전체 캐릭터 데이터 대신 `character-summary.json`을 쓴다. 광추 4개·장신구 1개의 렌더링 텍스트와 색인 여부가 운영 사이트와 같았다(2026-11-08). 유물·장신구 상세의 데이터 분리는 아직 하지 않았다.
     - [x] R2-2. `_headers`의 전역 `no-cache`를 없애고, `functions/_middleware.ts`가 `immutable`이 아닌 정적 응답(HTML·이미지·robots·사이트맵 등)에만 `no-cache, must-revalidate`를 붙인다. 해시 JS·CSS는 `immutable`만 받는다. 보안 헤더는 그대로다(2026-11-08).
-- [ ] R3. 성과 그룹 내부 링크 강화
-  - NTE 공략, 애니모 서식지, HSR·WW 가이드 같은 성과 있는 페이지끼리 연결을 늘린다. 예: 서식지 ↔ 서식 애니모, 공략 ↔ 추천 파티 ↔ 파티원 공략.
-  - 이미 있는 데이터로 만들 수 있는 연결만 넣는다. 새 문장을 지어내지 않는다.
+- [x] R3. 성과 그룹 내부 링크 강화 (2026-11-08)
+  - 점검 결과
+    - 애니모 서식지는 이미 서식 애니모·다른 서식지와 연결되어 있었다.
+    - HSR·WW 가이드의 캐릭터 링크는 정상이었다.
+    - NTE 공략 목록은 일반 공략 3편만 보여 주고 캐릭터 세팅 공략 24편은 목록에 없었다.
+    - HSR·WW 파티 페이지(약 120개)와 WW 티어표(약 57개)의 캐릭터 링크가 한글 이름 주소라 모두 404였다. WW 티어표의 구조화 데이터(ItemList) 주소도 같았다.
+    - HSR 개척자(보존·파멸) 상세는 사이트맵 주소(`trailblazer_preservation` 등)에서 "CHARACTER REGISTRY NOT FOUND"를 보였다. 데이터 id(`trailblazer_fire`)와 파일 이름이 달라서다. id로 만든 링크는 404였다.
+  - 변경
+    - NTE 공략 목록에 "캐릭터 세팅 공략" 24편을 앱과 초기 HTML 모두에 추가했다(제목·검수일만, 새 문장 없음).
+    - `hsr-hub/utils/characterRoute.ts`, `ww-hub/utils/characterRoute.ts`가 이름·id를 공개 주소로 바꾼다. 파티·티어표·SynergyDeck이 이를 쓴다. 상세 페이지가 없는 WW 캐릭터(Notion 전용 3명)는 링크 없이 표시한다.
+    - HSR 캐릭터 요약에 `routeId`(파일 이름)를 기록하고 상세 페이지가 이를 인식한다. `trailblazer_fire`·`trailblazer_physical` 주소는 공개 주소로 301 이동한다.
+  - 남은 문제: HSR 티어표가 운영·로컬 모두 캐릭터를 하나도 표시하지 않는다(데이터 로딩 문제로 보임, 미조사). SynergyDeck 링크는 브라우저에서 표시되는 화면을 찾지 못해 타입 검사로만 확인했다.
 - [ ] R4. 실적 점검 스크립트
   - Search Console API 읽기 전용으로 주별 클릭·노출, 그룹별 노출 URL 수, 대표 URL 검사 결과를 출력한다.
   - 기존 `scripts/analyze-seo.js`는 추적 파일(`analytics/seo-report-latest.*`)을 덮어쓰고 속성이 `pages.dev`로 고정되어 있다. 새 스크립트는 파일을 쓰지 않고 화면에만 출력한다.

@@ -10,7 +10,8 @@ export interface PartyCardCharacter {
   imageUrl: string;
   /** Image to show when every source of imageUrl fails. Without it the image is dimmed. */
   fallbackUrl?: string;
-  href: string;
+  /** Character detail URL. Omit when the character has no published page; it then renders without a link. */
+  href?: string;
   role?: string;
   breakthrough?: string;
   attribute?: string;
@@ -49,6 +50,11 @@ const cleanDescription = (text: string) =>
   text.replace(/\s*\([^)]*대체:[^)]*\)/g, '').replace(/\s*[^)]*대체:[^)]*/g, '').trim();
 const normalize = (text: string) => text.normalize('NFC').replace(/[\s•·]/g, '').toLowerCase();
 
+// Characters without a detail page render the same box without a dead link.
+function CharacterLink({ href, className, children }: { href?: string; className: string; children: React.ReactNode }) {
+  return href ? <Link to={href} className={className}>{children}</Link> : <div className={className}>{children}</div>;
+}
+
 function CharacterImage({ character, className }: { character: PartyCardCharacter; className: string }) {
   const [failed, setFailed] = useState(false);
   const src = failed && character.fallbackUrl ? character.fallbackUrl : character.imageUrl;
@@ -68,14 +74,14 @@ function SubstituteChip({ character }: { character: PartyCardCharacter }) {
   const { t } = useTranslation();
   const breakthrough = shownBreakthrough(character.breakthrough);
   return (
-    <Link
-      to={character.href}
+    <CharacterLink
+      href={character.href}
       className="inline-flex max-w-full items-center gap-1.5 rounded-lg border border-white/10 bg-white/5 py-0.5 pl-0.5 pr-2 text-[11px] leading-5 text-gray-300 transition-colors hover:border-white/30 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-(--party-accent)"
     >
       <CharacterImage character={character} className="h-5 w-5 shrink-0 rounded-full bg-[#171717] object-cover" />
       <span className="break-keep">{t(character.name)}</span>
       {breakthrough && <span className="shrink-0 text-amber-300">{breakthrough}</span>}
-    </Link>
+    </CharacterLink>
   );
 }
 
@@ -85,15 +91,15 @@ function MemberSlot({ member }: { member: PartyCardMember }) {
   const detail = [member.role && t(member.role), member.attribute && `${t(member.attribute)} ${t('속성')}`].filter(Boolean).join(' · ');
   return (
     <li className="min-w-0">
-      <Link
-        to={member.href}
+      <CharacterLink
+        href={member.href}
         className="group block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--party-accent)"
       >
         <div className="aspect-square overflow-hidden rounded-xl border border-white/10 bg-[#171717] transition-colors group-hover:border-white/30">
           <CharacterImage character={member} className="h-full w-full object-cover" />
         </div>
         <p className="mt-2 break-keep text-xs font-bold leading-snug text-white sm:text-sm">{t(member.name)}</p>
-      </Link>
+      </CharacterLink>
       {(detail || breakthrough) && (
         <p className="mt-0.5 break-keep text-[11px] leading-snug text-gray-400">
           {detail}

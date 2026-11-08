@@ -37,6 +37,7 @@ import characterSummary from '../data/generated/detail-character-summary.json';
 import characterManifest from '../data/generated/character-runtime-manifest.json';
 import guideManifest from '../data/generated/guide-runtime-manifest.json';
 import { useHsrRuntime } from '../utils/useHsrRuntime';
+import { getHsrCharacterId } from '../utils/characterRoute';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
@@ -116,7 +117,9 @@ interface CharacterRuntime { character: any; english?: any }
 const CharacterDetail: React.FC = () => {
   const { charName } = useParams<{ charName: string }>();
   const { t, i18n } = useTranslation();
-  const selected = characterSummary.find(c => c.id === charName || c.name === charName || t(c.name) === charName);
+  // The URL segment can be the file name (trailblazer_preservation) rather than the data id.
+  const resolvedId = getHsrCharacterId(charName);
+  const selected = characterSummary.find(c => c.id === resolvedId || c.id === charName || c.name === charName || t(c.name) === charName);
   const url = selected ? (characterManifest as Record<string, string>)[selected.id] : undefined;
   const validate = React.useCallback((value: CharacterRuntime) => value?.character?.id === selected?.id, [selected?.id]);
   const { data, failed, retry } = useHsrRuntime<CharacterRuntime>(url, validate);

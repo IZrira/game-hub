@@ -7,6 +7,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import PartyBrowser, { PartyCardData } from '../../common-hub/components/PartyBrowser';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
+import { getWwCharacterPath } from '../utils/characterRoute';
 import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 
 const BASE_IMAGE_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww images';
@@ -111,7 +112,8 @@ const PartyRecommendations: React.FC = () => {
   }, []);
 
   const cards = useMemo<PartyCardData[]>(() => {
-    const href = (name: string) => `/gallery/${gameId}/character/${encodeURIComponent(name)}`;
+    // Detail URLs use the English slug; Korean names and Notion-only characters have no page.
+    const href = (name: string) => getWwCharacterPath(name);
     return partiesList.map(party => ({
       id: party.id,
       name: party.name,
@@ -134,7 +136,7 @@ const PartyRecommendations: React.FC = () => {
         })),
       })),
     }));
-  }, [partiesList, gameId]);
+  }, [partiesList]);
 
   return (
     <div className="min-h-screen bg-[#050505] text-white pb-24">

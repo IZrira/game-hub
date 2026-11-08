@@ -18,7 +18,10 @@ const GAME_LABELS: Record<string, string> = {
 
 const GuideList: React.FC = () => {
   const { gameId = '' } = useParams<{ gameId: string }>();
-  const guides = getPublishedGuides(gameId).filter(guide => !guide.characterId);
+  const published = getPublishedGuides(gameId);
+  const guides = published.filter(guide => !guide.characterId);
+  // Character build guides were only reachable from each character page; list them here too.
+  const characterGuides = published.filter(guide => guide.characterId);
   const gameLabel = GAME_LABELS[gameId] || gameId;
   const isAniimo = gameId === 'aniimo';
   const landing = guideLanding[gameId as keyof typeof guideLanding];
@@ -36,6 +39,18 @@ const GuideList: React.FC = () => {
           <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-400">{GUIDE_REVIEW_POLICY}</p>
         </section>
         {guides.length > 0 ? <section className="grid gap-5 md:grid-cols-2">{guides.map(article => <Link key={article.slug} to={`/gallery/${gameId}/guides/${article.slug}`} className="group rounded-[28px] border border-white/10 bg-[#121212] p-6 transition hover:border-violet-400/35 hover:bg-white/[0.04]"><BookOpen size={22} className="text-violet-300" /><h2 className="mt-5 text-xl font-black group-hover:text-violet-300">{article.title}</h2><p className="mt-3 text-sm leading-6 text-gray-400">{article.excerpt}</p><div className="mt-6 flex items-center justify-between border-t border-white/5 pt-4 text-[11px] font-bold text-gray-500"><span className="flex flex-col gap-1"><span className="flex items-center gap-2"><CalendarDays size={13} /> 최종 검수 {article.reviewedAt}</span><span>{formatGuideBasis(article.gameId, article.applicableVersion)}</span></span><span className="flex items-center gap-1 text-violet-300">읽기 <ArrowRight size={13} /></span></div></Link>)}</section> : <section className="rounded-3xl border border-amber-300/15 bg-amber-300/[0.04] p-10 text-center"><h2 className="font-black">검수 완료된 공략이 없습니다</h2><p className="mt-3 text-sm text-gray-400">공식 자료와 실제 데이터를 확인한 글부터 순서대로 공개합니다.</p></section>}
+        {characterGuides.length > 0 && <section aria-labelledby="character-guides-heading">
+          <h2 id="character-guides-heading" className="text-xl font-black">캐릭터 세팅 공략</h2>
+          <p className="mt-2 text-sm text-gray-400">{characterGuides.length}편 · 캐릭터별 장비와 육성 우선순위</p>
+          <ul className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {characterGuides.map(article => <li key={article.slug}>
+              <Link to={`/gallery/${gameId}/guides/${article.slug}`} className="group flex h-full flex-col rounded-2xl border border-white/10 bg-[#121212] p-5 transition hover:border-violet-400/35 hover:bg-white/[0.04]">
+                <span className="break-keep font-black leading-snug group-hover:text-violet-300">{article.title}</span>
+                <span className="mt-auto pt-3 text-[11px] font-bold text-gray-500">최종 검수 {article.reviewedAt}</span>
+              </Link>
+            </li>)}
+          </ul>
+        </section>}
         {landing && <section className="rounded-[28px] border border-white/10 bg-[#101010] p-7 sm:p-9">
           <h2 className="text-xl font-black">{gameLabel} 공략을 읽는 기준</h2>
           <p className="mt-3 max-w-4xl text-sm leading-7 text-gray-400">{landing.intro}</p>
