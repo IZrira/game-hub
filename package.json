@@ -28,6 +28,7 @@
     "typecheck": "tsc --noEmit",
     "seo:analyze": "node scripts/analyze-seo.js",
     "seo:audit": "node scripts/audit-prerender-seo.js",
+    "seo:check": "node scripts/check-search-performance.js",
     "perf:audit": "node scripts/audit-performance.js"
   },
   "dependencies": {

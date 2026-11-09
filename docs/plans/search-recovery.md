@@ -120,10 +120,15 @@
     - HSR 캐릭터 요약에 `routeId`(파일 이름)를 기록하고 상세 페이지가 이를 인식한다. `trailblazer_fire`·`trailblazer_physical` 주소는 공개 주소로 301 이동한다.
   - HSR 티어표가 캐릭터를 하나도 표시하지 않던 문제는 고쳤다(2026-11-09). 데이터는 정상으로 불러왔지만 `AnimatePresence mode="wait"`에서 로딩 화면의 퇴장 애니메이션이 끝나지 않아 목록이 나타나지 않았다. 로딩 화면 전환 애니메이션을 없앴다. 고친 뒤 헤드리스 Chrome에서 94명이 표시되고 등급별 인원과 이름이 Supabase `chaos` 데이터와 같았다.
   - 남은 문제: SynergyDeck 링크는 브라우저에서 표시되는 화면을 찾지 못해 타입 검사로만 확인했다.
-- [ ] R4. 실적 점검 스크립트
-  - Search Console API 읽기 전용으로 주별 클릭·노출, 그룹별 노출 URL 수, 대표 URL 검사 결과를 출력한다.
-  - 기존 `scripts/analyze-seo.js`는 추적 파일(`analytics/seo-report-latest.*`)을 덮어쓰고 속성이 `pages.dev`로 고정되어 있다. 새 스크립트는 파일을 쓰지 않고 화면에만 출력한다.
-  - 인증 파일 `google-credentials.json`은 Git에 올리지 않는다(이미 `.gitignore`).
+- [x] R4. 실적 점검 스크립트 (2026-11-09)
+  - 실행: `npm run seo:check` (대표 URL 검사까지: `npm run seo:check -- --inspect`, 기간: `--weeks 8 --days 28`). 인증은 `GOOGLE_APPLICATION_CREDENTIALS` 또는 `google-credentials.json`(Git 제외).
+  - 읽기 전용이다. 파일을 쓰지 않고 화면에만 출력한다. 출력 항목: 주별 클릭·노출, 사이트맵 그룹별 노출 URL 수, D2 세팅 검색어의 상세·세팅 페이지 분포, D1 noindex 장비 중 노출 있는 페이지, 사이트맵 밖 노출 주소, 대표 URL 검사.
+  - 계산 함수는 `scripts/lib/search-performance.js`, 테스트는 `tests/search-performance.test.ts`.
+  - 첫 실행(기준일 2026-11-06)
+    - 사이트맵 URL 792개 중 28일 내 노출 있는 URL 297개.
+    - D2 세팅 검색어: HSR 상세 노출 37·가이드 99, WW 상세 17·가이드 41, NTE 상세 7·공략 113. 적용 전 기준값이다.
+    - 대표 URL 검사: 아케론 상세·가이드 모두 "발견됨 - 현재 색인이 생성되지 않음", 마지막 크롤링 없음. 홈·잔홍 공략·붓꽃 바다는 색인됨.
+    - noindex 장비 중 28일 내 노출이 있는 페이지 23개(최대: 유물 "금단의 열매를 삼킨 이단" 노출 61). 대부분 추천 캐릭터가 없어 2026-11-03(A4)부터 noindex인 장비다. 예외 목록에 넣을지는 사용자 결정이 필요하다.
 
 ### 결정 후 작업
 
@@ -145,7 +150,7 @@
 
 ## 4. 관찰 기준
 
-- 점검 주기: 주 1회(R4 스크립트, 사용자 요청 시 실행). 자동 예약은 만들지 않는다.
+- 점검 주기: 주 1회(`npm run seo:check`, 사용자 요청 시 실행). 자동 예약은 만들지 않는다.
 - 보는 값
   - 주별 노출과 클릭
   - 사이트맵 URL 중 노출 있는 URL 수
