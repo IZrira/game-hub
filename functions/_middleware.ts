@@ -86,6 +86,31 @@ function notFoundResponse(): Response {
   );
 }
 
+/**
+ * Pages answers a request for a file it does not have with the SPA shell
+ * (HTTP 200, text/html). For a hashed chunk from an earlier deploy that made
+ * the browser or Google's renderer receive HTML as JavaScript, and the
+ * `/assets/*.js` rule in _headers even marked it immutable. Report it as a
+ * missing file instead.
+ */
+export function isShellServedForMissingFile(pathname: string, status: number, contentType: string | null): boolean {
+  return status === 200 &&
+    /\.[a-z0-9]{1,8}$/i.test(pathname) &&
+    !/\.html?$/i.test(pathname) &&
+    /\btext\/html\b/i.test(contentType || '');
+}
+
+function missingFileResponse(): Response {
+  return new Response('Not found', {
+    status: 404,
+    headers: {
+      'Content-Type': 'text/plain; charset=utf-8',
+      'Cache-Control': 'no-store',
+      'X-Robots-Tag': 'noindex, nofollow',
+    },
+  });
+}
+
 /** Return the clean canonical URL for legacy language-query requests. */
 export function getLanguageCanonicalUrl(requestUrl: string): string | null {
   const url = new URL(requestUrl);
@@ -194,6 +219,9 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
 
   // 3. Forward request to downstream / static asset pipeline
   const response = await context.next();
+  if (isShellServedForMissingFile(normalizedPath, response.status, response.headers.get('Content-Type'))) {
+    return missingFileResponse();
+  }
 
   // Replace inherited no-cache only for successful content-hashed assets.
   const immutableGuide = /^\/assets\/data\/(?:hsr|ww)\/guides\/[a-z0-9_-]+\.[a-f0-9]{12}\.json$/.test(normalizedPath);

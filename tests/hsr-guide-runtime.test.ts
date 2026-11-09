@@ -141,6 +141,7 @@ it('replaces inherited no-cache only for successful hashed guide JSON, retaining
   }
   for (const [url, status, type] of [[paths.cyrene, 404, 'application/json'], [paths.cyrene, 200, 'text/html'], ['/assets/data/ww/characters/camellya.json', 200, 'application/json']] as const) {
     const response = await onRequest({ request: new Request(`https://riragamehub.com${url}`), next: async () => new Response('{}', { status, headers: { 'Content-Type': type, 'Cache-Control': 'no-cache' } }) });
-    expect(response.headers.get('Cache-Control')).toBe('no-cache');
+    // The app shell served for a missing hashed file becomes an uncached 404.
+    expect(response.headers.get('Cache-Control')).toBe(type === 'text/html' ? 'no-store' : 'no-cache');
   }
 });

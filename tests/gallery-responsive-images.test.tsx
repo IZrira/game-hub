@@ -90,7 +90,8 @@ it('replaces inherited no-cache only for successful hashed WebP thumbnails', asy
   const url = Object.values(manifest)[0].small;
   for (const [status, type, expected] of [[200, 'image/webp', true], [304, 'image/webp', true], [404, 'image/webp', false], [200, 'text/html', false]] as const) {
     const result = await onRequest({ request: new Request(`https://riragamehub.com${url}`), next: async () => new Response(status === 304 ? null : 'image', { status, headers: { 'Content-Type': type, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' } }) });
-    expect(result.headers.get('Cache-Control')).toBe(expected ? 'public, max-age=31536000, immutable' : 'no-cache');
+    expect(result.headers.get('Cache-Control')).toBe(expected ? 'public, max-age=31536000, immutable' : type === 'text/html' ? 'no-store' : 'no-cache');
+    if (type === 'text/html') expect(result.status).toBe(404);
     expect(result.headers.get('X-Content-Type-Options')).toBe('nosniff');
   }
 });

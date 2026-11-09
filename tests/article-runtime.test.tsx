@@ -83,7 +83,9 @@ it('rejects a response for another article', async () => {
 it('caches only successful hashed JSON responses without removing security headers', async () => {
   for (const [status, type, cached] of [[200, 'application/json', true], [304, 'application/json', true], [404, 'application/json', false], [200, 'text/html', false]] as const) {
     const response = await onRequest({ request: new Request(`https://riragamehub.com${urlFor(first)}`), next: async () => new Response(status === 304 ? null : '{}', { status, headers: { 'Content-Type': type, 'Cache-Control': 'no-cache', 'X-Content-Type-Options': 'nosniff' } }) });
-    expect(response.headers.get('Cache-Control')).toBe(cached ? 'public, max-age=31536000, immutable' : 'no-cache');
+    expect(response.headers.get('Cache-Control')).toBe(cached ? 'public, max-age=31536000, immutable' : type === 'text/html' ? 'no-store' : 'no-cache');
+    // The app shell served for a missing hashed file becomes a 404 (stale chunk recovery).
+    if (type === 'text/html') expect(response.status).toBe(404);
     expect(response.headers.get('X-Content-Type-Options')).toBe('nosniff');
   }
 });
