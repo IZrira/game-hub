@@ -8,6 +8,7 @@ import { createUnknownWebp } from './create_unknown_webp.js';
 import { getHsrGuideRegistry, findRegisteredHsrGuide } from './lib/hsr-guide-routes.js';
 import { attachNteGuideAnalysis } from './lib/nte-guide-analysis.js';
 import { loadEquipmentRecommendations } from './lib/equipment-recommendations.js';
+import { submitChangedUrlsToIndexNow } from './lib/indexnow.js';
 
 createUnknownWebp();
 
@@ -348,45 +349,6 @@ function buildUrlNode(locUrl, lastmod, priority, changefreq = 'daily', imageUrls
   return node;
 }
 
-async function submitToIndexNow(urlList) {
-  const isProduction = process.env.NODE_ENV === 'production' ||
-                        process.env.GITHUB_ACTIONS === 'true' ||
-                        process.env.CF_PAGES === '1' ||
-                        process.env.INDEXNOW_FORCE === 'true';
-
-  if (!isProduction) {
-    console.log('Skipping IndexNow submission: Not in a production deployment environment (use INDEXNOW_FORCE=true to force).');
-    return;
-  }
-
-  console.log(`Submitting ${urlList.length} URLs to IndexNow...`);
-
-  const payload = {
-    host: 'riragamehub.com',
-    key: 'b6be7d1e8c7c4b2ca559a4bc5ef4d89a',
-    keyLocation: 'https://riragamehub.com/b6be7d1e8c7c4b2ca559a4bc5ef4d89a.txt',
-    urlList: urlList
-  };
-
-  try {
-    const response = await fetch('https://api.indexnow.org/IndexNow', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (response.ok) {
-      console.log('Successfully submitted all URLs to IndexNow! Bing and Naver will reindex them instantly.');
-    } else {
-      console.error(`IndexNow submission returned status ${response.status}: ${response.statusText}`);
-    }
-  } catch (error) {
-    console.error('Failed to submit to IndexNow due to network error:', error);
-  }
-}
-
 async function generateSitemap() {
   try {
     const wwIds = getCharacterIds(WW_CHAR_DIR);
@@ -692,8 +654,8 @@ ${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}  </sitemap>
     fs.writeFileSync(EDGE_ROUTE_MANIFEST_FILE, manifestSource, 'utf8');
     console.log(`Generated Cloudflare route manifest with ${edgeRoutes.length} valid application paths (${appOnlyPaths.size} unrecommended equipment pages kept out of the sitemap).`);
 
-    // Submit all URLs to IndexNow
-    await submitToIndexNow(allUrls);
+    // Submit only new or changed URLs, from the production Pages build only.
+    await submitChangedUrlsToIndexNow({ baseUrl: BASE_URL, sitemaps: subSitemaps });
 
   } catch (error) {
     console.error('Fatal error during sitemap generation:', error);
