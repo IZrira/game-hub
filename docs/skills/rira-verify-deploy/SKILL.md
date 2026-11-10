@@ -37,6 +37,7 @@ description: RIRA Game Hub 원본 저장소에서 코드·데이터 변경을 �
 - 사용자 범위가 허용하고 검증이 끝났을 때만 관련 파일 경로를 지정해 stage한다. staged diff를 읽고 secret·무관한 변경이 없는지 확인한 뒤 설명형 메시지로 commit하고 확인된 production branch에 일반 push한다. `git add .`, force push, 파괴적 reset은 사용하지 않는다.
 - GitHub 연동 자동 배포이면 중복 배포하지 않는다. 현재 제공되는 GitHub MCP 읽기 도구를 우선하고, 없으면 허용된 CLI/API를 사용한다. 도구 노출·인증은 세션마다 확인한다. 필요할 때만 `docs/guides/GITHUB_MCP.md`를 읽는다.
 - 해당 commit의 CI·보안 audit·Cloudflare 상태를 구분한다. 실행 중에는 결과가 바뀔 시간을 두고 확인하며 짧은 진행 안내를 유지한다. 실패 시 원인을 조사하되, 별개 수정·운영 변경이 필요하면 범위를 확인한다. 끝나지 않은 배포를 성공이라고 보고하지 않는다.
+- Cloudflare 배포 항목은 정상이면 push 후 수 초 안에 생기고 2분 안팎에 끝난다. 상태 확인 명령은 반복하기 전에 한 번 실행해 결과(최근 배포의 commit 해시)가 실제로 읽히는지 본다. 계정 ID 같은 값이 비어 늘 "없음"이 나오는 명령으로 기다리지 않는다. push 후 2분이 지나도 해당 commit 항목이 없고 GitHub check-run에도 Cloudflare Pages가 없으면 Cloudflare가 push를 받지 못한 것이다. 더 기다리지 말고 바로 보고하고, 대시보드에서 다시 배포할지 다음 push에 함께 반영할지 사용자에게 묻는다. 문서만 바꾼 push는 빌드 제외 경로 때문에 배포 목록에 대기 상태로만 남고 빌드되지 않는다.
 
 ## 보고
 
