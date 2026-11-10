@@ -197,7 +197,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
                   {t('운명의 길')} : {t(lc.path || '')}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
@@ -212,7 +212,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                   ))}
                 </div>
                 {lc.releaseVersion && (
-                  <div className="text-gray-400 font-bold tracking-widest text-[9px] uppercase italic opacity-40 px-2 py-1 border border-white/10 rounded-lg">
+                  <div className="text-gray-400 font-bold tracking-widest text-[11px] uppercase italic opacity-40 px-2 py-1 border border-white/10 rounded-lg">
                     Ver {lc.releaseVersion}
                   </div>
                 )}
@@ -239,7 +239,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                   <div className="relative pt-6">
                     {/* Floating Level Label */}
                     <div 
-                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg"
+                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-xs rounded pointer-events-none transition-all duration-75 shadow-lg"
                       style={{ 
                         left: `${(levelIdx / 7) * 100}%`,
                         backgroundColor: theme.primary,
@@ -251,10 +251,10 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                     <input 
                       type="range" min="0" max="7" value={levelIdx} 
                       onChange={(e) => setLevelIdx(parseInt(e.target.value))}
-                      className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-brand-primary"
-                      style={{ accentColor: theme.primary }}
+                      className="range-slider w-full"
+                      style={{ color: theme.primary }}
                     />
-                    <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
+                    <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                       <span>1</span>
                       <span>80</span>
                     </div>
@@ -272,7 +272,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                   <div className="relative pt-6">
                     {/* Floating Rank Label */}
                     <div 
-                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg"
+                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-xs rounded pointer-events-none transition-all duration-75 shadow-lg"
                       style={{ 
                         left: `${(rankIdx / 4) * 100}%`,
                         boxShadow: `0 0 10px rgba(255,255,255,0.4)`
@@ -283,10 +283,10 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                     <input 
                       type="range" min="0" max="4" value={rankIdx} 
                       onChange={(e) => setRankIdx(parseInt(e.target.value))}
-                      className="w-full h-1 bg-white/15 rounded-full appearance-none cursor-pointer"
-                      style={{ accentColor: theme.primary }}
+                      className="range-slider w-full"
+                      style={{ color: theme.primary }}
                     />
-                    <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
+                    <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                       <span>1</span>
                       <span>5</span>
                     </div>
@@ -297,15 +297,15 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
               {/* Stats Row */}
               <div className="grid grid-cols-3 gap-4 bg-white/5 p-6 rounded-2xl border border-white/5">
                 <div className="space-y-0.5">
-                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('기초 HP')}</div>
+                  <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{t('기초 HP')}</div>
                   <div className="text-xl font-black tabular-nums tracking-tighter italic">{currentStats.hp}</div>
                 </div>
                 <div className="space-y-0.5 border-x border-white/5 px-4">
-                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('기초 공격력')}</div>
+                  <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{t('기초 공격력')}</div>
                   <div className="text-xl font-black tabular-nums tracking-tighter italic">{currentStats.atk}</div>
                 </div>
                 <div className="space-y-0.5">
-                  <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('기초 방어력')}</div>
+                  <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{t('기초 방어력')}</div>
                   <div className="text-xl font-black tabular-nums tracking-tighter italic">{currentStats.def}</div>
                 </div>
               </div>
@@ -400,7 +400,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                 <p className="text-[11px] text-gray-400 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-xs text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다.')}
             </div>
           </div>

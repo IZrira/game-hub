@@ -37,7 +37,7 @@ const WuwaEchoGallery: React.FC = () => {
         {/* 상단 헤더 */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8">
           <div className="space-y-2 w-full">
-            <h2 className="text-3xl sm:text-4xl font-black italic tracking-tighter uppercase text-brand-accent">에코 도감</h2>
+            <h2 className="text-3xl sm:text-4xl font-black tracking-tighter uppercase text-brand-accent">에코 도감</h2>
             <p className="text-gray-400 font-bold text-sm flex items-center gap-2">
               <ActivityIcon size={14} /> 분석된 에코 개체: {ECHO_DATA.length}
             </p>
@@ -60,7 +60,7 @@ const WuwaEchoGallery: React.FC = () => {
 
             {/* 코스트 필터 */}
             <div className="space-y-3 w-full">
-              <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">Cost Filter</span>
+              <span className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">Cost Filter</span>
               <div className="flex flex-wrap gap-3">
                 {['전체', 4, 3, 1].map(cost => (
                   <button
@@ -79,7 +79,7 @@ const WuwaEchoGallery: React.FC = () => {
 
           {/* 세트 필터 */}
           <div className="space-y-3">
-            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">Sonata Sets</span>
+            <span className="text-xs font-black text-gray-400 uppercase tracking-widest flex items-center gap-2">Sonata Sets</span>
             <div className="flex flex-wrap gap-3 overflow-x-auto pb-2 scrollbar-hide">
               <button
                 onClick={() => setActiveSonata('전체')}
@@ -88,8 +88,8 @@ const WuwaEchoGallery: React.FC = () => {
                 }`}
                 title="전체"
               >
-                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center font-black text-[9px]">ALL</div>
-                <span className="text-[9px] font-bold truncate w-full text-center px-1">전체</span>
+                <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center font-black text-[11px]">ALL</div>
+                <span className="text-[11px] font-bold truncate w-full text-center px-1">전체</span>
               </button>
               {SONATA_SETS.map((set: SonataType) => (
                 <button
@@ -106,7 +106,7 @@ const WuwaEchoGallery: React.FC = () => {
                     alt={set} 
                     className="w-8 h-8 object-contain drop-shadow-md"
                   />
-                  <span className="text-[9px] font-bold truncate w-full text-center px-1">{set}</span>
+                  <span className="text-[11px] font-bold truncate w-full text-center px-1">{set}</span>
                 </button>
               ))}
             </div>
@@ -180,7 +180,7 @@ const EchoPremiumCard = ({ echo, to }: { echo: WuwaEcho, to: string }) => {
 
       {/* Info Section */}
       <div className="relative z-20 p-2 bg-[#0d0d0d] border-t border-white/5">
-        <p className="text-gray-200 font-bold text-[10px] leading-tight truncate tracking-tight text-center group-hover:text-white transition-colors">
+        <p className="text-gray-200 font-bold text-xs leading-tight truncate tracking-tight text-center group-hover:text-white transition-colors">
           {echo.name}
         </p>
       </div>

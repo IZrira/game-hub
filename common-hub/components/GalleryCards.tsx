@@ -89,10 +89,10 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
         <div className="flex justify-between items-end">
           <div>
             <p className="text-white font-bold text-sm leading-none mb-1 drop-shadow-md">{t(char.name || '')}</p>
-            <p className="text-[10px] text-gray-400 uppercase tracking-wider">{t(char.attribute || '')}</p>
+            <p className="text-xs text-gray-400 uppercase tracking-wider">{t(char.attribute || '')}</p>
           </div>
           {gameId === 'nte' ? (
-            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${char.rarity === 5 ? 'bg-yellow-500/20 text-yellow-500' : char.rarity === 4 ? 'bg-purple-500/20 text-purple-400' : 'bg-blue-500/20 text-blue-400'}`}>
+            <span className={`text-xs font-black px-1.5 py-0.5 rounded ${char.rarity === 5 ? 'bg-yellow-500/20 text-yellow-500' : char.rarity === 4 ? 'bg-purple-500/20 text-purple-400' : 'bg-blue-500/20 text-blue-400'}`}>
               {char.rarity === 5 ? 'S' : char.rarity === 4 ? 'A' : 'B'}
             </span>
           ) : (
@@ -139,10 +139,10 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
         <div className="flex justify-between items-end">
           <div className="min-w-0 pr-2">
             <p className="text-white font-bold text-sm leading-none mb-1 truncate">{t(lc.name || '')}</p>
-            <p className="text-[10px] text-yellow-500 uppercase truncate">{t(lc.path || lc.type || lc.weaponType || '')}</p>
+            <p className="text-xs text-yellow-500 uppercase truncate">{t(lc.path || lc.type || lc.weaponType || '')}</p>
           </div>
           {gameId === 'nte' ? (
-            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${lc.rarity === 5 ? 'bg-yellow-500/20 text-yellow-500' : lc.rarity === 4 ? 'bg-purple-500/20 text-purple-400' : 'bg-blue-500/20 text-blue-400'}`}>
+            <span className={`text-xs font-black px-1.5 py-0.5 rounded ${lc.rarity === 5 ? 'bg-yellow-500/20 text-yellow-500' : lc.rarity === 4 ? 'bg-purple-500/20 text-purple-400' : 'bg-blue-500/20 text-blue-400'}`}>
               {lc.rarity === 5 ? 'S' : lc.rarity === 4 ? 'A' : 'B'}
             </span>
           ) : (
@@ -275,7 +275,7 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
 
       {/* Info Section: Ultra Clean */}
       <div className="relative z-20 p-2 bg-[#0d0d0d] border-t border-white/5">
-        <p className="text-gray-200 font-bold text-[10px] leading-tight truncate tracking-tight text-center group-hover:text-white transition-colors">
+        <p className="text-gray-200 font-bold text-xs leading-tight truncate tracking-tight text-center group-hover:text-white transition-colors">
           {t(getCleanItemName(itemName))}
         </p>
       </div>
@@ -321,7 +321,7 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
       <div className="absolute bottom-0 left-0 p-4 w-full">
         <p className="text-white font-black text-lg leading-none mb-1 group-hover:text-brand-accent transition-colors">{t(char.name)} {t('공략')}</p>
-        <p className="text-[10px] text-gray-400 uppercase tracking-widest">{guide.patchVersion || 'Latest'} {t('업데이트됨')}</p>
+        <p className="text-xs text-gray-400 uppercase tracking-widest">{guide.patchVersion || 'Latest'} {t('업데이트됨')}</p>
       </div>
     </Link>
   );

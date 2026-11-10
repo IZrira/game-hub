@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-2xl font-black italic tracking-tighter text-white">RIRA GAME HUB</h2>
-              <p className="text-[10px] font-black tracking-[0.16em] text-brand-primary">
+              <p className="text-xs font-black text-brand-primary">
                 {t('게임 통합 데이터베이스')}
               </p>
             </div>
@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
 
           {/* 컬럼 2: 네비게이션 */}
           <div className="space-y-6">
-            <h3 className="text-[11px] font-black text-white">{t('바로가기')}</h3>
+            <h3 className="text-xs font-black text-white">{t('바로가기')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
               {navLinks.map((link) => (
                 <li key={link.name}>
@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
 
           {/* 컬럼 3: 지원 게임 */}
           <div className="space-y-6">
-            <h3 className="text-[11px] font-black text-white">{t('지원 게임')}</h3>
+            <h3 className="text-xs font-black text-white">{t('지원 게임')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
               <li><Link to="/gallery/hsr" className="hover:text-brand-primary transition-colors">Honkai: Star Rail</Link></li>
               <li><Link to="/gallery/ww" className="hover:text-brand-primary transition-colors">Wuthering Waves</Link></li>
@@ -63,7 +63,7 @@ const Footer: React.FC = () => {
 
           {/* 컬럼 4: 정책 및 소셜 */}
           <div className="space-y-6">
-            <h3 className="text-[11px] font-black text-white">{t('정책 및 안내')}</h3>
+            <h3 className="text-xs font-black text-white">{t('정책 및 안내')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
               {policyLinks.map((link) => (
                 <li key={link.name}>
@@ -78,16 +78,16 @@ const Footer: React.FC = () => {
 
         {/* 하단 저작권 및 면책 조항 */}
         <div className="pt-8 border-t border-white/5 space-y-6">
-          <div className="flex flex-col md:flex-row justify-between gap-4 text-[10px] font-bold text-gray-400">
+          <div className="flex flex-col md:flex-row justify-between gap-4 text-xs font-bold text-gray-400">
             <span>Copyright © {currentYear} RIRA ARCHIVE. All rights reserved.</span>
             <span>{t('비공식 팬 아카이브')}</span>
           </div>
 
           <div className="space-y-4">
-            <p className="text-[10px] leading-relaxed text-gray-400 font-medium">
+            <p className="text-xs leading-relaxed text-gray-400 font-medium">
               <strong className="text-gray-400">{t('면책 안내')}:</strong> {t('RIRA ARCHIVE는 각 게임사와 공식 제휴하거나 승인을 받은 서비스가 아닌 비공식 팬 아카이브입니다. 게임 관련 이미지와 명칭의 권리는 각 권리자에게 있습니다.')}
             </p>
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[9px] font-bold text-gray-400">
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-[11px] font-bold text-gray-400">
               <span>© HoYoverse</span>
               <span>© Kuro Games</span>
               <span>© Hotta Studio / Perfect World</span>

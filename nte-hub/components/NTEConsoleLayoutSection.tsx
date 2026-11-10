@@ -49,7 +49,7 @@ const NTEConsoleLayoutSection: React.FC<NTEConsoleLayoutSectionProps> = ({ chara
           </div>
           <div className="space-y-4">
             <div>
-              <span className="text-[10px] font-black uppercase tracking-[0.25em] text-violet-400">CONSOLE LAYOUT</span>
+              <span className="text-xs font-black uppercase tracking-[0.25em] text-violet-400">CONSOLE LAYOUT</span>
               <h3 className="mt-2 text-xl font-black text-white">콘솔 배치 유형 {layoutType}</h3>
             </div>
             <div className="flex items-start gap-3 rounded-2xl border border-white/5 bg-white/[0.03] p-4 text-xs leading-5 text-gray-400">

@@ -92,7 +92,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
             </blockquote>
           ),
           p: ({ node, children, ...props }) => (
-            <p className={`leading-relaxed text-sm md:text-base whitespace-pre-wrap ${variant === 'notice' ? '!m-0 min-h-[1.25rem]' : 'mb-3'}`} {...props}>
+            <p className={`leading-relaxed text-base whitespace-pre-wrap ${variant === 'notice' ? '!m-0 min-h-[1.25rem]' : 'mb-3'}`} {...props}>
               {children}
             </p>
           ),
@@ -110,9 +110,9 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
           },
           li: ({ node, children, ...props }) => {
             if (variant === 'notice') {
-              return <li className="leading-relaxed text-sm md:text-base !m-0 list-none" {...props}>{children}</li>;
+              return <li className="leading-relaxed text-base !m-0 list-none" {...props}>{children}</li>;
             }
-            return <li className="leading-relaxed text-sm md:text-base" {...props}>{children}</li>;
+            return <li className="leading-relaxed text-base" {...props}>{children}</li>;
           },
           strong: ({ node, children, ...props }) => (
             <strong className={`font-bold ${variant === 'notice' ? '!text-white' : 'text-white'}`} {...props}>

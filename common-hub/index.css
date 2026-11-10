@@ -11,7 +11,8 @@
 @source "../aniimo-hub/**/*.{ts,tsx}";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Pretendard (OFL 1.1) is self-hosted under public/fonts/pretendard-1.3.9 (design-fix-1-6 T6). */
+  --font-sans: "Pretendard Variable", Pretendard, ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Malgun Gothic", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-brand-primary: #7E30E1;
@@ -42,6 +43,39 @@
 
   .card-glass {
     @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-3xl;
+  }
+
+  /* Range input: 24px hit area, 4px visible track (design-fix-1-6 T3). Thumb takes `color`. */
+  .range-slider {
+    height: 1.5rem;
+    appearance: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .range-slider::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.12);
+  }
+  .range-slider::-moz-range-track {
+    height: 4px;
+    border-radius: 9999px;
+    background: rgb(255 255 255 / 0.12);
+  }
+  .range-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    margin-top: -6px;
+    border-radius: 9999px;
+    background: currentColor;
+  }
+  .range-slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border: 0;
+    border-radius: 9999px;
+    background: currentColor;
   }
 
   .inline-icon {

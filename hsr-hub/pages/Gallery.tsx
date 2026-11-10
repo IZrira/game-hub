@@ -308,7 +308,7 @@ const GalleryHSR: React.FC = () => {
                           <span className={`${cat.color}`}>
                             <Icon size={18} />
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
+                          <span className="text-xs font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
                         </div>
                         <h3 className="mt-2 text-base font-black text-white group-hover:text-brand-primary transition-colors">{cat.title}</h3>
                         <p className="mt-2 text-xs leading-5 text-gray-400">{cat.description}</p>
@@ -334,7 +334,7 @@ const GalleryHSR: React.FC = () => {
           ) : activeMenu === '캐릭터' ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t('캐릭터 도감')}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase mb-6 sm:mb-8">{t('캐릭터 도감')}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -355,7 +355,7 @@ const GalleryHSR: React.FC = () => {
           ) : activeMenu === '광추' ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t('광추 도감')}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase mb-6 sm:mb-8">{t('광추 도감')}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
@@ -378,7 +378,7 @@ const GalleryHSR: React.FC = () => {
           ) : activeMenu === '유물 & 장신구' ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t('유물 & 장신구 도감')}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase mb-6 sm:mb-8">{t('유물 & 장신구 도감')}</h2>
                 <div className="flex flex-wrap gap-3 items-center">
                   <button onClick={() => setRelicSubTab('유물')} className={`h-11 px-6 rounded-xl font-black ${relicSubTab === '유물' ? 'bg-brand-primary text-white' : 'bg-white/5 text-gray-400'}`}>{t('터널 유물')}</button>
                   <button onClick={() => setRelicSubTab('차원 장신구')} className={`h-11 px-6 rounded-xl font-black ${relicSubTab === '차원 장신구' ? 'bg-brand-accent text-black' : 'bg-white/5 text-gray-400'}`}>{t('차원 장신구')}</button>
@@ -401,7 +401,7 @@ const GalleryHSR: React.FC = () => {
           ) : activeMenu === '공략' ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t('캐릭터 육성 공략')}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase mb-6 sm:mb-8">{t('캐릭터 육성 공략')}</h2>
                 <div className="relative w-full xl:w-72">
                   <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                   <input type="text" placeholder={t('캐릭터 명칭...')} className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-white focus:outline-none focus:border-brand-primary" value={searchQuery} onChange={(e) => handleSearchChange(e.target.value)} />
@@ -487,7 +487,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption }: any) =>
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
       >
-        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">{label}</span>
+        <span className="text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">{label}</span>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">
           {value === '전체' ? 'ALL' : (formatOption ? formatOption(value) : value)}
         </span>

@@ -71,7 +71,7 @@ const WwItemIcon: React.FC<WwItemIconProps> = ({ name, count, onClick }) => {
           </div>
         )}
       </div>
-      <span className="block w-full truncate px-1 text-center text-[9px] md:text-[11px] font-bold text-gray-400" title={translatedName}>
+      <span className="block w-full truncate px-1 text-center text-[11px] md:text-[11px] font-bold text-gray-400" title={translatedName}>
         {displayName}
       </span>
     </div>

@@ -198,11 +198,11 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
 
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5 mb-0.5">
-                      <span className="text-[10px] text-yellow-400 font-black">
+                      <span className="text-xs text-yellow-400 font-black">
                         {'★'.repeat(weapon.rarity || 5)}
                       </span>
                       {weapon.weaponType && (
-                        <span className="text-[10px] text-gray-400 font-semibold">
+                        <span className="text-xs text-gray-400 font-semibold">
                           · {weapon.weaponType}
                         </span>
                       )}

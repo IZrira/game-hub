@@ -12,7 +12,7 @@ const SearchLoadingFallback = () => {
   <div ref={dialogRef} tabIndex={-1} className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 backdrop-blur-md" role="dialog" aria-modal="true" aria-label="통합 검색 불러오는 중">
     <div className="flex flex-col items-center gap-4">
       <div className="h-9 w-9 animate-spin rounded-full border-2 border-white/15 border-t-brand-primary" />
-      <span className="text-[10px] font-black uppercase tracking-[0.28em] text-gray-400">검색 데이터 불러오는 중</span>
+      <span className="text-xs font-black uppercase tracking-[0.28em] text-gray-400">검색 데이터 불러오는 중</span>
     </div>
   </div>
   );
@@ -108,7 +108,7 @@ export default function GlobalSearch({ className = '', showText = true }: Global
             통합 검색
           </span>
         )}
-        <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 text-[9px] font-mono text-gray-400 bg-white/10 rounded border border-white/5">
+        <kbd className="hidden lg:inline-flex items-center px-1.5 py-0.5 text-[11px] font-mono text-gray-400 bg-white/10 rounded border border-white/5">
           ⌘K
         </kbd>
       </button>

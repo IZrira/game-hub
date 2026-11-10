@@ -163,7 +163,7 @@ export const PartyCard = memo(({ party, slots }: { party: PartyCardData; slots: 
 
       {(description || party.pros?.length || party.cons?.length) ? (
         <div className="space-y-3 border-t border-white/5 pt-4">
-          {description && <p className="whitespace-pre-line break-keep text-sm leading-relaxed text-gray-300">{description}</p>}
+          {description && <p className="whitespace-pre-line break-keep text-base leading-relaxed text-gray-300">{description}</p>}
           {[['장점', party.pros], ['단점', party.cons]].map(([label, items]) =>
             Array.isArray(items) && items.length > 0 ? (
               <div key={label as string}>

@@ -152,7 +152,7 @@ const CharacterDetailAniimo: React.FC = () => {
 
       {elementMatchups.length > 0 && <Section title="원소 상성" icon={<Swords size={18} />}><p className="mb-5 text-xs leading-5 text-gray-500">현재 형태의 원소가 공격할 때 유리한 상대와, 방어할 때 받는 약점을 원소별로 표시합니다. 복합 원소는 배율을 합산하지 않습니다.</p><div className="grid gap-4 lg:grid-cols-2">{elementMatchups.map(matchup => <article key={matchup.element} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5"><h3 className="flex items-center gap-2 font-black"><span className="text-lg">{ELEMENT_META[matchup.element].icon}</span>{matchup.element} 원소</h3><MatchupRow label="공격 우위" values={matchup.strongAgainst} tone="strong" /><MatchupRow label="받는 약점" values={matchup.weakTo} tone="weak" /><MatchupRow label="원소 내성" values={matchup.resists} tone="resist" /></article>)}</div><Link to="/gallery/aniimo/type-chart" className="mt-5 inline-flex items-center gap-2 text-xs font-black text-violet-300 hover:text-white">전체 원소 상성표 보기 <ChevronRight size={14} /></Link></Section>}
 
-      {recommendedPersonality && <Section title="추천 성격" icon={<Brain size={18} />}><div className="grid gap-5 lg:grid-cols-[220px_1fr]"><div className="rounded-2xl border border-violet-400/20 bg-violet-400/[0.07] p-5"><p className="text-[10px] font-black tracking-widest text-violet-300">{activeForm?.label} · {recommendedPersonality.position}</p><strong className="mt-2 block text-4xl font-black tracking-[0.18em]">{recommendedPersonality.code}</strong><p className="mt-3 text-xs leading-5 text-gray-400">현재 형태의 포지션과 스킬·특성을 기준으로 계산한 범용 추천입니다.</p></div><div><div className="grid grid-cols-2 gap-2 sm:grid-cols-4">{recommendedPersonality.traits.map(trait => <article key={`${trait.axis}-${trait.code}`} className="rounded-xl border border-white/10 bg-white/[0.025] p-3"><span className="text-lg font-black text-violet-300">{trait.code}</span><strong className="ml-2 text-sm">{trait.name}</strong><p className="mt-2 text-[11px] leading-5 text-gray-400">{trait.combat}</p></article>)}</div><ul className="mt-4 space-y-2">{recommendedPersonality.reason.map(reason => <li key={reason} className="flex gap-2 text-xs leading-5 text-gray-400"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-violet-300" />{reason}</li>)}</ul></div></div><p className="mt-5 text-[11px] leading-5 text-gray-500">T/F는 상대가 주로 사용하는 물리·마법 피해에 따라 바꾸는 것이 좋습니다.</p><Link to="/gallery/aniimo/personality" className="mt-3 inline-flex items-center gap-2 text-xs font-black text-violet-300 hover:text-white">성격 조합 원리 자세히 보기 <ChevronRight size={14} /></Link></Section>}
+      {recommendedPersonality && <Section title="추천 성격" icon={<Brain size={18} />}><div className="grid gap-5 lg:grid-cols-[220px_1fr]"><div className="rounded-2xl border border-violet-400/20 bg-violet-400/[0.07] p-5"><p className="text-xs font-black tracking-widest text-violet-300">{activeForm?.label} · {recommendedPersonality.position}</p><strong className="mt-2 block text-4xl font-black tracking-[0.18em]">{recommendedPersonality.code}</strong><p className="mt-3 text-xs leading-5 text-gray-400">현재 형태의 포지션과 스킬·특성을 기준으로 계산한 범용 추천입니다.</p></div><div><div className="grid grid-cols-2 gap-2 sm:grid-cols-4">{recommendedPersonality.traits.map(trait => <article key={`${trait.axis}-${trait.code}`} className="rounded-xl border border-white/10 bg-white/[0.025] p-3"><span className="text-lg font-black text-violet-300">{trait.code}</span><strong className="ml-2 text-sm">{trait.name}</strong><p className="mt-2 text-[11px] leading-5 text-gray-400">{trait.combat}</p></article>)}</div><ul className="mt-4 space-y-2">{recommendedPersonality.reason.map(reason => <li key={reason} className="flex gap-2 text-xs leading-5 text-gray-400"><span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-violet-300" />{reason}</li>)}</ul></div></div><p className="mt-5 text-[11px] leading-5 text-gray-500">T/F는 상대가 주로 사용하는 물리·마법 피해에 따라 바꾸는 것이 좋습니다.</p><Link to="/gallery/aniimo/personality" className="mt-3 inline-flex items-center gap-2 text-xs font-black text-violet-300 hover:text-white">성격 조합 원리 자세히 보기 <ChevronRight size={14} /></Link></Section>}
 
       {(item.evolution?.length || 0) > 0 && <Section title="진화 계보 및 조건">
         <p className="mb-4 text-xs text-gray-400">단계별 진화(유년기 → 성장기 → 성숙기) 흐름입니다. 지역에 따른 형태 변환과 구별되며, 조건 충족 시 진화가 해제됩니다.</p>
@@ -163,11 +163,11 @@ const CharacterDetailAniimo: React.FC = () => {
           return <article key={`${node.number}-${node.formKey}`} className="rounded-2xl border border-white/10 bg-white/[0.025] p-5 space-y-3">
             <div className="flex items-center justify-between border-b border-white/5 pb-2">
               <strong className="text-sm font-black text-white">{node.name}</strong>
-              {node.formLabel && <span className="rounded-md bg-violet-400/15 px-2 py-0.5 text-[10px] font-black text-violet-300">{node.formLabel}</span>}
+              {node.formLabel && <span className="rounded-md bg-violet-400/15 px-2 py-0.5 text-xs font-black text-violet-300">{node.formLabel}</span>}
             </div>
             {parsed.unlocks.length > 0 && (
               <div className="space-y-1">
-                <span className="text-[10px] font-black text-violet-400 tracking-wider">[진화 해제]</span>
+                <span className="text-xs font-black text-violet-400 tracking-wider">[진화 해제]</span>
                 <ul className="space-y-1 pl-2">
                   {parsed.unlocks.map((u, i) => <li key={i} className="text-xs text-gray-300 flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-violet-400 shrink-0" />{u}</li>)}
                 </ul>
@@ -175,7 +175,7 @@ const CharacterDetailAniimo: React.FC = () => {
             )}
             {parsed.criteria.length > 0 && (
               <div className="space-y-1">
-                <span className="text-[10px] font-black text-cyan-400 tracking-wider">[진화 기준]</span>
+                <span className="text-xs font-black text-cyan-400 tracking-wider">[진화 기준]</span>
                 <ul className="space-y-1 pl-2">
                   {parsed.criteria.map((c, i) => <li key={i} className="text-xs text-gray-300 flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-cyan-400 shrink-0" />{c}</li>)}
                 </ul>
@@ -183,14 +183,14 @@ const CharacterDetailAniimo: React.FC = () => {
             )}
             {parsed.costs.length > 0 && (
               <div className="space-y-1">
-                <span className="text-[10px] font-black text-amber-400 tracking-wider">[소모]</span>
+                <span className="text-xs font-black text-amber-400 tracking-wider">[소모]</span>
                 <ul className="space-y-1 pl-2">
                   {parsed.costs.map((cost, i) => <li key={i} className="text-xs text-amber-300 flex items-center gap-1.5"><span className="w-1 h-1 rounded-full bg-amber-400 shrink-0" />{cost}</li>)}
                 </ul>
               </div>
             )}
           </article>;
-        })}</div><p className="mt-4 text-[10px] text-gray-600">진화 조건 참고: aniimo.kr / 공식 데이터베이스 · 게임 패치에 따라 업데이트될 수 있습니다.</p></div>}
+        })}</div><p className="mt-4 text-xs text-gray-600">진화 조건 참고: aniimo.kr / 공식 데이터베이스 · 게임 패치에 따라 업데이트될 수 있습니다.</p></div>}
       </Section>}
 
       <div className="grid gap-6 md:grid-cols-2">
@@ -218,7 +218,7 @@ const CharacterDetailAniimo: React.FC = () => {
                         {related.imageUrl && <img src={related.imageUrl} alt={related.name} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain group-hover:scale-105 transition" />}
                       </div>
                       <strong className="block text-xs font-black truncate group-hover:text-violet-300">{related.name}</strong>
-                      <span className="text-[10px] text-gray-500">NO.{related.number}</span>
+                      <span className="text-xs text-gray-500">NO.{related.number}</span>
                     </Link>
                   ))}
                 </div>
@@ -234,7 +234,7 @@ const CharacterDetailAniimo: React.FC = () => {
                         {related.imageUrl && <img src={related.imageUrl} alt={related.name} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain group-hover:scale-105 transition" />}
                       </div>
                       <strong className="block text-xs font-black truncate group-hover:text-cyan-300">{related.name}</strong>
-                      <span className="text-[10px] text-gray-500">NO.{related.number}</span>
+                      <span className="text-xs text-gray-500">NO.{related.number}</span>
                     </Link>
                   ))}
                 </div>
@@ -250,7 +250,7 @@ const CharacterDetailAniimo: React.FC = () => {
                         {related.imageUrl && <img src={related.imageUrl} alt={related.name} loading="lazy" referrerPolicy="no-referrer" className="h-full w-full object-contain group-hover:scale-105 transition" />}
                       </div>
                       <strong className="block text-xs font-black truncate group-hover:text-emerald-300">{related.name}</strong>
-                      <span className="text-[10px] text-gray-500">NO.{related.number}</span>
+                      <span className="text-xs text-gray-500">NO.{related.number}</span>
                     </Link>
                   ))}
                 </div>
@@ -267,8 +267,8 @@ const CharacterDetailAniimo: React.FC = () => {
 
 const Section = ({ title, icon, children }: { title: string; icon?: React.ReactNode; children: React.ReactNode }) => <section className="overflow-hidden rounded-3xl border border-white/10 bg-[#121212]"><h2 className="flex items-center gap-2 border-b border-white/10 px-6 py-4 text-lg font-black">{icon && <span className="text-violet-300">{icon}</span>}{title}</h2><div className="p-6">{children}</div></section>;
 
-const SkillGrid = ({ skills, showStats = false }: { skills: AniimoSkill[]; showStats?: boolean }) => <div className="grid gap-4 md:grid-cols-2">{skills.map((skill, index) => <article key={`${skill.name}-${index}`} className="flex gap-4 rounded-2xl border border-white/5 bg-white/[0.025] p-4">{skill.imageUrl && <img src={skill.imageUrl} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-16 w-16 shrink-0 rounded-full bg-[#252531] object-contain p-1" />}<div><h3 className="font-black">{skill.name}</h3><p className="mt-2 text-xs leading-6 text-gray-400">{skill.description}</p>{showStats && <div className="mt-3 flex flex-wrap gap-2 text-[10px] font-bold text-gray-300">{skill.skillType && <span>{skill.skillType}</span>}<span>에너지 {skill.energyCost ?? '-'}</span><span>위력 {skill.power ?? '-'}</span></div>}</div></article>)}</div>;
+const SkillGrid = ({ skills, showStats = false }: { skills: AniimoSkill[]; showStats?: boolean }) => <div className="grid gap-4 md:grid-cols-2">{skills.map((skill, index) => <article key={`${skill.name}-${index}`} className="flex gap-4 rounded-2xl border border-white/5 bg-white/[0.025] p-4">{skill.imageUrl && <img src={skill.imageUrl} alt="" loading="lazy" referrerPolicy="no-referrer" className="h-16 w-16 shrink-0 rounded-full bg-[#252531] object-contain p-1" />}<div><h3 className="font-black">{skill.name}</h3><p className="mt-2 text-xs leading-6 text-gray-400">{skill.description}</p>{showStats && <div className="mt-3 flex flex-wrap gap-2 text-xs font-bold text-gray-300">{skill.skillType && <span>{skill.skillType}</span>}<span>에너지 {skill.energyCost ?? '-'}</span><span>위력 {skill.power ?? '-'}</span></div>}</div></article>)}</div>;
 const Tab = ({ active, onClick, children }: { active: boolean; onClick: () => void; children: React.ReactNode }) => <button onClick={onClick} className={`rounded-xl px-4 py-2 text-xs font-black ${active ? 'bg-violet-400 text-black' : 'bg-white/5 text-gray-400'}`}>{children}</button>;
 const Badge = ({ value, accent = false }: { value: string; accent?: boolean }) => <span className={`rounded-lg px-3 py-1.5 text-xs font-black ${accent ? 'bg-violet-400/15 text-violet-300' : 'bg-white/5 text-gray-300'}`}>{value}</span>;
-const MatchupRow = ({ label, values, tone }: { label: string; values: Array<keyof typeof ELEMENT_META>; tone: 'strong' | 'weak' | 'resist' }) => <div className="mt-4 grid grid-cols-[72px_1fr] items-start gap-3"><span className={`inline-flex items-center gap-1 text-[10px] font-black ${tone === 'weak' ? 'text-rose-300' : tone === 'strong' ? 'text-emerald-300' : 'text-cyan-300'}`}>{tone === 'weak' && <Shield size={12} />}{label}</span><div className="flex flex-wrap gap-1.5">{values.map(value => <span key={value} className="rounded-lg bg-white/5 px-2 py-1 text-[10px] font-bold text-gray-300">{ELEMENT_META[value].icon} {value}</span>)}</div></div>;
+const MatchupRow = ({ label, values, tone }: { label: string; values: Array<keyof typeof ELEMENT_META>; tone: 'strong' | 'weak' | 'resist' }) => <div className="mt-4 grid grid-cols-[72px_1fr] items-start gap-3"><span className={`inline-flex items-center gap-1 text-xs font-black ${tone === 'weak' ? 'text-rose-300' : tone === 'strong' ? 'text-emerald-300' : 'text-cyan-300'}`}>{tone === 'weak' && <Shield size={12} />}{label}</span><div className="flex flex-wrap gap-1.5">{values.map(value => <span key={value} className="rounded-lg bg-white/5 px-2 py-1 text-xs font-bold text-gray-300">{ELEMENT_META[value].icon} {value}</span>)}</div></div>;
 export default CharacterDetailAniimo;

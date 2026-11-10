@@ -311,7 +311,7 @@ const GalleryNTE: React.FC = () => {
                           <span className={`${cat.color}`}>
                             <Icon size={18} />
                           </span>
-                          <span className="text-[10px] font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
+                          <span className="text-xs font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
                         </div>
                         <h3 className="mt-2 text-base font-black text-white group-hover:text-sky-400 transition-colors">{cat.title}</h3>
                         <p className="mt-2 text-xs leading-5 text-gray-400">{cat.description}</p>
@@ -328,7 +328,7 @@ const GalleryNTE: React.FC = () => {
           ) : activeMenu === "캐릭터" ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t("캐릭터 도감")}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase mb-6 sm:mb-8">{t("캐릭터 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
@@ -347,7 +347,7 @@ const GalleryNTE: React.FC = () => {
           ) : (activeMenu === "아크" || activeMenu === "무기") ? (
             <div className="space-y-12">
               <div className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-12 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
-                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase mb-6 sm:mb-8">{t("아크 도감")}</h2>
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase mb-6 sm:mb-8">{t("아크 도감")}</h2>
                 <div className="flex flex-col xl:flex-row gap-4 items-center">
                   <div className="relative w-full xl:w-72">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} />
@@ -388,8 +388,8 @@ const GalleryNTE: React.FC = () => {
             <div className="space-y-8">
               <section className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-10 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col gap-2 mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-violet-400">NTE CONSOLE DATABASE</span>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">콘솔 카트리지</h2>
+                  <span className="text-xs font-black uppercase tracking-[0.25em] text-violet-400">NTE CONSOLE DATABASE</span>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase">콘솔 카트리지</h2>
                   <p className="max-w-2xl text-sm leading-6 text-gray-400">카트리지 이름, 세트 효과와 콘솔 배치에 필요한 블록 구성을 한 화면에서 비교할 수 있습니다.</p>
                 </div>
                 <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center">
@@ -427,14 +427,14 @@ const GalleryNTE: React.FC = () => {
                             className="h-full w-full object-contain p-1"
                             loading="lazy"
                           />
-                          <span className="absolute bottom-1 right-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[9px] font-black text-amber-300">5성</span>
+                          <span className="absolute bottom-1 right-1 rounded-md bg-black/75 px-1.5 py-0.5 text-[11px] font-black text-amber-300">5성</span>
                         </div>
                         <div className="min-w-0">
-                          <span className="text-[9px] font-black uppercase tracking-[0.22em] text-violet-400">CARTRIDGE</span>
+                          <span className="text-[11px] font-black uppercase tracking-[0.22em] text-violet-400">CARTRIDGE</span>
                           <h2 className="mt-1 text-xl font-black text-white">{cartridge.name}</h2>
                         </div>
                       </div>
-                      <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-[10px] font-black text-violet-300">{cartridge.effectType}</span>
+                      <span className="rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-xs font-black text-violet-300">{cartridge.effectType}</span>
                     </div>
                     <dl className="mt-5 space-y-5">
                       <div className="grid gap-2 sm:grid-cols-[88px_1fr]">
@@ -466,7 +466,7 @@ const GalleryNTE: React.FC = () => {
                                   loading="lazy"
                                 />
                               </div>
-                              <figcaption className={`mt-1 text-center text-[10px] font-black ${rarity === 5 ? 'text-amber-300' : rarity === 4 ? 'text-violet-300' : 'text-blue-300'}`}>{rarity}성</figcaption>
+                              <figcaption className={`mt-1 text-center text-xs font-black ${rarity === 5 ? 'text-amber-300' : rarity === 4 ? 'text-violet-300' : 'text-blue-300'}`}>{rarity}성</figcaption>
                             </figure>
                           ))}
                         </dd>
@@ -486,8 +486,8 @@ const GalleryNTE: React.FC = () => {
             <div className="space-y-8">
               <section className={`${DESIGN_CONCEPT.EFFECTS.GLASS} p-5 sm:p-8 md:p-10 shadow-2xl relative z-20`} style={{ borderRadius: DESIGN_CONCEPT.ROUNDING.MODAL }}>
                 <div className="flex flex-col gap-2 mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-emerald-400">NTE VEHICLE DATABASE</span>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black italic tracking-tighter uppercase">이동 수단 도감</h2>
+                  <span className="text-xs font-black uppercase tracking-[0.25em] text-emerald-400">NTE VEHICLE DATABASE</span>
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tighter uppercase">이동 수단 도감</h2>
                   <p className="max-w-2xl text-sm leading-6 text-gray-400">종류별 설명과 최고 속도, 가속, 내구도, 획득 방법을 비교할 수 있습니다.</p>
                 </div>
                 <div className="flex flex-col xl:flex-row gap-4 items-start xl:items-center">
@@ -524,7 +524,7 @@ const GalleryNTE: React.FC = () => {
                 <section key={category} className="space-y-5">
                   <div className="flex items-center gap-3 border-b border-white/10 pb-3">
                     <h2 className="text-xl font-black text-white">{category}</h2>
-                    <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-[10px] font-black text-emerald-300">
+                    <span className="rounded-full bg-emerald-400/10 px-2.5 py-1 text-xs font-black text-emerald-300">
                       {groups.reduce((count, group) => count + group.vehicles.length, 0)}종
                     </span>
                   </div>
@@ -551,15 +551,15 @@ const GalleryNTE: React.FC = () => {
                         ) : (
                           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-gray-500">
                             <CarFront size={36} strokeWidth={1.5} />
-                            <span className="text-[10px] font-black tracking-wider">이미지 준비 중</span>
+                            <span className="text-xs font-black tracking-wider">이미지 준비 중</span>
                           </div>
                         )}
                       </div>
                       <div className="p-5 sm:p-6">
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="text-[9px] font-black uppercase tracking-[0.22em] text-emerald-400">MOBILITY</span>
-                          <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[9px] font-black text-emerald-300">{vehicle.type}</span>
-                          {vehicle.availability && <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-2.5 py-1 text-[9px] font-black text-amber-300">{vehicle.availability}</span>}
+                          <span className="text-[11px] font-black uppercase tracking-[0.22em] text-emerald-400">MOBILITY</span>
+                          <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-black text-emerald-300">{vehicle.type}</span>
+                          {vehicle.availability && <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-2.5 py-1 text-[11px] font-black text-amber-300">{vehicle.availability}</span>}
                         </div>
                         <h2 className="mt-2 text-2xl font-black text-white">{vehicle.name}</h2>
                         <p className="mt-3 text-sm leading-6 text-gray-400">{vehicle.description}</p>
@@ -569,17 +569,17 @@ const GalleryNTE: React.FC = () => {
                     <dl className="grid grid-cols-3 border-y border-white/5 bg-black/20">
                       <div className="flex flex-col items-center gap-1 border-r border-white/5 px-2 py-4 text-center">
                         <Gauge size={16} className="text-sky-400" />
-                        <dt className="text-[9px] font-black uppercase tracking-wider text-gray-500">최고 속도</dt>
+                        <dt className="text-[11px] font-black uppercase tracking-wider text-gray-500">최고 속도</dt>
                         <dd className="text-sm font-black text-white">{vehicle.topSpeed === null ? '미공개' : `${vehicle.topSpeed} km/h`}</dd>
                       </div>
                       <div className="flex flex-col items-center gap-1 border-r border-white/5 px-2 py-4 text-center">
                         <Timer size={16} className="text-amber-400" />
-                        <dt className="text-[9px] font-black uppercase tracking-wider text-gray-500">가속</dt>
+                        <dt className="text-[11px] font-black uppercase tracking-wider text-gray-500">가속</dt>
                         <dd className="text-sm font-black text-white">{vehicle.acceleration ?? '미공개'}</dd>
                       </div>
                       <div className="flex flex-col items-center gap-1 px-2 py-4 text-center">
                         <Wrench size={16} className="text-violet-400" />
-                        <dt className="text-[9px] font-black uppercase tracking-wider text-gray-500">내구도</dt>
+                        <dt className="text-[11px] font-black uppercase tracking-wider text-gray-500">내구도</dt>
                         <dd className="text-sm font-black text-white">{vehicle.durability?.toLocaleString('ko-KR') ?? '미공개'}</dd>
                       </div>
                     </dl>
@@ -587,7 +587,7 @@ const GalleryNTE: React.FC = () => {
                     <div className="flex items-start gap-3 p-5 sm:px-6">
                       <MapPin size={16} className="mt-0.5 shrink-0 text-emerald-400" />
                       <div>
-                        <p className="text-[9px] font-black uppercase tracking-wider text-gray-500">획득 방법</p>
+                        <p className="text-[11px] font-black uppercase tracking-wider text-gray-500">획득 방법</p>
                         <p className="mt-1 text-sm font-bold leading-5 text-gray-200">{vehicle.acquisition}</p>
                       </div>
                     </div>
@@ -654,7 +654,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption, allLabel 
         onClick={() => setIsOpen(!isOpen)}
         className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
       >
-        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
+        <span className="text-xs font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">
           {value === '전체' ? allLabel : (formatOption ? formatOption(value) : value)}
         </span>

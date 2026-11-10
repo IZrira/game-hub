@@ -184,12 +184,12 @@ export const CommentCard: React.FC<CommentCardProps> = ({
             <div className="font-bold text-white text-sm flex items-center gap-2">
               {review.nickname}
               {review.author_is_admin && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded-md bg-amber-500/20 text-amber-500 border border-amber-500/30 font-black tracking-widest uppercase">
+                <span className="text-[11px] px-1.5 py-0.5 rounded-md bg-amber-500/20 text-amber-500 border border-amber-500/30 font-black tracking-widest uppercase">
                   관리자
                 </span>
               )}
               {isOwnReview && !review.author_is_admin && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded-md bg-brand-primary/20 text-brand-primary border border-brand-primary/30 font-black tracking-widest uppercase">
+                <span className="text-[11px] px-1.5 py-0.5 rounded-md bg-brand-primary/20 text-brand-primary border border-brand-primary/30 font-black tracking-widest uppercase">
                   작성자
                 </span>
               )}
@@ -218,7 +218,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
                 })}
               </span>
               {review.user_id && (
-                <span className="text-brand-primary/60 text-[9px] uppercase tracking-wider font-bold">
+                <span className="text-brand-primary/60 text-[11px] uppercase tracking-wider font-bold">
                   Verified
                 </span>
               )}

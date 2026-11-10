@@ -50,7 +50,7 @@ const BlogList: React.FC = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute top-4 left-4 z-20">
-                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-[10px] font-black text-brand-primary uppercase tracking-widest border border-white/10">
+                    <span className="px-3 py-1 bg-black/60 backdrop-blur-md rounded-full text-xs font-black text-brand-primary uppercase tracking-widest border border-white/10">
                       {post.category}
                     </span>
                   </div>

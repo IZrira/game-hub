@@ -100,7 +100,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                 <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-black text-violet-300">
                   <span>{stageName}</span>
                   {items.length > 1 && (
-                    <span className="text-[9px] text-gray-400">({items.length}종 분기)</span>
+                    <span className="text-[11px] text-gray-400">({items.length}종 분기)</span>
                   )}
                 </div>
 
@@ -122,7 +122,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                         }`}
                       >
                         {isCurrentChar && (
-                          <div className="absolute -top-2.5 right-3 px-2 py-0.5 rounded-full bg-violet-500 text-[9px] font-black text-black tracking-wider uppercase">
+                          <div className="absolute -top-2.5 right-3 px-2 py-0.5 rounded-full bg-violet-500 text-[11px] font-black text-black tracking-wider uppercase">
                             현재 선택
                           </div>
                         )}
@@ -142,13 +142,13 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                                 className="h-full w-full object-contain"
                               />
                             ) : (
-                              <div className="h-full w-full flex items-center justify-center text-[10px] text-gray-600">
+                              <div className="h-full w-full flex items-center justify-center text-xs text-gray-600">
                                 {node.number ? `NO.${node.number}` : '공식 정보 미제공'}
                               </div>
                             )}
                           </div>
                           <div className="min-w-0 flex-1">
-                            <span className="text-[9px] font-bold text-gray-500 tracking-wider">
+                            <span className="text-[11px] font-bold text-gray-500 tracking-wider">
                               {node.number ? `NO.${node.number}` : '공식 정보 미제공'}
                             </span>
                             <h4 className={`text-sm font-black truncate transition-colors ${
@@ -156,8 +156,8 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                             }`}>
                               {node.name || '미확인'}
                             </h4>
-                            {regionId && node.formLabel && <span className="text-[10px] text-violet-300">{node.formLabel}</span>}
-                            <div className="mt-1 flex items-center gap-1.5 text-[10px] font-semibold text-gray-400">
+                            {regionId && node.formLabel && <span className="text-xs text-violet-300">{node.formLabel}</span>}
+                            <div className="mt-1 flex items-center gap-1.5 text-xs font-semibold text-gray-400">
                               {displayElements.length > 0 && <span>{displayElements.join('/')}</span>}
                               {displayPositions.length > 0 && (
                                 <>
@@ -172,7 +172,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                         {/* Forms Pills */}
                         {allForms.length > 1 && (
                           <div className="mt-3 pt-3 border-t border-white/5">
-                            <span className="block text-[9px] font-bold text-gray-500 mb-1.5">
+                            <span className="block text-[11px] font-bold text-gray-500 mb-1.5">
                               보유 형태 ({allForms.length})
                             </span>
                             <div className="flex flex-wrap gap-1">
@@ -185,7 +185,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                                     to={`/gallery/aniimo/character/${encodeURIComponent(node.name || '')}${
                                       form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''
                                     }`}
-                                    className={`px-1.5 py-0.5 rounded text-[9px] font-black transition-all ${
+                                    className={`px-1.5 py-0.5 rounded text-[11px] font-black transition-all ${
                                       isFormActive
                                         ? 'bg-violet-400 text-black shadow-sm'
                                         : 'bg-white/5 text-gray-400 hover:bg-violet-400/20 hover:text-violet-300'
@@ -210,7 +210,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                   <div className="flex items-center gap-1 text-violet-400/70">
                     <div className="w-6 h-px bg-gradient-to-r from-violet-500/40 to-violet-400" />
                     {hasBranching ? (
-                      <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-violet-500/10 border border-violet-500/20 text-[9px] font-black text-violet-300">
+                      <div className="flex items-center gap-1 px-1.5 py-0.5 rounded bg-violet-500/10 border border-violet-500/20 text-[11px] font-black text-violet-300">
                         <GitBranch size={10} className="text-violet-400" />
                         <span>분기</span>
                       </div>
@@ -234,7 +234,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
               <div className="flex items-center gap-2">
                 <span className="h-2 w-2 rounded-full bg-violet-400" />
                 <span className="text-xs font-black text-violet-300">{stageName}</span>
-                <span className="text-[10px] text-gray-500">({items.length}종)</span>
+                <span className="text-xs text-gray-500">({items.length}종)</span>
                 <div className="h-px flex-1 bg-white/10" />
               </div>
 
@@ -271,9 +271,9 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center justify-between">
-                            <span className="text-[9px] font-bold text-gray-500">{node.number ? `NO.${node.number}` : '공식 정보 미제공'}</span>
+                            <span className="text-[11px] font-bold text-gray-500">{node.number ? `NO.${node.number}` : '공식 정보 미제공'}</span>
                             {isCurrentChar && (
-                              <span className="text-[9px] font-black text-violet-300 bg-violet-400/20 px-1.5 py-0.5 rounded">
+                              <span className="text-[11px] font-black text-violet-300 bg-violet-400/20 px-1.5 py-0.5 rounded">
                                 현재 선택
                               </span>
                             )}
@@ -281,8 +281,8 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                           <strong className={`block text-sm font-black ${isCurrentChar ? 'text-violet-300' : 'text-white'}`}>
                             {node.name || '미확인'}
                           </strong>
-                          {regionId && node.formLabel && <span className="block text-[10px] text-violet-300">{node.formLabel}</span>}
-                          <span className="text-[10px] text-gray-400 font-semibold">
+                          {regionId && node.formLabel && <span className="block text-xs text-violet-300">{node.formLabel}</span>}
+                          <span className="text-xs text-gray-400 font-semibold">
                             {displayElements.join('/')}
                           </span>
                         </div>
@@ -299,7 +299,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                                   to={`/gallery/aniimo/character/${encodeURIComponent(node.name || '')}${
                                     form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''
                                   }`}
-                                  className={`px-2 py-0.5 rounded text-[9px] font-black ${
+                                  className={`px-2 py-0.5 rounded text-[11px] font-black ${
                                     isFormActive
                                       ? 'bg-violet-400 text-black'
                                       : 'bg-white/5 text-gray-400'

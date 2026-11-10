@@ -18,6 +18,8 @@
 - `HubIntro` — `common-hub/components/HubIntro.tsx`: 허브의 게임명·설명·실제 집계 수치·검색·바로가기. `title`, `description`, `stats: { label, value }[]`, `searchPath`, `searchLabel`, `links: { label, to }[]`를 받는다. 검색 경로는 내부 기존 도감으로 지정하며 `search` query를 전달한다. 게임별 콘텐츠 순서는 DESIGN.md를 따른다.
 - `ReviewedGuideHighlights` — `common-hub/components/ReviewedGuideHighlights.tsx`: 공개된 가이드 요약만 사용한다. `gameId`, `accentClassName?`, `variant?: 'cards' | 'list'`; 허브 홈은 목록형을 사용한다.
 
+- `StatRow` — `common-hub/components/StatRow.tsx`: 캐릭터·무기 상세의 기본 능력치 한 줄. `label`, `value: string | number`, `color`(게임 강조색). 카드가 아닌 구분선 줄이다.
+
 ## 이미지와 아이템
 
 - `LazyImage` — `common-hub/components/LazyImage.tsx`: 지연 로딩, 크기 안정화와 fallback

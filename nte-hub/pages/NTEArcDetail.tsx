@@ -166,8 +166,8 @@ const NTEArcDetail: React.FC = () => {
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
                       <div>
-                        <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">{t('성장 스탯')}</span>
-                        <h2 className="text-2xl font-black uppercase tracking-widest text-white italic">{t('기초 능력치')}</h2>
+                        <span className="text-xs font-black uppercase tracking-widest text-gray-500">{t('성장 스탯')}</span>
+                        <h2 className="text-2xl font-black uppercase tracking-widest text-white">{t('기초 능력치')}</h2>
                       </div>
                     </div>
                   </div>
@@ -186,10 +186,10 @@ const NTEArcDetail: React.FC = () => {
                   <input 
                     type="range" min="0" max={LEVEL_STEPS.length - 1} value={levelIdx} 
                     onChange={(e) => setLevelIdx(parseInt(e.target.value))}
-                    className="w-full h-1.5 bg-white/10 rounded-full appearance-none cursor-pointer"
-                    style={{ accentColor: theme.primary }}
+                    className="range-slider w-full"
+                    style={{ color: theme.primary }}
                   />
-                  <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-2">
+                  <div className="flex justify-between text-xs font-black uppercase tracking-widest text-gray-400 px-0.5 mt-2">
                     {LEVEL_STEPS.map((lv, i) => (
                       <span key={i} className={i === levelIdx ? 'text-white font-bold' : ''}>Lv.{lv}</span>
                     ))}
@@ -222,8 +222,8 @@ const NTEArcDetail: React.FC = () => {
               <div className="flex items-center gap-6">
                 <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
                 <div className="flex flex-col border-l-4 border-white/10 pl-6">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">{t('아크 스킬')}</span>
-                  <h2 className="text-2xl font-black tracking-tighter italic uppercase text-white leading-none">{t((arc.skill?.name || '아크 스킬').replace(/\*\*/g, '').trim())}</h2>
+                  <span className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{t('아크 스킬')}</span>
+                  <h2 className="text-2xl font-black tracking-tighter uppercase text-white leading-none">{t((arc.skill?.name || '아크 스킬').replace(/\*\*/g, '').trim())}</h2>
                 </div>
               </div>
 
@@ -245,10 +245,10 @@ const NTEArcDetail: React.FC = () => {
                 <input 
                   type="range" min="0" max="4" value={rankIdx} 
                   onChange={(e) => setRankIdx(parseInt(e.target.value))}
-                  className="w-full h-1.5 bg-white/15 rounded-full appearance-none cursor-pointer"
-                  style={{ accentColor: theme.primary }}
+                  className="range-slider w-full"
+                  style={{ color: theme.primary }}
                 />
-                <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-2">
+                <div className="flex justify-between text-xs font-black uppercase tracking-widest text-gray-400 px-0.5 mt-2">
                   <span>R1 (기본)</span>
                   <span>R2</span>
                   <span>R3</span>
@@ -278,7 +278,7 @@ const NTEArcDetail: React.FC = () => {
           <div className="flex items-center justify-between w-full group">
             <div className="flex items-center gap-6">
               <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>03</div>
-              <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("돌파 재료 (Breakthrough Materials)")}</h2>
+              <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("돌파 재료 (Breakthrough Materials)")}</h2>
             </div>
           </div>
 
@@ -331,7 +331,7 @@ const NTEArcDetail: React.FC = () => {
           <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
               <User size={22} style={{ color: theme.primary }} className="opacity-80" />
-              <h2 className="text-xl font-black uppercase tracking-tighter italic">{t("추천 캐릭터")}</h2>
+              <h2 className="text-xl font-black uppercase tracking-tighter">{t("추천 캐릭터")}</h2>
             </div>
             <ul className="space-y-3">
               {getNteArcRecommendations(arc.name).map(rec => (
@@ -352,7 +352,7 @@ const NTEArcDetail: React.FC = () => {
           <div className="space-y-6">
             <div className="flex items-center gap-6">
               <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
-              <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("아크 스토리 (Arc Lore)")}</h2>
+              <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("아크 스토리 (Arc Lore)")}</h2>
             </div>
             <div className="glass-card p-8 rounded-[35px] border border-white/5">
               <div className="text-gray-300 text-base md:text-lg leading-relaxed italic bg-black/20 p-8 rounded-[25px] border border-white/5 shadow-inner">

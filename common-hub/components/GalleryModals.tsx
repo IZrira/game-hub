@@ -71,7 +71,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
             </div>
             <div className="text-center md:text-left space-y-2 sm:space-y-3">
               <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                <span className="px-3 py-1 bg-brand-primary/20 text-brand-accent text-[10px] font-black rounded-full uppercase tracking-widest border border-brand-primary/30">
+                <span className="px-3 py-1 bg-brand-primary/20 text-brand-accent text-xs font-black rounded-full uppercase tracking-widest border border-brand-primary/30">
                   {t(relic.type)}
                 </span>
                 <div className="flex gap-0.5 items-center bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
@@ -125,7 +125,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
                             onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/relic_placeholder.webp`; }}
                           />
                         </div>
-                        <span className="text-[9px] sm:text-[10px] font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{displayPieceName}</span>
+                        <span className="text-[11px] sm:text-xs font-bold text-gray-400 leading-tight group-hover:text-white transition-colors">{displayPieceName}</span>
                       </div>
                     );
                   })}
@@ -141,19 +141,19 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
               <div className="grid grid-cols-1 gap-2.5 sm:gap-3">
               {effect2 && (
                   <div className="bg-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/5 space-y-1.5 sm:space-y-2">
-                    <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
+                    <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
                   <p className="text-gray-300 text-xs sm:text-sm font-medium leading-relaxed">{effect2}</p>
                   </div>
                 )}
               {effect4 && (
                   <div className="bg-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/5 space-y-1.5 sm:space-y-2">
-                    <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('4세트 효과')}</div>
+                    <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('4세트 효과')}</div>
                   <p className="text-gray-300 text-xs sm:text-sm font-medium leading-relaxed">{effect4}</p>
                   </div>
                 )}
                 {relic.description && !relic.setEffect && (
                   <div className="bg-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/5 space-y-1.5 sm:space-y-2">
-                    <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('효과')}</div>
+                    <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('효과')}</div>
                     <p className="text-gray-300 text-xs sm:text-sm font-medium leading-relaxed">{t(relic.description)}</p>
                   </div>
                 )}
@@ -253,21 +253,21 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
                   {isCopied ? <Check size={16} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={16} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
                 </button>
               </div>
-              <p className="text-[9px] sm:text-[10px] text-brand-accent font-bold uppercase tracking-widest">{t(item.type)}</p>
+              <p className="text-[11px] sm:text-xs text-brand-accent font-bold uppercase tracking-widest">{t(item.type)}</p>
             </div>
           </div>
 
           <div className="bg-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/5 space-y-2.5 sm:space-y-4">
-            <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('아이템 설명')}</div>
-            <p className="text-gray-300 text-xs sm:text-sm leading-relaxed whitespace-pre-line">{t(item.desc || item.description || '설명이 없습니다.')}</p>
+            <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{t('아이템 설명')}</div>
+            <p className="text-gray-300 text-base leading-relaxed whitespace-pre-line">{t(item.desc || item.description || '설명이 없습니다.')}</p>
           </div>
 
           {item.sources && item.sources.length > 0 && (
             <div className="space-y-2 sm:space-y-3">
-              <div className="text-[9px] font-black text-gray-400 uppercase tracking-widest">{t('획득처')}</div>
+              <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest">{t('획득처')}</div>
               <div className="flex flex-wrap gap-1.5 sm:gap-2">
                 {item.sources.map((src: string, i: number) => (
-                  <span key={i} className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-white/5 border border-white/10 rounded-full text-[10px] sm:text-[11px] text-gray-400">
+                  <span key={i} className="px-2.5 sm:px-3 py-1 sm:py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-gray-400">
                     {t(src)}
                   </span>
                 ))}
@@ -332,7 +332,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
             </div>
             <div className="text-center md:text-left space-y-2 sm:space-y-3">
               <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary text-[10px] font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
+                <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary text-xs font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
                   {t(ornament.type)}
                 </span>
                 <div className="flex gap-0.5 items-center bg-white/5 px-2 py-0.5 rounded-full border border-white/10">
@@ -386,7 +386,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
                             onError={(e) => { (e.target as HTMLImageElement).src = `${CDN_URL}/hsr%20images/items/relic_placeholder.webp`; }}
                           />
                         </div>
-                        <span className="text-[9px] sm:text-[11px] font-bold text-gray-400 group-hover:text-white transition-colors">{displayPieceName}</span>
+                        <span className="text-[11px] sm:text-[11px] font-bold text-gray-400 group-hover:text-white transition-colors">{displayPieceName}</span>
                       </div>
                     );
                   })}
@@ -402,7 +402,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
               <div className="grid grid-cols-1 gap-2.5 sm:gap-3">
               {effect2 && (
                   <div className="bg-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-white/5 space-y-1.5 sm:space-y-2">
-                    <div className="text-[9px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
+                    <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
                   <p className="text-gray-300 text-xs sm:text-sm font-medium leading-relaxed">{effect2}</p>
                   </div>
                 )}

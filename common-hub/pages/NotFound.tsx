@@ -46,7 +46,7 @@ const NotFound: React.FC = () => {
       </div>
 
       <div className="mt-20 pt-12 border-t border-white/5 w-full max-w-2xl">
-        <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em] mb-6">{t('Quick Links')}</h3>
+        <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-6">{t('Quick Links')}</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <Link to="/gallery/hsr" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all">
             {t('붕괴: 스타레일')}

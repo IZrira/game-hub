@@ -68,11 +68,11 @@ const Detail: React.FC = () => {
       <div className="bg-brand-dark/30 py-10 m-0">
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex gap-2 mb-6">
-             <span className="bg-brand-primary/20 text-brand-accent px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider">
+             <span className="bg-brand-primary/20 text-brand-accent px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider">
                {post.category}
              </span>
              {post.keywords.map(kw => (
-               <span key={kw} className="bg-white/5 text-gray-400 px-3 py-1 rounded-full text-[10px] font-bold">
+               <span key={kw} className="bg-white/5 text-gray-400 px-3 py-1 rounded-full text-xs font-bold">
                  #{kw}
                </span>
              ))}
@@ -87,7 +87,7 @@ const Detail: React.FC = () => {
               </div>
               <div className="flex flex-col">
                 <span className="text-brand-light font-bold text-xs uppercase tracking-tight">{post.author}</span>
-                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
+                <span className="text-xs text-gray-400 font-bold uppercase tracking-widest">{post.date}</span>
               </div>
             </div>
           </div>
@@ -125,10 +125,10 @@ const Detail: React.FC = () => {
           </div>
 
           <div className="mt-16 flex items-center justify-center gap-4 border-t border-white/5 pt-8">
-            <button className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-[10px] font-black uppercase tracking-widest text-white transition-all hover:scale-105 active:scale-95">
+            <button className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-white/5 hover:bg-white/10 text-xs font-black uppercase tracking-widest text-white transition-all hover:scale-105 active:scale-95">
               <Bookmark size={16} /> {t('저장하기')}
             </button>
-            <button className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-brand-primary/20 hover:bg-brand-primary/30 text-[10px] font-black uppercase tracking-widest text-brand-accent transition-all hover:scale-105 active:scale-95">
+            <button className="flex items-center gap-2 px-8 py-2.5 rounded-full bg-brand-primary/20 hover:bg-brand-primary/30 text-xs font-black uppercase tracking-widest text-brand-accent transition-all hover:scale-105 active:scale-95">
               <Share2 size={16} /> {t('공유하기')}
             </button>
           </div>

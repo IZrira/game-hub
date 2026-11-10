@@ -171,7 +171,7 @@ export default function SkillAndEidolonSection({
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>05</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">{t('스킬 정보', { keySeparator: false, nsSeparator: false })}</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('스킬 정보', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         
         <div className="flex flex-col gap-10">
@@ -251,9 +251,9 @@ export default function SkillAndEidolonSection({
                             <div className="space-y-1">
                                <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h4>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
-                                  {skill.tag && <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
+                                  {skill.tag && <span className="text-xs font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
                                   {skill.spRecovery && skill.spRecovery !== '0' && (
-                                     <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
+                                     <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                        {skill.spRecovery.includes('+') ? <PlusCircle size={12}/> : <MinusCircle size={12}/>} SP {skill.spRecovery}
                                      </div>
                                   )}
@@ -291,7 +291,7 @@ export default function SkillAndEidolonSection({
         <section className="space-y-10">
           <div className="flex items-center gap-6 px-4">
             <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>06</div>
-            <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">{t('기억 정령', { keySeparator: false, nsSeparator: false })}</h2>
+            <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('기억 정령', { keySeparator: false, nsSeparator: false })}</h2>
           </div>
 
           <div className="grid grid-cols-1 gap-10">
@@ -341,9 +341,9 @@ export default function SkillAndEidolonSection({
                               <div className="space-y-1">
                                  <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h4>
                                  <div className="flex flex-wrap items-center gap-2 pt-1">
-                                    {skill.tag && <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
+                                    {skill.tag && <span className="text-xs font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
                                     {skill.spRecovery && skill.spRecovery !== '0' && (
-                                       <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[10px] font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
+                                       <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-black border ${skill.spRecovery.includes('+') ? 'bg-green-500/10 text-green-400 border-green-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20'}`}>
                                          {skill.spRecovery.includes('+') ? <PlusCircle size={12}/> : <MinusCircle size={12}/>} SP {skill.spRecovery}
                                        </div>
                                     )}
@@ -381,7 +381,7 @@ export default function SkillAndEidolonSection({
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '07' : '06'}</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">{t('추가 능력 & 속성 보너스', { keySeparator: false, nsSeparator: false })}</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('추가 능력 & 속성 보너스', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         
         <div className="flex flex-col gap-6">
@@ -424,7 +424,7 @@ export default function SkillAndEidolonSection({
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
           <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '08' : '07'}</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5 italic">{t('성혼', { keySeparator: false, nsSeparator: false })}</h2>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('성혼', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         <div className="grid grid-cols-1 gap-8">
           {char.eidolons?.map((eidolon: any, idx) => {
@@ -445,7 +445,7 @@ export default function SkillAndEidolonSection({
                   </div>
                   
                   <div className="text-center z-10 relative w-full sm:px-2">
-                    <span className="inline-block text-[10px] font-black text-brand-primary px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1.5">{eidolon.rank || `E${String(idx + 1).padStart(2, '0')}`}</span>
+                    <span className="inline-block text-xs font-black text-brand-primary px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1.5">{eidolon.rank || `E${String(idx + 1).padStart(2, '0')}`}</span>
                     <EidolonName>{t(eidolon.name, { keySeparator: false, nsSeparator: false })}</EidolonName>
                   </div>
                 </div>

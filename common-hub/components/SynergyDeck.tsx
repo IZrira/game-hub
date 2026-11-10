@@ -229,7 +229,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
           {activeParty.tags && activeParty.tags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 mt-3 pt-3 border-t border-white/5">
               {activeParty.tags.map((tag, i) => (
-                <span key={i} className="text-[10px] font-medium text-gray-400 bg-white/5 px-2 py-0.5 rounded-md">
+                <span key={i} className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-0.5 rounded-md">
                   #{tag}
                 </span>
               ))}
@@ -281,7 +281,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
               >
                 {/* Main Target Highlight Badge */}
                 {member.isMainTarget && (
-                  <div className="absolute top-2 right-2 z-10 bg-amber-400 text-black text-[9px] font-black uppercase px-2 py-0.5 rounded-full shadow-md">
+                  <div className="absolute top-2 right-2 z-10 bg-amber-400 text-black text-[11px] font-black uppercase px-2 py-0.5 rounded-full shadow-md">
                     현재 캐릭터
                   </div>
                 )}
@@ -305,7 +305,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                       {member.name}
                     </span>
                     {member.attribute && (
-                      <span className="text-[10px] text-gray-300 block font-medium">
+                      <span className="text-xs text-gray-300 block font-medium">
                         {member.attribute} 속성
                       </span>
                     )}
@@ -342,7 +342,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                     {/* Expandable Substitute Drawer */}
                     {isDrawerOpen && (
                       <div className="mt-2 p-2.5 bg-black/60 border border-white/10 rounded-xl space-y-2 animate-fadeIn">
-                        <div className="text-[10px] font-bold text-gray-400 border-b border-white/10 pb-1">
+                        <div className="text-xs font-bold text-gray-400 border-b border-white/10 pb-1">
                           대체 추천 캐릭터
                         </div>
                         <div className="flex flex-wrap gap-1.5 mt-1">
@@ -361,7 +361,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                                     className="w-full h-full object-cover object-top" 
                                   />
                                 </div>
-                                <span className="text-[10px] font-bold text-gray-200">{sub.name}</span>
+                                <span className="text-xs font-bold text-gray-200">{sub.name}</span>
                               </MaybeLink>
                             );
                           })}

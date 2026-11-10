@@ -58,7 +58,7 @@ const List: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${
+                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${
                     selectedCategory === cat 
                     ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' 
                     : 'text-gray-400 hover:text-white'
@@ -108,7 +108,7 @@ const List: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent opacity-60" />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-brand-primary/80 backdrop-blur-md text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+                    <span className="bg-brand-primary/80 backdrop-blur-md text-white px-3 py-1 rounded-full text-xs font-black uppercase tracking-widest">
                       {post.category}
                     </span>
                   </div>
@@ -117,7 +117,7 @@ const List: React.FC = () => {
                   <h3 className="text-lg font-bold text-white mb-3 line-clamp-2 group-hover:text-brand-accent transition-colors">
                     {post.title}
                   </h3>
-                  <div className="flex items-center justify-between text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                  <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-gray-400">
                     <div className="flex items-center gap-2">
                       <User size={12} className="text-brand-primary" />
                       {post.author}
@@ -149,10 +149,10 @@ const List: React.FC = () => {
                 </div>
                 <div className="flex-grow">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-[10px] font-black text-brand-accent uppercase tracking-widest">
+                    <span className="text-xs font-black text-brand-accent uppercase tracking-widest">
                       {post.category}
                     </span>
-                    <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+                    <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">
                       {post.date}
                     </span>
                   </div>
@@ -161,7 +161,7 @@ const List: React.FC = () => {
                   </h3>
                   <div className="flex gap-2 mt-3">
                     {post.keywords.slice(0, 3).map(kw => (
-                      <span key={kw} className="text-[10px] text-gray-400">#{kw}</span>
+                      <span key={kw} className="text-xs text-gray-400">#{kw}</span>
                     ))}
                   </div>
                 </div>

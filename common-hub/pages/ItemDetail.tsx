@@ -135,7 +135,7 @@ export default function ItemDetail() {
             </div>
 
             <div className="pt-8 border-t border-white/10 mt-auto">
-              <p className="text-[10px] font-bold text-gray-500">
+              <p className="text-xs font-bold text-gray-500">
                 {t('등록 데이터')} · {gameId?.toUpperCase()}
               </p>
             </div>

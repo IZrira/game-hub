@@ -46,7 +46,7 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
                       (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/skill_placeholder.webp';
                     }}
                   />
-                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-black/80 border border-white/20 flex items-center justify-center text-[10px] font-black text-white italic shadow-lg">
+                  <div className="absolute -top-2 -right-2 w-7 h-7 rounded-full bg-black/80 border border-white/20 flex items-center justify-center text-xs font-black text-white italic shadow-lg">
                     {displayRank}
                   </div>
                 </div>
@@ -56,7 +56,7 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
                   </h3>
                   <div className="flex items-center gap-2">
                     <div className="w-1 h-1 rounded-full bg-white/30" />
-                    <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t('공명 체인 노드')}</span>
+                    <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('공명 체인 노드')}</span>
                   </div>
                 </div>
               </div>

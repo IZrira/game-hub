@@ -161,12 +161,12 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-1.5 mb-1">
                       <span
-                        className="px-2 py-0.5 rounded text-[9px] font-black text-black"
+                        className="px-2 py-0.5 rounded text-[11px] font-black text-black"
                         style={{ backgroundColor: theme.primary }}
                       >
                         {lc.rank}순위
                       </span>
-                      <span className="text-[10px] text-amber-400 font-bold">
+                      <span className="text-xs text-amber-400 font-bold">
                         {'★'.repeat(lc.rarity)}
                       </span>
                     </div>

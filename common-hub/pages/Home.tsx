@@ -87,7 +87,7 @@ const Home: React.FC = () => {
         <div className="relative z-10 mx-auto max-w-5xl text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-md">
             <Database size={14} className="shrink-0 text-brand-accent" />
-            <span className="text-[10px] font-black uppercase tracking-[0.22em] text-gray-400">{t('4개 게임 통합 아카이브')}</span>
+            <span className="text-xs font-bold text-gray-400">{t('4개 게임 통합 아카이브')}</span>
           </div>
 
           <div className="mt-4 space-y-3">
@@ -110,7 +110,7 @@ const Home: React.FC = () => {
               <strong className="block text-sm text-white">{t('전체 게임에서 검색')}</strong>
               <span className="mt-0.5 block truncate text-xs text-gray-500">{t('캐릭터·장비·공략 이름을 입력하세요')}</span>
             </span>
-            <kbd className="hidden rounded-lg border border-white/10 bg-black/30 px-2.5 py-1.5 text-[10px] font-bold text-gray-400 sm:block">⌘ K</kbd>
+            <kbd className="hidden rounded-lg border border-white/10 bg-black/30 px-2.5 py-1.5 text-xs font-bold text-gray-400 sm:block">⌘ K</kbd>
           </button>
         </div>
       </section>
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
       <section className="relative z-20 mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14">
         <div className="mb-6 flex items-end justify-between gap-4">
           <div>
-            <span className="text-[10px] font-black tracking-[0.12em] text-brand-accent">{t('게임 선택')}</span>
+            <span className="text-xs font-black text-brand-accent">{t('게임 선택')}</span>
             <h2 className="mt-2 text-2xl font-black tracking-tight sm:text-3xl">{t('플레이 중인 게임')}</h2>
           </div>
           <span className="hidden text-xs text-gray-500 sm:block">{t('도감 · 세팅 · 분석 가이드')}</span>
@@ -129,7 +129,7 @@ const Home: React.FC = () => {
             const meta = gameDescriptions[game.id];
             return <Link key={game.id} to={`/gallery/${game.id}`} className={`group flex min-h-[158px] flex-col justify-between rounded-2xl border bg-[#121212] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.045] ${meta.accent}`}>
               <div>
-                <div className="flex items-center gap-2 text-[10px] font-black text-gray-400">
+                <div className="flex items-center gap-2 text-xs font-black text-gray-400">
                   <span className="text-base text-brand-accent" aria-hidden="true">{meta.icon}</span>
                   <span>{meta.eyebrow}</span>
                 </div>
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <Link to="/notices" className="inline-flex items-center gap-1.5 text-xs font-black text-gray-400 hover:text-brand-primary uppercase tracking-widest transition-colors self-end sm:self-center">
+            <Link to="/notices" className="inline-flex min-h-6 items-center gap-1.5 text-xs font-black text-gray-400 hover:text-brand-primary transition-colors self-end sm:self-center">
               {t('+ 더보기')} <ChevronRight size={14} />
             </Link>
           </div>
@@ -207,7 +207,7 @@ const Home: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
               <Users size={20} className="text-brand-primary" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('누가 운영하나요?')}</h3>
+            <h3 className="text-lg sm:text-xl font-black tracking-tighter uppercase">{t('누가 운영하나요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
               {t('리라 아카이브는 게임 정보를 한곳에서 빠르게 확인할 수 있도록 직접 운영하는 비공식 팬 아카이브입니다. 등록 데이터와 공략은 게시 전 원문 표기와 사이트 내 연결 상태를 확인합니다.')}
             </p>
@@ -216,7 +216,7 @@ const Home: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center border border-brand-accent/20">
               <Database size={20} className="text-brand-accent" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('어떻게 검토하나요?')}</h3>
+            <h3 className="text-lg sm:text-xl font-black tracking-tighter uppercase">{t('어떻게 검토하나요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
               {t('공개된 게임 정보와 게임 내 설명을 기준으로 데이터를 정리하고, 추천 세팅과 운용 판단은 별도의 분석 영역으로 구분합니다. 패치로 내용이 바뀌면 적용 버전과 검토일을 갱신하며 제보된 오류도 다시 확인합니다.')}
             </p>
@@ -225,7 +225,7 @@ const Home: React.FC = () => {
             <div className="w-12 h-12 rounded-2xl bg-yellow-500/10 flex items-center justify-center border border-yellow-500/20">
               <Globe size={20} className="text-yellow-500" />
             </div>
-            <h3 className="text-lg sm:text-xl font-black italic tracking-tighter uppercase">{t('왜 Rira Archive인가요?')}</h3>
+            <h3 className="text-lg sm:text-xl font-black tracking-tighter uppercase">{t('왜 Rira Archive인가요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">
               {t('도감의 사실 정보와 세팅 추천, 선택 이유를 분리해 사용자가 필요한 답을 빠르게 찾도록 구성합니다. 확정하기 어려운 내용은 단정하지 않고 업데이트 과정에서 계속 보완합니다.')}
             </p>

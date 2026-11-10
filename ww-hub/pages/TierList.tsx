@@ -107,7 +107,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
       )}
 
       <div className="absolute bottom-0 left-0 p-2.5 w-full z-10">
-        <p className="text-[10px] font-black text-white leading-none truncate group-hover:text-brand-accent transition-colors drop-shadow-md">
+        <p className="text-xs font-black text-white leading-none truncate group-hover:text-brand-accent transition-colors drop-shadow-md">
           {char.name}
         </p>
       </div>
@@ -278,7 +278,7 @@ const TierList: React.FC = () => {
             <div className="relative z-10 space-y-6 sm:space-y-8">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
                 <div className="space-y-2">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter uppercase flex items-center gap-3 sm:gap-4">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight flex items-center gap-3 sm:gap-4">
                     <Trophy className="text-brand-primary" size={32} />
                     <span>{WW_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표</span>
                   </h1>
@@ -352,7 +352,7 @@ const TierList: React.FC = () => {
                     style={{ backgroundColor: `${group.color}10` }}
                   >
                     <div 
-                      className="text-3xl sm:text-4xl font-black italic tracking-tighter text-center transition-transform group-hover/tier:scale-110"
+                      className="text-3xl sm:text-4xl font-black tracking-tight text-center"
                       style={{ color: group.color }}
                     >
                       {group.tier}

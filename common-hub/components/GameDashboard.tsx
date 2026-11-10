@@ -177,7 +177,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
           <div className="space-y-2">
             <div className="flex items-center gap-3">
               <h1 className="text-4xl font-black text-white italic tracking-tighter">{game.title}</h1>
-              <span className="px-2 py-1 rounded bg-white/10 text-[10px] font-bold text-brand-accent uppercase border border-white/5">
+              <span className="px-2 py-1 rounded bg-white/10 text-xs font-bold text-brand-accent uppercase border border-white/5">
                 {currentVersion} Updated
               </span>
             </div>
@@ -249,7 +249,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       <div className="flex justify-between items-end">
                         <div>
                           <p className="text-white font-bold text-sm leading-none mb-1">{t(char.name)}</p>
-                          <p className="text-[10px] text-gray-400 uppercase">{t(char.attribute)}</p>
+                          <p className="text-xs text-gray-400 uppercase">{t(char.attribute)}</p>
                         </div>
                         {char.rarity === 5 && <Star size={10} className="text-yellow-500 fill-yellow-500 mb-0.5" />}
                       </div>
@@ -271,7 +271,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
                   <Sparkles size={18} className="text-brand-primary" /> {t('최신 업데이트 목록')}
                 </h2>
-                <div className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5">
+                <div className="text-xs font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5">
                   {t('New Content')}
                 </div>
               </div>
@@ -299,7 +299,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       <div className="flex justify-between items-end">
                         <div className="min-w-0">
                           <p className="text-white font-bold text-sm leading-none mb-1 truncate">{t(item.name)}</p>
-                          <p className={`text-[9px] font-black uppercase ${
+                          <p className={`text-[11px] font-black uppercase ${
                             item.type === '캐릭터' || item.type === 'Character' ? 'text-brand-accent' :
                             item.type === '광추' || item.type === 'Light Cone' ? 'text-yellow-500' :
                             'text-blue-500'
@@ -336,14 +336,14 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                       }`}>
                         {notice.type.toUpperCase()}
                       </span>
-                      <span className="text-[9px] font-bold text-gray-400 flex items-center gap-1">
+                      <span className="text-[11px] font-bold text-gray-400 flex items-center gap-1">
                         <Calendar size={10} /> {notice.date}
                       </span>
                     </div>
                     <h3 className="text-xs font-black text-gray-200 group-hover:text-white transition-colors line-clamp-1">
                       {notice.title}
                     </h3>
-                    <p className="text-[10px] text-gray-400 mt-1 line-clamp-2 leading-relaxed">
+                    <p className="text-xs text-gray-400 mt-1 line-clamp-2 leading-relaxed">
                       {stripMarkdown(notice.content)}
                     </p>
                     <div className="mt-3 h-px bg-white/5 group-last:hidden" />
@@ -352,7 +352,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 
                 {notices.length === 0 && (
                   <div className="py-8 text-center">
-                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t('No Recent Notices')}</p>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t('No Recent Notices')}</p>
                   </div>
                 )}
               </div>

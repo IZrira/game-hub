@@ -674,12 +674,12 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
               {favorites.length > 0 && (
                 <section>
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-[10px] font-black text-yellow-500 uppercase tracking-[0.3em] flex items-center gap-2">
+                    <h3 className="text-xs font-black text-yellow-500 uppercase tracking-[0.3em] flex items-center gap-2">
                       <Star size={14} className="fill-yellow-500" /> {t('My Favorites')}
                     </h3>
                     <button
                       onClick={() => { setFavorites([]); localStorage.removeItem('rira_favorites'); }}
-                      className="text-[10px] font-bold text-gray-400 hover:text-white transition-colors"
+                      className="text-xs font-bold text-gray-400 hover:text-white transition-colors"
                     >
                       {t('Clear')}
                     </button>
@@ -703,10 +703,10 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
               {recentSearches.length > 0 && (
                 <section>
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-[10px] font-black text-gray-400 uppercase tracking-[0.3em]">{t('Recent Searches')}</h3>
+                    <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em]">{t('Recent Searches')}</h3>
                     <button
                       onClick={() => { setRecentSearches([]); localStorage.removeItem('recent_searches'); }}
-                      className="text-[10px] font-bold text-gray-400 hover:text-white transition-colors"
+                      className="text-xs font-bold text-gray-400 hover:text-white transition-colors"
                     >
                       {t('Clear')}
                     </button>
@@ -728,7 +728,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
 
               {/* 인기 검색어 */}
               <section>
-                <h3 className="text-[10px] font-black text-brand-primary uppercase tracking-[0.3em] mb-3 flex items-center gap-2">
+                <h3 className="text-xs font-black text-brand-primary uppercase tracking-[0.3em] mb-3 flex items-center gap-2">
                   <Sparkles size={14} /> {activeTab === 'all' ? t('Trending Keywords') : `${currentTabConfig?.gameName} 인기 키워드`}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -765,14 +765,14 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                   onClick={() => handleNavigate('/gallery/aniimo/characters')}
                   className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition-all cursor-pointer group"
                 >
-                  <p className="text-[10px] font-black text-amber-400 mb-1 uppercase tracking-widest">ANIIMO</p>
+                  <p className="text-xs font-black text-amber-400 mb-1 uppercase tracking-widest">ANIIMO</p>
                   <p className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">아니모 전체 도감 둘러보기</p>
                 </button>
                 <button
                   onClick={() => handleNavigate('/gallery/hsr')}
                   className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition-all cursor-pointer group"
                 >
-                  <p className="text-[10px] font-black text-purple-400 mb-1 uppercase tracking-widest">HONKAI: STAR RAIL</p>
+                  <p className="text-xs font-black text-purple-400 mb-1 uppercase tracking-widest">HONKAI: STAR RAIL</p>
                   <p className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">스타레일 아카이브 바로가기</p>
                 </button>
               </div>
@@ -796,7 +796,7 @@ const ResultSection = ({ title, icon, items, onNavigate, query }: any) => {
   if (!items || items.length === 0) return null;
   return (
     <div className="space-y-3">
-      <h3 className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 px-1">
+      <h3 className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-gray-400 px-1">
         {icon} {title} <span className="text-brand-primary">({items.length})</span>
       </h3>
       <div className="grid grid-cols-1 gap-2.5">
@@ -834,7 +834,7 @@ const SearchResultItem = ({
       <div className="flex justify-between items-start gap-2 mb-2">
         <div className="flex items-center gap-2 min-w-0">
           {/* 게임 구분 뱃지 */}
-          <span className={`text-[10px] font-black px-2 py-0.5 rounded-md border shrink-0 ${badgeStyle}`}>
+          <span className={`text-xs font-black px-2 py-0.5 rounded-md border shrink-0 ${badgeStyle}`}>
             {item.gameLabel || item.game.toUpperCase()}
           </span>
           <span className="text-sm font-black text-gray-200 group-hover:text-brand-primary transition-colors truncate">
@@ -842,7 +842,7 @@ const SearchResultItem = ({
           </span>
         </div>
         {/* 데이터 타입 뱃지 */}
-        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5 shrink-0 group-hover:border-brand-primary/30 transition-colors">
+        <span className="text-xs font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-0.5 rounded-md border border-white/5 shrink-0 group-hover:border-brand-primary/30 transition-colors">
           {item.type}
         </span>
       </div>
@@ -856,11 +856,11 @@ const SearchResultItem = ({
       <div className="flex items-center gap-1.5 flex-wrap">
         {item.routePath?.map((path: string, idx: number) => (
           <React.Fragment key={idx}>
-            <span className="text-[10px] px-2 py-0.5 bg-white/[0.03] border border-white/5 rounded-full text-gray-400 font-bold group-hover:bg-brand-primary/20 group-hover:text-brand-accent group-hover:border-brand-primary/30 transition-colors">
+            <span className="text-xs px-2 py-0.5 bg-white/[0.03] border border-white/5 rounded-full text-gray-400 font-bold group-hover:bg-brand-primary/20 group-hover:text-brand-accent group-hover:border-brand-primary/30 transition-colors">
               <HighlightText text={path} query={query || ''} />
             </span>
             {idx < item.routePath.length - 1 && (
-              <span className="text-[10px] font-black text-gray-500 shrink-0">&gt;</span>
+              <span className="text-xs font-black text-gray-500 shrink-0">&gt;</span>
             )}
           </React.Fragment>
         ))}

@@ -90,7 +90,7 @@ export default function NTESkillAndAwakeningSection({
             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10" style={{ boxShadow: `0 0 20px ${theme.shadow}` }}>
               <Zap size={20} style={{ color: theme.primary }} />
             </div>
-            <h2 className="text-2xl font-black text-white/90 italic tracking-tight">{t("스킬 정보")}</h2>
+            <h2 className="text-2xl font-black text-white/90 tracking-tight">{t("스킬 정보")}</h2>
           </div>
 
           <div className="flex flex-wrap gap-4 mb-8 justify-center md:justify-start">
@@ -163,7 +163,7 @@ export default function NTESkillAndAwakeningSection({
                             <div className="space-y-2">
                                <h4 className="text-3xl font-black text-white leading-none tracking-tight">{skill.name}</h4>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
-                                  <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{t(skill.tag || skill.type || '')}</span>
+                                  <span className="text-xs font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{t(skill.tag || skill.type || '')}</span>
                                </div>
                             </div>
                          </div>
@@ -190,7 +190,7 @@ export default function NTESkillAndAwakeningSection({
             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10" style={{ boxShadow: `0 0 20px ${theme.shadow}` }}>
               <Sparkles size={20} style={{ color: theme.primary }} />
             </div>
-            <h2 className="text-2xl font-black text-white/90 italic tracking-tight">{t("각성")}</h2>
+            <h2 className="text-2xl font-black text-white/90 tracking-tight">{t("각성")}</h2>
           </div>
             
             <div className="grid gap-4">
@@ -225,7 +225,7 @@ export default function NTESkillAndAwakeningSection({
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10" style={{ boxShadow: `0 0 20px ${theme.shadow}` }}>
                 <Zap size={20} style={{ color: theme.primary }} />
               </div>
-              <h2 className="text-2xl font-black text-white/90 italic tracking-tight">{t("공명")}</h2>
+              <h2 className="text-2xl font-black text-white/90 tracking-tight">{t("공명")}</h2>
             </div>
             
             <div className="grid gap-4">
@@ -238,7 +238,7 @@ export default function NTESkillAndAwakeningSection({
                              <h4 className="text-2xl font-black text-white leading-none tracking-tight">{skill.name}</h4>
                           </div>
                           <div className="flex items-center gap-2">
-                             <span className="text-[10px] font-black text-brand-primary uppercase tracking-widest bg-brand-primary/10 px-3 py-1.5 rounded-lg border border-brand-primary/20">{t('공명')} {idx + 1}</span>
+                             <span className="text-xs font-black text-brand-primary uppercase tracking-widest bg-brand-primary/10 px-3 py-1.5 rounded-lg border border-brand-primary/20">{t('공명')} {idx + 1}</span>
                           </div>
                        </div>
                        <div className="text-base md:text-lg text-gray-300 leading-relaxed break-keep font-medium whitespace-pre-wrap">

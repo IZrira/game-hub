@@ -34,3 +34,6 @@ common-hub/locales/ww/guide_labels_*.json
 .claude/skills/
 .claude/agents/
 skills-lock.json
+
+# UI audit output (npm run ui:audit)
+.tmp/

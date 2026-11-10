@@ -41,6 +41,7 @@ import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import { NTE_CHARACTER_DATA } from '../data/characterData';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent, CDN_URL } from '../../common-hub/utils/assetManager';
+import StatRow from '../../common-hub/components/StatRow';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 const CharacterReviewBoard = lazy(() => import('../../common-hub/components/CharacterReviewBoard'));
@@ -715,7 +716,7 @@ const CharacterDetailNTE: React.FC = () => {
               ✕
             </button>
           </div>
-          <div className="text-white/90 text-[13px] sm:text-[14px] leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
+          <div className="text-white/90 text-base leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
             {typeof tooltip.text === 'string' ? renderTextWithHighlights(tooltip.text) : tooltip.text}
           </div>
         </div>
@@ -767,7 +768,7 @@ const CharacterDetailNTE: React.FC = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-3">
               <div className="space-y-0.5">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
                   {t('아크')} : {t(char.arc)} | {t(char.attribute)}
                 </div>
                 <div className="flex items-end justify-between gap-4">
@@ -779,7 +780,7 @@ const CharacterDetailNTE: React.FC = () => {
                       const guide = getPublishedGuides('nte').find(article => article.characterId === char.id);
                       return guide ? `/gallery/nte/guides/${encodeURIComponent(guide.slug)}` : '/gallery/nte?menu=공략';
                     })()}
-                    className={`mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-[10px] font-black transition-colors hover:brightness-110 whitespace-nowrap ${char.attribute === '빛' || char.abilityAttribute === '빛' ? 'text-gray-900' : 'text-white'}`}
+                    className={`mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-xs font-black transition-colors hover:brightness-110 whitespace-nowrap ${char.attribute === '빛' || char.abilityAttribute === '빛' ? 'text-gray-900' : 'text-white'}`}
                     style={{ backgroundColor: theme.primary }}
                   >
                     <BookOpen size={14} /> {t('세팅 공략')}
@@ -793,7 +794,7 @@ const CharacterDetailNTE: React.FC = () => {
                     <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
                   ))}
                 </div>
-                <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[9px] font-bold tracking-wide text-gray-400 opacity-70">
+                <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-400 opacity-70">
                    Ver {char.releaseVersion || '1.0'}
                 </div>
               </div>
@@ -808,24 +809,24 @@ const CharacterDetailNTE: React.FC = () => {
               <div className="flex flex-wrap items-center gap-3 relative z-30">
                 {rawChar?.hasASBuff && (
                   <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                    <button onClick={() => setIsASMode(false)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>
-                    <button onClick={() => setIsASMode(true)} className={`px-4 py-1.5 rounded-lg text-[10px] font-black transition-all ${isASMode ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500'}`}>{t('AS Remake')}</button>
+                    <button onClick={() => setIsASMode(false)} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-500'}`}>{t('Original')}</button>
+                    <button onClick={() => setIsASMode(true)} className={`px-4 py-1.5 rounded-lg text-xs font-black transition-all ${isASMode ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500'}`}>{t('AS Remake')}</button>
                   </div>
                 )}
                 {char.isTrailblazer && (
                   <div className="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 shadow-inner">
-                    <span className="text-[10px] font-black text-gray-400 pl-2 pr-1">{t('성별')}</span>
-                    <button onClick={() => setGender('m')} className={`px-4 py-1 rounded-lg text-[10px] font-black transition-all ${gender === 'm' ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500 hover:bg-white/5'}`} style={gender === 'm' ? { backgroundColor: theme.primary } : {}}>{t('남성')}</button>
-                    <button onClick={() => setGender('f')} className={`px-4 py-1 rounded-lg text-[10px] font-black transition-all ${gender === 'f' ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500 hover:bg-white/5'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>
+                    <span className="text-xs font-black text-gray-400 pl-2 pr-1">{t('성별')}</span>
+                    <button onClick={() => setGender('m')} className={`px-4 py-1 rounded-lg text-xs font-black transition-all ${gender === 'm' ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500 hover:bg-white/5'}`} style={gender === 'm' ? { backgroundColor: theme.primary } : {}}>{t('남성')}</button>
+                    <button onClick={() => setGender('f')} className={`px-4 py-1 rounded-lg text-xs font-black transition-all ${gender === 'f' ? `bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg` : 'text-gray-500 hover:bg-white/5'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>
                   </div>
                 )}
                 {char?.skins && char.skins.length > 0 && (
                   <div className="flex items-center gap-2 bg-white/5 p-1.5 rounded-xl border border-white/10 shadow-inner">
-                    <span className="text-[10px] font-black text-gray-400 pl-2 pr-1">{t('스킨')}</span>
+                    <span className="text-xs font-black text-gray-400 pl-2 pr-1">{t('스킨')}</span>
                     <div className="relative">
                       <button 
                         onClick={() => setIsSkinDropdownOpen(!isSkinDropdownOpen)}
-                        className={`flex items-center justify-between min-w-[140px] px-4 py-1 rounded-lg text-[10px] font-black transition-all bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg hover:scale-[1.02] active:scale-[0.98]`}
+                        className={`flex items-center justify-between min-w-[140px] px-4 py-1 rounded-lg text-xs font-black transition-all bg-brand-primary ${(char.attribute === '빛' || char.abilityAttribute === '빛') ? 'text-gray-900' : 'text-white'} shadow-lg hover:scale-[1.02] active:scale-[0.98]`}
                         style={{ backgroundColor: theme.primary }}
                       >
                         <span className="truncate max-w-[100px]">{selectedSkinIndex === 0 ? t('기본') : t(char.skins[selectedSkinIndex - 1])}</span>
@@ -838,7 +839,7 @@ const CharacterDetailNTE: React.FC = () => {
                           <div className="absolute top-full left-0 mt-2 w-max min-w-full bg-[#121212] border border-white/10 rounded-xl shadow-2xl z-50 overflow-hidden flex flex-col py-1 backdrop-blur-xl">
                             <button 
                               onClick={() => { setSelectedSkinIndex(0); setIsSkinDropdownOpen(false); }}
-                              className={`px-4 py-2.5 text-[10px] font-black text-left transition-all ${selectedSkinIndex === 0 ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                              className={`px-4 py-2.5 text-xs font-black text-left transition-all ${selectedSkinIndex === 0 ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
                             >
                               {t('기본')}
                             </button>
@@ -846,7 +847,7 @@ const CharacterDetailNTE: React.FC = () => {
                               <button 
                                 key={idx} 
                                 onClick={() => { setSelectedSkinIndex(idx + 1); setIsSkinDropdownOpen(false); }}
-                                className={`px-4 py-2.5 text-[10px] font-black text-left transition-all ${selectedSkinIndex === idx + 1 ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                                className={`px-4 py-2.5 text-xs font-black text-left transition-all ${selectedSkinIndex === idx + 1 ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
                               >
                                 {t(skinName)}
                               </button>
@@ -875,7 +876,7 @@ const CharacterDetailNTE: React.FC = () => {
                 <div className="flex flex-col gap-1.5 flex-1 max-w-md relative pt-6">
                   {/* Floating Level Label */}
                   <div 
-                    className="pointer-events-none absolute top-0 -translate-x-1/2 rounded px-2 py-0.5 text-[10px] font-black text-black transition-[left] duration-75"
+                    className="pointer-events-none absolute top-0 -translate-x-1/2 rounded px-2 py-0.5 text-xs font-black text-black transition-[left] duration-75"
                     style={{ 
                       left: `${(levelIdx / 7) * 100}%`,
                       backgroundColor: theme.primary,
@@ -884,8 +885,8 @@ const CharacterDetailNTE: React.FC = () => {
                   >
                     Lv.{currentLevel}
                   </div>
-                  <input type="range" min="0" max="7" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer" style={{ accentColor: theme.primary }} />
-                  <div className="flex justify-between text-[9px] font-black uppercase text-gray-400 px-0.5">
+                  <input type="range" min="0" max="7" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="range-slider w-full" style={{ color: theme.primary }} />
+                  <div className="flex justify-between text-[11px] font-black uppercase text-gray-400 px-0.5">
                     <span>1</span>
                     <span>80</span>
                   </div>
@@ -894,7 +895,7 @@ const CharacterDetailNTE: React.FC = () => {
 
               {/* Vertical Stats List */}
               {char.baseStats && Object.keys(char.baseStats).length > 0 ? (
-                <div className="flex flex-col gap-2.5">
+                <div className="flex flex-col">
                   <StatRow label={t("기초 HP")} value={calculateStat('hp')} color={theme.primary} />
                   <StatRow label={t("기초 공격력")} value={calculateStat('atk')} color={theme.primary} />
                   <StatRow label={t("기초 방어력")} value={calculateStat('def')} color={theme.primary} />
@@ -1084,7 +1085,7 @@ const CharacterDetailNTE: React.FC = () => {
                 <p className="text-[11px] text-gray-400 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-xs text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다.')}
             </div>
           </div>
@@ -1172,16 +1173,6 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, 
   <div className="space-y-4 group">
     <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
     <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
-  </div>
-);
-
-const StatRow: React.FC<{ label: string; value: string | number; color: string }> = ({ label, value, color }) => (
-  <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-white/10 hover:bg-white/[0.04]">
-    <div className="flex items-center gap-4">
-      <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-xs font-bold text-gray-400">{label}</span>
-    </div>
-    <div className="text-xl font-black tabular-nums text-white">{value}</div>
   </div>
 );
 

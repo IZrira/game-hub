@@ -42,13 +42,13 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
     sm: {
       container: 'w-[70px] md:w-[80px]',
       box: 'w-14 h-14 md:w-16 md:h-16',
-      text: 'text-[9px] md:text-[10px]',
+      text: 'text-[11px] md:text-xs',
       limit: 8
     },
     md: {
       container: 'w-[80px] md:w-[100px]',
       box: 'w-16 h-16 md:w-20 md:h-20',
-      text: 'text-[9px] md:text-[11px]',
+      text: 'text-[11px] md:text-[11px]',
       limit: 10
     }
   };

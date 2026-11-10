@@ -15,6 +15,7 @@ import { Compass, Zap, MapPin, History, Globe, Shield } from 'lucide-react';
 import WwItemIcon from '../components/WwItemIcon';
 import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+import StatRow from '../../common-hub/components/StatRow';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 
@@ -527,7 +528,7 @@ const WuwaWeaponDetail = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
                   <span>{t('무기 종류')} : {t(weapon.type || '')}</span>
                   {weapon.obtain && (
                     <>
@@ -563,12 +564,12 @@ const WuwaWeaponDetail = () => {
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-4">
                       <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
-                      <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400 italic">{t('기본 스텟')}</h2>
+                      <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400">{t('기본 스텟')}</h2>
                     </div>
                   </div>
                   {/* Floating Level Label */}
                   <div 
-                    className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg z-10"
+                    className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-xs rounded pointer-events-none transition-all duration-75 shadow-lg z-10"
                     style={{ 
                       left: `${(selectedLevelIdx / maxLevelIdx) * 100}%`,
                       backgroundColor: theme.primary,
@@ -581,10 +582,10 @@ const WuwaWeaponDetail = () => {
                     type="range" min="0" max={maxLevelIdx} value={selectedLevelIdx}
                     aria-label={t('무기 레벨')} aria-valuetext={`Lv.${selectedLevel}`}
                     onChange={(e) => setLevelIdx(parseInt(e.target.value))}
-                    className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer accent-brand-primary"
-                    style={{ accentColor: theme.primary }}
+                    className="range-slider w-full"
+                    style={{ color: theme.primary }}
                   />
-                  <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
+                  <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                     <span>1</span>
                     <span>{levelOptions.levels[maxLevelIdx]}</span>
                   </div>
@@ -592,7 +593,7 @@ const WuwaWeaponDetail = () => {
               </div>
 
               {/* Stats Grid */}
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-2 gap-x-6 [&>*]:border-b-0">
                 <StatRow label={t("기초 공격력")} value={currentStats.atk} color={theme.primary} />
                 <StatRow label={t(weapon.stats.subStatName)} value={currentStats.subStatValue} color={theme.primary} />
               </div>
@@ -603,7 +604,7 @@ const WuwaWeaponDetail = () => {
               <div className="flex items-center gap-6 mb-6">
                 <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
                 <div className="flex flex-col border-l-4 border-white/10 pl-6">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">{t('무기 스킬')}</span>
+                  <span className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{t('무기 스킬')}</span>
                   <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90 leading-none">{t(weapon.skill?.name || '').replace(/\*\*/g, '').trim()}</h2>
                 </div>
               </div>
@@ -617,7 +618,7 @@ const WuwaWeaponDetail = () => {
                 </div>
                 {/* Floating Rank Label */}
                 <div 
-                  className="absolute top-2 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-[10px] rounded pointer-events-none transition-all duration-75 shadow-lg z-10"
+                  className="absolute top-2 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-xs rounded pointer-events-none transition-all duration-75 shadow-lg z-10"
                   style={{ 
                     left: `${(rankIdx / 4) * 100}%`,
                     boxShadow: `0 0 10px rgba(255,255,255,0.4)`
@@ -628,10 +629,10 @@ const WuwaWeaponDetail = () => {
                 <input 
                   type="range" min="0" max="4" value={rankIdx} 
                   onChange={(e) => setRankIdx(parseInt(e.target.value))}
-                  className="w-full h-1 bg-white/15 rounded-full appearance-none cursor-pointer"
-                  style={{ accentColor: theme.primary }}
+                  className="range-slider w-full"
+                  style={{ color: theme.primary }}
                 />
-                <div className="flex justify-between text-[9px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
+                <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                   <span>1</span>
                   <span>5</span>
                 </div>
@@ -684,7 +685,7 @@ const WuwaWeaponDetail = () => {
                         />
                         {rank !== undefined && (
                           <span 
-                            className="absolute top-1 left-1 px-1.5 py-0.5 text-[9px] font-black italic rounded"
+                            className="absolute top-1 left-1 px-1.5 py-0.5 text-[11px] font-black italic rounded"
                             style={{ backgroundColor: `${theme.primary}E6`, color: '#000' }}
                           >
                             {rank}{t('순위')}
@@ -697,7 +698,7 @@ const WuwaWeaponDetail = () => {
                             {charName}
                           </span>
                           {char.rarity && (
-                            <span className="text-[10px] text-yellow-500 font-bold">★{char.rarity}</span>
+                            <span className="text-xs text-yellow-500 font-bold">★{char.rarity}</span>
                           )}
                         </div>
                         {note && (
@@ -706,13 +707,13 @@ const WuwaWeaponDetail = () => {
                         <div className="flex gap-2 mt-2">
                           <Link 
                             to={`/gallery/ww/character/${encodeURIComponent(char.id)}/guide`}
-                            className="text-[10px] font-bold px-2 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
+                            className="text-xs font-bold px-2 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-gray-300 hover:text-white transition-colors border border-white/10"
                           >
                             {t('세팅 공략')} →
                           </Link>
                           <Link 
                             to={`/gallery/ww/character/${encodeURIComponent(char.id)}`}
-                            className="text-[10px] font-bold px-2 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
+                            className="text-xs font-bold px-2 py-1 rounded-lg bg-white/5 hover:bg-white/15 text-gray-400 hover:text-white transition-colors"
                           >
                             {t('정보')}
                           </Link>
@@ -815,16 +816,6 @@ const SectionHeader: React.FC<{
       <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{title}</h2>
     </div>
     {onToggle && (<button onClick={onToggle} className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
-  </div>
-);
-
-const StatRow: React.FC<{ label: string; value: string | number; color: string }> = ({ label, value, color }) => (
-  <div className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/5 group hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300">
-    <div className="flex items-center gap-4">
-      <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-[11px] font-black text-gray-500 uppercase tracking-widest group-hover:text-gray-300 transition-colors">{label}</span>
-    </div>
-    <div className="text-xl font-black tabular-nums text-white group-hover:scale-105 transition-transform">{value}</div>
   </div>
 );
 

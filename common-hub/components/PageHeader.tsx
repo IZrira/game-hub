@@ -76,10 +76,10 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         <div className="w-px h-4 bg-white/10 mx-1 hidden sm:block" />
 
         {/* 2. 통일된 경로 표시 (Breadcrumbs) */}
-        <nav className="flex items-center gap-1.5 sm:gap-2.5 text-[10px] sm:text-[11px] font-black text-gray-400 uppercase tracking-widest truncate min-w-0">
+        <nav aria-label={t('현재 위치')} className="flex items-center gap-1 sm:gap-2 text-xs font-bold text-gray-400 truncate min-w-0">
           
           {/* 홈 */}
-          <Link to="/" className="hover:text-brand-accent transition-colors flex items-center gap-1 shrink-0">
+          <Link to="/" className="inline-flex min-h-6 min-w-6 items-center justify-center gap-1 rounded px-1 hover:text-brand-accent transition-colors shrink-0">
             <Home size={12} className="hidden sm:block" /> {t('메인')}
           </Link>
           <ChevronRight size={10} className="shrink-0 opacity-60" />
@@ -87,7 +87,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
           {/* 게임 이름 (스타레일 / 명조 / NTE) */}
           {gameId && (
             <>
-              <Link to={`/gallery/${gameId}?menu=홈`} className="hover:text-brand-accent transition-colors shrink-0">
+              <Link to={`/gallery/${gameId}?menu=홈`} className="inline-flex min-h-6 items-center rounded px-1 hover:text-brand-accent transition-colors shrink-0">
                 {t(GAME_NAME_KEYS[gameId] || gameId)}
               </Link>
               <ChevronRight size={10} className="shrink-0 opacity-60" />
@@ -97,7 +97,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
           {/* 카테고리 (캐릭터, 광추, 티어표 등) */}
           {category && (
             <>
-              <Link to={categoryUrl || defaultCategoryUrl} className="hover:text-brand-accent transition-colors shrink-0 hidden xs:inline-block">
+              <Link to={categoryUrl || defaultCategoryUrl} className="hidden min-h-6 items-center rounded px-1 hover:text-brand-accent transition-colors shrink-0 xs:inline-flex">
                 {t(category)}
               </Link>
               <ChevronRight size={10} className="shrink-0 opacity-60 hidden xs:inline-block" />

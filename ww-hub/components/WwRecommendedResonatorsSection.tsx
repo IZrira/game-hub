@@ -151,12 +151,12 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-1.5 mb-1">
                     {char.rarity && (
-                      <span className="text-[10px] text-yellow-400 font-black">
+                      <span className="text-xs text-yellow-400 font-black">
                         {'★'.repeat(char.rarity)}
                       </span>
                     )}
                     {char.attribute && (
-                      <span className="text-[10px] text-gray-400 font-semibold">
+                      <span className="text-xs text-gray-400 font-semibold">
                         · {char.attribute}
                       </span>
                     )}
@@ -165,7 +165,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
                     {char.name}
                   </h4>
                   {char.note && (
-                    <p className="text-[10px] text-gray-400 truncate mt-0.5">
+                    <p className="text-xs text-gray-400 truncate mt-0.5">
                       {char.note}
                     </p>
                   )}
@@ -175,14 +175,14 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
               <div className="flex items-center justify-between pt-3 mt-2 border-t border-white/5">
                 <Link
                   to={`/gallery/ww/character/${encodeURIComponent(char.charId)}/guide`}
-                  className="flex items-center gap-1 text-[10px] font-bold text-gray-400 hover:text-brand-accent transition-colors"
+                  className="flex items-center gap-1 text-xs font-bold text-gray-400 hover:text-brand-accent transition-colors"
                 >
                   <BookOpen size={12} />
                   <span>세팅 공략</span>
                 </Link>
                 <Link
                   to={`/gallery/ww/character/${encodeURIComponent(char.charId)}`}
-                  className="flex items-center gap-0.5 text-[10px] font-bold text-gray-400 group-hover:text-white transition-colors"
+                  className="flex items-center gap-0.5 text-xs font-bold text-gray-400 group-hover:text-white transition-colors"
                 >
                   <span>상세 정보</span>
                   <ChevronRight size={12} />

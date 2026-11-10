@@ -43,7 +43,7 @@ const TypeChartAniimo: React.FC = () => {
         <AniimoSidebar />
         <div className="min-w-0 space-y-8">
         <section className="overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
-          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-violet-300">Aniimo Battle Guide</p>
+          <p className="text-xs font-black uppercase tracking-[0.3em] text-violet-300">Aniimo Battle Guide</p>
           <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">애니모 원소 상성표</h1>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-300">공격 원소가 방어 원소에 주는 피해 배율을 한눈에 확인하세요. 효과적이면 1.6배, 보통은 1배, 저항이면 0.625배입니다.</p>
           <div className="mt-6 flex flex-wrap gap-2 text-xs font-black">
@@ -56,7 +56,7 @@ const TypeChartAniimo: React.FC = () => {
           <div className="mt-5 flex flex-wrap gap-2">{ANIIMO_ELEMENTS.map(element => {
             const active = defenders.includes(element); return <button key={element} type="button" aria-pressed={active} onClick={() => toggleDefender(element)} className={`flex items-center gap-2 rounded-xl border px-4 py-2.5 text-sm font-black transition ${active ? 'border-violet-300 bg-violet-400 text-black' : 'border-white/10 bg-white/5 text-gray-300 hover:border-violet-400/50'}`}><span>{ELEMENT_META[element].icon}</span>{element}</button>;
           })}</div>
-          <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">{recommendations.map((attacker, index) => <article key={attacker} className={`rounded-2xl border p-4 ${index === 0 ? 'border-violet-400/40 bg-violet-400/10' : 'border-white/10 bg-black/20'}`}><div className="flex items-center justify-between"><span className="font-black">{ELEMENT_META[attacker].icon} {attacker}</span>{index === 0 && <span className="text-[9px] font-black text-violet-300">추천</span>}</div><div className="mt-3 flex flex-wrap gap-1.5">{defenders.map(defender => { const value = ELEMENT_CHART[attacker][defender]; return <span key={defender} className={`rounded-lg border px-2 py-1 text-[10px] font-bold ${cellStyle[value]}`}>vs {defender} {value}배</span>; })}</div></article>)}</div>
+          <div className="mt-6 grid gap-3 sm:grid-cols-3 lg:grid-cols-5">{recommendations.map((attacker, index) => <article key={attacker} className={`rounded-2xl border p-4 ${index === 0 ? 'border-violet-400/40 bg-violet-400/10' : 'border-white/10 bg-black/20'}`}><div className="flex items-center justify-between"><span className="font-black">{ELEMENT_META[attacker].icon} {attacker}</span>{index === 0 && <span className="text-[11px] font-black text-violet-300">추천</span>}</div><div className="mt-3 flex flex-wrap gap-1.5">{defenders.map(defender => { const value = ELEMENT_CHART[attacker][defender]; return <span key={defender} className={`rounded-lg border px-2 py-1 text-xs font-bold ${cellStyle[value]}`}>vs {defender} {value}배</span>; })}</div></article>)}</div>
         </section>
 
         <section className="overflow-hidden rounded-3xl border border-white/10 bg-[#121212]">

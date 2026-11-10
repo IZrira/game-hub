@@ -64,10 +64,10 @@ const CharacterCard = memo(({ char, gameId }: { char: NTETierCharacter, gameId: 
           {char.name}
         </span>
         <div className="flex items-center gap-1 mt-0.5">
-          <span className="text-[9px] font-bold text-gray-400 bg-white/10 px-1.5 py-0.2 rounded">
+          <span className="text-[11px] font-bold text-gray-400 bg-white/10 px-1.5 py-0.2 rounded">
             {char.attribute}
           </span>
-          <span className="text-[9px] font-medium text-gray-500">
+          <span className="text-[11px] font-medium text-gray-500">
             {char.role}
           </span>
         </div>
@@ -134,7 +134,7 @@ const NTETierList: React.FC = () => {
             <div>
               <div className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
-                <span className="text-[10px] font-black text-brand-accent tracking-[0.3em] uppercase">Meta Rankings</span>
+                <span className="text-xs font-black text-brand-accent tracking-[0.3em] uppercase">Meta Rankings</span>
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white italic tracking-tighter mt-1">
                 ESPER TIER LIST
@@ -178,7 +178,7 @@ const NTETierList: React.FC = () => {
           {/* Role & Attribute Filter Pills */}
           <div className="flex flex-wrap items-center gap-3 sm:gap-4 bg-[#121212] p-3 sm:p-4 rounded-2xl border border-white/5">
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider mr-1">포지션:</span>
+              <span className="text-xs font-black text-gray-500 uppercase tracking-wider mr-1">포지션:</span>
               {['전체', '메인 딜러', '서브 딜러', '서포터', '탱커/힐러'].map(role => (
                 <button
                   key={role}
@@ -195,7 +195,7 @@ const NTETierList: React.FC = () => {
             <div className="h-4 w-[1px] bg-white/10 hidden md:block" />
 
             <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span className="text-[10px] font-black text-gray-500 uppercase tracking-wider mr-1">속성:</span>
+              <span className="text-xs font-black text-gray-500 uppercase tracking-wider mr-1">속성:</span>
               {['전체', '혼', '령', '암', '빛', '주', '상'].map(attr => (
                 <button
                   key={attr}
@@ -228,7 +228,7 @@ const NTETierList: React.FC = () => {
                   >
                     {group.tier}
                   </span>
-                  <span className="text-[9px] text-gray-400 font-bold text-center mt-1 sm:mt-2 px-2">
+                  <span className="text-[11px] text-gray-400 font-bold text-center mt-1 sm:mt-2 px-2">
                     {group.description}
                   </span>
                 </div>

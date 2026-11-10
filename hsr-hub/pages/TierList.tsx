@@ -130,7 +130,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
       )}
 
       <div className="absolute bottom-0 left-0 p-2.5 w-full z-10">
-        <p className="text-[10px] font-black text-white leading-none truncate group-hover:text-brand-accent transition-colors drop-shadow-md">
+        <p className="text-xs font-black text-white leading-none truncate group-hover:text-brand-accent transition-colors drop-shadow-md">
           {char.name}
         </p>
       </div>
@@ -395,13 +395,13 @@ const TierList: React.FC = () => {
             <div className="relative z-10 space-y-6 sm:space-y-8">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
                 <div className="space-y-2">
-                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter uppercase flex items-center gap-3 sm:gap-4">
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight flex items-center gap-3 sm:gap-4">
                     <Trophy className="text-brand-primary" size={32} />
                     <span>{HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표</span>
                   </h1>
                   <p className="text-gray-400 font-bold text-sm sm:text-lg">
                     {HSR_TIER_CATEGORIES.find(c => c.id === activeCategory)?.description}
-                    {isSyncing && <span className="ml-3 text-[10px] text-brand-primary">불러오는 중</span>}
+                    {isSyncing && <span className="ml-3 text-xs text-brand-primary">불러오는 중</span>}
                   </p>
                 </div>
 
@@ -468,7 +468,7 @@ const TierList: React.FC = () => {
                 {filteredTierList.map((group) => (
                   <div key={group.tier} className="bg-[#121212] rounded-[28px] sm:rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
                     <div className="w-full md:w-32 flex flex-col items-center justify-center p-4 sm:p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5" style={{ backgroundColor: `${group.color}10` }}>
-                      <div className={`${group.tier === '?' ? 'text-xl' : 'text-3xl sm:text-4xl'} font-black italic tracking-tighter text-center`} style={{ color: group.color }}>
+                      <div className={`${group.tier === '?' ? 'text-xl' : 'text-3xl sm:text-4xl'} font-black tracking-tight text-center`} style={{ color: group.color }}>
                         {group.tier === '?' ? group.label : group.tier}
                       </div>
                     </div>
@@ -482,7 +482,7 @@ const TierList: React.FC = () => {
                         </div>
                       ) : (
                         <div className="h-full flex items-center justify-center py-4">
-                          <p className="text-gray-400 font-black uppercase tracking-widest text-[10px] opacity-30">Empty</p>
+                          <p className="text-gray-400 font-black uppercase tracking-widest text-xs opacity-30">Empty</p>
                         </div>
                       )}
                     </div>

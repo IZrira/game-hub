@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className={`text-xs font-black uppercase tracking-widest transition-colors ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>{t('HOME')}</Link>
 
           {isAdmin(user?.id) && (
-            <Link to="/admin" className="flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-500 rounded-lg text-[10px] font-black uppercase tracking-widest border border-amber-500/20 hover:bg-amber-500/20 transition-all">
+            <Link to="/admin" className="flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-500 rounded-lg text-xs font-black uppercase tracking-widest border border-amber-500/20 hover:bg-amber-500/20 transition-all">
               <ShieldCheck size={14} />
               ADMIN
             </Link>
@@ -107,7 +107,7 @@ const Navbar: React.FC = () => {
                 <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary">
                   <UserIcon size={14} />
                 </div>
-                <span className="text-[10px] font-black text-white uppercase tracking-wider">{user.user_metadata?.full_name || user.email?.split('@')[0]}</span>
+                <span className="text-xs font-black text-white uppercase tracking-wider">{user.user_metadata?.full_name || user.email?.split('@')[0]}</span>
               </div>
               <button
                 onClick={handleLogout}
@@ -146,7 +146,7 @@ const Navbar: React.FC = () => {
             aria-label="Change Language"
           >
             <Globe size={16} />
-            <span className="text-[10px] font-black">{i18n.language?.toUpperCase()}</span>
+            <span className="text-xs font-black">{i18n.language?.toUpperCase()}</span>
           </button>
 
           <button
@@ -174,7 +174,7 @@ const Navbar: React.FC = () => {
                 <Search size={16} className="text-brand-primary" />
                 <span>{t('통합 아카이브 검색')}</span>
               </span>
-              <kbd className="px-2 py-0.5 text-[10px] font-mono text-brand-primary bg-brand-primary/20 rounded">⌘K</kbd>
+              <kbd className="px-2 py-0.5 text-xs font-mono text-brand-primary bg-brand-primary/20 rounded">⌘K</kbd>
             </button>
 
             <Link

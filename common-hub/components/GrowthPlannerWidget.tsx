@@ -251,7 +251,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
                             {t(char.name)}
                           </h4>
                           {char.element && (
-                            <span className="text-[10px] font-bold px-1.5 py-0.5 rounded bg-white/10 text-gray-300">
+                            <span className="text-xs font-bold px-1.5 py-0.5 rounded bg-white/10 text-gray-300">
                               {t(char.element)}
                             </span>
                           )}

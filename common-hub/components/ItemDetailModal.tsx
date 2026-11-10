@@ -125,7 +125,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
 
           <div className="space-y-4 pt-4">
             <div className="flex items-center gap-3">
-              <span className={`px-3 py-1 rounded-full bg-white/5 border ${theme.border} text-[10px] font-black uppercase tracking-widest ${theme.color}`}>
+              <span className={`px-3 py-1 rounded-full bg-white/5 border ${theme.border} text-xs font-black uppercase tracking-widest ${theme.color}`}>
                 {t(itemType)}
               </span>
               <div className="flex gap-0.5">
@@ -139,7 +139,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <Info size={14} className="text-brand-accent" />
-                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t("Archive Entry")}</span>
+                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t("Archive Entry")}</span>
               </div>
               <div className="bg-white/5 p-5 rounded-3xl border border-white/5">
                 <p className="text-gray-300 text-sm leading-relaxed font-medium">
@@ -151,7 +151,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <MapPin size={14} className="text-brand-primary" />
-                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{t("Location Data")}</span>
+                <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t("Location Data")}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {sources.map((source: string, idx: number) => (
@@ -164,7 +164,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
           </div>
 
           <div className="pt-6 border-t border-white/10">
-            <p className="text-[9px] font-bold text-gray-500">
+            <p className="text-[11px] font-bold text-gray-500">
               {t('등록 데이터')}
             </p>
           </div>

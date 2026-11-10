@@ -103,11 +103,11 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
 
                     <div className="min-w-0 flex-1">
                       <div className="flex items-center gap-1.5 mb-0.5">
-                        <span className="text-[10px] text-yellow-400 font-black">
+                        <span className="text-xs text-yellow-400 font-black">
                           {arc.rarityGrade} 등급
                         </span>
                         {arc.type && (
-                          <span className="text-[10px] text-gray-400 font-semibold">
+                          <span className="text-xs text-gray-400 font-semibold">
                             · {arc.type}
                           </span>
                         )}
@@ -153,7 +153,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                   className="group flex items-center gap-3 p-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
                 >
                   <div className="min-w-0 flex-1">
-                    <span className="text-[9px] font-black uppercase text-gray-400 block truncate">
+                    <span className="text-[11px] font-black uppercase text-gray-400 block truncate">
                       {member.role || '팀원'}
                     </span>
                     <h5 className="text-xs font-black text-white group-hover:text-brand-accent truncate transition-colors">

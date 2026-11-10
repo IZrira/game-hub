@@ -35,7 +35,7 @@ const WuwaWeaponCard = ({ weapon, to }: any) => {
       </div>
       <div className="text-center px-2">
         <h4 className="text-white font-black text-sm truncate uppercase tracking-tighter">{t(weapon.name)}</h4>
-        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t(weapon.type)}</p>
+        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{t(weapon.type)}</p>
       </div>
     </Link>
   );

@@ -97,7 +97,7 @@ export const WuwaEchoDetail = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
                   COST {echo.cost} • {(echo as any).enemyInfo?.grade}
                 </div>
                 {(() => {
@@ -127,7 +127,7 @@ export const WuwaEchoDetail = () => {
                 {isPhantom && (
                   <button 
                     onClick={() => setShowPhantom(!showPhantom)}
-                    className="px-4 py-1.5 rounded-xl text-[10px] font-black border bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all uppercase tracking-widest"
+                    className="px-4 py-1.5 rounded-xl text-xs font-black border bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all uppercase tracking-widest"
                   >
                     {showPhantom ? 'Original View' : 'Phantom View'}
                   </button>
@@ -173,7 +173,7 @@ export const WuwaEchoDetail = () => {
                         </div>
                         <div className="flex flex-col">
                           <span className="text-xl md:text-2xl font-black text-brand-accent italic tracking-tighter uppercase leading-none">{setName}</span>
-                          <span className="text-[9px] font-black text-gray-500 uppercase tracking-[0.2em] pt-1">Resonance Synergy</span>
+                          <span className="text-[11px] font-black text-gray-500 uppercase tracking-[0.2em] pt-1">Resonance Synergy</span>
                         </div>
                       </div>
                       
@@ -181,19 +181,19 @@ export const WuwaEchoDetail = () => {
                         {effect.twoPiece && (
                           <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                              <span className="text-[9px] font-black text-brand-primary uppercase tracking-[0.2em] bg-brand-primary/20 px-2 py-0.5 rounded-full border border-brand-primary/30">2-Piece</span>
+                              <span className="text-[11px] font-black text-brand-primary uppercase tracking-[0.2em] bg-brand-primary/20 px-2 py-0.5 rounded-full border border-brand-primary/30">2-Piece</span>
                               <div className="h-px flex-1 bg-gradient-to-r from-brand-primary/40 to-transparent" />
                             </div>
-                            <p className="text-sm text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.twoPiece}</p>
+                            <p className="text-base text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.twoPiece}</p>
                           </div>
                         )}
                         {effect.fivePiece && (
                           <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                              <span className="text-[9px] font-black text-brand-accent uppercase tracking-[0.2em] bg-brand-accent/20 px-2 py-0.5 rounded-full border border-brand-accent/30">5-Piece</span>
+                              <span className="text-[11px] font-black text-brand-accent uppercase tracking-[0.2em] bg-brand-accent/20 px-2 py-0.5 rounded-full border border-brand-accent/30">5-Piece</span>
                               <div className="h-px flex-1 bg-gradient-to-r from-brand-accent/40 to-transparent" />
                             </div>
-                            <p className="text-sm text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.fivePiece}</p>
+                            <p className="text-base text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.fivePiece}</p>
                           </div>
                         )}
                       </div>
@@ -249,7 +249,7 @@ export const WuwaEchoDetail = () => {
                       alt={itemName} 
                     />
                   </div>
-                  <span className="text-[10px] font-black text-gray-400 uppercase tracking-tighter group-hover:text-white transition-colors">{itemName}</span>
+                  <span className="text-xs font-black text-gray-400 uppercase tracking-tighter group-hover:text-white transition-colors">{itemName}</span>
                 </button>
               );
             })}

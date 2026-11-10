@@ -34,7 +34,7 @@ const GuideList: React.FC = () => {
       {isAniimo ? <AniimoSidebar /> : <GallerySidebar />}
       <div className="min-w-0 space-y-8">
         <section className="rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/10 via-[#121212] to-transparent p-7 sm:p-10">
-          <div className="flex items-center gap-2 text-violet-300"><ShieldCheck size={18} /><span className="text-[10px] font-black uppercase tracking-[0.25em]">Reviewed Guides</span></div>
+          <div className="flex items-center gap-2 text-violet-300"><ShieldCheck size={18} /><span className="text-xs font-black uppercase tracking-[0.25em]">Reviewed Guides</span></div>
           <h1 className="mt-4 text-3xl font-black sm:text-5xl">{gameLabel} 공략</h1>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-400">{GUIDE_REVIEW_POLICY}</p>
         </section>
@@ -56,7 +56,7 @@ const GuideList: React.FC = () => {
           <p className="mt-3 max-w-4xl text-sm leading-7 text-gray-400">{landing.intro}</p>
           <div className="mt-6 grid gap-3 lg:grid-cols-3">
             {landing.criteria.map((criterion, index) => <div key={criterion} className="rounded-2xl border border-white/5 bg-white/[0.025] p-5">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-violet-300">Check {index + 1}</span>
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-violet-300">Check {index + 1}</span>
               <p className="mt-3 text-sm leading-6 text-gray-300">{criterion}</p>
             </div>)}
           </div>

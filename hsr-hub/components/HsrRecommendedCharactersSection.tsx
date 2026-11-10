@@ -142,13 +142,13 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
                 <div className="flex items-center gap-1.5 mb-1">
                   {char.rank !== undefined && (
                     <span
-                      className="px-1.5 py-0.5 rounded text-[9px] font-black text-black"
+                      className="px-1.5 py-0.5 rounded text-[11px] font-black text-black"
                       style={{ backgroundColor: theme.primary }}
                     >
                       {char.rank}순위
                     </span>
                   )}
-                  <span className="text-[10px] text-gray-400 font-semibold">
+                  <span className="text-xs text-gray-400 font-semibold">
                     {char.attribute} · {char.path}
                   </span>
                 </div>
@@ -156,7 +156,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
                   {char.name}
                 </h4>
                 {char.note && (
-                  <p className="text-[10px] text-gray-400 truncate mt-0.5">
+                  <p className="text-xs text-gray-400 truncate mt-0.5">
                     {char.note}
                   </p>
                 )}

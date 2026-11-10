@@ -45,8 +45,8 @@ const HsrItemIcon: React.FC<HsrItemIconProps> = ({ name, count, onClick, rarityO
   }, [name]);
 
   const sizeConfig = size === 'sm'
-    ? { container: 'w-[70px] md:w-[80px]', box: 'w-14 h-14 md:w-16 md:h-16', text: 'text-[9px] md:text-[10px]', limit: 8 }
-    : { container: 'w-[80px] md:w-[100px]', box: 'w-16 h-16 md:w-20 md:h-20', text: 'text-[9px] md:text-[11px]', limit: 10 };
+    ? { container: 'w-[70px] md:w-[80px]', box: 'w-14 h-14 md:w-16 md:h-16', text: 'text-[11px] md:text-xs', limit: 8 }
+    : { container: 'w-[80px] md:w-[100px]', box: 'w-16 h-16 md:w-20 md:h-20', text: 'text-[11px] md:text-[11px]', limit: 10 };
   const displayName = useMemo(() => {
     if (translatedName.length <= sizeConfig.limit) return translatedName;
     const startLength = Math.ceil((sizeConfig.limit - 1) / 2);

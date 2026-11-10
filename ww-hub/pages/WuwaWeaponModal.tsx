@@ -48,7 +48,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           </div>
           <div className="flex-1 space-y-2">
             <div className="flex items-center gap-2">
-              <span className={`text-[10px] font-black bg-${rarityColor} text-white px-2 py-0.5 rounded tracking-tighter uppercase`}>{weapon.type}</span>
+              <span className={`text-xs font-black bg-${rarityColor} text-white px-2 py-0.5 rounded tracking-tighter uppercase`}>{weapon.type}</span>
               <div className="flex gap-0.5">
                 {[...Array(weapon.rarity)].map((_, i) => (
                   <div key={i} className={`w-1.5 h-1.5 rounded-full bg-${rarityColor}`} />
@@ -83,11 +83,11 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           {/* 스탯 정보 */}
           <section className="grid grid-cols-2 gap-4">
             <div className="bg-white/5 p-6 rounded-[28px] border border-white/5 space-y-1">
-              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">Base ATK</p>
+              <p className="text-xs font-black text-gray-500 uppercase tracking-widest">Base ATK</p>
               <p className="text-2xl font-black text-white italic">{weapon.stats.atk}</p>
             </div>
             <div className="bg-white/5 p-6 rounded-[28px] border border-white/5 space-y-1">
-              <p className="text-[10px] font-black text-gray-500 uppercase tracking-widest">{weapon.stats.subStatName}</p>
+              <p className="text-xs font-black text-gray-500 uppercase tracking-widest">{weapon.stats.subStatName}</p>
               <p className="text-2xl font-black text-brand-accent italic">{weapon.stats.subStatValue}</p>
             </div>
           </section>
@@ -96,7 +96,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           <section className="space-y-4">
             <div className={`flex items-center gap-3 border-l-4 border-${rarityColor} pl-4`}>
               <h4 className="text-sm font-black italic text-white uppercase tracking-widest">{weapon.skill?.name ? weapon.skill.name.replace(/\*\*/g, '').trim() : ''}</h4>
-              <span className="text-[10px] font-bold text-gray-400">RANK 1</span>
+              <span className="text-xs font-bold text-gray-400">RANK 1</span>
             </div>
             <div className={`bg-${rarityColor}/5 p-8 rounded-[32px] border border-${rarityColor}/10`}>
               <p className="text-gray-200 leading-relaxed font-medium text-base whitespace-pre-wrap italic">
@@ -107,7 +107,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
 
           {/* 스토리 */}
           <section className="space-y-4 opacity-50 hover:opacity-100 transition-opacity">
-            <h4 className="text-[10px] font-black text-gray-500 uppercase tracking-[0.3em]">Archive Story</h4>
+            <h4 className="text-xs font-black text-gray-500 uppercase tracking-[0.3em]">Archive Story</h4>
             <p className="text-xs text-gray-400 leading-loose italic">{weapon.description}</p>
           </section>
         </div>

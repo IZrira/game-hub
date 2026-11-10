@@ -22,7 +22,7 @@ const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
     <section className="space-y-6" aria-labelledby={`${gameId}-reviewed-guides`}>
       <div className="flex items-end justify-between gap-4 px-2">
         <div>
-          {variant === 'cards' && <div className={`flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] ${accentClassName}`}>
+          {variant === 'cards' && <div className={`flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] ${accentClassName}`}>
             <BookOpen size={14} />
             Rira Reviewed
           </div>}
@@ -35,7 +35,7 @@ const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
         </div>
         <Link
           to={`/gallery/${gameId}/guides`}
-          className={`hidden shrink-0 items-center gap-1 text-xs font-black transition hover:text-white sm:inline-flex ${accentClassName}`}
+          className={`hidden min-h-6 shrink-0 items-center gap-1 text-xs font-black transition-colors hover:text-white sm:inline-flex ${accentClassName}`}
         >
           전체 가이드 <ArrowRight size={13} />
         </Link>
@@ -62,7 +62,7 @@ const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
 
       <Link
         to={`/gallery/${gameId}/guides`}
-        className={`inline-flex items-center gap-1 px-2 text-xs font-black sm:hidden ${accentClassName}`}
+        className={`inline-flex min-h-6 items-center gap-1 px-2 text-xs font-black sm:hidden ${accentClassName}`}
       >
         전체 가이드 <ArrowRight size={13} />
       </Link>

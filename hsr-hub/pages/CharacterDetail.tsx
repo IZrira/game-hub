@@ -41,6 +41,7 @@ import { getHsrCharacterId } from '../utils/characterRoute';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
+import StatRow from '../../common-hub/components/StatRow';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 const CharacterReviewBoard = lazy(() => import('../../common-hub/components/CharacterReviewBoard'));
@@ -657,7 +658,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
               ✕
             </button>
           </div>
-          <div className="text-white/90 text-[13px] sm:text-[14px] leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
+          <div className="text-white/90 text-base leading-[1.65] whitespace-pre-line font-medium max-h-[60vh] overflow-y-auto pr-1">
             {typeof tooltip.text === 'string' ? renderTextWithHighlights(tooltip.text) : tooltip.text}
           </div>
         </div>
@@ -708,7 +709,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-3">
               <div className="space-y-0.5">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-[10px] tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary font-black text-xs opacity-80" style={{ color: theme.primary }}>
                   {t('운명의 길')} : {t(char.path)} | {t(char.attribute)}
                 </div>
                 <div className="flex items-end justify-between gap-4">
@@ -717,7 +718,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                   </h1>
                   {(guideManifest as Record<string, string>)[char.id] && <Link
                     to={`/gallery/${gameId}/character/${char.id}/guide`} 
-                    className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-[10px] font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
+                    className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-xs font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
                     style={{ backgroundColor: theme.primary }}
                   >
                     <BookOpen size={14} /> {t('세팅 공략')}
@@ -731,7 +732,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                     <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
                   ))}
                 </div>
-                <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[9px] font-bold tracking-wide text-gray-400 opacity-70">
+                <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-400 opacity-70">
                    Ver {char.releaseVersion || '1.0'}
                 </div>
               </div>
@@ -745,14 +746,14 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             <div className="flex flex-wrap items-center gap-3 px-2">
               {rawChar?.hasASBuff && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-400'}`}>{t('Original')}</button>
-                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[9px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-400'}`}>{t('AS Remake')}</button>
+                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[11px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-400'}`}>{t('Original')}</button>
+                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[11px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-400'}`}>{t('AS Remake')}</button>
                 </div>
               )}
               {char.isTrailblazer && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('남성')}</button>
-                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[9px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('여성')}</button>
+                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[11px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('남성')}</button>
+                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[11px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('여성')}</button>
                 </div>
               )}
             </div>
@@ -767,7 +768,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                 <div className="flex flex-col gap-1.5 flex-1 max-w-md relative pt-6">
                   {/* Floating Level Label */}
                   <div 
-                    className="pointer-events-none absolute top-0 -translate-x-1/2 rounded px-2 py-0.5 text-[10px] font-black text-black transition-[left] duration-75"
+                    className="pointer-events-none absolute top-0 -translate-x-1/2 rounded px-2 py-0.5 text-xs font-black text-black transition-[left] duration-75"
                     style={{ 
                       left: `${(levelIdx / 7) * 100}%`,
                       backgroundColor: theme.primary,
@@ -776,8 +777,8 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                   >
                     Lv.{currentLevel}
                   </div>
-                  <input type="range" min="0" max="7" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="w-full h-1 bg-white/10 rounded-full appearance-none cursor-pointer" style={{ accentColor: theme.primary }} />
-                  <div className="flex justify-between text-[9px] font-black uppercase text-gray-400 px-0.5">
+                  <input type="range" min="0" max="7" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="range-slider w-full" style={{ color: theme.primary }} />
+                  <div className="flex justify-between text-[11px] font-black uppercase text-gray-400 px-0.5">
                     <span>1</span>
                     <span>80</span>
                   </div>
@@ -785,7 +786,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
               </div>
 
               {/* Vertical Stats List */}
-              <div className="flex flex-col gap-2.5">
+              <div className="flex flex-col">
                 <StatRow label={t("기초 HP")} value={calculateStat('hp')} color={theme.primary} />
                 <StatRow label={t("기초 공격력")} value={calculateStat('atk')} color={theme.primary} />
                 <StatRow label={t("기초 방어력")} value={calculateStat('def')} color={theme.primary} />
@@ -957,7 +958,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                 <p className="text-[11px] text-gray-400 font-medium">{t('작성·검수')}: <span className="text-brand-accent font-black">RIRA ARCHIVE</span></p>
               </div>
             </div>
-            <div className="text-[10px] text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
+            <div className="text-xs text-gray-400 max-w-md text-center md:text-right font-medium leading-relaxed">
               {t('게임 내 정보를 바탕으로 작성한 가이드입니다. 업데이트에 따라 내용이 달라질 수 있습니다.')}
             </div>
           </div>
@@ -1045,16 +1046,6 @@ const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, 
   <div className="space-y-4 group">
     <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
     <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
-  </div>
-);
-
-const StatRow: React.FC<{ label: string; value: string | number; color: string }> = ({ label, value, color }) => (
-  <div className="flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-4 transition-colors hover:border-white/10 hover:bg-white/[0.04]">
-    <div className="flex items-center gap-4">
-      <div className="w-1.5 h-6 rounded-full" style={{ backgroundColor: color }} />
-      <span className="text-xs font-bold text-gray-400">{label}</span>
-    </div>
-    <div className="text-xl font-black tabular-nums text-white">{value}</div>
   </div>
 );
 

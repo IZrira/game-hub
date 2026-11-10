@@ -157,7 +157,7 @@ const LocationDetailAniimo: React.FC = () => {
             <div className="mt-6 flex flex-wrap gap-2 pt-6 border-t border-white/10">
               <button
                 onClick={() => setActiveFilter('all')}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                   activeFilter === 'all'
                     ? 'bg-violet-400 text-black shadow-lg shadow-violet-500/20'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
@@ -167,7 +167,7 @@ const LocationDetailAniimo: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveFilter('basic')}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                   activeFilter === 'basic'
                     ? 'bg-violet-400 text-black shadow-lg shadow-violet-500/20'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
@@ -177,7 +177,7 @@ const LocationDetailAniimo: React.FC = () => {
               </button>
               <button
                 onClick={() => setActiveFilter('special')}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                   activeFilter === 'special'
                     ? 'bg-cyan-400 text-black shadow-lg shadow-cyan-500/20'
                     : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
@@ -188,7 +188,7 @@ const LocationDetailAniimo: React.FC = () => {
               {filterCounts.exclusive > 0 && (
                 <button
                   onClick={() => setActiveFilter('exclusive')}
-                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-black transition-all ${
+                  className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                     activeFilter === 'exclusive'
                       ? 'bg-amber-400 text-black shadow-lg shadow-amber-500/20'
                       : 'bg-amber-400/10 text-amber-300 border border-amber-400/20 hover:bg-amber-400/20'
@@ -206,7 +206,7 @@ const LocationDetailAniimo: React.FC = () => {
             <section className="rounded-3xl border border-white/10 bg-[#121212] p-6 space-y-3">
               <h2 className="font-black">지역 한눈에 보기</h2>
               {regionSummary.map(paragraph => <p key={paragraph} className="text-sm leading-7 text-gray-300">{paragraph}</p>)}
-              <Link to="/gallery/aniimo/type-chart" className="inline-block text-xs font-bold text-violet-300 hover:text-white">원소 상성표 전체 보기</Link>
+              <Link to="/gallery/aniimo/type-chart" className="inline-flex min-h-6 items-center text-xs font-bold text-violet-300 hover:text-white">원소 상성표 전체 보기</Link>
             </section>
           )}
 
@@ -226,7 +226,7 @@ const LocationDetailAniimo: React.FC = () => {
                 >
                   <Link to={detailPath} className="block relative aspect-square bg-gradient-to-br from-white/[0.06] to-violet-500/[0.06] p-3">
                     {hasExclusive && (
-                      <span className="absolute top-2 left-2 z-10 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-amber-400 text-black text-[9px] font-black shadow">
+                      <span className="absolute top-2 left-2 z-10 inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-amber-400 text-black text-[11px] font-black shadow">
                         <Sparkles size={9} />
                         <span>고유</span>
                       </span>
@@ -243,15 +243,15 @@ const LocationDetailAniimo: React.FC = () => {
                   </Link>
                   <div className="space-y-3 p-3">
                     <div>
-                      <p className="text-[9px] font-black tracking-widest text-gray-500">NO.{entry.number}</p>
+                      <p className="text-[11px] font-black tracking-widest text-gray-500">NO.{entry.number}</p>
                       <h2 className="font-black text-sm">{entry.name}</h2>
                       {entry.detailLocations && entry.detailLocations.length > 0 && (
-                        <p className="mt-1 text-[9px] text-cyan-400 font-bold">
+                        <p className="mt-1 text-[11px] text-cyan-400 font-bold">
                           세부: {entry.detailLocations.join(', ')}
                         </p>
                       )}
                     </div>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-2">
                       {forms.map(form => {
                         const exclusive = isFormExclusive(form);
                         const isSpecial = form.key !== 'basic-form';
@@ -259,7 +259,7 @@ const LocationDetailAniimo: React.FC = () => {
                           <Link
                             key={form.key}
                             to={`/gallery/aniimo/character/${encodeURIComponent(entry.name)}${form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''}`}
-                            className={`rounded-md px-1.5 py-0.5 text-[9px] font-black transition ${
+                            className={`inline-flex min-h-6 items-center rounded-md px-2 py-1 text-[11px] font-bold transition-colors ${
                               exclusive
                                 ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30 hover:bg-amber-400/30'
                                 : isSpecial
@@ -300,7 +300,7 @@ const LocationDetailAniimo: React.FC = () => {
               ))}
             </div>
           </section>
-          <Link to="/gallery/aniimo/locations" className="inline-flex items-center gap-2 text-xs font-bold text-gray-400 hover:text-white">
+          <Link to="/gallery/aniimo/locations" className="inline-flex min-h-6 items-center gap-2 text-xs font-bold text-gray-400 hover:text-white">
             <ArrowLeft size={15} /> 서식지 도감으로 돌아가기
           </Link>
         </div>

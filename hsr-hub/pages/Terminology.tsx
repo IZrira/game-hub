@@ -44,7 +44,7 @@ const Terminology: React.FC = () => {
               <Info size={16} />
               <span className="text-[11px] font-black uppercase tracking-[0.3em]">Terminology Database</span>
             </div>
-            <h2 className="text-4xl font-black italic tracking-tight">모든 게임 용어 정리</h2>
+            <h2 className="text-4xl font-black tracking-tight">모든 게임 용어 정리</h2>
             <p className="text-gray-400 max-w-2xl font-medium leading-relaxed">
               게임 내에서 사용되는 특수 용어, 상태 이상, 버프 및 시스템 관련 용어들을 한곳에 모았습니다. 
               검색 기능을 통해 원하는 정보를 빠르게 찾으실 수 있습니다.
@@ -92,7 +92,7 @@ const Terminology: React.FC = () => {
       </main>
 
       <footer className="py-20 text-center border-t border-white/5">
-        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.5em] italic">
+        <p className="text-gray-400 text-xs font-black uppercase tracking-[0.5em] italic">
           &copy; RIRA GAME ARCHIVE - TERMINOLOGY SYSTEM V2.0
         </p>
       </footer>

@@ -34,7 +34,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
         </div>
       </div>
       
-      <div className="absolute top-4 right-4 bg-brand-primary/80 backdrop-blur px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">
+      <div className="absolute top-4 right-4 bg-brand-primary/80 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-white uppercase tracking-wider">
         {game.posts.length} Posts
       </div>
     </Link>

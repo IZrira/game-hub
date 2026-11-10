@@ -122,7 +122,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
             <h2 className="text-3xl font-black tracking-tight text-white uppercase italic">
               {t('Archive')} <span className="text-gray-400">Index</span>
             </h2>
-            <p className="text-[10px] text-gray-400 font-bold tracking-[0.2em] uppercase">Status: Core Database Synchronized</p>
+            <p className="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase">Status: Core Database Synchronized</p>
           </div>
         </div>
 
@@ -145,7 +145,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
                 <button
                   key={cat}
                   onClick={() => setActiveTab(cat)}
-                  className={`px-4 py-2 rounded-lg text-[10px] font-bold uppercase tracking-wider transition-all border ${
+                  className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border ${
                     isActive 
                       ? "bg-white text-black border-white" 
                       : "text-gray-400 border-white/5 hover:border-white/10 hover:text-gray-400"
@@ -171,14 +171,14 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
         </div>
       ) : (
         <div className="py-32 text-center">
-          <p className="text-gray-400 font-bold uppercase tracking-[0.4em] text-[10px] italic">
+          <p className="text-gray-400 font-bold uppercase tracking-[0.4em] text-xs italic">
             {t('Registry empty.')}
           </p>
         </div>
       )}
 
       <div className="p-10 text-center">
-        <p className="text-gray-400 text-[10px] font-black uppercase tracking-[0.2em] italic">* GitHub Asset Registry Synchronization Active.</p>
+        <p className="text-gray-400 text-xs font-black uppercase tracking-[0.2em] italic">* GitHub Asset Registry Synchronization Active.</p>
       </div>
     </div>
   );
