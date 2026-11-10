@@ -1,11 +1,11 @@
 ---
 name: rira-skill-audit
-description: RIRA에서 스킬점검 또는 외부 스킬의 설치 전 보안 검토를 요청할 때 사용한다. 실행 중 감시나 전체 웹사이트 보안 감사에는 적용하지 않는다.
+description: 외부 스킬·플러그인·MCP 서버를 설치하기 전에 SKILL.md, 스크립트, 훅, manifest, 의존성을 정적으로 읽어 비밀 값 유출·외부 전송·동적 다운로드 후 실행·설정 변경·세션 훅 같은 위험과 프로젝트 규칙과의 충돌을 검토한다. 사용자가 스킬점검을 요청하거나 새 스킬·플러그인 설치, 마켓플레이스 추가를 요청할 때 사용한다. 실행 중 감시나 웹사이트 보안 감사는 다루지 않는다.
 ---
 
 # 스킬점검
 
-호출: `스킬점검`, `/rira-skill-audit`(Claude Code) 또는 `$rira-skill-audit`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `스킬점검`, `/rira-skill-audit`(Claude Code) 또는 `$rira-skill-audit`(Codex). RIRA 프로젝트 원본은 `D:/rira game hub/game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 대상 스킬의 정확한 저장소·경로·버전과 사용 목적을 먼저 확인한다. 프로젝트 작업이면 원본 루트의 AGENTS.md와 git status를 확인한다. 불명확한 URL이나 버전은 추측해 실행하지 않는다.
 

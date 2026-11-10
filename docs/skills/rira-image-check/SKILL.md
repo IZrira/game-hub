@@ -1,13 +1,13 @@
 ---
 name: rira-image-check
-description: RIRA Game Hub의 이미지점검 요청이나 캐릭터·장비·재료 이미지 누락, 대체 이미지, 지연 표시를 진단한다. 코드의 참조명과 이미지 저장소 및 실제 브라우저를 대조하며, 새 이미지 제작·전체 수집에는 적용하지 않는다.
+description: RIRA Game Hub의 캐릭터·장비·재료 이미지 누락, 대체(fallback) 이미지, 잘못 연결된 이미지, 늦게 뜨는 이미지를 진단하고 고친다. 코드의 이미지 참조명, 이미지 저장소(IZrira/riragameinfo), 실제 브라우저 표시를 대조한다. 사용자가 이미지점검을 요청하거나 이미지가 안 보이거나 다른 이미지가 보인다고 할 때, 이미지 경로·파일명 규칙을 바꿀 때 사용한다. 새 이미지 제작이나 전체 수집은 다루지 않는다.
 ---
 
 # 이미지점검
 
 호출: `이미지점검 [게임] [캐릭터/장비]`, `/rira-image-check`(Claude Code) 또는 `$rira-image-check`(Codex).
 
-대상 프로젝트는 `D:\rira game hub\game-hub`, 코드 remote는 `IZrira/game-hub`, 이미지 저장소는 `IZrira/riragameinfo`다. 현재 요청, `AGENTS.md`, 해당 경로 지침과 `git status`를 확인한다. 진단만 요청하면 수정·commit·push하지 않는다.
+대상 프로젝트는 `D:/rira game hub/game-hub`, 코드 remote는 `IZrira/game-hub`, 이미지 저장소는 `IZrira/riragameinfo`다. 현재 요청, `AGENTS.md`, 해당 경로 지침과 `git status`를 확인한다. 진단만 요청하면 수정·commit·push하지 않는다.
 
 ## 필요한 경로만 추적
 

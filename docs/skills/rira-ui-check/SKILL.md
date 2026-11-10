@@ -1,11 +1,11 @@
 ---
 name: rira-ui-check
-description: RIRA Game Hub에서 UI점검 또는 허브 간 카드 크기·여백·반응형·접근성 일관성 검토를 요청할 때 사용한다. 기존 디자인을 새 테마로 바꾸거나 전체 UI를 재생성하지 않는다.
+description: RIRA Game Hub 허브 간 카드 크기·여백·글꼴·반응형·접근성 일관성을 실제 화면으로 비교하고, 기존 디자인 시스템 안에서 최소한으로 고친다. 사용자가 UI점검을 요청하거나 화면이 어긋나거나 잘린다고 할 때, 기존 페이지의 레이아웃·컴포넌트를 고칠 때 사용한다. 새 테마나 전체 UI 재설계는 하지 않는다.
 ---
 
 # UI점검
 
-호출: `UI점검`, `/rira-ui-check`(Claude Code) 또는 `$rira-ui-check`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `UI점검`, `/rira-ui-check`(Claude Code) 또는 `$rira-ui-check`(Codex). RIRA 프로젝트 원본은 `D:/rira game hub/game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 AGENTS.md와 DESIGN.md, git status를 확인한다. 대상 허브·URL·섹션과 사용자가 지정한 기준 화면을 고정한다. 수정 요청이 없으면 읽기 전용 비교만 한다.
 
@@ -19,4 +19,4 @@ AGENTS.md와 DESIGN.md, git status를 확인한다. 대상 허브·URL·섹션�
 
 결과는 기준·실제 크기/차이·유지한 부분·수정 파일·화면/상호작용 검증·미검증 항목을 짧게 보고한다. 전체 3인 독립 평가를 실행하지 않았다면 수행했다고 표현하지 않는다.
 
-참고가 필요할 때만 [UI UX Pro Max 원본](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill)을 확인한다. 외부 스타일이나 CLI 설치를 자동 적용하지 않는다.
+설치된 `ui-ux-pro-max` 플러그인 스킬은 접근성·반응형 기준을 확인하는 참고 자료로 쓴다. 그 스킬의 스타일·팔레트·글꼴 추천이나 CLI(`shadcn` 추가 등)는 사용자가 요청할 때만 적용하고, 기존 `DESIGN.md`가 우선한다.

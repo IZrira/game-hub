@@ -1,11 +1,11 @@
 ---
 name: rira-performance-check
-description: RIRA Game Hub에서 성능점검, 페이지 전환·로딩 지연·Core Web Vitals·번들 회귀 분석을 요청할 때 사용한다. 운영 과부하 테스트나 성능 수치만 올리는 기능 제거는 포함하지 않는다.
+description: RIRA Game Hub의 페이지 전환·로딩 지연, Core Web Vitals(LCP·INP·CLS), JS 번들·데이터 다운로드 크기, 캐시 헤더와 크롤링 리소스 부담을 측정하고 원인을 찾아 고친다. 사용자가 성능점검을 요청하거나 느리다고 할 때, 큰 데이터·라이브러리를 추가하거나 번들·캐시 설정을 바꿀 때 사용한다. 운영 부하 테스트나 기능 제거로 수치만 올리는 작업은 하지 않는다.
 ---
 
 # 성능점검
 
-호출: `성능점검`, `/rira-performance-check`(Claude Code) 또는 `$rira-performance-check`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `성능점검`, `/rira-performance-check`(Claude Code) 또는 `$rira-performance-check`(Codex). RIRA 프로젝트 원본은 `D:/rira game hub/game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 AGENTS.md, docs/guides/PERFORMANCE.md와 git status를 확인한다. 대상 URL·commit·기능과 측정 도구를 고정한다. 진단만 요청하면 코드·캐시·운영 데이터는 변경하지 않는다.
 

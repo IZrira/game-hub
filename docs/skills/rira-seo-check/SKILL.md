@@ -1,11 +1,11 @@
 ---
 name: rira-seo-check
-description: RIRA Game Hub에서 SEO점검, 색인·canonical·사이트맵·검색용 초기 HTML 분석을 요청할 때 사용한다. 광고 계정 운영이나 검색 노출 보장은 다루지 않는다.
+description: RIRA Game Hub(riragamehub.com)의 검색 노출을 진단하고 고친다. 색인·noindex·canonical·사이트맵·IndexNow·검색용 초기 HTML·내부 링크·구조화 데이터와 Search Console 실적·색인 보고서·Soft 404·URL 검사를 다룬다. 사용자가 SEO점검을 요청하거나, 유입·노출 감소, 색인 문제, 검색 제목·설명 수정, 사이트맵·라우트 변경처럼 검색에 영향을 주는 작업을 할 때 사용한다. 광고 계정 운영이나 순위 보장은 다루지 않는다.
 ---
 
 # SEO점검
 
-호출: `SEO점검`, `/rira-seo-check`(Claude Code) 또는 `$rira-seo-check`(Codex). RIRA 프로젝트 원본은 `D:\rira game hub\game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
+호출: `SEO점검`, `/rira-seo-check`(Claude Code) 또는 `$rira-seo-check`(Codex). RIRA 프로젝트 원본은 `D:/rira game hub/game-hub`이며 다른 경로에서는 Git remote가 `IZrira/game-hub`인지 확인한다.
 
 프로젝트 루트 AGENTS.md와 git status를 확인하고 대상 URL·게임·배포 commit을 고정한다. 기본은 읽기 전용 진단이다. 수정·색인 요청·계정 설정 변경은 사용자의 현재 범위에서만 한다.
 
