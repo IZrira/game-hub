@@ -42,6 +42,8 @@
   for (const el of inter) {
     const r = el.getBoundingClientRect();
     const inlineText = el.tagName === 'A' && getComputedStyle(el).display === 'inline' && el.closest('p,li');
+    // Visually hidden until focused (sr-only skip link): sized only while it has focus.
+    if (r.width <= 1 && r.height <= 1 && getComputedStyle(el).position === 'absolute') { if (!el.textContent.trim()) noName.push(el.outerHTML.slice(0, 220)); continue; }
     if (!inlineText && (r.width < 24 || r.height < 24)) lt24.push(`${el.tagName} ${Math.round(r.width)}x${Math.round(r.height)} "${(el.innerText || el.getAttribute('aria-label') || '').trim().slice(0, 16)}"`);
     if (!inlineText && (r.width < 44 || r.height < 44)) lt44++;
     const name = (el.getAttribute('aria-label') || el.getAttribute('title') || el.innerText || el.textContent || el.value || el.getAttribute('placeholder') || [...el.querySelectorAll('img[alt]')].map(i => i.alt).join('') || (el.getAttribute('aria-labelledby') ? 'x' : '')).trim();
