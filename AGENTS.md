@@ -207,6 +207,23 @@ git status → Notion 동기화 → 변경사항 확인 → 필요한 검증(Typ
 - GitHub push 결과.
 - Cloudflare 배포 확인 결과.
 - 남아 있는 경고 또는 문제.
+- 사용한 프로젝트 스킬. 해당하는 스킬을 쓰지 못했다면 그 이유.
+
+## 스킬 사용
+
+사용자가 스킬 이름이나 호출어를 말하지 않아도, 작업이 아래 스킬의 범위에 들어가면 그 단계를 시작하기 전에 해당 스킬을 불러와 절차를 따른다(사용자 지속 지시, 2026-11-10). 한 작업이 여러 스킬에 걸치면 모두 쓴다. 호출 방법은 아래 "에이전트 환경별 차이"를 따른다.
+
+- `rira-seo-check`: 색인·canonical·사이트맵·검색용 초기 HTML, Search Console 실적·색인 보고서·Soft 404 같은 검색 관련 진단과 수정.
+- `rira-verify-deploy`: 코드·데이터를 바꾼 작업의 검증·commit·push·CI·Cloudflare 배포 확인. 위 "Git 자동 처리"에 들어갈 때 쓴다.
+- `rira-image-check`: 캐릭터·장비·재료 이미지의 누락, 대체 이미지, 늦게 뜨는 이미지.
+- `rira-performance-check`: 페이지 전환·로딩 지연, Core Web Vitals, 번들 크기 회귀.
+- `rira-ui-check`: 허브 간 카드 크기·여백·반응형·접근성 일관성. 아래 "UI 작업"의 `SKILL.md`·`DESIGN.md`와 함께 쓴다.
+- `rira-skill-audit`: 스킬 점검, 외부 스킬의 설치 전 보안 검토.
+- `rira-korean-humanizer`: 공략·분석·사이트 소개의 한국어 문장 윤문과 어색한 표현 진단. 원본은 이 저장소 밖 `D:\rira game hub\skill-packages\rira-korean-humanizer`에 있다. 수치·효과·조건은 바꾸지 않는다.
+
+- 스킬과 이 문서가 다르면 이 문서와 사용자의 이번 지시를 따른다. 사용자가 범위를 제한하면(예: "분석만 해") 스킬 안의 수정·commit·push 단계는 하지 않는다.
+- 스킬을 불러올 수 없으면(설치 위치에 없음, 도구 없음) `docs/skills/<이름>/SKILL.md`를 직접 읽고 같은 절차를 따른 뒤 그 사실을 보고한다.
+- `docs/skills/`에 스킬을 추가하거나 범위를 바꾸면 이 목록도 함께 고친다.
 
 ## UI 작업
 
