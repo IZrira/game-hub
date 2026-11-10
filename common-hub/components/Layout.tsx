@@ -1,5 +1,5 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import AdPlaceholder from './AdPlaceholder';
@@ -11,6 +11,16 @@ import { retireServiceWorker } from '../utils/retireServiceWorker';
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const { t } = useTranslation();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const isFirstPath = useRef(true);
+
+  // Client-side navigation keeps the browser's Tab starting point at the clicked
+  // link, so Tab would skip the header and the skip link. Reset it to the top
+  // like a full page load does.
+  useEffect(() => {
+    if (isFirstPath.current) { isFirstPath.current = false; return; }
+    rootRef.current?.focus({ preventScroll: true });
+  }, [location.pathname]);
 
   // Initialize Global Error Logger and Scroll to Top
   useEffect(() => {
@@ -24,7 +34,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative">
+    <div ref={rootRef} tabIndex={-1} className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative focus:outline-none">
       {/* Hidden until keyboard focus; moves focus past the header to the page content. */}
       <a
         href="#main-content"
