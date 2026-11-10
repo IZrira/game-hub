@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Search } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import RecoverableImage from './RecoverableImage';
+import { textOn } from '../utils/colorContrast';
 
 /** One character shown in a party slot or as a substitute. Pages build these from their own data. */
 export interface PartyCardCharacter {
@@ -215,7 +216,7 @@ export default function PartyBrowser({ parties, slots, accent, categoryOrder, se
   const reset = () => { setQuery(''); setCategory('전체'); };
 
   return (
-    <section style={{ '--party-accent': accent } as React.CSSProperties} className="space-y-6" aria-label={t('추천 파티 목록')}>
+    <section style={{ '--party-accent': accent, '--party-on-accent': textOn(accent) } as React.CSSProperties} className="space-y-6" aria-label={t('추천 파티 목록')}>
       <div className="space-y-3">
         <div className="relative max-w-md">
           <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={16} aria-hidden="true" />
@@ -239,7 +240,7 @@ export default function PartyBrowser({ parties, slots, accent, categoryOrder, se
                   aria-pressed={active}
                   onClick={() => setCategory(item)}
                   className={`min-h-9 shrink-0 whitespace-nowrap rounded-full border px-4 text-xs font-bold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--party-accent) ${
-                    active ? 'border-(--party-accent) bg-(--party-accent) text-black' : 'border-white/10 bg-white/5 text-gray-300 hover:border-white/30 hover:text-white'
+                    active ? 'border-(--party-accent) bg-(--party-accent) text-(--party-on-accent)' : 'border-white/10 bg-white/5 text-gray-300 hover:border-white/30 hover:text-white'
                   }`}
                 >
                   {t(item)}

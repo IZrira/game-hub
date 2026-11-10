@@ -332,7 +332,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
             </div>
             <div className="text-center md:text-left space-y-2 sm:space-y-3">
               <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary text-xs font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
+                <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary-text text-xs font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
                   {t(ornament.type)}
                 </span>
                 <div className="flex gap-0.5 items-center bg-white/5 px-2 py-0.5 rounded-full border border-white/10">

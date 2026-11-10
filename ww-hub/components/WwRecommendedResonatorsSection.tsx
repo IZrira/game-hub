@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { Users, ChevronRight, BookOpen } from 'lucide-react';
 import { WW_RECOMMENDATION_CHARACTERS, WW_RECOMMENDATION_GUIDES } from '../data/recommendationData';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 interface WwRecommendedResonatorsSectionProps {
   itemType: 'weapon' | 'echo';
@@ -105,7 +106,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
     <section className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-5">
       <div className="flex items-center justify-between border-b border-white/5 pb-3">
         <div className="flex items-center gap-3">
-          <Users size={18} style={{ color: theme.primary }} />
+          <Users size={18} style={{ color: readableTextColor(theme.primary) }} />
           <h3 className="text-base font-black uppercase tracking-widest text-white">
             추천 착용 공명자 ({resonators.length})
           </h3>
@@ -141,7 +142,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
                   {char.rank !== undefined && (
                     <span
                       className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black text-black"
-                      style={{ backgroundColor: theme.primary }}
+                      style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                     >
                       {char.rank}순위
                     </span>

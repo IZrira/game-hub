@@ -5,6 +5,7 @@ import {
   getNTEConsoleLayoutImageUrl,
   getNTEConsoleLayoutType,
 } from '../data/consoleLayouts';
+import { readableTextColor } from '../../common-hub/utils/colorContrast';
 
 interface NTEConsoleLayoutSectionProps {
   characterName?: string;
@@ -26,7 +27,7 @@ const NTEConsoleLayoutSection: React.FC<NTEConsoleLayoutSectionProps> = ({ chara
           style={{
             backgroundColor: `${theme.primary}20`,
             borderColor: `${theme.primary}60`,
-            color: theme.primary,
+            color: readableTextColor(theme.primary),
           }}
         >
           <Boxes size={22} />

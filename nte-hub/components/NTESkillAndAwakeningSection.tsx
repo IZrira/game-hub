@@ -3,6 +3,7 @@ import { SkillDetail } from '../../common-hub/types';
 import { ShieldAlert, PlusCircle, MinusCircle, Sparkles, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { readableTextColor } from '../../common-hub/utils/colorContrast';
 
 interface NTESkillAndAwakeningSectionProps {
   char: any;
@@ -88,7 +89,7 @@ export default function NTESkillAndAwakeningSection({
         <section>
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10" style={{ boxShadow: `0 0 20px ${theme.shadow}` }}>
-              <Zap size={20} style={{ color: theme.primary }} />
+              <Zap size={20} style={{ color: readableTextColor(theme.primary) }} />
             </div>
             <h2 className="text-2xl font-black text-white/90 tracking-tight">{t("스킬 정보")}</h2>
           </div>
@@ -188,7 +189,7 @@ export default function NTESkillAndAwakeningSection({
         <section className="pt-8 border-t border-white/5">
           <div className="flex items-center gap-3 mb-6 mt-4">
             <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10" style={{ boxShadow: `0 0 20px ${theme.shadow}` }}>
-              <Sparkles size={20} style={{ color: theme.primary }} />
+              <Sparkles size={20} style={{ color: readableTextColor(theme.primary) }} />
             </div>
             <h2 className="text-2xl font-black text-white/90 tracking-tight">{t("각성")}</h2>
           </div>
@@ -223,7 +224,7 @@ export default function NTESkillAndAwakeningSection({
           <section>
             <div className="flex items-center gap-3 mb-6 mt-12">
               <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center border border-white/10" style={{ boxShadow: `0 0 20px ${theme.shadow}` }}>
-                <Zap size={20} style={{ color: theme.primary }} />
+                <Zap size={20} style={{ color: readableTextColor(theme.primary) }} />
               </div>
               <h2 className="text-2xl font-black text-white/90 tracking-tight">{t("공명")}</h2>
             </div>
@@ -238,7 +239,7 @@ export default function NTESkillAndAwakeningSection({
                              <h4 className="text-2xl font-black text-white leading-none tracking-tight">{skill.name}</h4>
                           </div>
                           <div className="flex items-center gap-2">
-                             <span className="text-xs font-black text-brand-primary uppercase tracking-widest bg-brand-primary/10 px-3 py-1.5 rounded-lg border border-brand-primary/20">{t('공명')} {idx + 1}</span>
+                             <span className="text-xs font-black text-brand-primary-text uppercase tracking-widest bg-brand-primary/10 px-3 py-1.5 rounded-lg border border-brand-primary/20">{t('공명')} {idx + 1}</span>
                           </div>
                        </div>
                        <div className="text-base md:text-lg text-gray-300 leading-relaxed break-keep font-medium whitespace-pre-wrap">

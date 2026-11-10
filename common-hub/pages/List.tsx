@@ -119,11 +119,11 @@ const List: React.FC = () => {
                   </h3>
                   <div className="flex items-center justify-between text-xs font-bold uppercase tracking-widest text-gray-400">
                     <div className="flex items-center gap-2">
-                      <User size={12} className="text-brand-primary" />
+                      <User size={12} className="text-brand-primary-text" />
                       {post.author}
                     </div>
                     <div className="flex items-center gap-2">
-                      <Clock size={12} className="text-brand-primary" />
+                      <Clock size={12} className="text-brand-primary-text" />
                       {post.date}
                     </div>
                   </div>
@@ -166,7 +166,7 @@ const List: React.FC = () => {
                   </div>
                 </div>
                 <div className="pr-4">
-                  <ChevronRight className="text-gray-400 group-hover:text-brand-primary transition-colors" />
+                  <ChevronRight className="text-gray-400 group-hover:text-brand-primary-text transition-colors" />
                 </div>
               </Link>
             ))}

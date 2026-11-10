@@ -115,7 +115,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         <button 
           onClick={toggleSticky} 
           className={`p-2 rounded-xl transition-all group border ${
-            isSticky ? 'bg-brand-primary/10 border-brand-primary/30 text-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
+            isSticky ? 'bg-brand-primary/10 border-brand-primary/30 text-brand-primary-text shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
           }`}
           title={isSticky ? t('고정 해제') : t('상단 고정')}
         >

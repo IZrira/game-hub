@@ -269,7 +269,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
-                  <Sparkles size={18} className="text-brand-primary" /> {t('최신 업데이트 목록')}
+                  <Sparkles size={18} className="text-brand-primary-text" /> {t('최신 업데이트 목록')}
                 </h2>
                 <div className="text-xs font-bold text-gray-400 uppercase tracking-widest bg-white/5 px-2 py-1 rounded border border-white/5">
                   {t('New Content')}

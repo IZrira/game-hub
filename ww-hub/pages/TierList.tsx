@@ -15,6 +15,7 @@ import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../../common-hub/lib/supabase';
 import { withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
+import { TIER_COLORS, getTierColor } from '../../common-hub/utils/tierColors';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} />,
@@ -128,11 +129,6 @@ const TierList: React.FC = () => {
   const [allCharacters, setAllCharacters] = useState<any[]>([]);
   const [isSyncing, setIsSyncing] = useState(true);
 
-  const TIER_COLORS: Record<string, string> = {
-    'OP': '#FF4D4D', 'SS': '#FF9F43', 'S+': '#1DD1A1', 'S': '#54A0FF',
-    'A': '#A8A8A8', 'B': '#5F27CD', 'C': '#8395A7', 'D': '#485460',
-    'E': '#2d3436', 'F': '#1e272e',
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -279,7 +275,7 @@ const TierList: React.FC = () => {
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
                 <div className="space-y-2">
                   <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight flex items-center gap-3 sm:gap-4">
-                    <Trophy className="text-brand-primary" size={32} />
+                    <Trophy className="text-brand-primary-text" size={32} />
                     <span>{WW_TIER_CATEGORIES.find(c => c.id === activeCategory)?.name} 티어표</span>
                   </h1>
                   <p className="text-gray-400 font-bold text-sm sm:text-lg">
@@ -349,11 +345,11 @@ const TierList: React.FC = () => {
                 <div key={group.tier} className="bg-[#121212] rounded-[28px] sm:rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row group/tier transition-all hover:border-white/10">
                   <div 
                     className="w-full md:w-32 flex flex-col items-center justify-center p-4 sm:p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5 transition-colors"
-                    style={{ backgroundColor: `${group.color}10` }}
+                    style={{ backgroundColor: `${getTierColor(group.tier, group.color)}10` }}
                   >
                     <div 
                       className="text-3xl sm:text-4xl font-black tracking-tight text-center"
-                      style={{ color: group.color }}
+                      style={{ color: getTierColor(group.tier, group.color) }}
                     >
                       {group.tier}
                     </div>

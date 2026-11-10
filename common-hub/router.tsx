@@ -109,7 +109,7 @@ const GuideArticleDispatcher = () => {
 // 로딩 화면 폴백
 const PageFallback = () => (
   <div className="min-h-[70vh] flex flex-col items-center justify-center space-y-4">
-    <Loader2 size={40} className="text-brand-primary animate-spin" />
+    <Loader2 size={40} className="text-brand-primary-text animate-spin" />
     <span className="text-gray-400 font-black uppercase tracking-[0.3em] text-xs animate-pulse">Loading Archive...</span>
   </div>
 );

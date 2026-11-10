@@ -4,6 +4,7 @@ import { HsrCharacter } from '../types';
 import { ShieldAlert, PlusCircle, MinusCircle, Sparkles, Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { readableTextColor } from '../../common-hub/utils/colorContrast';
 
 interface SkillAndEidolonSectionProps {
   char: any;
@@ -170,7 +171,7 @@ export default function SkillAndEidolonSection({
       {/* 05 스킬 정보 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>05</div>
+          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>05</div>
           <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('스킬 정보', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         
@@ -290,7 +291,7 @@ export default function SkillAndEidolonSection({
       {hasServant && (
         <section className="space-y-10">
           <div className="flex items-center gap-6 px-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>06</div>
+            <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>06</div>
             <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('기억 정령', { keySeparator: false, nsSeparator: false })}</h2>
           </div>
 
@@ -380,7 +381,7 @@ export default function SkillAndEidolonSection({
       {/* 07 추가 능력 & 속성 보너스 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '07' : '06'}</div>
+          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '07' : '06'}</div>
           <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('추가 능력 & 속성 보너스', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         
@@ -423,7 +424,7 @@ export default function SkillAndEidolonSection({
       {/* 성혼: 기억 정령 유무에 따라 섹션 번호 07/08 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{hasServant ? '08' : '07'}</div>
+          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '08' : '07'}</div>
           <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('성혼', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         <div className="grid grid-cols-1 gap-8">
@@ -445,7 +446,7 @@ export default function SkillAndEidolonSection({
                   </div>
                   
                   <div className="text-center z-10 relative w-full sm:px-2">
-                    <span className="inline-block text-xs font-black text-brand-primary px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1.5">{eidolon.rank || `E${String(idx + 1).padStart(2, '0')}`}</span>
+                    <span className="inline-block text-xs font-black text-brand-primary-text px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1.5">{eidolon.rank || `E${String(idx + 1).padStart(2, '0')}`}</span>
                     <EidolonName>{t(eidolon.name, { keySeparator: false, nsSeparator: false })}</EidolonName>
                   </div>
                 </div>

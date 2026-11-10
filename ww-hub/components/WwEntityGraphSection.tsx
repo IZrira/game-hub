@@ -6,6 +6,7 @@ import { WW_ECHO_DATA } from '../data/echoData';
 import { WW_GUIDE_DATA } from '../data/guideData';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import type { WuwaCharacter } from '../types';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
@@ -129,7 +130,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
             style={{
               backgroundColor: `${theme.primary}20`,
               borderColor: `${theme.primary}60`,
-              color: theme.primary
+              color: readableTextColor(theme.primary)
             }}
           >
             <Sparkles size={20} />
@@ -161,7 +162,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
           <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <div className="flex items-center gap-2.5">
-                <Award size={18} style={{ color: theme.primary }} />
+                <Award size={18} style={{ color: readableTextColor(theme.primary) }} />
                 <h4 className="text-sm font-black uppercase tracking-widest text-white">
                   추천 무기 순위
                 </h4>
@@ -190,7 +191,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                     />
                     <span
                       className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black text-black"
-                      style={{ backgroundColor: theme.primary }}
+                      style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                     >
                       {weapon.rank}순위
                     </span>

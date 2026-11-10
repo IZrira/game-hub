@@ -11,6 +11,7 @@ import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
 import WwRecommendedResonatorsSection from '../components/WwRecommendedResonatorsSection';
 import { isWwEquipmentIndexable } from '../data/equipmentIndex';
+import { readableTextColor } from '../../common-hub/utils/colorContrast';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 
@@ -36,7 +37,7 @@ export const WuwaEchoDetail = () => {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center space-y-6 text-white">
         <h2 className="text-2xl font-black text-gray-400 uppercase tracking-widest">Echo Not Found</h2>
-        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-brand-primary font-bold hover:underline">
+        <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-brand-primary-text font-bold hover:underline">
           <Zap size={18} /> Go Back to Gallery
         </button>
       </div>
@@ -97,7 +98,7 @@ export const WuwaEchoDetail = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary-text font-black uppercase text-xs tracking-widest opacity-80" style={{ color: readableTextColor(theme.primary) }}>
                   COST {echo.cost} • {(echo as any).enemyInfo?.grade}
                 </div>
                 {(() => {
@@ -121,7 +122,7 @@ export const WuwaEchoDetail = () => {
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
+                    <Star key={i} size={18} fill={theme.primary} style={{ color: readableTextColor(theme.primary) }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
                   ))}
                 </div>
                 {isPhantom && (
@@ -142,9 +143,9 @@ export const WuwaEchoDetail = () => {
             {/* 01. Ability Section */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: theme.primary }}>01</span>
+                <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: readableTextColor(theme.primary) }}>01</span>
                 <div className="flex items-center gap-3">
-                   <Zap size={20} style={{ color: theme.primary }} />
+                   <Zap size={20} style={{ color: readableTextColor(theme.primary) }} />
                    <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90">Echo Ability</h2>
                 </div>
               </div>
@@ -157,7 +158,7 @@ export const WuwaEchoDetail = () => {
             {/* 02. Sonata Sets Section */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-2xl font-black italic opacity-20" style={{ color: theme.primary }}>02</span>
+                <span className="text-2xl font-black italic opacity-20" style={{ color: readableTextColor(theme.primary) }}>02</span>
                 <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('화음 세트')}</h2>
               </div>
               
@@ -181,7 +182,7 @@ export const WuwaEchoDetail = () => {
                         {effect.twoPiece && (
                           <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                              <span className="text-[11px] font-black text-brand-primary uppercase tracking-[0.2em] bg-brand-primary/20 px-2 py-0.5 rounded-full border border-brand-primary/30">2-Piece</span>
+                              <span className="text-[11px] font-black text-brand-primary-text uppercase tracking-[0.2em] bg-brand-primary/20 px-2 py-0.5 rounded-full border border-brand-primary/30">2-Piece</span>
                               <div className="h-px flex-1 bg-gradient-to-r from-brand-primary/40 to-transparent" />
                             </div>
                             <p className="text-base text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">{effect.twoPiece}</p>
@@ -215,7 +216,7 @@ export const WuwaEchoDetail = () => {
         {/* 03. Acquisition Section (Full Width) */}
         <section className="glass-card p-10 rounded-[40px] border border-white/5">
           <div className="flex items-center gap-5 mb-8">
-            <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>03</span>
+            <span className="text-4xl font-black italic opacity-10" style={{ color: readableTextColor(theme.primary) }}>03</span>
             <div className="flex items-center gap-3">
               <Box size={20} className="text-gray-400" />
               <h4 className="text-xl font-black uppercase tracking-widest text-gray-300">Acquisition Sources</h4>

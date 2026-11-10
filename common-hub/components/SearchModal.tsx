@@ -602,7 +602,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
           {/* 검색창 */}
           <div className="relative mb-6 flex items-center gap-3">
             <div className="relative flex-1">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary" size={20} />
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary-text" size={20} />
               <input
                 data-dialog-autofocus
                 aria-label="검색어"
@@ -628,7 +628,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
           {/* 검색 데이터 로딩 중 */}
           {query && isDataLoading && (
             <div className="flex items-center justify-center gap-3 p-10 text-sm font-bold text-gray-400" role="status">
-              <LoaderCircle size={22} className="animate-spin text-brand-primary" />
+              <LoaderCircle size={22} className="animate-spin text-brand-primary-text" />
               검색 데이터를 불러오는 중입니다.
             </div>
           )}
@@ -728,7 +728,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
 
               {/* 인기 검색어 */}
               <section>
-                <h3 className="text-xs font-black text-brand-primary uppercase tracking-[0.3em] mb-3 flex items-center gap-2">
+                <h3 className="text-xs font-black text-brand-primary-text uppercase tracking-[0.3em] mb-3 flex items-center gap-2">
                   <Sparkles size={14} /> {activeTab === 'all' ? t('Trending Keywords') : `${currentTabConfig?.gameName} 인기 키워드`}
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -741,7 +741,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                       onClick={() => setQuery(keyword)}
                       className="search-shortcut-item flex items-center gap-3 p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl cursor-pointer hover:bg-brand-primary/10 hover:border-brand-primary/30 group transition-all text-left focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
                     >
-                      <span className="text-brand-primary font-black italic text-xs w-5">0{i+1}</span>
+                      <span className="text-brand-primary-text font-black italic text-xs w-5">0{i+1}</span>
                       <span className="text-xs sm:text-sm font-bold text-gray-300 group-hover:text-white">{keyword}</span>
                     </button>
                   ))}
@@ -797,7 +797,7 @@ const ResultSection = ({ title, icon, items, onNavigate, query }: any) => {
   return (
     <div className="space-y-3">
       <h3 className="flex items-center gap-2 text-xs font-black uppercase tracking-[0.2em] text-gray-400 px-1">
-        {icon} {title} <span className="text-brand-primary">({items.length})</span>
+        {icon} {title} <span className="text-brand-primary-text">({items.length})</span>
       </h3>
       <div className="grid grid-cols-1 gap-2.5">
         {items.map((item: SearchResultItemData, i: number) => (
@@ -837,7 +837,7 @@ const SearchResultItem = ({
           <span className={`text-xs font-black px-2 py-0.5 rounded-md border shrink-0 ${badgeStyle}`}>
             {item.gameLabel || item.game.toUpperCase()}
           </span>
-          <span className="text-sm font-black text-gray-200 group-hover:text-brand-primary transition-colors truncate">
+          <span className="text-sm font-black text-gray-200 group-hover:text-brand-primary-text transition-colors truncate">
             <HighlightText text={item.name} query={query || ''} />
           </span>
         </div>
@@ -880,7 +880,7 @@ const HighlightText = ({ text, query }: { text: string; query: string }) => {
     <>
       {parts.map((part, i) =>
         part.toLowerCase() === query.toLowerCase()
-          ? <span key={i} className="text-brand-primary">{part}</span>
+          ? <span key={i} className="text-brand-primary-text">{part}</span>
           : part
       )}
     </>

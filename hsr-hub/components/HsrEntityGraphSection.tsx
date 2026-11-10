@@ -6,6 +6,7 @@ import { useHsrRuntime } from '../utils/useHsrRuntime';
 import type { HsrGuideRuntime } from '../utils/guideRuntime';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import type { HsrCharacter } from '../types';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
 
@@ -103,7 +104,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
         <div className="flex items-center gap-6">
           <div
             className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110"
-            style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}
+            style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}
           >
             ✦
           </div>
@@ -120,7 +121,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
         <Link
           to={`/gallery/hsr/character/${encodeURIComponent(character.id)}/guide`}
           className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-black hover:border-brand-primary/40 hover:bg-white/10 transition-all group/btn"
-          style={{ color: theme.primary }}
+          style={{ color: readableTextColor(theme.primary) }}
         >
           <BookOpen size={14} />
           <span>공략 가이드 전문</span>
@@ -132,7 +133,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
       {recommendedLightCones.length > 0 && (
         <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-5">
           <div className="flex items-center gap-3">
-            <Award size={18} style={{ color: theme.primary }} />
+            <Award size={18} style={{ color: readableTextColor(theme.primary) }} />
             <h3 className="text-sm font-black uppercase tracking-widest text-gray-300">
               추천 광추 순위
             </h3>
@@ -162,7 +163,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
                     <div className="flex items-center gap-1.5 mb-1">
                       <span
                         className="px-2 py-0.5 rounded text-[11px] font-black text-black"
-                        style={{ backgroundColor: theme.primary }}
+                        style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                       >
                         {lc.rank}순위
                       </span>
@@ -191,7 +192,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
         {recommendedRelics.length > 0 && (
           <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center gap-3">
-              <Shield size={18} style={{ color: theme.primary }} />
+              <Shield size={18} style={{ color: readableTextColor(theme.primary) }} />
               <h3 className="text-sm font-black uppercase tracking-widest text-gray-300">
                 추천 터널 유물
               </h3>
@@ -233,7 +234,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
         {recommendedOrnaments.length > 0 && (
           <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center gap-3">
-              <Sparkles size={18} style={{ color: theme.primary }} />
+              <Sparkles size={18} style={{ color: readableTextColor(theme.primary) }} />
               <h3 className="text-sm font-black uppercase tracking-widest text-gray-300">
                 추천 차원 장신구
               </h3>
@@ -278,7 +279,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
         <Link
           to={`/gallery/hsr/character/${encodeURIComponent(character.id)}/guide`}
           className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-white/5 border border-white/10 text-xs font-black text-brand-accent hover:bg-white/10 transition-all"
-          style={{ color: theme.primary }}
+          style={{ color: readableTextColor(theme.primary) }}
         >
           <BookOpen size={14} />
           <span>{character.name} 종결 세팅 및 육성 공략 가이드 전문 보기</span>

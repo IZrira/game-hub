@@ -11,6 +11,7 @@ import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
 import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { renderRichText, formatDescriptionByRank, cleanSkillParagraphs } from '../../ww-hub/data/formatter';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -125,7 +126,7 @@ const NTEArcDetail: React.FC = () => {
             {/* 통합 정보 오버레이 */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-black uppercase text-[11px] tracking-widest" style={{ color: theme.primary }}>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-black uppercase text-[11px] tracking-widest" style={{ color: readableTextColor(theme.primary) }}>
                   <span>{t('종류')} : {t(arc.type || '결합')}</span>
                 </div>
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg flex items-center gap-4">
@@ -135,7 +136,7 @@ const NTEArcDetail: React.FC = () => {
               
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <span className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider border" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>
+                  <span className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider border" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>
                     {theme.label} {t('등급')}
                   </span>
                   {arc.dedicatedChar && (() => {
@@ -164,7 +165,7 @@ const NTEArcDetail: React.FC = () => {
                 <div className="space-y-3 flex-grow relative pt-6">
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                      <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>01</div>
                       <div>
                         <span className="text-xs font-black uppercase tracking-widest text-gray-500">{t('성장 스탯')}</span>
                         <h2 className="text-2xl font-black uppercase tracking-widest text-white">{t('기초 능력치')}</h2>
@@ -178,6 +179,7 @@ const NTEArcDetail: React.FC = () => {
                     style={{ 
                       left: `${(levelIdx / (LEVEL_STEPS.length - 1)) * 100}%`,
                       backgroundColor: theme.primary,
+                      color: textOn(theme.primary),
                       boxShadow: `0 0 12px ${theme.primary}60`
                     }}
                   >
@@ -187,7 +189,7 @@ const NTEArcDetail: React.FC = () => {
                     type="range" min="0" max={LEVEL_STEPS.length - 1} value={levelIdx} 
                     onChange={(e) => setLevelIdx(parseInt(e.target.value))}
                     className="range-slider w-full"
-                    style={{ color: theme.primary }}
+                    style={{ color: readableTextColor(theme.primary) }}
                   />
                   <div className="flex justify-between text-xs font-black uppercase tracking-widest text-gray-400 px-0.5 mt-2">
                     {LEVEL_STEPS.map((lv, i) => (
@@ -201,7 +203,7 @@ const NTEArcDetail: React.FC = () => {
               <div className="grid grid-cols-2 gap-4">
                 <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-6 rounded-full" style={{ backgroundColor: theme.primary }} />
+                    <div className="w-2 h-6 rounded-full" style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }} />
                     <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('기초 공격력')}</span>
                   </div>
                   <div className="text-2xl font-black tabular-nums text-white">{levelStat.atk}</div>
@@ -209,7 +211,7 @@ const NTEArcDetail: React.FC = () => {
 
                 <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
                   <div className="flex items-center gap-3">
-                    <div className="w-2 h-6 rounded-full" style={{ backgroundColor: theme.primary }} />
+                    <div className="w-2 h-6 rounded-full" style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }} />
                     <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t(levelStat.subStatName || '방어력')}</span>
                   </div>
                   <div className="text-2xl font-black tabular-nums text-brand-accent">{levelStat.subStatValue}</div>
@@ -220,7 +222,7 @@ const NTEArcDetail: React.FC = () => {
             {/* 02. 아크 스킬 상세 및 중첩 효과 */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow space-y-6">
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
+                <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>02</div>
                 <div className="flex flex-col border-l-4 border-white/10 pl-6">
                   <span className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{t('아크 스킬')}</span>
                   <h2 className="text-2xl font-black tracking-tighter uppercase text-white leading-none">{t((arc.skill?.name || '아크 스킬').replace(/\*\*/g, '').trim())}</h2>
@@ -246,7 +248,7 @@ const NTEArcDetail: React.FC = () => {
                   type="range" min="0" max="4" value={rankIdx} 
                   onChange={(e) => setRankIdx(parseInt(e.target.value))}
                   className="range-slider w-full"
-                  style={{ color: theme.primary }}
+                  style={{ color: readableTextColor(theme.primary) }}
                 />
                 <div className="flex justify-between text-xs font-black uppercase tracking-widest text-gray-400 px-0.5 mt-2">
                   <span>R1 (기본)</span>
@@ -277,7 +279,7 @@ const NTEArcDetail: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between w-full group">
             <div className="flex items-center gap-6">
-              <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>03</div>
+              <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>03</div>
               <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("돌파 재료 (Breakthrough Materials)")}</h2>
             </div>
           </div>
@@ -315,7 +317,7 @@ const NTEArcDetail: React.FC = () => {
         {arc.dedicatedChar && (
           <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-              <Sparkles size={22} style={{ color: theme.primary }} className="opacity-80" />
+              <Sparkles size={22} style={{ color: readableTextColor(theme.primary) }} className="opacity-80" />
               <span className="text-xl font-black uppercase tracking-tighter italic">{t("전용 효과")}</span>
             </div>
             <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-white font-bold text-base md:text-lg leading-relaxed">
@@ -330,7 +332,7 @@ const NTEArcDetail: React.FC = () => {
         {getNteArcRecommendations(arc.name).length > 0 && (
           <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-              <User size={22} style={{ color: theme.primary }} className="opacity-80" />
+              <User size={22} style={{ color: readableTextColor(theme.primary) }} className="opacity-80" />
               <h2 className="text-xl font-black uppercase tracking-tighter">{t("추천 캐릭터")}</h2>
             </div>
             <ul className="space-y-3">
@@ -339,7 +341,7 @@ const NTEArcDetail: React.FC = () => {
                   <Link to={`/gallery/nte/character/${encodeURIComponent(rec.charName)}`} className="font-black text-white hover:underline">
                     {t(rec.charName)}
                   </Link>
-                  {rec.rank && <span className="ml-2 text-sm font-bold" style={{ color: theme.primary }}>{rec.rank}{t("순위")}</span>}
+                  {rec.rank && <span className="ml-2 text-sm font-bold" style={{ color: readableTextColor(theme.primary) }}>{rec.rank}{t("순위")}</span>}
                   {rec.note && <p className="mt-2 text-sm text-gray-300 leading-relaxed">{rec.note}</p>}
                 </li>
               ))}
@@ -351,7 +353,7 @@ const NTEArcDetail: React.FC = () => {
         {(arc.description || arc.story || arc.weaponStory) && (
           <div className="space-y-6">
             <div className="flex items-center gap-6">
-              <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
+              <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>04</div>
               <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("아크 스토리 (Arc Lore)")}</h2>
             </div>
             <div className="glass-card p-8 rounded-[35px] border border-white/5">

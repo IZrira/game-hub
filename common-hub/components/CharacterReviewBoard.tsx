@@ -494,7 +494,7 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8 px-2">
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-            <MessageSquare size={20} className="text-brand-primary" />
+            <MessageSquare size={20} className="text-brand-primary-text" />
           </div>
           <div>
             <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase flex items-center gap-2">

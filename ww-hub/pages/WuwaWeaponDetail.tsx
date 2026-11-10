@@ -16,6 +16,7 @@ import WwItemIcon from '../components/WwItemIcon';
 import MarkdownRenderer from '../../common-hub/components/MarkdownRenderer';
 import { getCharacterArtPath } from '../../common-hub/utils/imageHelper';
 import StatRow from '../../common-hub/components/StatRow';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 
@@ -528,7 +529,7 @@ const WuwaWeaponDetail = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-brand-primary-text font-black uppercase text-xs tracking-widest opacity-80" style={{ color: readableTextColor(theme.primary) }}>
                   <span>{t('무기 종류')} : {t(weapon.type || '')}</span>
                   {weapon.obtain && (
                     <>
@@ -545,7 +546,7 @@ const WuwaWeaponDetail = () => {
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {Array.from({ length: weapon.rarity }).map((_, i) => (
-                    <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
+                    <Star key={i} size={18} fill={theme.primary} style={{ color: readableTextColor(theme.primary) }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
                   ))}
                 </div>
               </div>
@@ -563,7 +564,7 @@ const WuwaWeaponDetail = () => {
                 <div className="space-y-3 flex-grow relative pt-6 group/lslider">
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                      <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>01</div>
                       <h2 className="text-2xl font-black uppercase tracking-widest text-gray-400">{t('기본 스텟')}</h2>
                     </div>
                   </div>
@@ -573,6 +574,7 @@ const WuwaWeaponDetail = () => {
                     style={{ 
                       left: `${(selectedLevelIdx / maxLevelIdx) * 100}%`,
                       backgroundColor: theme.primary,
+                      color: textOn(theme.primary),
                       boxShadow: `0 0 10px ${theme.primary}40`
                     }}
                   >
@@ -583,7 +585,7 @@ const WuwaWeaponDetail = () => {
                     aria-label={t('무기 레벨')} aria-valuetext={`Lv.${selectedLevel}`}
                     onChange={(e) => setLevelIdx(parseInt(e.target.value))}
                     className="range-slider w-full"
-                    style={{ color: theme.primary }}
+                    style={{ color: readableTextColor(theme.primary) }}
                   />
                   <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                     <span>1</span>
@@ -602,7 +604,7 @@ const WuwaWeaponDetail = () => {
             {/* 02. Skill Detail Section */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
               <div className="flex items-center gap-6 mb-6">
-                <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>02</div>
+                <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>02</div>
                 <div className="flex flex-col border-l-4 border-white/10 pl-6">
                   <span className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{t('무기 스킬')}</span>
                   <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90 leading-none">{t(weapon.skill?.name || '').replace(/\*\*/g, '').trim()}</h2>
@@ -630,7 +632,7 @@ const WuwaWeaponDetail = () => {
                   type="range" min="0" max="4" value={rankIdx} 
                   onChange={(e) => setRankIdx(parseInt(e.target.value))}
                   className="range-slider w-full"
-                  style={{ color: theme.primary }}
+                  style={{ color: readableTextColor(theme.primary) }}
                 />
                 <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                   <span>1</span>
@@ -659,7 +661,7 @@ const WuwaWeaponDetail = () => {
             <SectionHeader num="03" title={t("추천 착용 공명자")} theme={theme} />
             <div className="glass-card p-6 md:p-10 rounded-[45px] border border-white/5 space-y-6">
               <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-                <Users size={22} style={{ color: theme.primary }} className="opacity-80" />
+                <Users size={22} style={{ color: readableTextColor(theme.primary) }} className="opacity-80" />
                 <span className="text-xl font-black uppercase tracking-tighter italic">{t("추천 공명자")}</span>
                 <span className="text-xs text-gray-400 font-bold">({recommendedResonators.length}{t("명")})</span>
               </div>
@@ -762,7 +764,7 @@ const WuwaWeaponDetail = () => {
           <SectionHeader num={recommendedResonators.length > 0 ? "05" : "04"} title={t("획득 경로")} theme={theme} />
           <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-6">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
-              <Compass size={22} style={{ color: theme.primary }} className="opacity-80" />
+              <Compass size={22} style={{ color: readableTextColor(theme.primary) }} className="opacity-80" />
               <span className="text-xl font-black uppercase tracking-tighter italic">{t("획득 방법")}</span>
             </div>
             <div className="flex items-center gap-4 bg-white/[0.02] p-6 rounded-[25px] border border-white/5">
@@ -812,7 +814,7 @@ const SectionHeader: React.FC<{
 }> = ({ num, title, theme, expanded, onToggle }) => (
   <div className="flex items-center justify-between w-full group">
     <div className="flex items-center gap-6">
-      <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{num}</div>
+      <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{num}</div>
       <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{title}</h2>
     </div>
     {onToggle && (<button onClick={onToggle} className="p-3 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}

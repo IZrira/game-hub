@@ -121,7 +121,7 @@ export default function ItemDetail() {
 
               <div className="space-y-4">
                 <div className="flex items-center gap-2 border-b border-white/10 pb-2">
-                  <MapPin size={16} className="text-brand-primary" />
+                  <MapPin size={16} className="text-brand-primary-text" />
                   <span className="text-xs font-black text-gray-400 uppercase tracking-[0.2em]">{t("Location Data")}</span>
                 </div>
                 <div className="flex flex-wrap gap-3">

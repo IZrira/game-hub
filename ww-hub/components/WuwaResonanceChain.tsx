@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { readableTextColor } from '../../common-hub/utils/colorContrast';
 
 interface WuwaResonanceChainProps {
   char: any;
@@ -17,7 +18,7 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
   return (
     <section className="space-y-8">
       <div className="flex items-center gap-6 px-4">
-        <div className="w-12 h-12 rounded-[22px] border-2 flex items-center justify-center font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>07</div>
+        <div className="w-12 h-12 rounded-[22px] border-2 flex items-center justify-center font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>07</div>
         <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('공명 체인')}</h2>
       </div>
 
@@ -51,7 +52,7 @@ const WuwaResonanceChain: React.FC<WuwaResonanceChainProps> = ({ char, theme, re
                   </div>
                 </div>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-xl font-black text-white tracking-tight group-hover:text-brand-accent transition-colors italic" style={{ color: theme.primary }}>
+                  <h3 className="text-xl font-black text-white tracking-tight group-hover:text-brand-accent transition-colors italic" style={{ color: readableTextColor(theme.primary) }}>
                     {cleanName}
                   </h3>
                   <div className="flex items-center gap-2">

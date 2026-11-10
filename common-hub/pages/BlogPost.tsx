@@ -22,7 +22,7 @@ const BlogPost: React.FC = () => {
       <div className="min-h-[100dvh] bg-[#0a0a0a] text-white flex flex-col items-center justify-center p-8">
         <SEO title="검수 중인 공략" description="현재 검수 중이거나 공개가 종료된 공략입니다." noindex={true} />
         <h2 className="text-2xl font-black mb-4 tracking-tight">Post Not Found</h2>
-        <button onClick={() => navigate(`/blog${gameQuery}`)} className="text-brand-primary hover:text-brand-accent transition-colors font-bold flex items-center gap-2">
+        <button onClick={() => navigate(`/blog${gameQuery}`)} className="text-brand-primary-text hover:text-brand-accent transition-colors font-bold flex items-center gap-2">
           <ChevronLeft size={16} /> Return to Blog
         </button>
       </div>
@@ -64,7 +64,7 @@ const BlogPost: React.FC = () => {
           </h1>
           
           <div className="flex flex-wrap items-center gap-6 text-[11px] font-bold text-gray-400 uppercase tracking-widest">
-            <span className="flex items-center gap-2"><Calendar size={14} className="text-brand-primary" /> {post.date}</span>
+            <span className="flex items-center gap-2"><Calendar size={14} className="text-brand-primary-text" /> {post.date}</span>
             <span className="flex items-center gap-2"><User size={14} className="text-brand-accent" /> {post.author}</span>
           </div>
         </div>
@@ -84,7 +84,7 @@ const BlogPost: React.FC = () => {
             prose-li:text-gray-300 prose-li:leading-[1.8]
             prose-ul:list-disc prose-ul:pl-6
             prose-ol:list-decimal prose-ol:pl-6
-            prose-a:text-brand-primary prose-a:no-underline hover:prose-a:underline"
+            prose-a:text-brand-primary-text prose-a:no-underline hover:prose-a:underline"
           >
             <ReactMarkdown>{post.content}</ReactMarkdown>
           </div>

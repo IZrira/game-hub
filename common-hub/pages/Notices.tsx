@@ -49,7 +49,7 @@ const Notices: React.FC = () => {
           <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl relative overflow-hidden">
             <div className="relative z-10">
               <h1 className="text-5xl font-black italic tracking-tighter uppercase flex items-center gap-4">
-                <Bell className="text-brand-primary" size={40} />
+                <Bell className="text-brand-primary-text" size={40} />
                 {displayTitle}
               </h1>
               <p className="text-gray-400 font-bold text-lg mt-2">

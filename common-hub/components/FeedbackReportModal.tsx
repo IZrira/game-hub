@@ -47,7 +47,7 @@ const FeedbackReportModal: React.FC<FeedbackReportModalProps> = ({ isOpen, onClo
       <div className="relative w-full max-w-lg bg-[#0d0d0d] border border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col animate-in zoom-in-95 duration-200">
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/[0.02]">
-          <div className="flex items-center gap-2 text-brand-primary">
+          <div className="flex items-center gap-2 text-brand-primary-text">
             <MessageSquareWarning size={18} />
             <h2 className="font-black uppercase tracking-widest text-sm text-white">{t('Data Error Report')}</h2>
           </div>

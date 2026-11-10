@@ -150,7 +150,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
 
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <MapPin size={14} className="text-brand-primary" />
+                <MapPin size={14} className="text-brand-primary-text" />
                 <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t("Location Data")}</span>
               </div>
               <div className="flex flex-wrap gap-2">

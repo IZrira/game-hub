@@ -14,7 +14,7 @@ const TermsOfService: React.FC = () => {
 
       <main className="max-w-[800px] mx-auto px-6 md:px-8 pt-12">
         <h1 className="text-4xl md:text-5xl font-black text-white mb-12 tracking-tighter">
-          이용약관 <span className="text-brand-primary text-xl md:text-2xl ml-2">Terms of Service</span>
+          이용약관 <span className="text-brand-primary-text text-xl md:text-2xl ml-2">Terms of Service</span>
         </h1>
 
         <div className="prose prose-invert prose-brand max-w-none text-gray-300">

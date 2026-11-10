@@ -16,7 +16,7 @@ const ContactUs: React.FC = () => {
       <main className="max-w-[800px] mx-auto px-6 md:px-8 pt-16">
         <div className="text-center mb-16 space-y-4">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-brand-primary/20 mb-4">
-            <MessageSquare size={32} className="text-brand-primary" />
+            <MessageSquare size={32} className="text-brand-primary-text" />
           </div>
           <h1 className="text-4xl md:text-5xl font-black text-white tracking-tighter">
             문의하기
@@ -35,7 +35,7 @@ const ContactUs: React.FC = () => {
                 <Mail size={48} className="text-gray-300" />
               </div>
               <div className="text-center md:text-left">
-                <h3 className="text-sm font-black uppercase tracking-widest text-brand-primary mb-2">공식 이메일</h3>
+                <h3 className="text-sm font-black uppercase tracking-widest text-brand-primary-text mb-2">공식 이메일</h3>
                 <a href="mailto:rira.game.hub@gmail.com" className="text-2xl md:text-3xl font-bold hover:text-brand-accent transition-colors">
                   rira.game.hub@gmail.com
                 </a>
@@ -43,7 +43,7 @@ const ContactUs: React.FC = () => {
             </div>
 
             <div className="bg-brand-primary/10 border border-brand-primary/20 rounded-2xl p-6 mt-12 flex gap-4 items-start">
-              <AlertCircle className="text-brand-primary shrink-0 mt-1" size={24} />
+              <AlertCircle className="text-brand-primary-text shrink-0 mt-1" size={24} />
               <div className="space-y-2">
                 <h4 className="font-bold text-white">이메일 문의 시 유의사항</h4>
                 <ul className="list-disc pl-4 space-y-1 text-sm text-gray-400">

@@ -4,6 +4,7 @@ import { WuwaCharacter } from '../types';
 import { Shield, Sparkles, Zap, Sword, Activity, Flame } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { readableTextColor } from '../../common-hub/utils/colorContrast';
 
 interface WuwaSkillSectionProps {
   char: WuwaCharacter;
@@ -120,7 +121,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
     <div className="space-y-16">
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>06</div>
+          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>06</div>
           <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('스킬 정보')}</h2>
         </div>
         
@@ -168,7 +169,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
                             <div className="space-y-1">
                                <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name).replace(/\*/g, '').trim()}</h4>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
-                                  {skill.tag && <span className="text-xs font-black text-brand-primary uppercase tracking-widest bg-brand-primary/5 px-2.5 py-1 rounded-lg border border-brand-primary/20">{skill.tag.split('|').map(part => t(part.trim()).replace(/\*/g, '').trim()).join(' | ')}</span>}
+                                  {skill.tag && <span className="text-xs font-black text-brand-primary-text uppercase tracking-widest bg-brand-primary/5 px-2.5 py-1 rounded-lg border border-brand-primary/20">{skill.tag.split('|').map(part => t(part.trim()).replace(/\*/g, '').trim()).join(' | ')}</span>}
                                </div>
                             </div>
                          </div>

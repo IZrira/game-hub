@@ -310,9 +310,9 @@ const GalleryHSR: React.FC = () => {
                           </span>
                           <span className="text-xs font-black uppercase tracking-widest text-gray-400">{cat.stat}</span>
                         </div>
-                        <h3 className="mt-2 text-base font-black text-white group-hover:text-brand-primary transition-colors">{cat.title}</h3>
+                        <h3 className="mt-2 text-base font-black text-white group-hover:text-brand-primary-text transition-colors">{cat.title}</h3>
                         <p className="mt-2 text-xs leading-5 text-gray-400">{cat.description}</p>
-                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-brand-primary group-hover:translate-x-1 transition-transform">
+                        <span className="mt-4 inline-flex items-center gap-2 text-xs font-black text-brand-primary-text group-hover:translate-x-1 transition-transform">
                           {t('탐색하기')} <ArrowRight size={13} />
                         </span>
                       </Link>

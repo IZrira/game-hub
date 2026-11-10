@@ -13,6 +13,7 @@ import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
+import { getTierColor } from '../../common-hub/utils/tierColors';
 
 const ROLE_ICONS: Record<string, React.ReactNode> = {
   '메인 딜러': <Sword size={14} className="text-rose-500" />,
@@ -220,11 +221,11 @@ const NTETierList: React.FC = () => {
                 {/* Tier Badge Left Header */}
                 <div 
                   className="w-full md:w-36 flex flex-col items-center justify-center p-4 sm:p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5 relative"
-                  style={{ backgroundColor: `${group.color}10` }}
+                  style={{ backgroundColor: `${getTierColor(group.tier, group.color)}10` }}
                 >
                   <span 
                     className="text-3xl sm:text-4xl md:text-5xl font-black italic tracking-tighter"
-                    style={{ color: group.color }}
+                    style={{ color: getTierColor(group.tier, group.color) }}
                   >
                     {group.tier}
                   </span>

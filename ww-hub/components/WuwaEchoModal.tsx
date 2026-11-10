@@ -81,7 +81,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
               </div>
               <div className="text-center md:text-left space-y-4 flex-1">
                 <div className="flex flex-wrap justify-center md:justify-start gap-2">
-                  <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary text-xs font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
+                  <span className="px-3 py-1 bg-brand-accent/20 text-brand-primary-text text-xs font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
                     COST {echo.cost}
                   </span>
                   <span className="px-3 py-1 bg-white/5 text-gray-400 text-xs font-black rounded-full uppercase tracking-widest border border-white/10">
@@ -175,19 +175,19 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                           <div className="grid grid-cols-1 gap-4">
                             {effect.twoPiece && (
                               <div className="space-y-1">
-                                <p className="text-[11px] font-black text-brand-primary uppercase tracking-tighter">2-Piece Set Effect</p>
+                                <p className="text-[11px] font-black text-brand-primary-text uppercase tracking-tighter">2-Piece Set Effect</p>
                                 <p className="text-[13px] text-gray-300 leading-snug font-medium">{effect.twoPiece}</p>
                               </div>
                             )}
                             {effect.threePiece && (
                               <div className="space-y-1">
-                                <p className="text-[11px] font-black text-brand-primary uppercase tracking-tighter">3-Piece Set Effect</p>
+                                <p className="text-[11px] font-black text-brand-primary-text uppercase tracking-tighter">3-Piece Set Effect</p>
                                 <p className="text-[13px] text-gray-300 leading-snug font-medium">{effect.threePiece}</p>
                               </div>
                             )}
                             {effect.fivePiece && (
                               <div className="space-y-1">
-                                <p className="text-[11px] font-black text-brand-primary uppercase tracking-tighter">5-Piece Set Effect</p>
+                                <p className="text-[11px] font-black text-brand-primary-text uppercase tracking-tighter">5-Piece Set Effect</p>
                                 <p className="text-base text-gray-300 leading-relaxed font-medium whitespace-pre-wrap">{effect.fivePiece}</p>
                               </div>
                             )}

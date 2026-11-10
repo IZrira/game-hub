@@ -14,6 +14,7 @@ import { hasPublishableText } from '../../common-hub/utils/placeholderText.js';
 import { HsrLightCone } from '../types';
 import { HsrRecommendedCharactersSection } from '../components/HsrRecommendedCharactersSection';
 import { isHsrEquipmentIndexable } from '../data/equipmentIndex';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const LEVEL_STEPS = [1, 20, 30, 40, 50, 60, 70, 80];
 
@@ -55,7 +56,7 @@ const LightConeDetail: React.FC = () => {
   if (!data) {
     return (
       <div className="flex min-h-[60vh] items-center justify-center bg-[#0a0a0a]">
-        <RefreshCw size={20} className="animate-spin text-brand-primary" />
+        <RefreshCw size={20} className="animate-spin text-brand-primary-text" />
       </div>
     );
   }
@@ -108,7 +109,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
 
           if (shouldHighlight) {
             return (
-              <span key={i} className="font-black px-1.5 py-0.5 rounded-md bg-white/5 border border-white/10 mx-0.5" style={{ color: theme.primary }}>
+              <span key={i} className="font-black px-1.5 py-0.5 rounded-md bg-white/5 border border-white/10 mx-0.5" style={{ color: readableTextColor(theme.primary) }}>
                 {currentVal}
               </span>
             );
@@ -197,7 +198,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-4">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary-text font-black uppercase text-xs tracking-widest opacity-80" style={{ color: readableTextColor(theme.primary) }}>
                   {t('운명의 길')} : {t(lc.path || '')}
                 </div>
                 <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
@@ -208,7 +209,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {Array.from({ length: lc.rarity }).map((_, i) => (
-                    <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
+                    <Star key={i} size={18} fill={theme.primary} style={{ color: readableTextColor(theme.primary) }} className="drop-shadow-[0_0_8px_rgba(234,179,8,0.6)]" />
                   ))}
                 </div>
                 {lc.releaseVersion && (
@@ -232,7 +233,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                 <div className="space-y-3 relative group/lslider">
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-2">
-                      <span className="text-xl font-black italic opacity-20" style={{ color: theme.primary }}>01</span>
+                      <span className="text-xl font-black italic opacity-20" style={{ color: readableTextColor(theme.primary) }}>01</span>
                       <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t('레벨')}</h2>
                     </div>
                   </div>
@@ -243,6 +244,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                       style={{ 
                         left: `${(levelIdx / 7) * 100}%`,
                         backgroundColor: theme.primary,
+                        color: textOn(theme.primary),
                         boxShadow: `0 0 10px ${theme.primary}40`
                       }}
                     >
@@ -252,7 +254,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                       type="range" min="0" max="7" value={levelIdx} 
                       onChange={(e) => setLevelIdx(parseInt(e.target.value))}
                       className="range-slider w-full"
-                      style={{ color: theme.primary }}
+                      style={{ color: readableTextColor(theme.primary) }}
                     />
                     <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                       <span>1</span>
@@ -265,7 +267,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                 <div className="space-y-3 border-l border-white/5 pl-0 md:pl-8 relative group/rslider">
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-2">
-                      <span className="text-xl font-black italic opacity-20" style={{ color: theme.primary }}>02</span>
+                      <span className="text-xl font-black italic opacity-20" style={{ color: readableTextColor(theme.primary) }}>02</span>
                       <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-400">{t('중첩')}</h2>
                     </div>
                   </div>
@@ -284,7 +286,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                       type="range" min="0" max="4" value={rankIdx} 
                       onChange={(e) => setRankIdx(parseInt(e.target.value))}
                       className="range-slider w-full"
-                      style={{ color: theme.primary }}
+                      style={{ color: readableTextColor(theme.primary) }}
                     />
                     <div className="flex justify-between text-[11px] font-black uppercase tracking-widest text-gray-400 px-0.5 mt-1.5">
                       <span>1</span>
@@ -314,9 +316,9 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
             {/* 02. Skill Detail Section (REDUCED SIZE) */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
               <div className="flex items-center gap-3 mb-6">
-                <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: theme.primary }}>03</span>
+                <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: readableTextColor(theme.primary) }}>03</span>
                 <div className="flex items-center gap-3">
-                   <ShieldCheck size={20} style={{ color: theme.primary }} />
+                   <ShieldCheck size={20} style={{ color: readableTextColor(theme.primary) }} />
                    <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90">{t(lc.skill?.name || '')}</h2>
                 </div>
               </div>
@@ -329,9 +331,9 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
             {/* 03. Materials Section */}
             <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-black/20">
                <div className="flex items-center gap-5 mb-6">
-                  <span className="text-3xl font-black italic opacity-10" style={{ color: theme.primary }}>04</span>
+                  <span className="text-3xl font-black italic opacity-10" style={{ color: readableTextColor(theme.primary) }}>04</span>
                   <div className="flex items-center gap-2">
-                    <Package size={16} style={{ color: theme.primary }} />
+                    <Package size={16} style={{ color: readableTextColor(theme.primary) }} />
                     <h3 className="text-lg font-black uppercase tracking-widest text-gray-400">
                       Lv. {LEVEL_STEPS[levelIdx]} {t('필요 재료')}
                     </h3>
@@ -370,10 +372,10 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
               className="w-full p-8 flex items-center justify-between group/story hover:bg-white/[0.02] transition-colors"
             >
               <div className="flex items-center gap-6">
-                <span className="text-4xl font-black italic opacity-10" style={{ color: theme.primary }}>05</span>
+                <span className="text-4xl font-black italic opacity-10" style={{ color: readableTextColor(theme.primary) }}>05</span>
                 <h2 className="text-xl font-black uppercase tracking-widest text-gray-400 group-hover/story:text-white transition-colors">{t('스토리')}</h2>
               </div>
-              <div className={`p-3 rounded-full bg-white/5 border border-white/10 transition-transform duration-500 ${isStoryOpen ? 'rotate-180 bg-brand-primary/20 border-brand-primary/20' : ''}`} style={isStoryOpen ? { color: theme.primary } : {}}>
+              <div className={`p-3 rounded-full bg-white/5 border border-white/10 transition-transform duration-500 ${isStoryOpen ? 'rotate-180 bg-brand-primary/20 border-brand-primary/20' : ''}`} style={isStoryOpen ? { color: readableTextColor(theme.primary) } : {}}>
                 {isStoryOpen ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
               </div>
             </button>
@@ -393,7 +395,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/5">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-                <Users size={20} className="text-brand-primary" />
+                <Users size={20} className="text-brand-primary-text" />
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-black text-white">{t('데이터 출처')}</h4>

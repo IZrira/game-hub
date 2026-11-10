@@ -55,7 +55,7 @@ export const NoticeDetailModal: React.FC<{ notice: Notice; onClose: () => void }
             </div>
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs font-black text-brand-primary uppercase tracking-widest">{t(notice.category)}</span>
+                <span className="text-xs font-black text-brand-primary-text uppercase tracking-widest">{t(notice.category)}</span>
                 {notice.version && <span className="text-xs font-bold text-gray-400">v{notice.version}</span>}
               </div>
               <h3 className="text-xl font-black text-white">{notice.title}</h3>
@@ -138,7 +138,7 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
           <div className="relative z-10 flex items-start justify-between gap-4">
             <div className="space-y-2">
               <div className="flex items-center gap-2">
-                <span className={`text-[11px] font-black uppercase tracking-widest ${notice.isCritical ? 'text-red-400' : 'text-brand-primary'}`}>
+                <span className={`text-[11px] font-black uppercase tracking-widest ${notice.isCritical ? 'text-red-400' : 'text-brand-primary-text'}`}>
                   {t(notice.category)}
                 </span>
                 <span className="text-[11px] font-black text-gray-400 tracking-tighter">{notice.createdAt}</span>

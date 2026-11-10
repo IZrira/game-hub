@@ -18,7 +18,7 @@ const NotFound: React.FC = () => {
 
       <div className="relative mb-12">
         <div className="absolute inset-0 bg-brand-primary/20 blur-[100px] rounded-full" />
-        <Ghost size={120} className="text-brand-primary relative z-10 animate-bounce" style={{ animationDuration: '3s' }} />
+        <Ghost size={120} className="text-brand-primary-text relative z-10 animate-bounce" style={{ animationDuration: '3s' }} />
       </div>
 
       <h1 className="text-6xl md:text-8xl font-black italic tracking-tighter text-white mb-6">404</h1>

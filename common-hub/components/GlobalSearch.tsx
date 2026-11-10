@@ -102,7 +102,7 @@ export default function GlobalSearch({ className = '', showText = true }: Global
         title="통합 아카이브 검색 (⌘K / Ctrl+K)"
         aria-label="통합 아카이브 검색"
       >
-        <Search size={15} className="text-brand-primary group-hover:scale-110 transition-transform shrink-0" />
+        <Search size={15} className="text-brand-primary-text group-hover:scale-110 transition-transform shrink-0" />
         {showText && (
           <span className="hidden lg:inline text-[11px] font-bold text-gray-400 group-hover:text-gray-200">
             통합 검색

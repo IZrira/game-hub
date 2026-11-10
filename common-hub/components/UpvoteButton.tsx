@@ -22,7 +22,7 @@ export const UpvoteButton: React.FC<UpvoteButtonProps> = ({
       disabled={disabled}
       className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all active:scale-95 border ${
         userHasUpvoted
-          ? 'bg-brand-primary/20 text-brand-primary border-brand-primary/40 shadow-sm shadow-brand-primary/20'
+          ? 'bg-brand-primary/20 text-brand-primary-text border-brand-primary/40 shadow-sm shadow-brand-primary/20'
           : 'bg-white/5 text-gray-400 border-white/10 hover:text-white hover:bg-white/10'
       }`}
       title={userHasUpvoted ? 'Remove upvote' : 'Upvote comment'}

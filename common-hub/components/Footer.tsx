@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <div className="space-y-2">
               <h2 className="text-2xl font-black italic tracking-tighter text-white">RIRA GAME HUB</h2>
-              <p className="text-xs font-black text-brand-primary">
+              <p className="text-xs font-black text-brand-primary-text">
                 {t('게임 통합 데이터베이스')}
               </p>
             </div>
@@ -54,10 +54,10 @@ const Footer: React.FC = () => {
           <div className="space-y-6">
             <h3 className="text-xs font-black text-white">{t('지원 게임')}</h3>
             <ul className="space-y-3 text-xs font-bold text-gray-400">
-              <li><Link to="/gallery/hsr" className="hover:text-brand-primary transition-colors">Honkai: Star Rail</Link></li>
-              <li><Link to="/gallery/ww" className="hover:text-brand-primary transition-colors">Wuthering Waves</Link></li>
-              <li><Link to="/gallery/nte" className="hover:text-brand-primary transition-colors">Neverness to Everness</Link></li>
-              <li><Link to="/gallery/aniimo" className="hover:text-brand-primary transition-colors">Aniimo</Link></li>
+              <li><Link to="/gallery/hsr" className="hover:text-brand-primary-text transition-colors">Honkai: Star Rail</Link></li>
+              <li><Link to="/gallery/ww" className="hover:text-brand-primary-text transition-colors">Wuthering Waves</Link></li>
+              <li><Link to="/gallery/nte" className="hover:text-brand-primary-text transition-colors">Neverness to Everness</Link></li>
+              <li><Link to="/gallery/aniimo" className="hover:text-brand-primary-text transition-colors">Aniimo</Link></li>
             </ul>
           </div>
 

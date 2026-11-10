@@ -8,6 +8,7 @@ import type { CharacterGuide } from '../data/guides';
 // equipment detail pages.
 import CHARACTER_DB from '../data/generated/character-summary.json';
 import { getHsrCharacterArtUrl, handleImageFallback } from '../../common-hub/utils/assetManager';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const HSR_CHARACTER_GUIDES = publicGuides as CharacterGuide[];
 
@@ -106,7 +107,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
     <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <Users size={18} style={{ color: theme.primary }} />
+          <Users size={18} style={{ color: readableTextColor(theme.primary) }} />
           <h3 className="text-base font-black uppercase tracking-widest text-white">
             추천 착용 캐릭터 ({characters.length})
           </h3>
@@ -143,7 +144,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
                   {char.rank !== undefined && (
                     <span
                       className="px-1.5 py-0.5 rounded text-[11px] font-black text-black"
-                      style={{ backgroundColor: theme.primary }}
+                      style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                     >
                       {char.rank}순위
                     </span>

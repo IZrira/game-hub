@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
 
           {/* PWA 설치 버튼 (조건부 노출) */}
           {deferredPrompt && (
-            <button onClick={handleInstallPWA} className="flex items-center gap-1 text-gray-400 hover:text-brand-primary transition-colors text-xs font-bold uppercase py-1 px-2 rounded-lg hover:bg-white/5">
+            <button onClick={handleInstallPWA} className="flex items-center gap-1 text-gray-400 hover:text-brand-primary-text transition-colors text-xs font-bold uppercase py-1 px-2 rounded-lg hover:bg-white/5">
               <Download size={18} /> App
             </button>
           )}
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
           {user ? (
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
-                <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary">
+                <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary-text">
                   <UserIcon size={14} />
                 </div>
                 <span className="text-xs font-black text-white uppercase tracking-wider">{user.user_metadata?.full_name || user.email?.split('@')[0]}</span>
@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
             data-global-search-trigger
             title="통합 검색"
           >
-            <Search size={18} className="text-brand-primary" />
+            <Search size={18} className="text-brand-primary-text" />
           </button>
 
           <button
@@ -171,10 +171,10 @@ const Navbar: React.FC = () => {
               className="p-3.5 rounded-2xl bg-brand-primary/10 border border-brand-primary/20 text-white font-black text-sm uppercase tracking-widest flex items-center justify-between"
             >
               <span className="flex items-center gap-2.5">
-                <Search size={16} className="text-brand-primary" />
+                <Search size={16} className="text-brand-primary-text" />
                 <span>{t('통합 아카이브 검색')}</span>
               </span>
-              <kbd className="px-2 py-0.5 text-xs font-mono text-brand-primary bg-brand-primary/20 rounded">⌘K</kbd>
+              <kbd className="px-2 py-0.5 text-xs font-mono text-brand-primary-text bg-brand-primary/20 rounded">⌘K</kbd>
             </button>
 
             <Link
@@ -205,7 +205,7 @@ const Navbar: React.FC = () => {
                 className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-gray-300 font-black text-sm uppercase tracking-widest flex items-center justify-between hover:text-white"
               >
                 <span>{t('앱 설치 (PWA)')}</span>
-                <Download size={16} className="text-brand-primary" />
+                <Download size={16} className="text-brand-primary-text" />
               </button>
             )}
 
@@ -214,7 +214,7 @@ const Navbar: React.FC = () => {
             {user ? (
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3 p-3.5 bg-white/5 rounded-2xl border border-white/10">
-                  <UserIcon size={18} className="text-brand-primary" />
+                  <UserIcon size={18} className="text-brand-primary-text" />
                   <span className="text-white text-xs font-black truncate">{user.email}</span>
                 </div>
                 <button

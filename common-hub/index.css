@@ -16,6 +16,8 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
   --color-brand-primary: #7E30E1;
+  /* Purple for text on dark surfaces: 7.7:1 on #121212 (user choice B, 2026-11-10). */
+  --color-brand-primary-text: #B794F6;
   --color-brand-accent: #E26EE5;
   --color-brand-dark: #121212;
   --color-brand-light: #F3F8FF;

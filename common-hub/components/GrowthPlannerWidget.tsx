@@ -147,7 +147,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
       {/* Header */}
       <div className="flex flex-wrap items-center justify-between gap-4 mb-6 border-b border-white/10 pb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 border border-brand-primary/40 flex items-center justify-center text-brand-primary">
+          <div className="w-10 h-10 rounded-2xl bg-brand-primary/20 border border-brand-primary/40 flex items-center justify-center text-brand-primary-text">
             <TrendingUp size={20} />
           </div>
           <div>

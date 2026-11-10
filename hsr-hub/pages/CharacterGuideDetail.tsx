@@ -437,7 +437,7 @@ const CharacterGuideDetail: React.FC = () => {
     <div className="min-h-[70vh] flex flex-col items-center justify-center gap-4 p-8 text-white">
       <Info size={40} className="text-gray-300" />
       <h2 className="text-2xl font-black">공략을 찾을 수 없습니다</h2>
-      <Link to={`/gallery/${gameId}`} className="text-brand-primary">도감으로 돌아가기</Link>
+      <Link to={`/gallery/${gameId}`} className="text-brand-primary-text">도감으로 돌아가기</Link>
     </div>
   );
   if (loaded?.url === url) return <CharacterGuideContent key={url} data={loaded.data} />;

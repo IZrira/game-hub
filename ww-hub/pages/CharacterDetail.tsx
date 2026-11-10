@@ -41,6 +41,7 @@ import { ELEMENT_COLORS } from '../data/formatter';
 import characterSummary from '../data/generated/character-summary.json';
 import { CDN_URL, safeEncodeURIComponent, withAssetVersion, resolveRoverImageInfo } from '../../common-hub/utils/assetManager';
 import StatRow from '../../common-hub/components/StatRow';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 const CharacterReviewBoard = lazy(() => import('../../common-hub/components/CharacterReviewBoard'));
@@ -79,7 +80,7 @@ const DeferredSection: React.FC<{ children: React.ReactNode; minHeight?: number 
 
 const DeferredFallback = () => (
   <div className="flex min-h-48 items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02]">
-    <RefreshCw size={20} className="animate-spin text-brand-primary" />
+    <RefreshCw size={20} className="animate-spin text-brand-primary-text" />
   </div>
 );
 
@@ -564,7 +565,7 @@ const CharacterDetail: React.FC = () => {
 
   const hasParties = useHasRecommendedParties('ww', char?.id || charName || '');
   if (!summaryChar) return <div className="p-20 text-center font-black text-white">{t('캐릭터를 찾을 수 없습니다.')}</div>;
-  if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary'} /><p className="mt-5 text-sm font-bold">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
+  if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary-text'} /><p className="mt-5 text-sm font-bold">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
@@ -659,7 +660,7 @@ const CharacterDetail: React.FC = () => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-3">
               <div className="space-y-0.5">
-                <div className="flex items-center gap-2 text-brand-primary font-black uppercase text-xs tracking-widest opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary-text font-black uppercase text-xs tracking-widest opacity-80" style={{ color: readableTextColor(theme.primary) }}>
                   <img key={char.attribute} src={`${ICON_COMMON_BASE}${safeEncodeURIComponent(`${char.attribute} 피해 부스트`)}.webp`} className="w-3.5 h-3.5 object-contain" alt="" onError={event => { event.currentTarget.hidden = true; }} />
                   {t((char as any).weaponType || '')} | {t(char.attribute)}
                 </div>
@@ -670,7 +671,7 @@ const CharacterDetail: React.FC = () => {
                   <Link 
                     to={`/gallery/${gameId}/character/${char.id}/guide`} 
                     className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-xs font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
-                    style={{ backgroundColor: theme.primary }}
+                    style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                   >
                     <BookOpen size={14} /> {t('세팅 공략')}
                   </Link>
@@ -680,7 +681,7 @@ const CharacterDetail: React.FC = () => {
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {Array.from({ length: char.rarity }).map((_, i) => (
-                    <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
+                    <Star key={i} size={18} fill={theme.primary} style={{ color: readableTextColor(theme.primary) }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
                   ))}
                 </div>
                 <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-400 opacity-70">
@@ -712,7 +713,7 @@ const CharacterDetail: React.FC = () => {
             <div id="stats" className="space-y-6 rounded-2xl border border-white/10 bg-[#121212] p-6 scroll-mt-28">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>01</div>
                   <h2 className="text-2xl font-black text-white">{t('기본 스탯')}</h2>
                 </div>
                 <div className="flex flex-col gap-1.5 flex-1 max-w-md relative pt-6">
@@ -722,12 +723,13 @@ const CharacterDetail: React.FC = () => {
                     style={{ 
                       left: `${(levelIdx / 8) * 100}%`,
                       backgroundColor: theme.primary,
+                      color: textOn(theme.primary),
                       boxShadow: `0 0 10px ${theme.primary}40`
                     }}
                   >
                     Lv.{currentLevel}
                   </div>
-                  <input type="range" min="0" max="8" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="range-slider w-full" style={{ color: theme.primary }} />
+                  <input type="range" min="0" max="8" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="range-slider w-full" style={{ color: readableTextColor(theme.primary) }} />
                   <div className="flex justify-between text-[11px] font-black uppercase text-gray-400 px-0.5">
                     <span>1</span>
                     <span>90</span>
@@ -749,7 +751,7 @@ const CharacterDetail: React.FC = () => {
                 className="w-full p-6 flex items-center justify-between group hover:bg-white/[0.02] transition-colors"
               >
                 <div className="flex items-center gap-4">
-                   <span className="text-lg font-black" style={{ color: theme.primary }}>02</span>
+                   <span className="text-lg font-black" style={{ color: readableTextColor(theme.primary) }}>02</span>
                    <h2 className="text-lg font-black text-white">{t('캐릭터 소개')}</h2>
                 </div>
                 <div className={`p-2 rounded-full border border-white/10 transition-transform duration-500 ${isProfileExpanded ? 'rotate-180 border-brand-primary' : ''}`}>
@@ -840,7 +842,7 @@ const CharacterDetail: React.FC = () => {
         {char.roles && char.roles.length > 0 && (
           <section className="space-y-8">
             <div className="flex items-center gap-6 px-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>04</div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>04</div>
               <h2 className="border-l-4 border-white/10 py-1.5 pl-6 text-2xl font-black leading-none text-white md:text-3xl">{t('전투 역할')}</h2>
             </div>
             
@@ -858,7 +860,7 @@ const CharacterDetail: React.FC = () => {
                        />
                     </div>
                     <div className="space-y-1 relative z-10">
-                      <span className="text-lg font-black text-brand-primary">{t(role.label).replace(/\*/g, '')}</span>
+                      <span className="text-lg font-black text-brand-primary-text">{t(role.label).replace(/\*/g, '')}</span>
                       <p className="text-gray-300 text-base leading-relaxed font-medium">{t(role.description).replace(/\*/g, '')}</p>
                     </div>
                   </div>
@@ -962,7 +964,7 @@ const CharacterDetail: React.FC = () => {
           <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-8 md:flex-row">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-                <Users size={20} className="text-brand-primary" />
+                <Users size={20} className="text-brand-primary-text" />
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-black text-white">{t('데이터 출처')}</h4>
@@ -1007,7 +1009,7 @@ const SectionHeader: React.FC<{
 }> = ({ num, title, theme, expanded, onToggle }) => (
   <div className="flex items-center justify-between w-full group">
     <div className="flex items-center gap-4 md:gap-6">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{num}</div>
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{num}</div>
       <h2 className="border-l-4 border-white/10 py-1 pl-4 text-xl font-black leading-none text-white md:pl-6 md:text-2xl">{title}</h2>
     </div>
     {onToggle && (<button type="button" onClick={onToggle} aria-expanded={expanded} aria-label={`${title} ${expanded ? '접기' : '펼치기'}`} className="rounded-xl border border-white/10 bg-white/5 p-3 transition-colors hover:bg-white/10">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
@@ -1022,7 +1024,7 @@ const MetadataCard: React.FC<{
 }> = ({ label, value, icon, theme }) => (
   <div className="rounded-2xl border border-white/10 bg-[#121212] p-6 transition-colors hover:bg-[#171717]">
     <div className="flex items-center gap-3 mb-4">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400" style={{ color: theme.primary }}>
+      <div className="rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400" style={{ color: readableTextColor(theme.primary) }}>
         {icon}
       </div>
       <span className="text-xs font-bold text-gray-400">{label}</span>

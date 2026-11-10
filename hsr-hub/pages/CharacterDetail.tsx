@@ -42,6 +42,7 @@ import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import { HsrCharacter } from '../types';
 import StatRow from '../../common-hub/components/StatRow';
+import { readableTextColor, textOn } from '../../common-hub/utils/colorContrast';
 
 const ItemDetailModal = lazy(() => import('../../common-hub/components/ItemDetailModal'));
 const CharacterReviewBoard = lazy(() => import('../../common-hub/components/CharacterReviewBoard'));
@@ -81,7 +82,7 @@ const DeferredSection: React.FC<{ children: React.ReactNode; minHeight?: number 
 
 const DeferredFallback = () => (
   <div className="flex min-h-48 items-center justify-center rounded-2xl border border-white/5 bg-white/[0.02]">
-    <RefreshCw size={20} className="animate-spin text-brand-primary" />
+    <RefreshCw size={20} className="animate-spin text-brand-primary-text" />
   </div>
 );
 
@@ -398,7 +399,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
         
         if (tooltipText) {
           return (
-            <span key={i} className="font-black inline-flex border-b border-dashed cursor-help active:scale-95 transition-transform" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
+            <span key={i} className="font-black inline-flex border-b border-dashed cursor-help active:scale-95 transition-transform" style={{ color: readableTextColor(theme.primary), borderColor: `${theme.primary}80` }}
               onClick={(e) => {
                 e.stopPropagation();
                 const r = e.currentTarget.getBoundingClientRect();
@@ -417,13 +418,13 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
         
         const innerParts = innerText.split(innerRegex);
         return (
-          <span key={i} className="font-black" style={{ color: theme.primary }}>
+          <span key={i} className="font-black" style={{ color: readableTextColor(theme.primary) }}>
             {innerParts.map((innerPart, j) => {
               const subClean = innerPart.replace(/^[「『\[<]+|[」』\]>]+$/g, '').trim();
               const subTooltip = specialTerms[innerPart] || specialTerms[subClean] || specialTerms[`「${subClean}」`];
               if (subTooltip) {
                 return (
-                  <span key={j} className="inline-flex border-b border-dashed cursor-help font-black active:scale-95 transition-transform" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
+                  <span key={j} className="inline-flex border-b border-dashed cursor-help font-black active:scale-95 transition-transform" style={{ color: readableTextColor(theme.primary), borderColor: `${theme.primary}80` }}
                     onClick={(e) => {
                       e.stopPropagation();
                       const r = e.currentTarget.getBoundingClientRect();
@@ -453,7 +454,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
       const directTooltip = specialTerms[part] || specialTerms[directClean] || specialTerms[`「${directClean}」`];
       if (directTooltip) {
         return (
-          <span key={i} className="inline-flex border-b border-dashed cursor-help font-bold px-0.5 active:scale-95 transition-transform" style={{ color: theme.primary, borderColor: `${theme.primary}80` }}
+          <span key={i} className="inline-flex border-b border-dashed cursor-help font-bold px-0.5 active:scale-95 transition-transform" style={{ color: readableTextColor(theme.primary), borderColor: `${theme.primary}80` }}
             onClick={(e) => {
               e.stopPropagation();
               const r = e.currentTarget.getBoundingClientRect();
@@ -648,7 +649,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex items-center justify-between gap-3 mb-2 pb-2 border-b border-white/10">
-            <span className="font-black text-brand-accent text-sm flex items-center gap-1.5" style={{ color: theme.primary }}>
+            <span className="font-black text-brand-accent text-sm flex items-center gap-1.5" style={{ color: readableTextColor(theme.primary) }}>
               <span>✦</span> {tooltip.title || t('용어 설명')}
             </span>
             <button 
@@ -709,7 +710,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             {/* Integrated Info Overlay (Bottom-Left) */}
             <div className="absolute bottom-8 left-8 right-8 space-y-3">
               <div className="space-y-0.5">
-                <div className="flex items-center gap-2 text-brand-primary font-black text-xs opacity-80" style={{ color: theme.primary }}>
+                <div className="flex items-center gap-2 text-brand-primary-text font-black text-xs opacity-80" style={{ color: readableTextColor(theme.primary) }}>
                   {t('운명의 길')} : {t(char.path)} | {t(char.attribute)}
                 </div>
                 <div className="flex items-end justify-between gap-4">
@@ -719,7 +720,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                   {(guideManifest as Record<string, string>)[char.id] && <Link
                     to={`/gallery/${gameId}/character/${char.id}/guide`} 
                     className="mb-1 flex items-center gap-2 rounded-xl border border-white/20 bg-brand-primary px-5 py-2.5 text-xs font-black text-white transition-colors hover:brightness-110 whitespace-nowrap"
-                    style={{ backgroundColor: theme.primary }}
+                    style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                   >
                     <BookOpen size={14} /> {t('세팅 공략')}
                   </Link>}
@@ -729,7 +730,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
               <div className="flex items-center justify-between">
                 <div className="flex gap-1">
                   {Array.from({ length: char.rarity }).map((_, i) => (
-                    <Star key={i} size={18} fill={theme.primary} style={{ color: theme.primary }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
+                    <Star key={i} size={18} fill={theme.primary} style={{ color: readableTextColor(theme.primary) }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
                   ))}
                 </div>
                 <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-400 opacity-70">
@@ -762,7 +763,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             <section id="stats" className="space-y-6 rounded-2xl border border-white/10 bg-[#121212] p-6 scroll-mt-28">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>01</div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>01</div>
                   <h2 className="text-2xl font-black text-white">{t('기본 스탯')}</h2>
                 </div>
                 <div className="flex flex-col gap-1.5 flex-1 max-w-md relative pt-6">
@@ -772,12 +773,13 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                     style={{ 
                       left: `${(levelIdx / 7) * 100}%`,
                       backgroundColor: theme.primary,
+                      color: textOn(theme.primary),
                       boxShadow: `0 0 10px ${theme.primary}40`
                     }}
                   >
                     Lv.{currentLevel}
                   </div>
-                  <input type="range" min="0" max="7" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="range-slider w-full" style={{ color: theme.primary }} />
+                  <input type="range" min="0" max="7" value={levelIdx} onChange={(e) => setLevelIdx(parseInt(e.target.value))} className="range-slider w-full" style={{ color: readableTextColor(theme.primary) }} />
                   <div className="flex justify-between text-[11px] font-black uppercase text-gray-400 px-0.5">
                     <span>1</span>
                     <span>80</span>
@@ -814,7 +816,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                 className="group flex w-full items-center justify-between p-6 transition-colors hover:bg-white/[0.02]"
               >
                 <div className="flex items-center gap-4">
-                   <span className="text-lg font-black" style={{ color: theme.primary }}>02</span>
+                   <span className="text-lg font-black" style={{ color: readableTextColor(theme.primary) }}>02</span>
                    <h2 className="text-lg font-black text-white">{t('캐릭터 소개')}</h2>
                 </div>
                 <div className={`text-gray-400 transition-transform duration-300 ${isProfileExpanded ? 'rotate-180' : ''}`}>
@@ -951,7 +953,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
           <div className="flex flex-col items-center justify-between gap-6 rounded-2xl border border-white/5 bg-white/[0.02] px-6 py-8 md:flex-row">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-                <Users size={20} className="text-brand-primary" />
+                <Users size={20} className="text-brand-primary-text" />
               </div>
               <div className="space-y-1">
                 <h4 className="text-sm font-black text-white">{t('데이터 출처')}</h4>
@@ -1018,7 +1020,7 @@ const SectionHeader: React.FC<{
 }> = ({ num, title, theme, expanded, onToggle }) => (
   <div className="flex items-center justify-between w-full group">
     <div className="flex items-center gap-4 md:gap-6">
-      <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: theme.primary, borderColor: `${theme.primary}60` }}>{num}</div>
+      <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{num}</div>
       <h2 className="border-l-4 border-white/10 py-1 pl-4 text-xl font-black leading-none text-white md:pl-6 md:text-2xl">{title}</h2>
     </div>
     {onToggle && (<button type="button" onClick={onToggle} aria-expanded={expanded} aria-label={`${title} ${expanded ? '접기' : '펼치기'}`} className="rounded-xl border border-white/10 bg-white/5 p-3 transition-colors hover:bg-white/10">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
@@ -1033,7 +1035,7 @@ const MetadataCard: React.FC<{
 }> = ({ label, value, icon, theme }) => (
   <div className="min-w-0 rounded-2xl border border-white/10 bg-[#121212] p-6 transition-colors hover:bg-[#171717]">
     <div className="mb-4 flex items-center gap-3">
-      <div className="rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400" style={{ color: theme.primary }}>
+      <div className="rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400" style={{ color: readableTextColor(theme.primary) }}>
         {icon}
       </div>
       <span className="text-xs font-bold text-gray-400">{label}</span>

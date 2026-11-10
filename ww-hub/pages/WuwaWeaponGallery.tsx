@@ -73,7 +73,7 @@ const WuwaWeaponGallery = () => {
         </div>
 
         <div className="relative w-full md:w-80 group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-primary transition-colors" size={18} />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 group-focus-within:text-brand-primary-text transition-colors" size={18} />
           <input 
             value={search}
             onChange={(e) => setSearch(e.target.value)}

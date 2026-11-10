@@ -54,7 +54,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-brand-primary underline hover:opacity-80 break-all transition-opacity"
+                className="text-brand-primary-text underline hover:opacity-80 break-all transition-opacity"
                 onClick={(e) => e.stopPropagation()}
                 {...props}
               >

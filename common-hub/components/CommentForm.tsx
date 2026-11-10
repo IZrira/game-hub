@@ -232,7 +232,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
               <span className="font-bold">{userNickname}</span>
               {!user && (
                 <span
-                  className="text-xs text-brand-primary ml-auto font-bold cursor-pointer hover:underline"
+                  className="text-xs text-brand-primary-text ml-auto font-bold cursor-pointer hover:underline"
                   onClick={onRequireAuth}
                 >
                   Login required
@@ -275,7 +275,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                 disabled={!user}
                 className={`p-1 rounded transition-colors text-xs font-bold ${
                   editor?.isActive('bold')
-                    ? 'text-brand-primary bg-brand-primary/10'
+                    ? 'text-brand-primary-text bg-brand-primary/10'
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
                 }`}
                 title="굵게 (Bold) - Ctrl+B"
@@ -288,7 +288,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                 disabled={!user}
                 className={`p-1 rounded transition-colors text-xs italic ${
                   editor?.isActive('italic')
-                    ? 'text-brand-primary bg-brand-primary/10'
+                    ? 'text-brand-primary-text bg-brand-primary/10'
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
                 }`}
                 title="기울임 (Italic) - Ctrl+I"
@@ -301,7 +301,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                 disabled={!user}
                 className={`p-1 rounded transition-colors text-xs ${
                   editor?.isActive('blockquote')
-                    ? 'text-brand-primary bg-brand-primary/10'
+                    ? 'text-brand-primary-text bg-brand-primary/10'
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
                 }`}
                 title="인용 (Blockquote) - Ctrl+Shift+B"
@@ -314,7 +314,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                 disabled={!user}
                 className={`p-1 rounded transition-colors text-xs flex items-center gap-0.5 ${
                   editor?.isActive('spoiler')
-                    ? 'text-brand-primary bg-brand-primary/10'
+                    ? 'text-brand-primary-text bg-brand-primary/10'
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
                 }`}
                 title="스포일러 (Spoiler) - Ctrl+Shift+S"
@@ -328,7 +328,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                 disabled={!user}
                 className={`p-1 rounded transition-colors text-xs ${
                   showImageInput || mediaUrls.length > 0
-                    ? 'text-brand-primary bg-brand-primary/10'
+                    ? 'text-brand-primary-text bg-brand-primary/10'
                     : 'text-gray-400 hover:text-white hover:bg-white/10'
                 }`}
                 title="이미지 첨부 (Attach Image)"
@@ -362,7 +362,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                   type="button"
                   onClick={handleAddMediaUrl}
                   disabled={!imageUrlInput.trim() || mediaUrls.length >= 4}
-                  className="px-3 py-1.5 bg-brand-primary/20 hover:bg-brand-primary/40 text-brand-primary hover:text-white rounded-lg text-xs font-bold transition-colors flex items-center gap-1 disabled:opacity-50"
+                  className="px-3 py-1.5 bg-brand-primary/20 hover:bg-brand-primary/40 text-brand-primary-text hover:text-white rounded-lg text-xs font-bold transition-colors flex items-center gap-1 disabled:opacity-50"
                 >
                   <Plus size={13} />
                   Add URL

@@ -35,7 +35,7 @@ const OrnamentDetail: React.FC = () => {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center p-8">
         <h1 className="text-2xl font-black mb-4 uppercase italic">{t('Ornament Not Found')}</h1>
-        <Link to={`/gallery/${gameId}`} className="text-brand-primary hover:underline font-bold">{t('Back to Gallery')}</Link>
+        <Link to={`/gallery/${gameId}`} className="text-brand-primary-text hover:underline font-bold">{t('Back to Gallery')}</Link>
       </div>
     );
   }
@@ -111,7 +111,7 @@ const OrnamentDetail: React.FC = () => {
               </div>
               <div className="space-y-4 text-center md:text-left">
                 <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  <span className="px-4 py-1.5 bg-brand-accent/20 text-brand-primary text-[12px] font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
+                  <span className="px-4 py-1.5 bg-brand-accent/20 text-brand-primary-text text-[12px] font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
                   {t(ornament.type)}
                   </span>
                   <div className="flex gap-1 items-center bg-white/5 px-3 py-1 rounded-full border border-white/10">

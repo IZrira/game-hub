@@ -60,7 +60,7 @@ export default function TableOfContents({ selector = '.prose' }: { selector?: st
   return (
     <div className="w-64 hidden lg:block shrink-0">
       <div className="p-6 bg-[#121212] border border-white/5 rounded-3xl shadow-xl flex flex-col max-h-[45vh]">
-        <div className="flex items-center gap-2 mb-4 text-brand-primary shrink-0">
+        <div className="flex items-center gap-2 mb-4 text-brand-primary-text shrink-0">
           <List size={18} />
           <h3 className="font-black uppercase tracking-widest text-[11px]">On this page</h3>
         </div>

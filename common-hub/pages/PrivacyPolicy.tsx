@@ -14,7 +14,7 @@ const openAdConsentSettings = () => {
 };
 
 const sectionTitle = 'text-2xl font-black text-white border-b border-white/10 pb-4';
-const link = 'text-brand-primary hover:underline';
+const link = 'text-brand-primary-text hover:underline';
 
 const PrivacyPolicy: React.FC = () => {
   return (

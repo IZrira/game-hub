@@ -105,7 +105,7 @@ const Home: React.FC = () => {
             onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
             className="mx-auto mt-5 flex w-full max-w-2xl items-center gap-4 rounded-2xl border border-white/10 bg-[#121212] px-5 py-4 text-left shadow-2xl transition hover:border-brand-primary/50 hover:bg-white/[0.06]"
           >
-            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/15 text-brand-primary"><Search size={20} /></span>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-brand-primary/15 text-brand-primary-text"><Search size={20} /></span>
             <span className="min-w-0 flex-1">
               <strong className="block text-sm text-white">{t('전체 게임에서 검색')}</strong>
               <span className="mt-0.5 block truncate text-xs text-gray-500">{t('캐릭터·장비·공략 이름을 입력하세요')}</span>
@@ -159,7 +159,7 @@ const Home: React.FC = () => {
               <div className="flex items-center gap-1.5 bg-[#121212] p-1 rounded-xl border border-white/5">
                 <button
                   onClick={() => setDailyHubTab('patch_notes')}
-                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary' : 'text-gray-400 hover:text-white'}`}
+                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary-text' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('패치 노트')}
                 </button>
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <Link to="/notices" className="inline-flex min-h-6 items-center gap-1.5 text-xs font-black text-gray-400 hover:text-brand-primary transition-colors self-end sm:self-center">
+            <Link to="/notices" className="inline-flex min-h-6 items-center gap-1.5 text-xs font-black text-gray-400 hover:text-brand-primary-text transition-colors self-end sm:self-center">
               {t('+ 더보기')} <ChevronRight size={14} />
             </Link>
           </div>
@@ -205,7 +205,7 @@ const Home: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
           <div className="space-y-4 sm:space-y-6">
             <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
-              <Users size={20} className="text-brand-primary" />
+              <Users size={20} className="text-brand-primary-text" />
             </div>
             <h3 className="text-lg sm:text-xl font-black tracking-tighter uppercase">{t('누가 운영하나요?')}</h3>
             <p className="text-xs sm:text-sm text-gray-400 leading-relaxed font-medium">

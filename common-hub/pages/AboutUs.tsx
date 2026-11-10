@@ -29,7 +29,7 @@ const AboutUs: React.FC = () => {
         {/* 3대 핵심 가치 */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <ValueCard 
-            icon={<ShieldCheck size={32} className="text-brand-primary" />}
+            icon={<ShieldCheck size={32} className="text-brand-primary-text" />}
             title={t('검증 가능한 정보')}
             desc={t('게임 내 설명과 공개된 패치 정보를 기준으로 정리하고, 적용 버전과 검토 시점을 함께 관리합니다.')}
           />

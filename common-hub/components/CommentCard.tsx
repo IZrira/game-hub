@@ -130,7 +130,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
       >
         {/* Pinned Badge */}
         {review.is_pinned && (
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/20 border border-brand-primary/30 text-brand-primary text-xs font-bold mb-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-primary/20 border border-brand-primary/30 text-brand-primary-text text-xs font-bold mb-3">
             <Pin size={12} className="rotate-45" />
             <span>📌 고정된 댓글</span>
           </div>
@@ -143,8 +143,8 @@ export const CommentCard: React.FC<CommentCardProps> = ({
               onClick={handlePinClick}
               className={`p-1.5 rounded-lg transition-colors ${
                 review.is_pinned
-                  ? 'text-brand-primary bg-brand-primary/10'
-                  : 'text-gray-400 hover:text-brand-primary hover:bg-white/10'
+                  ? 'text-brand-primary-text bg-brand-primary/10'
+                  : 'text-gray-400 hover:text-brand-primary-text hover:bg-white/10'
               }`}
               title={review.is_pinned ? 'Unpin comment' : 'Pin comment'}
             >
@@ -160,7 +160,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
                   setEditMediaUrls(review.media_urls || []);
                   setIsEditingThis(true);
                 }}
-                className="p-1.5 text-gray-400 hover:text-brand-primary rounded-lg hover:bg-brand-primary/10 transition-colors"
+                className="p-1.5 text-gray-400 hover:text-brand-primary-text rounded-lg hover:bg-brand-primary/10 transition-colors"
                 title="Edit comment"
               >
                 <Edit3 size={15} />
@@ -189,7 +189,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
                 </span>
               )}
               {isOwnReview && !review.author_is_admin && (
-                <span className="text-[11px] px-1.5 py-0.5 rounded-md bg-brand-primary/20 text-brand-primary border border-brand-primary/30 font-black tracking-widest uppercase">
+                <span className="text-[11px] px-1.5 py-0.5 rounded-md bg-brand-primary/20 text-brand-primary-text border border-brand-primary/30 font-black tracking-widest uppercase">
                   작성자
                 </span>
               )}
@@ -218,7 +218,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
                 })}
               </span>
               {review.user_id && (
-                <span className="text-brand-primary/60 text-[11px] uppercase tracking-wider font-bold">
+                <span className="text-brand-primary-text/60 text-[11px] uppercase tracking-wider font-bold">
                   Verified
                 </span>
               )}
@@ -315,7 +315,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
           {directReplies.length > 0 && (
             <button
               onClick={() => setIsThreadExpanded(!isThreadExpanded)}
-              className="inline-flex items-center gap-1 text-xs font-bold text-brand-primary/80 hover:text-brand-primary ml-auto transition-colors"
+              className="inline-flex items-center gap-1 text-xs font-bold text-brand-primary-text/80 hover:text-brand-primary-text ml-auto transition-colors"
             >
               <span>
                 {directReplies.length} {directReplies.length === 1 ? 'reply' : 'replies'}
