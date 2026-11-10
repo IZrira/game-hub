@@ -50,7 +50,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
           <Sparkles size={20} />
         </div>
         <div>
-          <h3 className="text-xl font-black text-white italic tracking-tighter uppercase">
+          <h3 className="text-xl font-black text-white tracking-tighter uppercase">
             {character.name} 장비 & 파티 시너지
           </h3>
           <p className="text-xs text-gray-400 font-medium">

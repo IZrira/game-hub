@@ -128,7 +128,7 @@ export const PartyCard = memo(({ party, slots }: { party: PartyCardData; slots: 
   return (
     <article className="flex min-w-0 flex-col gap-4 rounded-2xl border border-white/10 bg-[#121212] p-4 sm:p-5">
       <header>
-        <h4 className="break-keep text-base font-bold leading-snug text-white sm:text-lg">{t(party.name)}</h4>
+        <h2 className="break-keep text-base font-bold leading-snug text-white sm:text-lg">{t(party.name)}</h2>
         {meta.length > 0 && <p className="mt-1 text-xs text-gray-400">{meta.join(' · ')}</p>}
       </header>
 

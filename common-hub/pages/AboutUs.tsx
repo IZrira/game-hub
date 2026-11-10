@@ -48,7 +48,7 @@ const AboutUs: React.FC = () => {
         {/* 팀 소개 및 운영 철학 */}
         <section className="bg-[#121212] border border-white/5 rounded-[40px] p-10 md:p-16 space-y-12 shadow-2xl">
           <div className="space-y-4">
-            <h2 className="text-3xl font-black italic tracking-tighter text-white uppercase">{t('Our Philosophy')}</h2>
+            <h2 className="text-3xl font-black tracking-tighter text-white uppercase">{t('Our Philosophy')}</h2>
             <div className="w-12 h-1 bg-brand-primary rounded-full" />
           </div>
           

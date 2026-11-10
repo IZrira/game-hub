@@ -109,7 +109,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
             ✦
           </div>
           <div>
-            <h2 className="text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">
+            <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">
               추천 세팅 &amp; 장비 연결 (Entity Graph)
             </h2>
             <p className="text-xs text-gray-400 pl-6 mt-1">

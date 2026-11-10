@@ -119,7 +119,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
       <div className="flex flex-col gap-8 pb-8 border-b border-white/5">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div className="space-y-1">
-            <h2 className="text-3xl font-black tracking-tight text-white uppercase italic">
+            <h2 className="text-3xl font-black tracking-tight text-white uppercase">
               {t('Archive')} <span className="text-gray-400">Index</span>
             </h2>
             <p className="text-xs text-gray-400 font-bold tracking-[0.2em] uppercase">Status: Core Database Synchronized</p>

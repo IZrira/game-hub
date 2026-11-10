@@ -143,9 +143,9 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
                 </span>
                 <span className="text-[11px] font-black text-gray-400 tracking-tighter">{notice.createdAt}</span>
               </div>
-              <h4 className="text-sm font-bold text-gray-200 group-hover:text-brand-accent transition-colors leading-snug">
+              <h3 className="text-sm font-bold text-gray-200 group-hover:text-brand-accent transition-colors leading-snug">
                 {notice.title}
-              </h4>
+              </h3>
             </div>
             <ChevronRight size={16} className="text-gray-400 group-hover:text-brand-accent transition-transform group-hover:translate-x-1 shrink-0 mt-1" />
           </div>

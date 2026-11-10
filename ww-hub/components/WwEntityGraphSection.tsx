@@ -136,7 +136,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
             <Sparkles size={20} />
           </div>
           <div>
-            <h3 className="text-xl font-black text-white italic tracking-tighter uppercase">
+            <h3 className="text-xl font-black text-white tracking-tight">
               {character.name} 종결 장비 세팅
             </h3>
             <p className="text-xs text-gray-400 font-medium">

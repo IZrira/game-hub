@@ -162,7 +162,7 @@ export default function NTESkillAndAwakeningSection({
                       <div className="space-y-6 flex-1 min-w-0">
                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div className="space-y-2">
-                               <h4 className="text-3xl font-black text-white leading-none tracking-tight">{skill.name}</h4>
+                               <h3 className="text-3xl font-black text-white leading-none tracking-tight">{skill.name}</h3>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
                                   <span className="text-xs font-black text-gray-500 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{t(skill.tag || skill.type || '')}</span>
                                </div>
@@ -236,7 +236,7 @@ export default function NTESkillAndAwakeningSection({
                      <div className="space-y-5">
                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-5">
                           <div className="space-y-1">
-                             <h4 className="text-2xl font-black text-white leading-none tracking-tight">{skill.name}</h4>
+                             <h3 className="text-2xl font-black text-white leading-none tracking-tight">{skill.name}</h3>
                           </div>
                           <div className="flex items-center gap-2">
                              <span className="text-xs font-black text-brand-primary-text uppercase tracking-widest bg-brand-primary/10 px-3 py-1.5 rounded-lg border border-brand-primary/20">{t('공명')} {idx + 1}</span>

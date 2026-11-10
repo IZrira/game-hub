@@ -133,7 +133,7 @@ const Navbar: React.FC = () => {
           <button
             onClick={() => window.dispatchEvent(new CustomEvent('open-global-search'))}
             className="p-2 text-gray-300 hover:text-white rounded-xl bg-white/5 border border-white/10 flex items-center justify-center active:scale-95"
-            aria-label="Search"
+            aria-label={t('통합 검색')}
             data-global-search-trigger
             title="통합 검색"
           >
@@ -143,7 +143,7 @@ const Navbar: React.FC = () => {
           <button
             onClick={toggleLang}
             className="p-2 text-gray-300 hover:text-white rounded-xl bg-white/5 border border-white/10 flex items-center gap-1 text-xs font-bold uppercase active:scale-95"
-            aria-label="Change Language"
+            aria-label={t('언어 변경')}
           >
             <Globe size={16} />
             <span className="text-xs font-black">{i18n.language?.toUpperCase()}</span>
@@ -152,7 +152,8 @@ const Navbar: React.FC = () => {
           <button
             className="p-2 text-white rounded-xl bg-white/5 border border-white/10 active:scale-95 transition-transform"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Navigation Menu"
+            aria-label={isMobileMenuOpen ? t('메뉴 닫기') : t('메뉴 열기')}
+            aria-expanded={isMobileMenuOpen}
           >
             {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>

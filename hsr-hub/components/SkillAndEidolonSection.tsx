@@ -250,7 +250,7 @@ export default function SkillAndEidolonSection({
                       <div className="space-y-6 flex-1 min-w-0">
                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                             <div className="space-y-1">
-                               <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h4>
+                               <h3 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h3>
                                <div className="flex flex-wrap items-center gap-2 pt-1">
                                   {skill.tag && <span className="text-xs font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
                                   {skill.spRecovery && skill.spRecovery !== '0' && (
@@ -340,7 +340,7 @@ export default function SkillAndEidolonSection({
                         <div className="space-y-6 flex-1 min-w-0">
                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                               <div className="space-y-1">
-                                 <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h4>
+                                 <h3 className="text-3xl font-black text-white leading-none tracking-tight">{t(skill.name, { keySeparator: false, nsSeparator: false })}</h3>
                                  <div className="flex flex-wrap items-center gap-2 pt-1">
                                     {skill.tag && <span className="text-xs font-black text-gray-400 uppercase tracking-widest bg-white/5 px-2.5 py-1 rounded-lg border border-white/5">{skill.tag.split('|').map(part => t(part.trim(), { keySeparator: false, nsSeparator: false })).join(' | ')}</span>}
                                     {skill.spRecovery && skill.spRecovery !== '0' && (
@@ -397,7 +397,7 @@ export default function SkillAndEidolonSection({
                     </div>
 
                     <div className="space-y-6 flex-1 min-w-0">
-                       <h4 className="text-3xl font-black text-white leading-none tracking-tight">{t(ability.name, { keySeparator: false, nsSeparator: false })}</h4>
+                       <h3 className="text-3xl font-black text-white leading-none tracking-tight">{t(ability.name, { keySeparator: false, nsSeparator: false })}</h3>
                        <div className="text-gray-300 text-[17px] leading-[1.7] font-medium whitespace-pre-line pl-6 border-l-2 border-white/10 group-hover:border-white/30 transition-colors">
                           {renderContent(t(ability.description || '', { keySeparator: false, nsSeparator: false }))}
                        </div>
@@ -487,7 +487,7 @@ const EidolonName: React.FC<{ children: string }> = ({ children }) => {
     void document.fonts?.ready.then(() => { if (active) fit(); });
     return () => { active = false; observer?.disconnect(); };
   }, [children]);
-  return <h5 ref={ref} className="text-lg font-black text-white leading-tight group-hover:text-brand-accent transition-colors whitespace-nowrap"><span className="inline-block">{children}</span></h5>;
+  return <h3 ref={ref} className="text-lg font-black text-white leading-tight group-hover:text-brand-accent transition-colors whitespace-nowrap"><span className="inline-block">{children}</span></h3>;
 };
 
 const CharacterEidolonEffects: React.FC<{

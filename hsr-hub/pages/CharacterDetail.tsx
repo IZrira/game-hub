@@ -685,11 +685,11 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
         <div id="overview" className="relative grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start border-b border-white/5 pb-8 scroll-mt-28">
           
           {/* Left: Image with Integrated Info Overlay */}
-          <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-[#0f0f0f] aspect-[3/4.5]">
+          <div className="relative group overflow-hidden rounded-3xl border border-white/10 bg-[#0f0f0f] aspect-[3/4.5] lg:aspect-auto lg:h-[min(750px,calc(100dvh-17rem))] lg:min-h-[480px]">
             <img 
               src={getIllustrationUrl()} 
               alt={`${t(char.name)} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
-              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000" 
+              className="w-full h-full object-cover lg:object-top group-hover:scale-105 transition-transform duration-1000"
               fetchPriority="high"
               decoding="async"
               onError={(e) => {

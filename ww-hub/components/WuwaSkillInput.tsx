@@ -219,7 +219,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
 
               return (
                 <div key={idx}>
-                  {title && <h4 className="text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3">{title}</h4>}
+                  {title && <h3 className="text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3">{title}</h3>}
                   <div className="space-y-4 text-gray-200 text-base leading-relaxed font-medium whitespace-pre-line">
                     {contentLines.map((para, i) => (
                       <div key={i}>{renderDescriptionWithIcons(para)}</div>
@@ -247,7 +247,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
         return (
           <div className="space-y-4">
             {!overviewText.includes('메커니즘 설명') && !overviewText.includes('특징') && (
-              <h4 className="text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3">{t('조작 입력')}</h4>
+              <h3 className="text-gray-500 text-[11px] font-black uppercase tracking-widest mb-3">{t('조작 입력')}</h3>
             )}
             <div className="grid grid-cols-1 gap-3">
               {visibleInputs.map((input: any, index: number) => {

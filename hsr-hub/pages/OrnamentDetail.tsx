@@ -34,7 +34,7 @@ const OrnamentDetail: React.FC = () => {
   if (!ornament) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] text-white flex flex-col items-center justify-center p-8">
-        <h1 className="text-2xl font-black mb-4 uppercase italic">{t('Ornament Not Found')}</h1>
+        <h1 className="text-2xl font-black mb-4 uppercase">{t('Ornament Not Found')}</h1>
         <Link to={`/gallery/${gameId}`} className="text-brand-primary-text hover:underline font-bold">{t('Back to Gallery')}</Link>
       </div>
     );

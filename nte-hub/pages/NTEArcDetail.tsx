@@ -129,7 +129,7 @@ const NTEArcDetail: React.FC = () => {
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1 font-black uppercase text-[11px] tracking-widest" style={{ color: readableTextColor(theme.primary) }}>
                   <span>{t('종류')} : {t(arc.type || '결합')}</span>
                 </div>
-                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg flex items-center gap-4">
+                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight drop-shadow-lg flex items-center gap-4">
                   {t(arc.name)}
                 </h1>
               </div>

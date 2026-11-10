@@ -201,7 +201,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                 <div className="flex items-center gap-2 text-brand-primary-text font-black uppercase text-xs tracking-widest opacity-80" style={{ color: readableTextColor(theme.primary) }}>
                   {t('운명의 길')} : {t(lc.path || '')}
                 </div>
-                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight italic drop-shadow-lg">
+                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight drop-shadow-lg">
                   {t(lc.name)}
                 </h1>
               </div>
@@ -319,7 +319,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                 <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: readableTextColor(theme.primary) }}>03</span>
                 <div className="flex items-center gap-3">
                    <ShieldCheck size={20} style={{ color: readableTextColor(theme.primary) }} />
-                   <h2 className="text-xl font-black tracking-tighter italic uppercase text-white/90">{t(lc.skill?.name || '')}</h2>
+                   <h2 className="text-xl font-black tracking-tighter uppercase text-white/90">{t(lc.skill?.name || '')}</h2>
                 </div>
               </div>
               

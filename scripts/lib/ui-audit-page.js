@@ -44,8 +44,8 @@
     const inlineText = el.tagName === 'A' && getComputedStyle(el).display === 'inline' && el.closest('p,li');
     if (!inlineText && (r.width < 24 || r.height < 24)) lt24.push(`${el.tagName} ${Math.round(r.width)}x${Math.round(r.height)} "${(el.innerText || el.getAttribute('aria-label') || '').trim().slice(0, 16)}"`);
     if (!inlineText && (r.width < 44 || r.height < 44)) lt44++;
-    const name = (el.getAttribute('aria-label') || el.getAttribute('title') || el.innerText || el.value || el.getAttribute('placeholder') || [...el.querySelectorAll('img[alt]')].map(i => i.alt).join('') || (el.getAttribute('aria-labelledby') ? 'x' : '')).trim();
-    if (!name) noName.push(`${el.tagName} ${el.className.toString().slice(0, 50)}`);
+    const name = (el.getAttribute('aria-label') || el.getAttribute('title') || el.innerText || el.textContent || el.value || el.getAttribute('placeholder') || [...el.querySelectorAll('img[alt]')].map(i => i.alt).join('') || (el.getAttribute('aria-labelledby') ? 'x' : '')).trim();
+    if (!name) noName.push(el.outerHTML.replace(/\s+/g, ' ').slice(0, 220));
   }
   out.interactive = inter.length; out.targetsUnder24 = lt24.length; out.under24Samples = lt24.slice(0, 6); out.targetsUnder44 = lt44;
   out.noAccessibleName = noName.length; out.noNameSamples = noName.slice(0, 4);
