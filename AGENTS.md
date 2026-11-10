@@ -221,7 +221,9 @@ git status → Notion 동기화 → 변경사항 확인 → 필요한 검증(Typ
 
 ### 범용 스킬 예시
 
-세션마다 제공되는 스킬 이름이 다를 수 있으므로 실제 목록에서 고른다.
+세션마다 제공되는 스킬 이름이 다를 수 있으므로 실제 목록에서 고른다. 사용자가 claude.ai에서 만든 스킬(`humanizer`, `grammar-checker`, `style-guide`, `karpathy-guidelines`)은 Claude Code에서 `anthropic-skills:이름`으로 보인다. Codex에 없으면 그 사실을 보고하고 같은 기준을 직접 적용한다.
+
+- 코드 작성·수정·리팩터링·리뷰: `karpathy-guidelines`(필요한 만큼만, 요청 범위 안에서 고치고 성공 기준을 먼저 정한다).
 
 - UI 설계·구현·검토: 아래 "UI 작업"의 루트 `SKILL.md`·`DESIGN.md`와 함께 디자인 스킬(예: `impeccable`, `design-taste-frontend`).
 - 한국어 문장: 윤문·AI 투 제거(`humanizer`), 맞춤법·띄어쓰기(`grammar-checker`), 용어·어조 통일(`style-guide`).
