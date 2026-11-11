@@ -1,27 +1,30 @@
 .guide-page { --guide-panel: #111318; --guide-border: rgba(255,255,255,.1); color: #f3f4f6; }
-.guide-hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding:20px; background:var(--guide-panel); border:1px solid var(--guide-border); border-radius:22px; }
-.guide-tag,.guide-version { padding:3px 8px; border-radius:7px; font-size:12px; line-height:18px; font-weight:600; background:rgba(255,255,255,.05); color:#d1d5db; }
+.guide-hero { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:16px; padding:20px; background:var(--guide-panel); border:1px solid var(--guide-border); border-radius:16px; }
+.guide-tag,.guide-version { padding:3px 8px; border-radius:6px; font-size:12px; line-height:18px; font-weight:600; background:rgba(255,255,255,.05); color:#d1d5db; }
 .guide-version { color:#ddd6fe; background:rgba(139,92,246,.12); }
-.guide-back-link { display:inline-flex; align-items:center; gap:6px; min-height:40px; padding:8px 12px; border:1px solid var(--guide-border); border-radius:10px; color:#d1d5db; font-size:12px; font-weight:600; }
-.guide-summary,.guide-variant-selector { padding:18px; border:1px solid var(--guide-border); border-radius:20px; background:#101116; }
-.guide-summary-item { border-left:2px solid #8b5cf6; padding:4px 12px; min-width:0; }
-.guide-choice { min-height:44px; max-width:100%; padding:10px 14px; border:1px solid var(--guide-border); border-radius:10px; color:#d1d5db; background:rgba(255,255,255,.025); font-size:13px; font-weight:600; line-height:20px; text-align:left; overflow-wrap:anywhere; }
+.guide-back-link { display:inline-flex; align-items:center; gap:6px; min-height:40px; padding:8px 12px; border:1px solid var(--guide-border); border-radius:8px; color:#d1d5db; font-size:12px; font-weight:600; }
+.guide-summary,.guide-variant-selector { padding:18px; border:1px solid var(--guide-border); border-radius:16px; background:#101116; }
+.guide-summary-item { min-width:0; word-break:keep-all; overflow-wrap:anywhere; }
+/* Main stats are a separate group from the equipment picks: a divider and a larger gap, no side stripe. */
+.guide-summary-stats { padding-top:20px; border-top:1px solid var(--guide-border); }
+@media(min-width:640px) { .guide-summary-stats:not(.guide-summary-wide) { padding-top:0; border-top:0; } }
+.guide-choice { min-height:44px; max-width:100%; padding:10px 14px; border:1px solid var(--guide-border); border-radius:8px; color:#d1d5db; background:rgba(255,255,255,.025); font-size:13px; font-weight:600; line-height:20px; text-align:left; overflow-wrap:anywhere; }
 .guide-choice[aria-pressed=true] { border-color:#a78bfa; background:rgba(139,92,246,.16); color:#ede9fe; }
 .guide-section-heading { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
-.guide-section-heading>span { display:flex; align-items:center; justify-content:center; width:34px; height:34px; flex-shrink:0; border:1px solid rgba(167,139,250,.3); border-radius:10px; background:rgba(139,92,246,.09); font-size:12px; font-weight:700; color:#c4b5fd; }
+.guide-section-heading>span { display:flex; align-items:center; justify-content:center; width:34px; height:34px; flex-shrink:0; border:1px solid rgba(167,139,250,.3); border-radius:8px; background:rgba(139,92,246,.09); font-size:12px; font-weight:700; color:#c4b5fd; }
 .guide-section-heading h2 { font-size:20px; line-height:28px; font-weight:800; letter-spacing:-.02em; font-style:normal; }
-.guide-equipment-card { display:flex; flex-direction:column; gap:14px; min-width:0; padding:16px; border:1px solid var(--guide-border); border-radius:16px; background:var(--guide-panel); transition:background .15s,border-color .15s; }
+.guide-equipment-card { display:flex; flex-direction:column; gap:14px; min-width:0; padding:16px; border:1px solid var(--guide-border); border-radius:12px; background:var(--guide-panel); transition:background .15s,border-color .15s; }
 .guide-equipment-heading { display:flex; align-items:center; gap:14px; width:100%; min-width:0; }
 .guide-equipment-card:hover { background:#191c24; border-color:rgba(167,139,250,.4); }
 .guide-equipment-best { border-color:rgba(167,139,250,.6); background:#191523; }
-.guide-equipment-image { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:72px; height:80px; border-radius:12px; background:rgba(0,0,0,.2); }
+.guide-equipment-image { display:flex; align-items:center; justify-content:center; flex-shrink:0; width:72px; height:80px; border-radius:8px; background:rgba(0,0,0,.2); }
 .guide-equipment-image img { max-width:100%; max-height:100%; width:100%; height:100%; object-fit:contain; padding:5px; }
 .guide-rank { padding:3px 7px; border-radius:6px; font-size:12px; font-weight:700; color:#d1d5db; background:rgba(255,255,255,.06); }
 .guide-equipment-best .guide-rank { color:#ede9fe; background:rgba(139,92,246,.22); }
 .guide-navigation-panel,.guide-mobile-navigation { border:1px solid var(--guide-border); border-radius:16px; padding:18px; background:var(--guide-panel); }
 .guide-navigation-panel { max-height:calc(100vh - 165px); overflow-y:auto; }
 .guide-navigation-list { display:flex; flex-direction:column; gap:4px; }
-.guide-navigation-list a { display:flex; align-items:center; gap:10px; min-height:42px; padding:9px 8px; border-radius:9px; color:#d1d5db; font-size:13px; line-height:20px; font-weight:500; }
+.guide-navigation-list a { display:flex; align-items:center; gap:10px; min-height:42px; padding:9px 8px; border-radius:8px; color:#d1d5db; font-size:13px; line-height:20px; font-weight:500; }
 .guide-navigation-list a>span { color:#9ca3af; font-size:11px; font-weight:600; flex-shrink:0; }
 .guide-navigation-list a>svg { margin-left:auto; flex-shrink:0; opacity:.4; }
 .guide-navigation-list a[aria-current=location] { background:rgba(139,92,246,.14); color:#ede9fe; font-weight:700; }
@@ -34,7 +37,7 @@
 .guide-page .guide-content :is(h2,h3) { scroll-margin-top:136px; }
 .guide-page .text-gray-500,.guide-page .text-gray-600 { color:#9ca3af; }
 .guide-page .guide-content :is([class*="text-[9px]"],[class*="text-[10px]"],[class*="text-[11px]"]) { font-size:12px; line-height:1.5; }
-.guide-page .guide-content :is([class*="rounded-[45px]"],[class*="rounded-[40px]"],[class*="rounded-[36px]"],[class*="rounded-[32px]"],[class*="rounded-[28px]"]) { border-radius:20px; }
+.guide-page .guide-content :is([class*="rounded-[45px]"],[class*="rounded-[40px]"],[class*="rounded-[36px]"],[class*="rounded-[32px]"],[class*="rounded-[28px]"]) { border-radius:16px; }
 .guide-page .guide-content .truncate { overflow:visible; text-overflow:clip; white-space:normal; overflow-wrap:anywhere; }
 @media(min-width:640px) { .guide-hero { padding:22px 24px; } .guide-summary,.guide-variant-selector { padding:20px; } .guide-section-heading h2 { font-size:22px; line-height:30px; } }
 @media(prefers-reduced-motion:reduce) { .guide-page * { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
@@ -44,7 +47,7 @@
 .guide-summary-values li>strong { color:#fff; font-weight:700; }
 .guide-section,.guide-group-stack { display:flex; flex-direction:column; gap:20px; }
 .guide-section-heading { margin-bottom:0; }
-.guide-panel { min-width:0; padding:20px; border:1px solid var(--guide-border); border-radius:18px; background:var(--guide-panel); }
+.guide-panel { min-width:0; padding:20px; border:1px solid var(--guide-border); border-radius:16px; background:var(--guide-panel); }
 .guide-panel-title { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-bottom:16px; font-size:16px; line-height:24px; font-weight:700; color:#f3f4f6; }
 .guide-copy { font-size:16px; line-height:28px; font-weight:400; color:#d1d5db; overflow-wrap:anywhere; white-space:pre-line; }
 .guide-item-name { font-size:14px; line-height:24px; font-weight:700; color:#fff; overflow-wrap:anywhere; }
@@ -65,14 +68,14 @@
 .guide-value-list li { min-width:0; }
 .guide-value-list .guide-copy { margin-top:4px; }
 .guide-ranked-list { display:flex; flex-direction:column; gap:8px; margin:0; padding:0; list-style:none; }
-.guide-ranked-list li { display:flex; align-items:flex-start; gap:12px; padding:12px; border:1px solid var(--guide-border); border-radius:10px; background:#0c0e13; font-size:16px; line-height:26px; overflow-wrap:anywhere; }
+.guide-ranked-list li { display:flex; align-items:flex-start; gap:12px; padding:12px; border:1px solid var(--guide-border); border-radius:8px; background:#0c0e13; font-size:16px; line-height:26px; overflow-wrap:anywhere; }
 .guide-ranked-list .guide-rank { flex-shrink:0; }
 .guide-target-card { display:flex; flex-direction:column; align-items:flex-start; gap:8px; }
 .guide-target-value { font-size:20px; line-height:28px; font-weight:700; color:#fff; overflow-wrap:anywhere; }
 .guide-priority-list { padding:0; margin:0; list-style:none; }
 .guide-priority-card { display:flex; flex-direction:column; align-items:flex-start; gap:10px; }
-.guide-member-card { display:flex; align-items:center; gap:12px; min-width:0; padding:14px; border:1px solid var(--guide-border); border-radius:14px; background:var(--guide-panel); }
-.guide-member-card>img { width:56px; height:56px; flex-shrink:0; border-radius:10px; background:#0c0e13; object-fit:cover; object-position:top; }
+.guide-member-card { display:flex; align-items:center; gap:12px; min-width:0; padding:14px; border:1px solid var(--guide-border); border-radius:12px; background:var(--guide-panel); }
+.guide-member-card>img { width:56px; height:56px; flex-shrink:0; border-radius:8px; background:#0c0e13; object-fit:cover; object-position:top; }
 .guide-member-text { min-width:0; }
 .guide-member-card .guide-copy { font-size:12px; line-height:20px; margin-top:4px; }
 .guide-member-card:hover { border-color:#a78bfa; }
@@ -84,7 +87,7 @@
 .guide-metadata dt { color:#9ca3af; }
 .guide-metadata dd { color:#d1d5db; }
 .guide-analysis-grid { display:grid; gap:20px; }
-.guide-footer { display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:20px; border:1px solid var(--guide-border); border-radius:18px; background:var(--guide-panel); }
+.guide-footer { display:flex; flex-direction:column; align-items:flex-start; gap:12px; padding:20px; border:1px solid var(--guide-border); border-radius:16px; background:var(--guide-panel); }
 @media(min-width:640px) { .guide-panel,.guide-footer { padding:24px; } .guide-target-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .guide-priority-list { grid-template-columns:repeat(3,minmax(0,1fr)); } .guide-analysis-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(min-width:1024px) { .guide-option-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
 @media(min-width:1280px) { .guide-target-grid,.guide-member-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
@@ -102,7 +105,7 @@
 
 .guide-target-descriptions { display:flex; flex-direction:column; gap:12px; }
 
-.guide-equipment-alternative-link { display:flex; align-items:center; gap:8px; min-height:44px; width:100%; padding:8px 12px; border:1px solid var(--guide-border); border-radius:10px; }
+.guide-equipment-alternative-link { display:flex; align-items:center; gap:8px; min-height:44px; width:100%; padding:8px 12px; border:1px solid var(--guide-border); border-radius:8px; }
 .guide-equipment-alternative-link:hover { border-color:#a78bfa; }
 .guide-equipment-alternative-link>svg { margin-left:auto; flex-shrink:0; }
 
@@ -123,12 +126,12 @@ a.guide-team-member:hover .guide-team-face { border-color:rgba(255,255,255,.35);
 .guide-step { min-width:0; padding:14px; border:1px solid var(--guide-border); border-radius:12px; background:#0c0e13; }
 .guide-step-head { display:flex; align-items:center; gap:12px; margin-bottom:10px; }
 .guide-step-label { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
-.guide-step-icon { width:44px; height:44px; flex-shrink:0; border-radius:10px; border:1px solid var(--guide-border); background:#0a0b0f; object-fit:contain; }
+.guide-step-icon { width:44px; height:44px; flex-shrink:0; border-radius:8px; border:1px solid var(--guide-border); background:#0a0b0f; object-fit:contain; }
 .guide-step-action { font-size:14px; line-height:20px; font-weight:700; color:#fff; }
 .guide-gear-list { display:flex; flex-direction:column; gap:14px; margin:0; padding:0; list-style:none; }
 .guide-gear-row { display:flex; align-items:flex-start; gap:12px; min-width:0; }
 .guide-gear-row+.guide-gear-row { border-top:1px solid var(--guide-border); padding-top:14px; }
-.guide-gear-icon { width:64px; height:64px; flex-shrink:0; border-radius:10px; border:1px solid var(--guide-border); background:#0c0e13; object-fit:contain; }
+.guide-gear-icon { width:64px; height:64px; flex-shrink:0; border-radius:8px; border:1px solid var(--guide-border); background:#0c0e13; object-fit:contain; }
 .guide-gear-text { min-width:0; }
 .guide-gear-link { text-decoration:underline; text-underline-offset:3px; }
 .guide-gear-note { margin-left:8px; font-size:12px; font-weight:600; color:#9ca3af; }
@@ -153,3 +156,9 @@ a.guide-team-member:hover .guide-team-face { border-color:rgba(255,255,255,.35);
 .guide-team-mini .guide-team-name { font-size:11px; line-height:14px; font-weight:500; }
 /* On phones a slot is about 60px wide, so two 44px faces would overlap: stack the candidates instead. */
 @media(max-width:639px) { .guide-team-mini { grid-template-columns:minmax(0,1fr); gap:8px; } .guide-team-mini .guide-team-face,.guide-team-mini .guide-team-fallback { width:40px; height:40px; } .guide-team-mini .guide-team-name { word-break:keep-all; } }
+
+/* Equipment lists: only the top pick keeps a card; the rest are rows split by dividers (space before containment). */
+.guide-equipment-grid>.guide-equipment-card:not(.guide-equipment-best) { padding:16px 0; border-width:0 0 1px; border-radius:0; background:transparent; }
+.guide-equipment-grid>.guide-equipment-card:not(.guide-equipment-best):last-child { border-bottom-color:transparent; padding-bottom:0; }
+.guide-equipment-grid>.guide-equipment-card:not(.guide-equipment-best):hover { background:transparent; }
+.guide-equipment-grid>a.guide-equipment-card:not(.guide-equipment-best):hover .guide-item-name { text-decoration:underline; text-underline-offset:3px; }

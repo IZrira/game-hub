@@ -170,3 +170,14 @@
   -webkit-backdrop-filter: none;
   backdrop-filter: none;
 }
+
+/* iOS Safari zooms the page when a focused text field is under 16px. On touch
+   devices below the lg breakpoint, keep editable text at 16px or larger. */
+@media (max-width: 1023.98px) and (pointer: coarse) {
+  input:not([type="range"], [type="checkbox"], [type="radio"], [type="button"], [type="submit"], [type="color"], [type="file"]),
+  textarea,
+  select,
+  [contenteditable="true"] {
+    font-size: max(16px, 1em);
+  }
+}

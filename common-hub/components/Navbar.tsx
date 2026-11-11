@@ -74,11 +74,11 @@ const Navbar: React.FC = () => {
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          <Link to="/" className={`text-xs font-black uppercase tracking-widest transition-colors ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>{t('HOME')}</Link>
+        <div className="hidden md:flex items-center gap-4 lg:gap-6">
+          <Link to="/" className={`inline-flex h-9 items-center rounded-lg px-3 text-xs font-black uppercase tracking-widest transition-colors hover:bg-white/5 ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>{t('HOME')}</Link>
 
           {isAdmin(user?.id) && (
-            <Link to="/admin" className="flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 text-amber-500 rounded-lg text-xs font-black uppercase tracking-widest border border-amber-500/20 hover:bg-amber-500/20 transition-all">
+            <Link to="/admin" className="flex h-9 items-center gap-1.5 px-3 bg-amber-500/10 text-amber-500 rounded-lg text-xs font-black uppercase tracking-widest border border-amber-500/20 hover:bg-amber-500/20 transition-all">
               <ShieldCheck size={14} />
               ADMIN
             </Link>
@@ -90,20 +90,20 @@ const Navbar: React.FC = () => {
           <div className="h-4 w-px bg-white/10" />
 
           {/* 다국어 전환 */}
-          <button onClick={toggleLang} className="flex items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase py-1 px-2 rounded-lg hover:bg-white/5">
+          <button onClick={toggleLang} className="flex h-9 items-center gap-1 text-gray-400 hover:text-white transition-colors text-xs font-bold uppercase px-3 rounded-lg hover:bg-white/5">
             <Globe size={18} /> {i18n.language}
           </button>
 
           {/* PWA 설치 버튼 (조건부 노출) */}
           {deferredPrompt && (
-            <button onClick={handleInstallPWA} className="flex items-center gap-1 text-gray-400 hover:text-brand-primary-text transition-colors text-xs font-bold uppercase py-1 px-2 rounded-lg hover:bg-white/5">
+            <button onClick={handleInstallPWA} className="flex h-9 items-center gap-1 text-gray-400 hover:text-brand-primary-text transition-colors text-xs font-bold uppercase px-3 rounded-lg hover:bg-white/5">
               <Download size={18} /> App
             </button>
           )}
 
           {user ? (
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-xl border border-white/10">
+              <div className="flex h-9 items-center gap-2 bg-white/5 px-3 rounded-lg border border-white/10">
                 <div className="w-6 h-6 rounded-full bg-brand-primary/20 flex items-center justify-center text-brand-primary-text">
                   <UserIcon size={14} />
                 </div>
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
               </div>
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-red-500/10 text-gray-400 hover:text-red-500 rounded-xl border border-white/10 hover:border-red-500/20 transition-all text-[11px] font-black uppercase tracking-widest"
+                className="flex h-9 items-center gap-2 px-4 bg-white/5 hover:bg-red-500/10 text-gray-400 hover:text-red-500 rounded-lg border border-white/10 hover:border-red-500/20 transition-all text-[11px] font-black uppercase tracking-widest"
               >
                 <LogOut size={14} />
                 {t('LOGOUT')}
@@ -120,7 +120,7 @@ const Navbar: React.FC = () => {
           ) : (
             <button
               onClick={openLoginModal}
-              className="px-5 py-2 bg-brand-primary text-white text-[11px] font-black uppercase tracking-widest rounded-xl hover:scale-105 transition-all shadow-lg shadow-brand-primary/20 active:scale-95"
+              className="inline-flex h-9 items-center px-4 bg-brand-primary text-white text-[11px] font-black uppercase tracking-widest rounded-lg hover:scale-105 transition-all shadow-lg shadow-brand-primary/20 active:scale-95"
             >
               {t('LOGIN')}
             </button>
