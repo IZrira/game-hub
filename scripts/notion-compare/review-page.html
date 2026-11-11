@@ -60,6 +60,10 @@ details.group[open] > summary::before { transform: rotate(90deg) }
 .gcount { margin-left: auto; font-family: var(--font-data); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums }
 .gapply { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; align-items: center; font-size: 12px; color: var(--muted) }
 .gapply button { font-size: 12px; min-height: 28px }
+.allapply { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; color: var(--muted) }
+.allapply b { color: var(--fg) }
+.allapply .btn { min-height: 32px }
+.allapply .btn.primary { background: var(--fg); color: var(--surface); border-color: var(--fg) }
 .items { display: grid; border-top: 1px solid var(--line) }
 
 .item { padding: 14px; display: grid; gap: 10px; border-bottom: 1px solid var(--line) }
@@ -136,6 +140,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   <div class="row" role="group" aria-label="유형"><span class="lab">유형</span><span id="f-group" class="row"></span></div>
   <div class="row" role="group" aria-label="상태"><span class="lab">상태</span><span id="f-state" class="row"></span>
     <input type="search" id="q" placeholder="이름·문구 검색 (예: 효광, 앰버의 수호)" aria-label="검색"></div>
+  <div class="allapply" role="group" aria-label="보이는 항목 한꺼번에 선택" id="allapply" hidden></div>
 </div></div>
 
 <main class="wrap" id="list"><p class="empty">목록을 불러오는 중입니다.</p></main>
@@ -327,16 +332,50 @@ details.group[open] > summary::before { transform: rotate(90deg) }
     if (count < vis.length) html += `<div class="more"><button class="btn" id="more">더 보기 (${vis.length - count}건 남음)</button></div>`;
     list.innerHTML = html;
   }
-  const renderAll = () => { renderStats(); renderFilters(); renderList(); };
+  // ---------- one choice for every item the filters show ----------
+  let bulkAsk = null;   // choice waiting for confirmation
+  let bulkRun = null;   // {done, total} while saving
+  function renderAllApply() {
+    const el = document.getElementById('allapply');
+    const vis = state.status === '해결됨' ? [] : ITEMS.filter(it => matches(it));
+    el.hidden = readOnly || !vis.length;
+    if (el.hidden) return;
+    if (bulkRun) { el.innerHTML = `<span>저장 중 <b>${bulkRun.done}</b> / ${bulkRun.total}건…</span>`; return; }
+    const srcs = [...new Set(vis.map(srcOf))];
+    const src = srcs.join('·');
+    const opts = [['notion', `${src} 기준`], ['site', '사이트 기준'], ['ignore', '차이 무시'], ['hold', '보류'], ['', '선택 지우기']];
+    if (bulkAsk !== null) {
+      const l = opts.find(o => o[0] === bulkAsk)[1];
+      el.innerHTML = `<span>보이는 <b>${vis.length}</b>건을 모두 <b>${esc(l)}</b>(으)로 저장할까요? 이미 고른 항목도 바뀝니다.</span><button class="btn primary" data-all-ok>저장</button><button class="btn" data-all-cancel>취소</button>`;
+      return;
+    }
+    el.innerHTML = `<span>지금 보이는 <b>${vis.length}</b>건 전체:</span>` + opts.map(([c, l]) => `<button class="btn" data-all="${c}">${esc(l)}</button>`).join('');
+  }
+  async function applyAll(choice) {
+    const vis = ITEMS.filter(it => matches(it));
+    bulkRun = { done: 0, total: vis.length }; renderAllApply();
+    const queue = vis.map(it => it.id);
+    const worker = async () => { while (queue.length) { const id = queue.shift(); await save(id, { choice: choice || null }); bulkRun.done++; if (bulkRun.done % 20 === 0) renderAllApply(); } };
+    await Promise.all(Array.from({ length: 4 }, worker));
+    bulkRun = null; renderAll();
+  }
+  document.getElementById('allapply').addEventListener('click', async e => {
+    const b = e.target.closest('button'); if (!b || bulkRun) return;
+    if (b.dataset.all !== undefined) { bulkAsk = b.dataset.all; renderAllApply(); return; }
+    if (b.hasAttribute('data-all-cancel')) { bulkAsk = null; renderAllApply(); return; }
+    if (b.hasAttribute('data-all-ok')) { const c = bulkAsk; bulkAsk = null; await applyAll(c); }
+  });
+
+  const renderAll = () => { renderStats(); renderFilters(); renderAllApply(); renderList(); };
   renderHeader();
 
   // ---------- events ----------
   document.querySelector('.bar').addEventListener('click', e => {
     const b = e.target.closest('.chip'); if (!b) return;
-    state[b.dataset.k] = b.dataset.v; shown = PAGE; keep('hsr-review-filter', state); renderAll();
+    state[b.dataset.k] = b.dataset.v; shown = PAGE; bulkAsk = null; keep('hsr-review-filter', state); renderAll();
   });
   let qt; document.getElementById('q').value = state.q;
-  document.getElementById('q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value.trim(); shown = PAGE; keep('hsr-review-filter', state); renderAll(); }, 200); });
+  document.getElementById('q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value.trim(); shown = PAGE; bulkAsk = null; keep('hsr-review-filter', state); renderAll(); }, 200); });
 
   const pending = new Map();
   async function save(id, patch, el) {
@@ -391,7 +430,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
     try {
       const user = await window.claude.use('user');
       const can = user ? await user.can('data.write') : null;
-      if (can === false) { readOnly = true; note.hidden = false; note.textContent = '보기 권한이라 선택을 저장할 수 없습니다.'; renderList(); }
+      if (can === false) { readOnly = true; note.hidden = false; note.textContent = '보기 권한이라 선택을 저장할 수 없습니다.'; renderAllApply(); renderList(); }
     } catch {}
     const timer = setTimeout(() => { note.hidden = false; note.textContent = '저장된 선택을 아직 불러오지 못했습니다. 잠시 후 다시 확인합니다.'; }, 10000);
     db.collection('decisions').onSnapshot(snap => {
@@ -400,7 +439,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
       for (const d of snap.docs) { const v = d.data(); if (v) next[d.id] = Object.assign({}, v, { choice: v.choice || null, note: v.note || '' }); }
       const focused = document.activeElement?.classList?.contains('note');
       raw = next;
-      renderStats(); renderFilters(); if (!focused) renderList();
+      renderStats(); renderFilters(); if (!bulkRun) renderAllApply(); if (!focused && !bulkRun) renderList();
     }, err => { clearTimeout(timer); note.hidden = false; note.textContent = '저장된 선택을 불러오지 못했습니다.'; });
   })();
 })();

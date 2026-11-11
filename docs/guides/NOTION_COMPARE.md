@@ -31,6 +31,7 @@ npm run compare:notion -- ww
 ## 대조표 게시
 
 - 대조표 주소: https://claude.ai/artifact/QzebC8KKRnVMtCoYz2pybe ("RIRA 데이터 대조표", 비공개, 소유자만 열 수 있음)
+- 한꺼번에 고르기: 필터(게임·DB·유형·상태·검색)로 보이는 항목 전체를 한 번에 기준·사이트 기준·차이 무시·보류로 저장하거나 선택을 지울 수 있다(확인 후 저장). 애니모처럼 한 기준으로 맞출 때는 게임을 고르고 "공식 도감 기준"을 한 번 누르면 된다. 묶음(대상 하나)마다 같은 버튼도 있다.
 - 갱신할 때는 `review.html`을 같은 주소로 다시 게시한다. 선택·메모는 아티팩트 저장소(`decisions` 모음)에 있어서 다시 게시해도 남는다.
 - 선택 문서 하나: `choice`(notion·site·both·memo·ignore·hold), `note`, `hub`, `db`, `target`, `cat`, `label`, `hash`, `updatedAt`.
 
