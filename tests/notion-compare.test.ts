@@ -6,6 +6,7 @@ import { parseRelicPage } from '../scripts/notion-compare/hubs/hsr/relics.js';
 import { parsePartyPage, compareParties } from '../scripts/notion-compare/hubs/hsr/parties.js';
 import { buildReviewPage } from '../scripts/notion-compare/lib/page.js';
 import { diffDeep } from '../scripts/notion-compare/lib/diff.js';
+import { lineHunks } from '../scripts/notion-compare/lib/lines.js';
 
 const p = (text: string, depth = 0, type = 'paragraph') => ({ depth, type, text });
 
@@ -93,6 +94,14 @@ describe('structural diff', () => {
       { path: 'list[2].n', a: 'y', b: 'z' },
       { path: 'extra', a: '(없음)', b: 'true' },
     ]);
+  });
+});
+
+describe('guide body hunks', () => {
+  it('groups changed lines under their heading and ignores trailing spaces', () => {
+    const site = '# 아크\n추천: 물망산\n# 콘솔\n세트 A  \n목표 치명 70%';
+    const notion = '# 아크\n추천: 물망산\n# 콘솔\n세트 A\n목표 치명 75%';
+    expect(lineHunks(site, notion)).toEqual([{ a: '목표 치명 70%', b: '목표 치명 75%', heading: '콘솔', n: 1 }]);
   });
 });
 

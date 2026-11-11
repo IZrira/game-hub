@@ -69,6 +69,14 @@ npm run compare:notion -- ww
 - 로컬에만 있는 항목은 DB마다 한 줄로 묶는다(예: Notion에 없는 에코 목록).
 - 화면 데이터는 Vite SSR로 불러온다(`lib/vite-data.js`). 앱과 같은 방식이라 `import.meta.glob` 같은 Vite 기능도 그대로 동작한다.
 
+## 이환(NTE) 비교 범위
+
+이환 캐릭터·아크·아이템은 Notion → `notion-data.json`에서 오고, `nte-hub` 로컬 목록은 거의 비어 있어 화면이 곧 Notion 값이다. 공략은 동기화 때 마크다운 본문 전체가 `common-hub/data/guideArticles.json`에 저장된다(`scripts/lib/sync-nte-guides.js`).
+
+- **동기화 대기:** 캐릭터·아크·아이템. 동기화가 저장 전에 붙이는 기본값(아이템 `type: '아이템'`, 아크 `type: '결합'`, 캐릭터 `type: '캐릭터'`)을 똑같이 붙여 비교한다.
+- **공략:** Notion 공략 본문과 저장된 공략 본문을 줄 단위로 비교해 바뀐 부분만 보인다. 라벨은 가장 가까운 제목(`#`)과 그 아래 몇 번째 차이인지다. 제목과 검수일(`reviewedAt` = Notion 마지막 수정일)도 본다. 로컬 분석 블록(`nte-hub/data/guideAnalysis.json`)은 비교하지 않는다.
+- **로컬 파일만 다름:** `nte-hub` 로컬 캐릭터·아크가 Notion과 다른 칸. Notion 빈 칸이 로컬 값을 덮어 화면에 안 보이는 경우도 여기에 나온다. 줄바꿈만 다른 칸은 빼고 본다.
+
 ## HSR 비교 범위
 
 - 캐릭터: 기본 정보, 언어별 표기, 성우, 간단 정보, 성장 스탯, 승급·행적 재료, 스킬·추가 능력·성혼 이름과 문구, 속성 보너스. "(AS)" 페이지는 `asBuffData`와 비교한다.

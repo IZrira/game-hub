@@ -12,7 +12,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fetchFromDB, fetchWwGuidesFromDB } from '../../../fetch-notion-data.js';
 import { withViteModules } from '../../lib/vite-data.js';
-import { diffDeep } from '../../lib/diff.js';
+import { reportSyncPending, PENDING_GROUP } from '../../lib/sync-pending.js';
 import { norm, textKind, KIND } from '../../lib/text.js';
 
 export const WW_DATABASES = {
@@ -23,7 +23,7 @@ export const WW_DATABASES = {
   guides: { env: 'NOTION_WW_GUIDES_DB_ID', label: '공략', snapshot: x => x.dbSource === 'ww_guides', fallback: '37495fae3dc780ce95fffd47cfb611f6' },
 };
 
-const GROUP = { pending: '동기화 대기', localShown: '사이트가 로컬 값 표시', localFile: '로컬 파일만 다름', missing: '누락' };
+const GROUP = { pending: PENDING_GROUP, localShown: '사이트가 로컬 값 표시', localFile: '로컬 파일만 다름', missing: '누락' };
 const CHARACTER_FIELDS = { name: '이름', attribute: '속성', weaponType: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전', affiliation: '소속', briefInfo: '간단 정보', voiceActors: '성우', roles: '역할' };
 const LOCAL_FILE_FIELDS = {
   characters: { attribute: '속성', weaponType: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전' },
@@ -83,21 +83,7 @@ export const ww = {
       log(`  Notion ${cfg.label} 읽는 중…`);
       const live = name === 'guides' ? await fetchWwGuidesFromDB(notion.client, notion.n2m, id) : await fetchFromDB(notion.client, id, notion.n2m, !!cfg.isCharacter);
       databases[name] = { pages: live.length };
-      const liveKey = x => String(x.characterName || x.name || x.id || '').trim();
-      const synced = new Map(snapshot.filter(cfg.snapshot).map(x => [liveKey(x), x]));
-      const seen = new Set();
-      for (const item of live) {
-        const k = liveKey(item);
-        seen.add(k);
-        const old = synced.get(k);
-        if (!old) { add({ db: cfg.label, target: k, cat: '동기화 대기', group: GROUP.pending, text: 'Notion에 새로 생긴 항목 (아직 동기화 안 됨)', hint: '동기화하면 반영' }); continue; }
-        const { dbSource: _a, ...oldBody } = old;
-        const { dbSource: _b, ...liveBody } = item;
-        for (const d of diffDeep(oldBody, liveBody, '', [])) {
-          add({ db: cfg.label, target: k, cat: `동기화 대기 · ${d.path}`, group: GROUP.pending, notion: d.b, site: d.a, hint: '동기화하면 반영' });
-        }
-      }
-      for (const k of synced.keys()) if (!seen.has(k)) add({ db: cfg.label, target: k, cat: '동기화 대기', group: GROUP.pending, text: 'Notion에서 사라진 항목 (사이트에는 아직 남아 있음)', hint: '동기화하면 사라짐' });
+      reportSyncPending({ live, snapshot, isSnapshotItem: cfg.snapshot, label: cfg.label, add });
     }
 
     // 2–3. Site view vs Notion-only view vs local files.

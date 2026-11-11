@@ -15,8 +15,9 @@ import { createItemList } from './lib/items.js';
 import { buildReviewPage } from './lib/page.js';
 import { hsr } from './hubs/hsr/index.js';
 import { ww } from './hubs/ww/index.js';
+import { nte } from './hubs/nte/index.js';
 
-const HUBS = [hsr, ww];
+const HUBS = [hsr, ww, nte];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 async function main() {
