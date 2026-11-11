@@ -16,8 +16,9 @@ import { buildReviewPage } from './lib/page.js';
 import { hsr } from './hubs/hsr/index.js';
 import { ww } from './hubs/ww/index.js';
 import { nte } from './hubs/nte/index.js';
+import { aniimo } from './hubs/aniimo/index.js';
 
-const HUBS = [hsr, ww, nte];
+const HUBS = [hsr, ww, nte, aniimo];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 async function main() {
@@ -44,7 +45,7 @@ async function main() {
     const list = createItemList(hub.id);
     const info = await hub.compare({ root, notion, list, log: m => console.log(m) });
     items.push(...list.items);
-    hubInfo.push({ id: hub.id, name: hub.name, count: list.items.length, ...info });
+    hubInfo.push({ id: hub.id, name: hub.name, sourceLabel: hub.sourceLabel || 'Notion', count: list.items.length, ...info });
     const byDb = {};
     for (const it of list.items) byDb[it.db] = (byDb[it.db] || 0) + 1;
     console.log(`[compare] ${hub.id}: ${list.items.length} differences`, byDb);

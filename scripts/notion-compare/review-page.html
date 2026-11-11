@@ -82,7 +82,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
 .facts li { display: grid; grid-template-columns: minmax(90px, max-content) 1fr 1fr; gap: 4px 12px; align-items: baseline; padding: 4px 8px; background: var(--surface-2); border-radius: 6px; font-variant-numeric: tabular-nums }
 .facts .k { color: var(--muted); font-size: 12px; overflow-wrap: anywhere }
 .facts .nv { color: var(--notion) } .facts .sv { color: var(--site) }
-.facts .nv::before { content: "Notion "; font-size: 11px; opacity: .7 } .facts .sv::before { content: "사이트 "; font-size: 11px; opacity: .7 }
+.facts .nv::before { content: attr(data-src) " "; font-size: 11px; opacity: .7 } .facts .sv::before { content: "사이트 "; font-size: 11px; opacity: .7 }
 .plain { margin: 0; color: var(--fg); overflow-wrap: anywhere; white-space: pre-wrap }
 .num { font-family: var(--font-data); font-size: 12.5px }
 
@@ -125,7 +125,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   <p class="lede">Notion DB와 사이트 데이터가 다른 항목 전체입니다. 항목마다 어느 쪽에 맞출지 고르면 저장되고, Claude가 이 선택을 읽어 그대로 수정합니다. 강조된 부분이 서로 다른 글자입니다.</p>
   <div class="stats" id="stats"></div>
   <div class="progress" aria-hidden="true"><i id="prog"></i></div>
-  <div class="legend"><span><del>주황</del> Notion에만 있는 부분</span><span><ins>보라</ins> 사이트에만 있는 부분</span><span id="generated"></span></div>
+  <div class="legend"><span><del>주황</del> Notion·공식 도감에만 있는 부분</span><span><ins>보라</ins> 사이트에만 있는 부분</span><span id="generated"></span></div>
   <details class="sources"><summary>Notion DB별 마지막 수정</summary><ul id="sources"></ul></details>
   <div class="status-note" id="dbnote" hidden></div>
 </header>
@@ -147,6 +147,10 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   const ITEMS = Array.isArray(DATA) ? DATA : DATA.items;
   const HUBS = Array.isArray(DATA) ? [] : (DATA.hubs || []);
   const HUB_NAME = Object.fromEntries(HUBS.map(h => [h.id, h.name]));
+  // Where the left-hand value comes from: Notion for most hubs, the official dex for Aniimo.
+  const SRC = Object.fromEntries(HUBS.map(h => [h.id, h.sourceLabel || 'Notion']));
+  const srcOf = it => SRC[it.hub] || 'Notion';
+  const choiceLabel = (it, c, l) => (c === 'notion' ? `${srcOf(it)} 기준` : l);
   const DB_LABEL = { characters: '캐릭터', lightcones: '광추', relics: '유물·장신구', guides: '공략', parties: '추천 파티' };
   // A decision is stored under the item's id; decisions from the first hand-run review used legacyId.
   const VALID_KEYS = new Set(ITEMS.flatMap(it => [it.id, it.legacyId].filter(Boolean)));
@@ -179,7 +183,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   const tok = s => (s || '').match(/\d+(?:[.,]\d+)*%?|[가-힣A-Za-z]+|\s+|./gu) || [];
   function diff(a, b) {
     const A = tok(a), B = tok(b);
-    if (A.length * B.length > 250000) return [esc(a), esc(b)];
+    if (A.length * B.length > 1500000) return [esc(a), esc(b)];
     const n = A.length, m = B.length, dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
     for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
     let i = 0, j = 0, x = '', y = '';
@@ -209,7 +213,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   function renderBody(it) {
     if (it.notion !== undefined || it.site !== undefined) {
       const [x, y] = diff(it.notion || '', it.site || '');
-      return `<div class="cmp"><div class="side n"><h4>NOTION</h4><p>${x || '<span class="lbl">(비어 있음)</span>'}</p></div><div class="side s"><h4>사이트</h4><p>${y || '<span class="lbl">(비어 있음)</span>'}</p></div></div>`;
+      return `<div class="cmp"><div class="side n"><h4>${esc(srcOf(it))}</h4><p>${x || '<span class="lbl">(비어 있음)</span>'}</p></div><div class="side s"><h4>사이트</h4><p>${y || '<span class="lbl">(비어 있음)</span>'}</p></div></div>`;
     }
     const t = it.text || '';
     if (/Notion .+ · 사이트 |Notion "[^"]*" \/ 사이트/.test(t)) {
@@ -220,7 +224,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
       return unit + '<ul class="facts num">' + rows.map(r => {
         if (r[0] === null) return `<li><span class="k" style="grid-column:1/-1">${esc(r[1])}</span></li>`;
         let k = r[0]; const mm = k.match(/^(Lv\d+)[:\s]*(.*)$/); if (mm) { lv = mm[1]; k = mm[2] ? `${mm[1]} ${mm[2]}` : mm[1]; } else if (lv && k && /^[^L]/.test(k) && it.cat === '돌파 재료') k = `${lv} ${k}`;
-        return `<li><span class="k">${esc(k || '값')}</span><span class="nv">${esc(r[1])}</span><span class="sv">${esc(r[2])}</span></li>`;
+        return `<li><span class="k">${esc(k || '값')}</span><span class="nv" data-src="${esc(srcOf(it))}">${esc(r[1])}</span><span class="sv">${esc(r[2])}</span></li>`;
       }).join('') + '</ul>';
     }
     return `<p class="plain">${esc(t)}</p>`;
@@ -250,6 +254,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
       const n = key === 'status' && v === '해결됨' ? resolvedDecisions().length
         : key === 'status' && v === '내용 바뀜' ? ITEMS.filter(it => matches(it, key) && changedAfter(it)).length
         : ITEMS.filter(it => matches(it, key) && (v === '전체' || (key === 'status' ? statusOf(it) === v || (v === '결정됨' && decisions[it.id]?.choice) : it[key] === v))).length;
+      if (!n && v !== '전체' && key !== 'status' && state[key] !== v) return '';
       return `<button class="chip" data-k="${key}" data-v="${esc(v)}" aria-pressed="${state[key] === v}">${esc(label)}<span class="n">${n}</span></button>`;
     }).join('');
   }
@@ -288,7 +293,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
 
   function itemHTML(it) {
     const d = decisions[it.id] || {};
-    const seg = CHOICES.map(([c, l]) => `<button type="button" data-c="${c}" aria-pressed="${d.choice === c}" ${readOnly ? 'disabled' : ''}>${l}</button>`).join('');
+    const seg = CHOICES.map(([c, l]) => `<button type="button" data-c="${c}" aria-pressed="${d.choice === c}" ${readOnly ? 'disabled' : ''}>${choiceLabel(it, c, l)}</button>`).join('');
     const needMemo = d.choice === 'memo' && !(d.note || '').trim();
     return `<article class="item ${d.choice && d.choice !== 'hold' ? 'decided' : ''} ${needMemo ? 'need-memo' : ''}" data-id="${it.id}">
       <div class="ihead"><span class="cat">${esc(it.cat)}</span>${it.label ? `<span class="lbl">${esc(it.label)}</span>` : ''}
@@ -315,7 +320,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
       const its = groups.get(k); const first = its[0];
       const sub = first.sub || first.siteRef || '';
       html += `<details class="group" ${openAll || count < 12 ? 'open' : ''}><summary><span class="gname">${esc(first.target)}</span>${HUBS.length > 1 ? `<span class="tag">${esc(HUB_NAME[first.hub] || first.hub)}</span>` : ''}<span class="tag">${esc(first.db)}</span>${sub ? `<span class="gsub">${esc(sub)}</span>` : ''}<span class="gcount">${its.length}건</span></summary>
-        ${readOnly ? '' : `<div class="gapply">이 묶음 전체: ${CHOICES.slice(0, 4).map(([c, l]) => `<button class="btn" data-bulk="${c}" data-ids="${its.map(i => i.id).join(',')}">${l}</button>`).join('')}</div>`}
+        ${readOnly ? '' : `<div class="gapply">이 묶음 전체: ${CHOICES.slice(0, 4).map(([c, l]) => `<button class="btn" data-bulk="${c}" data-ids="${its.map(i => i.id).join(',')}">${choiceLabel(first, c, l)}</button>`).join('')}</div>`}
         <div class="items">${its.map(itemHTML).join('')}</div></details>`;
       count += its.length;
     }

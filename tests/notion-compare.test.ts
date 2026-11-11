@@ -105,6 +105,25 @@ describe('guide body hunks', () => {
   });
 });
 
+describe('aniimo official dex comparison', () => {
+  it('splits the official index into the first region and Wave Archipelago', async () => {
+    const { parseIndex } = await import('../scripts/notion-compare/hubs/aniimo/index.js');
+    const card = (href: string, no: string, name: string) => `<a href="${href}"><span>NO.${no}</span><div class="text-center"><span>${name}</span></div></a>`;
+    const html = card('/ko/item/001/basic-form', '001', '탄멍멍') + card('/ko/item/001/basic-form/300301', '001', '코랄링');
+    expect(parseIndex(html)).toEqual({
+      legacy: [{ number: '001', name: '탄멍멍', sourcePath: '/ko/item/001/basic-form' }],
+      wave: [{ number: '001', name: '코랄링', sourcePath: '/ko/item/001/basic-form/300301' }],
+    });
+  });
+
+  it('renders a whole section as readable text', async () => {
+    const { sectionText } = await import('../scripts/notion-compare/hubs/aniimo/index.js');
+    expect(sectionText('능력치', { total: 500, hp: 80 })).toBe('합계 500 · HP 80');
+    expect(sectionText('전투 스킬', [{ name: '플레임 킥', description: '도약한다', skillType: '물리 스킬', energyCost: 0, power: 72 }]))
+      .toBe('■ 플레임 킥 (물리 스킬 · 에너지 0 · 위력 72)\n도약한다');
+  });
+});
+
 describe('sync script as a library', () => {
   it('exports its parsers without starting a sync', async () => {
     const mod = await import('../scripts/fetch-notion-data.js');

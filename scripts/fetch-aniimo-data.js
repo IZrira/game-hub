@@ -147,6 +147,10 @@ const parseDetail = (html) => {
   };
 };
 
+// The legacy-region parser is shared with the read-only comparison (scripts/notion-compare).
+export { parseDetail, ELEMENT_LABELS, POSITION_LABELS };
+
+async function main() {
 const indexHtml = await fetchHtml(INDEX_URL);
 if (/\/ko\/item\/\d{3}\/[^/"\s]+\/300301/.test(indexHtml)) {
   throw new Error('The official index now contains region-local duplicate numbers. Preserve aniimo.json; run scripts/fetch-aniimo-wave-data.js for the new region instead.');
@@ -213,3 +217,9 @@ fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
 fs.writeFileSync(OUTPUT_FILE, `${JSON.stringify(results, null, 2)}\n`, 'utf8');
 writeAniimoRuntimeData();
 console.log(`\n[Aniimo] Wrote ${results.length} records to ${OUTPUT_FILE}`);
+}
+
+// Collect only when this file is executed; importing it must not fetch or write anything.
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  await main();
+}
