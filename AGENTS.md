@@ -246,6 +246,8 @@ git status → Notion 동기화 → 변경사항 확인 → 필요한 검증(Typ
 
 설치된 플러그인(2026-11-10, user 범위, `rira-skill-audit` 정적 검토 후 사용자 승인): `superpowers@claude-plugins-official` 7.0, `ui-ux-pro-max@ui-ux-pro-max-skill` 2.15.0, `taste-skill@taste-skill` 2.5.1(예전 프로젝트 복사본 `.claude/skills/design-taste-frontend`는 삭제), `caveman@caveman` 4.1.0. `superpowers`는 세션 시작마다 스킬 사용 안내를 넣고, `caveman`은 세션 시작·메시지마다 Node 훅을 실행한다(외부 전송 코드는 정적 검토에서 찾지 못함).
 
+2026-11-11 추가(같은 절차): `example-skills@anthropic-agent-skills`(마켓플레이스 `anthropics/skills`, 훅 없음, 웹앱 테스트·프런트엔드 디자인·테마 등 예제 스킬). 같은 저장소의 문서 스킬(docx·pdf·pptx·xlsx)·`skill-creator`·`claude-api`는 이미 있는 것과 겹쳐 설치하지 않았다. 프로젝트 복사본 `impeccable`(`.claude/skills/impeccable`, `.claude/agents/impeccable-*.md`, Git 제외)은 4.8.2(엔진 0.1.22)로 갱신했다. 엔진은 처음 실행할 때 GitHub에서 받아 `engine-checksums.txt`의 해시로 검증한다. 보류: `claude-mem`(모든 도구 사용 기록·추가 사용량), `gbrain`(Windows 미지원), `claude-quickstarts`(스킬이 아닌 예제 앱).
+
 ### 프로젝트 스킬
 
 - `rira-seo-check`: 색인·canonical·사이트맵·검색용 초기 HTML, Search Console 실적·색인 보고서·Soft 404 같은 검색 관련 진단과 수정.
@@ -265,6 +267,8 @@ git status → Notion 동기화 → 변경사항 확인 → 필요한 검증(Typ
 ## UI 작업
 
 UI를 설계·구현·검토할 때는 루트 `SKILL.md`(디자인 실행 순서)와 `DESIGN.md`를 먼저 읽는다. 루트 `SKILL.md`는 어느 에이전트도 자동으로 불러오지 않으므로 이 규칙으로 읽는다.
+
+Meta의 Astryx 디자인 시스템(`meta/astryx`, 문서 astryx.atmeta.com)은 참고 자료로만 쓴다. 컴포넌트 구성, 접근성 패턴, 이름·prop 규칙을 비교할 때 문서를 읽고, 이 사이트에 맞는 방식은 기존 React·Tailwind 코드로 직접 구현한다. `@astryxdesign/*` 패키지·CLI·플러그인은 설치하지 않으며, Astryx와 `DESIGN.md`가 다르면 `DESIGN.md`를 따른다. 공개 페이지에는 Astryx 이름이나 링크를 넣지 않는다.
 
 ## 에이전트 환경별 차이
 
