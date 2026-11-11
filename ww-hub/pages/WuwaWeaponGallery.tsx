@@ -64,7 +64,7 @@ const WuwaWeaponGallery = () => {
               <button 
                 key={t}
                 onClick={() => setSelectedType(t)}
-                className={`h-11 px-5 rounded-full text-[11px] font-black transition-all min-w-[44px] flex items-center justify-center ${selectedType === t ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'bg-white/5 text-gray-500 hover:bg-white/10 hover:text-white'}`}
+                className={`h-11 px-5 rounded-full text-[11px] font-black transition min-w-[44px] flex items-center justify-center ${selectedType === t ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'bg-white/5 text-gray-500 hover:bg-white/10 hover:text-white'}`}
               >
                 {t.toUpperCase()}
               </button>
@@ -78,7 +78,7 @@ const WuwaWeaponGallery = () => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="무기 명칭 검색..."
-            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-white font-bold focus:border-brand-primary outline-none transition-all"
+            className="w-full bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-4 text-white font-bold focus:border-brand-primary outline-none transition"
           />
         </div>
       </div>

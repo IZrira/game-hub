@@ -140,7 +140,7 @@ const CharacterDetailAniimo: React.FC = () => {
         {next && <Link to={`/gallery/aniimo/character/${encodeURIComponent(next.name)}`} className="flex items-center justify-end gap-2 text-xs font-bold text-gray-400 hover:text-white"><span className="hidden sm:inline">{next.name}</span><ChevronRight size={18} /></Link>}
       </nav>
 
-      <section className="grid overflow-hidden rounded-[32px] border border-white/10 bg-[#121212] lg:grid-cols-[minmax(0,430px)_1fr]">
+      <section className="grid overflow-hidden rounded-3xl border border-white/10 bg-[#121212] lg:grid-cols-[minmax(0,430px)_1fr]">
         <div className="relative min-h-[360px] bg-gradient-to-br from-violet-500/20 via-cyan-400/5 to-transparent p-8"><span className="absolute left-5 top-5 text-xs font-black italic tracking-[0.25em] text-white/30">NO.{item.number}</span>{displayImage && <img src={displayImage} alt={`${item.name} ${activeForm?.label || ''} 이미지`} referrerPolicy="no-referrer" className="h-full max-h-[460px] w-full object-contain" />}</div>
         <div className="p-7 sm:p-10">
           <div className="flex flex-wrap items-center gap-3"><div className="mr-1"><h1 className="text-4xl sm:text-5xl font-black tracking-tighter">{item.name}</h1><p className="mt-1 text-sm font-bold text-gray-500">{englishName}</p><p className="mt-2 text-xs font-black tracking-[0.16em] text-violet-300">{item.regionName && `${item.regionName} · `}{evolutionStage}</p></div>{displayElements.map(value => <Link key={value} to={`/gallery/aniimo/characters?element=${encodeURIComponent(value)}`}><Badge value={value} accent /></Link>)}{displayPositions.map(value => <Link key={value} to={`/gallery/aniimo/characters?position=${encodeURIComponent(value)}`}><Badge value={value} /></Link>)}</div>

@@ -51,7 +51,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: p
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-md overflow-hidden bg-[#0f0f0f] border border-white/10 rounded-[32px] shadow-2xl shadow-brand-primary/20"
+            className="relative w-full max-w-md overflow-hidden bg-[#0f0f0f] border border-white/10 rounded-3xl shadow-2xl shadow-brand-primary/20"
           >
             {/* Header with Background Pattern */}
             <div className="relative h-32 bg-gradient-to-br from-brand-primary/20 to-brand-accent/20 flex items-center justify-center">
@@ -61,7 +61,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: p
               </div>
               <button 
                 onClick={handleClose}
-                className="absolute top-6 right-6 p-2 rounded-full bg-black/20 text-white/60 hover:text-white hover:bg-black/40 transition-all z-20"
+                className="absolute top-6 right-6 p-2 rounded-full bg-black/20 text-white/60 hover:text-white hover:bg-black/40 transition z-20"
               >
                 <X size={20} />
               </button>
@@ -77,7 +77,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: p
                 {/* Discord Login Button */}
                 <button
                   onClick={() => handleSocialLogin('discord')}
-                  className="flex items-center justify-center gap-3 w-full p-4 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-2xl font-black transition-all group active:scale-95"
+                  className="flex items-center justify-center gap-3 w-full p-4 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-2xl font-black transition group active:scale-95"
                 >
                   <div className="bg-white/10 p-1.5 rounded-lg group-hover:bg-white/20 transition-colors">
                     <img src="https://cdn.simpleicons.org/discord/white" alt="Discord" className="w-5 h-5" />
@@ -88,7 +88,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen: propsIsOpen, onClose: p
                 {/* Google Login Button */}
                 <button
                   onClick={() => handleSocialLogin('google')}
-                  className="flex items-center justify-center gap-3 w-full p-4 bg-white hover:bg-gray-100 text-black rounded-2xl font-black transition-all group active:scale-95"
+                  className="flex items-center justify-center gap-3 w-full p-4 bg-white hover:bg-gray-100 text-black rounded-2xl font-black transition group active:scale-95"
                 >
                   <div className="bg-black/5 p-1.5 rounded-lg group-hover:bg-black/10 transition-colors">
                     <img src="https://cdn.simpleicons.org/google" alt="Google" className="w-5 h-5" />

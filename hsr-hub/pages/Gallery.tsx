@@ -485,7 +485,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption }: any) =>
     <div className="relative" ref={containerRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
+        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
       >
         <span className="text-xs font-black text-gray-400 uppercase tracking-widest whitespace-nowrap">{label}</span>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">

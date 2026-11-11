@@ -122,7 +122,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
   return (
     <div className={`space-y-3 ${indentClass}`}>
       <div
-        className={`glass-card p-5 md:p-6 rounded-[28px] border group transition-all relative ${
+        className={`glass-card p-5 md:p-6 rounded-3xl border group transition relative ${
           review.is_pinned
             ? 'border-brand-primary/40 bg-gradient-to-br from-brand-primary/[0.08] to-transparent shadow-lg shadow-brand-primary/5'
             : 'border-white/5 bg-white/[0.01] hover:bg-white/[0.03]'
@@ -137,7 +137,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
         )}
 
         {/* Action icons (Edit / Delete / Pin) */}
-        <div className="absolute top-5 right-5 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-all z-10">
+        <div className="absolute top-5 right-5 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition z-10">
           {isAdmin && onTogglePin && (
             <button
               onClick={handlePinClick}
@@ -260,7 +260,7 @@ export const CommentCard: React.FC<CommentCardProps> = ({
                   <div
                     key={idx}
                     onClick={() => setSelectedImage(url)}
-                    className="w-20 h-20 md:w-24 md:h-24 rounded-xl border border-white/10 overflow-hidden cursor-pointer bg-black/40 hover:opacity-90 hover:scale-[1.02] transition-all"
+                    className="w-20 h-20 md:w-24 md:h-24 rounded-xl border border-white/10 overflow-hidden cursor-pointer bg-black/40 hover:opacity-90 hover:scale-[1.02] transition"
                   >
                     <img
                       src={url}

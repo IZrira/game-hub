@@ -85,7 +85,7 @@ export const WuwaEchoDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[550px_1fr] gap-8 items-start">
           
           {/* Left: Large Image Card */}
-          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
+          <div className="relative group rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
             <img 
               src={`${ECHO_IMAGE_BASE}${encodeURIComponent((isPhantom && showPhantom ? '이상 · ' + echo.name : echo.name).normalize('NFC'))}.webp`} 
               alt={echo.name} 
@@ -128,7 +128,7 @@ export const WuwaEchoDetail = () => {
                 {isPhantom && (
                   <button 
                     onClick={() => setShowPhantom(!showPhantom)}
-                    className="px-4 py-1.5 rounded-xl text-xs font-black border bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition-all uppercase tracking-widest"
+                    className="px-4 py-1.5 rounded-xl text-xs font-black border bg-white/5 border-white/10 text-gray-400 hover:text-white hover:bg-white/10 transition uppercase tracking-widest"
                   >
                     {showPhantom ? 'Original View' : 'Phantom View'}
                   </button>
@@ -141,7 +141,7 @@ export const WuwaEchoDetail = () => {
           <div className="space-y-6 flex flex-col h-full">
             
             {/* 01. Ability Section */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 flex-grow group/skill">
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: readableTextColor(theme.primary) }}>01</span>
                 <div className="flex items-center gap-3">
@@ -150,13 +150,13 @@ export const WuwaEchoDetail = () => {
                 </div>
               </div>
               
-              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-8 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-8 rounded-3xl border border-white/5 shadow-inner min-h-[120px]">
                 {renderRichText(echo.description)}
               </div>
             </div>
 
             {/* 02. Sonata Sets Section */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-2xl font-black italic opacity-20" style={{ color: readableTextColor(theme.primary) }}>02</span>
                 <h2 className="text-[11px] font-black uppercase tracking-widest text-gray-500">{t('화음 세트')}</h2>
@@ -167,7 +167,7 @@ export const WuwaEchoDetail = () => {
                   const effect = SONATA_EFFECTS.find(s => s.setName === setName)?.effect;
                   if (!effect) return null;
                   return (
-                    <div key={setName} className="p-6 rounded-[30px] bg-white/[0.03] border border-white/10 space-y-6 hover:bg-white/[0.05] transition-all group/sonata">
+                    <div key={setName} className="p-6 rounded-3xl bg-white/[0.03] border border-white/10 space-y-6 hover:bg-white/[0.05] transition group/sonata">
                       <div className="flex items-center gap-4">
                         <div className="w-12 h-12 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover/sonata:scale-110 transition-transform shadow-inner shrink-0">
                           <img src={`${SONATA_ICON_BASE}${encodeURIComponent(setName.normalize('NFC'))}.webp`} className="w-8 h-8 drop-shadow-[0_0_12px_rgba(255,255,255,0.2)]" alt={setName} />
@@ -214,7 +214,7 @@ export const WuwaEchoDetail = () => {
         />
 
         {/* 03. Acquisition Section (Full Width) */}
-        <section className="glass-card p-10 rounded-[40px] border border-white/5">
+        <section className="glass-card p-10 rounded-3xl border border-white/5">
           <div className="flex items-center gap-5 mb-8">
             <span className="text-4xl font-black italic opacity-10" style={{ color: readableTextColor(theme.primary) }}>03</span>
             <div className="flex items-center gap-3">
@@ -243,7 +243,7 @@ export const WuwaEchoDetail = () => {
                   }}
                   className="group flex flex-col items-center gap-3 transition-transform hover:scale-105"
                 >
-                  <div className="w-20 h-20 bg-white/5 rounded-[24px] p-4 flex items-center justify-center border border-white/10 group-hover:border-brand-primary/50 transition-all shadow-xl">
+                  <div className="w-20 h-20 bg-white/5 rounded-3xl p-4 flex items-center justify-center border border-white/10 group-hover:border-brand-primary/50 transition shadow-xl">
                     <img 
                       src={imgUrl || ''} 
                       className={`w-full h-full object-contain ${isEchoItem ? 'scale-110' : ''}`} 

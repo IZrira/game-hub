@@ -71,15 +71,15 @@ const BlogPost: React.FC = () => {
       </div>
 
       <main className="max-w-[800px] mx-auto px-6 md:px-8 pt-8">
-        <article className="glass-card p-8 md:p-12 rounded-[32px] -mt-8 relative z-30 shadow-[0_32px_64px_rgba(0,0,0,0.5)] border border-white/5">
-          <p className="text-xl text-gray-400 font-medium leading-relaxed mb-12 italic border-l-4 border-brand-primary pl-6">
+        <article className="glass-card p-8 md:p-12 rounded-3xl -mt-8 relative z-30 shadow-[0_32px_64px_rgba(0,0,0,0.5)] border border-white/5">
+          <p className="text-xl text-gray-400 font-medium leading-relaxed mb-12">
             {post.excerpt}
           </p>
 
           <div className="prose prose-invert prose-brand max-w-none 
             prose-headings:font-black prose-headings:tracking-tight 
             prose-h3:text-2xl prose-h3:text-brand-accent prose-h3:border-b prose-h3:border-white/10 prose-h3:pb-4 prose-h3:mt-12
-            prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:text-[1.05rem]
+            prose-p:text-gray-300 prose-p:leading-[1.8] prose-p:text-base
             prose-strong:text-white prose-strong:font-black prose-strong:bg-brand-primary/20 prose-strong:px-1 prose-strong:rounded
             prose-li:text-gray-300 prose-li:leading-[1.8]
             prose-ul:list-disc prose-ul:pl-6

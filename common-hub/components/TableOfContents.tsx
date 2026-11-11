@@ -70,8 +70,8 @@ export default function TableOfContents({ selector = '.prose' }: { selector?: st
             <button
               key={heading.id}
               onClick={() => handleClick(heading.id)}
-              className={`block w-full text-left transition-all duration-300 font-bold text-sm ${
-                heading.level === 3 ? 'pl-4 text-[12px]' : '' // h3는 들여쓰기
+              className={`block w-full text-left transition duration-300 font-bold text-sm ${
+                heading.level === 3 ? 'pl-4 text-xs' : '' // h3는 들여쓰기
               } ${
                 activeId === heading.id
                   ? 'text-brand-accent translate-x-1' // 활성화 시 색상 변경 및 살짝 우측 이동

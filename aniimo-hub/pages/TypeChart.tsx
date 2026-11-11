@@ -42,7 +42,7 @@ const TypeChartAniimo: React.FC = () => {
       <main className="mx-auto grid max-w-[1500px] gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[230px_minmax(0,1fr)]">
         <AniimoSidebar />
         <div className="min-w-0 space-y-8">
-        <section className="overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
+        <section className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
           <p className="text-xs font-black uppercase tracking-[0.3em] text-violet-300">Aniimo Battle Guide</p>
           <h1 className="mt-3 text-4xl font-black tracking-tight sm:text-5xl">애니모 원소 상성표</h1>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-gray-300">공격 원소가 방어 원소에 주는 피해 배율을 한눈에 확인하세요. 효과적이면 1.6배, 보통은 1배, 저항이면 0.625배입니다.</p>

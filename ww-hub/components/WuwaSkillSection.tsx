@@ -121,8 +121,8 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
     <div className="space-y-16">
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>06</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('스킬 정보')}</h2>
+          <div className="flex items-center justify-center w-12 h-12 rounded-3xl border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>06</div>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase leading-none py-1.5">{t('스킬 정보')}</h2>
         </div>
         
         <div className="flex flex-col gap-10">
@@ -131,12 +131,12 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
               <button 
                 key={cat.id} 
                 onClick={() => setActiveCategory(cat.id)} 
-                className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-500 ${activeCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
+                className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition duration-500 ${activeCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
               >
                 <div className="w-10 h-10 flex items-center justify-center relative z-10">
                   <img 
                     src={`${ICON_BASE}${safeEncodeURIComponent(cat.id === 'basic_atk' ? '기본 공격' : (cat.id === 'bonus' ? '고유 스킬1' : cat.label))}.webp`} 
-                    className={`w-full h-full object-contain transition-all duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`} 
+                    className={`w-full h-full object-contain transition duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
                     alt={t(cat.label)} 
                     onError={handleSkillImageError} 
                   />
@@ -148,14 +148,14 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
 
           <div className="space-y-8">
             {activeSkills.map(({ skill, filename }: any, idx) => (
-              <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
+              <div key={idx} className="group glass-card rounded-3xl border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition duration-500 hover:border-white/20">
                  <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
                    <img src={`${ICON_BASE}${safeEncodeURIComponent(filename.replace('.webp', ''))}.webp`} className="w-full h-full object-contain rotate-12" alt="" loading="lazy" decoding="async" onError={handleSkillImageError} />
                  </div>
-                 <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
+                 <div className="bg-[#0c0c0c]/80 rounded-3xl p-8 md:p-10 relative z-10 overflow-hidden">
                    <div className="flex flex-col md:flex-row items-start gap-8">
                       <div className="relative shrink-0">
-                         <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
+                         <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition duration-500 group-hover:scale-110">
                             <img 
                               src={`${ICON_BASE}${safeEncodeURIComponent(filename.replace('.webp', ''))}.webp`} 
                               className="w-full h-full object-contain" 
@@ -173,7 +173,7 @@ const WuwaSkillSection: React.FC<WuwaSkillSectionProps> = ({ char, theme, render
                                </div>
                             </div>
                          </div>
-                         <div className="text-gray-300 text-[17px] leading-[1.7] font-medium whitespace-pre-line pl-6 border-l-2 border-white/10 group-hover:border-white/30 transition-colors">
+                         <div className="text-gray-300 text-base leading-[1.7] font-medium whitespace-pre-line transition-colors">
                             {renderContent(t(skill.description))}
                          </div>
                       </div>

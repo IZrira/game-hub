@@ -417,7 +417,7 @@ const GalleryNTE: React.FC = () => {
 
               <div className="grid gap-5 xl:grid-cols-2">
                 {filteredCartridges.map((cartridge) => (
-                  <article key={cartridge.id} className="rounded-[28px] border border-white/10 bg-white/[0.025] p-5 sm:p-7 transition hover:border-violet-400/35 hover:bg-white/[0.04]">
+                  <article key={cartridge.id} className="rounded-3xl border border-white/10 bg-white/[0.025] p-5 sm:p-7 transition hover:border-violet-400/35 hover:bg-white/[0.04]">
                     <div className="flex flex-wrap items-start justify-between gap-3 border-b border-white/5 pb-5">
                       <div className="flex min-w-0 items-center gap-4">
                         <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-2xl border border-amber-400/30 bg-gradient-to-br from-amber-400/15 to-orange-500/5">
@@ -477,7 +477,7 @@ const GalleryNTE: React.FC = () => {
               </div>
 
               {filteredCartridges.length === 0 && (
-                <div className="rounded-[28px] border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 카트리지가 없습니다.</div>
+                <div className="rounded-3xl border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 카트리지가 없습니다.</div>
               )}
 
               <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭과 수치가 달라질 수 있습니다.</p>
@@ -538,7 +538,7 @@ const GalleryNTE: React.FC = () => {
                       )}
                       <div className="grid gap-5 xl:grid-cols-2">
                 {group.vehicles.map((vehicle) => (
-                  <article key={vehicle.id} className="overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.025] transition hover:border-emerald-400/35 hover:bg-white/[0.04]">
+                  <article key={vehicle.id} className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.025] transition hover:border-emerald-400/35 hover:bg-white/[0.04]">
                     <div className="grid sm:grid-cols-[210px_1fr]">
                       <div className="relative min-h-[190px] overflow-hidden border-b border-white/5 bg-gradient-to-br from-emerald-400/10 via-black/20 to-sky-500/10 sm:border-b-0 sm:border-r">
                         {vehicle.imageUrl || vehicle.imageFileName ? (
@@ -600,7 +600,7 @@ const GalleryNTE: React.FC = () => {
               ))}
 
               {filteredVehicles.length === 0 && (
-                <div className="rounded-[28px] border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 이동 수단이 없습니다.</div>
+                <div className="rounded-3xl border border-white/5 bg-white/[0.02] py-16 text-center text-sm font-bold text-gray-500">조건에 맞는 이동 수단이 없습니다.</div>
               )}
 
               <p className="px-2 text-xs leading-5 text-gray-500">현재 공개 자료를 기준으로 정리했으며, 정식 출시 및 업데이트에 따라 명칭·수치·획득 방법이 달라질 수 있습니다.</p>
@@ -623,7 +623,7 @@ const GalleryNTE: React.FC = () => {
               />
             </React.Suspense>
           ) : (
-            <div className="py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
+            <div className="py-20 text-center space-y-4 bg-white/[0.02] rounded-3xl border border-white/5">
               <Book className="mx-auto text-gray-400 opacity-20" size={48} />
               <p className="text-gray-500 font-bold italic uppercase tracking-widest">{t('준비 중인 페이지입니다.')}</p>
             </div>
@@ -652,7 +652,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption, allLabel 
     <div className="relative" ref={containerRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
+        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
       >
         <span className="text-xs font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">

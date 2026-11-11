@@ -104,7 +104,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
   if (characters.length === 0) return null;
 
   return (
-    <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-5">
+    <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-5">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Users size={18} style={{ color: readableTextColor(theme.primary) }} />
@@ -126,7 +126,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
             <Link
               key={char.charId}
               to={`/gallery/hsr/character/${encodeURIComponent(char.charId)}`}
-              className="group flex items-center gap-3.5 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
+              className="group flex items-center gap-3.5 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
             >
               <div className="relative h-14 w-14 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
                 <img
@@ -163,7 +163,7 @@ export const HsrRecommendedCharactersSection: React.FC<HsrRecommendedCharactersS
                 )}
               </div>
 
-              <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+              <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition" />
             </Link>
           );
         })}

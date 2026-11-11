@@ -139,7 +139,7 @@ const LocationDetailAniimo: React.FC = () => {
         <AniimoSidebar />
         <div className="min-w-0 space-y-8">
           {/* Header Card */}
-          <section className="overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
+          <section className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
             <div className="flex items-center gap-3 text-violet-300">
               <MapPin size={20} />
               <span className="text-xs font-black uppercase tracking-[0.25em]">Official Habitat Archive</span>

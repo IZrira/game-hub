@@ -99,10 +99,10 @@ const RelicDetail: React.FC = () => {
     <PageHeader gameId={gameId} category={relic.gameId === 'ww' ? t("에코") : t("유물")} title={t(relic.name)} />
 
       <div className="max-w-4xl mx-auto px-8 pt-8">
-        <div className="bg-[#121212] rounded-[48px] border border-white/10 overflow-hidden shadow-2xl">
+        <div className="bg-[#121212] rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
           <div className="p-12 space-y-12">
             <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="w-48 h-48 rounded-[32px] bg-white/5 p-6 flex items-center justify-center shrink-0 relative group">
+              <div className="w-48 h-48 rounded-3xl bg-white/5 p-6 flex items-center justify-center shrink-0 relative group">
                 <div className="absolute inset-0 bg-brand-primary/20 blur-3xl rounded-full opacity-50" />
                 <img 
                   src={getMainImageUrl()}
@@ -114,7 +114,7 @@ const RelicDetail: React.FC = () => {
               </div>
               <div className="space-y-4 text-center md:text-left">
                 <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  <span className="px-4 py-1.5 bg-brand-primary/20 text-brand-accent text-[12px] font-black rounded-full uppercase tracking-widest border border-brand-primary/30">
+                  <span className="px-4 py-1.5 bg-brand-primary/20 text-brand-accent text-xs font-black rounded-full uppercase tracking-widest border border-brand-primary/30">
                   {t(relic.type)}
                   </span>
                   <div className="flex gap-1 items-center bg-white/5 px-3 py-1 rounded-full border border-white/10">
@@ -134,7 +134,7 @@ const RelicDetail: React.FC = () => {
                     type="button"
                     onClick={handleCopyTitle}
                     title="이름 복사 (일반 텍스트)"
-                    className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                    className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition flex items-center justify-center shrink-0"
                   >
                     {isCopied ? <Check size={22} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={22} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
                   </button>
@@ -145,7 +145,7 @@ const RelicDetail: React.FC = () => {
             <div className="grid grid-cols-1 gap-12">
               {/* 세부 파츠 */}
               <div className="space-y-6">
-                <h4 className="text-[12px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-accent" /> {t('세부 파츠')}
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
@@ -153,7 +153,7 @@ const RelicDetail: React.FC = () => {
                     const pieceName = typeof piece === 'string' ? piece : piece?.name;
                     if (typeof pieceName !== 'string') return null;
                     return (
-                      <div key={idx} className="bg-white/5 rounded-3xl p-6 border border-white/5 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all">
+                      <div key={idx} className="bg-white/5 rounded-3xl p-6 border border-white/5 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition">
                         <div className="w-20 h-20 rounded-2xl bg-black/20 p-3">
                           <img 
                             src={getPieceImageUrl(idx)}
@@ -173,22 +173,22 @@ const RelicDetail: React.FC = () => {
 
               {/* 세트 효과 */}
               <div className="space-y-6">
-                <h4 className="text-[12px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-primary" /> {t('세트 효과')}
                 </h4>
                 <div className="grid grid-cols-1 gap-4">
-                  <div className="bg-white/5 rounded-[32px] p-8 border border-white/5 space-y-3">
+                  <div className="bg-white/5 rounded-3xl p-8 border border-white/5 space-y-3">
                   <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
               <p className="text-gray-300 text-lg font-medium leading-relaxed italic">"{t(`2piece_${relic.name}`, { defaultValue: effect2 })}"</p>
                   </div>
               {effect4 && (
-                    <div className="bg-white/5 rounded-[32px] p-8 border border-white/5 space-y-3">
+                    <div className="bg-white/5 rounded-3xl p-8 border border-white/5 space-y-3">
                     <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('4세트 효과')}</div>
                 <p className="text-gray-300 text-lg font-medium leading-relaxed italic">"{t(`4piece_${relic.name}`, { defaultValue: effect4 })}"</p>
                     </div>
                   )}
               {effect5 && (
-                    <div className="bg-white/5 rounded-[32px] p-8 border border-white/5 space-y-3">
+                    <div className="bg-white/5 rounded-3xl p-8 border border-white/5 space-y-3">
                     <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('5세트 효과')}</div>
                 <p className="text-gray-300 text-lg font-medium leading-relaxed italic">"{t(`5piece_${relic.name}`, { defaultValue: effect5 })}"</p>
                     </div>

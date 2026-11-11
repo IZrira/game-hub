@@ -103,13 +103,13 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
       <div className="flex items-center justify-between w-full group">
         <div className="flex items-center gap-6">
           <div
-            className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110"
+            className="w-14 h-14 rounded-3xl border-2 flex items-center justify-center font-black text-xl shadow-2xl transition-transform group-hover:scale-110"
             style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}
           >
             ✦
           </div>
           <div>
-            <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">
+            <h2 className="text-2xl font-black text-white tracking-tighter uppercase leading-none py-1">
               추천 세팅 &amp; 장비 연결 (Entity Graph)
             </h2>
             <p className="text-xs text-gray-400 pl-6 mt-1">
@@ -120,7 +120,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
 
         <Link
           to={`/gallery/hsr/character/${encodeURIComponent(character.id)}/guide`}
-          className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-black hover:border-brand-primary/40 hover:bg-white/10 transition-all group/btn"
+          className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-black hover:border-brand-primary/40 hover:bg-white/10 transition group/btn"
           style={{ color: readableTextColor(theme.primary) }}
         >
           <BookOpen size={14} />
@@ -131,7 +131,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
 
       {/* 1. Recommended Light Cones */}
       {recommendedLightCones.length > 0 && (
-        <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-5">
+        <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-5">
           <div className="flex items-center gap-3">
             <Award size={18} style={{ color: readableTextColor(theme.primary) }} />
             <h3 className="text-sm font-black uppercase tracking-widest text-gray-300">
@@ -144,7 +144,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
               <Link
                 key={lc.name}
                 to={`/gallery/hsr/lightcone/${encodeURIComponent(lc.name)}`}
-                className="group relative flex flex-col p-4 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.05] transition-all"
+                className="group relative flex flex-col p-4 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.05] transition"
               >
                 <div className="flex items-start gap-3">
                   <div className="relative h-16 w-16 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
@@ -190,7 +190,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
       {/* 2. Recommended Relics & Ornaments */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {recommendedRelics.length > 0 && (
-          <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
+          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center gap-3">
               <Shield size={18} style={{ color: readableTextColor(theme.primary) }} />
               <h3 className="text-sm font-black uppercase tracking-widest text-gray-300">
@@ -202,7 +202,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
                 <Link
                   key={relic.name}
                   to={`/gallery/hsr/relic/${encodeURIComponent(relic.name)}`}
-                  className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.05] transition-all"
+                  className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.05] transition"
                 >
                   <div className="h-12 w-12 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 group-hover:scale-105 transition-transform">
                     <img
@@ -224,7 +224,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
                       {relic.note || relic.fourPiece || relic.twoPiece || '유물 세트 효과 보기'}
                     </p>
                   </div>
-                  <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition" />
                 </Link>
               ))}
             </div>
@@ -232,7 +232,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
         )}
 
         {recommendedOrnaments.length > 0 && (
-          <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
+          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center gap-3">
               <Sparkles size={18} style={{ color: readableTextColor(theme.primary) }} />
               <h3 className="text-sm font-black uppercase tracking-widest text-gray-300">
@@ -244,7 +244,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
                 <Link
                   key={orn.name}
                   to={`/gallery/hsr/ornament/${encodeURIComponent(orn.name)}`}
-                  className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.05] transition-all"
+                  className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.05] transition"
                 >
                   <div className="h-12 w-12 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 group-hover:scale-105 transition-transform">
                     <img
@@ -266,7 +266,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
                       {orn.note || orn.setEffect || '장신구 세트 효과 보기'}
                     </p>
                   </div>
-                  <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition" />
                 </Link>
               ))}
             </div>
@@ -278,7 +278,7 @@ export const HsrEntityGraphSection: React.FC<HsrEntityGraphSectionProps> = ({ ch
       <div className="sm:hidden">
         <Link
           to={`/gallery/hsr/character/${encodeURIComponent(character.id)}/guide`}
-          className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-white/5 border border-white/10 text-xs font-black text-brand-accent hover:bg-white/10 transition-all"
+          className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl bg-white/5 border border-white/10 text-xs font-black text-brand-accent hover:bg-white/10 transition"
           style={{ color: readableTextColor(theme.primary) }}
         >
           <BookOpen size={14} />

@@ -35,7 +35,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
     <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/95 backdrop-blur-xl animate-in fade-in duration-300">
       <div 
         onCopy={handlePlainCopy}
-        className="relative w-full max-w-2xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-[40px] overflow-hidden flex flex-col"
+        className="relative w-full max-w-2xl h-[80vh] bg-[#0f0f0f] border border-white/10 rounded-3xl overflow-hidden flex flex-col"
       >
         {/* 헤더 */}
         <div className="p-8 border-b border-white/5 flex items-center gap-8 bg-white/[0.02]">
@@ -70,7 +70,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
                 type="button"
                 onClick={handleCopyTitle}
                 title="이름 복사 (일반 텍스트)"
-                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition flex items-center justify-center shrink-0"
               >
                 {isCopied ? <Check size={18} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={18} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
               </button>
@@ -82,11 +82,11 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
         <div className="flex-1 overflow-y-auto p-8 space-y-10 scrollbar-hide">
           {/* 스탯 정보 */}
           <section className="grid grid-cols-2 gap-4">
-            <div className="bg-white/5 p-6 rounded-[28px] border border-white/5 space-y-1">
+            <div className="bg-white/5 p-6 rounded-3xl border border-white/5 space-y-1">
               <p className="text-xs font-black text-gray-500 uppercase tracking-widest">Base ATK</p>
               <p className="text-2xl font-black text-white italic">{weapon.stats.atk}</p>
             </div>
-            <div className="bg-white/5 p-6 rounded-[28px] border border-white/5 space-y-1">
+            <div className="bg-white/5 p-6 rounded-3xl border border-white/5 space-y-1">
               <p className="text-xs font-black text-gray-500 uppercase tracking-widest">{weapon.stats.subStatName}</p>
               <p className="text-2xl font-black text-brand-accent italic">{weapon.stats.subStatValue}</p>
             </div>
@@ -98,7 +98,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
               <h4 className="text-sm font-black italic text-white uppercase tracking-widest">{weapon.skill?.name ? weapon.skill.name.replace(/\*\*/g, '').trim() : ''}</h4>
               <span className="text-xs font-bold text-gray-400">RANK 1</span>
             </div>
-            <div className={`bg-${rarityColor}/5 p-8 rounded-[32px] border border-${rarityColor}/10`}>
+            <div className={`bg-${rarityColor}/5 p-8 rounded-3xl border border-${rarityColor}/10`}>
               <p className="text-gray-200 leading-relaxed font-medium text-base whitespace-pre-wrap italic">
                 {renderRichText(weapon.skill.description)}
               </p>
@@ -112,7 +112,7 @@ const WuwaWeaponModal = ({ weapon, isOpen, onClose }: any) => {
           </section>
         </div>
 
-        <button onClick={onClose} className="absolute top-8 right-8 p-3 bg-white/5 hover:bg-white/10 rounded-full text-white transition-all">
+        <button onClick={onClose} className="absolute top-8 right-8 p-3 bg-white/5 hover:bg-white/10 rounded-full text-white transition">
           <X size={20} />
         </button>
       </div>

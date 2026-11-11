@@ -186,7 +186,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
         <div className="grid grid-cols-1 lg:grid-cols-[550px_1fr] gap-8 items-start">
           
           {/* Left: Image with Overlay */}
-          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
+          <div className="relative group rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
             <img 
               src={getIllustrationUrl()} 
               alt={lc.name} 
@@ -225,7 +225,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
           <div className="space-y-6 flex flex-col h-full">
             
             {/* 01. Compact Control & Stats Card */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
               
               {/* Sliders Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 border-b border-white/5 pb-6">
@@ -240,7 +240,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                   <div className="relative pt-6">
                     {/* Floating Level Label */}
                     <div 
-                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-xs rounded pointer-events-none transition-all duration-75 shadow-lg"
+                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-brand-primary text-black font-black italic text-xs rounded pointer-events-none transition duration-75 shadow-lg"
                       style={{ 
                         left: `${(levelIdx / 7) * 100}%`,
                         backgroundColor: theme.primary,
@@ -274,7 +274,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                   <div className="relative pt-6">
                     {/* Floating Rank Label */}
                     <div 
-                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-xs rounded pointer-events-none transition-all duration-75 shadow-lg"
+                      className="absolute top-0 -translate-x-1/2 px-2 py-0.5 bg-white text-black font-black italic text-xs rounded pointer-events-none transition duration-75 shadow-lg"
                       style={{ 
                         left: `${(rankIdx / 4) * 100}%`,
                         boxShadow: `0 0 10px rgba(255,255,255,0.4)`
@@ -314,7 +314,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
             </div>
 
             {/* 02. Skill Detail Section (REDUCED SIZE) */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow group/skill">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 flex-grow group/skill">
               <div className="flex items-center gap-3 mb-6">
                 <span className="text-3xl font-black italic opacity-20 group-hover/skill:opacity-40 transition-opacity" style={{ color: readableTextColor(theme.primary) }}>03</span>
                 <div className="flex items-center gap-3">
@@ -323,13 +323,13 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
                 </div>
               </div>
               
-              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-3xl border border-white/5 shadow-inner min-h-[120px]">
                 {renderDescription(lc, rankIdx)}
               </div>
             </div>
 
             {/* 03. Materials Section */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-black/20">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 bg-black/20">
                <div className="flex items-center gap-5 mb-6">
                   <span className="text-3xl font-black italic opacity-10" style={{ color: readableTextColor(theme.primary) }}>04</span>
                   <div className="flex items-center gap-2">
@@ -366,7 +366,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
 
         {/* 04. Story Section (Toggle) - BOTTOM FULL WIDTH, omitted until a real story exists */}
         {hasPublishableText(lc.story) && (
-        <div className="glass-card overflow-hidden rounded-[35px] border border-white/5 transition-all duration-300">
+        <div className="glass-card overflow-hidden rounded-3xl border border-white/5 transition duration-300">
             <button 
               onClick={() => setIsStoryOpen(!isStoryOpen)}
               className="w-full p-8 flex items-center justify-between group/story hover:bg-white/[0.02] transition-colors"
@@ -380,9 +380,9 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
               </div>
             </button>
             
-            <div className={`transition-all duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100 pb-10' : 'max-h-0 opacity-0'}`}>
+            <div className={`transition-[max-height,opacity,padding] duration-700 ease-in-out ${isStoryOpen ? 'max-h-[2000px] opacity-100 pb-10' : 'max-h-0 opacity-0'}`}>
               <div className="px-8 border-t border-white/5 pt-8">
-                <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-[30px] border border-white/5 shadow-inner">
+                <div className="text-gray-400 text-base md:text-lg leading-relaxed italic whitespace-pre-line custom-scrollbar bg-black/20 p-8 rounded-3xl border border-white/5 shadow-inner">
                     {t(lc.story).replace(/\*/g, '')}
                 </div>
               </div>
@@ -392,7 +392,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
 
         {/* E-E-A-T Authorship & Methodology Note */}
         <section className="mt-12 pt-8 border-t border-white/5">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-[35px] bg-white/[0.02] border border-white/5">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-8 rounded-3xl bg-white/[0.02] border border-white/5">
             <div className="flex items-center gap-4">
               <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center border border-brand-primary/20">
                 <Users size={20} className="text-brand-primary-text" />

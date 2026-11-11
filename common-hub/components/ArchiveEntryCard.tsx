@@ -32,10 +32,10 @@ const ArchiveEntryCard: React.FC<ArchiveEntryCardProps> = ({ title, description,
   const currentTheme = theme[color];
 
   return (
-    <a href={link} className={`group relative w-full p-8 rounded-3xl border-2 ${currentTheme.border} ${currentTheme.glow} transition-all duration-500 ease-out cursor-pointer overflow-hidden bg-black/40 backdrop-blur-xl flex flex-col justify-between min-h-[320px]`}>
+    <a href={link} className={`group relative w-full p-8 rounded-3xl border-2 ${currentTheme.border} ${currentTheme.glow} transition duration-500 ease-out cursor-pointer overflow-hidden bg-black/40 backdrop-blur-xl flex flex-col justify-between min-h-[320px]`}>
       <div>
         <div className="flex justify-between items-start mb-10">
-          <div className={`p-4 rounded-2xl bg-gray-950 border border-white/5 ${currentTheme.text} transition-all duration-500 group-hover:scale-110 shadow-inner`}>
+          <div className={`p-4 rounded-2xl bg-gray-950 border border-white/5 ${currentTheme.text} transition duration-500 group-hover:scale-110 shadow-inner`}>
             {icon}
           </div>
           <span className="text-[11px] text-gray-400 font-mono tracking-[0.3em] uppercase opacity-50">
@@ -59,7 +59,7 @@ const ArchiveEntryCard: React.FC<ArchiveEntryCardProps> = ({ title, description,
 
       <div className="flex justify-end items-center gap-3 text-xs text-gray-400 font-black tracking-widest uppercase">
         <span className="group-hover:text-white transition-colors duration-300">Enter Archive</span>
-        <div className={`p-3 rounded-full bg-gray-950 border border-white/5 transition-all duration-500 ${currentTheme.iconBg}`}>
+        <div className={`p-3 rounded-full bg-gray-950 border border-white/5 transition duration-500 ${currentTheme.iconBg}`}>
           <ArrowRight className={`transition-colors duration-500 ${currentTheme.iconColor}`} size={16} />
         </div>
       </div>

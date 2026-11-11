@@ -46,7 +46,7 @@ const List: React.FC = () => {
             <input
               type="text"
               placeholder={t('공략 명칭으로 필터링...')}
-              className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-400"
+              className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition placeholder:text-gray-400"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -58,7 +58,7 @@ const List: React.FC = () => {
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition-all ${
+                  className={`px-4 py-2 rounded-lg text-xs font-black uppercase tracking-widest transition ${
                     selectedCategory === cat 
                     ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' 
                     : 'text-gray-400 hover:text-white'
@@ -74,13 +74,13 @@ const List: React.FC = () => {
             <div className="flex bg-brand-dark p-1 rounded-xl border border-white/10">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'grid' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                className={`p-2 rounded-lg transition ${viewMode === 'grid' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
               >
                 <LayoutGrid size={18} />
               </button>
               <button
                 onClick={() => setViewMode('list')}
-                className={`p-2 rounded-lg transition-all ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                className={`p-2 rounded-lg transition ${viewMode === 'list' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
               >
                 <LayoutList size={18} />
               </button>
@@ -97,7 +97,7 @@ const List: React.FC = () => {
               <Link
                 key={post.id}
                 to={`/archive/${gameId}/${post.id}`}
-                className="group bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-brand-primary/50 transition-all hover:-translate-y-1"
+                className="group bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-brand-primary/50 transition hover:-translate-y-1"
               >
                 <div className="aspect-video relative overflow-hidden">
                   <img
@@ -137,7 +137,7 @@ const List: React.FC = () => {
               <Link
                 key={post.id}
                 to={`/archive/${gameId}/${post.id}`}
-                className="group flex items-center gap-6 bg-white/5 p-4 rounded-2xl border border-white/10 hover:border-brand-primary/50 transition-all"
+                className="group flex items-center gap-6 bg-white/5 p-4 rounded-2xl border border-white/10 hover:border-brand-primary/50 transition"
               >
                 <div className="w-48 h-28 rounded-xl overflow-hidden flex-shrink-0">
                   <img

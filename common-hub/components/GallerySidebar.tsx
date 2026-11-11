@@ -112,7 +112,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
             <button
               key={item.label}
               onClick={() => handleItemClick({ ...item, menuKey })}
-              className={`w-auto shrink-0 flex items-center gap-2 px-3 py-2.5 rounded-xl transition-all border lg:w-full lg:gap-5 lg:px-5 lg:py-4 lg:rounded-2xl ${
+              className={`w-auto shrink-0 flex items-center gap-2 px-3 py-2.5 rounded-xl transition border lg:w-full lg:gap-5 lg:px-5 lg:py-4 lg:rounded-2xl ${
                 isActive 
                   ? 'bg-brand-primary/10 text-brand-accent border-brand-primary/20' 
                   : 'text-gray-400 hover:bg-white/[0.05] border-transparent'
@@ -122,7 +122,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
                 {item.icon}
               </div>
               <div className="flex-1 flex items-center justify-between">
-                <span className="text-[14px] font-black tracking-tight">{t(displayLabel)}</span>
+                <span className="text-sm font-black tracking-tight">{t(displayLabel)}</span>
                 {item.label === '공지사항' && showNewBadge && (
                   <span className="flex h-2 w-2 rounded-full bg-red-500 animate-pulse" />
                 )}

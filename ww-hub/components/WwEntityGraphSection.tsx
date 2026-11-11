@@ -147,7 +147,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
 
         <Link
           to={`/gallery/ww/character/${encodeURIComponent(character.id)}/guide`}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 text-xs font-black text-brand-accent hover:text-white transition-all shadow-sm group self-start sm:self-auto"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-primary/10 hover:bg-brand-primary/20 border border-brand-primary/30 text-xs font-black text-brand-accent hover:text-white transition shadow-sm group self-start sm:self-auto"
         >
           <BookOpen size={14} className="group-hover:scale-110 transition-transform" />
           <span>상세 육성 공략 보기</span>
@@ -159,7 +159,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recommended Weapons */}
         {recommendedWeapons.length > 0 && (
-          <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
+          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <div className="flex items-center gap-2.5">
                 <Award size={18} style={{ color: readableTextColor(theme.primary) }} />
@@ -177,7 +177,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                 <Link
                   key={idx}
                   to={`/gallery/ww/weapon/${encodeURIComponent(weapon.name)}`}
-                  className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
+                  className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
                 >
                   <div className="relative h-14 w-14 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
                     <img
@@ -190,7 +190,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                       }}
                     />
                     <span
-                      className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black text-black"
+                      className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[11px] font-black text-black"
                       style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                     >
                       {weapon.rank}순위
@@ -218,7 +218,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                     )}
                   </div>
 
-                  <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition" />
                 </Link>
               ))}
             </div>
@@ -227,7 +227,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
 
         {/* Recommended Echoes & Sonata Sets */}
         {(recommendedEchoes.length > 0 || recommendedSonataSets.length > 0) && (
-          <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
+          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <div className="flex items-center gap-2.5">
                 <Shield size={18} style={{ color: theme.secondary }} />
@@ -278,7 +278,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                     <Link
                       key={eIdx}
                       to={`/gallery/ww/echo/${encodeURIComponent(echo.name)}`}
-                      className="group flex items-center gap-3.5 p-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
+                      className="group flex items-center gap-3.5 p-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
                     >
                       <div className="relative h-12 w-12 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
                         <img
@@ -290,7 +290,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                             (e.currentTarget as HTMLElement).style.display = 'none';
                           }}
                         />
-                        <span className="absolute bottom-0.5 right-1 text-[8px] font-black text-amber-400">
+                        <span className="absolute bottom-0.5 right-1 text-[11px] font-black text-amber-400">
                           {echo.cost}C
                         </span>
                       </div>
@@ -304,7 +304,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                         </p>
                       </div>
 
-                      <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                      <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition" />
                     </Link>
                   ))}
                 </div>

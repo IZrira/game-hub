@@ -482,7 +482,7 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
 
   if (error) {
     return (
-      <div className="mt-12 p-6 rounded-[35px] bg-red-500/10 border border-red-500/20 text-center">
+      <div className="mt-12 p-6 rounded-3xl bg-red-500/10 border border-red-500/20 text-center">
         <p className="text-red-400 font-medium">{error}</p>
       </div>
     );
@@ -513,7 +513,7 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
         <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 p-1 rounded-xl self-start md:self-auto">
           <button
             onClick={() => setSortMode('newest')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition ${
               sortMode === 'newest'
                 ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20'
                 : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -524,7 +524,7 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
           </button>
           <button
             onClick={() => setSortMode('best')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition ${
               sortMode === 'best'
                 ? 'bg-brand-primary text-white shadow-md shadow-brand-primary/20'
                 : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -556,7 +556,7 @@ export const CharacterReviewBoard: React.FC<Props> = ({ characterId, gameId }) =
             Loading reviews...
           </div>
         ) : rootReviews.length === 0 ? (
-          <div className="text-center py-12 text-gray-400 italic bg-white/[0.02] rounded-[30px] border border-white/5">
+          <div className="text-center py-12 text-gray-400 italic bg-white/[0.02] rounded-3xl border border-white/5">
             No reviews yet. Be the first to share your thoughts!
           </div>
         ) : (

@@ -18,7 +18,7 @@ const SpoilerSpan: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         e.stopPropagation();
         setIsRevealed(!isRevealed);
       }}
-      className={`inline-flex items-center gap-1.5 px-2 py-0.5 mx-1 rounded cursor-pointer transition-all duration-200 text-sm ${
+      className={`inline-flex items-center gap-1.5 px-2 py-0.5 mx-1 rounded cursor-pointer transition duration-200 text-sm ${
         isRevealed
           ? 'bg-white/10 text-white border border-white/20'
           : 'bg-gray-800 text-gray-400 border border-gray-700/50 hover:bg-gray-700/80 hover:text-gray-300 select-none'
@@ -64,7 +64,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
           },
           h1: ({ node, children, ...props }) => (
             <h1
-              className="text-2xl md:text-3xl font-black text-white italic tracking-tighter mt-8 mb-4 border-l-4 border-brand-accent pl-4 py-1 bg-gradient-to-r from-white/[0.02] to-transparent rounded-r-xl"
+              className="text-2xl md:text-3xl font-black text-white tracking-tight mt-10 mb-4"
               {...props}
             >
               {children}
@@ -72,7 +72,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
           ),
           h2: ({ node, children, ...props }) => (
             <h2
-              className="text-xl md:text-2xl font-black text-white italic tracking-tighter mt-6 mb-3 border-l-3 border-purple-500 pl-3 py-0.5 bg-gradient-to-r from-purple-500/5 to-transparent rounded-r-lg"
+              className="text-xl md:text-2xl font-black text-white tracking-tight mt-8 mb-3"
               {...props}
             >
               {children}
@@ -85,7 +85,7 @@ export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({ content, var
           ),
           blockquote: ({ node, children, ...props }) => (
             <blockquote
-              className="border-l-4 border-brand-primary/60 bg-white/[0.03] pl-4 py-2 my-2 italic text-gray-300 rounded-r-lg"
+              className="border-l-2 border-white/20 pl-4 py-1 my-3 text-gray-300"
               {...props}
             >
               {children}

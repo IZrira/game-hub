@@ -62,7 +62,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Dedicated Arcs */}
         {dedicatedArcs.length > 0 && (
-          <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
+          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <div className="flex items-center gap-2.5">
                 <Award size={18} style={{ color: readableTextColor(theme.primary) }} />
@@ -82,7 +82,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                   <Link
                     key={idx}
                     to={`/gallery/nte/arc/${encodeURIComponent(arc.id || arc.name)}`}
-                    className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
+                    className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
                   >
                     <div className="relative h-14 w-14 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
                       <img
@@ -95,7 +95,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                         }}
                       />
                       <span
-                        className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black text-black"
+                        className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[11px] font-black text-black"
                         style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                       >
                         {arc.rarityGrade || 'A'}급
@@ -123,7 +123,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                       )}
                     </div>
 
-                    <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    <ChevronRight size={16} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition" />
                   </Link>
                 );
               })}
@@ -133,7 +133,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
 
         {/* Synergistic Party Members Overview */}
         {recommendedParties.length > 0 && (
-          <div className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-4">
+          <div className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-4">
             <div className="flex items-center justify-between border-b border-white/5 pb-3">
               <div className="flex items-center gap-2.5">
                 <Users size={18} style={{ color: readableTextColor(theme.primary) }} />
@@ -151,7 +151,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                 <Link
                   key={mIdx}
                   to={`/gallery/nte/character/${encodeURIComponent(member.id || member.name)}`}
-                  className="group flex items-center gap-3 p-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
+                  className="group flex items-center gap-3 p-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
                 >
                   <div className="min-w-0 flex-1">
                     <span className="text-[11px] font-black uppercase text-gray-400 block truncate">
@@ -161,7 +161,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                       {member.name}
                     </h5>
                   </div>
-                  <ChevronRight size={14} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all shrink-0" />
+                  <ChevronRight size={14} className="text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition shrink-0" />
                 </Link>
               ))}
             </div>

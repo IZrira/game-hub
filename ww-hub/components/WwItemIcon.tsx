@@ -53,7 +53,7 @@ const WwItemIcon: React.FC<WwItemIconProps> = ({ name, count, onClick }) => {
           onClick();
         }
       }}
-      className="flex w-[80px] md:w-[100px] flex-col items-center gap-2 rounded-xl cursor-pointer transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
+      className="flex w-[80px] md:w-[100px] flex-col items-center gap-2 rounded-xl cursor-pointer transition duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary"
       title={name}
     >
       <div className={`relative isolate w-16 h-16 md:w-20 md:h-20 overflow-hidden rounded-xl border-2 bg-gradient-to-b shadow-lg ${RARITY_THEMES[rarity] || RARITY_THEMES[3]}`}>
@@ -66,7 +66,7 @@ const WwItemIcon: React.FC<WwItemIconProps> = ({ name, count, onClick }) => {
           onError={() => setImageUrl(`${CDN_URL}/ww%20images/items/%ED%81%B4%EB%9E%A8%20%EC%BD%94%EC%9D%B8.webp`)}
         />
         {count !== undefined && (
-          <div className="absolute inset-x-0 bottom-0 z-30 border-t border-white/10 bg-black/85 px-2 py-1 text-right text-[11px] md:text-[13px] font-black text-white">
+          <div className="absolute inset-x-0 bottom-0 z-30 border-t border-white/10 bg-black/85 px-2 py-1 text-right text-[11px] md:text-xs font-black text-white">
             {count}
           </div>
         )}

@@ -54,7 +54,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
       <div className="fixed inset-0 z-[9998] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm animate-in fade-in duration-200">
         <div className="absolute inset-0" onClick={onClose} />
         
-        <div className="relative w-full max-w-2xl bg-[#121212] border border-white/10 rounded-[48px] p-10 shadow-2xl animate-in zoom-in-95 max-h-[90vh] flex flex-col">
+        <div className="relative w-full max-w-2xl bg-[#121212] border border-white/10 rounded-3xl p-10 shadow-2xl animate-in zoom-in-95 max-h-[90vh] flex flex-col">
           <button onClick={onClose} className="absolute top-8 right-8 text-gray-400 hover:text-white transition-colors z-20">
             <X size={28} />
           </button>
@@ -62,7 +62,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
           <div className="space-y-8 flex flex-col">
             {/* 상단 헤더: HSR 스타일 가로 레이아웃 */}
             <div className="flex flex-col md:flex-row items-center gap-10 shrink-0">
-              <div className="w-40 h-40 bg-white/5 rounded-[32px] p-6 border border-white/10 shrink-0 relative group">
+              <div className="w-40 h-40 bg-white/5 rounded-3xl p-6 border border-white/10 shrink-0 relative group">
                 <div className="absolute inset-0 bg-brand-accent/10 blur-2xl rounded-full opacity-50" />
                 <img 
                   src={`${ECHO_IMAGE_BASE}${encodeURIComponent((isPhantom && showPhantom ? '이상 · ' + echo.name : echo.name).normalize('NFC'))}.webp`} 
@@ -98,7 +98,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                   {isPhantom && (
                     <button 
                       onClick={() => setShowPhantom(!showPhantom)}
-                      className={`text-xs font-black px-3 py-1 rounded-full transition-all border ${showPhantom ? 'bg-brand-primary text-white border-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.4)]' : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'}`}
+                      className={`text-xs font-black px-3 py-1 rounded-full transition border ${showPhantom ? 'bg-brand-primary text-white border-brand-primary shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.4)]' : 'bg-white/5 border-white/10 text-gray-400 hover:text-white'}`}
                     >
                       {showPhantom ? '팬텀 외형 ON' : '원본 외형 ON'}
                     </button>
@@ -111,14 +111,14 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
             <div className="flex gap-8 border-b border-white/5 shrink-0 px-2">
               <button 
                 onClick={() => setActiveTab('ability')} 
-                className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'ability' ? 'text-brand-accent' : 'text-gray-400 hover:text-gray-300'}`}
+                className={`pb-4 text-xs font-black tracking-widest transition relative ${activeTab === 'ability' ? 'text-brand-accent' : 'text-gray-400 hover:text-gray-300'}`}
               >
                 ECHO ABILITY
                 {activeTab === 'ability' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-accent animate-in fade-in slide-in-from-left-2" />}
               </button>
               <button 
                 onClick={() => setActiveTab('enemy')} 
-                className={`pb-4 text-[12px] font-black tracking-widest transition-all relative ${activeTab === 'enemy' ? 'text-brand-accent' : 'text-gray-400 hover:text-gray-300'}`}
+                className={`pb-4 text-xs font-black tracking-widest transition relative ${activeTab === 'enemy' ? 'text-brand-accent' : 'text-gray-400 hover:text-gray-300'}`}
               >
                 ENEMY INTEL
                 {activeTab === 'enemy' && <div className="absolute bottom-0 left-0 w-full h-0.5 bg-brand-accent animate-in fade-in slide-in-from-left-2" />}
@@ -136,7 +136,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                       <div 
                         key={setName}
                         onClick={() => onSelectSonata?.(setName)}
-                        className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3 py-1.5 cursor-pointer hover:bg-brand-primary/10 hover:border-brand-primary/50 transition-all"
+                        className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-xl px-3 py-1.5 cursor-pointer hover:bg-brand-primary/10 hover:border-brand-primary/50 transition"
                       >
                         <img src={`${SONATA_ICON_BASE}${encodeURIComponent(setName.normalize('NFC'))}.webp`} className="w-5 h-5" alt={setName} />
                         <span className="text-[11px] font-bold text-gray-300">{setName}</span>
@@ -150,7 +150,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                   <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                     <Zap size={14} className="text-brand-accent"/> Ability Description
                   </h4>
-                  <div className="bg-white/5 p-6 md:p-8 rounded-[32px] border border-white/5 shadow-inner">
+                  <div className="bg-white/5 p-6 md:p-8 rounded-3xl border border-white/5 shadow-inner">
                     <p className="text-gray-300 leading-relaxed font-medium text-base whitespace-pre-wrap break-words">
                       {renderRichText(echo.description)}
                     </p>
@@ -167,7 +167,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                       const effect = SONATA_EFFECTS.find(s => s.setName === setName)?.effect;
                       if (!effect) return null;
                       return (
-                        <div key={setName} className="bg-white/[0.02] border border-white/5 rounded-[24px] p-6 space-y-4">
+                        <div key={setName} className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 space-y-4">
                           <div className="flex items-center gap-3 border-b border-white/5 pb-3">
                             <img src={`${SONATA_ICON_BASE}${encodeURIComponent(setName.normalize('NFC'))}.webp`} className="w-6 h-6" alt={setName} />
                             <span className="text-sm font-black text-brand-accent">{setName}</span>
@@ -176,13 +176,13 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                             {effect.twoPiece && (
                               <div className="space-y-1">
                                 <p className="text-[11px] font-black text-brand-primary-text uppercase tracking-tighter">2-Piece Set Effect</p>
-                                <p className="text-[13px] text-gray-300 leading-snug font-medium">{effect.twoPiece}</p>
+                                <p className="text-sm text-gray-300 leading-snug font-medium">{effect.twoPiece}</p>
                               </div>
                             )}
                             {effect.threePiece && (
                               <div className="space-y-1">
                                 <p className="text-[11px] font-black text-brand-primary-text uppercase tracking-tighter">3-Piece Set Effect</p>
-                                <p className="text-[13px] text-gray-300 leading-snug font-medium">{effect.threePiece}</p>
+                                <p className="text-sm text-gray-300 leading-snug font-medium">{effect.threePiece}</p>
                               </div>
                             )}
                             {effect.fivePiece && (
@@ -209,7 +209,7 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                         <img src={`https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/common/stats/${attr}%20피해%20저항.webp`} className="w-5 h-5" alt={attr} />
                         <div className="flex justify-between w-full items-center">
                           <span className="text-[11px] font-black tracking-tight" style={{ color: ELEMENT_COLORS[attr] }}>{attr} 피해 저항</span>
-                          <span className="text-[12px] font-black text-white">{val as number}%</span>
+                          <span className="text-xs font-black text-white">{val as number}%</span>
                         </div>
                       </div>
                     ))}
@@ -234,11 +234,11 @@ export const WuwaEchoModal = ({ echo, isOpen, onClose, onShowItemDetail, onSelec
                         <button 
                           key={itemName}
                           onClick={() => onShowItemDetail(itemName)}
-                          className="relative group w-16 h-16 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-transparent hover:border-brand-primary/50 transition-all"
+                          className="relative group w-16 h-16 rounded-2xl overflow-hidden border border-white/10 bg-gradient-to-br from-white/5 to-transparent hover:border-brand-primary/50 transition"
                         >
                           <img src={imgUrl || ''} className="w-full h-full object-contain p-2" alt={itemName} />
                           <div className="absolute bottom-0 left-0 right-0 h-1" style={{ backgroundColor: getRarityColor(rarity) }} />
-                          <span className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[8px] font-bold text-white text-center p-1">상세 정보</span>
+                          <span className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-[11px] font-bold text-white text-center p-1">상세 정보</span>
                         </button>
                       );
                     })}

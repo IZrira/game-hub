@@ -57,7 +57,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
   const defaultCategoryUrl = gameId && category ? `/gallery/${gameId}?menu=${category}` : '/';
 
   return (
-    <div className={`bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 h-14 flex items-center px-4 md:px-8 z-[40] shadow-2xl justify-between w-full transition-all duration-300 ${
+    <div className={`bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 h-14 flex items-center px-4 md:px-8 z-[40] shadow-2xl justify-between w-full transition duration-300 ${
       isSticky ? 'sticky top-16' : 'relative'
     }`}>
       
@@ -114,7 +114,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
         {/* 3. 고정 토글 버튼 */}
         <button 
           onClick={toggleSticky} 
-          className={`p-2 rounded-xl transition-all group border ${
+          className={`p-2 rounded-xl transition group border ${
             isSticky ? 'bg-brand-primary/10 border-brand-primary/30 text-brand-primary-text shadow-[0_0_15px_rgba(var(--brand-primary-rgb),0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10'
           }`}
           title={isSticky ? t('고정 해제') : t('상단 고정')}
@@ -129,7 +129,7 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
           onClick={toggleFavorite} 
           aria-label={isFavorite ? t('즐겨찾기 해제') : t('즐겨찾기 추가')}
           aria-pressed={isFavorite}
-          className={`p-2 rounded-xl transition-all group border ${
+          className={`p-2 rounded-xl transition group border ${
             isFavorite ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-500 shadow-[0_0_15px_rgba(234,179,8,0.2)]' : 'bg-white/5 border-white/5 text-gray-400 hover:text-yellow-500/50 hover:bg-white/10'
           }`}
         >

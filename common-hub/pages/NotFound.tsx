@@ -33,13 +33,13 @@ const NotFound: React.FC = () => {
       <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
         <Link 
           to="/" 
-          className="flex items-center gap-2 px-8 py-4 bg-brand-primary text-white rounded-[20px] font-black italic shadow-2xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto"
+          className="flex items-center gap-2 px-8 py-4 bg-brand-primary text-white rounded-2xl font-black italic shadow-2xl hover:scale-105 active:scale-95 transition w-full sm:w-auto"
         >
           <Home size={18} /> {t('Back to Home')}
         </Link>
         <button 
           onClick={() => window.history.back()}
-          className="flex items-center gap-2 px-8 py-4 bg-white/5 text-gray-300 border border-white/10 rounded-[20px] font-black italic hover:bg-white/10 transition-all w-full sm:w-auto"
+          className="flex items-center gap-2 px-8 py-4 bg-white/5 text-gray-300 border border-white/10 rounded-2xl font-black italic hover:bg-white/10 transition w-full sm:w-auto"
         >
           <ArrowLeft size={18} /> {t('Go Back')}
         </button>
@@ -48,13 +48,13 @@ const NotFound: React.FC = () => {
       <div className="mt-20 pt-12 border-t border-white/5 w-full max-w-2xl">
         <h3 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] mb-6">{t('Quick Links')}</h3>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          <Link to="/gallery/hsr" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all">
+          <Link to="/gallery/hsr" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition">
             {t('붕괴: 스타레일')}
           </Link>
-          <Link to="/gallery/ww" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all">
+          <Link to="/gallery/ww" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition">
             {t('명조 (Wuthering Waves)')}
           </Link>
-          <Link to="/gallery/hsr/tierlist" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition-all">
+          <Link to="/gallery/hsr/tierlist" className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/[0.05] transition">
             {t('티어 리스트')}
           </Link>
         </div>

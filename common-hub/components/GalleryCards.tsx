@@ -53,13 +53,13 @@ export const CharacterPremiumCard = ({ char, index = 0 }: { char: any, index?: n
   const isCharacterList = searchParams.get('menu') === '캐릭터';
 
   return (
-    <Link to={`/gallery/${gameId}/character/${encodeURIComponent(characterSlug || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all duration-500">
+    <Link to={`/gallery/${gameId}/character/${encodeURIComponent(characterSlug || '')}`} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition duration-500">
       <img 
         src={thumbnail?.large || imgPath}
         srcSet={thumbnail ? `${thumbnail.small} ${thumbnail.smallWidth}w, ${thumbnail.large} ${thumbnail.largeWidth}w` : undefined}
         sizes={thumbnail ? (isCharacterList ? '(min-width: 1024px) 180px, (min-width: 640px) 25vw, 50vw' : '(min-width: 1024px) 240px, (min-width: 640px) 33vw, 50vw') : undefined}
         alt={`${t(char.name || '')} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`} 
-        className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110"
+        className="absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110"
         style={{ 
           imageRendering: '-webkit-optimize-contrast',
           backfaceVisibility: 'hidden',
@@ -126,7 +126,7 @@ export const LightConePremiumCard = ({ lc }: { lc: any }) => {
       : `/gallery/hsr/lightcone/${encodeURIComponent(lc.name || '')}`);
 
   return (
-    <Link to={targetUrl} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
+    <Link to={targetUrl} className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition">
       <img 
         src={imgPath} 
         alt={`${t(lc.name || '')} - ${t('상세 데이터 및 효과 정보')}`} 
@@ -174,7 +174,7 @@ export const RelicPremiumCard = ({ relic, onClick }: { relic: any, onClick?: () 
     </>
   );
 
-  const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left";
+  const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition w-full text-left";
   const targetUrl = `/gallery/${gameId}/relic/${encodeURIComponent(targetName)}`;
 
   if (onClick) {
@@ -225,7 +225,7 @@ export const ItemPremiumCard = ({ item }: { item: any }) => {
   return (
     <Link 
       to={`/gallery/${gameId}/item/${encodeURIComponent(itemName)}`}
-      className={`group relative aspect-[1/1.2] rounded-xl overflow-hidden border ${styles.border} bg-[#121212] transition-all duration-300 hover:bg-[#1a1a1a] hover:border-white/20 active:scale-95 flex flex-col`}
+      className={`group relative aspect-[1/1.2] rounded-xl overflow-hidden border ${styles.border} bg-[#121212] transition duration-300 hover:bg-[#1a1a1a] hover:border-white/20 active:scale-95 flex flex-col`}
     >
       {/* Subtle Rarity Glow (Top) */}
       <div className={`absolute top-0 left-0 w-full h-1 ${styles.accent} opacity-40 group-hover:opacity-100 transition-opacity`} />
@@ -309,7 +309,7 @@ export const GuidePremiumCard = ({ char, guide }: { char: any, guide: any }) => 
   if (char.id === 'baizhi') objectPos = 'center 30%'; // 설지의 얼굴을 더 위로 끌어올림
 
   return (
-    <Link to={guide.url || `/gallery/${gameId}/character/${char.id}/guide`} className="group relative aspect-video rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all">
+    <Link to={guide.url || `/gallery/${gameId}/character/${char.id}/guide`} className="group relative aspect-video rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition">
       <img 
         src={imgPath} 
         alt={t(char.name)} 
@@ -347,7 +347,7 @@ export const OrnamentPremiumCard = ({ ornament, onClick }: { ornament: any, onCl
     </>
   );
 
-  const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition-all w-full text-left";
+  const className = "group relative flex items-center gap-4 bg-white/5 border border-white/10 rounded-2xl p-4 hover:bg-white/10 transition w-full text-left";
   const targetUrl = `/gallery/${gameId}/ornament/${encodeURIComponent(ornamentName)}`;
 
   if (onClick) {

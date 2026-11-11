@@ -46,7 +46,7 @@ const Notices: React.FC = () => {
 
       <div className="max-w-[1000px] mx-auto w-full px-8 pt-10 pb-24">
         <div className="space-y-8">
-          <div className="bg-[#121212] rounded-[48px] border border-white/5 p-12 shadow-2xl relative overflow-hidden">
+          <div className="bg-[#121212] rounded-3xl border border-white/5 p-12 shadow-2xl relative overflow-hidden">
             <div className="relative z-10">
               <h1 className="text-5xl font-black italic tracking-tighter uppercase flex items-center gap-4">
                 <Bell className="text-brand-primary-text" size={40} />
@@ -68,7 +68,7 @@ const Notices: React.FC = () => {
                 <Link 
                   key={notice.id}
                   to={`/notices/${notice.id}`}
-                  className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-8 hover:bg-white/[0.04] hover:border-brand-primary/30 transition-all group block"
+                  className="bg-white/[0.02] border border-white/5 rounded-3xl p-6 md:p-8 hover:bg-white/[0.04] hover:border-brand-primary/30 transition group block"
                 >
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="flex items-center gap-4">
@@ -98,7 +98,7 @@ const Notices: React.FC = () => {
             )}
 
             {notices.length === 0 && (
-              <div className="py-32 text-center space-y-4 bg-[#121212] rounded-[48px] border border-dashed border-white/10">
+              <div className="py-32 text-center space-y-4 bg-[#121212] rounded-3xl border border-dashed border-white/10">
                 <Bell size={48} className="mx-auto text-gray-400 opacity-20" />
                 <p className="text-gray-400 font-black uppercase tracking-widest">등록된 공지사항이 없습니다</p>
               </div>

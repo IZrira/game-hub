@@ -209,7 +209,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
   const userAvatar = user?.user_metadata?.avatar_url;
 
   return (
-    <div className="glass-card p-4 md:p-6 rounded-[28px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent relative">
+    <div className="glass-card p-4 md:p-6 rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent relative">
       {!user && (
         <div
           className="absolute inset-0 z-10 cursor-pointer"
@@ -463,7 +463,7 @@ export const CommentForm: React.FC<CommentFormProps> = ({
                   (user && commentText.length > 500) ||
                   (user && commentText.trim().length === 0 && mediaUrls.length === 0)
                 }
-                className="px-5 py-2 bg-brand-primary hover:bg-brand-primary/80 text-white font-bold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-xs shadow-md shadow-brand-primary/20"
+                className="px-5 py-2 bg-brand-primary hover:bg-brand-primary/80 text-white font-bold rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wider text-xs shadow-md shadow-brand-primary/20"
               >
                 {isSubmitting ? 'Posting...' : buttonLabel}
               </button>

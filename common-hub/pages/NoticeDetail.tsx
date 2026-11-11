@@ -70,7 +70,7 @@ const NoticeDetail: React.FC = () => {
           </button>
         </div>
 
-        <article className="bg-[#121212] rounded-[48px] border border-white/5 p-12 md:p-20 shadow-2xl relative overflow-hidden min-h-[60vh]">
+        <article className="bg-[#121212] rounded-3xl border border-white/5 p-12 md:p-20 shadow-2xl relative overflow-hidden min-h-[60vh]">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12 border-b border-white/10 pb-8">
             <div className="space-y-3 flex-1">
               <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold ${

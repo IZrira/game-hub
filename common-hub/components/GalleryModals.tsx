@@ -57,7 +57,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
       <div className="absolute inset-0" onClick={onClose} />
       <div 
         onCopy={handlePlainCopy}
-        className="relative bg-[#121212] border border-white/10 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto"
+        className="relative bg-[#121212] border border-white/10 rounded-3xl sm:rounded-3xl md:rounded-3xl p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto"
       >
         <button onClick={onClose} className="absolute top-5 right-5 sm:top-8 sm:right-8 text-gray-400 hover:text-white transition-colors z-20">
           <X size={24} className="sm:w-7 sm:h-7" />
@@ -65,7 +65,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
         
         <div className="space-y-6 sm:space-y-10">
           <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-10">
-            <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white/5 rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 border border-white/10 shrink-0 relative group">
+            <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white/5 rounded-3xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 shrink-0 relative group">
               <div className="absolute inset-0 bg-brand-primary/10 blur-2xl rounded-full opacity-50" />
               <img src={imgPath} alt={t(relic.name)} className="w-full h-full object-contain relative z-10" />
             </div>
@@ -95,7 +95,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
                   type="button"
                   onClick={handleCopyTitle}
                   title="이름 복사 (일반 텍스트)"
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition flex items-center justify-center shrink-0"
                 >
                   {isCopied ? <Check size={18} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={18} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
                 </button>
@@ -116,7 +116,7 @@ export const RelicDetailModal = ({ relic, onClose }: { relic: any, onClose: () =
                     const displayPieceName = isEn && piece.enName ? piece.enName : t(pieceKoName);
                     if (typeof pieceKoName !== 'string') return null;
                     return (
-                      <div key={idx} className="bg-white/5 rounded-2xl p-3 sm:p-4 border border-white/5 flex flex-col items-center text-center gap-2 sm:gap-3 group hover:bg-white/10 transition-all">
+                      <div key={idx} className="bg-white/5 rounded-2xl p-3 sm:p-4 border border-white/5 flex flex-col items-center text-center gap-2 sm:gap-3 group hover:bg-white/10 transition">
                         <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl bg-black/20 p-1.5 sm:p-2">
                           <img 
                             src={getPieceImageUrl(idx)} 
@@ -216,7 +216,7 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
       <div className="absolute inset-0" onClick={onClose} />
       <div 
         onCopy={handlePlainCopy}
-        className="relative bg-[#121212] border border-white/10 rounded-[24px] sm:rounded-[36px] md:rounded-[40px] p-5 sm:p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95"
+        className="relative bg-[#121212] border border-white/10 rounded-3xl sm:rounded-3xl md:rounded-3xl p-5 sm:p-8 max-w-lg w-full shadow-2xl animate-in zoom-in-95"
       >
         <button onClick={onClose} className="absolute top-5 right-5 sm:top-6 sm:right-6 text-gray-400 hover:text-white transition-colors z-20">
           <X size={20} className="sm:w-6 sm:h-6" />
@@ -248,7 +248,7 @@ export const ItemDetailModal = ({ item, onClose }: { item: any, onClose: () => v
                   type="button"
                   onClick={handleCopyTitle}
                   title="이름 복사 (일반 텍스트)"
-                  className="p-1 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                  className="p-1 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition flex items-center justify-center shrink-0"
                 >
                   {isCopied ? <Check size={16} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={16} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
                 </button>
@@ -318,7 +318,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
       <div className="absolute inset-0" onClick={onClose} />
       <div 
         onCopy={handlePlainCopy}
-        className="relative bg-[#121212] border border-white/10 rounded-[28px] sm:rounded-[36px] md:rounded-[48px] p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto"
+        className="relative bg-[#121212] border border-white/10 rounded-3xl sm:rounded-3xl md:rounded-3xl p-5 sm:p-8 md:p-10 max-w-2xl w-full shadow-2xl animate-in zoom-in-95 max-h-[90vh] overflow-y-auto"
       >
         <button onClick={onClose} className="absolute top-5 right-5 sm:top-8 sm:right-8 text-gray-400 hover:text-white transition-colors z-20">
           <X size={24} className="sm:w-7 sm:h-7" />
@@ -326,7 +326,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
 
         <div className="space-y-6 sm:space-y-10">
           <div className="flex flex-col md:flex-row items-center gap-6 sm:gap-10">
-            <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white/5 rounded-[24px] sm:rounded-[32px] p-4 sm:p-6 border border-white/10 shrink-0 relative group">
+            <div className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40 bg-white/5 rounded-3xl sm:rounded-3xl p-4 sm:p-6 border border-white/10 shrink-0 relative group">
               <div className="absolute inset-0 bg-brand-accent/10 blur-2xl rounded-full opacity-50" />
               <img src={imgPath} alt={t(ornament.name)} className="w-full h-full object-contain relative z-10" />
             </div>
@@ -356,7 +356,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
                   type="button"
                   onClick={handleCopyTitle}
                   title="이름 복사 (일반 텍스트)"
-                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                  className="p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition flex items-center justify-center shrink-0"
                 >
                   {isCopied ? <Check size={18} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={18} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
                 </button>
@@ -377,7 +377,7 @@ export const OrnamentDetailModal = ({ ornament, onClose }: { ornament: any, onCl
                     const displayPieceName = isEn && piece.enName ? piece.enName : t(pieceKoName);
                     if (typeof pieceKoName !== 'string') return null;
                     return (
-                      <div key={idx} className="bg-white/5 rounded-2xl sm:rounded-3xl p-3 sm:p-6 border border-white/5 flex flex-col items-center text-center gap-2 sm:gap-4 group hover:bg-white/10 transition-all">
+                      <div key={idx} className="bg-white/5 rounded-2xl sm:rounded-3xl p-3 sm:p-6 border border-white/5 flex flex-col items-center text-center gap-2 sm:gap-4 group hover:bg-white/10 transition">
                         <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-black/20 p-2 sm:p-3">
                           <img 
                             src={getPieceImageUrl(idx)} 

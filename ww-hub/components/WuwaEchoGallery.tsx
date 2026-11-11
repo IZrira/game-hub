@@ -33,7 +33,7 @@ const WuwaEchoGallery: React.FC = () => {
 
   return (
     <div className="space-y-8 sm:space-y-12 animate-in fade-in duration-500">
-      <div className="bg-[#121212] rounded-[28px] sm:rounded-[48px] border border-white/5 p-4 sm:p-6 lg:p-10 shadow-2xl space-y-6 sm:space-y-8">
+      <div className="bg-[#121212] rounded-3xl sm:rounded-3xl border border-white/5 p-4 sm:p-6 lg:p-10 shadow-2xl space-y-6 sm:space-y-8">
         {/* 상단 헤더 */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 border-b border-white/5 pb-8">
           <div className="space-y-2 w-full">
@@ -52,7 +52,7 @@ const WuwaEchoGallery: React.FC = () => {
               <input 
                 type="text" 
                 placeholder="명칭으로 필터링..." 
-                className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition-all placeholder:text-gray-400"
+                className="w-full h-12 bg-white/[0.03] border border-white/10 rounded-xl py-3 pl-12 pr-4 text-base text-white focus:outline-none focus:border-brand-primary focus:ring-4 focus:ring-brand-primary/20 font-bold shadow-inner transition placeholder:text-gray-400"
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
               />
@@ -66,7 +66,7 @@ const WuwaEchoGallery: React.FC = () => {
                   <button
                     key={cost}
                     onClick={() => setActiveCost(cost as any)}
-                    className={`h-10 min-w-[44px] px-4 sm:h-11 sm:px-6 rounded-xl text-xs font-black transition-all border flex items-center justify-center ${
+                    className={`h-10 min-w-[44px] px-4 sm:h-11 sm:px-6 rounded-xl text-xs font-black transition border flex items-center justify-center ${
                       activeCost === cost ? "bg-white text-black shadow-lg shadow-white/20" : "bg-white/[0.03] text-gray-400 border-white/5 hover:bg-white/10"
                     }`}
                   >
@@ -83,7 +83,7 @@ const WuwaEchoGallery: React.FC = () => {
             <div className="flex flex-wrap gap-3 overflow-x-auto pb-2 scrollbar-hide">
               <button
                 onClick={() => setActiveSonata('전체')}
-                className={`flex flex-col items-center gap-2 p-2 rounded-xl transition-all border w-20 md:w-24 shrink-0 ${
+                className={`flex flex-col items-center gap-2 p-2 rounded-xl transition border w-20 md:w-24 shrink-0 ${
                   activeSonata === '전체' ? "bg-brand-primary/20 border-brand-primary text-white" : "bg-white/[0.03] border-transparent opacity-60 hover:opacity-100"
                 }`}
                 title="전체"
@@ -95,7 +95,7 @@ const WuwaEchoGallery: React.FC = () => {
                 <button
                   key={set}
                   onClick={() => setActiveSonata(set)}
-                  className={`flex flex-col items-center gap-2 p-2 rounded-xl transition-all border w-20 md:w-24 shrink-0 ${
+                  className={`flex flex-col items-center gap-2 p-2 rounded-xl transition border w-20 md:w-24 shrink-0 ${
                     activeSonata === set ? "bg-brand-primary/20 border-brand-primary text-white shadow-lg shadow-brand-primary/20" : "bg-white/[0.03] border-transparent opacity-60 hover:opacity-100"
                   }`}
                   title={set}
@@ -115,7 +115,7 @@ const WuwaEchoGallery: React.FC = () => {
       </div>
 
       {/* 에코 리스트 그리드 */}
-      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3 sm:gap-x-5 sm:gap-y-8 lg:gap-y-10 bg-white/[0.01] p-3 sm:p-6 lg:p-10 rounded-[28px] sm:rounded-[50px] border border-white/5 shadow-2xl min-h-[400px]">
+      <div className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 gap-3 sm:gap-x-5 sm:gap-y-8 lg:gap-y-10 bg-white/[0.01] p-3 sm:p-6 lg:p-10 rounded-3xl sm:rounded-3xl border border-white/5 shadow-2xl min-h-[400px]">
         {filteredEchoes.map((echo) => (
           <EchoPremiumCard 
             key={echo.id} 
@@ -147,7 +147,7 @@ const EchoPremiumCard = ({ echo, to }: { echo: WuwaEcho, to: string }) => {
   return (
     <Link
       to={to}
-      className={`group relative aspect-[1/1.2] rounded-xl overflow-hidden border ${styles.border} bg-[#121212] transition-all duration-300 hover:bg-[#1a1a1a] hover:border-white/20 active:scale-95 flex flex-col`}
+      className={`group relative aspect-[1/1.2] rounded-xl overflow-hidden border ${styles.border} bg-[#121212] transition duration-300 hover:bg-[#1a1a1a] hover:border-white/20 active:scale-95 flex flex-col`}
     >
       {/* Subtle Rarity Glow (Top) */}
       <div className={`absolute top-0 left-0 w-full h-1 ${styles.accent} opacity-40 group-hover:opacity-100 transition-opacity z-20`} />
@@ -174,7 +174,7 @@ const EchoPremiumCard = ({ echo, to }: { echo: WuwaEcho, to: string }) => {
         
         {/* Cost Tag (Top Right) */}
         <div className="absolute top-2 right-2 z-20 px-1.5 py-0.5 bg-black/60 backdrop-blur-md rounded-md border border-white/10 opacity-60 group-hover:opacity-100 transition-opacity">
-          <span className="text-[8px] font-black text-brand-accent">C{echo.cost}</span>
+          <span className="text-[11px] font-black text-brand-accent">C{echo.cost}</span>
         </div>
       </div>
 

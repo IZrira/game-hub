@@ -132,7 +132,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
             <input 
               type="text" 
               placeholder={t('Search database...')} 
-              className="w-full h-11 bg-white/[0.02] border border-white/10 rounded-xl py-2 pl-11 pr-4 text-sm text-white placeholder:text-gray-400 focus:outline-none focus:border-white/20 transition-all font-bold" 
+              className="w-full h-11 bg-white/[0.02] border border-white/10 rounded-xl py-2 pl-11 pr-4 text-sm text-white placeholder:text-gray-400 focus:outline-none focus:border-white/20 transition font-bold"
               value={search} 
               onChange={(e) => setSearch(e.target.value)} 
             />
@@ -145,7 +145,7 @@ const InventoryGallery: React.FC<InventoryGalleryProps> = ({ gameId = 'hsr', cus
                 <button
                   key={cat}
                   onClick={() => setActiveTab(cat)}
-                  className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition-all border ${
+                  className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wider transition border ${
                     isActive 
                       ? "bg-white text-black border-white" 
                       : "text-gray-400 border-white/5 hover:border-white/10 hover:text-gray-400"

@@ -316,7 +316,7 @@ const CharacterDetail: React.FC = () => {
         const titleText = titleMatch[1].trim();
         return (
           <div key={lineIndex} className="inline-block w-full mt-5 mb-1">
-            <span className="text-[18px]" style={{ 
+            <span className="text-lg" style={{
               color: '#a89969', 
               fontWeight: 900, 
               letterSpacing: '-0.05em' 
@@ -401,7 +401,7 @@ const CharacterDetail: React.FC = () => {
           return (
             <span 
               key={i} 
-              className={`inline-block font-bold transition-all duration-300 ${hasTooltip ? 'cursor-help border-b border-dashed active:scale-95' : ''}`}
+              className={`inline-block font-bold transition duration-300 ${hasTooltip ? 'cursor-help border-b border-dashed active:scale-95' : ''}`}
               style={{ 
                 color: '#fbbf24', 
                 textShadow: '0 0 10px rgba(251, 191, 36, 0.4)',
@@ -758,9 +758,9 @@ const CharacterDetail: React.FC = () => {
                    <ChevronDown size={18} />
                 </div>
               </button>
-              <div className={`transition-all duration-500 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
+              <div className={`transition-[max-height,opacity,padding] duration-500 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-8' : 'max-h-0 opacity-0'}`}>
                 <div className="px-6 border-t border-white/5 pt-6">
-                  <div className="whitespace-pre-line border-l-2 border-white/10 pl-5 text-base leading-relaxed text-gray-300">
+                  <div className="whitespace-pre-line text-base leading-relaxed text-gray-300">
                     {renderTextWithHighlights(t(char.autoDescription || char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.'))}
                   </div>
                 </div>
@@ -779,7 +779,7 @@ const CharacterDetail: React.FC = () => {
             expanded={isMetadataExpanded} 
             onToggle={() => setIsMetadataExpanded(!isMetadataExpanded)} 
           />
-          <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isMetadataExpanded ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className={`overflow-hidden transition-[max-height,opacity,padding] duration-700 ease-in-out ${isMetadataExpanded ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6">
               {/* Metadata Cards Grid */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -843,7 +843,7 @@ const CharacterDetail: React.FC = () => {
           <section className="space-y-8">
             <div className="flex items-center gap-6 px-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>04</div>
-              <h2 className="border-l-4 border-white/10 py-1.5 pl-6 text-2xl font-black leading-none text-white md:text-3xl">{t('전투 역할')}</h2>
+              <h2 className="py-1.5 text-2xl font-black leading-none text-white md:text-3xl">{t('전투 역할')}</h2>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1010,7 +1010,7 @@ const SectionHeader: React.FC<{
   <div className="flex items-center justify-between w-full group">
     <div className="flex items-center gap-4 md:gap-6">
       <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{num}</div>
-      <h2 className="border-l-4 border-white/10 py-1 pl-4 text-xl font-black leading-none text-white md:pl-6 md:text-2xl">{title}</h2>
+      <h2 className="py-1 text-xl font-black leading-none text-white md:text-2xl">{title}</h2>
     </div>
     {onToggle && (<button type="button" onClick={onToggle} aria-expanded={expanded} aria-label={`${title} ${expanded ? '접기' : '펼치기'}`} className="rounded-xl border border-white/10 bg-white/5 p-3 transition-colors hover:bg-white/10">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
   </div>
@@ -1036,7 +1036,7 @@ const MetadataCard: React.FC<{
 const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
   <div className="space-y-4 group">
     <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
-    <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
+    <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition">{value}</div>
   </div>
 );
 

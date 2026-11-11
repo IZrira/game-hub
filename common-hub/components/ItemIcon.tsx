@@ -67,13 +67,13 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
       tabIndex={onClick ? 0 : undefined}
       aria-label={`${translatedName} ${count ? count + '개' : ''}`}
       onKeyDown={(e) => { if (onClick && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onClick(); } }}
-      className={`flex flex-col items-center gap-2 group cursor-pointer transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-xl ${currentSize.container}`}
+      className={`flex flex-col items-center gap-2 group cursor-pointer transition duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-xl ${currentSize.container}`}
       onClick={onClick}
       title={name}
     >
       <div className={`
         relative isolate ${currentSize.box} rounded-xl overflow-hidden border-2 
-        bg-gradient-to-b transition-all duration-500
+        bg-gradient-to-b transition duration-500
         group-hover:brightness-110 shadow-lg flex items-center justify-center
         ${RARITY_THEMES[rarity] || RARITY_THEMES[1]}
       `}>
@@ -91,7 +91,7 @@ const ItemIcon: React.FC<ItemIconProps> = ({ name, count, onClick, rarityOverrid
         />
 
         {count !== undefined && count !== null && (
-          <div className="absolute bottom-0 right-0 left-0 bg-black/85 backdrop-blur-md px-2 py-1 text-[11px] md:text-[13px] font-black text-white text-right z-30 border-t border-white/10 font-sans tabular-nums tracking-tight">
+          <div className="absolute bottom-0 right-0 left-0 bg-black/85 backdrop-blur-md px-2 py-1 text-[11px] md:text-xs font-black text-white text-right z-30 border-t border-white/10 font-sans tabular-nums tracking-tight">
             {typeof count === 'number' ? count.toLocaleString() : count}
           </div>
         )}

@@ -103,7 +103,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
   if (resonators.length === 0) return null;
 
   return (
-    <section className="glass-card p-6 sm:p-8 rounded-[35px] border border-white/5 bg-black/20 space-y-5">
+    <section className="glass-card p-6 sm:p-8 rounded-3xl border border-white/5 bg-black/20 space-y-5">
       <div className="flex items-center justify-between border-b border-white/5 pb-3">
         <div className="flex items-center gap-3">
           <Users size={18} style={{ color: readableTextColor(theme.primary) }} />
@@ -123,7 +123,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
           return (
             <div
               key={char.charId}
-              className="group flex flex-col justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition-all"
+              className="group flex flex-col justify-between p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
             >
               <Link
                 to={`/gallery/ww/character/${encodeURIComponent(char.charId)}`}
@@ -141,7 +141,7 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
                   />
                   {char.rank !== undefined && (
                     <span
-                      className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[8px] font-black text-black"
+                      className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[11px] font-black text-black"
                       style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
                     >
                       {char.rank}순위

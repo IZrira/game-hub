@@ -115,7 +115,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                     return (
                       <div
                         key={`${node.id || node.number}-${node.formKey}-${node.imageUrl}`}
-                        className={`relative group flex flex-col w-56 rounded-2xl border transition-all duration-300 p-4 ${
+                        className={`relative group flex flex-col w-56 rounded-2xl border transition duration-300 p-4 ${
                           isCurrentChar
                             ? 'border-violet-400 bg-gradient-to-b from-violet-500/15 via-[#161325] to-[#111118] shadow-[0_0_28px_rgba(167,139,250,0.25)] ring-1 ring-violet-400/40'
                             : 'border-white/10 bg-white/[0.03] hover:border-violet-400/40 hover:bg-white/[0.06]'
@@ -185,7 +185,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                                     to={`/gallery/aniimo/character/${encodeURIComponent(node.name || '')}${
                                       form.key !== 'basic-form' ? `?form=${encodeURIComponent(form.key)}` : ''
                                     }`}
-                                    className={`px-1.5 py-0.5 rounded text-[11px] font-black transition-all ${
+                                    className={`px-1.5 py-0.5 rounded text-[11px] font-black transition ${
                                       isFormActive
                                         ? 'bg-violet-400 text-black shadow-sm'
                                         : 'bg-white/5 text-gray-400 hover:bg-violet-400/20 hover:text-violet-300'
@@ -248,7 +248,7 @@ export const AniimoEvolutionTree: React.FC<AniimoEvolutionTreeProps> = ({
                   return (
                     <div
                       key={`${node.id || node.number}-${node.formKey}-${node.imageUrl}`}
-                      className={`rounded-2xl border p-3.5 transition-all ${
+                      className={`rounded-2xl border p-3.5 transition ${
                         isCurrentChar
                           ? 'border-violet-400/80 bg-violet-500/10'
                           : 'border-white/10 bg-white/[0.02]'

@@ -65,11 +65,11 @@ const HsrItemIcon: React.FC<HsrItemIconProps> = ({ name, count, onClick, rarityO
           onClick();
         }
       }}
-      className={`flex flex-col items-center gap-2 group cursor-pointer transition-all duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-xl ${sizeConfig.container}`}
+      className={`flex flex-col items-center gap-2 group cursor-pointer transition duration-300 hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary rounded-xl ${sizeConfig.container}`}
       onClick={onClick}
       title={name}
     >
-      <div className={`relative isolate ${sizeConfig.box} rounded-xl overflow-hidden border-2 bg-gradient-to-b transition-all duration-500 group-hover:brightness-110 shadow-lg flex items-center justify-center ${RARITY_THEMES[rarityOverride] || RARITY_THEMES[3]}`}>
+      <div className={`relative isolate ${sizeConfig.box} rounded-xl overflow-hidden border-2 bg-gradient-to-b transition duration-500 group-hover:brightness-110 shadow-lg flex items-center justify-center ${RARITY_THEMES[rarityOverride] || RARITY_THEMES[3]}`}>
         <div className="absolute inset-0 opacity-0 group-hover:opacity-15 transition-opacity bg-white pointer-events-none z-20" />
         <img
           src={imageUrl}
@@ -82,7 +82,7 @@ const HsrItemIcon: React.FC<HsrItemIconProps> = ({ name, count, onClick, rarityO
           onError={() => setImageUrl(`${CDN_URL}/hsr%20images/items/%EC%8B%A0%EC%9A%A9%20%ED%8F%AC%EC%9D%B8%ED%8A%B8.webp`)}
         />
         {count !== undefined && count !== null && (
-          <div className="absolute bottom-0 right-0 left-0 bg-black/85 backdrop-blur-md px-2 py-1 text-[11px] md:text-[13px] font-black text-white text-right z-30 border-t border-white/10 font-sans tabular-nums tracking-tight">
+          <div className="absolute bottom-0 right-0 left-0 bg-black/85 backdrop-blur-md px-2 py-1 text-[11px] md:text-xs font-black text-white text-right z-30 border-t border-white/10 font-sans tabular-nums tracking-tight">
             {typeof count === 'number' ? count.toLocaleString() : count}
           </div>
         )}

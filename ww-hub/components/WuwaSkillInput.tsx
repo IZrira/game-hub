@@ -93,7 +93,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
         }
 
         return (
-          <div key={index} className="my-6 bg-white/[0.02] p-4 rounded-[30px] border border-white/5 flex justify-center items-center overflow-hidden w-full text-center">
+          <div key={index} className="my-6 bg-white/[0.02] p-4 rounded-3xl border border-white/5 flex justify-center items-center overflow-hidden w-full text-center">
             <img 
               src={`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char?.folderName)}/${safeEncodeURIComponent(imageName)}`}
               className="max-w-xl w-full h-auto object-contain rounded-2xl shadow-2xl transition-transform hover:scale-105 duration-700"
@@ -160,7 +160,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
   const hasInlineImage = overviewText.includes('.webp');
 
   return (
-    <div className="glass-card p-8 rounded-[40px] border border-white/10 bg-black/40 font-sans shadow-2xl relative overflow-hidden">
+    <div className="glass-card p-8 rounded-3xl border border-white/10 bg-black/40 font-sans shadow-2xl relative overflow-hidden">
        {/* Background Accent */}
       <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/[0.02] to-transparent rounded-bl-[100px] pointer-events-none" />
 
@@ -170,7 +170,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
       </h2>
 
       {(!char.skillInput?.hideGauge && char?.folderName) && (
-        <div className="mb-10 bg-white/[0.02] p-4 rounded-[30px] border border-white/5 flex justify-center items-center overflow-hidden">
+        <div className="mb-10 bg-white/[0.02] p-4 rounded-3xl border border-white/5 flex justify-center items-center overflow-hidden">
           <img 
             src={`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(char.folderName)}/공명 회로 게이지.webp`}
             className="w-full max-w-xl h-auto object-contain rounded-2xl shadow-2xl transition-transform hover:scale-105 duration-700"
@@ -268,7 +268,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
             {filteredInputs.length > 4 && (
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="w-full py-3 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 text-xs font-bold text-gray-400 hover:text-white flex items-center justify-center gap-2 transition-all cursor-pointer"
+                className="w-full py-3 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/5 text-xs font-bold text-gray-400 hover:text-white flex items-center justify-center gap-2 transition cursor-pointer"
               >
                 <span>{isExpanded ? t('접기') : `${t('조작 가이드 더보기')} (+${filteredInputs.length - 4})`}</span>
                 {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
@@ -284,7 +284,7 @@ const WuwaSkillInput: React.FC<WuwaSkillInputProps> = ({ char, specialTerms = {}
 // --- 서브 컴포넌트 ---
 
 const InputRow = ({ action }: { label?: string, action: React.ReactNode }) => (
-  <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] hover:border-white/10 transition-all group">
+  <div className="flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.06] hover:border-white/10 transition group">
     <div className="w-1.5 h-1.5 rounded-full bg-white/20 group-hover:bg-brand-primary transition-colors" />
     <div className="flex flex-wrap items-center w-full">
       <span className="text-gray-300 text-sm font-medium whitespace-pre-line w-full">{action}</span>

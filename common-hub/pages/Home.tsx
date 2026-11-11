@@ -15,7 +15,12 @@ import {
   Users,
   Globe,
   Search,
-  ArrowRight
+  ArrowRight,
+  TrainFront,
+  Waves,
+  Building2,
+  PawPrint,
+  type LucideIcon
 } from 'lucide-react';
 
 // WebP banner asset fallbacks for game hubs
@@ -57,11 +62,11 @@ const Home: React.FC = () => {
   }, []);
 
   const gameStats = homeStatsData.games as Record<string, { characters: number; guides: number }>;
-  const gameDescriptions: Record<string, { eyebrow: string; categories: string; accent: string; icon: string }> = {
-    hsr: { eyebrow: '붕괴: 스타레일 공략 허브', categories: '캐릭터 · 광추 · 유물 · 파티', accent: 'border-purple-400/30 hover:border-purple-400/70', icon: '✦' },
-    ww: { eyebrow: '명조: 워더링 웨이브 공략 허브', categories: '공명자 · 무기 · 에코 · 파티', accent: 'border-emerald-400/30 hover:border-emerald-400/70', icon: '◈' },
-    nte: { eyebrow: '이환 공략·데이터 허브', categories: '캐릭터 · 아크 · 카트리지 · 이동 수단', accent: 'border-sky-400/30 hover:border-sky-400/70', icon: '◇' },
-    aniimo: { eyebrow: '애니모 도감 허브', categories: '애니모 · 진화 · 성격 · 서식지', accent: 'border-amber-400/30 hover:border-amber-400/70', icon: '●' },
+  const gameDescriptions: Record<string, { eyebrow: string; categories: string; accent: string; icon: LucideIcon }> = {
+    hsr: { eyebrow: '붕괴: 스타레일 공략 허브', categories: '캐릭터 · 광추 · 유물 · 파티', accent: 'border-purple-400/30 hover:border-purple-400/70', icon: TrainFront },
+    ww: { eyebrow: '명조: 워더링 웨이브 공략 허브', categories: '공명자 · 무기 · 에코 · 파티', accent: 'border-emerald-400/30 hover:border-emerald-400/70', icon: Waves },
+    nte: { eyebrow: '이환 공략·데이터 허브', categories: '캐릭터 · 아크 · 카트리지 · 이동 수단', accent: 'border-sky-400/30 hover:border-sky-400/70', icon: Building2 },
+    aniimo: { eyebrow: '애니모 도감 허브', categories: '애니모 · 진화 · 성격 · 서식지', accent: 'border-amber-400/30 hover:border-amber-400/70', icon: PawPrint },
   };
 
   return (
@@ -130,7 +135,7 @@ const Home: React.FC = () => {
             return <Link key={game.id} to={`/gallery/${game.id}`} className={`group flex min-h-[158px] flex-col justify-between rounded-2xl border bg-[#121212] p-5 transition hover:-translate-y-0.5 hover:bg-white/[0.045] ${meta.accent}`}>
               <div>
                 <div className="flex items-center gap-2 text-xs font-black text-gray-400">
-                  <span className="text-base text-brand-accent" aria-hidden="true">{meta.icon}</span>
+                  <meta.icon size={16} strokeWidth={2} className="shrink-0 text-brand-accent" aria-hidden="true" />
                   <span>{meta.eyebrow}</span>
                 </div>
                 <h3 className="mt-3 text-xl font-black text-white">{game.title}</h3>
@@ -147,7 +152,7 @@ const Home: React.FC = () => {
 
       {/* 최근 업데이트 (패치 노트 및 공지사항 탭) */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 mt-16 sm:mt-24 mb-8 relative z-20">
-        <div className="bg-[#121212] border border-white/5 rounded-[24px] sm:rounded-[32px] p-5 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
+        <div className="bg-[#121212] border border-white/5 rounded-3xl sm:rounded-3xl p-5 sm:p-6 md:p-8 shadow-2xl relative overflow-hidden group hover:border-white/10 transition-colors duration-500">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary/50 to-transparent opacity-50 group-hover:opacity-100 transition-opacity" />
 
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-white/5 pb-5">
@@ -159,13 +164,13 @@ const Home: React.FC = () => {
               <div className="flex items-center gap-1.5 bg-[#121212] p-1 rounded-xl border border-white/5">
                 <button
                   onClick={() => setDailyHubTab('patch_notes')}
-                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary-text' : 'text-gray-400 hover:text-white'}`}
+                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition ${dailyHubTab === 'patch_notes' ? 'bg-brand-primary/20 text-brand-primary-text' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('패치 노트')}
                 </button>
                 <button
                   onClick={() => setDailyHubTab('notices')}
-                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition-all ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
+                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11px] sm:text-xs font-black uppercase tracking-wider transition ${dailyHubTab === 'notices' ? 'bg-white/10 text-white' : 'text-gray-400 hover:text-white'}`}
                 >
                   {t('전체 공지')}
                 </button>

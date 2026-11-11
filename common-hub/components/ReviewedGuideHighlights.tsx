@@ -46,7 +46,7 @@ const ReviewedGuideHighlights: React.FC<ReviewedGuideHighlightsProps> = ({
           <Link
             key={guide.slug}
             to={`/gallery/${gameId}/guides/${guide.slug}`}
-            className={variant === 'list' ? 'group block py-4 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300' : 'group rounded-[24px] border border-white/5 bg-white/[0.025] p-5 transition hover:border-white/15 hover:bg-white/[0.05]'}
+            className={variant === 'list' ? 'group block py-4 transition-colors hover:bg-white/[0.02] focus-visible:outline focus-visible:outline-2 focus-visible:outline-violet-300' : 'group rounded-3xl border border-white/5 bg-white/[0.025] p-5 transition hover:border-white/15 hover:bg-white/[0.05]'}
           >
             <h3 className="text-base font-black leading-6 text-white transition group-hover:text-violet-200">
               {guide.title}

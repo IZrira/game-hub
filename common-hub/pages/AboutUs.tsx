@@ -46,7 +46,7 @@ const AboutUs: React.FC = () => {
         </section>
 
         {/* 팀 소개 및 운영 철학 */}
-        <section className="bg-[#121212] border border-white/5 rounded-[40px] p-10 md:p-16 space-y-12 shadow-2xl">
+        <section className="bg-[#121212] border border-white/5 rounded-3xl p-10 md:p-16 space-y-12 shadow-2xl">
           <div className="space-y-4">
             <h2 className="text-3xl font-black tracking-tighter text-white uppercase">{t('Our Philosophy')}</h2>
             <div className="w-12 h-1 bg-brand-primary rounded-full" />
@@ -80,7 +80,7 @@ const AboutUs: React.FC = () => {
 };
 
 const ValueCard: React.FC<{ icon: React.ReactNode; title: string; desc: string }> = ({ icon, title, desc }) => (
-  <div className="bg-[#121212] border border-white/5 p-8 rounded-[32px] space-y-6 hover:border-brand-primary/50 transition-colors duration-500 group">
+  <div className="bg-[#121212] border border-white/5 p-8 rounded-3xl space-y-6 hover:border-brand-primary/50 transition-colors duration-500 group">
     <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center group-hover:scale-110 transition-transform duration-500 border border-white/10">
       {icon}
     </div>

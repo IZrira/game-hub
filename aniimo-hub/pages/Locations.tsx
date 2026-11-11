@@ -29,7 +29,7 @@ const LocationsAniimo: React.FC = () => (
     <main className="mx-auto grid max-w-[1500px] gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[230px_minmax(0,1fr)]">
       <AniimoSidebar />
       <div className="min-w-0 space-y-8">
-        <section className="rounded-[32px] border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
+        <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/15 via-[#121212] to-cyan-400/10 p-7 sm:p-10">
           <div className="flex items-center gap-3 text-violet-300">
             <MapPin size={20} />
             <span className="text-xs font-black uppercase tracking-[0.25em]">Official Habitat Archive</span>

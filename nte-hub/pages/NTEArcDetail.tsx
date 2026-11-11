@@ -110,7 +110,7 @@ const NTEArcDetail: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-[520px_1fr] gap-8 items-start">
           
           {/* 좌측: 일러스트 카드 */}
-          <div className="relative group rounded-[40px] overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
+          <div className="relative group rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f0f0f] aspect-[3/4.2] flex items-center justify-center">
             <img 
               src={getIllustrationUrl()} 
               alt={t(arc.name)} 
@@ -144,7 +144,7 @@ const NTEArcDetail: React.FC = () => {
                     return (
                       <Link 
                         to={`/gallery/nte/character/${encodeURIComponent(charName)}`}
-                        className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-brand-primary/20 text-brand-accent hover:text-white border border-brand-primary/40 flex items-center gap-1 transition-all hover:scale-105"
+                        className="px-3 py-1 rounded-xl text-xs font-black uppercase tracking-wider bg-brand-primary/20 text-brand-accent hover:text-white border border-brand-primary/40 flex items-center gap-1 transition hover:scale-105"
                       >
                         <User size={12} /> {charName} {t('전용')}
                       </Link>
@@ -159,13 +159,13 @@ const NTEArcDetail: React.FC = () => {
           <div className="space-y-6 flex flex-col h-full">
             
             {/* 01. 성장 스탯 슬라이더 카드 */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent space-y-6">
               
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/5 pb-6">
                 <div className="space-y-3 flex-grow relative pt-6">
                   <div className="flex justify-between items-end">
                     <div className="flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-[20px] border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>01</div>
+                      <div className="w-12 h-12 rounded-2xl border-2 flex items-center justify-center font-black text-lg shadow-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>01</div>
                       <div>
                         <span className="text-xs font-black uppercase tracking-widest text-gray-500">{t('성장 스탯')}</span>
                         <h2 className="text-2xl font-black uppercase tracking-widest text-white">{t('기초 능력치')}</h2>
@@ -175,7 +175,7 @@ const NTEArcDetail: React.FC = () => {
 
                   {/* 플로팅 레벨 라벨 */}
                   <div 
-                    className="absolute top-0 -translate-x-1/2 px-2.5 py-0.5 text-black font-black italic text-[11px] rounded-lg pointer-events-none transition-all duration-75 shadow-lg z-10"
+                    className="absolute top-0 -translate-x-1/2 px-2.5 py-0.5 text-black font-black italic text-[11px] rounded-lg pointer-events-none transition duration-75 shadow-lg z-10"
                     style={{ 
                       left: `${(levelIdx / (LEVEL_STEPS.length - 1)) * 100}%`,
                       backgroundColor: theme.primary,
@@ -201,7 +201,7 @@ const NTEArcDetail: React.FC = () => {
 
               {/* 스탯 값 그리드 */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
+                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-6 rounded-full" style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }} />
                     <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t('기초 공격력')}</span>
@@ -209,7 +209,7 @@ const NTEArcDetail: React.FC = () => {
                   <div className="text-2xl font-black tabular-nums text-white">{levelStat.atk}</div>
                 </div>
 
-                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition-all">
+                <div className="flex items-center justify-between p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] transition">
                   <div className="flex items-center gap-3">
                     <div className="w-2 h-6 rounded-full" style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }} />
                     <span className="text-xs font-black text-gray-400 uppercase tracking-widest">{t(levelStat.subStatName || '방어력')}</span>
@@ -220,10 +220,10 @@ const NTEArcDetail: React.FC = () => {
             </div>
 
             {/* 02. 아크 스킬 상세 및 중첩 효과 */}
-            <div className="glass-card p-8 rounded-[35px] border border-white/5 flex-grow space-y-6">
+            <div className="glass-card p-8 rounded-3xl border border-white/5 flex-grow space-y-6">
               <div className="flex items-center gap-6">
-                <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>02</div>
-                <div className="flex flex-col border-l-4 border-white/10 pl-6">
+                <div className="w-14 h-14 rounded-3xl border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>02</div>
+                <div className="flex flex-col">
                   <span className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{t('아크 스킬')}</span>
                   <h2 className="text-2xl font-black tracking-tighter uppercase text-white leading-none">{t((arc.skill?.name || '아크 스킬').replace(/\*\*/g, '').trim())}</h2>
                 </div>
@@ -236,7 +236,7 @@ const NTEArcDetail: React.FC = () => {
                 </div>
                 {/* Floating Rank Label */}
                 <div 
-                  className="absolute top-2 -translate-x-1/2 px-2.5 py-0.5 bg-white text-black font-black italic text-[11px] rounded-lg pointer-events-none transition-all duration-75 shadow-lg z-10"
+                  className="absolute top-2 -translate-x-1/2 px-2.5 py-0.5 bg-white text-black font-black italic text-[11px] rounded-lg pointer-events-none transition duration-75 shadow-lg z-10"
                   style={{ 
                     left: `${(rankIdx / 4) * 100}%`,
                     boxShadow: `0 0 10px rgba(255,255,255,0.4)`
@@ -260,7 +260,7 @@ const NTEArcDetail: React.FC = () => {
               </div>
               
               {/* 스킬 설명 본문 */}
-              <div className="flex flex-col justify-center text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-[25px] border border-white/5 shadow-inner min-h-[120px]">
+              <div className="flex flex-col justify-center text-gray-300 text-base md:text-lg leading-relaxed bg-white/[0.01] p-6 rounded-3xl border border-white/5 shadow-inner min-h-[120px]">
                 <div className="w-full space-y-3">
                   {cleanSkillParagraphs(arc.skill?.description || '').map((paragraph: string, pIdx: number) => (
                     <p key={pIdx} className="leading-relaxed">
@@ -279,12 +279,12 @@ const NTEArcDetail: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between w-full group">
             <div className="flex items-center gap-6">
-              <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>03</div>
-              <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("돌파 재료 (Breakthrough Materials)")}</h2>
+              <div className="w-14 h-14 rounded-3xl border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>03</div>
+              <h2 className="text-2xl font-black text-white tracking-tighter uppercase leading-none py-1">{t("돌파 재료 (Breakthrough Materials)")}</h2>
             </div>
           </div>
 
-          <div className="glass-card p-10 rounded-[45px] border border-white/5 space-y-8">
+          <div className="glass-card p-10 rounded-3xl border border-white/5 space-y-8">
              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-6">
                <div className="flex items-center gap-4">
                  <Package size={22} className="text-gray-400" />
@@ -292,7 +292,7 @@ const NTEArcDetail: React.FC = () => {
                </div>
                <button 
                  onClick={handleCopyMaterials} 
-                 className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:text-white transition-all"
+                 className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-300 hover:text-white transition"
                >
                  {isCopied ? <CheckCircle2 size={14} className="text-green-500" /> : <Copy size={14} />}
                  {isCopied ? t('복사 완료!') : t('재료 리스트 복사')}
@@ -315,12 +315,12 @@ const NTEArcDetail: React.FC = () => {
 
         {/* 04. 전용 효과 (있는 경우만 표시) */}
         {arc.dedicatedChar && (
-          <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
+          <div className="glass-card p-8 rounded-3xl border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
               <Sparkles size={22} style={{ color: readableTextColor(theme.primary) }} className="opacity-80" />
               <span className="text-xl font-black uppercase tracking-tighter italic">{t("전용 효과")}</span>
             </div>
-            <div className="bg-white/[0.02] p-6 rounded-[22px] border border-white/5 text-white font-bold text-base md:text-lg leading-relaxed">
+            <div className="bg-white/[0.02] p-6 rounded-3xl border border-white/5 text-white font-bold text-base md:text-lg leading-relaxed">
               <span className="text-white">
                 {arc.dedicatedChar.replace(/\*\*/g, '').trim()}
               </span>
@@ -330,14 +330,14 @@ const NTEArcDetail: React.FC = () => {
 
         {/* 추천 캐릭터: 공개된 캐릭터 공략의 아크 순위 기준 */}
         {getNteArcRecommendations(arc.name).length > 0 && (
-          <div className="glass-card p-8 rounded-[35px] border border-white/5 space-y-4">
+          <div className="glass-card p-8 rounded-3xl border border-white/5 space-y-4">
             <div className="flex items-center gap-4 border-b border-white/5 pb-4">
               <User size={22} style={{ color: readableTextColor(theme.primary) }} className="opacity-80" />
               <h2 className="text-xl font-black uppercase tracking-tighter">{t("추천 캐릭터")}</h2>
             </div>
             <ul className="space-y-3">
               {getNteArcRecommendations(arc.name).map(rec => (
-                <li key={rec.charId} className="bg-white/[0.02] p-5 rounded-[22px] border border-white/5">
+                <li key={rec.charId} className="bg-white/[0.02] p-5 rounded-3xl border border-white/5">
                   <Link to={`/gallery/nte/character/${encodeURIComponent(rec.charName)}`} className="font-black text-white hover:underline">
                     {t(rec.charName)}
                   </Link>
@@ -353,11 +353,11 @@ const NTEArcDetail: React.FC = () => {
         {(arc.description || arc.story || arc.weaponStory) && (
           <div className="space-y-6">
             <div className="flex items-center gap-6">
-              <div className="w-14 h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>04</div>
-              <h2 className="text-2xl font-black text-white tracking-tighter uppercase border-l-4 border-white/10 pl-6 leading-none py-1">{t("아크 스토리 (Arc Lore)")}</h2>
+              <div className="w-14 h-14 rounded-3xl border-2 flex items-center justify-center font-black text-xl shadow-2xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>04</div>
+              <h2 className="text-2xl font-black text-white tracking-tighter uppercase leading-none py-1">{t("아크 스토리 (Arc Lore)")}</h2>
             </div>
-            <div className="glass-card p-8 rounded-[35px] border border-white/5">
-              <div className="text-gray-300 text-base md:text-lg leading-relaxed italic bg-black/20 p-8 rounded-[25px] border border-white/5 shadow-inner">
+            <div className="glass-card p-8 rounded-3xl border border-white/5">
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed italic bg-black/20 p-8 rounded-3xl border border-white/5 shadow-inner">
                 <div className="whitespace-pre-line">
                   {t((arc.description || arc.story || arc.weaponStory || '').replace(/\*\*/g, '').trim())}
                 </div>

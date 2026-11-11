@@ -36,11 +36,11 @@
 
 @layer components {
   .btn-primary {
-    @apply px-6 py-2.5 bg-brand-primary text-white rounded-full font-black text-[10px] uppercase tracking-widest transition-all hover:scale-105 active:scale-95 shadow-lg shadow-brand-primary/20;
+    @apply px-6 py-2.5 bg-brand-primary text-white rounded-full font-black text-[11px] uppercase tracking-widest transition hover:scale-105 active:scale-95 shadow-lg shadow-brand-primary/20;
   }
 
   .btn-secondary {
-    @apply px-6 py-2.5 bg-white/5 text-white rounded-full font-black text-[10px] uppercase tracking-widest transition-all hover:bg-white/10 border border-white/10;
+    @apply px-6 py-2.5 bg-white/5 text-white rounded-full font-black text-[11px] uppercase tracking-widest transition hover:bg-white/10 border border-white/10;
   }
 
   .card-glass {

@@ -171,8 +171,8 @@ export default function SkillAndEidolonSection({
       {/* 05 스킬 정보 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>05</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('스킬 정보', { keySeparator: false, nsSeparator: false })}</h2>
+          <div className="flex items-center justify-center w-12 h-12 rounded-3xl border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>05</div>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase leading-none py-1.5">{t('스킬 정보', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         
         <div className="flex flex-col gap-10">
@@ -181,12 +181,12 @@ export default function SkillAndEidolonSection({
               <button 
                 key={cat.id} 
                 onClick={() => setActiveCategory(cat.id)} 
-                className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-500 ${activeCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
+                className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition duration-500 ${activeCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
               >
                 <div className="w-10 h-10 flex items-center justify-center relative z-10">
                   {groupedSkills[cat.id][0].filename ? <img
                     src={`${CDN_BASE}${groupedSkills[cat.id][0].filename}`}
-                    className={`w-full h-full object-contain transition-all duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
+                    className={`w-full h-full object-contain transition duration-500 ${activeCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
                     alt={cat.label}
                     loading="lazy"
                     decoding="async"
@@ -208,7 +208,7 @@ export default function SkillAndEidolonSection({
 
           <div className="space-y-8">
             {activeSkills.map(({ skill, filename }, idx) => (
-              <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
+              <div key={idx} className="group glass-card rounded-3xl border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition duration-500 hover:border-white/20">
                  {filename && <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
                    <img
                      src={`${CDN_BASE}${filename}`}
@@ -226,10 +226,10 @@ export default function SkillAndEidolonSection({
                      }}
                    />
                  </div>}
-                 <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
+                 <div className="bg-[#0c0c0c]/80 rounded-3xl p-8 md:p-10 relative z-10 overflow-hidden">
                    <div className="flex flex-col md:flex-row items-start gap-8">
                       <div className="relative shrink-0">
-                        <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
+                        <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition duration-500 group-hover:scale-110">
                            {filename ? <img
                              src={`${CDN_BASE}${filename}`}
                              className="w-full h-full object-contain brightness-110"
@@ -275,7 +275,7 @@ export default function SkillAndEidolonSection({
                                )}
                             </div>
                          </div>
-                         <div className="text-gray-300 text-[17px] leading-[1.7] font-medium whitespace-pre-line pl-6 border-l-2 border-white/10 group-hover:border-white/30 transition-colors">
+                         <div className="text-gray-300 text-base leading-[1.7] font-medium whitespace-pre-line transition-colors">
                             {renderContent(t(skill.description, { keySeparator: false, nsSeparator: false }))}
                          </div>
                       </div>
@@ -291,13 +291,13 @@ export default function SkillAndEidolonSection({
       {hasServant && (
         <section className="space-y-10">
           <div className="flex items-center gap-6 px-4">
-            <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>06</div>
-            <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('기억 정령', { keySeparator: false, nsSeparator: false })}</h2>
+            <div className="flex items-center justify-center w-12 h-12 rounded-3xl border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>06</div>
+            <h2 className="text-2xl font-black text-white tracking-tight uppercase leading-none py-1.5">{t('기억 정령', { keySeparator: false, nsSeparator: false })}</h2>
           </div>
 
           <div className="grid grid-cols-1 gap-10">
             {groupedSkills.memo_info.map(({ skill, filename }, idx) => (
-              <div key={`info-${idx}`} className="glass-card rounded-[40px] border border-white/10 bg-black shadow-2xl overflow-hidden flex justify-center p-8 bg-gradient-to-b from-white/[0.02] to-transparent">
+              <div key={`info-${idx}`} className="glass-card rounded-3xl border border-white/10 bg-black shadow-2xl overflow-hidden flex justify-center p-8 bg-gradient-to-b from-white/[0.02] to-transparent">
                  <img src={`${CDN_BASE}${filename}`} className="w-auto h-auto max-h-[400px] object-contain drop-shadow-2xl" alt={skill.name} loading="lazy" decoding="async" />
               </div>
             ))}
@@ -307,12 +307,12 @@ export default function SkillAndEidolonSection({
                 <button 
                   key={cat.id} 
                   onClick={() => setActiveServantCategory(cat.id)} 
-                  className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-500 ${activeServantCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
+                  className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition duration-500 ${activeServantCategory === cat.id ? 'bg-white/10 border-white/20 shadow-[0_0_25px_rgba(var(--theme-primary-rgb),0.3)] scale-105' : 'bg-white/[0.03] border-white/5 hover:bg-white/5'}`}
                 >
                   <div className="w-10 h-10 flex items-center justify-center relative z-10">
                     <img 
                       src={`${CDN_BASE}${groupedSkills[cat.id][0].filename}`} 
-                      className={`w-full h-full object-contain transition-all duration-500 ${activeServantCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`} 
+                      className={`w-full h-full object-contain transition duration-500 ${activeServantCategory === cat.id ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
                       alt={cat.label} 
                       loading="lazy"
                       decoding="async"
@@ -326,14 +326,14 @@ export default function SkillAndEidolonSection({
 
             <div className="space-y-8">
               {activeServantSkills.map(({ skill, filename }, idx) => (
-                <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
+                <div key={idx} className="group glass-card rounded-3xl border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition duration-500 hover:border-white/20">
                    <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
                      <img src={`${CDN_BASE}${filename}`} className="w-full h-full object-contain rotate-12" alt="" loading="lazy" decoding="async" />
                    </div>
-                   <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
+                   <div className="bg-[#0c0c0c]/80 rounded-3xl p-8 md:p-10 relative z-10 overflow-hidden">
                      <div className="flex flex-col md:flex-row items-start gap-8">
                         <div className="relative shrink-0">
-                          <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
+                          <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition duration-500 group-hover:scale-110">
                              <img src={`${CDN_BASE}${filename}`} className="w-full h-full object-contain brightness-110" alt={skill.name} loading="lazy" decoding="async" />
                           </div>
                         </div>
@@ -365,7 +365,7 @@ export default function SkillAndEidolonSection({
                                  )}
                               </div>
                            </div>
-                           <div className="text-gray-300 text-[17px] leading-[1.7] font-medium whitespace-pre-line pl-6 border-l-2 border-white/10 group-hover:border-white/30 transition-colors">
+                           <div className="text-gray-300 text-base leading-[1.7] font-medium whitespace-pre-line transition-colors">
                               {renderContent(t(skill.description, { keySeparator: false, nsSeparator: false }))}
                            </div>
                         </div>
@@ -381,24 +381,24 @@ export default function SkillAndEidolonSection({
       {/* 07 추가 능력 & 속성 보너스 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '07' : '06'}</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('추가 능력 & 속성 보너스', { keySeparator: false, nsSeparator: false })}</h2>
+          <div className="flex items-center justify-center w-12 h-12 rounded-3xl border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '07' : '06'}</div>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase leading-none py-1.5">{t('추가 능력 & 속성 보너스', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         
         <div className="flex flex-col gap-6">
           {(char.additionalAbilities || char.bonusAbilities || []).map((ability, idx) => (
-            <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
-               <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10">
+            <div key={idx} className="group glass-card rounded-3xl border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition duration-500 hover:border-white/20">
+               <div className="bg-[#0c0c0c]/80 rounded-3xl p-8 md:p-10 relative z-10">
                  <div className="flex flex-col md:flex-row items-start gap-8">
                     <div className="relative shrink-0">
-                      <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
+                      <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition duration-500 group-hover:scale-110">
                          <img src={`${CDN_BASE}${ability.icon ? `${ability.icon}.webp` : `bonus_${idx + 1}.webp`}`} className="w-full h-full object-contain brightness-110" alt={ability.name} loading="lazy" decoding="async" onError={(e) => e.currentTarget.style.opacity = '0.3'} />
                       </div>
                     </div>
 
                     <div className="space-y-6 flex-1 min-w-0">
                        <h3 className="text-3xl font-black text-white leading-none tracking-tight">{t(ability.name, { keySeparator: false, nsSeparator: false })}</h3>
-                       <div className="text-gray-300 text-[17px] leading-[1.7] font-medium whitespace-pre-line pl-6 border-l-2 border-white/10 group-hover:border-white/30 transition-colors">
+                       <div className="text-gray-300 text-base leading-[1.7] font-medium whitespace-pre-line transition-colors">
                           {renderContent(t(ability.description || '', { keySeparator: false, nsSeparator: false }))}
                        </div>
                     </div>
@@ -424,8 +424,8 @@ export default function SkillAndEidolonSection({
       {/* 성혼: 기억 정령 유무에 따라 섹션 번호 07/08 */}
       <section className="space-y-10">
         <div className="flex items-center gap-6 px-4">
-          <div className="flex items-center justify-center w-12 h-12 rounded-[22px] border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '08' : '07'}</div>
-          <h2 className="text-2xl font-black text-white tracking-tight uppercase border-l-4 border-white/10 pl-6 leading-none py-1.5">{t('성혼', { keySeparator: false, nsSeparator: false })}</h2>
+          <div className="flex items-center justify-center w-12 h-12 rounded-3xl border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '08' : '07'}</div>
+          <h2 className="text-2xl font-black text-white tracking-tight uppercase leading-none py-1.5">{t('성혼', { keySeparator: false, nsSeparator: false })}</h2>
         </div>
         <div className="grid grid-cols-1 gap-8">
           {char.eidolons?.map((eidolon: any, idx) => {
@@ -435,12 +435,12 @@ export default function SkillAndEidolonSection({
             const filename = iconKey ? `${iconKey}.webp` : `eidolon_${idx + 1}.webp`;
             
             return (
-              <div key={idx} className="group flex flex-col md:flex-row glass-card rounded-[40px] border border-white/5 hover:bg-white/[0.04] shadow-xl overflow-hidden transition-all duration-300">
+              <div key={idx} className="group flex flex-col md:flex-row glass-card rounded-3xl border border-white/5 hover:bg-white/[0.04] shadow-xl overflow-hidden transition duration-300">
                 <div className="py-6 px-3 sm:px-6 md:w-[360px] shrink-0 flex flex-col items-center justify-center gap-4 relative overflow-hidden border-b md:border-b-0 md:border-r border-white/5 bg-black/20">
                   <span className="absolute top-0 right-0 text-[100px] font-black text-white/[0.02] leading-none -mr-4 -mt-4 select-none">{String(idx + 1).padStart(2, '0')}</span>
                   
                   <div className="relative w-24 h-24 z-10">
-                    <div className="relative w-full h-full rounded-full border border-white/10 flex items-center justify-center p-3 group-hover:border-brand-primary/50 overflow-hidden transition-all duration-500">
+                    <div className="relative w-full h-full rounded-full border border-white/10 flex items-center justify-center p-3 group-hover:border-brand-primary/50 overflow-hidden transition duration-500">
                       <img src={`${CDN_BASE}${filename}`} className="w-full h-full object-contain scale-[1.2] group-hover:scale-[1.5] transition-transform duration-700" alt={eidolon.name} loading="lazy" decoding="async" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
                     </div>
                   </div>
@@ -528,7 +528,7 @@ const StatBox: React.FC<{ icon: React.ReactNode; label: string; value: string; c
   }, [value]);
 
   return (
-    <div className="w-full flex items-center justify-between gap-3 px-4 py-2.5 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/[0.08] group/stat transition-all">
+    <div className="w-full flex items-center justify-between gap-3 px-4 py-2.5 bg-white/5 rounded-2xl border border-white/10 hover:bg-white/[0.08] group/stat transition">
       <div className="flex items-center gap-2.5">
         <div className="p-1.5 rounded-xl bg-black/40 border border-white/5 group-hover/stat:scale-110 transition-transform">{icon}</div>
         <span className={`text-[11px] font-black uppercase tracking-widest ${color}`}>{label}</span>

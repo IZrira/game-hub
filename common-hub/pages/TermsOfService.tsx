@@ -18,7 +18,7 @@ const TermsOfService: React.FC = () => {
         </h1>
 
         <div className="prose prose-invert prose-brand max-w-none text-gray-300">
-          <p className="lead text-lg text-gray-400 mb-8 border-l-4 border-brand-primary pl-4">
+          <p className="lead text-lg text-gray-400 mb-8">
             본 약관은 Rira Game Hub(이하 "본 사이트")가 제공하는 모든 서비스의 이용 조건 및 절차, 사용자와 사이트 간의 권리, 의무 및 책임 사항을 규정함을 목적으로 합니다.
           </p>
 

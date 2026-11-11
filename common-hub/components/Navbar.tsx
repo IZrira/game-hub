@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
+      className={`fixed top-0 left-0 right-0 z-50 transition duration-500 border-b ${
         isScrolled
           ? 'bg-brand-dark/80 backdrop-blur-xl border-white/10 py-3 shadow-2xl shadow-black/50'
           : 'bg-transparent border-transparent py-6'
@@ -78,7 +78,7 @@ const Navbar: React.FC = () => {
           <Link to="/" className={`inline-flex h-9 items-center rounded-lg px-3 text-xs font-black uppercase tracking-widest transition-colors hover:bg-white/5 ${location.pathname === '/' ? 'text-brand-accent' : 'text-gray-400 hover:text-white'}`}>{t('HOME')}</Link>
 
           {isAdmin(user?.id) && (
-            <Link to="/admin" className="flex h-9 items-center gap-1.5 px-3 bg-amber-500/10 text-amber-500 rounded-lg text-xs font-black uppercase tracking-widest border border-amber-500/20 hover:bg-amber-500/20 transition-all">
+            <Link to="/admin" className="flex h-9 items-center gap-1.5 px-3 bg-amber-500/10 text-amber-500 rounded-lg text-xs font-black uppercase tracking-widest border border-amber-500/20 hover:bg-amber-500/20 transition">
               <ShieldCheck size={14} />
               ADMIN
             </Link>
@@ -111,7 +111,7 @@ const Navbar: React.FC = () => {
               </div>
               <button
                 onClick={handleLogout}
-                className="flex h-9 items-center gap-2 px-4 bg-white/5 hover:bg-red-500/10 text-gray-400 hover:text-red-500 rounded-lg border border-white/10 hover:border-red-500/20 transition-all text-[11px] font-black uppercase tracking-widest"
+                className="flex h-9 items-center gap-2 px-4 bg-white/5 hover:bg-red-500/10 text-gray-400 hover:text-red-500 rounded-lg border border-white/10 hover:border-red-500/20 transition text-[11px] font-black uppercase tracking-widest"
               >
                 <LogOut size={14} />
                 {t('LOGOUT')}
@@ -120,7 +120,7 @@ const Navbar: React.FC = () => {
           ) : (
             <button
               onClick={openLoginModal}
-              className="inline-flex h-9 items-center px-4 bg-brand-primary text-white text-[11px] font-black uppercase tracking-widest rounded-lg hover:scale-105 transition-all shadow-lg shadow-brand-primary/20 active:scale-95"
+              className="inline-flex h-9 items-center px-4 bg-brand-primary text-white text-[11px] font-black uppercase tracking-widest rounded-lg hover:scale-105 transition shadow-lg shadow-brand-primary/20 active:scale-95"
             >
               {t('LOGIN')}
             </button>

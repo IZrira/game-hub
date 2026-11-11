@@ -160,7 +160,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
   const notices: any[] = [];
 
   return (
-    <div className={`relative min-h-[800px] rounded-[32px] overflow-hidden bg-[#0a0a0a] transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+    <div className={`relative min-h-[800px] rounded-3xl overflow-hidden bg-[#0a0a0a] transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
       {/* Subtle Background */}
       <div className="absolute inset-0 z-0">
         <img 
@@ -195,7 +195,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
               <button 
                 key={idx}
                 onClick={item.action}
-                className="flex flex-col items-center justify-center gap-3 p-4 rounded-2xl bg-[#151515] border border-white/5 hover:bg-[#202020] hover:border-white/10 hover:-translate-y-1 transition-all group"
+                className="flex flex-col items-center justify-center gap-3 p-4 rounded-2xl bg-[#151515] border border-white/5 hover:bg-[#202020] hover:border-white/10 hover:-translate-y-1 transition group"
               >
                 <div className={`p-3 rounded-xl bg-[#0a0a0a] border border-white/5 group-hover:border-white/10 transition-colors ${item.color}`}>
                   {item.icon}
@@ -213,7 +213,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
           {/* Main Content Column */}
           <div className="lg:col-span-2 space-y-8">
             {/* New Characters Section */}
-            <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6">
+            <div className="bg-[#121212] rounded-3xl border border-white/5 p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
                   <Sparkles size={18} className="text-brand-accent" /> {t('최신 캐릭터')}
@@ -228,7 +228,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                   <Link 
                     key={char.id} 
                     to={`/gallery/${game.id}/character/${char.id}`}
-                    className="group relative isolate aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all"
+                    className="group relative isolate aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition"
                   >
                     <img 
                       src={game.id === 'hsr' 
@@ -256,7 +256,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                     </div>
                   </Link>
                 ))}
-                <button onClick={() => setActiveMenu('캐릭터')} className="aspect-[3/4] rounded-xl bg-[#1a1a1a] border border-dashed border-white/10 flex flex-col items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-[#202020] hover:border-white/20 transition-all">
+                <button onClick={() => setActiveMenu('캐릭터')} className="aspect-[3/4] rounded-xl bg-[#1a1a1a] border border-dashed border-white/10 flex flex-col items-center justify-center gap-2 text-gray-400 hover:text-white hover:bg-[#202020] hover:border-white/20 transition">
                   <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
                     <ChevronRight size={16} />
                   </div>
@@ -266,7 +266,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
             </div>
 
             {/* Latest Updates Section */}
-            <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6">
+            <div className="bg-[#121212] rounded-3xl border border-white/5 p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-lg font-black text-white flex items-center gap-2">
                   <Sparkles size={18} className="text-brand-primary-text" /> {t('최신 업데이트 목록')}
@@ -281,7 +281,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                   <Link 
                     key={`${item.id}-${idx}`}
                     to={item.link}
-                    className="group relative isolate aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition-all"
+                    className="group relative isolate aspect-[3/4] rounded-xl overflow-hidden bg-[#0a0a0a] border border-white/5 hover:border-brand-primary/50 transition"
                   >
                     <img 
                       src={item.image} 
@@ -317,7 +317,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
           {/* Sidebar Column */}
           <div className="space-y-6">
             {/* Notice / Updates */}
-            <div className="bg-[#121212] rounded-[24px] border border-white/5 p-6 shadow-xl">
+            <div className="bg-[#121212] rounded-3xl border border-white/5 p-6 shadow-xl">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-sm font-black text-brand-accent uppercase tracking-widest flex items-center gap-2">
                   <Bell size={16} /> {t('Notice')}
@@ -329,7 +329,7 @@ const GameDashboard: React.FC<GameDashboardProps> = ({ game, setActiveMenu }) =>
                 {notices.slice(0, 3).map((notice) => (
                   <div key={notice.id} className="group cursor-default">
                     <div className="flex items-center gap-2 mb-1">
-                      <span className={`text-[8px] font-black px-1.5 py-0.5 rounded border ${
+                      <span className={`text-[11px] font-black px-1.5 py-0.5 rounded border ${
                         notice.type === 'update' ? 'text-brand-accent border-brand-accent/30 bg-brand-accent/10' :
                         notice.type === 'event' ? 'text-emerald-400 border-emerald-400/30 bg-emerald-400/10' :
                         'text-blue-400 border-blue-400/30 bg-blue-400/10'

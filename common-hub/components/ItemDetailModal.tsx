@@ -80,15 +80,15 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 md:p-6 animate-in fade-in duration-300">
       <div className="absolute inset-0 bg-black/90 backdrop-blur-2xl" onClick={onClose} />
       
-      <div className={`relative w-full max-w-2xl bg-[#0a0a0a] rounded-[40px] border ${theme.border} ${theme.accent} overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row shadow-2xl`}>
+      <div className={`relative w-full max-w-2xl bg-[#0a0a0a] rounded-3xl border ${theme.border} ${theme.accent} overflow-hidden animate-in zoom-in-95 duration-200 flex flex-col md:flex-row shadow-2xl`}>
         {/* Left Section: Visuals */}
         <div className={`w-full md:w-1/2 relative bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] p-12 flex items-center justify-center`}>
           <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:20px_20px]" />
           <div className={`absolute inset-0 ${theme.glow} blur-[80px] opacity-40`} />
           
           <div className="relative z-10 w-full aspect-square flex items-center justify-center group">
-            <div className={`absolute inset-0 border-2 ${theme.border} rounded-[48px] rotate-6 group-hover:rotate-12 transition-transform duration-700`} />
-            <div className={`absolute inset-0 border border-white/5 rounded-[48px] -rotate-3 group-hover:-rotate-6 transition-transform duration-700`} />
+            <div className={`absolute inset-0 border-2 ${theme.border} rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-700`} />
+            <div className={`absolute inset-0 border border-white/5 rounded-3xl -rotate-3 group-hover:-rotate-6 transition-transform duration-700`} />
             {isGenderSplit && imgPathM && imgPathF ? (
               <div className="relative z-10 w-full h-full flex items-center justify-center gap-4 p-4 transform group-hover:scale-105 transition-transform duration-700">
                 <img 
@@ -118,7 +118,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
         {/* Right Section: Details */}
         <div className="w-full md:w-1/2 p-10 flex flex-col space-y-8 bg-black/40 backdrop-blur-md">
           <div className="absolute top-6 right-6 z-30">
-            <button onClick={onClose} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all">
+            <button onClick={onClose} className="p-3 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition">
               <X size={20} />
             </button>
           </div>
@@ -155,7 +155,7 @@ export default function ItemDetailModal({ itemNameEn, isOpen, onClose, item, gam
               </div>
               <div className="flex flex-wrap gap-2">
                 {sources.map((source: string, idx: number) => (
-                  <span key={idx} className="bg-white/[0.03] text-gray-400 px-3.5 py-1.5 rounded-xl text-[11px] font-bold border border-white/10 hover:border-white/20 transition-all cursor-default">
+                  <span key={idx} className="bg-white/[0.03] text-gray-400 px-3.5 py-1.5 rounded-xl text-[11px] font-bold border border-white/10 hover:border-white/20 transition cursor-default">
                     {source}
                   </span>
                 ))}

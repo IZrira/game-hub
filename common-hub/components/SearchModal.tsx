@@ -576,7 +576,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
       {/* 배경 오버레이 */}
       <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={onClose} />
 
-      <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="통합 아카이브 검색" tabIndex={-1} className="relative z-[10001] w-full max-w-2xl bg-[#0d0d0d] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 rounded-[28px] sm:rounded-[32px]">
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-label="통합 아카이브 검색" tabIndex={-1} className="relative z-[10001] w-full max-w-2xl bg-[#0d0d0d] border border-white/10 shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200 rounded-3xl sm:rounded-3xl">
         <div className="p-6 sm:p-8">
           {/* 게임 필터 탭 바 */}
           <div className="flex items-center gap-1 sm:gap-2 mb-4 p-1 bg-white/[0.03] border border-white/5 rounded-2xl overflow-x-auto scrollbar-hide">
@@ -587,7 +587,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                   key={tab.id}
                   type="button"
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition-all shrink-0 ${
+                  className={`px-3 py-1.5 rounded-xl text-xs font-black transition shrink-0 ${
                     isSelected
                       ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -613,7 +613,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                   currentTabConfig?.placeholders ||
                   '스타레일, 명조, 이환, 아니모 통합 아카이브를 검색하세요...'
                 }
-                className="w-full bg-white/5 border border-white/10 rounded-2xl py-3.5 sm:py-4 pl-14 pr-6 text-sm sm:text-base focus:outline-none focus:border-brand-primary transition-all text-white font-bold placeholder:text-gray-500"
+                className="w-full bg-white/5 border border-white/10 rounded-2xl py-3.5 sm:py-4 pl-14 pr-6 text-sm sm:text-base focus:outline-none focus:border-brand-primary transition text-white font-bold placeholder:text-gray-500"
               />
             </div>
             <button
@@ -690,7 +690,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                         key={i}
                         type="button"
                         onClick={() => handleNavigate(fav.url)}
-                        className="search-shortcut-item flex items-center gap-3 p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl cursor-pointer hover:bg-yellow-500/10 hover:border-yellow-500/30 group transition-all text-left focus:outline-none focus:ring-2 focus:ring-yellow-500/50"
+                        className="search-shortcut-item flex items-center gap-3 p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl cursor-pointer hover:bg-yellow-500/10 hover:border-yellow-500/30 group transition text-left focus:outline-none focus:ring-2 focus:ring-yellow-500/50"
                       >
                         <span className="text-xs sm:text-sm font-bold text-gray-300 group-hover:text-white truncate">{fav.title}</span>
                       </button>
@@ -717,7 +717,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                         key={item}
                         type="button"
                         onClick={() => setQuery(item)}
-                        className="search-shortcut-item px-3.5 py-1.5 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-full text-xs font-bold transition-all text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary"
+                        className="search-shortcut-item px-3.5 py-1.5 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/20 rounded-full text-xs font-bold transition text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-primary"
                       >
                         {item}
                       </button>
@@ -739,7 +739,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
                       key={keyword}
                       type="button"
                       onClick={() => setQuery(keyword)}
-                      className="search-shortcut-item flex items-center gap-3 p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl cursor-pointer hover:bg-brand-primary/10 hover:border-brand-primary/30 group transition-all text-left focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
+                      className="search-shortcut-item flex items-center gap-3 p-3.5 bg-white/[0.02] border border-white/5 rounded-2xl cursor-pointer hover:bg-brand-primary/10 hover:border-brand-primary/30 group transition text-left focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
                     >
                       <span className="text-brand-primary-text font-black italic text-xs w-5">0{i+1}</span>
                       <span className="text-xs sm:text-sm font-bold text-gray-300 group-hover:text-white">{keyword}</span>
@@ -752,7 +752,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
 
           {/* 검색 결과가 없을 때 */}
           {query && !isDataLoading && !dataLoadError && !hasResults && (
-            <div className="p-8 text-center bg-[#0a0a0a] rounded-[24px] border border-white/5 animate-in fade-in slide-in-from-bottom-4 mt-2">
+            <div className="p-8 text-center bg-[#0a0a0a] rounded-3xl border border-white/5 animate-in fade-in slide-in-from-bottom-4 mt-2">
               <div className="mb-4 text-orange-500 opacity-50 flex justify-center">
                 <Search size={40} />
               </div>
@@ -763,14 +763,14 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left pt-4 border-t border-white/5">
                 <button
                   onClick={() => handleNavigate('/gallery/aniimo/characters')}
-                  className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition-all cursor-pointer group"
+                  className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition cursor-pointer group"
                 >
                   <p className="text-xs font-black text-amber-400 mb-1 uppercase tracking-widest">ANIIMO</p>
                   <p className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">아니모 전체 도감 둘러보기</p>
                 </button>
                 <button
                   onClick={() => handleNavigate('/gallery/hsr')}
-                  className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition-all cursor-pointer group"
+                  className="p-4 bg-white/5 rounded-2xl border border-white/5 hover:border-brand-primary transition cursor-pointer group"
                 >
                   <p className="text-xs font-black text-purple-400 mb-1 uppercase tracking-widest">HONKAI: STAR RAIL</p>
                   <p className="text-xs font-bold text-gray-300 group-hover:text-white transition-colors">스타레일 아카이브 바로가기</p>
@@ -780,7 +780,7 @@ const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, gameId = 'al
           )}
 
           {query && !isDataLoading && dataLoadError && (
-            <div className="p-8 text-center bg-[#0a0a0a] rounded-[24px] border border-red-500/20 mt-2" role="alert">
+            <div className="p-8 text-center bg-[#0a0a0a] rounded-3xl border border-red-500/20 mt-2" role="alert">
               <p className="text-sm font-bold text-red-300">검색 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.</p>
             </div>
           )}
@@ -829,7 +829,7 @@ const SearchResultItem = ({
     <button
       type="button"
       onClick={() => onNavigate(item.url)}
-      className="search-result-item block w-full text-left group p-4 bg-white/[0.02] hover:bg-brand-primary/10 border border-white/5 hover:border-brand-primary/30 rounded-2xl transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
+      className="search-result-item block w-full text-left group p-4 bg-white/[0.02] hover:bg-brand-primary/10 border border-white/5 hover:border-brand-primary/30 rounded-2xl transition cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
     >
       <div className="flex justify-between items-start gap-2 mb-2">
         <div className="flex items-center gap-2 min-w-0">

@@ -17,7 +17,7 @@ const WuwaWeaponCard = ({ weapon, to }: any) => {
 
   return (
     <Link to={to} className="group block cursor-pointer space-y-3">
-      <div className={`aspect-square rounded-[32px] border bg-gradient-to-br ${RARITY_GRADIENTS[weapon.rarity]} overflow-hidden relative transition-all group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]`}>
+      <div className={`aspect-square rounded-3xl border bg-gradient-to-br ${RARITY_GRADIENTS[weapon.rarity]} overflow-hidden relative transition group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(255,255,255,0.05)]`}>
         <img 
           src={`${IMG_BASE}${safeEncodeURIComponent(t(weapon.name))}.webp`}
           loading="lazy"

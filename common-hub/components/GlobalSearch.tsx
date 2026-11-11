@@ -98,7 +98,7 @@ export default function GlobalSearch({ className = '', showText = true }: Global
         onClick={openSearch}
         aria-haspopup="dialog"
         aria-expanded={isOpen}
-        className={`flex h-9 items-center gap-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition-all text-xs font-bold group cursor-pointer ${className}`}
+        className={`flex h-9 items-center gap-2 px-3 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white transition text-xs font-bold group cursor-pointer ${className}`}
         title="통합 아카이브 검색 (⌘K / Ctrl+K)"
         aria-label="통합 아카이브 검색"
       >

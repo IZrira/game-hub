@@ -47,7 +47,7 @@ export const NoticeDetailModal: React.FC<{ notice: Notice; onClose: () => void }
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={onClose} />
-      <div className="relative w-full max-w-2xl bg-[#121212] border border-white/10 rounded-[40px] overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
+      <div className="relative w-full max-w-2xl bg-[#121212] border border-white/10 rounded-3xl overflow-hidden shadow-2xl flex flex-col max-h-[85vh]">
         <div className="p-8 border-b border-white/5 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <div className={`p-3 rounded-2xl bg-white/5 ${notice.isCritical ? 'text-red-400' : 'text-brand-accent'}`}>
@@ -118,7 +118,7 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
 
   if (safeNotices.length === 0) {
     return (
-      <div className="p-8 text-center text-gray-400 font-bold bg-white/[0.02] rounded-[32px] border border-dashed border-white/5">
+      <div className="p-8 text-center text-gray-400 font-bold bg-white/[0.02] rounded-3xl border border-dashed border-white/5">
         {emptyMessage || t('새로운 소식이 없습니다.')}
       </div>
     );
@@ -130,7 +130,7 @@ export const NoticeListView: React.FC<{ notices: Notice[]; onNoticeClick: (n: No
         <div 
           key={notice.id} 
           onClick={() => onNoticeClick(notice)}
-          className="p-4 rounded-[24px] bg-[#121212] border border-white/5 hover:border-brand-primary/20 transition-all group cursor-pointer relative overflow-hidden"
+          className="p-4 rounded-3xl bg-[#121212] border border-white/5 hover:border-brand-primary/20 transition group cursor-pointer relative overflow-hidden"
         >
           {!checkedIds.includes(notice.id) && (
             <div className="absolute top-4 right-4 w-2 h-2 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]" />

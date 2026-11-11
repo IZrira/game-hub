@@ -96,10 +96,10 @@ const OrnamentDetail: React.FC = () => {
     <PageHeader gameId={gameId} category={t("장신구")} title={displayName} />
 
       <div className="max-w-4xl mx-auto px-8 pt-8">
-        <div className="bg-[#121212] rounded-[48px] border border-white/10 overflow-hidden shadow-2xl">
+        <div className="bg-[#121212] rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
           <div className="p-12 space-y-12">
             <div className="flex flex-col md:flex-row items-center gap-12">
-              <div className="w-48 h-48 rounded-[32px] bg-white/5 p-6 flex items-center justify-center shrink-0 relative group">
+              <div className="w-48 h-48 rounded-3xl bg-white/5 p-6 flex items-center justify-center shrink-0 relative group">
                 <div className="absolute inset-0 bg-brand-accent/20 blur-3xl rounded-full opacity-50" />
                 <img 
                   src={getMainImageUrl()}
@@ -111,7 +111,7 @@ const OrnamentDetail: React.FC = () => {
               </div>
               <div className="space-y-4 text-center md:text-left">
                 <div className="flex flex-wrap justify-center md:justify-start gap-3">
-                  <span className="px-4 py-1.5 bg-brand-accent/20 text-brand-primary-text text-[12px] font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
+                  <span className="px-4 py-1.5 bg-brand-accent/20 text-brand-primary-text text-xs font-black rounded-full uppercase tracking-widest border border-brand-accent/30">
                   {t(ornament.type)}
                   </span>
                   <div className="flex gap-1 items-center bg-white/5 px-3 py-1 rounded-full border border-white/10">
@@ -131,7 +131,7 @@ const OrnamentDetail: React.FC = () => {
                     type="button"
                     onClick={handleCopyTitle}
                     title="이름 복사 (일반 텍스트)"
-                    className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition-all flex items-center justify-center shrink-0"
+                    className="p-2 rounded-xl text-gray-400 hover:text-white hover:bg-white/10 transition flex items-center justify-center shrink-0"
                   >
                     {isCopied ? <Check size={22} className="text-green-400 animate-in zoom-in-50 duration-200" /> : <Copy size={22} className="opacity-70 group-hover/title:opacity-100 transition-opacity" />}
                   </button>
@@ -142,7 +142,7 @@ const OrnamentDetail: React.FC = () => {
             <div className="grid grid-cols-1 gap-12">
               {/* 세부 파츠 */}
               <div className="space-y-6">
-                <h4 className="text-[12px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-accent" /> {t('세부 파츠')}
                 </h4>
                 <div className="grid grid-cols-2 gap-6">
@@ -151,7 +151,7 @@ const OrnamentDetail: React.FC = () => {
                   const displayPieceName = isEn && piece.enName ? piece.enName : t(pieceKoName);
                   if (typeof pieceKoName !== 'string') return null;
                     return (
-                      <div key={idx} className="bg-white/5 rounded-3xl p-8 border border-white/5 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition-all">
+                      <div key={idx} className="bg-white/5 rounded-3xl p-8 border border-white/5 flex flex-col items-center text-center gap-4 group hover:bg-white/10 transition">
                         <div className="w-24 h-24 rounded-2xl bg-black/20 p-4">
                           <img 
                             src={getPieceImageUrl(idx)}
@@ -162,7 +162,7 @@ const OrnamentDetail: React.FC = () => {
                             onError={(e) => { (e.target as HTMLImageElement).src = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main/hsr images/items/relic_placeholder.webp'; }}
                           />
                         </div>
-                    <span className="text-[12px] font-bold text-gray-400 group-hover:text-white transition-colors">{displayPieceName}</span>
+                    <span className="text-xs font-bold text-gray-400 group-hover:text-white transition-colors">{displayPieceName}</span>
                       </div>
                     );
                   })}
@@ -171,10 +171,10 @@ const OrnamentDetail: React.FC = () => {
 
               {/* 세트 효과 */}
               <div className="space-y-6">
-                <h4 className="text-[12px] font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
+                <h4 className="text-xs font-black text-gray-400 uppercase tracking-[0.3em] flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-brand-primary" /> {t('세트 효과')}
                 </h4>
-                <div className="bg-white/5 rounded-[32px] p-8 border border-white/5 space-y-3">
+                <div className="bg-white/5 rounded-3xl p-8 border border-white/5 space-y-3">
               <div className="text-[11px] font-black text-brand-accent uppercase tracking-widest">{t('2세트 효과')}</div>
               {effect2 && (
               <p className="text-gray-300 text-lg font-medium leading-relaxed italic">"{effect2}"</p>
@@ -185,7 +185,7 @@ const OrnamentDetail: React.FC = () => {
               {ornament.guide && !isEn && (
                 <div className="space-y-6">
                   <h2 className="text-xl font-black text-white">선택 및 활용 가이드</h2>
-                  <div className="bg-white/5 rounded-[32px] p-8 border border-white/5 space-y-8">
+                  <div className="bg-white/5 rounded-3xl p-8 border border-white/5 space-y-8">
                     <p className="text-gray-300 leading-7">{ornament.guide.summary}</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">

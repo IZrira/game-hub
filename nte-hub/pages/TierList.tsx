@@ -36,7 +36,7 @@ const CharacterCard = memo(({ char, gameId }: { char: NTETierCharacter, gameId: 
   return (
     <Link
       to={`/gallery/${gameId}/character/${encodeURIComponent(char.name)}`}
-      className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/5 hover:border-brand-primary/50 transition-all shadow-lg"
+      className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/5 hover:border-brand-primary/50 transition shadow-lg"
     >
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a]">
@@ -46,7 +46,7 @@ const CharacterCard = memo(({ char, gameId }: { char: NTETierCharacter, gameId: 
       <img 
         src={imgUrl}
         alt={char.name}
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 [image-rendering:-webkit-optimize-contrast] transform-gpu ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
+        className={`absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 [image-rendering:-webkit-optimize-contrast] transform-gpu ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
         loading="lazy"
         onLoad={() => setIsLoaded(true)}
         onError={(e) => {
@@ -164,7 +164,7 @@ const NTETierList: React.FC = () => {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id as any)}
-                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-xs font-black transition-all ${
+                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-2xl text-xs font-black transition ${
                   selectedCategory === cat.id
                     ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-black shadow-lg shadow-brand-primary/20 scale-105'
                     : 'bg-[#141414] text-gray-400 hover:text-white hover:bg-white/5 border border-white/5'
@@ -184,7 +184,7 @@ const NTETierList: React.FC = () => {
                 <button
                   key={role}
                   onClick={() => setRoleFilter(role)}
-                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition ${
                     roleFilter === role ? 'bg-white text-black' : 'text-gray-400 hover:text-white'
                   }`}
                 >
@@ -201,7 +201,7 @@ const NTETierList: React.FC = () => {
                 <button
                   key={attr}
                   onClick={() => setAttrFilter(attr)}
-                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition-all ${
+                  className={`px-2.5 sm:px-3 py-1 rounded-lg text-xs font-bold transition ${
                     attrFilter === attr ? 'bg-brand-accent text-white' : 'text-gray-400 hover:text-white'
                   }`}
                 >
@@ -216,7 +216,7 @@ const NTETierList: React.FC = () => {
             {filteredTiers.map(group => (
               <div 
                 key={group.tier}
-                className="bg-[#121212] rounded-[24px] sm:rounded-[28px] border border-white/5 overflow-hidden shadow-2xl flex flex-col md:flex-row"
+                className="bg-[#121212] rounded-3xl sm:rounded-3xl border border-white/5 overflow-hidden shadow-2xl flex flex-col md:flex-row"
               >
                 {/* Tier Badge Left Header */}
                 <div 

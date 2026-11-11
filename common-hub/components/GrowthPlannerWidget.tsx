@@ -165,7 +165,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
 
         <button
           onClick={() => setIsAdding(!isAdding)}
-          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary/80 text-white text-xs font-black uppercase tracking-wider transition-all active:scale-95 shadow-lg shadow-brand-primary/20"
+          className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary/80 text-white text-xs font-black uppercase tracking-wider transition active:scale-95 shadow-lg shadow-brand-primary/20"
         >
           <Plus size={16} />
           <span>{isAdding ? t('접기') : t('목표 캐릭터 추가')}</span>
@@ -225,7 +225,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
             return (
               <div 
                 key={char.id}
-                className={`p-4 rounded-2xl border transition-all relative overflow-hidden flex flex-col justify-between ${
+                className={`p-4 rounded-2xl border transition relative overflow-hidden flex flex-col justify-between ${
                   isAllDone 
                     ? 'bg-emerald-950/20 border-emerald-500/30' 
                     : 'bg-white/[0.02] hover:bg-white/[0.04] border-white/10'
@@ -283,7 +283,7 @@ export const GrowthPlannerWidget: React.FC<GrowthPlannerWidgetProps> = ({ game, 
                   {/* Progress Bar */}
                   <div className="w-full bg-white/5 h-2 rounded-full overflow-hidden mb-4 border border-white/5">
                     <div 
-                      className={`h-full transition-all duration-500 ${
+                      className={`h-full transition-[width,background-color] duration-500 ${
                         isAllDone ? 'bg-emerald-400' : 'bg-brand-primary'
                       }`}
                       style={{ width: `${progressPercent}%` }}

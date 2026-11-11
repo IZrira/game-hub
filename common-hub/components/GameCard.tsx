@@ -13,7 +13,7 @@ const GameCard: React.FC<GameCardProps> = ({ game }) => {
   return (
     <Link 
       to={`/gallery/${game.id}`}
-      className="group relative overflow-hidden rounded-2xl glass-card transition-all hover:scale-[1.02] hover:shadow-2xl hover:shadow-brand-primary/10"
+      className="group relative overflow-hidden rounded-2xl glass-card transition hover:scale-[1.02] hover:shadow-2xl hover:shadow-brand-primary/10"
     >
       <div className="aspect-[16/9] overflow-hidden">
         <LazyImage 

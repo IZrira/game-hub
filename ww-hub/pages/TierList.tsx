@@ -28,19 +28,19 @@ const CHANGE_BADGES: Record<string, React.ReactNode> = {
   'up': (
     <div className="flex items-center gap-0.5 text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded-md border border-emerald-400/20">
       <ArrowUp size={10} strokeWidth={3} />
-      <span className="text-[8px] font-black">UP</span>
+      <span className="text-[11px] font-black">UP</span>
     </div>
   ),
   'down': (
     <div className="flex items-center gap-0.5 text-rose-400 bg-rose-400/10 px-1.5 py-0.5 rounded-md border border-rose-400/20">
       <ArrowDown size={10} strokeWidth={3} />
-      <span className="text-[8px] font-black">DOWN</span>
+      <span className="text-[11px] font-black">DOWN</span>
     </div>
   ),
   'new': (
     <div className="flex items-center gap-0.5 text-brand-accent bg-brand-accent/10 px-1.5 py-0.5 rounded-md border border-brand-accent/20">
       <Sparkles size={10} strokeWidth={3} />
-      <span className="text-[8px] font-black uppercase">New</span>
+      <span className="text-[11px] font-black uppercase">New</span>
     </div>
   ),
 };
@@ -59,7 +59,7 @@ const CharacterSkeleton = () => (
 );
 
 const TierSkeleton = () => (
-  <div className="bg-[#121212] rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
+  <div className="bg-[#121212] rounded-3xl border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row">
     <div className="w-full md:w-32 flex flex-col items-center justify-center p-6 bg-white/5 shrink-0 border-b md:border-b-0 md:border-r border-white/5">
       <div className="w-12 h-10 bg-white/10 rounded-lg animate-pulse" />
     </div>
@@ -81,7 +81,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
     // Detail URLs use the English id; a Korean name in the path is a 404.
     <CardShell
       {...(href ? { to: href } : {})}
-      className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/5 hover:border-brand-primary/50 transition-all shadow-lg"
+      className="group relative aspect-[3/4] rounded-xl overflow-hidden bg-[#0d0d0d] border border-white/5 hover:border-brand-primary/50 transition shadow-lg"
     >
       {!isLoaded && (
         <div className="absolute inset-0 flex items-center justify-center bg-[#1a1a1a]">
@@ -91,7 +91,7 @@ const CharacterCard = memo(({ char, gameId, getIconUrl }: { char: TierCharacter,
       <img 
         src={getIconUrl(char)}
         alt={char.name}
-        className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 [image-rendering:-webkit-optimize-contrast] transform-gpu ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
+        className={`absolute inset-0 w-full h-full object-cover transition duration-700 group-hover:scale-110 [image-rendering:-webkit-optimize-contrast] transform-gpu ${isLoaded ? 'opacity-100 blur-0' : 'opacity-0 blur-sm'}`}
         loading="lazy"
         onLoad={() => setIsLoaded(true)}
       />
@@ -270,7 +270,7 @@ const TierList: React.FC = () => {
         <GallerySidebar />
 
         <div className="space-y-12">
-          <div className="bg-[#121212] rounded-[28px] sm:rounded-[40px] md:rounded-[48px] border border-white/5 p-5 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
+          <div className="bg-[#121212] rounded-3xl sm:rounded-3xl md:rounded-3xl border border-white/5 p-5 sm:p-8 md:p-12 shadow-2xl relative overflow-hidden">
             <div className="relative z-10 space-y-6 sm:space-y-8">
               <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 sm:gap-8">
                 <div className="space-y-2">
@@ -288,7 +288,7 @@ const TierList: React.FC = () => {
                   <input 
                     type="text" 
                     placeholder="캐릭터 검색..." 
-                    className="bg-white/5 border border-white/10 rounded-2xl py-3.5 sm:py-4 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold transition-all"
+                    className="bg-white/5 border border-white/10 rounded-2xl py-3.5 sm:py-4 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-brand-primary w-full font-bold transition"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
@@ -301,7 +301,7 @@ const TierList: React.FC = () => {
                     <button
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs font-black transition-all border flex items-center gap-2 sm:gap-3 ${
+                      className={`px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl text-xs font-black transition border flex items-center gap-2 sm:gap-3 ${
                         activeCategory === cat.id
                           ? 'bg-brand-primary border-brand-primary text-white'
                           : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10'
@@ -319,7 +319,7 @@ const TierList: React.FC = () => {
                   <button
                     key={role}
                     onClick={() => setRoleFilter(role)}
-                    className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs font-black transition-all border flex items-center gap-2 ${
+                    className={`px-4 sm:px-6 py-2 sm:py-2.5 rounded-xl text-xs font-black transition border flex items-center gap-2 ${
                       roleFilter === role 
                         ? 'bg-brand-primary border-brand-primary text-white' 
                         : 'bg-white/5 border-white/5 text-gray-400 hover:bg-white/10'
@@ -342,7 +342,7 @@ const TierList: React.FC = () => {
               className="space-y-8"
             >
               {filteredTierList.map((group) => (
-                <div key={group.tier} className="bg-[#121212] rounded-[28px] sm:rounded-[32px] border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row group/tier transition-all hover:border-white/10">
+                <div key={group.tier} className="bg-[#121212] rounded-3xl sm:rounded-3xl border border-white/5 overflow-hidden shadow-xl flex flex-col md:flex-row group/tier transition hover:border-white/10">
                   <div 
                     className="w-full md:w-32 flex flex-col items-center justify-center p-4 sm:p-6 shrink-0 border-b md:border-b-0 md:border-r border-white/5 transition-colors"
                     style={{ backgroundColor: `${getTierColor(group.tier, group.color)}10` }}
@@ -370,7 +370,7 @@ const TierList: React.FC = () => {
                 </div>
               ))}
               {filteredTierList.length === 0 && (
-                <div className="py-20 text-center bg-white/[0.02] rounded-[32px] sm:rounded-[48px] border border-white/5">
+                <div className="py-20 text-center bg-white/[0.02] rounded-3xl sm:rounded-3xl border border-white/5">
                   <p className="text-gray-400 font-black uppercase tracking-widest text-xs opacity-50">데이터가 없습니다.</p>
                 </div>
               )}

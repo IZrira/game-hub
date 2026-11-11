@@ -747,14 +747,14 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             <div className="flex flex-wrap items-center gap-3 px-2">
               {rawChar?.hasASBuff && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[11px] font-black transition-all ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-400'}`}>{t('Original')}</button>
-                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[11px] font-black transition-all ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-400'}`}>{t('AS Remake')}</button>
+                  <button onClick={() => setIsASMode(false)} className={`px-4 py-1 rounded-lg text-[11px] font-black transition ${!isASMode ? 'bg-white/10 text-white' : 'text-gray-400'}`}>{t('Original')}</button>
+                  <button onClick={() => setIsASMode(true)} className={`px-4 py-1 rounded-lg text-[11px] font-black transition ${isASMode ? 'bg-brand-primary text-white shadow-lg' : 'text-gray-400'}`}>{t('AS Remake')}</button>
                 </div>
               )}
               {char.isTrailblazer && (
                 <div className="flex items-center gap-1 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
-                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[11px] font-black transition-all ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('남성')}</button>
-                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[11px] font-black transition-all ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('여성')}</button>
+                  <button onClick={() => setGender('m')} className={`px-5 py-1 rounded-lg text-[11px] font-black transition ${gender === 'm' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('남성')}</button>
+                  <button onClick={() => setGender('f')} className={`px-5 py-1 rounded-lg text-[11px] font-black transition ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-400'}`}>{t('여성')}</button>
                 </div>
               )}
             </div>
@@ -823,9 +823,9 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                    <ChevronDown size={18} />
                 </div>
               </button>
-              <div className={`transition-all duration-300 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
+              <div className={`transition-[max-height,opacity,padding] duration-300 ${isProfileExpanded ? 'max-h-[1000px] opacity-100 pb-6' : 'max-h-0 opacity-0'}`}>
                 <div className="border-t border-white/5 px-6 pt-6">
-                  <div className="max-w-3xl whitespace-pre-line border-l-2 border-white/10 pl-5 text-base leading-relaxed text-gray-300">
+                  <div className="max-w-3xl whitespace-pre-line text-base leading-relaxed text-gray-300">
                     {t(char.autoDescription || char.briefInfo || char.brief || '프로필 정보가 등록되지 않았습니다.')}
                   </div>
                 </div>
@@ -844,7 +844,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             expanded={isMetadataExpanded} 
             onToggle={() => setIsMetadataExpanded(!isMetadataExpanded)} 
           />
-          <div className={`overflow-hidden transition-all duration-700 ease-in-out ${isMetadataExpanded ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
+          <div className={`overflow-hidden transition-[max-height,opacity,padding] duration-700 ease-in-out ${isMetadataExpanded ? 'max-h-[1200px] opacity-100' : 'max-h-0 opacity-0'}`}>
             <div className="space-y-6">
               {/* Metadata Cards Grid */}
               <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
@@ -886,7 +886,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                    <Package size={22} className="text-gray-400" />
                    <span className="text-xl font-black">{t("돌파 재료")}</span>
                  </div>
-                 <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition-all">
+                 <button onClick={handleCopyMaterials} className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-xs font-bold text-gray-400 hover:text-white transition">
                    {isCopied ? <CheckCircle2 size={14} className="text-green-500" /> : <Copy size={14} />}
                    {isCopied ? t('복사 완료!') : t('재료 리스트 복사')}
                  </button>
@@ -968,7 +968,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
             <div className="mt-4 flex flex-col sm:flex-row justify-between items-center gap-4">
               <button 
                 onClick={() => setIsFeedbackModalOpen(true)}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/10 hover:border-brand-primary/50 transition-all uppercase tracking-widest"
+                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 border border-white/10 text-xs font-bold text-gray-400 hover:text-white hover:bg-white/10 hover:border-brand-primary/50 transition uppercase tracking-widest"
               >
                 <MessageSquareWarning size={14} />
                 {t('데이터 오류 제보')}
@@ -1021,7 +1021,7 @@ const SectionHeader: React.FC<{
   <div className="flex items-center justify-between w-full group">
     <div className="flex items-center gap-4 md:gap-6">
       <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 text-lg font-black md:h-14 md:w-14 md:text-xl" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{num}</div>
-      <h2 className="border-l-4 border-white/10 py-1 pl-4 text-xl font-black leading-none text-white md:pl-6 md:text-2xl">{title}</h2>
+      <h2 className="py-1 text-xl font-black leading-none text-white md:text-2xl">{title}</h2>
     </div>
     {onToggle && (<button type="button" onClick={onToggle} aria-expanded={expanded} aria-label={`${title} ${expanded ? '접기' : '펼치기'}`} className="rounded-xl border border-white/10 bg-white/5 p-3 transition-colors hover:bg-white/10">{expanded ? <ChevronUp size={24} /> : <ChevronDown size={24} />}</button>)}
   </div>
@@ -1047,7 +1047,7 @@ const MetadataCard: React.FC<{
 const StatCard: React.FC<{ label: string; value: string | number }> = ({ label, value }) => (
   <div className="space-y-4 group">
     <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest group-hover:text-gray-400 transition-colors">{label}</div>
-    <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition-all">{value}</div>
+    <div className="text-3xl font-black tabular-nums text-white group-hover:text-brand-accent transition">{value}</div>
   </div>
 );
 

@@ -47,7 +47,7 @@ const SectionHeader: React.FC<{
     <div className="flex items-center justify-between w-full mb-5">
       <div className="flex items-center gap-3 md:gap-4">
         <div 
-          className="w-12 h-12 md:w-14 md:h-14 rounded-[22px] border-2 flex items-center justify-center font-black text-lg md:text-xl shadow-2xl transition-transform hover:scale-105"
+          className="w-12 h-12 md:w-14 md:h-14 rounded-3xl border-2 flex items-center justify-center font-black text-lg md:text-xl shadow-2xl transition-transform hover:scale-105"
           style={{ 
             backgroundColor: `${primaryColor}20`, 
             color: primaryColor, 
@@ -56,7 +56,7 @@ const SectionHeader: React.FC<{
         >
           {num}
         </div>
-        <h2 className="text-xl md:text-2xl font-black text-white italic tracking-tighter uppercase border-l-4 border-white/10 pl-4 md:pl-6 leading-none py-1">
+        <h2 className="text-xl md:text-2xl font-black text-white tracking-tighter uppercase leading-none py-1">
           {title}
         </h2>
       </div>
@@ -150,13 +150,13 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
     <section className={`w-full mt-8 relative ${className}`}>
       {/* Dynamic Ambient Background Glow */}
       <div 
-        className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition-all duration-500"
+        className="absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[100px] opacity-20 pointer-events-none transition duration-500"
         style={{ backgroundColor: theme?.primary || glow.primary }}
       />
 
       <SectionHeader num={defaultNum} title="추천 파티 조합" theme={theme} />
 
-      <div ref={partyCardRef} className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-[28px] p-5 md:p-6 relative overflow-hidden">
+      <div ref={partyCardRef} className="bg-[#0f0f0f]/40 backdrop-blur-xl border border-white/10 shadow-2xl rounded-3xl p-5 md:p-6 relative overflow-hidden">
         
         {/* Header & Share Actions */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-6 border-b border-white/10 pb-4">
@@ -169,7 +169,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                   <button
                     key={party.id || idx}
                     onClick={() => setActivePartyIndex(idx)}
-                    className={`px-4 py-2 rounded-2xl text-xs md:text-sm font-bold transition-all duration-300 border flex items-center gap-2 ${
+                    className={`px-4 py-2 rounded-2xl text-xs md:text-sm font-bold transition duration-300 border flex items-center gap-2 ${
                       isActive 
                         ? 'bg-white/15 text-white border-white/30 shadow-lg scale-[1.02]' 
                         : 'bg-white/5 text-gray-400 border-white/5 hover:bg-white/10 hover:text-gray-200'
@@ -192,7 +192,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
             <button
               onClick={handleCopyPartyLink}
               title="파티 조합 링크 복사"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition active:scale-95"
             >
               {copiedLink ? <Check size={14} className="text-emerald-400" /> : <LinkIcon size={14} />}
               <span>{copiedLink ? '복사 완료!' : 'URL 공유'}</span>
@@ -202,7 +202,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
               onClick={handleExportPartyImage}
               disabled={isExportingImage}
               title="파티 조합 카드 이미지로 저장"
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition-all active:scale-95 disabled:opacity-50"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-gray-300 hover:text-white transition active:scale-95 disabled:opacity-50"
             >
               <Camera size={14} />
               <span>{isExportingImage ? '생성 중...' : '이미지 저장'}</span>
@@ -273,7 +273,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
             return (
               <div 
                 key={member.id || idx}
-                className={`group relative bg-[#121212]/60 hover:bg-[#181818]/90 border rounded-[20px] p-3 flex flex-col justify-between transition-all duration-300 ${
+                className={`group relative bg-[#121212]/60 hover:bg-[#181818]/90 border rounded-2xl p-3 flex flex-col justify-between transition duration-300 ${
                   member.isMainTarget 
                     ? 'border-amber-400/80 shadow-[0_0_20px_rgba(251,191,36,0.25)] ring-1 ring-amber-400/50' 
                     : 'border-white/10 hover:border-white/20 shadow-lg'
@@ -289,7 +289,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                 {/* Member Portrait */}
                 <MaybeLink
                   to={characterPath(gameId, member.folderName)}
-                  className="relative w-full aspect-[3/4] rounded-[14px] overflow-hidden mb-2.5 bg-black/40 border border-white/5 block group-hover:border-white/20 transition-colors"
+                  className="relative w-full aspect-[3/4] rounded-xl overflow-hidden mb-2.5 bg-black/40 border border-white/5 block group-hover:border-white/20 transition-colors"
                 >
                   <LazyImage 
                     src={artPath}
@@ -324,7 +324,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                   <div className="mt-1">
                     <button
                       onClick={() => toggleSubstituteDrawer(member.id)}
-                      className="w-full py-1.5 px-2.5 text-[11px] font-bold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition-all flex items-center justify-center gap-1"
+                      className="w-full py-1.5 px-2.5 text-[11px] font-bold text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl transition flex items-center justify-center gap-1"
                     >
                       {isDrawerOpen ? (
                         <>
@@ -352,7 +352,7 @@ export const SynergyDeck: React.FC<SynergyDeckProps> = ({
                               <MaybeLink
                                 key={sIdx}
                                 to={characterPath(gameId, sub.folderName)}
-                                className="flex items-center gap-1.5 bg-white/5 pr-2 rounded-full border border-white/10 overflow-hidden hover:bg-white/20 transition-all hover:scale-105"
+                                className="flex items-center gap-1.5 bg-white/5 pr-2 rounded-full border border-white/10 overflow-hidden hover:bg-white/20 transition hover:scale-105"
                               >
                                 <div className="w-5 h-5 rounded-full overflow-hidden bg-black/40 shrink-0">
                                   <LazyImage 

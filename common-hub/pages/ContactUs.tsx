@@ -26,7 +26,7 @@ const ContactUs: React.FC = () => {
           </p>
         </div>
 
-        <div className="glass-card p-8 md:p-12 rounded-[32px] border border-white/5 shadow-2xl relative overflow-hidden">
+        <div className="glass-card p-8 md:p-12 rounded-3xl border border-white/5 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-primary via-brand-accent to-brand-primary" />
           
           <div className="space-y-8 relative z-10">
@@ -57,7 +57,7 @@ const ContactUs: React.FC = () => {
             <div className="flex justify-center pt-8">
               <a 
                 href="mailto:rira.game.hub@gmail.com" 
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-black hover:bg-brand-primary hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-black font-black hover:bg-brand-primary hover:scale-105 transition shadow-[0_0_20px_rgba(255,255,255,0.2)]"
               >
                 <Mail size={18} /> 메일 보내기
               </a>

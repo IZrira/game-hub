@@ -286,7 +286,7 @@ const CharacterGuideContent: React.FC<{ data: HsrGuideRuntime }> = ({ data }) =>
         <Info size={40} className="text-gray-300 mb-6" />
         <h2 className="text-2xl font-black uppercase tracking-widest mb-2">공략을 찾을 수 없습니다</h2>
         <p className="text-gray-300 mb-8">해당 캐릭터의 상세 공략 데이터가 아직 등록되지 않았습니다.</p>
-        <Link to={`/gallery/${gameId}`} className="flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-xl font-black text-sm hover:scale-105 transition-all">
+        <Link to={`/gallery/${gameId}`} className="flex items-center gap-2 bg-brand-primary text-white px-8 py-3 rounded-xl font-black text-sm hover:scale-105 transition">
           <ChevronLeft size={16} /> 도감으로 돌아가기
         </Link>
       </div>

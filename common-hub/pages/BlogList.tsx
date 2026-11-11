@@ -22,7 +22,7 @@ const BlogList: React.FC = () => {
       
       <main className="max-w-[1200px] mx-auto px-6 md:px-12 pt-12">
         {BLOG_POSTS.length === 0 && (
-          <section className="mx-auto max-w-2xl rounded-[32px] border border-amber-300/15 bg-amber-300/[0.04] p-8 text-center md:p-12">
+          <section className="mx-auto max-w-2xl rounded-3xl border border-amber-300/15 bg-amber-300/[0.04] p-8 text-center md:p-12">
             <ShieldCheck className="mx-auto text-amber-200" size={36} />
             <h1 className="mt-5 text-2xl font-black">공략 콘텐츠를 다시 검수하고 있습니다</h1>
             <p className="mt-4 text-sm leading-7 text-gray-400">
@@ -39,7 +39,7 @@ const BlogList: React.FC = () => {
             <Link 
               key={post.id} 
               to={`/blog/${post.id}${gameQuery}`}
-              className="group glass-card rounded-[32px] overflow-hidden border border-white/5 hover:border-brand-primary/30 transition-all duration-500 flex flex-col bg-gradient-to-br from-white/[0.03] to-transparent hover:shadow-2xl"
+              className="group glass-card rounded-3xl overflow-hidden border border-white/5 hover:border-brand-primary/30 transition duration-500 flex flex-col bg-gradient-to-br from-white/[0.03] to-transparent hover:shadow-2xl"
             >
               {post.imageUrl && (
                 <div className="w-full aspect-[2/1] overflow-hidden relative">

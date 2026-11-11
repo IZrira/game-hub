@@ -425,7 +425,7 @@ const GalleryWW: React.FC = () => {
 
                   if (list.length === 0) {
                     return (
-                      <div className="col-span-full py-20 text-center space-y-4 bg-white/[0.02] rounded-[40px] border border-white/5">
+                      <div className="col-span-full py-20 text-center space-y-4 bg-white/[0.02] rounded-3xl border border-white/5">
                         <Book className="mx-auto text-gray-400 opacity-20" size={48} />
                         <p className="text-gray-500 font-bold italic uppercase tracking-widest">{t('준비 중인 공략입니다.')}</p>
                       </div>
@@ -463,7 +463,7 @@ const FilterSelect = ({ label, value, onChange, options, formatOption }: any) =>
     <div className="relative" ref={containerRef}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition-all ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
+        className={`flex items-center gap-3 bg-[#1a1a1a] rounded-2xl px-4 h-11 border transition ${isOpen ? 'border-brand-primary/50 bg-[#222]' : 'border-white/5 hover:border-white/20'}`}
       >
         <span className="text-xs font-black text-gray-500 uppercase tracking-widest whitespace-nowrap">{label}</span>
         <span className="text-xs font-bold text-white min-w-[60px] text-left">

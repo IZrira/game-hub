@@ -56,7 +56,7 @@ const Terminology: React.FC = () => {
             <input 
               type="text" 
               placeholder="용어 또는 설명 검색..." 
-              className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full transition-all focus:bg-white/10 text-white placeholder:text-gray-400 font-bold"
+              className="bg-white/5 border border-white/10 rounded-2xl py-3 pl-12 pr-6 text-sm focus:outline-none focus:border-brand-primary/50 w-full transition focus:bg-white/10 text-white placeholder:text-gray-400 font-bold"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
             />
@@ -65,7 +65,7 @@ const Terminology: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTerms.map((item, idx) => (
-            <div key={idx} className="group flex flex-col p-8 rounded-[32px] bg-[#121212] border border-white/5 hover:border-brand-primary/30 hover:bg-white/[0.02] transition-all duration-300 relative overflow-hidden">
+            <div key={idx} className="group flex flex-col p-8 rounded-3xl bg-[#121212] border border-white/5 hover:border-brand-primary/30 hover:bg-white/[0.02] transition duration-300 relative overflow-hidden">
               <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
                 <Hash size={64} className="text-white" />
               </div>
@@ -74,15 +74,15 @@ const Terminology: React.FC = () => {
                 <h3 className="text-2xl font-black text-brand-light group-hover:text-brand-accent transition-colors italic tracking-tight">
                   {item.term}
                 </h3>
-                <div className="w-8 h-1 bg-white/10 rounded-full group-hover:w-20 group-hover:bg-brand-primary transition-all duration-500" />
-                <p className="text-gray-400 font-medium leading-relaxed text-[15px]">
+                <div className="w-8 h-1 bg-white/10 rounded-full group-hover:w-20 group-hover:bg-brand-primary transition-[width,background-color] duration-500" />
+                <p className="text-gray-400 font-medium leading-relaxed text-base">
                   {item.desc}
                 </p>
               </div>
             </div>
           ))}
           {filteredTerms.length === 0 && (
-            <div className="col-span-full py-32 text-center bg-white/[0.02] rounded-[48px] border border-dashed border-white/5">
+            <div className="col-span-full py-32 text-center bg-white/[0.02] rounded-3xl border border-dashed border-white/5">
               <p className="text-gray-400 font-black uppercase tracking-[0.3em] text-sm italic">일치하는 용어를 찾을 수 없습니다.</p>
             </div>
           )}

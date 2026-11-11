@@ -107,7 +107,7 @@ export default function NTESkillAndAwakeningSection({
                 <button
                   key={cat.id}
                   onClick={() => setActiveCategory(cat.id)}
-                  className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition-all duration-500 ${
+                  className={`group relative flex items-center gap-3 px-6 py-3 rounded-2xl border transition duration-500 ${
                     isActive 
                       ? 'bg-white/10 border-white/20 scale-105' 
                       : 'bg-white/[0.03] border-white/5 hover:bg-white/5'
@@ -117,7 +117,7 @@ export default function NTESkillAndAwakeningSection({
                   <div className="w-10 h-10 flex items-center justify-center relative z-10">
                     <img 
                       src={`${CDN_BASE}${iconFilename}`} 
-                      className={`w-full h-full object-contain transition-all duration-500 ${isActive ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`} 
+                      className={`w-full h-full object-contain transition duration-500 ${isActive ? 'scale-125 brightness-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.5)]' : 'opacity-40 group-hover:opacity-70 group-hover:scale-110'}`}
                       alt={cat.label} 
                       loading="lazy"
                       decoding="async"
@@ -134,7 +134,7 @@ export default function NTESkillAndAwakeningSection({
 
           <div className="grid gap-4">
             {activeSkills.map(({ skill, filename }, idx) => (
-              <div key={idx} className="group glass-card rounded-[40px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition-all duration-500 hover:border-white/20">
+              <div key={idx} className="group glass-card rounded-3xl border border-white/5 p-1 bg-gradient-to-br from-white/[0.05] to-transparent shadow-2xl relative overflow-hidden transition duration-500 hover:border-white/20">
                  <div className="absolute top-0 right-0 w-64 h-64 -mr-16 -mt-16 opacity-[0.03] grayscale brightness-200 pointer-events-none group-hover:opacity-[0.05] transition-opacity duration-700">
                    <img 
                      src={`${CDN_BASE}${filename}`} 
@@ -145,10 +145,10 @@ export default function NTESkillAndAwakeningSection({
                      onError={handleNteSkillImageError}
                    />
                  </div>
-                 <div className="bg-[#0c0c0c]/80 rounded-[38px] p-8 md:p-10 relative z-10 overflow-hidden">
+                 <div className="bg-[#0c0c0c]/80 rounded-3xl p-8 md:p-10 relative z-10 overflow-hidden">
                    <div className="flex flex-col md:flex-row items-start gap-8">
                       <div className="relative shrink-0">
-                        <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition-all duration-500 group-hover:scale-110">
+                        <div className="w-24 h-24 rounded-3xl border border-white/10 flex items-center justify-center p-5 relative z-10 group-hover:border-white/30 transition duration-500 group-hover:scale-110">
                            <img 
                              src={`${CDN_BASE}${filename}`} 
                              className="w-full h-full object-contain brightness-110" 
@@ -198,7 +198,7 @@ export default function NTESkillAndAwakeningSection({
               {char.eidolons.map((awakening: any, idx: number) => {
                 const desc = awakening.description;
                 return (
-                  <div key={idx} className="group flex gap-4 p-5 rounded-2xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition-all duration-300">
+                  <div key={idx} className="group flex gap-4 p-5 rounded-2xl bg-gradient-to-br from-white/[0.03] to-transparent border border-white/5 hover:border-white/10 hover:bg-white/[0.05] transition duration-300">
                     <div className="flex-shrink-0">
                       <div className="w-14 h-14 rounded-xl flex items-center justify-center border border-white/20 relative overflow-hidden"
                            style={{ background: `linear-gradient(135deg, ${theme.primary}20, transparent)`, borderColor: `${theme.primary}50` }}>
@@ -231,8 +231,8 @@ export default function NTESkillAndAwakeningSection({
             
             <div className="grid gap-4">
               {groupedSkills['공명'].map(({ skill }, idx) => (
-                <div key={idx} className="group glass-card rounded-[30px] border border-white/5 p-1 bg-gradient-to-br from-white/[0.02] to-transparent shadow-xl relative overflow-hidden transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]">
-                   <div className="bg-[#0c0c0c]/60 rounded-[28px] p-6 md:p-8 relative z-10 overflow-hidden">
+                <div key={idx} className="group glass-card rounded-3xl border border-white/5 p-1 bg-gradient-to-br from-white/[0.02] to-transparent shadow-xl relative overflow-hidden transition duration-300 hover:border-white/10 hover:bg-white/[0.04]">
+                   <div className="bg-[#0c0c0c]/60 rounded-3xl p-6 md:p-8 relative z-10 overflow-hidden">
                      <div className="space-y-5">
                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/5 pb-5">
                           <div className="space-y-1">

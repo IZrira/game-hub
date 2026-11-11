@@ -33,7 +33,7 @@ export default function ItemDetail() {
         <h1 className="text-2xl text-white font-bold mb-4">{t("아이템을 찾을 수 없습니다.")}</h1>
         <button 
           onClick={() => navigate(-1)} 
-          className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-all flex items-center gap-2"
+          className="px-6 py-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition flex items-center gap-2"
         >
           <ChevronLeft size={16} />
           {t("돌아가기")}
@@ -65,23 +65,23 @@ export default function ItemDetail() {
         {/* Top Navigation */}
         <button 
           onClick={() => navigate(-1)}
-          className="group flex items-center gap-2 text-gray-400 hover:text-white transition-all mb-8"
+          className="group flex items-center gap-2 text-gray-400 hover:text-white transition mb-8"
         >
-          <div className="p-2 rounded-full bg-white/5 group-hover:bg-white/10 border border-white/5 transition-all">
+          <div className="p-2 rounded-full bg-white/5 group-hover:bg-white/10 border border-white/5 transition">
             <ChevronLeft size={16} />
           </div>
           <span className="text-xs font-bold uppercase tracking-widest">{t("BACK TO GALLERY")}</span>
         </button>
 
-        <div className={`relative bg-[#0a0a0a] rounded-[40px] border ${theme.border} ${theme.accent} overflow-hidden shadow-2xl flex flex-col lg:flex-row`}>
+        <div className={`relative bg-[#0a0a0a] rounded-3xl border ${theme.border} ${theme.accent} overflow-hidden shadow-2xl flex flex-col lg:flex-row`}>
           {/* Left Section: Visuals */}
           <div className={`w-full lg:w-5/12 relative bg-gradient-to-br from-black via-[#0a0a0a] to-[#111] p-12 lg:p-20 flex items-center justify-center min-h-[400px] lg:min-h-[600px]`}>
             <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_white_1px,_transparent_1px)] bg-[size:20px_20px]" />
             <div className={`absolute inset-0 ${theme.glow} blur-[100px] opacity-40`} />
             
             <div className="relative z-10 w-full max-w-[300px] aspect-square flex items-center justify-center group">
-              <div className={`absolute inset-0 border-2 ${theme.border} rounded-[48px] rotate-6 group-hover:rotate-12 transition-transform duration-700`} />
-              <div className={`absolute inset-0 border border-white/5 rounded-[48px] -rotate-3 group-hover:-rotate-6 transition-transform duration-700`} />
+              <div className={`absolute inset-0 border-2 ${theme.border} rounded-3xl rotate-6 group-hover:rotate-12 transition-transform duration-700`} />
+              <div className={`absolute inset-0 border border-white/5 rounded-3xl -rotate-3 group-hover:-rotate-6 transition-transform duration-700`} />
               <img 
                 src={url} 
                 alt={koName} 
@@ -126,7 +126,7 @@ export default function ItemDetail() {
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {sources.map((source: string, idx: number) => (
-                    <span key={idx} className="bg-white/[0.03] text-gray-300 px-5 py-2.5 rounded-2xl text-sm font-bold border border-white/10 hover:border-white/20 transition-all shadow-sm">
+                    <span key={idx} className="bg-white/[0.03] text-gray-300 px-5 py-2.5 rounded-2xl text-sm font-bold border border-white/10 hover:border-white/20 transition shadow-sm">
                       {source}
                     </span>
                   ))}

@@ -37,7 +37,7 @@
 .guide-page .guide-content :is(h2,h3) { scroll-margin-top:136px; }
 .guide-page .text-gray-500,.guide-page .text-gray-600 { color:#9ca3af; }
 .guide-page .guide-content :is([class*="text-[9px]"],[class*="text-[10px]"],[class*="text-[11px]"]) { font-size:12px; line-height:1.5; }
-.guide-page .guide-content :is([class*="rounded-[45px]"],[class*="rounded-[40px]"],[class*="rounded-[36px]"],[class*="rounded-[32px]"],[class*="rounded-[28px]"]) { border-radius:16px; }
+.guide-page .guide-content .rounded-3xl { border-radius:16px; }
 .guide-page .guide-content .truncate { overflow:visible; text-overflow:clip; white-space:normal; overflow-wrap:anywhere; }
 @media(min-width:640px) { .guide-hero { padding:22px 24px; } .guide-summary,.guide-variant-selector { padding:20px; } .guide-section-heading h2 { font-size:22px; line-height:30px; } }
 @media(prefers-reduced-motion:reduce) { .guide-page * { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
