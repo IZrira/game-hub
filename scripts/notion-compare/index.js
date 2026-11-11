@@ -38,8 +38,17 @@ async function main() {
   const notion = createNotion();
   fs.mkdirSync(outDir, { recursive: true });
 
+  // Running only some hubs keeps the other hubs' results from the last run, so the published
+  // table never loses a hub just because one hub was refreshed.
   const items = [];
   const hubInfo = [];
+  const lastFile = path.join(outDir, 'items.json');
+  if (wanted.length && fs.existsSync(lastFile)) {
+    const last = JSON.parse(fs.readFileSync(lastFile, 'utf8'));
+    const kept = (last.hubs || []).filter(h => !hubs.some(x => x.id === h.id));
+    hubInfo.push(...kept);
+    items.push(...(last.items || []).filter(it => kept.some(h => h.id === it.hub)));
+  }
   for (const hub of hubs) {
     console.log(`[compare] ${hub.name}`);
     const list = createItemList(hub.id);
@@ -51,6 +60,8 @@ async function main() {
     console.log(`[compare] ${hub.id}: ${list.items.length} differences`, byDb);
   }
 
+  hubInfo.sort((a, b) => HUBS.findIndex(h => h.id === a.id) - HUBS.findIndex(h => h.id === b.id));
+  items.sort((a, b) => HUBS.findIndex(h => h.id === a.hub) - HUBS.findIndex(h => h.id === b.hub));
   const payload = { generatedAt: new Date().toISOString(), hubs: hubInfo, items };
   fs.writeFileSync(path.join(outDir, 'items.json'), JSON.stringify(payload, null, 1));
   fs.writeFileSync(path.join(outDir, 'review.html'), buildReviewPage(template(), payload));

@@ -83,6 +83,75 @@ export function sectionText(section, value) {
   }).join('\n');
 }
 
+const SKILL_SECTIONS = new Set(['탐사 스킬', '특성', '전투 스킬', '고유 스킬']);
+const SKILL_FIELD = { name: '이름', description: '설명', skillType: '종류', energyCost: '에너지', power: '위력' };
+const shown = v => (v === undefined || v === null || v === '' ? '(없음)' : Array.isArray(v) ? v.join(', ') : String(v));
+const same = (a, b) => JSON.stringify(a ?? null) === JSON.stringify(b ?? null);
+
+/** Pair list entries by a key first, then the leftovers by position. */
+function pairBy(A, B, key) {
+  const pairs = [];
+  const restB = [...B];
+  const restA = [];
+  for (const a of A) {
+    const j = restB.findIndex(b => key(b) === key(a));
+    if (j >= 0) pairs.push([a, restB.splice(j, 1)[0]]); else restA.push(a);
+  }
+  for (let i = 0; i < Math.max(restA.length, restB.length); i++) pairs.push([restA[i], restB[i]]);
+  return pairs;
+}
+
+/**
+ * Every single difference inside one section, so each can be decided on its own:
+ * a stat, one field of one skill, one resonance level's requirement, one location, ...
+ * Returns `{ label, site, official }` with display strings.
+ */
+export function fieldDiffs(section, site, official) {
+  const out = [];
+  const push = (label, a, b) => { if (!same(a, b)) out.push({ label, site: shown(a), official: shown(b) }); };
+  if (section === '능력치') {
+    for (const k of new Set([...Object.keys(site || {}), ...Object.keys(official || {})])) push(STAT_LABEL[k] || k, site?.[k], official?.[k]);
+    return out;
+  }
+  if (SKILL_SECTIONS.has(section)) {
+    for (const [a, b] of pairBy(site || [], official || [], s => s.name)) {
+      const base = (b || a).name || '이름 없음';
+      if (!a || !b) { push(base, a ? sectionText(section, [a]) : undefined, b ? sectionText(section, [b]) : undefined); continue; }
+      for (const k of Object.keys(SKILL_FIELD)) push(`${base} · ${SKILL_FIELD[k]}`, a[k], b[k]);
+    }
+    return out;
+  }
+  if (section === '홈 능력') {
+    for (const [a, b] of pairBy(site || [], official || [], h => h.종류)) push((b || a).종류, a ? a.수치 : undefined, b ? b.수치 : undefined);
+    return out;
+  }
+  if (section === '공명 단계') {
+    for (const [a, b] of pairBy(site || [], official || [], r => r.단계)) {
+      const base = (b || a).단계;
+      if (!a || !b) { push(base, a && `${a.조건} · ${a.재료}`, b && `${b.조건} · ${b.재료}`); continue; }
+      push(`${base} · 조건`, a.조건, b.조건);
+      push(`${base} · 재료`, a.재료, b.재료);
+    }
+    return out;
+  }
+  if (section === '진화 단계') {
+    const A = site || [];
+    const B = official || [];
+    for (let i = 0; i < Math.max(A.length, B.length); i++) push(`${i + 1}단계`, A[i], B[i]);
+    return out;
+  }
+  if (Array.isArray(site) || Array.isArray(official)) {
+    const A = site || [];
+    const B = official || [];
+    for (const x of A) if (!B.includes(x)) push(String(x), x, undefined);
+    for (const x of B) if (!A.includes(x)) push(String(x), undefined, x);
+    if (!out.length) push('순서', A, B);
+    return out;
+  }
+  push('', site, official);
+  return out;
+}
+
 async function compareRegion({ db, roster, stored, parse, add, log }) {
   const byPath = new Map(stored.map(x => [x.sourcePath, x]));
   const seen = new Set();
@@ -98,7 +167,12 @@ async function compareRegion({ db, roster, stored, parse, add, log }) {
     const officialForms = links.map(l => ({ key: l.href.split('/')[4], label: l.label, href: l.href }));
     const localForms = local.forms || [];
     const formList = list => list.map(f => `${f.key} ${f.label}`).join('\n');
-    if (formList(officialForms) !== formList(localForms)) add({ db, target, cat: '형태 목록', notion: formList(officialForms), site: formList(localForms) });
+    if (formList(officialForms) !== formList(localForms)) {
+      for (const [a, b] of pairBy(localForms, officialForms, f => f.key)) {
+        if (a && b && a.label === b.label) continue;
+        add({ db, target, cat: '형태 목록', label: (b || a).key, notion: b ? `${b.key} ${b.label}` : '(없음)', site: a ? `${a.key} ${a.label}` : '(없음)' });
+      }
+    }
     for (const form of officialForms) {
       const lf = localForms.find(f => f.key === form.key);
       if (!lf) continue;
@@ -107,11 +181,11 @@ async function compareRegion({ db, roster, stored, parse, add, log }) {
       const official = comparable(detail);
       for (const section of Object.keys(official)) {
         if (!diffDeep(site[section], official[section], '', []).length) continue;
-        const a = sectionText(section, site[section]);
-        const b = sectionText(section, official[section]);
-        const kind = textKind(b, a);
-        if (kind === null) continue;
-        add({ db, target, cat: `${form.label} · ${section}`, kind, notion: b, site: a });
+        for (const d of fieldDiffs(section, site[section], official[section])) {
+          const kind = textKind(d.official, d.site);
+          if (kind === null) continue;
+          add({ db, target, cat: `${form.label} · ${section}`, label: d.label || undefined, kind, notion: d.official, site: d.site });
+        }
       }
     }
     if ((i + 1) % 10 === 0) log(`    ${db} ${i + 1}/${roster.length}`);

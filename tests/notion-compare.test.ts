@@ -122,6 +122,23 @@ describe('aniimo official dex comparison', () => {
     expect(sectionText('전투 스킬', [{ name: '플레임 킥', description: '도약한다', skillType: '물리 스킬', energyCost: 0, power: 72 }]))
       .toBe('■ 플레임 킥 (물리 스킬 · 에너지 0 · 위력 72)\n도약한다');
   });
+
+  it('splits a section into single decisions', async () => {
+    const { fieldDiffs } = await import('../scripts/notion-compare/hubs/aniimo/index.js');
+    const skill = (name: string, description: string, power: number) => ({ name, description, skillType: '물리 스킬', energyCost: 0, power });
+    expect(fieldDiffs('전투 스킬', [skill('킥', '도약', 72), skill('펀치', '때림', 50)], [skill('펀치', '때림', 55), skill('킥', '도약한다', 72)]))
+      .toEqual([
+        { label: '킥 · 설명', site: '도약', official: '도약한다' },
+        { label: '펀치 · 위력', site: '50', official: '55' },
+      ]);
+    expect(fieldDiffs('공명 단계', [{ 단계: 'LV 6', 조건: '55레벨 달성', 재료: 'x1' }], [{ 단계: 'LV 6', 조건: '60레벨 달성', 재료: 'x1' }]))
+      .toEqual([{ label: 'LV 6 · 조건', site: '55레벨 달성', official: '60레벨 달성' }]);
+    expect(fieldDiffs('출현 지역', ['숲', '강'], ['숲', '산'])).toEqual([
+      { label: '강', site: '강', official: '(없음)' },
+      { label: '산', site: '(없음)', official: '산' },
+    ]);
+    expect(fieldDiffs('능력치', { total: 500, hp: 80 }, { total: 500, hp: 85 })).toEqual([{ label: 'HP', site: '80', official: '85' }]);
+  });
 });
 
 describe('sync script as a library', () => {
