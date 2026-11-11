@@ -1,0 +1,402 @@
+<title>HSR 데이터 대조표</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: sticky filter bar over a single column of target groups; each difference shows Notion and site text side by side. */
+:root {
+  --bg: #f6f6f9; --surface: #ffffff; --surface-2: #f0eff6; --line: #dddbe8;
+  --fg: #1d1b29; --muted: #5f5b74; --accent: #6b3fd6; --accent-weak: #ece6fb;
+  --notion: #3d4a5c; --notion-weak: #e7ecf2; --site: #6b3fd6; --site-weak: #efe8fd;
+  --del: #fde2c8; --ins: #e3d7fc; --warn: #a34b00; --warn-weak: #fdeedd; --ok: #1d7a4b; --ok-weak: #dff3e8;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-data: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #131219; --surface: #1c1a25; --surface-2: #24212f; --line: #343044;
+  --fg: #ecebf3; --muted: #a29db8; --accent: #b39dff; --accent-weak: #2c2545;
+  --notion: #b7c4d6; --notion-weak: #222a35; --site: #c4b2ff; --site-weak: #2a2340;
+  --del: #5a3a1c; --ins: #3e2f6b; --warn: #f2b06c; --warn-weak: #3a2a17; --ok: #7fd5a6; --ok-weak: #18392a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #131219; --surface: #1c1a25; --surface-2: #24212f; --line: #343044;
+  --fg: #ecebf3; --muted: #a29db8; --accent: #b39dff; --accent-weak: #2c2545;
+  --notion: #b7c4d6; --notion-weak: #222a35; --site: #c4b2ff; --site-weak: #2a2340;
+  --del: #5a3a1c; --ins: #3e2f6b; --warn: #f2b06c; --warn-weak: #3a2a17; --ok: #7fd5a6; --ok-weak: #18392a; color-scheme: dark }
+* { box-sizing: border-box }
+[hidden] { display: none !important }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 14px; line-height: 1.55; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--surface) }
+.wrap { max-width: 1120px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+header.top { padding-block: 24px 12px; display: grid; gap: 12px }
+h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; text-wrap: balance }
+.lede { margin: 0; color: var(--muted); max-width: 68ch }
+.stats { display: flex; flex-wrap: wrap; gap: 8px 20px; font-variant-numeric: tabular-nums; color: var(--muted); font-size: 13px }
+.stats b { color: var(--fg); font-weight: 700 }
+.progress { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; max-width: 420px }
+.progress > i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .3s }
+.status-note { font-size: 12px; color: var(--warn); }
+
+.bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-block: 1px solid var(--line); }
+.bar .wrap { padding-block: 10px; display: grid; gap: 8px }
+.row { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.row .lab { font-size: 11px; color: var(--muted); letter-spacing: .04em; min-width: 40px }
+.chip { appearance: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 99px; padding: 4px 10px; font: inherit; font-size: 13px; cursor: pointer; display: inline-flex; gap: 6px; align-items: center; min-height: 30px }
+.chip .n { font-family: var(--font-data); font-size: 11px; color: var(--muted) }
+.chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface) }
+.chip[aria-pressed="true"] .n { color: inherit; opacity: .8 }
+.chip:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px }
+input[type=search] { flex: 1 1 220px; min-width: 0; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 8px; padding: 6px 10px; font: inherit; font-size: 16px; min-height: 34px }
+
+main { padding-block: 16px 64px; display: grid; gap: 14px }
+.empty { color: var(--muted); padding: 40px 0; text-align: center }
+details.group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+details.group > summary { list-style: none; cursor: pointer; padding: 12px 14px; display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+details.group > summary::-webkit-details-marker { display: none }
+details.group > summary::before { content: "▸"; color: var(--muted); transition: transform .15s }
+details.group[open] > summary::before { transform: rotate(90deg) }
+.gname { font-weight: 700; font-size: 15px }
+.gsub { color: var(--muted); font-size: 12px }
+.gcount { margin-left: auto; font-family: var(--font-data); font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums }
+.gapply { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; align-items: center; font-size: 12px; color: var(--muted) }
+.gapply button { font-size: 12px; min-height: 28px }
+.items { display: grid; border-top: 1px solid var(--line) }
+
+.item { padding: 14px; display: grid; gap: 10px; border-bottom: 1px solid var(--line) }
+.item:last-child { border-bottom: 0; border-radius: 0 0 12px 12px }
+.item.decided { background: color-mix(in srgb, var(--ok-weak) 35%, transparent) }
+.ihead { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center }
+.cat { font-weight: 700 }
+.lbl { color: var(--muted) }
+.tag { font-size: 11px; padding: 1px 8px; border-radius: 99px; background: var(--surface-2); color: var(--muted); white-space: nowrap }
+.tag.g-수치, .tag.g-스탯 { background: var(--warn-weak); color: var(--warn) }
+.tag.hint { background: var(--accent-weak); color: var(--accent) }
+.cmp { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.side { min-width: 0; border-radius: 8px; padding: 8px 10px; background: var(--surface-2); }
+.side h4 { margin: 0 0 4px; font-size: 11px; letter-spacing: .06em; font-weight: 700 }
+.side.n h4 { color: var(--notion) } .side.s h4 { color: var(--site) }
+.side p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; word-break: keep-all }
+.side.n del { background: var(--del); text-decoration: none; border-radius: 3px }
+.side.s ins { background: var(--ins); text-decoration: none; border-radius: 3px }
+.facts { margin: 0; padding: 0; list-style: none; display: grid; gap: 4px; font-size: 13px }
+.facts li { display: grid; grid-template-columns: minmax(90px, max-content) 1fr 1fr; gap: 4px 12px; align-items: baseline; padding: 4px 8px; background: var(--surface-2); border-radius: 6px; font-variant-numeric: tabular-nums }
+.facts .k { color: var(--muted); font-size: 12px; overflow-wrap: anywhere }
+.facts .nv { color: var(--notion) } .facts .sv { color: var(--site) }
+.facts .nv::before { content: "Notion "; font-size: 11px; opacity: .7 } .facts .sv::before { content: "사이트 "; font-size: 11px; opacity: .7 }
+.plain { margin: 0; color: var(--fg); overflow-wrap: anywhere; white-space: pre-wrap }
+.num { font-family: var(--font-data); font-size: 12.5px }
+
+.decide { display: flex; flex-wrap: wrap; gap: 6px; align-items: center }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--line); border-radius: 8px; overflow: hidden }
+.seg button { appearance: none; border: 0; border-right: 1px solid var(--line); background: var(--surface); color: var(--fg); font: inherit; font-size: 13px; padding: 5px 10px; min-height: 32px; cursor: pointer }
+.seg button:last-child { border-right: 0 }
+.seg button[aria-pressed="true"][data-c="notion"] { background: var(--notion); color: var(--surface) }
+.seg button[aria-pressed="true"][data-c="site"] { background: var(--site); color: var(--surface) }
+.seg button[aria-pressed="true"][data-c="both"] { background: var(--warn); color: var(--surface) }
+.seg button[aria-pressed="true"][data-c="hold"] { background: var(--muted); color: var(--surface) }
+.seg button[aria-pressed="true"][data-c="memo"] { background: var(--accent); color: var(--surface) }
+.item.need-memo .note { border-color: var(--warn); background: var(--warn-weak) }
+.memo-hint { flex-basis: 100%; font-size: 12px; color: var(--warn) }
+.seg button[aria-pressed="true"][data-c="ignore"] { background: var(--ok); color: var(--surface) }
+.note { flex: 1 1 220px; min-width: 0; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 8px; padding: 5px 8px; font: inherit; font-size: 16px; min-height: 32px; resize: vertical }
+.saved { font-size: 12px; color: var(--ok) }
+.saved.err { color: var(--warn) }
+.btn { appearance: none; border: 1px solid var(--line); background: var(--surface); color: var(--fg); border-radius: 8px; padding: 4px 10px; font: inherit; cursor: pointer }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--muted) }
+.legend del, .legend ins { text-decoration: none; padding: 0 4px; border-radius: 3px }
+.legend del { background: var(--del) } .legend ins { background: var(--ins) }
+.more { display: flex; justify-content: center; padding-top: 8px }
+.tag.changed { background: var(--warn-weak); color: var(--warn) }
+.sources { font-size: 12px; color: var(--muted) }
+.sources summary { cursor: pointer; width: max-content }
+.sources ul { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 2px; font-variant-numeric: tabular-nums }
+.resolved { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: grid; gap: 4px }
+.resolved .r-head { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center }
+.resolved p { margin: 0; color: var(--muted); white-space: pre-wrap; overflow-wrap: anywhere }
+@media (max-width: 640px) {
+  .cmp { grid-template-columns: 1fr }
+  .facts li { grid-template-columns: 1fr 1fr } .facts .k { grid-column: 1 / -1 }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important } }
+</style>
+
+<header class="top wrap">
+  <h1>HSR 데이터 대조표</h1>
+  <p class="lede">Notion DB와 사이트 데이터가 다른 항목 전체입니다. 항목마다 어느 쪽에 맞출지 고르면 저장되고, Claude가 이 선택을 읽어 그대로 수정합니다. 강조된 부분이 서로 다른 글자입니다.</p>
+  <div class="stats" id="stats"></div>
+  <div class="progress" aria-hidden="true"><i id="prog"></i></div>
+  <div class="legend"><span><del>주황</del> Notion에만 있는 부분</span><span><ins>보라</ins> 사이트에만 있는 부분</span><span id="generated"></span></div>
+  <details class="sources"><summary>Notion DB별 마지막 수정</summary><ul id="sources"></ul></details>
+  <div class="status-note" id="dbnote" hidden></div>
+</header>
+
+<div class="bar"><div class="wrap">
+  <div class="row" role="group" aria-label="게임" id="hub-row" hidden><span class="lab">게임</span><span id="f-hub" class="row"></span></div>
+  <div class="row" role="group" aria-label="DB"><span class="lab">DB</span><span id="f-db" class="row"></span></div>
+  <div class="row" role="group" aria-label="유형"><span class="lab">유형</span><span id="f-group" class="row"></span></div>
+  <div class="row" role="group" aria-label="상태"><span class="lab">상태</span><span id="f-state" class="row"></span>
+    <input type="search" id="q" placeholder="이름·문구 검색 (예: 효광, 앰버의 수호)" aria-label="검색"></div>
+</div></div>
+
+<main class="wrap" id="list"><p class="empty">목록을 불러오는 중입니다.</p></main>
+
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const ITEMS = Array.isArray(DATA) ? DATA : DATA.items;
+  const HUBS = Array.isArray(DATA) ? [] : (DATA.hubs || []);
+  const HUB_NAME = Object.fromEntries(HUBS.map(h => [h.id, h.name]));
+  const DB_LABEL = { characters: '캐릭터', lightcones: '광추', relics: '유물·장신구', guides: '공략', parties: '추천 파티' };
+  // A decision is stored under the item's id; decisions from the first hand-run review used legacyId.
+  const VALID_KEYS = new Set(ITEMS.flatMap(it => [it.id, it.legacyId].filter(Boolean)));
+  const CHOICE_LABEL = { notion: 'Notion 기준', site: '사이트 기준', both: '둘 다 수정', memo: '메모대로 수정', ignore: '차이 무시', hold: '보류' };
+  const CHOICES = [
+    ['notion', 'Notion 기준'], ['site', '사이트 기준'], ['both', '둘 다 수정'], ['memo', '메모대로 수정'], ['ignore', '차이 무시'], ['hold', '보류'],
+  ];
+  const GROUP_ORDER = ['수치', '스탯', '재료', '이름·분류', '누락', '문구', '표기', '형식'];
+  const DB_ORDER = ['캐릭터', '광추', '유물·장신구', '공략', '추천 파티'];
+  const store = (() => { try { return window.localStorage; } catch { return null; } })();
+  const load = (k, d) => { try { const v = store && store.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } };
+  const keep = (k, v) => { try { store && store.setItem(k, JSON.stringify(v)); } catch {} };
+
+  const state = Object.assign({ hub: '전체', db: '전체', group: '전체', status: '미결정', q: '' }, load('hsr-review-filter', {}));
+  let raw = {};                // stored doc id -> {choice, note, hash, target, cat, label, db, hub}
+  const decOf = it => raw[it.id] || (it.legacyId && raw[it.legacyId]) || null;
+  // `decisions[it.id]` reads through to whichever key holds the item's decision.
+  const decisions = new Proxy({}, {
+    get: (_, id) => { const it = ITEM_BY_ID.get(id); return it ? decOf(it) || undefined : raw[id]; },
+    set: (_, id, v) => { raw[id] = v; return true; },
+  });
+  const ITEM_BY_ID = new Map(ITEMS.map(it => [it.id, it]));
+  const changedAfter = it => { const d = decOf(it); return !!(d?.choice && d.hash && d.hash !== it.hash); };
+  const resolvedDecisions = () => Object.entries(raw).filter(([k, v]) => v?.choice && !VALID_KEYS.has(k)).map(([k, v]) => ({ key: k, ...v }));
+  let db = null; let readOnly = false;
+  const PAGE = 60; let shown = PAGE;
+
+  // ---------- text diff (token LCS) ----------
+  const tok = s => (s || '').match(/\d+(?:[.,]\d+)*%?|[가-힣A-Za-z]+|\s+|./gu) || [];
+  function diff(a, b) {
+    const A = tok(a), B = tok(b);
+    if (A.length * B.length > 250000) return [esc(a), esc(b)];
+    const n = A.length, m = B.length, dp = Array.from({ length: n + 1 }, () => new Uint16Array(m + 1));
+    for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--) dp[i][j] = A[i] === B[j] ? dp[i + 1][j + 1] + 1 : Math.max(dp[i + 1][j], dp[i][j + 1]);
+    let i = 0, j = 0, x = '', y = '';
+    const push = (s, t, tag) => tag ? (s === 'x' ? (x += `<del>${esc(t)}</del>`) : (y += `<ins>${esc(t)}</ins>`)) : (s === 'x' ? (x += esc(t)) : (y += esc(t)));
+    while (i < n && j < m) {
+      if (A[i] === B[j]) { push('x', A[i]); push('y', B[j]); i++; j++; }
+      else if (dp[i + 1][j] >= dp[i][j + 1]) { push('x', A[i], 1); i++; }
+      else { push('y', B[j], 1); j++; }
+    }
+    while (i < n) push('x', A[i++], 1);
+    while (j < m) push('y', B[j++], 1);
+    return [x.replace(/<\/del><del>/g, ''), y.replace(/<\/ins><ins>/g, '')];
+  }
+  const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // "A Notion x · 사이트 y" pieces become rows
+  function facts(text) {
+    const parts = String(text).replace(/^\((HP\/공격력\/방어력|공격력\/방어력\/HP)\)\s*/, m => { facts.unit = m.trim(); return ''; }).split(/;\s*|,\s(?=[^,]*Notion)/);
+    const rows = [];
+    for (const p of parts) {
+      const m = p.match(/^(.*?)\s*Notion\s+(.+?)\s*[·/]\s*사이트\s+(.+)$/);
+      if (m) rows.push([m[1].replace(/:$/, '').trim(), m[2].trim(), m[3].trim()]);
+      else rows.push([null, p.trim()]);
+    }
+    return rows;
+  }
+  function renderBody(it) {
+    if (it.notion !== undefined || it.site !== undefined) {
+      const [x, y] = diff(it.notion || '', it.site || '');
+      return `<div class="cmp"><div class="side n"><h4>NOTION</h4><p>${x || '<span class="lbl">(비어 있음)</span>'}</p></div><div class="side s"><h4>사이트</h4><p>${y || '<span class="lbl">(비어 있음)</span>'}</p></div></div>`;
+    }
+    const t = it.text || '';
+    if (/Notion .+ · 사이트 |Notion "[^"]*" \/ 사이트/.test(t)) {
+      facts.unit = '';
+      const rows = facts(t);
+      const unit = facts.unit ? `<p class="lbl" style="margin:0;font-size:12px">${esc(facts.unit)}</p>` : '';
+      let lv = '';
+      return unit + '<ul class="facts num">' + rows.map(r => {
+        if (r[0] === null) return `<li><span class="k" style="grid-column:1/-1">${esc(r[1])}</span></li>`;
+        let k = r[0]; const mm = k.match(/^(Lv\d+)[:\s]*(.*)$/); if (mm) { lv = mm[1]; k = mm[2] ? `${mm[1]} ${mm[2]}` : mm[1]; } else if (lv && k && /^[^L]/.test(k) && it.cat === '돌파 재료') k = `${lv} ${k}`;
+        return `<li><span class="k">${esc(k || '값')}</span><span class="nv">${esc(r[1])}</span><span class="sv">${esc(r[2])}</span></li>`;
+      }).join('') + '</ul>';
+    }
+    return `<p class="plain">${esc(t)}</p>`;
+  }
+
+  // ---------- filtering ----------
+  const matches = (it, ignore) => {
+    if (ignore !== 'hub' && state.hub !== '전체' && it.hub !== state.hub) return false;
+    if (ignore !== 'db' && state.db !== '전체' && it.db !== state.db) return false;
+    if (ignore !== 'group' && state.group !== '전체' && it.group !== state.group) return false;
+    if (ignore !== 'status') {
+      const d = decisions[it.id]?.choice;
+      if (state.status === '미결정' && d) return false;
+      if (state.status === '결정됨' && !d) return false;
+      if (state.status === '보류' && d !== 'hold') return false;
+      if (state.status === '내용 바뀜' && !changedAfter(it)) return false;
+      if (state.status === '해결됨') return false;
+    }
+    if (state.q) {
+      const hay = [it.target, it.sub, it.cat, it.label, it.notion, it.site, it.text, it.hint].join(' ').toLowerCase();
+      if (!state.q.toLowerCase().split(/\s+/).every(w => hay.includes(w))) return false;
+    }
+    return true;
+  };
+  function chips(el, key, values) {
+    el.innerHTML = values.map(([v, label]) => {
+      const n = key === 'status' && v === '해결됨' ? resolvedDecisions().length
+        : key === 'status' && v === '내용 바뀜' ? ITEMS.filter(it => matches(it, key) && changedAfter(it)).length
+        : ITEMS.filter(it => matches(it, key) && (v === '전체' || (key === 'status' ? statusOf(it) === v || (v === '결정됨' && decisions[it.id]?.choice) : it[key] === v))).length;
+      return `<button class="chip" data-k="${key}" data-v="${esc(v)}" aria-pressed="${state[key] === v}">${esc(label)}<span class="n">${n}</span></button>`;
+    }).join('');
+  }
+  const statusOf = it => { const d = decisions[it.id]?.choice; return !d ? '미결정' : d === 'hold' ? '보류' : '결정됨'; };
+
+  function renderStats() {
+    const total = ITEMS.length, done = ITEMS.filter(it => decisions[it.id]?.choice && decisions[it.id].choice !== 'hold').length;
+    const hold = ITEMS.filter(it => decisions[it.id]?.choice === 'hold').length;
+    const by = DB_ORDER.map(d => `${d} <b>${ITEMS.filter(i => i.db === d).length}</b>`).join(' · ');
+    document.getElementById('stats').innerHTML = `<span>전체 <b>${total}</b>건 (${by})</span><span>결정 <b>${done}</b> · 보류 <b>${hold}</b> · 남음 <b>${total - done - hold}</b></span>`;
+    document.getElementById('prog').style.width = `${(done / total) * 100}%`;
+  }
+  function renderFilters() {
+    if (HUBS.length > 1) {
+      document.getElementById('hub-row').hidden = false;
+      chips(document.getElementById('f-hub'), 'hub', [['전체', '전체'], ...HUBS.map(h => [h.id, h.name])]);
+    }
+    const dbs = DB_ORDER.filter(d => ITEMS.some(i => i.db === d)).concat([...new Set(ITEMS.map(i => i.db))].filter(d => !DB_ORDER.includes(d)));
+    chips(document.getElementById('f-db'), 'db', [['전체', '전체'], ...dbs.map(d => [d, d])]);
+    chips(document.getElementById('f-group'), 'group', [['전체', '전체'], ...GROUP_ORDER.map(g => [g, g])]);
+    chips(document.getElementById('f-state'), 'status', [['미결정', '미결정'], ['결정됨', '결정됨'], ['보류', '보류'], ['내용 바뀜', '선택 후 내용 바뀜'], ['해결됨', '해결됨'], ['전체', '전체']]);
+  }
+  function renderHeader() {
+    if (!DATA.generatedAt) return;
+    const t = new Date(DATA.generatedAt);
+    const fmt = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')} ${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`;
+    document.getElementById('generated').textContent = `대조 ${fmt(t)} · Notion 읽기 전용`;
+    document.getElementById('sources').innerHTML = HUBS.flatMap(h => Object.entries(h.databases || {}).map(([k, v]) =>
+      `<li>${esc(h.name)} · ${esc(DB_LABEL[k] || k)}: 페이지 ${v.pages}개, 마지막 수정 ${v.lastEdited ? esc(fmt(new Date(v.lastEdited))) : '-'}</li>`)).join('');
+  }
+  function renderResolved(list) {
+    const rows = resolvedDecisions().filter(r => state.hub === '전체' || !r.hub || r.hub === state.hub).filter(r => state.db === '전체' || r.db === state.db);
+    if (!rows.length) { list.innerHTML = `<p class="empty">해결된 항목이 없습니다. 선택했던 차이가 다음 대조에서 사라지면 여기에 모입니다.</p>`; return; }
+    list.innerHTML = `<p class="lbl" style="margin:0">선택했던 차이가 최근 대조에서 더 이상 나오지 않는 항목입니다. 수정이 반영됐거나, 비교 방식이 바뀌어 사라진 항목입니다.</p>` +
+      rows.map(r => `<div class="resolved"><div class="r-head"><span class="gname">${esc(r.target || '')}</span><span class="tag">${esc(r.db || '')}</span><span class="cat">${esc(r.cat || '')}</span>${r.label ? `<span class="lbl">${esc(r.label)}</span>` : ''}<span class="tag hint">${esc(CHOICE_LABEL[r.choice] || r.choice)}</span></div>${r.note ? `<p>${esc(r.note)}</p>` : ''}</div>`).join('');
+  }
+
+  function itemHTML(it) {
+    const d = decisions[it.id] || {};
+    const seg = CHOICES.map(([c, l]) => `<button type="button" data-c="${c}" aria-pressed="${d.choice === c}" ${readOnly ? 'disabled' : ''}>${l}</button>`).join('');
+    const needMemo = d.choice === 'memo' && !(d.note || '').trim();
+    return `<article class="item ${d.choice && d.choice !== 'hold' ? 'decided' : ''} ${needMemo ? 'need-memo' : ''}" data-id="${it.id}">
+      <div class="ihead"><span class="cat">${esc(it.cat)}</span>${it.label ? `<span class="lbl">${esc(it.label)}</span>` : ''}
+        <span class="tag g-${esc(it.group)}">${esc(it.group)}</span>${it.kind && it.kind !== it.group ? `<span class="tag">${esc(it.kind)}</span>` : ''}${it.hint ? `<span class="tag hint">${esc(it.hint)}</span>` : ''}${changedAfter(it) ? '<span class="tag changed">선택 후 내용 바뀜</span>' : ''}</div>
+      ${renderBody(it)}
+      <div class="decide"><div class="seg" role="group" aria-label="어느 쪽에 맞출지">${seg}</div>
+        <textarea class="note" id="note-${it.id}" rows="1" placeholder="메모 (예: 공식 값은 …)" aria-label="메모" ${readOnly ? 'disabled' : ''}>${esc(d.note || '')}</textarea>
+        <span class="saved" aria-live="polite"></span>
+        <span class="memo-hint" ${needMemo ? '' : 'hidden'}>"메모대로 수정"은 메모에 적은 내용 그대로 고칩니다. 바꿀 값과 위치(Notion·사이트·둘 다)를 메모에 적어 주세요.</span></div>
+    </article>`;
+  }
+  function renderList() {
+    const list = document.getElementById('list');
+    if (state.status === '해결됨') { renderResolved(list); return; }
+    const vis = ITEMS.filter(it => matches(it));
+    if (!vis.length) { list.innerHTML = `<p class="empty">조건에 맞는 항목이 없습니다.</p>`; return; }
+    const groups = new Map();
+    for (const it of vis) { const k = (it.hub || '') + '|' + it.db + '|' + it.target; if (!groups.has(k)) groups.set(k, []); groups.get(k).push(it); }
+    const keys = [...groups.keys()].sort((a, b) => DB_ORDER.indexOf(a.split('|')[1]) - DB_ORDER.indexOf(b.split('|')[1]));
+    let count = 0, html = '';
+    const openAll = vis.length <= 80;
+    for (const k of keys) {
+      if (count >= shown) break;
+      const its = groups.get(k); const first = its[0];
+      const sub = first.sub || first.siteRef || '';
+      html += `<details class="group" ${openAll || count < 12 ? 'open' : ''}><summary><span class="gname">${esc(first.target)}</span>${HUBS.length > 1 ? `<span class="tag">${esc(HUB_NAME[first.hub] || first.hub)}</span>` : ''}<span class="tag">${esc(first.db)}</span>${sub ? `<span class="gsub">${esc(sub)}</span>` : ''}<span class="gcount">${its.length}건</span></summary>
+        ${readOnly ? '' : `<div class="gapply">이 묶음 전체: ${CHOICES.slice(0, 4).map(([c, l]) => `<button class="btn" data-bulk="${c}" data-ids="${its.map(i => i.id).join(',')}">${l}</button>`).join('')}</div>`}
+        <div class="items">${its.map(itemHTML).join('')}</div></details>`;
+      count += its.length;
+    }
+    if (count < vis.length) html += `<div class="more"><button class="btn" id="more">더 보기 (${vis.length - count}건 남음)</button></div>`;
+    list.innerHTML = html;
+  }
+  const renderAll = () => { renderStats(); renderFilters(); renderList(); };
+  renderHeader();
+
+  // ---------- events ----------
+  document.querySelector('.bar').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    state[b.dataset.k] = b.dataset.v; shown = PAGE; keep('hsr-review-filter', state); renderAll();
+  });
+  let qt; document.getElementById('q').value = state.q;
+  document.getElementById('q').addEventListener('input', e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value.trim(); shown = PAGE; keep('hsr-review-filter', state); renderAll(); }, 200); });
+
+  const pending = new Map();
+  async function save(id, patch, el) {
+    const it = ITEMS.find(i => i.id === id);
+    const next = Object.assign({}, decisions[id] || {}, patch);
+    decisions[id] = next;
+    if (!db) { if (el) { el.textContent = '저장 기능을 쓸 수 없어 이 화면에만 남습니다'; el.className = 'saved err'; } return; }
+    const body = { choice: next.choice || null, note: next.note || '', hub: it.hub || 'hsr', db: it.db, target: it.target, cat: it.cat, label: it.label || '', hash: it.hash || '', updatedAt: new Date().toISOString() };
+    raw[id] = Object.assign({}, body);
+    const prev = pending.get(id) || Promise.resolve();
+    const p = prev.then(() => db.collection('decisions').doc(id).set(body)).then(() => { if (el) { el.textContent = '저장됨'; el.className = 'saved'; } })
+      .catch(err => { if (err?.code === 'invalid_argument') { readOnly = true; } if (el) { el.textContent = '저장하지 못했습니다'; el.className = 'saved err'; } });
+    pending.set(id, p); return p;
+  }
+  document.getElementById('list').addEventListener('click', async e => {
+    if (e.target.id === 'more') { shown += PAGE; renderList(); return; }
+    const bulk = e.target.closest('[data-bulk]');
+    if (bulk) {
+      const ids = bulk.dataset.ids.split(','); bulk.disabled = true; bulk.textContent = '저장 중…';
+      for (const id of ids) await save(id, { choice: bulk.dataset.bulk });
+      renderAll(); return;
+    }
+    const b = e.target.closest('.seg button'); if (!b) return;
+    const art = b.closest('.item'); const id = art.dataset.id;
+    const choice = decisions[id]?.choice === b.dataset.c ? null : b.dataset.c;
+    art.querySelectorAll('.seg button').forEach(x => x.setAttribute('aria-pressed', String(x.dataset.c === choice)));
+    art.classList.toggle('decided', !!choice && choice !== 'hold');
+    const noteEl = art.querySelector('.note');
+    const needMemo = choice === 'memo' && !noteEl.value.trim();
+    art.classList.toggle('need-memo', needMemo);
+    art.querySelector('.memo-hint').hidden = !needMemo;
+    if (choice === 'memo') noteEl.focus();
+    await save(id, { choice }, art.querySelector('.saved'));
+    renderStats(); renderFilters();
+  });
+  document.getElementById('list').addEventListener('change', e => {
+    if (!e.target.classList.contains('note')) return;
+    const art = e.target.closest('.item');
+    const needMemo = decisions[art.dataset.id]?.choice === 'memo' && !e.target.value.trim();
+    art.classList.toggle('need-memo', needMemo);
+    art.querySelector('.memo-hint').hidden = !needMemo;
+    save(art.dataset.id, { note: e.target.value.trim() }, art.querySelector('.saved'));
+  });
+
+  renderAll();
+
+  // ---------- shared decisions ----------
+  (async () => {
+    const note = document.getElementById('dbnote');
+    try { db = await window.claude?.use?.('db'); } catch { db = null; }
+    if (!db) { note.hidden = false; note.textContent = '이 화면에서는 저장 기능을 쓸 수 없어, 선택이 새로고침하면 사라집니다.'; return; }
+    try {
+      const user = await window.claude.use('user');
+      const can = user ? await user.can('data.write') : null;
+      if (can === false) { readOnly = true; note.hidden = false; note.textContent = '보기 권한이라 선택을 저장할 수 없습니다.'; renderList(); }
+    } catch {}
+    const timer = setTimeout(() => { note.hidden = false; note.textContent = '저장된 선택을 아직 불러오지 못했습니다. 잠시 후 다시 확인합니다.'; }, 10000);
+    db.collection('decisions').onSnapshot(snap => {
+      if (!snap.metadata.fromCache) { clearTimeout(timer); if (!readOnly) note.hidden = true; }
+      const next = {};
+      for (const d of snap.docs) { const v = d.data(); if (v) next[d.id] = Object.assign({}, v, { choice: v.choice || null, note: v.note || '' }); }
+      const focused = document.activeElement?.classList?.contains('note');
+      raw = next;
+      renderStats(); renderFilters(); if (!focused) renderList();
+    }, err => { clearTimeout(timer); note.hidden = false; note.textContent = '저장된 선택을 불러오지 못했습니다.'; });
+  })();
+})();
+</script>
