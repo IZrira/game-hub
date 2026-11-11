@@ -5,22 +5,19 @@
 //   npm run compare:notion -- --page-only   rebuild review.html from the last items.json
 //
 // Output (Git-ignored): .tmp/notion-compare/items.json and review.html.
-// review.html is the page published as the "HSR 데이터 대조표" artifact; decisions made on that page
+// review.html is the page published as the "RIRA 데이터 대조표" artifact; decisions made on that page
 // live in the artifact's own database, not in this repository.
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadEnv, createNotion } from './lib/notion.js';
 import { createItemList } from './lib/items.js';
+import { buildReviewPage } from './lib/page.js';
 import { hsr } from './hubs/hsr/index.js';
+import { ww } from './hubs/ww/index.js';
 
-const HUBS = [hsr];
+const HUBS = [hsr, ww];
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
-
-export function buildReviewPage(template, payload) {
-  const json = JSON.stringify(payload).replace(/</g, '\\u003c');
-  return template.replace('__DATA__', () => json);
-}
 
 async function main() {
   const outDir = path.join(root, '.tmp', 'notion-compare');

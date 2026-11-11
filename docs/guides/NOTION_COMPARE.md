@@ -19,13 +19,17 @@ npm run compare:notion
 npm run compare:notion -- hsr
 ```
 
+```bash
+npm run compare:notion -- ww
+```
+
 - 필요한 것: `.env.local`의 `NOTION_TOKEN`, 각 DB가 연동 계정(Rira-Game-Hub-DB)에 공유돼 있어야 한다.
 - 결과: `.tmp/notion-compare/items.json`(항목 목록), `.tmp/notion-compare/review.html`(대조표 페이지). 둘 다 Git 제외다.
 - Notion 요청 속도 제한 때문에 페이지마다 잠깐 쉰다. HSR 전체는 몇 분 걸린다.
 
 ## 대조표 게시
 
-- 대조표 주소: https://claude.ai/artifact/QzebC8KKRnVMtCoYz2pybe (비공개, 소유자만 열 수 있음)
+- 대조표 주소: https://claude.ai/artifact/QzebC8KKRnVMtCoYz2pybe ("RIRA 데이터 대조표", 비공개, 소유자만 열 수 있음)
 - 갱신할 때는 `review.html`을 같은 주소로 다시 게시한다. 선택·메모는 아티팩트 저장소(`decisions` 모음)에 있어서 다시 게시해도 남는다.
 - 선택 문서 하나: `choice`(notion·site·both·memo·ignore·hold), `note`, `hub`, `db`, `target`, `cat`, `label`, `hash`, `updatedAt`.
 
@@ -54,6 +58,16 @@ npm run compare:notion -- hsr
 - `compare()`는 Notion DB를 읽고(`lib/notion.js`), 사이트 TypeScript 데이터를 불러와(`lib/site-data.js`) 차이마다 `list.add({ db, target, cat, label?, notion?, site?, text?, kind?, hint? })`를 부른다.
 - 문구 비교는 `lib/text.js`의 `textKind`를 쓴다. 띄어쓰기만 다르면 차이로 세지 않는다.
 - 공통 규칙: 어느 쪽이 맞는지 추정해 값을 채우지 않는다. 데이터만 보고 알 수 있는 경우에만 `hint`(예: "반올림 차이", "Notion 오타 의심")를 단다.
+
+## 명조 비교 범위
+
+명조는 Notion → `common-hub/data/notion-data.json`(동기화) → 화면에서 `ww-hub` 로컬 파일과 합치는 구조다(`common-hub/data/dataManager.ts`). 대부분 Notion 값이 우선이고, 로컬 파일이 우선인 칸(스킬이 있는 로컬 캐릭터의 간단 정보·소속·성우 등)과 Notion이 비었을 때 쓰는 칸이 있다. 그래서 세 가지를 본다.
+
+- **동기화 대기:** 지금 Notion 내용과 마지막 동기화 결과(`notion-data.json`)가 다른 곳. 동기화 스크립트의 해석 함수(`fetchFromDB`, `fetchWwGuidesFromDB`)를 그대로 쓴다. 대상: 무기, 캐릭터, 아이템, 에코, 공략.
+- **사이트가 로컬 값 표시:** Notion에 값이 있는데 화면에는 로컬 파일 값이 나오는 곳. 화면 데이터(합친 결과)와, 로컬 목록을 비우고 다시 합친 "Notion만 썼을 때 결과"를 비교한다. 대상: 캐릭터 이름·속성·무기 종류·희귀도·출시 버전·소속·간단 정보·성우·역할. 번역 키는 한국어 문장으로 풀고, 국기 이모지와 줄바꿈 차이는 무시한다.
+- **로컬 파일만 다름:** 화면은 Notion 값을 보여 주지만 로컬 파일 값이 다른 곳. 로컬 파일을 직접 읽는 다른 기능에 낡은 값이 남을 수 있다. 대상: 캐릭터 속성·무기 종류·희귀도·출시 버전, 무기 종류·희귀도·출시 버전.
+- 로컬에만 있는 항목은 DB마다 한 줄로 묶는다(예: Notion에 없는 에코 목록).
+- 화면 데이터는 Vite SSR로 불러온다(`lib/vite-data.js`). 앱과 같은 방식이라 `import.meta.glob` 같은 Vite 기능도 그대로 동작한다.
 
 ## HSR 비교 범위
 

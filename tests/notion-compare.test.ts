@@ -4,7 +4,8 @@ import { createItemList } from '../scripts/notion-compare/lib/items.js';
 import { parseLightconePages } from '../scripts/notion-compare/hubs/hsr/lightcones.js';
 import { parseRelicPage } from '../scripts/notion-compare/hubs/hsr/relics.js';
 import { parsePartyPage, compareParties } from '../scripts/notion-compare/hubs/hsr/parties.js';
-import { buildReviewPage } from '../scripts/notion-compare/index.js';
+import { buildReviewPage } from '../scripts/notion-compare/lib/page.js';
+import { diffDeep } from '../scripts/notion-compare/lib/diff.js';
 
 const p = (text: string, depth = 0, type = 'paragraph') => ({ depth, type, text });
 
@@ -82,6 +83,25 @@ describe('notion page parsers', () => {
     }] });
     // Same members and substitutes (middle dot ignored): only the format issue remains.
     expect(list.items.map((i: { cat: string }) => i.cat)).toEqual(['Notion 형식']);
+  });
+});
+
+describe('structural diff', () => {
+  it('reports differing leaves with readable paths', () => {
+    const out = diffDeep({ a: 1, list: [{ n: 'x' }, { n: 'y' }] }, { a: 1, list: [{ n: 'x' }, { n: 'z' }], extra: true }, '', []);
+    expect(out).toEqual([
+      { path: 'list[2].n', a: 'y', b: 'z' },
+      { path: 'extra', a: '(없음)', b: 'true' },
+    ]);
+  });
+});
+
+describe('sync script as a library', () => {
+  it('exports its parsers without starting a sync', async () => {
+    const mod = await import('../scripts/fetch-notion-data.js');
+    expect(typeof mod.fetchFromDB).toBe('function');
+    expect(typeof mod.fetchWwGuidesFromDB).toBe('function');
+    expect(typeof mod.parseHsrGuideMarkdown).toBe('function');
   });
 });
 

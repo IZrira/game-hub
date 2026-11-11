@@ -1,4 +1,4 @@
-<title>HSR 데이터 대조표</title>
+<title>RIRA 데이터 대조표</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -121,7 +121,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
 </style>
 
 <header class="top wrap">
-  <h1>HSR 데이터 대조표</h1>
+  <h1>RIRA 데이터 대조표</h1>
   <p class="lede">Notion DB와 사이트 데이터가 다른 항목 전체입니다. 항목마다 어느 쪽에 맞출지 고르면 저장되고, Claude가 이 선택을 읽어 그대로 수정합니다. 강조된 부분이 서로 다른 글자입니다.</p>
   <div class="stats" id="stats"></div>
   <div class="progress" aria-hidden="true"><i id="prog"></i></div>
@@ -154,8 +154,9 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   const CHOICES = [
     ['notion', 'Notion 기준'], ['site', '사이트 기준'], ['both', '둘 다 수정'], ['memo', '메모대로 수정'], ['ignore', '차이 무시'], ['hold', '보류'],
   ];
-  const GROUP_ORDER = ['수치', '스탯', '재료', '이름·분류', '누락', '문구', '표기', '형식'];
-  const DB_ORDER = ['캐릭터', '광추', '유물·장신구', '공략', '추천 파티'];
+  const GROUP_ORDER = ['수치', '스탯', '재료', '이름·분류', '사이트가 로컬 값 표시', '로컬 파일만 다름', '동기화 대기', '누락', '문구', '표기', '형식'];
+  const DB_ORDER = ['캐릭터', '광추', '무기', '유물·장신구', '에코', '아이템', '공략', '추천 파티'];
+  const present = (order, field) => order.filter(v => ITEMS.some(i => i[field] === v)).concat([...new Set(ITEMS.map(i => i[field]))].filter(v => !order.includes(v)));
   const store = (() => { try { return window.localStorage; } catch { return null; } })();
   const load = (k, d) => { try { const v = store && store.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } };
   const keep = (k, v) => { try { store && store.setItem(k, JSON.stringify(v)); } catch {} };
@@ -257,7 +258,7 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   function renderStats() {
     const total = ITEMS.length, done = ITEMS.filter(it => decisions[it.id]?.choice && decisions[it.id].choice !== 'hold').length;
     const hold = ITEMS.filter(it => decisions[it.id]?.choice === 'hold').length;
-    const by = DB_ORDER.map(d => `${d} <b>${ITEMS.filter(i => i.db === d).length}</b>`).join(' · ');
+    const by = present(DB_ORDER, 'db').map(d => `${d} <b>${ITEMS.filter(i => i.db === d).length}</b>`).join(' · ');
     document.getElementById('stats').innerHTML = `<span>전체 <b>${total}</b>건 (${by})</span><span>결정 <b>${done}</b> · 보류 <b>${hold}</b> · 남음 <b>${total - done - hold}</b></span>`;
     document.getElementById('prog').style.width = `${(done / total) * 100}%`;
   }
@@ -266,9 +267,8 @@ details.group[open] > summary::before { transform: rotate(90deg) }
       document.getElementById('hub-row').hidden = false;
       chips(document.getElementById('f-hub'), 'hub', [['전체', '전체'], ...HUBS.map(h => [h.id, h.name])]);
     }
-    const dbs = DB_ORDER.filter(d => ITEMS.some(i => i.db === d)).concat([...new Set(ITEMS.map(i => i.db))].filter(d => !DB_ORDER.includes(d)));
-    chips(document.getElementById('f-db'), 'db', [['전체', '전체'], ...dbs.map(d => [d, d])]);
-    chips(document.getElementById('f-group'), 'group', [['전체', '전체'], ...GROUP_ORDER.map(g => [g, g])]);
+    chips(document.getElementById('f-db'), 'db', [['전체', '전체'], ...present(DB_ORDER, 'db').map(d => [d, d])]);
+    chips(document.getElementById('f-group'), 'group', [['전체', '전체'], ...present(GROUP_ORDER, 'group').map(g => [g, g])]);
     chips(document.getElementById('f-state'), 'status', [['미결정', '미결정'], ['결정됨', '결정됨'], ['보류', '보류'], ['내용 바뀜', '선택 후 내용 바뀜'], ['해결됨', '해결됨'], ['전체', '전체']]);
   }
   function renderHeader() {

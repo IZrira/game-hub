@@ -1696,5 +1696,17 @@ async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
   return guides;
 }
 
-fetchNotionData();
+// Parsers are shared with the read-only comparison tool (scripts/notion-compare). Importing this
+// file must never start a sync, so the sync runs only when the file itself is executed.
+export {
+  fetchFromDB,
+  fetchWwGuidesFromDB,
+  parseHsrGuideMarkdown,
+  readLocalHsrGuide,
+  normalizeHsrGuideForComparison,
+};
+
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  fetchNotionData();
+}
 
