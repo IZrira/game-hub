@@ -23,6 +23,7 @@ npm run compare:notion -- hsr
 npm run compare:notion -- ww
 ```
 
+- 바탕화면 바로가기 "RIRA 데이터 대조표"는 `scripts/notion-compare/launcher.ps1` 메뉴를 연다: 1 대조표 열기, 2 전체 대조, 3 게임 하나만 대조, 4 마지막 결과 미리보기(이 PC 전용, 선택 저장 안 됨). 대조만 하고 게시는 하지 않으므로, 결과를 대조표에 올리려면 Claude에게 "대조표 갱신해"라고 한다. 바로가기는 PowerShell을 `-ExecutionPolicy Bypass -File`로 실행한다(이 실행에만 적용, 시스템 설정은 바꾸지 않음). 다시 만들 때는 바로가기 대상을 `powershell.exe -NoProfile -ExecutionPolicy Bypass -File "<저장소>\scripts\notion-compare\launcher.ps1"`로 둔다.
 - 필요한 것: `.env.local`의 `NOTION_TOKEN`, 각 DB가 연동 계정(Rira-Game-Hub-DB)에 공유돼 있어야 한다.
 - 허브를 골라 실행하면 그 허브만 새로 비교하고, 나머지 허브는 마지막 결과(`items.json`)를 그대로 둔다. 그래서 대조표를 다시 게시해도 다른 허브가 빠지지 않는다.
 - 결과: `.tmp/notion-compare/items.json`(항목 목록), `.tmp/notion-compare/review.html`(대조표 페이지). 둘 다 Git 제외다.
