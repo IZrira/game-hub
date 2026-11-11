@@ -739,6 +739,8 @@ const WW_GUIDE_CHAR_MAP = {
   '청초': 'qingcao',
   '모니에': 'mornye',
   '에이메스': 'aemeath',
+  '여우의 별자리': 'hsin',
+  '쇄명': 'suoming',
   '방랑자 (기류)': 'rover_aero',
   '방랑자(기류)': 'rover_aero',
   '방랑자 · 기류': 'rover_aero',

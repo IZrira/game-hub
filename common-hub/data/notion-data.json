@@ -104650,7 +104650,7 @@
     "dbSource": "nte_arcs"
   },
   {
-    "id": "쇄명",
+    "id": "suoming",
     "name": "쇄명",
     "patchVersion": "3.7",
     "weapons": [
@@ -104820,7 +104820,7 @@
     "dbSource": "ww_guides"
   },
   {
-    "id": "여우의 별자리",
+    "id": "hsin",
     "name": "여우의 별자리",
     "patchVersion": "3.7",
     "weapons": [

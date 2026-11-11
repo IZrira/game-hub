@@ -854,6 +854,14 @@ export const getGameData = (targetId: string) => {
             hideGauge: true
           },
           obtain: c.obtain !== '노션 연동' ? c.obtain : existing.obtain,
+          // Minimal local files (hsin, suoming) only set the URL id and have no skills:
+          // their profile text comes from Notion. Full local files keep their own.
+          ...(!existing.skills?.length ? {
+            briefInfo: c.briefInfo,
+            affiliation: c.affiliation,
+            voiceActors: c.voiceActors,
+            locales: c.locales,
+          } : {}),
           releaseVersion: c.releaseVersion || existing.releaseVersion,
           glossary: c.glossary || existing.glossary,
           specialTerms: c.specialTerms && Object.keys(c.specialTerms).length > 0 ? c.specialTerms : existing.specialTerms,

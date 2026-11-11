@@ -34,7 +34,7 @@ export const WW_PARTY_COMBINATIONS: PartyCombination[] = [
     description: "여우의 별자리를 중심으로 방랑자 · 전도와 파수인을 편성하는 전도 조합입니다.",
     members: [
       {
-        id: "3e995fae-3dc7-808c-ad4c-e7ab488f85d7",
+        id: "hsin",
         name: "여우의 별자리",
         folderName: "여우의 별자리",
         role: "메인 딜러"
