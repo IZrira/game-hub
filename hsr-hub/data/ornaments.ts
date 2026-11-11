@@ -491,7 +491,7 @@ export const ORNAMENT_DATA: Ornament[] = [
     },
     pieces: [
       { type: "Planar Sphere", name: "살소토의 움직이는 도시", enName: "Salsotto's Moving City" },
-      { type: "Link Rope", name: "살소토의명암 경계선", enName: "Salsotto's Terminator Line" }
+      { type: "Link Rope", name: "살소토의 명암 경계선", enName: "Salsotto's Terminator Line" }
     ],
     image: "회전을 멈춘 살소토"
   },
@@ -526,5 +526,35 @@ export const ORNAMENT_DATA: Ornament[] = [
       { type: "Link Rope", name: "출항지의 꿈이 깃든 은하 궤도", enName: "Dream-Infused Galactic Track at Point of Departure" }
     ],
     image: "추락한 별의 출항지"
+  },
+  {
+    id: "ornament_아공간_이상_사물_수용소",
+    gameId: "hsr",
+    name: "아공간 이상 사물 수용소",
+    folderName: "아공간 이상 사물 수용소",
+    type: "차원 장신구",
+    setEffect: {
+      "2piece": "장착한 캐릭터의 속도가 6% 증가하고, 장착한 캐릭터의 속도가 145 이상일 시 전투 진입 후 모든 아군의 격파 특수효과가 18% 증가하며, 해당 효과는 중첩되지 않는다"
+    },
+    pieces: [
+      { type: "Planar Sphere", name: "이상 사물 수용소의 칠흑 같은 균열", enName: "" },
+      { type: "Link Rope", name: "이상 사물 수용소의 네거필름", enName: "" }
+    ],
+    image: "아공간 이상 사물 수용소"
+  },
+  {
+    id: "ornament_신의_순간의_환락",
+    gameId: "hsr",
+    name: "신의 순간의 환락",
+    folderName: "신의 순간의 환락",
+    type: "차원 장신구",
+    setEffect: {
+      "2piece": "장착한 캐릭터의 속도가 6% 증가한다. 장착한 캐릭터의 환락도가 40% 이상일 경우 전투 진입 시 즉시 행동 게이지가 40% 증가한다"
+    },
+    pieces: [
+      { type: "Planar Sphere", name: "순간의 환락의 영원한 무대", enName: "" },
+      { type: "Link Rope", name: "순간의 환락의 마술 도구", enName: "" }
+    ],
+    image: "신의 순간의 환락"
   }
 ];

@@ -151,6 +151,8 @@ export const useGalleryFilter = (
       return true;
     }).sort((a, b) => {
       const order = [
+        "아공간 이상 사물 수용소",
+        "신의 순간의 환락",
         "우주 생명과학연구원",
         "추락한 별의 출항지",
         "천 개의 별이 모인 도시",

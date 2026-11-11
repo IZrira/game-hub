@@ -524,6 +524,8 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/hsr/ornament/불로인의 선주",
   "/gallery/hsr/ornament/사색하는 거목",
   "/gallery/hsr/ornament/생명의 바커 공",
+  "/gallery/hsr/ornament/신의 순간의 환락",
+  "/gallery/hsr/ornament/아공간 이상 사물 수용소",
   "/gallery/hsr/ornament/영원의 땅 앰포리어스",
   "/gallery/hsr/ornament/우주 봉인 정거장",
   "/gallery/hsr/ornament/우주 생명과학연구원",
