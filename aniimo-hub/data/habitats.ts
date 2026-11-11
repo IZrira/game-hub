@@ -25,8 +25,9 @@ export const OFFICIAL_HABITAT_TARGETS: Record<OfficialAniimoHabitat, number> = {
   '늑대이빨 능선': 18,
   '청석 대지': 16,
   '뇌전의 숲': 16,
-  '설산기슭 초원': 15,
-  '고래첨벙 해안': 16,
+  '설산기슭 초원': 16,
+  // 2026-11-12: official dex detail pages added 탄멍멍·화르랑·뭉게양 (해안) and 도깨불 (설산기슭).
+  '고래첨벙 해안': 19,
   '붉은바위 고지': 22,
   '안개숲': 13,
   '갈매기 만': 13,
@@ -64,10 +65,10 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '플러터', '왈츠페탈',
     '연댕모리', '장꾸모리',
     '아이시우스',
-    '삑삑초', '위치햇그라스', '굴파미',
+    '삑삑초', '위치햇풀', '굴파미',
     '도깨불', '일렁깨비',
     '반짝쵸', '판타쵸',
-    '울먹팡', '콕콕바라', '플로리안',
+    '울먹팡', '로즈펜서', '플로리안',
     '허니버드', '플로라버드'
   ],
   '구름 초원': [
@@ -94,7 +95,7 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '헬리온'
   ],
   '로즈타워 숲': [
-    '울먹팡', '콕콕바라', '플로리안',
+    '울먹팡', '로즈펜서', '플로리안',
     '라라에그', '붐테일자드',
     '허니버드', '플로라버드',
     '서린댕', '빙참랑', '설휘랑',
@@ -114,7 +115,7 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
   ],
   '청석 대지': [
     '플러터', '왈츠페탈',
-    '삑삑초', '위치햇그라스', '굴파미',
+    '삑삑초', '위치햇풀', '굴파미',
     '싹크랩', '풀크랩', '스탈크랩',
     '도깨불', '일렁깨비',
     '싹뚜기', '서걱리퍼',
@@ -133,6 +134,7 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '베서스'
   ],
   '설산기슭 초원': [
+    '도깨불',
     '플러터', '왈츠페탈',
     '연댕모리', '장꾸모리',
     '아이시우스',
@@ -143,6 +145,8 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '우스멍', '엔젤멍'
   ],
   '고래첨벙 해안': [
+    '탄멍멍', '화르랑',
+    '뭉게양',
     '스타라미', '스타저드',
     '호루매기', '롬본이', '럼펫이', '튜바얌',
     '싹크랩', '풀크랩', '스탈크랩',
@@ -165,7 +169,7 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '플러터',
     '연댕모리', '장꾸모리',
     '연잎룡',
-    '삑삑초', '위치햇그라스', '굴파미',
+    '삑삑초', '위치햇풀', '굴파미',
     '도깨불', '일렁깨비',
     '반짝쵸',
     '싹뚜기', '서걱리퍼'

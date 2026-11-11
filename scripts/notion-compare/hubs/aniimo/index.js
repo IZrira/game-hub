@@ -14,6 +14,14 @@ import { textKind } from '../../lib/text.js';
 import { pause } from '../../lib/notion.js';
 
 const ORIGIN = 'https://wiki.aniimo.com';
+
+/** The first region stores habitat names through LEGACY_HABITAT_NAME_MAP (e.g. 바다끝 구릉 → 바다끝 구름). */
+function legacyHabitatMap(root) {
+  const src = fs.readFileSync(path.join(root, 'aniimo-hub', 'data', 'habitats.ts'), 'utf8');
+  const block = src.slice(src.indexOf('LEGACY_HABITAT_NAME_MAP')).split('};')[0];
+  return Object.fromEntries([...block.matchAll(/'([^']+)':\s*'([^']+)'/g)].map(m => [m[1], m[2]]));
+}
+const withHabitatNames = (detail, map) => ({ ...detail, locations: [...new Set((detail.locations || []).map(l => map[l.trim()] || l.trim()))] });
 const clean = s => String(s ?? '').replace(/\s+/g, ' ').trim();
 
 async function fetchHtml(sourcePath) {
@@ -199,10 +207,11 @@ export const aniimo = {
   sourceLabel: '공식 도감',
   async compare({ root, list, log }) {
     const read = f => JSON.parse(fs.readFileSync(path.join(root, 'aniimo-hub', 'data', f), 'utf8'));
+    const habitatMap = legacyHabitatMap(root);
     log('  공식 도감 목록 읽는 중…');
     const index = parseIndex(await fetchHtml('/ko'));
     log(`  기존 지역 ${index.legacy.length}종, 웨이브 군도 ${index.wave.length}종`);
-    await compareRegion({ db: '기존 지역', roster: index.legacy, stored: read('aniimo.json'), parse: html => parseLegacyDetail(html), add: list.add, log });
+    await compareRegion({ db: '기존 지역', roster: index.legacy, stored: read('aniimo.json'), parse: html => withHabitatNames(parseLegacyDetail(html), habitatMap), add: list.add, log });
     await compareRegion({ db: '웨이브 군도', roster: index.wave, stored: read('wave-archipelago.json'), parse: (html, href) => parseWaveDetail(html, href).detail, add: list.add, log });
     return { databases: { legacy: { pages: index.legacy.length }, wave: { pages: index.wave.length } } };
   },

@@ -20,6 +20,9 @@ const LEGACY_ANIIMO_REDIRECTS: Record<string, string> = {
   '/gallery/aniimo/location/바다끝-구릉': '/gallery/aniimo/location/바다끝-구름',
   '/gallery/aniimo/location/초승달-만': '/gallery/aniimo/location/고래첨벙-해안',
   '/gallery/aniimo/location/석양-해원': '/gallery/aniimo/location/고래첨벙-해안',
+  // Renamed in the official dex (2026-11-12): keep the old character URLs working.
+  '/gallery/aniimo/character/위치햇그라스': '/gallery/aniimo/character/위치햇풀',
+  '/gallery/aniimo/character/콕콕바라': '/gallery/aniimo/character/로즈펜서',
   // HSR Trailblazer pages are published under the data file name, but older
   // links were built from the data id (see routeId in character-summary.json).
   '/gallery/hsr/character/trailblazer_fire': '/gallery/hsr/character/trailblazer_preservation',

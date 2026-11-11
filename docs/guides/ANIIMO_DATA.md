@@ -2,7 +2,7 @@
 
 ## 원본과 식별자
 
-- 기존 86종 원본: `aniimo-hub/data/aniimo.json`. 웨이브 군도 추가 작업에서는 수정하지 않는다.
+- 기존 86종 원본: `aniimo-hub/data/aniimo.json`. 웨이브 군도 추가 작업에서는 수정하지 않는다. 2026-11-12에 사용자 요청(데이터 대조표 "공식 도감 기준")으로 공식 도감 값에 맞췄다. 출현 지역은 `LEGACY_HABITAT_NAME_MAP`으로 정리한 서식지 이름으로 저장하고(클램스타만 `detailLocations`에 공식 원문), 서식지 집계(`habitats`, 목표 수)도 공식 상세 페이지에 맞춰 고쳤다. 공식 목록에 없는 형태·종은 지우지 않았다.
 - 신규 지역 원본: `aniimo-hub/data/wave-archipelago.json`. 2026-10-31 공식 목록은 29종·42형태다.
 - 결합 로더: `scripts/lib/aniimo-catalog.js`. 이름과 내부 식별자 중복을 검사한다.
 - 기존 항목은 번호를 내부 ID로 유지한다. 신규 항목은 `wave-archipelago-001`처럼 지역 접두사를 사용하고, 공개 번호 `001`은 그대로 표시한다.

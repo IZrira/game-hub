@@ -42,13 +42,7 @@
         "value": 1
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "산호 군락",
@@ -96,7 +90,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
         "name": "코랄드래곤",
         "number": "002",
@@ -119,7 +113,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
           "name": "코랄드래곤",
           "number": "002",
@@ -188,13 +182,7 @@
             "value": 1
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "산호 군락",
@@ -242,7 +230,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
             "name": "코랄드래곤",
             "number": "002",
@@ -265,7 +253,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
               "name": "코랄드래곤",
               "number": "002",
@@ -327,13 +315,7 @@
             "value": 1
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "산호 군락",
@@ -381,7 +363,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_1038303.png",
             "name": "코랄드래곤",
             "number": "002",
@@ -404,7 +386,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_1038303.png",
               "name": "코랄드래곤",
               "number": "002",
@@ -436,7 +418,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/001/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-002",
@@ -471,28 +453,22 @@
         "type": "1003",
         "name": "땅",
         "description": "",
-        "value": 1
+        "value": 3
       },
       {
         "type": "1002",
         "name": "물",
         "description": "",
-        "value": 1
+        "value": 2
       },
       {
         "type": "1100",
         "name": "운반",
         "description": "",
-        "value": 1
+        "value": 3
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "산호 군락",
@@ -556,7 +532,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
         "name": "코랄드래곤",
         "number": "002",
@@ -579,7 +555,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
           "name": "코랄드래곤",
           "number": "002",
@@ -637,28 +613,22 @@
             "type": "1003",
             "name": "땅",
             "description": "",
-            "value": 1
+            "value": 3
           },
           {
             "type": "1002",
             "name": "물",
             "description": "",
-            "value": 1
+            "value": 2
           },
           {
             "type": "1100",
             "name": "운반",
             "description": "",
-            "value": 1
+            "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "산호 군락",
@@ -722,7 +692,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
             "name": "코랄드래곤",
             "number": "002",
@@ -745,7 +715,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10383.png",
               "name": "코랄드래곤",
               "number": "002",
@@ -803,22 +773,16 @@
             "type": "1100",
             "name": "운반",
             "description": "",
-            "value": 1
+            "value": 3
           },
           {
             "type": "1003",
             "name": "땅",
             "description": "",
-            "value": 1
+            "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "산호 군락",
@@ -882,7 +846,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_1038303.png",
             "name": "코랄드래곤",
             "number": "002",
@@ -905,7 +869,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_1038303.png",
               "name": "코랄드래곤",
               "number": "002",
@@ -937,7 +901,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/002/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-003",
@@ -983,11 +947,6 @@
       }
     ],
     "explorationSkills": [
-      {
-        "name": "비행 Lv.2",
-        "description": "",
-        "imageUrl": null
-      },
       {
         "name": "바람 불기",
         "description": "날개를 퍼덕여 5초 동안 직사각형 윈드 필드를 생성합니다.",
@@ -1041,7 +1000,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
         "name": null,
         "number": null,
@@ -1049,7 +1008,7 @@
         "formLabel": null
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
         "name": "홀부엉",
         "number": "004",
@@ -1072,7 +1031,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
           "name": null,
           "number": null,
@@ -1092,7 +1051,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
           "name": "홀부엉",
           "number": "004",
@@ -1164,11 +1123,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "비행 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "바람 불기",
             "description": "날개를 퍼덕여 5초 동안 직사각형 윈드 필드를 생성합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1057300_Skill_9400150_Icon.png"
@@ -1221,7 +1175,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
             "name": null,
             "number": null,
@@ -1229,7 +1183,7 @@
             "formLabel": null
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
             "name": "홀부엉",
             "number": "004",
@@ -1252,7 +1206,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
               "name": null,
               "number": null,
@@ -1272,7 +1226,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
               "name": "홀부엉",
               "number": "004",
@@ -1306,7 +1260,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/003/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-004",
@@ -1350,11 +1304,6 @@
       }
     ],
     "explorationSkills": [
-      {
-        "name": "비행 Lv.2",
-        "description": "",
-        "imageUrl": null
-      },
       {
         "name": "바람 불기",
         "description": "날개를 퍼덕여 5초 동안 직사각형 윈드 필드를 생성합니다.",
@@ -1424,7 +1373,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
         "name": null,
         "number": null,
@@ -1432,7 +1381,7 @@
         "formLabel": null
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
         "name": "홀부엉",
         "number": "004",
@@ -1455,7 +1404,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
           "name": null,
           "number": null,
@@ -1475,7 +1424,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
           "name": "홀부엉",
           "number": "004",
@@ -1542,11 +1491,6 @@
           }
         ],
         "explorationSkills": [
-          {
-            "name": "비행 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
           {
             "name": "바람 불기",
             "description": "날개를 퍼덕여 5초 동안 직사각형 윈드 필드를 생성합니다.",
@@ -1616,7 +1560,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
             "name": null,
             "number": null,
@@ -1624,7 +1568,7 @@
             "formLabel": null
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
             "name": "홀부엉",
             "number": "004",
@@ -1647,7 +1591,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10574.png",
               "name": null,
               "number": null,
@@ -1667,7 +1611,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10573.png",
               "name": "홀부엉",
               "number": "004",
@@ -1699,7 +1643,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/004/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-005",
@@ -1744,11 +1688,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "물 뿜기",
         "description": "계속 물을 뿜습니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1036100_Skill_9400107_Icon.png"
@@ -1764,16 +1703,16 @@
     "combatSkills": [
       {
         "name": "물줄기 분사",
-        "description": "전방에 지속 직선 피해를 가하고, 자신에게 【물 원소 상태 이상】이(가) 2중첩보다 많을 경우, 2중첩의 【물 원소 상태 이상】을(를) 소모하고 추가로 50% 피해를 준다.",
+        "description": "전방에 지속적으로 직선 피해를 줍니다. 피해를 줄 때마다 자신의 2스택의 [물 원소 상태 이상]을 소모하여 위력 50%의 추가 피해를 줄 수 있습니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1014300_Skill_10300021_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 10,
         "power": 25
       },
       {
-        "name": "1315753138",
-        "description": "1858803715",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10200490_Icon.png",
+        "name": "격류 이슬",
+        "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10301421_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 10,
         "power": 20
@@ -1782,22 +1721,6 @@
         "name": "소용돌이 이슬",
         "description": "이슬방울을 발사하여 소용돌이 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, [물 원소 상태 이상]을 1스택 부여하며 6초 동안 지속됩니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
-      },
-      {
-        "name": "격류 이슬",
-        "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
-      },
-      {
-        "name": "2006893459",
-        "description": "2083330431",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_11200630_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 10,
         "power": 20
@@ -1825,7 +1748,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
         "name": "아쿠링",
         "number": "006",
@@ -1848,7 +1771,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
           "name": "아쿠링",
           "number": "006",
@@ -1917,11 +1840,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물 뿜기",
             "description": "계속 물을 뿜습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1036100_Skill_9400107_Icon.png"
@@ -1937,16 +1855,16 @@
         "combatSkills": [
           {
             "name": "물줄기 분사",
-            "description": "전방에 지속 직선 피해를 가하고, 자신에게 【물 원소 상태 이상】이(가) 2중첩보다 많을 경우, 2중첩의 【물 원소 상태 이상】을(를) 소모하고 추가로 50% 피해를 준다.",
+            "description": "전방에 지속적으로 직선 피해를 줍니다. 피해를 줄 때마다 자신의 2스택의 [물 원소 상태 이상]을 소모하여 위력 50%의 추가 피해를 줄 수 있습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1014300_Skill_10300021_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 25
           },
           {
-            "name": "1315753138",
-            "description": "1858803715",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10200490_Icon.png",
+            "name": "격류 이슬",
+            "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10301421_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
@@ -1955,22 +1873,6 @@
             "name": "소용돌이 이슬",
             "description": "이슬방울을 발사하여 소용돌이 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, [물 원소 상태 이상]을 1스택 부여하며 6초 동안 지속됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "격류 이슬",
-            "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "2006893459",
-            "description": "2083330431",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_11200630_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
@@ -1998,7 +1900,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
             "name": "아쿠링",
             "number": "006",
@@ -2021,7 +1923,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
               "name": "아쿠링",
               "number": "006",
@@ -2090,11 +1992,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물 뿜기",
             "description": "계속 물을 뿜습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1036100_Skill_9400107_Icon.png"
@@ -2110,16 +2007,16 @@
         "combatSkills": [
           {
             "name": "물줄기 분사",
-            "description": "전방에 지속 직선 피해를 가하고, 자신에게 【물 원소 상태 이상】이(가) 2중첩보다 많을 경우, 2중첩의 【물 원소 상태 이상】을(를) 소모하고 추가로 50% 피해를 준다.",
+            "description": "전방에 지속적으로 직선 피해를 줍니다. 피해를 줄 때마다 자신의 2스택의 [물 원소 상태 이상]을 소모하여 위력 50%의 추가 피해를 줄 수 있습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1014300_Skill_10300021_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 25
           },
           {
-            "name": "1315753138",
-            "description": "1858803715",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10200490_Icon.png",
+            "name": "격류 이슬",
+            "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10301421_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
@@ -2128,22 +2025,6 @@
             "name": "소용돌이 이슬",
             "description": "이슬방울을 발사하여 소용돌이 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, [물 원소 상태 이상]을 1스택 부여하며 6초 동안 지속됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "격류 이슬",
-            "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "2006893459",
-            "description": "2083330431",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_11200630_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
@@ -2171,7 +2052,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
             "name": "아쿠링",
             "number": "006",
@@ -2194,7 +2075,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
               "name": "아쿠링",
               "number": "006",
@@ -2226,7 +2107,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/005/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-006",
@@ -2271,11 +2152,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.3",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "물 뿜기",
         "description": "계속 물을 뿜습니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1036100_Skill_9400107_Icon.png"
@@ -2291,19 +2167,11 @@
     "combatSkills": [
       {
         "name": "물줄기 분사",
-        "description": "전방에 지속 직선 피해를 가하고, 자신에게 【물 원소 상태 이상】이(가) 2중첩보다 많을 경우, 2중첩의 【물 원소 상태 이상】을(를) 소모하고 추가로 50% 피해를 준다.",
+        "description": "전방에 지속적으로 직선 피해를 줍니다. 피해를 줄 때마다 자신의 2스택의 [물 원소 상태 이상]을 소모하여 위력 50%의 추가 피해를 줄 수 있습니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1014300_Skill_10300021_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 10,
         "power": 25
-      },
-      {
-        "name": "1315753138",
-        "description": "1858803715",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10200490_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
       },
       {
         "name": "소용돌이 이슬",
@@ -2324,15 +2192,7 @@
       {
         "name": "격류 이슬",
         "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
-      },
-      {
-        "name": "2006893459",
-        "description": "2083330431",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_11200630_Icon.png",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10301421_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 10,
         "power": 20
@@ -2368,7 +2228,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
         "name": "아쿠링",
         "number": "006",
@@ -2391,7 +2251,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
           "name": "아쿠링",
           "number": "006",
@@ -2460,11 +2320,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물 뿜기",
             "description": "계속 물을 뿜습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1036100_Skill_9400107_Icon.png"
@@ -2480,19 +2335,11 @@
         "combatSkills": [
           {
             "name": "물줄기 분사",
-            "description": "전방에 지속 직선 피해를 가하고, 자신에게 【물 원소 상태 이상】이(가) 2중첩보다 많을 경우, 2중첩의 【물 원소 상태 이상】을(를) 소모하고 추가로 50% 피해를 준다.",
+            "description": "전방에 지속적으로 직선 피해를 줍니다. 피해를 줄 때마다 자신의 2스택의 [물 원소 상태 이상]을 소모하여 위력 50%의 추가 피해를 줄 수 있습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1014300_Skill_10300021_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 25
-          },
-          {
-            "name": "1315753138",
-            "description": "1858803715",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10200490_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
           },
           {
             "name": "소용돌이 이슬",
@@ -2513,15 +2360,7 @@
           {
             "name": "격류 이슬",
             "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "2006893459",
-            "description": "2083330431",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_11200630_Icon.png",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10301421_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
@@ -2557,7 +2396,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
             "name": "아쿠링",
             "number": "006",
@@ -2580,7 +2419,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
               "name": "아쿠링",
               "number": "006",
@@ -2649,11 +2488,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물 뿜기",
             "description": "계속 물을 뿜습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1036100_Skill_9400107_Icon.png"
@@ -2669,19 +2503,11 @@
         "combatSkills": [
           {
             "name": "물줄기 분사",
-            "description": "전방에 지속 직선 피해를 가하고, 자신에게 【물 원소 상태 이상】이(가) 2중첩보다 많을 경우, 2중첩의 【물 원소 상태 이상】을(를) 소모하고 추가로 50% 피해를 준다.",
+            "description": "전방에 지속적으로 직선 피해를 줍니다. 피해를 줄 때마다 자신의 2스택의 [물 원소 상태 이상]을 소모하여 위력 50%의 추가 피해를 줄 수 있습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1014300_Skill_10300021_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 25
-          },
-          {
-            "name": "1315753138",
-            "description": "1858803715",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10200490_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
           },
           {
             "name": "소용돌이 이슬",
@@ -2702,15 +2528,7 @@
           {
             "name": "격류 이슬",
             "description": "이슬방울을 발사하여 격류 마력장을 생성해 구역 내 대상을 중심으로 1회 끌어당깁니다. 이슬방울이 구역 내 대상에게 매초 피해를 주고, 대상의 에너지를 초당 10 감소시키며 6초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1048100_Skill_10301040_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "2006893459",
-            "description": "2083330431",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_11200630_Icon.png",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1065300_Skill_10301421_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
@@ -2746,7 +2564,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
             "name": "아쿠링",
             "number": "006",
@@ -2769,7 +2587,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10653.png",
               "name": "아쿠링",
               "number": "006",
@@ -2801,7 +2619,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/006/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-007",
@@ -2830,8 +2648,7 @@
     "locations": [
       "초승달 만",
       "스칼렛보우 습지",
-      "래피드 협곡",
-      "미확인 구역"
+      "래피드 협곡"
     ],
     "homeAbilities": [
       {
@@ -2877,22 +2694,6 @@
         "skillType": "마법 스킬",
         "energyCost": 10,
         "power": 20
-      },
-      {
-        "name": "서리 투척",
-        "description": "거대한 코인블링을 던져 명중 시 폭발을 일으키고 범위 피해를 줍니다. 대상의 HP가 낮을수록 피해가 증가하며, 최대 100% 위력의 피해를 추가로 줍니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
-      },
-      {
-        "name": "1655177713",
-        "description": "1319691695",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
       }
     ],
     "uniqueSkills": [
@@ -2917,7 +2718,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
         "name": "코인포켓",
         "number": "008",
@@ -2940,7 +2741,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
           "name": "코인포켓",
           "number": "008",
@@ -2968,8 +2769,7 @@
     "habitats": [
       "초승달 만",
       "스칼렛보우 습지",
-      "래피드 협곡",
-      "미확인 구역"
+      "래피드 협곡"
     ],
     "forms": [
       {
@@ -2995,8 +2795,7 @@
         "locations": [
           "초승달 만",
           "스칼렛보우 습지",
-          "래피드 협곡",
-          "미확인 구역"
+          "래피드 협곡"
         ],
         "homeAbilities": [
           {
@@ -3042,22 +2841,6 @@
             "skillType": "마법 스킬",
             "energyCost": 10,
             "power": 20
-          },
-          {
-            "name": "서리 투척",
-            "description": "거대한 코인블링을 던져 명중 시 폭발을 일으키고 범위 피해를 줍니다. 대상의 HP가 낮을수록 피해가 증가하며, 최대 100% 위력의 피해를 추가로 줍니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
-            "name": "1655177713",
-            "description": "1319691695",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
           }
         ],
         "uniqueSkills": [
@@ -3082,7 +2865,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
             "name": "코인포켓",
             "number": "008",
@@ -3105,7 +2888,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
               "name": "코인포켓",
               "number": "008",
@@ -3133,14 +2916,13 @@
         "habitats": [
           "초승달 만",
           "스칼렛보우 습지",
-          "래피드 협곡",
-          "미확인 구역"
+          "래피드 협곡"
         ],
         "sourceUrl": "https://wiki.aniimo.com/ko/item/007/basic-form/300301"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/007/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-008",
@@ -3167,8 +2949,7 @@
     },
     "description": "몸은 탄력이 넘치는 거대한 돈주머니처럼 생겼으며, 그 안에는 코인블링들이 많이 살고 있다. 금화를 아낌없이 사방에 뿌리는 듯하지만, 사실은 코인블링들을 밖으로 내보내 놀게 하는 것이다.",
     "locations": [
-      "초승달 만",
-      "미확인 구역"
+      "초승달 만"
     ],
     "homeAbilities": [
       {
@@ -3194,14 +2975,6 @@
     ],
     "combatSkills": [
       {
-        "name": "돈벼락 투척",
-        "description": "자이언트 코인블링을 던집니다. 명중하면 폭발해 범위 피해를 주고 주변 대상을 [매혹] 시킵니다. 해당 효과는 3초 동안 지속됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200670_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 20,
-        "power": 20
-      },
-      {
         "name": "금화 격려",
         "description": "대상에게 [코인블링 마크]를 부여하며 20초 동안 지속됩니다. 지속 시간 동안 대상이 무력화되거나 처치되면 대상이 지닌 [코인블링 마크]가 주변의 다른 대상으로 옮겨가고 지속 시간이 갱신됩니다. 동시에 자신의 에너지를 16 회복합니다. 15초 동안 1회만 발동합니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200570_Icon.png",
@@ -3218,14 +2991,6 @@
         "power": 20
       },
       {
-        "name": "서리 투척",
-        "description": "거대한 코인블링을 던져 명중 시 폭발을 일으키고 범위 피해를 줍니다. 대상의 HP가 낮을수록 피해가 증가하며, 최대 100% 위력의 피해를 추가로 줍니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 10,
-        "power": 20
-      },
-      {
         "name": "재물 흡수",
         "description": "전방 부채꼴 범위 내 대상을 끌어당긴 뒤 범위 피해를 주고 이동 속도를 20% 감소시킵니다. 해당 효과는 8초 동안 지속됩니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200590_Icon.png",
@@ -3234,11 +2999,11 @@
         "power": 33
       },
       {
-        "name": "1655177713",
-        "description": "1319691695",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
+        "name": "돈벼락 투척",
+        "description": "자이언트 코인블링을 던집니다. 명중하면 폭발해 범위 피해를 주고 주변 대상을 [매혹] 시킵니다. 해당 효과는 3초 동안 지속됩니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200670_Icon.png",
         "skillType": "마법 스킬",
-        "energyCost": 10,
+        "energyCost": 20,
         "power": 20
       }
     ],
@@ -3253,7 +3018,7 @@
       },
       {
         "name": "저축 지원",
-        "description": "코인블링을 던져 파티원을 지원하며 10초 동안 지속됩니다. 지속 시간 동안 파티에서 마지막으로 공격한 대상에게 [코인블링 마크]를 부여합니다. [코인블링 마크]는 초당 자신의 에너지를 추가로 15 회복합니다.",
+        "description": "코인블링을 던져 같은 팀원을 돕습니다. 10초 동안 지속됩니다. 해당 기간 동안 팀이 마지막으로 공격한 대상에게 [코인블링 마크]를 부여하고, [코인블링 마크]가 매초 자신에게 3.2의 에너지를 추가로 회복시킵니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200600_Icon.png",
         "skillType": "보조 스킬",
         "energyCost": 0,
@@ -3272,7 +3037,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
         "name": "코인포켓",
         "number": "008",
@@ -3295,7 +3060,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
           "name": "코인포켓",
           "number": "008",
@@ -3321,8 +3086,7 @@
       }
     ],
     "habitats": [
-      "초승달 만",
-      "미확인 구역"
+      "초승달 만"
     ],
     "forms": [
       {
@@ -3346,8 +3110,7 @@
         },
         "description": "몸은 탄력이 넘치는 거대한 돈주머니처럼 생겼으며, 그 안에는 코인블링들이 많이 살고 있다. 금화를 아낌없이 사방에 뿌리는 듯하지만, 사실은 코인블링들을 밖으로 내보내 놀게 하는 것이다.",
         "locations": [
-          "초승달 만",
-          "미확인 구역"
+          "초승달 만"
         ],
         "homeAbilities": [
           {
@@ -3373,14 +3136,6 @@
         ],
         "combatSkills": [
           {
-            "name": "돈벼락 투척",
-            "description": "자이언트 코인블링을 던집니다. 명중하면 폭발해 범위 피해를 주고 주변 대상을 [매혹] 시킵니다. 해당 효과는 3초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200670_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 20,
-            "power": 20
-          },
-          {
             "name": "금화 격려",
             "description": "대상에게 [코인블링 마크]를 부여하며 20초 동안 지속됩니다. 지속 시간 동안 대상이 무력화되거나 처치되면 대상이 지닌 [코인블링 마크]가 주변의 다른 대상으로 옮겨가고 지속 시간이 갱신됩니다. 동시에 자신의 에너지를 16 회복합니다. 15초 동안 1회만 발동합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200570_Icon.png",
@@ -3397,14 +3152,6 @@
             "power": 20
           },
           {
-            "name": "서리 투척",
-            "description": "거대한 코인블링을 던져 명중 시 폭발을 일으키고 범위 피해를 줍니다. 대상의 HP가 낮을수록 피해가 증가하며, 최대 100% 위력의 피해를 추가로 줍니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 10,
-            "power": 20
-          },
-          {
             "name": "재물 흡수",
             "description": "전방 부채꼴 범위 내 대상을 끌어당긴 뒤 범위 피해를 주고 이동 속도를 20% 감소시킵니다. 해당 효과는 8초 동안 지속됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200590_Icon.png",
@@ -3413,11 +3160,11 @@
             "power": 33
           },
           {
-            "name": "1655177713",
-            "description": "1319691695",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_10200440_Icon.png",
+            "name": "돈벼락 투척",
+            "description": "자이언트 코인블링을 던집니다. 명중하면 폭발해 범위 피해를 주고 주변 대상을 [매혹] 시킵니다. 해당 효과는 3초 동안 지속됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200670_Icon.png",
             "skillType": "마법 스킬",
-            "energyCost": 10,
+            "energyCost": 20,
             "power": 20
           }
         ],
@@ -3432,7 +3179,7 @@
           },
           {
             "name": "저축 지원",
-            "description": "코인블링을 던져 파티원을 지원하며 10초 동안 지속됩니다. 지속 시간 동안 파티에서 마지막으로 공격한 대상에게 [코인블링 마크]를 부여합니다. [코인블링 마크]는 초당 자신의 에너지를 추가로 15 회복합니다.",
+            "description": "코인블링을 던져 같은 팀원을 돕습니다. 10초 동안 지속됩니다. 해당 기간 동안 팀이 마지막으로 공격한 대상에게 [코인블링 마크]를 부여하고, [코인블링 마크]가 매초 자신에게 3.2의 에너지를 추가로 회복시킵니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1063300_Skill_11200600_Icon.png",
             "skillType": "보조 스킬",
             "energyCost": 0,
@@ -3451,7 +3198,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
             "name": "코인포켓",
             "number": "008",
@@ -3474,7 +3221,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10633.png",
               "name": "코인포켓",
               "number": "008",
@@ -3500,14 +3247,13 @@
           }
         ],
         "habitats": [
-          "초승달 만",
-          "미확인 구역"
+          "초승달 만"
         ],
         "sourceUrl": "https://wiki.aniimo.com/ko/item/008/basic-form/300301"
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/008/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-009",
@@ -3552,11 +3298,6 @@
       }
     ],
     "explorationSkills": [
-      {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      },
       {
         "name": "둥실 버블",
         "description": "둥실둥실 떠다니는 커다란 버블을 뿜어냅니다.",
@@ -3610,7 +3351,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
         "name": "리벨라",
         "number": "010",
@@ -3633,7 +3374,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
           "name": "리벨라",
           "number": "010",
@@ -3702,11 +3443,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "둥실 버블",
             "description": "둥실둥실 떠다니는 커다란 버블을 뿜어냅니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1026201_Skill_9400130_Icon.png"
@@ -3759,7 +3495,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
             "name": "리벨라",
             "number": "010",
@@ -3782,7 +3518,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
               "name": "리벨라",
               "number": "010",
@@ -3814,7 +3550,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/009/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-010",
@@ -3859,11 +3595,6 @@
       }
     ],
     "explorationSkills": [
-      {
-        "name": "수영 Lv.2",
-        "description": "",
-        "imageUrl": null
-      },
       {
         "name": "둥실 버블",
         "description": "둥실둥실 떠다니는 커다란 버블을 불어냅니다.",
@@ -3949,7 +3680,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
         "name": "리벨라",
         "number": "010",
@@ -3972,7 +3703,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
           "name": "리벨라",
           "number": "010",
@@ -4040,11 +3771,6 @@
           }
         ],
         "explorationSkills": [
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
           {
             "name": "둥실 버블",
             "description": "둥실둥실 떠다니는 커다란 버블을 불어냅니다.",
@@ -4130,7 +3856,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
             "name": "리벨라",
             "number": "010",
@@ -4153,7 +3879,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10583.png",
               "name": "리벨라",
               "number": "010",
@@ -4222,11 +3948,6 @@
           }
         ],
         "explorationSkills": [
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
           {
             "name": "둥실 버블",
             "description": "둥실둥실 떠다니는 커다란 버블을 불어냅니다.",
@@ -4323,7 +4044,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/010/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-011",
@@ -4368,11 +4089,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "스플래터",
         "description": "현재 바라보는 방향으로 랜덤 색상의 버블을 1개 뿜어내며, 낙하지점에 컬러 그래피티를 생성합니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1057300_Skill_9400150_Icon.png"
@@ -4400,7 +4116,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10301190_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 40,
-        "power": 126
+        "power": 140
       }
     ],
     "uniqueSkills": [
@@ -4425,7 +4141,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
         "name": "가챠코",
         "number": "012",
@@ -4448,7 +4164,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
           "name": "가챠코",
           "number": "012",
@@ -4516,11 +4232,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "스플래터",
             "description": "현재 바라보는 방향으로 랜덤 색상의 버블을 1개 뿜어내며, 낙하지점에 컬러 그래피티를 생성합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1057300_Skill_9400150_Icon.png"
@@ -4548,7 +4259,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10301190_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 40,
-            "power": 126
+            "power": 140
           }
         ],
         "uniqueSkills": [
@@ -4573,7 +4284,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
             "name": "가챠코",
             "number": "012",
@@ -4596,7 +4307,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
               "name": "가챠코",
               "number": "012",
@@ -4628,7 +4339,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/011/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-012",
@@ -4673,11 +4384,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.3",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "스플래터",
         "description": "현재 바라보는 방향으로 랜덤 색상의 버블을 1개 뿜어내며, 낙하지점에 컬러 그래피티를 생성합니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1057300_Skill_9400150_Icon.png"
@@ -4692,20 +4398,12 @@
     ],
     "combatSkills": [
       {
-        "name": "1289249512",
-        "description": "2064691305",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10601060_Icon.png",
-        "skillType": "물리 스킬",
-        "energyCost": 10,
-        "power": 15
-      },
-      {
         "name": "연속 버블 습격",
         "description": "[캡슐 뽑기]를 지속하며 대상에게 거품을 뿜어냅니다. 해당 효과는 5초 동안 지속됩니다. 시전 중에도 이동할 수 있지만 이동 속도가 감소하며, 주는 피해는 일반 공격 피해로 간주됩니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10301190_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 40,
-        "power": 126
+        "power": 140
       },
       {
         "name": "그림자 버블",
@@ -4762,7 +4460,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
         "name": "가챠코",
         "number": "012",
@@ -4785,7 +4483,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
           "name": "가챠코",
           "number": "012",
@@ -4853,11 +4551,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "스플래터",
             "description": "현재 바라보는 방향으로 랜덤 색상의 버블을 1개 뿜어내며, 낙하지점에 컬러 그래피티를 생성합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1057300_Skill_9400150_Icon.png"
@@ -4872,20 +4565,12 @@
         ],
         "combatSkills": [
           {
-            "name": "1289249512",
-            "description": "2064691305",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10601060_Icon.png",
-            "skillType": "물리 스킬",
-            "energyCost": 10,
-            "power": 15
-          },
-          {
             "name": "연속 버블 습격",
             "description": "[캡슐 뽑기]를 지속하며 대상에게 거품을 뿜어냅니다. 해당 효과는 5초 동안 지속됩니다. 시전 중에도 이동할 수 있지만 이동 속도가 감소하며, 주는 피해는 일반 공격 피해로 간주됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10301190_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 40,
-            "power": 126
+            "power": 140
           },
           {
             "name": "그림자 버블",
@@ -4942,7 +4627,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
             "name": "가챠코",
             "number": "012",
@@ -4965,7 +4650,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10623.png",
               "name": "가챠코",
               "number": "012",
@@ -5041,11 +4726,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "스플래터",
             "description": "현재 바라보는 방향으로 랜덤 색상의 버블을 1개 뿜어내며, 낙하지점에 컬러 그래피티를 생성합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1057300_Skill_9400150_Icon.png"
@@ -5060,20 +4740,12 @@
         ],
         "combatSkills": [
           {
-            "name": "1289249512",
-            "description": "2064691305",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10601060_Icon.png",
-            "skillType": "물리 스킬",
-            "energyCost": 10,
-            "power": 15
-          },
-          {
             "name": "연속 버블 습격",
             "description": "[캡슐 뽑기]를 지속하며 대상에게 거품을 뿜어냅니다. 해당 효과는 5초 동안 지속됩니다. 시전 중에도 이동할 수 있지만 이동 속도가 감소하며, 주는 피해는 일반 공격 피해로 간주됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1062300_Skill_10301190_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 40,
-            "power": 126
+            "power": 140
           },
           {
             "name": "그림자 버블",
@@ -5141,7 +4813,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/012/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-013",
@@ -5200,20 +4872,12 @@
     ],
     "combatSkills": [
       {
-        "name": "1737281622",
-        "description": "1181006688",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10800760_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 25,
-        "power": 75
-      },
-      {
         "name": "달콤한 인력",
         "description": "아이스크림콘을 발사해 달콤한 진흙으로 감속 구역을 생성합니다. 구역 내 대상의 이동 속도를 50% 감소시키고 점프를 막으며 2초 동안 지속됩니다. 해당 효과가 종료되면 대상들을 중심으로 끌어당겨 범위 피해를 줍니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301210_Icon.png",
         "skillType": "마법 스킬",
-        "energyCost": 25,
-        "power": 75
+        "energyCost": 20,
+        "power": 52
       },
       {
         "name": "열정 맥스 어택",
@@ -5221,7 +4885,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301220_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 0,
-        "power": 60
+        "power": 30
       }
     ],
     "uniqueSkills": [
@@ -5246,7 +4910,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
         "name": "젤리나",
         "number": "015",
@@ -5256,7 +4920,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
         "name": "구미젤",
         "number": "014",
@@ -5279,7 +4943,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
           "name": "젤리나",
           "number": "015",
@@ -5301,7 +4965,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
           "name": "구미젤",
           "number": "014",
@@ -5383,20 +5047,12 @@
         ],
         "combatSkills": [
           {
-            "name": "1737281622",
-            "description": "1181006688",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10800760_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 25,
-            "power": 75
-          },
-          {
             "name": "달콤한 인력",
             "description": "아이스크림콘을 발사해 달콤한 진흙으로 감속 구역을 생성합니다. 구역 내 대상의 이동 속도를 50% 감소시키고 점프를 막으며 2초 동안 지속됩니다. 해당 효과가 종료되면 대상들을 중심으로 끌어당겨 범위 피해를 줍니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301210_Icon.png",
             "skillType": "마법 스킬",
-            "energyCost": 25,
-            "power": 75
+            "energyCost": 20,
+            "power": 52
           },
           {
             "name": "열정 맥스 어택",
@@ -5404,7 +5060,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301220_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 0,
-            "power": 60
+            "power": 30
           }
         ],
         "uniqueSkills": [
@@ -5429,7 +5085,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
             "name": "젤리나",
             "number": "015",
@@ -5439,7 +5095,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
             "name": "구미젤",
             "number": "014",
@@ -5462,7 +5118,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
               "name": "젤리나",
               "number": "015",
@@ -5484,7 +5140,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
               "name": "구미젤",
               "number": "014",
@@ -5516,7 +5172,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/013/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-014",
@@ -5575,20 +5231,12 @@
     ],
     "combatSkills": [
       {
-        "name": "1737281622",
-        "description": "1181006688",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10800760_Icon.png",
-        "skillType": "마법 스킬",
-        "energyCost": 25,
-        "power": 75
-      },
-      {
         "name": "열정 맥스 슬링",
         "description": "막아내기 어려운 열정으로 달콤한 진흙을 빠르게 투척해 대상을 공격합니다. 스킬 키를 다시 누르면 미리 종료할 수 있습니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301390_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 0,
-        "power": 60
+        "power": 48
       },
       {
         "name": "열정 맥스 어택",
@@ -5596,15 +5244,15 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301220_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 0,
-        "power": 60
+        "power": 30
       },
       {
         "name": "달콤한 인력",
         "description": "아이스크림콘을 발사해 달콤한 진흙으로 감속 구역을 생성합니다. 구역 내 대상의 이동 속도를 50% 감소시키고 점프를 막으며 2초 동안 지속됩니다. 해당 효과가 종료되면 대상들을 중심으로 끌어당겨 범위 피해를 줍니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301210_Icon.png",
         "skillType": "마법 스킬",
-        "energyCost": 25,
-        "power": 75
+        "energyCost": 20,
+        "power": 52
       }
     ],
     "uniqueSkills": [
@@ -5637,7 +5285,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
         "name": "젤리나",
         "number": "015",
@@ -5647,7 +5295,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
         "name": "구미젤",
         "number": "014",
@@ -5670,7 +5318,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
           "name": "젤리나",
           "number": "015",
@@ -5692,7 +5340,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
           "name": "구미젤",
           "number": "014",
@@ -5774,20 +5422,12 @@
         ],
         "combatSkills": [
           {
-            "name": "1737281622",
-            "description": "1181006688",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10800760_Icon.png",
-            "skillType": "마법 스킬",
-            "energyCost": 25,
-            "power": 75
-          },
-          {
             "name": "열정 맥스 슬링",
             "description": "막아내기 어려운 열정으로 달콤한 진흙을 빠르게 투척해 대상을 공격합니다. 스킬 키를 다시 누르면 미리 종료할 수 있습니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301390_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 0,
-            "power": 60
+            "power": 48
           },
           {
             "name": "열정 맥스 어택",
@@ -5795,15 +5435,15 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301220_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 0,
-            "power": 60
+            "power": 30
           },
           {
             "name": "달콤한 인력",
             "description": "아이스크림콘을 발사해 달콤한 진흙으로 감속 구역을 생성합니다. 구역 내 대상의 이동 속도를 50% 감소시키고 점프를 막으며 2초 동안 지속됩니다. 해당 효과가 종료되면 대상들을 중심으로 끌어당겨 범위 피해를 줍니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059300_Skill_10301210_Icon.png",
             "skillType": "마법 스킬",
-            "energyCost": 25,
-            "power": 75
+            "energyCost": 20,
+            "power": 52
           }
         ],
         "uniqueSkills": [
@@ -5836,7 +5476,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
             "name": "젤리나",
             "number": "015",
@@ -5846,7 +5486,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
             "name": "구미젤",
             "number": "014",
@@ -5869,7 +5509,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
               "name": "젤리나",
               "number": "015",
@@ -5891,7 +5531,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
               "name": "구미젤",
               "number": "014",
@@ -5923,7 +5563,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/014/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-015",
@@ -6025,7 +5665,7 @@
       },
       {
         "name": "푸딩 스톰",
-        "description": "푸딩 폭우를 아낌없이 쏟아부어 범위 피해를 주고, 20초 동안 파티 전체의 얼음 원소 강화를 20% 증가시킵니다.",
+        "description": "푸딩 폭우를 아낌없이 쏟아 범위 피해를 주고 파티 전체의 얼음 원소 강화를 20% 증가시킵니다. 20초 동안 지속됩니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059400_Skill_10301300_Icon.png",
         "skillType": "마법 스킬",
         "energyCost": 0,
@@ -6044,7 +5684,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
         "name": "젤리나",
         "number": "015",
@@ -6054,7 +5694,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
         "name": "구미젤",
         "number": "014",
@@ -6077,7 +5717,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
           "name": "젤리나",
           "number": "015",
@@ -6099,7 +5739,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
           "name": "구미젤",
           "number": "014",
@@ -6224,7 +5864,7 @@
           },
           {
             "name": "푸딩 스톰",
-            "description": "푸딩 폭우를 아낌없이 쏟아부어 범위 피해를 주고, 20초 동안 파티 전체의 얼음 원소 강화를 20% 증가시킵니다.",
+            "description": "푸딩 폭우를 아낌없이 쏟아 범위 피해를 주고 파티 전체의 얼음 원소 강화를 20% 증가시킵니다. 20초 동안 지속됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059400_Skill_10301300_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 0,
@@ -6243,7 +5883,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
             "name": "젤리나",
             "number": "015",
@@ -6253,7 +5893,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
             "name": "구미젤",
             "number": "014",
@@ -6276,7 +5916,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10594.png",
               "name": "젤리나",
               "number": "015",
@@ -6298,7 +5938,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10593.png",
               "name": "구미젤",
               "number": "014",
@@ -6431,7 +6071,7 @@
           },
           {
             "name": "푸딩 스톰",
-            "description": "푸딩 폭우를 아낌없이 쏟아부어 범위 피해를 주고, 20초 동안 파티 전체의 얼음 원소 강화를 20% 증가시킵니다.",
+            "description": "푸딩 폭우를 아낌없이 쏟아 범위 피해를 주고 파티 전체의 얼음 원소 강화를 20% 증가시킵니다. 20초 동안 지속됩니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1059400_Skill_10301300_Icon.png",
             "skillType": "마법 스킬",
             "energyCost": 0,
@@ -6461,7 +6101,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/015/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-016",
@@ -6500,11 +6140,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "물풍선",
         "description": "전방으로 워터볼을 1개 발사합니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_9400146_Icon.png"
@@ -6537,7 +6172,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_10301110_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 15,
-        "power": 42
+        "power": 30
       }
     ],
     "uniqueSkills": [
@@ -6562,7 +6197,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
         "name": "스크러그",
         "number": "017",
@@ -6585,7 +6220,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
           "name": "스크러그",
           "number": "017",
@@ -6647,11 +6282,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물풍선",
             "description": "전방으로 워터볼을 1개 발사합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_9400146_Icon.png"
@@ -6684,7 +6314,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_10301110_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 15,
-            "power": 42
+            "power": 30
           }
         ],
         "uniqueSkills": [
@@ -6709,7 +6339,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
             "name": "스크러그",
             "number": "017",
@@ -6732,7 +6362,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
               "name": "스크러그",
               "number": "017",
@@ -6764,7 +6394,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/016/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-017",
@@ -6802,16 +6432,6 @@
       }
     ],
     "explorationSkills": [
-      {
-        "name": "비행 Lv.1",
-        "description": "",
-        "imageUrl": null
-      },
-      {
-        "name": "수영 Lv.2",
-        "description": "",
-        "imageUrl": null
-      },
       {
         "name": "물풍선",
         "description": "전방으로 워터볼을 1개 발사합니다.",
@@ -6853,7 +6473,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_10301110_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 15,
-        "power": 42
+        "power": 30
       },
       {
         "name": "연못 잎공격",
@@ -6894,7 +6514,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
         "name": "스크러그",
         "number": "017",
@@ -6917,7 +6537,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
           "name": "스크러그",
           "number": "017",
@@ -6979,16 +6599,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "비행 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물풍선",
             "description": "전방으로 워터볼을 1개 발사합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_9400146_Icon.png"
@@ -7029,7 +6639,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_10301110_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 15,
-            "power": 42
+            "power": 30
           },
           {
             "name": "연못 잎공격",
@@ -7070,7 +6680,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
             "name": "스크러그",
             "number": "017",
@@ -7093,7 +6703,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10543.png",
               "name": "스크러그",
               "number": "017",
@@ -7156,16 +6766,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "비행 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "물풍선",
             "description": "전방으로 워터볼을 1개 발사합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_9400146_Icon.png"
@@ -7206,7 +6806,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1054300_Skill_10301110_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 15,
-            "power": 42
+            "power": 30
           },
           {
             "name": "연못 잎공격",
@@ -7258,7 +6858,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/017/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-018",
@@ -7308,13 +6908,7 @@
         "value": 1
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "고목 부식",
@@ -7362,7 +6956,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
         "name": "드리거",
         "number": "019",
@@ -7385,7 +6979,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
           "name": "드리거",
           "number": "019",
@@ -7458,13 +7052,7 @@
             "value": 1
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "고목 부식",
@@ -7512,7 +7100,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
             "name": "드리거",
             "number": "019",
@@ -7535,7 +7123,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
               "name": "드리거",
               "number": "019",
@@ -7567,7 +7155,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/018/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-019",
@@ -7617,13 +7205,7 @@
         "value": 3
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "수영 Lv.2",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "고목 부식",
@@ -7687,7 +7269,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
         "name": "드리거",
         "number": "019",
@@ -7710,7 +7292,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
           "name": "드리거",
           "number": "019",
@@ -7783,13 +7365,7 @@
             "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "고목 부식",
@@ -7853,7 +7429,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
             "name": "드리거",
             "number": "019",
@@ -7876,7 +7452,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10603.png",
               "name": "드리거",
               "number": "019",
@@ -7908,7 +7484,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/019/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-020",
@@ -7947,13 +7523,7 @@
         "value": 1
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "비행 Lv.1",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "꿀즙 운반",
@@ -7971,28 +7541,12 @@
         "power": 25
       },
       {
-        "name": "1098449550",
-        "description": "1884255994",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10301640_Icon.png",
-        "skillType": "물리 스킬",
-        "energyCost": 10,
-        "power": 31
-      },
-      {
         "name": "가루 덩어리 슬램",
         "description": "꽃가루 뭉치를 들어 대상에게 힘껏 던져 막대한 피해를 줍니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10900550_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 30,
         "power": 95
-      },
-      {
-        "name": "1852493422",
-        "description": "1544750202",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10900570_Icon.png",
-        "skillType": "물리 스킬",
-        "energyCost": 10,
-        "power": 25
       }
     ],
     "uniqueSkills": [
@@ -8017,7 +7571,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
         "name": "로열비",
         "number": "022",
@@ -8027,7 +7581,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
         "name": "벌크비",
         "number": "021",
@@ -8050,7 +7604,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
           "name": "로열비",
           "number": "022",
@@ -8072,7 +7626,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
           "name": "벌크비",
           "number": "021",
@@ -8136,13 +7690,7 @@
             "value": 1
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "꿀즙 운반",
@@ -8160,28 +7708,12 @@
             "power": 25
           },
           {
-            "name": "1098449550",
-            "description": "1884255994",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10301640_Icon.png",
-            "skillType": "물리 스킬",
-            "energyCost": 10,
-            "power": 31
-          },
-          {
             "name": "가루 덩어리 슬램",
             "description": "꽃가루 뭉치를 들어 대상에게 힘껏 던져 막대한 피해를 줍니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10900550_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 30,
             "power": 95
-          },
-          {
-            "name": "1852493422",
-            "description": "1544750202",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10900570_Icon.png",
-            "skillType": "물리 스킬",
-            "energyCost": 10,
-            "power": 25
           }
         ],
         "uniqueSkills": [
@@ -8206,7 +7738,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
             "name": "로열비",
             "number": "022",
@@ -8216,7 +7748,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
             "name": "벌크비",
             "number": "021",
@@ -8239,7 +7771,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
               "name": "로열비",
               "number": "022",
@@ -8261,7 +7793,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
               "name": "벌크비",
               "number": "021",
@@ -8295,7 +7827,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/020/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-021",
@@ -8364,22 +7896,6 @@
         "skillType": "물리 스킬",
         "energyCost": 20,
         "power": 20
-      },
-      {
-        "name": "1098449550",
-        "description": "1884255994",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10301640_Icon.png",
-        "skillType": "물리 스킬",
-        "energyCost": 10,
-        "power": 31
-      },
-      {
-        "name": "1852493422",
-        "description": "1544750202",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10900570_Icon.png",
-        "skillType": "물리 스킬",
-        "energyCost": 10,
-        "power": 25
       }
     ],
     "uniqueSkills": [
@@ -8412,7 +7928,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
         "name": "로열비",
         "number": "022",
@@ -8422,7 +7938,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
         "name": "벌크비",
         "number": "021",
@@ -8445,7 +7961,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
           "name": "로열비",
           "number": "022",
@@ -8467,7 +7983,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
           "name": "벌크비",
           "number": "021",
@@ -8559,22 +8075,6 @@
             "skillType": "물리 스킬",
             "energyCost": 20,
             "power": 20
-          },
-          {
-            "name": "1098449550",
-            "description": "1884255994",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10301640_Icon.png",
-            "skillType": "물리 스킬",
-            "energyCost": 10,
-            "power": 31
-          },
-          {
-            "name": "1852493422",
-            "description": "1544750202",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1061300_Skill_10900570_Icon.png",
-            "skillType": "물리 스킬",
-            "energyCost": 10,
-            "power": 25
           }
         ],
         "uniqueSkills": [
@@ -8607,7 +8107,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
             "name": "로열비",
             "number": "022",
@@ -8617,7 +8117,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
             "name": "벌크비",
             "number": "021",
@@ -8640,7 +8140,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
               "name": "로열비",
               "number": "022",
@@ -8662,7 +8162,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
               "name": "벌크비",
               "number": "021",
@@ -8694,7 +8194,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/021/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-022",
@@ -8731,13 +8231,7 @@
         "value": 3
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "비행 Lv.3",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "벌왕의 가호",
@@ -8809,7 +8303,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
         "name": "로열비",
         "number": "022",
@@ -8819,7 +8313,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
         "name": "벌크비",
         "number": "021",
@@ -8842,7 +8336,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
           "name": "로열비",
           "number": "022",
@@ -8864,7 +8358,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
           "name": "벌크비",
           "number": "021",
@@ -8924,13 +8418,7 @@
             "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.3",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "벌왕의 가호",
@@ -9002,7 +8490,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
             "name": "로열비",
             "number": "022",
@@ -9012,7 +8500,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
             "name": "벌크비",
             "number": "021",
@@ -9035,7 +8523,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10614.png",
               "name": "로열비",
               "number": "022",
@@ -9057,7 +8545,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10613.png",
               "name": "벌크비",
               "number": "021",
@@ -9089,7 +8577,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/022/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-023",
@@ -9135,11 +8623,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.3",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "서핑",
         "description": "서핑 상태에 진입합니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_9400110_Icon.png"
@@ -9164,7 +8647,7 @@
       {
         "name": "고속 절단",
         "description": "빠르게 회전하며 등지느러미로 주변의 모든 대상을 베어 냅니다. [광란의 습격] 상태에 진입하는 데 필요한 이동 거리가 50% 감소하며 15초 동안 지속됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044300_Skill_10301540_Icon.png",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_10301090_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
         "power": 60
@@ -9192,7 +8675,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
         "name": "톱턱샤크",
         "number": "024",
@@ -9215,7 +8698,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
           "name": "톱턱샤크",
           "number": "024",
@@ -9285,11 +8768,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "서핑",
             "description": "서핑 상태에 진입합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_9400110_Icon.png"
@@ -9314,7 +8792,7 @@
           {
             "name": "고속 절단",
             "description": "빠르게 회전하며 등지느러미로 주변의 모든 대상을 베어 냅니다. [광란의 습격] 상태에 진입하는 데 필요한 이동 거리가 50% 감소하며 15초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044300_Skill_10301540_Icon.png",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_10301090_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
             "power": 60
@@ -9342,7 +8820,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
             "name": "톱턱샤크",
             "number": "024",
@@ -9365,7 +8843,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
               "name": "톱턱샤크",
               "number": "024",
@@ -9398,7 +8876,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/023/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-024",
@@ -9444,11 +8922,6 @@
     ],
     "explorationSkills": [
       {
-        "name": "수영 Lv.3",
-        "description": "",
-        "imageUrl": null
-      },
-      {
         "name": "서핑",
         "description": "서핑 상태에 진입합니다.",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_9400110_Icon.png"
@@ -9465,7 +8938,7 @@
       {
         "name": "고속 절단",
         "description": "빠르게 회전하며 등지느러미로 주변의 모든 대상을 베어 냅니다. [광란의 습격] 상태에 진입하는 데 필요한 이동 거리가 50% 감소하며 15초 동안 지속됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044300_Skill_10301540_Icon.png",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_10301090_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
         "power": 60
@@ -9525,7 +8998,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
         "name": "톱턱샤크",
         "number": "024",
@@ -9548,7 +9021,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
           "name": "톱턱샤크",
           "number": "024",
@@ -9618,11 +9091,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "서핑",
             "description": "서핑 상태에 진입합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_9400110_Icon.png"
@@ -9639,7 +9107,7 @@
           {
             "name": "고속 절단",
             "description": "빠르게 회전하며 등지느러미로 주변의 모든 대상을 베어 냅니다. [광란의 습격] 상태에 진입하는 데 필요한 이동 거리가 50% 감소하며 15초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044300_Skill_10301540_Icon.png",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_10301090_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
             "power": 60
@@ -9699,7 +9167,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
             "name": "톱턱샤크",
             "number": "024",
@@ -9722,7 +9190,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10393.png",
               "name": "톱턱샤크",
               "number": "024",
@@ -9793,11 +9261,6 @@
         ],
         "explorationSkills": [
           {
-            "name": "수영 Lv.3",
-            "description": "",
-            "imageUrl": null
-          },
-          {
             "name": "서핑",
             "description": "서핑 상태에 진입합니다.",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_9400110_Icon.png"
@@ -9814,7 +9277,7 @@
           {
             "name": "고속 절단",
             "description": "빠르게 회전하며 등지느러미로 주변의 모든 대상을 베어 냅니다. [광란의 습격] 상태에 진입하는 데 필요한 이동 거리가 50% 감소하며 15초 동안 지속됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044300_Skill_10301540_Icon.png",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1039300_Skill_10301090_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
             "power": 60
@@ -9885,7 +9348,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/024/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-025",
@@ -9928,13 +9391,7 @@
         "value": 3
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "수영 Lv.1",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "펀치 버스트",
@@ -9949,7 +9406,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200510_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 72
+        "power": 62
       },
       {
         "name": "스프링 콤보",
@@ -9957,7 +9414,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200520_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 88
+        "power": 66
       }
     ],
     "uniqueSkills": [
@@ -9982,7 +9439,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
         "name": "스프링거",
         "number": "026",
@@ -10005,7 +9462,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
           "name": "스프링거",
           "number": "026",
@@ -10071,13 +9528,7 @@
             "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.1",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "펀치 버스트",
@@ -10092,7 +9543,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200510_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 콤보",
@@ -10100,7 +9551,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200520_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 88
+            "power": 66
           }
         ],
         "uniqueSkills": [
@@ -10125,7 +9576,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
             "name": "스프링거",
             "number": "026",
@@ -10148,7 +9599,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
               "name": "스프링거",
               "number": "026",
@@ -10180,7 +9631,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/025/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-026",
@@ -10230,13 +9681,7 @@
         "value": 2
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "수영 Lv.2",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "펀치 버스트",
@@ -10251,7 +9696,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200520_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 88
+        "power": 66
       },
       {
         "name": "워터 스프링 펀치",
@@ -10259,7 +9704,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10301690_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 50
+        "power": 40
       },
       {
         "name": "번개 스프링 펀치",
@@ -10267,7 +9712,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10400530_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 72
+        "power": 62
       },
       {
         "name": "스프링 펀치",
@@ -10275,7 +9720,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200510_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 72
+        "power": 62
       },
       {
         "name": "스프링 해머",
@@ -10283,7 +9728,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200530_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 50
+        "power": 40
       }
     ],
     "uniqueSkills": [
@@ -10316,7 +9761,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
         "name": "스프링거",
         "number": "026",
@@ -10339,7 +9784,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
           "name": "스프링거",
           "number": "026",
@@ -10412,13 +9857,7 @@
             "value": 2
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "펀치 버스트",
@@ -10433,7 +9872,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200520_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 88
+            "power": 66
           },
           {
             "name": "워터 스프링 펀치",
@@ -10441,7 +9880,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10301690_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 50
+            "power": 40
           },
           {
             "name": "번개 스프링 펀치",
@@ -10449,7 +9888,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10400530_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 펀치",
@@ -10457,7 +9896,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200510_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 해머",
@@ -10465,7 +9904,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200530_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 50
+            "power": 40
           }
         ],
         "uniqueSkills": [
@@ -10498,7 +9937,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
             "name": "스프링거",
             "number": "026",
@@ -10521,7 +9960,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10403.png",
               "name": "스프링거",
               "number": "026",
@@ -10595,13 +10034,7 @@
             "value": 4
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "펀치 버스트",
@@ -10616,7 +10049,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200520_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 88
+            "power": 66
           },
           {
             "name": "워터 스프링 펀치",
@@ -10624,7 +10057,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10301690_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 50
+            "power": 40
           },
           {
             "name": "번개 스프링 펀치",
@@ -10632,7 +10065,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10400530_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 펀치",
@@ -10640,7 +10073,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200510_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 해머",
@@ -10648,7 +10081,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200530_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 50
+            "power": 40
           }
         ],
         "uniqueSkills": [
@@ -10734,13 +10167,7 @@
             "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "펀치 버스트",
@@ -10755,7 +10182,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200520_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 88
+            "power": 66
           },
           {
             "name": "워터 스프링 펀치",
@@ -10763,7 +10190,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10301690_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 50
+            "power": 40
           },
           {
             "name": "번개 스프링 펀치",
@@ -10771,7 +10198,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10400530_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 펀치",
@@ -10779,7 +10206,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200510_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 72
+            "power": 62
           },
           {
             "name": "스프링 해머",
@@ -10787,7 +10214,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1040300_Skill_10200530_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 50
+            "power": 40
           }
         ],
         "uniqueSkills": [
@@ -10831,7 +10258,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/026/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-027",
@@ -10874,23 +10301,12 @@
         "value": 1
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "비행 Lv.1",
-        "description": "",
-        "imageUrl": null
-      },
-      {
-        "name": "수영 Lv.2",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "터보 부스트",
-        "description": "스킬 또는 궁극기 사용 시 자신에게 [터보 부스트]를 1중첩 부여합니다. 다음 일반 공격이 추가로 120%의 피해 및 무력화를 주며, 최대 2중첩까지 보유할 수 있습니다. 전투 진입 후 에너지 소모 없이 궁극기를 1회 사용할 수 있으며, 120초마다 갱신됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069301_Feature_169301_Icon.png"
+        "description": "스킬 또는 궁극기를 시전하면 자신에게 [터보 부스트]를 1스택 부여하고, 다음 일반 공격이 120%의 추가 피해와 무력화를 줍니다. 최대 2스택까지 동시에 존재할 수 있습니다. 서지윙은 전투 진입 후 소모 없이 사용할 수 있는 궁극기를 1회 획득하며, 120초마다 갱신됩니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Feature_169301_Icon.png"
       }
     ],
     "combatSkills": [
@@ -10941,7 +10357,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
         "name": "서지윙",
         "number": "028",
@@ -10964,7 +10380,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
           "name": "서지윙",
           "number": "028",
@@ -11030,23 +10446,12 @@
             "value": 1
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "터보 부스트",
-            "description": "스킬 또는 궁극기 사용 시 자신에게 [터보 부스트]를 1중첩 부여합니다. 다음 일반 공격이 추가로 120%의 피해 및 무력화를 주며, 최대 2중첩까지 보유할 수 있습니다. 전투 진입 후 에너지 소모 없이 궁극기를 1회 사용할 수 있으며, 120초마다 갱신됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069301_Feature_169301_Icon.png"
+            "description": "스킬 또는 궁극기를 시전하면 자신에게 [터보 부스트]를 1스택 부여하고, 다음 일반 공격이 120%의 추가 피해와 무력화를 줍니다. 최대 2스택까지 동시에 존재할 수 있습니다. 서지윙은 전투 진입 후 소모 없이 사용할 수 있는 궁극기를 1회 획득하며, 120초마다 갱신됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Feature_169301_Icon.png"
           }
         ],
         "combatSkills": [
@@ -11097,7 +10502,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
             "name": "서지윙",
             "number": "028",
@@ -11120,7 +10525,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
               "name": "서지윙",
               "number": "028",
@@ -11194,23 +10599,12 @@
             "value": 1
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.1",
-            "description": "",
-            "imageUrl": null
-          },
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "터보 부스트",
-            "description": "스킬 또는 궁극기 사용 시 자신에게 [터보 부스트]를 1중첩 부여합니다. 다음 일반 공격이 추가로 120%의 피해 및 무력화를 주며, 최대 2중첩까지 보유할 수 있습니다. 전투 진입 후 에너지 소모 없이 궁극기를 1회 사용할 수 있으며, 120초마다 갱신됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069301_Feature_169301_Icon.png"
+            "description": "스킬 또는 궁극기를 시전하면 자신에게 [터보 부스트]를 1스택 부여하고, 다음 일반 공격이 120%의 추가 피해와 무력화를 줍니다. 최대 2스택까지 동시에 존재할 수 있습니다. 서지윙은 전투 진입 후 소모 없이 사용할 수 있는 궁극기를 1회 획득하며, 120초마다 갱신됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Feature_169301_Icon.png"
           }
         ],
         "combatSkills": [
@@ -11261,7 +10655,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": null,
             "name": null,
             "number": null,
@@ -11282,7 +10676,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": null,
               "name": null,
               "number": null,
@@ -11312,7 +10706,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/027/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-028",
@@ -11355,23 +10749,12 @@
         "value": 3
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "비행 Lv.2",
-        "description": "",
-        "imageUrl": null
-      },
-      {
-        "name": "수영 Lv.2",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "터보 부스트",
-        "description": "스킬 또는 궁극기 사용 시 자신에게 [터보 부스트]를 1중첩 부여합니다. 다음 일반 공격이 추가로 120%의 피해 및 무력화를 주며, 최대 2중첩까지 보유할 수 있습니다. 전투 진입 후 에너지 소모 없이 궁극기를 1회 사용할 수 있으며, 120초마다 갱신됩니다.",
-        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069301_Feature_169301_Icon.png"
+        "description": "스킬 또는 궁극기를 시전하면 자신에게 [터보 부스트]를 1스택 부여하고, 다음 일반 공격이 120%의 추가 피해와 무력화를 줍니다. 최대 2스택까지 동시에 존재할 수 있습니다. 서지윙은 전투 진입 후 소모 없이 사용할 수 있는 궁극기를 1회 획득하며, 120초마다 갱신됩니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Feature_169301_Icon.png"
       }
     ],
     "combatSkills": [
@@ -11413,7 +10796,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Skill_10301470_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 20,
-        "power": 55
+        "power": 60
       }
     ],
     "uniqueSkills": [
@@ -11431,7 +10814,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Skill_10301480_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 0,
-        "power": 40
+        "power": 30
       }
     ],
     "evolution": [
@@ -11446,7 +10829,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
         "name": "서지윙",
         "number": "028",
@@ -11469,7 +10852,7 @@
           "regionId": "300301"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
           "name": "서지윙",
           "number": "028",
@@ -11535,23 +10918,12 @@
             "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "터보 부스트",
-            "description": "스킬 또는 궁극기 사용 시 자신에게 [터보 부스트]를 1중첩 부여합니다. 다음 일반 공격이 추가로 120%의 피해 및 무력화를 주며, 최대 2중첩까지 보유할 수 있습니다. 전투 진입 후 에너지 소모 없이 궁극기를 1회 사용할 수 있으며, 120초마다 갱신됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069301_Feature_169301_Icon.png"
+            "description": "스킬 또는 궁극기를 시전하면 자신에게 [터보 부스트]를 1스택 부여하고, 다음 일반 공격이 120%의 추가 피해와 무력화를 줍니다. 최대 2스택까지 동시에 존재할 수 있습니다. 서지윙은 전투 진입 후 소모 없이 사용할 수 있는 궁극기를 1회 획득하며, 120초마다 갱신됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Feature_169301_Icon.png"
           }
         ],
         "combatSkills": [
@@ -11593,7 +10965,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Skill_10301470_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 55
+            "power": 60
           }
         ],
         "uniqueSkills": [
@@ -11611,7 +10983,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Skill_10301480_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 0,
-            "power": 40
+            "power": 30
           }
         ],
         "evolution": [
@@ -11626,7 +10998,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
             "name": "서지윙",
             "number": "028",
@@ -11649,7 +11021,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10693.png",
               "name": "서지윙",
               "number": "028",
@@ -11723,23 +11095,12 @@
             "value": 2
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.2",
-            "description": "",
-            "imageUrl": null
-          },
-          {
-            "name": "수영 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "터보 부스트",
-            "description": "스킬 또는 궁극기 사용 시 자신에게 [터보 부스트]를 1중첩 부여합니다. 다음 일반 공격이 추가로 120%의 피해 및 무력화를 주며, 최대 2중첩까지 보유할 수 있습니다. 전투 진입 후 에너지 소모 없이 궁극기를 1회 사용할 수 있으며, 120초마다 갱신됩니다.",
-            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069301_Feature_169301_Icon.png"
+            "description": "스킬 또는 궁극기를 시전하면 자신에게 [터보 부스트]를 1스택 부여하고, 다음 일반 공격이 120%의 추가 피해와 무력화를 줍니다. 최대 2스택까지 동시에 존재할 수 있습니다. 서지윙은 전투 진입 후 소모 없이 사용할 수 있는 궁극기를 1회 획득하며, 120초마다 갱신됩니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Feature_169301_Icon.png"
           }
         ],
         "combatSkills": [
@@ -11781,7 +11142,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Skill_10301470_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 20,
-            "power": 55
+            "power": 60
           }
         ],
         "uniqueSkills": [
@@ -11799,7 +11160,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1069300_Skill_10301480_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 0,
-            "power": 40
+            "power": 30
           }
         ],
         "evolution": [
@@ -11814,7 +11175,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": null,
             "name": null,
             "number": null,
@@ -11835,7 +11196,7 @@
               "regionId": "300301"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": null,
               "name": null,
               "number": null,
@@ -11865,7 +11226,7 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/028/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   },
   {
     "id": "wave-archipelago-029",
@@ -11908,13 +11269,7 @@
         "value": 3
       }
     ],
-    "explorationSkills": [
-      {
-        "name": "비행 Lv.2",
-        "description": "",
-        "imageUrl": null
-      }
-    ],
+    "explorationSkills": [],
     "traits": [
       {
         "name": "강탈 꼬리침",
@@ -11937,7 +11292,7 @@
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044400_Skill_11200420_Icon.png",
         "skillType": "물리 스킬",
         "energyCost": 30,
-        "power": 52
+        "power": 104
       },
       {
         "name": "죄악의 갈고리",
@@ -11985,7 +11340,7 @@
         "id": "031"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10444.png",
         "name": "팬텀배트",
         "number": "029",
@@ -11995,7 +11350,7 @@
         "regionId": "300301"
       },
       {
-        "stage": "성장기",
+        "stage": "성숙기",
         "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10443.png",
         "name": "디텍배트",
         "number": "032",
@@ -12016,7 +11371,7 @@
           "id": "031"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10444.png",
           "name": "팬텀배트",
           "number": "029",
@@ -12037,7 +11392,7 @@
           "id": "031"
         },
         {
-          "stage": "성장기",
+          "stage": "성숙기",
           "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10443.png",
           "name": "디텍배트",
           "number": "032",
@@ -12102,13 +11457,7 @@
             "value": 3
           }
         ],
-        "explorationSkills": [
-          {
-            "name": "비행 Lv.2",
-            "description": "",
-            "imageUrl": null
-          }
-        ],
+        "explorationSkills": [],
         "traits": [
           {
             "name": "강탈 꼬리침",
@@ -12131,7 +11480,7 @@
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1044400_Skill_11200420_Icon.png",
             "skillType": "물리 스킬",
             "energyCost": 30,
-            "power": 52
+            "power": 104
           },
           {
             "name": "죄악의 갈고리",
@@ -12179,7 +11528,7 @@
             "id": "031"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10444.png",
             "name": "팬텀배트",
             "number": "029",
@@ -12189,7 +11538,7 @@
             "regionId": "300301"
           },
           {
-            "stage": "성장기",
+            "stage": "성숙기",
             "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10443.png",
             "name": "디텍배트",
             "number": "032",
@@ -12210,7 +11559,7 @@
               "id": "031"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10444.png",
               "name": "팬텀배트",
               "number": "029",
@@ -12231,7 +11580,7 @@
               "id": "031"
             },
             {
-              "stage": "성장기",
+              "stage": "성숙기",
               "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_PetHead_10443.png",
               "name": "디텍배트",
               "number": "032",
@@ -12262,6 +11611,6 @@
       }
     ],
     "sourceUrl": "https://wiki.aniimo.com/ko/item/029/basic-form/300301",
-    "checkedAt": "2026-10-31"
+    "checkedAt": "2026-11-11"
   }
 ]

@@ -12,7 +12,8 @@ const wave = waveData as AniimoEntry[];
 describe('official Wave Archipelago addition', () => {
   it('preserves the original 86 entries byte for byte and keeps duplicate official numbers separate', () => {
     const hash = createHash('sha256').update(fs.readFileSync(path.resolve('aniimo-hub/data/aniimo.json'))).digest('hex');
-    expect(hash).toBe('a0d257b7dc68db76fa3a532668be565288ef576f5e767ba72e9d96effab0cb93');
+    // Updated 2026-11-12 when the first region was refreshed to the official dex on request.
+    expect(hash).toBe('773c6845426cb8f119f962f5569a78fb01e5287afb84aa18bd20ca70feb7774f');
     const catalog = loadAniimoCatalog(process.cwd());
     expect(legacy).toHaveLength(86);
     expect(catalog).toHaveLength(115);
@@ -42,13 +43,14 @@ describe('official Wave Archipelago addition', () => {
     expect(shell.elements).toEqual(['땅', '물']);
     expect(shell.stats).toEqual({ total: 453, hp: 83, break: 50, attack: 82, magicDefense: 79, physicalDefense: 75, energyRecovery: 84 });
     expect(shell.forms[0].locations).toEqual(['초승달 만', '스칼렛보우 습지']);
-    expect(shell.forms[0].explorationSkills[0].name).toBe('수영 Lv.1');
+    // The official page lists no exploration skill for this form since 2026-11 (was 수영 Lv.1).
+    expect(shell.forms[0].explorationSkills).toEqual([]);
     expect(shell.forms[0].evolutionRoutes![0].map(node => node.name)).toEqual(['쉘코랄', '코랄드래곤']);
   });
 
   it('keeps missing official evolution nodes unresolved rather than guessing a target', () => {
     const tempest = wave.find(entry => entry.name === '웨이비핀')!.forms.find(form => form.key === 'tempest-form')!;
-    const unknown = tempest.evolution.find(node => node.stage === '성장기')!;
+    const unknown = tempest.evolution.find(node => node.stage === '성숙기')!;
     expect(unknown.imageUrl).toBeNull();
     expect(unknown.name).toBeNull();
     expect(unknown.formKey).toBeNull();

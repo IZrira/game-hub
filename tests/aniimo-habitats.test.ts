@@ -23,8 +23,8 @@ describe('Aniimo Official Habitats & Species Count Verification', () => {
     '늑대이빨 능선': 18,
     '청석 대지': 16,
     '뇌전의 숲': 16,
-    '설산기슭 초원': 15,
-    '고래첨벙 해안': 16,
+    '설산기슭 초원': 16,
+    '고래첨벙 해안': 19,
     '붉은바위 고지': 22,
     '안개숲': 13,
     '갈매기 만': 13,
@@ -55,6 +55,6 @@ describe('Aniimo Official Habitats & Species Count Verification', () => {
     expect(clamstar?.locations).toContain('고래첨벙 해안');
     expect(clamstar?.locations).not.toContain('초승달 만');
     expect(clamstar?.locations).not.toContain('석양 해원');
-    expect(clamstar?.detailLocations).toEqual(['초승달 만', '석양 해원']);
+    expect(clamstar?.detailLocations).toEqual(['초승달 만', '고래첨벙 해안']);
   });
 });
