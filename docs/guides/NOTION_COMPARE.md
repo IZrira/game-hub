@@ -45,6 +45,7 @@ npm run compare:notion -- ww
 
 ## "대조표대로 수정" 절차
 
+0. 대조표의 "수정 요청 만들기" 버튼은 고른 게임·DB 범위와 건수를 담은 문장(예: "대조표대로 수정해 (범위: 애니모 · 웨이브 군도, 158건 — 공식 도감 기준 158건)")을 만들고, 같은 내용을 저장소 `requests/latest`(`hub`, `db`, `count`, `ids`, `createdAt`)에 남긴다. 페이지는 PC 파일을 고칠 수 없으므로 사용자가 이 문장을 대화창에 붙여 넣으면 시작한다. 문장의 범위를 따르고, 범위가 없으면 `requests/latest`를 확인한다.
 1. 아티팩트 저장소의 `decisions`를 모두 읽고, 최신 `items.json`(먼저 `compare:notion` 실행)과 짝짓는다. 짝은 `id` 또는 `legacyId`로 찾는다.
 2. 고칠 대상만 고른다.
    - `site`(사이트 기준): Notion을 사이트 값으로 고친다.

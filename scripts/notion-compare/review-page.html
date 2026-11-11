@@ -36,6 +36,13 @@ h1 { font-size: 22px; margin: 0; letter-spacing: -0.01em; text-wrap: balance }
 .progress { height: 6px; background: var(--surface-2); border-radius: 99px; overflow: hidden; max-width: 420px }
 .progress > i { display: block; height: 100%; background: var(--accent); width: 0; transition: width .3s }
 .status-note { font-size: 12px; color: var(--warn); }
+.runbox { display: grid; gap: 8px; border: 1px solid var(--line); background: var(--surface); border-radius: 12px; padding: 12px 14px }
+.runbox .run-head { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center }
+.runbox .run-head p { margin: 0; font-size: 13px; color: var(--muted); flex: 1 1 260px }
+.runbox .btn.primary { background: var(--fg); color: var(--surface); border-color: var(--fg); min-height: 36px; font-weight: 600 }
+.runbox textarea { width: 100%; box-sizing: border-box; border: 1px solid var(--line); background: var(--bg); color: var(--fg); border-radius: 8px; padding: 8px; font: inherit; font-size: 16px; resize: vertical }
+.runbox .run-msg { font-size: 13px; color: var(--muted); margin: 0 }
+.runbox .run-msg.ok { color: var(--ok) } .runbox .run-msg.err { color: var(--warn) }
 
 .bar { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--surface); border-block: 1px solid var(--line); }
 .bar .wrap { padding-block: 10px; display: grid; gap: 8px }
@@ -132,6 +139,11 @@ details.group[open] > summary::before { transform: rotate(90deg) }
   <div class="legend"><span><del>주황</del> Notion·공식 도감에만 있는 부분</span><span><ins>보라</ins> 사이트에만 있는 부분</span><span id="generated"></span></div>
   <details class="sources"><summary>Notion DB별 마지막 수정</summary><ul id="sources"></ul></details>
   <div class="status-note" id="dbnote" hidden></div>
+  <section class="runbox" aria-label="수정 실행">
+    <div class="run-head"><button type="button" class="btn primary" id="run">수정 요청 만들기</button>
+      <p>고른 게임·DB 범위에서 결정한 항목을 Claude에게 넘길 요청을 만듭니다. 이 페이지는 PC의 파일을 직접 고칠 수 없어서, 만든 문장을 Claude 대화창에 붙여 넣으면 수정이 시작됩니다.</p></div>
+    <div id="run-out" hidden></div>
+  </section>
 </header>
 
 <div class="bar"><div class="wrap">
@@ -364,6 +376,42 @@ details.group[open] > summary::before { transform: rotate(90deg) }
     if (b.dataset.all !== undefined) { bulkAsk = b.dataset.all; renderAllApply(); return; }
     if (b.hasAttribute('data-all-cancel')) { bulkAsk = null; renderAllApply(); return; }
     if (b.hasAttribute('data-all-ok')) { const c = bulkAsk; bulkAsk = null; await applyAll(c); }
+  });
+
+  // ---------- hand the decided items over to Claude ----------
+  const APPLY = new Set(['notion', 'site', 'both', 'memo']);
+  function runScope() {
+    const inScope = it => (state.hub === '전체' || it.hub === state.hub) && (state.db === '전체' || it.db === state.db);
+    const its = ITEMS.filter(inScope);
+    const todo = its.filter(it => APPLY.has(decOf(it)?.choice) && !changedAfter(it));
+    const changed = its.filter(it => changedAfter(it)).length;
+    const noMemo = todo.filter(it => ['both', 'memo'].includes(decOf(it).choice) && !(decOf(it).note || '').trim()).length;
+    const byChoice = {};
+    for (const it of todo) { const c = decOf(it).choice; byChoice[c] = (byChoice[c] || 0) + 1; }
+    const hubName = state.hub === '전체' ? '전체 게임' : (HUB_NAME[state.hub] || state.hub);
+    const scope = state.db === '전체' ? hubName : `${hubName} · ${state.db}`;
+    return { its, todo, changed, noMemo, byChoice, scope };
+  }
+  document.getElementById('run').addEventListener('click', async () => {
+    const out = document.getElementById('run-out');
+    const r = runScope();
+    out.hidden = false;
+    if (!r.todo.length) { out.innerHTML = `<p class="run-msg err">${esc(r.scope)} 범위에 수정할 항목이 없습니다. 기준·사이트 기준·둘 다 수정·메모대로 수정 중 하나를 고른 항목만 수정됩니다.</p>`; return; }
+    const parts = Object.entries(r.byChoice).map(([c, n]) => `${c === 'notion' ? [...new Set(r.todo.map(srcOf))].join('·') + ' 기준' : CHOICE_LABEL[c]} ${n}건`).join(', ');
+    const text = `대조표대로 수정해 (범위: ${r.scope}, ${r.todo.length}건 — ${parts})`;
+    const warn = [r.changed ? `선택 후 내용이 바뀐 ${r.changed}건은 빼고 다시 확인을 요청합니다.` : '', r.noMemo ? `메모가 빈 '둘 다·메모대로' ${r.noMemo}건은 고치지 않고 질문합니다.` : ''].filter(Boolean).join(' ');
+    out.innerHTML = `<textarea id="run-text" rows="2" readonly aria-label="Claude에게 보낼 문장">${esc(text)}</textarea>
+      <div class="run-head"><button type="button" class="btn" id="run-copy">문장 복사</button><p class="run-msg" id="run-msg">${esc(warn || '복사한 문장을 Claude 대화창에 붙여 넣어 보내 주세요.')}</p></div>`;
+    if (db) {
+      try { await db.collection('requests').doc('latest').set({ text, hub: state.hub, db: state.db, count: r.todo.length, ids: r.todo.map(it => it.id), createdAt: new Date().toISOString() }); }
+      catch { /* the sentence alone is enough */ }
+    }
+  });
+  document.getElementById('run-out').addEventListener('click', async e => {
+    if (e.target.id !== 'run-copy') return;
+    const ta = document.getElementById('run-text'); const msg = document.getElementById('run-msg');
+    try { await navigator.clipboard.writeText(ta.value); msg.textContent = '복사했습니다. Claude 대화창에 붙여 넣어 보내 주세요.'; msg.className = 'run-msg ok'; }
+    catch { ta.focus(); ta.select(); msg.textContent = '자동 복사가 막혀 있어 문장을 선택해 두었습니다. Ctrl+C로 복사해 주세요.'; msg.className = 'run-msg err'; }
   });
 
   const renderAll = () => { renderStats(); renderFilters(); renderAllApply(); renderList(); };
