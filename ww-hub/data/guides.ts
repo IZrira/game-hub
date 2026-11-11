@@ -32,6 +32,8 @@ export interface WuwaCharacterGuide {
     value: string;
   }[];
   mainStats: WuwaMainStat[];
+  /** Text after the colon in the "에코 주 옵션 : …" heading, shown above the cost list. */
+  mainStatsNote?: string;
   subStats: string[];
   skillPriority: string[];
   isUniversalSynergy?: boolean;

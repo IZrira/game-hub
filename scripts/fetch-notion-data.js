@@ -1027,12 +1027,17 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
   };
 
   let mainStats = [];
-  const mainStatBlocks = mdContent.match(/[-*]?\s*에코\s*주\s*옵션(?:\s*[\(（][^\)）\n]+[\)）])?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|[-*]?\s*에코\s*부\s*옵션|\n\s*[-*]?\s*스킬\s*(?:레벨|우선)|\n\s*[-*]?\s*파티|$))/gi);
+  let mainStatsNote = '';
+  // Headers: "에코 주 옵션", "에코 주 옵션 (힌트)", "에코 주 옵션 1 : 기본 세팅", "에코 주 옵션 : 설명"
+  const mainStatBlocks = mdContent.match(/[-*]?\s*에코\s*주\s*옵션(?:\s*\d+)?(?:\s*[\(（][^\)）\n]+[\)）])?(?:\s*[:：][^\n]*)?\s*\n+([\s\S]*?)(?=(?:[-*]?\s*에코\s*주\s*옵션|[-*]?\s*에코\s*부\s*옵션|\n\s*[-*]?\s*스킬\s*(?:레벨|우선)|\n\s*[-*]?\s*파티|$))/gi);
   if (mainStatBlocks && mainStatBlocks.length > 0) {
     mainStatBlocks.forEach((block, idx) => {
       const parsedBlockStats = parseCostStats(block);
       if (idx === 0) {
         mainStats = parsedBlockStats;
+        // Only an unnumbered heading carries a note; "에코 주 옵션 1 : 기본 세팅" is just a set label.
+        const headerNote = block.match(/에코\s*주\s*옵션\s*[:：]\s*([^\n]+)/i);
+        if (headerNote) mainStatsNote = headerNote[1].replace(/[*#_]/g, '').trim();
       }
 
       const hintMatch = block.match(/에코\s*주\s*옵션\s*[\(（]([^\)）\n]+)[\)）]/i);
@@ -1095,6 +1100,7 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
     variants: variants.length > 0 ? variants : undefined,
     targetStats,
     mainStats,
+    mainStatsNote: mainStatsNote || undefined,
     subStats,
     skillPriority,
     isUniversalSynergy: isUniversalSynergy || undefined,

@@ -2,7 +2,7 @@
   "global": {
     "games": 4,
     "characters": 293,
-    "guides": 184,
+    "guides": 185,
     "items": 2098
   },
   "games": {
@@ -12,7 +12,7 @@
     },
     "ww": {
       "characters": 60,
-      "guides": 59
+      "guides": 60
     },
     "nte": {
       "characters": 24,

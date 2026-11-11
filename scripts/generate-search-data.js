@@ -236,6 +236,7 @@ const notionWwGuides = notionData
     variants: item.variants,
     targetStats: item.targetStats || [],
     mainStats: item.mainStats || [],
+    mainStatsNote: item.mainStatsNote,
     subStats: item.subStats || [],
     skillPriority: item.skillPriority || [],
     isUniversalSynergy: item.isUniversalSynergy,
