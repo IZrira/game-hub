@@ -80,4 +80,4 @@ Astryx 문서는 구체적인 수치보다 원칙 위주다(대부분 초안 단
 - 홈 게임 카드의 기호(✦ ◈ ◇ ●)를 선 아이콘(기차, 물결, 건물, 발자국)으로 바꿨다.
 - 모서리: 공개 화면의 `rounded-[숫자px]` 192곳을 14px 이하 `rounded-xl`, 20px 이하 `rounded-2xl`, 그 이상 `rounded-3xl`로 바꿨다. 100px 장식 모양 2곳은 남겼다.
 - 모션: `transition-all` 224곳(CSS 2곳 포함)을 `transition`으로 바꾸고, 접힘 영역 8곳은 `transition-[max-height,opacity,padding]`, 막대 길이 2곳은 `transition-[width,background-color]`로 지정했다.
-- 공략 구역 번호 상자(01·02…)는 초안만 만들었다(`.tmp/astryx-drafts/5-section-number-*`). 캐릭터 상세에도 같은 번호 상자가 있어 함께 정한다.
+- 공략·캐릭터 상세의 구역 번호 상자(01·02…)는 초안을 본 뒤 사용자 결정으로 그대로 둔다(2026-11-11).
