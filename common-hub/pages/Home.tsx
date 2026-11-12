@@ -100,7 +100,7 @@ const Home: React.FC = () => {
               {t('게임을 고르고,')}<br />
               <span className="bg-gradient-to-r from-brand-accent via-brand-light to-brand-primary bg-clip-text text-transparent">{t('필요한 답부터 찾으세요.')}</span>
             </h1>
-            <p className="mx-auto max-w-2xl px-2 text-sm font-medium leading-7 text-gray-400 sm:text-base">
+            <p className="mx-auto max-w-2xl px-2 text-sm font-medium leading-7 text-gray-400 break-keep [text-wrap:balance] sm:text-base">
               {t('캐릭터 이름이나 장비를 검색하거나, 플레이 중인 게임을 선택해 도감과 세팅·분석 가이드로 바로 이동하세요.')}
             </p>
           </div>
