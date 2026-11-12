@@ -1151,6 +1151,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/notices/notice-20261112-233",
   "/notices/notice-20261112-291",
   "/notices/notice-20261112-298",
+  "/notices/notice-20261112-320",
   "/notices/notice-20261112-478",
   "/notices/notice-20261112-730",
   "/notices/sys-notice-01",

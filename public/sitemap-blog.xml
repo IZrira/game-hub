@@ -10,6 +10,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/notices/notice-20261112-320</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://riragamehub.com/assets/brand/rira-fox.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/notices/notice-20261112-298</loc>
     <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
@@ -370,7 +379,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://riragamehub.com/notices/ww_upd_260404</loc>
+    <loc>https://riragamehub.com/notices/hsr_upd_4_1_ornaments</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
@@ -379,7 +388,7 @@
     </image:image>
   </url>
   <url>
-    <loc>https://riragamehub.com/notices/hsr_upd_4_1_ornaments</loc>
+    <loc>https://riragamehub.com/notices/ww_upd_260404</loc>
     <lastmod>2026-09-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
