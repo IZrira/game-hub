@@ -163,6 +163,39 @@ const CharacterDetail: React.FC = () => {
     return () => controller.abort();
   }, [summaryChar?.id]);
 
+  // 스킨 이미지는 저장소에 "코스튬-스킨명.webp" 또는 "스킨명.webp"로 있다.
+  // 미리 불러와 실제로 열리는 파일만 선택지에 넣고, 이미지가 없는 스킨은 숨긴다.
+  const [selectedSkin, setSelectedSkin] = useState<string | null>(null);
+  const [isSkinDropdownOpen, setIsSkinDropdownOpen] = useState(false);
+  const [skinUrls, setSkinUrls] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    setSelectedSkin(null);
+    setIsSkinDropdownOpen(false);
+    setSkinUrls({});
+    const skins: string[] = rawChar?.skins || [];
+    if (!skins.length) return;
+    let cancelled = false;
+    const folder = rawChar.folderName || rawChar.name || '';
+    const base = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/`;
+    skins.forEach(skin => {
+      const plain = skin.replace(/^코스튬\s*-\s*/, '');
+      const candidates = [`코스튬-${plain}`, plain].map(file => withAssetVersion(`${base}${safeEncodeURIComponent(file)}.webp`));
+      const tryAt = (index: number) => {
+        if (cancelled || index >= candidates.length) return;
+        const probe = new Image();
+        probe.onload = () => { if (!cancelled) setSkinUrls(current => ({ ...current, [skin]: candidates[index] })); };
+        probe.onerror = () => tryAt(index + 1);
+        probe.src = candidates[index];
+      };
+      tryAt(0);
+    });
+    return () => { cancelled = true; };
+  }, [rawChar]);
+
+  const availableSkins: string[] = (rawChar?.skins || []).filter((skin: string) => skinUrls[skin]);
+  const skinLabel = (skin: string) => skin.replace(/^코스튬\s*-\s*/, '');
+
   // AS Mode State
   const [isASMode, setIsASMode] = useState(false);
 
@@ -464,7 +497,8 @@ const CharacterDetail: React.FC = () => {
     if (roverInfo) {
       return char.fixedUrl || roverInfo.url;
     }
-    
+    if (selectedSkin && skinUrls[selectedSkin]) return skinUrls[selectedSkin];
+
     const base = `${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(folder)}/`;
     const fileName = `${safeEncodeURIComponent(folder)}.webp`;
     
@@ -704,7 +738,44 @@ const CharacterDetail: React.FC = () => {
                   <button onClick={() => setGender('f')} className={`rounded-lg px-5 py-1 text-[11px] font-black transition-colors ${gender === 'f' ? 'bg-brand-primary text-white' : 'text-gray-500 hover:text-gray-300'}`} style={gender === 'f' ? { backgroundColor: theme.primary } : {}}>{t('여성')}</button>
                 </div>
               )}
-              
+              {availableSkins.length > 0 && (
+                <div className="flex items-center gap-2 bg-white/5 p-1 rounded-xl border border-white/10 shadow-inner">
+                  <span className="text-[11px] font-black text-gray-400 pl-2">{t('스킨')}</span>
+                  <div className="relative">
+                    <button
+                      type="button"
+                      onClick={() => setIsSkinDropdownOpen(open => !open)}
+                      aria-haspopup="listbox"
+                      aria-expanded={isSkinDropdownOpen}
+                      className="flex min-w-[140px] items-center justify-between rounded-lg px-4 py-1 text-[11px] font-black transition-colors hover:brightness-110"
+                      style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
+                    >
+                      <span className="max-w-[140px] truncate">{selectedSkin ? t(skinLabel(selectedSkin)) : t('기본')}</span>
+                      <ChevronDown size={14} className={`ml-2 flex-shrink-0 transition-transform ${isSkinDropdownOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                    {isSkinDropdownOpen && (
+                      <>
+                        <div className="fixed inset-0 z-40" onClick={() => setIsSkinDropdownOpen(false)} />
+                        <div role="listbox" className="absolute left-0 top-full z-50 mt-2 flex w-max min-w-full flex-col overflow-hidden rounded-xl border border-white/10 bg-[#121212] py-1 shadow-2xl">
+                          {[null, ...availableSkins].map(skin => (
+                            <button
+                              key={skin || 'base'}
+                              type="button"
+                              role="option"
+                              aria-selected={selectedSkin === skin}
+                              onClick={() => { setSelectedSkin(skin); setIsSkinDropdownOpen(false); }}
+                              className={`px-4 py-2.5 text-left text-xs font-black transition-colors ${selectedSkin === skin ? 'bg-white/10 text-white' : 'text-gray-400 hover:bg-white/5 hover:text-white'}`}
+                            >
+                              {skin ? t(skinLabel(skin)) : t('기본')}
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
+
               <div className="flex items-center gap-2 ml-auto">
                  <button onClick={handleShare} className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors" title={t('공유하기')}><Share2 size={14} /></button>
                  <button onClick={handleDownloadImage} className="p-2 rounded-xl bg-white/5 border border-white/10 text-gray-400 hover:text-white transition-colors" title={t('이미지 저장')}><Download size={14} /></button>

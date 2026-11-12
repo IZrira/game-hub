@@ -741,6 +741,7 @@ const WW_GUIDE_CHAR_MAP = {
   '에이메스': 'aemeath',
   '여우의 별자리': 'hsin',
   '쇄명': 'suoming',
+  '릴리': 'lily',
   '방랑자 (기류)': 'rover_aero',
   '방랑자(기류)': 'rover_aero',
   '방랑자 · 기류': 'rover_aero',

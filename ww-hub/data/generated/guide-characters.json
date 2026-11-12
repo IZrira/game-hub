@@ -436,6 +436,28 @@
     ]
   },
   {
+    "id": "41695fae-3dc7-80a6-aafe-e4bc711c8db1",
+    "name": "릴리",
+    "folderName": "릴리",
+    "attribute": "회절",
+    "weaponType": "권총",
+    "isRover": false,
+    "roles": [
+      {
+        "label": "생존 치료",
+        "description": "파티의 생존력 향상"
+      },
+      {
+        "label": "견인",
+        "description": "일정 범위 내의 목표를 특정 위치로 견인 가능"
+      },
+      {
+        "label": "피해 부스트",
+        "description": "파티 내 특정 캐릭터의 피해 부스트 가능"
+      }
+    ]
+  },
+  {
     "id": "36195fae-3dc7-8018-9295-e487837f428a",
     "name": "모니에",
     "folderName": "모니에",

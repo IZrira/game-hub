@@ -30,6 +30,7 @@ import cartethyia from './characters/ww/cartethyia';
 import susu from './characters/ww/susu';
 import hsin from './characters/ww/hsin';
 import suoming from './characters/ww/suoming';
+import lily from './characters/ww/lily';
 import yangyang_magistrate from './characters/ww/yangyang_magistrate';
 import rover_aero from './characters/ww/rover_aero';
 import rover_electro from './characters/ww/rover_electro';
@@ -61,6 +62,7 @@ import rebecca from './characters/ww/rebecca';
 export const WW_CHARACTERS: WuwaCharacter[] = [
   hsin,
   suoming,
+  lily,
   susu,
   rover_electro,
   yangyang_magistrate,

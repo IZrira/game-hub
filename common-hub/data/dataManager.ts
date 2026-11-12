@@ -97,6 +97,22 @@ export function parseNotionResonanceChains(chainText?: string): any[] {
     });
   }
 
+  // 번호 없이 굵은 제목 줄(**제목**)만 있는 형식(예: 릴리)은 제목 순서를 체인 단계로 읽는다.
+  if (!sections.length) {
+    const boldHeader = /^\*\*([^*]+)\*\*$/;
+    lines.forEach((line) => {
+      const trimmed = line.trim();
+      if (boldHeader.test(trimmed)) {
+        sections.push({ header: trimmed, body: '' });
+      } else if (sections.length) {
+        const last = sections[sections.length - 1];
+        last.body = last.body ? `${last.body}\n${line}` : line;
+      }
+    });
+    sections.forEach(section => { section.body = section.body.trim(); });
+    if (sections.length !== 6) sections.length = 0;
+  }
+
   return sections.map((sec, idx) => {
     const rankNum = idx + 1;
     let cleanHeader = sec.header.replace(/\*/g, '').trim();
@@ -347,6 +363,7 @@ export const getGameData = (targetId: string) => {
         }).filter((r: any) => r.label) : [],
         locales: item.locales ? item.locales.replace(/\*/g, '').trim() : undefined,
         voiceActors: item.voiceActors ? item.voiceActors.replace(/\*/g, '').trim() : undefined,
+        skins: item.skins ? item.skins.split('\n').map((s: string) => s.replace(/[*=]/g, '').trim()).filter(Boolean) : [],
         glossary: item.glossary,
         specialTerms: specialTerms,
         terms: parsedTerms,
@@ -871,6 +888,7 @@ export const getGameData = (targetId: string) => {
             voiceActors: c.voiceActors,
             locales: c.locales,
           } : {}),
+          skins: c.skins?.length ? c.skins : existing.skins,
           releaseVersion: c.releaseVersion || existing.releaseVersion,
           unlockCondition: c.unlockCondition || existing.unlockCondition,
           glossary: c.glossary || existing.glossary,
