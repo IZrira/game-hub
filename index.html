@@ -134,6 +134,16 @@
       min-height: 100vh;
       box-sizing: border-box;
     }
+    /* With JavaScript the app replaces this shell, so keep it out of sight while the app loads.
+       Crawlers without JavaScript never get .js-enabled and still read it, and if the app fails
+       to start the shell appears after 4s instead of leaving a blank page. */
+    .js-enabled .prerender-shell {
+      visibility: hidden;
+      animation: prerender-reveal 0s linear 4s forwards;
+    }
+    @keyframes prerender-reveal {
+      to { visibility: visible; }
+    }
 
     .prerender-header-bar {
       display: flex;
@@ -429,19 +439,19 @@
             <ul>
               <li>
                 <a href="/gallery/hsr">붕괴: 스타레일 허브 (HSR)</a>
-                <p>전체 93명 캐릭터 도감, 추천 광추 및 터널 유물/차원 장신구 세팅, 메타 티어표, 4인 시너지 파티 추천 가이드.</p>
+                <p>캐릭터 도감, 추천 광추 및 터널 유물/차원 장신구 세팅, 메타 티어표, 4인 시너지 파티 추천 가이드.</p>
               </li>
               <li>
                 <a href="/gallery/ww">명조: 워더링 웨이브 허브 (WW)</a>
-                <p>58명 공명자 상세 스킬 가이드, 28종 소나타 세트 효과 및 메인 에코 추천, 심경의 탑 공략 및 최적화 파티 빌더.</p>
+                <p>공명자 상세 스킬 가이드, 소나타 세트 효과 및 메인 에코 추천, 심경의 탑 공략 및 최적화 파티 빌더.</p>
               </li>
               <li>
                 <a href="/gallery/nte">이환: 네버네스 투 에버네스 허브 (NTE)</a>
-                <p>21명 캐릭터별 이능력 속성/바이레일 스킬 분석, 49종 아크 도감 및 1,000여 종 인벤토리 아이템 획득처 정보.</p>
+                <p>캐릭터별 이능력 속성/바이레일 스킬 분석, 아크 도감 및 인벤토리 아이템 획득처 정보.</p>
               </li>
               <li>
                 <a href="/gallery/aniimo">애니모 허브 (Aniimo)</a>
-                <p>86종 애니모 형태별 도감, 능력치 비교기, 진화 계보 및 조건, 9원소 상성 계산표, 성격 공략 및 출현 지역 정보.</p>
+                <p>애니모 형태별 도감, 능력치 비교기, 진화 계보 및 조건, 9원소 상성 계산표, 성격 공략 및 출현 지역 정보.</p>
               </li>
             </ul>
           </nav>
