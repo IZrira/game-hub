@@ -40,7 +40,12 @@ export function parseLightconePages(pages) {
 function effectKind(notionDesc, site) {
   let kind = textKind(notionDesc, site.description);
   if (kind !== KIND.number || /\d%?\/\d/.test(site.description || '')) return kind;
-  const pick = (s, i) => s.replace(/(\d+(?:\.\d+)?)(%|pt)?((?:\/\d+(?:\.\d+)?(?:%|pt)?){4})/g, (all, a, u, rest) => [a + (u || ''), ...rest.split('/').slice(1)][i]);
+  // A unit written only after the last value ("20/23/26/29/32pt") applies to every value.
+  const pick = (s, i) => s.replace(/(\d+(?:\.\d+)?)(%|pt)?((?:\/\d+(?:\.\d+)?(?:%|pt)?){4})/g, (all, a, u, rest) => {
+    const parts = [a + (u || ''), ...rest.split('/').slice(1)];
+    const unit = (parts[4].match(/(%|pt)$/) || [])[1] || '';
+    return parts.map(x => (/(%|pt)$/.test(x) ? x : x + unit))[i];
+  });
   const s1 = textKind(pick(notionDesc || '', 0), site.description);
   const s5 = site.descriptions?.[4] ? textKind(pick(notionDesc || '', 4), site.descriptions[4]) : '없음';
   if (s1 !== KIND.number && s5 !== KIND.number) {
@@ -93,7 +98,10 @@ export function compareLightcones({ pages, lightcones, add }) {
       if (n.join() !== site.join()) statDiffs.push(`Lv${lv} Notion ${n.join('/')} · 사이트 ${site.join('/')}`);
       if (lv > 1) {
         const siteMats = Object.fromEntries(((l.ascensionMaterials || []).find(a => a.level === lv)?.items || []).map(i => [i.name, Number(String(i.count).replace(/,/g, ''))]));
-        const d = materialDiffs(parseMaterialRun(r.slice(4).join(' ')), siteMats);
+        // Material names with a comma ("사상, 도하장군") lose their prefix when the run is split; map them back.
+        const parsed = parseMaterialRun(r.slice(4).join(' '));
+        const notionMats = Object.fromEntries(Object.entries(parsed).map(([k, v]) => [siteMats[k] === undefined ? (Object.keys(siteMats).find(s => s.endsWith(`, ${k}`)) || k) : k, v]));
+        const d = materialDiffs(notionMats, siteMats);
         if (d.length) matDiffs.push(`Lv${lv}: ${d.join(', ')}`);
       }
     }
