@@ -37,6 +37,14 @@ export function loadAllNotices(rootDir) {
   return [...byId.values()].sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
 }
 
+/** Supabase UTC time to the Korea-time date (YYYY-MM-DD); same as common-hub/utils/kstDate.ts. */
+export function toKstDate(value) {
+  if (!value) return '';
+  const time = Date.parse(value);
+  if (Number.isNaN(time)) return String(value).split('T')[0];
+  return new Date(time + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
 /** Map a Supabase row to the app's Notice shape (see fetchNotices in common-hub/data/notices.ts). */
 export function noticeFromRow(row) {
   return {
@@ -44,8 +52,8 @@ export function noticeFromRow(row) {
     category: row.category,
     title: row.title,
     content: row.content || '',
-    createdAt: row.created_at ? String(row.created_at).split('T')[0] : '',
-    updatedAt: row.updated_at ? String(row.updated_at).split('T')[0] : undefined,
+    createdAt: toKstDate(row.created_at),
+    updatedAt: row.updated_at ? toKstDate(row.updated_at) : undefined,
     version: row.version || undefined,
     gameId: row.game_id || 'common',
   };

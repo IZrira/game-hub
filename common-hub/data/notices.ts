@@ -1,4 +1,5 @@
 import { Notice } from './types';
+import { toKstDate } from '../utils/kstDate';
 
 // 정적 공지사항 데이터 (DB 연동 실패 시 폴백 및 사이드바 뱃지용으로 사용)
 export const GLOBAL_NOTICES: Notice[] = [
@@ -72,8 +73,8 @@ export async function fetchNotices(gameId?: 'hsr' | 'ww'): Promise<Notice[]> {
       category: n.category,
       title: n.title,
       content: n.content,
-      createdAt: n.created_at ? n.created_at.split('T')[0] : '',
-      updatedAt: n.updated_at ? n.updated_at.split('T')[0] : undefined,
+      createdAt: toKstDate(n.created_at),
+      updatedAt: n.updated_at ? toKstDate(n.updated_at) : undefined,
       version: n.version,
       isCritical: n.is_critical,
       images: n.images,

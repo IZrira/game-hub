@@ -8,6 +8,7 @@ import { Navigate } from 'react-router';
 import { safeEncodeURIComponent } from '../utils/assetManager';
 import SEO from '../components/SEO';
 import { stripMarkdown } from '../utils/markdown';
+import { toKstDate } from '../utils/kstDate';
 
 const AdminNoticeEditor = React.lazy(() => import('../components/AdminNoticeEditor'));
 const AdminPartyManager = React.lazy(() => import('../components/AdminPartyManager'));
@@ -381,7 +382,7 @@ const AdminDashboard: React.FC = () => {
         setExpandedNoticeId(updatedId);
       } else {
         // 신규 등록 모드: insert 실행 (신규 등록 시에는 updated_at을 null로 저장)
-        const id = `notice-${new Date().toISOString().split('T')[0].replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
+        const id = `notice-${toKstDate(new Date().toISOString()).replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
         const insertPayload: Record<string, any> = {
           id,
           title: newNotice.title.trim(),

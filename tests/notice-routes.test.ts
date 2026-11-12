@@ -2,6 +2,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { isNoticePostedAfterBuild } from '../functions/_middleware';
 import { INDEXABLE_AND_APP_PATHS } from '../functions/generated-routes';
 import { loadAllNotices, noticeFromRow } from '../scripts/lib/notices.js';
+import { toKstDate } from '../common-hub/utils/kstDate';
 
 const env = { VITE_SUPABASE_URL: 'https://example.supabase.co', VITE_SUPABASE_ANON_KEY: 'anon' };
 
@@ -17,6 +18,12 @@ describe('notice routes', () => {
   it('maps a Supabase row to the app notice shape', () => {
     expect(noticeFromRow({ id: 'n1', category: 'Update', title: 't', content: '- a', created_at: '2026-11-12T09:00:00Z', game_id: 'ww' }))
       .toMatchObject({ id: 'n1', createdAt: '2026-11-12', gameId: 'ww' });
+  });
+
+  it('dates notices in Korea time, so one posted after midnight KST is not a day early', () => {
+    expect(noticeFromRow({ id: 'n2', created_at: '2026-11-12T15:47:00+00:00' }).createdAt).toBe('2026-11-13');
+    expect(toKstDate('2026-11-12T14:59:59Z')).toBe('2026-11-12');
+    expect(toKstDate('')).toBe('');
   });
 
   it('lets a notice posted after the build through only when Supabase has it', async () => {
