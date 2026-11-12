@@ -17,11 +17,11 @@ describe('Aniimo Official Habitats & Species Count Verification', () => {
 
   const expectedCounts: Record<OfficialAniimoHabitat, number> = {
     '붓꽃 바다': 17,
-    '구름 초원': 17,
-    '스테플 숲': 15,
-    '로즈타워 숲': 14,
+    '구름 초원': 16,
+    '스테플 숲': 14,
+    '로즈타워 숲': 12,
     '늑대이빨 능선': 18,
-    '청석 대지': 16,
+    '청석 대지': 15,
     '뇌전의 숲': 16,
     '설산기슭 초원': 16,
     '고래첨벙 해안': 19,

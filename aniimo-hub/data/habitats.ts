@@ -19,11 +19,11 @@ export type OfficialAniimoHabitat = typeof OFFICIAL_ANIIMO_HABITATS[number];
 
 export const OFFICIAL_HABITAT_TARGETS: Record<OfficialAniimoHabitat, number> = {
   '붓꽃 바다': 17,
-  '구름 초원': 17,
-  '스테플 숲': 15,
-  '로즈타워 숲': 14,
+  '구름 초원': 16,
+  '스테플 숲': 14,
+  '로즈타워 숲': 12,
   '늑대이빨 능선': 18,
-  '청석 대지': 16,
+  '청석 대지': 15,
   '뇌전의 숲': 16,
   '설산기슭 초원': 16,
   // 2026-11-12: official dex detail pages added 탄멍멍·화르랑·뭉게양 (해안) and 도깨불 (설산기슭).
@@ -81,8 +81,7 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '삑삑초',
     '싹크랩',
     '도깨불',
-    '반짝쵸',
-    '꼬마 불꽃'
+    '반짝쵸'
   ],
   '스테플 숲': [
     '스타라미', '스타저드',
@@ -91,17 +90,14 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '연댕모리', '장꾸모리',
     '삑삑초',
     '래빗배트', '디텍배트',
-    '라라에그', '붐테일자드',
-    '헬리온'
+    '라라에그', '붐테일자드'
   ],
   '로즈타워 숲': [
     '울먹팡', '로즈펜서', '플로리안',
     '라라에그', '붐테일자드',
     '허니버드', '플로라버드',
     '서린댕', '빙참랑', '설휘랑',
-    '드리미', '푹자곰',
-    '썬더자드',
-    '루나센'
+    '드리미', '푹자곰'
   ],
   '늑대이빨 능선': [
     '탄멍멍', '화르랑', '이글랑', '헬울프',
@@ -119,8 +115,7 @@ export const OFFICIAL_HABITAT_SPECIES: Record<OfficialAniimoHabitat, string[]> =
     '싹크랩', '풀크랩', '스탈크랩',
     '도깨불', '일렁깨비',
     '싹뚜기', '서걱리퍼',
-    '데굴굴', '모터터', '록볼볼',
-    '썬더스퀵'
+    '데굴굴', '모터터', '록볼볼'
   ],
   '뇌전의 숲': [
     '호루매기', '롬본이', '럼펫이',

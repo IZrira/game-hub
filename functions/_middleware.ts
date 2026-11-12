@@ -23,6 +23,12 @@ const LEGACY_ANIIMO_REDIRECTS: Record<string, string> = {
   // Renamed in the official dex (2026-11-12): keep the old character URLs working.
   '/gallery/aniimo/character/위치햇그라스': '/gallery/aniimo/character/위치햇풀',
   '/gallery/aniimo/character/콕콕바라': '/gallery/aniimo/character/로즈펜서',
+  // Removed 2026-11-12: not in the official dex (user decision via the comparison table).
+  '/gallery/aniimo/character/썬더자드': '/gallery/aniimo',
+  '/gallery/aniimo/character/썬더스퀵': '/gallery/aniimo',
+  '/gallery/aniimo/character/꼬마 불꽃': '/gallery/aniimo',
+  '/gallery/aniimo/character/루나센': '/gallery/aniimo',
+  '/gallery/aniimo/character/헬리온': '/gallery/aniimo',
   // HSR light cone renamed to its official title (2026-11-12).
   '/gallery/hsr/lightcone/바람을 쫓을 때, 꽃은 잊지 않는다': '/gallery/hsr/lightcone/바람을 쫓을 때',
   // HSR Trailblazer pages are published under the data file name, but older
