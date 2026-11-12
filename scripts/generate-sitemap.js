@@ -9,6 +9,7 @@ import { getHsrGuideRegistry, findRegisteredHsrGuide } from './lib/hsr-guide-rou
 import { attachNteGuideAnalysis } from './lib/nte-guide-analysis.js';
 import { loadEquipmentRecommendations } from './lib/equipment-recommendations.js';
 import { submitChangedUrlsToIndexNow } from './lib/indexnow.js';
+import { loadAllNotices } from './lib/notices.js';
 
 createUnknownWebp();
 
@@ -28,7 +29,6 @@ const WEAPONS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'weapons.ts');
 const NOTION_DATA_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notion-data.json');
 const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json');
 const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
-const NOTICES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notices.ts');
 const EDGE_ROUTE_MANIFEST_FILE = path.join(ROOT_DIR, 'functions', 'generated-routes.ts');
 
 function getNotionData() {
@@ -42,19 +42,6 @@ function getNotionData() {
   }
 }
 
-function getStaticNotices() {
-  try {
-    if (!fs.existsSync(NOTICES_FILE)) return [];
-    const content = fs.readFileSync(NOTICES_FILE, 'utf8');
-    const match = content.match(/export const GLOBAL_NOTICES:[^=]+=(\s*\[[\s\S]*?\n\]);/);
-    if (!match) return [];
-    const notices = new Function(`return ${match[1]}`)();
-    return Array.isArray(notices) ? notices : [];
-  } catch (error) {
-    console.error('Error reading static notices:', error);
-    return [];
-  }
-}
 
 const BASE_URL = 'https://riragamehub.com';
 const CDN_URL = 'https://raw.githubusercontent.com/IZrira/riragameinfo/main';
@@ -559,7 +546,7 @@ async function generateSitemap() {
 
     // 6. Blog & Notices -> sitemap-blog.xml
     addEntry(blogEntries, `${BASE_URL}/notices`, null, '0.8', 'weekly', [defaultBanner]);
-    getStaticNotices().forEach(notice => {
+    loadAllNotices(ROOT_DIR).forEach(notice => {
       if (!notice?.id) return;
       addEntry(
         blogEntries,

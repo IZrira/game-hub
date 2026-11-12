@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { loadAllNotices } from './lib/notices.js';
 import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
 import { getWaveLocations, aniimoLocationPath, waveLocationSlug } from './lib/aniimo-locations.js';
 import { sanitizePublicGuideData, sanitizePublicHsrGuideData } from './lib/public-guide-links.js';
@@ -37,7 +38,6 @@ const ANIIMO_DATA_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'aniimo.json'
 const ANIIMO_PARTIES_FILE = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'parties.json');
 const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArticles.json');
 const GUIDE_LANDING_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideLanding.json');
-const NOTICES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'notices.ts');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
 const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
@@ -457,18 +457,6 @@ function loadHsrOrnaments() {
     content = content.replace(/export\s+const\s+ORNAMENT_DATA:\s*Ornament\[\]\s*=\s*/, 'return ');
     return new Function(content)() || [];
   } catch (e) {
-    return [];
-  }
-}
-
-function loadStaticNotices() {
-  try {
-    const content = fs.readFileSync(NOTICES_FILE, 'utf8');
-    const match = content.match(/export const GLOBAL_NOTICES:[^=]+=(\s*\[[\s\S]*?\n\]);/);
-    if (!match) return [];
-    return new Function(`return ${match[1]}`)() || [];
-  } catch (error) {
-    console.warn(`[Notices] Failed to load static notices: ${error.message}`);
     return [];
   }
 }
@@ -2944,7 +2932,7 @@ function runPrerender() {
     if (prerenderedRoutes.has(routePath)) return;
     const meta = getFallbackMeta(routePath);
     if (routePath === '/notices') {
-      const staticNotices = loadStaticNotices().sort((a, b) => String(b.createdAt || '').localeCompare(String(a.createdAt || '')));
+      const staticNotices = loadAllNotices(ROOT_DIR);
       const latestNoticeDate = staticNotices[0]?.createdAt || '확인 중';
       const categoryLabels = { Update: '업데이트', System: '시스템', Event: '이벤트', Info: '안내' };
       const noticeListHtml = staticNotices.length > 0
@@ -2977,15 +2965,24 @@ function runPrerender() {
       </article>`;
     } else if (routePath.startsWith('/notices/')) {
       const noticeId = decodeURIComponent(routePath.slice('/notices/'.length));
-      const notice = loadStaticNotices().find(item => item.id === noticeId);
+      const notice = loadAllNotices(ROOT_DIR).find(item => item.id === noticeId);
       if (notice) {
-        const categoryLabels = { Update: '업데이트', System: '시스템', Event: '이벤트', Info: '안내' };
+        const categoryLabels = { Update: '업데이트', System: '시스템', Event: '이벤트', Info: '안내', Notice: '공지' };
+        // Notice bodies are Markdown from the admin editor; older ones carry an escaped
+        // second bullet ("- \- text"). Render bullet blocks as lists without the markers.
+        const stripBullet = line => line.replace(/^[-*]\s+(?:\\-\s*)?/, '');
         const paragraphs = String(notice.content || '')
           .split(/\n{2,}/)
-          .map(paragraph => `<p>${escapeHtml(paragraph).replace(/\n/g, '<br>')}</p>`)
+          .map(block => {
+            const lines = block.split('\n').map(line => line.trim()).filter(Boolean);
+            if (lines.length > 0 && lines.every(line => /^[-*]\s/.test(line))) {
+              return `<ul>${lines.map(line => `<li>${escapeHtml(stripBullet(line))}</li>`).join('')}</ul>`;
+            }
+            return `<p>${escapeHtml(block).replace(/\n/g, '<br>')}</p>`;
+          })
           .join('');
         meta.title = `${notice.title} | RIRA ARCHIVE 공지사항`;
-        meta.description = String(notice.content || '').replace(/\s+/g, ' ').trim().slice(0, 155);
+        meta.description = String(notice.content || '').split('\n').map(stripBullet).join(' ').replace(/\s+/g, ' ').trim().slice(0, 155);
         meta.content = `<article>
           <p><a href="/notices">공지사항</a></p>
           <h1>${escapeHtml(notice.title)}</h1>

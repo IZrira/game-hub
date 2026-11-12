@@ -98,6 +98,30 @@ function notFoundResponse(): Response {
 }
 
 /**
+ * Notices are posted from /admin straight into Supabase, so one posted after the last
+ * build is not in the generated routes yet. Ask Supabase (public read, anon key from the
+ * Pages environment) whether that notice exists before answering 404. Without the
+ * variables, or on any error, the route stays unknown.
+ */
+export async function isNoticePostedAfterBuild(pathname: string, env: PagesFunctionContext['env']): Promise<boolean> {
+  const match = pathname.match(/^\/notices\/([^/]+)$/);
+  const supabaseUrl = env?.VITE_SUPABASE_URL;
+  const anonKey = env?.VITE_SUPABASE_ANON_KEY;
+  if (!match || !supabaseUrl || !anonKey) return false;
+  try {
+    const response = await fetch(`${supabaseUrl}/rest/v1/notices?select=id&id=eq.${encodeURIComponent(match[1])}`, {
+      headers: { apikey: anonKey, Authorization: `Bearer ${anonKey}` },
+      cf: { cacheTtl: 300, cacheEverything: true },
+    } as RequestInit);
+    if (!response.ok) return false;
+    const rows = await response.json();
+    return Array.isArray(rows) && rows.length > 0;
+  } catch {
+    return false;
+  }
+}
+
+/**
  * Pages answers a request for a file it does not have with the SPA shell
  * (HTTP 200, text/html). For a hashed chunk from an earlier deploy that made
  * the browser or Google's renderer receive HTML as JavaScript, and the
@@ -224,7 +248,8 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
   // Every public content route is generated alongside the sitemap. Reject an
   // unknown application path at the edge instead of serving the SPA shell with
   // HTTP 200, which search engines correctly classify as a soft 404.
-  if (!isStaticAssetPath(normalizedPath) && !INDEXABLE_AND_APP_PATHS.has(normalizedPath)) {
+  if (!isStaticAssetPath(normalizedPath) && !INDEXABLE_AND_APP_PATHS.has(normalizedPath) &&
+    !(await isNoticePostedAfterBuild(normalizedPath, context.env))) {
     return notFoundResponse();
   }
 
