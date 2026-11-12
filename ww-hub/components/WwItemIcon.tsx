@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { CDN_URL, safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
+import { getItemMeta } from '../../common-hub/data/items';
 
 interface WwItemIconProps {
   name: string;
@@ -21,7 +22,10 @@ const getItemUrl = (name: string) => {
   return `${CDN_URL}/ww%20images/items/${safeEncodeURIComponent(fileName)}.webp`;
 };
 
+// 아이템 표에 있는 실제 등급을 먼저 쓰고, 표에 없는 이름만 접두어로 추정한다.
 const getItemRarity = (name: string) => {
+  const known = Number(getItemMeta(name)?.rarity);
+  if (known >= 1 && known <= 5) return known;
   if (name === '클램 코인') return 3;
   if (/^(전주파수|이성질화|노래하는|특제|중첩)/.test(name)) return 5;
   if (/^(고주파수|분극|응고된|개량|여러)/.test(name)) return 4;
