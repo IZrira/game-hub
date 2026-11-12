@@ -24,9 +24,9 @@ export const WW_DATABASES = {
 };
 
 const GROUP = { pending: PENDING_GROUP, localShown: '사이트가 로컬 값 표시', localFile: '로컬 파일만 다름', missing: '누락' };
-const CHARACTER_FIELDS = { name: '이름', attribute: '속성', weaponType: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전', affiliation: '소속', briefInfo: '간단 정보', voiceActors: '성우', roles: '역할' };
+const CHARACTER_FIELDS = { name: '이름', attribute: '속성', weaponType: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전', unlockCondition: '개방 조건', affiliation: '소속', briefInfo: '간단 정보', voiceActors: '성우', roles: '역할' };
 const LOCAL_FILE_FIELDS = {
-  characters: { attribute: '속성', weaponType: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전' },
+  characters: { attribute: '속성', weaponType: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전', unlockCondition: '개방 조건' },
   weapons: { type: '무기 종류', rarity: '희귀도', releaseVersion: '출시 버전' },
 };
 const key = x => String(x?.folderName || x?.name || '').trim();

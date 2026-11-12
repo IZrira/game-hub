@@ -236,6 +236,14 @@ export const getGameData = (targetId: string) => {
         }
       }
 
+      // Rover attributes keep their unlock quest in the Notion "출시 버전" column: show it as an
+      // unlock condition and keep the release version from the local file.
+      let unlockCondition: string | undefined;
+      if (releaseVersion && !/^\d+(\.\d+)*$/.test(String(releaseVersion).trim())) {
+        unlockCondition = String(releaseVersion).trim();
+        releaseVersion = '';
+      }
+
       const parsedBaseStats: any = {};
       if (item.growthStats) {
         const lines = item.growthStats.split('\n');
@@ -325,7 +333,8 @@ export const getGameData = (targetId: string) => {
         attribute: attribute,
         weaponType: item.weapon || weaponType as any,
         rarity: Number(item.rarity) || 5,
-        releaseVersion: releaseVersion,
+        releaseVersion: releaseVersion || undefined,
+        unlockCondition,
         obtain: item.obtain || '노션 연동',
         briefInfo: item.briefInfo || item.name + ' - 노션 연동 캐릭터 정보',
         affiliation: item.affiliation ? item.affiliation.replace(/\*/g, '').trim() : undefined,
@@ -863,6 +872,7 @@ export const getGameData = (targetId: string) => {
             locales: c.locales,
           } : {}),
           releaseVersion: c.releaseVersion || existing.releaseVersion,
+          unlockCondition: c.unlockCondition || existing.unlockCondition,
           glossary: c.glossary || existing.glossary,
           specialTerms: c.specialTerms && Object.keys(c.specialTerms).length > 0 ? c.specialTerms : existing.specialTerms,
           terms: c.terms && c.terms.length > 0 ? c.terms : existing.terms,

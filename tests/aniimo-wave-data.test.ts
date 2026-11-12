@@ -13,7 +13,7 @@ describe('official Wave Archipelago addition', () => {
   it('preserves the original 86 entries byte for byte and keeps duplicate official numbers separate', () => {
     const hash = createHash('sha256').update(fs.readFileSync(path.resolve('aniimo-hub/data/aniimo.json'))).digest('hex');
     // Updated 2026-11-12 when the first region was refreshed to the official dex on request.
-    expect(hash).toBe('e51d7d623c42fc4a11f8e845c002bdc02316f911f92690da898eb22fde213509');
+    expect(hash).toBe('bb93a54cb7fddb5bbd61ae3245e522e3cd4c82b9f5e3f47208ab1e681589d74b');
     const catalog = loadAniimoCatalog(process.cwd());
     expect(legacy).toHaveLength(82); // 2026-11-12: +030 드림쵸, -5 species not in the official dex
     expect(catalog).toHaveLength(111);

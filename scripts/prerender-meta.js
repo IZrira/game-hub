@@ -1111,7 +1111,7 @@ function generateRichAniimoCharacterHtml(item, evolutionData) {
 
   // Locations
   const locationHtml = item.locations?.length
-    ? `<h2>출현 지역</h2><ul>${item.locations.map(loc => item.regionId && loc === '미확인 구역' ? `<li>${escapeHtml(loc)}</li>` : `<li><a href="${aniimoLocationPath(loc, item.regionId)}">${escapeHtml(loc)}</a></li>`).join('')}</ul>`
+    ? `<h2>출현 지역</h2><ul>${item.locations.map(loc => item.regionId && loc === '미확인 구역' ? `<li>${escapeHtml(loc)}</li>` : `<li><a href="${aniimoLocationPath(loc, item.regionId, OFFICIAL_ANIIMO_HABITATS)}">${escapeHtml(loc)}</a></li>`).join('')}</ul>`
     : '';
 
   // Traits
@@ -3249,9 +3249,11 @@ function runPrerender() {
       const waveLocation = getWaveLocations(aniimoEntries).find(candidate => waveLocationSlug(candidate.name) === locationSlug);
       const regionId = waveLocation?.regionId;
       const location = waveLocation?.name || OFFICIAL_ANIIMO_HABITATS.find(candidate => candidate.trim().replace(/\s+/g, '-') === locationSlug || candidate === rawLocation) || rawLocation;
-      const appearances = aniimoEntries.filter(entry =>
-        entry.regionId === regionId && ((entry.habitats || []).includes(location) ||
-        (entry.forms || []).some(form => (form.locations || []).includes(location)))
+      // Wave Archipelago places also list first-region Aniimo that the official dex places there.
+      const appearances = aniimoEntries.filter(entry => regionId
+        ? (entry.forms || []).some(form => (form.locations || []).includes(location))
+        : !entry.regionId && ((entry.habitats || []).includes(location) ||
+          (entry.forms || []).some(form => (form.locations || []).includes(location)))
       ).map(entry => {
         const matchingForms = (entry.forms || []).filter(form => (form.locations || []).includes(location));
         return {

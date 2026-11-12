@@ -92,6 +92,10 @@ function validateAniimo() {
   }
 
   const entries = JSON.parse(fs.readFileSync(aniimoFile, 'utf8'));
+  const waveFile = path.join(ROOT_DIR, 'aniimo-hub', 'data', 'wave-archipelago.json');
+  const waveLocationNames = new Set(fs.existsSync(waveFile)
+    ? JSON.parse(fs.readFileSync(waveFile, 'utf8')).flatMap(entry => (entry.forms || []).flatMap(form => form.locations || []))
+    : []);
 
   // 1. Species count
   if (entries.length === 82) {
@@ -124,6 +128,8 @@ function validateAniimo() {
     appearanceHabitats.forEach(h => {
       if (habitatCounts[h] !== undefined) {
         habitatCounts[h]++;
+      } else if (waveLocationNames.has(h)) {
+        // A Wave Archipelago place listed by the official dex for a first-region Aniimo.
       } else {
         logFail(`Aniimo ${entry.name} references unknown habitat: "${h}"`);
       }

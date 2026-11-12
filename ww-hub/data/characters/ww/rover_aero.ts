@@ -20,6 +20,7 @@ const rover_aero: WuwaCharacter = {
     rarity: 5
   },
   releaseVersion: "2.4",
+  unlockCondition: "조수 임무 제1장 제6막 및 조수 임무 제2장 제4막 클리어 후에 획득",
   languageNames: "🇰🇷 방랑자 · 기류 / 🇺🇸 Rover / 🇨🇳 漂泊者 / 🇯🇵 漂泊者",
   voiceActors: "🇰🇷 김신우&송하림 / 🇺🇸 체이스 브라운&제인 잭슨 / 🇨🇳 마양&장뤄위 / 🇯🇵 마스다 토시키&타나카 미나미",
   roles: [

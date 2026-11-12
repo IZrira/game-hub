@@ -552,7 +552,7 @@ async function generateSitemap() {
       addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`, aniimoFileLastmod, '0.7', 'weekly');
     });
     getWaveLocations(aniimoItems).forEach(location => {
-      const entries = aniimoItems.filter(item => item.regionId === location.regionId && item.forms.some(form => form.locations.includes(location.name)));
+      const entries = aniimoItems.filter(item => item.forms.some(form => form.locations.includes(location.name)));
       const lastmod = entries.map(item => item.checkedAt).filter(Boolean).sort().at(-1) || aniimoFileLastmod;
       addEntry(aniimoEntries, `${BASE_URL}${aniimoLocationPath(location.name, location.regionId)}`, lastmod, '0.7', 'weekly');
     });

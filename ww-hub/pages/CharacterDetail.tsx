@@ -684,9 +684,11 @@ const CharacterDetail: React.FC = () => {
                     <Star key={i} size={18} fill={theme.primary} style={{ color: readableTextColor(theme.primary) }} className="drop-shadow-[0_0_8px_rgba(var(--theme-primary-rgb),0.6)]" />
                   ))}
                 </div>
-                <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-400 opacity-70">
-                   Ver {char.releaseVersion || '1.0'}
-                </div>
+                {!char.unlockCondition && (
+                  <div className="rounded-lg border border-white/10 px-2 py-0.5 text-[11px] font-bold tracking-wide text-gray-400 opacity-70">
+                     Ver {char.releaseVersion || '1.0'}
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -786,7 +788,9 @@ const CharacterDetail: React.FC = () => {
                 <MetadataCard label={t("무기 유형")} value={t((char as any).weaponType) || ''} icon={<Compass size={20} />} theme={theme} />
                 <MetadataCard label={t("전투 속성")} value={t(char.attribute)} icon={<Zap size={20} />} theme={theme} />
                 <MetadataCard label={t("소속 세력")} value={t(char.affiliation || 'Unknown').replace(/\*/g, '')} icon={<MapPin size={20} />} theme={theme} />
-                <MetadataCard label={t("출시 버전")} value={`v${char.releaseVersion || '1.0'}`} icon={<History size={20} />} theme={theme} />
+                {char.unlockCondition
+                  ? <MetadataCard label={t("개방 조건")} value={char.unlockCondition} icon={<History size={20} />} theme={theme} />
+                  : <MetadataCard label={t("출시 버전")} value={`v${char.releaseVersion || '1.0'}`} icon={<History size={20} />} theme={theme} />}
               </div>
               
 

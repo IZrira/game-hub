@@ -261,6 +261,10 @@
       "플로로": "phrolova",
       "lupa": "lupa",
       "루파": "lupa",
+      "rover_aero": "rover_aero",
+      "방랑자 · 기류": "rover_aero",
+      "rover_electro": "rover_electro",
+      "방랑자 · 전도": "rover_electro",
       "cartethyia": "cartethyia",
       "카르티시아": "cartethyia",
       "chaconne": "chaconne",
@@ -299,12 +303,6 @@
       "기염": "jiyan",
       "lingyang": "lingyang",
       "능양": "lingyang",
-      "rover_aero": "rover_aero",
-      "방랑자 · 기류": "rover_aero",
-      "rover_havoc": "rover_havoc",
-      "방랑자 · 인멸": "rover_havoc",
-      "rover_electro": "rover_electro",
-      "방랑자 · 전도": "rover_electro",
       "rover_spectro": "rover_spectro",
       "방랑자 · 회절": "rover_spectro",
       "verina": "verina",
@@ -332,7 +330,9 @@
       "yuanwu": "yuanwu",
       "연무": "yuanwu",
       "chixia": "chixia",
-      "치샤": "chixia"
+      "치샤": "chixia",
+      "rover_havoc": "rover_havoc",
+      "방랑자 · 인멸": "rover_havoc"
     },
     "packs": {
       "ko": [

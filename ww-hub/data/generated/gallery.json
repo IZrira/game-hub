@@ -267,6 +267,30 @@
       "releaseVersion": "2.4"
     },
     {
+      "id": "rover_aero",
+      "name": "방랑자 · 기류",
+      "originalName": "방랑자 · 기류",
+      "folderName": "방랑자 · 기류",
+      "gameId": "ww",
+      "attribute": "기류",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "2.4",
+      "isRover": true
+    },
+    {
+      "id": "rover_electro",
+      "name": "방랑자 · 전도",
+      "originalName": "방랑자 · 전도",
+      "folderName": "방랑자 · 전도",
+      "gameId": "ww",
+      "attribute": "전도",
+      "weaponType": "직검",
+      "rarity": 5,
+      "releaseVersion": "2.4",
+      "isRover": true
+    },
+    {
       "id": "cartethyia",
       "name": "카르티시아",
       "originalName": "카르티시아",
@@ -476,42 +500,6 @@
       "releaseVersion": "1.0"
     },
     {
-      "id": "rover_aero",
-      "name": "방랑자 · 기류",
-      "originalName": "방랑자 · 기류",
-      "folderName": "방랑자 · 기류",
-      "gameId": "ww",
-      "attribute": "기류",
-      "weaponType": "직검",
-      "rarity": 5,
-      "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제2장 제4막 클리어 후에 획득",
-      "isRover": true
-    },
-    {
-      "id": "rover_havoc",
-      "name": "방랑자 · 인멸",
-      "originalName": "방랑자 · 인멸",
-      "folderName": "방랑자 · 인멸",
-      "gameId": "ww",
-      "attribute": "인멸",
-      "weaponType": "직검",
-      "rarity": 5,
-      "releaseVersion": "조수 임무 제1장 제6막 클리어 후 획득",
-      "isRover": true
-    },
-    {
-      "id": "rover_electro",
-      "name": "방랑자 · 전도",
-      "originalName": "방랑자 · 전도",
-      "folderName": "방랑자 · 전도",
-      "gameId": "ww",
-      "attribute": "전도",
-      "weaponType": "직검",
-      "rarity": 5,
-      "releaseVersion": "조수 임무 제1장 제6막 및 조수 임무 제4장 제2막 완료 후 개방",
-      "isRover": true
-    },
-    {
       "id": "rover_spectro",
       "name": "방랑자 · 회절",
       "originalName": "방랑자 · 회절",
@@ -665,6 +653,17 @@
       "weaponType": "권총",
       "rarity": 4,
       "releaseVersion": "1.0"
+    },
+    {
+      "id": "rover_havoc",
+      "name": "방랑자 · 인멸",
+      "originalName": "방랑자 · 인멸",
+      "folderName": "방랑자 · 인멸",
+      "gameId": "ww",
+      "attribute": "인멸",
+      "weaponType": "직검",
+      "rarity": 5,
+      "isRover": true
     }
   ],
   "inventoryCount": 342,

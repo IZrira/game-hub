@@ -2,11 +2,11 @@
 id: ww-char-rover_havoc
 category: "[[10_Wiki/👥 Characters/WW]]"
 confidence_score: 1.0
-tags: [ww, 인멸, 직검, 알 수 없음, v조수 임무 제1장 제6막 클리어 후 획득]
+tags: [ww, 인멸, 직검, 알 수 없음]
 rarity: 5
 element: 인멸
 weapon: 직검
-release_version: "조수 임무 제1장 제6막 클리어 후 획득"
+release_version: "1.0"
 last_reinforced: 2026-05-19
 ---
 

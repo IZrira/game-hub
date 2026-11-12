@@ -19,7 +19,7 @@ const rover_havoc: WuwaCharacter = {
     weapon: "직검",
     rarity: 5
   },
-  releaseVersion: "조수 임무 제1장 제6막 클리어 후 획득",
+  unlockCondition: "조수 임무 제1장 제6막 클리어 후 획득",
   languageNames: "🇰🇷 방랑자 · 인멸 / 🇺🇸 Rover (Havoc) / 🇨🇳 漂泊者 / 🇯🇵 漂泊者",
   voiceActors: "🇰🇷 김신우&송하림 / 🇺🇸 체이스 브라운&제인 잭슨 / 🇨🇳 마양&장뤄위 / 🇯🇵 마스다 토시키&타나카 미나미",
   roles: [

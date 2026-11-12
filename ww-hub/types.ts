@@ -113,6 +113,8 @@ export interface WuwaCharacter extends BaseItem {
   voiceActors?: string;
   cv?: string; 
   releaseVersion?: string;
+  /** How the character unlocks when it is not a version release (e.g. Rover attributes via the main quest). */
+  unlockCondition?: string;
   languageNames?: string;
   materials_v2?: {
     ascension: any[];

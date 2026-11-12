@@ -32,9 +32,10 @@ const LocationDetailAniimo: React.FC = () => {
   const appearances = useMemo(() => {
     if (!isValidHabitat) return [];
     return entries
-      .filter(entry => entry.regionId === regionId && (regionId
+      // Wave Archipelago places also list first-region Aniimo that the official dex places there.
+      .filter(entry => (regionId
         ? entry.forms.some(form => form.locations.includes(habitat))
-        : (entry.habitats || []).includes(habitat)))
+        : !entry.regionId && (entry.habitats || []).includes(habitat)))
       .map(entry => {
         const matchingForms = entry.forms.filter(form => (form.locations || []).includes(habitat));
         const formsToDisplay = matchingForms.length > 0 ? matchingForms : entry.forms;
