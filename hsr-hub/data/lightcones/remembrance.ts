@@ -395,32 +395,28 @@ export const remembranceLightcones: HsrLightCone[] = [
     "folderName": "이야기의 다음 페이지",
     "rarity": 4,
     "path": "기억",
-    "baseStats": createDetailedBaseStats(
-      [43, 166, 283, 417, 551, 685, 819, 953],
-      [15, 58, 98, 145, 191, 238, 284, 331],
-      [21, 81, 138, 203, 268, 333, 398, 463]
-    ),
+    "baseStats": createDetailedBaseStats([48, 185, 314, 463, 612, 761, 910, 1058], [17, 65, 110, 162, 214, 266, 318, 370], [18, 69, 118, 174, 230, 285, 341, 397]),
     "skill": {
       "name": "작성",
-      "description": "장착한 캐릭터의 HP 최대치가 16%/20%/24%/28%/32% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면, 장착한 캐릭터와 기억 정령의 치유량이 12%/15%/18%/21%/24% 증가한다",
+      "description": "장착한 캐릭터의 HP 최대치가 16%/20%/24%/28%/32% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면 장착한 캐릭터와 기억 정령의 치유량이 12%/15%/18%/21%/24% 증가한다, 지속 시간: 1턴",
       "descriptions": [
-        "장착한 캐릭터의 HP 최대치가 16% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면, 장착한 캐릭터와 기억 정령의 치유량이 12% 증가한다",
-        "장착한 캐릭터의 HP 최대치가 20% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면, 장착한 캐릭터와 기억 정령의 치유량이 15% 증가한다",
-        "장착한 캐릭터의 HP 최대치가 24% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면, 장착한 캐릭터와 기억 정령의 치유량이 18% 증가한다",
-        "장착한 캐릭터의 HP 최대치가 28% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면, 장착한 캐릭터와 기억 정령의 치유량이 21% 증가한다",
-        "장착한 캐릭터의 HP 최대치가 32% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면, 장착한 캐릭터와 기억 정령의 치유량이 24% 증가한다"
+        "장착한 캐릭터의 HP 최대치가 16% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면 장착한 캐릭터와 기억 정령의 치유량이 12% 증가한다, 지속 시간: 1턴",
+        "장착한 캐릭터의 HP 최대치가 20% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면 장착한 캐릭터와 기억 정령의 치유량이 15% 증가한다, 지속 시간: 1턴",
+        "장착한 캐릭터의 HP 최대치가 24% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면 장착한 캐릭터와 기억 정령의 치유량이 18% 증가한다, 지속 시간: 1턴",
+        "장착한 캐릭터의 HP 최대치가 28% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면 장착한 캐릭터와 기억 정령의 치유량이 21% 증가한다, 지속 시간: 1턴",
+        "장착한 캐릭터의 HP 최대치가 32% 증가한다. 장착한 캐릭터의 기억 정령이 공격하면 장착한 캐릭터와 기억 정령의 치유량이 24% 증가한다, 지속 시간: 1턴"
       ]
     },
     "ascensionMaterials": [
-      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("공포에 짓밟힌 육신", 5, 2)] },
-      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("공포에 짓밟힌 육신", 15, 2)] },
-      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 3, 3), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 6, 3)] },
-      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3)] },
-      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 4, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 5, 4)] },
-      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] },
-      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] }
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("있는 듯 없는 듯한 조짐", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("있는 듯 없는 듯한 조짐", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 3, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 4, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] }
     ],
-    "story": "이야기는 여기서 멈추지 않는다. 한 페이지를 넘기면 새로운 모험이 우리를 기다리고 있다.\n\n「다음은 어떤 이야기가 펼쳐질까?」\n\n그녀는 설레는 마음으로 책장을 넘겼다. 비록 앞날이 예측할 수 없을지라도, 그녀는 두렵지 않았다. 함께하는 기억들이 그녀의 곁을 지켜줄 테니까."
+    "story": "산들바람에 물결치는 밀밭 속에서 소녀는 아무것도 적히지 않은 수기를 들고 그 사이를 거닌다.\n\n엘리사이 에데스 밖, 낯설고도 익숙한 도시 국가에서, 각양각색의 동료들이 서로를 만나고 꿈 같은 여정이 시작될 것이다…….\n\n「이번엔 나와 함께……」\n밀밭의 끝에서 오랫동안 기다려온 소녀가 책장을 덮고 「미래」를 향해 손을 내민다——\n\n「이야기의 새로운 장을 써 보자♪」"
   },
   {
     "id": "lc_꽃은_잊지_않는다",
@@ -430,32 +426,28 @@ export const remembranceLightcones: HsrLightCone[] = [
     "folderName": "꽃은 잊지 않는다",
     "rarity": 4,
     "path": "기억",
-    "baseStats": createDetailedBaseStats(
-      [43, 166, 283, 417, 551, 685, 819, 953],
-      [15, 58, 98, 145, 191, 238, 284, 331],
-      [21, 81, 138, 203, 268, 333, 398, 463]
-    ),
+    "baseStats": createDetailedBaseStats([48, 185, 314, 463, 612, 761, 910, 1058], [24, 92, 157, 232, 306, 380, 455, 529], [15, 58, 98, 145, 191, 238, 284, 331]),
     "skill": {
-      "name": "기억의 향기",
-      "description": "장착한 캐릭터의 치명타 피해가 24%/28%/32%/36%/40% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 24%/28%/32%/36%/40% 증가한다",
+      "name": "서로 의지하며",
+      "description": "장착한 캐릭터의 치명타 피해가 24%/28%/32%/36%/40% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 추가로 24%/30%/36%/42%/48% 증가한다",
       "descriptions": [
-        "장착한 캐릭터의 치명타 피해가 24% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 24% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 28% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 28% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 32% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 32% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 36% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 36% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 40% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 40% 증가한다"
+        "장착한 캐릭터의 치명타 피해가 24% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 추가로 24% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 28% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 추가로 30% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 32% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 추가로 36% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 36% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 추가로 42% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 40% 증가한다. 장착한 캐릭터의 기억 정령이 가하는 치명타 피해가 추가로 48% 증가한다"
       ]
     },
     "ascensionMaterials": [
-      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("공포에 짓밟힌 육신", 5, 2)] },
-      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("공포에 짓밟힌 육신", 15, 2)] },
-      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 3, 3), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 6, 3)] },
-      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3)] },
-      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 4, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 5, 4)] },
-      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] },
-      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] }
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("있는 듯 없는 듯한 조짐", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("있는 듯 없는 듯한 조짐", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 3, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 4, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] }
     ],
-    "story": "시든 꽃은 다시 피지 않지만, 그 향기는 기억 속에 영원히 남는다.\n\n「잊지 않을게. 우리가 함께했던 그 계절을.」\n\n그녀는 꽃잎을 손바닥 위에 올리고 나지막이 속삭였다. 흩날리는 꽃눈 사이로 그리운 이의 미소가 보였다."
+    "story": "그녀들은 봄에 씨앗을 뿌린다.\n여름이 되면 꽃밭에 물을 준다.\n가을이 오면 열매를 딴다.\n겨울이 깃들면 눈을 밟으며 즐겁게 노래한다.\n……\n\n황폐했던 땅에는 꽃이 피었고, 나비는 은방울 같은 웃음소리에 이끌려 손끝에 내려앉았다.\n「언니, 우리 앞으로도 같이 이곳을 드넓은 꽃바다로 만들자!」\n\n「봐, 우리의 약속을……」\n나비가 피안을 향해 날아가자, 조금 과묵해 보이는 소녀는 여동생이 여전히 옆에 있는 것처럼, 따뜻한 꽃잎을 어루만졌다.\n「나와 우리가 돌봐온 꽃들 모두… 잊지 않았어」"
   },
   {
     "id": "lc_핑크빛_내일을_향해",
@@ -465,32 +457,28 @@ export const remembranceLightcones: HsrLightCone[] = [
     "folderName": "핑크빛 내일을 향해",
     "rarity": 4,
     "path": "기억",
-    "baseStats": createDetailedBaseStats(
-      [43, 166, 283, 417, 551, 685, 819, 953],
-      [22, 83, 141, 208, 275, 342, 409, 476],
-      [15, 58, 98, 145, 191, 238, 284, 331]
-    ),
+    "baseStats": createDetailedBaseStats([38, 148, 252, 371, 490, 609, 728, 847], [22, 83, 141, 208, 275, 342, 409, 476], [18, 69, 118, 174, 230, 285, 341, 397]),
     "skill": {
-      "name": "핑크빛 꿈",
-      "description": "장착한 캐릭터의 치명타 피해가 12%/14%/16%/18%/20% 증가한다. 개척자(기억)가 장착 시, 모든 아군의 가하는 피해가 8%/10%/12%/14%/16% 증가하고, 강화 일반 공격 [다 함께 내일의 형상을 그려보자!]가 가하는 피해가 60%/70%/80%/90%/100% 증가한다",
+      "name": "주시",
+      "description": "장착한 캐릭터의 치명타 피해가 12%/15%/18%/21%/24% 증가한다. 개척자•기억이 장착할 시 모든 아군이 가하는 피해가 8%/10%/12%/14%/16% 증가하고, 강화된 일반 공격 [내일을, 함께 써내려 가자!]가 가하는 피해가 60%/70%/80%/90%/100% 증가한다",
       "descriptions": [
-        "장착한 캐릭터의 치명타 피해가 12% 증가한다. 개척자(기억)가 장착 시, 모든 아군의 가하는 피해가 8% 증가하고, 강화 일반 공격 [다 함께 내일의 형상을 그려보자!]가 가하는 피해가 60% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 14% 증가한다. 개척자(기억)가 장착 시, 모든 아군의 가하는 피해가 10% 증가하고, 강화 일반 공격 [다 함께 내일의 형상을 그려보자!]가 가하는 피해가 70% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 16% 증가한다. 개척자(기억)가 장착 시, 모든 아군의 가하는 피해가 12% 증가하고, 강화 일반 공격 [다 함께 내일의 형상을 그려보자!]가 가하는 피해가 80% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 18% 증가한다. 개척자(기억)가 장착 시, 모든 아군의 가하는 피해가 14% 증가하고, 강화 일반 공격 [다 함께 내일의 형상을 그려보자!]가 가하는 피해가 90% 증가한다",
-        "장착한 캐릭터의 치명타 피해가 20% 증가한다. 개척자(기억)가 장착 시, 모든 아군의 가하는 피해가 16% 증가하고, 강화 일반 공격 [다 함께 내일의 형상을 그려보자!]가 가하는 피해가 100% 증가한다"
+        "장착한 캐릭터의 치명타 피해가 12% 증가한다. 개척자•기억이 장착할 시 모든 아군이 가하는 피해가 8% 증가하고, 강화된 일반 공격 [내일을, 함께 써내려 가자!]가 가하는 피해가 60% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 15% 증가한다. 개척자•기억이 장착할 시 모든 아군이 가하는 피해가 10% 증가하고, 강화된 일반 공격 [내일을, 함께 써내려 가자!]가 가하는 피해가 70% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 18% 증가한다. 개척자•기억이 장착할 시 모든 아군이 가하는 피해가 12% 증가하고, 강화된 일반 공격 [내일을, 함께 써내려 가자!]가 가하는 피해가 80% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 21% 증가한다. 개척자•기억이 장착할 시 모든 아군이 가하는 피해가 14% 증가하고, 강화된 일반 공격 [내일을, 함께 써내려 가자!]가 가하는 피해가 90% 증가한다",
+        "장착한 캐릭터의 치명타 피해가 24% 증가한다. 개척자•기억이 장착할 시 모든 아군이 가하는 피해가 16% 증가하고, 강화된 일반 공격 [내일을, 함께 써내려 가자!]가 가하는 피해가 100% 증가한다"
       ]
     },
     "ascensionMaterials": [
-      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("공포에 짓밟힌 육신", 5, 2)] },
-      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("공포에 짓밟힌 육신", 15, 2)] },
-      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 3, 3), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 6, 3)] },
-      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3)] },
-      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 4, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 5, 4)] },
-      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] },
-      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("공포에 짓밟힌 육신", 15, 2), createMaterial("용기에 찢긴 가슴", 15, 3), createMaterial("영광의 세례를 받은 육신", 12, 4)] }
+      { "level": 20, "items": [createMaterial("신용 포인트", 4000, 3), createMaterial("있는 듯 없는 듯한 조짐", 5, 2)] },
+      { "level": 30, "items": [createMaterial("신용 포인트", 12000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("있는 듯 없는 듯한 조짐", 15, 2)] },
+      { "level": 40, "items": [createMaterial("신용 포인트", 28000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 3, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 6, 3)] },
+      { "level": 50, "items": [createMaterial("신용 포인트", 68000, 3), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3)] },
+      { "level": 60, "items": [createMaterial("신용 포인트", 148000, 4), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 4, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 5, 4)] },
+      { "level": 70, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] },
+      { "level": 80, "items": [createMaterial("신용 포인트", 308000, 5), createMaterial("사량의 씨앗", 3, 2), createMaterial("말나 새싹", 9, 3), createMaterial("아뢰야 꽃", 12, 4), createMaterial("있는 듯 없는 듯한 조짐", 15, 2), createMaterial("점점 가까워지는 비명", 15, 3), createMaterial("끝없는 탄식", 12, 4)] }
     ],
-    "story": "우리가 함께 그려갈 내일은 어떤 모습일까? 아마도 핑크빛으로 가득 찬 따뜻한 세상이겠지.\n\n「가자, 우리가 꿈꾸는 그곳으로!」\n\n그녀는 환하게 웃으며 앞장섰다. 비록 먼 미래일지라도, 함께라면 어떤 장애물도 이겨낼 수 있을 것만 같았다. 핑크빛 내일이 우리를 부르고 있으니까."
+    "story": "산들바람이 구름을 흩뜨리자, 은하의 모습이 드러났다.\n황금빛이 반짝이고, 서사시는 별하늘에서 울려 퍼질 것이다.\n\n「유성, 만남, 약속!」\n작은 요정은 마치 처음 만난 것처럼, 또 다시 만난 것처럼 하늘을 바라본다.\n\n「미미는, 기다릴게. 개척, 세상!」\n별빛이 작은 요정의 눈동자를 비췄고——마치 분홍빛 내일처럼 반짝였다"
   },
   {
     "id": "lc_그대는_나아가_노래하리니",

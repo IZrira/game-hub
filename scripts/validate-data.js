@@ -57,8 +57,8 @@ const globalMetrics = {
   missingH1: 0,
   missingTitle: 0,
   missingDescription: 0,
-  aniimoSpecies: 86,
-  aniimoForms: 206,
+  aniimoSpecies: 87,
+  aniimoForms: 207,
   aniimoHabitats: 14,
   aniimoMismatches: 0
 };
@@ -94,18 +94,18 @@ function validateAniimo() {
   const entries = JSON.parse(fs.readFileSync(aniimoFile, 'utf8'));
 
   // 1. Species count
-  if (entries.length === 86) {
-    logPass(`86 official species registered (found ${entries.length})`);
+  if (entries.length === 87) {
+    logPass(`87 official species registered (found ${entries.length})`);
   } else {
-    logFail(`Expected 86 species, but found ${entries.length}`);
+    logFail(`Expected 87 species, but found ${entries.length}`);
   }
 
   // 2. Forms count
   const allForms = entries.flatMap(e => e.forms || []);
-  if (allForms.length === 206) {
-    logPass(`206 official forms registered (found ${allForms.length})`);
+  if (allForms.length === 207) {
+    logPass(`207 official forms registered (found ${allForms.length})`);
   } else {
-    logFail(`Expected 206 forms, but found ${allForms.length}`);
+    logFail(`Expected 207 forms, but found ${allForms.length}`);
   }
 
   // 3. Habitat counts & target verification

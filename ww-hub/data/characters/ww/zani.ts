@@ -7,7 +7,7 @@ const zani: WuwaCharacter = {
   name: "character.zani.name",
   folderName: "젠니",
   attribute: "회절",
-  weaponType: "대검",
+  weaponType: "권갑",
   rarity: 5,
   affiliation: "몬텔리 가문",
   briefInfo: "character.zani.briefInfo",
@@ -15,12 +15,12 @@ const zani: WuwaCharacter = {
     name: "character.zani.name",
     brief: "character.zani.briefInfo",
     element: "회절",
-    weapon: "대검",
+    weapon: "권갑",
     rarity: 5
   },
   releaseVersion: "2.3",
   languageNames: "🇰🇷 젠니 / 🇺🇸 Zani / 🇨🇳 赞妮 / 🇯🇵 ザンニー",
-  voiceActors: "🇰🇷 이주은 / 🇺🇸 리더 루이 / 🇨🇳 장뤄위 / 🇯🇵 카네모토 히사코",
+  voiceActors: "🇰🇷 원에스더 / 🇺🇸 알렉산드라 메탁사 / 🇨🇳 녜시잉 / 🇯🇵 우에다 히토미",
   roles: [
     { label: "메인 딜러", description: "비교적 강한 피해 부여 가능" },
     { label: "강공격 피해", description: "비교적 높은 강공격 피해" },

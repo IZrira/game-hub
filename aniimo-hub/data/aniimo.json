@@ -17567,6 +17567,233 @@
     ]
   },
   {
+    "number": "030",
+    "name": "드림쵸",
+    "elements": [
+      "바람",
+      "풀"
+    ],
+    "positions": [
+      "에너지 재생"
+    ],
+    "sourcePath": "/ko/item/030/prismana-form",
+    "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10233.png",
+    "stats": {
+      "total": 538,
+      "hp": 111,
+      "break": 50,
+      "attack": 92,
+      "magicDefense": 85,
+      "physicalDefense": 85,
+      "energyRecovery": 115
+    },
+    "description": "화려하게 빛나는 나비 날개를 지녔고, 날갯짓할 때마다 흩뿌리는 비늘가루는 식물의 성장을 돕는다. 그가 지나간 자리에는 늘 생기가 넘친다.",
+    "locations": [],
+    "homeAbilities": [
+      {
+        "type": "1102",
+        "name": "여가",
+        "description": "놀이와 여가 시설 작업",
+        "value": 4
+      },
+      {
+        "type": "1001",
+        "name": "풀",
+        "description": "파종과 채집 작업",
+        "value": 4
+      },
+      {
+        "type": "1006",
+        "name": "바람",
+        "description": "밀링·방적 등 가공 작업",
+        "value": 3
+      }
+    ],
+    "explorationSkills": [],
+    "traits": [
+      {
+        "name": "에너지 충만",
+        "description": "에너지 상한이 10 증가합니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Feature_12374_Icon.png"
+      }
+    ],
+    "combatSkills": [
+      {
+        "name": "최면 포자",
+        "description": "대상에게 명중 시 [수면] 상태를 부여하여 대상이 받는 피해를 25% 증가시키고 행동 불능 상태로 만듭니다. 피해를 받으면 해제되며 5초 동안 지속됩니다. (풀 원소 애니모 제외)",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Skill_10600340_Icon.png",
+        "skillType": "마법 스킬",
+        "energyCost": 20,
+        "power": 28
+      },
+      {
+        "name": "에너지 오브",
+        "description": "힘을 모아 목표 머리 위에 에너지를 응축한 뒤 낙하시켜 공격합니다. 스킬 버튼을 길게 눌러 차징할 수 있으며, 0.6초마다 에너지를 10 소모해 스킬 피해를 증가시킵니다. 최대 4회 증가. 차징 1~5단계에서 각각 1/2/3/4.5/6배 위력의 피해를 줍니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Skill_10600490_Icon.png",
+        "skillType": "마법 스킬",
+        "energyCost": 10,
+        "power": 30
+      },
+      {
+        "name": "나비의 파동",
+        "description": "전방에 광파를 발사해 적군의 탄도를 흡수하고, 경로상의 파티원의 에너지 회복 속도를 24% 증가시킵니다. 20초 지속.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1058300_Skill_10600900_Icon.png",
+        "skillType": "보조 스킬",
+        "energyCost": 0,
+        "power": 0
+      }
+    ],
+    "uniqueSkills": [
+      {
+        "name": "공격",
+        "description": "풀 원소 능력을 사용하여 원거리에서 목표를 공격합니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1032400_Skill_14200000_Icon.png",
+        "skillType": "마법 스킬",
+        "energyCost": 0,
+        "power": 6
+      },
+      {
+        "name": "나비의 춤",
+        "description": "드림쵸가 도약해 만물을 부활시키는 능력을 펼쳐 에너지를 36 회복시킵니다.",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Skill_10600360_Icon.png",
+        "skillType": "보조 스킬",
+        "energyCost": 0,
+        "power": 0
+      }
+    ],
+    "evolution": [],
+    "resonanceLevels": [
+      {
+        "level": "LV 6",
+        "requirement": "60레벨 달성",
+        "material": "만상의 결정 x1",
+        "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      },
+      {
+        "level": "LV 7",
+        "requirement": "65레벨 달성",
+        "material": "만상의 결정 x2",
+        "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+      }
+    ],
+    "forms": [
+      {
+        "key": "prismana-form",
+        "label": "천휘 형태",
+        "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/Wiki_Aniimo_10233.png",
+        "elements": [
+          "바람",
+          "풀"
+        ],
+        "positions": [
+          "에너지 재생"
+        ],
+        "stats": {
+          "total": 538,
+          "hp": 111,
+          "break": 50,
+          "attack": 92,
+          "magicDefense": 85,
+          "physicalDefense": 85,
+          "energyRecovery": 115
+        },
+        "description": "화려하게 빛나는 나비 날개를 지녔고, 날갯짓할 때마다 흩뿌리는 비늘가루는 식물의 성장을 돕는다. 그가 지나간 자리에는 늘 생기가 넘친다.",
+        "locations": [],
+        "homeAbilities": [
+          {
+            "type": "1102",
+            "name": "여가",
+            "description": "놀이와 여가 시설 작업",
+            "value": 4
+          },
+          {
+            "type": "1001",
+            "name": "풀",
+            "description": "파종과 채집 작업",
+            "value": 4
+          },
+          {
+            "type": "1006",
+            "name": "바람",
+            "description": "밀링·방적 등 가공 작업",
+            "value": 3
+          }
+        ],
+        "explorationSkills": [],
+        "traits": [
+          {
+            "name": "에너지 충만",
+            "description": "에너지 상한이 10 증가합니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Feature_12374_Icon.png"
+          }
+        ],
+        "combatSkills": [
+          {
+            "name": "최면 포자",
+            "description": "대상에게 명중 시 [수면] 상태를 부여하여 대상이 받는 피해를 25% 증가시키고 행동 불능 상태로 만듭니다. 피해를 받으면 해제되며 5초 동안 지속됩니다. (풀 원소 애니모 제외)",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Skill_10600340_Icon.png",
+            "skillType": "마법 스킬",
+            "energyCost": 20,
+            "power": 28
+          },
+          {
+            "name": "에너지 오브",
+            "description": "힘을 모아 목표 머리 위에 에너지를 응축한 뒤 낙하시켜 공격합니다. 스킬 버튼을 길게 눌러 차징할 수 있으며, 0.6초마다 에너지를 10 소모해 스킬 피해를 증가시킵니다. 최대 4회 증가. 차징 1~5단계에서 각각 1/2/3/4.5/6배 위력의 피해를 줍니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Skill_10600490_Icon.png",
+            "skillType": "마법 스킬",
+            "energyCost": 10,
+            "power": 30
+          },
+          {
+            "name": "나비의 파동",
+            "description": "전방에 광파를 발사해 적군의 탄도를 흡수하고, 경로상의 파티원의 에너지 회복 속도를 24% 증가시킵니다. 20초 지속.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1058300_Skill_10600900_Icon.png",
+            "skillType": "보조 스킬",
+            "energyCost": 0,
+            "power": 0
+          }
+        ],
+        "uniqueSkills": [
+          {
+            "name": "공격",
+            "description": "풀 원소 능력을 사용하여 원거리에서 목표를 공격합니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1032400_Skill_14200000_Icon.png",
+            "skillType": "마법 스킬",
+            "energyCost": 0,
+            "power": 6
+          },
+          {
+            "name": "나비의 춤",
+            "description": "드림쵸가 도약해 만물을 부활시키는 능력을 펼쳐 에너지를 36 회복시킵니다.",
+            "imageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/1023300_Skill_10600360_Icon.png",
+            "skillType": "보조 스킬",
+            "energyCost": 0,
+            "power": 0
+          }
+        ],
+        "evolution": [],
+        "resonanceLevels": [
+          {
+            "level": "LV 6",
+            "requirement": "60레벨 달성",
+            "material": "만상의 결정 x1",
+            "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+          },
+          {
+            "level": "LV 7",
+            "requirement": "65레벨 달성",
+            "material": "만상의 결정 x2",
+            "materialImageUrl": "https://worldx-website-cdn.aniimo.com/official-website/worldx/wiki_stage/init/0_Item_152100_Icon.png"
+          }
+        ],
+        "sourceUrl": "https://wiki.aniimo.com/ko/item/030/prismana-form"
+      }
+    ],
+    "sourceUrl": "https://wiki.aniimo.com/ko/item/030/prismana-form",
+    "checkedAt": "2026-11-12",
+    "habitats": []
+  },
+  {
     "number": "031",
     "name": "래빗배트",
     "elements": [

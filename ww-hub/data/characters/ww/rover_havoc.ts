@@ -21,7 +21,7 @@ const rover_havoc: WuwaCharacter = {
   },
   releaseVersion: "조수 임무 제1장 제6막 클리어 후 획득",
   languageNames: "🇰🇷 방랑자 · 인멸 / 🇺🇸 Rover (Havoc) / 🇨🇳 漂泊者 / 🇯🇵 漂泊者",
-  voiceActors: "🇰🇷 김신우&송하림 / 🇺🇸 Chase Brown & Jane Jackson / 🇨🇳 Ma Yang & Zhang Ruoyu / 🇯🇵 Toshiki Masuda & Minami Tanaka",
+  voiceActors: "🇰🇷 김신우&송하림 / 🇺🇸 체이스 브라운&제인 잭슨 / 🇨🇳 마양&장뤄위 / 🇯🇵 마스다 토시키&타나카 미나미",
   roles: [
     { label: "메인 딜러", description: "비교적 강한 피해 부여 가능" }
   ],

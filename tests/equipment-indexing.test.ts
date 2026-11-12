@@ -31,6 +31,7 @@ it('keeps search-traffic exceptions indexable without a recommendation', () => {
 
 it('applies the same indexing rule in the pages as in the sitemap and edge routes', () => {
   const cases = [
+    // 전우의 의리 is a 4-star weapon (corrected 2026-11-12), so it is no longer a signature page.
     { indexable: isWwEquipmentIndexable('weapon', '전우의 의리'), path: '/gallery/ww/weapon/전우의 의리', sitemap: 'public/sitemap-ww.xml' },
     { indexable: isWwEquipmentIndexable('weapon', '태초의 권갑'), path: '/gallery/ww/weapon/태초의 권갑', sitemap: 'public/sitemap-ww.xml' },
     { indexable: isWwEquipmentIndexable('echo', '절식백'), path: '/gallery/ww/echo/절식백', sitemap: 'public/sitemap-ww.xml' },
@@ -38,7 +39,7 @@ it('applies the same indexing rule in the pages as in the sitemap and edge route
     { indexable: isHsrEquipmentIndexable('lightcone', '풍작'), path: '/gallery/hsr/lightcone/풍작', sitemap: 'public/sitemap-hsr.xml' },
     { indexable: isNteArcIndexable('영원한 왈츠'), path: '/gallery/nte/weapon/영원한 왈츠', sitemap: 'public/sitemap-nte.xml' },
   ];
-  expect(cases.map(c => c.indexable)).toEqual([true, false, true, false, false, true]);
+  expect(cases.map(c => c.indexable)).toEqual([false, false, true, false, false, true]);
   for (const c of cases) {
     expect(sitemapPaths(c.sitemap).includes(c.path)).toBe(c.indexable);
     // Every equipment page stays reachable at the edge, indexed or not.

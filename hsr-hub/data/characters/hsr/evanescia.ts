@@ -41,7 +41,7 @@ const evanescia: Character = {
   materials_v2: {
     ascension: [
       { name: "신용 포인트", count: "308,000", rarity: 3 },
-      { name: "광뢰의 스트로크", count: "65", rarity: 4 },
+      { name: "침략 응괴", count: "65", rarity: 4 },
       { name: "천진난만 크레파스", count: "15", rarity: 2 },
       { name: "꿈을 만드는 딥 펜", count: "15", rarity: 3 },
       { name: "꿈을 그리는 붓", count: "15", rarity: 4 }

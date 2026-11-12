@@ -21,7 +21,7 @@ const rover_electro: WuwaCharacter = {
   },
   releaseVersion: "2.4",
   languageNames: "🇰🇷 방랑자 · 전도 / 🇺🇸 Rover / 🇨🇳 漂泊者 / 🇯🇵 漂泊者",
-  voiceActors: "🇰🇷 김신우&송하림 / 🇺🇸 Chase Brown & Jane Jackson / 🇨🇳 마양&장뤄위 / 🇯🇵 마스다 토시키&타나카 미나미",
+  voiceActors: "🇰🇷 김신우&송하림 / 🇺🇸 체이스 브라운&제인 잭슨 / 🇨🇳 마양&장뤄위 / 🇯🇵 마스다 토시키&타나카 미나미",
   roles: [
     { label: "생존 치료", description: "파티의 생존력 향상" },
     { label: "공명 스킬 피해", description: "비교적 높은 공명 스킬 피해" },

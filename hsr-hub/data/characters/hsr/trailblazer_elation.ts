@@ -41,10 +41,10 @@ const trailblazerElation: Character = {
   materials_v2: {
     ascension: [
       { name: "신용 포인트", count: "246,400", rarity: 3 },
-      { name: "광뢰의 스트로크", count: "28", rarity: 4 },
-      { name: "천진난만 크레파스", count: "12", rarity: 2 },
-      { name: "꿈을 만드는 딥 펜", count: "13", rarity: 3 },
-      { name: "꿈을 그리는 붓", count: "12", rarity: 4 }
+      { name: "깊은 별의 외형질", count: "28", rarity: 4 },
+      { name: "약탈의 본능", count: "12", rarity: 2 },
+      { name: "변조된 야망", count: "13", rarity: 3 },
+      { name: "짓밟힌 의지", count: "12", rarity: 4 }
     ],
     traces: [
       { name: "신용 포인트", count: "1,808,000", rarity: 3 },

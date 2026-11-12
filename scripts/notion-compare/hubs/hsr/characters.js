@@ -17,19 +17,27 @@ function siteVersion(characters, title) {
   return {
     ...c,
     skills: a.skills || c.skills,
-    baseStats: a.baseStats || c.baseStats,
+    // Stats and materials come from asBuffData only; never fall back to the original kit.
+    isAs: true,
+    baseStats: a.baseStats,
     additionalAbilities: a.additionalAbilities || c.additionalAbilities || c.bonusAbilities,
     attributeBonuses: a.attributeBonuses || c.attributeBonuses,
     eidolons: a.eidolons || c.eidolons,
-    materials_v2: a.materials_v2 || c.materials_v2,
+    materials_v2: a.materials_v2,
   };
 }
 
-/** Rows of Notion's stat block: [level, a, b, c, speed, taunt, energy]. */
+/**
+ * Rows of Notion's stat block as [level, ATK, DEF, HP, speed, taunt, energy].
+ * A header that lists HP first (the order settled on 2026-11-12) is reordered.
+ */
 function statRows(block) {
+  const header = block.split('\n')[0];
+  const hpFirst = header.includes('HP') && header.indexOf('HP') < header.indexOf('공격력');
   return block.split('\n').slice(1)
     .map(r => r.trim().split(/\s+/).map(x => Number(x.replace(/,/g, ''))))
-    .filter(r => r.length >= 4);
+    .filter(r => r.length >= 4)
+    .map(r => (hpFirst ? [r[0], r[2], r[3], r[1], ...r.slice(4)] : r));
 }
 
 const siteTriple = s => [s['기초 공격력'], s['기초 방어력'], s['기초 HP']];
@@ -74,7 +82,7 @@ export function compareCharacters({ pages, characters, locale, add }) {
 
     // 2. stats (Notion header says 공격력, 방어력, HP; many pages actually put HP first)
     const statBlock = texts.find(x => x.startsWith('성장 스탯'));
-    if (statBlock) {
+    if (statBlock && c.baseStats) {
       const rows = statRows(statBlock);
       const diffs = [];
       let rotated = 0;
@@ -102,6 +110,7 @@ export function compareCharacters({ pages, characters, locale, add }) {
     // 3. materials
     const siteMats = list => Object.fromEntries((list || []).map(i => [i.name, Number(String(i.count).replace(/,/g, ''))]));
     const compareMats = (cat, lines, list) => {
+      if (c.isAs && !list) return; // asBuffData has no materials to compare
       if (!lines) { push({ cat, text: 'Notion에 해당 문단 없음' }); return; }
       const d = materialDiffs(parseMaterialLines(lines), siteMats(list));
       if (d.length) push({ cat, text: d.join(', '), hint: matHint(d) });
@@ -145,7 +154,8 @@ export function compareCharacters({ pages, characters, locale, add }) {
       if (zone && t && !/^용어/.test(t) && !/^에너지 회복/.test(t)) { const ls = t.split('\n'); if (ls.length >= 2) ordered[zone].push({ name: ls[0], desc: cutGlossary(ls.slice(1).join('\n')) }); }
     }
     const named = [
-      ...(c.skills || []).map(s => ({ cat: '스킬', name: tr(s.name), desc: trDesc(s.name, s.description) })),
+      // A memosprite info card (icon 'memo', e.g. initial HP/speed) has no Notion counterpart.
+      ...(c.skills || []).filter(s => s.icon !== 'memo').map(s => ({ cat: '스킬', name: tr(s.name), desc: trDesc(s.name, s.description) })),
       ...(c.additionalAbilities || c.bonusAbilities || []).map(s => ({ cat: '추가 능력', name: tr(s.name), desc: trDesc(s.name, s.description) })),
       ...(c.eidolons || []).map(s => ({ cat: '성혼', name: tr(s.name), desc: trDesc(s.name, s.description) })),
     ];

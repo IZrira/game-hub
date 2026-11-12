@@ -20,7 +20,7 @@ const cartethyia: WuwaCharacter = {
   },
   releaseVersion: "2.4",
   languageNames: "🇰🇷 카르티시아 / 🇺🇸 Cartethyia / 🇨🇳 卡提希娅 / 🇯🇵 カル테지아",
-  voiceActors: "🇰🇷 배하경 / 🇺🇸 Amanda Elizabeth Rischel / 🇨🇳 윈허췌이 / 🇯🇵 아사카와 유우",
+  voiceActors: "🇰🇷 배하경 / 🇺🇸 어맨다 엘리자베스 리셸 / 🇨🇳 윈허췌이 / 🇯🇵 아사카와 유우",
   roles: [
     { label: "메인 딜러", description: "비교적 강한 피해 부여 가능" },
     { label: "견인", description: "일정 범위 내의 목표를 특정 위치로 견인 가능" },

@@ -480,16 +480,6 @@
     "releaseVersion": "1.0"
   },
   {
-    "id": "baizhi",
-    "name": "설지",
-    "originalName": "설지",
-    "folderName": "설지",
-    "rarity": 5,
-    "attribute": "응결",
-    "weaponType": "증폭기",
-    "releaseVersion": "1.0"
-  },
-  {
     "id": "encore",
     "name": "앙코",
     "originalName": "앙코",
@@ -546,7 +536,7 @@
     "folderName": "모르테피",
     "rarity": 4,
     "attribute": "용융",
-    "weaponType": "권갑",
+    "weaponType": "권총",
     "releaseVersion": "1.0"
   },
   {
@@ -557,6 +547,16 @@
     "rarity": 4,
     "attribute": "응결",
     "weaponType": "직검",
+    "releaseVersion": "1.0"
+  },
+  {
+    "id": "baizhi",
+    "name": "설지",
+    "originalName": "설지",
+    "folderName": "설지",
+    "rarity": 4,
+    "attribute": "응결",
+    "weaponType": "증폭기",
     "releaseVersion": "1.0"
   },
   {

@@ -2,7 +2,7 @@
 id: ww-char-yangyang_magistrate
 category: "[[10_Wiki/👥 Characters/WW]]"
 confidence_score: 1.0
-tags: [ww, 인멸, 직검, 금주, v3-5]
+tags: [ww, 인멸, 직검, 군책부, v3-5]
 rarity: 5
 element: 인멸
 weapon: 직검
@@ -13,7 +13,7 @@ last_reinforced: 2026-05-19
 # [[yangyang_magistrate]] (양양 · 현령)
 
 ## 핵심 요약/통찰 (The Karpathy Summary)
-> "양양 · 현령" - 금주 소속의 5성 인멸 속성 직검 무기 캐릭터.
+> "양양은 자연의 기류를 감지하고 모아 기의 영역을 자아낼 수 있다. 그녀는 공명의 힘으로 ｢푸른 날갯짓｣을 응집하여, 만물의 주파수를 통찰하고 중화시킴으로써 맹렬한 에너지를 부드러운 바람으로 녹여내거나, 생물 혹은 무생물에 가해진 공명 어빌리티와 그로 인한 영향을 제거할 수도 있다." - 군책부 소속의 5성 인멸 속성 직검 무기 캐릭터.
 
 ## 스스로 메커니즘 분석 (Mechanism Analysis)
 ### 1. 주요 전투 역할 (Roles)

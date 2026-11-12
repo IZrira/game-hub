@@ -13,12 +13,12 @@ describe('official Wave Archipelago addition', () => {
   it('preserves the original 86 entries byte for byte and keeps duplicate official numbers separate', () => {
     const hash = createHash('sha256').update(fs.readFileSync(path.resolve('aniimo-hub/data/aniimo.json'))).digest('hex');
     // Updated 2026-11-12 when the first region was refreshed to the official dex on request.
-    expect(hash).toBe('773c6845426cb8f119f962f5569a78fb01e5287afb84aa18bd20ca70feb7774f');
+    expect(hash).toBe('d0d8e711090483ae9e8a176089adfc900704ba41f32645ee3dcfe37d89bc93fb');
     const catalog = loadAniimoCatalog(process.cwd());
-    expect(legacy).toHaveLength(86);
-    expect(catalog).toHaveLength(115);
+    expect(legacy).toHaveLength(87); // 030 드림쵸 (천휘 형태) added 2026-11-12
+    expect(catalog).toHaveLength(116);
     expect(catalog.filter((entry: { number: string }) => entry.number === '001').map((entry: { name: string }) => entry.name)).toEqual(['탄멍멍', '쉘코랄']);
-    expect(new Set(catalog.map((entry: { id?: string; number: string }) => entry.id || entry.number)).size).toBe(115);
+    expect(new Set(catalog.map((entry: { id?: string; number: string }) => entry.id || entry.number)).size).toBe(116);
   });
 
   it('imports all 29 numbered species and 42 official forms without using the region code as a form key', () => {

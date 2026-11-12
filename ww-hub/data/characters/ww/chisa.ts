@@ -20,7 +20,7 @@ const chisa: WuwaCharacter = {
   },
   releaseVersion: "2.8",
   languageNames: "🇰🇷 치사 / 🇺🇸 Chisa / 🇨🇳 千咲 / 🇯🇵 千咲",
-  voiceActors: "🇰🇷 이주은 / 🇺🇸 리더 루이 / 🇨🇳 장뤄위 / 🇯🇵 카네모토 Hisako",
+  voiceActors: "🇰🇷 이주은 / 🇺🇸 리더 루이 / 🇨🇳 장뤄위 / 🇯🇵 카네모토 히사코",
   roles: [
     { label: "생존 치료", description: "파티의 생존력 향상" },
     { label: "공명 해방 피해", description: "비교적 높은 공명 해방 피해" },

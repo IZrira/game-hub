@@ -9,7 +9,7 @@ const jiyan: WuwaCharacter = {
   attribute: "기류",
   weaponType: "대검",
   rarity: 5,
-  affiliation: "황룡 (금주)",
+  affiliation: "금주",
   briefInfo: "character.jiyan.briefInfo",
   metadata: {
     name: "character.jiyan.name",

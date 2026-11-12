@@ -9,7 +9,7 @@ const yangyang_magistrate: WuwaCharacter = {
   attribute: "인멸",
   weaponType: "직검",
   rarity: 5,
-  affiliation: "금주",
+  affiliation: "군책부",
   briefInfo: "character.yangyang_magistrate.briefInfo",
   metadata: {
     name: "character.yangyang_magistrate.name",

@@ -8,7 +8,7 @@ const baizhi: WuwaCharacter = {
   folderName: "설지",
   attribute: "응결",
   weaponType: "증폭기",
-  rarity: 5,
+  rarity: 4,
   affiliation: "금주",
   briefInfo: "character.baizhi.briefInfo",
   metadata: {
@@ -16,7 +16,7 @@ const baizhi: WuwaCharacter = {
     brief: "character.baizhi.briefInfo",
     element: "응결",
     weapon: "증폭기",
-    rarity: 5
+    rarity: 4
   },
   releaseVersion: "1.0",
   languageNames: "🇰🇷 설지 / 🇺🇸 Baizhi / 🇨🇳 白芷 / 🇯🇵 白芷",

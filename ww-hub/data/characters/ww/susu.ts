@@ -9,7 +9,7 @@ const susu: WuwaCharacter = {
   attribute: "응결",
   weaponType: "증폭기",
   rarity: 5,
-  affiliation: "금주",
+  affiliation: "소명 상인회",
   briefInfo: "character.susu.briefInfo",
   metadata: {
     name: "character.susu.name",
@@ -20,7 +20,7 @@ const susu: WuwaCharacter = {
   },
   releaseVersion: "3.5",
   languageNames: "🇰🇷 수수 / 🇺🇸 Yangyang / 🇨🇳 秧秧 / 🇯🇵 秧秧",
-  voiceActors: "🇰🇷 이유리 / 🇺🇸 리베카 요 / 🇨🇳 충충 / 🇯🇵 이시카와 유이",
+  voiceActors: "🇰🇷 박지윤 / 🇺🇸 에밀리 픽퍼드 / 🇨🇳 쑨옌치 / 🇯🇵 후쿠엔 미사토",
   roles: [
     { label: "빠른 협주", description: "짧은 시간에 비교적 높은 협주 효율 보유" },
     { label: "견인", description: "일정 범위 내의 목표를 특정 위치로 견인 가능" },

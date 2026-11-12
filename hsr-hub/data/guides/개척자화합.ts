@@ -54,7 +54,7 @@ export const 개척자화합Guide: CharacterGuide = {
     bestLightCones: [
       { name: "댄스! 댄스! 댄스!", note: "1순위" },
       { name: "거울 속 지난날의 나", note: "2순위" },
-      "바람을 쫓을 때, 꽃은 잊지 않는다",
+      "바람을 쫓을 때",
       "기억 속 모습"
     ],
     skillPriority: ["필살기", "특성", "전투 스킬", "일반 공격"],

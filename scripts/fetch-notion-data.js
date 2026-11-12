@@ -1366,7 +1366,9 @@ function parseHsrGuideMarkdown(pageTitle, mdContent) {
             currentOrn = { name: line.trim() };
           }
           if (currentOrn.name.includes('속도 증가 장신구')) {
-            currentOrn.note = currentOrn.note ? currentOrn.note + ' (추천: 겁화 연등의 연마궁, 생명의 바커 공 등)' : '겁화 연등의 연마궁, 바커 공 등 속도 증가 장신구';
+            // Every speed 2-set planar ornament, shown as equal alternatives (user request 2026-11-12).
+            currentOrn.alternatives = ['사색하는 거목', '겁화 연등의 연마궁', '아공간 이상 사물 수용소', '신의 순간의 환락'];
+            if (!currentOrn.note) currentOrn.note = '속도 2세트 장신구';
           }
           ornaments.push(currentOrn);
         }
