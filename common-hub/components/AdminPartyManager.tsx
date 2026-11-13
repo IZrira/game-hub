@@ -58,7 +58,8 @@ const CharacterPickerInput: React.FC<{
   placeholder?: string;
   excludeNames?: string[];
   clearAfterPick?: boolean;
-}> = ({ value, characters, getEncodedUrl, onPick, placeholder, excludeNames, clearAfterPick }) => {
+  tabIndex?: number;
+}> = ({ value, characters, getEncodedUrl, onPick, placeholder, excludeNames, clearAfterPick, tabIndex }) => {
   const [text, setText] = useState(value);
   const [open, setOpen] = useState(false);
   const [highlight, setHighlight] = useState(0);
@@ -84,6 +85,7 @@ const CharacterPickerInput: React.FC<{
     <div className="relative">
       <input
         value={text}
+        tabIndex={tabIndex}
         onChange={(e) => { setText(e.target.value); setOpen(true); setHighlight(0); }}
         onFocus={() => setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 150)}
@@ -1048,6 +1050,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                             characters={availableCharacters}
                             getEncodedUrl={getEncodedUrl}
                             placeholder={`슬롯 ${sIdx + 1} 캐릭터 검색...`}
+                            tabIndex={sIdx + 1}
                             onPick={(char) => {
                               const updated = JSON.parse(JSON.stringify(editingParty)) as UnifiedPartyData;
                               applyCharacterToSlot(updated, sIdx, char, false);
@@ -1059,6 +1062,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           type="button"
                           onClick={() => openCharacterPicker(sIdx, false)}
                           title="이미지로 찾아보기"
+                          tabIndex={-1}
                           className="shrink-0 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
                         >
                           <Search size={14} />
@@ -1125,6 +1129,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           type="button"
                           onClick={() => openCharacterPicker(sIdx, true)}
                           title="이미지로 찾아보기"
+                          tabIndex={-1}
                           className="shrink-0 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
                         >
                           <Search size={12} />
