@@ -1,7 +1,7 @@
 import { normalizeAdminTierRows } from '../../nte-hub/data/adminData';
 import { NTE_TIER_CATEGORIES } from '../../nte-hub/data/tiers';
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2, RotateCcw, ChevronDown } from 'lucide-react';
+import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2, RotateCcw, ChevronDown, Eye } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
 import { useSearchParams } from 'react-router';
@@ -124,6 +124,7 @@ const AdminDashboard: React.FC = () => {
   const [baseCharacters, setBaseCharacters] = useState<any[]>([]);
   const [mgmtNotices, setMgmtNotices] = useState<any[]>([]);
   const [expandedNoticeId, setExpandedNoticeId] = useState<string | null>(null);
+  const [noticeGameFilter, setNoticeGameFilter] = useState<'all' | 'common' | 'hsr' | 'ww' | 'nte' | 'aniimo'>('all');
   
   // 공지사항 편집 및 저장 상태
   const [editingNoticeId, setEditingNoticeId] = useState<string | null>(null);
@@ -470,7 +471,8 @@ const AdminDashboard: React.FC = () => {
         showToast('공지사항이 성공적으로 수정되었습니다.');
         setEditingNoticeId(null);
         setInitialEditingNotice(null);
-        setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+        // 게임·분류는 유지하고 제목·본문만 비워, 같은 게임 공지를 이어 쓰기 쉽게 한다.
+        setNewNotice(prev => ({ ...prev, title: '', content: '', version: '', is_critical: false }));
 
         await fetchMgmtNotices();
         // 수정된 공지 카드 자동 확장 (미리보기)
@@ -499,7 +501,8 @@ const AdminDashboard: React.FC = () => {
         if (error) throw error;
 
         showToast('공지사항이 등록되었습니다.');
-        setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+        // 게임·분류는 유지하고 제목·본문만 비워, 같은 게임 공지를 이어 쓰기 쉽게 한다.
+        setNewNotice(prev => ({ ...prev, title: '', content: '', version: '', is_critical: false }));
         await fetchMgmtNotices();
         setExpandedNoticeId(id);
       }
@@ -1260,10 +1263,11 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
           )}
 
           {activeTab === 'notices' && (
-            <div className="grid grid-cols-1 xl:grid-cols-4 gap-8 animate-in fade-in duration-500">
+            <div className="space-y-8 animate-in fade-in duration-500">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
               {/* 공지사항 추가/수정 폼 (좌측) */}
               <div className="space-y-8">
-                <div 
+                <div
                   ref={noticeFormRef}
                   className={`border rounded-[40px] p-8 md:p-10 space-y-8 sticky top-12 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
                     editingNoticeId 
@@ -1433,15 +1437,52 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                 </div>
               </div>
 
-              {/* 공지사항 목록 (우측) */}
-              <div className="xl:col-span-3 space-y-8">
+              {/* 실시간 미리보기 (우측) */}
+              <div className="space-y-4 sticky top-12 self-start">
+                <div className="flex items-center gap-3 text-gray-400">
+                  <Eye size={18} />
+                  <h2 className="text-sm font-bold">실제 공지 모양 미리보기</h2>
+                </div>
+                <div className="bg-[#111] rounded-[40px] border border-white/5 shadow-2xl p-8 space-y-4">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[10px] font-black uppercase tracking-wider">
+                      {newNotice.game_id}
+                    </span>
+                    <span className="px-3 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-full text-[10px] font-black uppercase">
+                      {newNotice.category}
+                    </span>
+                    {newNotice.is_critical && (
+                      <span className="px-3 py-1 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-full text-[10px] font-black uppercase flex items-center gap-1">
+                        <AlertTriangle size={10} /> 필독
+                      </span>
+                    )}
+                    {newNotice.version && (
+                      <span className="text-[10px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{newNotice.version}</span>
+                    )}
+                  </div>
+                  <h3 className="text-lg font-bold">{newNotice.title || <span className="text-gray-500">제목을 입력하면 여기에 표시됩니다</span>}</h3>
+                  <div className="text-sm text-gray-300 leading-relaxed font-medium border-t border-white/5 pt-4">
+                    {newNotice.content.trim() ? (
+                      <React.Suspense fallback={<AdminSectionFallback />}>
+                        <MarkdownRenderer content={newNotice.content} variant="notice" />
+                      </React.Suspense>
+                    ) : (
+                      <span className="text-gray-500">내용을 입력하면 여기에 표시됩니다.</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+              {/* 공지사항 목록 */}
+              <div className="space-y-8">
                 <div className="bg-[#111] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl p-8">
                   <h2 className="text-xl font-black italic uppercase mb-6 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <Bell className="text-amber-500" size={24} /> 등록된 공지사항 관리
                     </div>
                     <div className="flex items-center gap-2">
-                      <button 
+                      <button
                         onClick={resetAllNoticeUpdatedTimestamps}
                         className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-rose-500/10 hover:text-rose-400 border border-white/10 hover:border-rose-500/30 rounded-xl text-[10px] font-black transition-all active:scale-95 text-gray-400"
                         title="기존 공지들의 수정일시를 초기화하여, 이후 실제 수정한 공지에만 수정일이 표시되도록 정리합니다."
@@ -1451,8 +1492,30 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </button>
                     </div>
                   </h2>
+                  <div className="flex items-center gap-2 flex-wrap mb-6">
+                    {([
+                      ['all', '전체'],
+                      ['common', '공통'],
+                      ['hsr', '스타레일'],
+                      ['ww', '명조'],
+                      ['nte', '이환(NTE)'],
+                      ['aniimo', '애니모'],
+                    ] as const).map(([value, label]) => (
+                      <button
+                        key={value}
+                        onClick={() => setNoticeGameFilter(value)}
+                        className={`px-4 py-2 rounded-xl text-xs font-bold transition-all border ${
+                          noticeGameFilter === value
+                            ? 'bg-amber-500 border-amber-500 text-black'
+                            : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
                   <div className="space-y-4">
-                    {mgmtNotices.map((notice) => (
+                    {mgmtNotices.filter(n => noticeGameFilter === 'all' || n.game_id === noticeGameFilter).map((notice) => (
                       <div 
                         key={notice.id} 
                         className={`bg-black/40 border rounded-3xl p-6 space-y-4 transition-all group cursor-pointer ${
