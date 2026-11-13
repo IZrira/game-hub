@@ -46,6 +46,77 @@ const HSR_VERSION_BY_NORMALIZED_NAME = new Map(
   Object.entries(HSR_CHARACTER_VERSION_MAP).map(([name, version]) => [normalizeCharacterName(name), version])
 );
 
+interface PickerCharacter { id: string; name: string; folderName: string; rarity: number; attribute?: string; path?: string }
+
+// 슬롯·대체 캐릭터를 한 칸에서 검색해 바로 채우는 입력창. 일반 <input>이라
+// 다음 칸으로 Tab이 그대로 넘어간다. 모달을 열지 않고도 바로 배치할 수 있다.
+const CharacterPickerInput: React.FC<{
+  value: string;
+  characters: PickerCharacter[];
+  getEncodedUrl: (char: any) => string;
+  onPick: (char: PickerCharacter) => void;
+  placeholder?: string;
+  excludeNames?: string[];
+  clearAfterPick?: boolean;
+}> = ({ value, characters, getEncodedUrl, onPick, placeholder, excludeNames, clearAfterPick }) => {
+  const [text, setText] = useState(value);
+  const [open, setOpen] = useState(false);
+  const [highlight, setHighlight] = useState(0);
+
+  useEffect(() => { setText(value); }, [value]);
+
+  const matches = React.useMemo(() => {
+    const excluded = new Set((excludeNames || []).map(normalizeCharacterName));
+    const needle = normalizeCharacterName(text.trim());
+    return characters
+      .filter(c => !excluded.has(normalizeCharacterName(c.name)))
+      .filter(c => !needle || normalizeCharacterName(c.name).includes(needle))
+      .slice(0, 8);
+  }, [characters, text, excludeNames]);
+
+  const pick = (char: PickerCharacter) => {
+    onPick(char);
+    setText(clearAfterPick ? '' : char.name);
+    setOpen(false);
+  };
+
+  return (
+    <div className="relative">
+      <input
+        value={text}
+        onChange={(e) => { setText(e.target.value); setOpen(true); setHighlight(0); }}
+        onFocus={() => setOpen(true)}
+        onBlur={() => setTimeout(() => setOpen(false), 150)}
+        onKeyDown={(e) => {
+          if (!open) { if (e.key === 'ArrowDown') setOpen(true); return; }
+          if (e.key === 'ArrowDown') { e.preventDefault(); setHighlight(h => Math.min(h + 1, matches.length - 1)); }
+          else if (e.key === 'ArrowUp') { e.preventDefault(); setHighlight(h => Math.max(h - 1, 0)); }
+          else if (e.key === 'Enter') { e.preventDefault(); if (matches[highlight]) pick(matches[highlight]); }
+          else if (e.key === 'Escape') { setOpen(false); }
+        }}
+        placeholder={placeholder || '캐릭터 검색...'}
+        className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-white placeholder-gray-500 focus:border-amber-500/50 outline-none"
+      />
+      {open && matches.length > 0 && (
+        <div className="absolute z-50 left-0 right-0 mt-1 bg-[#141414] border border-white/10 rounded-xl shadow-2xl max-h-56 overflow-y-auto">
+          {matches.map((c, i) => (
+            <button
+              key={c.id}
+              type="button"
+              onMouseDown={(e) => e.preventDefault()}
+              onClick={() => pick(c)}
+              className={`w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-bold transition-colors ${i === highlight ? 'bg-amber-500/15 text-amber-300' : 'text-gray-200 hover:bg-white/5'}`}
+            >
+              <img src={getEncodedUrl(c.folderName || c.name)} alt="" className="w-6 h-6 rounded object-cover shrink-0" />
+              <span className="truncate">{c.name}</span>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame, getEncodedUrl }) => {
   const gameKey: 'HSR' | 'WW' | 'NTE' = (activeGame.toUpperCase()) as 'HSR' | 'WW' | 'NTE';
 
@@ -181,6 +252,47 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       path: c.path || ''
     }));
   }, [gameKey]);
+
+  // HSR 존재(Path)별 통상적인 포지션. 기존 파티에 한 번도 쓰인 적 없는 신규 캐릭터의
+  // 포지션을 추정할 때만 2차 fallback으로 쓴다. 예외는 직접 고치면 된다.
+  const HSR_PATH_DEFAULT_ROLE: Record<string, string> = {
+    '파멸': '메인 딜러', '수렵': '메인 딜러', '지식': '메인 딜러', '환락': '메인 딜러',
+    '공허': '서브 딜러',
+    '화합': '서포터', '기억': '서포터',
+    '보존': '탱커·힐러', '풍요': '탱커·힐러'
+  };
+
+  // 캐릭터별로 지금까지 저장된 파티들에서 가장 많이 맡았던 역할. 슬롯에 캐릭터를
+  // 고르면 이 빈도를 기준으로 포지션을 자동으로 채운다.
+  const roleFrequency = useMemo(() => {
+    const freq = new Map<string, Record<string, number>>();
+    const tally = (name: string | undefined, role: string | undefined) => {
+      if (!name || !role) return;
+      const key = normalizeCharacterName(name);
+      const counts = freq.get(key) || {};
+      counts[role] = (counts[role] || 0) + 1;
+      freq.set(key, counts);
+    };
+    parties.forEach(party => {
+      party.slots.forEach(slot => {
+        tally(slot.characterName, slot.role);
+        (slot.substitutes || []).forEach(sub => tally(sub.characterName, sub.role));
+      });
+    });
+    return freq;
+  }, [parties]);
+
+  const guessRole = (char: { name: string; path?: string }): string => {
+    const counts = roleFrequency.get(normalizeCharacterName(char.name));
+    if (counts) {
+      const best = Object.entries(counts).sort((a, b) => b[1] - a[1])[0];
+      if (best) return best[0];
+    }
+    if (gameKey === 'HSR' && char.path && HSR_PATH_DEFAULT_ROLE[char.path]) {
+      return HSR_PATH_DEFAULT_ROLE[char.path];
+    }
+    return (ROLE_PRESETS[gameKey] || ['메인 딜러'])[0];
+  };
 
   // 로컬 기본 내장 상수 데이터 변환 로더
   const getBuiltinParties = (): UnifiedPartyData[] => {
@@ -471,36 +583,51 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     const updated = JSON.parse(JSON.stringify(editingParty)) as UnifiedPartyData;
     const slotIdx = pickerState.targetSlotIndex;
 
-    if (pickerState.isSubstitute) {
-      if (!updated.slots[slotIdx].substitutes) {
-        updated.slots[slotIdx].substitutes = [];
+    applyCharacterToSlot(updated, slotIdx, char, pickerState.isSubstitute, pickerState.substituteIndex);
+    setEditingParty(updated);
+    setPickerState({ isOpen: false, targetSlotIndex: null, isSubstitute: false });
+  };
+
+  // 슬롯(또는 대체 캐릭터)에 캐릭터를 배치하고, 지금까지 저장된 파티에서 그 캐릭터가
+  // 가장 많이 맡은 포지션을 자동으로 채운다. 인라인 검색과 기존 선택 모달이 공유한다.
+  const applyCharacterToSlot = (
+    party: UnifiedPartyData,
+    slotIdx: number,
+    char: { id: string; name: string; folderName?: string; path?: string },
+    isSubstitute: boolean,
+    substituteIndex?: number
+  ) => {
+    const guessedRole = guessRole(char);
+    if (isSubstitute) {
+      if (!party.slots[slotIdx].substitutes) {
+        party.slots[slotIdx].substitutes = [];
       }
       const newSub = {
         characterId: char.id,
         characterName: char.name,
         folderName: char.folderName || char.name,
-        role: updated.slots[slotIdx].role
+        role: guessedRole
       };
-      if (typeof pickerState.substituteIndex === 'number') {
-        updated.slots[slotIdx].substitutes![pickerState.substituteIndex] = newSub;
+      if (typeof substituteIndex === 'number') {
+        party.slots[slotIdx].substitutes![substituteIndex] = newSub;
       } else {
-        updated.slots[slotIdx].substitutes!.push(newSub);
+        party.slots[slotIdx].substitutes!.push(newSub);
       }
     } else {
-      updated.slots[slotIdx] = {
-        ...updated.slots[slotIdx],
+      party.slots[slotIdx] = {
+        ...party.slots[slotIdx],
         characterId: char.id,
         characterName: char.name,
-        folderName: char.folderName || char.name
+        folderName: char.folderName || char.name,
+        role: guessedRole
       };
-      // 슬롯 1인 경우 자동으로 mainDPS 설정
-      if (slotIdx === 0 && !updated.mainDPS) {
-        updated.mainDPS = char.name;
+      // 메인 딜러로 추정된 슬롯을 mainDPS로 맞춘다 (슬롯 순서와 무관하게).
+      if (guessedRole === '메인 딜러') {
+        party.mainDPS = char.name;
+      } else if (slotIdx === 0 && !party.mainDPS) {
+        party.mainDPS = char.name;
       }
     }
-
-    setEditingParty(updated);
-    setPickerState({ isOpen: false, targetSlotIndex: null, isSubstitute: false });
   };
 
   return (
@@ -902,12 +1029,9 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         </span>
                       </div>
 
-                      {/* 캐릭터 아바타 & 선택 버튼 */}
-                      <button
-                        onClick={() => openCharacterPicker(sIdx, false)}
-                        className="w-full flex flex-col items-center gap-3 p-4 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-amber-500/40 rounded-2xl transition-all"
-                      >
-                        <div className="w-16 h-16 rounded-2xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center relative shadow-inner">
+                      {/* 캐릭터 검색 입력 (Tab으로 다음 슬롯까지 바로 이동) */}
+                      <div className="flex items-center gap-2">
+                        <div className="w-10 h-10 rounded-xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center shrink-0">
                           {slot.characterName ? (
                             <img
                               src={getEncodedUrl(slot.folderName || slot.characterName)}
@@ -915,18 +1039,31 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <Plus size={24} className="text-gray-500" />
+                            <Plus size={16} className="text-gray-500" />
                           )}
                         </div>
-                        <div className="text-center">
-                          <p className="text-sm font-black text-white truncate max-w-[120px]">
-                            {slot.characterName || '캐릭터 선택'}
-                          </p>
-                          <span className="text-[11px] text-amber-500 font-bold uppercase tracking-wider block mt-0.5">
-                            클릭하여 변경
-                          </span>
+                        <div className="flex-1 min-w-0">
+                          <CharacterPickerInput
+                            value={slot.characterName}
+                            characters={availableCharacters}
+                            getEncodedUrl={getEncodedUrl}
+                            placeholder={`슬롯 ${sIdx + 1} 캐릭터 검색...`}
+                            onPick={(char) => {
+                              const updated = JSON.parse(JSON.stringify(editingParty)) as UnifiedPartyData;
+                              applyCharacterToSlot(updated, sIdx, char, false);
+                              setEditingParty(updated);
+                            }}
+                          />
                         </div>
-                      </button>
+                        <button
+                          type="button"
+                          onClick={() => openCharacterPicker(sIdx, false)}
+                          title="이미지로 찾아보기"
+                          className="shrink-0 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
+                        >
+                          <Search size={14} />
+                        </button>
+                      </div>
 
                       {/* 슬롯 역할 및 돌파 추천 드롭다운 */}
                       <div className="pt-2 space-y-1.5">
@@ -966,13 +1103,31 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
 
                     {/* 대체 캐릭터 (Substitutes) 관리 */}
                     <div className="pt-3 border-t border-white/5 space-y-2">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">대체 캐릭터</span>
+                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">대체 캐릭터</span>
+
+                      <div className="flex items-center gap-1.5">
+                        <div className="flex-1 min-w-0">
+                          <CharacterPickerInput
+                            value=""
+                            characters={availableCharacters}
+                            getEncodedUrl={getEncodedUrl}
+                            placeholder="대체 캐릭터 검색..."
+                            clearAfterPick
+                            excludeNames={[slot.characterName, ...((slot.substitutes || []).map(s => s.characterName))]}
+                            onPick={(char) => {
+                              const updated = JSON.parse(JSON.stringify(editingParty)) as UnifiedPartyData;
+                              applyCharacterToSlot(updated, sIdx, char, true);
+                              setEditingParty(updated);
+                            }}
+                          />
+                        </div>
                         <button
+                          type="button"
                           onClick={() => openCharacterPicker(sIdx, true)}
-                          className="text-[11px] font-bold text-amber-500 hover:text-amber-400 flex items-center gap-1"
+                          title="이미지로 찾아보기"
+                          className="shrink-0 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
                         >
-                          <Plus size={10} /> 추가
+                          <Search size={12} />
                         </button>
                       </div>
 
