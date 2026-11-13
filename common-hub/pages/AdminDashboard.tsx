@@ -90,6 +90,7 @@ const AdminDashboard: React.FC = () => {
     return (g && ADMIN_GAMES.includes(g) ? g : null) as AdminGame;
   });
   const [tierSearch, setTierSearch] = useState('');
+  const [tierSortCategory, setTierSortCategory] = useState<string | null>(null);
   const [openGameGroup, setOpenGameGroup] = useState<'hsr' | 'ww' | 'nte' | null>(
     (activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte') ? activeGame : 'hsr'
   );
@@ -806,7 +807,15 @@ const AdminDashboard: React.FC = () => {
   const tierFilteredChars = baseCharacters
     .filter(bc => bc.name.toLowerCase().includes(tierSearch.toLowerCase()))
     .slice()
-    .sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+    .sort((a, b) => {
+      // 비교용: 특정 콘텐츠를 선택하면 그 티어 순(OP > SS > ... > 미편성)으로 모아서 보여준다.
+      if (tierSortCategory) {
+        const tierOf = (bc: any) => TIER_OPTIONS.indexOf(tierMap.get(`${normalizeName(bc.name)}_${tierSortCategory}`)?.tier || '?');
+        const diff = tierOf(a) - tierOf(b);
+        if (diff !== 0) return diff;
+      }
+      return a.name.localeCompare(b.name, 'ko');
+    });
 
   const breadcrumb = activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte'
     ? `${GAME_LABEL[activeGame]} › ${SECTION_LABEL[activeTab]}`
@@ -1173,13 +1182,44 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       <tr className="bg-white/[0.02] text-xs font-bold text-gray-400">
                         <th className="p-4 whitespace-nowrap">캐릭터</th>
                         {CATEGORIES.map(cat => (
-                          <th key={cat.id} className="p-4 text-center whitespace-nowrap border-l border-white/5">{cat.name}</th>
+                          <th
+                            key={cat.id}
+                            onClick={() => setTierSortCategory(tierSortCategory === cat.id ? null : cat.id)}
+                            title="클릭하면 이 콘텐츠의 티어 순으로 모아서, 같은 티어끼리 비교할 수 있습니다"
+                            className={`p-4 text-center whitespace-nowrap border-l select-none cursor-pointer transition-colors ${
+                              tierSortCategory === cat.id ? 'border-amber-500/30 bg-amber-500/[0.04] text-amber-400' : 'border-white/5 hover:text-gray-200'
+                            }`}
+                          >
+                            {cat.name}{tierSortCategory === cat.id ? ' ▾' : ''}
+                          </th>
                         ))}
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-white/5">
-                      {tierFilteredChars.map(bc => (
-                        <tr key={bc.id} className="hover:bg-white/[0.015] transition-colors">
+                      {(() => {
+                        let lastGroupTier: string | null = null;
+                        return tierFilteredChars.map(bc => {
+                          const sortedCat = tierSortCategory;
+                          const currentTier = sortedCat ? (tierMap.get(`${normalizeName(bc.name)}_${sortedCat}`)?.tier || '?') : null;
+                          const showDivider = sortedCat !== null && currentTier !== lastGroupTier;
+                          if (sortedCat) lastGroupTier = currentTier;
+                          const groupSize = showDivider && sortedCat
+                            ? tierFilteredChars.filter(other => (tierMap.get(`${normalizeName(other.name)}_${sortedCat}`)?.tier || '?') === currentTier).length
+                            : 0;
+                          const catName = sortedCat ? CATEGORIES.find(c => c.id === sortedCat)?.name : '';
+                          return (
+                          <React.Fragment key={bc.id}>
+                            {showDivider && (
+                              <tr>
+                                <td colSpan={CATEGORIES.length + 1} className="px-4 py-2 bg-amber-500/[0.06] border-t border-amber-500/10">
+                                  <span className="text-xs font-bold text-amber-400">
+                                    {catName} · {currentTier === '?' ? '미편성' : currentTier}
+                                  </span>
+                                  <span className="text-[11px] text-gray-500 ml-2">{groupSize}명</span>
+                                </td>
+                              </tr>
+                            )}
+                        <tr className="hover:bg-white/[0.015] transition-colors">
                           <td className="p-3">
                             <div className="flex items-center gap-3 min-w-[180px]">
                               <div className="w-10 h-10 rounded-lg overflow-hidden border border-white/10 shrink-0 bg-white/5 flex items-center justify-center">
@@ -1211,7 +1251,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                             const key = `${normalizeName(bc.name)}_${cat.id}`;
                             const tInfo = tierMap.get(key);
                             return (
-                              <td key={cat.id} className="p-2 text-center border-l border-white/5">
+                              <td key={cat.id} className={`p-2 text-center border-l transition-colors ${cat.id === tierSortCategory ? 'border-amber-500/20 bg-amber-500/[0.03]' : 'border-white/5'}`}>
                                 <div className="flex flex-col items-center gap-1.5">
                                   <select
                                     value={tInfo?.tier || '?'}
@@ -1242,7 +1282,10 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                             );
                           })}
                         </tr>
-                      ))}
+                          </React.Fragment>
+                          );
+                        });
+                      })()}
                       {tierFilteredChars.length === 0 && (
                         <tr>
                           <td colSpan={CATEGORIES.length + 1} className="p-12 text-center text-gray-400 text-sm font-bold">
