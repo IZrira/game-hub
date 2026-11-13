@@ -33,6 +33,8 @@ const SECTION_LABEL: Record<AdminSection, string> = {
   aniimo: '애니모 도감 관리',
 };
 const GAME_LABEL: Record<'hsr' | 'ww' | 'nte', string> = { hsr: '스타레일', ww: '명조', nte: '이환(NTE)' };
+const TIER_OPTIONS = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'];
+const CHANGE_OPTIONS = ['stay', 'up', 'down', 'new'];
 
 interface ToastItem { id: number; message: string; tone: 'success' | 'error' }
 interface ConfirmRequest { message: string; onConfirm: () => void; tone?: 'default' | 'danger' }
@@ -87,7 +89,7 @@ const AdminDashboard: React.FC = () => {
     const g = searchParams.get('game');
     return (g && ADMIN_GAMES.includes(g) ? g : null) as AdminGame;
   });
-  const [activeCategoryId, setActiveCategoryId] = useState<string>('chaos');
+  const [tierSearch, setTierSearch] = useState('');
   const [openGameGroup, setOpenGameGroup] = useState<'hsr' | 'ww' | 'nte' | null>(
     (activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte') ? activeGame : 'hsr'
   );
@@ -164,14 +166,6 @@ const AdminDashboard: React.FC = () => {
   };
 
   const CATEGORIES = getCategories();
-
-  // 게임 변경 시 카테고리 초기화
-  useEffect(() => {
-    if (activeGame) {
-      const categories = getCategories();
-      if (categories[0]) setActiveCategoryId(categories[0].id);
-    }
-  }, [activeGame]);
 
   // 신규 캐릭터 양식
   const [newChar, setNewChar] = useState({
@@ -791,6 +785,10 @@ const AdminDashboard: React.FC = () => {
   }
 
   const filteredChars = baseCharacters.filter(bc => bc.name.toLowerCase().includes(mgmtSearch.toLowerCase()));
+  const tierFilteredChars = baseCharacters
+    .filter(bc => bc.name.toLowerCase().includes(tierSearch.toLowerCase()))
+    .slice()
+    .sort((a, b) => a.name.localeCompare(b.name, 'ko'));
 
   const breadcrumb = activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte'
     ? `${GAME_LABEL[activeGame]} › ${SECTION_LABEL[activeTab]}`
@@ -1132,127 +1130,112 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                 </div>
               </div>
 
-              {/* 카테고리 선택부 */}
-              <div className="bg-[#111] p-8 rounded-3xl border border-white/5">
-                <div className="flex flex-wrap gap-4 justify-center">
-                  {CATEGORIES.map(cat => (
-                    <button
-                      key={cat.id}
-                      onClick={() => {
-                        setMgmtSearch(''); 
-                        setActiveCategoryId(cat.id);
-                      }}
-                      className={`px-8 py-4 rounded-2xl text-xs font-black transition-all border flex items-center gap-3 ${
-                        activeCategoryId === cat.id
-                          ? 'bg-amber-500 border-amber-500 text-black shadow-lg shadow-amber-500/20'
-                          : 'bg-white/5 border-white/5 text-gray-400 hover:border-white/20'
-                      }`}
-                    >
-                      {cat.name}
-                    </button>
-                  ))}
+              {/* 캐릭터 검색 */}
+              <div className="flex items-center gap-4 bg-[#121212] p-4 rounded-2xl border border-white/5">
+                <div className="relative flex-1">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <input
+                    type="text"
+                    placeholder="캐릭터 검색..."
+                    className="w-full bg-black/40 border border-white/5 rounded-xl py-3 pl-11 pr-5 text-sm font-medium focus:outline-none focus:border-amber-500/40 transition-all"
+                    value={tierSearch}
+                    onChange={(e) => setTierSearch(e.target.value)}
+                  />
+                </div>
+                <div className="px-4 py-2 bg-white/[0.03] border border-white/5 rounded-xl text-xs font-bold text-gray-400 shrink-0">
+                  일치: <span className="text-amber-500 ml-1">{tierFilteredChars.length}</span>
                 </div>
               </div>
 
-              {/* 티어별 그룹 렌더링 - '?' (미편성)을 가장 먼저 렌더링 */}
-              {['?', 'OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F'].map(tierRank => {
-                const charsInTier = baseCharacters.filter(bc => {
-                  const key = `${normalizeName(bc.name)}_${activeCategoryId}`;
-                  const tInfo = tierMap.get(key);
-                  return (tInfo?.tier || '?') === tierRank;
-                });
-
-                if (charsInTier.length === 0 && tierRank !== '?') return null;
-
-                return (
-                  <div key={tierRank} className="bg-[#111] rounded-3xl border border-white/5 overflow-hidden flex flex-col lg:flex-row">
-                    <div className="w-full lg:w-32 flex flex-col items-center justify-center p-8 shrink-0 bg-white/[0.02] border-b lg:border-b-0 lg:border-r border-white/5">
-                      <div className={`text-2xl font-black tracking-tight ${tierRank === '?' ? 'text-gray-400' : 'text-amber-500'} ${tierRank === '?' ? '' : 'italic'}`}>
-                        {tierRank === '?' ? '미편성' : tierRank}
-                      </div>
-                    </div>
-                    
-                    <div className="flex-1 p-8">
-                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-                        {charsInTier.map(bc => {
-                          const key = `${normalizeName(bc.name)}_${activeCategoryId}`;
-                          const tInfo = tierMap.get(key);
-                          
-                          return (
-                            <div key={bc.id} className="bg-black/40 rounded-3xl border border-white/5 p-4 space-y-4 hover:border-amber-500/30 transition-all group">
-                              <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-xl overflow-hidden border border-white/10 shrink-0 bg-white/5 flex items-center justify-center">
-                                  <img 
-                                    src={getEncodedUrl(bc)} 
-                                    alt={bc.name}
-                                    className="w-full h-full object-cover" 
-                                    onError={(e) => {
-                                      const originalUrl = e.currentTarget.src;
-                                      if (originalUrl.includes('cdn.jsdelivr.net')) {
-                                        e.currentTarget.src = originalUrl.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net');
-                                        return;
-                                      }
-                                      e.currentTarget.style.display = 'none';
-                                      const parent = e.currentTarget.parentElement;
-                                      if (parent) {
-                                        parent.innerHTML = `<span class="text-[11px] text-amber-500/80 font-black">${bc.name.slice(0, 2)}</span>`;
-                                      }
-                                    }}
-                                  />
-                                </div>
-                                <div className="min-w-0">
-                                  <p className="text-sm font-black truncate">{bc.name}</p>
-                                  <p className="text-[11px] text-gray-400 font-bold uppercase">{bc.path || bc.weapon_type}</p>
-                                </div>
+              {/* 캐릭터 1명 = 1행, 콘텐츠별 티어를 한 줄에서 확인·수정 */}
+              <div className="bg-[#111] rounded-3xl border border-white/5 overflow-hidden">
+                <div className="overflow-x-auto">
+                  <table className="w-full text-left border-collapse">
+                    <thead>
+                      <tr className="bg-white/[0.02] text-xs font-bold text-gray-400">
+                        <th className="p-4 whitespace-nowrap">캐릭터</th>
+                        {CATEGORIES.map(cat => (
+                          <th key={cat.id} className="p-4 text-center whitespace-nowrap border-l border-white/5">{cat.name}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-white/5">
+                      {tierFilteredChars.map(bc => (
+                        <tr key={bc.id} className="hover:bg-white/[0.015] transition-colors">
+                          <td className="p-3">
+                            <div className="flex items-center gap-3 min-w-[180px]">
+                              <div className="w-10 h-10 rounded-lg overflow-hidden border border-white/10 shrink-0 bg-white/5 flex items-center justify-center">
+                                <img
+                                  src={getEncodedUrl(bc)}
+                                  alt={bc.name}
+                                  className="w-full h-full object-cover"
+                                  onError={(e) => {
+                                    const originalUrl = e.currentTarget.src;
+                                    if (originalUrl.includes('cdn.jsdelivr.net')) {
+                                      e.currentTarget.src = originalUrl.replace('cdn.jsdelivr.net', 'fastly.jsdelivr.net');
+                                      return;
+                                    }
+                                    e.currentTarget.style.display = 'none';
+                                    const parent = e.currentTarget.parentElement;
+                                    if (parent) {
+                                      parent.innerHTML = `<span class="text-[11px] text-amber-500/80 font-black">${bc.name.slice(0, 2)}</span>`;
+                                    }
+                                  }}
+                                />
                               </div>
-
-                              <div className="space-y-3">
-                                <select 
-                                  value={tInfo?.tier || '?'}
-                                  onChange={(e) => updateTierInfo(bc.name, activeCategoryId, { tier: e.target.value })}
-                                  className="w-full bg-white/5 border border-white/10 rounded-xl text-[11px] font-black p-2 text-center focus:border-amber-500/50 outline-none appearance-none cursor-pointer"
-                                >
-                                  {['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'].map(t => <option key={t} value={t} style={{ backgroundColor: '#111' }}>{t}</option>)}
-                                </select>
-
-                                <div className="flex items-center gap-2">
-                                  <select 
-                                    value={tInfo?.change || 'stay'}
-                                    onChange={(e) => updateTierInfo(bc.name, activeCategoryId, { change: e.target.value })}
-                                    className={`flex-1 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black p-2 text-center outline-none appearance-none cursor-pointer uppercase ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-400'}`}
-                                  >
-                                    {['stay', 'up', 'down', 'new'].map(c => <option key={c} value={c}>{c}</option>)}
-                                  </select>
-                                  <div className="flex items-center bg-white/5 border border-white/10 rounded-xl overflow-hidden">
-                                    <button 
-                                      onClick={() => updateTierInfo(bc.name, activeCategoryId, { display_order: (tInfo?.display_order ?? 100) - 1 })}
-                                      className="px-2 py-2 hover:bg-white/5 text-gray-400 transition-colors"
-                                    >
-                                      -
-                                    </button>
-                                    <input 
-                                      type="number"
-                                      className="w-10 bg-transparent border-none p-1 text-[11px] font-black text-center focus:ring-0 text-amber-500/80 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                      value={tInfo?.display_order ?? 100}
-                                      onChange={(e) => updateTierInfo(bc.name, activeCategoryId, { display_order: parseInt(e.target.value) || 0 })}
-                                    />
-                                    <button 
-                                      onClick={() => updateTierInfo(bc.name, activeCategoryId, { display_order: (tInfo?.display_order ?? 100) + 1 })}
-                                      className="px-2 py-2 hover:bg-white/5 text-gray-400 transition-colors"
-                                    >
-                                      +
-                                    </button>
-                                  </div>
-                                </div>
+                              <div className="min-w-0">
+                                <p className="text-sm font-bold truncate">{bc.name}</p>
+                                <p className="text-[11px] text-gray-500">{bc.path || bc.weapon_type}</p>
                               </div>
                             </div>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+                          </td>
+                          {CATEGORIES.map(cat => {
+                            const key = `${normalizeName(bc.name)}_${cat.id}`;
+                            const tInfo = tierMap.get(key);
+                            return (
+                              <td key={cat.id} className="p-2 text-center border-l border-white/5">
+                                <div className="flex flex-col items-center gap-1.5">
+                                  <select
+                                    value={tInfo?.tier || '?'}
+                                    onChange={(e) => updateTierInfo(bc.name, cat.id, { tier: e.target.value })}
+                                    className="w-16 bg-white/5 border border-white/10 rounded-lg text-xs font-black p-1.5 text-center focus:border-amber-500/50 outline-none appearance-none cursor-pointer"
+                                  >
+                                    {TIER_OPTIONS.map(t => <option key={t} value={t} style={{ backgroundColor: '#111' }}>{t}</option>)}
+                                  </select>
+                                  <div className="flex items-center gap-1">
+                                    <select
+                                      value={tInfo?.change || 'stay'}
+                                      onChange={(e) => updateTierInfo(bc.name, cat.id, { change: e.target.value })}
+                                      title="변동"
+                                      className={`w-14 bg-white/5 border border-white/10 rounded-lg text-[11px] font-bold p-1 text-center outline-none appearance-none cursor-pointer ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-400'}`}
+                                    >
+                                      {CHANGE_OPTIONS.map(c => <option key={c} value={c} style={{ backgroundColor: '#111' }}>{c}</option>)}
+                                    </select>
+                                    <input
+                                      type="number"
+                                      title="정렬 순서"
+                                      className="w-10 bg-white/5 border border-white/10 rounded-lg p-1 text-[11px] font-bold text-center text-amber-500/80 outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                      value={tInfo?.display_order ?? 100}
+                                      onChange={(e) => updateTierInfo(bc.name, cat.id, { display_order: parseInt(e.target.value) || 0 })}
+                                    />
+                                  </div>
+                                </div>
+                              </td>
+                            );
+                          })}
+                        </tr>
+                      ))}
+                      {tierFilteredChars.length === 0 && (
+                        <tr>
+                          <td colSpan={CATEGORIES.length + 1} className="p-12 text-center text-gray-400 text-sm font-bold">
+                            검색된 캐릭터가 없습니다.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           )}
 
