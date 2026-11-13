@@ -23,49 +23,8 @@ const PartyRecommendations: React.FC = () => {
   const { t } = useTranslation();
   const [partiesList, setPartiesList] = useState<PartyCombination[]>(HSR_PARTIES);
 
-  // Supabase 실시간 동기화 & localStorage 즉시 로드
+  // 첫 화면은 빌드 때 받은 관리자 DB 사본으로 그리고, 빌드 뒤에 바뀐 내용은 DB에서 다시 읽어 반영한다.
   useEffect(() => {
-    // 1단계: localStorage 캐시 즉시 적용 (0ms 지연 없음)
-    try {
-      const local = localStorage.getItem('parties_HSR');
-      if (local) {
-        const localParties = JSON.parse(local);
-        if (Array.isArray(localParties) && localParties.length > 0) {
-          const parsed: PartyCombination[] = localParties.map((item: any) => ({
-            id: item.id,
-            name: item.name,
-            description: item.description || '',
-            category: item.category || '기타',
-            mainDPS: item.mainDPS || '',
-            tags: item.tags || [],
-            pros: item.pros || [],
-            cons: item.cons || [],
-            members: (item.slots || []).map((m: any) => ({
-              id: m.characterId || m.id,
-              name: m.characterName || m.name,
-              folderName: m.folderName || m.characterName || m.name,
-              role: m.role || '서포터',
-              breakthrough: m.breakthrough,
-              description: m.description,
-              isTrailblazer: (m.characterName || m.name || '').includes('개척자'),
-              substitutes: m.substitutes?.map((s: any) => ({
-                name: s.characterName || s.name,
-                folderName: s.folderName || s.characterName || s.name,
-                breakthrough: s.breakthrough,
-                description: s.description,
-                role: s.role,
-                isTrailblazer: (s.characterName || s.name || '').includes('개척자')
-              }))
-            }))
-          }));
-          setPartiesList(parsed);
-        }
-      }
-    } catch (e) {
-      console.warn('Local storage party parse error:', e);
-    }
-
-    // 2단계: Supabase 클라우드 실시간 동기화 확인
     const fetchCloudParties = async () => {
       if (!supabase) return;
       try {
@@ -106,7 +65,7 @@ const PartyRecommendations: React.FC = () => {
           setPartiesList(parsed);
         }
       } catch (err) {
-        console.warn('Supabase cloud fetch failed (using local/fallback data):', err);
+        console.warn('Supabase cloud fetch failed (using the build-time party data):', err);
       }
     };
 

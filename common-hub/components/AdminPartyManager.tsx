@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { 
-  Users, Plus, Trash2, Edit3, Copy, Save, RefreshCw, Search, ArrowUp, ArrowDown, 
-  Sparkles, Check, X, Shield, Zap, Sword, ExternalLink, Filter, Code, Download, Upload, AlertCircle, CheckCircle2 
+  Users, Plus, Trash2, Edit3, Copy, RefreshCw, Search, ArrowUp, ArrowDown,
+  Sparkles, Check, X, Shield, Zap, Sword, ExternalLink, Filter, Download, Upload, AlertCircle, CheckCircle2
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { 
@@ -9,8 +9,7 @@ import {
   UnifiedPartyData, 
   HSRPartyData, 
   WWPartyData, 
-  NTEPartyData, 
-  exportPartyToTSCode 
+  NTEPartyData
 } from '../types/party';
 import HSR_CHARACTERS from '../../hsr-hub/data/generated/character-summary.json';
 import { HSR_CHARACTER_VERSION_MAP, HSR_PARTIES } from '../../hsr-hub/data/parties/index';
@@ -56,6 +55,9 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('전체');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toastTone, setToastTone] = useState<'success' | 'error'>('success');
+  // True only after this game's rows were read from the DB; saving is blocked until then.
+  const [dbLoaded, setDbLoaded] = useState(false);
 
   // 모달 상태
   const [isEditorOpen, setIsEditorOpen] = useState(false);
@@ -91,16 +93,33 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     return sorted.map((party, index) => ({ ...party, order: index + 1 }));
   };
 
-  const persistParties = async (items: UnifiedPartyData[], successMessage?: string) => {
-    const sorted = sortPartiesForDisplay(items);
-    setParties(sorted);
-    localStorage.setItem(`parties_${gameKey}`, JSON.stringify(sorted));
+  const toRows = (items: UnifiedPartyData[]) => items.map((party, index) => ({
+    game_id: activeGame.toLowerCase(),
+    party_id: party.id,
+    name: party.name,
+    description: party.description,
+    category: (party as any).category || (party as any).elementSynergy || '범용',
+    element_synergy: (party as any).elementSynergy || (party as any).category || '범용',
+    main_dps: party.mainDPS,
+    tags: party.tags,
+    pros: party.pros,
+    cons: party.cons,
+    members: party.slots,
+    display_order: index + 1,
+    updated_at: party.updatedAt || new Date().toISOString()
+  }));
 
-    if (!supabase) {
-      showToast(successMessage || '브라우저에 자동 저장되었습니다.');
+  // The admin DB is the only copy of the parties (the site builds from it), so a save either
+  // lands there or is undone on screen. Replacing a game's rows is delete + insert; if the insert
+  // fails, the rows from before the edit are put back so the game is never left empty.
+  const persistParties = async (items: UnifiedPartyData[], successMessage?: string) => {
+    if (!supabase || !dbLoaded) {
+      showToast('DB를 읽지 못해 저장하지 않았습니다. 새로고침 후 다시 시도해 주세요.', 'error');
       return;
     }
-
+    const previous = parties;
+    const sorted = sortPartiesForDisplay(items);
+    setParties(sorted);
     setLoading(true);
     try {
       const { error: deleteError } = await supabase
@@ -108,37 +127,27 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         .delete()
         .eq('game_id', activeGame.toLowerCase());
       if (deleteError) throw deleteError;
-
-      const payload = sorted.map((party, index) => ({
-        game_id: activeGame.toLowerCase(),
-        party_id: party.id,
-        name: party.name,
-        description: party.description,
-        category: (party as any).category || (party as any).elementSynergy || '범용',
-        element_synergy: (party as any).elementSynergy || (party as any).category || '범용',
-        main_dps: party.mainDPS,
-        tags: party.tags,
-        pros: party.pros,
-        cons: party.cons,
-        members: party.slots,
-        display_order: index + 1,
-        updated_at: party.updatedAt || new Date().toISOString()
-      }));
-      const { error: insertError } = await supabase.from('party_recommendations').insert(payload);
-      if (insertError) throw insertError;
-      showToast(successMessage || '변경 사항이 자동 저장되었습니다.');
-    } catch (error) {
-      console.warn('Party auto-save failed:', error);
-      showToast('로컬 저장 완료 · 클라우드 자동 저장 실패');
+      const { error: insertError } = await supabase.from('party_recommendations').insert(toRows(sorted));
+      if (insertError) {
+        const { error: restoreError } = await supabase.from('party_recommendations').insert(toRows(previous));
+        if (restoreError) console.error('Restoring the previous parties failed:', restoreError);
+        throw insertError;
+      }
+      showToast(successMessage || '변경 사항을 DB에 저장했습니다.');
+    } catch (error: any) {
+      console.warn('Party save failed:', error);
+      setParties(previous);
+      showToast(`저장 실패: ${error?.message || '알 수 없는 오류'} · 변경 전 상태로 되돌렸습니다.`, 'error');
     } finally {
       setLoading(false);
     }
   };
 
   // 토스트 알림 함수
-  const showToast = (msg: string) => {
+  const showToast = (msg: string, tone: 'success' | 'error' = 'success') => {
     setToastMessage(msg);
-    setTimeout(() => setToastMessage(null), 3500);
+    setToastTone(tone);
+    setTimeout(() => setToastMessage(null), tone === 'error' ? 6000 : 3500);
   };
 
   // 활성 게임의 전체 캐릭터 목록 조회
@@ -235,9 +244,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     }));
   };
 
-  // 데이터 로드: 1) Supabase -> 2) localStorage -> 3) Built-in Constants
+  // 데이터 로드: DB를 읽는다. 읽지 못하면 빌드 때 사본을 보여 주되 저장은 막는다(빌드 뒤 수정분을 덮어쓰지 않도록).
   const loadParties = async () => {
     setLoading(true);
+    setDbLoaded(false);
     let loaded: UnifiedPartyData[] | null = null;
 
     if (supabase) {
@@ -248,7 +258,9 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
           .eq('game_id', activeGame)
           .order('display_order', { ascending: true });
 
-        if (!error && data && data.length > 0) {
+        if (error) throw error;
+        setDbLoaded(true);
+        if (data && data.length > 0) {
           loaded = data.map((item: any) => ({
             id: item.party_id || item.id,
             game: gameKey,
@@ -265,19 +277,9 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             slots: item.members || item.slots || []
           })) as UnifiedPartyData[];
         }
-      } catch (err) {
-        console.warn('Supabase fetch failed, falling back:', err);
-      }
-    }
-
-    if (!loaded) {
-      const cached = localStorage.getItem(`parties_${gameKey}`);
-      if (cached) {
-        try {
-          loaded = JSON.parse(cached);
-        } catch (e) {
-          console.error('Failed to parse cached parties:', e);
-        }
+      } catch (err: any) {
+        console.warn('Supabase fetch failed, showing the build-time copy:', err);
+        showToast(`DB를 읽지 못했습니다: ${err?.message || '알 수 없는 오류'} · 빌드 때 사본을 보여 주며 저장은 막아 둡니다.`, 'error');
       }
     }
 
@@ -292,13 +294,6 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
   useEffect(() => {
     loadParties();
   }, [activeGame]);
-
-  // parties 상태 변경 시 localStorage 자동 캐싱
-  useEffect(() => {
-    if (parties.length > 0) {
-      localStorage.setItem(`parties_${gameKey}`, JSON.stringify(parties));
-    }
-  }, [parties, gameKey]);
 
   // 필터링된 파티 목록
   const filteredParties = useMemo(() => {
@@ -508,66 +503,17 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
     setPickerState({ isOpen: false, targetSlotIndex: null, isSubstitute: false });
   };
 
-  // ② TypeScript 코드 내보내기 템플릿 엔진
-  const handleExportCode = async () => {
-    const code = exportPartyToTSCode(gameKey, parties);
-    try {
-      await navigator.clipboard.writeText(code);
-      showToast(`[${gameKey}] 파티 데이터(${parties.length}개)가 TypeScript 코드로 복사되었습니다!`);
-    } catch (err: any) {
-      alert('클립보드 복사 실패: ' + err.message);
-    }
-  };
-
-  // ③ Supabase 동기화 저장
-  const handleSyncToSupabase = async () => {
-    // 1. localStorage 무조건 즉시 강제 갱신
-    localStorage.setItem(`parties_${gameKey}`, JSON.stringify(parties));
-
-    if (!supabase) {
-      alert(`[로컬 저장 완료]\n브라우저에 ${parties.length}개의 파티가 저장되었습니다.\n추천 파티 페이지에서 즉시 확인하실 수 있습니다.`);
-      showToast(`[${gameKey}] 로컬 브라우저에 저장 완료!`);
-      return;
-    }
-    try {
-      setLoading(true);
-      await supabase.from('party_recommendations').delete().eq('game_id', activeGame.toLowerCase());
-      
-      const payload = parties.map((p, idx) => ({
-        game_id: activeGame.toLowerCase(),
-        party_id: p.id,
-        name: p.name,
-        description: p.description,
-        category: (p as any).category || (p as any).elementSynergy || '범용',
-        element_synergy: (p as any).elementSynergy || (p as any).category || '범용',
-        main_dps: p.mainDPS,
-        tags: p.tags,
-        pros: p.pros,
-        cons: p.cons,
-        members: p.slots,
-        display_order: idx + 1,
-        updated_at: new Date().toISOString()
-      }));
-
-      const { error } = await supabase.from('party_recommendations').insert(payload);
-      if (error) throw error;
-      showToast(`[${gameKey}] ${parties.length}개의 파티가 Supabase 클라우드에 동기화되었습니다!`);
-      alert(`✅ [동기화 성공]\n${parties.length}개의 파티가 Supabase 클라우드에 실시간 동기화되었습니다!\n모든 유저의 추천 파티 페이지에 즉시 반영됩니다.`);
-    } catch (err: any) {
-      console.warn('Supabase sync error:', err);
-      showToast(`[${gameKey}] 로컬 브라우저에 저장 완료!`);
-      alert(`💾 [로컬 저장 완료]\n내 브라우저에 ${parties.length}개의 파티가 저장되었습니다!\n\n※ Supabase 클라우드 테이블(party_recommendations)이 미생성된 상태이므로, 다른 기기/유저들에게 영구 배포하려면 [코드 내보내기] 버튼을 눌러 코드를 복사해주세요.`);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return (
     <div className="space-y-8 animate-in fade-in duration-500 relative">
       {/* 플로팅 토스트 알림 */}
       {toastMessage && (
-        <div className="fixed bottom-8 right-8 z-[300] bg-black/90 border border-amber-500/40 text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 backdrop-blur-xl animate-in slide-in-from-bottom-5">
-          <CheckCircle2 size={20} className="text-amber-500" />
+        <div
+          role={toastTone === 'error' ? 'alert' : 'status'}
+          className={`fixed bottom-8 right-8 z-[300] max-w-md bg-black/90 border ${toastTone === 'error' ? 'border-red-500/50' : 'border-amber-500/40'} text-white px-6 py-4 rounded-2xl shadow-2xl flex items-center gap-3 backdrop-blur-xl animate-in slide-in-from-bottom-5`}
+        >
+          {toastTone === 'error'
+            ? <AlertCircle size={20} className="shrink-0 text-red-400" />
+            : <CheckCircle2 size={20} className="shrink-0 text-amber-500" />}
           <span className="text-xs font-black">{toastMessage}</span>
         </div>
       )}
@@ -601,27 +547,11 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             <Plus size={16} strokeWidth={3} /> 새 파티 만들기
           </button>
           <button
-            onClick={handleExportCode}
-            className="flex items-center gap-2 px-5 py-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs uppercase tracking-wider rounded-2xl transition-all active:scale-95"
-          >
-            <Code size={16} className="text-amber-500" /> 코드 내보내기
-          </button>
-          <button
-            onClick={handleSyncToSupabase}
+            onClick={() => loadParties()}
             disabled={loading}
-            className="flex items-center gap-2 px-5 py-3.5 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 font-bold text-xs uppercase tracking-wider rounded-2xl transition-all active:scale-95 disabled:opacity-50"
-          >
-            <Save size={16} /> 클라우드 동기화
-          </button>
-          <button
-            onClick={() => {
-              if (confirm('기존 코드 기본 프리셋으로 되돌리시겠습니까?')) {
-                setParties(getBuiltinParties());
-                showToast('기본 프리셋으로 복원되었습니다.');
-              }
-            }}
-            className="p-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white rounded-2xl transition-all"
-            title="기본 프리셋으로 초기화"
+            className="p-3.5 bg-white/5 hover:bg-white/10 border border-white/10 text-gray-400 hover:text-white rounded-2xl transition-all disabled:opacity-50"
+            title="DB에서 다시 불러오기"
+            aria-label="DB에서 다시 불러오기"
           >
             <RefreshCw size={16} />
           </button>

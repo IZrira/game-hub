@@ -38,6 +38,16 @@ export function tierGroupsFromRows(rows) {
   return result;
 }
 
+/** tier_lists rows in a stable order with only the fields the pages read, so regenerated files don't churn. */
+export function sortedTierRows(rows) {
+  return [...rows]
+    .sort((a, b) => String(a.category_id).localeCompare(String(b.category_id))
+      || (a.display_order ?? 100) - (b.display_order ?? 100)
+      || String(a.character_name).localeCompare(String(b.character_name), 'ko'))
+    .map(row => ({ category_id: row.category_id, character_name: row.character_name, tier: row.tier,
+      role: row.role ?? null, change: row.change ?? null, display_order: row.display_order ?? null }));
+}
+
 const memberFromRow = member => defined([
   ['id', member.characterId || member.id],
   ['name', member.characterName || member.name],
@@ -46,6 +56,7 @@ const memberFromRow = member => defined([
   ['isTrailblazer', (member.characterName || member.name || '').includes('개척자') ? true : undefined],
   ['breakthrough', member.breakthrough],
   ['description', member.description],
+  ['attribute', member.attribute],
 ]);
 
 /** party_recommendations row -> PartyCombination. */

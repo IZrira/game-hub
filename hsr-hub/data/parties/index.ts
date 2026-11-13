@@ -21,7 +21,6 @@ export interface PartyCombination {
 }
 
 import generatedParties from '../generated/parties.json';
-import { guideBasedParties } from './guide_based';
 
 // 캐릭터 도감 최신순 기반 버전 매핑
 export const HSR_CHARACTER_VERSION_MAP: Record<string, number> = {
@@ -96,10 +95,5 @@ export const HSR_CHARACTER_VERSION_MAP: Record<string, number> = {
 };
 
 // 관리자 페이지의 DB(party_recommendations) 사본이다. 빌드 때 `npm run generate:content-snapshots`가 갱신하므로 직접 고치지 않는다.
-const cloudParties = generatedParties as PartyCombination[];
-
-// 클라우드 파티는 관리자 화면의 표시 순서를 그대로 따르고, 가이드 기반 파티는 그 뒤에 둔다.
-export const HSR_PARTIES: PartyCombination[] = [
-  ...cloudParties,
-  ...guideBasedParties
-];
+// 순서는 관리자 화면의 표시 순서를 따른다.
+export const HSR_PARTIES: PartyCombination[] = generatedParties as PartyCombination[];

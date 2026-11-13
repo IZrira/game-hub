@@ -5,11 +5,13 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { partyFromRow, tierGroupsFromRows } from './lib/content-snapshots.js';
+import { partyFromRow, sortedTierRows, tierGroupsFromRows } from './lib/content-snapshots.js';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const TIER_GAMES = ['hsr', 'ww'];
-const PARTY_GAMES = ['hsr'];
+// The NTE tier page lays DB rows over its category texts (nte-hub/data/adminData.ts), so it gets the rows as they are.
+const RAW_TIER_GAMES = ['nte'];
+const PARTY_GAMES = ['hsr', 'ww', 'nte'];
 
 function readEnv(name) {
   if (process.env[name]) return process.env[name];
@@ -51,6 +53,12 @@ async function main() {
       const rows = tiers.filter(row => row.game_id === game);
       if (!rows.length) { console.warn(`[Snapshots] No ${game} tier rows; keeping the existing snapshot.`); continue; }
       writeJson(`${game}-hub/data/generated/tiers.json`, tierGroupsFromRows(rows));
+      console.log(`[Snapshots] ${game} tiers: ${rows.length} rows.`);
+    }
+    for (const game of RAW_TIER_GAMES) {
+      const rows = tiers.filter(row => row.game_id === game);
+      if (!rows.length) { console.warn(`[Snapshots] No ${game} tier rows; keeping the existing snapshot.`); continue; }
+      writeJson(`${game}-hub/data/generated/tier-rows.json`, sortedTierRows(rows));
       console.log(`[Snapshots] ${game} tiers: ${rows.length} rows.`);
     }
   } catch (error) {

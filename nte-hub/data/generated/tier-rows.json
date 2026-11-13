@@ -1,0 +1,554 @@
+[
+  {
+    "category_id": "distortion",
+    "character_name": "감정사",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "구원",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "나나리",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "다포딜",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "라크리모사",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "레이븐",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "링코",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "민트",
+    "tier": "B",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "백장",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "사키리",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "스키아",
+    "tier": "B",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "신쿠",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "아들러",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "에드가",
+    "tier": "F",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "우미츠키",
+    "tier": "F",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "일로이",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "잔홍",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "치즈",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "카오스",
+    "tier": "SS",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "파디아",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "하니엘",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "하토르",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "호토리",
+    "tier": "SS",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "감정사",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "구원",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "나나리",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "다포딜",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "라크리모사",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "레이븐",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "링코",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "민트",
+    "tier": "B",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "백장",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "사키리",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "스키아",
+    "tier": "B",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "신쿠",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "아들러",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "에드가",
+    "tier": "F",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "우미츠키",
+    "tier": "F",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "일로이",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "잔홍",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "치즈",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "카오스",
+    "tier": "SS",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "파디아",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "하니엘",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "하토르",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "호토리",
+    "tier": "SS",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "감정사",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "구원",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "나나리",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "다포딜",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "라크리모사",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "레이븐",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "링코",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "민트",
+    "tier": "B",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "백장",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "사키리",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "스키아",
+    "tier": "B",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "신쿠",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "아들러",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "에드가",
+    "tier": "F",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "우미츠키",
+    "tier": "F",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "일로이",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "잔홍",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "치즈",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "카오스",
+    "tier": "SS",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "파디아",
+    "tier": "S",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "하니엘",
+    "tier": "S+",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "하토르",
+    "tier": "A",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "호토리",
+    "tier": "SS",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  }
+]

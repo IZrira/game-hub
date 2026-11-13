@@ -1,5 +1,6 @@
 import { supabase } from '../../common-hub/lib/supabase';
 import { mergeAdminTiers } from '../data/adminData';
+import nteTierRows from '../data/generated/tier-rows.json';
 import React, { useState, useMemo, useEffect, memo } from 'react';
 import { useParams, Link } from 'react-router';
 import { 
@@ -85,7 +86,8 @@ const NTETierList: React.FC = () => {
   const [roleFilter, setRoleFilter] = useState<string>('전체');
   const [attrFilter, setAttrFilter] = useState<string>('전체');
 
-  const [categories, setCategories] = useState(NTE_TIER_CATEGORIES);
+  // First paint uses the build-time copy of the admin DB; the fetch below picks up edits made after the build.
+  const [categories, setCategories] = useState(() => mergeAdminTiers(nteTierRows));
   useEffect(() => {
     let active = true;
     const loadTiers = async () => {

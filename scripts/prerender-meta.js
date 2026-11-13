@@ -4,7 +4,7 @@ import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
 import { getWaveLocations, aniimoLocationPath, waveLocationSlug } from './lib/aniimo-locations.js';
 import { sanitizePublicGuideData, sanitizePublicHsrGuideData } from './lib/public-guide-links.js';
 import { attachNteGuideAnalysis, renderNteGuideAnalysis } from './lib/nte-guide-analysis.js';
-import { generateNtePartyBody, parseNtePartyCombinations } from './lib/nte-party-prerender.js';
+import { generateNtePartyBody, validateNteParties } from './lib/nte-party-prerender.js';
 import { NTE_PARTY_SEO } from '../common-hub/data/ntePartySeo.js';
 import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
@@ -40,14 +40,14 @@ const GUIDE_ARTICLES_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideArti
 const GUIDE_LANDING_FILE = path.join(ROOT_DIR, 'common-hub', 'data', 'guideLanding.json');
 
 const HSR_GUIDE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'guides');
-const HSR_PARTY_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'parties');
+const HSR_PARTY_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'generated', 'parties.json');
 const HSR_LIGHTCONE_DIR = path.join(ROOT_DIR, 'hsr-hub', 'data', 'lightcones');
 const HSR_RELICS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'relics.ts');
 const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts');
 const WW_GUIDE_ANALYSIS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guide-analysis.json');
 const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
-const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'parties.ts');
-const NTE_PARTY_FILE = path.join(ROOT_DIR, 'nte-hub', 'data', 'parties.ts');
+const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'parties.json');
+const NTE_PARTY_FILE = path.join(ROOT_DIR, 'nte-hub', 'data', 'generated', 'parties.json');
 
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
 const BASE_URL = 'https://riragamehub.com';
@@ -373,32 +373,18 @@ function loadHsrGuidesMap() {
   return map;
 }
 
-function loadHsrPartiesList() {
-  const parties = [];
+// Tier and party snapshots of the admin DB, written by `npm run generate:content-snapshots`.
+function loadPartySnapshot(file) {
   try {
-    if (!fs.existsSync(HSR_PARTY_DIR)) return parties;
-    const files = fs.readdirSync(HSR_PARTY_DIR).filter(f => f.endsWith('.ts') && f !== 'index.ts');
-    files.forEach(file => {
-      try {
-        const filePath = path.join(HSR_PARTY_DIR, file);
-        let content = fs.readFileSync(filePath, 'utf8');
-        content = content.replace(/import\s+[\s\S]*?;/g, '');
-        content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
-        content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
-        content = content.replace(/:\s*PartyCombination\[\]\s*=/g, ' =');
-        content = content.replace(/export\s+const\s+[^\s=:]+\s*=\s*/, 'const parties = ');
+    const parties = JSON.parse(fs.readFileSync(file, 'utf8'));
+    return Array.isArray(parties) ? parties : [];
+  } catch (e) {
+    return [];
+  }
+}
 
-        const match = content.match(/const\s+parties\s*=\s*([\s\S]+?);?\s*$/);
-        if (match && match[1]) {
-          const list = new Function('return ' + match[1])();
-          if (Array.isArray(list)) {
-            parties.push(...list);
-          }
-        }
-      } catch (err) {}
-    });
-  } catch (e) {}
-  return parties;
+function loadHsrPartiesList() {
+  return loadPartySnapshot(HSR_PARTY_FILE);
 }
 
 function loadWwGuidesMap() {
@@ -418,22 +404,7 @@ function loadWwGuidesMap() {
 }
 
 function loadWwPartiesList() {
-  try {
-    if (!fs.existsSync(WW_PARTY_FILE)) return [];
-    let content = fs.readFileSync(WW_PARTY_FILE, 'utf8');
-    content = content.replace(/import\s+[\s\S]*?;/g, '');
-    content = content.replace(/export\s+interface\s+[\s\S]*?\n\}/g, '');
-    content = content.replace(/interface\s+[\s\S]*?\n\}/g, '');
-    content = content.replace(/:\s*PartyCombination\[\]\s*=/g, ' =');
-    content = content.replace(/export\s+const\s+WW_PARTY_COMBINATIONS\s*=\s*/, 'const WW_PARTY_COMBINATIONS = ');
-
-    const match = content.match(/const\s+WW_PARTY_COMBINATIONS\s*=\s*([\s\S]+?);?\s*$/);
-    if (match && match[1]) {
-      const list = new Function('return ' + match[1])();
-      if (Array.isArray(list)) return list;
-    }
-  } catch (e) {}
-  return [];
+  return loadPartySnapshot(WW_PARTY_FILE);
 }
 
 function loadHsrRelics() {
@@ -2455,7 +2426,7 @@ function runPrerender() {
   const wwGuidesMap = loadWwGuidesMap();
   const wwPartiesList = loadWwPartiesList();
   const ntePartiesBody = generateNtePartyBody(
-    parseNtePartyCombinations(fs.readFileSync(NTE_PARTY_FILE, 'utf8')),
+    validateNteParties(JSON.parse(fs.readFileSync(NTE_PARTY_FILE, 'utf8'))),
     sitemapRouteSet
   );
 

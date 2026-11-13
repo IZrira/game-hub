@@ -1,45 +1,7 @@
-import ts from 'typescript';
-
-const PARTY_EXPORT = 'NTE_PARTY_COMBINATIONS';
-
-// Read only the exported literal. Do not execute imports, fallback generation,
-// function calls or any other statements from the authoring module.
-function readLiteral(node) {
-  if (ts.isParenthesizedExpression(node) || ts.isAsExpression(node) || ts.isSatisfiesExpression(node)) {
-    return readLiteral(node.expression);
-  }
-  if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) return node.text;
-  if (ts.isNumericLiteral(node)) return Number(node.text);
-  if (node.kind === ts.SyntaxKind.TrueKeyword) return true;
-  if (node.kind === ts.SyntaxKind.FalseKeyword) return false;
-  if (node.kind === ts.SyntaxKind.NullKeyword) return null;
-  if (ts.isArrayLiteralExpression(node)) return node.elements.map(readLiteral);
-  if (ts.isObjectLiteralExpression(node)) {
-    return Object.fromEntries(node.properties.map(property => {
-      if (!ts.isPropertyAssignment(property) || !(
-        ts.isIdentifier(property.name) || ts.isStringLiteral(property.name) || ts.isNumericLiteral(property.name)
-      )) throw new Error(`${PARTY_EXPORT} must contain only literal properties`);
-      return [property.name.text, readLiteral(property.initializer)];
-    }));
-  }
-  throw new Error(`${PARTY_EXPORT} must contain only literal values`);
-}
-
-export function parseNtePartyCombinations(source) {
-  const file = ts.createSourceFile('nte-parties.ts', source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
-  let initializer;
-  for (const statement of file.statements) {
-    if (!ts.isVariableStatement(statement)) continue;
-    if (!statement.modifiers?.some(modifier => modifier.kind === ts.SyntaxKind.ExportKeyword)) continue;
-    const declaration = statement.declarationList.declarations.find(item => ts.isIdentifier(item.name) && item.name.text === PARTY_EXPORT);
-    if (declaration) {
-      initializer = declaration.initializer;
-      break;
-    }
-  }
-  if (!initializer) throw new Error(`Missing ${PARTY_EXPORT} literal`);
-  const parties = readLiteral(initializer);
-  if (!Array.isArray(parties) || !parties.length) throw new Error(`${PARTY_EXPORT} must be a non-empty array`);
+// NTE party data comes from the admin DB snapshot (nte-hub/data/generated/parties.json).
+// Refuse a missing or malformed list so the build never ships a thin, empty party page.
+export function validateNteParties(parties) {
+  if (!Array.isArray(parties) || !parties.length) throw new Error('NTE parties must be a non-empty array');
   for (const party of parties) {
     if (!party || typeof party.name !== 'string' || !party.name.trim() || typeof party.description !== 'string'
       || !Array.isArray(party.members) || !party.members.length) throw new Error('Invalid NTE party data');

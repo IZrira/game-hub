@@ -3,23 +3,21 @@ import fs from 'node:fs';
 import { load } from 'cheerio';
 import { describe, expect, it } from 'vitest';
 import { NTE_PARTY_COMBINATIONS } from '../nte-hub/data/parties';
-import { generateNtePartyBody, parseNtePartyCombinations } from '../scripts/lib/nte-party-prerender.js';
+import { generateNtePartyBody, validateNteParties } from '../scripts/lib/nte-party-prerender.js';
 
-const source = fs.readFileSync(new URL('../nte-hub/data/parties.ts', import.meta.url), 'utf8');
+const snapshot = JSON.parse(fs.readFileSync(new URL('../nte-hub/data/generated/parties.json', import.meta.url), 'utf8'));
 const sitemap = fs.readFileSync(new URL('../public/sitemap-nte.xml', import.meta.url), 'utf8');
 const routes = new Set(Array.from(sitemap.matchAll(/<loc>(.*?)<\/loc>/g), match => new URL(match[1]).pathname));
-const parties = parseNtePartyCombinations(source);
+const parties = validateNteParties(snapshot);
 const memberCount = parties.reduce((sum, party) => sum + party.members.length, 0);
 const substituteCount = parties.reduce((sum, party) => sum + party.members.reduce((n, member) => n + (member.substitutes?.length || 0), 0), 0);
 
 describe('NTE party initial HTML', () => {
-  it('extracts every local party without executing imports or fallback code', () => {
+  it('builds the page from the admin DB snapshot the site uses', () => {
     expect(parties.length).toBeGreaterThan(0);
     expect(parties).toEqual(NTE_PARTY_COMBINATIONS);
     expect(new Set(parties.map(party => party.name)).size).toBe(parties.length);
     expect(new Set(parties.map(party => party.id)).size).toBe(parties.length);
-    const guarded = `import unavailable from 'not-a-real-module';\nthrow new Error('must not execute');\n${source}\nthrow new Error('must not execute');`;
-    expect(parseNtePartyCombinations(guarded)).toEqual(NTE_PARTY_COMBINATIONS);
   });
 
   it('preserves every party, member, role, description and substitute in source order', () => {
@@ -93,14 +91,12 @@ describe('NTE party initial HTML', () => {
   });
 
   it.each([
-    'export const NTE_PARTY_COMBINATIONS = getParties();',
-    'export const NTE_PARTY_COMBINATIONS = [...otherParties];',
-    'export const NTE_PARTY_COMBINATIONS = [{ name: call(), description: "x", members: [] }];',
-    'export const NTE_PARTY_COMBINATIONS = [];',
-    'export const NTE_PARTY_COMBINATIONS = [{ name: "x", description: "x", members: [] }];',
-    'const NTE_PARTY_COMBINATIONS = [];',
-    'export const unrelated = [];',
-  ])('fails closed instead of generating a thin empty page for unsupported data: %s', invalid => {
-    expect(() => parseNtePartyCombinations(invalid)).toThrow();
+    null,
+    [],
+    [{ name: 'x', description: 'x', members: [] }],
+    [{ name: '', description: 'x', members: [{ name: 'a', role: '서포터' }] }],
+    [{ name: 'x', description: 'x', members: [{ name: 'a', role: '서포터', substitutes: 'b' }] }],
+  ])('fails closed instead of generating a thin empty page for unsupported data: %j', invalid => {
+    expect(() => validateNteParties(invalid)).toThrow();
   });
 });

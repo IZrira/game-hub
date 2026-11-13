@@ -24,12 +24,6 @@ const NTEPartyRecommendations: React.FC = () => {
 
   useEffect(() => {
     let active = true;
-    try {
-      const cached = JSON.parse(localStorage.getItem('parties_NTE') || 'null');
-      if (Array.isArray(cached)) setParties(cached.map(toPublicParty));
-    } catch (error) {
-      console.warn('Could not load cached NTE parties:', error);
-    }
     const loadParties = async () => {
       if (!supabase) return;
       try {
