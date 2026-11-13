@@ -519,21 +519,21 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       )}
 
       {/* 상단 컨트롤 바 */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-[#111] p-8 rounded-[36px] border border-white/5 shadow-2xl">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-[#111] p-8 rounded-3xl border border-white/5">
         <div className="space-y-2">
           <div className="flex items-center gap-3">
             <div className="p-2.5 bg-amber-500/10 rounded-xl text-amber-500">
               <Users size={22} />
             </div>
             <div>
-              <h2 className="text-2xl font-black italic tracking-tighter uppercase">
+              <h2 className="text-lg font-bold">
                 {gameKey === 'HSR' ? '붕괴: 스타레일' : gameKey === 'WW' ? '명조' : 'NTE'} 파티 추천 빌더
               </h2>
               <p className="text-xs text-gray-400 font-bold">
                 슬롯 규격: <span className="text-amber-500 font-black">{gameKey === 'WW' ? '3인 고정' : '4인 고정'}</span> | 총 <span className="text-amber-500">{parties.length}</span>개 파티
               </p>
               {gameKey === 'HSR' && (
-                <p className="text-[10px] font-bold text-emerald-400">자동 저장 · 파티 내 최신 캐릭터 버전순 정렬</p>
+                <p className="text-[11px] font-bold text-emerald-400">자동 저장 · 파티 내 최신 캐릭터 버전순 정렬</p>
               )}
             </div>
           </div>
@@ -595,16 +595,16 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
           return (
             <div
               key={party.id || pIdx}
-              className="group bg-[#111] border border-white/5 hover:border-amber-500/30 rounded-[32px] p-6 lg:p-8 transition-all duration-300 shadow-xl space-y-6"
+              className="group bg-[#111] border border-white/5 hover:border-amber-500/30 rounded-2xl p-6 lg:p-8 transition-colors duration-300 space-y-6"
             >
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-white/5 pb-6">
                 <div className="space-y-2">
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-lg text-amber-500 text-[10px] font-black uppercase tracking-wider">
+                    <span className="px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-lg text-amber-500 text-[11px] font-black uppercase tracking-wider">
                       {category}
                     </span>
                     {party.mainDPS && (
-                      <span className="px-2.5 py-0.5 bg-rose-500/10 border border-rose-500/20 rounded-md text-rose-400 text-[10px] font-bold">
+                      <span className="px-2.5 py-0.5 bg-rose-500/10 border border-rose-500/20 rounded-md text-rose-400 text-[11px] font-bold">
                         Main DPS: {party.mainDPS}
                       </span>
                     )}
@@ -614,7 +614,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                   {party.tags && party.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1.5 pt-1">
                       {party.tags.map((tag, tIdx) => (
-                        <span key={tIdx} className="px-2 py-0.5 bg-white/5 rounded text-[10px] text-gray-400">
+                        <span key={tIdx} className="px-2 py-0.5 bg-white/5 rounded text-[11px] text-gray-400">
                           #{tag}
                         </span>
                       ))}
@@ -687,12 +687,12 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           }}
                         />
                       ) : (
-                        <span className="text-[10px] text-gray-500 font-bold">비어있음</span>
+                        <span className="text-[11px] text-gray-500 font-bold">비어있음</span>
                       )}
 
                       {/* 돌파 추천 뱃지 (예: 1돌+, 2돌+) */}
                       {slot.breakthrough && slot.breakthrough !== '명함 (E0)' && slot.breakthrough !== '명함 (S0)' && slot.breakthrough !== '명함' && (
-                        <div className="absolute top-1 right-1 px-1.5 py-0.5 bg-amber-500 text-black text-[9px] font-black rounded-md shadow-md">
+                        <div className="absolute top-1 right-1 px-1.5 py-0.5 bg-amber-500 text-black text-[11px] font-black rounded-md shadow-md">
                           {slot.breakthrough}
                         </div>
                       )}
@@ -700,9 +700,9 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     <div>
                       <p className="text-sm font-black text-white truncate max-w-[120px]">{slot.characterName || '미선택'}</p>
                       <div className="flex items-center justify-center gap-1 mt-0.5">
-                        <span className="text-[10px] text-amber-500/80 font-bold uppercase tracking-wider">{slot.role}</span>
+                        <span className="text-[11px] text-amber-500/80 font-bold uppercase tracking-wider">{slot.role}</span>
                         {slot.breakthrough && (
-                          <span className="text-[9px] text-amber-400 font-black px-1 py-0.2 bg-amber-500/10 border border-amber-500/20 rounded">
+                          <span className="text-[11px] text-amber-400 font-black px-1 py-0.2 bg-amber-500/10 border border-amber-500/20 rounded">
                             {slot.breakthrough}
                           </span>
                         )}
@@ -712,16 +712,16 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     {/* 대체 캐릭터 뱃지들 (돌파 추천 포함) */}
                     {slot.substitutes && slot.substitutes.length > 0 && (
                       <div className="w-full pt-2 border-t border-white/5 flex flex-wrap items-center justify-center gap-1.5">
-                        <span className="text-[8px] text-gray-500 font-bold uppercase w-full">대체 캐릭터:</span>
+                        <span className="text-[11px] text-gray-500 font-bold uppercase w-full">대체 캐릭터:</span>
                         {slot.substitutes.map((sub, subIdx) => (
                           <span
                             key={subIdx}
-                            className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[9px] text-gray-300 font-medium truncate max-w-[110px] flex items-center gap-1"
+                            className="px-2 py-0.5 bg-white/5 border border-white/10 rounded-md text-[11px] text-gray-300 font-medium truncate max-w-[110px] flex items-center gap-1"
                             title={sub.description || sub.breakthrough ? `${sub.characterName} (${sub.breakthrough || '명함'}): ${sub.description || ''}` : sub.characterName}
                           >
                             <span>{sub.characterName}</span>
                             {sub.breakthrough && (
-                              <span className="text-amber-400 font-bold text-[8px]">({sub.breakthrough})</span>
+                              <span className="text-amber-400 font-bold text-[11px]">({sub.breakthrough})</span>
                             )}
                           </span>
                         ))}
@@ -735,7 +735,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         })}
 
         {filteredParties.length === 0 && (
-          <div className="py-20 text-center bg-[#111] rounded-[36px] border border-white/5 space-y-4">
+          <div className="py-20 text-center bg-[#111] rounded-3xl border border-white/5 space-y-4">
             <Users size={48} className="mx-auto text-gray-600" />
             <p className="text-gray-400 font-bold text-sm">등록되거나 검색된 파티 추천 데이터가 없습니다.</p>
             <button
@@ -753,14 +753,14 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       {/* ========================================================================= */}
       {isEditorOpen && editingParty && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300">
-          <div className="bg-[#121212] border border-white/10 rounded-[36px] w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-10 space-y-8 shadow-2xl custom-scrollbar">
+          <div className="bg-[#121212] border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-10 space-y-8 shadow-2xl custom-scrollbar">
             <div className="flex items-center justify-between border-b border-white/10 pb-6">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-amber-500/10 text-amber-500 rounded-2xl">
                   <Sparkles size={24} />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white">
+                  <h3 className="text-lg font-bold text-white">
                     {editingParty.id ? '파티 조합 편집' : '새 파티 조합 구성'}
                   </h3>
                   <p className="text-xs text-gray-400 font-bold uppercase tracking-wider">
@@ -780,10 +780,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2.5">
                 <div className="flex items-center justify-between">
-                  <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 이름 *</label>
+                  <label className="text-[11px] font-black uppercase tracking-widest text-amber-500">파티 이름 *</label>
                   {/* 특수기호 빠른 삽입 버튼 */}
                   <div className="flex items-center gap-1">
-                    <span className="text-[9px] text-gray-500 font-bold">특수기호:</span>
+                    <span className="text-[11px] text-gray-500 font-bold">특수기호:</span>
                     <button
                       type="button"
                       onClick={() => setEditingParty({ ...editingParty, name: (editingParty.name || '') + '•' })}
@@ -815,7 +815,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                 <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                   {editingParty.slots.some(s => Boolean(s.characterName)) && (
                     <>
-                      <span className="text-[9px] text-gray-500 font-bold">이름 삽입:</span>
+                      <span className="text-[11px] text-gray-500 font-bold">이름 삽입:</span>
                       {editingParty.slots
                         .filter(s => Boolean(s.characterName))
                         .map((slot, sIdx) => (
@@ -849,7 +849,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         setEditingParty({ ...editingParty, name: autoTitle });
                         showToast(`파티명이 "${autoTitle}"(으)로 자동완성되었습니다!`);
                       }}
-                      className="flex items-center gap-1 px-2.5 py-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-[10px] font-black text-amber-400 transition-all active:scale-95 ml-auto"
+                      className="flex items-center gap-1 px-2.5 py-1 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 rounded-lg text-[11px] font-black text-amber-400 transition-all active:scale-95 ml-auto"
                     >
                       <Sparkles size={11} /> 파티명 자동완성
                     </button>
@@ -858,7 +858,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">카테고리</label>
+                <label className="text-[11px] font-black uppercase tracking-widest text-amber-500">카테고리</label>
                 <select
                   value={(editingParty as any).category || (editingParty as any).elementSynergy || ''}
                   onChange={(e) => {
@@ -897,7 +897,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     {/* 상단 슬롯 헤더 & 역할 선택 */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">
+                        <span className="text-[11px] font-black text-amber-500 uppercase tracking-widest">
                           Slot {sIdx + 1}
                         </span>
                       </div>
@@ -922,7 +922,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           <p className="text-sm font-black text-white truncate max-w-[120px]">
                             {slot.characterName || '캐릭터 선택'}
                           </p>
-                          <span className="text-[9px] text-amber-500 font-bold uppercase tracking-wider block mt-0.5">
+                          <span className="text-[11px] text-amber-500 font-bold uppercase tracking-wider block mt-0.5">
                             클릭하여 변경
                           </span>
                         </div>
@@ -953,7 +953,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                               updatedSlots[sIdx].breakthrough = e.target.value;
                               setEditingParty({ ...editingParty, slots: updatedSlots as any });
                             }}
-                            className="w-full bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-[10px] font-black text-amber-400 focus:border-amber-500/50 outline-none text-center"
+                            className="w-full bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-[11px] font-black text-amber-400 focus:border-amber-500/50 outline-none text-center"
                           >
                             <option value="">돌파 권장: 명함</option>
                             {(BREAKTHROUGH_PRESETS[gameKey] || []).map(b => (
@@ -967,10 +967,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     {/* 대체 캐릭터 (Substitutes) 관리 */}
                     <div className="pt-3 border-t border-white/5 space-y-2">
                       <div className="flex items-center justify-between">
-                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-wider">대체 캐릭터</span>
+                        <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">대체 캐릭터</span>
                         <button
                           onClick={() => openCharacterPicker(sIdx, true)}
-                          className="text-[9px] font-bold text-amber-500 hover:text-amber-400 flex items-center gap-1"
+                          className="text-[11px] font-bold text-amber-500 hover:text-amber-400 flex items-center gap-1"
                         >
                           <Plus size={10} /> 추가
                         </button>
@@ -1003,7 +1003,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                                 updatedSlots[sIdx].substitutes![subIdx].breakthrough = e.target.value;
                                 setEditingParty({ ...editingParty, slots: updatedSlots as any });
                               }}
-                              className="w-full bg-black/60 border border-white/10 rounded-lg px-2 py-0.5 text-[9px] font-bold text-amber-400 outline-none"
+                              className="w-full bg-black/60 border border-white/10 rounded-lg px-2 py-0.5 text-[11px] font-bold text-amber-400 outline-none"
                             >
                               <option value="">돌파: 명함</option>
                               <option value="1돌+">1돌+ 권장</option>
@@ -1068,14 +1068,14 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           </div>
                           <div className="truncate flex-1">
                             <p className="text-xs font-black truncate">{slot.characterName}</p>
-                            <p className={`text-[10px] font-bold uppercase ${isSelected ? 'text-black/70' : 'text-gray-400'}`}>
+                            <p className={`text-[11px] font-bold uppercase ${isSelected ? 'text-black/70' : 'text-gray-400'}`}>
                               {slot.role}
                             </p>
                           </div>
                           {isSelected ? (
                             <Check size={16} strokeWidth={3} className="text-black shrink-0" />
                           ) : (
-                            <span className="text-[10px] text-gray-500 font-bold">선택</span>
+                            <span className="text-[11px] text-gray-500 font-bold">선택</span>
                           )}
                         </button>
                       );
@@ -1084,7 +1084,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               ) : (
                 <div className="p-6 bg-white/[0.02] border border-dashed border-white/10 rounded-2xl text-center space-y-1">
                   <p className="text-xs text-gray-400 font-bold">⚠️ 먼저 위의 1단계 파티 슬롯에서 캐릭터를 선택해 주세요.</p>
-                  <p className="text-[10px] text-gray-500">배치된 캐릭터들이 이곳에 메인 딜러 후보로 자동 노출됩니다.</p>
+                  <p className="text-[11px] text-gray-500">배치된 캐릭터들이 이곳에 메인 딜러 후보로 자동 노출됩니다.</p>
                 </div>
               )}
             </div>
@@ -1092,7 +1092,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             {/* 3단계: 파티 설명 및 태그 입력 */}
             <div className="space-y-4 pt-6 border-t border-white/5">
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">파티 설명 및 운영법</label>
+                <label className="text-[11px] font-black uppercase tracking-widest text-amber-500">파티 설명 및 운영법</label>
                 <textarea
                   value={editingParty.description}
                   onChange={(e) => setEditingParty({ ...editingParty, description: e.target.value })}
@@ -1103,7 +1103,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase tracking-widest text-amber-500">태그 (쉼표로 구분)</label>
+                <label className="text-[11px] font-black uppercase tracking-widest text-amber-500">태그 (쉼표로 구분)</label>
                 <input
                   type="text"
                   value={(editingParty.tags || []).join(', ')}
@@ -1143,7 +1143,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       {/* ========================================================================= */}
       {pickerState.isOpen && (
         <div className="fixed inset-0 z-[250] flex items-center justify-center p-4 bg-black/85 backdrop-blur-2xl animate-in fade-in duration-200">
-          <div className="bg-[#141414] border border-white/10 rounded-[36px] w-full max-w-2xl h-[650px] max-h-[88vh] flex flex-col p-6 md:p-8 space-y-5 shadow-2xl">
+          <div className="bg-[#141414] border border-white/10 rounded-3xl w-full max-w-2xl h-[650px] max-h-[88vh] flex flex-col p-6 md:p-8 space-y-5 shadow-2xl">
             <div className="flex items-center justify-between border-b border-white/10 pb-4 shrink-0">
               <div>
                 <h4 className="text-xl font-black text-white">
@@ -1176,19 +1176,19 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setPickerRarity('all')}
-                  className={`px-3 py-1 rounded-lg text-[10px] font-black transition-all ${pickerRarity === 'all' ? 'bg-amber-500 text-black' : 'bg-white/5 text-gray-400'}`}
+                  className={`px-3 py-1 rounded-lg text-[11px] font-black transition-all ${pickerRarity === 'all' ? 'bg-amber-500 text-black' : 'bg-white/5 text-gray-400'}`}
                 >
                   전체 등급
                 </button>
                 <button
                   onClick={() => setPickerRarity(5)}
-                  className={`px-3 py-1 rounded-lg text-[10px] font-black transition-all ${pickerRarity === 5 ? 'bg-yellow-500 text-black' : 'bg-white/5 text-yellow-500/70'}`}
+                  className={`px-3 py-1 rounded-lg text-[11px] font-black transition-all ${pickerRarity === 5 ? 'bg-yellow-500 text-black' : 'bg-white/5 text-yellow-500/70'}`}
                 >
                   5★ 전용
                 </button>
                 <button
                   onClick={() => setPickerRarity(4)}
-                  className={`px-3 py-1 rounded-lg text-[10px] font-black transition-all ${pickerRarity === 4 ? 'bg-purple-500 text-white' : 'bg-white/5 text-purple-400/70'}`}
+                  className={`px-3 py-1 rounded-lg text-[11px] font-black transition-all ${pickerRarity === 4 ? 'bg-purple-500 text-white' : 'bg-white/5 text-purple-400/70'}`}
                 >
                   4★ 전용
                 </button>
@@ -1227,7 +1227,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                       <button
                         key={char.id}
                         onClick={() => handleSelectCharacter(char)}
-                        className="group bg-black/40 border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 rounded-2xl p-2.5 flex flex-col items-center gap-2 transition-all hover:scale-105"
+                        className="group bg-black/40 border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 rounded-2xl p-2.5 flex flex-col items-center gap-2 transition-colors"
                       >
                         <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-white/10 bg-black/80 flex items-center justify-center shrink-0">
                           <img
@@ -1243,7 +1243,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                         </div>
                         <div className="text-center w-full">
                           <p className="text-xs font-black text-white truncate">{char.name}</p>
-                          <p className="text-[8px] text-gray-400 truncate">{char.attribute || char.path}</p>
+                          <p className="text-[11px] text-gray-400 truncate">{char.attribute || char.path}</p>
                         </div>
                       </button>
                     ))}

@@ -887,11 +887,11 @@ const AdminDashboard: React.FC = () => {
           {activeTab === 'characters' && (
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
               {/* 캐릭터 목록 탭 */}
-              <div className="xl:col-span-3 bg-[#111] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl">
+              <div className="xl:col-span-3 bg-[#111] rounded-3xl border border-white/5 overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
                     <thead>
-                      <tr className="bg-white/[0.02] text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">
+                      <tr className="bg-white/[0.02] text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">
                         <th className="p-8">캐릭터 프로필</th>
                         <th className="p-8 text-center">속성</th>
                         <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : '운명의 길'}</th>
@@ -904,7 +904,7 @@ const AdminDashboard: React.FC = () => {
                         <tr key={bc.id} className="group hover:bg-white/[0.01] transition-colors">
                           <td className="p-8">
                             <div className="flex items-center gap-6">
-                              <div className="relative w-16 h-16 shrink-0 group-hover:scale-110 transition-transform duration-500 bg-white/5 rounded-2xl flex items-center justify-center overflow-hidden border border-white/10">
+                              <div className="relative w-16 h-16 shrink-0 bg-white/5 rounded-2xl flex items-center justify-center overflow-hidden border border-white/10">
                                 <img 
                                   src={getEncodedUrl(bc)} 
                                   alt={bc.name}
@@ -927,9 +927,9 @@ const AdminDashboard: React.FC = () => {
                               <div className="space-y-1">
                                 <p className="text-lg font-black">{bc.name}</p>
                                 <div className="flex items-center gap-2">
-                                  <span className="text-[9px] font-black text-amber-500/40 uppercase">Folder:</span>
+                                  <span className="text-[11px] font-black text-amber-500/40 uppercase">Folder:</span>
                                   <input 
-                                    className="text-[10px] font-bold text-gray-400 bg-transparent border-none p-0 focus:ring-0 w-48"
+                                    className="text-[11px] font-bold text-gray-400 bg-transparent border-none p-0 focus:ring-0 w-48"
                                     value={bc.folder_name}
                                     onChange={async (e) => {
                                       await supabase.from('characters').update({ folder_name: e.target.value }).eq('id', bc.id);
@@ -964,26 +964,26 @@ const AdminDashboard: React.FC = () => {
               
               {/* 캐릭터 추가 사이드바 */}
               <div className="space-y-8">
-                <div className="bg-amber-500/[0.03] border border-amber-500/20 rounded-[40px] p-10 space-y-8 sticky top-12 shadow-2xl backdrop-blur-xl">
+                <div className="bg-amber-500/[0.03] border border-amber-500/20 rounded-3xl p-10 space-y-8 sticky top-12">
                   <div className="flex items-center gap-4">
                     <div className="p-4 bg-amber-500/20 rounded-2xl text-amber-500"><PlusCircle size={28} /></div>
                     <div>
-                      <h2 className="text-xl font-black italic uppercase">신규 캐릭터 등록</h2>
-                      <p className="text-[10px] text-amber-500/40 font-black uppercase tracking-widest mt-1">Add to master DB</p>
+                      <h2 className="text-base font-bold">신규 캐릭터 등록</h2>
+                      <p className="text-[11px] text-amber-500/40 font-black uppercase tracking-widest mt-1">Add to master DB</p>
                     </div>
                   </div>
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">이름</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">이름</label>
                       <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.name} onChange={e => setNewChar({...newChar, name: e.target.value})} placeholder="캐릭터명" />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">폴더명 (GitHub)</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">폴더명 (GitHub)</label>
                       <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.folder_name} onChange={e => setNewChar({...newChar, folder_name: e.target.value})} placeholder="정확한 폴더명" />
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">속성</label>
+                        <label className="text-xs font-bold text-gray-400 ml-1">속성</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.attribute} onChange={e => setNewChar({...newChar, attribute: e.target.value})}>
                           {activeGame === 'ww'
                             ? ['기류', '전도', '회절', '인멸', '용융', '응결'].map(a => <option key={a} value={a} style={{ backgroundColor: '#111' }}>{a}</option>)
@@ -994,7 +994,7 @@ const AdminDashboard: React.FC = () => {
                         </select>
                       </div>
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : '운명'}</label>
+                        <label className="text-xs font-bold text-gray-400 ml-1">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : '운명'}</label>
                         <select className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" value={newChar.path} onChange={e => setNewChar({...newChar, path: e.target.value})}>
                           {activeGame === 'ww'
                             ? ['장검', '대검', '직검', '권갑', '증폭기', '권총'].map(p => <option key={p} value={p} style={{ backgroundColor: '#111' }}>{p}</option>)
@@ -1006,7 +1006,7 @@ const AdminDashboard: React.FC = () => {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">버전 (Version)</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">버전 (Version)</label>
                       <input className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" value={newChar.version} onChange={e => setNewChar({...newChar, version: e.target.value})} placeholder="예: 4.3" />
                     </div>
                     <button onClick={addCharacterToDB} className="w-full py-5 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl transition-all shadow-lg shadow-amber-500/20 active:scale-95 flex items-center justify-center gap-3">
@@ -1015,7 +1015,7 @@ const AdminDashboard: React.FC = () => {
 
                     <div className="pt-6 border-t border-white/5 space-y-4">
                       <div className="flex items-center justify-between">
-                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">TS 데이터 템플릿</label>
+                        <label className="text-xs font-bold text-gray-400 ml-1">TS 데이터 템플릿</label>
                         <button 
                           onClick={() => {
                             const id = newChar.name.toLowerCase().replace(/\s+/g, '_');
@@ -1068,13 +1068,13 @@ export default ${id};`;
                             navigator.clipboard.writeText(template);
                             showToast('코드 템플릿이 복사되었습니다.');
                           }}
-                          className="text-[9px] font-black text-amber-500 hover:text-amber-400 flex items-center gap-1 transition-colors"
+                          className="text-[11px] font-black text-amber-500 hover:text-amber-400 flex items-center gap-1 transition-colors"
                         >
                           <Copy size={10} /> 코드 복사하기
                         </button>
                       </div>
                       <div className="bg-black/60 rounded-2xl p-4 border border-white/5 h-48 overflow-y-auto custom-scrollbar">
-                        <pre className="text-[9px] text-gray-400 font-mono leading-relaxed">
+                        <pre className="text-[11px] text-gray-400 font-mono leading-relaxed">
                           {`import { Character } from '../../../../common-hub/types';
 
 const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = {
@@ -1087,7 +1087,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
   // ... 나머지 데이터`}
                         </pre>
                       </div>
-                      <p className="text-[9px] text-gray-400 leading-tight">
+                      <p className="text-[11px] text-gray-400 leading-tight">
                         * 복사한 코드를 hsr-hub/data/characters/hsr/ 폴더에 .ts 파일로 저장하세요.
                       </p>
                     </div>
@@ -1107,7 +1107,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     <Database className="text-amber-500" size={20} />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">DB Status</p>
+                    <p className="text-[11px] font-black text-gray-400 uppercase tracking-widest">DB Status</p>
                     <p className="text-sm font-black text-white">로드된 티어 데이터: <span className="text-amber-500">{mgmtTiers.length}개</span></p>
                   </div>
                 </div>
@@ -1133,7 +1133,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
               </div>
 
               {/* 카테고리 선택부 */}
-              <div className="bg-[#111] p-8 rounded-[40px] border border-white/5 shadow-xl">
+              <div className="bg-[#111] p-8 rounded-3xl border border-white/5">
                 <div className="flex flex-wrap gap-4 justify-center">
                   {CATEGORIES.map(cat => (
                     <button
@@ -1165,9 +1165,9 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                 if (charsInTier.length === 0 && tierRank !== '?') return null;
 
                 return (
-                  <div key={tierRank} className="bg-[#111] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                  <div key={tierRank} className="bg-[#111] rounded-3xl border border-white/5 overflow-hidden flex flex-col lg:flex-row">
                     <div className="w-full lg:w-32 flex flex-col items-center justify-center p-8 shrink-0 bg-white/[0.02] border-b lg:border-b-0 lg:border-r border-white/5">
-                      <div className={`text-4xl font-black italic tracking-tighter ${tierRank === '?' ? 'text-gray-400' : 'text-amber-500'}`}>
+                      <div className={`text-2xl font-black tracking-tight ${tierRank === '?' ? 'text-gray-400' : 'text-amber-500'} ${tierRank === '?' ? '' : 'italic'}`}>
                         {tierRank === '?' ? '미편성' : tierRank}
                       </div>
                     </div>
@@ -1195,14 +1195,14 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                       e.currentTarget.style.display = 'none';
                                       const parent = e.currentTarget.parentElement;
                                       if (parent) {
-                                        parent.innerHTML = `<span class="text-[10px] text-amber-500/80 font-black">${bc.name.slice(0, 2)}</span>`;
+                                        parent.innerHTML = `<span class="text-[11px] text-amber-500/80 font-black">${bc.name.slice(0, 2)}</span>`;
                                       }
                                     }}
                                   />
                                 </div>
                                 <div className="min-w-0">
                                   <p className="text-sm font-black truncate">{bc.name}</p>
-                                  <p className="text-[9px] text-gray-400 font-bold uppercase">{bc.path || bc.weapon_type}</p>
+                                  <p className="text-[11px] text-gray-400 font-bold uppercase">{bc.path || bc.weapon_type}</p>
                                 </div>
                               </div>
 
@@ -1219,7 +1219,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                   <select 
                                     value={tInfo?.change || 'stay'}
                                     onChange={(e) => updateTierInfo(bc.name, activeCategoryId, { change: e.target.value })}
-                                    className={`flex-1 bg-white/5 border border-white/10 rounded-xl text-[9px] font-black p-2 text-center outline-none appearance-none cursor-pointer uppercase ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-400'}`}
+                                    className={`flex-1 bg-white/5 border border-white/10 rounded-xl text-[11px] font-black p-2 text-center outline-none appearance-none cursor-pointer uppercase ${tInfo?.change === 'up' ? 'text-emerald-500' : tInfo?.change === 'down' ? 'text-rose-500' : tInfo?.change === 'new' ? 'text-amber-500' : 'text-gray-400'}`}
                                   >
                                     {['stay', 'up', 'down', 'new'].map(c => <option key={c} value={c}>{c}</option>)}
                                   </select>
@@ -1232,7 +1232,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                     </button>
                                     <input 
                                       type="number"
-                                      className="w-10 bg-transparent border-none p-1 text-[10px] font-black text-center focus:ring-0 text-amber-500/80 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                                      className="w-10 bg-transparent border-none p-1 text-[11px] font-black text-center focus:ring-0 text-amber-500/80 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                                       value={tInfo?.display_order ?? 100}
                                       onChange={(e) => updateTierInfo(bc.name, activeCategoryId, { display_order: parseInt(e.target.value) || 0 })}
                                     />
@@ -1269,7 +1269,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
               <div className="space-y-8">
                 <div
                   ref={noticeFormRef}
-                  className={`border rounded-[40px] p-8 md:p-10 space-y-8 sticky top-12 shadow-2xl backdrop-blur-xl transition-all duration-300 ${
+                  className={`border rounded-3xl p-8 md:p-10 space-y-8 sticky top-12 transition-colors duration-300 ${
                     editingNoticeId 
                       ? 'bg-amber-500/[0.06] border-amber-500/50 ring-2 ring-amber-500/20 shadow-amber-500/10' 
                       : 'bg-amber-500/[0.03] border-amber-500/20'
@@ -1281,16 +1281,16 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                         {editingNoticeId ? <Edit3 size={28} /> : <PlusCircle size={28} />}
                       </div>
                       <div>
-                        <h2 className="text-xl font-black italic uppercase">
+                        <h2 className="text-base font-bold">
                           {editingNoticeId ? '공지사항 수정' : '공지사항 작성'}
                         </h2>
-                        <p className="text-[10px] text-amber-500/60 font-black uppercase tracking-widest mt-1">
+                        <p className="text-[11px] text-amber-500/60 font-black uppercase tracking-widest mt-1">
                           {editingNoticeId ? 'Edit Notice' : 'Publish Notice'}
                         </p>
                       </div>
                     </div>
                     {editingNoticeId && (
-                      <span className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[10px] font-black uppercase">
+                      <span className="px-3 py-1 bg-amber-500/20 text-amber-400 border border-amber-500/30 rounded-full text-[11px] font-black uppercase">
                         수정 모드
                       </span>
                     )}
@@ -1306,7 +1306,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                         type="button" 
                         onClick={cancelEditNotice}
                         disabled={isSavingNotice}
-                        className="text-[10px] font-black underline hover:text-white shrink-0 text-gray-400"
+                        className="text-[11px] font-black underline hover:text-white shrink-0 text-gray-400"
                       >
                         수정 취소
                       </button>
@@ -1315,7 +1315,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
 
                   <div className="space-y-6">
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">게임</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">게임</label>
                       <select 
                         className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" 
                         value={newNotice.game_id} 
@@ -1329,7 +1329,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </select>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">분류</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">분류</label>
                       <select 
                         className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-xs font-bold focus:border-amber-500/50 appearance-none cursor-pointer" 
                         value={newNotice.category} 
@@ -1342,7 +1342,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       </select>
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">제목</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">제목</label>
                       <input 
                         className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" 
                         value={newNotice.title} 
@@ -1351,7 +1351,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       />
                     </div>
                     <div className="space-y-2">
-                      <label className="text-[10px] font-black text-gray-400 uppercase ml-1">내용 (Markdown 지원)</label>
+                      <label className="text-xs font-bold text-gray-400 ml-1">내용 (Markdown 지원)</label>
                       <React.Suspense fallback={<AdminSectionFallback />}>
                         <AdminNoticeEditor
                           initialContent={newNotice.content}
@@ -1362,7 +1362,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2">
-                        <label className="text-[10px] font-black text-gray-400 uppercase ml-1">버전 (선택)</label>
+                        <label className="text-xs font-bold text-gray-400 ml-1">버전 (선택)</label>
                         <input 
                           className="w-full bg-black/40 border border-white/5 rounded-2xl p-4 text-sm font-bold focus:border-amber-500/50 transition-all" 
                           value={newNotice.version} 
@@ -1443,21 +1443,21 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                   <Eye size={18} />
                   <h2 className="text-sm font-bold">실제 공지 모양 미리보기</h2>
                 </div>
-                <div className="bg-[#111] rounded-[40px] border border-white/5 shadow-2xl p-8 space-y-4">
+                <div className="bg-[#111] rounded-3xl border border-white/5 p-8 space-y-4">
                   <div className="flex items-center gap-3 flex-wrap">
-                    <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[10px] font-black uppercase tracking-wider">
+                    <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[11px] font-black uppercase tracking-wider">
                       {newNotice.game_id}
                     </span>
-                    <span className="px-3 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-full text-[10px] font-black uppercase">
+                    <span className="px-3 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-full text-[11px] font-black uppercase">
                       {newNotice.category}
                     </span>
                     {newNotice.is_critical && (
-                      <span className="px-3 py-1 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-full text-[10px] font-black uppercase flex items-center gap-1">
+                      <span className="px-3 py-1 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-full text-[11px] font-black uppercase flex items-center gap-1">
                         <AlertTriangle size={10} /> 필독
                       </span>
                     )}
                     {newNotice.version && (
-                      <span className="text-[10px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{newNotice.version}</span>
+                      <span className="text-[11px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{newNotice.version}</span>
                     )}
                   </div>
                   <h3 className="text-lg font-bold">{newNotice.title || <span className="text-gray-500">제목을 입력하면 여기에 표시됩니다</span>}</h3>
@@ -1476,15 +1476,15 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
 
               {/* 공지사항 목록 */}
               <div className="space-y-8">
-                <div className="bg-[#111] rounded-[40px] border border-white/5 overflow-hidden shadow-2xl p-8">
-                  <h2 className="text-xl font-black italic uppercase mb-6 flex items-center justify-between gap-3">
+                <div className="bg-[#111] rounded-3xl border border-white/5 overflow-hidden p-8">
+                  <h2 className="text-base font-bold mb-6 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-3">
                       <Bell className="text-amber-500" size={24} /> 등록된 공지사항 관리
                     </div>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={resetAllNoticeUpdatedTimestamps}
-                        className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-rose-500/10 hover:text-rose-400 border border-white/10 hover:border-rose-500/30 rounded-xl text-[10px] font-black transition-all active:scale-95 text-gray-400"
+                        className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-rose-500/10 hover:text-rose-400 border border-white/10 hover:border-rose-500/30 rounded-xl text-[11px] font-black transition-all active:scale-95 text-gray-400"
                         title="기존 공지들의 수정일시를 초기화하여, 이후 실제 수정한 공지에만 수정일이 표시되도록 정리합니다."
                       >
                         <RotateCcw size={12} />
@@ -1530,22 +1530,22 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                         <div className="flex items-start justify-between gap-6">
                           <div className="space-y-3 flex-1">
                             <div className="flex items-center gap-3 flex-wrap">
-                              <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[10px] font-black uppercase tracking-wider">
+                              <span className="px-3 py-1 bg-amber-500/10 text-amber-500 border border-amber-500/20 rounded-full text-[11px] font-black uppercase tracking-wider">
                                 {notice.game_id}
                               </span>
-                              <span className="px-3 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-full text-[10px] font-black uppercase">
+                              <span className="px-3 py-1 bg-white/5 text-gray-300 border border-white/10 rounded-full text-[11px] font-black uppercase">
                                 {notice.category}
                               </span>
                               {notice.is_critical && (
-                                <span className="px-3 py-1 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-full text-[10px] font-black uppercase flex items-center gap-1">
+                                <span className="px-3 py-1 bg-rose-500/10 text-rose-500 border border-rose-500/20 rounded-full text-[11px] font-black uppercase flex items-center gap-1">
                                   <AlertTriangle size={10} /> 필독
                                 </span>
                               )}
                               {notice.version && (
-                                <span className="text-[10px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{notice.version}</span>
+                                <span className="text-[11px] font-black text-gray-400 border border-white/10 px-2 py-1 rounded-full">v{notice.version}</span>
                               )}
                               {editingNoticeId === notice.id && (
-                                <span className="px-3 py-1 bg-amber-500 text-black font-black text-[10px] rounded-full flex items-center gap-1 animate-pulse">
+                                <span className="px-3 py-1 bg-amber-500 text-black font-black text-[11px] rounded-full flex items-center gap-1 animate-pulse">
                                   <Edit3 size={10} /> 편집 중
                                 </span>
                               )}
@@ -1554,7 +1554,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                             <div className="flex items-center gap-2 text-xs text-gray-400 font-mono">
                               <span>{new Date(notice.created_at).toLocaleDateString()}</span>
                               {notice.updated_at && notice.updated_at.split('T')[0] !== notice.created_at.split('T')[0] && (
-                                <span className="text-[10px] text-amber-500/90 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+                                <span className="text-[11px] text-amber-500/90 font-bold bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
                                   수정됨 ({new Date(notice.updated_at).toLocaleDateString()})
                                 </span>
                               )}
@@ -1592,13 +1592,13 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                           <div className="pt-6 border-t border-white/5 animate-in fade-in slide-in-from-top-2 duration-300" onClick={e => e.stopPropagation()}>
                             <div className="bg-black/60 rounded-2xl p-6 border border-white/5 space-y-4">
                               <div className="flex items-center justify-between">
-                                <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Notice Content</span>
+                                <span className="text-[11px] font-black text-gray-400 uppercase tracking-widest">Notice Content</span>
                                 <button 
                                   onClick={() => {
                                     navigator.clipboard.writeText(notice.content);
                                     showToast('내용이 클립보드에 복사되었습니다.');
                                   }}
-                                  className="text-[9px] font-black text-amber-500 hover:text-amber-400 flex items-center gap-1 transition-colors"
+                                  className="text-[11px] font-black text-amber-500 hover:text-amber-400 flex items-center gap-1 transition-colors"
                                 >
                                   <Copy size={10} /> 내용 복사
                                 </button>
