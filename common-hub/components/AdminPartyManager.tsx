@@ -97,19 +97,19 @@ const CharacterPickerInput: React.FC<{
           else if (e.key === 'Escape') { setOpen(false); }
         }}
         placeholder={placeholder || '캐릭터 검색...'}
-        className="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-xs font-bold text-white placeholder-gray-500 focus:border-amber-500/50 outline-none"
+        className="w-full bg-white/5 border border-white/10 rounded-xl px-3.5 py-3 text-sm font-bold text-white placeholder-gray-500 focus:border-amber-500/50 outline-none"
       />
       {open && matches.length > 0 && (
-        <div className="absolute z-50 left-0 right-0 mt-1 bg-[#141414] border border-white/10 rounded-xl shadow-2xl max-h-56 overflow-y-auto">
+        <div className="absolute z-50 left-0 right-0 mt-1 bg-[#141414] border border-white/10 rounded-xl shadow-2xl max-h-64 overflow-y-auto">
           {matches.map((c, i) => (
             <button
               key={c.id}
               type="button"
               onMouseDown={(e) => e.preventDefault()}
               onClick={() => pick(c)}
-              className={`w-full flex items-center gap-2 px-3 py-2 text-left text-xs font-bold transition-colors ${i === highlight ? 'bg-amber-500/15 text-amber-300' : 'text-gray-200 hover:bg-white/5'}`}
+              className={`w-full flex items-center gap-2.5 px-3.5 py-2.5 text-left text-sm font-bold transition-colors ${i === highlight ? 'bg-amber-500/15 text-amber-300' : 'text-gray-200 hover:bg-white/5'}`}
             >
-              <img src={getEncodedUrl(c.folderName || c.name)} alt="" className="w-6 h-6 rounded object-cover shrink-0" />
+              <img src={getEncodedUrl(c.folderName || c.name)} alt="" className="w-7 h-7 rounded object-cover shrink-0" />
               <span className="truncate">{c.name}</span>
             </button>
           ))}
@@ -882,7 +882,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       {/* ========================================================================= */}
       {isEditorOpen && editingParty && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/80 backdrop-blur-xl animate-in fade-in duration-300">
-          <div className="bg-[#121212] border border-white/10 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto p-6 md:p-10 space-y-8 shadow-2xl custom-scrollbar">
+          <div className="bg-[#121212] border border-white/10 rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-y-auto p-6 md:p-10 space-y-8 shadow-2xl custom-scrollbar">
             <div className="flex items-center justify-between border-b border-white/10 pb-6">
               <div className="flex items-center gap-3">
                 <div className="p-3 bg-amber-500/10 text-amber-500 rounded-2xl">
@@ -1017,23 +1017,23 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                 </div>
               </div>
 
-              <div className={`grid grid-cols-1 ${editingParty.slots.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
+              <div className={`grid grid-cols-1 sm:grid-cols-2 ${editingParty.slots.length === 3 ? 'xl:grid-cols-3' : 'xl:grid-cols-4'} gap-5`}>
                 {editingParty.slots.map((slot, sIdx) => (
                   <div
                     key={sIdx}
-                    className="bg-black/50 border border-white/10 rounded-3xl p-5 space-y-4 relative flex flex-col justify-between group"
+                    className="bg-black/50 border border-white/10 rounded-3xl p-6 space-y-5 relative flex flex-col justify-between group"
                   >
                     {/* 상단 슬롯 헤더 & 역할 선택 */}
-                    <div className="space-y-2">
+                    <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-black text-amber-500 uppercase tracking-widest">
+                        <span className="text-xs font-black text-amber-500 uppercase tracking-widest">
                           Slot {sIdx + 1}
                         </span>
                       </div>
 
                       {/* 캐릭터 검색 입력 (Tab으로 다음 슬롯까지 바로 이동) */}
-                      <div className="flex items-center gap-2">
-                        <div className="w-10 h-10 rounded-xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center shrink-0">
+                      <div className="flex items-center gap-2.5">
+                        <div className="w-14 h-14 rounded-xl overflow-hidden border border-white/10 bg-black/60 flex items-center justify-center shrink-0">
                           {slot.characterName ? (
                             <img
                               src={getEncodedUrl(slot.folderName || slot.characterName)}
@@ -1041,7 +1041,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <Plus size={16} className="text-gray-500" />
+                            <Plus size={20} className="text-gray-500" />
                           )}
                         </div>
                         <div className="flex-1 min-w-0">
@@ -1063,14 +1063,14 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           onClick={() => openCharacterPicker(sIdx, false)}
                           title="이미지로 찾아보기"
                           tabIndex={-1}
-                          className="shrink-0 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
+                          className="shrink-0 p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
                         >
-                          <Search size={14} />
+                          <Search size={16} />
                         </button>
                       </div>
 
                       {/* 슬롯 역할 및 돌파 추천 드롭다운 */}
-                      <div className="pt-2 space-y-1.5">
+                      <div className="pt-1 space-y-2">
                         <select
                           value={slot.role || ''}
                           onChange={(e) => {
@@ -1078,7 +1078,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                             updatedSlots[sIdx].role = e.target.value;
                             setEditingParty({ ...editingParty, slots: updatedSlots as any });
                           }}
-                          className="w-full bg-[#181818] border border-white/10 rounded-xl px-2.5 py-1.5 text-xs text-center font-bold text-gray-300 focus:border-amber-500/50 outline-none"
+                          className="w-full bg-[#181818] border border-white/10 rounded-xl px-3 py-2.5 text-sm text-center font-bold text-gray-300 focus:border-amber-500/50 outline-none"
                         >
                           {(ROLE_PRESETS[gameKey] || []).map(r => (
                             <option key={r} value={r}>{r}</option>
@@ -1094,7 +1094,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                               updatedSlots[sIdx].breakthrough = e.target.value;
                               setEditingParty({ ...editingParty, slots: updatedSlots as any });
                             }}
-                            className="w-full bg-black/40 border border-white/10 rounded-xl px-2 py-1 text-[11px] font-black text-amber-400 focus:border-amber-500/50 outline-none text-center"
+                            className="w-full bg-black/40 border border-white/10 rounded-xl px-3 py-2 text-xs font-black text-amber-400 focus:border-amber-500/50 outline-none text-center"
                           >
                             <option value="">돌파 권장: 명함</option>
                             {(BREAKTHROUGH_PRESETS[gameKey] || []).map(b => (
@@ -1106,10 +1106,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                     </div>
 
                     {/* 대체 캐릭터 (Substitutes) 관리 */}
-                    <div className="pt-3 border-t border-white/5 space-y-2">
-                      <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider">대체 캐릭터</span>
+                    <div className="pt-4 border-t border-white/5 space-y-2.5">
+                      <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">대체 캐릭터</span>
 
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-2">
                         <div className="flex-1 min-w-0">
                           <CharacterPickerInput
                             value=""
@@ -1130,20 +1130,20 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                           onClick={() => openCharacterPicker(sIdx, true)}
                           title="이미지로 찾아보기"
                           tabIndex={-1}
-                          className="shrink-0 p-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
+                          className="shrink-0 p-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-400 hover:text-amber-400 transition-colors"
                         >
-                          <Search size={12} />
+                          <Search size={14} />
                         </button>
                       </div>
 
-                      <div className="space-y-1.5">
+                      <div className="space-y-2">
                         {(slot.substitutes || []).map((sub, subIdx) => (
                           <div
                             key={subIdx}
-                            className="p-2 bg-white/5 border border-white/5 rounded-xl space-y-1 text-xs"
+                            className="p-3 bg-white/5 border border-white/5 rounded-xl space-y-1.5 text-sm"
                           >
                             <div className="flex items-center justify-between gap-1">
-                              <span className="text-gray-200 font-bold truncate max-w-[95px]">{sub.characterName}</span>
+                              <span className="text-gray-200 font-bold truncate max-w-[140px]">{sub.characterName}</span>
                               <button
                                 onClick={() => {
                                   const updatedSlots = [...editingParty.slots];
@@ -1152,7 +1152,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                                 }}
                                 className="text-gray-500 hover:text-rose-400 p-0.5"
                               >
-                                <X size={12} />
+                                <X size={14} />
                               </button>
                             </div>
                             {/* 대체 캐릭터 돌파 추천 셀렉터 */}
@@ -1163,7 +1163,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                                 updatedSlots[sIdx].substitutes![subIdx].breakthrough = e.target.value;
                                 setEditingParty({ ...editingParty, slots: updatedSlots as any });
                               }}
-                              className="w-full bg-black/60 border border-white/10 rounded-lg px-2 py-0.5 text-[11px] font-bold text-amber-400 outline-none"
+                              className="w-full bg-black/60 border border-white/10 rounded-lg px-2.5 py-1.5 text-xs font-bold text-amber-400 outline-none"
                             >
                               <option value="">돌파: 명함</option>
                               <option value="1돌+">1돌+ 권장</option>
