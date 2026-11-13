@@ -1,10 +1,10 @@
 import { normalizeAdminTierRows } from '../../nte-hub/data/adminData';
 import { NTE_TIER_CATEGORIES } from '../../nte-hub/data/tiers';
 import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2, RotateCcw } from 'lucide-react';
+import { Shield, Users, FileText, Settings, Activity, Database, AlertTriangle, TrendingUp, Trophy, Search, LogOut, Sparkles, Trash2, Edit3, Save, ChevronRight, ExternalLink, LayoutGrid, ListChecks, PlusCircle, RefreshCw, Copy, Bell, Loader2, X, CheckCircle2, RotateCcw, ChevronDown } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { isAdmin } from '../lib/admin';
-import { Navigate } from 'react-router';
+import { useSearchParams } from 'react-router';
 import { safeEncodeURIComponent } from '../utils/assetManager';
 import SEO from '../components/SEO';
 import { stripMarkdown } from '../utils/markdown';
@@ -22,6 +22,46 @@ const AdminSectionFallback = () => (
   </div>
 );
 
+type AdminSection = 'characters' | 'aniimo' | 'tiers' | 'parties' | 'notices';
+type AdminGame = 'hsr' | 'ww' | 'nte' | 'aniimo' | null;
+
+const SECTION_LABEL: Record<AdminSection, string> = {
+  notices: '공지사항',
+  characters: '캐릭터 관리',
+  tiers: '티어표 관리',
+  parties: '파티 추천 관리',
+  aniimo: '애니모 도감 관리',
+};
+const GAME_LABEL: Record<'hsr' | 'ww' | 'nte', string> = { hsr: '스타레일', ww: '명조', nte: '이환(NTE)' };
+
+interface ToastItem { id: number; message: string; tone: 'success' | 'error' }
+interface ConfirmRequest { message: string; onConfirm: () => void; tone?: 'default' | 'danger' }
+
+const SidebarLink: React.FC<{ active: boolean; onClick: () => void; icon: React.ReactNode; children: React.ReactNode; indent?: boolean }> = ({ active, onClick, icon, children, indent }) => (
+  <button
+    onClick={onClick}
+    className={`w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors text-left ${indent ? 'ml-4' : ''} ${
+      active ? 'bg-amber-500/15 text-amber-400' : 'text-gray-400 hover:bg-white/5 hover:text-white'
+    }`}
+  >
+    {icon}
+    <span className="truncate">{children}</span>
+  </button>
+);
+
+const SidebarGameGroup: React.FC<{ label: string; open: boolean; onToggle: () => void; children: React.ReactNode }> = ({ label, open, onToggle, children }) => (
+  <div>
+    <button
+      onClick={onToggle}
+      className="w-full flex items-center justify-between gap-2 px-3 py-2 text-xs font-bold uppercase tracking-wide text-gray-500 hover:text-gray-300 transition-colors"
+    >
+      <span>{label}</span>
+      <ChevronDown size={14} className={`transition-transform ${open ? '' : '-rotate-90'}`} />
+    </button>
+    {open && <div className="space-y-1 mb-2">{children}</div>}
+  </div>
+);
+
 const loadManagedCharacterData = async (gameId: 'ww' | 'nte') => {
   if (gameId === 'ww') {
     const { default: characters } = await import('../../ww-hub/data/generated/character-summary.json');
@@ -32,13 +72,52 @@ const loadManagedCharacterData = async (gameId: 'ww' | 'nte') => {
   return characters;
 };
 
+const ADMIN_SECTIONS: AdminSection[] = ['characters', 'aniimo', 'tiers', 'parties', 'notices'];
+const ADMIN_GAMES = ['hsr', 'ww', 'nte', 'aniimo'];
+
 const AdminDashboard: React.FC = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState<'home' | 'characters' | 'aniimo' | 'tiers' | 'parties' | 'notices'>('home');
-  const [activeGame, setActiveGame] = useState<'hsr' | 'ww' | 'nte' | 'aniimo' | null>(null);
+  const [activeTab, setActiveTab] = useState<AdminSection>(() => {
+    const s = searchParams.get('section');
+    return (s && ADMIN_SECTIONS.includes(s as AdminSection) ? s : 'notices') as AdminSection;
+  });
+  const [activeGame, setActiveGame] = useState<AdminGame>(() => {
+    const g = searchParams.get('game');
+    return (g && ADMIN_GAMES.includes(g) ? g : null) as AdminGame;
+  });
   const [activeCategoryId, setActiveCategoryId] = useState<string>('chaos');
-  
+  const [openGameGroup, setOpenGameGroup] = useState<'hsr' | 'ww' | 'nte' | null>(
+    (activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte') ? activeGame : 'hsr'
+  );
+
+  // 사이드바 이동: 섹션/게임 상태와 주소(URL)를 함께 갱신해 새로고침해도 위치가 유지된다.
+  const goTo = (section: AdminSection, game: AdminGame) => {
+    setActiveTab(section);
+    setActiveGame(game);
+    const next = new URLSearchParams();
+    next.set('section', section);
+    if (game) next.set('game', game);
+    setSearchParams(next, { replace: false });
+    if (game === 'hsr' || game === 'ww' || game === 'nte') setOpenGameGroup(game);
+  };
+
+  // 토스트 알림 (alert() 대체)
+  const [toasts, setToasts] = useState<ToastItem[]>([]);
+  const toastIdRef = useRef(0);
+  const showToast = (message: string, tone: 'success' | 'error' = 'success') => {
+    const id = ++toastIdRef.current;
+    setToasts(prev => [...prev, { id, message, tone }]);
+    setTimeout(() => setToasts(prev => prev.filter(t => t.id !== id)), tone === 'error' ? 5000 : 3000);
+  };
+
+  // 확인 대화상자 (window.confirm() 대체, 삭제처럼 되돌릴 수 없는 작업만 사용)
+  const [confirmRequest, setConfirmRequest] = useState<ConfirmRequest | null>(null);
+  const requestConfirm = (message: string, onConfirm: () => void, tone: 'default' | 'danger' = 'default') => {
+    setConfirmRequest({ message, onConfirm, tone });
+  };
+
   // 데이터 상태
   const [mgmtSearch, setMgmtSearch] = useState('');
   const [mgmtTiers, setMgmtTiers] = useState<any[]>([]);
@@ -111,10 +190,15 @@ const AdminDashboard: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    if (user && isAdmin(user.id) && activeGame) {
+    if (user && isAdmin(user.id)) {
+      fetchMgmtNotices();
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && isAdmin(user.id) && activeGame && activeGame !== 'aniimo') {
       fetchBaseData();
       fetchTierData();
-      fetchMgmtNotices();
     }
   }, [user, activeGame]);
 
@@ -254,10 +338,10 @@ const AdminDashboard: React.FC = () => {
   };
 
   const fetchMgmtNotices = async () => {
+    // 공지사항은 게임 구분 없이 전체를 관리한다.
     const { data } = await supabase
       .from('notices')
       .select('*')
-      .in('game_id', [activeGame, 'common'])
       .order('created_at', { ascending: false });
     if (data) setMgmtNotices(data);
   };
@@ -282,60 +366,71 @@ const AdminDashboard: React.FC = () => {
   };
 
   const startEditNotice = (notice: any) => {
-    if (isNoticeFormDirty()) {
-      const confirmLeave = window.confirm('작성 중인 수정 사항이 저장되지 않았습니다. 다른 공지사항을 수정하시겠습니까?');
-      if (!confirmLeave) return;
-    }
+    const apply = () => {
+      const formData = {
+        title: notice.title || '',
+        category: notice.category || 'Notice',
+        game_id: notice.game_id || 'common',
+        content: notice.content || '',
+        version: notice.version || '',
+        is_critical: Boolean(notice.is_critical)
+      };
 
-    const formData = {
-      title: notice.title || '',
-      category: notice.category || 'Notice',
-      game_id: notice.game_id || 'common',
-      content: notice.content || '',
-      version: notice.version || '',
-      is_critical: Boolean(notice.is_critical)
+      setEditingNoticeId(notice.id);
+      setInitialEditingNotice(formData);
+      setNewNotice(formData);
+
+      // 스크롤 포커싱 (모바일 / 반응형 UX 대응)
+      setTimeout(() => {
+        noticeFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 50);
     };
 
-    setEditingNoticeId(notice.id);
-    setInitialEditingNotice(formData);
-    setNewNotice(formData);
-
-    // 스크롤 포커싱 (모바일 / 반응형 UX 대응)
-    setTimeout(() => {
-      noticeFormRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 50);
+    if (isNoticeFormDirty()) {
+      requestConfirm('작성 중인 수정 사항이 저장되지 않았습니다. 다른 공지사항을 수정하시겠습니까?', apply);
+      return;
+    }
+    apply();
   };
 
   const cancelEditNotice = () => {
-    if (isNoticeFormDirty()) {
-      const confirmCancel = window.confirm('작성 중인 수정 사항이 저장되지 않았습니다. 수정을 취소하시겠습니까?');
-      if (!confirmCancel) return;
-    }
+    const apply = () => {
+      setEditingNoticeId(null);
+      setInitialEditingNotice(null);
+      setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+    };
 
-    setEditingNoticeId(null);
-    setInitialEditingNotice(null);
-    setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+    if (isNoticeFormDirty()) {
+      requestConfirm('작성 중인 수정 사항이 저장되지 않았습니다. 수정을 취소하시겠습니까?', apply, 'danger');
+      return;
+    }
+    apply();
   };
 
-  const resetAllNoticeUpdatedTimestamps = async () => {
-    if (!window.confirm('기존 모든 공지사항의 수정일시(updated_at)를 초기화하시겠습니까?\n초기화 후에는 실제로 수정한 공지사항에만 수정일이 표시됩니다.')) return;
-    try {
-      const { error } = await supabase
-        .from('notices')
-        .update({ updated_at: null })
-        .neq('id', '');
-      if (error) throw error;
-      alert('모든 공지사항의 수정일시가 초기화되었습니다. 이제 실제로 수정한 공지에만 수정일이 표시됩니다.');
-      fetchMgmtNotices();
-    } catch (err: any) {
-      console.error('Reset updated_at error:', err);
-      alert('수정일시 초기화 실패: ' + (err?.message || '알 수 없는 오류'));
-    }
+  const resetAllNoticeUpdatedTimestamps = () => {
+    requestConfirm(
+      '기존 모든 공지사항의 수정일시를 초기화하시겠습니까? 초기화 후에는 실제로 수정한 공지사항에만 수정일이 표시됩니다.',
+      async () => {
+        try {
+          const { error } = await supabase
+            .from('notices')
+            .update({ updated_at: null })
+            .neq('id', '');
+          if (error) throw error;
+          showToast('모든 공지사항의 수정일시가 초기화되었습니다. 이제 실제로 수정한 공지에만 수정일이 표시됩니다.');
+          fetchMgmtNotices();
+        } catch (err: any) {
+          console.error('Reset updated_at error:', err);
+          showToast('수정일시 초기화 실패: ' + (err?.message || '알 수 없는 오류'), 'error');
+        }
+      },
+      'danger'
+    );
   };
 
   const saveNoticeToDB = async () => {
     if (!newNotice.title.trim() || !newNotice.content.trim()) {
-      alert('제목과 내용은 필수입니다.');
+      showToast('제목과 내용은 필수입니다.', 'error');
       return;
     }
 
@@ -372,7 +467,7 @@ const AdminDashboard: React.FC = () => {
         if (error) throw error;
 
         const updatedId = editingNoticeId;
-        alert('공지사항이 성공적으로 수정되었습니다!');
+        showToast('공지사항이 성공적으로 수정되었습니다.');
         setEditingNoticeId(null);
         setInitialEditingNotice(null);
         setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
@@ -403,33 +498,35 @@ const AdminDashboard: React.FC = () => {
 
         if (error) throw error;
 
-        alert('공지사항이 등록되었습니다!');
+        showToast('공지사항이 등록되었습니다.');
         setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
         await fetchMgmtNotices();
         setExpandedNoticeId(id);
       }
     } catch (err: any) {
       console.error('Notice Save Error:', err);
-      alert((editingNoticeId ? '공지사항 수정 실패: ' : '공지사항 생성 실패: ') + (err?.message || '알 수 없는 오류'));
+      showToast((editingNoticeId ? '공지사항 수정 실패: ' : '공지사항 생성 실패: ') + (err?.message || '알 수 없는 오류'), 'error');
     } finally {
       setIsSavingNotice(false);
     }
   };
 
-  const deleteNotice = async (id: string, title: string) => {
-    if (!window.confirm(`'${title}' 공지사항을 삭제하시겠습니까?`)) return;
-    if (editingNoticeId === id) {
-      setEditingNoticeId(null);
-      setInitialEditingNotice(null);
-      setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
-    }
-    await supabase.from('notices').delete().eq('id', id);
-    fetchMgmtNotices();
+  const deleteNotice = (id: string, title: string) => {
+    requestConfirm(`'${title}' 공지사항을 삭제하시겠습니까?`, async () => {
+      if (editingNoticeId === id) {
+        setEditingNoticeId(null);
+        setInitialEditingNotice(null);
+        setNewNotice({ title: '', category: 'Notice', game_id: 'common', content: '', version: '', is_critical: false });
+      }
+      await supabase.from('notices').delete().eq('id', id);
+      fetchMgmtNotices();
+      showToast('공지사항이 삭제되었습니다.');
+    }, 'danger');
   };
 
   const addCharacterToDB = async () => {
     if (!newChar.name || !newChar.folder_name) {
-      alert('이름과 폴더명은 필수입니다.');
+      showToast('이름과 폴더명은 필수입니다.', 'error');
       return;
     }
 
@@ -454,7 +551,7 @@ const AdminDashboard: React.FC = () => {
     const { error: charError } = await supabase.from(tableName).insert([payload]);
 
     if (charError) {
-      alert('캐릭터 생성 실패: ' + charError.message);
+      showToast('캐릭터 생성 실패: ' + charError.message, 'error');
       return;
     }
 
@@ -470,7 +567,7 @@ const AdminDashboard: React.FC = () => {
 
     await supabase.from('tier_lists').upsert(tierEntries, { onConflict: 'game_id,category_id,character_name' });
 
-    alert('캐릭터 및 티어 정보 등록 완료!');
+    showToast('캐릭터 및 티어 정보 등록 완료.');
     setNewChar({ name: '', folder_name: '', rarity: 5, attribute: '물리', path: '파멸', version: '3.1' });
     fetchBaseData();
     fetchTierData();
@@ -525,23 +622,24 @@ const AdminDashboard: React.FC = () => {
       fetchTierData();
     } catch (err: any) {
       console.error('Update Tier Error:', err);
-      alert('티어 수정 실패: ' + (err?.message || '알 수 없는 오류'));
+      showToast('티어 수정 실패: ' + (err?.message || '알 수 없는 오류'), 'error');
       fetchTierData();
     }
   };
 
-  const deleteCharacter = async (id: string, name: string) => {
-    if (!window.confirm(`'${name}' 캐릭터를 삭제하시겠습니까?`)) return;
-    await supabase.from('tier_lists').delete().eq('character_name', name).eq('game_id', activeGame);
-    const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
-    await supabase.from(tableName).delete().eq('id', id);
-    fetchBaseData();
-    fetchTierData();
+  const deleteCharacter = (id: string, name: string) => {
+    requestConfirm(`'${name}' 캐릭터를 삭제하시겠습니까?`, async () => {
+      await supabase.from('tier_lists').delete().eq('character_name', name).eq('game_id', activeGame);
+      const tableName = activeGame === 'hsr' ? 'characters' : `${activeGame}_characters`;
+      await supabase.from(tableName).delete().eq('id', id);
+      fetchBaseData();
+      fetchTierData();
+      showToast('캐릭터가 삭제되었습니다.');
+    }, 'danger');
   };
 
-  const syncCharactersFromLocal = async () => {
-    if (!window.confirm(`로컬 파일의 ${activeGame.toUpperCase()} 캐릭터 데이터를 DB로 전송하시겠습니까?`)) return;
-    
+  const syncCharactersFromLocal = () => {
+    requestConfirm(`로컬 파일의 ${activeGame.toUpperCase()} 캐릭터 데이터를 DB로 전송하시겠습니까?`, async () => {
     setLoading(true);
     try {
       let charTasks: any[] = [];
@@ -589,20 +687,20 @@ const AdminDashboard: React.FC = () => {
         .upsert(charTasks, { onConflict: 'id' });
 
       if (error) throw error;
-      alert('캐릭터 동기화가 완료되었습니다.');
+      showToast('캐릭터 동기화가 완료되었습니다.');
       fetchBaseData();
     } catch (err: any) {
       console.error('Sync Error:', err);
-      alert('오류가 발생했습니다: ' + (err.message || JSON.stringify(err)));
+      showToast('오류가 발생했습니다: ' + (err.message || JSON.stringify(err)), 'error');
     } finally {
       setLoading(false);
     }
+    });
   };
 
-  const syncWwWeaponsFromLocal = async () => {
+  const syncWwWeaponsFromLocal = () => {
     if (activeGame !== 'ww') return;
-    if (!window.confirm(`로컬 파일의 WW 무기 데이터를 DB로 전송하시겠습니까?`)) return;
-    
+    requestConfirm(`로컬 파일의 WW 무기 데이터를 DB로 전송하시겠습니까?`, async () => {
     setLoading(true);
     try {
       const { default: weapons } = await import('../../ww-hub/data/generated/admin-weapons.json');
@@ -626,14 +724,15 @@ const AdminDashboard: React.FC = () => {
         .upsert(weaponTasks, { onConflict: 'id' });
 
       if (error) throw error;
-      
-      alert('WW 무기 데이터 연동이 완료되었습니다.');
+
+      showToast('WW 무기 데이터 연동이 완료되었습니다.');
     } catch (err) {
       console.error('Weapon Sync Error:', err);
-      alert('무기 동기화 중 오류가 발생했습니다.');
+      showToast('무기 동기화 중 오류가 발생했습니다.', 'error');
     } finally {
       setLoading(false);
     }
+    });
   };
 
   const getEncodedUrl = (folderOrChar: any) => {
@@ -661,159 +760,126 @@ const AdminDashboard: React.FC = () => {
   };
 
   if (loading) return <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center"><Activity className="animate-spin text-amber-500" size={48} /></div>;
-  if (!isAdmin(user?.id)) return <Navigate to="/" replace />;
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center p-6">
+        <SEO title="관리자 로그인" noindex={true} />
+        <div className="max-w-sm w-full bg-[#121212] border border-white/10 rounded-2xl p-8 text-center space-y-4">
+          <Shield className="mx-auto text-amber-500" size={32} />
+          <h1 className="text-lg font-bold">로그인이 필요합니다</h1>
+          <p className="text-sm text-gray-400">관리자 계정으로 로그인한 뒤 다시 시도해 주세요.</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAdmin(user.id)) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] text-white flex items-center justify-center p-6">
+        <SEO title="접근 권한 없음" noindex={true} />
+        <div className="max-w-sm w-full bg-[#121212] border border-white/10 rounded-2xl p-8 text-center space-y-4">
+          <AlertTriangle className="mx-auto text-rose-500" size={32} />
+          <h1 className="text-lg font-bold">권한이 없습니다</h1>
+          <p className="text-sm text-gray-400">이 계정은 관리자 권한이 없습니다. 다른 계정으로 로그인해 주세요.</p>
+        </div>
+      </div>
+    );
+  }
 
   const filteredChars = baseCharacters.filter(bc => bc.name.toLowerCase().includes(mgmtSearch.toLowerCase()));
 
-  return (
-    <div className="min-h-screen bg-[#080808] text-white p-6 md:p-12 font-sans selection:bg-amber-500/30">
-      <SEO title="관리자 대시보드" noindex={true} />
-      <div className="max-w-[1600px] mx-auto space-y-10">
-        {/* 헤더 섹션 */}
-        <header className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 bg-[#111] p-10 rounded-[48px] border border-white/5 shadow-2xl relative overflow-hidden group">
-          <div className="absolute top-0 right-0 p-12 opacity-[0.03] pointer-events-none group-hover:scale-110 transition-transform duration-1000">
-            <Shield size={280} />
-          </div>
-          <div className="relative z-10 space-y-3">
-            <div className="flex items-center gap-3 text-amber-500">
-              <div className="p-2 bg-amber-500/10 rounded-lg"><Shield size={24} /></div>
-              <span className="text-[10px] font-black uppercase tracking-[0.5em] opacity-60">RIRA Advanced Admin</span>
-            </div>
-            <h1 className="text-5xl font-black italic tracking-tighter uppercase leading-none">Management Dashboard</h1>
-            <p className="text-gray-400 font-bold flex items-center gap-2 mt-4">
-              <Activity size={14} className="text-emerald-500" />
-              시스템 관리자: <span className="text-amber-500/80">{user?.email}</span>
-            </p>
-            {activeGame && (
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-500 text-xs font-black tracking-widest mt-2 uppercase">
-                현재 관리 중인 게임: {activeGame === 'hsr' ? '스타레일' : activeGame === 'ww' ? '명조' : activeGame === 'nte' ? 'NTE' : '애니모'}
-              </div>
-            )}
-          </div>
-          
-          {/* 탭 네비게이션 */}
-          <nav className="relative z-10 flex flex-wrap bg-black/40 p-2 rounded-3xl border border-white/5 backdrop-blur-xl">
-            <button 
-              onClick={() => setActiveTab('home')}
-              className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'home' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
-            >
-              <LayoutGrid size={18} /> 게임 선택
-            </button>
-            {activeGame && (
-              <>
-                {activeGame !== 'aniimo' && <button
-                  onClick={() => setActiveTab('characters')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'characters' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
-                >
-                  <Users size={18} /> 캐릭터 관리
-                </button>}
-                {activeGame === 'aniimo' && <button onClick={() => setActiveTab('aniimo')} className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'aniimo' ? 'bg-violet-400 text-black shadow-xl shadow-violet-500/20' : 'text-gray-400 hover:text-white'}`}><Sparkles size={18} /> 애니모 도감 관리</button>}
-                {activeGame !== 'aniimo' && <button
-                  onClick={() => setActiveTab('tiers')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'tiers' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
-                >
-                  <Trophy size={18} /> 티어표 관리
-                </button>}
-                {activeGame !== 'aniimo' && <button
-                  onClick={() => setActiveTab('parties')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'parties' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
-                >
-                  <Sparkles size={18} /> 파티 추천 관리
-                </button>}
-                <button 
-                  onClick={() => setActiveTab('notices')}
-                  className={`flex items-center gap-3 px-8 py-4 rounded-2xl text-sm font-black transition-all ${activeTab === 'notices' ? 'bg-amber-500 text-black shadow-xl shadow-amber-500/20' : 'text-gray-400 hover:text-white'}`}
-                >
-                  <Bell size={18} /> 공지사항 관리
-                </button>
-              </>
-            )}
-          </nav>
+  const breadcrumb = activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte'
+    ? `${GAME_LABEL[activeGame]} › ${SECTION_LABEL[activeTab]}`
+    : SECTION_LABEL[activeTab];
 
-          <button onClick={() => supabase.auth.signOut()} className="relative z-10 px-6 py-4 bg-rose-500/10 hover:bg-rose-500/20 border border-rose-500/20 rounded-2xl text-rose-500 transition-all flex items-center gap-3 font-black text-xs uppercase tracking-widest active:scale-95">
-            <LogOut size={18} /> Logout
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-white font-sans selection:bg-amber-500/30 flex">
+      <SEO title="관리자 대시보드" noindex={true} />
+
+      {/* 사이드바 */}
+      <aside className="w-64 shrink-0 h-screen sticky top-0 border-r border-white/5 bg-[#121212] flex flex-col">
+        <div className="flex items-center gap-3 px-5 py-5 border-b border-white/5">
+          <div className="p-2 bg-amber-500/10 rounded-xl text-amber-500"><Shield size={20} /></div>
+          <span className="text-sm font-bold">RIRA 관리자</span>
+        </div>
+
+        <nav className="flex-1 overflow-y-auto p-3 space-y-1">
+          <SidebarLink active={activeTab === 'notices'} onClick={() => goTo('notices', null)} icon={<Bell size={16} />}>
+            공지사항
+          </SidebarLink>
+
+          <div className="pt-3" />
+          <SidebarGameGroup label="스타레일" open={openGameGroup === 'hsr'} onToggle={() => setOpenGameGroup(openGameGroup === 'hsr' ? null : 'hsr')}>
+            <SidebarLink indent active={activeGame === 'hsr' && activeTab === 'characters'} onClick={() => goTo('characters', 'hsr')} icon={<Users size={16} />}>캐릭터</SidebarLink>
+            <SidebarLink indent active={activeGame === 'hsr' && activeTab === 'tiers'} onClick={() => goTo('tiers', 'hsr')} icon={<Trophy size={16} />}>티어표</SidebarLink>
+            <SidebarLink indent active={activeGame === 'hsr' && activeTab === 'parties'} onClick={() => goTo('parties', 'hsr')} icon={<Sparkles size={16} />}>파티</SidebarLink>
+          </SidebarGameGroup>
+
+          <SidebarGameGroup label="명조" open={openGameGroup === 'ww'} onToggle={() => setOpenGameGroup(openGameGroup === 'ww' ? null : 'ww')}>
+            <SidebarLink indent active={activeGame === 'ww' && activeTab === 'characters'} onClick={() => goTo('characters', 'ww')} icon={<Users size={16} />}>캐릭터</SidebarLink>
+            <SidebarLink indent active={activeGame === 'ww' && activeTab === 'tiers'} onClick={() => goTo('tiers', 'ww')} icon={<Trophy size={16} />}>티어표</SidebarLink>
+            <SidebarLink indent active={activeGame === 'ww' && activeTab === 'parties'} onClick={() => goTo('parties', 'ww')} icon={<Sparkles size={16} />}>파티</SidebarLink>
+          </SidebarGameGroup>
+
+          <SidebarGameGroup label="이환 (NTE)" open={openGameGroup === 'nte'} onToggle={() => setOpenGameGroup(openGameGroup === 'nte' ? null : 'nte')}>
+            <SidebarLink indent active={activeGame === 'nte' && activeTab === 'characters'} onClick={() => goTo('characters', 'nte')} icon={<Users size={16} />}>캐릭터</SidebarLink>
+            <SidebarLink indent active={activeGame === 'nte' && activeTab === 'tiers'} onClick={() => goTo('tiers', 'nte')} icon={<Trophy size={16} />}>티어표</SidebarLink>
+            <SidebarLink indent active={activeGame === 'nte' && activeTab === 'parties'} onClick={() => goTo('parties', 'nte')} icon={<Sparkles size={16} />}>파티</SidebarLink>
+          </SidebarGameGroup>
+
+          <div className="pt-3" />
+          <SidebarLink active={activeTab === 'aniimo'} onClick={() => goTo('aniimo', 'aniimo')} icon={<Sparkles size={16} />}>
+            애니모 도감
+          </SidebarLink>
+        </nav>
+
+        <div className="p-3 border-t border-white/5 space-y-2">
+          <p className="px-3 text-xs text-gray-500 truncate">{user?.email}</p>
+          <button
+            onClick={() => supabase.auth.signOut()}
+            className="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-rose-400 hover:bg-rose-500/10 transition-colors"
+          >
+            <LogOut size={16} /> 로그아웃
           </button>
+        </div>
+      </aside>
+
+      {/* 본문 */}
+      <div className="flex-1 min-w-0">
+        <header className="sticky top-0 z-10 bg-[#0a0a0a]/95 backdrop-blur border-b border-white/5 px-6 md:px-8 py-4">
+          <h1 className="text-sm font-bold text-gray-200">{breadcrumb}</h1>
         </header>
 
-        {/* 메인 컨텐츠 영역 */}
-        <main className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
-          
-          {activeTab === 'home' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-6 py-8">
-              <button 
-                onClick={() => { setActiveGame('hsr'); setActiveTab('characters'); }}
-                className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
-              >
-                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-                  <Database size={48} />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Honkai: Star Rail</h3>
-                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">붕괴: 스타레일 관리</p>
-                </div>
-              </button>
-              
-              <button 
-                onClick={() => { setActiveGame('ww'); setActiveTab('characters'); }}
-                className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
-              >
-                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-                  <LayoutGrid size={48} />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Wuthering Waves</h3>
-                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">명조 관리</p>
-                </div>
-              </button>
+        <main className="p-6 md:p-8 space-y-6">
 
-              <button 
-                onClick={() => { setActiveGame('nte'); setActiveTab('characters'); }}
-                className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-amber-500/50 hover:bg-amber-500/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/20 hover:-translate-y-2"
-              >
-                <div className="w-24 h-24 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-500 group-hover:scale-110 transition-transform">
-                  <Sparkles size={48} />
-                </div>
-                <div className="text-center">
-                  <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Neverness to Everness</h3>
-                  <p className="text-xs text-gray-400 font-bold uppercase tracking-widest">NTE 관리</p>
-                </div>
-              </button>
-
-              <button onClick={() => { setActiveGame('aniimo'); setActiveTab('aniimo'); }} className="group flex flex-col items-center justify-center gap-6 bg-[#111] border border-white/5 hover:border-violet-400/50 hover:bg-violet-400/5 p-12 rounded-[40px] transition-all duration-500 hover:shadow-2xl hover:shadow-violet-500/20 hover:-translate-y-2"><div className="w-24 h-24 rounded-full bg-violet-400/10 flex items-center justify-center text-violet-300 group-hover:scale-110 transition-transform"><Sparkles size={48} /></div><div className="text-center"><h3 className="text-2xl font-black italic tracking-tighter uppercase text-white mb-2">Aniimo</h3><p className="text-xs text-gray-400 font-bold uppercase tracking-widest">애니모 도감 검수</p></div></button>
-            </div>
-          )}
-
-          {activeTab === 'aniimo' && activeGame === 'aniimo' && (
+          {activeTab === 'aniimo' && (
             <React.Suspense fallback={<AdminSectionFallback />}>
               <AdminAniimoManager />
             </React.Suspense>
           )}
 
-          {activeTab !== 'home' && activeTab !== 'aniimo' && (
+          {activeTab === 'characters' && (
             <>
-              {/* 공통 검색바 */}
-          <div className="flex flex-col md:flex-row items-center gap-6 bg-[#111] p-6 rounded-[32px] border border-white/5 shadow-xl">
-            <div className="relative flex-1 w-full">
-              <Search className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-              <input 
-                type="text"
-                placeholder="관리 대상 캐릭터 검색..."
-                className="w-full bg-black/40 border border-white/5 rounded-2xl py-4 pl-14 pr-6 text-sm font-bold focus:outline-none focus:border-amber-500/30 transition-all"
-                value={mgmtSearch}
-                onChange={(e) => setMgmtSearch(e.target.value)}
-              />
-            </div>
-            <div className="flex items-center gap-6 shrink-0">
-              <div className="px-5 py-3 bg-white/[0.02] border border-white/5 rounded-2xl text-[11px] font-black text-gray-400 uppercase tracking-widest">
-                Matches: <span className="text-amber-500 ml-2">{filteredChars.length}</span>
+              <div className="flex flex-col md:flex-row items-center gap-4 bg-[#121212] p-4 rounded-2xl border border-white/5">
+                <div className="relative flex-1 w-full">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+                  <input
+                    type="text"
+                    placeholder="관리 대상 캐릭터 검색..."
+                    className="w-full bg-black/40 border border-white/5 rounded-xl py-3 pl-11 pr-5 text-sm font-medium focus:outline-none focus:border-amber-500/40 transition-all"
+                    value={mgmtSearch}
+                    onChange={(e) => setMgmtSearch(e.target.value)}
+                  />
+                </div>
+                <div className="flex items-center gap-4 shrink-0">
+                  <div className="px-4 py-2 bg-white/[0.03] border border-white/5 rounded-xl text-xs font-bold text-gray-400">
+                    일치: <span className="text-amber-500 ml-1">{filteredChars.length}</span>
+                  </div>
+                </div>
               </div>
-              <div className="w-px h-8 bg-white/10" />
-              <div className="flex items-center gap-3 text-emerald-500 text-[10px] font-black uppercase tracking-tighter">
-                <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                Database Live
-              </div>
-            </div>
-          </div>
+            </>
+          )}
 
           {activeTab === 'characters' && (
             <div className="grid grid-cols-1 xl:grid-cols-4 gap-8">
@@ -997,7 +1063,7 @@ const ${id}: Character = {
 
 export default ${id};`;
                             navigator.clipboard.writeText(template);
-                            alert('코드 템플릿이 복사되었습니다!');
+                            showToast('코드 템플릿이 복사되었습니다.');
                           }}
                           className="text-[9px] font-black text-amber-500 hover:text-amber-400 flex items-center gap-1 transition-colors"
                         >
@@ -1087,7 +1153,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
 
               {/* 티어별 그룹 렌더링 - '?' (미편성)을 가장 먼저 렌더링 */}
               {['?', 'OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F'].map(tierRank => {
-                const charsInTier = filteredChars.filter(bc => {
+                const charsInTier = baseCharacters.filter(bc => {
                   const key = `${normalizeName(bc.name)}_${activeCategoryId}`;
                   const tInfo = tierMap.get(key);
                   return (tInfo?.tier || '?') === tierRank;
@@ -1467,7 +1533,7 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                                 <button 
                                   onClick={() => {
                                     navigator.clipboard.writeText(notice.content);
-                                    alert('내용이 클립보드에 복사되었습니다.');
+                                    showToast('내용이 클립보드에 복사되었습니다.');
                                   }}
                                   className="text-[9px] font-black text-amber-500 hover:text-amber-400 flex items-center gap-1 transition-colors"
                                 >
@@ -1492,9 +1558,53 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
               </div>
             </div>
             )}
-            </>
-          )}
         </main>
+      </div>
+
+      {/* 확인 대화상자 (삭제 등 되돌릴 수 없는 작업만) */}
+      {confirmRequest && (
+        <div
+          className="fixed inset-0 z-[400] bg-black/60 flex items-center justify-center p-4"
+          onClick={() => setConfirmRequest(null)}
+        >
+          <div
+            className="bg-[#171717] border border-white/10 rounded-2xl p-6 max-w-sm w-full space-y-5"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <p className="text-sm text-gray-200 leading-relaxed">{confirmRequest.message}</p>
+            <div className="flex justify-end gap-2">
+              <button
+                onClick={() => setConfirmRequest(null)}
+                className="px-4 py-2 rounded-xl text-sm font-medium text-gray-300 hover:bg-white/5 transition-colors"
+              >
+                취소
+              </button>
+              <button
+                onClick={() => { confirmRequest.onConfirm(); setConfirmRequest(null); }}
+                className={`px-4 py-2 rounded-xl text-sm font-bold transition-colors ${
+                  confirmRequest.tone === 'danger' ? 'bg-rose-500 text-white hover:bg-rose-400' : 'bg-amber-500 text-black hover:bg-amber-400'
+                }`}
+              >
+                확인
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* 토스트 알림 */}
+      <div className="fixed bottom-6 right-6 z-[400] space-y-2 max-w-sm">
+        {toasts.map((t) => (
+          <div
+            key={t.id}
+            role={t.tone === 'error' ? 'alert' : 'status'}
+            className={`rounded-xl px-4 py-3 text-sm font-medium shadow-lg border ${
+              t.tone === 'error' ? 'bg-rose-500/15 border-rose-500/40 text-rose-200' : 'bg-emerald-500/15 border-emerald-500/40 text-emerald-200'
+            }`}
+          >
+            {t.message}
+          </div>
+        ))}
       </div>
     </div>
   );
