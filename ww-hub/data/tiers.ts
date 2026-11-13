@@ -1,3 +1,4 @@
+import generatedTiers from './generated/tiers.json';
 
 export interface TierCharacter {
   id: string;
@@ -27,41 +28,5 @@ export const WW_TIER_CATEGORIES: TierCategory[] = [
   { id: 'hologram', name: '종말 매트릭스', description: '전략적 대응 필요' },
 ];
 
-export const WW_TIER_DATA: Record<string, TierGroup[]> = {
-  'tower': [
-    {
-      "tier": "T0",
-      "label": "T0",
-      "color": "#FF4D4D",
-      "characters": [
-        { "id": "char_jiyan", "folderName": "기염", "role": "메인 딜러", "name": "기염", "change": "stay" }
-      ]
-    },
-    {
-      "tier": "T1",
-      "label": "T1",
-      "color": "#FF9F43",
-      "characters": []
-    }
-  ],
-  'illusive': [
-    {
-      "tier": "T0",
-      "label": "T0",
-      "color": "#FF4D4D",
-      "characters": [
-        { "id": "char_jiyan", "folderName": "기염", "role": "메인 딜러", "name": "기염", "change": "stay" }
-      ]
-    }
-  ],
-  'hologram': [
-    {
-      "tier": "T0",
-      "label": "T0",
-      "color": "#FF4D4D",
-      "characters": [
-        { "id": "char_jiyan", "folderName": "기염", "role": "메인 딜러", "name": "기염", "change": "stay" }
-      ]
-    }
-  ]
-};
+// Supabase tier_lists의 사본이다(원본은 관리자 페이지의 DB). 빌드 때 `npm run generate:content-snapshots`가 갱신하므로 직접 고치지 않는다.
+export const WW_TIER_DATA: Record<string, TierGroup[]> = generatedTiers as Record<string, TierGroup[]>;
