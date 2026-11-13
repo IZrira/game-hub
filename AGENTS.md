@@ -27,10 +27,21 @@ HSR, WW, NTE, Aniimo, GF2를 포함한 이 프로젝트의 모든 허브에 동�
 사용자가 체감할 수 있는 패치를 배포하면 공지 초안을 함께 작성한다(사용자 지속 지시, 2026-11-12).
 
 - 대상: 새 캐릭터·장비·공략·지역 추가, 눈에 띄는 데이터 정정, 화면·기능 변경, 사용자가 겪던 오류 수정. 내부 도구, SEO·색인, 문서, 리팩터링, 생성 파일 갱신처럼 방문자가 느끼지 못하는 변경은 공지하지 않는다.
-- 공지는 Supabase `notices` 테이블에 있고 관리자 페이지(`/admin`)에서 올린다. `common-hub/data/notices.ts`는 DB 조회 실패 시 대체용이라 새 공지를 여기에 추가하지 않는다. 빌드는 `npm run generate:notices`로 DB 공지를 `common-hub/data/generated/db-notices.json`에 받아 주소·사이트맵·초기 HTML을 만들고, 빌드 뒤 올린 공지는 Edge에서 DB를 확인해 연다(다음 배포 때 초기 HTML이 생긴다).
+- 공지는 Supabase `notices` 테이블에 있고 관리자 페이지(`/admin`)에서 올린다. 사용자가 확인한 초안은 에이전트가 아래 "관리자 DB 콘텐츠"의 `npm run admin:db`로 올릴 수도 있다. `common-hub/data/notices.ts`는 DB 조회 실패 시 대체용이라 새 공지를 여기에 추가하지 않는다. 빌드는 `npm run generate:notices`로 DB 공지를 `common-hub/data/generated/db-notices.json`에 받아 주소·사이트맵·초기 HTML을 만들고, 빌드 뒤 올린 공지는 Edge에서 DB를 확인해 연다(다음 배포 때 초기 HTML이 생긴다).
 - 형식: 제목은 `[HSR]`·`[WW]`·`[NTE]`·`[ANIIMO]`(여러 게임이면 `[공통]`) 뒤에 한 줄 요약, 분류는 `Update`(콘텐츠·데이터) 또는 `Notice`(사이트 기능·운영), 본문은 Markdown 목록(`- `)으로 바뀐 점만 짧게 쓴다. 관리자 편집기에 목록 기호를 이중으로 넣지 않는다.
 - 사실만 쓴다. 수치·이름은 배포된 데이터와 맞추고, 외부 출처 이름이나 Notion 링크를 넣지 않는다.
 - 공지는 공개 게시물이므로 초안을 완료 보고에 넣고 사용자가 확인한 뒤 게시한다. 같은 날 여러 패치는 한 공지로 묶는다.
+
+## 관리자 DB 콘텐츠 (공지·티어표·파티)
+
+공지사항·티어표·추천 파티는 Supabase DB(`notices`, `tier_lists`, `party_recommendations`)가 유일한 원본이다(사용자 지속 지시, 2026-11-13). 관리자 페이지(`/admin`)에서 고친 것과 에이전트가 고친 것이 항상 같도록, 둘 다 DB를 고친다.
+
+- 저장소의 사본은 빌드 때 DB에서 받아 쓰는 생성 파일이다. 직접 고치지 않는다: `hsr-hub/data/generated/tiers.json`·`parties.json`, `ww-hub/data/generated/tiers.json`·`parties.json`, `nte-hub/data/generated/tier-rows.json`·`parties.json`(`npm run generate:content-snapshots`), `common-hub/data/generated/db-notices.json`(`npm run generate:notices`). 빌드가 이 명령들을 먼저 실행한다.
+- 에이전트는 `npm run admin:db`(`scripts/admin-db.js`)로 DB를 고친다. `get <table>`으로 현재 행을 읽고, 바꿀 행만 담은 변경 파일을 만들어 `apply <파일>`로 미리보기한다. 미리보기는 필드별 변경과 백업(`.tmp/admin-db/`)만 만들고 쓰지 않는다.
+- 운영 DB 쓰기이므로 미리보기 결과(바뀌는 행과 값)를 사용자에게 보여 주고 확인을 받은 뒤 `--apply`로 쓴다. 쓰기 뒤 스크립트가 다시 읽어 확인한다. 공지는 공개 게시물이라 위 "공지사항 작성" 절차대로 초안 확인을 받은 뒤 올린다.
+- 쓴 뒤에는 해당 생성 명령으로 사본을 갱신하고, 바뀐 생성 파일을 그 작업의 commit에 넣는다. 공개 페이지는 빌드 사본으로 먼저 그리고 DB를 다시 읽으므로 배포 전에도 바뀐 내용이 보인다.
+- 쓰기에는 `.env`의 `SUPABASE_SERVICE_ROLE_KEY`(Supabase 비밀 키)를 쓴다. 값은 출력·기록·commit하지 않는다. 권한 오류(`42501`)가 나면 테이블 GRANT를 확인한다(`supabase/migrations/`).
+- 캐릭터 도감(`characters`)·WW 무기 등 다른 테이블은 이 규칙의 대상이 아니다.
 
 ## Aniimo 도감 추가 규칙
 

@@ -16,6 +16,7 @@
     "generate:search-data": "node scripts/generate-search-data.js",
     "generate:notices": "node scripts/generate-notices.js",
     "generate:content-snapshots": "node scripts/generate-content-snapshots.js",
+    "admin:db": "node scripts/admin-db.js",
     "generate:translations": "node scripts/generate-character-translations.js",
     "generate:hsr-guides": "node scripts/generate-hsr-guide-runtime.js",
     "generate:hsr-characters": "node scripts/generate-hsr-character-runtime.js",

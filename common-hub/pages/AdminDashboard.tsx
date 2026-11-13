@@ -636,100 +636,6 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
-  const syncFromLocalData = async () => {
-    if (activeGame !== 'hsr') {
-      alert(`${activeGame.toUpperCase()} 티어표 로컬 동기화는 현재 지원되지 않으며, 인게임 데이터 또는 대시보드 UI에서 직접 관리해야 합니다.`);
-      return;
-    }
-    
-    if (!window.confirm('로컬 파일의 티어 데이터를 DB로 전송하시겠습니까?\n(이미 존재하는 데이터는 덮어씌워지거나 유지됩니다.)')) return;
-    
-    setLoading(true);
-    try {
-      const syncTasks: any[] = [];
-      const { HSR_TIER_DATA } = await import('../../hsr-hub/data/tiers');
-      
-      Object.entries(HSR_TIER_DATA).forEach(([catId, groups]) => {
-        groups.forEach(group => {
-          group.characters.forEach(char => {
-            syncTasks.push({
-              game_id: 'hsr',
-              category_id: catId,
-              character_name: char.name,
-              tier: group.tier,
-              role: char.role,
-              change: char.change || 'stay',
-              display_order: (char as any).displayOrder ?? 100
-            });
-          });
-        });
-      });
-
-      // 대량 업서트 (Upsert)
-      const { error } = await supabase
-        .from('tier_lists')
-        .upsert(syncTasks, { onConflict: 'game_id,category_id,character_name' });
-
-      if (error) throw error;
-      alert('성공적으로 동기화되었습니다!');
-      fetchTierData();
-    } catch (err: any) {
-      console.error('Sync Error:', err);
-      alert('동기화 실패: ' + err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const syncNoticesFromLocal = async () => {
-    alert('더 이상 로컬 파일을 통한 공지사항 동기화 기능을 지원하지 않습니다.');
-  };
-
-  const exportSQLToCode = async () => {
-    try {
-      const { data } = await supabase.from('tier_lists').select('*').eq('game_id', activeGame);
-      if (!data) return;
-
-      const exportData: any = {};
-      CATEGORIES.forEach(cat => { exportData[cat.id] = []; });
-
-      const TIER_COLORS: Record<string, string> = {
-        'OP': '#FF4D4D', 'SS': '#FF9F43', 'S+': '#1DD1A1', 'S': '#54A0FF',
-        'A': '#A8A8A8', 'B': '#5F27CD', 'C': '#8395A7', 'D': '#485460'
-      };
-
-      data.forEach(row => {
-        if (!exportData[row.category_id]) exportData[row.category_id] = [];
-        let group = exportData[row.category_id].find((g: any) => g.tier === row.tier);
-        if (!group) {
-          group = { tier: row.tier, label: row.tier, color: TIER_COLORS[row.tier] || '#ffffff', characters: [] };
-          exportData[row.category_id].push(group);
-        }
-        const baseChar = baseCharacters.find(c => normalizeName(c.name) === normalizeName(row.character_name));
-        group.characters.push({
-          id: baseChar?.id || `char_${row.character_name}`,
-          name: baseChar?.name || row.character_name,
-          folderName: baseChar?.folder_name || row.character_name,
-          role: row.role,
-          change: row.change,
-          displayOrder: row.display_order
-        });
-      });
-
-      // 티어 순서 정렬
-      const rankOrder = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', '?'];
-      Object.keys(exportData).forEach(catId => {
-        exportData[catId].sort((a: any, b: any) => rankOrder.indexOf(a.tier) - rankOrder.indexOf(b.tier));
-      });
-
-      const codeString = `export const ${activeGame?.toUpperCase()}_TIER_DATA: Record<string, TierGroup[]> = ${JSON.stringify(exportData, null, 2)};`;
-      await navigator.clipboard.writeText(codeString);
-      alert('SQL 데이터가 티어표 코드 형식으로 복사되었습니다!\n이 내용을 채팅창에 붙여넣어 저에게 전달해 주세요.');
-    } catch (err: any) {
-      alert('내보내기 실패: ' + err.message);
-    }
-  };
-
   const getEncodedUrl = (folderOrChar: any) => {
     const folder = typeof folderOrChar === 'string' 
       ? folderOrChar 
@@ -1154,20 +1060,6 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       WW 무기 동기화
                     </button>
                   )}
-                  <button 
-                    onClick={syncFromLocalData}
-                    className="flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 border border-white/10 rounded-2xl text-[11px] font-black transition-all active:scale-95 text-gray-300"
-                  >
-                    <RefreshCw size={14} className={loading ? 'animate-spin' : ''} />
-                    티어표 데이터 동기화
-                  </button>
-                  <button 
-                    onClick={exportSQLToCode}
-                    className="flex items-center gap-2 px-6 py-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 rounded-2xl text-[11px] font-black transition-all active:scale-95 text-amber-500"
-                  >
-                    <FileText size={14} />
-                    SQL 내보내기
-                  </button>
                 </div>
               </div>
 
@@ -1490,13 +1382,6 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                       >
                         <RotateCcw size={12} />
                         기존 수정일시 초기화
-                      </button>
-                      <button 
-                        onClick={syncNoticesFromLocal}
-                        className="flex items-center gap-2 px-3 py-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-[10px] font-black transition-all active:scale-95 text-gray-400"
-                      >
-                        <RefreshCw size={12} className={loading ? 'animate-spin' : ''} />
-                        로컬 공지 동기화
                       </button>
                     </div>
                   </h2>
