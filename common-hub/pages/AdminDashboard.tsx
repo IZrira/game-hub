@@ -178,10 +178,28 @@ const AdminDashboard: React.FC = () => {
   });
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    let mounted = true;
+
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      if (!mounted) return;
+      if (error) console.error('[Admin] 세션 조회 실패:', error);
       setUser(session?.user ?? null);
       setLoading(false);
     });
+
+    // 토큰 자동 갱신·다른 탭에서의 로그인/로그아웃을 반영한다.
+    // getSession()을 새로고침 시 한 번만 확인하면, 그 직후 토큰 갱신이 실패하거나
+    // 다른 탭에서 로그아웃했을 때 이 화면은 갱신 전 상태에 멈춰 있어 오히려 혼란을 준다.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!mounted) return;
+      setUser(session?.user ?? null);
+      setLoading(false);
+    });
+
+    return () => {
+      mounted = false;
+      subscription.unsubscribe();
+    };
   }, []);
 
   useEffect(() => {

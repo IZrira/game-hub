@@ -6,7 +6,16 @@ describe('auth bootstrap', () => {
     expect(shouldInitializeAuth({ hash: '', search: '' }, [])).toBe(false);
   });
 
-  it('loads Supabase when a persisted session exists', () => {
+  it('loads Supabase when a persisted session exists under the app\'s custom storage key', () => {
+    expect(
+      shouldInitializeAuth(
+        { hash: '', search: '' },
+        ['theme', 'rira-game-hub-auth']
+      )
+    ).toBe(true);
+  });
+
+  it('loads Supabase when a persisted session exists under the default Supabase storage key', () => {
     expect(
       shouldInitializeAuth(
         { hash: '', search: '' },

@@ -12,7 +12,12 @@ export const shouldInitializeAuth = (
 ): boolean => {
   const hasOAuthCallback = location.hash.includes('access_token=')
     || new URLSearchParams(location.search).has('code');
-  const hasPersistedSession = storageKeys.some(key => /^sb-.+-auth-token$/.test(key));
+  // lib/supabase.ts sets a custom storageKey ('rira-game-hub-auth') instead of the
+  // default "sb-<project-ref>-auth-token" key, so a persisted session must be detected
+  // under that key too — otherwise a real session is never picked up after a refresh
+  // and the header always renders as logged out.
+  const hasPersistedSession = storageKeys.includes('rira-game-hub-auth')
+    || storageKeys.some(key => /^sb-.+-auth-token$/.test(key));
   return hasOAuthCallback || hasPersistedSession;
 };
 
