@@ -124,6 +124,16 @@ const jingYuan: Character = {
     { rank: "E05", name: "목숨을 아끼지 않는 백전 장군", description: "전투 스킬 레벨+2, 최대 Lv.15. 특성 레벨+2, 최대 Lv.15", icon: "eidolon_5" },
     { rank: "E06", name: "적을 격멸하는 위령(威霊)", description: "[신군]의 공격은 단마다 지정된 적을 추가로 취약 상태에 빠트린다.\n취약 상태의 적은 받는 피해가 12% 증가하며, 이번 [신군] 공격 종료까지 지속된다. 해당 효과 최대 중첩수: 3스택", icon: "eidolon_6" }
   ],
+  exEidolon: {
+    rank: "EX1",
+    name: "만 균의 잔, 고요한 등불",
+    tag: "강화",
+    icon: "EX skill_1",
+    backgroundImage: "EX Background",
+    description: "[신군] 공격 단수 최대치가 20스택 증가하고, [신군] 공격 단수가 최대치에 도달하면 즉시 행동한다. 전투 시작 및 [신군]이 1회 행동할 때마다 [신군]은 강화를 획득하며, 경원이 가하는 피해가 240% 증가하고, 전투 스킬/필살기 발동 시 [신군] 공격 단수가 추가로 6/12단 증가한다, 지속 시간: 4턴",
+    relatedSkills: ["퇴마의 형신"],
+    material: { icon: "Affinitive Eidolon", name: "[경원]의 기연 성혼", count: 1 }
+  },
   specialTerms: {
     "추가 공격": "조건을 만족하면 자동으로 발동되는 효과. 목표에게 추가로 공격을 발동한다.",
     "[신군]": "경원의 특성으로 소환되는 개체. 고유의 속도와 행동 순서를 가지며, 단수가 누적될수록 공격력이 강력해진다.",

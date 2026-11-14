@@ -501,6 +501,10 @@ export default function SkillAndEidolonSection({
                 {renderContent(t(char.exEidolon.description, { keySeparator: false, nsSeparator: false }))}
               </p>
 
+              {char.exEidolon.insight !== undefined && (
+                <p className="text-xs text-gray-500">인성 소모: <span className="font-bold text-gray-300">{char.exEidolon.insight}</span></p>
+              )}
+
               {!!char.exEidolon.relatedSkills?.length && (
                 <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
                   {char.exEidolon.relatedSkills.map((name: string) => (
