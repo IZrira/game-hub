@@ -292,6 +292,11 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
   const hasParties = useHasRecommendedParties('hsr', char?.id || charName || '');
   if (!char) return <div className="p-20 text-center text-white font-black uppercase italic">{t('Character Registry Not Found')}</div>;
 
+  // SkillAndEidolonSection numbers 성혼 07(또는 기억 정령 보유 시 08), EX 성혼이 있으면 그 다음 번호를
+  // 하나 더 쓴다. 추천 파티 섹션은 그 바로 다음 번호를 이어받아야 "08"이 두 번 나오지 않는다.
+  const hasServantSection = Boolean(char.skills?.some((s: any) => s.tag?.includes('기억 정령') || s.tag?.toLowerCase?.().includes('memokeeper')));
+  const hsrSynergySectionNum = String((hasServantSection ? 8 : 7) + (char.exEidolon ? 2 : 1)).padStart(2, '0');
+
   const currentLevel = LEVEL_STEPS[levelIdx];
 
   const calculateStat = (statType: 'hp' | 'atk' | 'def'): string | number => {
@@ -929,6 +934,7 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
                   characterName={char?.id || charName || ''}
                   gameId="hsr"
                   theme={theme}
+                  sectionNum={hsrSynergySectionNum}
                 />
               </Suspense>
             </DeferredSection>
