@@ -157,6 +157,20 @@ const danHengIL: Character = {
     { rank: "E05", name: "오만한 기세", description: "필살기 레벨+2, 최대 Lv.15. 특성 레벨+2, 최대 Lv.15", icon: "eidolon_5" },
     { rank: "E06", name: "용의 강림", description: "다른 아군 캐릭터가 필살기를 발동하면 단항•음월이 다음 번에 [빛나는 도약] 발동 시 허수 속성 저항 관통이 20% 증가한다. 해당 효과 최대 중첩수: 3스택", icon: "eidolon_6" }
   ],
+  exEidolon: {
+    rank: "EX1",
+    name: "바다에 내려앉은 달빛, 잠잠해진 물결",
+    tag: "범위 공격",
+    icon: "EX skill_1",
+    backgroundImage: "EX Background",
+    insight: 10,
+    description: "역린 최대치가 1개 증가한다. 아군이 전투 스킬 포인트를 5pt 소모할 때마다 단항•음월이 추가 공격을 발동하며, 자신이 가하는 피해가 240% 증가한다, 지속 시간: 3턴. 이후 6단 공격을 발동해 모든 적에게 단항•음월 공격력의 500%만큼 허수 속성 피해를 가하고, 자신은 역린을 1개 획득한다. 이번 추가 공격은 피해를 가할 시 일반 공격 피해를 가한 것으로 간주한다",
+    relatedSkills: ["긍지"],
+    material: { icon: "Affinitive Eidolon", name: "[단항•음월]의 기연 성혼", count: 1 },
+    additionalEffects: [
+      { name: "추가 공격", description: "조건을 만족하면 자동으로 발동되는 효과. 목표에게 추가로 공격을 1회 발동한다" }
+    ]
+  },
   specialTerms: {
     "즉시 행동": "행동 게이지가 100% 증가하여 즉시 턴을 획득한다.",
     "[역린]": "단항•음월이 스킬 등을 통해 획득하는 자원으로 전투 스킬 포인트를 대체하여 소모할 수 있다.",

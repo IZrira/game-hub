@@ -19,7 +19,7 @@ last_reinforced: 2026-05-19
 > 대표적인 파티 조합 전략이 아직 데이터베이스에 등록되어 있지 않습니다.
 
 ## 티어표 공략 (Tier Placements)
-- **혼돈 12층 (Memory of Chaos):** **미지정** 등급 (와류 반영 기준)
+- **혼돈 12층 (Memory of Chaos):** **F** 등급 (와류 반영 기준)
 - **허구 이야기 (Pure Fiction):** **F** 등급 (범위 공격 메타 기준)
 - **종말의 환영 (Apocalyptic Shadow):** **F** 등급 (전투 환경 기준)
 - **차분화 우주 - 이상 중재 (Divergent Universe):** **F** 등급 (하프 시뮬 기준)

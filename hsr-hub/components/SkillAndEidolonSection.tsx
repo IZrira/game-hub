@@ -463,6 +463,83 @@ export default function SkillAndEidolonSection({
           })}
         </div>
       </section>
+
+      {/* EX 성혼: 일부 캐릭터만 보유. 기존 성혼 섹션 다음 번호를 그대로 이어받는다 */}
+      {char.exEidolon && (
+        <section className="space-y-10">
+          <div className="flex items-center gap-6 px-4">
+            <div className="flex items-center justify-center w-12 h-12 rounded-3xl border-2 font-black text-lg shadow-lg" style={{ backgroundColor: `${theme.primary}20`, color: readableTextColor(theme.primary), borderColor: `${theme.primary}60` }}>{hasServant ? '09' : '08'}</div>
+            <h2 className="text-2xl font-black text-white tracking-tight uppercase leading-none py-1.5">{t('EX 성혼', { keySeparator: false, nsSeparator: false })}</h2>
+          </div>
+
+          <div className="glass-card rounded-3xl border border-white/5 shadow-xl overflow-hidden grid grid-cols-1 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+            <div className="relative aspect-[8/5] bg-black/40 overflow-hidden">
+              {char.exEidolon.backgroundImage && (
+                <img
+                  src={`${CDN_BASE}${char.exEidolon.backgroundImage}.webp`}
+                  className="w-full h-full object-cover"
+                  alt={char.exEidolon.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              )}
+            </div>
+
+            <div className="p-6 md:p-8 space-y-5 bg-black/10">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl border border-white/10 bg-black/30 p-2 shrink-0 flex items-center justify-center">
+                  <img src={`${CDN_BASE}${char.exEidolon.icon}.webp`} className="w-full h-full object-contain" alt={char.exEidolon.name} loading="lazy" decoding="async" onError={(e) => (e.currentTarget.style.opacity = '0.3')} />
+                </div>
+                <div className="min-w-0">
+                  <span className="inline-block text-xs font-black text-brand-primary-text px-2.5 py-0.5 rounded-lg bg-brand-primary/10 border border-brand-primary/20 mb-1">{char.exEidolon.rank}</span>
+                  <h3 className="text-lg font-black text-white leading-tight">{t(char.exEidolon.name, { keySeparator: false, nsSeparator: false })}</h3>
+                  {char.exEidolon.tag && <p className="text-xs text-gray-400 font-bold mt-0.5">{t(char.exEidolon.tag, { keySeparator: false, nsSeparator: false })}</p>}
+                </div>
+              </div>
+
+              <p className="text-base text-gray-300 leading-relaxed font-medium whitespace-pre-line">
+                {renderContent(t(char.exEidolon.description, { keySeparator: false, nsSeparator: false }))}
+              </p>
+
+              {!!char.exEidolon.relatedSkills?.length && (
+                <div className="flex flex-wrap gap-2 pt-4 border-t border-white/5">
+                  {char.exEidolon.relatedSkills.map((name: string) => (
+                    <span key={name} className="px-3 py-1 rounded-xl bg-brand-primary/10 text-brand-primary-text text-sm font-bold">
+                      {t(name, { keySeparator: false, nsSeparator: false })}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {char.exEidolon.material && (
+                <div className="flex items-center gap-3 pt-4 border-t border-white/5">
+                  <div className="w-14 h-14 rounded-xl border border-amber-400/40 bg-amber-500/10 p-1.5 shrink-0 flex items-center justify-center">
+                    <img src={`${CDN_BASE}${char.exEidolon.material.icon}.webp`} className="w-full h-full object-contain" alt={char.exEidolon.material.name} loading="lazy" decoding="async" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm text-gray-300 font-medium truncate">{t(char.exEidolon.material.name, { keySeparator: false, nsSeparator: false })}</p>
+                    <p className="text-xs text-gray-500 font-bold">x{char.exEidolon.material.count}</p>
+                  </div>
+                </div>
+              )}
+
+              {!!char.exEidolon.additionalEffects?.length && (
+                <details className="pt-4 border-t border-white/5">
+                  <summary className="cursor-pointer text-sm font-bold text-gray-300">{t('추가 효과', { keySeparator: false, nsSeparator: false })}</summary>
+                  <div className="mt-3 space-y-3">
+                    {char.exEidolon.additionalEffects.map((effect: { name: string; description: string }, i: number) => (
+                      <div key={i}>
+                        <p className="text-sm font-bold text-white">{t(effect.name, { keySeparator: false, nsSeparator: false })}</p>
+                        <p className="text-sm text-gray-400 mt-1">{t(effect.description, { keySeparator: false, nsSeparator: false })}</p>
+                      </div>
+                    ))}
+                  </div>
+                </details>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 };

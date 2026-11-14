@@ -21,7 +21,7 @@ last_reinforced: 2026-05-19
 ## 티어표 공략 (Tier Placements)
 - **혼돈 12층 (Memory of Chaos):** **B** 등급 (와류 반영 기준)
 - **허구 이야기 (Pure Fiction):** **A** 등급 (범위 공격 메타 기준)
-- **종말의 환영 (Apocalyptic Shadow):** **A** 등급 (전투 환경 기준)
+- **종말의 환영 (Apocalyptic Shadow):** **B** 등급 (전투 환경 기준)
 - **차분화 우주 - 이상 중재 (Divergent Universe):** **B** 등급 (하프 시뮬 기준)
 
 ## 상세 프로필 및 능력치 (Stats)

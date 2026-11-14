@@ -115,6 +115,18 @@ export interface Character extends BaseItem {
   additionalAbilities?: any[];
   attributeBonuses?: any[];
   eidolons?: any[];
+  exEidolon?: {
+    rank: string; // "EX1"
+    name: string; // 배너 공개명 (예: "바다에 내려앉은 달빛, 잠잠해진 물결")
+    description: string;
+    icon: string; // "EX skill_1" -> skills/<folderName>/EX skill_1.webp
+    tag?: string; // 짧은 분류 뱃지 (예: "범위 공격")
+    backgroundImage?: string; // "EX Background" -> skills/<folderName>/EX Background.webp
+    insight?: number; // 인성 소모치
+    relatedSkills?: string[];
+    material?: { icon: string; name: string; count: number }; // "Affinitive Eidolon" 등
+    additionalEffects?: { name: string; description: string }[];
+  };
   bonusAbilities?: any[];
   hasASBuff?: boolean;
   specialTerms?: Record<string, string>;
