@@ -8,6 +8,8 @@ import { EXP_ITEM_DATA, CHARACTER_ASCENSION_DATA, TRACE_PATH_DATA, ADVANCED_TRAC
 import { WARP_ITEM_DATA, CURRENCY_DATA, SIMULATED_UNIVERSE_DATA, CURRENCY_WARS_DATA } from '../../hsr-hub/data/currencies';
 import { WW_ITEM_META } from '../../ww-hub/data/items';
 import { NTE_ITEM_META } from '../../nte-hub/data/items';
+import nteVersionedItemImages from '../../nte-hub/data/itemImages.json';
+const nteVersionedImagePaths: Record<string, string> = nteVersionedItemImages;
 import notionData from './generated/notion-items.json';
 
 /** 아이템 데이터베이스를 조립하는 함수 (내부용) */
@@ -122,6 +124,11 @@ export const getItemUrl = (name: string, gameId: string = 'hsr', overrideFileNam
   }
   
   if (targetGameId === 'nte') {
+    const versionedPath = !overrideFileName && nteVersionedImagePaths[originalName];
+    if (versionedPath) {
+      const encodedPath = versionedPath.split('/').map(safeEncodeURIComponent).join('/');
+      return `${CDN_URL}/nte%20images/items/${encodedPath}.webp`;
+    }
     let nteFileName = overrideFileName || itemDetail?.fileName || itemDetail?.folderName || originalName;
     nteFileName = nteFileName.replace(/\//g, ''); // 1/3 -> 13
     nteFileName = nteFileName.replace(/: /g, '_'); 

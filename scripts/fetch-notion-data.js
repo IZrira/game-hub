@@ -222,7 +222,9 @@ async function fetchFromDB(notion, dbId, n2m, isCharacterDB = false, gameName = 
     
     const growthStats = extractRichText(props['성장 스텟']);
     const skillName = extractRichText(props['스킬명']) ? extractRichText(props['스킬명']).replace(/\*\*/g, '').trim() : '';
-    const skillDescription = extractRichText(props['스킬 설명']) || extractRichText(props['설명']) || extractRichText(props['스킬']);
+    const descriptionText = extractRichText(props['스킬 설명']) || extractRichText(props['설명']) || extractRichText(props['스킬']);
+    const usageText = gameName === 'NTE' && !isCharacterDB ? extractRichText(props['사용처']) : '';
+    const skillDescription = [...new Set([usageText, descriptionText].filter(Boolean))].join('\n\n');
     const ascensionMaterials = extractRichText(props['승급 재료']) || extractRichText(props['돌파 재료']);
     const skillMaterials = extractRichText(props['스킬 재료']);
     const weaponStory = extractRichText(props['아크 스토리']) || extractRichText(props['무기 스토리']) || extractRichText(props['스토리']);
