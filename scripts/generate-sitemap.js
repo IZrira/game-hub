@@ -629,6 +629,12 @@ ${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}  </sitemap>
     fs.writeFileSync(masterSitemapPath, indexXml, 'utf8');
     console.log(`Successfully generated sitemap index at ${masterSitemapPath} (${allUrls.length} total indexed URLs across ${subSitemaps.length} sub-sitemaps).`);
 
+    const nteItemImagePaths = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'nte-hub', 'data', 'itemImages.json'), 'utf8'));
+    const registeredNteItemNames = new Set(notionData.filter(item => item.dbSource === 'nte_items').map(item => item.name));
+    for (const name of Object.keys(nteItemImagePaths)) {
+      if (registeredNteItemNames.has(name)) appOnlyPaths.add('/gallery/nte/item/' + decodeURI(encodeURIComponent(name.normalize('NFC'))));
+    }
+
     const edgeRoutes = [...new Set([
       ...allUrls.map(entry => decodeURI(new URL(entry).pathname)),
       ...appOnlyPaths,

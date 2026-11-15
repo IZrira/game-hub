@@ -307,6 +307,12 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
     }
   }
 
+  if (normalizedPath.startsWith('/gallery/nte/item/')) {
+    const itemResponse = new Response(response.body, response);
+    itemResponse.headers.set('X-Robots-Tag', 'noindex, follow');
+    return withRevalidation(itemResponse);
+  }
+
   return withRevalidation(response);
 };
 
