@@ -38,8 +38,8 @@ describe('NTE 비틀 코인 육성 재료 성급', () => {
     expect(html).toContain('525,000');
   });
 
-  it('캐릭터 24명과 아크 51개를 검수 대상으로 포함한다', () => {
-    expect(coinConsumers.filter(item => item.dbSource === 'nte_characters')).toHaveLength(24);
+  it('캐릭터 25명과 아크 51개를 검수 대상으로 포함한다', () => {
+    expect(coinConsumers.filter(item => item.dbSource === 'nte_characters')).toHaveLength(25);
     expect(coinConsumers.filter(item => item.dbSource === 'nte_arcs')).toHaveLength(51);
   });
 

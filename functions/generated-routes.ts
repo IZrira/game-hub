@@ -589,6 +589,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/gallery/nte/character/아들러",
   "/gallery/nte/character/아카네 린",
   "/gallery/nte/character/에드가",
+  "/gallery/nte/character/엘림",
   "/gallery/nte/character/우미츠키",
   "/gallery/nte/character/일로이",
   "/gallery/nte/character/잔홍",

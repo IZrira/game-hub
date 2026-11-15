@@ -1,5 +1,17 @@
 [
   {
+    "id": "41995fae-3dc7-816d-a719-c3d0606ebafa",
+    "name": "엘림",
+    "gameId": "nte",
+    "folderName": "엘림",
+    "fileName": "엘림",
+    "isTrailblazer": false,
+    "rarity": 5,
+    "attribute": "빛",
+    "arc": "고체",
+    "releaseVersion": "1.5"
+  },
+  {
     "id": "3db95fae-3dc7-8049-999d-e0bb2239920b",
     "name": "레이븐",
     "gameId": "nte",

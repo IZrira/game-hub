@@ -31,7 +31,7 @@ export const normalizeNteCharacter = item => {
   const normalizedSkills = { ...item, citySkill, citySkill2 };
   const baseStats = {};
   for (const line of (item.growthStats || '').split('\n')) {
-    const match = line.match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d\.%]+)\s+([\d\.%]+)/);
+    const match = line.replace(/\*\*|==/g, '').match(/(\d+)\s*:\s*([\d,]+)\s+([\d,]+)\s+([\d,]+)\s+([\d\.%]+)\s+([\d\.%]+)/);
     if (!match) continue;
     baseStats[`lv${match[1]}`] = {
       '기초 HP': Number.parseInt(match[2].replace(/,/g, ''), 10),
