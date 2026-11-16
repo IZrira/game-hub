@@ -1,0 +1,613 @@
+[
+  {
+    "id": "c2000",
+    "sourceHeading": "3.1.1. 노버스 C2000",
+    "stats": {
+      "topSpeed": 130,
+      "acceleration": 3,
+      "durability": 17000
+    },
+    "performance": {
+      "shiftTime": 4,
+      "suspensionHeight": 5,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 3
+    }
+  },
+  {
+    "id": "m1000",
+    "sourceHeading": "3.1.2. M1000",
+    "stats": {
+      "topSpeed": 146,
+      "acceleration": 5,
+      "durability": 18000
+    },
+    "performance": {
+      "shiftTime": 5,
+      "suspensionHeight": 5,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 4
+    }
+  },
+  {
+    "id": "st79",
+    "sourceHeading": "3.1.4. ST79",
+    "stats": {
+      "topSpeed": 155,
+      "acceleration": 5,
+      "durability": 19000
+    },
+    "performance": {
+      "shiftTime": 5,
+      "suspensionHeight": 5,
+      "suspensionDamping": 5,
+      "handbrake": 0,
+      "braking": 4
+    }
+  },
+  {
+    "id": "enforcer",
+    "sourceHeading": "3.1.3. Enforcer",
+    "stats": {
+      "topSpeed": 172,
+      "acceleration": 6,
+      "durability": 18700
+    },
+    "performance": {
+      "shiftTime": 6,
+      "suspensionHeight": 7,
+      "suspensionDamping": 2,
+      "handbrake": 8,
+      "braking": 6
+    }
+  },
+  {
+    "id": "griffin",
+    "sourceHeading": "3.2.1. Griffin",
+    "stats": {
+      "topSpeed": 170,
+      "acceleration": 6,
+      "durability": 16000
+    },
+    "performance": {
+      "shiftTime": 6,
+      "suspensionHeight": 4,
+      "suspensionDamping": 6,
+      "handbrake": 4,
+      "braking": 0
+    }
+  },
+  {
+    "id": "griffin-volante",
+    "sourceHeading": "3.2.2. Griffin Volante",
+    "stats": {
+      "topSpeed": 170,
+      "acceleration": 6,
+      "durability": 16000
+    },
+    "performance": {
+      "shiftTime": 6,
+      "suspensionHeight": 4,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 4
+    }
+  },
+  {
+    "id": "lavelox",
+    "sourceHeading": "3.2.4. LaVelox",
+    "stats": {
+      "topSpeed": 197,
+      "acceleration": 8,
+      "durability": 15000
+    },
+    "performance": {
+      "shiftTime": 9,
+      "suspensionHeight": 4,
+      "suspensionDamping": 8,
+      "handbrake": 0,
+      "braking": 8
+    }
+  },
+  {
+    "id": "pursuit-v8",
+    "sourceHeading": "3.2.3. Pursuit V8",
+    "stats": {
+      "topSpeed": 180,
+      "acceleration": 7,
+      "durability": 16000
+    },
+    "performance": {
+      "shiftTime": 6,
+      "suspensionHeight": 6,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 7
+    }
+  },
+  {
+    "id": "pendragon",
+    "sourceHeading": "3.2.5. Pendragon",
+    "stats": {
+      "topSpeed": 202,
+      "acceleration": 9,
+      "durability": 13850
+    },
+    "performance": {
+      "shiftTime": 8,
+      "suspensionHeight": 5,
+      "suspensionDamping": 5,
+      "handbrake": 8,
+      "braking": 7
+    }
+  },
+  {
+    "id": "novis-st-x-950",
+    "sourceHeading": "2.4.1. Novis ST-X 950",
+    "stats": {
+      "topSpeed": 140,
+      "acceleration": 6,
+      "durability": 4400
+    },
+    "performance": {
+      "shiftTime": 8,
+      "suspensionHeight": 5,
+      "suspensionDamping": 5,
+      "handbrake": 8,
+      "braking": 6
+    }
+  },
+  {
+    "id": "blizzard-v4",
+    "sourceHeading": "2.4.2. Blizzard-V4",
+    "stats": {
+      "topSpeed": 180,
+      "acceleration": 7,
+      "durability": 5400
+    },
+    "performance": {
+      "shiftTime": 10,
+      "suspensionHeight": 5,
+      "suspensionDamping": 4,
+      "handbrake": 9,
+      "braking": 7
+    }
+  },
+  {
+    "id": "g3",
+    "sourceHeading": "3.3.1. G3",
+    "stats": {
+      "topSpeed": 138,
+      "acceleration": 4,
+      "durability": 36650
+    },
+    "performance": {
+      "shiftTime": 3,
+      "suspensionHeight": 7,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 5
+    }
+  },
+  {
+    "id": "rover-a1",
+    "sourceHeading": "2.1. Rover A1",
+    "stats": {
+      "topSpeed": 40,
+      "acceleration": 2,
+      "durability": null
+    },
+    "performance": {
+      "shiftTime": 0,
+      "suspensionHeight": 2,
+      "suspensionDamping": 2,
+      "handbrake": 6,
+      "braking": 5
+    }
+  },
+  {
+    "id": "tomorrow-rush",
+    "sourceHeading": "3.7.1. 「미래로 질주!」",
+    "stats": {
+      "topSpeed": 50,
+      "acceleration": 2,
+      "durability": 5400
+    },
+    "performance": {
+      "shiftTime": 0,
+      "suspensionHeight": 1,
+      "suspensionDamping": 9,
+      "handbrake": 7,
+      "braking": 5
+    }
+  },
+  {
+    "id": "b100",
+    "sourceHeading": "3.1.5. B100",
+    "stats": {
+      "topSpeed": 132,
+      "acceleration": 4,
+      "durability": 14600
+    },
+    "performance": {
+      "shiftTime": 5,
+      "suspensionHeight": 4,
+      "suspensionDamping": 7,
+      "handbrake": 4,
+      "braking": 4
+    }
+  },
+  {
+    "id": "k01",
+    "sourceHeading": "3.7.2. K01",
+    "stats": {
+      "topSpeed": 80,
+      "acceleration": 8,
+      "durability": 7200
+    },
+    "performance": {
+      "shiftTime": 10,
+      "suspensionHeight": 2,
+      "suspensionDamping": 9,
+      "handbrake": 9,
+      "braking": 7
+    }
+  },
+  {
+    "id": "porsche-918-spyder",
+    "sourceHeading": "3.4.1. Porsche 918 Spyder",
+    "stats": {
+      "topSpeed": 212,
+      "acceleration": 10,
+      "durability": 18200
+    },
+    "performance": {
+      "shiftTime": 8,
+      "suspensionHeight": 4,
+      "suspensionDamping": 8,
+      "handbrake": 0,
+      "braking": 6
+    }
+  },
+  {
+    "id": "draco",
+    "sourceHeading": "2.4.3. Draco",
+    "stats": {
+      "topSpeed": 180,
+      "acceleration": 7,
+      "durability": null
+    },
+    "performance": {
+      "shiftTime": 10,
+      "suspensionHeight": 2,
+      "suspensionDamping": 7,
+      "handbrake": 9,
+      "braking": 9
+    }
+  },
+  {
+    "id": "yesteryear",
+    "sourceHeading": "2.2.1. 「옛 시절」",
+    "stats": {
+      "topSpeed": 30,
+      "acceleration": 3,
+      "durability": 4400
+    },
+    "performance": {
+      "shiftTime": 0,
+      "suspensionHeight": 1,
+      "suspensionDamping": 1,
+      "handbrake": 0,
+      "braking": 3
+    }
+  },
+  {
+    "id": "sirocco",
+    "sourceHeading": "2.3.1. 「열풍」",
+    "stats": {
+      "topSpeed": 95,
+      "acceleration": 7,
+      "durability": 9150
+    },
+    "performance": {
+      "shiftTime": 10,
+      "suspensionHeight": 6,
+      "suspensionDamping": 6,
+      "handbrake": 7,
+      "braking": 7
+    }
+  },
+  {
+    "id": "tide",
+    "sourceHeading": "4.1.1. Tide",
+    "stats": {
+      "topSpeed": 108,
+      "acceleration": 5,
+      "durability": null
+    },
+    "performance": {
+      "shiftTime": 0,
+      "suspensionHeight": 0,
+      "suspensionDamping": 0,
+      "handbrake": 0,
+      "braking": 0
+    }
+  },
+  {
+    "id": "porsche-taycan-turbo-gt",
+    "sourceHeading": "3.4.2. Porsche Taycan Turbo GT with Weissach Package",
+    "stats": {
+      "topSpeed": 193,
+      "acceleration": 9,
+      "durability": 20500
+    },
+    "performance": {
+      "shiftTime": 10,
+      "suspensionHeight": 4,
+      "suspensionDamping": 8,
+      "handbrake": 3,
+      "braking": 6
+    }
+  },
+  {
+    "id": "porsche-911-turbo-930",
+    "sourceHeading": "3.4.3. Porsche 911 Turbo (930)",
+    "stats": {
+      "topSpeed": 186,
+      "acceleration": 7,
+      "durability": 16750
+    },
+    "performance": {
+      "shiftTime": 6,
+      "suspensionHeight": 4,
+      "suspensionDamping": 6,
+      "handbrake": 6,
+      "braking": 6
+    }
+  },
+  {
+    "id": "a001",
+    "sourceHeading": "3.1.6. A001",
+    "stats": {
+      "topSpeed": 148,
+      "acceleration": 3,
+      "durability": 17600
+    },
+    "performance": {
+      "shiftTime": 40,
+      "suspensionHeight": 0,
+      "suspensionDamping": 0,
+      "handbrake": 0,
+      "braking": 30
+    }
+  },
+  {
+    "id": "e001",
+    "sourceHeading": "3.1.7. E001",
+    "stats": {
+      "topSpeed": 145,
+      "acceleration": 3,
+      "durability": 19600
+    },
+    "performance": {
+      "shiftTime": 4,
+      "suspensionHeight": 0,
+      "suspensionDamping": 0,
+      "handbrake": 0,
+      "braking": 3
+    }
+  },
+  {
+    "id": "c001",
+    "sourceHeading": "3.1.8. C001",
+    "stats": {
+      "topSpeed": 145,
+      "acceleration": 3,
+      "durability": 19600
+    },
+    "performance": {
+      "shiftTime": 40,
+      "suspensionHeight": 0,
+      "suspensionDamping": 0,
+      "handbrake": 0,
+      "braking": 30
+    }
+  },
+  {
+    "id": "steel-tank",
+    "sourceHeading": "3.3.2. 철강호",
+    "stats": {
+      "topSpeed": 35,
+      "acceleration": 3,
+      "durability": 45000
+    },
+    "performance": {
+      "shiftTime": 4,
+      "suspensionHeight": 60,
+      "suspensionDamping": 40,
+      "handbrake": 1,
+      "braking": 6
+    }
+  },
+  {
+    "id": "ori-tt01",
+    "sourceHeading": "3.5.1. Ori-TT01",
+    "stats": {
+      "topSpeed": 95,
+      "acceleration": 4,
+      "durability": 27500
+    },
+    "performance": {
+      "shiftTime": 3,
+      "suspensionHeight": 7,
+      "suspensionDamping": 60,
+      "handbrake": 0,
+      "braking": 40
+    }
+  },
+  {
+    "id": "ori-lv01",
+    "sourceHeading": "3.5.2. Ori-LV01",
+    "stats": {
+      "topSpeed": 100,
+      "acceleration": 4,
+      "durability": 17200
+    },
+    "performance": {
+      "shiftTime": 3,
+      "suspensionHeight": 7,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 4
+    }
+  },
+  {
+    "id": "ori-lv03",
+    "sourceHeading": "3.5.3. Ori-LV03",
+    "stats": {
+      "topSpeed": 90,
+      "acceleration": 4,
+      "durability": 26450
+    },
+    "performance": {
+      "shiftTime": 3,
+      "suspensionHeight": 7,
+      "suspensionDamping": 6,
+      "handbrake": 0,
+      "braking": 4
+    }
+  },
+  {
+    "id": "land-ruler-001",
+    "sourceHeading": "3.6.1. 육지의 지배자 001 시제품",
+    "stats": {
+      "topSpeed": 60,
+      "acceleration": 8,
+      "durability": 9150
+    },
+    "performance": {
+      "shiftTime": 8,
+      "suspensionHeight": 2,
+      "suspensionDamping": 3,
+      "handbrake": 7,
+      "braking": 8
+    }
+  },
+  {
+    "id": "row-toward-tomorrow",
+    "sourceHeading": "4.2. 「미래로 저어라!」",
+    "stats": {
+      "topSpeed": 45,
+      "acceleration": 4,
+      "durability": null
+    },
+    "performance": {
+      "shiftTime": 0,
+      "suspensionHeight": 0,
+      "suspensionDamping": 0,
+      "handbrake": 0,
+      "braking": 0
+    }
+  },
+  {
+    "id": "npc-light-truck",
+    "sourceHeading": "5.1. 경형트럭",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-food-truck",
+    "sourceHeading": "5.2. 푸드트럭",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-heavy-truck",
+    "sourceHeading": "5.3. 대형트럭",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-forklift",
+    "sourceHeading": "5.4. 지게차",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-loader",
+    "sourceHeading": "5.5. 로더",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-roller",
+    "sourceHeading": "5.6. 롤러",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-excavator",
+    "sourceHeading": "5.7. 굴착기",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-city-bus",
+    "sourceHeading": "5.8. 시내버스",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-taxi",
+    "sourceHeading": "5.9. 택시",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-police-car",
+    "sourceHeading": "5.10. 경찰차",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  },
+  {
+    "id": "npc-small-boat",
+    "sourceHeading": "6.1. 소형 선박",
+    "stats": {
+      "topSpeed": null,
+      "acceleration": null,
+      "durability": null
+    }
+  }
+]

@@ -14,7 +14,8 @@ import { CharacterPremiumCard, LightConePremiumCard, GuidePremiumCard } from '@/
 import { NoticeListView, NoticeDetailModal, useNoticeBadge } from '../../common-hub/components/NoticeComponents';
 import { Notice } from '../../common-hub/data/types';
 import { getNTECartridgeImageUrl, NTE_CARTRIDGES, NTE_CARTRIDGE_EFFECT_TYPES } from '../data/cartridges';
-import { getNTEVehicleImageUrl, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
+import { getNTEVehicleImageUrl, getNTEVehicleGroups, normalizeNTEVehicleCategory, NTE_VEHICLES, NTE_VEHICLE_CATEGORIES, NTE_VEHICLE_DISPLAY_ORDER } from '../data/vehicles';
+import VehiclePerformance from '../components/VehiclePerformance';
 import { NTE_ARC_COUNT, NTE_GALLERY_CHARACTERS, NTE_INVENTORY_COUNT } from '../data/galleryData';
 import { getPublishedGuides } from '../../common-hub/data/guideSummaries';
 
@@ -136,7 +137,7 @@ const GalleryNTE: React.FC = () => {
   const filteredVehicles = useMemo(() => {
     const normalizedQuery = debouncedSearchQuery.trim().toLocaleLowerCase('ko-KR');
     const vehicles = NTE_VEHICLES.filter((vehicle) => {
-      const matchesType = attrFilter === '전체' || vehicle.category === attrFilter;
+      const matchesType = attrFilter === '전체' || vehicle.category === normalizeNTEVehicleCategory(attrFilter);
       const matchesSearch = !normalizedQuery || [
         vehicle.name,
         vehicle.category,
@@ -157,25 +158,7 @@ const GalleryNTE: React.FC = () => {
     });
   }, [debouncedSearchQuery, secondFilter, attrFilter]);
 
-  const groupedVehicles = useMemo(() => NTE_VEHICLE_CATEGORIES.flatMap((category) => {
-    const categoryVehicles = filteredVehicles.filter((vehicle) => vehicle.category === category);
-    if (categoryVehicles.length === 0) return [];
-
-    const manufacturerOrder: Array<(typeof categoryVehicles)[number]['manufacturer']> = category === '2륜 이동 수단'
-      ? [null, 'TerraX', '레갈리아']
-      : category === '4륜 이동 수단'
-        ? ['노버스', '레갈리아', 'TerraX']
-        : ["Hikari's", null];
-    const manufacturers = manufacturerOrder.filter((manufacturer) =>
-      categoryVehicles.some((vehicle) => vehicle.manufacturer === manufacturer));
-    return [{
-      category,
-      groups: manufacturers.map((manufacturer) => ({
-        manufacturer,
-        vehicles: categoryVehicles.filter((vehicle) => vehicle.manufacturer === manufacturer),
-      })),
-    }];
-  }), [filteredVehicles]);
+  const groupedVehicles = useMemo(() => getNTEVehicleGroups(filteredVehicles), [filteredVehicles]);
 
   if (!game) return null;
 
@@ -559,10 +542,12 @@ const GalleryNTE: React.FC = () => {
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="text-[11px] font-black uppercase tracking-[0.22em] text-emerald-400">MOBILITY</span>
                           <span className="rounded-full border border-emerald-400/20 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-black text-emerald-300">{vehicle.type}</span>
+                          {vehicle.ownership && <span className="rounded-full border border-amber-400/20 px-2.5 py-1 text-xs font-bold text-amber-300">{vehicle.ownership}</span>}
+                          {vehicle.releaseVersion && <span className="text-xs text-gray-400">Ver {vehicle.releaseVersion}</span>}
                           {vehicle.availability && <span className="rounded-full border border-amber-400/20 bg-amber-400/10 px-2.5 py-1 text-[11px] font-black text-amber-300">{vehicle.availability}</span>}
                         </div>
                         <h2 className="mt-2 text-2xl font-black text-white">{vehicle.name}</h2>
-                        <p className="mt-3 text-sm leading-6 text-gray-400">{vehicle.description}</p>
+                        <p className="mt-3 text-base leading-7 text-gray-300">{vehicle.description}</p>
                       </div>
                     </div>
 
@@ -584,11 +569,13 @@ const GalleryNTE: React.FC = () => {
                       </div>
                     </dl>
 
+                    <VehiclePerformance performance={vehicle.performance} />
+
                     <div className="flex items-start gap-3 p-5 sm:px-6">
                       <MapPin size={16} className="mt-0.5 shrink-0 text-emerald-400" />
                       <div>
                         <p className="text-[11px] font-black uppercase tracking-wider text-gray-500">획득 방법</p>
-                        <p className="mt-1 text-sm font-bold leading-5 text-gray-200">{vehicle.acquisition}</p>
+                        <p className="mt-1 text-base leading-7 text-gray-200">{vehicle.acquisition}</p>
                       </div>
                     </div>
                   </article>
