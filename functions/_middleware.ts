@@ -231,6 +231,16 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
     );
   }
 
+  // Party data uses nte- prefixed internal ids, while public details use names.
+  // Only redirect aliases with a generated public destination; unknown ids stay 404.
+  const legacyNteCharacter = normalizedPath.match(/^\/gallery\/nte\/character\/nte-([^/]+)$/);
+  if (legacyNteCharacter) {
+    const destinationPath = `/gallery/nte/character/${legacyNteCharacter[1]}`;
+    if (INDEXABLE_AND_APP_PATHS.has(destinationPath)) {
+      const destinationUrl = new URL(encodeURI(destinationPath) + url.search + url.hash, url.origin);
+      return Response.redirect(destinationUrl.toString(), 301);
+    }
+  }
   // 1. Single-hop legacy 301 redirects (handles both decoded & percent-encoded, with or without trailing slash)
   if (LEGACY_ANIIMO_REDIRECTS[normalizedPath]) {
     const destinationPath = LEGACY_ANIIMO_REDIRECTS[normalizedPath];

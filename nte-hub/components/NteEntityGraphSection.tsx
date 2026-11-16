@@ -81,7 +81,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
                 return (
                   <Link
                     key={idx}
-                    to={`/gallery/nte/arc/${encodeURIComponent(arc.id || arc.name)}`}
+                    to={`/gallery/nte/weapon/${encodeURIComponent(arc.name)}`}
                     className="group flex items-center gap-4 p-3.5 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
                   >
                     <div className="relative h-14 w-14 shrink-0 rounded-xl bg-black/40 border border-white/10 p-1 overflow-hidden group-hover:scale-105 transition-transform">
@@ -150,7 +150,7 @@ export const NteEntityGraphSection: React.FC<NteEntityGraphSectionProps> = ({ ch
               {recommendedParties[0]?.members?.map((member, mIdx) => (
                 <Link
                   key={mIdx}
-                  to={`/gallery/nte/character/${encodeURIComponent(member.id || member.name)}`}
+                  to={`/gallery/nte/character/${encodeURIComponent(member.name)}`}
                   className="group flex items-center gap-3 p-3 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-brand-primary/40 hover:bg-white/[0.06] transition"
                 >
                   <div className="min-w-0 flex-1">
