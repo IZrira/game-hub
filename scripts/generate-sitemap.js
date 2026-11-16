@@ -1,3 +1,4 @@
+import { getLocationFieldNotes } from '../aniimo-hub/data/locationFieldNotes.js';
 import fs from 'fs';
 import { execFileSync } from 'child_process';
 import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
@@ -536,7 +537,8 @@ async function generateSitemap() {
 
     OFFICIAL_ANIIMO_HABITATS.forEach(habitat => {
       const slug = habitat.trim().replace(/\s+/g, '-');
-      addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`, aniimoFileLastmod, '0.7', 'weekly');
+      const lastmod = [aniimoFileLastmod, getLocationFieldNotes(habitat)?.reviewedAt].filter(Boolean).sort().at(-1) || null;
+      addEntry(aniimoEntries, `${BASE_URL}/gallery/aniimo/location/${encodeURIComponent(slug)}`, lastmod, '0.7', 'weekly');
     });
     getWaveLocations(aniimoItems).forEach(location => {
       const entries = aniimoItems.filter(item => item.forms.some(form => form.locations.includes(location.name)));

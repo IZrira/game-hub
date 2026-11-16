@@ -3,6 +3,7 @@ import { ArrowLeft, MapPin, Sparkles, Filter, Check } from 'lucide-react';
 import { Link, useParams, Navigate } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
+import LocationFieldNotes from '../components/LocationFieldNotes';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoForm } from '../types';
@@ -210,6 +211,8 @@ const LocationDetailAniimo: React.FC = () => {
               <Link to="/gallery/aniimo/type-chart" className="inline-flex min-h-6 items-center text-xs font-bold text-violet-300 hover:text-white">원소 상성표 전체 보기</Link>
             </section>
           )}
+
+          <LocationFieldNotes habitat={habitat} regionId={regionId} />
 
           {/* Appearances Grid */}
           <section aria-label={`${habitat} 서식 애니모`} className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">

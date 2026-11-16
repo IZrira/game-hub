@@ -1,3 +1,4 @@
+import { renderLocationFieldNotes } from '../aniimo-hub/data/locationFieldNotes.js';
 import fs from 'fs';
 import { loadAllNotices } from './lib/notices.js';
 import { loadAniimoCatalog } from './lib/aniimo-catalog.js';
@@ -3240,7 +3241,7 @@ function runPrerender() {
       // Same overview as the app: exclusivity is only certain in the original 14 habitats.
       const regionParagraphs = regionSummaryParagraphs(summarizeRegion(appearances, form => !regionId && (form.locations || []).length > 0 && form.locations.every(loc => loc === location)));
       const regionSummaryHtml = regionParagraphs.length ? `<h2>지역 한눈에 보기</h2>${regionParagraphs.map(paragraph => `<p>${escapeHtml(paragraph)}</p>`).join('')}<p><a href="/gallery/aniimo/type-chart">원소 상성표 전체 보기</a></p>` : '';
-      meta.content = `<article><h1>${escapeHtml(location)} 공식 서식지</h1><p>${escapeHtml(meta.description)}</p>${regionSummaryHtml}<ul>${appearanceLinks}</ul><h2>다른 공식 서식지</h2><ul>${otherLocations}</ul><p><a href="/gallery/aniimo/locations">애니모 서식지 도감으로 돌아가기</a></p></article>`;
+      meta.content = `<article><h1>${escapeHtml(location)} 공식 서식지</h1><p>${escapeHtml(meta.description)}</p>${regionSummaryHtml}${renderLocationFieldNotes(location, regionId)}<ul>${appearanceLinks}</ul><h2>다른 공식 서식지</h2><ul>${otherLocations}</ul><p><a href="/gallery/aniimo/locations">애니모 서식지 도감으로 돌아가기</a></p></article>`;
     } else if (/^\/gallery\/aniimo\/character\//.test(routePath)) {
       const name = decodeURIComponent(routePath.split('/').at(-1));
       const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
