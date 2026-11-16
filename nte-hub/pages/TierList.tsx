@@ -231,9 +231,6 @@ const NTETierList: React.FC = () => {
                   >
                     {group.tier}
                   </span>
-                  <span className="text-[11px] text-gray-400 font-bold text-center mt-1 sm:mt-2 px-2">
-                    {group.description}
-                  </span>
                 </div>
 
                 {/* Character Cards Grid */}
