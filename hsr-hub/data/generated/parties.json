@@ -73,7 +73,7 @@
     "name": "어벤츄린•웨이브 환락 파티",
     "description": "어벤츄린•웨이브의 환락 피해를 극대화하는 하이퍼캐리 파티. 개척자와 효광이 어벤츄린•웨이브에게 버프를 제공한다.",
     "mainDPS": "어벤츄린•웨이브",
-    "category": "하이퍼캐리",
+    "category": "환락",
     "members": [
       {
         "id": "aventurine_waveflair",
@@ -317,7 +317,7 @@
   },
   {
     "id": "67cf359b-967c-4c61-ab13-553cb84410fe",
-    "name": "기억 파티 (로빈•서머레토)",
+    "name": "에버나이트 파티 (로빈•서머레토)",
     "description": "로빈•서머레토를 중심으로 구성된 기억 파티로 에버나이트와 카스토리스 2딜을 사용해도 되고 에버나이트 혹은 카스토리스에 키레네를 사용해도 된다. 카스토리스를 메인 딜러로 할 경우 2돌을 권장한다.\n키레네는 풀돌인 경우 메인 딜러로 사용 가능",
     "mainDPS": "에버나이트",
     "category": "기억",
@@ -438,6 +438,64 @@
     "tags": [
       "하이퍼캐리"
     ]
+  },
+  {
+    "id": "8fcf341c-a449-4aed-9f84-01f96bb95a4f",
+    "name": "어벤츄린·웨이브 추가 공격 조합",
+    "description": "아하로 강화된 어벤츄린·웨이브와의 추가 공격 시너지 파티",
+    "mainDPS": "어벤츄린•웨이브",
+    "category": "추가 공격",
+    "members": [
+      {
+        "id": "aventurine_waveflair",
+        "name": "어벤츄린•웨이브",
+        "role": "메인 딜러",
+        "folderName": "어벤츄린•웨이브"
+      },
+      {
+        "id": "ashveil",
+        "name": "애쉬베일",
+        "role": "서브 딜러",
+        "folderName": "애쉬베일",
+        "substitutes": [
+          {
+            "name": "로빈•서머레토",
+            "folderName": "로빈•서머레토",
+            "role": "서포터"
+          }
+        ]
+      },
+      {
+        "id": "aeon_aha",
+        "name": "에이언즈★아하",
+        "role": "서포터",
+        "folderName": "에이언즈★아하"
+      },
+      {
+        "id": "hyacine",
+        "name": "히아킨",
+        "role": "힐러",
+        "folderName": "히아킨",
+        "substitutes": [
+          {
+            "name": "곽향",
+            "folderName": "곽향",
+            "role": "힐러"
+          },
+          {
+            "name": "단항•등황",
+            "folderName": "단항•등황",
+            "role": "탱커/힐러"
+          },
+          {
+            "name": "어벤츄린",
+            "folderName": "어벤츄린",
+            "role": "탱커"
+          }
+        ]
+      }
+    ],
+    "tags": []
   },
   {
     "id": "49f9785f-45f3-4e7f-ad2d-c80c380612a4",
@@ -683,6 +741,70 @@
     "tags": []
   },
   {
+    "id": "27b0f2ec-2a4f-4d07-83e6-cafe2267aec1",
+    "name": "아처+토오사카 린 연계 파티",
+    "description": "아처와 토오사카 린의 연계 공격과 더불어 전투 스킬 포인트를 더욱 여유있게 유지 할 수 있는 파티",
+    "mainDPS": "아처",
+    "category": "추가 공격",
+    "members": [
+      {
+        "id": "archer",
+        "name": "아처",
+        "role": "메인 딜러",
+        "folderName": "아처"
+      },
+      {
+        "id": "rin_tohsaka",
+        "name": "토오사카 린",
+        "role": "서브 딜러",
+        "folderName": "토오사카 린",
+        "substitutes": [
+          {
+            "name": "케리드라",
+            "folderName": "케리드라",
+            "role": "서포터"
+          },
+          {
+            "name": "트리비",
+            "folderName": "트리비",
+            "role": "서포터",
+            "breakthrough": "1돌+"
+          },
+          {
+            "name": "천야•블레이드",
+            "folderName": "천야•블레이드",
+            "role": "서브 딜러"
+          }
+        ]
+      },
+      {
+        "id": "sparkle",
+        "name": "스파클",
+        "role": "서포터",
+        "folderName": "스파클"
+      },
+      {
+        "id": "huohuo",
+        "name": "곽향",
+        "role": "탱커·힐러",
+        "folderName": "곽향",
+        "substitutes": [
+          {
+            "name": "단항•등황",
+            "folderName": "단항•등황",
+            "role": "탱커/힐러"
+          },
+          {
+            "name": "히아킨",
+            "folderName": "히아킨",
+            "role": "힐러"
+          }
+        ]
+      }
+    ],
+    "tags": []
+  },
+  {
     "id": "b85411ba-3df2-4764-8a92-89d8a0d8db96",
     "name": "아케론 필살기 파티 (천야•블레이드)",
     "description": "아케론 필살기 파티로 천야•블레이드의 디버프와 웰트의 디버프 그리고 아케론의 공허 조건부 달성을 모두 동시에 할 수 있는 파티",
@@ -748,7 +870,7 @@
   },
   {
     "id": "party_silverwolf_999_elation_1",
-    "name": "은랑 LV.999 파티 (1순위)",
+    "name": "은랑 LV.999 파티 (스파키)",
     "description": "펄의 메커니즘이 은랑 LV.99의 메커니즘과 궁합이 아주 좋게 설계되었다. 스파클과 어벤츄린•웨이브는 가지고 있는 캐릭터 중에 사용하면 된다.",
     "mainDPS": "은랑 LV.999",
     "category": "환락",
@@ -812,8 +934,105 @@
     ]
   },
   {
+    "id": "d15437ae-c5e2-4862-aa6c-ea93721bfa58",
+    "name": "은랑 LV.999 환락 파티 (에이언즈★아하)",
+    "description": "해당 파티 사용 시 무조건 효광이 아하보다 앞 순서에 배치해야 합니다. 뒤에 배치한 경우 효광 비술이 아하 타임보다 늦게 발동되기 때문입니다.",
+    "mainDPS": "은랑 LV.999",
+    "category": "환락",
+    "members": [
+      {
+        "id": "silver_wolf_999",
+        "name": "은랑 LV.999",
+        "role": "메인 딜러",
+        "folderName": "은랑 LV.999"
+      },
+      {
+        "id": "pearl",
+        "name": "펄",
+        "role": "탱커·힐러",
+        "folderName": "펄",
+        "substitutes": [
+          {
+            "name": "스파키",
+            "folderName": "스파키",
+            "role": "메인 딜러"
+          },
+          {
+            "name": "개척자 (환락)",
+            "folderName": "개척자 (환락)",
+            "role": "서브 딜러",
+            "isTrailblazer": true,
+            "breakthrough": "풀돌"
+          }
+        ]
+      },
+      {
+        "id": "yaoguang",
+        "name": "효광",
+        "role": "서포터",
+        "folderName": "효광"
+      },
+      {
+        "id": "aeon_aha",
+        "name": "에이언즈★아하",
+        "role": "서포터",
+        "folderName": "에이언즈★아하"
+      }
+    ],
+    "tags": []
+  },
+  {
+    "id": "abb6db5a-adce-4bf7-853e-1217f5f4350a",
+    "name": "에바네시아 파티 (에이언즈★아하)",
+    "description": "에이언즈★아하와 에바네시아의 시너지 파티",
+    "mainDPS": "에바네시아",
+    "category": "환락",
+    "members": [
+      {
+        "id": "evanescia",
+        "name": "에바네시아",
+        "role": "메인 딜러",
+        "folderName": "에바네시아"
+      },
+      {
+        "id": "yaoguang",
+        "name": "효광",
+        "role": "서포터",
+        "folderName": "효광",
+        "substitutes": [
+          {
+            "name": "개척자 (환락)",
+            "folderName": "개척자 (환락)",
+            "role": "서브 딜러",
+            "isTrailblazer": true
+          }
+        ]
+      },
+      {
+        "id": "aeon_aha",
+        "name": "에이언즈★아하",
+        "role": "서포터",
+        "folderName": "에이언즈★아하",
+        "substitutes": [
+          {
+            "name": "효광",
+            "folderName": "효광",
+            "role": "서포터"
+          }
+        ]
+      },
+      {
+        "id": "pearl",
+        "name": "펄",
+        "role": "탱커·힐러",
+        "folderName": "펄"
+      }
+    ],
+    "tags": []
+  },
+  {
     "id": "party_sparky_elation_1",
-    "name": "스파키 환락 파티 (1순위)",
+    "name": "스파키 환락 파티 (스파클)",
     "description": "스파키의 환락 메커니즘을 스파클과 효광으로 보조하는 조합입니다.",
     "mainDPS": "스파키",
     "category": "환락",
@@ -850,15 +1069,16 @@
         ]
       },
       {
-        "id": "char_단항등황",
-        "name": "단항•등황",
-        "role": "탱커/힐러",
-        "folderName": "단항•등황",
+        "id": "pearl",
+        "name": "펄",
+        "role": "탱커·힐러",
+        "folderName": "펄",
         "substitutes": [
           {
             "name": "곽향",
             "folderName": "곽향",
-            "role": "힐러"
+            "role": "힐러",
+            "breakthrough": "1돌+"
           },
           {
             "name": "어벤츄린",
@@ -879,6 +1099,11 @@
             "name": "나찰",
             "folderName": "나찰",
             "role": "힐러"
+          },
+          {
+            "name": "단항•등황",
+            "folderName": "단항•등황",
+            "role": "탱커/힐러"
           }
         ]
       }
@@ -2856,91 +3081,6 @@
     ]
   },
   {
-    "id": "party_yunli_counter_2",
-    "name": "운리 반격 파티 (2순위)",
-    "description": "개척자(기억)와 로빈의 서포팅을 받는 운리 조합입니다.",
-    "mainDPS": "운리",
-    "category": "추가 공격",
-    "members": [
-      {
-        "id": "char_운리",
-        "name": "운리",
-        "role": "메인 딜러",
-        "folderName": "운리"
-      },
-      {
-        "id": "char_개척자_기억",
-        "name": "개척자 (기억)",
-        "role": "서포터",
-        "folderName": "개척자 (기억)",
-        "isTrailblazer": true
-      },
-      {
-        "id": "char_로빈",
-        "name": "로빈",
-        "role": "서포터",
-        "folderName": "로빈"
-      },
-      {
-        "id": "char_곽향",
-        "name": "곽향",
-        "role": "탱커/힐러",
-        "folderName": "곽향"
-      }
-    ],
-    "tags": [
-      "운리",
-      "반격",
-      "로빈"
-    ]
-  },
-  {
-    "id": "party_boothill_break_1",
-    "name": "부트힐 격파 파티 (1순위)",
-    "description": "부트힐의 강력한 격파 능력을 망귀인과 완•매로 보조하는 최적의 조합입니다.",
-    "mainDPS": "부트힐",
-    "category": "격파",
-    "members": [
-      {
-        "id": "char_부트힐",
-        "name": "부트힐",
-        "role": "메인 딜러",
-        "folderName": "부트힐"
-      },
-      {
-        "id": "char_망귀인",
-        "name": "망귀인",
-        "role": "서포터",
-        "folderName": "망귀인"
-      },
-      {
-        "id": "char_완매",
-        "name": "완•매",
-        "role": "서포터",
-        "folderName": "완•매",
-        "substitutes": [
-          {
-            "name": "개척자 (화합)",
-            "folderName": "개척자 (화합)",
-            "role": "서포터",
-            "isTrailblazer": true
-          }
-        ]
-      },
-      {
-        "id": "char_달리아",
-        "name": "달리아",
-        "role": "탱커/힐러",
-        "folderName": "달리아"
-      }
-    ],
-    "tags": [
-      "부트힐",
-      "격파",
-      "망귀인"
-    ]
-  },
-  {
     "id": "party_c5_h7",
     "name": "설의 격파 파티",
     "description": "설의가 업보를 모을 수 있도록 강인성 소모에 참여하는 격파 서포터를 함께 두는 조합입니다.",
@@ -3025,6 +3165,91 @@
       "개척자 (화합)",
       "완•매",
       "영사"
+    ]
+  },
+  {
+    "id": "party_yunli_counter_2",
+    "name": "운리 반격 파티 (2순위)",
+    "description": "개척자(기억)와 로빈의 서포팅을 받는 운리 조합입니다.",
+    "mainDPS": "운리",
+    "category": "추가 공격",
+    "members": [
+      {
+        "id": "char_운리",
+        "name": "운리",
+        "role": "메인 딜러",
+        "folderName": "운리"
+      },
+      {
+        "id": "char_개척자_기억",
+        "name": "개척자 (기억)",
+        "role": "서포터",
+        "folderName": "개척자 (기억)",
+        "isTrailblazer": true
+      },
+      {
+        "id": "char_로빈",
+        "name": "로빈",
+        "role": "서포터",
+        "folderName": "로빈"
+      },
+      {
+        "id": "char_곽향",
+        "name": "곽향",
+        "role": "탱커/힐러",
+        "folderName": "곽향"
+      }
+    ],
+    "tags": [
+      "운리",
+      "반격",
+      "로빈"
+    ]
+  },
+  {
+    "id": "party_boothill_break_1",
+    "name": "부트힐 격파 파티 (1순위)",
+    "description": "부트힐의 강력한 격파 능력을 망귀인과 완•매로 보조하는 최적의 조합입니다.",
+    "mainDPS": "부트힐",
+    "category": "격파",
+    "members": [
+      {
+        "id": "char_부트힐",
+        "name": "부트힐",
+        "role": "메인 딜러",
+        "folderName": "부트힐"
+      },
+      {
+        "id": "char_망귀인",
+        "name": "망귀인",
+        "role": "서포터",
+        "folderName": "망귀인"
+      },
+      {
+        "id": "char_완매",
+        "name": "완•매",
+        "role": "서포터",
+        "folderName": "완•매",
+        "substitutes": [
+          {
+            "name": "개척자 (화합)",
+            "folderName": "개척자 (화합)",
+            "role": "서포터",
+            "isTrailblazer": true
+          }
+        ]
+      },
+      {
+        "id": "char_달리아",
+        "name": "달리아",
+        "role": "탱커/힐러",
+        "folderName": "달리아"
+      }
+    ],
+    "tags": [
+      "부트힐",
+      "격파",
+      "망귀인"
     ]
   },
   {

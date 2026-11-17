@@ -6,6 +6,14 @@
       "color": "#ffffff",
       "characters": [
         {
+          "id": "char_경연",
+          "name": "경연",
+          "folderName": "경연",
+          "role": "메인 딜러",
+          "change": "stay",
+          "displayOrder": 100
+        },
+        {
           "id": "char_구원",
           "name": "구원",
           "folderName": "구원",
@@ -17,6 +25,22 @@
           "id": "char_루실라",
           "name": "루실라",
           "folderName": "루실라",
+          "role": "메인 딜러",
+          "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_릴리",
+          "name": "릴리",
+          "folderName": "릴리",
+          "role": "메인 딜러",
+          "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_쇄명",
+          "name": "쇄명",
+          "folderName": "쇄명",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
@@ -41,6 +65,14 @@
           "id": "char_양양 · 현령",
           "name": "양양 · 현령",
           "folderName": "양양 · 현령",
+          "role": "메인 딜러",
+          "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_여우의 별자리",
+          "name": "여우의 별자리",
+          "folderName": "여우의 별자리",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
@@ -534,6 +566,22 @@
       "color": "#ffffff",
       "characters": [
         {
+          "id": "char_경연",
+          "name": "경연",
+          "folderName": "경연",
+          "role": "메인 딜러",
+          "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_데니아",
+          "name": "데니아",
+          "folderName": "데니아",
+          "role": "메인 딜러",
+          "change": "up",
+          "displayOrder": 100
+        },
+        {
           "id": "char_루실라",
           "name": "루실라",
           "folderName": "루실라",
@@ -542,25 +590,25 @@
           "displayOrder": 100
         },
         {
-          "id": "char_루크 · 헤르센",
-          "name": "루크 · 헤르센",
-          "folderName": "루크 · 헤르센",
+          "id": "char_릴리",
+          "name": "릴리",
+          "folderName": "릴리",
           "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
-          "id": "char_린네",
-          "name": "린네",
-          "folderName": "린네",
-          "role": "메인 딜러",
-          "change": "stay",
+          "change": "new",
           "displayOrder": 100
         },
         {
           "id": "char_모니에",
           "name": "모니에",
           "folderName": "모니에",
+          "role": "메인 딜러",
+          "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_쇄명",
+          "name": "쇄명",
+          "folderName": "쇄명",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
@@ -574,14 +622,6 @@
           "displayOrder": 100
         },
         {
-          "id": "char_시그리카",
-          "name": "시그리카",
-          "folderName": "시그리카",
-          "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
           "id": "char_양양 · 현령",
           "name": "양양 · 현령",
           "folderName": "양양 · 현령",
@@ -590,11 +630,19 @@
           "displayOrder": 100
         },
         {
-          "id": "char_에이메스",
-          "name": "에이메스",
-          "folderName": "에이메스",
+          "id": "char_여우의 별자리",
+          "name": "여우의 별자리",
+          "folderName": "여우의 별자리",
           "role": "메인 딜러",
           "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_유노",
+          "name": "유노",
+          "folderName": "유노",
+          "role": "메인 딜러",
+          "change": "up",
           "displayOrder": 100
         },
         {
@@ -645,19 +693,19 @@
           "displayOrder": 100
         },
         {
-          "id": "char_데니아",
-          "name": "데니아",
-          "folderName": "데니아",
+          "id": "char_레베카",
+          "name": "레베카",
+          "folderName": "레베카",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
         },
         {
-          "id": "char_루시",
-          "name": "루시",
-          "folderName": "루시",
+          "id": "char_루크 · 헤르센",
+          "name": "루크 · 헤르센",
+          "folderName": "루크 · 헤르센",
           "role": "메인 딜러",
-          "change": "stay",
+          "change": "down",
           "displayOrder": 100
         },
         {
@@ -669,11 +717,35 @@
           "displayOrder": 100
         },
         {
-          "id": "char_유노",
-          "name": "유노",
-          "folderName": "유노",
+          "id": "char_린네",
+          "name": "린네",
+          "folderName": "린네",
+          "role": "메인 딜러",
+          "change": "down",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_벨리나",
+          "name": "벨리나",
+          "folderName": "벨리나",
           "role": "메인 딜러",
           "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_시그리카",
+          "name": "시그리카",
+          "folderName": "시그리카",
+          "role": "메인 딜러",
+          "change": "down",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_에이메스",
+          "name": "에이메스",
+          "folderName": "에이메스",
+          "role": "메인 딜러",
+          "change": "down",
           "displayOrder": 100
         }
       ]
@@ -692,11 +764,11 @@
           "displayOrder": 100
         },
         {
-          "id": "char_레베카",
-          "name": "레베카",
-          "folderName": "레베카",
+          "id": "char_루시",
+          "name": "루시",
+          "folderName": "루시",
           "role": "메인 딜러",
-          "change": "stay",
+          "change": "down",
           "displayOrder": 100
         },
         {
@@ -747,11 +819,27 @@
       "color": "#ffffff",
       "characters": [
         {
-          "id": "char_벨리나",
-          "name": "벨리나",
-          "folderName": "벨리나",
+          "id": "char_금희",
+          "name": "금희",
+          "folderName": "금희",
           "role": "메인 딜러",
-          "change": "stay",
+          "change": "up",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_모르테피",
+          "name": "모르테피",
+          "folderName": "모르테피",
+          "role": "메인 딜러",
+          "change": "up",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_복링",
+          "name": "복링",
+          "folderName": "복링",
+          "role": "메인 딜러",
+          "change": "up",
           "displayOrder": 100
         },
         {
@@ -763,25 +851,17 @@
           "displayOrder": 100
         },
         {
-          "id": "char_젠니",
-          "name": "젠니",
-          "folderName": "젠니",
+          "id": "char_산화",
+          "name": "산화",
+          "folderName": "산화",
           "role": "메인 딜러",
-          "change": "stay",
+          "change": "up",
           "displayOrder": 100
         },
         {
           "id": "char_카를로타",
           "name": "카를로타",
           "folderName": "카를로타",
-          "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
-          "id": "char_페비",
-          "name": "페비",
-          "folderName": "페비",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
@@ -802,25 +882,9 @@
           "displayOrder": 100
         },
         {
-          "id": "char_모르테피",
-          "name": "모르테피",
-          "folderName": "모르테피",
-          "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
           "id": "char_방랑자 · 기류",
           "name": "방랑자 · 기류",
           "folderName": "방랑자 · 기류",
-          "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
-          "id": "char_산화",
-          "name": "산화",
-          "folderName": "산화",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
@@ -834,19 +898,11 @@
           "displayOrder": 100
         },
         {
-          "id": "char_절지",
-          "name": "절지",
-          "folderName": "절지",
+          "id": "char_젠니",
+          "name": "젠니",
+          "folderName": "젠니",
           "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
-          "id": "char_카멜리아",
-          "name": "카멜리아",
-          "folderName": "카멜리아",
-          "role": "메인 딜러",
-          "change": "stay",
+          "change": "down",
           "displayOrder": 100
         },
         {
@@ -855,6 +911,14 @@
           "folderName": "칸타렐라",
           "role": "메인 딜러",
           "change": "stay",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_페비",
+          "name": "페비",
+          "folderName": "페비",
+          "role": "메인 딜러",
+          "change": "down",
           "displayOrder": 100
         }
       ]
@@ -865,9 +929,9 @@
       "color": "#ffffff",
       "characters": [
         {
-          "id": "char_금희",
-          "name": "금희",
-          "folderName": "금희",
+          "id": "char_로코코",
+          "name": "로코코",
+          "folderName": "로코코",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
@@ -881,14 +945,6 @@
           "displayOrder": 100
         },
         {
-          "id": "char_복링",
-          "name": "복링",
-          "folderName": "복링",
-          "role": "메인 딜러",
-          "change": "stay",
-          "displayOrder": 100
-        },
-        {
           "id": "char_상리요",
           "name": "상리요",
           "folderName": "상리요",
@@ -897,11 +953,19 @@
           "displayOrder": 100
         },
         {
-          "id": "char_앙코",
-          "name": "앙코",
-          "folderName": "앙코",
+          "id": "char_절지",
+          "name": "절지",
+          "folderName": "절지",
           "role": "메인 딜러",
-          "change": "stay",
+          "change": "down",
+          "displayOrder": 100
+        },
+        {
+          "id": "char_카멜리아",
+          "name": "카멜리아",
+          "folderName": "카멜리아",
+          "role": "메인 딜러",
+          "change": "down",
           "displayOrder": 100
         }
       ]
@@ -928,17 +992,17 @@
           "displayOrder": 100
         },
         {
-          "id": "char_로코코",
-          "name": "로코코",
-          "folderName": "로코코",
+          "id": "char_방랑자 · 인멸",
+          "name": "방랑자 · 인멸",
+          "folderName": "방랑자 · 인멸",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100
         },
         {
-          "id": "char_방랑자 · 인멸",
-          "name": "방랑자 · 인멸",
-          "folderName": "방랑자 · 인멸",
+          "id": "char_앙코",
+          "name": "앙코",
+          "folderName": "앙코",
           "role": "메인 딜러",
           "change": "stay",
           "displayOrder": 100

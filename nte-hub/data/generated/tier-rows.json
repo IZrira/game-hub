@@ -2,15 +2,15 @@
   {
     "category_id": "distortion",
     "character_name": "감정사",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
     "category_id": "distortion",
     "character_name": "구원",
-    "tier": "S",
+    "tier": "S+",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -26,7 +26,7 @@
   {
     "category_id": "distortion",
     "character_name": "다포딜",
-    "tier": "S",
+    "tier": "S+",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -34,9 +34,9 @@
   {
     "category_id": "distortion",
     "character_name": "라크리모사",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
@@ -74,7 +74,7 @@
   {
     "category_id": "distortion",
     "character_name": "사키리",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -92,7 +92,7 @@
     "character_name": "신쿠",
     "tier": "OP",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "up",
     "display_order": 100
   },
   {
@@ -105,10 +105,26 @@
   },
   {
     "category_id": "distortion",
+    "character_name": "아카네 린",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
     "character_name": "에드가",
     "tier": "F",
     "role": "메인 딜러",
     "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "distortion",
+    "character_name": "엘림",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "new",
     "display_order": 100
   },
   {
@@ -146,9 +162,9 @@
   {
     "category_id": "distortion",
     "character_name": "카오스",
-    "tier": "SS",
+    "tier": "S+",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
@@ -186,15 +202,15 @@
   {
     "category_id": "overall",
     "character_name": "감정사",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
     "category_id": "overall",
     "character_name": "구원",
-    "tier": "S",
+    "tier": "S+",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -210,7 +226,7 @@
   {
     "category_id": "overall",
     "character_name": "다포딜",
-    "tier": "S",
+    "tier": "S+",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -218,9 +234,9 @@
   {
     "category_id": "overall",
     "character_name": "라크리모사",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
@@ -250,7 +266,7 @@
   {
     "category_id": "overall",
     "character_name": "백장",
-    "tier": "A",
+    "tier": "S",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -258,7 +274,7 @@
   {
     "category_id": "overall",
     "character_name": "사키리",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -276,7 +292,7 @@
     "character_name": "신쿠",
     "tier": "OP",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "up",
     "display_order": 100
   },
   {
@@ -289,10 +305,26 @@
   },
   {
     "category_id": "overall",
+    "character_name": "아카네 린",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
     "character_name": "에드가",
     "tier": "F",
     "role": "메인 딜러",
     "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overall",
+    "character_name": "엘림",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "new",
     "display_order": 100
   },
   {
@@ -316,7 +348,7 @@
     "character_name": "잔홍",
     "tier": "OP",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "up",
     "display_order": 100
   },
   {
@@ -330,9 +362,9 @@
   {
     "category_id": "overall",
     "character_name": "카오스",
-    "tier": "SS",
+    "tier": "S+",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
@@ -370,15 +402,15 @@
   {
     "category_id": "overworld",
     "character_name": "감정사",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
     "category_id": "overworld",
     "character_name": "구원",
-    "tier": "S",
+    "tier": "S+",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -394,7 +426,7 @@
   {
     "category_id": "overworld",
     "character_name": "다포딜",
-    "tier": "S",
+    "tier": "S+",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -402,9 +434,9 @@
   {
     "category_id": "overworld",
     "character_name": "라크리모사",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
@@ -442,7 +474,7 @@
   {
     "category_id": "overworld",
     "character_name": "사키리",
-    "tier": "OP",
+    "tier": "SS",
     "role": "메인 딜러",
     "change": "stay",
     "display_order": 100
@@ -460,7 +492,7 @@
     "character_name": "신쿠",
     "tier": "OP",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "up",
     "display_order": 100
   },
   {
@@ -473,10 +505,26 @@
   },
   {
     "category_id": "overworld",
+    "character_name": "아카네 린",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
     "character_name": "에드가",
     "tier": "F",
     "role": "메인 딜러",
     "change": "stay",
+    "display_order": 100
+  },
+  {
+    "category_id": "overworld",
+    "character_name": "엘림",
+    "tier": "OP",
+    "role": "메인 딜러",
+    "change": "new",
     "display_order": 100
   },
   {
@@ -514,9 +562,9 @@
   {
     "category_id": "overworld",
     "character_name": "카오스",
-    "tier": "SS",
+    "tier": "S+",
     "role": "메인 딜러",
-    "change": "stay",
+    "change": "down",
     "display_order": 100
   },
   {
