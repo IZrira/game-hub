@@ -477,6 +477,15 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/ww/character/lily/guide</loc>
+    <lastmod>2026-11-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/%EB%A6%B4%EB%A6%AC/%EB%A6%B4%EB%A6%AC.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/ww/character/lingyang</loc>
     <lastmod>2026-05-22</lastmod>
     <changefreq>daily</changefreq>
@@ -1167,6 +1176,14 @@
     <priority>0.8</priority>
     <image:image>
       <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%85%B8%EC%9D%84%EC%97%90%20%EA%B9%83%EB%93%A0%20%EC%9D%B4%EC%8A%AC.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/ww/weapon/%EB%9F%B4%EB%9F%AC%EB%B0%94%EC%9D%B4</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EB%9F%B4%EB%9F%AC%EB%B0%94%EC%9D%B4.webp</image:loc>
     </image:image>
   </url>
   <url>

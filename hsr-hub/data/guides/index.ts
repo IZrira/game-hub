@@ -187,6 +187,7 @@ import { 히실렌스Guide } from './히실렌스';
 import { 히아킨Guide } from './히아킨';
 import { Mar7thGuide } from './Mar7th';
 import { Mar7th수렵Guide } from './Mar7th수렵';
+import { 에이언즈아하Guide } from './에이언즈아하';
 
 export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   개척자기억Guide,
@@ -281,5 +282,6 @@ export const HSR_CHARACTER_GUIDES: CharacterGuide[] = [
   히실렌스Guide,
   히아킨Guide,
   Mar7thGuide,
-  Mar7th수렵Guide
+  Mar7th수렵Guide,
+  에이언즈아하Guide,
 ];
