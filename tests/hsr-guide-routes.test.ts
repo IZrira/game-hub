@@ -34,13 +34,13 @@ describe('registered HSR guide routes', () => {
     expect(fs.existsSync(path.join(guideDirectory, `${id}.ts`))).toBe(false);
   });
 
-  it('matches all 93 registrations to real character guides without omissions', () => {
+  it('matches all 94 registrations to real character guides without omissions', () => {
     const matched = fs.readdirSync(characterDirectory)
       .filter(filename => filename.endsWith('.ts') && filename !== 'index.ts')
       .map(filename => findRegisteredHsrGuide(readCharacterNames(filename.slice(0, -3)), registry))
       .filter(Boolean);
-    expect(registry.size).toBe(93);
-    expect(matched).toHaveLength(93);
+    expect(registry.size).toBe(94);
+    expect(matched).toHaveLength(94);
     expect(new Set(matched)).toEqual(new Set(registry.values()));
   });
 

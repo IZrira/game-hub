@@ -46,7 +46,7 @@ describe('user-supplied Aeon Aha character', () => {
     expect(aha.attribute).toBe('양자');
     expect(aha.path).toBe('환락');
     expect(aha.updatedAt).toBe('2026-11-01');
-    expect((guideManifest as Record<string, string>)['aeon_aha']).toBeUndefined();
+    expect((guideManifest as Record<string, string>)['aeon_aha']).toMatch(/^\/assets\/data\/hsr\/guides\/aeon_aha\./);
   });
 
   it('uses the explicitly confirmed HP/ATK/DEF ordering and preserves base speed/resource', () => {
