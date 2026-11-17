@@ -121,7 +121,7 @@ const NTETierList: React.FC = () => {
   }, [currentCategory, searchQuery, roleFilter, attrFilter]);
 
   return (
-    <div className="flex bg-[#0a0a0a] min-h-screen text-gray-200">
+    <div className="flex flex-col lg:flex-row bg-[#0a0a0a] min-h-screen text-gray-200">
       <SEO 
         title={t("이환(NTE) 티어표 및 에스퍼 등급표 - 최신 메타 순위")}
         description={t("헤테로 시티 최고의 에스퍼 티어표. 종합 메타, 왜곡 토벌 보스전, 도시 탐색 필드 3대 모드별 S+ ~ B 등급 완벽 정리.")}
