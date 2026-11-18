@@ -51,7 +51,7 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
 
       return {
         name,
-        rank: rank || 1,
+        rank,
         note,
         rarity: weaponData?.rarity || weaponData?.stars || 5,
         imageUrl,
@@ -189,12 +189,14 @@ export const WwEntityGraphSection: React.FC<WwEntityGraphSectionProps> = ({ char
                         (e.currentTarget as HTMLElement).style.display = 'none';
                       }}
                     />
-                    <span
-                      className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[11px] font-black text-black"
-                      style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
-                    >
-                      {weapon.rank}순위
-                    </span>
+                    {weapon.rank !== undefined && (
+                      <span
+                        className="absolute top-1 left-1 px-1.5 py-0.5 rounded text-[11px] font-black text-black"
+                        style={{ backgroundColor: theme.primary, color: textOn(theme.primary) }}
+                      >
+                        {weapon.rank}순위
+                      </span>
+                    )}
                   </div>
 
                   <div className="min-w-0 flex-1">

@@ -852,22 +852,29 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
       const line = rawLine.trim();
       if (!line) continue;
       const rankMatch = line.match(/(\d+)\s*순위/);
-      if (rankMatch) {
-        const rank = parseInt(rankMatch[1], 10);
-        const rawText = line
-          .replace(/[\(（]?\s*\d+\s*순위\s*[\)）]?/g, '')
-          .replace(/[*#\-–—_]/g, '')
-          .trim();
-        let name = rawText;
-        let note = undefined;
-        if (rawText.includes(':') || rawText.includes('：')) {
-          const parts = rawText.split(/[:：]/);
-          name = parts[0].trim();
-          note = parts.slice(1).join(':').trim() || undefined;
-        }
-        if (name && !isNaN(rank)) {
-          weapons.push({ name, rank, note });
-        }
+      const hasColon = line.includes(':') || line.includes('：');
+      // A line with neither a rank nor "name : note" continues the previous weapon's note.
+      if (!rankMatch && !hasColon) {
+        const last = weapons[weapons.length - 1];
+        const text = line.replace(/[*#_]/g, '').trim();
+        if (last && text) last.note = last.note ? `${last.note} ${text}` : text;
+        continue;
+      }
+      // "name : note" without a rank is still a recommended weapon; its rank stays unset.
+      const rank = rankMatch ? parseInt(rankMatch[1], 10) : undefined;
+      const rawText = line
+        .replace(/[\(（]?\s*\d+\s*순위\s*[\)）]?/g, '')
+        .replace(/[*#\-–—_]/g, '')
+        .trim();
+      let name = rawText;
+      let note = undefined;
+      if (rawText.includes(':') || rawText.includes('：')) {
+        const parts = rawText.split(/[:：]/);
+        name = parts[0].trim();
+        note = parts.slice(1).join(':').trim() || undefined;
+      }
+      if (name) {
+        weapons.push({ name, rank, note });
       }
     }
   }
@@ -1706,6 +1713,7 @@ async function fetchHsrGuidesFromDB(notion, n2m, dbId) {
 export {
   fetchFromDB,
   fetchWwGuidesFromDB,
+  parseWuwaGuideMarkdown,
   parseHsrGuideMarkdown,
   readLocalHsrGuide,
   normalizeHsrGuideForComparison,

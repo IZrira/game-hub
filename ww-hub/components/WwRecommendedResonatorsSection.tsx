@@ -48,7 +48,8 @@ export const WwRecommendedResonatorsSection: React.FC<WwRecommendedResonatorsSec
           const wName = typeof w === 'string' ? w : w?.name;
           if (wName && normalizeName(wName) === targetNorm) {
             matched = true;
-            matchedRank = typeof w === 'object' && w.rank ? w.rank : idx + 1;
+            // A guide weapon written without a rank keeps no rank; only plain-string lists use their order.
+            matchedRank = typeof w === 'object' ? w.rank : idx + 1;
             matchedNote = typeof w === 'object' ? w.note : undefined;
           }
         });
