@@ -37,7 +37,7 @@ export async function syncNteGuides(notion, n2m, databaseId, rootDir) {
       slug: `${character.fileName || character.id}-build-guide`,
       status: 'published',
       title,
-      excerpt: `${characterName}의 아크, 콘솔 세팅, 목표 육성치, 스킬·각성 우선순위와 추천 파티를 정리합니다.`,
+      excerpt: `이환(NTE) ${characterName} 세팅 공략입니다. 추천 아크와 콘솔 세팅, 목표 육성치, 스킬·각성 우선순위와 함께 쓰기 좋은 추천 파티를 정리합니다.`,
       publishedAt: previous?.publishedAt || page.created_time.slice(0, 10),
       reviewedAt: page.last_edited_time.slice(0, 10),
       applicableVersion: content.match(/패치\s*버전\s*([^\n]+)/)?.[1]?.trim() || '',

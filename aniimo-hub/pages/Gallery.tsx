@@ -72,7 +72,7 @@ const GalleryAniimo: React.FC = () => {
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`공식 도감 기준 ${entries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`} url="/gallery/aniimo/characters" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '애니모 도감', url: '/gallery/aniimo/characters' }]} />
+      <SEO title="애니모 도감·능력치 비교기 | Aniimo 아카이브" description={`공식 도감 기준 ${entries.length}종의 원소, 포지션, 서식지와 능력치를 검색하고, 육성할 애니모를 골라 최대 3종까지 나란히 비교할 수 있습니다.`} url="/gallery/aniimo/characters" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '애니모 도감', url: '/gallery/aniimo/characters' }]} />
       <PageHeader gameId="aniimo" category="허브" categoryUrl="/gallery/aniimo" title="애니모 도감" />
       <AniimoMobileNav />
 

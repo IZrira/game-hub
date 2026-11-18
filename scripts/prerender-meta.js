@@ -11,6 +11,8 @@ import { getWwWeaponSeo } from '../common-hub/utils/wwWeaponSeo.js';
 import { getWwCharacterSeo } from '../common-hub/utils/wwCharacterSeo.js';
 import { getNteCharacterSeo } from '../common-hub/utils/nteCharacterSeo.js';
 import { getHsrCharacterSeo, getHsrGuideSeo, getWwGuideSeo } from '../common-hub/utils/guideSeo.js';
+import { getNoticeDescription } from '../common-hub/utils/noticeSeo.js';
+import { generatePartyListBody, generateTierListBody } from './lib/hub-list-prerender.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
 import { hasPublishableText } from '../common-hub/utils/placeholderText.js';
 import { formatGuideBasis, GUIDE_REVIEW_POLICY } from '../common-hub/utils/guideVerification.js';
@@ -48,6 +50,19 @@ const HSR_ORNAMENTS_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'ornaments.ts'
 const WW_GUIDE_ANALYSIS_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guide-analysis.json');
 const WW_GUIDE_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'guides.ts');
 const WW_PARTY_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'parties.json');
+const HSR_TIER_FILE = path.join(ROOT_DIR, 'hsr-hub', 'data', 'generated', 'tiers.json');
+const WW_TIER_FILE = path.join(ROOT_DIR, 'ww-hub', 'data', 'generated', 'tiers.json');
+// Same order and names as HSR_TIER_CATEGORIES (hsr-hub/data/tiers.ts) and WW_TIER_CATEGORIES (ww-hub/data/tiers.ts).
+const HSR_TIER_CATEGORIES = [
+  { id: 'chaos', name: '혼돈 12층', description: '와류 반영 O' },
+  { id: 'fiction', name: '허구 이야기', description: '범위 공격 메타' },
+  { id: 'shadow', name: '종말', description: '종말의 환영' },
+  { id: 'divergent', name: '이상 중재', description: '차분화 우주' },
+];
+const WW_TIER_CATEGORIES = [
+  { id: 'tower', name: '역경의 탑', description: '심층 구역 기준' },
+  { id: 'illusive', name: '죽음의 노래와 바닷속 폐허', description: '로그라이크 컨텐츠' },
+];
 const NTE_PARTY_FILE = path.join(ROOT_DIR, 'nte-hub', 'data', 'generated', 'parties.json');
 
 const INDEX_HTML_PATH = path.join(DIST_DIR, 'index.html');
@@ -406,6 +421,23 @@ function loadWwGuidesMap() {
 
 function loadWwPartiesList() {
   return loadPartySnapshot(WW_PARTY_FILE);
+}
+
+function loadTierSnapshot(file) {
+  try {
+    const tiers = JSON.parse(fs.readFileSync(file, 'utf8'));
+    return tiers && typeof tiers === 'object' && !Array.isArray(tiers) ? tiers : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+// Character name → published character route, or null.
+function hubCharacterRoute(gameId, name) {
+  const map = gameId === 'hsr' ? globalHsrNameToIdMap : globalWwNameToIdMap;
+  const id = map.get(name);
+  const route = id ? `/gallery/${gameId}/character/${id}` : null;
+  return route && globalSitemapRouteSet.has(route) ? route : null;
 }
 
 function loadHsrRelics() {
@@ -2709,12 +2741,26 @@ function runPrerender() {
   });
 
   // 5. AdSense SEO Pages (Privacy, ToS, About, Blog List)
+  // Published page counts per hub, for the about page's coverage list.
+  // `countRoutes('hsr/character')` counts /gallery/hsr/character/<id>; the suffix picks sub-pages such as '/guide'.
+  const countRoutes = (section, suffix = '') => sitemapRoutes.filter(route => {
+    const prefix = `/gallery/${section}/`;
+    if (!route.startsWith(prefix)) return false;
+    const rest = route.slice(prefix.length);
+    return suffix ? rest.endsWith(suffix) && !rest.slice(0, -suffix.length).includes('/') : rest && !rest.includes('/');
+  }).length;
+  const aboutCoverageHtml = '<h2>현재 수록 범위</h2><ul>'
+    + `<li>붕괴: 스타레일 — 캐릭터 ${countRoutes('hsr/character')}명(세팅 가이드 ${countRoutes('hsr/character', '/guide')}개), 광추 ${countRoutes('hsr/lightcone')}개, 유물 ${countRoutes('hsr/relic')}세트, 차원 장신구 ${countRoutes('hsr/ornament')}세트</li>`
+    + `<li>명조: 워더링 웨이브 — 공명자 ${countRoutes('ww/character')}명(세팅 가이드 ${countRoutes('ww/character', '/guide')}개), 무기 ${countRoutes('ww/weapon')}개, 에코 ${countRoutes('ww/echo')}종</li>`
+    + `<li>이환 — 캐릭터 ${countRoutes('nte/character')}명, 아크 ${countRoutes('nte/weapon')}개, 공략 ${countRoutes('nte/guides')}개</li>`
+    + `<li>애니모 — 도감 ${countRoutes('aniimo/character')}종, 서식지 ${countRoutes('aniimo/location')}곳</li>`
+    + '</ul><p>수치는 현재 공개된 상세 페이지 수이며, 새 버전의 캐릭터와 장비가 추가되면 함께 늘어납니다. 티어표와 추천 파티는 게임별 허브에서 콘텐츠와 역할을 기준으로 따로 정리합니다.</p>';
   const policyPages = [
     {
       path: '/about',
       title: 'About Us',
       desc: 'Rira Archive가 제공하는 게임 데이터베이스와 공략의 제작 기준, 정보 검수 방식 및 사이트 운영 원칙을 안내합니다.',
-      content: `<article><h1>RIRA ARCHIVE 사이트 소개</h1><p>RIRA ARCHIVE는 여러 서브컬처 게임의 도감과 공략을 한곳에서 확인할 수 있도록 직접 운영하는 비공식 팬 아카이브입니다. 게임에서 확인할 수 있는 사실 정보와 편집자의 추천·분석을 구분하고, 적용 버전과 검토 시점을 관리하며 내용을 보완합니다.</p><h2>제공하는 정보</h2><p>캐릭터와 장비 도감에는 명칭, 속성, 능력치와 스킬 효과를 정리합니다. 세팅 가이드는 장비·목표 능력치·육성 순서를 빠르게 확인할 수 있도록 구성하고, 분석 가이드는 추천 이유와 적용 조건, 실전 운용 순서와 대안을 설명합니다.</p><ul><li><a href="/gallery/hsr">붕괴: 스타레일 허브</a> — 캐릭터, 광추, 유물, 차원 장신구와 세팅 공략</li><li><a href="/gallery/ww">명조: 워더링 웨이브 허브</a> — 공명자, 무기, 에코와 파티 조합</li><li><a href="/gallery/nte">이환 허브</a> — 캐릭터, 아크, 카트리지, 이동 수단과 에스퍼 사이클</li><li><a href="/gallery/aniimo">애니모 허브</a> — 형태별 도감, 진화 계보, 서식지, 성격과 원소 상성</li></ul><h2>정보 검수 원칙</h2><p>게임 내 설명과 공개된 패치 정보를 기준으로 데이터를 정리하고 자동 생성 결과는 검증 후 반영합니다. 확인되지 않은 내용은 사실처럼 단정하지 않으며, 패치로 달라진 수치와 공략은 우선순위에 따라 갱신합니다.</p><h2>오류 제보와 업데이트</h2><p>누락되거나 오래된 정보는 페이지의 오류 제보 기능을 통해 다시 확인하고 수정합니다. 중요한 데이터 변경과 사이트 업데이트는 <a href="/notices">공지사항</a>에 기록하며, 저작권이나 사이트 이용 관련 내용은 <a href="/contact">문의하기</a>에서 접수합니다.</p></article>`
+      content: `<article><h1>RIRA ARCHIVE 사이트 소개</h1><p>RIRA ARCHIVE는 여러 서브컬처 게임의 도감과 공략을 한곳에서 확인할 수 있도록 직접 운영하는 비공식 팬 아카이브입니다. 게임에서 확인할 수 있는 사실 정보와 편집자의 추천·분석을 구분하고, 적용 버전과 검토 시점을 관리하며 내용을 보완합니다.</p><h2>제공하는 정보</h2><p>캐릭터와 장비 도감에는 명칭, 속성, 능력치와 스킬 효과를 정리합니다. 세팅 가이드는 장비·목표 능력치·육성 순서를 빠르게 확인할 수 있도록 구성하고, 분석 가이드는 추천 이유와 적용 조건, 실전 운용 순서와 대안을 설명합니다.</p><ul><li><a href="/gallery/hsr">붕괴: 스타레일 허브</a> — 캐릭터, 광추, 유물, 차원 장신구와 세팅 공략</li><li><a href="/gallery/ww">명조: 워더링 웨이브 허브</a> — 공명자, 무기, 에코와 파티 조합</li><li><a href="/gallery/nte">이환 허브</a> — 캐릭터, 아크, 카트리지, 이동 수단과 에스퍼 사이클</li><li><a href="/gallery/aniimo">애니모 허브</a> — 형태별 도감, 진화 계보, 서식지, 성격과 원소 상성</li></ul>${aboutCoverageHtml}<h2>정보 검수 원칙</h2><p>게임 내 설명과 공개된 패치 정보를 기준으로 데이터를 정리하고 자동 생성 결과는 검증 후 반영합니다. 확인되지 않은 내용은 사실처럼 단정하지 않으며, 패치로 달라진 수치와 공략은 우선순위에 따라 갱신합니다.</p><h2>오류 제보와 업데이트</h2><p>누락되거나 오래된 정보는 페이지의 오류 제보 기능을 통해 다시 확인하고 수정합니다. 중요한 데이터 변경과 사이트 업데이트는 <a href="/notices">공지사항</a>에 기록하며, 저작권이나 사이트 이용 관련 내용은 <a href="/contact">문의하기</a>에서 접수합니다.</p></article>`
     },
     {
       path: '/privacy',
@@ -2954,7 +3000,7 @@ function runPrerender() {
           })
           .join('');
         meta.title = `${notice.title} | RIRA ARCHIVE 공지사항`;
-        meta.description = String(notice.content || '').split('\n').map(stripBullet).join(' ').replace(/\s+/g, ' ').trim().slice(0, 155);
+        meta.description = getNoticeDescription(notice);
         meta.content = `<article>
           <p><a href="/notices">공지사항</a></p>
           <h1>${escapeHtml(notice.title)}</h1>
@@ -3122,6 +3168,19 @@ function runPrerender() {
         }
       };
       const feature = featurePages[routePath];
+      const routeFor = name => hubCharacterRoute(gameId, name);
+      const dataBody = {
+        '/gallery/hsr/tierlist': () => generateTierListBody(HSR_TIER_CATEGORIES, loadTierSnapshot(HSR_TIER_FILE), routeFor),
+        '/gallery/hsr/parties': () => generatePartyListBody(hsrPartiesList, routeFor),
+        '/gallery/ww/tierlist': () => generateTierListBody(WW_TIER_CATEGORIES, loadTierSnapshot(WW_TIER_FILE), routeFor),
+        '/gallery/ww/parties': () => generatePartyListBody(wwPartiesList, routeFor),
+      }[routePath];
+      if (dataBody) {
+        const html = dataBody();
+        // An empty snapshot would bring back the thin page these rows replace.
+        if (!html) throw new Error(`No tier/party rows to prerender for ${routePath}`);
+        feature.body += html;
+      }
       meta.title = feature.title;
       meta.description = feature.description;
       meta.content = `<article><p><a href="/gallery/${gameId}">${escapeHtml(featureGameLabel)} 허브</a></p><h1>${escapeHtml(feature.heading)}</h1><p>${escapeHtml(feature.description)}</p>${feature.body}${relatedCharacters}</article>`;
@@ -3135,7 +3194,7 @@ function runPrerender() {
     } else if (routePath === '/gallery/aniimo/characters') {
       const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
       meta.title = '애니모 도감·능력치 비교기 | Aniimo 아카이브';
-      meta.description = `공식 도감 기준 ${aniimoEntries.length}종의 원소, 포지션과 능력치를 검색하고 최대 3종까지 비교하세요.`;
+      meta.description = `공식 도감 기준 ${aniimoEntries.length}종의 원소, 포지션, 서식지와 능력치를 검색하고, 육성할 애니모를 골라 최대 3종까지 나란히 비교할 수 있습니다.`;
       meta.content = `<article><h1>애니모 도감·능력치 비교기</h1><p>${escapeHtml(meta.description)}</p><ul>${aniimoEntries.map(item => `<li><a href="/gallery/aniimo/character/${encodeURIComponent(item.name)}">${escapeHtml(`NO.${item.number} ${item.name} · ${item.elements.join('/')} · ${item.positions.join('/')}`)}</a></li>`).join('')}</ul><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/locations') {
       const locations = OFFICIAL_ANIIMO_HABITATS;
