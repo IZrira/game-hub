@@ -1387,6 +1387,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/ww/weapon/%EC%98%81%EC%9B%90%EC%9D%98%20%EB%B6%95%EA%B4%B4</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/Weapons/%EC%98%81%EC%9B%90%EC%9D%98%20%EB%B6%95%EA%B4%B4.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/ww/weapon/%EC%98%81%EC%9B%90%ED%95%9C%20%EC%83%9B%EB%B3%84</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>

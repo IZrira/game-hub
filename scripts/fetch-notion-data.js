@@ -873,8 +873,9 @@ function parseWuwaGuideMarkdown(pageTitle, mdContent) {
         name = parts[0].trim();
         note = parts.slice(1).join(':').trim() || undefined;
       }
-      if (name) {
-        weapons.push({ name, rank, note });
+      // "A,B,C 3순위 : note" lists alternatives that share one rank and note.
+      for (const part of name.split(/[,，]/).map(s => s.trim()).filter(Boolean)) {
+        weapons.push({ name: part, rank, note });
       }
     }
   }

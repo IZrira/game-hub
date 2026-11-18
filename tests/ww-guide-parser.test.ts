@@ -26,4 +26,17 @@ describe('WW guide weapon parsing', () => {
       { name: '영원의 붕괴', rank: undefined, note: '공격력 세팅 시 사용' },
     ]);
   });
+
+  it('splits several weapons written on one line with commas', () => {
+    const guide = parseWuwaGuideMarkdown('방랑자 (회절)', page([
+      '천공의 광경 2순위 : 주력 무기',
+      '야귀의 신념,상승의 서녘, 영원의 붕괴 3순위 : 대체제',
+    ].join('\n')));
+    expect(guide.weapons).toEqual([
+      { name: '천공의 광경', rank: 2, note: '주력 무기' },
+      { name: '야귀의 신념', rank: 3, note: '대체제' },
+      { name: '상승의 서녘', rank: 3, note: '대체제' },
+      { name: '영원의 붕괴', rank: 3, note: '대체제' },
+    ]);
+  });
 });

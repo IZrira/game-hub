@@ -5,7 +5,7 @@ export const 청작Guide: CharacterGuide = {
     lastUpdated: "2026-03-16",
     patchVersion: "1.0",
     bestRelics: ["별처럼 빛나는 천재"],
-    bestOrnaments: ["경기장", "회전을 멈춘 살소토"],
+    bestOrnaments: ["뭇별 경기장", "회전을 멈춘 살소토"],
     mainStats: {
       body: "치명타 확률 or 치명타 피해",
       boots: "공격력 or 속도",

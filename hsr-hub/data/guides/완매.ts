@@ -5,7 +5,7 @@ export const 완매Guide: CharacterGuide = {
     lastUpdated: "2026-03-16",
     patchVersion: "1.6",
     bestRelics: ["가상공간을 누비는 메신저", "유성을 쫓는 괴도"],
-    bestOrnaments: ["불로인의 선주", "부러진 용골", "바다에 잠긴 루샤카", "탈리아"],
+    bestOrnaments: ["불로인의 선주", "부러진 용골", "바다에 잠긴 루샤카", "도적국 탈리아"],
     mainStats: {
       body: "HP or 방어력",
       boots: "속도",
