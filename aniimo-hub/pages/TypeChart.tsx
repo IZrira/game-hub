@@ -35,7 +35,7 @@ const TypeChartAniimo: React.FC = () => {
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-      <SEO title="애니모 원소 상성표·약점 계산 | 9원소 공략" description="애니모의 불, 물, 풀, 전기, 얼음, 바위, 바람, 빛, 어둠 상성과 1.6배·1배·0.625배 피해 배율을 확인하고 상대 원소별 추천 공격 원소를 찾으세요." url="/gallery/aniimo/type-chart" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '원소 상성표', url: '/gallery/aniimo/type-chart' }]} />
+      <SEO title="애니모 원소 상성표·약점 계산 | 9원소 공략" description="애니모의 불, 물, 풀, 전기, 얼음, 바위, 바람, 빛, 어둠 상성과 1.6배·1배·0.625배 피해 배율을 확인하고 상대 원소별 추천 공격 원소를 찾으세요. 복합 원소 상대를 확인하는 방법도 함께 정리했습니다." url="/gallery/aniimo/type-chart" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '원소 상성표', url: '/gallery/aniimo/type-chart' }]} />
       <PageHeader gameId="aniimo" category="도감" categoryUrl="/gallery/aniimo" title="원소 상성표" />
       <AniimoMobileNav />
 

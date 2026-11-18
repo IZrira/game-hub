@@ -12,12 +12,12 @@ describe('WW weapon metadata', () => {
     const seo = getWwWeaponSeo(weapon);
     expect(seo.title).toBe(`${name} 상세 정보 및 스탯 | 명조 아카이브`);
     expect(seo.heading).toBe(name);
-    expect(seo.description).toBe(`명조 (Wuthering Waves) ${weapon.rarity}성 ${weapon.type} ${name}의 상세 스탯, 무기 스킬, 획득처 및 스토리를 확인하세요.`);
+    expect(seo.description).toBe(`명조 (Wuthering Waves) ${weapon.rarity}성 ${weapon.type} ${name}의 무기 스킬 효과와 레벨별 성장 스탯, 돌파 및 육성 재료, 획득처와 무기 스토리를 한 페이지에 정리한 명조 무기 도감입니다.`);
     expect(seo.description).not.toMatch(/완벽|추천|90Lv/);
   });
 
   it('does not invent a classification when source fields are missing', () => {
-    expect(getWwWeaponSeo({ name: '무기' }).description).toBe('명조 (Wuthering Waves) 무기의 상세 스탯, 무기 스킬, 획득처 및 스토리를 확인하세요.');
+    expect(getWwWeaponSeo({ name: '무기' }).description).toBe('명조 (Wuthering Waves) 무기의 무기 스킬 효과와 레벨별 성장 스탯, 돌파 및 육성 재료, 획득처와 무기 스토리를 한 페이지에 정리한 명조 무기 도감입니다.');
   });
 
   it('preserves the translation boundary and source data', () => {

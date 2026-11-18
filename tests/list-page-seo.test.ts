@@ -14,6 +14,11 @@ describe('notice meta description', () => {
     expect(text).not.toContain('\\');
   });
 
+  it('does not repeat "공지" for the Notice kind and strips headings and bold markers', () => {
+    const text = getNoticeDescription({ title: '허브 개설', category: 'Notice', createdAt: '2026-09-19', content: '# 안내\n**- 도감 개설**' });
+    expect(text).toBe('허브 개설: 안내 도감 개설. 2026-09-19 등록된 RIRA ARCHIVE 공지입니다.');
+  });
+
   it('keeps a long body as is and caps it at 155 characters', () => {
     const body = '가'.repeat(200);
     const text = getNoticeDescription({ title: 'T', category: 'Update', createdAt: '2026-01-01', content: body });

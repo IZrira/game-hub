@@ -39,7 +39,7 @@ describe('NTE page canonical inputs', () => {
 
     const props = seo.mock.lastCall![0];
     // Character reference page; setting queries belong to the build guide (search recovery D2).
-    expect(props.description).toBe(`이환(NTE) ${name}의 속성, 기본 스탯, 스킬·각성 효과와 육성 재료를 정리한 캐릭터 도감입니다.`);
+    expect(props.description).toBe(`이환(NTE) ${name}의 속성, 기본 스탯, 스킬·각성 효과와 육성 재료를 정리한 캐릭터 도감입니다. 스킬별 기능과 효과를 확인하고 다른 이환 캐릭터 도감으로도 바로 이동할 수 있습니다.`);
     expect(props.title).toBe(`${name} 스킬·각성·육성 재료 | 이환(NTE) 캐릭터 도감`);
     expect(props.url).toBe(`/gallery/nte/character/${encodeURIComponent(name)}`);
     expect(props.faqData).toBeUndefined();
@@ -71,7 +71,7 @@ describe('NTE page canonical inputs', () => {
     expect(props.description).toBe(NTE_PARTY_SEO.description);
     expect(screen.getByRole('heading', { level: 1 }).textContent).toBe(NTE_PARTY_SEO.heading);
     expect(screen.getByText(NTE_PARTY_SEO.description)).toBeTruthy();
-    expect(props.description).toBe('이환(NTE)의 빛·령·주·암·상·혼 속성을 활용한 4인 추천 파티와 에스퍼 사이클 조합을 확인하세요.');
+    expect(props.description).toBe('이환(NTE)의 빛·령·주·암·상·혼 속성을 활용한 4인 추천 파티와 에스퍼 사이클 조합을 확인하세요. 파티마다 멤버별 역할을 정리하고, 대체 가능한 캐릭터가 있으면 함께 표시해 보유 캐릭터로 조합을 바꿀 때 참고할 수 있습니다.');
     expect(screen.getAllByRole('heading', { level: 2 }).map(heading => heading.textContent)).toEqual(NTE_PARTY_COMBINATIONS.map(party => party.name));
   });
 
