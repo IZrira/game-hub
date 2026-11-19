@@ -1246,6 +1246,7 @@ export const INDEXABLE_AND_APP_PATHS = new Set([
   "/notices/notice-20261112-730",
   "/notices/notice-20261116-nte15",
   "/notices/notice-20261118-aha-lily",
+  "/notices/notice-20261119-elim",
   "/notices/sys-notice-01",
   "/notices/update-2026-07-25",
   "/notices/update-hsr-4-3",
