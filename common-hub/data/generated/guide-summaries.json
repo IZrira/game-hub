@@ -332,6 +332,20 @@
   },
   {
     "gameId": "nte",
+    "slug": "엘림-build-guide",
+    "status": "published",
+    "title": "엘림 세팅 공략",
+    "excerpt": "이환(NTE) 엘림 세팅 공략입니다. 추천 아크와 콘솔 세팅, 목표 육성치, 스킬·각성 우선순위와 함께 쓰기 좋은 추천 파티를 정리합니다. 적용 패치 버전과 최종 검수일을 함께 표시합니다.",
+    "publishedAt": "2026-11-19",
+    "reviewedAt": "2026-11-19",
+    "applicableVersion": "1.5",
+    "author": "Rira",
+    "notionDatabaseId": "3f695fae3dc7801f936ce549d8fefeef",
+    "notionPageId": "41d95fae-3dc7-8014-a19b-c2f6f55572e8",
+    "characterId": "41995fae-3dc7-816d-a719-c3d0606ebafa"
+  },
+  {
+    "gameId": "nte",
     "slug": "우미츠키-build-guide",
     "status": "published",
     "title": "우미츠키 세팅 공략",

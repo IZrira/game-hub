@@ -330,6 +330,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://riragamehub.com/gallery/nte/weapon/%EC%97%B0%EA%B2%B0%EC%9D%8C%EC%9D%B4%20%ED%9D%90%EB%A5%B4%EB%8A%94%20%EB%8F%99%EC%95%88</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/arcs/%EC%97%B0%EA%B2%B0%EC%9D%8C%EC%9D%B4%20%ED%9D%90%EB%A5%B4%EB%8A%94%20%EB%8F%99%EC%95%88.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
     <loc>https://riragamehub.com/gallery/nte/weapon/%EC%97%BC%ED%98%BC%EC%9D%98%20%EC%A7%88%EC%A3%BC</loc>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -605,6 +613,15 @@
   <url>
     <loc>https://riragamehub.com/gallery/nte/guides/%EC%97%90%EB%93%9C%EA%B0%80-build-guide</loc>
     <lastmod>2026-10-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://riragamehub.com/assets/brand/rira-fox.webp</image:loc>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://riragamehub.com/gallery/nte/guides/%EC%97%98%EB%A6%BC-build-guide</loc>
+    <lastmod>2026-11-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <image:image>
