@@ -121,8 +121,40 @@ describe('previous deploy assets are retained', () => {
       const manifest = await retainPreviousAssets({ assetsDir: dir, origin: 'https://example.test', download: true, now, log: () => {} });
       expect(fs.readFileSync(path.join(dir, 'index-old.js'), 'utf8')).toBe('old');
       expect(fs.existsSync(path.join(dir, 'module-gone.js'))).toBe(false);
-      expect(manifest).toEqual({ version: 1, generatedAt: now, current: ['index-new.js'], retained: { 'index-old.js': now } });
+      expect(manifest).toEqual({ version: 1, generatedAt: now, current: ['index-new.js'], retained: { 'index-old.js': now }, data: [] });
       expect(JSON.parse(fs.readFileSync(path.join(dir, MANIFEST_NAME), 'utf8'))).toEqual(manifest);
+    });
+
+    it('keeps the hashed data JSON that the kept chunks fetch', async () => {
+      dir = fs.mkdtempSync(path.join(os.tmpdir(), 'retain-'));
+      fs.writeFileSync(path.join(dir, 'index-new.js'), 'new');
+      fs.mkdirSync(path.join(dir, 'data/ww/guides'), { recursive: true });
+      fs.writeFileSync(path.join(dir, 'data/ww/guides/guide.111111111111.json'), '{"current":true}');
+      const oldChunk = [
+        '"/assets/data/ww/guides/guide.111111111111.json"',
+        '"/assets/data/ww/guides/guide.aaaaaaaaaaaa.json"',
+        '"/assets/data/hsr/lightcones/0123456789abcdef.json"',
+        '"/assets/data/hsr/guides/acheron.bbbbbbbbbbbb.json"',
+        '"/assets/data/ww/characters/3be95fae-3dc7-809a-848d-cf54b30c697b.json"',
+      ].join(',');
+      const json = (body: string) => new Response(body, { headers: { 'content-type': 'application/json' } });
+      const files: Record<string, Response> = {
+        [`/assets/${MANIFEST_NAME}`]: Response.json({ version: 1, current: ['index-old.js'], retained: {} }),
+        '/assets/index-old.js': new Response(oldChunk, { headers: { 'content-type': 'application/javascript' } }),
+        '/assets/data/ww/guides/guide.aaaaaaaaaaaa.json': json('{"old":true}'),
+        '/assets/data/hsr/lightcones/0123456789abcdef.json': json('{"lc":true}'),
+        '/assets/data/hsr/guides/acheron.bbbbbbbbbbbb.json': shell(),
+      };
+      const fetchMock = vi.fn(async (url: string) => files[new URL(url).pathname] ?? new Response('', { status: 404 }));
+      vi.stubGlobal('fetch', fetchMock);
+      const manifest = await retainPreviousAssets({ assetsDir: dir, origin: 'https://example.test', download: true, now, log: () => {} });
+      expect(manifest.data).toEqual(['data/hsr/lightcones/0123456789abcdef.json', 'data/ww/guides/guide.aaaaaaaaaaaa.json']);
+      expect(fs.readFileSync(path.join(dir, 'data/ww/guides/guide.aaaaaaaaaaaa.json'), 'utf8')).toBe('{"old":true}');
+      expect(fs.readFileSync(path.join(dir, 'data/ww/guides/guide.111111111111.json'), 'utf8')).toBe('{"current":true}');
+      expect(fs.existsSync(path.join(dir, 'data/hsr/guides/acheron.bbbbbbbbbbbb.json'))).toBe(false);
+      const requested = fetchMock.mock.calls.map(([url]) => new URL(url).pathname);
+      expect(requested).not.toContain('/assets/data/ww/characters/3be95fae-3dc7-809a-848d-cf54b30c697b.json');
+      expect(requested).not.toContain('/assets/data/ww/guides/guide.111111111111.json');
     });
 
     it('stops downloading when the time budget is spent', async () => {

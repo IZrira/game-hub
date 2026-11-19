@@ -12,6 +12,11 @@
 // A file is kept for RETAIN_DAYS after it was last part of a live deploy.
 //
 // Runs as the last build step so the bundle audits only see the current build.
+// Old chunks also fetch the hashed data JSON they were built with (guides,
+// character and light cone details, articles). Those names change whenever the
+// data does, so the data files that the kept chunks reference are kept with
+// them; a missing one showed the "could not load" screen (Soft 404, 2026-11-19).
+//
 // Elsewhere it only writes the manifest. RETAIN_ASSETS=1 forces a download run
 // (RETAIN_ASSETS_ORIGIN picks the site, default https://riragamehub.com).
 import fs from 'node:fs';
@@ -21,13 +26,19 @@ import { fileURLToPath } from 'node:url';
 export const MANIFEST_NAME = 'retained-assets.json';
 export const RETAIN_DAYS = 7;
 export const MAX_RETAINED_FILES = 4000;
+export const MAX_RETAINED_DATA_FILES = 3000;
 // Stop downloading after this long so a slow network cannot stall the deploy.
 export const TIME_BUDGET_MS = 180000;
 const NAME = /^[A-Za-z0-9_-]+\.(?:js|css)$/;
 const REFERENCE = /(?:\/assets\/|\.\/)([A-Za-z0-9_-]+\.(?:js|css))\b/g;
+// Content-hashed data files only: "<name>.<12 hex>.json" or "<16 hex>.json". Stable
+// names (Aniimo entries, WW character ids) are rewritten in place and need no copy.
+const DATA_PATH = /^data\/(?:[a-z]+\/)+(?:[A-Za-z0-9_-]+\.[0-9a-f]{12}|[0-9a-f]{16})\.json$/;
+const DATA_REFERENCE = /\/assets\/(data\/(?:[a-z]+\/)+(?:[A-Za-z0-9_-]+\.[0-9a-f]{12}|[0-9a-f]{16})\.json)/g;
 const DAY_MS = 86400000;
 
 export const isAssetName = name => typeof name === 'string' && NAME.test(name);
+export const isDataPath = name => typeof name === 'string' && DATA_PATH.test(name);
 
 /**
  * Files to keep from the previous deploy. Files that were live in it count as
@@ -54,7 +65,12 @@ export function findAssetReferences(text) {
   return [...new Set([...text.matchAll(REFERENCE)].map(match => match[1]))];
 }
 
-const expectedType = name => (name.endsWith('.css') ? 'text/css' : 'javascript');
+/** Hashed data JSON paths (relative to /assets/) referenced from JS text. */
+export function findDataReferences(text) {
+  return [...new Set([...text.matchAll(DATA_REFERENCE)].map(match => match[1]))];
+}
+
+const expectedType = name => (name.endsWith('.css') ? 'text/css' : name.endsWith('.json') ? 'json' : 'javascript');
 
 async function fetchWithTimeout(url, ms = 20000) {
   const controller = new AbortController();
@@ -71,6 +87,26 @@ async function fetchAsset(origin, name, deadline = Infinity) {
   const response = await fetchWithTimeout(`${origin}/assets/${name}`);
   if (response.status !== 200 || !(response.headers.get('content-type') || '').includes(expectedType(name))) return null;
   return Buffer.from(await response.arrayBuffer());
+}
+
+/** Copies the data files the kept chunks fetch and that this build no longer has. */
+async function retainReferencedData(origin, assetsDir, bodies, deadline) {
+  const wanted = new Set();
+  for (const body of bodies) {
+    for (const reference of findDataReferences(body.toString('utf8'))) {
+      if (isDataPath(reference) && !fs.existsSync(path.join(assetsDir, reference))) wanted.add(reference);
+    }
+  }
+  const kept = [];
+  await mapLimit([...wanted].sort().slice(0, MAX_RETAINED_DATA_FILES), 8, async name => {
+    const body = await fetchAsset(origin, name, deadline).catch(() => null);
+    if (!body) return;
+    const target = path.join(assetsDir, name);
+    fs.mkdirSync(path.dirname(target), { recursive: true });
+    fs.writeFileSync(target, body);
+    kept.push(name);
+  });
+  return kept.sort();
 }
 
 async function loadPreviousManifest(origin) {
@@ -118,6 +154,7 @@ export async function retainPreviousAssets({ assetsDir, origin, download, now = 
   const deadline = Date.now() + timeBudgetMs;
   const currentNames = fs.readdirSync(assetsDir).filter(name => isAssetName(name) && fs.statSync(path.join(assetsDir, name)).isFile()).sort();
   const retained = {};
+  let data = [];
 
   if (download) {
     try {
@@ -125,25 +162,31 @@ export async function retainPreviousAssets({ assetsDir, origin, download, now = 
       let downloaded = 0;
       if (previous) {
         const wanted = selectRetained(previous, currentNames, now);
+        const bodies = [];
         const results = await mapLimit(wanted, 8, async ([name, lastLive]) => {
           const body = await fetchAsset(origin, name, deadline).catch(() => null);
           if (!body) return false;
           fs.writeFileSync(path.join(assetsDir, name), body);
           retained[name] = lastLive;
+          if (name.endsWith('.js')) bodies.push(body);
           return true;
         });
         downloaded = results.filter(Boolean).length;
-        log(`[retain-assets] previous manifest: ${wanted.length} candidates, ${downloaded} kept`);
+        data = await retainReferencedData(origin, assetsDir, bodies, deadline);
+        log(`[retain-assets] previous manifest: ${wanted.length} candidates, ${downloaded} kept, ${data.length} data files kept`);
       } else {
         const current = new Set(currentNames);
         const live = await crawlLiveAssets(origin, deadline);
+        const bodies = [];
         for (const [name, body] of live) {
           if (current.has(name)) continue;
           fs.writeFileSync(path.join(assetsDir, name), body);
           retained[name] = now;
           downloaded += 1;
+          if (name.endsWith('.js')) bodies.push(body);
         }
-        log(`[retain-assets] no previous manifest; kept ${downloaded} files from the live site`);
+        data = await retainReferencedData(origin, assetsDir, bodies, deadline);
+        log(`[retain-assets] no previous manifest; kept ${downloaded} files and ${data.length} data files from the live site`);
       }
     } catch (error) {
       log(`[retain-assets] warning: previous assets were not kept (${error.message})`);
@@ -152,7 +195,7 @@ export async function retainPreviousAssets({ assetsDir, origin, download, now = 
     log('[retain-assets] not a production Pages build; writing the manifest only');
   }
 
-  const manifest = { version: 1, generatedAt: now, current: currentNames, retained };
+  const manifest = { version: 1, generatedAt: now, current: currentNames, retained, data };
   fs.writeFileSync(path.join(assetsDir, MANIFEST_NAME), `${JSON.stringify(manifest)}\n`);
   return manifest;
 }
