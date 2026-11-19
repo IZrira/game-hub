@@ -25,7 +25,8 @@ import { fileURLToPath } from 'node:url';
 
 export const MANIFEST_NAME = 'retained-assets.json';
 export const RETAIN_DAYS = 7;
-export const MAX_RETAINED_FILES = 4000;
+// 4000 filled up in about 6 days of deploys (2026-11-19); Pages allows 20,000 files.
+export const MAX_RETAINED_FILES = 8000;
 export const MAX_RETAINED_DATA_FILES = 3000;
 // Stop downloading after this long so a slow network cannot stall the deploy.
 export const TIME_BUDGET_MS = 180000;

@@ -4,6 +4,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { isShellServedForMissingFile, onRequest } from '../functions/_middleware';
+import { buildLatestDataIndex, latestDataPathFor } from '../functions/data-fallback';
 import { CHUNK_RELOAD_GUARD_MS, installChunkReloadHandler, shouldReloadForChunkError } from '../common-hub/utils/chunkReload';
 import {
   MANIFEST_NAME, findAssetReferences, retainPreviousAssets, selectRetained,
@@ -46,6 +47,40 @@ describe('missing files are not answered with the app shell', () => {
     const response = await onRequest({ request: new Request('https://riragamehub.com/assets/module-New.js'), next });
     expect(response.status).toBe(200);
     expect(response.headers.get('Cache-Control')).toBe('public, max-age=31536000, immutable');
+  });
+});
+
+describe('a removed hashed data file is answered with the current one', () => {
+  const index = buildLatestDataIndex({ cyrene: '/assets/data/hsr/guides/cyrene.222222222222.json' }, { aliases: { 감심: '/assets/data/ww/guides/jianxin.333333333333.json' } });
+
+  it('maps an old hash to the current file for the same id', () => {
+    expect(latestDataPathFor('/assets/data/hsr/guides/cyrene.89fa0854893d.json', index)).toBe('/assets/data/hsr/guides/cyrene.222222222222.json');
+    expect(latestDataPathFor('/assets/data/ww/guides/jianxin.cacedeaf29f6.json', index)).toBe('/assets/data/ww/guides/jianxin.333333333333.json');
+    expect(latestDataPathFor('/assets/data/hsr/guides/cyrene.222222222222.json', index)).toBeNull();
+    expect(latestDataPathFor('/assets/data/hsr/guides/unknown.89fa0854893d.json', index)).toBeNull();
+    expect(latestDataPathFor('/assets/module-Old.js', index)).toBeNull();
+  });
+
+  it('covers every current HSR guide in the built index', () => {
+    const manifest = JSON.parse(fs.readFileSync('hsr-hub/data/generated/guide-runtime-manifest.json', 'utf8')) as Record<string, string>;
+    const [id, current] = Object.entries(manifest)[0];
+    expect(latestDataPathFor(`/assets/data/hsr/guides/${id}.000000000000.json`)).toBe(current);
+  });
+
+  it('serves the current JSON with a short cache instead of 404', async () => {
+    const manifest = JSON.parse(fs.readFileSync('hsr-hub/data/generated/guide-runtime-manifest.json', 'utf8')) as Record<string, string>;
+    const [id, current] = Object.entries(manifest)[0];
+    const assets = vi.fn(async (request: Request | string) => (new URL(String(request)).pathname === current
+      ? new Response('{"ok":true}', { status: 200, headers: { 'Content-Type': 'application/json' } })
+      : new Response('', { status: 404 })));
+    const response = await onRequest({
+      request: new Request(`https://riragamehub.com/assets/data/hsr/guides/${id}.000000000000.json`),
+      next: async () => new Response('Not found', { status: 404 }),
+      env: { ASSETS: { fetch: assets } },
+    });
+    expect(response.status).toBe(200);
+    expect(await response.text()).toBe('{"ok":true}');
+    expect(response.headers.get('Cache-Control')).toBe('public, max-age=300');
   });
 });
 

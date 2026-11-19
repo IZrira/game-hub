@@ -33,7 +33,8 @@ export function writeWwGuideRuntime() {
     });
     const json = `${JSON.stringify(data)}\n`;
     const hash = createHash('sha256').update(json).digest('hex').slice(0, 12);
-    const filename = `guide.${hash}.json`;
+    // The id prefix lets the edge serve the current file to an older chunk that asks for a removed hash.
+    const filename = `${guide.id}.${hash}.json`;
     fs.writeFileSync(path.join(directory, filename), json, 'utf8');
     const url = `/assets/data/ww/guides/${filename}`;
     aliases[candidate] = url;

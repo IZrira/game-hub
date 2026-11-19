@@ -1,5 +1,6 @@
 import { INDEXABLE_AND_APP_PATHS } from './generated-routes';
 import { withSecurityHeaders } from './security-headers';
+import { latestDataPathFor } from './data-fallback';
 
 interface PagesFunctionContext {
   request: Request;
@@ -265,6 +266,20 @@ const handleRequest = async (context: PagesFunctionContext): Promise<Response> =
 
   // 3. Forward request to downstream / static asset pipeline
   const response = await context.next();
+  const missingFile = response.status === 404 ||
+    isShellServedForMissingFile(normalizedPath, response.status, response.headers.get('Content-Type'));
+  if (missingFile) {
+    const latest = latestDataPathFor(normalizedPath);
+    if (latest && context.env?.ASSETS) {
+      const current = await context.env.ASSETS.fetch(new URL(latest, url.origin).toString());
+      if (current.status === 200 && current.headers.get('Content-Type')?.includes('application/json')) {
+        const headers = new Headers(current.headers);
+        // Not immutable: the old name now carries newer content.
+        headers.set('Cache-Control', 'public, max-age=300');
+        return new Response(current.body, { status: 200, headers });
+      }
+    }
+  }
   if (isShellServedForMissingFile(normalizedPath, response.status, response.headers.get('Content-Type'))) {
     return missingFileResponse();
   }
