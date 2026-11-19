@@ -11,7 +11,7 @@ import CHARACTER_DATA from '../data/generated/character-summary.json';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
-import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../common-hub/utils/pageSeo.js';
 import { getHsrCharacterPath } from '../utils/characterRoute';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { supabase } from '../../common-hub/lib/supabase';
@@ -374,7 +374,7 @@ const TierList: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24">
       <SEO 
-        title="붕괴: 스타레일 티어표" 
+        title={PAGE_TITLES.hsrTierlist}
         description={PAGE_DESCRIPTIONS.hsrTierlist}
         carouselData={carouselData}
       />

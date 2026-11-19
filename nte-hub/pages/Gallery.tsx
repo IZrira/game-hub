@@ -5,7 +5,7 @@ import { ARCHIVE_DATA } from '../../common-hub/data/archive';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
-import { nteHubDescription } from '../../common-hub/utils/pageSeo.js';
+import { PAGE_TITLES, nteHubDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import ReviewedGuideHighlights from '../../common-hub/components/ReviewedGuideHighlights';
@@ -164,7 +164,7 @@ const GalleryNTE: React.FC = () => {
   if (!game) return null;
 
   const seoTitle = activeMenu === '홈' 
-    ? `${t('이환')} 아카이브 | 공략 및 데이터베이스`
+    ? PAGE_TITLES.nteHub
     : `${t('이환')} ${t(activeMenu)} 도감 및 데이터베이스`;
   const seoUrl = activeMenu === '홈'
     ? `/gallery/${gameId}`

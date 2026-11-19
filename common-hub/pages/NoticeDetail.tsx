@@ -7,6 +7,7 @@ import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
 import MarkdownRenderer from '../components/MarkdownRenderer';
 import { getNoticeDescription } from '../utils/noticeSeo.js';
+import { noticeTitle } from '../utils/pageSeo.js';
 
 const NoticeDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -57,7 +58,7 @@ const NoticeDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
       <SEO 
-        title={`${notice.title} - 통합 공지사항`} 
+        title={noticeTitle(notice.title)}
         description={getNoticeDescription(notice)}
       />
 

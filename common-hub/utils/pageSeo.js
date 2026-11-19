@@ -67,3 +67,28 @@ export const PAGE_DESCRIPTIONS = Object.freeze({
   tos: 'Rira Archive가 제공하는 게임 데이터와 공략 정보의 이용 범위, 저작권, 면책 사항 및 서비스 이용 조건을 확인하세요. 비공식 팬 아카이브로서 게임 자료의 권리와 이용자가 지켜야 할 사항을 안내합니다.',
   contact: 'Rira Archive의 게임 데이터 오류 제보, 공략 내용 수정 요청, 저작권 및 사이트 이용 관련 문의 방법을 확인하세요. 제보할 때 함께 보내면 좋은 정보와 문의 이메일 주소를 안내합니다.',
 });
+
+// Page titles, shared the same way as the descriptions above. SEO.tsx appends " | RIRA ARCHIVE".
+export const hsrLightconeTitle = name => `${name} 상세 스탯 및 추천 캐릭터 | 붕괴: 스타레일 광추 DB`;
+export const hsrRelicTitle = name => `${name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 유물 DB`;
+export const hsrOrnamentTitle = name => `${name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 차원 장신구 DB`;
+export const wwEchoTitle = name => `${name} 에코 상세 정보 | 명조 에코 DB`;
+export const nteArcTitle = name => `${name} 상세 옵션 및 추천 캐릭터 | 이환(NTE) 무기 DB`;
+export const aniimoLocationsTitle = count => `애니모 공식 서식지 ${count}곳 | 서식지별 도감`;
+export const noticeTitle = title => `${title} | 공지사항`;
+
+export const PAGE_TITLES = Object.freeze({
+  home: 'Rira Archive | 애니모·명조·스타레일 게임 DB',
+  hsrHub: '붕괴: 스타레일 허브 | 전체 캐릭터·광추·유물 도감 & 티어표',
+  wwHub: '명조 허브 | 공명자·무기·에코 도감 & 역경의 탑 티어표',
+  nteHub: '이환 허브 | 캐릭터·아크 도감 & 추천 세팅',
+  aniimoHub: '애니모 허브 | 도감·원소 상성·공식 서식지 데이터베이스',
+  hsrTierlist: '붕괴: 스타레일 티어표 | 엔드콘텐츠별 최신 메타',
+  hsrParties: '붕괴: 스타레일 추천 파티 | 캐릭터별 조합과 대체 멤버',
+  hsrTerminology: '붕괴: 스타레일 용어집 | 전투 시스템·버프·디버프 정리',
+  wwTierlist: '명조 티어표 | 역경의 탑·역할별 최신 공명자 평가',
+  wwParties: '명조 추천 파티 | 반주 스킬·공명 시너지 조합',
+  notices: '공지사항 | 데이터·공략 업데이트 소식',
+  about: 'About Us',
+  privacy: '개인정보 처리방침 (Privacy Policy)',
+});

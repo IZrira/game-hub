@@ -6,7 +6,7 @@ import { useHsrRuntime } from '../utils/useHsrRuntime';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
-import { hsrLightconeDescription } from '../../common-hub/utils/pageSeo.js';
+import { hsrLightconeDescription, hsrLightconeTitle } from '../../common-hub/utils/pageSeo.js';
 import HsrItemIcon from '../components/HsrItemIcon';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
@@ -163,7 +163,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">
       <SEO 
-        title={`${lc.name} 상세 정보 & 중첩 수치`} 
+        title={hsrLightconeTitle(lc.name)}
         description={seoDescription}
         name={lc.name}
         image={getIllustrationUrl()}

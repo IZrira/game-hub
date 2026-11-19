@@ -17,6 +17,8 @@ import {
   aniimoLocationDescription, aniimoLocationsDescription, guideListDescription, hsrHubDescription,
   hsrLightconeDescription, hsrOrnamentDescription, hsrRelicDescription, nteArcDescription,
   nteHubDescription, wwEchoDescription, wwHubDescription,
+  PAGE_TITLES, aniimoLocationsTitle, hsrLightconeTitle, hsrOrnamentTitle, hsrRelicTitle,
+  noticeTitle, nteArcTitle, wwEchoTitle,
 } from '../common-hub/utils/pageSeo.js';
 import { generatePartyListBody, generateTierListBody } from './lib/hub-list-prerender.js';
 import { serializeJsonLd } from '../common-hub/utils/serializeJsonLd.js';
@@ -2451,7 +2453,7 @@ function runPrerender() {
 
   createPrerenderedPage(
     '/',
-    'Rira Archive | 애니모·명조·스타레일 게임 DB',
+    PAGE_TITLES.home,
     '애니모(Aniimo), 명조, 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 한곳에서 확인하세요.',
     `${BASE_URL}/assets/brand/rira-fox.webp`,
     baseHtml,
@@ -2623,7 +2625,7 @@ function runPrerender() {
     const recommendedChars = lightConeToChars.get(lc.name) || [];
     createPrerenderedPage(
       routePath,
-      `${lc.name} 상세 스탯 및 추천 캐릭터 | 붕괴: 스타레일 광추 DB`,
+      hsrLightconeTitle(lc.name),
       hsrLightconeDescription({ name: lc.name, rarity: lc.rarity, path: lc.path }),
       `${CDN_URL}/hsr%20images/%EA%B4%91%EC%B6%94/${encodeAssetPath(lc.name)}.webp`,
       baseHtml,
@@ -2642,7 +2644,7 @@ function runPrerender() {
     const recommendedChars = relicToChars.get(relic.name) || [];
     createPrerenderedPage(
       routePath,
-      `${relic.name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 유물 DB`,
+      hsrRelicTitle(relic.name),
       hsrRelicDescription(relic.name),
       `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
@@ -2659,7 +2661,7 @@ function runPrerender() {
     const recommendedChars = ornamentToChars.get(ornament.name) || [];
     createPrerenderedPage(
       routePath,
-      `${ornament.name} 세트 효과 및 추천 캐릭터 | 붕괴: 스타레일 차원 장신구 DB`,
+      hsrOrnamentTitle(ornament.name),
       hsrOrnamentDescription(ornament.name),
       `${BASE_URL}/assets/brand/rira-fox.webp`,
       baseHtml,
@@ -2697,7 +2699,7 @@ function runPrerender() {
       const routePath = `/gallery/nte/weapon/${encodeURIComponent(item.name)}`;
       createPrerenderedPage(
         routePath,
-        `${item.name} 상세 옵션 및 추천 캐릭터 | 이환(NTE) 무기 DB`,
+        nteArcTitle(item.name),
         nteArcDescription(item.name),
         `${CDN_URL}/nte%20images/arcs/${encodeAssetPath(item.name)}.webp`,
         baseHtml,
@@ -2713,7 +2715,7 @@ function runPrerender() {
       const routePath = `/gallery/ww/echo/${encodeURIComponent(item.name)}`;
       createPrerenderedPage(
         routePath,
-        `${item.name} 에코 상세 정보 | 명조 에코 DB`,
+        wwEchoTitle(item.name),
         wwEchoDescription(item.name),
         `${BASE_URL}/assets/brand/rira-fox.webp`,
         baseHtml,
@@ -2764,13 +2766,13 @@ function runPrerender() {
   const policyPages = [
     {
       path: '/about',
-      title: 'About Us',
+      title: PAGE_TITLES.about,
       desc: PAGE_DESCRIPTIONS.about,
       content: `<article><h1>RIRA ARCHIVE 사이트 소개</h1><p>RIRA ARCHIVE는 여러 서브컬처 게임의 도감과 공략을 한곳에서 확인할 수 있도록 직접 운영하는 비공식 팬 아카이브입니다. 게임에서 확인할 수 있는 사실 정보와 편집자의 추천·분석을 구분하고, 적용 버전과 검토 시점을 관리하며 내용을 보완합니다.</p><h2>제공하는 정보</h2><p>캐릭터와 장비 도감에는 명칭, 속성, 능력치와 스킬 효과를 정리합니다. 세팅 가이드는 장비·목표 능력치·육성 순서를 빠르게 확인할 수 있도록 구성하고, 분석 가이드는 추천 이유와 적용 조건, 실전 운용 순서와 대안을 설명합니다.</p><ul><li><a href="/gallery/hsr">붕괴: 스타레일 허브</a> — 캐릭터, 광추, 유물, 차원 장신구와 세팅 공략</li><li><a href="/gallery/ww">명조: 워더링 웨이브 허브</a> — 공명자, 무기, 에코와 파티 조합</li><li><a href="/gallery/nte">이환 허브</a> — 캐릭터, 아크, 카트리지, 이동 수단과 에스퍼 사이클</li><li><a href="/gallery/aniimo">애니모 허브</a> — 형태별 도감, 진화 계보, 서식지, 성격과 원소 상성</li></ul>${aboutCoverageHtml}<h2>정보 검수 원칙</h2><p>게임 내 설명과 공개된 패치 정보를 기준으로 데이터를 정리하고 자동 생성 결과는 검증 후 반영합니다. 확인되지 않은 내용은 사실처럼 단정하지 않으며, 패치로 달라진 수치와 공략은 우선순위에 따라 갱신합니다.</p><h2>오류 제보와 업데이트</h2><p>누락되거나 오래된 정보는 페이지의 오류 제보 기능을 통해 다시 확인하고 수정합니다. 중요한 데이터 변경과 사이트 업데이트는 <a href="/notices">공지사항</a>에 기록하며, 저작권이나 사이트 이용 관련 내용은 <a href="/contact">문의하기</a>에서 접수합니다.</p></article>`
     },
     {
       path: '/privacy',
-      title: '개인정보 처리방침 (Privacy Policy)',
+      title: PAGE_TITLES.privacy,
       desc: PAGE_DESCRIPTIONS.privacy,
       content: `<article><h1>RIRA ARCHIVE 개인정보 처리방침</h1><p>RIRA ARCHIVE는 게임 정보 서비스를 운영하는 데 필요한 범위에서만 정보를 처리합니다.</p><h2>처리하는 정보와 이용 목적</h2><ul><li>로그인(선택): Google 또는 Discord로 로그인하면 해당 계정의 이메일 주소, 표시 이름, 프로필 이미지를 받아 로그인 유지와 작성자 표시에 사용합니다. 로그인하지 않아도 모든 정보 페이지를 이용할 수 있습니다.</li><li>리뷰·댓글(로그인 사용자): 닉네임, 평점, 작성 내용, 첨부 이미지, 작성 시각, 좋아요와 신고 기록을 게시와 운영(신고 처리 등)에 사용합니다.</li><li>방문 통계: Cloudflare Web Analytics로 페이지 조회 수, 유입 경로, 기기 유형 같은 집계 통계를 확인합니다. 이 통계 도구는 쿠키를 사용하지 않습니다.</li><li>문의: 이메일로 문의하면 답변을 위해 발신 주소와 문의 내용을 처리합니다.</li></ul><h2>쿠키와 브라우저 저장소</h2><p>쿠키는 웹사이트가 브라우저에 저장하는 작은 정보 파일입니다. 본 사이트는 언어 설정, 즐겨찾기, 최근 검색어, 화면 고정 설정을 브라우저 저장소에 보관하며, 예전 언어 주소로 들어온 경우 언어 설정을 쿠키(rira_lang)로 한 번 저장합니다. 이용자는 브라우저 설정에서 쿠키와 사이트 데이터를 확인하거나 차단·삭제할 수 있습니다.</p><h2>Google AdSense와 타사 광고</h2><p>사이트는 Google을 포함한 타사 공급업체의 광고를 게재할 수 있습니다. Google을 비롯한 타사 공급업체는 쿠키를 사용하여 이전 방문 기록을 바탕으로 광고를 게재합니다. 이용자는 <a href="https://myadcenter.google.com/" rel="noopener noreferrer">Google 내 광고 센터</a>에서 맞춤 광고를 사용 중지할 수 있습니다. 다른 타사 공급업체의 맞춤 광고용 쿠키는 <a href="https://www.aboutads.info/choices/" rel="noopener noreferrer">aboutads.info</a>에서 사용 중지할 수 있고, Google이 파트너 사이트에서 수집한 정보를 사용하는 방식은 <a href="https://policies.google.com/technologies/partner-sites" rel="noopener noreferrer">Google 파트너 사이트 정보 사용 안내</a>에서 확인할 수 있습니다. 유럽경제지역(EEA), 영국, 스위스 방문자에게는 Google 인증 동의 관리 플랫폼(CMP)의 동의 메시지가 표시되며, 이 페이지의 "광고 동의 설정 변경" 버튼으로 선택을 바꿀 수 있습니다.</p><h2>처리 위탁과 제3자 제공</h2><p>서비스 운영을 위해 Supabase(로그인 계정 관리와 리뷰·댓글·첨부 이미지 저장), Cloudflare(웹사이트 호스팅과 방문 통계), Google(광고 게재와 Google 로그인), Discord(Discord 로그인)의 서비스를 이용하며, 이용자의 개인정보를 판매하지 않습니다. 법령에 근거한 요청이 있는 경우를 제외하고 위 목적 외로 개인정보를 제3자에게 제공하지 않습니다.</p><h2>보관과 삭제</h2><p>리뷰와 댓글은 작성자가 직접 삭제할 수 있습니다. 로그인 계정 정보와 작성한 게시물의 삭제를 원하면 아래 이메일로 요청해 주세요. 확인 후 지체 없이 처리하며, 법령에 따라 보관해야 하는 정보는 해당 기간 동안만 보관합니다.</p><h2>문의</h2><p>개인정보 처리와 관련된 문의는 <a href="mailto:rira.game.hub@gmail.com">rira.game.hub@gmail.com</a> 또는 <a href="/contact">문의하기</a>를 이용해 주세요.</p><p><strong>시행일:</strong> 2026년 11월 3일 (이전 버전: 2026년 11월 2일, 2026년 6월 5일 시행)</p></article>`
     },
@@ -2962,7 +2964,7 @@ function runPrerender() {
       const noticeListHtml = staticNotices.length > 0
         ? `<h2>최근 공지</h2><ul>${staticNotices.map(notice => `<li><a href="/notices/${encodeURIComponent(notice.id)}">${escapeHtml(notice.title)}</a><p>${escapeHtml(categoryLabels[notice.category] || notice.category)} · ${escapeHtml(notice.createdAt)}${notice.version ? ` · 버전 ${escapeHtml(notice.version)}` : ''}</p></li>`).join('')}</ul>`
         : '';
-      meta.title = 'RIRA ARCHIVE 공지사항 | 데이터·공략 업데이트 소식';
+      meta.title = PAGE_TITLES.notices;
       meta.description = PAGE_DESCRIPTIONS.notices;
       meta.content = `<article>
         <h1>RIRA ARCHIVE 공지사항</h1>
@@ -3005,7 +3007,7 @@ function runPrerender() {
             return `<p>${escapeHtml(block).replace(/\n/g, '<br>')}</p>`;
           })
           .join('');
-        meta.title = `${notice.title} | RIRA ARCHIVE 공지사항`;
+        meta.title = noticeTitle(notice.title);
         meta.description = getNoticeDescription(notice);
         meta.content = `<article>
           <p><a href="/notices">공지사항</a></p>
@@ -3022,7 +3024,7 @@ function runPrerender() {
       const guideRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/ww\/character\/[^/]+\/guide$/.test(candidate));
       const reviewedGuides = guideArticles.filter(article => article.gameId === 'ww');
       const reviewedGuideHtml = reviewedGuides.map(article => `<li><a href="/gallery/ww/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a> — ${escapeHtml(article.excerpt)}</li>`).join('');
-      meta.title = '명조 허브 | 공명자·무기·에코 도감 & 역경의 탑 티어표';
+      meta.title = PAGE_TITLES.wwHub;
       meta.description = wwHubDescription();
       meta.content = `<article>
         <h1>명조: 워더링 웨이브 아카이브</h1>
@@ -3063,7 +3065,7 @@ function runPrerender() {
       const ornamentRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/hsr/ornament/'));
       const reviewedGuides = guideArticles.filter(article => article.gameId === 'hsr');
       const reviewedGuideHtml = reviewedGuides.map(article => `<li><a href="/gallery/hsr/guides/${encodeURIComponent(article.slug)}">${escapeHtml(article.title)}</a> — ${escapeHtml(article.excerpt)}</li>`).join('');
-      meta.title = '붕괴: 스타레일 허브 | 전체 캐릭터·광추·유물 도감 & 티어표';
+      meta.title = PAGE_TITLES.hsrHub;
       meta.description = hsrHubDescription();
       meta.content = `<article>
         <h1>붕괴: 스타레일 아카이브</h1>
@@ -3100,7 +3102,7 @@ function runPrerender() {
     } else if (routePath === '/gallery/nte') {
       const characterRoutes = sitemapRoutes.filter(candidate => /^\/gallery\/nte\/character\/[^/]+$/.test(candidate));
       const weaponRoutes = sitemapRoutes.filter(candidate => candidate.startsWith('/gallery/nte/weapon/'));
-      meta.title = '이환 허브 | 캐릭터·아크 도감 & 추천 세팅';
+      meta.title = PAGE_TITLES.nteHub;
       meta.description = nteHubDescription();
       meta.content = `<article>
         <h1>이환 (Neverness to Everness) 아카이브</h1>
@@ -3139,31 +3141,31 @@ function runPrerender() {
       );
       const featurePages = {
         '/gallery/hsr/tierlist': {
-          title: '붕괴: 스타레일 티어표 | 엔드콘텐츠별 최신 메타',
+          title: PAGE_TITLES.hsrTierlist,
           description: PAGE_DESCRIPTIONS.hsrTierlist,
           heading: '붕괴: 스타레일 엔드콘텐츠 티어표',
           body: `<h2>티어표 확인 방법</h2><p>하나의 종합 등급만 보지 않고 플레이할 콘텐츠와 캐릭터 역할을 먼저 선택하세요. 같은 캐릭터도 단일 보스, 다수전, 약점 구성과 파티 지원에 따라 평가가 달라질 수 있습니다.</p><h2>등급 해석 기준</h2><p>티어는 보유 여부나 애정도를 대신하는 절대 순위가 아닙니다. 명함 기준 성능, 요구 파티원, 전투 스킬 포인트, 약점 대응과 최근 환경을 함께 비교하는 참고 자료입니다. 캐릭터를 선택하면 상세 도감과 육성 가이드에서 광추·유물·목표 능력치와 추천 파티를 이어서 확인할 수 있습니다.</p>`
         },
         '/gallery/hsr/parties': {
-          title: '붕괴: 스타레일 추천 파티 | 캐릭터별 조합과 대체 멤버',
+          title: PAGE_TITLES.hsrParties,
           description: PAGE_DESCRIPTIONS.hsrParties,
           heading: '붕괴: 스타레일 추천 파티 조합',
           body: `<h2>파티를 고르는 순서</h2><p>주력 딜러를 선택한 뒤 필요한 버퍼·디버퍼와 생존 캐릭터를 확인하세요. 추천 조합은 캐릭터 네 명의 단순 순위가 아니라 전투 스킬 포인트, 행동 순서, 약점 격파와 핵심 강화 효과가 실제로 이어지는지를 기준으로 구성합니다.</p><h2>대체 캐릭터 활용</h2><p>정해진 조합을 모두 보유하지 않아도 같은 역할의 대체 멤버를 선택할 수 있습니다. 교체할 때는 공격력 증가처럼 보이는 수치만 비교하지 말고 디버프 수, 추가 공격 빈도, 에너지 회복, 속도 조정과 생존 안정성을 함께 확인하세요. 상세 도감과 세팅 가이드에서 각 캐릭터의 운용 조건을 먼저 확인하면 조합 오류를 줄일 수 있습니다.</p>`
         },
         '/gallery/hsr/terminology': {
-          title: '붕괴: 스타레일 용어집 | 전투 시스템·버프·디버프 정리',
+          title: PAGE_TITLES.hsrTerminology,
           description: PAGE_DESCRIPTIONS.hsrTerminology,
           heading: '붕괴: 스타레일 전투 용어집',
           body: `<h2>용어집 이용 방법</h2><p>캐릭터 스킬이나 공략에서 이해하기 어려운 단어를 검색하면 의미와 적용 방식을 빠르게 확인할 수 있습니다. 비슷해 보이는 피해 증가, 받는 피해 증가, 방어력 감소와 방어력 무시는 계산 방식과 적용 대상이 다르므로 같은 효과로 판단하지 않습니다.</p><h2>전투 설명 읽는 기준</h2><p>효과의 발동 조건, 대상, 지속 턴과 중첩 가능 여부를 함께 확인하세요. 추가 공격·지속 피해·격파 피해처럼 별도 판정을 사용하는 효과는 캐릭터의 운명의 길만으로 판단하기보다 실제 스킬 설명과 추천 세팅을 교차 확인하는 것이 안전합니다. 용어 확인 후 캐릭터 상세 도감으로 이동하면 스킬과 행적 문맥에서 다시 볼 수 있습니다.</p>`
         },
         '/gallery/ww/tierlist': {
-          title: '명조 티어표 | 역경의 탑·역할별 최신 공명자 평가',
+          title: PAGE_TITLES.wwTierlist,
           description: PAGE_DESCRIPTIONS.wwTierlist,
           heading: '명조 공명자 최신 티어표',
           body: `<h2>티어표 확인 방법</h2><p>공명자의 역할과 사용하려는 콘텐츠를 먼저 선택한 뒤 등급을 비교하세요. 역경의 탑은 제한 시간, 적 구성과 속성 저항의 영향을 받으므로 한 번의 종합 순위만으로 모든 전투 성능을 설명할 수 없습니다.</p><h2>평가에 포함되는 요소</h2><p>명함 기준 피해 기여도뿐 아니라 공명 해방 회전, 협주 에너지, 반주 스킬, 필드 체류 시간과 파티 조합 난도를 함께 봅니다. 높은 티어라도 요구 무기나 특정 공명자가 필요한 경우 실제 계정에서는 우선순위가 달라질 수 있습니다. 상세 도감과 공략에서 무기·에코·목표 능력치와 운용 순서를 확인한 뒤 육성 여부를 결정하세요.</p>`
         },
         '/gallery/ww/parties': {
-          title: '명조 추천 파티 | 반주 스킬·공명 시너지 조합',
+          title: PAGE_TITLES.wwParties,
           description: PAGE_DESCRIPTIONS.wwParties,
           heading: '명조 추천 파티 조합',
           body: `<h2>파티 구성 기준</h2><p>메인 딜러의 주력 피해 유형을 정한 뒤 이를 강화하는 반주 스킬과 빠르게 협주 에너지를 채우는 공명자를 연결하세요. 힐러와 실드 역할도 단순 생존뿐 아니라 버프 유지와 교대 흐름에 영향을 줍니다.</p><h2>교대 순서와 대체 멤버</h2><p>추천 캐릭터를 보유하지 않았다면 같은 속성보다 같은 역할과 반주 효과를 우선 비교하세요. 공명 스킬·공명 해방 사용 후 다음 공명자에게 어떤 강화가 전달되는지, 버프 지속 시간 안에 주력 공격을 끝낼 수 있는지를 확인해야 합니다. 각 공명자 상세 도감과 세팅 가이드에서 에코 세트, 무기와 실제 운용 순서를 함께 확인할 수 있습니다.</p>`
@@ -3194,7 +3196,7 @@ function runPrerender() {
       const aniimoEntries = loadAniimoCatalog(ROOT_DIR);
       const locations = [...OFFICIAL_ANIIMO_HABITATS, ...getWaveLocations(aniimoEntries).map(location => location.name)];
       const formCount = aniimoEntries.reduce((total, item) => total + (item.forms || []).length, 0);
-      meta.title = '애니모 허브 | 도감·원소 상성·공식 서식지 데이터베이스';
+      meta.title = PAGE_TITLES.aniimoHub;
       meta.description = aniimoHubDescription({ entries: aniimoEntries.length, locations: locations.length });
       meta.content = `<article><h1>애니모 허브</h1><p>${escapeHtml(meta.description)}</p><dl><dt>등록 애니모</dt><dd>${aniimoEntries.length}종</dd><dt>형태 데이터</dt><dd>${formCount}개</dd><dt>원소 상성</dt><dd>9종</dd><dt>공식 서식지</dt><dd>${locations.length}곳</dd></dl><h2>애니모 데이터베이스</h2><nav aria-label="애니모 데이터베이스 메뉴"><ul><li><a href="/gallery/aniimo/characters">애니모 도감·능력치 비교</a> — 원소, 포지션과 서식지로 검색하고 최대 3종의 능력치를 비교합니다.</li><li><a href="/gallery/aniimo/type-chart">애니모 원소 상성표·약점 계산</a> — 9개 원소의 공격 배율과 복합 원소 대응 방법을 확인합니다.</li><li><a href="/gallery/aniimo/personality">애니모 성격 추천·MBTI 효과</a> — 8개 성격이 전투와 홈 능력에 주는 효과를 역할별로 비교합니다.</li><li><a href="/gallery/aniimo/party-builder">애니모 파티 추천</a> — 형태와 역할을 반영한 4인 조합, 핵심 시너지와 대체 멤버를 확인합니다.</li><li><a href="/gallery/aniimo/locations">애니모 서식지 도감</a> — 공식 ${locations.length}개 서식지별 출현 애니모와 지역 형태를 찾습니다.</li></ul></nav><h2>처음 이용하는 방법</h2><p>먼저 도감에서 육성하거나 포획할 애니모를 선택하고 상세 페이지에서 형태별 능력치, 특성, 스킬과 진화 계보를 확인하세요. 같은 애니모라도 선택한 형태에 따라 이미지와 전투 데이터, 출현 지역이 달라질 수 있습니다.</p><p>전투 준비 단계에서는 상대 원소에 맞는 상성을 확인한 뒤 공격·지원·방어 역할이 겹치지 않도록 파티 추천을 살펴보세요. 성격 가이드는 주력 능력치와 홈 능력을 고를 때 참고할 수 있습니다.</p><p><a href="https://www.aniimo.com/ko">애니모 공식 사이트</a></p></article>`;
     } else if (routePath === '/gallery/aniimo/characters') {
@@ -3206,7 +3208,7 @@ function runPrerender() {
       const locations = OFFICIAL_ANIIMO_HABITATS;
       const waveLocations = getWaveLocations(loadAniimoCatalog(ROOT_DIR));
       const totalHabitatAppearances = locations.reduce((total, location) => total + (OFFICIAL_HABITAT_TARGETS[location] || 0), 0);
-      meta.title = `애니모 공식 서식지 ${locations.length + waveLocations.length}곳 | 서식지별 도감`;
+      meta.title = aniimoLocationsTitle(locations.length + waveLocations.length);
       meta.description = aniimoLocationsDescription({ habitats: locations.length, waveLocations: waveLocations.length });
       meta.content = `<article><h1>서식지별 애니모 도감</h1><p>${escapeHtml(meta.description)}</p><dl><dt>공식 서식지</dt><dd>${locations.length}곳</dd><dt>지역별 출현 기록</dt><dd>총 ${totalHabitatAppearances}건</dd></dl><h2>공식 서식지 목록</h2><ul>${locations.map(location => `<li><a href="/gallery/aniimo/location/${encodeURIComponent(location.trim().replace(/\s+/g, '-'))}">${escapeHtml(location)} · ${OFFICIAL_HABITAT_TARGETS[location]}종</a></li>`).join('')}</ul><h2>서식지 도감 이용 방법</h2><p>지역을 선택하면 그곳에서 확인되는 애니모와 출현 형태를 함께 볼 수 있습니다. 같은 애니모라도 기본 형태와 지역 형태의 외형, 원소 또는 역할이 다를 수 있으므로 포획 대상을 찾을 때는 형태 이름까지 확인하세요.</p><p>원소와 포지션을 기준으로 전체 애니모를 찾거나 능력치를 비교하려면 <a href="/gallery/aniimo/characters">애니모 도감·능력치 비교기</a>를 이용하세요. 전투 편성을 준비할 때는 <a href="/gallery/aniimo/type-chart">원소 상성표</a>와 <a href="/gallery/aniimo/party-builder">파티 추천</a>을 함께 확인할 수 있습니다.</p><p><a href="/gallery/aniimo">애니모 허브로 돌아가기</a></p></article>`;
       if (waveLocations.length) {

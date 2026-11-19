@@ -6,7 +6,7 @@ import { SONATA_EFFECTS } from '../data/sonataEffects';
 import { renderRichText, ELEMENT_COLORS } from '../data/formatter';
 import { CDN_URL, safeEncodeURIComponent, handleImageFallback } from '../../common-hub/utils/assetManager';
 import SEO from '../../common-hub/components/SEO';
-import { wwEchoDescription } from '../../common-hub/utils/pageSeo.js';
+import { wwEchoDescription, wwEchoTitle } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import { useTranslation } from 'react-i18next';
@@ -54,7 +54,7 @@ export const WuwaEchoDetail = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans relative">
       <SEO 
-        title={`${echo.name} ${t('에코 상세 정보 및 소나타 효과 | 명조 아카이브')}`} 
+        title={wwEchoTitle(echo.name)}
         description={wwEchoDescription(echo.name)}
         image={`${ECHO_IMAGE_BASE}${encodeURIComponent(echo.name.normalize('NFC'))}.webp`}
         url={`/gallery/ww/echo/${echo.name}`}

@@ -5,7 +5,7 @@ import { fetchNotices } from '../data/notices';
 import { Notice } from '../data/types';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
-import { PAGE_DESCRIPTIONS } from '../utils/pageSeo.js';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../utils/pageSeo.js';
 import { Link } from 'react-router';
 
 const TYPE_ICONS = {
@@ -36,11 +36,12 @@ const Notices: React.FC = () => {
   }, [gameId]);
 
   const displayTitle = gameId === 'hsr' ? '붕괴: 스타레일 공지사항' : gameId === 'ww' ? '명조 공지사항' : '통합 공지사항';
+  const seoTitle = gameId ? displayTitle : PAGE_TITLES.notices;
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
       <SEO 
-        title={displayTitle} 
+        title={seoTitle}
         description={PAGE_DESCRIPTIONS.notices}
       />
       <PageHeader gameId={gameId} category="공지사항" title="최신 소식" />

@@ -11,7 +11,7 @@ import HSR_GALLERY_SUMMARY from '../data/generated/gallery-summary.json';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
-import { hsrHubDescription } from '../../common-hub/utils/pageSeo.js';
+import { PAGE_TITLES, hsrHubDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import SearchModal from '../../common-hub/components/SearchModal';
@@ -179,7 +179,7 @@ const GalleryHSR: React.FC = () => {
   if (!game) return null;
 
   const seoTitle = activeMenu === '홈'
-    ? `${game.title} 데이터베이스 DB | 공략, 티어표, 육성 가이드 - 리라 아카이브`
+    ? PAGE_TITLES.hsrHub
     : `${game.title} ${activeMenu} 도감 DB | 공략, 티어표 - 리라 아카이브`;
   
   const seoDescription = activeMenu === '홈'

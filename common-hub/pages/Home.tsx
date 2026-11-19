@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router';
 import { ARCHIVE_DATA } from '../data/archive';
 import homeStatsData from '../data/search/home-stats.json';
 import SEO from '../components/SEO';
+import { PAGE_TITLES } from '../utils/pageSeo.js';
 import { useTranslation } from 'react-i18next';
 import { NoticeListView, useNoticeBadge } from '../components/NoticeComponents';
 import { Notice } from '../data/types';
@@ -72,7 +73,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white selection:bg-brand-primary font-sans">
       <SEO
-        title={t('리라 아카이브 | 애니모·명조·스타레일 게임 DB')}
+        title={PAGE_TITLES.home}
         description="리라 아카이브는 애니모(Aniimo), 명조(Wuthering Waves), 붕괴: 스타레일, 이환의 캐릭터 도감, 능력치 비교, 티어표와 육성 가이드를 제공하는 통합 게임 데이터베이스입니다."
         keywords="리라 아카이브, 서브컬쳐 데이터베이스, 애니모, Aniimo, 애니모 도감, 애니모 능력치 비교, 명조, Wuthering Waves, 붕괴 스타레일, Honkai Star Rail, 이환, Neverness to Everness, 게임 공략, 티어표, 위키, DB"
         isHomepage={true}

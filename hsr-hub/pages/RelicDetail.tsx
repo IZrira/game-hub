@@ -5,7 +5,7 @@ import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-re
 import { HSR_RELIC_DB } from '../data';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
-import { hsrRelicDescription } from '../../common-hub/utils/pageSeo.js';
+import { hsrRelicDescription, hsrRelicTitle } from '../../common-hub/utils/pageSeo.js';
 import { useTranslation } from 'react-i18next';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
 
@@ -89,7 +89,7 @@ const RelicDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20">
       <SEO 
-        title={`${relic.name} 상세 정보`}
+        title={hsrRelicTitle(relic.name)}
         description={seoDescription}
         url={`/gallery/${gameId}/relic/${encodeURIComponent(relic.name)}`}
         image={getMainImageUrl()}

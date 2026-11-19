@@ -10,7 +10,7 @@ import { WW_TIER_DATA, WW_TIER_CATEGORIES, TierCharacter, TierGroup } from '../d
 import { WW_CHARACTERS } from '../data/characters';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
-import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../common-hub/utils/pageSeo.js';
 import { getWwCharacterPath } from '../utils/characterRoute';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
@@ -261,7 +261,7 @@ const TierList: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24 relative">
       <SEO 
-        title="명조: 워더링 웨이브 티어표" 
+        title={PAGE_TITLES.wwTierlist}
         description={PAGE_DESCRIPTIONS.wwTierlist}
         carouselData={carouselData}
       />

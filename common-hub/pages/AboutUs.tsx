@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Users, Database, Globe, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
-import { PAGE_DESCRIPTIONS } from '../utils/pageSeo.js';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../utils/pageSeo.js';
 import PageHeader from '../components/PageHeader';
 
 const AboutUs: React.FC = () => {
@@ -10,7 +10,7 @@ const AboutUs: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] flex flex-col font-sans text-gray-300">
-      <SEO title={t('About Us | Rira Game Hub')} description={PAGE_DESCRIPTIONS.about} />
+      <SEO title={PAGE_TITLES.about} description={PAGE_DESCRIPTIONS.about} />
       <PageHeader gameId="common" title={t('About Us')} />
 
       <main className="max-w-5xl mx-auto px-6 md:px-12 pt-16 pb-24 space-y-20">

@@ -1,7 +1,7 @@
 import React from 'react';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
-import { PAGE_DESCRIPTIONS } from '../utils/pageSeo.js';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../utils/pageSeo.js';
 
 type GoogleFundingChoices = { callbackQueue?: Array<() => void>; showRevocationMessage?: () => void };
 
@@ -21,7 +21,7 @@ const PrivacyPolicy: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO
-        title="개인정보처리방침 (Privacy Policy)"
+        title={PAGE_TITLES.privacy}
         description={PAGE_DESCRIPTIONS.privacy}
         url="/privacy"
       />

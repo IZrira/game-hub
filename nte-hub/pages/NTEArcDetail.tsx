@@ -6,7 +6,7 @@ import { getNteArcRecommendations, isNteArcIndexable } from '../data/arcRecommen
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
-import { nteArcDescription } from '../../common-hub/utils/pageSeo.js';
+import { nteArcDescription, nteArcTitle } from '../../common-hub/utils/pageSeo.js';
 import { useTranslation } from 'react-i18next';
 import ItemIcon from '../../common-hub/components/ItemIcon';
 import ItemDetailModal from '../../common-hub/components/ItemDetailModal';
@@ -91,7 +91,7 @@ const NTEArcDetail: React.FC = () => {
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-12 font-sans selection:bg-brand-primary relative">
       <SEO 
-        title={`${t(arc.name)} ${t('상세 정보 및 스탯 | 이환(NTE) 아카이브')}`} 
+        title={nteArcTitle(t(arc.name))}
         description={nteArcDescription(arc.name)}
         image={getIllustrationUrl()}
         url={`/gallery/nte/weapon/${encodeURIComponent(arc.name)}`}

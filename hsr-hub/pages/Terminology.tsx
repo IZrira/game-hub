@@ -6,7 +6,7 @@ import { GLOBAL_SPECIAL_TERMS } from '../data/terms';
 import { CHARACTER_DB } from '../../common-hub/data/games';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
-import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../common-hub/utils/pageSeo.js';
 
 const Terminology: React.FC = () => {
   const { gameId } = useParams<{ gameId: string }>();
@@ -36,7 +36,7 @@ const Terminology: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans">
-      {gameId === 'hsr' && <SEO title="붕괴: 스타레일 용어집 | 전투 시스템·버프·디버프 정리" description={PAGE_DESCRIPTIONS.hsrTerminology} url="/gallery/hsr/terminology" />}
+      {gameId === 'hsr' && <SEO title={PAGE_TITLES.hsrTerminology} description={PAGE_DESCRIPTIONS.hsrTerminology} url="/gallery/hsr/terminology" />}
       {/* Page Header */}
       <PageHeader gameId={gameId} title="용어 사전 아카이브" />
 
