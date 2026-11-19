@@ -6,6 +6,7 @@ import PartyRecommendations from '../ww-hub/pages/PartyRecommendations';
 
 vi.mock('react-i18next', () => ({ useTranslation: () => ({ t: (text: string) => text }) }));
 vi.mock('../common-hub/components/PageHeader', () => ({ default: () => null }));
+vi.mock('../common-hub/components/SEO', () => ({ default: () => null }));
 vi.mock('../common-hub/components/GallerySidebar', () => ({ default: () => null }));
 vi.mock('../common-hub/lib/supabase', () => ({ supabase: null }));
 afterEach(cleanup);

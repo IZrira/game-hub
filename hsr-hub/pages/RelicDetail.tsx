@@ -5,6 +5,7 @@ import { ChevronRight, X, Shield, Star, ArrowLeft, Copy, Check } from 'lucide-re
 import { HSR_RELIC_DB } from '../data';
 import PageHeader from '../../common-hub/components/PageHeader';
 import SEO from '../../common-hub/components/SEO';
+import { hsrRelicDescription } from '../../common-hub/utils/pageSeo.js';
 import { useTranslation } from 'react-i18next';
 import { matchesSlug } from '../../common-hub/utils/urlUtils';
 
@@ -83,7 +84,7 @@ const RelicDetail: React.FC = () => {
     }
   };
 
-  const seoDescription = `${relic.name} 세트 상세 가이드: 2세트 및 4세트 효과와 추천 착용 캐릭터 세팅을 완벽 정리했습니다. ${relic.gameId === 'ww' ? '명조' : '붕괴: 스타레일'} 게이머를 위한 최신 데이터 시트.`;
+  const seoDescription = hsrRelicDescription(relic.name);
 
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-20">

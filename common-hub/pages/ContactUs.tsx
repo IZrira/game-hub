@@ -1,5 +1,6 @@
 import React from 'react';
 import SEO from '../components/SEO';
+import { PAGE_DESCRIPTIONS } from '../utils/pageSeo.js';
 import PageHeader from '../components/PageHeader';
 import { Mail, MessageSquare, AlertCircle } from 'lucide-react';
 
@@ -8,7 +9,7 @@ const ContactUs: React.FC = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO 
         title="문의하기 (Contact Us)" 
-        description="Rira Game Hub와 소통하세요. 건의사항, 제휴 문의, 오탈자 제보 등을 환영합니다." 
+        description={PAGE_DESCRIPTIONS.contact}
         url="/contact"
       />
       <PageHeader title="Contact Us" category="Support" />

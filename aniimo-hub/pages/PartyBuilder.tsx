@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ArrowRight, Sparkles, Users } from 'lucide-react';
 import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
+import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { supabase } from '../../common-hub/lib/supabase';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
@@ -28,7 +29,7 @@ const PartyBuilderAniimo: React.FC = () => {
   const filtered = category === '전체' ? parties : parties.filter(party => party.category === category);
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-    <SEO title="애니모 파티 추천 | 역할별 추천 조합" description="애니모의 역할과 형태를 반영한 추천 파티, 운용 특징과 대체 조합을 확인하세요." url="/gallery/aniimo/party-builder" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '파티 추천', url: '/gallery/aniimo/party-builder' }]} />
+    <SEO title="애니모 파티 추천 | 역할별 추천 조합" description={PAGE_DESCRIPTIONS.aniimoPartyBuilder} url="/gallery/aniimo/party-builder" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '파티 추천', url: '/gallery/aniimo/party-builder' }]} />
     <PageHeader gameId="aniimo" category="공략" categoryUrl="/gallery/aniimo" title="파티 추천" />
     <AniimoMobileNav />
     <main className="mx-auto grid max-w-[1500px] gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[230px_minmax(0,1fr)]"><AniimoSidebar /><div className="min-w-0 space-y-8">

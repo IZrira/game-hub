@@ -1,5 +1,6 @@
 import React from 'react';
 import SEO from '../components/SEO';
+import { PAGE_DESCRIPTIONS } from '../utils/pageSeo.js';
 import PageHeader from '../components/PageHeader';
 
 const TermsOfService: React.FC = () => {
@@ -7,7 +8,7 @@ const TermsOfService: React.FC = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24 font-sans">
       <SEO 
         title="이용약관 (Terms of Service)" 
-        description="Rira Game Hub의 이용약관 및 운영 원칙을 안내합니다." 
+        description={PAGE_DESCRIPTIONS.tos}
         url="/tos"
       />
       <PageHeader title="Terms of Service" category="Legal" />

@@ -5,6 +5,7 @@ import { fetchNotices } from '../data/notices';
 import { Notice } from '../data/types';
 import PageHeader from '../components/PageHeader';
 import SEO from '../components/SEO';
+import { PAGE_DESCRIPTIONS } from '../utils/pageSeo.js';
 import { Link } from 'react-router';
 
 const TYPE_ICONS = {
@@ -40,7 +41,7 @@ const Notices: React.FC = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white pb-24">
       <SEO 
         title={displayTitle} 
-        description="최신 업데이트 및 이벤트 소식을 확인하세요."
+        description={PAGE_DESCRIPTIONS.notices}
       />
       <PageHeader gameId={gameId} category="공지사항" title="최신 소식" />
 

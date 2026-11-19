@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, Brain, ExternalLink, Layers3, MapPin, PawPrint, Sparkles, Swords, Users } from 'lucide-react';
 import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
+import { aniimoHubDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import LazyImage from '../../common-hub/components/LazyImage';
@@ -26,7 +27,7 @@ const tools = [
 ];
 
 const HubAniimo: React.FC = () => <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-  <SEO title="애니모 허브 | 도감·원소 상성·서식지 데이터베이스" description={`애니모 ${entries.length}종의 형태별 도감, 능력치 비교, 9원소 상성표와 ${locationCount}개 공식 서식지별 출현 정보를 한곳에서 확인하세요. 성격 효과와 역할별 추천 파티 조합도 함께 정리되어 있습니다.`} url="/gallery/aniimo" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 허브', url: '/gallery/aniimo' }]} />
+  <SEO title="애니모 허브 | 도감·원소 상성·서식지 데이터베이스" description={aniimoHubDescription({ entries: entries.length, locations: locationCount })} url="/gallery/aniimo" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 허브', url: '/gallery/aniimo' }]} />
   <PageHeader gameId="aniimo" title="애니모 허브" />
   <AniimoMobileNav />
   <main className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-12 px-4 pb-24 pt-10 sm:px-6 md:px-8 lg:grid-cols-[240px_minmax(0,1fr)]">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ArrowDown, ArrowLeft, Brain, ChevronLeft, ChevronRight, Compass, Home, MapPin, Shield, Sparkles, Swords, Target } from 'lucide-react';
 import { Link, useParams, useSearchParams } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
+import { aniimoCharacterDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import aniimoSummary from '../data/aniimo-summary.json';
 import type { AniimoEntry, AniimoEvolutionNode, AniimoForm, AniimoSkill, AniimoStats } from '../types';
@@ -131,7 +132,7 @@ const CharacterDetailAniimo: React.FC = () => {
     : [];
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-    <SEO title={`${item.name} 능력치·스킬·진화 | 애니모 도감`} description={`애니모 ${item.name}(NO.${item.number})의 소개, 종합 능력치, 진화 조건, 출현 지역, 특성, 스킬과 공명 육성 정보를 확인하세요.`} url={`/gallery/aniimo/character/${encodeURIComponent(item.name)}`} gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 도감', url: '/gallery/aniimo' }, { name: item.name, url: `/gallery/aniimo/character/${encodeURIComponent(item.name)}` }]} />
+    <SEO title={`${item.name} 능력치·스킬·진화 | 애니모 도감`} description={aniimoCharacterDescription({ name: item.name, number: item.number })} url={`/gallery/aniimo/character/${encodeURIComponent(item.name)}`} gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모 도감', url: '/gallery/aniimo' }, { name: item.name, url: `/gallery/aniimo/character/${encodeURIComponent(item.name)}` }]} />
     <PageHeader gameId="aniimo" category="캐릭터" categoryUrl="/gallery/aniimo" title={item.name} />
     <main className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-14 space-y-6">
       <nav className="grid grid-cols-[1fr_auto_1fr] items-center rounded-2xl border border-white/10 bg-[#17171d] px-3 py-2">

@@ -10,6 +10,7 @@ import { WW_TIER_DATA, WW_TIER_CATEGORIES, TierCharacter, TierGroup } from '../d
 import { WW_CHARACTERS } from '../data/characters';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
 import { getWwCharacterPath } from '../utils/characterRoute';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { useTranslation } from 'react-i18next';
@@ -261,7 +262,7 @@ const TierList: React.FC = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24 relative">
       <SEO 
         title="명조: 워더링 웨이브 티어표" 
-        description="최신 메타 분석을 통한 명조: 워더링 웨이브 캐릭터 티어표입니다."
+        description={PAGE_DESCRIPTIONS.wwTierlist}
         carouselData={carouselData}
       />
       <PageHeader gameId={gameId} category={t("티어표")} title={t("종합 메타 랭킹")} />

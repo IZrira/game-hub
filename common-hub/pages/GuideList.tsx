@@ -2,6 +2,7 @@ import React from 'react';
 import { ArrowRight, BookOpen, CalendarDays, ShieldCheck } from 'lucide-react';
 import { Link, useParams } from 'react-router';
 import SEO from '../components/SEO';
+import { guideListDescription } from '../utils/pageSeo.js';
 import PageHeader from '../components/PageHeader';
 import GallerySidebar from '../components/GallerySidebar';
 import { getPublishedGuides } from '../data/guideSummaries';
@@ -27,7 +28,7 @@ const GuideList: React.FC = () => {
   const landing = guideLanding[gameId as keyof typeof guideLanding];
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-    <SEO title={`${gameLabel} 공략 모음`} description={`${gameLabel}의 공식 정보와 Rira 분석을 구분해 검수한 공략을 확인하세요.`} url={`/gallery/${gameId}/guides`} gameCategory={gameLabel} noindex={guides.length === 0} breadcrumbData={[{ name: '홈', url: '/' }, { name: gameLabel, url: `/gallery/${gameId}` }, { name: '공략', url: `/gallery/${gameId}/guides` }]} />
+    <SEO title={`${gameLabel} 공략 모음`} description={guideListDescription(gameLabel)} url={`/gallery/${gameId}/guides`} gameCategory={gameLabel} noindex={guides.length === 0} breadcrumbData={[{ name: '홈', url: '/' }, { name: gameLabel, url: `/gallery/${gameId}` }, { name: '공략', url: `/gallery/${gameId}/guides` }]} />
     <PageHeader gameId={gameId} title={`${gameLabel} 공략`} />
     {isAniimo && <AniimoMobileNav />}
     <main className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-12 px-4 pb-24 pt-10 sm:px-6 md:px-8 lg:grid-cols-[240px_minmax(0,1fr)]">

@@ -6,6 +6,7 @@ import { useHsrRuntime } from '../utils/useHsrRuntime';
 import PageHeader from '../../common-hub/components/PageHeader';
 import AdPlaceholder from '../../common-hub/components/AdPlaceholder';
 import SEO from '../../common-hub/components/SEO';
+import { hsrLightconeDescription } from '../../common-hub/utils/pageSeo.js';
 import HsrItemIcon from '../components/HsrItemIcon';
 import { useTranslation } from 'react-i18next';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
@@ -157,7 +158,7 @@ const LightConeDetailContent: React.FC<{ lc: HsrLightCone }> = ({ lc }) => {
   const currentMaterials = lc?.ascensionMaterials?.find(m => m.level === LEVEL_STEPS[levelIdx])?.items || [];
 
   const skillName = lc.skill?.name ? ` 및 [${lc.skill.name}]의` : '';
-  const seoDescription = `${lc.name} 상세 정보: 기초 공격력 ${lc.baseStats?.lv80?.["기초 공격력"] || '???'}${skillName} 중첩 단계별 변화를 완벽 정리했습니다. 붕괴: 스타레일 게이머를 위한 최신 데이터 시트.`;
+  const seoDescription = hsrLightconeDescription({ name: lc.name, rarity: lc.rarity, path: lc.path });
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep">

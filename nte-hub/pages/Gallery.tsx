@@ -5,6 +5,7 @@ import { ARCHIVE_DATA } from '../../common-hub/data/archive';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import { nteHubDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import ReviewedGuideHighlights from '../../common-hub/components/ReviewedGuideHighlights';
@@ -180,7 +181,7 @@ const GalleryNTE: React.FC = () => {
     <div className="min-h-[100dvh] bg-[#0a0a0a] flex flex-col font-sans">
       <SEO 
         title={seoTitle} 
-        description={`${game.title} ${t('데이터베이스입니다. 최신 캐릭터, 아크, 공략 및 티어표를 확인하세요.')}`}
+        description={activeMenu === '홈' ? nteHubDescription() : `${game.title} ${t('데이터베이스입니다. 최신 캐릭터, 아크, 공략 및 티어표를 확인하세요.')}`}
         url={seoUrl}
         gameCategory={game.title}
         breadcrumbData={breadcrumbs}

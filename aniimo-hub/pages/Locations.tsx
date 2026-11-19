@@ -2,6 +2,7 @@ import React from 'react';
 import { MapPin } from 'lucide-react';
 import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
+import { aniimoLocationsDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import aniimoData from '../data/aniimo-summary.json';
@@ -15,7 +16,7 @@ const LocationsAniimo: React.FC = () => (
   <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
     <SEO
       title={`애니모 공식 서식지 ${habitats.length}곳 | 서식지 도감`}
-      description={`애니모의 공식 서식지 ${habitats.length}곳과 서식지별 애니모·형태 정보를 확인하세요.`}
+      description={aniimoLocationsDescription({ habitats: habitats.filter(item => !item.regionId).length, waveLocations: habitats.filter(item => item.regionId).length })}
       url="/gallery/aniimo/locations"
       gameCategory="애니모"
       breadcrumbData={[

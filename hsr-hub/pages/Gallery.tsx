@@ -11,6 +11,7 @@ import HSR_GALLERY_SUMMARY from '../data/generated/gallery-summary.json';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import { hsrHubDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import SearchModal from '../../common-hub/components/SearchModal';
@@ -182,7 +183,7 @@ const GalleryHSR: React.FC = () => {
     : `${game.title} ${activeMenu} 도감 DB | 공략, 티어표 - 리라 아카이브`;
   
   const seoDescription = activeMenu === '홈'
-    ? `리라 아카이브는 ${game.title}(Honkai Star Rail)의 최신 캐릭터 공략, 종결 유물, 광추 세팅, 티어표를 제공하는 프리미엄 서브컬쳐 게임 데이터베이스(DB, gg)입니다.`
+    ? hsrHubDescription()
     : `${game.title} ${activeMenu} 전체 목록 및 세부 정보입니다. 서브컬쳐 데이터베이스 리라 아카이브에서 확인하세요.`;
 
   const seoUrl = activeMenu === '홈'

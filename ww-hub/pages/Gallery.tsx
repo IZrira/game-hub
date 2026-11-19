@@ -9,6 +9,7 @@ import { ARCHIVE_DATA } from '../../common-hub/data/archive';
 import { useTranslation } from 'react-i18next';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import { wwHubDescription } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import HubIntro from '../../common-hub/components/HubIntro';
 import { DESIGN_CONCEPT } from '../../common-hub/pages/theme';
@@ -153,7 +154,7 @@ const GalleryWW: React.FC = () => {
     : `${game.title} ${t(activeMenu)} 도감 DB | 공략, 티어표 - 리라 아카이브`;
   
   const seoDescription = activeMenu === '홈'
-    ? `리라 아카이브는 ${game.title} (Wuthering Waves)의 최신 공명자 공략, 종결 에코 세팅, 파티 조합, 티어표를 제공하는 프리미엄 서브컬쳐 게임 데이터베이스(DB, gg)입니다.`
+    ? wwHubDescription()
     : `${game.title} ${t(activeMenu)} 전체 목록 및 세부 정보입니다. 서브컬쳐 데이터베이스 리라 아카이브에서 확인하세요.`;
 
   const seoUrl = activeMenu === '홈'
@@ -245,7 +246,7 @@ const GalleryWW: React.FC = () => {
                     },
                     {
                       title: t('엔드콘텐츠 티어표'),
-                      description: t('심경의 탑 최신 메타 기준 공명자 티어리스트를 확인합니다.'),
+                      description: t('역경의 탑 최신 메타 기준 공명자 티어리스트를 확인합니다.'),
                       path: '/gallery/ww/tierlist',
                       icon: Star,
                       stat: t('메타 분석'),

@@ -11,6 +11,7 @@ import CHARACTER_DATA from '../data/generated/character-summary.json';
 import { safeEncodeURIComponent } from '../../common-hub/utils/assetManager';
 import GallerySidebar from '../../common-hub/components/GallerySidebar';
 import SEO from '../../common-hub/components/SEO';
+import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
 import { getHsrCharacterPath } from '../utils/characterRoute';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { supabase } from '../../common-hub/lib/supabase';
@@ -374,7 +375,7 @@ const TierList: React.FC = () => {
     <div className="min-h-screen bg-[#0a0a0a] text-white font-sans pb-24">
       <SEO 
         title="붕괴: 스타레일 티어표" 
-        description="최신 메타 분석 가이드" 
+        description={PAGE_DESCRIPTIONS.hsrTierlist}
         carouselData={carouselData}
       />
       <PageHeader gameId={gameId} title="종합 메타 랭킹" />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Brain, ChevronRight, Home, RefreshCw, Shield, Sparkles, Swords } from 'lucide-react';
 import { Link } from 'react-router';
 import SEO from '../../common-hub/components/SEO';
+import { PAGE_DESCRIPTIONS } from '../../common-hub/utils/pageSeo.js';
 import PageHeader from '../../common-hub/components/PageHeader';
 import { AniimoMobileNav, AniimoSidebar } from '../components/AniimoNavigation';
 import { PERSONALITY_PRESETS as presets, PERSONALITY_TRAITS as traits } from '../data/personality';
@@ -12,7 +13,7 @@ const PersonalityGuideAniimo: React.FC = () => {
   const selectedTraits = preset.code.split('').map(code => traits.find(trait => trait.code === code)).filter(Boolean);
 
   return <div className="min-h-[100dvh] bg-[#0a0a0a] text-white">
-    <SEO title="애니모 성격 추천·MBTI 효과 | 전투·홈 공략" description="애니모 성격 8종의 전투 보너스와 E/I·S/N·T/F·J/P 선택법, 딜러·치명타·무력화·지원 역할별 추천 성격을 확인하세요. 성격 축마다 적용되는 능력치와 추천 상황을 비교할 수 있습니다." url="/gallery/aniimo/personality" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '성격 공략', url: '/gallery/aniimo/personality' }]} />
+    <SEO title="애니모 성격 추천·MBTI 효과 | 전투·홈 공략" description={PAGE_DESCRIPTIONS.aniimoPersonality} url="/gallery/aniimo/personality" gameCategory="애니모" breadcrumbData={[{ name: '홈', url: '/' }, { name: '애니모', url: '/gallery/aniimo' }, { name: '성격 공략', url: '/gallery/aniimo/personality' }]} />
     <PageHeader gameId="aniimo" category="공략" categoryUrl="/gallery/aniimo" title="성격 공략" />
     <AniimoMobileNav />
     <main className="mx-auto grid max-w-[1500px] gap-8 px-4 py-10 sm:px-6 sm:py-16 lg:grid-cols-[230px_minmax(0,1fr)]"><AniimoSidebar /><div className="min-w-0 space-y-8">
