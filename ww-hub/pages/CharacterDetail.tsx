@@ -111,12 +111,19 @@ const Flag: React.FC<{ code: string }> = ({ code }) => (
   <img src={`https://flagcdn.com/w20/${code}.png`} alt={code} className="inline-block w-4 h-3 object-cover rounded-sm mr-1.5" />
 );
 
+// 이름 끝 글자의 받침에 맞춰 은/는을 붙인다. 한글이 아니면 병기형을 쓴다.
+const withTopicParticle = (name: string) => {
+  const code = name.charCodeAt(name.length - 1) - 0xac00;
+  if (code < 0 || code > 11171) return `${name}은(는)`;
+  return `${name}${code % 28 === 0 ? '는' : '은'}`;
+};
+
 const CharacterDetail: React.FC = () => {
   const { gameId, charName } = useParams<{ gameId: string; charName: string }>();
   const { t, i18n } = useTranslation();
   const currentLang = i18n.language || 'ko';
   
-  const characterIndex = characterSummary as Array<{ id: string; name: string; originalName?: string }>;
+  const characterIndex = characterSummary as Array<{ id: string; name: string; originalName?: string; folderName?: string; rarity?: number; attribute?: string; weaponType?: string; releaseVersion?: string }>;
   const summaryChar = useMemo(
     () => characterIndex.find(character => character.id === charName || character.name === charName || character.originalName === charName),
     [charName]
@@ -148,19 +155,32 @@ const CharacterDetail: React.FC = () => {
     setRawChar(null);
     setLoadFailed(false);
 
-    fetch(`/assets/data/ww/characters/${encodeURIComponent(summaryChar.id)}.json`, { signal: controller.signal })
-      .then(response => {
-        if (!response.ok) throw new Error(`Failed to load WW character detail: ${response.status}`);
-        return response.json();
-      })
-      .then(setRawChar)
-      .catch(error => {
-        if (error instanceof DOMException && error.name === 'AbortError') return;
-        console.error(error);
-        setLoadFailed(true);
-      });
+    let retryTimer: ReturnType<typeof setTimeout> | undefined;
 
-    return () => controller.abort();
+    // 일시적인 네트워크 오류로 상세 화면이 비지 않도록 한 번 더 시도한다.
+    const load = (attempt: number) => {
+      fetch(`/assets/data/ww/characters/${encodeURIComponent(summaryChar.id)}.json`, { signal: controller.signal })
+        .then(response => {
+          if (!response.ok) throw new Error(`Failed to load WW character detail: ${response.status}`);
+          return response.json();
+        })
+        .then(setRawChar)
+        .catch(error => {
+          if (error instanceof DOMException && error.name === 'AbortError') return;
+          if (attempt === 0) {
+            retryTimer = setTimeout(() => load(1), 1500);
+            return;
+          }
+          console.error(error);
+          setLoadFailed(true);
+        });
+    };
+    load(0);
+
+    return () => {
+      controller.abort();
+      if (retryTimer) clearTimeout(retryTimer);
+    };
   }, [summaryChar?.id]);
 
   // 스킨 이미지는 저장소에 "코스튬-스킨명.webp" 또는 "스킨명.webp"로 있다.
@@ -587,11 +607,11 @@ const CharacterDetail: React.FC = () => {
     if (!char) return [];
     return [
       {
-        question: `${t(char.name)} ${t('의 주력 스탯과 속성은 무엇인가요?')}`,
-        answer: `${t(char.name)}${t('은(는)')} ${t(char.attribute)} ${t('속성의')} ${t((char as any).weaponType)} ${t('캐릭터입니다.')}`
+        question: `${t(char.name)}${t('의 주력 스탯과 속성은 무엇인가요?')}`,
+        answer: `${withTopicParticle(t(char.name))} ${t(char.attribute)} ${t('속성의')} ${t((char as any).weaponType)} ${t('캐릭터입니다.')}`
       },
       {
-        question: `${t(char.name)} ${t('의 돌파를 위해 필요한 주요 재료는 무엇인가요?')}`,
+        question: `${t(char.name)}${t('의 돌파를 위해 필요한 주요 재료는 무엇인가요?')}`,
         answer: `${t(char.name)}${t('의 돌파를 위해서는')} ${char.materials_v2?.ascension?.slice(0, 3).map((m: any) => t(m.name)).join(', ')} ${t('등이 필요합니다.')}`
       }
     ];
@@ -599,7 +619,70 @@ const CharacterDetail: React.FC = () => {
 
   const hasParties = useHasRecommendedParties('ww', char?.id || charName || '');
   if (!summaryChar) return <div className="p-20 text-center font-black text-white">{t('캐릭터를 찾을 수 없습니다.')}</div>;
-  if (!char) return <div className="flex min-h-[70vh] flex-col items-center justify-center p-20 text-center text-white"><RefreshCw size={28} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary-text'} /><p className="mt-5 text-sm font-bold">{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</p>{loadFailed && <button type="button" onClick={() => window.location.reload()} className="mt-4 rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}</div>;
+  if (!char) {
+    // 상세 데이터를 받는 동안이나 받지 못했을 때도 요약 정보를 보여 준다.
+    // 빈 로딩 화면만 남으면 검색엔진이 내용 없는 페이지(Soft 404)로 판정할 수 있다.
+    const summaryName = t(summaryChar.name);
+    const summaryAttribute = t(summaryChar.attribute || '');
+    const summaryWeapon = t(summaryChar.weaponType || '');
+    const summaryFolder = summaryChar.folderName || summaryChar.name;
+    const summarySeo = getWwCharacterSeo({ name: summaryName, attribute: summaryAttribute, weaponType: summaryWeapon });
+    const summaryImage = resolveRoverImageInfo(summaryFolder, summaryChar.attribute, gender)?.url
+      || withAssetVersion(`${CDN_URL}/ww%20images/skills/${safeEncodeURIComponent(summaryFolder)}/${safeEncodeURIComponent(summaryFolder)}.webp`);
+    return (
+      <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans text-white break-keep">
+        <SEO
+          title={summarySeo.title}
+          description={summarySeo.description}
+          image={summaryImage}
+          url={`/gallery/${gameId}/character/${summaryChar.id}`}
+          gameCategory={t('명조 (Wuthering Waves)')}
+          itemType={summaryWeapon}
+        />
+        <PageHeader gameId={gameId} category={t("캐릭터")} title={summaryName} />
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 mt-4">
+          <div id="overview" className="grid grid-cols-1 lg:grid-cols-[500px_1fr] gap-8 items-start">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#0f0f0f] aspect-[3/4.5] lg:aspect-auto lg:h-[min(750px,calc(100dvh-17rem))] lg:min-h-[480px]">
+              <RecoverableImage
+                src={summaryImage}
+                alt={`${summaryName} - ${t('리라 아카이브 캐릭터 정보 및 세팅 가이드')}`}
+                className="w-full h-full object-cover lg:object-top"
+                fetchPriority="high"
+                decoding="async"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
+              <div className="absolute bottom-8 left-8 right-8 space-y-2">
+                <div className="text-xs font-black uppercase tracking-widest text-gray-300">{summaryWeapon} | {summaryAttribute}</div>
+                <h1 className="text-3xl md:text-5xl font-black text-white tracking-tighter leading-tight drop-shadow-lg">{summaryName}</h1>
+                {summaryChar.rarity ? (
+                  <div className="flex gap-1" role="img" aria-label={`${summaryChar.rarity}${t('성')}`}>
+                    {Array.from({ length: summaryChar.rarity }).map((_, i) => <Star key={i} size={18} className="fill-amber-300 text-amber-300" aria-hidden="true" />)}
+                  </div>
+                ) : null}
+              </div>
+            </div>
+            <div className="space-y-6 rounded-2xl border border-white/10 bg-[#121212] p-6">
+              <h2 className="text-2xl font-black text-white">{t('캐릭터 정보')}</h2>
+              <p className="text-base leading-relaxed text-gray-300">
+                {`${withTopicParticle(summaryName)} ${t('명조의')} ${summaryAttribute} ${t('속성')} ${summaryWeapon} ${t('캐릭터입니다.')} ${t('이 페이지에서 기본 능력치, 스킬, 공명 체인, 돌파·스킬 육성 재료와 추천 장비를 확인할 수 있습니다.')}`}
+              </p>
+              <dl className="grid grid-cols-2 gap-4">
+                <div><dt className="text-xs font-bold text-gray-400">{t('전투 속성')}</dt><dd className="mt-1 text-lg font-black">{summaryAttribute}</dd></div>
+                <div><dt className="text-xs font-bold text-gray-400">{t('무기 유형')}</dt><dd className="mt-1 text-lg font-black">{summaryWeapon}</dd></div>
+                {summaryChar.rarity ? <div><dt className="text-xs font-bold text-gray-400">{t('등급')}</dt><dd className="mt-1 text-lg font-black">{summaryChar.rarity}{t('성')}</dd></div> : null}
+                {summaryChar.releaseVersion ? <div><dt className="text-xs font-bold text-gray-400">{t('출시 버전')}</dt><dd className="mt-1 text-lg font-black">v{summaryChar.releaseVersion}</dd></div> : null}
+              </dl>
+              <div role="status" className="flex items-center gap-3 border-t border-white/5 pt-5 text-sm font-bold text-gray-300">
+                <RefreshCw size={18} className={loadFailed ? 'text-rose-300' : 'animate-spin text-brand-primary-text'} aria-hidden="true" />
+                <span>{loadFailed ? t('상세 데이터를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.') : t('캐릭터 상세 데이터를 불러오는 중입니다.')}</span>
+                {loadFailed && <button type="button" onClick={() => window.location.reload()} className="ml-auto rounded-xl bg-white/5 px-4 py-2 text-xs font-black text-gray-300 hover:bg-white/10">{t('다시 시도')}</button>}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[100dvh] bg-[#0a0a0a] pb-24 font-sans selection:bg-brand-primary text-white overflow-visible break-keep relative">
@@ -1024,6 +1107,7 @@ const CharacterDetail: React.FC = () => {
                 <SynergyDeck
                   characterName={char?.id || charName || ''}
                   gameId="ww"
+                  sectionNum="08"
                   theme={theme}
                 />
               </Suspense>
