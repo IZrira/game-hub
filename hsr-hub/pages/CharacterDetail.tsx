@@ -300,7 +300,8 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
   const currentLevel = LEVEL_STEPS[levelIdx];
 
   const calculateStat = (statType: 'hp' | 'atk' | 'def'): string | number => {
-    const labelMap: Record<string, string> = { hp: t('기초 HP'), atk: t('기초 공격력'), def: t('기초 방어력') };
+    // 데이터의 스탯 키는 한국어이므로 번역하지 않은 이름으로 찾는다.
+    const labelMap: Record<string, string> = { hp: '기초 HP', atk: '기초 공격력', def: '기초 방어력' };
     const label = labelMap[statType];
     const lvKey = `lv${currentLevel}` as keyof typeof char.baseStats;
     const lvData = char.baseStats?.[lvKey] as Record<string, number> | undefined;
@@ -600,9 +601,9 @@ const CharacterDetailContent: React.FC<{ rawChar: any }> = ({ rawChar }) => {
       // Calculate specifically at max level (80) for SEO accuracy
       const lvKey = 'lv80';
       const lvData = char.baseStats?.[lvKey] as Record<string, number> | undefined;
-      const maxHp = lvData ? lvData[t('기초 HP')] : '---';
-      const maxAtk = lvData ? lvData[t('기초 공격력')] : '---';
-      const maxDef = lvData ? lvData[t('기초 방어력')] : '---';
+      const maxHp = lvData ? lvData['기초 HP'] : '---';
+      const maxAtk = lvData ? lvData['기초 공격력'] : '---';
+      const maxDef = lvData ? lvData['기초 방어력'] : '---';
 
       questions.push({
         question: `${t(char.name)} ${t('의 기본 기초 스탯(공격력, 방어력, HP)은 어떻게 되나요?')}`,

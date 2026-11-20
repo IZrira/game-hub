@@ -333,7 +333,8 @@ const CharacterDetail: React.FC = () => {
   const currentLevel = LEVEL_STEPS[levelIdx];
 
   const calculateStat = (statType: 'hp' | 'atk' | 'def'): string | number => {
-    const labelMap: Record<string, string> = { hp: t('기초 HP'), atk: t('기초 공격력'), def: t('기초 방어력') };
+    // 데이터의 스탯 키는 한국어이므로 번역하지 않은 이름으로 찾는다.
+    const labelMap: Record<string, string> = { hp: '기초 HP', atk: '기초 공격력', def: '기초 방어력' };
     const label = labelMap[statType];
     const lvKey = `lv${currentLevel}` as keyof typeof char.baseStats;
     const lvData = char.baseStats?.[lvKey] as Record<string, number> | undefined;
