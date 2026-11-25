@@ -16,6 +16,9 @@ const GalleryNTE = React.lazy(() => import('../nte-hub/pages/Gallery'));
 const GalleryAniimo = React.lazy(() => import('../aniimo-hub/pages/Gallery'));
 const HubAniimo = React.lazy(() => import('../aniimo-hub/pages/Hub'));
 const LocationsAniimo = React.lazy(() => import('../aniimo-hub/pages/Locations'));
+const HubGF2 = React.lazy(() => import('../gf2-hub/pages/Hub'));
+const DollsGF2 = React.lazy(() => import('../gf2-hub/pages/Dolls'));
+const DollDetailGF2 = React.lazy(() => import('../gf2-hub/pages/DollDetail'));
 const Detail = React.lazy(() => import('./pages/Detail'));
 const CharacterDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterDetail'));
 const CharacterDetailWW = React.lazy(() => import('../ww-hub/pages/CharacterDetail'));
@@ -78,6 +81,7 @@ const GalleryDispatcher = () => {
   if (gameId === 'ww') return <GalleryWW />;
   if (gameId === 'nte') return <GalleryNTE />;
   if (gameId === 'aniimo') return <HubAniimo />;
+  if (gameId === 'gf2') return <HubGF2 />;
   return <GalleryHSR />;
 };
 
@@ -86,6 +90,7 @@ const CharacterDetailDispatcher = () => {
   if (gameId === 'ww') return <CharacterDetailWW />;
   if (gameId === 'nte') return <CharacterDetailNTE />;
   if (gameId === 'aniimo') return <CharacterDetailAniimo />;
+  if (gameId === 'gf2') return <DollDetailGF2 />;
   return <CharacterDetailHSR />;
 };
 
@@ -180,6 +185,7 @@ export const router = createBrowserRouter([
       { path: "gallery/aniimo/type-chart", element: <TypeChartAniimo /> },
       { path: "gallery/aniimo/personality", element: <PersonalityGuideAniimo /> },
       { path: "gallery/aniimo/party-builder", element: <PartyBuilderAniimo /> },
+      { path: "gallery/gf2/dolls", element: <DollsGF2 /> },
       { path: "gallery/:gameId/lightcone/:lcName", element: <LightConeDetail /> },
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },

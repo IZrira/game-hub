@@ -637,6 +637,12 @@ ${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}  </sitemap>
       if (registeredNteItemNames.has(name)) appOnlyPaths.add('/gallery/nte/item/' + decodeURI(encodeURIComponent(name.normalize('NFC'))));
     }
 
+    // GF2 허브는 비공개 준비 단계라 사이트맵에 넣지 않고, 열 수 있는 경로로만 등록한다(페이지는 noindex).
+    const gf2Summary = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'gf2-hub', 'data', 'generated', 'summary.json'), 'utf8'));
+    appOnlyPaths.add('/gallery/gf2');
+    appOnlyPaths.add('/gallery/gf2/dolls');
+    for (const doll of gf2Summary) appOnlyPaths.add('/gallery/gf2/character/' + doll.name.normalize('NFC'));
+
     const edgeRoutes = [...new Set([
       ...allUrls.map(entry => decodeURI(new URL(entry).pathname)),
       ...appOnlyPaths,
