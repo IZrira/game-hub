@@ -34,7 +34,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   }, []);
 
   return (
-    <div ref={rootRef} tabIndex={-1} className="min-h-screen flex flex-col font-sans overflow-x-hidden w-full relative focus:outline-none">
+    <div ref={rootRef} tabIndex={-1} className="min-h-screen flex flex-col font-sans overflow-x-clip w-full relative focus:outline-none">
       {/* Hidden until keyboard focus; moves focus past the header to the page content. */}
       <a
         href="#main-content"

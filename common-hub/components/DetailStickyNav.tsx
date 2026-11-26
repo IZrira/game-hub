@@ -22,10 +22,20 @@ export const DetailStickyNav: React.FC<DetailStickyNavProps> = ({
   const isClickScrolling = useRef(false);
   const activeId = useRef(activeTab);
 
+  // Distance from the viewport top to the bottom of the stuck tab bar
+  // (site navbar + optional sticky page header + this bar).
+  const stuckOffset = () => {
+    const nav = navRef.current;
+    const top = nav ? parseFloat(getComputedStyle(nav).top) : NaN;
+    // Without layout (tests, very old engines) fall back to the usual stacked height.
+    return nav && Number.isFinite(top) && nav.offsetHeight ? top + nav.offsetHeight : 156;
+  };
+
   useEffect(() => {
     if (tabs.length === 0) return;
 
     let positions: { id: string; top: number }[] = [];
+    let offset = stuckOffset();
     const canObserveResize = typeof ResizeObserver !== 'undefined';
     const measurePositions = () => tabs.flatMap(tab => {
       const el = document.getElementById(tab.id);
@@ -36,7 +46,7 @@ export const DetailStickyNav: React.FC<DetailStickyNavProps> = ({
       // Preserve navigation correctness in older browsers without ResizeObserver.
       if (!canObserveResize) positions = measurePositions();
 
-      const scrollPos = window.scrollY + 180;
+      const scrollPos = window.scrollY + offset + 24;
       let currentId = tabs[0].id;
 
       for (const position of positions) {
@@ -52,6 +62,7 @@ export const DetailStickyNav: React.FC<DetailStickyNavProps> = ({
     // Measure only when layout changes, never on the continuous scroll path.
     const refreshPositions = () => {
       positions = measurePositions();
+      offset = stuckOffset();
       handleScroll();
     };
     const observer = canObserveResize ? new ResizeObserver(refreshPositions) : null;
@@ -78,7 +89,7 @@ export const DetailStickyNav: React.FC<DetailStickyNavProps> = ({
 
     const el = document.getElementById(id);
     if (el) {
-      const topOffset = 100;
+      const topOffset = stuckOffset() + 16;
       const elPosition = el.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elPosition - topOffset;
 
@@ -98,7 +109,8 @@ export const DetailStickyNav: React.FC<DetailStickyNavProps> = ({
   return (
     <div
       ref={navRef}
-      className={`sticky top-14 z-30 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-2.5 backdrop-blur-xl bg-black/60 border-b border-white/5 transition duration-300 ${className}`}
+      style={{ top: 'calc(4rem + var(--rira-page-header-height, 0px))' }}
+      className={`sticky z-30 -mx-4 sm:-mx-6 md:-mx-8 px-4 sm:px-6 md:px-8 py-2.5 backdrop-blur-xl bg-black/60 border-b border-white/5 transition duration-300 ${className}`}
     >
       <div className="max-w-[1600px] mx-auto flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto scrollbar-none py-1">
         {tabs.map(tab => {

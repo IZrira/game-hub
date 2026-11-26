@@ -73,7 +73,7 @@ const GallerySidebar: React.FC<GallerySidebarProps> = ({ activeMenu, setActiveMe
 
   return (
     <aside className="min-w-0 lg:space-y-12">
-      <div className="lg:sticky lg:top-20 lg:space-y-3">
+      <div className="lg:sticky lg:top-[calc(5rem+var(--rira-page-header-height,0px))] lg:space-y-3">
         <h2 className="hidden lg:block text-[11px] font-black text-gray-400 uppercase tracking-[0.4em] px-4 mb-4">MENU</h2>
         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide lg:block lg:space-y-3 lg:overflow-visible lg:pb-0">
           {MAIN_NAVIGATION.map(item => {

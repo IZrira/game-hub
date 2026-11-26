@@ -37,6 +37,13 @@ export default function PageHeader({ gameId, category, categoryUrl, title }: Pag
     setIsFavorite(favs.some((f: any) => f.url === currentUrl));
   }, [currentUrl]);
 
+  // Sticky elements below this header (section tabs) read its height from this variable.
+  useEffect(() => {
+    const root = document.documentElement;
+    root.style.setProperty('--rira-page-header-height', isSticky ? '3.5rem' : '0px');
+    return () => { root.style.removeProperty('--rira-page-header-height'); };
+  }, [isSticky]);
+
   const toggleSticky = () => {
     const newVal = !isSticky;
     setIsSticky(newVal);

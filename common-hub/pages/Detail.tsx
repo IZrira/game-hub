@@ -135,7 +135,7 @@ const Detail: React.FC = () => {
         </article>
 
         {/* Sidebar */}
-        <aside className="hidden lg:flex flex-col gap-8 sticky top-24 h-fit">
+        <aside className="hidden lg:flex flex-col gap-8 sticky top-[calc(6rem+var(--rira-page-header-height,0px))] h-fit">
           <TableOfContents selector=".prose" />
           <AdPlaceholder type="skyscraper" />
         </aside>
