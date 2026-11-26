@@ -157,7 +157,8 @@ const AdminDashboard: React.FC = () => {
         { id: 'hologram', name: '종말 매트릭스' }
       ];
     }
-    if (activeGame === 'gf2') return [{ id: 'overall', name: '종합' }];
+    // GF2는 인형끼리의 시너지가 커서 인형 티어표를 두지 않고 파티 티어표(파티 관리)만 쓴다.
+    if (activeGame === 'gf2') return [];
     if (activeGame === 'nte') {
       return NTE_TIER_CATEGORIES.map(({ id, name }) => ({ id, name }));
     }
@@ -878,8 +879,7 @@ const AdminDashboard: React.FC = () => {
 
           <SidebarGameGroup label="소녀전선2" open={openGameGroup === 'gf2'} onToggle={() => setOpenGameGroup(openGameGroup === 'gf2' ? null : 'gf2')}>
             <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'characters'} onClick={() => goTo('characters', 'gf2')} icon={<Users size={16} />}>인형</SidebarLink>
-            <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'tiers'} onClick={() => goTo('tiers', 'gf2')} icon={<Trophy size={16} />}>티어표</SidebarLink>
-            <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'parties'} onClick={() => goTo('parties', 'gf2')} icon={<Sparkles size={16} />}>파티</SidebarLink>
+            <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'parties'} onClick={() => goTo('parties', 'gf2')} icon={<Trophy size={16} />}>파티 티어표</SidebarLink>
           </SidebarGameGroup>
 
           <div className="pt-3" />
@@ -1026,7 +1026,7 @@ const AdminDashboard: React.FC = () => {
                       <h2 className="text-base font-bold">인형 데이터 관리</h2>
                     </div>
                     <p className="text-sm leading-relaxed text-gray-300">소녀전선2 인형 {baseCharacters.length}명은 Notion 「소녀전선2 캐릭터 도감 DB」가 원본입니다. 추가·수정은 Notion에서 한 뒤 <code className="text-amber-400">npm run sync:gf2</code>로 반영합니다.</p>
-                    <p className="text-sm leading-relaxed text-gray-400">티어표·파티는 왼쪽 메뉴에서 다른 게임과 같은 방식으로 관리합니다.</p>
+                    <p className="text-sm leading-relaxed text-gray-400">소녀전선2는 인형 티어표 대신 파티 티어표를 씁니다. 왼쪽 「파티 티어표」에서 파티마다 티어를 정합니다.</p>
                   </div>
                 </div>
               )}

@@ -29,7 +29,8 @@ const CATEGORY_PRESETS: Record<string, string[]> = {
   HSR: ['추가 공격', '환락', '격파', '기억', '지속 피해', '단일', '범위', '하이퍼캐리'],
   WW: ['하이퍼캐리', '속성 콤보', '변주 연계', '광역 딜링', '보스전'],
   NTE: ['령 속성 시너지', '화 속성 시너지', '빛 속성', '암 속성', '혼 속성', '범용'],
-  GF2: ['범용', '보스전', '다수전']
+  // GF2는 파티 단위로 티어를 매긴다. category 칸에 티어를 저장한다.
+  GF2: ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C']
 };
 
 const ROLE_PRESETS: Record<string, string[]> = {
@@ -166,6 +167,13 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         );
         return newestVersion(b) - newestVersion(a) || a.order - b.order;
       });
+    } else if (gameKey === 'GF2') {
+      // 파티 티어표: 티어 순(OP → C), 같은 티어 안에서는 기존 순서
+      const rank = (party: UnifiedPartyData) => {
+        const index = (CATEGORY_PRESETS.GF2 || []).indexOf((party as any).category || '');
+        return index < 0 ? 99 : index;
+      };
+      sorted.sort((a, b) => rank(a) - rank(b) || a.order - b.order);
     } else {
       sorted.sort((a, b) => a.order - b.order);
     }
@@ -461,7 +469,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         game: 'GF2',
         name: '',
         description: '',
-        category: (CATEGORY_PRESETS.GF2 || [])[0] || '범용',
+        category: 'S',
         mainDPS: '',
         tags: [],
         pros: [],
@@ -690,7 +698,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             </div>
             <div>
               <h2 className="text-lg font-bold">
-                {gameKey === 'HSR' ? '붕괴: 스타레일' : gameKey === 'WW' ? '명조' : gameKey === 'GF2' ? '소녀전선2' : 'NTE'} 파티 추천 빌더
+                {gameKey === 'HSR' ? '붕괴: 스타레일' : gameKey === 'WW' ? '명조' : gameKey === 'GF2' ? '소녀전선2' : 'NTE'} {gameKey === 'GF2' ? '파티 티어표' : '파티 추천 빌더'}
               </h2>
               <p className="text-xs text-gray-400 font-bold">
                 슬롯 규격: <span className="text-amber-500 font-black">{gameKey === 'WW' ? '3인 고정' : gameKey === 'GF2' ? '5인 고정' : '4인 고정'}</span> | 총 <span className="text-amber-500">{parties.length}</span>개 파티
@@ -1021,7 +1029,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
 
               <div className="space-y-2">
-                <label className="text-[11px] font-black uppercase tracking-widest text-amber-500">카테고리</label>
+                <label className="text-[11px] font-black uppercase tracking-widest text-amber-500">{gameKey === 'GF2' ? '파티 티어' : '카테고리'}</label>
                 <select
                   value={(editingParty as any).category || (editingParty as any).elementSynergy || ''}
                   onChange={(e) => {
