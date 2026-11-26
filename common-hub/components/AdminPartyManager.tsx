@@ -9,7 +9,8 @@ import {
   UnifiedPartyData, 
   HSRPartyData, 
   WWPartyData, 
-  NTEPartyData
+  NTEPartyData,
+  GF2PartyData
 } from '../types/party';
 import HSR_CHARACTERS from '../../hsr-hub/data/generated/character-summary.json';
 import { HSR_CHARACTER_VERSION_MAP, HSR_PARTIES } from '../../hsr-hub/data/parties/index';
@@ -17,28 +18,33 @@ import { WW_CHARACTERS } from '../../ww-hub/data/characters';
 import { WW_PARTY_COMBINATIONS } from '../../ww-hub/data/parties';
 import { NTE_CHARACTERS } from '../../nte-hub/data/index';
 import { NTE_PARTY_COMBINATIONS } from '../../nte-hub/data/parties';
+import GF2_DOLLS from '../../gf2-hub/data/generated/summary.json';
 
 interface AdminPartyManagerProps {
-  activeGame: 'hsr' | 'ww' | 'nte';
+  activeGame: 'hsr' | 'ww' | 'nte' | 'gf2';
   getEncodedUrl: (folderOrChar: any) => string;
 }
 
 const CATEGORY_PRESETS: Record<string, string[]> = {
   HSR: ['추가 공격', '환락', '격파', '기억', '지속 피해', '단일', '범위', '하이퍼캐리'],
   WW: ['하이퍼캐리', '속성 콤보', '변주 연계', '광역 딜링', '보스전'],
-  NTE: ['령 속성 시너지', '화 속성 시너지', '빛 속성', '암 속성', '혼 속성', '범용']
+  NTE: ['령 속성 시너지', '화 속성 시너지', '빛 속성', '암 속성', '혼 속성', '범용'],
+  GF2: ['범용', '보스전', '다수전']
 };
 
 const ROLE_PRESETS: Record<string, string[]> = {
   HSR: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러'],
   WW: ['메인 딜러', '서브 딜러', '서포터', '생존'],
-  NTE: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러']
+  NTE: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러'],
+  GF2: ['메인 딜러', '서브 딜러', '서포터', '탱커·힐러', '서포터']
 };
 
 const BREAKTHROUGH_PRESETS: Record<string, string[]> = {
   HSR: ['명함 (E0)', '1돌+ 권장', '2돌+ 권장', '2돌 필수', '4돌+', '6돌 (풀돌)'],
   WW: ['명함 (S0)', '1돌+ 권장', '2돌+ 권장', '3돌+', '6돌 (풀돌)'],
-  NTE: ['명함', '1돌+ 권장', '2돌+ 권장', '풀돌']
+  NTE: ['명함', '1돌+ 권장', '2돌+ 권장', '풀돌'],
+  // GF2 돌파는 마인드 보강(중추 Ⅰ~Ⅵ)이다.
+  GF2: ['명함', '중추 Ⅰ+ 권장', '중추 Ⅱ+ 권장', '중추 Ⅳ+', '중추 Ⅵ (풀돌)']
 };
 
 const normalizeCharacterName = (value: string) => value.replace(/\s+/g, '').replace(/[·•]/g, '');
@@ -120,7 +126,7 @@ const CharacterPickerInput: React.FC<{
 };
 
 export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame, getEncodedUrl }) => {
-  const gameKey: 'HSR' | 'WW' | 'NTE' = (activeGame.toUpperCase()) as 'HSR' | 'WW' | 'NTE';
+  const gameKey: 'HSR' | 'WW' | 'NTE' | 'GF2' = (activeGame.toUpperCase()) as 'HSR' | 'WW' | 'NTE' | 'GF2';
 
   // 파티 목록 상태
   const [parties, setParties] = useState<UnifiedPartyData[]>([]);
@@ -235,6 +241,16 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
         path: c.weaponType || '공명자'
       }));
     }
+    if (gameKey === 'GF2') {
+      return GF2_DOLLS.map(d => ({
+        id: d.name,
+        name: d.name,
+        folderName: d.imageFolder,
+        rarity: d.rarity === '정예' ? 5 : 4,
+        attribute: d.element,
+        path: d.job
+      }));
+    }
     if (gameKey === 'NTE') {
       return NTE_CHARACTERS.map(c => ({
         id: c.id,
@@ -298,6 +314,8 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
 
   // 로컬 기본 내장 상수 데이터 변환 로더
   const getBuiltinParties = (): UnifiedPartyData[] => {
+    // GF2는 저장소에 내장 파티가 없다. 처음부터 DB에서만 관리한다.
+    if (gameKey === 'GF2') return [];
     if (gameKey === 'HSR') {
       return HSR_PARTIES.map((p, idx) => ({
         id: p.id || `hsr_party_${idx}`,
@@ -437,7 +455,23 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
       ? crypto.randomUUID() 
       : `${activeGame}_party_${Date.now()}`;
 
-    if (gameKey === 'WW') {
+    if (gameKey === 'GF2') {
+      const newGF2Party: GF2PartyData = {
+        id: newId,
+        game: 'GF2',
+        name: '',
+        description: '',
+        category: (CATEGORY_PRESETS.GF2 || [])[0] || '범용',
+        mainDPS: '',
+        tags: [],
+        pros: [],
+        cons: [],
+        order: parties.length + 1,
+        updatedAt: new Date().toISOString(),
+        slots: [0, 1, 2, 3, 4].map(index => ({ characterId: '', characterName: '', role: roles[index] || '서포터' })) as GF2PartyData['slots']
+      };
+      setEditingParty(newGF2Party);
+    } else if (gameKey === 'WW') {
       const newWWParty: WWPartyData = {
         id: newId,
         game: 'WW',
@@ -656,10 +690,10 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
             </div>
             <div>
               <h2 className="text-lg font-bold">
-                {gameKey === 'HSR' ? '붕괴: 스타레일' : gameKey === 'WW' ? '명조' : 'NTE'} 파티 추천 빌더
+                {gameKey === 'HSR' ? '붕괴: 스타레일' : gameKey === 'WW' ? '명조' : gameKey === 'GF2' ? '소녀전선2' : 'NTE'} 파티 추천 빌더
               </h2>
               <p className="text-xs text-gray-400 font-bold">
-                슬롯 규격: <span className="text-amber-500 font-black">{gameKey === 'WW' ? '3인 고정' : '4인 고정'}</span> | 총 <span className="text-amber-500">{parties.length}</span>개 파티
+                슬롯 규격: <span className="text-amber-500 font-black">{gameKey === 'WW' ? '3인 고정' : gameKey === 'GF2' ? '5인 고정' : '4인 고정'}</span> | 총 <span className="text-amber-500">{parties.length}</span>개 파티
               </p>
               {gameKey === 'HSR' && (
                 <p className="text-[11px] font-bold text-emerald-400">자동 저장 · 파티 내 최신 캐릭터 버전순 정렬</p>
@@ -797,7 +831,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
               </div>
 
               {/* 슬롯별 캐릭터 아바타 카드 열 (3인 또는 4인 자동 렌더링 + 돌파 추천 뱃지 표시) */}
-              <div className={`grid grid-cols-2 ${party.slots.length === 3 ? 'md:grid-cols-3' : 'md:grid-cols-4'} gap-4`}>
+              <div className={`grid grid-cols-2 ${party.slots.length === 3 ? 'md:grid-cols-3' : party.slots.length === 5 ? 'md:grid-cols-5' : 'md:grid-cols-4'} gap-4`}>
                 {party.slots.map((slot, sIdx) => (
                   <div
                     key={sIdx}
@@ -995,6 +1029,8 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                       setEditingParty({ ...editingParty, elementSynergy: e.target.value } as NTEPartyData);
                     } else if (gameKey === 'HSR') {
                       setEditingParty({ ...editingParty, category: e.target.value } as HSRPartyData);
+                    } else if (gameKey === 'GF2') {
+                      setEditingParty({ ...editingParty, category: e.target.value } as GF2PartyData);
                     }
                   }}
                   className="w-full bg-[#1a1a1a] border border-white/10 rounded-2xl px-4 py-3 text-sm text-white focus:border-amber-500/50 outline-none"
@@ -1017,7 +1053,7 @@ export const AdminPartyManager: React.FC<AdminPartyManagerProps> = ({ activeGame
                 </div>
               </div>
 
-              <div className={`grid grid-cols-1 sm:grid-cols-2 ${editingParty.slots.length === 3 ? 'xl:grid-cols-3' : 'xl:grid-cols-4'} gap-5`}>
+              <div className={`grid grid-cols-1 sm:grid-cols-2 ${editingParty.slots.length === 3 ? 'xl:grid-cols-3' : editingParty.slots.length === 5 ? 'xl:grid-cols-5' : 'xl:grid-cols-4'} gap-5`}>
                 {editingParty.slots.map((slot, sIdx) => (
                   <div
                     key={sIdx}

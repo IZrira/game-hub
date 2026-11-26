@@ -11,6 +11,8 @@
   - `pages/Dolls.tsx`: 검색, 레어도·직업·속성·무기 필터(`button` + `aria-pressed`, URL 쿼리 유지), 출시순·최신순·이름순 정렬
   - `pages/DollDetail.tsx`: 일러스트·직업·속성·약점·프로필 → 기본 능력치 → 섹션 목차 → 스킬(소환물·교체 스킬 포함) → 마인드 보강 → 뉴럴 헬릭스 → 결합키·리몰딩 코어 → 의상 → 용어
   - `utils/gf2Data.ts`: 이미지 경로, 인형별 상세 지연 로딩, Notion 원문 텍스트 파서
+  - 2026-11-26: 상세 페이지 배치(사이드바 없음, 초상 500px 열, 번호 구역 제목 24px, 스킬 이름 30px)와 도감 카드(3:4, 한 줄 7장)를 다른 허브 규격에 맞췄다. 상세에 의상 선택, 공유, 이미지 저장, 데이터 오류 제보, 캐릭터 평가 게시판(`game_id = gf2`)을 붙였다. 메뉴 컴포넌트(`Gf2Sidebar`)와 허브 홈 구성은 그대로 둔다.
+- 관리자(`/admin`): 소녀전선2 묶음에 인형(목록만, 원본은 Notion), 티어표(구분: 종합 하나), 파티(5인 슬롯, 돌파 표기는 중추 Ⅰ~Ⅵ)를 넣었다. 공개 티어표·파티 페이지는 아직 없다.
 - 데이터: Notion "소녀전선2 캐릭터 도감 DB"(62명) → `gf2-hub/data/dolls.json`(원본 스냅샷) → `gf2-hub/data/generated/summary.json`(목록용) + `generated/dolls/NNN.json`(인형별, 파일명은 출시 순서)
   - 갱신: `npm run sync:gf2`. 빌드·`sync:notion`에는 포함하지 않는다.
   - 원본 스냅샷만 고쳤을 때는 `node scripts/fetch-gf2-data.js --split-only`로 화면용 파일만 다시 만든다.

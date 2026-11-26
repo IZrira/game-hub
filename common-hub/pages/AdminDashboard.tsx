@@ -23,7 +23,9 @@ const AdminSectionFallback = () => (
 );
 
 type AdminSection = 'characters' | 'aniimo' | 'tiers' | 'parties' | 'notices';
-type AdminGame = 'hsr' | 'ww' | 'nte' | 'aniimo' | null;
+type AdminGame = 'hsr' | 'ww' | 'nte' | 'gf2' | 'aniimo' | null;
+type ManagedGame = 'hsr' | 'ww' | 'nte' | 'gf2';
+const isManagedGame = (game: AdminGame): game is ManagedGame => game === 'hsr' || game === 'ww' || game === 'nte' || game === 'gf2';
 
 const SECTION_LABEL: Record<AdminSection, string> = {
   notices: '공지사항',
@@ -32,7 +34,7 @@ const SECTION_LABEL: Record<AdminSection, string> = {
   parties: '파티 추천 관리',
   aniimo: '애니모 도감 관리',
 };
-const GAME_LABEL: Record<'hsr' | 'ww' | 'nte', string> = { hsr: '스타레일', ww: '명조', nte: '이환(NTE)' };
+const GAME_LABEL: Record<ManagedGame, string> = { hsr: '스타레일', ww: '명조', nte: '이환(NTE)', gf2: '소녀전선2' };
 const TIER_OPTIONS = ['OP', 'SS', 'S+', 'S', 'A', 'B', 'C', 'D', 'E', 'F', '?'];
 const CHANGE_OPTIONS = ['stay', 'up', 'down', 'new'];
 
@@ -75,7 +77,7 @@ const loadManagedCharacterData = async (gameId: 'ww' | 'nte') => {
 };
 
 const ADMIN_SECTIONS: AdminSection[] = ['characters', 'aniimo', 'tiers', 'parties', 'notices'];
-const ADMIN_GAMES = ['hsr', 'ww', 'nte', 'aniimo'];
+const ADMIN_GAMES = ['hsr', 'ww', 'nte', 'gf2', 'aniimo'];
 
 const AdminDashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -91,8 +93,8 @@ const AdminDashboard: React.FC = () => {
   });
   const [tierSearch, setTierSearch] = useState('');
   const [tierSortCategory, setTierSortCategory] = useState<string | null>(null);
-  const [openGameGroup, setOpenGameGroup] = useState<'hsr' | 'ww' | 'nte' | null>(
-    (activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte') ? activeGame : 'hsr'
+  const [openGameGroup, setOpenGameGroup] = useState<ManagedGame | null>(
+    isManagedGame(activeGame) ? activeGame : 'hsr'
   );
 
   // 사이드바 이동: 섹션/게임 상태와 주소(URL)를 함께 갱신해 새로고침해도 위치가 유지된다.
@@ -103,7 +105,7 @@ const AdminDashboard: React.FC = () => {
     next.set('section', section);
     if (game) next.set('game', game);
     setSearchParams(next, { replace: false });
-    if (game === 'hsr' || game === 'ww' || game === 'nte') setOpenGameGroup(game);
+    if (isManagedGame(game)) setOpenGameGroup(game);
   };
 
   // 토스트 알림 (alert() 대체)
@@ -155,6 +157,7 @@ const AdminDashboard: React.FC = () => {
         { id: 'hologram', name: '종말 매트릭스' }
       ];
     }
+    if (activeGame === 'gf2') return [{ id: 'overall', name: '종합' }];
     if (activeGame === 'nte') {
       return NTE_TIER_CATEGORIES.map(({ id, name }) => ({ id, name }));
     }
@@ -261,6 +264,20 @@ const AdminDashboard: React.FC = () => {
     let localChars: any[] = [];
     if (activeGame === 'aniimo') {
       setBaseCharacters([]);
+      return;
+    }
+    if (activeGame === 'gf2') {
+      // GF2 인형 원본은 Notion 도감 DB다. 저장소 스냅샷을 그대로 쓰고 캐릭터 DB 테이블은 두지 않는다.
+      const { default: GF2_DOLLS } = await import('../../gf2-hub/data/generated/summary.json');
+      setBaseCharacters(GF2_DOLLS.map(d => ({
+        id: d.name,
+        name: d.name,
+        folder_name: d.imageFolder,
+        rarity: d.rarity === '정예' ? 5 : 4,
+        attribute: d.element,
+        path: d.job,
+        version: String(d.releaseOrder),
+      })));
       return;
     }
     if (activeGame === 'hsr') {
@@ -768,6 +785,9 @@ const AdminDashboard: React.FC = () => {
       const fileName = isRover ? `${mappedFolder}(여)` : mappedFolder;
       return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/ww%20images/skills/${safeEncodeURIComponent(mappedFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
     }
+    if (game === 'gf2') {
+      return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/gf2%20images/skills/${safeEncodeURIComponent(safeFolder)}/${safeEncodeURIComponent(safeFolder)}.webp`;
+    }
     if (game === 'nte') {
       const fileName = safeFolder === '감정사' ? '감정사_f' : safeFolder;
       return `https://raw.githubusercontent.com/IZrira/riragameinfo/main/nte%20images/skills/${safeEncodeURIComponent(safeFolder)}/${safeEncodeURIComponent(fileName)}.webp`;
@@ -817,7 +837,7 @@ const AdminDashboard: React.FC = () => {
       return a.name.localeCompare(b.name, 'ko');
     });
 
-  const breadcrumb = activeGame === 'hsr' || activeGame === 'ww' || activeGame === 'nte'
+  const breadcrumb = isManagedGame(activeGame)
     ? `${GAME_LABEL[activeGame]} › ${SECTION_LABEL[activeTab]}`
     : SECTION_LABEL[activeTab];
 
@@ -854,6 +874,12 @@ const AdminDashboard: React.FC = () => {
             <SidebarLink indent active={activeGame === 'nte' && activeTab === 'characters'} onClick={() => goTo('characters', 'nte')} icon={<Users size={16} />}>캐릭터</SidebarLink>
             <SidebarLink indent active={activeGame === 'nte' && activeTab === 'tiers'} onClick={() => goTo('tiers', 'nte')} icon={<Trophy size={16} />}>티어표</SidebarLink>
             <SidebarLink indent active={activeGame === 'nte' && activeTab === 'parties'} onClick={() => goTo('parties', 'nte')} icon={<Sparkles size={16} />}>파티</SidebarLink>
+          </SidebarGameGroup>
+
+          <SidebarGameGroup label="소녀전선2" open={openGameGroup === 'gf2'} onToggle={() => setOpenGameGroup(openGameGroup === 'gf2' ? null : 'gf2')}>
+            <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'characters'} onClick={() => goTo('characters', 'gf2')} icon={<Users size={16} />}>인형</SidebarLink>
+            <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'tiers'} onClick={() => goTo('tiers', 'gf2')} icon={<Trophy size={16} />}>티어표</SidebarLink>
+            <SidebarLink indent active={activeGame === 'gf2' && activeTab === 'parties'} onClick={() => goTo('parties', 'gf2')} icon={<Sparkles size={16} />}>파티</SidebarLink>
           </SidebarGameGroup>
 
           <div className="pt-3" />
@@ -919,8 +945,8 @@ const AdminDashboard: React.FC = () => {
                       <tr className="bg-white/[0.02] text-[11px] font-black text-gray-400 uppercase tracking-[0.2em]">
                         <th className="p-8">캐릭터 프로필</th>
                         <th className="p-8 text-center">속성</th>
-                        <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : '운명의 길'}</th>
-                        <th className="p-8 text-center">버전</th>
+                        <th className="p-8 text-center">{activeGame === 'ww' ? '무기' : activeGame === 'nte' ? '클래스' : activeGame === 'gf2' ? '직업' : '운명의 길'}</th>
+                        <th className="p-8 text-center">{activeGame === 'gf2' ? '출시 순서' : '버전'}</th>
                         <th className="p-8 text-right">관리</th>
                       </tr>
                     </thead>
@@ -956,7 +982,9 @@ const AdminDashboard: React.FC = () => {
                                   <input 
                                     className="text-[11px] font-bold text-gray-400 bg-transparent border-none p-0 focus:ring-0 w-48"
                                     value={bc.folder_name}
+                                    readOnly={activeGame === 'gf2'}
                                     onChange={async (e) => {
+                                      if (activeGame === 'gf2') return;
                                       await supabase.from('characters').update({ folder_name: e.target.value }).eq('id', bc.id);
                                       fetchBaseData();
                                     }}
@@ -971,14 +999,16 @@ const AdminDashboard: React.FC = () => {
                             <input 
                               className="w-16 text-center font-bold text-amber-500/60 tracking-widest bg-transparent border-b border-transparent hover:border-amber-500/30 focus:border-amber-500 focus:outline-none transition-all p-1"
                               value={bc.version}
+                              readOnly={activeGame === 'gf2'}
                               onChange={async (e) => {
+                                if (activeGame === 'gf2') return;
                                 await supabase.from('characters').update({ version: e.target.value }).eq('id', bc.id);
                                 fetchBaseData();
                               }}
                             />
                           </td>
                           <td className="p-8 text-right">
-                            <button onClick={() => deleteCharacter(bc.id, bc.name)} className="p-4 bg-rose-500/10 hover:bg-rose-500/20 rounded-2xl text-rose-500/40 hover:text-rose-500 transition-all active:scale-90 border border-transparent hover:border-rose-500/20"><Trash2 size={18} /></button>
+                            {activeGame !== 'gf2' && <button onClick={() => deleteCharacter(bc.id, bc.name)} className="p-4 bg-rose-500/10 hover:bg-rose-500/20 rounded-2xl text-rose-500/40 hover:text-rose-500 transition-all active:scale-90 border border-transparent hover:border-rose-500/20"><Trash2 size={18} /></button>}
                           </td>
                         </tr>
                       ))}
@@ -987,8 +1017,22 @@ const AdminDashboard: React.FC = () => {
                 </div>
               </div>
               
+              {/* GF2: 인형 원본은 Notion 도감 DB라 여기서는 목록만 보여 준다. */}
+              {activeGame === 'gf2' && (
+                <div className="space-y-8">
+                  <div className="bg-amber-500/[0.03] border border-amber-500/20 rounded-3xl p-8 space-y-4 sticky top-12">
+                    <div className="flex items-center gap-4">
+                      <div className="p-4 bg-amber-500/20 rounded-2xl text-amber-500"><Database size={24} /></div>
+                      <h2 className="text-base font-bold">인형 데이터 관리</h2>
+                    </div>
+                    <p className="text-sm leading-relaxed text-gray-300">소녀전선2 인형 {baseCharacters.length}명은 Notion 「소녀전선2 캐릭터 도감 DB」가 원본입니다. 추가·수정은 Notion에서 한 뒤 <code className="text-amber-400">npm run sync:gf2</code>로 반영합니다.</p>
+                    <p className="text-sm leading-relaxed text-gray-400">티어표·파티는 왼쪽 메뉴에서 다른 게임과 같은 방식으로 관리합니다.</p>
+                  </div>
+                </div>
+              )}
+
               {/* 캐릭터 추가 사이드바 */}
-              <div className="space-y-8">
+              {activeGame !== 'gf2' && <div className="space-y-8">
                 <div className="bg-amber-500/[0.03] border border-amber-500/20 rounded-3xl p-10 space-y-8 sticky top-12">
                   <div className="flex items-center gap-4">
                     <div className="p-4 bg-amber-500/20 rounded-2xl text-amber-500"><PlusCircle size={28} /></div>
@@ -1118,10 +1162,10 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                     </div>
                   </div>
                 </div>
-              </div>
+              </div>}
             </div>
           )}
-          
+
           {activeTab === 'tiers' && (
             /* 티어표 통합 관리 탭 - 사용자 뷰와 동일한 구조 */
             <div className="space-y-8 animate-in fade-in duration-500">
@@ -1138,13 +1182,13 @@ const ${newChar.name.toLowerCase().replace(/\s+/g, '_') || 'char'}: Character = 
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3">
-                  <button 
+                  {activeGame !== 'gf2' && <button
                     onClick={syncCharactersFromLocal}
                     className="flex items-center gap-2 px-6 py-3 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/20 rounded-2xl text-[11px] font-black transition-all active:scale-95 text-emerald-500"
                   >
                     <Users size={14} />
                     도감 데이터 동기화
-                  </button>
+                  </button>}
                   {activeGame === 'ww' && (
                     <button 
                       onClick={syncWwWeaponsFromLocal}

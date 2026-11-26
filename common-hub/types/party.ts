@@ -19,7 +19,7 @@ export interface PartySlot {
 // 공통 파티 기본 스키마
 export interface BasePartyData {
   id: string;
-  game: 'HSR' | 'WW' | 'NTE';
+  game: 'HSR' | 'WW' | 'NTE' | 'GF2';
   name: string;
   description: string;
   tags: string[];
@@ -48,12 +48,18 @@ export interface NTEPartyData extends BasePartyData {
   slots: [PartySlot, PartySlot, PartySlot, PartySlot]; // 4인 고정
 }
 
-export type UnifiedPartyData = HSRPartyData | WWPartyData | NTEPartyData;
+export interface GF2PartyData extends BasePartyData {
+  game: 'GF2';
+  category: string;
+  slots: [PartySlot, PartySlot, PartySlot, PartySlot, PartySlot]; // 5인 고정
+}
+
+export type UnifiedPartyData = HSRPartyData | WWPartyData | NTEPartyData | GF2PartyData;
 
 /**
  * TypeScript 코드 내보내기 직렬화 엔진
  */
-export const exportPartyToTSCode = (game: 'HSR' | 'WW' | 'NTE', parties: UnifiedPartyData[]): string => {
-  const varName = game === 'HSR' ? 'HSR_PARTIES' : game === 'WW' ? 'WW_PARTY_COMBINATIONS' : 'NTE_PARTY_COMBINATIONS';
+export const exportPartyToTSCode = (game: 'HSR' | 'WW' | 'NTE' | 'GF2', parties: UnifiedPartyData[]): string => {
+  const varName = game === 'HSR' ? 'HSR_PARTIES' : game === 'WW' ? 'WW_PARTY_COMBINATIONS' : game === 'GF2' ? 'GF2_PARTY_COMBINATIONS' : 'NTE_PARTY_COMBINATIONS';
   return `export const ${varName} = ${JSON.stringify(parties, null, 2)};\n`;
 };

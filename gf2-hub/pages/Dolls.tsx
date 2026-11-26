@@ -3,8 +3,7 @@ import { Link, useSearchParams } from 'react-router';
 import { Search } from 'lucide-react';
 import SEO from '../../common-hub/components/SEO';
 import PageHeader from '../../common-hub/components/PageHeader';
-import LazyImage from '../../common-hub/components/LazyImage';
-import { Gf2MobileNav, Gf2Sidebar, Gf2Tag, GF2_PRIVATE_NOTE } from '../components/Gf2Navigation';
+import { Gf2MobileNav, Gf2Sidebar, GF2_PRIVATE_NOTE } from '../components/Gf2Navigation';
 import { GF2_DOLLS, GF2_ELEMENTS, GF2_JOBS, gf2DollPath, gf2ElementIcon, gf2JobIcon, gf2Portrait } from '../utils/gf2Data';
 
 const weaponType = (weapon: string) => weapon.split('/')[0].replace(/\s+/g, '').trim();
@@ -78,15 +77,18 @@ const DollsGF2: React.FC = () => {
         </div>
 
         {list.length === 0 ? <p className="mt-10 rounded-xl border border-white/10 px-4 py-6 text-sm text-gray-300">조건에 맞는 인형이 없습니다. 필터를 하나씩 해제해 보세요.</p>
-          : <ul className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-[repeat(auto-fill,minmax(190px,1fr))] sm:gap-5">{list.map((doll, index) => <li key={doll.name}>
-            <Link to={gf2DollPath(doll.name)} className="block overflow-hidden rounded-3xl border border-white/10 bg-[#121212] transition-colors hover:border-white/25 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300">
-              <div className="relative">
-                <LazyImage src={gf2Portrait(doll)} alt="" loading={index < 8 ? 'eager' : 'lazy'} containerClassName="aspect-[3/4] bg-[#0f0f0f]" className="h-full w-full object-cover object-top" referrerPolicy="no-referrer" />
-                <span className={`absolute left-2 top-2 rounded-md border bg-black/80 px-2 py-0.5 text-xs font-bold ${doll.rarity === '정예' ? 'border-orange-400/40 text-orange-300' : 'border-white/15 text-gray-300'}`}>{doll.rarity}</span>
-              </div>
-              <div className="space-y-2 px-4 pb-4 pt-3">
-                <h2 className="text-lg font-black">{doll.name}</h2>
-                <div className="flex flex-wrap gap-x-3 gap-y-1"><Gf2Tag icon={gf2JobIcon(doll.job)} label={doll.job} /><Gf2Tag icon={gf2ElementIcon(doll.element)} label={doll.element} /></div>
+          : <ul className="mt-4 grid grid-cols-2 gap-2.5 xs:grid-cols-3 sm:grid-cols-4 sm:gap-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7">{list.map((doll, index) => <li key={doll.name}>
+            <Link to={gf2DollPath(doll.name)} className="group relative block aspect-[3/4] overflow-hidden rounded-xl border border-white/5 bg-[#0a0a0a] transition duration-500 hover:border-orange-400/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-orange-300">
+              <img src={gf2Portrait(doll)} alt={doll.name + " 일러스트"} loading={index < 4 ? 'eager' : 'lazy'} decoding="async" referrerPolicy="no-referrer" className="absolute inset-0 h-full w-full object-cover object-top transition duration-700 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 z-10 w-full p-3">
+                <div className="flex items-end justify-between gap-2">
+                  <div className="min-w-0">
+                    <h2 className="mb-1 truncate text-sm font-bold leading-none text-white drop-shadow-md">{doll.name}</h2>
+                    <p className="text-xs text-gray-400">{doll.job} · {doll.element}</p>
+                  </div>
+                  <span className={`shrink-0 rounded px-1.5 py-0.5 text-xs font-black ${doll.rarity === '정예' ? 'bg-orange-500/20 text-orange-300' : 'bg-blue-500/20 text-blue-300'}`}>{doll.rarity}</span>
+                </div>
               </div>
             </Link>
           </li>)}</ul>}
