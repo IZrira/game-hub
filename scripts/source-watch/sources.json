@@ -1,0 +1,78 @@
+{
+  "about": "콘텐츠를 옮겨 온 외부 위키 문서와 그때의 최근 수정 시각(UTC). check-sources.js가 현재 시각과 비교한다.",
+  "sources": [
+    {
+      "game": "azur",
+      "name": "테라라",
+      "url": "https://namu.wiki/w/%ED%85%8C%EB%9D%BC%EB%9D%BC(%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84)",
+      "revision": "2026-11-27T12:56:53.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "Notion 아주르 캐릭터 DB 「테라라」(42395fae3dc781cdad59d7d0c4e0df8f) 스킬·포지션·소개 속성",
+        "riragameinfo azur images/skills/테라라/"
+      ]
+    },
+    {
+      "game": "azur",
+      "name": "아주르 속성",
+      "url": "https://namu.wiki/w/%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84/%EC%86%8D%EC%84%B1",
+      "revision": "2026-07-14T22:53:22.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "docs/drafts/azur-element-guide.md",
+        "riragameinfo azur images/common/attribute/, azur images/guides/attribute/"
+      ]
+    },
+    {
+      "game": "azur",
+      "name": "아주르 캐릭터 분류",
+      "url": "https://namu.wiki/w/%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84/%EC%BA%90%EB%A6%AD%ED%84%B0",
+      "revision": "2026-11-25T03:04:23.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "docs/drafts/azur-class-position-guide.md",
+        "riragameinfo azur images/common/class/"
+      ]
+    },
+    {
+      "game": "azur",
+      "name": "아주르 키보 1~50",
+      "url": "https://namu.wiki/w/%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84/%ED%82%A4%EB%B3%B4/1~50",
+      "revision": "2026-11-21T01:26:29.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "riragameinfo azur images/kibo/ (001~049)"
+      ]
+    },
+    {
+      "game": "azur",
+      "name": "아주르 키보 51~100",
+      "url": "https://namu.wiki/w/%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84/%ED%82%A4%EB%B3%B4/51~100",
+      "revision": "2026-11-21T01:05:37.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "riragameinfo azur images/kibo/ (051~097)"
+      ]
+    },
+    {
+      "game": "azur",
+      "name": "아주르 키보 101~150",
+      "url": "https://namu.wiki/w/%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84/%ED%82%A4%EB%B3%B4/101~150",
+      "revision": "2026-11-21T01:40:58.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "riragameinfo azur images/kibo/ (123~149)"
+      ]
+    },
+    {
+      "game": "azur",
+      "name": "아주르 키보 151~200",
+      "url": "https://namu.wiki/w/%EC%95%84%EC%A3%BC%EB%A5%B4%20%ED%94%84%EB%A1%9C%EB%B0%80%EB%A6%AC%EC%95%84/%ED%82%A4%EB%B3%B4/151~200",
+      "revision": "2026-11-21T01:42:50.000Z",
+      "recordedAt": "2026-11-28",
+      "targets": [
+        "riragameinfo azur images/kibo/ (161)"
+      ]
+    }
+  ]
+}
