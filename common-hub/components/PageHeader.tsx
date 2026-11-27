@@ -10,6 +10,7 @@ const GAME_NAME_KEYS: Record<string, string> = {
   nte: 'NTE',
   aniimo: '애니모',
   gf2: '소녀전선2',
+  azur: '아주르 프로밀리아',
 };
 
 interface PageHeaderProps {

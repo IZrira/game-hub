@@ -643,6 +643,11 @@ ${lastmod ? `    <lastmod>${lastmod}</lastmod>\n` : ''}  </sitemap>
     appOnlyPaths.add('/gallery/gf2/dolls');
     for (const doll of gf2Summary) appOnlyPaths.add('/gallery/gf2/character/' + doll.name.normalize('NFC'));
 
+    // 아주르 프로밀리아 허브도 같은 비공개 단계다.
+    const azurCharacters = JSON.parse(fs.readFileSync(path.join(ROOT_DIR, 'azur-hub', 'data', 'characters.json'), 'utf8'));
+    for (const sub of ['', '/characters', '/kibo', '/elements']) appOnlyPaths.add('/gallery/azur' + sub);
+    for (const character of azurCharacters) appOnlyPaths.add('/gallery/azur/character/' + character.name.normalize('NFC'));
+
     const edgeRoutes = [...new Set([
       ...allUrls.map(entry => decodeURI(new URL(entry).pathname)),
       ...appOnlyPaths,

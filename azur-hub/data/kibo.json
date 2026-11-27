@@ -1,0 +1,984 @@
+[
+ {
+  "no": 1,
+  "name": "새싹 여우",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "001.webp"
+   }
+  ]
+ },
+ {
+  "no": 2,
+  "name": "솜꼬리 여우",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "002.webp"
+   }
+  ]
+ },
+ {
+  "no": 3,
+  "name": "왕관 여우",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "003.webp"
+   }
+  ]
+ },
+ {
+  "no": 4,
+  "name": "불꽃 음메",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "004.webp"
+   }
+  ]
+ },
+ {
+  "no": 5,
+  "name": "불꽃 우우",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "005.webp"
+   }
+  ]
+ },
+ {
+  "no": 6,
+  "name": "화염 뿔소",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "006.webp"
+   }
+  ]
+ },
+ {
+  "no": 7,
+  "name": "꼬마 비버",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "007.webp"
+   }
+  ]
+ },
+ {
+  "no": 8,
+  "name": "파도 비버",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "008.webp"
+   }
+  ]
+ },
+ {
+  "no": 9,
+  "name": "비버 마스터",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "009.webp"
+   }
+  ]
+ },
+ {
+  "no": 10,
+  "name": "嘟噜",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "010.webp"
+   },
+   {
+    "label": "이색",
+    "file": "010_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 11,
+  "name": "싹이닭",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "011.webp"
+   },
+   {
+    "label": "이색",
+    "file": "011_이색.webp"
+   },
+   {
+    "label": "특수",
+    "file": "011_특수.webp"
+   }
+  ]
+ },
+ {
+  "no": 12,
+  "name": "배추닭",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "012.webp"
+   },
+   {
+    "label": "이색",
+    "file": "012_이색.webp"
+   },
+   {
+    "label": "특수",
+    "file": "012_특수.webp"
+   }
+  ]
+ },
+ {
+  "no": 13,
+  "name": "블루미",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "013.webp"
+   },
+   {
+    "label": "이색",
+    "file": "013_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 14,
+  "name": "어질버섯",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "014.webp"
+   },
+   {
+    "label": "이색",
+    "file": "014_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 15,
+  "name": "워터링",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "015.webp"
+   },
+   {
+    "label": "이색",
+    "file": "015_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 16,
+  "name": "워터령",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "016.webp"
+   },
+   {
+    "label": "이색",
+    "file": "016_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 17,
+  "name": "워터킹",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "017.webp"
+   },
+   {
+    "label": "이색",
+    "file": "017_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 18,
+  "name": "파이링",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "018.webp"
+   }
+  ]
+ },
+ {
+  "no": 19,
+  "name": "파이령",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "019.webp"
+   }
+  ]
+ },
+ {
+  "no": 20,
+  "name": "파이어킹",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "020.webp"
+   }
+  ]
+ },
+ {
+  "no": 21,
+  "name": "冰灵仔",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "021.webp"
+   }
+  ]
+ },
+ {
+  "no": 22,
+  "name": "冰灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "022.webp"
+   }
+  ]
+ },
+ {
+  "no": 23,
+  "name": "霜灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "023.webp"
+   }
+  ]
+ },
+ {
+  "no": 24,
+  "name": "风灵仔",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "024.webp"
+   }
+  ]
+ },
+ {
+  "no": 25,
+  "name": "风灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "025.webp"
+   }
+  ]
+ },
+ {
+  "no": 26,
+  "name": "岚灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "026.webp"
+   }
+  ]
+ },
+ {
+  "no": 27,
+  "name": "木灵仔",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "027.webp"
+   }
+  ]
+ },
+ {
+  "no": 28,
+  "name": "木灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "028.webp"
+   }
+  ]
+ },
+ {
+  "no": 29,
+  "name": "蔓灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "029.webp"
+   }
+  ]
+ },
+ {
+  "no": 30,
+  "name": "雷灵仔",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "030.webp"
+   }
+  ]
+ },
+ {
+  "no": 31,
+  "name": "雷灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "031.webp"
+   }
+  ]
+ },
+ {
+  "no": 32,
+  "name": "电灵偶",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "032.webp"
+   }
+  ]
+ },
+ {
+  "no": 33,
+  "name": "哈加",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "033.webp"
+   },
+   {
+    "label": "이색",
+    "file": "033_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 34,
+  "name": "叶冠驼",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "034.webp"
+   },
+   {
+    "label": "이색",
+    "file": "034_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 35,
+  "name": "스포리",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "035.webp"
+   },
+   {
+    "label": "이색",
+    "file": "035_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 36,
+  "name": "플로리",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "036.webp"
+   },
+   {
+    "label": "이색",
+    "file": "036_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 37,
+  "name": "플로렌",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "037.webp"
+   },
+   {
+    "label": "이색",
+    "file": "037_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 38,
+  "name": "风灵苞",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "038.webp"
+   }
+  ]
+ },
+ {
+  "no": 39,
+  "name": "风灵朵",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "039.webp"
+   }
+  ]
+ },
+ {
+  "no": 40,
+  "name": "岚音花",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "040.webp"
+   }
+  ]
+ },
+ {
+  "no": 41,
+  "name": "雷灵苞",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "041.webp"
+   }
+  ]
+ },
+ {
+  "no": 42,
+  "name": "雷灵朵",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "042.webp"
+   }
+  ]
+ },
+ {
+  "no": 43,
+  "name": "电音花",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "043.webp"
+   }
+  ]
+ },
+ {
+  "no": 44,
+  "name": "火花雀",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "044.webp"
+   },
+   {
+    "label": "이색",
+    "file": "044_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 45,
+  "name": "焰火雀",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "045.webp"
+   },
+   {
+    "label": "이색",
+    "file": "045_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 46,
+  "name": "火烈鹰",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "046.webp"
+   },
+   {
+    "label": "이색",
+    "file": "046_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 47,
+  "name": "스톰 호크",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "047.webp"
+   },
+   {
+    "label": "이색",
+    "file": "047_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 49,
+  "name": "브리즈 호크",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "049.webp"
+   },
+   {
+    "label": "이색",
+    "file": "049_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 51,
+  "name": "게일 울프",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "051.webp"
+   },
+   {
+    "label": "이색",
+    "file": "051_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 53,
+  "name": "加杜",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "053.webp"
+   },
+   {
+    "label": "이색",
+    "file": "053_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 54,
+  "name": "雾粘蛙",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "054.webp"
+   }
+  ]
+ },
+ {
+  "no": 55,
+  "name": "雾球蛙",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "055.webp"
+   }
+  ]
+ },
+ {
+  "no": 56,
+  "name": "水岩灵",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "056.webp"
+   }
+  ]
+ },
+ {
+  "no": 57,
+  "name": "水岩卫",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "057.webp"
+   }
+  ]
+ },
+ {
+  "no": 64,
+  "name": "실바디",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "064.webp"
+   }
+  ]
+ },
+ {
+  "no": 81,
+  "name": "꼬마 아이스 울프",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "081.webp"
+   }
+  ]
+ },
+ {
+  "no": 82,
+  "name": "아이스 울프",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "082.webp"
+   }
+  ]
+ },
+ {
+  "no": 83,
+  "name": "프로스트 울프",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "083.webp"
+   }
+  ]
+ },
+ {
+  "no": 85,
+  "name": "焰羊羊",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "085.webp"
+   },
+   {
+    "label": "이색",
+    "file": "085_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 86,
+  "name": "尾火羊",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "086.webp"
+   },
+   {
+    "label": "이색",
+    "file": "086_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 87,
+  "name": "炎灼角羊",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "087.webp"
+   },
+   {
+    "label": "이색",
+    "file": "087_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 88,
+  "name": "岩甲蜥",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "088.webp"
+   }
+  ]
+ },
+ {
+  "no": 89,
+  "name": "穿甲蜥",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "089.webp"
+   }
+  ]
+ },
+ {
+  "no": 90,
+  "name": "钻山蜥",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "090.webp"
+   }
+  ]
+ },
+ {
+  "no": 91,
+  "name": "焰翎龙",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "091.webp"
+   }
+  ]
+ },
+ {
+  "no": 92,
+  "name": "滚地犰",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "092.webp"
+   }
+  ]
+ },
+ {
+  "no": 93,
+  "name": "覆甲犰",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "093.webp"
+   }
+  ]
+ },
+ {
+  "no": 94,
+  "name": "熔岩犰",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "094.webp"
+   }
+  ]
+ },
+ {
+  "no": 95,
+  "name": "红宝虫",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "095.webp"
+   }
+  ]
+ },
+ {
+  "no": 96,
+  "name": "赤晶甲",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "096.webp"
+   }
+  ]
+ },
+ {
+  "no": 97,
+  "name": "크림소노르",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "097.webp"
+   }
+  ]
+ },
+ {
+  "no": 123,
+  "name": "엘뇽",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "123.webp"
+   }
+  ]
+ },
+ {
+  "no": 125,
+  "name": "엘리뇽",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "125.webp"
+   }
+  ]
+ },
+ {
+  "no": 131,
+  "name": "번시클",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "131.webp"
+   }
+  ]
+ },
+ {
+  "no": 138,
+  "name": "플로톤",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "138.webp"
+   },
+   {
+    "label": "이색",
+    "file": "138_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 139,
+  "name": "버터 플로트",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "139.webp"
+   },
+   {
+    "label": "이색",
+    "file": "139_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 140,
+  "name": "레피디릭",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "140.webp"
+   },
+   {
+    "label": "이색",
+    "file": "140_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 141,
+  "name": "팬텀플라이",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "141.webp"
+   },
+   {
+    "label": "이색",
+    "file": "141_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 143,
+  "name": "라자돈",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "143.webp"
+   },
+   {
+    "label": "이색",
+    "file": "143_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 144,
+  "name": "铁鬃霸主",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "144.webp"
+   },
+   {
+    "label": "이색",
+    "file": "144_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 145,
+  "name": "铁球蜥",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "145.webp"
+   }
+  ]
+ },
+ {
+  "no": 146,
+  "name": "三角蜥",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "146.webp"
+   }
+  ]
+ },
+ {
+  "no": 147,
+  "name": "角斗蜥",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "147.webp"
+   }
+  ]
+ },
+ {
+  "no": 149,
+  "name": "썬더야크",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "149.webp"
+   },
+   {
+    "label": "이색",
+    "file": "149_이색.webp"
+   }
+  ]
+ },
+ {
+  "no": 161,
+  "name": "네뷸라 이온",
+  "variants": [
+   {
+    "label": "기본",
+    "file": "161.webp"
+   },
+   {
+    "label": "이색",
+    "file": "161_이색.webp"
+   }
+  ]
+ }
+]

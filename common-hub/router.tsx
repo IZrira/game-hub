@@ -19,6 +19,11 @@ const LocationsAniimo = React.lazy(() => import('../aniimo-hub/pages/Locations')
 const HubGF2 = React.lazy(() => import('../gf2-hub/pages/Hub'));
 const DollsGF2 = React.lazy(() => import('../gf2-hub/pages/Dolls'));
 const DollDetailGF2 = React.lazy(() => import('../gf2-hub/pages/DollDetail'));
+const HubAzur = React.lazy(() => import('../azur-hub/pages/Hub'));
+const CharactersAzur = React.lazy(() => import('../azur-hub/pages/Characters'));
+const CharacterDetailAzur = React.lazy(() => import('../azur-hub/pages/CharacterDetail'));
+const KiboAzur = React.lazy(() => import('../azur-hub/pages/Kibo'));
+const ElementsAzur = React.lazy(() => import('../azur-hub/pages/Elements'));
 const Detail = React.lazy(() => import('./pages/Detail'));
 const CharacterDetailHSR = React.lazy(() => import('../hsr-hub/pages/CharacterDetail'));
 const CharacterDetailWW = React.lazy(() => import('../ww-hub/pages/CharacterDetail'));
@@ -82,6 +87,7 @@ const GalleryDispatcher = () => {
   if (gameId === 'nte') return <GalleryNTE />;
   if (gameId === 'aniimo') return <HubAniimo />;
   if (gameId === 'gf2') return <HubGF2 />;
+  if (gameId === 'azur') return <HubAzur />;
   return <GalleryHSR />;
 };
 
@@ -91,6 +97,7 @@ const CharacterDetailDispatcher = () => {
   if (gameId === 'nte') return <CharacterDetailNTE />;
   if (gameId === 'aniimo') return <CharacterDetailAniimo />;
   if (gameId === 'gf2') return <DollDetailGF2 />;
+  if (gameId === 'azur') return <CharacterDetailAzur />;
   return <CharacterDetailHSR />;
 };
 
@@ -186,6 +193,9 @@ export const router = createBrowserRouter([
       { path: "gallery/aniimo/personality", element: <PersonalityGuideAniimo /> },
       { path: "gallery/aniimo/party-builder", element: <PartyBuilderAniimo /> },
       { path: "gallery/gf2/dolls", element: <DollsGF2 /> },
+      { path: "gallery/azur/characters", element: <CharactersAzur /> },
+      { path: "gallery/azur/kibo", element: <KiboAzur /> },
+      { path: "gallery/azur/elements", element: <ElementsAzur /> },
       { path: "gallery/:gameId/lightcone/:lcName", element: <LightConeDetail /> },
       { path: "gallery/:gameId/relic/:relicName", element: <RelicDetail /> },
       { path: "gallery/:gameId/ornament/:ornamentName", element: <OrnamentDetail /> },

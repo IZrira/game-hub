@@ -78,6 +78,10 @@ const loadManagedCharacterData = async (gameId: 'ww' | 'nte') => {
 
 const ADMIN_SECTIONS: AdminSection[] = ['characters', 'aniimo', 'tiers', 'parties', 'notices'];
 const ADMIN_GAMES = ['hsr', 'ww', 'nte', 'gf2', 'aniimo'];
+const PRIVATE_HUBS = [
+  { label: '소녀전선2 허브', href: '/gallery/gf2' },
+  { label: '아주르 프로밀리아 허브', href: '/gallery/azur' },
+];
 
 const AdminDashboard: React.FC = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -886,6 +890,16 @@ const AdminDashboard: React.FC = () => {
           <SidebarLink active={activeTab === 'aniimo'} onClick={() => goTo('aniimo', 'aniimo')} icon={<Sparkles size={16} />}>
             애니모 도감
           </SidebarLink>
+
+          {/* 미공개 허브: 사이트맵·홈·검색에 없고 주소로만 열린다. */}
+          <p className="px-3 pt-5 pb-1 text-xs font-bold text-gray-500">미공개 허브</p>
+          {PRIVATE_HUBS.map(hub => (
+            <a key={hub.href} href={hub.href} target="_blank" rel="noopener" className="w-full flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-gray-400 transition-colors hover:bg-white/5 hover:text-white">
+              <ExternalLink size={16} aria-hidden="true" />
+              <span className="truncate">{hub.label}</span>
+              <span className="sr-only">(새 탭)</span>
+            </a>
+          ))}
         </nav>
 
         <div className="p-3 border-t border-white/5 space-y-2">

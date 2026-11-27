@@ -9,6 +9,7 @@
     "sync:notion": "node scripts/fetch-notion-data.js",
     "sync:notion-and-build": "npm run sync:notion && npm run build",
     "sync:gf2": "node --use-system-ca scripts/fetch-gf2-data.js",
+    "sync:azur": "node --use-system-ca scripts/fetch-azur-data.js",
     "compare:notion": "node --use-system-ca scripts/notion-compare/index.js",
     "check:sources": "node scripts/source-watch/check-sources.js",
     "build": "npm run generate:content-snapshots && npm run generate:guide-summaries && npm run typecheck && npm run generate:search-data && npm run generate:aniimo-runtime && npm run generate:ww-runtime && npm run generate:notices && node scripts/generate-sitemap.js && vite build && node scripts/prerender-meta.js && node scripts/audit-prerender-seo.js && npm run perf:audit && node scripts/retain-previous-assets.js",
