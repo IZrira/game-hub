@@ -150,8 +150,15 @@ describe('WW guide navigation and selected build', () => {
     const skillSection = container.querySelector('[id="스킬 육성 우선순위"]') as HTMLElement;
     const skills = within(skillSection).getAllByRole('listitem').map(node => node.querySelector('p')?.textContent);
     expect(skills).toEqual(originalGuide.skillPriority);
-    fireEvent.click(screen.getByRole('button', { name: 'RIRA 분석 가이드' }));
-    const analysis = container.querySelector('[id="RIRA 분석 가이드"]') as HTMLElement;
+    // 분석 데이터가 늦게 도착하면 버튼이 잠시 비활성이라, 활성화와 섹션 표시를 기다린다(느린 CI 대비).
+    const analysisButton = () => screen.getByRole('button', { name: 'RIRA 분석 가이드' }) as HTMLButtonElement;
+    await waitFor(() => expect(analysisButton().disabled).toBe(false));
+    fireEvent.click(analysisButton());
+    const analysis = await waitFor(() => {
+      const section = container.querySelector('[id="RIRA 분석 가이드"]') as HTMLElement | null;
+      expect(section).not.toBeNull();
+      return section as HTMLElement;
+    });
     expect(analysis.textContent).toContain(sourceAnalysis.jiyan.summary);
     for (const detail of [...sourceAnalysis.jiyan.strengths, ...sourceAnalysis.jiyan.weaknesses, ...sourceAnalysis.jiyan.rotation, ...sourceAnalysis.jiyan.tips]) {
       expect(analysis.textContent).toContain(detail);
