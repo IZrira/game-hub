@@ -8,7 +8,7 @@ import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import NotFound from '../../common-hub/pages/NotFound';
 import { Gf2Tag, GF2_PRIVATE_NOTE } from '../components/Gf2Navigation';
 import { Gf2TermProvider, Gf2Text } from '../components/Gf2RichText';
-import { findGf2Doll, gf2CommonKeyImage, gf2ElementIcon, gf2JobIcon, gf2Portrait, gf2SkillImage, gf2StatIcon, loadGf2Doll, parseCore, parseHelix, parseMind, parseSkillText, parseStats, parseTerms, splitLines, GF2_AMMO, GF2_ELEMENTS } from '../utils/gf2Data';
+import { findGf2Doll, gf2CommonKeyImage, gf2ElementIcon, gf2JobIcon, gf2Portrait, gf2SkillImage, gf2SkinFallbackImage, gf2StatIcon, loadGf2Doll, parseCore, parseHelix, parseMind, parseSkillText, parseStats, parseTerms, splitLines, GF2_AMMO, GF2_ELEMENTS } from '../utils/gf2Data';
 import type { Gf2SkillPart } from '../utils/gf2Data';
 import type { Gf2Doll } from '../types';
 
@@ -37,9 +37,11 @@ const IconBox: React.FC<{ src: string; label: string; size?: 'md' | 'lg' }> = ({
   </span>;
 };
 
-const HideOnError: React.FC<{ src: string; alt: string; className: string }> = ({ src, alt, className }) => {
-  const [failed, setFailed] = useState(false);
-  return failed ? null : <img src={src} alt={alt} loading="lazy" referrerPolicy="no-referrer" crossOrigin="anonymous" className={className} onError={() => setFailed(true)} />;
+/** `fallback`이 있으면 첫 이미지가 없을 때 그것을 쓰고, 둘 다 없으면 숨긴다. */
+const HideOnError: React.FC<{ src: string; fallback?: string; alt: string; className: string }> = ({ src, fallback, alt, className }) => {
+  const [step, setStep] = useState(0);
+  const current = step === 0 ? src : step === 1 && fallback ? fallback : null;
+  return current ? <img key={current} src={current} alt={alt} loading="lazy" referrerPolicy="no-referrer" crossOrigin="anonymous" className={className} onError={() => setStep(value => value + 1)} /> : null;
 };
 
 /** 이미지가 없으면 빈 칸 대신 안내 문구를 둔다. */
@@ -182,7 +184,14 @@ const DollDetailGF2: React.FC = () => {
         {failed ? <p className="rounded-2xl border border-white/10 px-4 py-6 text-base text-gray-300">인형 정보를 불러오지 못했습니다. 새로고침하거나 <Link to="/gallery/gf2/dolls" className="text-orange-300 underline">인형 도감</Link>으로 돌아가 주세요.</p> : <>
           <div ref={cardRef} className="relative grid grid-cols-1 items-start gap-8 border-b border-white/5 pb-8 lg:grid-cols-[500px_1fr]">
             <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-[#1b1410] to-[#0f0f0f] aspect-[3/4.5] lg:aspect-auto lg:h-[min(750px,calc(100dvh-17rem))] lg:min-h-[480px]">
-              <img key={portrait} src={portrait} alt={`${summary.name} 일러스트`} fetchPriority="high" decoding="async" referrerPolicy="no-referrer" crossOrigin="anonymous" className="h-full w-full object-cover object-top" onError={event => { if (skinIndex > 0) event.currentTarget.src = gf2Portrait(summary); }} />
+              <img key={portrait} src={portrait} alt={`${summary.name} 일러스트`} fetchPriority="high" decoding="async" referrerPolicy="no-referrer" crossOrigin="anonymous" className="h-full w-full object-cover object-top" onError={event => {
+                // 단일 스킨 파일 → 파츠 스킨 대표 이미지 → 기본 일러스트 순서로 한 번씩만 바꾼다.
+                const img = event.currentTarget;
+                const step = Number(img.dataset.fallbackStep || 0);
+                if (skinIndex === 0 || step >= 2) return;
+                img.dataset.fallbackStep = String(step + 1);
+                img.src = step === 0 ? gf2SkinFallbackImage(summary, skins[skinIndex]) : gf2Portrait(summary);
+              }} />
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/20 to-transparent" />
               <div className="absolute bottom-8 left-8 right-8 space-y-3">
                 <p className="text-xs font-black uppercase tracking-widest text-orange-300">직업 : {summary.job} | {summary.element}</p>
@@ -322,7 +331,7 @@ const DollDetailGF2: React.FC = () => {
 
             {parsed.skins.length > 0 && <Section id="skins" num={num('skins')} title="의상" note={`${parsed.skins.length}종`}>
               <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">{parsed.skins.map((skin, index) => <li key={skin} className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]">
-                <div className="aspect-[3/4] bg-gradient-to-b from-[#1b1410] to-[#0e0e0e]"><HideOnError src={index === 0 ? gf2Portrait(summary) : gf2SkillImage(summary, skin)} alt={skin} className="h-full w-full object-contain object-bottom" /></div>
+                <div className="aspect-[3/4] bg-gradient-to-b from-[#1b1410] to-[#0e0e0e]"><HideOnError src={index === 0 ? gf2Portrait(summary) : gf2SkillImage(summary, skin)} fallback={index === 0 ? undefined : gf2SkinFallbackImage(summary, skin)} alt={skin} className="h-full w-full object-contain object-bottom" /></div>
                 <p className="flex items-center justify-between gap-2 px-4 py-3 text-base font-bold">{skin}<span className="text-sm font-semibold text-gray-400">{index === 0 ? '기본' : '추가'}</span></p>
               </li>)}</ul>
             </Section>}

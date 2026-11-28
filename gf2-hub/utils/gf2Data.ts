@@ -13,6 +13,8 @@ export const findGf2Doll = (name: string) => GF2_DOLLS.find(doll => doll.name ==
 
 const image = (path: string) => encodeURI(`${REPOSITORY_IMAGE_BASE}/gf2 images/${path}`);
 export const gf2Portrait = (doll: Pick<Gf2DollSummary, 'imageFolder'>) => image(`skills/${doll.imageFolder}/${doll.imageFolder}.webp`);
+/** 파츠 교체 스킨은 저장소에 `skins/<스킨>/대표.webp`로 들어 있다. 단일 파일이 없을 때 쓴다. */
+export const gf2SkinFallbackImage = (doll: Pick<Gf2DollSummary, 'imageFolder'>, skin: string) => image(`skills/${doll.imageFolder}/skins/${skin}/대표.webp`);
 export const gf2SkillImage = (doll: Pick<Gf2DollSummary, 'imageFolder'>, file: string) => image(`skills/${doll.imageFolder}/${file}.webp`);
 export const gf2JobIcon = (job: string) => image(`common/class/${job}.webp`);
 export const gf2ElementIcon = (element: string) => image(`common/damage-types/${element}.webp`);
