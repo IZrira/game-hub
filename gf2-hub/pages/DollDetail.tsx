@@ -42,6 +42,12 @@ const HideOnError: React.FC<{ src: string; alt: string; className: string }> = (
   return failed ? null : <img src={src} alt={alt} loading="lazy" referrerPolicy="no-referrer" crossOrigin="anonymous" className={className} onError={() => setFailed(true)} />;
 };
 
+/** 이미지가 없으면 빈 칸 대신 안내 문구를 둔다. */
+const ImageOrNote: React.FC<{ src: string; alt: string; className: string }> = ({ src, alt, className }) => {
+  const [failed, setFailed] = useState(false);
+  return failed ? <span className="text-sm text-gray-400">이미지 준비 중</span> : <img src={src} alt={alt} loading="lazy" referrerPolicy="no-referrer" crossOrigin="anonymous" className={className} onError={() => setFailed(true)} />;
+};
+
 const Chip: React.FC<{ children: React.ReactNode; tone?: 'plain' | 'accent' }> = ({ children, tone = 'plain' }) => <span className={`inline-flex min-h-8 items-center gap-1.5 rounded-full border px-3 py-1 text-sm font-semibold ${tone === 'accent' ? 'border-orange-400/30 bg-orange-400/10 text-orange-100' : 'border-white/10 bg-white/[0.04] text-gray-200'}`}>{children}</span>;
 
 /** 다른 허브 상세와 같은 구역 제목: 번호 배지 + 24px 제목 */
@@ -114,6 +120,8 @@ const DollDetailGF2: React.FC = () => {
     helix: parseHelix(doll.helix),
     core: parseCore(doll.core),
     bond: splitLines(doll.bondKey),
+    // Notion 「결합도 보상」은 「결약 보상 프로필」처럼 적혀 있고, 이미지 파일은 「결약 프로필.webp」다.
+    bondRewards: splitLines(doll.bondReward).map(line => line.replace(/^결약 보상\s*/, '').trim()).filter(Boolean),
     skins: splitLines(doll.skins),
     terms: parseTerms(doll.terms),
     voices: doll.voice.split('/').map(part => part.replace(/[\u{1F1E6}-\u{1F1FF}]/gu, '').trim()).filter(Boolean),
@@ -155,6 +163,7 @@ const DollDetailGF2: React.FC = () => {
     { id: 'mind', label: '마인드 보강' },
     { id: 'helix', label: '뉴럴 헬릭스' },
     { id: 'bond', label: '결합·리몰딩' },
+    ...(parsed.bondRewards.length ? [{ id: 'oath', label: '결약 보상' }] : []),
     ...(parsed.skins.length ? [{ id: 'skins', label: '의상' }] : []),
     ...(parsed.terms.length ? [{ id: 'terms', label: '용어' }] : []),
   ] : [];
@@ -300,6 +309,16 @@ const DollDetailGF2: React.FC = () => {
                 </Card>
               </div>
             </Section>
+
+            {parsed.bondRewards.length > 0 && <Section id="oath" num={num('oath')} title="결약 보상" note={`${parsed.bondRewards.length}종`}>
+              <ul className="grid grid-cols-3 gap-4 lg:grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,2fr)]">{parsed.bondRewards.map(reward => {
+                const wide = reward.includes('스킨');
+                return <li key={reward} className={`overflow-hidden rounded-2xl border border-white/10 bg-[#121212] ${wide ? 'col-span-3 lg:col-span-1' : ''}`}>
+                  <div className={`grid place-items-center bg-gradient-to-b from-[#1b1410] to-[#0e0e0e] h-28 p-3 sm:h-40 lg:h-44`}><ImageOrNote src={gf2SkillImage(summary, `결약 ${reward}`)} alt={`${summary.name} 결약 ${reward}`} className="h-full w-full object-contain" /></div>
+                  <p className="px-4 py-3 text-base font-bold">{reward}</p>
+                </li>;
+              })}</ul>
+            </Section>}
 
             {parsed.skins.length > 0 && <Section id="skins" num={num('skins')} title="의상" note={`${parsed.skins.length}종`}>
               <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">{parsed.skins.map((skin, index) => <li key={skin} className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]">
