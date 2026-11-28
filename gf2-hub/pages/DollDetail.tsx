@@ -325,7 +325,8 @@ const DollDetailGF2: React.FC = () => {
               <ul className="grid grid-cols-3 gap-4 lg:grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,2fr)]">{parsed.bondRewards.map(reward => {
                 const wide = reward.includes('스킨');
                 return <li key={reward} className={`overflow-hidden rounded-2xl border border-white/10 bg-[#121212] ${wide ? 'col-span-3 lg:col-span-1' : ''}`}>
-                  <div className={`grid place-items-center bg-gradient-to-b from-[#1b1410] to-[#0e0e0e] h-28 p-3 sm:h-40 lg:h-44`}><ImageOrNote src={gf2SkillImage(summary, `결약 ${reward}`)} alt={`${summary.name} 결약 ${reward}`} className="h-full w-full object-contain" /></div>
+                  {/* 격자 안의 h-full은 높이를 제한하지 못해 넓은 화면에서 이미지가 이름 위로 넘쳤다. flex와 max-h로 칸 안에 맞춘다. */}
+                  <div className="flex h-28 items-center justify-center overflow-hidden bg-gradient-to-b from-[#1b1410] to-[#0e0e0e] p-3 sm:h-44 lg:h-56"><ImageOrNote src={gf2SkillImage(summary, `결약 ${reward}`)} alt={`${summary.name} 결약 ${reward}`} className="max-h-full max-w-full object-contain" /></div>
                   <p className="px-4 py-3 text-base font-bold">{reward}</p>
                 </li>;
               })}</ul>
