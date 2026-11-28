@@ -1,5 +1,6 @@
 import { REPOSITORY_IMAGE_BASE } from '../../common-hub/utils/imageSources';
 import summaryData from '../data/generated/summary.json';
+import GF2_SKIN_PARTS from '../data/generated/skin-parts.json';
 import type { Gf2Doll, Gf2DollSummary } from '../types';
 
 /** 출시 순서(오래된 것 → 최신) */
@@ -15,6 +16,10 @@ const image = (path: string) => encodeURI(`${REPOSITORY_IMAGE_BASE}/gf2 images/$
 export const gf2Portrait = (doll: Pick<Gf2DollSummary, 'imageFolder'>) => image(`skills/${doll.imageFolder}/${doll.imageFolder}.webp`);
 /** 파츠 교체 스킨은 저장소에 `skins/<스킨>/대표.webp`로 들어 있다. 단일 파일이 없을 때 쓴다. */
 export const gf2SkinFallbackImage = (doll: Pick<Gf2DollSummary, 'imageFolder'>, skin: string) => image(`skills/${doll.imageFolder}/skins/${skin}/대표.webp`);
+export const gf2SkinPartImage = (doll: Pick<Gf2DollSummary, 'imageFolder'>, skin: string, part: string) => image(`skills/${doll.imageFolder}/skins/${skin}/${part}.webp`);
+/** 파츠 교체 스킨의 파츠 파일 이름 목록(npm run generate:gf2-skin-parts로 저장소에서 만든다). */
+export const gf2SkinParts = (doll: Pick<Gf2DollSummary, 'imageFolder'>, skin: string): string[] =>
+  (GF2_SKIN_PARTS as Record<string, Record<string, string[]>>)[doll.imageFolder]?.[skin] || [];
 export const gf2SkillImage = (doll: Pick<Gf2DollSummary, 'imageFolder'>, file: string) => image(`skills/${doll.imageFolder}/${file}.webp`);
 export const gf2JobIcon = (job: string) => image(`common/class/${job}.webp`);
 export const gf2ElementIcon = (element: string) => image(`common/damage-types/${element}.webp`);

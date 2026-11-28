@@ -8,7 +8,7 @@ import DetailStickyNav from '../../common-hub/components/DetailStickyNav';
 import NotFound from '../../common-hub/pages/NotFound';
 import { Gf2Tag, GF2_PRIVATE_NOTE } from '../components/Gf2Navigation';
 import { Gf2TermProvider, Gf2Text } from '../components/Gf2RichText';
-import { findGf2Doll, gf2CommonKeyImage, gf2ElementIcon, gf2JobIcon, gf2Portrait, gf2SkillImage, gf2SkinFallbackImage, gf2StatIcon, loadGf2Doll, parseCore, parseHelix, parseMind, parseSkillText, parseStats, parseTerms, splitLines, GF2_AMMO, GF2_ELEMENTS } from '../utils/gf2Data';
+import { findGf2Doll, gf2CommonKeyImage, gf2ElementIcon, gf2JobIcon, gf2Portrait, gf2SkillImage, gf2SkinFallbackImage, gf2SkinPartImage, gf2SkinParts, gf2StatIcon, loadGf2Doll, parseCore, parseHelix, parseMind, parseSkillText, parseStats, parseTerms, splitLines, GF2_AMMO, GF2_ELEMENTS } from '../utils/gf2Data';
 import type { Gf2SkillPart } from '../utils/gf2Data';
 import type { Gf2Doll } from '../types';
 
@@ -157,7 +157,9 @@ const DollDetailGF2: React.FC = () => {
 
   const [ammo, weakElement] = summary.weakness.split('/').map(part => part.trim());
   const skins = parsed?.skins || [];
-  const portrait = skinIndex > 0 && skins[skinIndex] ? gf2SkillImage(summary, skins[skinIndex]) : gf2Portrait(summary);
+  const portrait = skinIndex > 0 && skins[skinIndex]
+    ? gf2SkinParts(summary, skins[skinIndex]).length ? gf2SkinFallbackImage(summary, skins[skinIndex]) : gf2SkillImage(summary, skins[skinIndex])
+    : gf2Portrait(summary);
   const profile = [['소속', summary.affiliation], ['무기', summary.weapon.replace(/\s*\/\s*/, ' · ')], ['모델', doll?.model], ['성우', parsed?.voices.join(' · ')], ['출시 순서', `${summary.releaseOrder}번째`]].filter(([, value]) => value) as Array<[string, string]>;
   const [bondName, ...bondStats] = parsed?.bond || [];
   const sections = parsed ? [
@@ -330,10 +332,24 @@ const DollDetailGF2: React.FC = () => {
             </Section>}
 
             {parsed.skins.length > 0 && <Section id="skins" num={num('skins')} title="의상" note={`${parsed.skins.length}종`}>
-              <ul className="grid grid-cols-2 gap-4 md:grid-cols-3 xl:grid-cols-4">{parsed.skins.map((skin, index) => <li key={skin} className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]">
-                <div className="aspect-[3/4] bg-gradient-to-b from-[#1b1410] to-[#0e0e0e]"><HideOnError src={index === 0 ? gf2Portrait(summary) : gf2SkillImage(summary, skin)} fallback={index === 0 ? undefined : gf2SkinFallbackImage(summary, skin)} alt={skin} className="h-full w-full object-contain object-bottom" /></div>
-                <p className="flex items-center justify-between gap-2 px-4 py-3 text-base font-bold">{skin}<span className="text-sm font-semibold text-gray-400">{index === 0 ? '기본' : '추가'}</span></p>
-              </li>)}</ul>
+              <ul className="grid grid-cols-2 items-start gap-4 md:grid-cols-3 xl:grid-cols-4">{parsed.skins.map((skin, index) => {
+                const parts = index === 0 ? [] : gf2SkinParts(summary, skin);
+                // 파츠 스킨은 대표 이미지만 있으므로 바로 그 경로를 쓴다.
+                const src = index === 0 ? gf2Portrait(summary) : parts.length ? gf2SkinFallbackImage(summary, skin) : gf2SkillImage(summary, skin);
+                return <li key={skin} className="overflow-hidden rounded-2xl border border-white/10 bg-[#121212]">
+                  <div className="aspect-[3/4] bg-gradient-to-b from-[#1b1410] to-[#0e0e0e]"><HideOnError src={src} fallback={index === 0 || parts.length ? undefined : gf2SkinFallbackImage(summary, skin)} alt={skin} className="h-full w-full object-contain object-bottom" /></div>
+                  <p className="flex items-center justify-between gap-2 px-4 py-3 text-base font-bold">{skin}<span className="shrink-0 text-sm font-semibold text-gray-400">{index === 0 ? '기본' : '추가'}</span></p>
+                  {parts.length > 0 && <details className="group border-t border-white/5">
+                    <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-4 text-sm font-bold text-orange-200 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-orange-300 [&::-webkit-details-marker]:hidden">
+                      {(() => { const effects = parts.filter(part => part.startsWith('특수 효과')).length; return `파츠 ${parts.length - effects}종${effects ? ` · 특수 효과 ${effects}종` : ''}`; })()}<ChevronDown size={16} aria-hidden="true" className="transition-transform group-open:rotate-180" />
+                    </summary>
+                    <ul className="grid grid-cols-3 gap-2 px-3 pb-3">{parts.map(part => <li key={part} className="rounded-xl bg-[#1a1411] p-1.5 text-center">
+                      <div className="aspect-square"><HideOnError src={gf2SkinPartImage(summary, skin, part)} alt={`${skin} ${part}`} className="h-full w-full object-contain" /></div>
+                      <span className="mt-1 block truncate text-xs text-gray-400">{part.replace(/^파츠(\d+)$/, '파츠 $1')}</span>
+                    </li>)}</ul>
+                  </details>}
+                </li>;
+              })}</ul>
             </Section>}
 
             {parsed.terms.length > 0 && <Section id="terms" num={num('terms')} title="용어" note={`${parsed.terms.length}개 · 본문 밑줄 단어에 마우스를 올리거나 누르면 설명이 보입니다`}>
